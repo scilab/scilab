@@ -61,7 +61,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
     public void eventDispatched(AWTEvent mouseEvent) {
 	// DEBUG
 	Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
-
+	Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
 	/*
 	 * Managing Canvas
 	 * PRESSED
@@ -81,6 +81,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 	    /* CLICKED */
 	    case MouseEvent.MOUSE_CLICKED :
 		this.inCanvas = true;
+		this.axes = (SwingScilabAxes) mouseEvent.getSource();
 		if (lastMouse.getClickCount() == 1) {
 		    clickTranslator.setClickAction(SciTranslator.CLICKED);
 		} 
@@ -98,6 +99,7 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		/* PRESSED */
 	    case MouseEvent.MOUSE_PRESSED :
 		this.inCanvas = true;
+		this.axes = (SwingScilabAxes) mouseEvent.getSource();
 		clickTranslator.setClickAction(SciTranslator.PRESSED);
 		if (this.freedom) {
 		    Thread timer = new Thread() {
