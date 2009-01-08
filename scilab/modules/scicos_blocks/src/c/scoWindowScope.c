@@ -839,7 +839,17 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
 
 void scoDelCoupleOfSegments(ScopeMemory * pScopeMemory)
 {
-  //Not coded yet :p
+	/* destroy all short draw */
+	int j;
+	int i;
+	for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+  {
+		for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+		{
+			sciDelGraphicObj(scoGetPointerShortDraw(pScopeMemory, i, j));
+		}
+	}
+	sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 }
 
 

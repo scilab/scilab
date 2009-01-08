@@ -34,6 +34,7 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
+#include "SetJavaProperty.h"
 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -100,6 +101,9 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       scoAddCoupleOfSegments(*pScopeMemory,colors);
     }
   scicos_free(colors);
+
+	/* use only single buffering to be sure to draw on the screen */
+	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
 
 /** \fn void cevscpe(scicos_block * block, int flag)
@@ -190,6 +194,8 @@ void cevscpe(scicos_block * block, int flag)
 	    pShortDraw = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
 	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
+			/* restore double buffering */
+			sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
 	    scoDelCoupleOfSegments(pScopeMemory);
 	  }
 	scoFreeScopeMemory(block->work,&pScopeMemory);
