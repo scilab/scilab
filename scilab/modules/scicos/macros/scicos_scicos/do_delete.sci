@@ -29,37 +29,22 @@ function [%pt,scs_m,needcompile,Select] = do_delete(%pt,scs_m,needcompile,Select
     return ; //** EXIT point 
   end
 
-  Select = Select(find(Select(:,2)==curwin),:)  //make sure only current window selects are considered
-
   win = %win;
-  xc = %pt(1); yc = %pt(2)  ;
-  K = getobj(scs_m,[xc;yc]) ;
 
-  //** check the click over an empty object 
-  if K==[]|intersect(K,Select(:,1)')<>[] then
-        K=Select(:,1)'  // on empty space->delete selected blocks
-        if K==[] then return,end  //nothing to do
-  //otherwise consider only K
-  end
-  
+  Select = Select(find(Select(:,2)==curwin),:)  //** make sure only current window selects are considered
+
+  //** check for no selection empty object 
+   K = Select(:,1)' ; //** recover the id of selected objects 
+   if K==[] then
+     return ; // nothing to do
+   end  
 
   needreplay = replayifnecessary() ;
   scs_m_save = scs_m               ;
   nc_save = needcompile            ;
 
-  [scs_m,DEL] = do_delete1(scs_m,K,%t); //** this is the function that do most of 
-                                        //** the work and IS BUGGED ! (30/08/2007)
-
-  //** 28 Aug 2006: Defused :)
-  //** WARNING! : potentially dangerous code here : can ruin the coherence !
-  //**            it not create problems because is impossible to manipoulate
-  //*             deleted object (that results as negative gh_ datastructure 
-  //**            index
-  //** 28 Aug 2006: I fixed the potential problems using the standard mechanism
-  //**              to update the graphics datastructure: now the coherency is
-  //**              re-estabilished (La-Li-Lu-Le-Lo).
-
-  //** gh_curwin = gh_current_window ; //** acquire the current window handler
+  [scs_m,DEL] = do_delete1(scs_m,K,%t); //** this is the function that do most of the work
+                                        
   gh_curwin = scf(%win) ;
   gh_axes = gca(); 
 
