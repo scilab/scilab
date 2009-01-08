@@ -493,6 +493,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetCommandLine.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_shell.h"
 				>
 			</File>
