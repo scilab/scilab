@@ -93,6 +93,7 @@ scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/localization/libscilocalization.la
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
@@ -415,7 +416,7 @@ profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 DOCMASK = scilab_*_help.jar
 
 # Path to builded files
-PATHTOHELPFILES = modules/helptools/jar/
+PATHTOHELPFILES = modules/helptools/jar/ modules/scicos/jar/
 
 # Pkgconfig directory
 pkgconfigdir = $(libdir)/pkgconfig

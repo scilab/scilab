@@ -207,7 +207,7 @@ endif
 DOCMASK=scilab_*_help.jar
 
 # Path to builded files
-PATHTOHELPFILES = modules/helptools/jar/
+PATHTOHELPFILES = modules/helptools/jar/ modules/scicos/jar/
 
 if GENERATE_LOCALIZATION_FILES
 install-data-local:
