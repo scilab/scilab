@@ -78,12 +78,11 @@ It provides the same service as Octave and Matlab.
 It differs from Scilab's variance primitive 
           <itemizedlist>
             <listitem>
-          <para>mtlb_var returns a real variance, even if x is a complex vector or matrix. The Scilab variance
-	  primitive returns a complex value if the input vector x is complex.</para>
-            </listitem>
-            <listitem>
-          <para>mtlb_var is able to normalize by n-1 or n, while the Scilab variance primitive only
-	  use n-1 as the normalization factor.</para>
+          <para>mtlb_var returns a real (i.e. with a zero imaginary part) variance, 
+	  even if x is a complex vector or matrix. The Scilab variance
+	  primitive returns a complex value if the input vector x is complex and 
+	  if no option additionnal is used.
+	  </para>
             </listitem>
             <listitem>
           <para>Whatever the type of the input data x (i.e. vector or matrix), 

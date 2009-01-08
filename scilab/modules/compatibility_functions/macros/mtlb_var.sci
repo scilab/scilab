@@ -29,7 +29,7 @@ function [s] = mtlb_var (x,w,dim)
   if x==[] then s=%nan, return, end
   [lhs,rhs]=argn(0)
   if rhs==0 then
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"variance2",1,2))
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"mtlb_var",1,2))
   end
   [m n]=size(x);
   if rhs==1 then 
@@ -39,50 +39,19 @@ function [s] = mtlb_var (x,w,dim)
     dim=1;
   end
   if dim==1 then
-    y(1:m,1:n) = x(1:m,1:n) - ones(m,1) * mean(x,1);
-  elseif dim==2 then
-    y(1:m,1:n) = x(1:m,1:n) -  mean(x,2) * ones(1,n);
-  else
-    error(msprintf(gettext("%s: Wrong value of dim: %d , %d or %d expected.\n"),"variance2",dim,1,2))
-  end
-  if dim==1 then
     if w==0 then
       if m==1 then
-        error(msprintf(gettext("%s: The normalization m - 1 factor is zero.\n"),"variance2"))
+        error(msprintf(gettext("%s: The normalization m - 1 factor is zero.\n"),"mtlb_var"))
       end
     end
   end
   if dim==2 then
     if w==1 then
       if n==1 then
-        error(msprintf(gettext("%s: The normalization n - 1 factor is zero.\n"),"variance2"))
+        error(msprintf(gettext("%s: The normalization n - 1 factor is zero.\n"),"mtlb_var"))
       end
     end
   end
-  if dim==1 then
-    s = ones(1,n);
-    for i=1:n
-      s(i) = real(y(1:m,i)' * y(1:m,i));
-      if w==0 then
-        s(i) = s(i) / (m - 1);
-      elseif w==1 then
-        s(i) = s(i) / m;
-      else
-        error(msprintf(gettext("%s: Wrong value of w : %d; 0 or 1 expected.\n"),"variance2",w))
-      end
-    end
-  elseif dim==2 then
-    s = ones(m,1);
-    for i=1:m
-      s(i) = real(y(i,1:n) * y(i,1:n)');
-      if w==0 then
-        s(i) = s(i) / (n - 1);
-      elseif w==1 then
-        s(i) = s(i) / n;
-      else
-        error(msprintf(gettext("%s: Wrong value of w : %d; 0 or 1 expected.\n"),"variance2",w))
-      end
-    end
-  end
+  s = variance(x,dim,w);
 endfunction
 
