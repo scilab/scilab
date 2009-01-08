@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -43,16 +44,22 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	%helps_save         = %helps;
 	%helps_modules_save = %helps_modules;
 	
+	generated_files = [];
+	
 	//------------------------------------------------------------------
 	// Patch because scicos is not written in xml
 	//------------------------------------------------------------------
-	%helps(grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep()),:) = [];
+	if ~isempty(grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep())) then
+	  
+	  generated_files = [ generated_files ; buildScicosHelp() ];
+	  
+	  // Remove Scicos from toolboxes helps to be generated
+	  %helps(grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep()),:) = [];
+	end
 	
 	all_scilab_help     = %F;
 	
 	[lhs,rhs] = argn(0);
-	
-	generated_files = [];
 	
 	// Trop de param�tres
 	// ---------------------------------------------------------------------
@@ -1313,3 +1320,255 @@ function language_out = guess_lang(dir_in)
 	end
 	
 endfunction
+
+////////////////////////////////
+// FUNCTIONS USED FOR SCICOS DOC
+////////////////////////////////
+
+function generated_file = buildScicosHelp()
+global %helps
+
+generated_file = [];
+
+idx = grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep());
+
+scicoshelpdir = %helps(idx,1) + filesep() + ".." + filesep(); // SCI/modules/scicos/help/
+scicosdir = scicoshelpdir + ".." + filesep(); // SCI/modules/scicos/
+
+if output_format=="javaHelp" then
+  output_format_ext = "jar";
+else
+  output_format_ext = output_format;
+end
+
+is_html = (output_format == "html");
+
+master_doc = scicosdir + "master_"+getlanguage()+"_help.xml";
+mprintf(_("\nBuilding the Scicos manual master document for %s.\n"),getlanguage());
+buildScicosMaster(%helps(idx,1), master_doc, getlanguage());
+
+// Define and create the final output directory if does not exist
+final_output_dir = pathconvert(scicosdir+output_format_ext,%f,%f);
+
+if ~isdir(final_output_dir) then
+  mkdir(final_output_dir);
+end
+
+if is_html then
+  final_output_dir = pathconvert(final_output_dir+"/"+getlanguage(),%f,%f);
+  if ~isdir(final_output_dir) then
+    mkdir(final_output_dir);
+  end
+end
+
+// Define the final location of the generated file
+if is_html then
+  final_help_file = pathconvert(%helps(idx,1)+"/index.html",%f,%f);
+else
+  final_help_file = pathconvert(%helps(idx,1)+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+end
+
+// Define and create the path of buildDoc working directory
+buildDoc_dir  = pathconvert(scicoshelpdir + "/scilab_" + getlanguage() + "_help",%t,%f);
+if ~isdir(buildDoc_dir) then // Needed for images copy
+  mkdir(buildDoc_dir);
+end
+
+// Define the path of the generated file created by buildDoc
+if is_html then
+  buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
+else
+  buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+end
+
+// Save the current directory
+cur_dir = getcwd();
+
+// Change Scilab current directory so that Java Indexer works
+if ~chdir(buildDoc_dir) then
+  error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
+end
+
+// Copy images
+if ~MSDOS then
+  unix_w("cp -R " + scicoshelpdir + "/images/ " + buildDoc_dir);
+else
+  unix_w("copy -R " + scicoshelpdir + "/images/ " + buildDoc_dir);
+end
+
+buildDoc(output_format, master_doc, getlanguage(), scicoshelpdir);	  
+
+// Check if the help file has been generated
+if fileinfo(buildDoc_file)==[] then
+  error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
+end
+		
+// move the generated file(s)
+if is_html then
+  my_html_files = listfiles(buildDoc_dir);
+  for k=1:size(my_html_files,'*')
+    if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
+      error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
+    end
+    mdelete(my_html_files(k));
+  end
+else
+  copyfile(buildDoc_file,final_help_file);
+  mdelete(buildDoc_file);
+end
+
+// Move into the initial directory
+if ~chdir(cur_dir) then
+  error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",final_output_dir));
+end
+
+generated_file = final_help_file;
+
+endfunction
+
+function buildScicosMaster(basedir, masterdoc, language)
+	
+encoding = "UTF-8";
+
+// TODO this function should use localization
+if language=="fr_FR" then
+  aboutscicos = "A propos de Scicos";
+  scicosmanual = "Manuel Scicos";
+else
+  aboutscicos = gettext("About Scicos");
+  scicosmanual = gettext("Scicos Manual");
+end
+
+// Make the list of all files including subdirectories
+xmlfiles = subDirXmlFiles(basedir);
+
+master_document = ["<?xml version=""1.0"" encoding="""+encoding+"""?>";..
+	"<!DOCTYPE book [";
+	"<!--Begin Entities-->"];
+    
+filesbasename = basename(xmlfiles);
+if MSDOS then
+  for j=1:size(xmlfiles,"*")
+    xmlfiles(j) = "file:///"+ getshortpathname(xmlfiles(j));
+  end
+end
+    
+master_document    = [master_document; ..
+	"<!ENTITY "+ filesbasename+" SYSTEM """+xmlfiles+""">"];
+
+master_document    = [ master_document; ..
+	"<!--End Entities-->"; ..
+	"]>"; ..
+    "<book version=""5.0-subset Scilab"" xml:lang="""+language+""""; ..
+    "      xmlns=""http://docbook.org/ns/docbook"""; ..
+    "      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
+    "      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
+    "      xmlns:svg=""http://www.w3.org/2000/svg"""; ..
+    "      xmlns:mml=""http://www.w3.org/1998/Math/MathML"""; ..
+    "      xmlns:html=""http://www.w3.org/1999/xhtml"""; ..
+    "      xmlns:db=""http://docbook.org/ns/docbook"">"; ..
+    "  <info xml:id=''scicos_manual''>"; ..
+    "    <title>"+scicosmanual+"</title>"; ..
+    "  </info>"; ..
+    ""];
+
+master_document    = [ master_document; ..
+	"<!--Begin Reference-->"];
+
+reference = []
+
+[tmpref, tmpent] = subDirReference(basedir, 0);
+
+if ~isempty(tmpref) then
+  reference = [reference;tmpref];
+end
+if ~isempty(tmpent) then
+  reference = [reference;
+      "<part xml:id=''about_scicos_category''>";
+      "<title>"+aboutscicos+"</title>";
+      "&"+gsort(basename(tmpent),"lr","i")+";";
+      "</part>"];
+end
+
+master_document    = [master_document; reference; ..
+	"  <!--End Reference-->"; ..
+	"</book>" ];
+
+mputl(master_document, masterdoc);
+
+endfunction
+
+function files = subDirXmlFiles(directory)
+// Find all files and directories inside a directory
+
+files = [];
+tmpfiles = listfiles(directory + "/*");
+for k=1:size(tmpfiles, "*")
+  if ~isdir(tmpfiles(k)) then
+    files($+1) = tmpfiles(k);
+  else
+    files = [files; subDirXmlFiles(tmpfiles(k))];
+  end
+end
+endfunction
+
+function [ref, entries] = subDirReference(directory,level)
+// Create master document contents recursively
+
+entries = [];
+ref = [];
+
+docbooktags = ["part", "chapter", "reference"];
+
+level = level + 1;
+
+tmpfiles = gsort(listfiles(directory + "/*"),"lr","i");
+
+for k=1:size(tmpfiles, "*")
+  // Files to be ignored
+  if ~isempty(strindex(tmpfiles(k), "master_")) | ~isempty(strindex(tmpfiles(k), ".sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
+    continue
+  end
+
+  if ~isdir(tmpfiles(k)) then // Each file is an entry in the reference
+    entries($+1) = tmpfiles(k);
+  else // Each dir is a new part under the reference
+    category = tokens(tmpfiles(k), "/");
+    category = category($);
+
+    ref = [ref;
+	"<"+docbooktags(level)+" xml:id=''" + category + "''>";
+	"<title>" + dirToCat(category) + "</title>"];
+    
+    // Browse subdirs
+    [tmpref, tmpent] = subDirReference(tmpfiles(k),level);
+    if ~isempty(tmpent) then // Some entries found
+      ref = [ref;
+	  "&"+gsort(basename(tmpent),"lr","i")+";"];
+    end
+    if ~isempty(tmpref) then // Some parts found
+      ref = [ref;
+	  tmpref];
+    end
+    
+    ref = [ref;
+	"</"+docbooktags(level)+">"];
+  end
+end
+
+endfunction
+
+function category = dirToCat(directory, language)
+// Get a category name using a directory name
+
+// TODO this function should use localization
+
+alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures"];
+if language == "fr_FR" then
+  allcategories = ["Fonctions en ligne de commande", "Editeur", "Palette Sources", "Palette Linéaire", "Palette Non-linéaire", "Palette Branchements", "Palette Divers", "Palette Détection", "Palette Affichage", "Palette Evènements", "Palette des Composants Electriques", "Palette des Composants Thermohydrauliques", "Palette d''Opérations Matricielles", "Palette Integer", "Palette des Blocks de Démonstration", "Blocs par Ordre Alphabétique", "Fonctions de Calcul en C", "Fonctions de Calcul Scilab", "Fonctions Utilitaires", "Programmation des Blocs Scicos", "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab"];
+else
+  allcategories = [_("Batch functions"), _("Editor"), _("Sources Palette"), _("Linear Palette"), _("Non-linear Palette"), _("Branching Palette"), _("Others Palettes"), _("Threshold Palette"), _("Sinks Palette"), _("Events Palette"), _("Electrical Palette"), _("Thermohydraulics Palette"), _("Matrix Palette"), _("Integer Palette"), _("Demoblocks Palette"), _("ABCD Blocks"), _("C Computational Functions"), _("Scilab Computational Functions"), _("Utilities Functions"), _("Programming Scicos Blocks"), _("Scilab Utilities Functions"), _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures")];
+end
+category = allcategories(find(alldirs==directory));
+endfunction
+
