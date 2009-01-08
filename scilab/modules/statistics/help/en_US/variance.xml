@@ -44,9 +44,14 @@ s=variance(x,'c') or m=variance(x,2)
       <varlistentry>
         <term>w</term>
         <listitem>
-          <para>w : type of normalization to use. Valid values are, depending on the number of columns m of x :
+          <para>w : type of normalization to use. Valid values are 0 and 1. 
+	  This depends on the number of columns of x (if orien = 1 is chosen),
+	  the number of rows (if orien = 2 is chosen).
 If w = 0, normalizes with m-1, provides the best unbiased estimator of the variance (this is the default).
-If w = 1, normalizes with m, this provides the second moment around the mean.</para>
+If w = 1, normalizes with m, this provides the second moment around the mean.
+If no orien option is given, the normalization is done with n * m - 1, where n * m is the total 
+number of elements in the matrix.
+</para>
         </listitem>
       </varlistentry>
     </variablelist>
