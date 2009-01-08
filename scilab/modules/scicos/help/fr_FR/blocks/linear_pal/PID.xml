@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PID_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PID_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PID_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PID_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -206,7 +206,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PID_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PID_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

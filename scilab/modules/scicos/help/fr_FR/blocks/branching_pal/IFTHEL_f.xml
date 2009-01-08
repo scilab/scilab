@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/IFTHEL_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/IFTHEL_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ et en sortie sont générés exactement à la même date et simultanément.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/IFTHEL_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/IFTHEL_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

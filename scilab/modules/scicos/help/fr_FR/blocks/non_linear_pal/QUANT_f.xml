@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/QUANT_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/QUANT_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/QUANT_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/QUANT_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

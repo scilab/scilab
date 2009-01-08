@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SUBMAT_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SUBMAT_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SUBMAT_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SUBMAT_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

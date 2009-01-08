@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RFILE_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RFILE_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ The pair block is .
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RFILE_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RFILE_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -126,7 +126,7 @@ The pair block is .
           <emphasis role="bold">Time record selection</emphasis>
         </para>
         <para> an empty matrix or a positive integer.</para>
-        <para> If an integer<inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is given the<inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> th element of the read record is assumed to be the date of the output event. If empty no output event exists.</para>
+        <para> If an integer<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is given the<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> th element of the read record is assumed to be the date of the output event. If empty no output event exists.</para>
         <para> Properties : Type 'vec' of size -1. </para>
       </listitem>
       <listitem>
@@ -134,7 +134,7 @@ The pair block is .
           <emphasis role="bold">Outputs record selection</emphasis>
         </para>
         <para> a vector of positive integer.</para>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . The<inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> th element of the read record gives the value of i th output.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . The<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> th element of the read record gives the value of i th output.</para>
         <para> Properties : Type 'vec' of size -1. </para>
       </listitem>
       <listitem>
@@ -148,7 +148,7 @@ The pair block is .
         <para>
           <emphasis role="bold">Input Format</emphasis>
         </para>
-        <para> a character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right parenthesis. example:<inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> a character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right parenthesis. example:<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
         <para> Properties : Type 'str' of size 1. </para>
       </listitem>
       <listitem>

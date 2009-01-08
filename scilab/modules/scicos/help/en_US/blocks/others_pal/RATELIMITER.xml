@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RATELIMITER_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RATELIMITER_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ limit.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RATELIMITER_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RATELIMITER_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

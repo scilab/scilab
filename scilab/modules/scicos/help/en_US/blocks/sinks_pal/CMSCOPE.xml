@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CMSCOPE_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CMSCOPE_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ amount of time and the range of input values displayed.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CMSCOPE_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CMSCOPE_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -130,7 +130,7 @@ amount of time and the range of input values displayed.
         <para>
           <emphasis role="bold">Drawing colors </emphasis>
         </para>
-        <para> a vector of integers. The i-th element is the color number (<inlinemediaobject><imageobject><imagedata fileref="images/CMSCOPE_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or dash type (<inlinemediaobject><imageobject><imagedata fileref="images/CMSCOPE_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.</para>
+        <para> a vector of integers. The i-th element is the color number (<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMSCOPE_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or dash type (<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMSCOPE_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.</para>
         <para> Properties : Type 'vec' of size -1 </para>
       </listitem>
       <listitem>

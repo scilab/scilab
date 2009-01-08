@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TEXT_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TEXT_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ window. It has no effect on the simulation.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TEXT_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TEXT_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMWSB_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMWSB_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMWSB_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMWSB_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -132,8 +132,8 @@ That block is used to get data defined in the Scilab workspace and use them in S
           <listitem>
             <para><emphasis role="bold">0: "Zero order method"</emphasis>. This method generates a piecewise
     constant signal. i.e., for 
-<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, 
-<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>, 
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.
     This method is available for all data types.
 
 
@@ -142,9 +142,9 @@ That block is used to get data defined in the Scilab workspace and use them in S
           <listitem>
             <para><emphasis role="bold">1: "Linear method"</emphasis>. This method generates a piecewise
     linear signal, i.e., for 
-<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>,
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>,
     
-<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.  For data types
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.  For data types
     other than double and complex, the linear interpolation can be
     used, but the final output will be computed by casting
     interpolation result into the original data type.
@@ -154,8 +154,8 @@ That block is used to get data defined in the Scilab workspace and use them in S
           </listitem>
           <listitem>
             <para><emphasis role="bold">2:"NATURAL method"</emphasis>. This cubic spline is computed by using
-    the following conditions (considering <inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> points 
-<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>):
+    the following conditions (considering <inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> points 
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>):
     
 
  
@@ -168,9 +168,9 @@ That block is used to get data defined in the Scilab workspace and use them in S
           </listitem>
           <listitem>
             <para><emphasis role="bold">3:"NOT_A_KNOT method"</emphasis>. The cubic spline is computed by
-    using the following conditions (considering <inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> points
+    using the following conditions (considering <inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> points
     
-<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>): 
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>): 
 
 
     
@@ -184,7 +184,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
         </itemizedlist>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Enable zero crossing(0:No, 1:Yes)?:</emphasis> Enables zero crossing detection. When and interpolation methods are chosen, the output signal will be discontinuous at data time instants. These possible discontinuities may cause problem for the numerical solver. In order to perform a reliable numerical integration, the zero crossing option is used. If output of the block affects data used by the numerical solver, at discontinuous points, a discrete event is generated and the numerical solver is cold restarted. The discrete event is also generated at the<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img13_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> and<inlinemediaobject><imageobject><imagedata fileref="images/FROMWSB_img14_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> for other interpolating methods. </para>
+        <para><emphasis role="bold">Enable zero crossing(0:No, 1:Yes)?:</emphasis> Enables zero crossing detection. When and interpolation methods are chosen, the output signal will be discontinuous at data time instants. These possible discontinuities may cause problem for the numerical solver. In order to perform a reliable numerical integration, the zero crossing option is used. If output of the block affects data used by the numerical solver, at discontinuous points, a discrete event is generated and the numerical solver is cold restarted. The discrete event is also generated at the<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img13_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> and<inlinemediaobject><imageobject><imagedata fileref="../../../images/FROMWSB_img14_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> for other interpolating methods. </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Output at end(0:Zero, 1:Hold, 2:Repeat):</emphasis> This option is for selecting method for generating output after the last time point for which data is available from the workspace.
@@ -270,7 +270,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMWSB_img15_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMWSB_img15_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

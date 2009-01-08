@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Bache_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Bache_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Bache_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Bache_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

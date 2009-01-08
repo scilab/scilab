@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATBKSL_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATBKSL_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +121,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATBKSL_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATBKSL_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

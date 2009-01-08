@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SIGNUM_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SIGNUM_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ The Sign block indicates the sign of the input:
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SIGNUM_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SIGNUM_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

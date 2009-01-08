@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMMO_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMMO_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ This block is used to connect modelica's blocks. For more information on how it 
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMMO_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMMO_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

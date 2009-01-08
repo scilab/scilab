@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GotoTagVisibility_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GotoTagVisibility_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GotoTagVisibility_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GotoTagVisibility_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

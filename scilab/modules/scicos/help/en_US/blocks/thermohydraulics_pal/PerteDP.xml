@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PerteDP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PerteDP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -105,7 +105,7 @@ with </para>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PerteDP_img2_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PerteDP_img2_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -120,7 +120,7 @@ altitudes, and some other thermal-hydraulic coefficients.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PerteDP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PerteDP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

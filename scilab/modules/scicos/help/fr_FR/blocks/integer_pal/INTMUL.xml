@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTMUL_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTMUL_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -128,7 +128,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTMUL_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTMUL_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

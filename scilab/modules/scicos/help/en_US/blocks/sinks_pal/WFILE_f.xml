@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/WFILE_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/WFILE_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -114,7 +114,7 @@ The pair block is .
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/WFILE_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/WFILE_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -140,7 +140,7 @@ The pair block is .
         <para>
           <emphasis role="bold">Output Format</emphasis>
         </para>
-        <para> a character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right parenthesis. example:<inlinemediaobject><imageobject><imagedata fileref="images/WFILE_f_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> a character string defining the Fortran format to use or nothing for an unformatted (binary) write. If given, the format must began by a left parenthesis and end by a right parenthesis. example:<inlinemediaobject><imageobject><imagedata fileref="../../../images/WFILE_f_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
         <para> Properties : Type 'str' of size 1. </para>
       </listitem>
       <listitem>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTRP2BLK_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTRP2BLK_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -114,7 +114,7 @@ sa valeur.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTRP2BLK_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

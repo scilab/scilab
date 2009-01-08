@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MUX_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MUX_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ determined by the context.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MUX_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MUX_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

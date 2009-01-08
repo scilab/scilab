@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PuitsP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PuitsP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ Ce composant représente un puit thermo-hydraulique de pression constante. Ce blo
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PuitsP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PuitsP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

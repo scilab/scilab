@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SELECT_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SELECT_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -112,7 +112,7 @@ slightly, depending on the type of input.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SELECT_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SELECT_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

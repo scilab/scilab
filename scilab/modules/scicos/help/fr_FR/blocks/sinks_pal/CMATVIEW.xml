@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CMATVIEW_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CMATVIEW_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CMATVIEW_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CMATVIEW_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -126,7 +126,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
           <emphasis role="bold">ColorMap</emphasis>
         </para>
         <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
-        <para> Propriétés : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="images/CMATVIEW_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
+        <para> Propriétés : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMATVIEW_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
       </listitem>
       <listitem>
         <para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/NPN_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/NPN_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ Ce bloc est un modèle simple pour le transistor bipolaire NPN basé sur le modèle
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/NPN_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/NPN_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

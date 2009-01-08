@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DEADBAND_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DEADBAND_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ Fournit une zone où la sortie est égale à zéro.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DEADBAND_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DEADBAND_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

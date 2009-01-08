@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATDIAG_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATDIAG_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATDIAG_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATDIAG_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

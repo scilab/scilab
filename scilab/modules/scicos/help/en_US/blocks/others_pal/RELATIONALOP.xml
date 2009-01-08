@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RELATIONALOP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RELATIONALOP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ It performs logical comparison of its two inputs.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RELATIONALOP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RELATIONALOP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

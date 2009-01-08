@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/BACKLASH_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/BACKLASH_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ The amount of side-to-side play in the system is referred to as the
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/BACKLASH_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/BACKLASH_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

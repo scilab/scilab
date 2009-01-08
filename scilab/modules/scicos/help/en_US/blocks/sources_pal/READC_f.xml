@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READC_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READC_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -110,7 +110,7 @@ file.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READC_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READC_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -132,7 +132,7 @@ file.
           <emphasis role="bold">Outputs record selection</emphasis>
         </para>
         <para> a vector of positive integer.</para>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ,The<inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> th element of the read record gives the value of<inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> output.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ,The<inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img4_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> th element of the read record gives the value of<inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> output.</para>
         <para> Properties : Type 'vec' of size -1 </para>
       </listitem>
       <listitem>

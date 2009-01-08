@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/LOGICAL_OP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/LOGICAL_OP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ if it is zero.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/LOGICAL_OP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/LOGICAL_OP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

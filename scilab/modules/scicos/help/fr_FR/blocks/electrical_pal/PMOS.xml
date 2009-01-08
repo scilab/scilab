@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PMOS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PMOS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -207,7 +207,7 @@ Some typical parameter sets are:
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PMOS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PMOS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ZCROSS_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ZCROSS_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ zéro simultanément.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ZCROSS_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ZCROSS_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/HALT_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/HALT_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -110,7 +110,7 @@ La simulation peut être redémarrée ou continuée grâce au bouton Run.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/HALT_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/HALT_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

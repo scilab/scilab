@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/c_block_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/c_block_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/c_block_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/c_block_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

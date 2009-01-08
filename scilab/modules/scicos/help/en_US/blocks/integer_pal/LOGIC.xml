@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/LOGIC_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/LOGIC_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -133,7 +133,7 @@ This block is used to implement SR and JK flip-flops.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/LOGIC_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/LOGIC_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

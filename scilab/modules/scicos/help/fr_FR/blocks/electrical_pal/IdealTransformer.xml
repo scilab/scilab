@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/IdealTransformer_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/IdealTransformer_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/IdealTransformer_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/IdealTransformer_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

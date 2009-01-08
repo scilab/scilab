@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ANDBLK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ANDBLK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -152,7 +152,7 @@ understand.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ANDBLK_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ANDBLK_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

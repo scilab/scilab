@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTGEN_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTGEN_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ is larger than equal to zero, if not, no event is generated.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTGEN_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTGEN_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

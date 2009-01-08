@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATLU_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATLU_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATLU_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATLU_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

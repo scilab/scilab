@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SCALAR2VECTOR_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SCALAR2VECTOR_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ Si plus d'un port d'entrée est vectoriel, alors ils doivent avoir la même taille
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SCALAR2VECTOR_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SCALAR2VECTOR_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

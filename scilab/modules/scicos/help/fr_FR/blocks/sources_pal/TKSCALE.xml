@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TKSCALE_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TKSCALE_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TKSCALE_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TKSCALE_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

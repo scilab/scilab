@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTRACT_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTRACT_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTRACT_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTRACT_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

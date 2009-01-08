@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/IFTHEL_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/IFTHEL_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -105,7 +105,7 @@ This is a Synchro block, , input and output event are synchronized.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/IFTHEL_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/IFTHEL_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

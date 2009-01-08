@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PRODUCT_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PRODUCT_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -112,7 +112,7 @@ operations to be performed on the inputs.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PRODUCT_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PRODUCT_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

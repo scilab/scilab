@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READAU_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READAU_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -123,7 +123,7 @@ La lecture 'au' supporte les données multi-canaux sous les formats suivants :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READAU_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READAU_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

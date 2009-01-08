@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLOCK_c_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLOCK_c_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -120,7 +120,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLOCK_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLOCK_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -199,7 +199,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLOCK_c_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLOCK_c_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

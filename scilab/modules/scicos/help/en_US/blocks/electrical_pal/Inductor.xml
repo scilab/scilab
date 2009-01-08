@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Inductor_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Inductor_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ through it is given by:
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Inductor_img5_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Inductor_img5_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -120,7 +120,7 @@ signals.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Inductor_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Inductor_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

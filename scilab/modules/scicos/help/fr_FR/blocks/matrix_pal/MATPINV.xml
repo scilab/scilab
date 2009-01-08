@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATPINV_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATPINV_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -128,7 +128,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The eqivalent f
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATPINV_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATPINV_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

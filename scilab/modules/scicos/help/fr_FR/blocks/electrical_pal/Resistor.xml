@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Resistor_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Resistor_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -102,7 +102,7 @@ d'Ohm.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Resistor_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Resistor_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ les ports de la résistance divisée par le courant qui passe au travers
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Resistor_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Resistor_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

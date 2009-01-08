@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CBLOCK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CBLOCK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CBLOCK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CBLOCK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -192,7 +192,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
         <para>
           <emphasis role="bold">initial firing vector </emphasis>
         </para>
-        <para> Un vecteur. La taille de ce vecteur correspond au nombre de sorties événementielles. La valeur de la <inlinemediaobject><imageobject><imagedata fileref="images/CBLOCK_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entrée spécifie la date initiale préprogrammée du <inlinemediaobject><imageobject><imagedata fileref="images/CBLOCK_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> port événementiel de sortie. Si la valeur est inférieure à zéro, alors aucun événement n'est préprogrammé.</para>
+        <para> Un vecteur. La taille de ce vecteur correspond au nombre de sorties événementielles. La valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/CBLOCK_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entrée spécifie la date initiale préprogrammée du <inlinemediaobject><imageobject><imagedata fileref="../../../images/CBLOCK_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> port événementiel de sortie. Si la valeur est inférieure à zéro, alors aucun événement n'est préprogrammé.</para>
         <para> Propriétés : Type 'vec' de taille 'sum(%6)' </para>
       </listitem>
       <listitem>

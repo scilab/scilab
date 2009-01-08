@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GENSIN_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GENSIN_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ This block is a sine wave generator:
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GENSIN_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GENSIN_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

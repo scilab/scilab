@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CSCOPE_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CSCOPE_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CSCOPE_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CSCOPE_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -130,7 +130,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
         <para>
           <emphasis role="bold">Color </emphasis>
         </para>
-        <para> a vector of integers. The i-th element is the color number (<inlinemediaobject><imageobject><imagedata fileref="images/CSCOPE_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or dash type (<inlinemediaobject><imageobject><imagedata fileref="images/CSCOPE_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.</para>
+        <para> a vector of integers. The i-th element is the color number (<inlinemediaobject><imageobject><imagedata fileref="../../../images/CSCOPE_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or dash type (<inlinemediaobject><imageobject><imagedata fileref="../../../images/CSCOPE_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.</para>
         <para> Propriétés : Type 'vec' de taille 8 </para>
       </listitem>
       <listitem>

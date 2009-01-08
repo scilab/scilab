@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Extract_Activation_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Extract_Activation_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -139,7 +139,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Extract_Activation_img2_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Extract_Activation_img2_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

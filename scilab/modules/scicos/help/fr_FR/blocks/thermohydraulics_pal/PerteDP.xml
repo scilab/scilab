@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PerteDP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PerteDP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ thermo-hydrauliques.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PerteDP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PerteDP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

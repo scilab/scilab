@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MBLOCK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MBLOCK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ The block "MBlock" provides an easy way to build a Scicos block whose behavior i
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MBLOCK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MBLOCK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

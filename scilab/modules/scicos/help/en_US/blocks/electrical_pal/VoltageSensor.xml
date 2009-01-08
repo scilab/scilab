@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/VoltageSensor_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VoltageSensor_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -97,7 +97,7 @@ between the voltages of the black port and the white port, ,
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/VoltageSensor_img2_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VoltageSensor_img2_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

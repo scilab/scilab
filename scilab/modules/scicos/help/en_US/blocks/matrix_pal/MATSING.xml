@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATSING_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATSING_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -125,7 +125,7 @@ The equivalent function of this block in Scilab is "svd".
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATSING_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATSING_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

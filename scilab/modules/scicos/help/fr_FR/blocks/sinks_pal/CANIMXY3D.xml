@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CANIMXY3D_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CANIMXY3D_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ This block realizes the visualization of the evolution of the three regular inpu
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CANIMXY3D_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CANIMXY3D_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -132,7 +132,7 @@ This block realizes the visualization of the evolution of the three regular inpu
         <para>
           <emphasis role="bold">color </emphasis>
         </para>
-        <para> an integer. It is the color number (<inlinemediaobject><imageobject><imagedata fileref="images/CANIMXY3D_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or marker type (<inlinemediaobject><imageobject><imagedata fileref="images/CANIMXY3D_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.</para>
+        <para> an integer. It is the color number (<inlinemediaobject><imageobject><imagedata fileref="../../../images/CANIMXY3D_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) or marker type (<inlinemediaobject><imageobject><imagedata fileref="../../../images/CANIMXY3D_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ) used to draw the evolution of the input port signal. See<emphasis role="bold">xset()</emphasis> for color (dash type) definitions.</para>
         <para> Propriétés : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>

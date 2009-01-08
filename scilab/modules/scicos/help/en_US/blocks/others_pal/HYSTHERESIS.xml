@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/HYSTHERESIS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/HYSTHERESIS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -112,7 +112,7 @@ one input and generates one output.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/HYSTHERESIS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/HYSTHERESIS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

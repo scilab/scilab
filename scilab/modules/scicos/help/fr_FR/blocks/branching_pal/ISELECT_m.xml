@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ISELECT_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ISELECT_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ Ce bloc a un seul port régulier d'entrée.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ISELECT_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ISELECT_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

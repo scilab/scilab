@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTRACTBITS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTRACTBITS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -131,7 +131,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTRACTBITS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTRACTBITS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTGEN_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTGEN_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -110,7 +110,7 @@ Si cette valeur est négative alors aucun événement ne sera généré.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTGEN_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTGEN_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

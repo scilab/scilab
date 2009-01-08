@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/AUTOMAT_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/AUTOMAT_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ block. The state variables are defined in the automaton block and the
 subsystems are static functions.
 </para>
     <para>
-Suppose that a hybrid automaton consists of <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject></emphasis> control
+Suppose that a hybrid automaton consists of <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject></emphasis> control
  modes. The continuous-time dynamics in mode  is defined with DAE
  (
 ) where 
@@ -150,13 +150,13 @@ The automaton block has the following input/output ports.
 </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img17_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . </para>
+        <para><emphasis role="bold">Output 1:</emphasis> The first output port is a vector of size two consisting of the current and the previous active control modes, i.e., <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img17_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size<emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img18_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject></emphasis> providing the state vector and its first time derivative,  <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img19_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . </para>
+        <para><emphasis role="bold">Output 2:</emphasis> The second output port is a vector of size<emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img18_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject></emphasis> providing the state vector and its first time derivative,  <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img19_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Inputs:</emphasis> The automaton block has<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> vector input ports corresponding to<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> modes or subsystems of the automaton. Each input defines the dynamic behavior in the control each mode as well as the reset functions and the transition functions. The input port<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> which is the output of the<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img20_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> subsystem is a vector of size<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img21_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . Each input is composed of the following vector.
+        <para><emphasis role="bold">Inputs:</emphasis> The automaton block has<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> vector input ports corresponding to<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> modes or subsystems of the automaton. Each input defines the dynamic behavior in the control each mode as well as the reset functions and the transition functions. The input port<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> which is the output of the<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img20_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> subsystem is a vector of size<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img21_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . Each input is composed of the following vector.
 
 
  
@@ -164,27 +164,27 @@ The automaton block has the following input/output ports.
 </para>
         <itemizedlist>
           <listitem>
-            <para>The first <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> elements of the <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img23_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> are the continuous-time
-dynamics.  The dynamics of the system in the control mode <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is
+            <para>The first <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> elements of the <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img23_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> are the continuous-time
+dynamics.  The dynamics of the system in the control mode <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is
 described by a smooth index-1 DAE ( 
-<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img24_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>).
+<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img24_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>).
 
 
 </para>
           </listitem>
           <listitem>
-            <para>The next <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> elements of <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img23_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> are the values used to
+            <para>The next <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> elements of <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img23_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> are the values used to
  reset the continuous-time states when a transition to 
- control mode <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is activated.
+ control mode <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is activated.
 
 
 </para>
           </listitem>
           <listitem>
-            <para>The next <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img9_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> elements of <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img23_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> are the jump or
-zero-crossing functions. If the <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img25_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> zero-crossing function of
-mode <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> crosses zero with negative to positive direction, a
-transition to <inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img25_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> destination mode happens.
+            <para>The next <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img9_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> elements of <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img23_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> are the jump or
+zero-crossing functions. If the <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img25_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> zero-crossing function of
+mode <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> crosses zero with negative to positive direction, a
+transition to <inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img25_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> destination mode happens.
 </para>
           </listitem>
         </itemizedlist>
@@ -212,7 +212,7 @@ Multi-conference on Systems and Control, Singapore.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/AUTOMAT_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/AUTOMAT_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -249,7 +249,7 @@ Multi-conference on Systems and Control, Singapore.
         <para>
           <emphasis role="bold">Xproperties of continuous-time states in each Mode</emphasis>
         </para>
-        <para> In this field the state types in mode are given. A state in an index 1 DAE can be either differential state or algebraic state. vector is coded in an M*N matrix, where M is the number of modes and N is the number of states. This matrices indicates whether a continuous-time state is algebraic or differential in each control mode. If in the<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img20_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> mode,<inlinemediaobject><imageobject><imagedata fileref="images/AUTOMAT_img25_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> state is differential, the (i,j)-th element of the Xproperty matrix should set to "+1", otherwise it should set to "-1". Xproperty can be given as a 1*N vector if type of states remain the same in all modes.</para>
+        <para> In this field the state types in mode are given. A state in an index 1 DAE can be either differential state or algebraic state. vector is coded in an M*N matrix, where M is the number of modes and N is the number of states. This matrices indicates whether a continuous-time state is algebraic or differential in each control mode. If in the<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img20_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> mode,<inlinemediaobject><imageobject><imagedata fileref="../../../images/AUTOMAT_img25_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> state is differential, the (i,j)-th element of the Xproperty matrix should set to "+1", otherwise it should set to "-1". Xproperty can be given as a 1*N vector if type of states remain the same in all modes.</para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
       </listitem>
       <listitem>

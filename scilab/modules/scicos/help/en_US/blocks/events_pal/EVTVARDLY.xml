@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTVARDLY_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTVARDLY_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -110,7 +110,7 @@ Block may also generate an initial output event.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTVARDLY_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTVARDLY_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

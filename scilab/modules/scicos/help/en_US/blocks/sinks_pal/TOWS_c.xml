@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TOWS_c_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TOWS_c_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -116,7 +116,7 @@ Each sampling time, both dates and values of input are recorded.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TOWS_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TOWS_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

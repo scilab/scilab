@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTRPLBLK_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTRPLBLK_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -112,7 +112,7 @@ Les grandeurs  et  donnent respectivement les coordonnées
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTRPLBLK_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTRPLBLK_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -131,7 +131,7 @@ Les grandeurs  et  donnent respectivement les coordonnées
         <para>
           <emphasis role="bold">Y coord.</emphasis>
         </para>
-        <para> un vecteur (de même taille que<inlinemediaobject><imageobject><imagedata fileref="images/INTRPLBLK_f_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ).</para>
+        <para> un vecteur (de même taille que<inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRPLBLK_f_img2_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ).</para>
         <para> Propriétés : Type 'vec' de taille -1 </para>
       </listitem>
     </itemizedlist>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLKGotoTagVisibility_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLKGotoTagVisibility_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ This block is used in the event case. For more information on how it works pleas
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLKGotoTagVisibility_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLKGotoTagVisibility_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

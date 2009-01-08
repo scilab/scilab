@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PuitsP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PuitsP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -105,7 +105,7 @@ direction is positive when fluid flows into the block.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/PuitsP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/PuitsP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

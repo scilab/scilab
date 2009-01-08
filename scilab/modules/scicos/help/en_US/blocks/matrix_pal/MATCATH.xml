@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATCATH_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATCATH_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +121,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATCATH_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATCATH_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

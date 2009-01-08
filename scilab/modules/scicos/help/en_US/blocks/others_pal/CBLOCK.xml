@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CBLOCK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CBLOCK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ creates library file and object files.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CBLOCK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CBLOCK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -192,7 +192,7 @@ creates library file and object files.
         <para>
           <emphasis role="bold">initial firing vector </emphasis>
         </para>
-        <para> A vector. Size of this vector corresponds to the number of event outputs. The value of the<inlinemediaobject><imageobject><imagedata fileref="images/CBLOCK_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entry specifies the time of the preprogrammed event firing on the<inlinemediaobject><imageobject><imagedata fileref="images/CBLOCK_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> output event port. If less than zero, no event is preprogrammed.</para>
+        <para> A vector. Size of this vector corresponds to the number of event outputs. The value of the<inlinemediaobject><imageobject><imagedata fileref="../../../images/CBLOCK_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entry specifies the time of the preprogrammed event firing on the<inlinemediaobject><imageobject><imagedata fileref="../../../images/CBLOCK_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> output event port. If less than zero, no event is preprogrammed.</para>
         <para> Properties : Type 'vec' of size 'sum(%6)' </para>
       </listitem>
       <listitem>

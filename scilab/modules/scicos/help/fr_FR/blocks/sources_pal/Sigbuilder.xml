@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Sigbuilder_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Sigbuilder_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -116,7 +116,7 @@ beginning and at the end of the signal.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Sigbuilder_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Sigbuilder_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -184,7 +184,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc .
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Sigbuilder_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Sigbuilder_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

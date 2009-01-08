@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CUMSUM_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CUMSUM_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -119,7 +119,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CUMSUM_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CUMSUM_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DEMUX_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DEMUX_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ determined by the context.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DEMUX_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DEMUX_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -123,7 +123,7 @@ determined by the context.
         <para>
           <emphasis role="bold">number of output ports or vector of sizes</emphasis>
         </para>
-        <para> positive integer less than or equal to<inlinemediaobject><imageobject><imagedata fileref="images/DEMUX_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> positive integer less than or equal to<inlinemediaobject><imageobject><imagedata fileref="../../../images/DEMUX_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
         <para> Properties : Type 'vec' of size -1</para>
       </listitem>
     </itemizedlist>

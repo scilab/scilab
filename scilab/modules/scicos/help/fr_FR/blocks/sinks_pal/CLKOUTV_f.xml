@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLKOUTV_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLKOUTV_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -105,7 +105,7 @@ jusqu'au nombre de ports.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLKOUTV_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLKOUTV_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

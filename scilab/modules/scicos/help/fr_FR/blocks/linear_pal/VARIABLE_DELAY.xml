@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/VARIABLE_DELAY_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VARIABLE_DELAY_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ through the block; the second input is the time delay.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/VARIABLE_DELAY_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VARIABLE_DELAY_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

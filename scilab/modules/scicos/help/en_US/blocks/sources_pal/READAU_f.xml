@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READAU_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READAU_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +121,7 @@ Loads a sound file specified by the string *.au file, returning the
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READAU_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READAU_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ENDBLK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ENDBLK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ ou bien une variable symbolique définit dans le contexte.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ENDBLK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ENDBLK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -187,7 +187,7 @@ ou bien une variable symbolique définit dans le contexte.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ENDBLK_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ENDBLK_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

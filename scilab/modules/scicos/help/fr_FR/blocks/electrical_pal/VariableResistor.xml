@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/VariableResistor_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VariableResistor_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -96,7 +96,7 @@ est commandée par le port d'entrée explicite.  </para>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/VariableResistor_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/VariableResistor_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

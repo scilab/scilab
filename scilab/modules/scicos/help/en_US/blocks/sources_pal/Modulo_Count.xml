@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Modulo_Count_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Modulo_Count_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ having a waveform that the user specifies.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Modulo_Count_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Modulo_Count_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

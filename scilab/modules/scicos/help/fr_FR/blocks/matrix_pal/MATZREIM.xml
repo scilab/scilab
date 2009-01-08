@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATZREIM_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATZREIM_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ This block decomposes a complex number by seperating the real and imaginary part
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATZREIM_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATZREIM_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

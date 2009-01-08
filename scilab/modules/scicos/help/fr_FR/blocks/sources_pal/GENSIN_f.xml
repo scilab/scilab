@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GENSIN_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GENSIN_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ Ce bloc est un générateur de sinusoïde :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GENSIN_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GENSIN_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +121,7 @@ Ce bloc est un générateur de sinusoïde :
           <emphasis role="bold">Magnitude</emphasis>
         </para>
         <para> un scalaire à valeur réelle.</para>
-        <para> L'amplitude<inlinemediaobject><imageobject><imagedata fileref="images/GENSIN_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> de la sinusoide.</para>
+        <para> L'amplitude<inlinemediaobject><imageobject><imagedata fileref="../../../images/GENSIN_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> de la sinusoide.</para>
         <para> Propriétes : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
@@ -129,7 +129,7 @@ Ce bloc est un générateur de sinusoïde :
           <emphasis role="bold">Frequency</emphasis>
         </para>
         <para> un scalaire à valeur réelle.</para>
-        <para> La pulsation<inlinemediaobject><imageobject><imagedata fileref="images/GENSIN_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> (rad/s) de la sinusoide.</para>
+        <para> La pulsation<inlinemediaobject><imageobject><imagedata fileref="../../../images/GENSIN_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> (rad/s) de la sinusoide.</para>
         <para> Propriétes : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
@@ -137,7 +137,7 @@ Ce bloc est un générateur de sinusoïde :
           <emphasis role="bold">phase</emphasis>
         </para>
         <para> un scalaire à valeur réelle.</para>
-        <para> La phase à l'origine<inlinemediaobject><imageobject><imagedata fileref="images/GENSIN_f_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> (en radian) de la sinusoide.</para>
+        <para> La phase à l'origine<inlinemediaobject><imageobject><imagedata fileref="../../../images/GENSIN_f_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> (en radian) de la sinusoide.</para>
         <para> Propriétes : Type 'vec' de taille 1. </para>
       </listitem>
     </itemizedlist>

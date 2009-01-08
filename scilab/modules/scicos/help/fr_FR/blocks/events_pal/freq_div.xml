@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/freq_div_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/freq_div_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/freq_div_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/freq_div_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -183,7 +183,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/freq_div_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/freq_div_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

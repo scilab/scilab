@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GAINBLK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GAINBLK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -124,7 +124,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GAINBLK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GAINBLK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

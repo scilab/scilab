@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Capacitor_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Capacitor_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -101,7 +101,7 @@ comportement électrique idéal est:</para>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Capacitor_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Capacitor_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,16 +111,16 @@ où:
 </para>
     <itemizedlist>
       <listitem>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/Capacitor_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est le courant qui traverse le composant.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est le courant qui traverse le composant.</para>
       </listitem>
       <listitem>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/Capacitor_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la tension aux bornes du composant.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la tension aux bornes du composant.</para>
       </listitem>
       <listitem>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/Capacitor_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la capacité électrique du condensateur.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la capacité électrique du condensateur.</para>
       </listitem>
       <listitem>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/Capacitor_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la variation de tension avec le temps.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la variation de tension avec le temps.</para>
       </listitem>
     </itemizedlist>
     <para>
@@ -135,7 +135,7 @@ dans la conception des filtres.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Capacitor_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Capacitor_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/NPN_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/NPN_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ This model is a simple model of a bipolar NPN junction transistor according to E
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/NPN_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/NPN_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

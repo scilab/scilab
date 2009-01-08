@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GENSQR_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GENSQR_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ switches from  -M  to  M , or  M  to  -M .
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GENSQR_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GENSQR_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +121,7 @@ switches from  -M  to  M , or  M  to  -M .
         <para>
           <emphasis role="bold">Amplitude</emphasis>
         </para>
-        <para> a scalar<inlinemediaobject><imageobject><imagedata fileref="images/GENSQR_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> a scalar<inlinemediaobject><imageobject><imagedata fileref="../../../images/GENSQR_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
     </itemizedlist>

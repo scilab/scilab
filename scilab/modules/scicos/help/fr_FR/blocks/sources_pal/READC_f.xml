@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READC_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READC_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -110,7 +110,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/READC_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/READC_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -123,7 +123,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
           <emphasis role="bold">Time record selection</emphasis>
         </para>
         <para> une matrice vide ou un entier positif.</para>
-        <para> Si un entier i est donné, le <inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu est supposé être la date de la sortie d'événement.</para>
+        <para> Si un entier i est donné, le <inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu est supposé être la date de la sortie d'événement.</para>
         <para> Si ce paramètre est vide alors le bloc n'a pas de sortie événementielle.</para>
         <para> Propriétés : Type 'vec' de taille -1 </para>
       </listitem>
@@ -132,7 +132,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
           <emphasis role="bold">Outputs record selection</emphasis>
         </para>
         <para> un vecteur ou un entier positif.</para>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ,le <inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu donne la valeur de la <inlinemediaobject><imageobject><imagedata fileref="images/READC_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> sortie.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> ,le <inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu donne la valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/READC_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> sortie.</para>
         <para> Propriétés : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>

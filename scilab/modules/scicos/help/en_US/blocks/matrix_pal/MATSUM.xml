@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATSUM_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATSUM_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATSUM_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATSUM_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

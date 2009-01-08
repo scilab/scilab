@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLATCH_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLATCH_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -214,7 +214,7 @@ The truth table of this block is
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLATCH_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLATCH_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

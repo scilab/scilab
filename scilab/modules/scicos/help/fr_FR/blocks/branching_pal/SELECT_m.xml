@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SELECT_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SELECT_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -112,7 +112,7 @@ avec le type de l'entrée, ainsi que la manière dont il détermine les éléments
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SELECT_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SELECT_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

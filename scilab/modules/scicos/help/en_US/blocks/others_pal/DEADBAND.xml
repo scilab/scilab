@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DEADBAND_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DEADBAND_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ Provide a region of zero output
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DEADBAND_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DEADBAND_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

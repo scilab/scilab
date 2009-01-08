@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLSS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLSS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -105,7 +105,7 @@ event on the unique input event port, the state is updated.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLSS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLSS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -115,7 +115,7 @@ event on the unique input event port, the state is updated.
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
+          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
         </para>
         <para> A square matrix.</para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
@@ -124,21 +124,21 @@ event on the unique input event port, the state is updated.
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para> The<inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix, [] if system has no input.</para>
+        <para> The<inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix, [] if system has no input.</para>
         <para> Properties : Type 'mat' of size ["size(%1,2)","-1"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para> The<inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img7_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix , [] if system has no output.</para>
+        <para> The<inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img7_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix , [] if system has no output.</para>
         <para> Properties : Type 'mat' of size ["-1","size(%1,2)"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para> The<inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img8_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix, [] if system has no D term.</para>
+        <para> The<inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img8_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix, [] if system has no D term.</para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
       </listitem>
       <listitem>

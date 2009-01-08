@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TIME_DELAY_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TIME_DELAY_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -114,7 +114,7 @@ The Time delay parameter must be non-negative.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TIME_DELAY_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TIME_DELAY_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

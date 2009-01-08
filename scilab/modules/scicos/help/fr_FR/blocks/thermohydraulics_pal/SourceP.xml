@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SourceP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SourceP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -104,7 +104,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SourceP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SourceP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

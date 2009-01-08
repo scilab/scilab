@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/NMOS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/NMOS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -333,7 +333,7 @@ resistance is included (to avoid numerical difficulties).
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/NMOS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/NMOS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

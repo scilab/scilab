@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/WRITEC_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/WRITEC_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/WRITEC_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/WRITEC_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

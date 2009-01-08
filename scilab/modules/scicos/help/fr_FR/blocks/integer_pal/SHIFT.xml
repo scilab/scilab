@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SHIFT_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SHIFT_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -119,7 +119,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SHIFT_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SHIFT_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

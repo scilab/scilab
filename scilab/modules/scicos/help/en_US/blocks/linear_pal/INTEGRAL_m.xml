@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTEGRAL_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTEGRAL_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ This block is an integrator. The output is the integral of the input.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/INTEGRAL_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/INTEGRAL_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

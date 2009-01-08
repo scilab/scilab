@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RFILE_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RFILE_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -114,7 +114,7 @@ Ce bloc fonctionne de paire avec le bloc
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RFILE_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RFILE_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -127,14 +127,14 @@ Ce bloc fonctionne de paire avec le bloc
           <emphasis role="bold">Time record selection</emphasis>
         </para>
         <para> une matrice vide ou un entier positif.</para>
-        <para> Si un entier<inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est donnée, le <inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu est supposé être la date de l'événement de sortie. Si ce paramètre est vide, alors le bloc ne fournit pas d'événements de sortie. Propriétés : Type 'vec' de taille -1. </para>
+        <para> Si un entier<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est donnée, le <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu est supposé être la date de l'événement de sortie. Si ce paramètre est vide, alors le bloc ne fournit pas d'événements de sortie. Propriétés : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Outputs record selection</emphasis>
         </para>
         <para> un vecteur d'entiers positifs.</para>
-        <para><inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . Le <inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu donne la valeur de la <inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> sortie.</para>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> . Le <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> élément de l'enregistrement lu donne la valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> sortie.</para>
         <para> Propriétés : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
@@ -148,7 +148,7 @@ Ce bloc fonctionne de paire avec le bloc
         <para>
           <emphasis role="bold">Input Format</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramètre est renseigné alors il doit être encadrer par des paranthèses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="images/RFILE_f_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> une chaîne de caractères définissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramètre est renseigné alors il doit être encadrer par des paranthèses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="../../../images/RFILE_f_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
         <para> Propriétés : Type 'str' de taille 1. </para>
       </listitem>
       <listitem>

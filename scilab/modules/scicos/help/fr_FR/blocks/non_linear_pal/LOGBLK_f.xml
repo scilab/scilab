@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/LOGBLK_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/LOGBLK_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/LOGBLK_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/LOGBLK_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

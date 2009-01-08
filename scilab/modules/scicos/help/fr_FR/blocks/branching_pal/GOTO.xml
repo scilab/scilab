@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GOTO_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GOTO_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -123,7 +123,7 @@ This block can support all the data types.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/GOTO_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/GOTO_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

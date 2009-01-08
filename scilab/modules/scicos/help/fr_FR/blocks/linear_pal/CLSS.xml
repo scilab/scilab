@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLSS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLSS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -100,15 +100,15 @@ Ce bloc réalise un système linéaire d'équations d'état en temporel continu.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLSS_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLSS_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
     <para>
 </para>
     <para>
-Le système est défini par les matrices <inlinemediaobject><imageobject><imagedata fileref="images/CLSS_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>
-et par l'état initial <inlinemediaobject><imageobject><imagedata fileref="images/CLSS_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.
+Le système est défini par les matrices <inlinemediaobject><imageobject><imagedata fileref="../../../images/CLSS_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>
+et par l'état initial <inlinemediaobject><imageobject><imagedata fileref="../../../images/CLSS_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>.
 Les dimensions des matrices et de l'état initial doivent être appropriées.
 
 </para>
@@ -118,7 +118,7 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CLSS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CLSS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -128,7 +128,7 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="images/CLSS_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
+          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/CLSS_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
         </para>
         <para> Une matrice carré.</para>
         <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
@@ -137,21 +137,21 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="images/CLSS_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas d'entrées.</para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/CLSS_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas d'entrées.</para>
         <para> Propriétés : Type 'mat' de taille ["size(%1,2)","-1"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="images/CLSS_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de sorties.</para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/CLSS_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de sorties.</para>
         <para> Propriétés : Type 'mat' de taille ["-1","size(%1,2)"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="images/CLSS_img9_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de terme D.</para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/CLSS_img9_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de terme D.</para>
         <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>

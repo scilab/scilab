@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CONST_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CONST_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ This block is a constant value generator.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/CONST_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/CONST_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

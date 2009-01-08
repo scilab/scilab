@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SWITCH_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SWITCH_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -109,7 +109,7 @@ while the unselected inputs are discarded.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SWITCH_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SWITCH_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

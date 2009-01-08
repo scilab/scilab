@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTTRI_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTTRI_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -122,7 +122,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTTRI_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTTRI_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

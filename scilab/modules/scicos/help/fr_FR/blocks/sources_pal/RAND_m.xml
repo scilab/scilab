@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RAND_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RAND_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -112,7 +112,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RAND_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RAND_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

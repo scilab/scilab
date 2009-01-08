@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/BOUNCEXY_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/BOUNCEXY_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -95,7 +95,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/BOUNCEXY_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/BOUNCEXY_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

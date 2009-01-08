@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATRESH_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATRESH_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATRESH_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATRESH_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

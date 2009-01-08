@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DERIV_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DERIV_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -99,7 +99,7 @@ Le bloc dérivée fait l'approximation de la dérivée de son entrée en calculant:</
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DERIV_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DERIV_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

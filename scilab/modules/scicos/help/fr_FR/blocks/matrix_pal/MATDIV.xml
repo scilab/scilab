@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATDIV_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATDIV_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -116,7 +116,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATDIV_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATDIV_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

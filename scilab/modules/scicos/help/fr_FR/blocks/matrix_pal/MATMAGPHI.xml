@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATMAGPHI_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATMAGPHI_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -119,7 +119,7 @@ When the type is set to two, the block outputs a complex number given the magnit
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATMAGPHI_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATMAGPHI_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

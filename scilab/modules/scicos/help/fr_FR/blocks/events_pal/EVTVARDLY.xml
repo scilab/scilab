@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTVARDLY_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTVARDLY_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ Ce bloc peut aussi généré un événement à une date initiale.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTVARDLY_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTVARDLY_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

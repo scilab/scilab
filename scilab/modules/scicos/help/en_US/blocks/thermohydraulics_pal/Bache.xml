@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Bache_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Bache_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -110,7 +110,7 @@ blocked by a <emphasis role="bold">stopper</emphasis> block.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Bache_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Bache_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

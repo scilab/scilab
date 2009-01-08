@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTRACTOR_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTRACTOR_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ Extracts or select a regular input from a multiple regular input.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXTRACTOR_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXTRACTOR_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

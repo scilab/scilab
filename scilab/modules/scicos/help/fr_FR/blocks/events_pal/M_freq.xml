@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/M_freq_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/M_freq_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -133,7 +133,7 @@ So the number of outputs is equal to 2**number of differents time values. Each o
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/M_freq_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/M_freq_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

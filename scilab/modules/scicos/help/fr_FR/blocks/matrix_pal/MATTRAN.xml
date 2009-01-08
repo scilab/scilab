@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATTRAN_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATTRAN_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATTRAN_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATTRAN_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

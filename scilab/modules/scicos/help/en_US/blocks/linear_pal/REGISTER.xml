@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/REGISTER_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/REGISTER_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ register is shifted one step.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/REGISTER_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/REGISTER_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

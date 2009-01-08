@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SampleCLK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SampleCLK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -129,7 +129,7 @@ The second method uses the Multifrequency block it generates events only for spe
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SampleCLK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SampleCLK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

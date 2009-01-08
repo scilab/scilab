@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLR_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLR_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -105,7 +105,7 @@ La fonction rationnelle doit être une fonction propre.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLR_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLR_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

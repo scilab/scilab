@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EDGE_TRIGGER_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EDGE_TRIGGER_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -179,7 +179,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EDGE_TRIGGER_img3_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_img3_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

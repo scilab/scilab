@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATMUL_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATMUL_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -118,7 +118,7 @@ The MATMUL block computes the matrix multiplication of two inputs matrices.The n
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATMUL_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATMUL_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

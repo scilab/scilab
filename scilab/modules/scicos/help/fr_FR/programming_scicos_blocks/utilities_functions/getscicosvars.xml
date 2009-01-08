@@ -99,8 +99,8 @@ Elle peut-être utilisée dans un bloc scilab pour retourner des informations de t
         <para> "critev" : retourne le vecteur des événements critiques.</para>
         <para> "mod" : retourne le vecteur de pointeurs des modes des blocs.</para>
         <para> "nmod" : retourne la longueur du vecteur de pointeurs des modes des blocs.</para>
-        <para> "iz" : retourne le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
-        <para> "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "iz" : retourne le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
         <para> "nblk" : retourne le nombre de blocs.</para>
         <para> "outtbptr" : retourne le registre qui contient les pointeurs C de outtb.</para>
         <para> "outtbpsz" : retourne le registre qui contient les tailles des éléments de outtb.</para>

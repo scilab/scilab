@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EDGE_TRIGGER_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ This block generates an event on rising, falling or both edges of the input sign
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EDGE_TRIGGER_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -178,7 +178,7 @@ This block generates an event on rising, falling or both edges of the input sign
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EDGE_TRIGGER_img3_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EDGE_TRIGGER_img3_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLSS_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLSS_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -107,7 +107,7 @@ l'état est alors mis à jour.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DLSS_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DLSS_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -117,7 +117,7 @@ l'état est alors mis à jour.
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
+          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
         </para>
         <para> Une matrice carré.</para>
         <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
@@ -126,21 +126,21 @@ l'état est alors mis à jour.
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas d'entrées.</para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas d'entrées.</para>
         <para> Propriétés : Type 'mat' de taille ["size(%1,2)","-1"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de sorties.</para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de sorties.</para>
         <para> Propriétés : Type 'mat' de taille ["-1","size(%1,2)"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="images/DLSS_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de terme D.</para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de terme D.</para>
         <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>

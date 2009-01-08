@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Resistor_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Resistor_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -102,7 +102,7 @@ according to the Ohm's law.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Resistor_img3_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Resistor_img3_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -117,7 +117,7 @@ the resistor divided by the current through the resistor ().
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/Resistor_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/Resistor_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

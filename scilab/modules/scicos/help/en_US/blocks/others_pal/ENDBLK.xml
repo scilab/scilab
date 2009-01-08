@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ENDBLK_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ENDBLK_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -117,7 +117,7 @@ in the scicos context.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ENDBLK_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ENDBLK_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -186,7 +186,7 @@ in the scicos context.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/ENDBLK_img3_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/ENDBLK_img3_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

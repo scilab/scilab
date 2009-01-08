@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/fortran_block_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/fortran_block_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ creates library file and object files.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/fortran_block_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/fortran_block_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

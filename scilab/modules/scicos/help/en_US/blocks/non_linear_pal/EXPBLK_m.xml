@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXPBLK_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXPBLK_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -104,7 +104,7 @@ determined by the compiler.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EXPBLK_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EXPBLK_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATDET_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATDET_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +121,7 @@ The equivalent of MATDET in Scilab is "det"
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/MATDET_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/MATDET_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RAMP_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RAMP_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ dimensions after scalar expansion.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/RAMP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/RAMP_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

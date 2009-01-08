@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/BITCLEAR_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/BITCLEAR_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +113,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/BITCLEAR_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/BITCLEAR_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

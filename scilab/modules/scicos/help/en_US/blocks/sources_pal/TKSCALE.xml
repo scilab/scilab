@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TKSCALE_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TKSCALE_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +108,7 @@ This source block generates a piecewise constant signal the value of which can b
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/TKSCALE_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/TKSCALE_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

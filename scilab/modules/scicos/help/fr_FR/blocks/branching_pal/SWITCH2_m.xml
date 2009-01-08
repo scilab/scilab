@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SWITCH2_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SWITCH2_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -116,7 +116,7 @@ input is passed. Otherwise, the third input is passed.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/SWITCH2_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/SWITCH2_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -133,7 +133,7 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">pass first input if: u2<inlinemediaobject><imageobject><imagedata fileref="images/SWITCH2_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>=a </emphasis>
+          <emphasis role="bold">pass first input if: u2<inlinemediaobject><imageobject><imagedata fileref="../../../images/SWITCH2_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>=a </emphasis>
         </para>
         <para> Détermine la condition pour laquelle la première entrée est redirigée. Cette condition peut être une entrée de contôle supérieure ou égale, strictement supérieure ou différente de la valeur donnée dans le paramètre<emphasis role="bold">threshold a</emphasis> . Si l'entrée de contrôle satisfie la condition alors c'est la première entrée régulière qui est redirigée à la sortie, sinon c'est la troisième entrée régulière.</para>
         <para> Propriétés : Type 'vec' de taille 1. </para>

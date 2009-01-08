@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DOLLAR_m_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DOLLAR_m_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -111,7 +111,7 @@ This block can support all data types supported by Scicos. The output will inher
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/DOLLAR_m_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/DOLLAR_m_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>

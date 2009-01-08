@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/OUTIMPL_f_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/OUTIMPL_f_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -103,7 +103,7 @@ the system.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/OUTIMPL_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/OUTIMPL_f_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
