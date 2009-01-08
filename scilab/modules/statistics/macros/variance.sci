@@ -47,7 +47,6 @@ function [s]=variance(x,orien,w)
       error(msprintf(gettext("%s: Wrong value of w : %d; 0 or 1 expected.\n"),"variance",w))
     end
   elseif orien=='c'|orien==2 then
-    //s=(sum((x-mean(x,'c')*ones(x(1,:))).^2,'c')/(n-1));
     y(1:m,1:n) = x(1:m,1:n) -  mean(x,2) * ones(1,n);
     s = ones(m,1);
     for i=1:m
@@ -61,7 +60,6 @@ function [s]=variance(x,orien,w)
       end
     end
   elseif orien=='r'|orien==1 then
-    //s=(sum((x-ones(x(:,1))*mean(x,'r')).^2,'r')/(m-1));
     y(1:m,1:n) = x(1:m,1:n) - ones(m,1) * mean(x,1);
     s = ones(1,n);
     for i=1:n
