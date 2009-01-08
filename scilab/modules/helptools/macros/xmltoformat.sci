@@ -46,17 +46,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	generated_files = [];
 	
-	//------------------------------------------------------------------
-	// Patch because scicos is not written in xml
-	//------------------------------------------------------------------
-	if ~isempty(grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep())) then
-	  
-	  generated_files = [ generated_files ; buildScicosHelp() ];
-	  
-	  // Remove Scicos from toolboxes helps to be generated
-	  %helps(grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep()),:) = [];
-	end
-	
 	all_scilab_help     = %F;
 	
 	[lhs,rhs] = argn(0);
@@ -389,7 +378,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			for k=1:size(dirs_c,"*")
 				if need_to_be_build_tab_c(k) then
 					mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
-					create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml",directory_language_c(k));
+					if dirs_c(k) == pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k)) then
+					  create_MD_scicos(dirs_c(k), dirs_c(k)+"/master_help.xml", directory_language_c(k))
+					else
+					  create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml",directory_language_c(k));
+					end
 				end
 			end
 		end
@@ -408,7 +401,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				else
 					mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 				end
-				create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml",directory_language(k));
+				if dirs(k)==pathconvert(SCI + "/modules/scicos/help/" + directory_language(k)) then
+				  create_MD_scicos(dirs(k), dirs(k)+"/master_help.xml", directory_language(k))
+				else
+				  create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml",directory_language(k));
+				end
 			end
 		end
 	
@@ -1325,108 +1322,7 @@ endfunction
 // FUNCTIONS USED FOR SCICOS DOC
 ////////////////////////////////
 
-function generated_file = buildScicosHelp()
-global %helps
-
-generated_file = [];
-
-idx = grep(%helps,filesep()+"modules"+filesep()+"scicos"+filesep());
-
-scicoshelpdir = %helps(idx,1) + filesep() + ".." + filesep(); // SCI/modules/scicos/help/
-scicosdir = scicoshelpdir + ".." + filesep(); // SCI/modules/scicos/
-
-if output_format=="javaHelp" then
-  output_format_ext = "jar";
-else
-  output_format_ext = output_format;
-end
-
-is_html = (output_format == "html");
-
-master_doc = scicosdir + "master_"+getlanguage()+"_help.xml";
-mprintf(_("\nBuilding the Scicos manual master document for %s.\n"),getlanguage());
-buildScicosMaster(%helps(idx,1), master_doc, getlanguage());
-
-// Define and create the final output directory if does not exist
-final_output_dir = pathconvert(scicosdir+output_format_ext,%f,%f);
-
-if ~isdir(final_output_dir) then
-  mkdir(final_output_dir);
-end
-
-if is_html then
-  final_output_dir = pathconvert(final_output_dir+"/"+getlanguage(),%f,%f);
-  if ~isdir(final_output_dir) then
-    mkdir(final_output_dir);
-  end
-end
-
-// Define the final location of the generated file
-if is_html then
-  final_help_file = pathconvert(%helps(idx,1)+"/index.html",%f,%f);
-else
-  final_help_file = pathconvert(%helps(idx,1)+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
-end
-
-// Define and create the path of buildDoc working directory
-buildDoc_dir  = pathconvert(scicoshelpdir + "/scilab_" + getlanguage() + "_help",%t,%f);
-if ~isdir(buildDoc_dir) then // Needed for images copy
-  mkdir(buildDoc_dir);
-end
-
-// Define the path of the generated file created by buildDoc
-if is_html then
-  buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
-else
-  buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
-end
-
-// Save the current directory
-cur_dir = getcwd();
-
-// Change Scilab current directory so that Java Indexer works
-if ~chdir(buildDoc_dir) then
-  error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",buildDoc_dir));
-end
-
-// Copy images
-if ~MSDOS then
-  unix_w("cp -R " + scicoshelpdir + "/images/ " + buildDoc_dir);
-else
-  unix_w("copy -R " + scicoshelpdir + "/images/ " + buildDoc_dir);
-end
-
-buildDoc(output_format, master_doc, getlanguage(), scicoshelpdir);	  
-
-// Check if the help file has been generated
-if fileinfo(buildDoc_file)==[] then
-  error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
-end
-		
-// move the generated file(s)
-if is_html then
-  my_html_files = listfiles(buildDoc_dir);
-  for k=1:size(my_html_files,'*')
-    if ~copyfile(my_html_files(k),pathconvert(final_output_dir+"/"+my_html_files(k),%f,%f)) then
-      error(msprintf(gettext("%s: %s file hasn''t been moved in the %s directory."),"xmltoformat",my_html_files(k),final_output_dir));
-    end
-    mdelete(my_html_files(k));
-  end
-else
-  copyfile(buildDoc_file,final_help_file);
-  mdelete(buildDoc_file);
-end
-
-// Move into the initial directory
-if ~chdir(cur_dir) then
-  error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",final_output_dir));
-end
-
-generated_file = final_help_file;
-
-endfunction
-
-function buildScicosMaster(basedir, masterdoc, language)
+function create_MD_scicos(basedir, masterdoc, language)
 	
 encoding = "UTF-8";
 
@@ -1477,7 +1373,7 @@ master_document    = [ master_document; ..
 
 reference = []
 
-[tmpref, tmpent] = subDirReference(basedir, 0);
+[tmpref, tmpent] = subDirReference(basedir, 0, language);
 
 if ~isempty(tmpref) then
   reference = [reference;tmpref];
@@ -1512,7 +1408,7 @@ for k=1:size(tmpfiles, "*")
 end
 endfunction
 
-function [ref, entries] = subDirReference(directory,level)
+function [ref, entries] = subDirReference(directory,level, language)
 // Create master document contents recursively
 
 entries = [];
@@ -1526,7 +1422,7 @@ tmpfiles = gsort(listfiles(directory + "/*"),"lr","i");
 
 for k=1:size(tmpfiles, "*")
   // Files to be ignored
-  if ~isempty(strindex(tmpfiles(k), "master_")) | ~isempty(strindex(tmpfiles(k), ".sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
+  if ~isempty(strindex(tmpfiles(k), "master_help.xml")) | ~isempty(strindex(tmpfiles(k), "addchapter.sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".last_")) | ~isempty(strindex(tmpfiles(k), "scilab_"+language+"_help")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
     continue
   end
 
@@ -1541,7 +1437,7 @@ for k=1:size(tmpfiles, "*")
 	"<title>" + dirToCat(category) + "</title>"];
     
     // Browse subdirs
-    [tmpref, tmpent] = subDirReference(tmpfiles(k),level);
+    [tmpref, tmpent] = subDirReference(tmpfiles(k),level, language);
     if ~isempty(tmpent) then // Some entries found
       ref = [ref;
 	  "&"+gsort(basename(tmpent),"lr","i")+";"];
