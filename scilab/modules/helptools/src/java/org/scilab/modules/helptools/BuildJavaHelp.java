@@ -102,14 +102,10 @@ public final class BuildJavaHelp {
 					System.err.println(COULD_NOT_FIND + workingFile + LEFT_PAR + e.getLocalizedMessage() + RIGHT_PAR);
 				}
 				String relativeFileName = null;
-				if (workingFile.getPath().indexOf("JavaHelpSearch") != -1) {
-					relativeFileName = baseName + JAVAHELPSEARCH_DIR + workingFile.getName();
-				} else {
-                                    if (workingFile.getPath().indexOf("images") != -1) {
-					relativeFileName = baseName + "/images/" + workingFile.getName();
-                                    } else {
+				if (workingFile.getPath().indexOf("JavaHelpSearch") == -1) {
 					relativeFileName = baseName + "/" + workingFile.getName();
-                                    }
+				} else {
+ 					relativeFileName = baseName + JAVAHELPSEARCH_DIR + workingFile.getName();
 				}
 				ZipEntry zipEntry = new ZipEntry(relativeFileName);
 				jarFile.putNextEntry(zipEntry);
