@@ -18,6 +18,7 @@
 #include "gw_fileio.h"
 #include "localization.h"
 #include "../../../shell/includes/zzledt.h"
+#include "../../../shell/includes/GetCommandLine.h" /* getConsoleInputLine */
 /*--------------------------------------------------------------------------*/
 #define MAXSTR 512
 /*--------------------------------------------------------------------------*/
