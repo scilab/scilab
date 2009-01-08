@@ -31,7 +31,7 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="quapro">qpsolve</link></member>
+      <member><link linkend="qpsolve">qpsolve</link></member>
     </simplelist>
   </refsection>
 </refentry>

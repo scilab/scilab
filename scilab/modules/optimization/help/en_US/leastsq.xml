@@ -429,7 +429,7 @@ link(clibname,names,"c")
         <link linkend="external">external</link>
       </member>
       <member>
-        <link linkend="quapro">quapro</link>
+        <link linkend="qpsolve">qpsolve</link>
       </member>
       <member>
         <link linkend="linpro">linpro</link>
