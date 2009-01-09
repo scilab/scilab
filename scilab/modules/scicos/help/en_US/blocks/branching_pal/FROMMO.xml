@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents FROMMO">
+  <refsection id="Contents_FROMMO">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette FROMMO">Palette</xref>
+              <xref linkend="Palette_FROMMO">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description FROMMO">Description</xref>
+              <xref linkend="Description_FROMMO">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box FROMMO">Dialog box</xref>
+              <xref linkend="Dialogbox_FROMMO">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties FROMMO">Default properties</xref>
+              <xref linkend="Defaultproperties_FROMMO">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function FROMMO">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_FROMMO">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also FROMMO">See also</xref>
+              <xref linkend="Seealso_FROMMO">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors FROMMO">Authors</xref>
+              <xref linkend="Authors_FROMMO">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette FROMMO">
+  <refsection id="Palette_FROMMO">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description FROMMO">
+  <refsection id="Description_FROMMO">
     <title>Description</title>
     <para>
 This block is used to connect Modelica blocks. For more information on how it works please refer to the documentation of the FROM block by clicking on the link in the "See also" field.  
@@ -103,7 +103,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box FROMMO">
+  <refsection id="Dialogbox_FROMMO">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties FROMMO">
+  <refsection id="Defaultproperties_FROMMO">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function FROMMO">
+  <refsection id="Interfacingfunction_FROMMO">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -179,7 +179,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also FROMMO">
+  <refsection id="Seealso_FROMMO">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors FROMMO">
+  <refsection id="Authors_FROMMO">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu GotoTagVisibility">
+  <refsection id="Contenu_GotoTagVisibility">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GotoTagVisibility">Palette</xref>
+              <xref linkend="Palette_GotoTagVisibility">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GotoTagVisibility">Description</xref>
+              <xref linkend="Description_GotoTagVisibility">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue GotoTagVisibility">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_GotoTagVisibility">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut GotoTagVisibility">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_GotoTagVisibility">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface GotoTagVisibility">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_GotoTagVisibility">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GotoTagVisibility">Voir aussi</link>
+              <xref linkend="Voiraussi_GotoTagVisibility">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GotoTagVisibility">Auteurs</link>
+              <xref linkend="Auteurs_GotoTagVisibility">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GotoTagVisibility">
+  <refsection id="Palette_GotoTagVisibility">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GotoTagVisibility">
+  <refsection id="Description_GotoTagVisibility">
     <title>Description</title>
     <para>
 This block defines the accessibility of the GOTO block when it is configure as "scoped". The FROM block corresponding to that GOTO must be in the same subsystem of the GotoTagVisibility or in subsystems below it in the model hierarchy.  
@@ -103,7 +103,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue GotoTagVisibility">
+  <refsection id="Boîtededialogue_GotoTagVisibility">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut GotoTagVisibility">
+  <refsection id="Propriétéspardéfaut_GotoTagVisibility">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface GotoTagVisibility">
+  <refsection id="Fonctiondinterface_GotoTagVisibility">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi GotoTagVisibility">
+  <refsection id="Voiraussi_GotoTagVisibility">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs GotoTagVisibility">
+  <refsection id="Auteurs_GotoTagVisibility">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

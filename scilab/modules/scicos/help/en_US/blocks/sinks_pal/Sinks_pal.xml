@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module Sinks_pal">
+  <refsection id="Module_Sinks_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Sinks_pal">
+  <refsection id="Description_Sinks_pal">
     <title>Description</title>
     <para>
 In Sinks palette, you can find a variety of blocks used
@@ -58,7 +58,7 @@ The blocks of that palette doesn't have regular output ports.
 
 </para>
   </refsection>
-  <refsection id="Blocks Sinks_pal">
+  <refsection id="Blocks_Sinks_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

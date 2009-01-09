@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Sigbuilder">
+  <refsection id="Contenu_Sigbuilder">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Sigbuilder">Palette</xref>
+              <xref linkend="Palette_Sigbuilder">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Sigbuilder">Description</xref>
+              <xref linkend="Description_Sigbuilder">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Sigbuilder">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Sigbuilder">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Sigbuilder">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Sigbuilder">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Sigbuilder">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Sigbuilder">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Sigbuilder">Auteurs</link>
+              <xref linkend="Auteurs_Sigbuilder">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Sigbuilder">
+  <refsection id="Palette_Sigbuilder">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Sigbuilder">
+  <refsection id="Description_Sigbuilder">
     <title>Description</title>
     <para>
 The Signal Builder block is a superblock containing a
@@ -111,7 +111,7 @@ beginning and at the end of the signal.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Sigbuilder">
+  <refsection id="Boîtededialogue_Sigbuilder">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc .
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut Sigbuilder">
+  <refsection id="Propriétéspardéfaut_Sigbuilder">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Sigbuilder">
+  <refsection id="Fonctiondinterface_Sigbuilder">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -179,7 +179,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé Sigbuilder">
+  <refsection id="Contenudusuperbloccompilé_Sigbuilder">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -189,7 +189,7 @@ Les paramètres du bloc Sigbuilder sont identiques à ceux du bloc .
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Auteurs Sigbuilder">
+  <refsection id="Auteurs_Sigbuilder">
     <title>Auteurs</title>
     <para><emphasis role="bold"/> - Masoud Najafi, INRIA</para>
   </refsection>

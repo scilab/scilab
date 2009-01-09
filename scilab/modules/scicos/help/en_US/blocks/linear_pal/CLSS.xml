@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CLSS">
+  <refsection id="Contents_CLSS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLSS">Palette</xref>
+              <xref linkend="Palette_CLSS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLSS">Description</xref>
+              <xref linkend="Description_CLSS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CLSS">Dialog box</xref>
+              <xref linkend="Dialogbox_CLSS">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CLSS">Default properties</xref>
+              <xref linkend="Defaultproperties_CLSS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CLSS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CLSS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CLSS">Computational function</xref>
+              <xref linkend="Computationalfunction_CLSS">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLSS">
+  <refsection id="Palette_CLSS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLSS">
+  <refsection id="Description_CLSS">
     <title>Description</title>
     <para>
 This block realizes a continuous-time linear state-space system.
@@ -112,7 +112,7 @@ The system is defined by the <inlinemediaobject><imageobject><imagedata fileref=
 
 </para>
   </refsection>
-  <refsection id="Dialog box CLSS">
+  <refsection id="Dialogbox_CLSS">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -162,7 +162,7 @@ The system is defined by the <inlinemediaobject><imageobject><imagedata fileref=
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CLSS">
+  <refsection id="Defaultproperties_CLSS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ The system is defined by the <inlinemediaobject><imageobject><imagedata fileref=
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CLSS">
+  <refsection id="Interfacingfunction_CLSS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -224,7 +224,7 @@ The system is defined by the <inlinemediaobject><imageobject><imagedata fileref=
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CLSS">
+  <refsection id="Computationalfunction_CLSS">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

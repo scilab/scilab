@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DLATCH">
+  <refsection id="Contents_DLATCH">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DLATCH">Palette</xref>
+              <xref linkend="Palette_DLATCH">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DLATCH">Description</xref>
+              <xref linkend="Description_DLATCH">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DLATCH">Default properties</xref>
+              <xref linkend="Defaultproperties_DLATCH">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DLATCH">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DLATCH">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,19 +73,19 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also DLATCH">See also</xref>
+              <xref linkend="Seealso_DLATCH">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DLATCH">Authors</xref>
+              <xref linkend="Authors_DLATCH">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DLATCH">
+  <refsection id="Palette_DLATCH">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DLATCH">
+  <refsection id="Description_DLATCH">
     <title>Description</title>
     <para>
 This block outputs the input state when the input gate is high.
@@ -141,7 +141,7 @@ The truth table of this block is
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Default properties DLATCH">
+  <refsection id="Defaultproperties_DLATCH">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DLATCH">
+  <refsection id="Interfacingfunction_DLATCH">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -209,7 +209,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content DLATCH">
+  <refsection id="CompiledSuperBlockcontent_DLATCH">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>
@@ -219,7 +219,7 @@ The truth table of this block is
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="See also DLATCH">
+  <refsection id="Seealso_DLATCH">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -239,7 +239,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DLATCH">
+  <refsection id="Authors_DLATCH">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

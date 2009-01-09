@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATRESH">
+  <refsection id="Contenu_MATRESH">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATRESH">Palette</xref>
+              <xref linkend="Palette_MATRESH">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATRESH">Description</xref>
+              <xref linkend="Description_MATRESH">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATRESH">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATRESH">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATRESH">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATRESH">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATRESH">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATRESH">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATRESH">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATRESH">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATRESH">Voir aussi</link>
+              <xref linkend="Voiraussi_MATRESH">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATRESH">Auteurs</link>
+              <xref linkend="Auteurs_MATRESH">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATRESH">
+  <refsection id="Palette_MATRESH">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATRESH">
+  <refsection id="Description_MATRESH">
     <title>Description</title>
     <para>
 The RESHAPE block changes the dimensions of a matrix or a vector to another dimensions specified by the user in the "output size desired" label. The output size must be less or equal to the input size.  
@@ -108,7 +108,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATRESH">
+  <refsection id="Boîtededialogue_MATRESH">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATRESH">
+  <refsection id="Propriétéspardéfaut_MATRESH">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATRESH">
+  <refsection id="Fonctiondinterface_MATRESH">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATRESH">
+  <refsection id="Fonctiondecalcul_MATRESH">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -217,7 +217,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATRESH">
+  <refsection id="Voiraussi_MATRESH">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -227,7 +227,7 @@ The RESHAPE block changes the dimensions of a matrix or a vector to another dime
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATRESH">
+  <refsection id="Auteurs_MATRESH">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

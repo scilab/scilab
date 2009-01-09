@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CLKOUTV_f">
+  <refsection id="Contents_CLKOUTV_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLKOUTV_f">Palette</xref>
+              <xref linkend="Palette_CLKOUTV_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLKOUTV_f">Description</xref>
+              <xref linkend="Description_CLKOUTV_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CLKOUTV_f">Dialog box</xref>
+              <xref linkend="Dialogbox_CLKOUTV_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CLKOUTV_f">Default properties</xref>
+              <xref linkend="Defaultproperties_CLKOUTV_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CLKOUTV_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CLKOUTV_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CLKOUTV_f">Authors</xref>
+              <xref linkend="Authors_CLKOUTV_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLKOUTV_f">
+  <refsection id="Palette_CLKOUTV_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLKOUTV_f">
+  <refsection id="Description_CLKOUTV_f">
     <title>Description</title>
     <para>
 This block must only be used inside Scicos Super Blocks to represent 
@@ -99,7 +99,7 @@ numbered from 1 to the number of event output ports.
 
 </para>
   </refsection>
-  <refsection id="Dialog box CLKOUTV_f">
+  <refsection id="Dialogbox_CLKOUTV_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -121,7 +121,7 @@ numbered from 1 to the number of event output ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CLKOUTV_f">
+  <refsection id="Defaultproperties_CLKOUTV_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -159,7 +159,7 @@ numbered from 1 to the number of event output ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CLKOUTV_f">
+  <refsection id="Interfacingfunction_CLKOUTV_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -167,7 +167,7 @@ numbered from 1 to the number of event output ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CLKOUTV_f">
+  <refsection id="Authors_CLKOUTV_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

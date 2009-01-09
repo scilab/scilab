@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATTRAN">
+  <refsection id="Contenu_MATTRAN">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATTRAN">Palette</xref>
+              <xref linkend="Palette_MATTRAN">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATTRAN">Description</xref>
+              <xref linkend="Description_MATTRAN">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATTRAN">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATTRAN">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATTRAN">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATTRAN">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATTRAN">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATTRAN">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATTRAN">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATTRAN">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATTRAN">Voir aussi</link>
+              <xref linkend="Voiraussi_MATTRAN">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATTRAN">Auteurs</link>
+              <xref linkend="Auteurs_MATTRAN">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATTRAN">
+  <refsection id="Palette_MATTRAN">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATTRAN">
+  <refsection id="Description_MATTRAN">
     <title>Description</title>
     <para>
 Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille NxM. Pour les données de type complexe, celui-ci utilise une transposition Hermitienne. L'instruction scilab équivalente de ce bloc est y=u'.  
@@ -113,7 +113,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATTRAN">
+  <refsection id="Boîtededialogue_MATTRAN">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Exemple MATTRAN">
+  <refsection id="Exemple_MATTRAN">
     <title>Exemple</title>
     <programlisting role="example"><![CDATA[
 .                     Transposition 
@@ -152,7 +152,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
 .                            --      --
 ]]></programlisting>
   </refsection>
-  <refsection id="Propriétés par défaut MATTRAN">
+  <refsection id="Propriétéspardéfaut_MATTRAN">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATTRAN">
+  <refsection id="Fonctiondinterface_MATTRAN">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATTRAN">
+  <refsection id="Fonctiondecalcul_MATTRAN">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATTRAN">
+  <refsection id="Voiraussi_MATTRAN">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -235,7 +235,7 @@ Ce bloc fait la transposition d'une matrice de taille MxN en matrice de taille N
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATTRAN">
+  <refsection id="Auteurs_MATTRAN">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

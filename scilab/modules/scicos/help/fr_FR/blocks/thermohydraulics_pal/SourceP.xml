@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SourceP">
+  <refsection id="Contenu_SourceP">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SourceP">Palette</xref>
+              <xref linkend="Palette_SourceP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SourceP">Description</xref>
+              <xref linkend="Description_SourceP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SourceP">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SourceP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SourceP">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SourceP">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SourceP">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SourceP">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SourceP">
+  <refsection id="Palette_SourceP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SourceP">
+  <refsection id="Description_SourceP">
     <title>Description</title>
     <para>
 Ce composant représente une source thermohydraulique de pression
@@ -99,7 +99,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SourceP">
+  <refsection id="Boîtededialogue_SourceP">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SourceP">
+  <refsection id="Propriétéspardéfaut_SourceP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SourceP">
+  <refsection id="Fonctiondinterface_SourceP">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -220,7 +220,7 @@ direction positive conventionnelle est quand le fluide sort du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica SourceP">
+  <refsection id="ModèleModelica_SourceP">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

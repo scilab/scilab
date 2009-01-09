@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CSCOPE">
+  <refsection id="Contents_CSCOPE">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CSCOPE">Palette</xref>
+              <xref linkend="Palette_CSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CSCOPE">Description</xref>
+              <xref linkend="Description_CSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CSCOPE">Dialog box</xref>
+              <xref linkend="Dialogbox_CSCOPE">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CSCOPE">Default properties</xref>
+              <xref linkend="Defaultproperties_CSCOPE">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CSCOPE">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CSCOPE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CSCOPE">Computational function</xref>
+              <xref linkend="Computationalfunction_CSCOPE">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also CSCOPE">See also</xref>
+              <xref linkend="Seealso_CSCOPE">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CSCOPE">Authors</xref>
+              <xref linkend="Authors_CSCOPE">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CSCOPE">
+  <refsection id="Palette_CSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CSCOPE">
+  <refsection id="Description_CSCOPE">
     <title>Description</title>
     <para>
 The Scope block displays its input with respect to simulation
@@ -109,7 +109,7 @@ the amount of time and the range of input values displayed.
 
 </para>
   </refsection>
-  <refsection id="Dialog box CSCOPE">
+  <refsection id="Dialogbox_CSCOPE">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -194,7 +194,7 @@ the amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CSCOPE">
+  <refsection id="Defaultproperties_CSCOPE">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -240,7 +240,7 @@ the amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CSCOPE">
+  <refsection id="Interfacingfunction_CSCOPE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -248,7 +248,7 @@ the amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CSCOPE">
+  <refsection id="Computationalfunction_CSCOPE">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -256,7 +256,7 @@ the amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also CSCOPE">
+  <refsection id="Seealso_CSCOPE">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -266,7 +266,7 @@ the amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CSCOPE">
+  <refsection id="Authors_CSCOPE">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

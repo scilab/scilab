@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DEADBAND">
+  <refsection id="Contents_DEADBAND">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DEADBAND">Palette</xref>
+              <xref linkend="Palette_DEADBAND">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DEADBAND">Description</xref>
+              <xref linkend="Description_DEADBAND">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box DEADBAND">Dialog box</xref>
+              <xref linkend="Dialogbox_DEADBAND">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DEADBAND">Default properties</xref>
+              <xref linkend="Defaultproperties_DEADBAND">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DEADBAND">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DEADBAND">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function DEADBAND">Computational function</xref>
+              <xref linkend="Computationalfunction_DEADBAND">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DEADBAND">Authors</xref>
+              <xref linkend="Authors_DEADBAND">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DEADBAND">
+  <refsection id="Palette_DEADBAND">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DEADBAND">
+  <refsection id="Description_DEADBAND">
     <title>Description</title>
     <para>
 Provide a region of zero output
 
 </para>
   </refsection>
-  <refsection id="Dialog box DEADBAND">
+  <refsection id="Dialogbox_DEADBAND">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -138,7 +138,7 @@ Provide a region of zero output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties DEADBAND">
+  <refsection id="Defaultproperties_DEADBAND">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ Provide a region of zero output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DEADBAND">
+  <refsection id="Interfacingfunction_DEADBAND">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ Provide a region of zero output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function DEADBAND">
+  <refsection id="Computationalfunction_DEADBAND">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ Provide a region of zero output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DEADBAND">
+  <refsection id="Authors_DEADBAND">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

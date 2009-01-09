@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents VsourceAC">
+  <refsection id="Contents_VsourceAC">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VsourceAC">Palette</xref>
+              <xref linkend="Palette_VsourceAC">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VsourceAC">Description</xref>
+              <xref linkend="Description_VsourceAC">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box VsourceAC">Dialog box</xref>
+              <xref linkend="Dialogbox_VsourceAC">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties VsourceAC">Default properties</xref>
+              <xref linkend="Defaultproperties_VsourceAC">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function VsourceAC">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_VsourceAC">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VsourceAC">
+  <refsection id="Palette_VsourceAC">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VsourceAC">
+  <refsection id="Description_VsourceAC">
     <title>Description</title>
     <para>
 This component is an AC voltage source with sinusoid output
@@ -99,7 +99,7 @@ by the user. The ohmic resistance of this block is zero.
 
 </para>
   </refsection>
-  <refsection id="Dialog box VsourceAC">
+  <refsection id="Dialogbox_VsourceAC">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -128,7 +128,7 @@ by the user. The ohmic resistance of this block is zero.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties VsourceAC">
+  <refsection id="Defaultproperties_VsourceAC">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function VsourceAC">
+  <refsection id="Interfacingfunction_VsourceAC">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model VsourceAC">
+  <refsection id="Modelicamodel_VsourceAC">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

@@ -26,10 +26,6 @@
     <refname>Branching_pal</refname>
     <refpurpose>Palette Branching</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Branching_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Branching_pal">
+  <refsection id="Module_Branching_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,15 +46,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Branching_pal">
+  <refsection id="Description_Branching_pal">
     <title>Description</title>
     <para>
 Dans la palette Branching, vous pouvez trouver divers blocs
 pour la gestion des données véhiculées par les liens réguliers.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Branching_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

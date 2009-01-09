@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SUMMATION">
+  <refsection id="Contenu_SUMMATION">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SUMMATION">Palette</xref>
+              <xref linkend="Palette_SUMMATION">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SUMMATION">Description</xref>
+              <xref linkend="Description_SUMMATION">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SUMMATION">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SUMMATION">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SUMMATION">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SUMMATION">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SUMMATION">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SUMMATION">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SUMMATION">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SUMMATION">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SUMMATION">Auteurs</link>
+              <xref linkend="Auteurs_SUMMATION">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SUMMATION">
+  <refsection id="Palette_SUMMATION">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SUMMATION">
+  <refsection id="Description_SUMMATION">
     <title>Description</title>
     <para>
 Ce bloc fait l'addition ou la soustraction de ses entrées. Ce bloc peut additioner et soustraire des grandeurs scalaires, vectorielles et matricielles. Il peut aussi faire la somme cumulative d'une seule entrée vectorielle. 
@@ -118,7 +118,7 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SUMMATION">
+  <refsection id="Boîtededialogue_SUMMATION">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -154,7 +154,7 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SUMMATION">
+  <refsection id="Propriétéspardéfaut_SUMMATION">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SUMMATION">
+  <refsection id="Fonctiondinterface_SUMMATION">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SUMMATION">
+  <refsection id="Fonctiondecalcul_SUMMATION">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -284,7 +284,7 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SUMMATION">
+  <refsection id="Auteurs_SUMMATION">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

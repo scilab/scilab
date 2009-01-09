@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DLR">
+  <refsection id="Contents_DLR">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DLR">Palette</xref>
+              <xref linkend="Palette_DLR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DLR">Description</xref>
+              <xref linkend="Description_DLR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box DLR">Dialog box</xref>
+              <xref linkend="Dialogbox_DLR">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DLR">Default properties</xref>
+              <xref linkend="Defaultproperties_DLR">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DLR">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DLR">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function DLR">Computational function</xref>
+              <xref linkend="Computationalfunction_DLR">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DLR">
+  <refsection id="Palette_DLR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DLR">
+  <refsection id="Description_DLR">
     <title>Description</title>
     <para>
 This block realizes a SISO linear system represented by its rational
@@ -99,7 +99,7 @@ must be proper.
 
 </para>
   </refsection>
-  <refsection id="Dialog box DLR">
+  <refsection id="Dialogbox_DLR">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ must be proper.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties DLR">
+  <refsection id="Defaultproperties_DLR">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ must be proper.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DLR">
+  <refsection id="Interfacingfunction_DLR">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ must be proper.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function DLR">
+  <refsection id="Computationalfunction_DLR">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

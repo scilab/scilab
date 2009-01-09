@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu INTEGRAL_m">
+  <refsection id="Contenu_INTEGRAL_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette INTEGRAL_m">Palette</xref>
+              <xref linkend="Palette_INTEGRAL_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description INTEGRAL_m">Description</xref>
+              <xref linkend="Description_INTEGRAL_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue INTEGRAL_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_INTEGRAL_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut INTEGRAL_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_INTEGRAL_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface INTEGRAL_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_INTEGRAL_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul INTEGRAL_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_INTEGRAL_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="INTEGRAL_m">Auteurs</link>
+              <xref linkend="Auteurs_INTEGRAL_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette INTEGRAL_m">
+  <refsection id="Palette_INTEGRAL_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description INTEGRAL_m">
+  <refsection id="Description_INTEGRAL_m">
     <title>Description</title>
     <para>
 Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue INTEGRAL_m">
+  <refsection id="Boîtededialogue_INTEGRAL_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -153,7 +153,7 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut INTEGRAL_m">
+  <refsection id="Propriétéspardéfaut_INTEGRAL_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface INTEGRAL_m">
+  <refsection id="Fonctiondinterface_INTEGRAL_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul INTEGRAL_m">
+  <refsection id="Fonctiondecalcul_INTEGRAL_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@ Ce bloc est un intégrateur. La sortie est l'intégrale de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs INTEGRAL_m">
+  <refsection id="Auteurs_INTEGRAL_m">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

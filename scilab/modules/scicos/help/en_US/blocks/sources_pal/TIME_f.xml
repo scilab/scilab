@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TIME_f">
+  <refsection id="Contents_TIME_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TIME_f">Palette</xref>
+              <xref linkend="Palette_TIME_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TIME_f">Description</xref>
+              <xref linkend="Description_TIME_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TIME_f">Default properties</xref>
+              <xref linkend="Defaultproperties_TIME_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TIME_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TIME_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function TIME_f">Computational function</xref>
+              <xref linkend="Computationalfunction_TIME_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors TIME_f">Authors</xref>
+              <xref linkend="Authors_TIME_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TIME_f">
+  <refsection id="Palette_TIME_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TIME_f">
+  <refsection id="Description_TIME_f">
     <title>Description</title>
     <para>
 This block is a time generator.
@@ -100,7 +100,7 @@ The unique regular output is the current time.
 
 </para>
   </refsection>
-  <refsection id="Default properties TIME_f">
+  <refsection id="Defaultproperties_TIME_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -146,7 +146,7 @@ The unique regular output is the current time.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TIME_f">
+  <refsection id="Interfacingfunction_TIME_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -154,7 +154,7 @@ The unique regular output is the current time.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function TIME_f">
+  <refsection id="Computationalfunction_TIME_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -162,7 +162,7 @@ The unique regular output is the current time.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors TIME_f">
+  <refsection id="Authors_TIME_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

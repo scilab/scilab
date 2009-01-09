@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu DLR">
+  <refsection id="Contenu_DLR">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DLR">Palette</xref>
+              <xref linkend="Palette_DLR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DLR">Description</xref>
+              <xref linkend="Description_DLR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue DLR">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_DLR">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut DLR">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_DLR">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface DLR">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_DLR">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul DLR">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_DLR">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DLR">
+  <refsection id="Palette_DLR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DLR">
+  <refsection id="Description_DLR">
     <title>Description</title>
     <para>
 Ce bloc réalise un système linéaire SISO (Single Input Single Output) 
@@ -100,7 +100,7 @@ La fonction rationnelle doit être une fonction propre.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue DLR">
+  <refsection id="Boîtededialogue_DLR">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut DLR">
+  <refsection id="Propriétéspardéfaut_DLR">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface DLR">
+  <refsection id="Fonctiondinterface_DLR">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul DLR">
+  <refsection id="Fonctiondecalcul_DLR">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

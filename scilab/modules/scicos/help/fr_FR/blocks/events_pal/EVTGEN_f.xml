@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EVTGEN_f">
+  <refsection id="Contenu_EVTGEN_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EVTGEN_f">Palette</xref>
+              <xref linkend="Palette_EVTGEN_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EVTGEN_f">Description</xref>
+              <xref linkend="Description_EVTGEN_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EVTGEN_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EVTGEN_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EVTGEN_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EVTGEN_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EVTGEN_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EVTGEN_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EVTGEN_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EVTGEN_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EVTGEN_f">Auteurs</link>
+              <xref linkend="Auteurs_EVTGEN_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EVTGEN_f">
+  <refsection id="Palette_EVTGEN_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EVTGEN_f">
+  <refsection id="Description_EVTGEN_f">
     <title>Description</title>
     <para>
 Un événement est généré sur le port unique de sortie événementiel
@@ -105,7 +105,7 @@ Si cette valeur est négative alors aucun événement ne sera généré.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EVTGEN_f">
+  <refsection id="Boîtededialogue_EVTGEN_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -127,7 +127,7 @@ Si cette valeur est négative alors aucun événement ne sera généré.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EVTGEN_f">
+  <refsection id="Propriétéspardéfaut_EVTGEN_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -165,7 +165,7 @@ Si cette valeur est négative alors aucun événement ne sera généré.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EVTGEN_f">
+  <refsection id="Fonctiondinterface_EVTGEN_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -173,7 +173,7 @@ Si cette valeur est négative alors aucun événement ne sera généré.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EVTGEN_f">
+  <refsection id="Fonctiondecalcul_EVTGEN_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ Si cette valeur est négative alors aucun événement ne sera généré.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs EVTGEN_f">
+  <refsection id="Auteurs_EVTGEN_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SWITCH2_m">
+  <refsection id="Contenu_SWITCH2_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SWITCH2_m">Palette</xref>
+              <xref linkend="Palette_SWITCH2_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SWITCH2_m">Description</xref>
+              <xref linkend="Description_SWITCH2_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SWITCH2_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SWITCH2_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SWITCH2_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SWITCH2_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SWITCH2_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SWITCH2_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SWITCH2_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SWITCH2_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SWITCH2_m">Auteurs</link>
+              <xref linkend="Auteurs_SWITCH2_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SWITCH2_m">
+  <refsection id="Palette_SWITCH2_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SWITCH2_m">
+  <refsection id="Description_SWITCH2_m">
     <title>Description</title>
     <para>
 The Switch block passes through the first (top) input or the third
@@ -111,7 +111,7 @@ input is passed. Otherwise, the third input is passed.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SWITCH2_m">
+  <refsection id="Boîtededialogue_SWITCH2_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -154,7 +154,7 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SWITCH2_m">
+  <refsection id="Propriétéspardéfaut_SWITCH2_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SWITCH2_m">
+  <refsection id="Fonctiondinterface_SWITCH2_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SWITCH2_m">
+  <refsection id="Fonctiondecalcul_SWITCH2_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -230,7 +230,7 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SWITCH2_m">
+  <refsection id="Auteurs_SWITCH2_m">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

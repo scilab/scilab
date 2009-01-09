@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SUM_f">
+  <refsection id="Contenu_SUM_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SUM_f">Palette</xref>
+              <xref linkend="Palette_SUM_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SUM_f">Description</xref>
+              <xref linkend="Description_SUM_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SUM_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SUM_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SUM_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SUM_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SUM_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SUM_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SUM_f">Auteurs</link>
+              <xref linkend="Auteurs_SUM_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SUM_f">
+  <refsection id="Palette_SUM_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SUM_f">
+  <refsection id="Description_SUM_f">
     <title>Description</title>
     <para>
 Le bloc somme réalise l'addition de ses entrées.
@@ -98,7 +98,7 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut SUM_f">
+  <refsection id="Propriétéspardéfaut_SUM_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -158,7 +158,7 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SUM_f">
+  <refsection id="Fonctiondinterface_SUM_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -166,7 +166,7 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SUM_f">
+  <refsection id="Fonctiondecalcul_SUM_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -174,7 +174,7 @@ Ce bloc peut additionner des scalaires ou des vecteurs d'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SUM_f">
+  <refsection id="Auteurs_SUM_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

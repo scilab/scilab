@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu WRITEC_f">
+  <refsection id="Contenu_WRITEC_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette WRITEC_f">Palette</xref>
+              <xref linkend="Palette_WRITEC_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description WRITEC_f">Description</xref>
+              <xref linkend="Description_WRITEC_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue WRITEC_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_WRITEC_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut WRITEC_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_WRITEC_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface WRITEC_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_WRITEC_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul WRITEC_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_WRITEC_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="WRITEC_f">Auteurs</link>
+              <xref linkend="Auteurs_WRITEC_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette WRITEC_f">
+  <refsection id="Palette_WRITEC_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description WRITEC_f">
+  <refsection id="Description_WRITEC_f">
     <title>Description</title>
     <para>
 Ce bloc permet d'écrire des données dans un fichier C au format binaire.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue WRITEC_f">
+  <refsection id="Boîtededialogue_WRITEC_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -159,7 +159,7 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut WRITEC_f">
+  <refsection id="Propriétéspardéfaut_WRITEC_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface WRITEC_f">
+  <refsection id="Fonctiondinterface_WRITEC_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul WRITEC_f">
+  <refsection id="Fonctiondecalcul_WRITEC_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ Ce bloc permet d'écrire des données dans un fichier C au format binaire.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs WRITEC_f">
+  <refsection id="Auteurs_WRITEC_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

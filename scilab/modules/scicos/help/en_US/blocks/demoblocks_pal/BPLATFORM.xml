@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents BPLATFORM">
+  <refsection id="Contents_BPLATFORM">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BPLATFORM">Palette</xref>
+              <xref linkend="Palette_BPLATFORM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box BPLATFORM">Dialog box</xref>
+              <xref linkend="Dialogbox_BPLATFORM">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties BPLATFORM">Default properties</xref>
+              <xref linkend="Defaultproperties_BPLATFORM">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function BPLATFORM">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_BPLATFORM">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors BPLATFORM">Authors</xref>
+              <xref linkend="Authors_BPLATFORM">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BPLATFORM">
+  <refsection id="Palette_BPLATFORM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Dialog box BPLATFORM">
+  <refsection id="Dialogbox_BPLATFORM">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -95,7 +95,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Default properties BPLATFORM">
+  <refsection id="Defaultproperties_BPLATFORM">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -144,7 +144,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function BPLATFORM">
+  <refsection id="Interfacingfunction_BPLATFORM">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors BPLATFORM">
+  <refsection id="Authors_BPLATFORM">
     <title>Authors</title>
     <para><emphasis role="bold">M. Najafi</emphasis> - INRIA</para>
   </refsection>

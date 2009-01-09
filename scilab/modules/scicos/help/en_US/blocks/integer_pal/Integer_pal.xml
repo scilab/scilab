@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module Integer_pal">
+  <refsection id="Module_Integer_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Integer_pal">
+  <refsection id="Description_Integer_pal">
     <title>Description</title>
     <para>
 That palette is dedicated to handle integer numbers.
@@ -56,7 +56,7 @@ in digital circuits.
 
 </para>
   </refsection>
-  <refsection id="Blocks Integer_pal">
+  <refsection id="Blocks_Integer_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

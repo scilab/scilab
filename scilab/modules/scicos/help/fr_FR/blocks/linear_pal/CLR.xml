@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLR">
+  <refsection id="Contenu_CLR">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLR">Palette</xref>
+              <xref linkend="Palette_CLR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLR">Description</xref>
+              <xref linkend="Description_CLR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLR">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLR">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLR">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLR">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLR">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLR">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CLR">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CLR">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLR">
+  <refsection id="Palette_CLR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLR">
+  <refsection id="Description_CLR">
     <title>Description</title>
     <para>
 Ce bloc réalise un système linéaire SISO (Single Input Single Output) 
@@ -99,7 +99,7 @@ La fonction rationnelle doit être une fonction propre.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLR">
+  <refsection id="Boîtededialogue_CLR">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -129,7 +129,7 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLR">
+  <refsection id="Propriétéspardéfaut_CLR">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -183,7 +183,7 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLR">
+  <refsection id="Fonctiondinterface_CLR">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ La fonction rationnelle doit être une fonction propre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CLR">
+  <refsection id="Fonctiondecalcul_CLR">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

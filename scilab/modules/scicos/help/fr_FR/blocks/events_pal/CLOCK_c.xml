@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLOCK_c">
+  <refsection id="Contenu_CLOCK_c">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLOCK_c">Palette</xref>
+              <xref linkend="Palette_CLOCK_c">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLOCK_c">Description</xref>
+              <xref linkend="Description_CLOCK_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLOCK_c">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLOCK_c">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLOCK_c">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLOCK_c">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLOCK_c">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLOCK_c">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,19 +78,19 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLOCK_c">Voir aussi</link>
+              <xref linkend="Voiraussi_CLOCK_c">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLOCK_c">Auteurs</link>
+              <xref linkend="Auteurs_CLOCK_c">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLOCK_c">
+  <refsection id="Palette_CLOCK_c">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLOCK_c">
+  <refsection id="Description_CLOCK_c">
     <title>Description</title>
     <para>
 Ce bloc est un super-bloc construit grâce au bloc
@@ -115,7 +115,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLOCK_c">
+  <refsection id="Boîtededialogue_CLOCK_c">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -148,7 +148,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLOCK_c">
+  <refsection id="Propriétéspardéfaut_CLOCK_c">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLOCK_c">
+  <refsection id="Fonctiondinterface_CLOCK_c">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé CLOCK_c">
+  <refsection id="Contenudusuperbloccompilé_CLOCK_c">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -204,7 +204,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Voir aussi CLOCK_c">
+  <refsection id="Voiraussi_CLOCK_c">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ paramètre <emphasis role="bold">Period</emphasis> de la boîte de dialogue.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CLOCK_c">
+  <refsection id="Auteurs_CLOCK_c">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

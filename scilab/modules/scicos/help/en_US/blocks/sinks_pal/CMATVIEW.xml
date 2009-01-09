@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CMATVIEW">
+  <refsection id="Contents_CMATVIEW">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CMATVIEW">Palette</xref>
+              <xref linkend="Palette_CMATVIEW">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CMATVIEW">Description</xref>
+              <xref linkend="Description_CMATVIEW">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CMATVIEW">Dialog box</xref>
+              <xref linkend="Dialogbox_CMATVIEW">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CMATVIEW">Default properties</xref>
+              <xref linkend="Defaultproperties_CMATVIEW">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CMATVIEW">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CMATVIEW">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CMATVIEW">Computational function</xref>
+              <xref linkend="Computationalfunction_CMATVIEW">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also CMATVIEW">See also</xref>
+              <xref linkend="Seealso_CMATVIEW">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CMATVIEW">Authors</xref>
+              <xref linkend="Authors_CMATVIEW">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CMATVIEW">
+  <refsection id="Palette_CMATVIEW">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CMATVIEW">
+  <refsection id="Description_CMATVIEW">
     <title>Description</title>
     <para>
 CMATVIEW is a scope that shows matrix values on a colormapped grid.  
@@ -108,7 +108,7 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box CMATVIEW">
+  <refsection id="Dialogbox_CMATVIEW">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CMATVIEW">
+  <refsection id="Defaultproperties_CMATVIEW">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CMATVIEW">
+  <refsection id="Interfacingfunction_CMATVIEW">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CMATVIEW">
+  <refsection id="Computationalfunction_CMATVIEW">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also CMATVIEW">
+  <refsection id="Seealso_CMATVIEW">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ CMATVIEW is a scope that shows matrix values on a colormapped grid.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CMATVIEW">
+  <refsection id="Authors_CMATVIEW">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

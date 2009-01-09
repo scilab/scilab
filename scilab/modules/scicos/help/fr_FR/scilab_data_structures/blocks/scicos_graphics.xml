@@ -26,7 +26,7 @@
     <refname>scicos_graphics</refname>
     <refpurpose>Définit une structure graphics</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_graphics">
+  <refsection id="Module_scicos_graphics">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="graphics scicos_graphics">
+  <refsection id="graphics_scicos_graphics">
     <title>graphics</title>
     <para>
  Liste Scilab contenant les informations
@@ -225,7 +225,7 @@ Type : vecteur colonne de chaînes de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_graphics">
+  <refsection id="Contenuduficher_scicos_graphics">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents INIMPL_f">
+  <refsection id="Contents_INIMPL_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette INIMPL_f">Palette</xref>
+              <xref linkend="Palette_INIMPL_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description INIMPL_f">Description</xref>
+              <xref linkend="Description_INIMPL_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box INIMPL_f">Dialog box</xref>
+              <xref linkend="Dialogbox_INIMPL_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties INIMPL_f">Default properties</xref>
+              <xref linkend="Defaultproperties_INIMPL_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function INIMPL_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_INIMPL_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors INIMPL_f">Authors</xref>
+              <xref linkend="Authors_INIMPL_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette INIMPL_f">
+  <refsection id="Palette_INIMPL_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,14 +90,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description INIMPL_f">
+  <refsection id="Description_INIMPL_f">
     <title>Description</title>
     <para>
 Inport blocks are the links from outside a system into the system.
 
 </para>
   </refsection>
-  <refsection id="Dialog box INIMPL_f">
+  <refsection id="Dialogbox_INIMPL_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -119,7 +119,7 @@ Inport blocks are the links from outside a system into the system.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties INIMPL_f">
+  <refsection id="Defaultproperties_INIMPL_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -165,7 +165,7 @@ Inport blocks are the links from outside a system into the system.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function INIMPL_f">
+  <refsection id="Interfacingfunction_INIMPL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -173,7 +173,7 @@ Inport blocks are the links from outside a system into the system.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors INIMPL_f">
+  <refsection id="Authors_INIMPL_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

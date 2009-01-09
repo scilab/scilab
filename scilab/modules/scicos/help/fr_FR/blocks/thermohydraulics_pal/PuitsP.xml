@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu PuitsP">
+  <refsection id="Contenu_PuitsP">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PuitsP">Palette</xref>
+              <xref linkend="Palette_PuitsP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PuitsP">Description</xref>
+              <xref linkend="Description_PuitsP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue PuitsP">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_PuitsP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut PuitsP">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_PuitsP">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface PuitsP">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_PuitsP">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PuitsP">
+  <refsection id="Palette_PuitsP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PuitsP">
+  <refsection id="Description_PuitsP">
     <title>Description</title>
     <para>
 Ce composant représente un puit thermo-hydraulique de pression constante. Ce bloc est défini avec sa pression et sa température. La direction positive est quand le fluide coule dans le bloc.  
@@ -98,7 +98,7 @@ Ce composant représente un puit thermo-hydraulique de pression constante. Ce blo
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue PuitsP">
+  <refsection id="Boîtededialogue_PuitsP">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -141,7 +141,7 @@ Ce composant représente un puit thermo-hydraulique de pression constante. Ce blo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut PuitsP">
+  <refsection id="Propriétéspardéfaut_PuitsP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ Ce composant représente un puit thermo-hydraulique de pression constante. Ce blo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface PuitsP">
+  <refsection id="Fonctiondinterface_PuitsP">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ Ce composant représente un puit thermo-hydraulique de pression constante. Ce blo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica PuitsP">
+  <refsection id="ModèleModelica_PuitsP">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

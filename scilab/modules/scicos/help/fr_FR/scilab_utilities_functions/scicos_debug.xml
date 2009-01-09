@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_debug">
   <refnamediv>
     <refname>scicos_debug</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>scicos_debug</refname>
     <refpurpose>Définit le niveau de débogage de scicos</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_debug">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>scicos_debug(level) level=scicos_debug()</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_scicos_debug">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scicos_debug">
+  <refsection id="Description_scicos_debug">
     <title>Description</title>
     <para>
 Cette fonction sert à paramétrer le niveau de débogage de la simulation scicos.  
@@ -49,12 +49,14 @@ Cette fonction sert à paramétrer le niveau de débogage de la simulation scicos.
 Elle peut être utilisée soit en mode "Calc" dans l'éditeur Scicos ou en tant qu'instruction dans un bloc scilab et encore dans une fonction d'interfaçage.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+scicos_debug(level)
+level=scicos_debug()
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_scicos_debug">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">level :</emphasis> retourne/définit le niveau de débogage de la simulation scicos.</para>
@@ -83,7 +85,7 @@ Elle peut être utilisée soit en mode "Calc" dans l'éditeur Scicos ou en tant qu'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi scicos_debug">
+  <refsection id="Voiraussi_scicos_debug">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -93,7 +95,7 @@ Elle peut être utilisée soit en mode "Calc" dans l'éditeur Scicos ou en tant qu'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs scicos_debug">
+  <refsection id="Auteurs_scicos_debug">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

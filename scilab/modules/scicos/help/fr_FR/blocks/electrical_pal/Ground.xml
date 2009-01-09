@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Ground">
+  <refsection id="Contenu_Ground">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Ground">Palette</xref>
+              <xref linkend="Palette_Ground">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Ground">Description</xref>
+              <xref linkend="Description_Ground">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Ground">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Ground">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Ground">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Ground">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Ground">
+  <refsection id="Palette_Ground">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Ground">
+  <refsection id="Description_Ground">
     <title>Description</title>
     <para>
 Cet élément est un composant électrique simple fournissant une tension
@@ -95,7 +95,7 @@ Terre est zéro. Chaque circuit électrique doit contenir au moins un
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut Ground">
+  <refsection id="Propriétéspardéfaut_Ground">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -118,7 +118,7 @@ Terre est zéro. Chaque circuit électrique doit contenir au moins un
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Ground">
+  <refsection id="Fonctiondinterface_Ground">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -126,7 +126,7 @@ Terre est zéro. Chaque circuit électrique doit contenir au moins un
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica Ground">
+  <refsection id="ModèleModelica_Ground">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

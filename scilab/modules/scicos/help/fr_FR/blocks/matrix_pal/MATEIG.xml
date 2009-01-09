@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATEIG">
+  <refsection id="Contenu_MATEIG">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATEIG">Palette</xref>
+              <xref linkend="Palette_MATEIG">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATEIG">Description</xref>
+              <xref linkend="Description_MATEIG">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATEIG">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATEIG">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATEIG">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATEIG">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATEIG">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATEIG">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATEIG">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATEIG">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATEIG">Voir aussi</link>
+              <xref linkend="Voiraussi_MATEIG">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATEIG">Auteurs</link>
+              <xref linkend="Auteurs_MATEIG">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATEIG">
+  <refsection id="Palette_MATEIG">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATEIG">
+  <refsection id="Description_MATEIG">
     <title>Description</title>
     <para>
 The MATEIG calculate the eigenvalues and the eigenvectors of a square input matrix U.  
@@ -117,7 +117,7 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATEIG">
+  <refsection id="Boîtededialogue_MATEIG">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -146,7 +146,7 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATEIG">
+  <refsection id="Propriétéspardéfaut_MATEIG">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATEIG">
+  <refsection id="Fonctiondinterface_MATEIG">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATEIG">
+  <refsection id="Fonctiondecalcul_MATEIG">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATEIG">
+  <refsection id="Voiraussi_MATEIG">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -235,7 +235,7 @@ The equivalent of the MATEIG block in Scilab is "spec(A)"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATEIG">
+  <refsection id="Auteurs_MATEIG">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

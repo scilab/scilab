@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EXTTRI">
+  <refsection id="Contenu_EXTTRI">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXTTRI">Palette</xref>
+              <xref linkend="Palette_EXTTRI">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXTTRI">Description</xref>
+              <xref linkend="Description_EXTTRI">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EXTTRI">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EXTTRI">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EXTTRI">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EXTTRI">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EXTTRI">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EXTTRI">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EXTTRI">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EXTTRI">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXTTRI">Voir aussi</link>
+              <xref linkend="Voiraussi_EXTTRI">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXTTRI">Auteurs</link>
+              <xref linkend="Auteurs_EXTTRI">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXTTRI">
+  <refsection id="Palette_EXTTRI">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXTTRI">
+  <refsection id="Description_EXTTRI">
     <title>Description</title>
     <para>
 The EXTTRI block extracts some elements from the input matrix u.  
@@ -117,7 +117,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EXTTRI">
+  <refsection id="Boîtededialogue_EXTTRI">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -146,7 +146,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EXTTRI">
+  <refsection id="Propriétéspardéfaut_EXTTRI">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EXTTRI">
+  <refsection id="Fonctiondinterface_EXTTRI">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EXTTRI">
+  <refsection id="Fonctiondecalcul_EXTTRI">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -231,7 +231,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi EXTTRI">
+  <refsection id="Voiraussi_EXTTRI">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -241,7 +241,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs EXTTRI">
+  <refsection id="Auteurs_EXTTRI">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

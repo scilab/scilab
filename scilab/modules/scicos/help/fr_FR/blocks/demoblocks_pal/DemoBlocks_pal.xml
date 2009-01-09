@@ -26,10 +26,6 @@
     <refname>DemoBlocks_pal</refname>
     <refpurpose>Palette DemoBlocks</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>DemoBlocks_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module DemoBlocks_pal">
+  <refsection id="Module_DemoBlocks_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,15 +46,16 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DemoBlocks_pal">
+  <refsection id="Description_DemoBlocks_pal">
     <title>Description</title>
     <para>
 Les blocs de cette palette sont utilisés pour faire des
 diagrammes de démonstration.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_DemoBlocks_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

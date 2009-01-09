@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents POWBLK_f">
+  <refsection id="Contents_POWBLK_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette POWBLK_f">Palette</xref>
+              <xref linkend="Palette_POWBLK_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description POWBLK_f">Description</xref>
+              <xref linkend="Description_POWBLK_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box POWBLK_f">Dialog box</xref>
+              <xref linkend="Dialogbox_POWBLK_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties POWBLK_f">Default properties</xref>
+              <xref linkend="Defaultproperties_POWBLK_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function POWBLK_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_POWBLK_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function POWBLK_f">Computational function</xref>
+              <xref linkend="Computationalfunction_POWBLK_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors POWBLK_f">Authors</xref>
+              <xref linkend="Authors_POWBLK_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette POWBLK_f">
+  <refsection id="Palette_POWBLK_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description POWBLK_f">
+  <refsection id="Description_POWBLK_f">
     <title>Description</title>
     <para>
 This block realizes  
@@ -105,7 +105,7 @@ sizes.
 
 </para>
   </refsection>
-  <refsection id="Dialog box POWBLK_f">
+  <refsection id="Dialogbox_POWBLK_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -127,7 +127,7 @@ sizes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties POWBLK_f">
+  <refsection id="Defaultproperties_POWBLK_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ sizes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function POWBLK_f">
+  <refsection id="Interfacingfunction_POWBLK_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ sizes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function POWBLK_f">
+  <refsection id="Computationalfunction_POWBLK_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ sizes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors POWBLK_f">
+  <refsection id="Authors_POWBLK_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu PMOS">
+  <refsection id="Contenu_PMOS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PMOS">Palette</xref>
+              <xref linkend="Palette_PMOS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PMOS">Description</xref>
+              <xref linkend="Description_PMOS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue PMOS">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_PMOS">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut PMOS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_PMOS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface PMOS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_PMOS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,19 +78,19 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PMOS">Voir aussi</link>
+              <xref linkend="Voiraussi_PMOS">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="PMOS">Auteurs</link>
+              <xref linkend="Auteurs_PMOS">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PMOS">
+  <refsection id="Palette_PMOS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PMOS">
+  <refsection id="Description_PMOS">
     <title>Description</title>
     <para>Description</para>
     <para>
@@ -202,7 +202,7 @@ Some typical parameter sets are:
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Boîte de dialogue PMOS">
+  <refsection id="Boîtededialogue_PMOS">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -280,7 +280,7 @@ Some typical parameter sets are:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut PMOS">
+  <refsection id="Propriétéspardéfaut_PMOS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -431,7 +431,7 @@ Some typical parameter sets are:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface PMOS">
+  <refsection id="Fonctiondinterface_PMOS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -439,7 +439,7 @@ Some typical parameter sets are:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica PMOS">
+  <refsection id="ModèleModelica_PMOS">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
@@ -447,7 +447,7 @@ Some typical parameter sets are:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi PMOS">
+  <refsection id="Voiraussi_PMOS">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -457,7 +457,7 @@ Some typical parameter sets are:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs PMOS">
+  <refsection id="Auteurs_PMOS">
     <title>Auteurs</title>
     <para><emphasis role="bold"/> - www.modelica.org</para>
   </refsection>

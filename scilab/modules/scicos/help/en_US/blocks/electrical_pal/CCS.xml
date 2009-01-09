@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CCS">
+  <refsection id="Contents_CCS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CCS">Palette</xref>
+              <xref linkend="Palette_CCS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CCS">Description</xref>
+              <xref linkend="Description_CCS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CCS">Default properties</xref>
+              <xref linkend="Defaultproperties_CCS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CCS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CCS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,19 +73,19 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also CCS">See also</xref>
+              <xref linkend="Seealso_CCS">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CCS">Authors</xref>
+              <xref linkend="Authors_CCS">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CCS">
+  <refsection id="Palette_CCS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CCS">
+  <refsection id="Description_CCS">
     <title>Description</title>
     <para>
 This block is an ideal current source. The current value is controlled through the explicit input of the block (connected to standard Scicos blocks). The voltage across the block is independent of the current value.  
@@ -103,7 +103,7 @@ This block is an ideal current source. The current value is controlled through t
     <para>
 </para>
   </refsection>
-  <refsection id="Default properties CCS">
+  <refsection id="Defaultproperties_CCS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CCS">
+  <refsection id="Interfacingfunction_CCS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model CCS">
+  <refsection id="Modelicamodel_CCS">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also CCS">
+  <refsection id="Seealso_CCS">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CCS">
+  <refsection id="Authors_CCS">
     <title>Authors</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

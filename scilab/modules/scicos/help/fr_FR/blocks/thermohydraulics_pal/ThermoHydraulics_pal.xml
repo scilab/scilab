@@ -26,10 +26,6 @@
     <refname>ThermoHydraulics_pal</refname>
     <refpurpose>Boîte à outils des composants thermohydrauliques</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>ThermoHydraulics_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module ThermoHydraulics_pal">
+  <refsection id="Module_ThermoHydraulics_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,16 +46,17 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ThermoHydraulics_pal">
+  <refsection id="Description_ThermoHydraulics_pal">
     <title>Description</title>
     <para>
 La boîte à outils de thermohydraulique contient certains composants
 thermohydrauliques tels que la source de pression, le tuyau, les vannes
 réglantes, etc.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_ThermoHydraulics_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu TOWS_c">
+  <refsection id="Contenu_TOWS_c">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TOWS_c">Palette</xref>
+              <xref linkend="Palette_TOWS_c">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TOWS_c">Description</xref>
+              <xref linkend="Description_TOWS_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue TOWS_c">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_TOWS_c">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut TOWS_c">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_TOWS_c">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface TOWS_c">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_TOWS_c">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul TOWS_c">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_TOWS_c">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="TOWS_c">Voir aussi</link>
+              <xref linkend="Voiraussi_TOWS_c">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="TOWS_c">Auteurs</link>
+              <xref linkend="Auteurs_TOWS_c">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TOWS_c">
+  <refsection id="Palette_TOWS_c">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TOWS_c">
+  <refsection id="Description_TOWS_c">
     <title>Description</title>
     <para>
 Ce bloc est utilisé pour transférer des données simulées dans
@@ -112,7 +112,7 @@ de l'entrée sont enregistrées.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue TOWS_c">
+  <refsection id="Boîtededialogue_TOWS_c">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -150,7 +150,7 @@ de l'entrée sont enregistrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut TOWS_c">
+  <refsection id="Propriétéspardéfaut_TOWS_c">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ de l'entrée sont enregistrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface TOWS_c">
+  <refsection id="Fonctiondinterface_TOWS_c">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ de l'entrée sont enregistrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul TOWS_c">
+  <refsection id="Fonctiondecalcul_TOWS_c">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ de l'entrée sont enregistrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi TOWS_c">
+  <refsection id="Voiraussi_TOWS_c">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ de l'entrée sont enregistrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs TOWS_c">
+  <refsection id="Auteurs_TOWS_c">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

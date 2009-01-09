@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu BACKLASH">
+  <refsection id="Contenu_BACKLASH">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BACKLASH">Palette</xref>
+              <xref linkend="Palette_BACKLASH">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description BACKLASH">Description</xref>
+              <xref linkend="Description_BACKLASH">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue BACKLASH">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_BACKLASH">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut BACKLASH">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_BACKLASH">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface BACKLASH">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_BACKLASH">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul BACKLASH">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_BACKLASH">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BACKLASH">Auteurs</link>
+              <xref linkend="Auteurs_BACKLASH">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BACKLASH">
+  <refsection id="Palette_BACKLASH">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description BACKLASH">
+  <refsection id="Description_BACKLASH">
     <title>Description</title>
     <para>
 The Backlash block implements a system in which a change in input
@@ -106,7 +106,7 @@ The amount of side-to-side play in the system is referred to as the
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue BACKLASH">
+  <refsection id="Boîtededialogue_BACKLASH">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ The amount of side-to-side play in the system is referred to as the
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut BACKLASH">
+  <refsection id="Propriétéspardéfaut_BACKLASH">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ The amount of side-to-side play in the system is referred to as the
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface BACKLASH">
+  <refsection id="Fonctiondinterface_BACKLASH">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ The amount of side-to-side play in the system is referred to as the
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul BACKLASH">
+  <refsection id="Fonctiondecalcul_BACKLASH">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ The amount of side-to-side play in the system is referred to as the
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs BACKLASH">
+  <refsection id="Auteurs_BACKLASH">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

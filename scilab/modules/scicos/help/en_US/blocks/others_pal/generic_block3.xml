@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents generic_block3">
+  <refsection id="Contents_generic_block3">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette generic_block3">Palette</xref>
+              <xref linkend="Palette_generic_block3">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description generic_block3">Description</xref>
+              <xref linkend="Description_generic_block3">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box generic_block3">Dialog box</xref>
+              <xref linkend="Dialogbox_generic_block3">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties generic_block3">Default properties</xref>
+              <xref linkend="Defaultproperties_generic_block3">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function generic_block3">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_generic_block3">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function generic_block3">Computational function</xref>
+              <xref linkend="Computationalfunction_generic_block3">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors generic_block3">Authors</xref>
+              <xref linkend="Authors_generic_block3">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette generic_block3">
+  <refsection id="Palette_generic_block3">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description generic_block3">
+  <refsection id="Description_generic_block3">
     <title>Description</title>
     <para>
 The block provides a generic interfacing function but the
@@ -109,7 +109,7 @@ linked before simulation.
 
 </para>
   </refsection>
-  <refsection id="Dialog box generic_block3">
+  <refsection id="Dialogbox_generic_block3">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -257,7 +257,7 @@ linked before simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties generic_block3">
+  <refsection id="Defaultproperties_generic_block3">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -311,7 +311,7 @@ linked before simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function generic_block3">
+  <refsection id="Interfacingfunction_generic_block3">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -319,7 +319,7 @@ linked before simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function generic_block3">
+  <refsection id="Computationalfunction_generic_block3">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -327,7 +327,7 @@ linked before simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors generic_block3">
+  <refsection id="Authors_generic_block3">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

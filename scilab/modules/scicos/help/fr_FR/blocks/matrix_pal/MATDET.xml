@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATDET">
+  <refsection id="Contenu_MATDET">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATDET">Palette</xref>
+              <xref linkend="Palette_MATDET">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATDET">Description</xref>
+              <xref linkend="Description_MATDET">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATDET">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATDET">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATDET">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATDET">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATDET">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATDET">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATDET">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATDET">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATDET">Voir aussi</link>
+              <xref linkend="Voiraussi_MATDET">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATDET">Auteurs</link>
+              <xref linkend="Auteurs_MATDET">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATDET">
+  <refsection id="Palette_MATDET">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATDET">
+  <refsection id="Description_MATDET">
     <title>Description</title>
     <para>
 The MATDET outputs the determinant of a square input matrix. If the input A=[A11 A12 A13;A21 A22 A23;A31 A32 A33] then the output of the block has the form of: y=A11*(A22*A33-A23*A32)-A12*(A21*A33-A23*A31)+A13*(A21*A32-A22*A31).  
@@ -111,7 +111,7 @@ The equivalent of MATDET in Scilab is "det"
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATDET">
+  <refsection id="Boîtededialogue_MATDET">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ The equivalent of MATDET in Scilab is "det"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATDET">
+  <refsection id="Propriétéspardéfaut_MATDET">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ The equivalent of MATDET in Scilab is "det"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATDET">
+  <refsection id="Fonctiondinterface_MATDET">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ The equivalent of MATDET in Scilab is "det"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATDET">
+  <refsection id="Fonctiondecalcul_MATDET">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ The equivalent of MATDET in Scilab is "det"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATDET">
+  <refsection id="Voiraussi_MATDET">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ The equivalent of MATDET in Scilab is "det"
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATDET">
+  <refsection id="Auteurs_MATDET">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

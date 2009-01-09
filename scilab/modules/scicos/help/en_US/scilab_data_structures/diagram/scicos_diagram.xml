@@ -26,7 +26,7 @@
     <refname>scicos_diagram</refname>
     <refpurpose>Define a scs_m structure</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_diagram">
+  <refsection id="Module_scicos_diagram">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="diagram scicos_diagram">
+  <refsection id="diagram_scicos_diagram">
     <title>diagram</title>
     <para>
 Size : 4.
@@ -101,7 +101,7 @@ Type : String.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content scicos_diagram">
+  <refsection id="Filecontent_scicos_diagram">
     <title>File content</title>
     <itemizedlist>
       <listitem>

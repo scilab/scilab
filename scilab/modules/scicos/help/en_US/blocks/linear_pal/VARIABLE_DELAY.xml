@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents VARIABLE_DELAY">
+  <refsection id="Contents_VARIABLE_DELAY">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VARIABLE_DELAY">Palette</xref>
+              <xref linkend="Palette_VARIABLE_DELAY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VARIABLE_DELAY">Description</xref>
+              <xref linkend="Description_VARIABLE_DELAY">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box VARIABLE_DELAY">Dialog box</xref>
+              <xref linkend="Dialogbox_VARIABLE_DELAY">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties VARIABLE_DELAY">Default properties</xref>
+              <xref linkend="Defaultproperties_VARIABLE_DELAY">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function VARIABLE_DELAY">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_VARIABLE_DELAY">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function VARIABLE_DELAY">Computational function</xref>
+              <xref linkend="Computationalfunction_VARIABLE_DELAY">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors VARIABLE_DELAY">Authors</xref>
+              <xref linkend="Authors_VARIABLE_DELAY">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VARIABLE_DELAY">
+  <refsection id="Palette_VARIABLE_DELAY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VARIABLE_DELAY">
+  <refsection id="Description_VARIABLE_DELAY">
     <title>Description</title>
     <para>
 The Variable Transport Delay block can be used to simulate a variable
@@ -106,7 +106,7 @@ through the block; the second input is the time delay.
 
 </para>
   </refsection>
-  <refsection id="Dialog box VARIABLE_DELAY">
+  <refsection id="Dialogbox_VARIABLE_DELAY">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ through the block; the second input is the time delay.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties VARIABLE_DELAY">
+  <refsection id="Defaultproperties_VARIABLE_DELAY">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ through the block; the second input is the time delay.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function VARIABLE_DELAY">
+  <refsection id="Interfacingfunction_VARIABLE_DELAY">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ through the block; the second input is the time delay.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function VARIABLE_DELAY">
+  <refsection id="Computationalfunction_VARIABLE_DELAY">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ through the block; the second input is the time delay.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors VARIABLE_DELAY">
+  <refsection id="Authors_VARIABLE_DELAY">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

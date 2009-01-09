@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module getscicosvars">
+  <refsection id="Module_getscicosvars">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description getscicosvars">
+  <refsection id="Description_getscicosvars">
     <title>Description</title>
     <para>
 That utility function is used to retrieve working arrays of Scicos simulator and compiler during simulation.  
@@ -55,7 +55,7 @@ It can be used inside a Scilab block to get information of all type of blocks. T
 [myvar]=getscicosvars([str1;str2;...])
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters getscicosvars">
+  <refsection id="Parameters_getscicosvars">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -129,7 +129,7 @@ It can be used inside a Scilab block to get information of all type of blocks. T
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also getscicosvars">
+  <refsection id="SeeAlso_getscicosvars">
     <title>See Also</title>
     <itemizedlist>
       <listitem>
@@ -139,7 +139,7 @@ It can be used inside a Scilab block to get information of all type of blocks. T
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors getscicosvars">
+  <refsection id="Authors_getscicosvars">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

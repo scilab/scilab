@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu INTRP2BLK_f">
+  <refsection id="Contenu_INTRP2BLK_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette INTRP2BLK_f">Palette</xref>
+              <xref linkend="Palette_INTRP2BLK_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description INTRP2BLK_f">Description</xref>
+              <xref linkend="Description_INTRP2BLK_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue INTRP2BLK_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_INTRP2BLK_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut INTRP2BLK_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_INTRP2BLK_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface INTRP2BLK_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_INTRP2BLK_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul INTRP2BLK_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_INTRP2BLK_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="INTRP2BLK_f">Auteurs</link>
+              <xref linkend="Auteurs_INTRP2BLK_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette INTRP2BLK_f">
+  <refsection id="Palette_INTRP2BLK_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description INTRP2BLK_f">
+  <refsection id="Description_INTRP2BLK_f">
     <title>Description</title>
     <para>
 La sortie de ce bloc est fonction de l'entrée obtenue par interpolation
@@ -109,7 +109,7 @@ sa valeur.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue INTRP2BLK_f">
+  <refsection id="Boîtededialogue_INTRP2BLK_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -145,7 +145,7 @@ sa valeur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut INTRP2BLK_f">
+  <refsection id="Propriétéspardéfaut_INTRP2BLK_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ sa valeur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface INTRP2BLK_f">
+  <refsection id="Fonctiondinterface_INTRP2BLK_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@ sa valeur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul INTRP2BLK_f">
+  <refsection id="Fonctiondecalcul_INTRP2BLK_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@ sa valeur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs INTRP2BLK_f">
+  <refsection id="Auteurs_INTRP2BLK_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

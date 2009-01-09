@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATEXPM">
+  <refsection id="Contenu_MATEXPM">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATEXPM">Palette</xref>
+              <xref linkend="Palette_MATEXPM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATEXPM">Description</xref>
+              <xref linkend="Description_MATEXPM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATEXPM">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATEXPM">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATEXPM">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATEXPM">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATEXPM">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATEXPM">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATEXPM">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATEXPM">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATEXPM">Voir aussi</link>
+              <xref linkend="Voiraussi_MATEXPM">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATEXPM">Auteurs</link>
+              <xref linkend="Auteurs_MATEXPM">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATEXPM">
+  <refsection id="Palette_MATEXPM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATEXPM">
+  <refsection id="Description_MATEXPM">
     <title>Description</title>
     <para>
 The MATEXPM outputs the matrix exponential of a square matrix input by the pade's approximants. The output is a square matrix with the same size of the input. The equivalent of this block in Scilab is "expm".  
@@ -108,7 +108,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATEXPM">
+  <refsection id="Boîtededialogue_MATEXPM">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATEXPM">
+  <refsection id="Propriétéspardéfaut_MATEXPM">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATEXPM">
+  <refsection id="Fonctiondinterface_MATEXPM">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATEXPM">
+  <refsection id="Fonctiondecalcul_MATEXPM">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATEXPM">
+  <refsection id="Voiraussi_MATEXPM">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATEXPM">
+  <refsection id="Auteurs_MATEXPM">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

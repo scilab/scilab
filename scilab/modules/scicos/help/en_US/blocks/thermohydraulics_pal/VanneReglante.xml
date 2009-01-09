@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents VanneReglante">
+  <refsection id="Contents_VanneReglante">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VanneReglante">Palette</xref>
+              <xref linkend="Palette_VanneReglante">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VanneReglante">Description</xref>
+              <xref linkend="Description_VanneReglante">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box VanneReglante">Dialog box</xref>
+              <xref linkend="Dialogbox_VanneReglante">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties VanneReglante">Default properties</xref>
+              <xref linkend="Defaultproperties_VanneReglante">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function VanneReglante">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_VanneReglante">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VanneReglante">
+  <refsection id="Palette_VanneReglante">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VanneReglante">
+  <refsection id="Description_VanneReglante">
     <title>Description</title>
     <para>
 The <emphasis role="bold">VanneReglante</emphasis> block represents a variable orifice control
@@ -114,7 +114,7 @@ mass density of fluid.
 
 </para>
   </refsection>
-  <refsection id="Dialog box VanneReglante">
+  <refsection id="Dialogbox_VanneReglante">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ mass density of fluid.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties VanneReglante">
+  <refsection id="Defaultproperties_VanneReglante">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function VanneReglante">
+  <refsection id="Interfacingfunction_VanneReglante">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -227,7 +227,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model VanneReglante">
+  <refsection id="Modelicamodel_VanneReglante">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu FROMWSB">
+  <refsection id="Contenu_FROMWSB">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette FROMWSB">Palette</xref>
+              <xref linkend="Palette_FROMWSB">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description FROMWSB">Description</xref>
+              <xref linkend="Description_FROMWSB">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue FROMWSB">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_FROMWSB">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut FROMWSB">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_FROMWSB">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface FROMWSB">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_FROMWSB">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,19 +78,19 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="FROMWSB">Voir aussi</link>
+              <xref linkend="Voiraussi_FROMWSB">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="FROMWSB">Auteurs</link>
+              <xref linkend="Auteurs_FROMWSB">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette FROMWSB">
+  <refsection id="Palette_FROMWSB">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description FROMWSB">
+  <refsection id="Description_FROMWSB">
     <title>Description</title>
     <para>
 That block is used to get data defined in the Scilab workspace and use them in Scicos. Data should have "time" and "values" fields.  
@@ -108,7 +108,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue FROMWSB">
+  <refsection id="Boîtededialogue_FROMWSB">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -211,7 +211,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut FROMWSB">
+  <refsection id="Propriétéspardéfaut_FROMWSB">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -257,7 +257,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface FROMWSB">
+  <refsection id="Fonctiondinterface_FROMWSB">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -265,7 +265,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé FROMWSB">
+  <refsection id="Contenudusuperbloccompilé_FROMWSB">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -275,7 +275,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Voir aussi FROMWSB">
+  <refsection id="Voiraussi_FROMWSB">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -290,7 +290,7 @@ That block is used to get data defined in the Scilab workspace and use them in S
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs FROMWSB">
+  <refsection id="Auteurs_FROMWSB">
     <title>Auteurs</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MAXMIN">
+  <refsection id="Contents_MAXMIN">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MAXMIN">Palette</xref>
+              <xref linkend="Palette_MAXMIN">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MAXMIN">Description</xref>
+              <xref linkend="Description_MAXMIN">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MAXMIN">Dialog box</xref>
+              <xref linkend="Dialogbox_MAXMIN">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MAXMIN">Default properties</xref>
+              <xref linkend="Defaultproperties_MAXMIN">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MAXMIN">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MAXMIN">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MAXMIN">Computational function</xref>
+              <xref linkend="Computationalfunction_MAXMIN">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MAXMIN">Authors</xref>
+              <xref linkend="Authors_MAXMIN">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MAXMIN">
+  <refsection id="Palette_MAXMIN">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MAXMIN">
+  <refsection id="Description_MAXMIN">
     <title>Description</title>
     <para>
 The MinMax block outputs either the minimum or the maximum element or
@@ -104,7 +104,7 @@ selecting one of the choices from the Function parameter list.
 
 </para>
   </refsection>
-  <refsection id="Dialog box MAXMIN">
+  <refsection id="Dialogbox_MAXMIN">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -140,7 +140,7 @@ selecting one of the choices from the Function parameter list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties MAXMIN">
+  <refsection id="Defaultproperties_MAXMIN">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ selecting one of the choices from the Function parameter list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MAXMIN">
+  <refsection id="Interfacingfunction_MAXMIN">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ selecting one of the choices from the Function parameter list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MAXMIN">
+  <refsection id="Computationalfunction_MAXMIN">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@ selecting one of the choices from the Function parameter list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MAXMIN">
+  <refsection id="Authors_MAXMIN">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

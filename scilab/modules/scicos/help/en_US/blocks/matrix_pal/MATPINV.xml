@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATPINV">
+  <refsection id="Contents_MATPINV">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATPINV">Palette</xref>
+              <xref linkend="Palette_MATPINV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATPINV">Description</xref>
+              <xref linkend="Description_MATPINV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATPINV">Dialog box</xref>
+              <xref linkend="Dialogbox_MATPINV">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATPINV">Default properties</xref>
+              <xref linkend="Defaultproperties_MATPINV">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATPINV">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATPINV">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATPINV">Computational function</xref>
+              <xref linkend="Computationalfunction_MATPINV">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATPINV">See also</xref>
+              <xref linkend="Seealso_MATPINV">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATPINV">Authors</xref>
+              <xref linkend="Authors_MATPINV">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATPINV">
+  <refsection id="Palette_MATPINV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATPINV">
+  <refsection id="Description_MATPINV">
     <title>Description</title>
     <para>
 The MATPINV Block outputs the inverse of a non square input matrix using the SVD theory.if the SVD decomposition of A is equal to:  
@@ -123,7 +123,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATPINV">
+  <refsection id="Dialogbox_MATPINV">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -145,7 +145,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties MATPINV">
+  <refsection id="Defaultproperties_MATPINV">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATPINV">
+  <refsection id="Interfacingfunction_MATPINV">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATPINV">
+  <refsection id="Computationalfunction_MATPINV">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATPINV">
+  <refsection id="Seealso_MATPINV">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -233,7 +233,7 @@ When the input is a M-by-N matrix the output is a N-by-M matrix. The equivalent 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATPINV">
+  <refsection id="Authors_MATPINV">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

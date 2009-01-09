@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents GENSIN_f">
+  <refsection id="Contents_GENSIN_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GENSIN_f">Palette</xref>
+              <xref linkend="Palette_GENSIN_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GENSIN_f">Description</xref>
+              <xref linkend="Description_GENSIN_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box GENSIN_f">Dialog box</xref>
+              <xref linkend="Dialogbox_GENSIN_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties GENSIN_f">Default properties</xref>
+              <xref linkend="Defaultproperties_GENSIN_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function GENSIN_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_GENSIN_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function GENSIN_f">Computational function</xref>
+              <xref linkend="Computationalfunction_GENSIN_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors GENSIN_f">Authors</xref>
+              <xref linkend="Authors_GENSIN_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GENSIN_f">
+  <refsection id="Palette_GENSIN_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GENSIN_f">
+  <refsection id="Description_GENSIN_f">
     <title>Description</title>
     <para>
 This block is a sine wave generator: 
@@ -103,7 +103,7 @@ This block is a sine wave generator:
 
 </para>
   </refsection>
-  <refsection id="Dialog box GENSIN_f">
+  <refsection id="Dialogbox_GENSIN_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -139,7 +139,7 @@ This block is a sine wave generator:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties GENSIN_f">
+  <refsection id="Defaultproperties_GENSIN_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -185,7 +185,7 @@ This block is a sine wave generator:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function GENSIN_f">
+  <refsection id="Interfacingfunction_GENSIN_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ This block is a sine wave generator:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function GENSIN_f">
+  <refsection id="Computationalfunction_GENSIN_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ This block is a sine wave generator:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors GENSIN_f">
+  <refsection id="Authors_GENSIN_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

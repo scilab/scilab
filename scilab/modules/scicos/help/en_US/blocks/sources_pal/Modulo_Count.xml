@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Modulo_Count">
+  <refsection id="Contents_Modulo_Count">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Modulo_Count">Palette</xref>
+              <xref linkend="Palette_Modulo_Count">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Modulo_Count">Description</xref>
+              <xref linkend="Description_Modulo_Count">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Modulo_Count">Dialog box</xref>
+              <xref linkend="Dialogbox_Modulo_Count">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Modulo_Count">Default properties</xref>
+              <xref linkend="Defaultproperties_Modulo_Count">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Modulo_Count">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Modulo_Count">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function Modulo_Count">Computational function</xref>
+              <xref linkend="Computationalfunction_Modulo_Count">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors Modulo_Count">Authors</xref>
+              <xref linkend="Authors_Modulo_Count">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Modulo_Count">
+  <refsection id="Palette_Modulo_Count">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Modulo_Count">
+  <refsection id="Description_Modulo_Count">
     <title>Description</title>
     <para>
 It is a discrete block. The block outputs a periodic scalar signal
@@ -103,7 +103,7 @@ having a waveform that the user specifies.
 
 </para>
   </refsection>
-  <refsection id="Dialog box Modulo_Count">
+  <refsection id="Dialogbox_Modulo_Count">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ having a waveform that the user specifies.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Modulo_Count">
+  <refsection id="Defaultproperties_Modulo_Count">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ having a waveform that the user specifies.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Modulo_Count">
+  <refsection id="Interfacingfunction_Modulo_Count">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ having a waveform that the user specifies.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function Modulo_Count">
+  <refsection id="Computationalfunction_Modulo_Count">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ having a waveform that the user specifies.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors Modulo_Count">
+  <refsection id="Authors_Modulo_Count">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

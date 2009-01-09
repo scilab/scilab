@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents REGISTER">
+  <refsection id="Contents_REGISTER">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette REGISTER">Palette</xref>
+              <xref linkend="Palette_REGISTER">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description REGISTER">Description</xref>
+              <xref linkend="Description_REGISTER">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box REGISTER">Dialog box</xref>
+              <xref linkend="Dialogbox_REGISTER">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties REGISTER">Default properties</xref>
+              <xref linkend="Defaultproperties_REGISTER">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function REGISTER">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_REGISTER">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function REGISTER">Computational function</xref>
+              <xref linkend="Computationalfunction_REGISTER">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors REGISTER">Authors</xref>
+              <xref linkend="Authors_REGISTER">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette REGISTER">
+  <refsection id="Palette_REGISTER">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description REGISTER">
+  <refsection id="Description_REGISTER">
     <title>Description</title>
     <para>
 This block realizes a shift register. At every input event, the
@@ -103,7 +103,7 @@ register is shifted one step.
 
 </para>
   </refsection>
-  <refsection id="Dialog box REGISTER">
+  <refsection id="Dialogbox_REGISTER">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ register is shifted one step.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties REGISTER">
+  <refsection id="Defaultproperties_REGISTER">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ register is shifted one step.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function REGISTER">
+  <refsection id="Interfacingfunction_REGISTER">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ register is shifted one step.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function REGISTER">
+  <refsection id="Computationalfunction_REGISTER">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -217,7 +217,7 @@ register is shifted one step.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors REGISTER">
+  <refsection id="Authors_REGISTER">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CONSTRAINT_f">
+  <refsection id="Contents_CONSTRAINT_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CONSTRAINT_f">Palette</xref>
+              <xref linkend="Palette_CONSTRAINT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CONSTRAINT_f">Description</xref>
+              <xref linkend="Description_CONSTRAINT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CONSTRAINT_f">Dialog box</xref>
+              <xref linkend="Dialogbox_CONSTRAINT_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CONSTRAINT_f">Default properties</xref>
+              <xref linkend="Defaultproperties_CONSTRAINT_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CONSTRAINT_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CONSTRAINT_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CONSTRAINT_f">Computational function</xref>
+              <xref linkend="Computationalfunction_CONSTRAINT_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CONSTRAINT_f">Authors</xref>
+              <xref linkend="Authors_CONSTRAINT_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CONSTRAINT_f">
+  <refsection id="Palette_CONSTRAINT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CONSTRAINT_f">
+  <refsection id="Description_CONSTRAINT_f">
     <title>Description</title>
     <para>
 Defines implicit algebraic relations.
 
 </para>
   </refsection>
-  <refsection id="Dialog box CONSTRAINT_f">
+  <refsection id="Dialogbox_CONSTRAINT_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -124,7 +124,7 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CONSTRAINT_f">
+  <refsection id="Defaultproperties_CONSTRAINT_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CONSTRAINT_f">
+  <refsection id="Interfacingfunction_CONSTRAINT_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CONSTRAINT_f">
+  <refsection id="Computationalfunction_CONSTRAINT_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Defines implicit algebraic relations.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CONSTRAINT_f">
+  <refsection id="Authors_CONSTRAINT_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

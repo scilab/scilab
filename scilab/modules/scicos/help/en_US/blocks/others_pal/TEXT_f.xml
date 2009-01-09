@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TEXT_f">
+  <refsection id="Contents_TEXT_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TEXT_f">Palette</xref>
+              <xref linkend="Palette_TEXT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TEXT_f">Description</xref>
+              <xref linkend="Description_TEXT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box TEXT_f">Dialog box</xref>
+              <xref linkend="Dialogbox_TEXT_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TEXT_f">Default properties</xref>
+              <xref linkend="Defaultproperties_TEXT_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TEXT_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TEXT_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors TEXT_f">Authors</xref>
+              <xref linkend="Authors_TEXT_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TEXT_f">
+  <refsection id="Palette_TEXT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TEXT_f">
+  <refsection id="Description_TEXT_f">
     <title>Description</title>
     <para>
 This special block is only use to add text at any point of the diagram
@@ -98,7 +98,7 @@ window. It has no effect on the simulation.
 
 </para>
   </refsection>
-  <refsection id="Dialog box TEXT_f">
+  <refsection id="Dialogbox_TEXT_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -134,7 +134,7 @@ window. It has no effect on the simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties TEXT_f">
+  <refsection id="Defaultproperties_TEXT_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +172,7 @@ window. It has no effect on the simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TEXT_f">
+  <refsection id="Interfacingfunction_TEXT_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ window. It has no effect on the simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors TEXT_f">
+  <refsection id="Authors_TEXT_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

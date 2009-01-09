@@ -35,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Others_pal">
+  <refsection id="Module_Others_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -52,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Blocs Others_pal">
+  <refsection id="Blocs_Others_pal">
     <title>Blocs</title>
     <itemizedlist>
       <listitem>

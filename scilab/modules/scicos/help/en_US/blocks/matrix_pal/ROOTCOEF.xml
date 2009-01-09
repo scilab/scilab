@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents ROOTCOEF">
+  <refsection id="Contents_ROOTCOEF">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ROOTCOEF">Palette</xref>
+              <xref linkend="Palette_ROOTCOEF">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ROOTCOEF">Description</xref>
+              <xref linkend="Description_ROOTCOEF">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box ROOTCOEF">Dialog box</xref>
+              <xref linkend="Dialogbox_ROOTCOEF">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties ROOTCOEF">Default properties</xref>
+              <xref linkend="Defaultproperties_ROOTCOEF">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function ROOTCOEF">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ROOTCOEF">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function ROOTCOEF">Computational function</xref>
+              <xref linkend="Computationalfunction_ROOTCOEF">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors ROOTCOEF">Authors</xref>
+              <xref linkend="Authors_ROOTCOEF">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ROOTCOEF">
+  <refsection id="Palette_ROOTCOEF">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ROOTCOEF">
+  <refsection id="Description_ROOTCOEF">
     <title>Description</title>
     <para>
 This block computes the coefficients of a polynomial given its root
@@ -103,7 +103,7 @@ values.
 
 </para>
   </refsection>
-  <refsection id="Dialog box ROOTCOEF">
+  <refsection id="Dialogbox_ROOTCOEF">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ values.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties ROOTCOEF">
+  <refsection id="Defaultproperties_ROOTCOEF">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ values.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function ROOTCOEF">
+  <refsection id="Interfacingfunction_ROOTCOEF">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ values.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function ROOTCOEF">
+  <refsection id="Computationalfunction_ROOTCOEF">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ values.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors ROOTCOEF">
+  <refsection id="Authors_ROOTCOEF">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

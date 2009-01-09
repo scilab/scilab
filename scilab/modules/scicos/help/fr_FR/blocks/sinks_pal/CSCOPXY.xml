@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CSCOPXY">
+  <refsection id="Contenu_CSCOPXY">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CSCOPXY">Palette</xref>
+              <xref linkend="Palette_CSCOPXY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CSCOPXY">Description</xref>
+              <xref linkend="Description_CSCOPXY">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CSCOPXY">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CSCOPXY">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CSCOPXY">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CSCOPXY">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CSCOPXY">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CSCOPXY">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CSCOPXY">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CSCOPXY">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CSCOPXY">Voir aussi</link>
+              <xref linkend="Voiraussi_CSCOPXY">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CSCOPXY">Auteurs</link>
+              <xref linkend="Auteurs_CSCOPXY">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CSCOPXY">
+  <refsection id="Palette_CSCOPXY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CSCOPXY">
+  <refsection id="Description_CSCOPXY">
     <title>Description</title>
     <para>
 This block realizes the visualization of the evolution of the two regular inputs signals by drawing the second input as a function of the first at instants of events on the event input port. When a point is drawn on screen it stays until the simulation is finished.  
@@ -108,7 +108,7 @@ This block realizes the visualization of the evolution of the two regular inputs
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CSCOPXY">
+  <refsection id="Boîtededialogue_CSCOPXY">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -199,7 +199,7 @@ This block realizes the visualization of the evolution of the two regular inputs
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CSCOPXY">
+  <refsection id="Propriétéspardéfaut_CSCOPXY">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -248,7 +248,7 @@ This block realizes the visualization of the evolution of the two regular inputs
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CSCOPXY">
+  <refsection id="Fonctiondinterface_CSCOPXY">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -256,7 +256,7 @@ This block realizes the visualization of the evolution of the two regular inputs
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CSCOPXY">
+  <refsection id="Fonctiondecalcul_CSCOPXY">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -264,7 +264,7 @@ This block realizes the visualization of the evolution of the two regular inputs
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CSCOPXY">
+  <refsection id="Voiraussi_CSCOPXY">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -274,7 +274,7 @@ This block realizes the visualization of the evolution of the two regular inputs
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CSCOPXY">
+  <refsection id="Auteurs_CSCOPXY">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CUMSUM">
+  <refsection id="Contenu_CUMSUM">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CUMSUM">Palette</xref>
+              <xref linkend="Palette_CUMSUM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CUMSUM">Description</xref>
+              <xref linkend="Description_CUMSUM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CUMSUM">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CUMSUM">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CUMSUM">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CUMSUM">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CUMSUM">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CUMSUM">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CUMSUM">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CUMSUM">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CUMSUM">Voir aussi</link>
+              <xref linkend="Voiraussi_CUMSUM">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CUMSUM">Auteurs</link>
+              <xref linkend="Auteurs_CUMSUM">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CUMSUM">
+  <refsection id="Palette_CUMSUM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CUMSUM">
+  <refsection id="Description_CUMSUM">
     <title>Description</title>
     <para>
 The CUMSUM block sums the element of an input m*n matrix u along either the rows, the columns or the first non singleton dimension. When the "Sum along" parameter is set to "1", the block sums across the elements of each row. The result will be displayed as a m*1 matrix.  
@@ -114,7 +114,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CUMSUM">
+  <refsection id="Boîtededialogue_CUMSUM">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CUMSUM">
+  <refsection id="Propriétéspardéfaut_CUMSUM">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CUMSUM">
+  <refsection id="Fonctiondinterface_CUMSUM">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CUMSUM">
+  <refsection id="Fonctiondecalcul_CUMSUM">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -228,7 +228,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CUMSUM">
+  <refsection id="Voiraussi_CUMSUM">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -238,7 +238,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CUMSUM">
+  <refsection id="Auteurs_CUMSUM">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

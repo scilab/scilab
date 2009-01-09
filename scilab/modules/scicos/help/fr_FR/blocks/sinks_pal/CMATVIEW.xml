@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CMATVIEW">
+  <refsection id="Contenu_CMATVIEW">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CMATVIEW">Palette</xref>
+              <xref linkend="Palette_CMATVIEW">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CMATVIEW">Description</xref>
+              <xref linkend="Description_CMATVIEW">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CMATVIEW">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CMATVIEW">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CMATVIEW">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CMATVIEW">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CMATVIEW">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CMATVIEW">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CMATVIEW">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CMATVIEW">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CMATVIEW">Voir aussi</link>
+              <xref linkend="Voiraussi_CMATVIEW">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CMATVIEW">Auteurs</link>
+              <xref linkend="Auteurs_CMATVIEW">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CMATVIEW">
+  <refsection id="Palette_CMATVIEW">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CMATVIEW">
+  <refsection id="Description_CMATVIEW">
     <title>Description</title>
     <para>
 CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en couleur.  
@@ -108,7 +108,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CMATVIEW">
+  <refsection id="Boîtededialogue_CMATVIEW">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CMATVIEW">
+  <refsection id="Propriétéspardéfaut_CMATVIEW">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CMATVIEW">
+  <refsection id="Fonctiondinterface_CMATVIEW">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CMATVIEW">
+  <refsection id="Fonctiondecalcul_CMATVIEW">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CMATVIEW">
+  <refsection id="Voiraussi_CMATVIEW">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CMATVIEW">
+  <refsection id="Auteurs_CMATVIEW">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

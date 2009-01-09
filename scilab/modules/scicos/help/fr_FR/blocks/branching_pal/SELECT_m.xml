@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SELECT_m">
+  <refsection id="Contenu_SELECT_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SELECT_m">Palette</xref>
+              <xref linkend="Palette_SELECT_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SELECT_m">Description</xref>
+              <xref linkend="Description_SELECT_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SELECT_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SELECT_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SELECT_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SELECT_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SELECT_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SELECT_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SELECT_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SELECT_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SELECT_m">Auteurs</link>
+              <xref linkend="Auteurs_SELECT_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SELECT_m">
+  <refsection id="Palette_SELECT_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SELECT_m">
+  <refsection id="Description_SELECT_m">
     <title>Description</title>
     <para>
 Un bloc selecteur accepte sur son entrée aussi bien un vecteur qu'une matrice.
@@ -107,7 +107,7 @@ avec le type de l'entrée, ainsi que la manière dont il détermine les éléments
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SELECT_m">
+  <refsection id="Boîtededialogue_SELECT_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ avec le type de l'entrée, ainsi que la manière dont il détermine les éléments
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SELECT_m">
+  <refsection id="Propriétéspardéfaut_SELECT_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ avec le type de l'entrée, ainsi que la manière dont il détermine les éléments
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SELECT_m">
+  <refsection id="Fonctiondinterface_SELECT_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ avec le type de l'entrée, ainsi que la manière dont il détermine les éléments
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SELECT_m">
+  <refsection id="Fonctiondecalcul_SELECT_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ avec le type de l'entrée, ainsi que la manière dont il détermine les éléments
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SELECT_m">
+  <refsection id="Auteurs_SELECT_m">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

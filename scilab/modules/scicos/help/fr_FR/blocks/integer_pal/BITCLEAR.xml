@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu BITCLEAR">
+  <refsection id="Contenu_BITCLEAR">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BITCLEAR">Palette</xref>
+              <xref linkend="Palette_BITCLEAR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description BITCLEAR">Description</xref>
+              <xref linkend="Description_BITCLEAR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue BITCLEAR">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_BITCLEAR">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut BITCLEAR">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_BITCLEAR">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface BITCLEAR">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_BITCLEAR">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul BITCLEAR">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_BITCLEAR">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BITCLEAR">Voir aussi</link>
+              <xref linkend="Voiraussi_BITCLEAR">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BITCLEAR">Auteurs</link>
+              <xref linkend="Auteurs_BITCLEAR">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BITCLEAR">
+  <refsection id="Palette_BITCLEAR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description BITCLEAR">
+  <refsection id="Description_BITCLEAR">
     <title>Description</title>
     <para>
 This blocks set the specified bit of the integer input to 0. The user can specify the bit in the field:"index of bit". Bit 0 is the least significant bit.  
@@ -108,7 +108,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue BITCLEAR">
+  <refsection id="Boîtededialogue_BITCLEAR">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -137,7 +137,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut BITCLEAR">
+  <refsection id="Propriétéspardéfaut_BITCLEAR">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface BITCLEAR">
+  <refsection id="Fonctiondinterface_BITCLEAR">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul BITCLEAR">
+  <refsection id="Fonctiondecalcul_BITCLEAR">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi BITCLEAR">
+  <refsection id="Voiraussi_BITCLEAR">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ This blocks set the specified bit of the integer input to 0. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs BITCLEAR">
+  <refsection id="Auteurs_BITCLEAR">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

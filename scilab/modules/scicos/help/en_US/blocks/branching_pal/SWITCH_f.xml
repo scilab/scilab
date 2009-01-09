@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SWITCH_f">
+  <refsection id="Contents_SWITCH_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SWITCH_f">Palette</xref>
+              <xref linkend="Palette_SWITCH_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SWITCH_f">Description</xref>
+              <xref linkend="Description_SWITCH_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SWITCH_f">Dialog box</xref>
+              <xref linkend="Dialogbox_SWITCH_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SWITCH_f">Default properties</xref>
+              <xref linkend="Defaultproperties_SWITCH_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SWITCH_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SWITCH_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SWITCH_f">Computational function</xref>
+              <xref linkend="Computationalfunction_SWITCH_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SWITCH_f">Authors</xref>
+              <xref linkend="Authors_SWITCH_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SWITCH_f">
+  <refsection id="Palette_SWITCH_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SWITCH_f">
+  <refsection id="Description_SWITCH_f">
     <title>Description</title>
     <para>
 This is a Manual Switch block. It selects one of its inputs to pass
@@ -104,7 +104,7 @@ while the unselected inputs are discarded.
 
 </para>
   </refsection>
-  <refsection id="Dialog box SWITCH_f">
+  <refsection id="Dialogbox_SWITCH_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ while the unselected inputs are discarded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SWITCH_f">
+  <refsection id="Defaultproperties_SWITCH_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ while the unselected inputs are discarded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SWITCH_f">
+  <refsection id="Interfacingfunction_SWITCH_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ while the unselected inputs are discarded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SWITCH_f">
+  <refsection id="Computationalfunction_SWITCH_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ while the unselected inputs are discarded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SWITCH_f">
+  <refsection id="Authors_SWITCH_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

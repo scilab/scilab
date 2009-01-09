@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MBLOCK">
+  <refsection id="Contenu_MBLOCK">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MBLOCK">Palette</xref>
+              <xref linkend="Palette_MBLOCK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MBLOCK">Description</xref>
+              <xref linkend="Description_MBLOCK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MBLOCK">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MBLOCK">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MBLOCK">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MBLOCK">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MBLOCK">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MBLOCK">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MBLOCK">Auteurs</link>
+              <xref linkend="Auteurs_MBLOCK">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MBLOCK">
+  <refsection id="Palette_MBLOCK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MBLOCK">
+  <refsection id="Description_MBLOCK">
     <title>Description</title>
     <para>
 The block "MBlock" provides an easy way to build a Scicos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in Scicos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other Scicos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.  
@@ -98,7 +98,7 @@ The block "MBlock" provides an easy way to build a Scicos block whose behavior i
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MBLOCK">
+  <refsection id="Boîtededialogue_MBLOCK">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -205,7 +205,7 @@ Length value       =  [13.0 ; 12.1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MBLOCK">
+  <refsection id="Propriétéspardéfaut_MBLOCK">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -262,7 +262,7 @@ Length value       =  [13.0 ; 12.1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MBLOCK">
+  <refsection id="Fonctiondinterface_MBLOCK">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -270,7 +270,7 @@ Length value       =  [13.0 ; 12.1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MBLOCK">
+  <refsection id="Auteurs_MBLOCK">
     <title>Auteurs</title>
     <para><emphasis role="bold">M. Najafi/A. Layec</emphasis> - INRIA</para>
   </refsection>

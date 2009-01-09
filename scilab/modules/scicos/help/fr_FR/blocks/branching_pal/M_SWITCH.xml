@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu M_SWITCH">
+  <refsection id="Contenu_M_SWITCH">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette M_SWITCH">Palette</xref>
+              <xref linkend="Palette_M_SWITCH">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description M_SWITCH">Description</xref>
+              <xref linkend="Description_M_SWITCH">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue M_SWITCH">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_M_SWITCH">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut M_SWITCH">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_M_SWITCH">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface M_SWITCH">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_M_SWITCH">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul M_SWITCH">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_M_SWITCH">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="M_SWITCH">Auteurs</link>
+              <xref linkend="Auteurs_M_SWITCH">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette M_SWITCH">
+  <refsection id="Palette_M_SWITCH">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description M_SWITCH">
+  <refsection id="Description_M_SWITCH">
     <title>Description</title>
     <para>
 The Multi-Port Switch block chooses between a number of inputs. The
@@ -105,7 +105,7 @@ determines which data input is passed through to the output port.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue M_SWITCH">
+  <refsection id="Boîtededialogue_M_SWITCH">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -141,7 +141,7 @@ determines which data input is passed through to the output port.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut M_SWITCH">
+  <refsection id="Propriétéspardéfaut_M_SWITCH">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ determines which data input is passed through to the output port.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface M_SWITCH">
+  <refsection id="Fonctiondinterface_M_SWITCH">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -209,7 +209,7 @@ determines which data input is passed through to the output port.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul M_SWITCH">
+  <refsection id="Fonctiondecalcul_M_SWITCH">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -217,7 +217,7 @@ determines which data input is passed through to the output port.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs M_SWITCH">
+  <refsection id="Auteurs_M_SWITCH">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu WRITEAU_f">
+  <refsection id="Contenu_WRITEAU_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette WRITEAU_f">Palette</xref>
+              <xref linkend="Palette_WRITEAU_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description WRITEAU_f">Description</xref>
+              <xref linkend="Description_WRITEAU_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue WRITEAU_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_WRITEAU_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut WRITEAU_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_WRITEAU_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface WRITEAU_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_WRITEAU_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul WRITEAU_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_WRITEAU_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="WRITEAU_f">Auteurs</link>
+              <xref linkend="Auteurs_WRITEAU_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette WRITEAU_f">
+  <refsection id="Palette_WRITEAU_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description WRITEAU_f">
+  <refsection id="Description_WRITEAU_f">
     <title>Description</title>
     <para>
 Ce bloc écrit un fichier son de type 'au'.
@@ -106,7 +106,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue WRITEAU_f">
+  <refsection id="Boîtededialogue_WRITEAU_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut WRITEAU_f">
+  <refsection id="Propriétéspardéfaut_WRITEAU_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface WRITEAU_f">
+  <refsection id="Fonctiondinterface_WRITEAU_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul WRITEAU_f">
+  <refsection id="Fonctiondecalcul_WRITEAU_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ L'écriture 'au' supporte les données multi-canaux pour les formats
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs WRITEAU_f">
+  <refsection id="Auteurs_WRITEAU_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

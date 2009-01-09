@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SUMMATION">
+  <refsection id="Contents_SUMMATION">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SUMMATION">Palette</xref>
+              <xref linkend="Palette_SUMMATION">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SUMMATION">Description</xref>
+              <xref linkend="Description_SUMMATION">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SUMMATION">Dialog box</xref>
+              <xref linkend="Dialogbox_SUMMATION">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SUMMATION">Default properties</xref>
+              <xref linkend="Defaultproperties_SUMMATION">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SUMMATION">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SUMMATION">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SUMMATION">Computational function</xref>
+              <xref linkend="Computationalfunction_SUMMATION">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SUMMATION">Authors</xref>
+              <xref linkend="Authors_SUMMATION">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SUMMATION">
+  <refsection id="Palette_SUMMATION">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SUMMATION">
+  <refsection id="Description_SUMMATION">
     <title>Description</title>
     <para>
 The Sum block performs addition or subtraction on its inputs. This block can add or subtract scalar, vector, or matrix inputs. It can also collapse the elements of a single input vector.  
@@ -121,7 +121,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box SUMMATION">
+  <refsection id="Dialogbox_SUMMATION">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -157,7 +157,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SUMMATION">
+  <refsection id="Defaultproperties_SUMMATION">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SUMMATION">
+  <refsection id="Interfacingfunction_SUMMATION">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SUMMATION">
+  <refsection id="Computationalfunction_SUMMATION">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -287,7 +287,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SUMMATION">
+  <refsection id="Authors_SUMMATION">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

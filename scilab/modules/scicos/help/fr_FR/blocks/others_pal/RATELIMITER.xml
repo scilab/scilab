@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu RATELIMITER">
+  <refsection id="Contenu_RATELIMITER">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RATELIMITER">Palette</xref>
+              <xref linkend="Palette_RATELIMITER">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RATELIMITER">Description</xref>
+              <xref linkend="Description_RATELIMITER">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue RATELIMITER">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_RATELIMITER">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut RATELIMITER">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_RATELIMITER">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface RATELIMITER">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_RATELIMITER">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul RATELIMITER">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_RATELIMITER">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="RATELIMITER">Auteurs</link>
+              <xref linkend="Auteurs_RATELIMITER">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RATELIMITER">
+  <refsection id="Palette_RATELIMITER">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RATELIMITER">
+  <refsection id="Description_RATELIMITER">
     <title>Description</title>
     <para>
 The Rate Limiter block limits the first derivative of the signal
@@ -104,7 +104,7 @@ limit.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue RATELIMITER">
+  <refsection id="Boîtededialogue_RATELIMITER">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ limit.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut RATELIMITER">
+  <refsection id="Propriétéspardéfaut_RATELIMITER">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ limit.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface RATELIMITER">
+  <refsection id="Fonctiondinterface_RATELIMITER">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ limit.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul RATELIMITER">
+  <refsection id="Fonctiondecalcul_RATELIMITER">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ limit.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs RATELIMITER">
+  <refsection id="Auteurs_RATELIMITER">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

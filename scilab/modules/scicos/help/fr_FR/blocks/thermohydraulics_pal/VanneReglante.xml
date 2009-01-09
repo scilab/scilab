@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu VanneReglante">
+  <refsection id="Contenu_VanneReglante">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VanneReglante">Palette</xref>
+              <xref linkend="Palette_VanneReglante">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VanneReglante">Description</xref>
+              <xref linkend="Description_VanneReglante">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue VanneReglante">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_VanneReglante">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut VanneReglante">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_VanneReglante">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface VanneReglante">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_VanneReglante">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VanneReglante">
+  <refsection id="Palette_VanneReglante">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VanneReglante">
+  <refsection id="Description_VanneReglante">
     <title>Description</title>
     <para>
 Le bloc de VanneReglante représente une Vanne Reglante ou une vanne à
@@ -114,7 +114,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue VanneReglante">
+  <refsection id="Boîtededialogue_VanneReglante">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut VanneReglante">
+  <refsection id="Propriétéspardéfaut_VanneReglante">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface VanneReglante">
+  <refsection id="Fonctiondinterface_VanneReglante">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -224,7 +224,7 @@ de la géométrie de la vanne et de la masse volumique de fluide.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica VanneReglante">
+  <refsection id="ModèleModelica_VanneReglante">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

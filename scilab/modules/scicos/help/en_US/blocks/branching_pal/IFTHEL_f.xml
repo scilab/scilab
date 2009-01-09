@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents IFTHEL_f">
+  <refsection id="Contents_IFTHEL_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette IFTHEL_f">Palette</xref>
+              <xref linkend="Palette_IFTHEL_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description IFTHEL_f">Description</xref>
+              <xref linkend="Description_IFTHEL_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box IFTHEL_f">Dialog box</xref>
+              <xref linkend="Dialogbox_IFTHEL_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties IFTHEL_f">Default properties</xref>
+              <xref linkend="Defaultproperties_IFTHEL_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function IFTHEL_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_IFTHEL_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors IFTHEL_f">Authors</xref>
+              <xref linkend="Authors_IFTHEL_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette IFTHEL_f">
+  <refsection id="Palette_IFTHEL_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description IFTHEL_f">
+  <refsection id="Description_IFTHEL_f">
     <title>Description</title>
     <para>
 One event is generated on one of the output event ports when an input
@@ -100,7 +100,7 @@ This is a Synchro block, , input and output event are synchronized.
 
 </para>
   </refsection>
-  <refsection id="Dialog box IFTHEL_f">
+  <refsection id="Dialogbox_IFTHEL_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -129,7 +129,7 @@ This is a Synchro block, , input and output event are synchronized.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties IFTHEL_f">
+  <refsection id="Defaultproperties_IFTHEL_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -175,7 +175,7 @@ This is a Synchro block, , input and output event are synchronized.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function IFTHEL_f">
+  <refsection id="Interfacingfunction_IFTHEL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -183,7 +183,7 @@ This is a Synchro block, , input and output event are synchronized.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors IFTHEL_f">
+  <refsection id="Authors_IFTHEL_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

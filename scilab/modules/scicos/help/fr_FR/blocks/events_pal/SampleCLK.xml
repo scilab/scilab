@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SampleCLK">
+  <refsection id="Contenu_SampleCLK">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SampleCLK">Palette</xref>
+              <xref linkend="Palette_SampleCLK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SampleCLK">Description</xref>
+              <xref linkend="Description_SampleCLK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SampleCLK">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SampleCLK">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SampleCLK">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SampleCLK">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SampleCLK">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SampleCLK">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SampleCLK">Voir aussi</link>
+              <xref linkend="Voiraussi_SampleCLK">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SampleCLK">Auteurs</link>
+              <xref linkend="Auteurs_SampleCLK">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SampleCLK">
+  <refsection id="Palette_SampleCLK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SampleCLK">
+  <refsection id="Description_SampleCLK">
     <title>Description</title>
     <para>
 The difference between the SampleCLK and the CLOCK_c is that all the SampleCLK blocks in our diagram are synchronous. The synchronism is done due to two differents methods of computation in the compilation phase.  
@@ -124,7 +124,7 @@ The second method uses the Multifrequency block it generates events only for spe
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SampleCLK">
+  <refsection id="Boîtededialogue_SampleCLK">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -153,7 +153,7 @@ The second method uses the Multifrequency block it generates events only for spe
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SampleCLK">
+  <refsection id="Propriétéspardéfaut_SampleCLK">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ The second method uses the Multifrequency block it generates events only for spe
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SampleCLK">
+  <refsection id="Fonctiondinterface_SampleCLK">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ The second method uses the Multifrequency block it generates events only for spe
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi SampleCLK">
+  <refsection id="Voiraussi_SampleCLK">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -224,7 +224,7 @@ The second method uses the Multifrequency block it generates events only for spe
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SampleCLK">
+  <refsection id="Auteurs_SampleCLK">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

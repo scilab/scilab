@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Extract_Activation">
+  <refsection id="Contenu_Extract_Activation">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Extract_Activation">Palette</xref>
+              <xref linkend="Palette_Extract_Activation">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Extract_Activation">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Extract_Activation">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Extract_Activation">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Extract_Activation">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -70,7 +70,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Extract_Activation">
+  <refsection id="Palette_Extract_Activation">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Extract_Activation">
+  <refsection id="Propriétéspardéfaut_Extract_Activation">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -126,7 +126,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Extract_Activation">
+  <refsection id="Fonctiondinterface_Extract_Activation">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -134,7 +134,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé Extract_Activation">
+  <refsection id="Contenudusuperbloccompilé_Extract_Activation">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>

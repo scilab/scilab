@@ -26,7 +26,7 @@
     <refname>scicos_model</refname>
     <refpurpose>Définit une structure model</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_model">
+  <refsection id="Module_scicos_model">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="model scicos_model">
+  <refsection id="model_scicos_model">
     <title>model</title>
     <para>
  Liste Scilab qui contient les informations
@@ -686,7 +686,7 @@ Type : liste scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_model">
+  <refsection id="Contenuduficher_scicos_model">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

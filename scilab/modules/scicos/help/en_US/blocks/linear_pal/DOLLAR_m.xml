@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DOLLAR_m">
+  <refsection id="Contents_DOLLAR_m">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DOLLAR_m">Palette</xref>
+              <xref linkend="Palette_DOLLAR_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DOLLAR_m">Description</xref>
+              <xref linkend="Description_DOLLAR_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box DOLLAR_m">Dialog box</xref>
+              <xref linkend="Dialogbox_DOLLAR_m">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DOLLAR_m">Default properties</xref>
+              <xref linkend="Defaultproperties_DOLLAR_m">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DOLLAR_m">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DOLLAR_m">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function DOLLAR_m">Computational function</xref>
+              <xref linkend="Computationalfunction_DOLLAR_m">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DOLLAR_m">Authors</xref>
+              <xref linkend="Authors_DOLLAR_m">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DOLLAR_m">
+  <refsection id="Palette_DOLLAR_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DOLLAR_m">
+  <refsection id="Description_DOLLAR_m">
     <title>Description</title>
     <para>
 The Unit Delay block delays its input by the specified sample period. This block is equivalent to the z-1 discrete-time operator. The block accepts one input and generates one output, which can be either both scalar or both vector. If the input is a vector, all elements of the vector are delayed by the same sample period.  
@@ -106,7 +106,7 @@ This block can support all data types supported by Scicos. The output will inher
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box DOLLAR_m">
+  <refsection id="Dialogbox_DOLLAR_m">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ This block can support all data types supported by Scicos. The output will inher
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties DOLLAR_m">
+  <refsection id="Defaultproperties_DOLLAR_m">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ This block can support all data types supported by Scicos. The output will inher
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DOLLAR_m">
+  <refsection id="Interfacingfunction_DOLLAR_m">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ This block can support all data types supported by Scicos. The output will inher
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function DOLLAR_m">
+  <refsection id="Computationalfunction_DOLLAR_m">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ This block can support all data types supported by Scicos. The output will inher
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DOLLAR_m">
+  <refsection id="Authors_DOLLAR_m">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

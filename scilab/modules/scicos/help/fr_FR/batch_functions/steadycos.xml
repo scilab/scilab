@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="steadycos">
   <refnamediv>
     <refname>steadycos</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>steadycos</refname>
     <refpurpose>Trouve un régime établi d'un système dynamique décrit par un diagramme scicos</refpurpose>
   </refnamediv>
-  <refsection id="Module steadycos">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_steadycos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,18 +40,19 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description steadycos">
+  <refsection id="Description_steadycos">
     <title>Description</title>
     <para>
 This function finds the steady state for a given system described by a Scicos diagram. The diagram consists in general of a Super block with input and output port blocks. The steady state concerns only the continuous-time dynamics.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_steadycos">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> a Scicos data structure</para>
@@ -94,7 +95,7 @@ This function finds the steady state for a given system described by a Scicos di
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du fichier steadycos">
+  <refsection id="Contenudufichier_steadycos">
     <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
@@ -102,7 +103,7 @@ This function finds the steady state for a given system described by a Scicos di
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi steadycos">
+  <refsection id="Voiraussi_steadycos">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -122,7 +123,7 @@ This function finds the steady state for a given system described by a Scicos di
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs steadycos">
+  <refsection id="Auteurs_steadycos">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

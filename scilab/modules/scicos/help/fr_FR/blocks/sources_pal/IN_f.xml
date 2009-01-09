@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu IN_f">
+  <refsection id="Contenu_IN_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette IN_f">Palette</xref>
+              <xref linkend="Palette_IN_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description IN_f">Description</xref>
+              <xref linkend="Description_IN_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue IN_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_IN_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut IN_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_IN_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface IN_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_IN_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="IN_f">Auteurs</link>
+              <xref linkend="Auteurs_IN_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette IN_f">
+  <refsection id="Palette_IN_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description IN_f">
+  <refsection id="Description_IN_f">
     <title>Description</title>
     <para>
 Ce bloc doit être utilisé dans un superbloc pour représenter un port
@@ -100,7 +100,7 @@ de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue IN_f">
+  <refsection id="Boîtededialogue_IN_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -122,7 +122,7 @@ de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut IN_f">
+  <refsection id="Propriétéspardéfaut_IN_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface IN_f">
+  <refsection id="Fonctiondinterface_IN_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -176,7 +176,7 @@ de 1 jusqu'au nombre de ports d'entrée réguliers composant le superbloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs IN_f">
+  <refsection id="Auteurs_IN_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

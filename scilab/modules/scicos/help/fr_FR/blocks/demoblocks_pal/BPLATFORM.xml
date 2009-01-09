@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu BPLATFORM">
+  <refsection id="Contenu_BPLATFORM">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BPLATFORM">Palette</xref>
+              <xref linkend="Palette_BPLATFORM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue BPLATFORM">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_BPLATFORM">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut BPLATFORM">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_BPLATFORM">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface BPLATFORM">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_BPLATFORM">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BPLATFORM">Auteurs</link>
+              <xref linkend="Auteurs_BPLATFORM">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BPLATFORM">
+  <refsection id="Palette_BPLATFORM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Boîte de dialogue BPLATFORM">
+  <refsection id="Boîtededialogue_BPLATFORM">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -95,7 +95,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Propriétés par défaut BPLATFORM">
+  <refsection id="Propriétéspardéfaut_BPLATFORM">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -144,7 +144,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface BPLATFORM">
+  <refsection id="Fonctiondinterface_BPLATFORM">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs BPLATFORM">
+  <refsection id="Auteurs_BPLATFORM">
     <title>Auteurs</title>
     <para><emphasis role="bold">M. Najafi</emphasis> - INRIA</para>
   </refsection>

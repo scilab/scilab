@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents EXTRACTOR">
+  <refsection id="Contents_EXTRACTOR">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXTRACTOR">Palette</xref>
+              <xref linkend="Palette_EXTRACTOR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXTRACTOR">Description</xref>
+              <xref linkend="Description_EXTRACTOR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box EXTRACTOR">Dialog box</xref>
+              <xref linkend="Dialogbox_EXTRACTOR">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties EXTRACTOR">Default properties</xref>
+              <xref linkend="Defaultproperties_EXTRACTOR">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function EXTRACTOR">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_EXTRACTOR">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function EXTRACTOR">Computational function</xref>
+              <xref linkend="Computationalfunction_EXTRACTOR">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors EXTRACTOR">Authors</xref>
+              <xref linkend="Authors_EXTRACTOR">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXTRACTOR">
+  <refsection id="Palette_EXTRACTOR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXTRACTOR">
+  <refsection id="Description_EXTRACTOR">
     <title>Description</title>
     <para>
 Extracts or select a regular input from a multiple regular input.
 
 </para>
   </refsection>
-  <refsection id="Dialog box EXTRACTOR">
+  <refsection id="Dialogbox_EXTRACTOR">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -124,7 +124,7 @@ Extracts or select a regular input from a multiple regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties EXTRACTOR">
+  <refsection id="Defaultproperties_EXTRACTOR">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ Extracts or select a regular input from a multiple regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function EXTRACTOR">
+  <refsection id="Interfacingfunction_EXTRACTOR">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ Extracts or select a regular input from a multiple regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function EXTRACTOR">
+  <refsection id="Computationalfunction_EXTRACTOR">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Extracts or select a regular input from a multiple regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors EXTRACTOR">
+  <refsection id="Authors_EXTRACTOR">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

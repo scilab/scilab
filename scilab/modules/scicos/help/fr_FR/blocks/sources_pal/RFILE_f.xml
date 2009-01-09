@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu RFILE_f">
+  <refsection id="Contenu_RFILE_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RFILE_f">Palette</xref>
+              <xref linkend="Palette_RFILE_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RFILE_f">Description</xref>
+              <xref linkend="Description_RFILE_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue RFILE_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_RFILE_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut RFILE_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_RFILE_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface RFILE_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_RFILE_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul RFILE_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_RFILE_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="RFILE_f">Auteurs</link>
+              <xref linkend="Auteurs_RFILE_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RFILE_f">
+  <refsection id="Palette_RFILE_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RFILE_f">
+  <refsection id="Description_RFILE_f">
     <title>Description</title>
     <para>
 Ce bloc permet à l'utilisateur de lire des données dans un fichier.
@@ -109,7 +109,7 @@ Ce bloc fonctionne de paire avec le bloc
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue RFILE_f">
+  <refsection id="Boîtededialogue_RFILE_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -160,7 +160,7 @@ Ce bloc fonctionne de paire avec le bloc
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut RFILE_f">
+  <refsection id="Propriétéspardéfaut_RFILE_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ Ce bloc fonctionne de paire avec le bloc
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface RFILE_f">
+  <refsection id="Fonctiondinterface_RFILE_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ Ce bloc fonctionne de paire avec le bloc
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul RFILE_f">
+  <refsection id="Fonctiondecalcul_RFILE_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ Ce bloc fonctionne de paire avec le bloc
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs RFILE_f">
+  <refsection id="Auteurs_RFILE_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

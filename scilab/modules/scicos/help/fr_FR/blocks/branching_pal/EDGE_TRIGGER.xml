@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EDGE_TRIGGER">
+  <refsection id="Contenu_EDGE_TRIGGER">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EDGE_TRIGGER">Palette</xref>
+              <xref linkend="Palette_EDGE_TRIGGER">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EDGE_TRIGGER">Description</xref>
+              <xref linkend="Description_EDGE_TRIGGER">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EDGE_TRIGGER">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EDGE_TRIGGER">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EDGE_TRIGGER">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EDGE_TRIGGER">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EDGE_TRIGGER">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EDGE_TRIGGER">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EDGE_TRIGGER">
+  <refsection id="Palette_EDGE_TRIGGER">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EDGE_TRIGGER">
+  <refsection id="Description_EDGE_TRIGGER">
     <title>Description</title>
     <para>
 Ce bloc génère un événement sur le front montant, descendant ou les deux (en fonction du paramètre du bloc). Un front montant correspond à un changement de valeur négative vers positive ou nulle, ou zéro vers positive. Le front descendant est l'inverse. A noter que ce bloc génère un événement si l'entrée saute à cause d'une activation par événement. L'événement généré est synchrone avec l'événement d'origine. Ce bloc ne détecte pas les traversés de zéro des signaux continus.  
@@ -98,7 +98,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EDGE_TRIGGER">
+  <refsection id="Boîtededialogue_EDGE_TRIGGER">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -120,7 +120,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EDGE_TRIGGER">
+  <refsection id="Propriétéspardéfaut_EDGE_TRIGGER">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -166,7 +166,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EDGE_TRIGGER">
+  <refsection id="Fonctiondinterface_EDGE_TRIGGER">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -174,7 +174,7 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé EDGE_TRIGGER">
+  <refsection id="Contenudusuperbloccompilé_EDGE_TRIGGER">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>

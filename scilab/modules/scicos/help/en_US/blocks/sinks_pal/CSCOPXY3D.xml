@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CSCOPXY3D">
+  <refsection id="Contents_CSCOPXY3D">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CSCOPXY3D">Palette</xref>
+              <xref linkend="Palette_CSCOPXY3D">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CSCOPXY3D">Description</xref>
+              <xref linkend="Description_CSCOPXY3D">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CSCOPXY3D">Dialog box</xref>
+              <xref linkend="Dialogbox_CSCOPXY3D">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CSCOPXY3D">Default properties</xref>
+              <xref linkend="Defaultproperties_CSCOPXY3D">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CSCOPXY3D">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CSCOPXY3D">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CSCOPXY3D">Computational function</xref>
+              <xref linkend="Computationalfunction_CSCOPXY3D">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also CSCOPXY3D">See also</xref>
+              <xref linkend="Seealso_CSCOPXY3D">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CSCOPXY3D">Authors</xref>
+              <xref linkend="Authors_CSCOPXY3D">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CSCOPXY3D">
+  <refsection id="Palette_CSCOPXY3D">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CSCOPXY3D">
+  <refsection id="Description_CSCOPXY3D">
     <title>Description</title>
     <para>
 This block realizes the visualization of the evolution of the three regular inputs signals by drawing the third input as a function of the two others at instants of events on the event input port. When a point is drawn on screen it stays until the simulation is finished.  
@@ -108,7 +108,7 @@ This block realizes the visualization of the evolution of the three regular inpu
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box CSCOPXY3D">
+  <refsection id="Dialogbox_CSCOPXY3D">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -200,7 +200,7 @@ This block realizes the visualization of the evolution of the three regular inpu
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CSCOPXY3D">
+  <refsection id="Defaultproperties_CSCOPXY3D">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -252,7 +252,7 @@ This block realizes the visualization of the evolution of the three regular inpu
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CSCOPXY3D">
+  <refsection id="Interfacingfunction_CSCOPXY3D">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -260,7 +260,7 @@ This block realizes the visualization of the evolution of the three regular inpu
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CSCOPXY3D">
+  <refsection id="Computationalfunction_CSCOPXY3D">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -268,7 +268,7 @@ This block realizes the visualization of the evolution of the three regular inpu
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also CSCOPXY3D">
+  <refsection id="Seealso_CSCOPXY3D">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -278,7 +278,7 @@ This block realizes the visualization of the evolution of the three regular inpu
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CSCOPXY3D">
+  <refsection id="Authors_CSCOPXY3D">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

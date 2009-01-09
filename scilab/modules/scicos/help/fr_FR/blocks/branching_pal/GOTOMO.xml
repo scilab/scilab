@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu GOTOMO">
+  <refsection id="Contenu_GOTOMO">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GOTOMO">Palette</xref>
+              <xref linkend="Palette_GOTOMO">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GOTOMO">Description</xref>
+              <xref linkend="Description_GOTOMO">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue GOTOMO">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_GOTOMO">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut GOTOMO">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_GOTOMO">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface GOTOMO">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_GOTOMO">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GOTOMO">Voir aussi</link>
+              <xref linkend="Voiraussi_GOTOMO">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GOTOMO">Auteurs</link>
+              <xref linkend="Auteurs_GOTOMO">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GOTOMO">
+  <refsection id="Palette_GOTOMO">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GOTOMO">
+  <refsection id="Description_GOTOMO">
     <title>Description</title>
     <para>
 This block is used to connect modelica's blocks. For more information on how it works please refer to the documentation of the GOTO block by clicking on the link in the "See also" field.  
@@ -103,7 +103,7 @@ This block is used to connect modelica's blocks. For more information on how it 
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue GOTOMO">
+  <refsection id="Boîtededialogue_GOTOMO">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ This block is used to connect modelica's blocks. For more information on how it 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut GOTOMO">
+  <refsection id="Propriétéspardéfaut_GOTOMO">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ This block is used to connect modelica's blocks. For more information on how it 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface GOTOMO">
+  <refsection id="Fonctiondinterface_GOTOMO">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ This block is used to connect modelica's blocks. For more information on how it 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi GOTOMO">
+  <refsection id="Voiraussi_GOTOMO">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ This block is used to connect modelica's blocks. For more information on how it 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs GOTOMO">
+  <refsection id="Auteurs_GOTOMO">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

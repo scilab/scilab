@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATDIAG">
+  <refsection id="Contenu_MATDIAG">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATDIAG">Palette</xref>
+              <xref linkend="Palette_MATDIAG">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATDIAG">Description</xref>
+              <xref linkend="Description_MATDIAG">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATDIAG">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATDIAG">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATDIAG">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATDIAG">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATDIAG">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATDIAG">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATDIAG">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATDIAG">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATDIAG">Voir aussi</link>
+              <xref linkend="Voiraussi_MATDIAG">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATDIAG">Auteurs</link>
+              <xref linkend="Auteurs_MATDIAG">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATDIAG">
+  <refsection id="Palette_MATDIAG">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATDIAG">
+  <refsection id="Description_MATDIAG">
     <title>Description</title>
     <para>
 The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M-by-1 vector than the output is an M-by-M matrix.  
@@ -108,7 +108,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATDIAG">
+  <refsection id="Boîtededialogue_MATDIAG">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATDIAG">
+  <refsection id="Propriétéspardéfaut_MATDIAG">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATDIAG">
+  <refsection id="Fonctiondinterface_MATDIAG">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATDIAG">
+  <refsection id="Fonctiondecalcul_MATDIAG">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATDIAG">
+  <refsection id="Voiraussi_MATDIAG">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATDIAG">
+  <refsection id="Auteurs_MATDIAG">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

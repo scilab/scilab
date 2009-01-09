@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents INVBLK">
+  <refsection id="Contents_INVBLK">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette INVBLK">Palette</xref>
+              <xref linkend="Palette_INVBLK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description INVBLK">Description</xref>
+              <xref linkend="Description_INVBLK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties INVBLK">Default properties</xref>
+              <xref linkend="Defaultproperties_INVBLK">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function INVBLK">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_INVBLK">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function INVBLK">Computational function</xref>
+              <xref linkend="Computationalfunction_INVBLK">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette INVBLK">
+  <refsection id="Palette_INVBLK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description INVBLK">
+  <refsection id="Description_INVBLK">
     <title>Description</title>
     <para>
 This block computes 
@@ -94,7 +94,7 @@ The input (output) size is determined by the context.
 
 </para>
   </refsection>
-  <refsection id="Default properties INVBLK">
+  <refsection id="Defaultproperties_INVBLK">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -148,7 +148,7 @@ The input (output) size is determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function INVBLK">
+  <refsection id="Interfacingfunction_INVBLK">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -156,7 +156,7 @@ The input (output) size is determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function INVBLK">
+  <refsection id="Computationalfunction_INVBLK">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

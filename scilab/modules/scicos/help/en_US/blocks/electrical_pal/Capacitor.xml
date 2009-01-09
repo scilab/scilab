@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Capacitor">
+  <refsection id="Contents_Capacitor">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Capacitor">Palette</xref>
+              <xref linkend="Palette_Capacitor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Capacitor">Description</xref>
+              <xref linkend="Description_Capacitor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Capacitor">Dialog box</xref>
+              <xref linkend="Dialogbox_Capacitor">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Capacitor">Default properties</xref>
+              <xref linkend="Defaultproperties_Capacitor">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Capacitor">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Capacitor">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Capacitor">
+  <refsection id="Palette_Capacitor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Capacitor">
+  <refsection id="Description_Capacitor">
     <title>Description</title>
     <para>
 A capacitor is an electrical component that can store energy in
@@ -114,7 +114,7 @@ signals.
 
 </para>
   </refsection>
-  <refsection id="Dialog box Capacitor">
+  <refsection id="Dialogbox_Capacitor">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Capacitor">
+  <refsection id="Defaultproperties_Capacitor">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Capacitor">
+  <refsection id="Interfacingfunction_Capacitor">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model Capacitor">
+  <refsection id="Modelicamodel_Capacitor">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

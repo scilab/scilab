@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="set_xproperty">
   <refnamediv>
     <refname>set_xproperty</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>set_xproperty</refname>
     <refpurpose>Définit le type d'une variable d'état à temps continu</refpurpose>
   </refnamediv>
-  <refsection id="Module set_xproperty">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>set_xproperty(xprop)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_set_xproperty">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,18 +40,19 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description set_xproperty">
+  <refsection id="Description_set_xproperty">
     <title>Description</title>
     <para>
 Cette fonction permet de définir un vecteur indiquant le type (algébrique ou différentiel) des variables d'états continues utilisées dans un bloc.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+set_xproperty(xprop)
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_set_xproperty">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para>
@@ -72,7 +73,7 @@ Cette fonction permet de définir un vecteur indiquant le type (algébrique ou dif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi set_xproperty">
+  <refsection id="Voiraussi_set_xproperty">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>

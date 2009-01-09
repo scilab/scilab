@@ -26,7 +26,7 @@
     <refname>getblocklabel</refname>
     <refpurpose>Get the label of a scicos block</refpurpose>
   </refnamediv>
-  <refsection id="Module getblocklabel">
+  <refsection id="Module_getblocklabel">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -39,7 +39,7 @@
 [label]=getblocklabel(blk)
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters getblocklabel">
+  <refsection id="Parameters_getblocklabel">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>

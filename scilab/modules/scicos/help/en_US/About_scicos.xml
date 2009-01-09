@@ -26,7 +26,7 @@
     <refname>About_scicos</refname>
     <refpurpose>About Scicos...</refpurpose>
   </refnamediv>
-  <refsection id="Module About_scicos">
+  <refsection id="Module_About_scicos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="About Scicos... About_scicos">
+  <refsection id="AboutScicos_About_scicos">
     <title>About Scicos...</title>
     <para>
 Scicos 4.2 have been developed in the Metalau Project-Team very close

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SUM_f">
+  <refsection id="Contents_SUM_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SUM_f">Palette</xref>
+              <xref linkend="Palette_SUM_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SUM_f">Description</xref>
+              <xref linkend="Description_SUM_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SUM_f">Default properties</xref>
+              <xref linkend="Defaultproperties_SUM_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SUM_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SUM_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SUM_f">Computational function</xref>
+              <xref linkend="Computationalfunction_SUM_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SUM_f">Authors</xref>
+              <xref linkend="Authors_SUM_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SUM_f">
+  <refsection id="Palette_SUM_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SUM_f">
+  <refsection id="Description_SUM_f">
     <title>Description</title>
     <para>
 The Sum block performs addition  on its inputs. This block can add
@@ -98,7 +98,7 @@ scalar, vector, or matrix inputs.
 
 </para>
   </refsection>
-  <refsection id="Default properties SUM_f">
+  <refsection id="Defaultproperties_SUM_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -158,7 +158,7 @@ scalar, vector, or matrix inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SUM_f">
+  <refsection id="Interfacingfunction_SUM_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -166,7 +166,7 @@ scalar, vector, or matrix inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SUM_f">
+  <refsection id="Computationalfunction_SUM_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -174,7 +174,7 @@ scalar, vector, or matrix inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SUM_f">
+  <refsection id="Authors_SUM_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

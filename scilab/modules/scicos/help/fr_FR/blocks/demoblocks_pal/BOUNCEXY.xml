@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu BOUNCEXY">
+  <refsection id="Contenu_BOUNCEXY">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BOUNCEXY">Palette</xref>
+              <xref linkend="Palette_BOUNCEXY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue BOUNCEXY">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_BOUNCEXY">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut BOUNCEXY">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_BOUNCEXY">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface BOUNCEXY">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_BOUNCEXY">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul BOUNCEXY">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_BOUNCEXY">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BOUNCEXY">Auteurs</link>
+              <xref linkend="Auteurs_BOUNCEXY">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BOUNCEXY">
+  <refsection id="Palette_BOUNCEXY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Boîte de dialogue BOUNCEXY">
+  <refsection id="Boîtededialogue_BOUNCEXY">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -161,7 +161,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut BOUNCEXY">
+  <refsection id="Propriétéspardéfaut_BOUNCEXY">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface BOUNCEXY">
+  <refsection id="Fonctiondinterface_BOUNCEXY">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul BOUNCEXY">
+  <refsection id="Fonctiondecalcul_BOUNCEXY">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs BOUNCEXY">
+  <refsection id="Auteurs_BOUNCEXY">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

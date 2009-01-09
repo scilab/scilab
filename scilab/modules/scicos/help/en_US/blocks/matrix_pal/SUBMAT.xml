@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SUBMAT">
+  <refsection id="Contents_SUBMAT">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SUBMAT">Palette</xref>
+              <xref linkend="Palette_SUBMAT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SUBMAT">Description</xref>
+              <xref linkend="Description_SUBMAT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SUBMAT">Dialog box</xref>
+              <xref linkend="Dialogbox_SUBMAT">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SUBMAT">Default properties</xref>
+              <xref linkend="Defaultproperties_SUBMAT">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SUBMAT">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SUBMAT">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SUBMAT">Computational function</xref>
+              <xref linkend="Computationalfunction_SUBMAT">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SUBMAT">Authors</xref>
+              <xref linkend="Authors_SUBMAT">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SUBMAT">
+  <refsection id="Palette_SUBMAT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SUBMAT">
+  <refsection id="Description_SUBMAT">
     <title>Description</title>
     <para>
 This block outputs a sub matrix of the input matrix. The output matrix will be defining by using the parameters of this block.  
@@ -103,7 +103,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box SUBMAT">
+  <refsection id="Dialogbox_SUBMAT">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -160,7 +160,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SUBMAT">
+  <refsection id="Defaultproperties_SUBMAT">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SUBMAT">
+  <refsection id="Interfacingfunction_SUBMAT">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SUBMAT">
+  <refsection id="Computationalfunction_SUBMAT">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -233,7 +233,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SUBMAT">
+  <refsection id="Authors_SUBMAT">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents HALT_f">
+  <refsection id="Contents_HALT_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette HALT_f">Palette</xref>
+              <xref linkend="Palette_HALT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description HALT_f">Description</xref>
+              <xref linkend="Description_HALT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box HALT_f">Dialog box</xref>
+              <xref linkend="Dialogbox_HALT_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties HALT_f">Default properties</xref>
+              <xref linkend="Defaultproperties_HALT_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function HALT_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_HALT_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function HALT_f">Computational function</xref>
+              <xref linkend="Computationalfunction_HALT_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors HALT_f">Authors</xref>
+              <xref linkend="Authors_HALT_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette HALT_f">
+  <refsection id="Palette_HALT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description HALT_f">
+  <refsection id="Description_HALT_f">
     <title>Description</title>
     <para>
 This block has a unique input event port. Upon the arrival of an
@@ -104,7 +104,7 @@ activated. Simulation can be restarted or continued (Run button).
 
 </para>
   </refsection>
-  <refsection id="Dialog box HALT_f">
+  <refsection id="Dialogbox_HALT_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -126,7 +126,7 @@ activated. Simulation can be restarted or continued (Run button).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties HALT_f">
+  <refsection id="Defaultproperties_HALT_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -164,7 +164,7 @@ activated. Simulation can be restarted or continued (Run button).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function HALT_f">
+  <refsection id="Interfacingfunction_HALT_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +172,7 @@ activated. Simulation can be restarted or continued (Run button).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function HALT_f">
+  <refsection id="Computationalfunction_HALT_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ activated. Simulation can be restarted or continued (Run button).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors HALT_f">
+  <refsection id="Authors_HALT_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

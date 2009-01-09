@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu QUANT_f">
+  <refsection id="Contenu_QUANT_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette QUANT_f">Palette</xref>
+              <xref linkend="Palette_QUANT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description QUANT_f">Description</xref>
+              <xref linkend="Description_QUANT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue QUANT_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_QUANT_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut QUANT_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_QUANT_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface QUANT_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_QUANT_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul QUANT_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_QUANT_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="QUANT_f">Auteurs</link>
+              <xref linkend="Auteurs_QUANT_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette QUANT_f">
+  <refsection id="Palette_QUANT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description QUANT_f">
+  <refsection id="Description_QUANT_f">
     <title>Description</title>
     <para>
 Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
@@ -104,7 +104,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue QUANT_f">
+  <refsection id="Boîtededialogue_QUANT_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut QUANT_f">
+  <refsection id="Propriétéspardéfaut_QUANT_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface QUANT_f">
+  <refsection id="Fonctiondinterface_QUANT_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul QUANT_f">
+  <refsection id="Fonctiondecalcul_QUANT_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ Ce bloc quantifie le signal d'entrée suivant les méthodes choisies :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs QUANT_f">
+  <refsection id="Auteurs_QUANT_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

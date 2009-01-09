@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents GotoTagVisibilityMO">
+  <refsection id="Contents_GotoTagVisibilityMO">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GotoTagVisibilityMO">Palette</xref>
+              <xref linkend="Palette_GotoTagVisibilityMO">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GotoTagVisibilityMO">Description</xref>
+              <xref linkend="Description_GotoTagVisibilityMO">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box GotoTagVisibilityMO">Dialog box</xref>
+              <xref linkend="Dialogbox_GotoTagVisibilityMO">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties GotoTagVisibilityMO">Default properties</xref>
+              <xref linkend="Defaultproperties_GotoTagVisibilityMO">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function GotoTagVisibilityMO">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_GotoTagVisibilityMO">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also GotoTagVisibilityMO">See also</xref>
+              <xref linkend="Seealso_GotoTagVisibilityMO">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors GotoTagVisibilityMO">Authors</xref>
+              <xref linkend="Authors_GotoTagVisibilityMO">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GotoTagVisibilityMO">
+  <refsection id="Palette_GotoTagVisibilityMO">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GotoTagVisibilityMO">
+  <refsection id="Description_GotoTagVisibilityMO">
     <title>Description</title>
     <para>
 This block is used in case of Modelica connection. For more information on how it works please refer to the GotoTagVisibility block by clicking on the link in the "See also" field.  
@@ -103,7 +103,7 @@ This block is used in case of Modelica connection. For more information on how i
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box GotoTagVisibilityMO">
+  <refsection id="Dialogbox_GotoTagVisibilityMO">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ This block is used in case of Modelica connection. For more information on how i
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties GotoTagVisibilityMO">
+  <refsection id="Defaultproperties_GotoTagVisibilityMO">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ This block is used in case of Modelica connection. For more information on how i
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function GotoTagVisibilityMO">
+  <refsection id="Interfacingfunction_GotoTagVisibilityMO">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ This block is used in case of Modelica connection. For more information on how i
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also GotoTagVisibilityMO">
+  <refsection id="Seealso_GotoTagVisibilityMO">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ This block is used in case of Modelica connection. For more information on how i
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors GotoTagVisibilityMO">
+  <refsection id="Authors_GotoTagVisibilityMO">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

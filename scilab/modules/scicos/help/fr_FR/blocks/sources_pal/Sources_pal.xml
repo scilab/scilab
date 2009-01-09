@@ -26,10 +26,6 @@
     <refname>Sources_pal</refname>
     <refpurpose>Palette Sources</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Sources_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Sources_pal">
+  <refsection id="Module_Sources_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Sources_pal">
+  <refsection id="Description_Sources_pal">
     <title>Description</title>
     <para>
 La plupart des blocs de la palette source peuvent être compris comme
@@ -67,9 +57,10 @@ fichers, ainsi que des ports d'entrée utilisés dans les superblocs.
     <para>
 Les blocs de cette palette ne possèdent pas de ports réguliers d'entrée.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Sources_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu INTMUL">
+  <refsection id="Contenu_INTMUL">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette INTMUL">Palette</xref>
+              <xref linkend="Palette_INTMUL">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description INTMUL">Description</xref>
+              <xref linkend="Description_INTMUL">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue INTMUL">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_INTMUL">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut INTMUL">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_INTMUL">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface INTMUL">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_INTMUL">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul INTMUL">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_INTMUL">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="INTMUL">Voir aussi</link>
+              <xref linkend="Voiraussi_INTMUL">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="INTMUL">Auteurs</link>
+              <xref linkend="Auteurs_INTMUL">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette INTMUL">
+  <refsection id="Palette_INTMUL">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description INTMUL">
+  <refsection id="Description_INTMUL">
     <title>Description</title>
     <para>
 The INTMUL block computes the matrix multiplication of two integers inputs matrices.The number of rows of the second matrix must be equal to the number of columns of the first matrix. The output is a matrix where the number of rows is equal to the number of rows of the first input matrix and the number of columns is equal to the number of columns of the second input matrix. This block support all the integer data type.  
@@ -123,7 +123,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue INTMUL">
+  <refsection id="Boîtededialogue_INTMUL">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -152,7 +152,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut INTMUL">
+  <refsection id="Propriétéspardéfaut_INTMUL">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -209,7 +209,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface INTMUL">
+  <refsection id="Fonctiondinterface_INTMUL">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -217,7 +217,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul INTMUL">
+  <refsection id="Fonctiondecalcul_INTMUL">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -276,7 +276,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi INTMUL">
+  <refsection id="Voiraussi_INTMUL">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -286,7 +286,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs INTMUL">
+  <refsection id="Auteurs_INTMUL">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

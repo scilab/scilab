@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Diode">
+  <refsection id="Contents_Diode">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Diode">Palette</xref>
+              <xref linkend="Palette_Diode">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Diode">Description</xref>
+              <xref linkend="Description_Diode">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Diode">Dialog box</xref>
+              <xref linkend="Dialogbox_Diode">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Diode">Default properties</xref>
+              <xref linkend="Defaultproperties_Diode">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Diode">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Diode">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Diode">
+  <refsection id="Palette_Diode">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Diode">
+  <refsection id="Description_Diode">
     <title>Description</title>
     <para>
 This component consists of a simple diode parallel with an ohmic
@@ -114,7 +114,7 @@ linear to avoid overflow.
 
 </para>
   </refsection>
-  <refsection id="Dialog box Diode">
+  <refsection id="Dialogbox_Diode">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -157,7 +157,7 @@ linear to avoid overflow.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Diode">
+  <refsection id="Defaultproperties_Diode">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -244,7 +244,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Diode">
+  <refsection id="Interfacingfunction_Diode">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -252,7 +252,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model Diode">
+  <refsection id="Modelicamodel_Diode">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

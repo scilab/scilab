@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu READC_f">
+  <refsection id="Contenu_READC_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette READC_f">Palette</xref>
+              <xref linkend="Palette_READC_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description READC_f">Description</xref>
+              <xref linkend="Description_READC_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue READC_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_READC_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut READC_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_READC_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface READC_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_READC_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul READC_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_READC_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="READC_f">Auteurs</link>
+              <xref linkend="Auteurs_READC_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette READC_f">
+  <refsection id="Palette_READC_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description READC_f">
+  <refsection id="Description_READC_f">
     <title>Description</title>
     <para>
 Ce bloc permet de lire des données dans un fichier C.
@@ -105,7 +105,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
 </emphasis>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue READC_f">
+  <refsection id="Boîtededialogue_READC_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -180,7 +180,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut READC_f">
+  <refsection id="Propriétéspardéfaut_READC_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface READC_f">
+  <refsection id="Fonctiondinterface_READC_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -234,7 +234,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul READC_f">
+  <refsection id="Fonctiondecalcul_READC_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -242,7 +242,7 @@ Chaque appel au bloc, fait avancer d'un enregistrement dans le fichier.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs READC_f">
+  <refsection id="Auteurs_READC_f">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

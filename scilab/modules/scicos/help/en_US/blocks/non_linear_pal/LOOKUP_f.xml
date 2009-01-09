@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents LOOKUP_f">
+  <refsection id="Contents_LOOKUP_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette LOOKUP_f">Palette</xref>
+              <xref linkend="Palette_LOOKUP_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description LOOKUP_f">Description</xref>
+              <xref linkend="Description_LOOKUP_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties LOOKUP_f">Default properties</xref>
+              <xref linkend="Defaultproperties_LOOKUP_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function LOOKUP_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_LOOKUP_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function LOOKUP_f">Computational function</xref>
+              <xref linkend="Computationalfunction_LOOKUP_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors LOOKUP_f">Authors</xref>
+              <xref linkend="Authors_LOOKUP_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette LOOKUP_f">
+  <refsection id="Palette_LOOKUP_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description LOOKUP_f">
+  <refsection id="Description_LOOKUP_f">
     <title>Description</title>
     <para>
 This block realizes a non-linear function defined using a graphical
@@ -98,7 +98,7 @@ editor.
 
 </para>
   </refsection>
-  <refsection id="Default properties LOOKUP_f">
+  <refsection id="Defaultproperties_LOOKUP_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@ editor.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function LOOKUP_f">
+  <refsection id="Interfacingfunction_LOOKUP_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ editor.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function LOOKUP_f">
+  <refsection id="Computationalfunction_LOOKUP_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ editor.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors LOOKUP_f">
+  <refsection id="Authors_LOOKUP_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

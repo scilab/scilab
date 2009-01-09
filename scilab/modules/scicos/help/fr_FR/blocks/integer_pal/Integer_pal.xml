@@ -26,10 +26,6 @@
     <refname>Integer_pal</refname>
     <refpurpose>Palette Integer</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Integer_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Integer_pal">
+  <refsection id="Module_Integer_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Integer_pal">
+  <refsection id="Description_Integer_pal">
     <title>Description</title>
     <para>
 Cette palette est dédicacée aux nombres entiers.
@@ -64,9 +54,10 @@ Des opérateurs variés sont ici implémentés pour la logique
 et la manipulation des champs de bits ainsi que des portes
 logiques qui sont fréquemment utilisées dans les circuits numériques.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Integer_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

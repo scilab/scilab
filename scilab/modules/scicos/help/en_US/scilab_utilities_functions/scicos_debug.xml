@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>scicos_debug(level) level=scicos_debug()</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module scicos_debug">
+  <refsection id="Module_scicos_debug">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scicos_debug">
+  <refsection id="Description_scicos_debug">
     <title>Description</title>
     <para>
 This Scilab function is used to set the debug level of a Scicos simulation.  
@@ -55,7 +55,7 @@ scicos_debug(level)
 level=scicos_debug()
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters scicos_debug">
+  <refsection id="Parameters_scicos_debug">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@ level=scicos_debug()
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also scicos_debug">
+  <refsection id="SeeAlso_scicos_debug">
     <title>See Also</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@ level=scicos_debug()
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors scicos_debug">
+  <refsection id="Authors_scicos_debug">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

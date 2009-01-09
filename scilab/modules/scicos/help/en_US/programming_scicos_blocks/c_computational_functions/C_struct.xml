@@ -26,7 +26,7 @@
     <refname>C_struct</refname>
     <refpurpose>C Block structure of a computational function</refpurpose>
   </refnamediv>
-  <refsection id="Contents C_struct">
+  <refsection id="Contents_C_struct">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -38,54 +38,54 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Module C_struct">Module</xref>
+              <xref linkend="Module_C_struct">Module</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description C_struct">Description</xref>
+              <xref linkend="Description_C_struct">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Inputs/outputs C_struct">Inputs/outputs</xref>
+              <xref linkend="Inputsoutputs_C_struct">Inputs/outputs</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Events C_struct">Events</xref>
+              <xref linkend="Events_C_struct">Events</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Parameters C_struct">Parameters</xref>
+              <xref linkend="Parameters_C_struct">Parameters</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="States and work C_struct">States and work</xref>
+              <xref linkend="Statesandwork_C_struct">States and work</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Zero crossing surfaces and modes C_struct">Zero crossing surfaces and modes</xref>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_struct">Zero crossing surfaces and modes</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Miscallaneous C_struct">Miscallaneous</xref>
+              <xref linkend="Miscallaneous_C_struct">Miscallaneous</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors C_struct">Authors</xref>
+              <xref linkend="Authors_C_struct">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Module C_struct">
+  <refsection id="Module_C_struct">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description C_struct">
+  <refsection id="Description_C_struct">
     <title>Description</title>
     <para>
 The C structure of a Scicos block defines all the fields to handle data provided by the simulator
@@ -127,7 +127,7 @@ In the current version of Scicos, the  structure is defined :
 
 </para>
   </refsection>
-  <refsection id="Inputs/outputs C_struct">
+  <refsection id="Inputsoutputs_C_struct">
     <title>Inputs/outputs</title>
     <para>
 
@@ -271,7 +271,7 @@ Finally note that the regular output port registers must be only written for =1.
 
 </para>
   </refsection>
-  <refsection id="Events C_struct">
+  <refsection id="Events_C_struct">
     <title>Events</title>
     <para>
 
@@ -308,7 +308,7 @@ The event output register must be only written for =3. </para>
 
 </para>
   </refsection>
-  <refsection id="Parameters C_struct">
+  <refsection id="Parameters_C_struct">
     <title>Parameters</title>
     <para>
 
@@ -456,7 +456,7 @@ Note that object parameters register is only accessible for reading. </para>
 
 </para>
   </refsection>
-  <refsection id="States and work C_struct">
+  <refsection id="Statesandwork_C_struct">
     <title>States and work</title>
     <para>
 
@@ -603,7 +603,7 @@ The pointer of that array can also be retrieve via the C macro . </para>
 
 </para>
   </refsection>
-  <refsection id="Zero crossing surfaces and modes C_struct">
+  <refsection id="Zerocrossingsurfacesandmodes_C_struct">
     <title>Zero crossing surfaces and modes</title>
     <para>
 
@@ -636,7 +636,7 @@ The pointer of that array can also be retrieve via the C macro . </para>
 
 </para>
   </refsection>
-  <refsection id="Miscallaneous C_struct">
+  <refsection id="Miscallaneous_C_struct">
     <title>Miscallaneous</title>
     <para>
 
@@ -651,7 +651,7 @@ The pointer of that array can also be retrieve via the C macro . </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors C_struct">
+  <refsection id="Authors_C_struct">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

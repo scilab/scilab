@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu DEMUX">
+  <refsection id="Contenu_DEMUX">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DEMUX">Palette</xref>
+              <xref linkend="Palette_DEMUX">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DEMUX">Description</xref>
+              <xref linkend="Description_DEMUX">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue DEMUX">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_DEMUX">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut DEMUX">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_DEMUX">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface DEMUX">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_DEMUX">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul DEMUX">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_DEMUX">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="DEMUX">Auteurs</link>
+              <xref linkend="Auteurs_DEMUX">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DEMUX">
+  <refsection id="Palette_DEMUX">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DEMUX">
+  <refsection id="Description_DEMUX">
     <title>Description</title>
     <para>
 En fournissant un vecteur sur le port d'entrée régulier, ce bloc
@@ -108,7 +108,7 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue DEMUX">
+  <refsection id="Boîtededialogue_DEMUX">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut DEMUX">
+  <refsection id="Propriétéspardéfaut_DEMUX">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface DEMUX">
+  <refsection id="Fonctiondinterface_DEMUX">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul DEMUX">
+  <refsection id="Fonctiondecalcul_DEMUX">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ Les tailles des ports d'entrée et de sortie sont déterminées par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs DEMUX">
+  <refsection id="Auteurs_DEMUX">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
