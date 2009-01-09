@@ -428,7 +428,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
 		
 		// Define and create the path of buildDoc working directory
-		buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
+		//buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
 		
 		// Define and create the final output directory if does not exist
 		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
