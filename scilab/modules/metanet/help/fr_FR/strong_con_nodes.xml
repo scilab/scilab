@@ -69,7 +69,7 @@ nodecolor=0*ones(1,n); nodecolor(ncomp)=11*ones(ncomp);
 g('node_color')=nodecolor;
 nodediam=20*ones(1,n); nodediam(ncomp)=40*ones(ncomp);
 g('node_diam')=nodediam;
-x_message('Ensemble des sommets de la composante fortement connexe numéro 3');
+messagebox('Ensemble des sommets de la composante fortement connexe numéro 3',"modal");
 show_graph(g);
  ]]></programlisting>
   </refsection>

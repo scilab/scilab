@@ -24,10 +24,9 @@ function ge_check_before_quit()
 	       'GraphList=EGdata_'+w+'.GraphList'
 	       'path=EGdata_'+w+'.Path'])
       if edited then
-	r=x_message(['graph '+GraphList.name+' is modified'
-		     'Do you want to save it?'],['yes','no'])
+	r=messagebox(['graph '+GraphList.name+' is modified';'Do you want to save it?'],"modal","question",['yes','no'])
 	if r==1 then
-	  x_message('Use the Graph/Save menu to save it')
+	  messagebox('Use the Graph/Save menu to save it',"modal","info");
 	  while edited
 	    xpause(100000)
 	    execstr(['global EGdata_'+w;

@@ -12,9 +12,9 @@ function num=message(strings ,buttons)
 //interface to message primitive to allow simple overloading for live demo 
   [lhs,rhs]=argn(0)
   if rhs==2 then
-    num=x_message(strings ,buttons)
+    num=messagebox(strings,"modal","scilab",buttons);
   else
     num=1
-    x_message(strings)
+    messagebox(strings,"modal");
   end
 endfunction

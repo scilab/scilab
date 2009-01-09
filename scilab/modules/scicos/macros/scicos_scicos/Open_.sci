@@ -33,7 +33,7 @@ function Open_()
   gh_curwin = scf(curwin); 
 
   if edited & ~super_block then //** if is edited and is NOT a superblock
-    num = x_message(["Diagram has not been saved"],['OK','Go Back'])
+    num = messagebox(["Diagram has not been saved"],"modal","question",['OK','Go Back'])
     if num==2 then 
       return ; //** if "Go Back" then EXIT
     end

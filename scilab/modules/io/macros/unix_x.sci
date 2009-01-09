@@ -41,7 +41,7 @@ function unix_x(cmd)
 if MSDOS then
    [rep,stat]=dos(cmd);
     if (stat) then
-      x_message_modeless(rep);
+      messagebox(rep);
     else
       for i=1:size(rep,'*') do write(%io(2),'   '+rep(i));end
       error(msprintf(gettext("%s: error during ""%s"" execution"),"unix_x",cmd));
@@ -56,7 +56,7 @@ else
        if (size(rep,'*')==0) | (length(rep)==0) then
     	 rep=[]
        end
-       x_message_modeless(rep)
+       messagebox(rep);
     case -1 then // host failed
       error(msprintf(gettext("%s: The system interpreter does not answer..."),"unix_x"));
     else //sh failed

@@ -25,7 +25,7 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
   //++ Check that modelica compiler is available
   //++ Otherwise, give some feedback and quit
   if ~with_modelica_compiler() then
-    x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"))
+    messagebox(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "compile_modelica"),"modal","error");
     name = ''
     ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
   end
@@ -121,31 +121,31 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
         end
         if execstr('unix_s(instr)', 'errcatch') <> 0 then
           MSG2 = mgetl(TMPDIR + filesep() + translator_err)
-          x_message(['-------Modelica compiler error:-------'; ..
+          messagebox(['-------Modelica compiler error:-------'; ..
                      MSG1; ..
                      '-------Modelica translator error:-------'; ..
                      MSG2; ..
-                     'Please read the error message in the Scilab window'])
+                     'Please read the error message in the Scilab window'],"modal","error");
           ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
         end
         instr = modelicac + ' ' + FlatName + ' -o ' + path + name + '.c ' + JAC + ' > ' + TMPDIR + filesep() + unix_err
         if execstr('unix_s(instr)', 'errcatch') <> 0 then
           MSG3 = mgetl(TMPDIR + filesep() + unix_err)
-          x_message(['-------Modelica compiler error (without the translator):-------'; ..
+          messagebox(['-------Modelica compiler error (without the translator):-------'; ..
                      MSG1; ..
                      '-------Modelica compiler error (with the translator):-------'; ..
                      MSG3; ..
-                     'Please read the error message in the Scilab window'])
+                     'Please read the error message in the Scilab window'],"modal","error");
           ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
         else
           mprintf('   Flat modelica code generated at ' + FlatName + '\n')
         end
       else // if_translator_exists
-        x_message(['-------Modelica compiler error (without the translator):-------'; ..
+        messagebox(['-------Modelica compiler error (without the translator):-------'; ..
                    MSG1; ..
                    'Please read the error message in the Scilab window'; ..
                    ' '; ..
-                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again'])
+                   'Please install the Modelica translator (available at www.scicos.org) in ""SCI' + filesep() + 'bin"" and try again'],"modal","error");
         ok = %f, nx = 0, nin = 0, nout = 0, ng = 0, nm = 0, nz = 0; return
       end // if_translator_exists
     end // if_modelicac_fails_then_use_translator
@@ -219,14 +219,14 @@ function [ok, name, nx, nin, nout, ng, nm, nz] = compile_modelica(fil)
     // files=name+'.o';Make=path+'Make'+name;loader=path+name+'.sce'
     // ierr=execstr('libn=ilib_for_link(name,files,libs,''c'',Make,loader,'''','''',E2)','errcatch')
     // if ierr<>0 then
-    //   ok=%f;x_message(['sorry compilation problem';lasterror()])
+    //   ok=%f;messagebox(['sorry compilation problem';lasterror()],"modal","error");
     //   return
     // end
 
     // executing loader file
     // if execstr('exec(loader); ','errcatch')<>0 then
     //   ok=%f;
-    //   x_message(['Problem while linking generated code';lasterror()])
+    //   messagebox(['Problem while linking generated code';lasterror()],"modal","error");
     //   return
     // end
 

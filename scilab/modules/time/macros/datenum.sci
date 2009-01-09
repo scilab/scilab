@@ -165,9 +165,9 @@ function n=datenum(varargin)
 endfunction
 
 
-function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,sec)
+function scalaire=ymdhmns_to_scalar (annee,mois,jour,heure,mn,seconde)
 	
-	decimal_part = (sec*(1/(24*3600)))+(mn*(1/(24*60)))+(heure*(1/24));
+	decimal_part = (seconde*(1/(24*3600)))+(mn*(1/(24*60)))+(heure*(1/24));
 	
 	// convert of month and day
 	integer_part = jour + floor((mois * 3057 - 3007) / 100);

@@ -186,7 +186,7 @@ function [x,y,ok,gc]=edit_curv(x,y,job,tit,gc)
 				      string([xmn;xmx;ymn;ymx]))
 	if ~ok then break,end
 	if xmn>xmx|ymn>ymx then
-	  x_message("Limits are not accettable")
+	  messagebox("Limits are not accettable","modal");
 	else
 	  break
 	end
@@ -397,8 +397,8 @@ function savexy(x,y)
     xy = [x y];
     fil=fn+'.xy'
     if execstr('save(fil,xy)','errcatch')<>0 then
-      x_message(["Impossible to save in the selected file";
-		 "Check file and directory access"])
+      messagebox(["Impossible to save in the selected file";
+		 "Check file and directory access"],"modal");
       return
     end
   end

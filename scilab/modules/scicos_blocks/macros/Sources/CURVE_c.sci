@@ -78,7 +78,7 @@ select job
       xx=xx(:); yy=yy(:);
       [nx,mx] = size(xx); [ny,my]=size(yy);
       if ~((nx==ny)&(mx==my)) then
-         x_message("Incompatible size of [x] and [y]");
+         messagebox("Incompatible size of [x] and [y]","modal","error");
          Ask_again = %t;
       end
     end
@@ -577,7 +577,7 @@ while %t then //=================================================
     t3='Mouse-left double click: edit a point''s coordinates'
     t4='Mouse-left button press/drag/release: move a  point'
     t5='Change the window size: ''Data'' menu -> ''Databounds'''
-    x_message([t1;t2;t3;t4;t5]);
+    messagebox([t1;t2;t3;t4;t5],"modal","info");
     //---------------------------------------------------------------  
    case 'Load from Excel' then
     [tok,xytt]=ReadExcel()

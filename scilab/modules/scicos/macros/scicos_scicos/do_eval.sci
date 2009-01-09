@@ -28,7 +28,7 @@ function [scs_m, cpr, needcompile, ok] = do_eval(scs_m, cpr)
 	funcprot(0)
 	getvalue = setvalue;
 
-	deff('message(txt)','x_message(''In block '' + o.gui + '': '' + txt); %scicos_prob = resume(%t)')
+	deff('message(txt)','messagebox(''In block '' + o.gui + '': '' + txt,""modal""); %scicos_prob = resume(%t)')
 
 	%scicos_prob = %f
 	deff('[ok, tt] = FORTR(funam, tt, i, o)','ok = %t')

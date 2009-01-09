@@ -80,7 +80,7 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
       //++ Check that modelica compiler is available
       //++ Otherwise, give some feedback and quit
       if ~with_modelica_compiler() then
-        x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "MODCOM"));
+        messagebox(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "MODCOM"),"modal","error");
         ok = %f
         break
       end
@@ -88,7 +88,7 @@ function [ok,tt]=MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)
       compilerpath = 'modelicac'; //** thanks to automatic detection on both Windows and Unix platforms
 
       if execstr('unix_s(compilerpath + '' -c '' + funam + '' -o '' + tarpath + nameF + ''.moc'')', 'errcatch') <> 0 then
-        x_message(sprintf(gettext("%s: An error occurred during the compilation of the Modelica block."),"MODCOM"))
+        messagebox(sprintf(gettext("%s: An error occurred during the compilation of the Modelica block."),"MODCOM"),"modal","error");
         textmp = txt
         ok = %f
       else

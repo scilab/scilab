@@ -28,9 +28,9 @@ xtitle('PLANT   and   CONTROLLER')
 
 path=get_absolute_file_path('lqg.dem');
 s=poly(0,'s');z=poly(0,'z');
-x_message(['Simple example of SISO LQG Design';
+messagebox(['Simple example of SISO LQG Design';
            'Demo is in file '+path+'lqg.dem';
-           'Computes the LQG compensator and plots response'])
+           'Computes the LQG compensator and plots response'],"modal");
 
 n=x_choose(['Continuous time';'Discrete time'],'Select time domain');
 
@@ -63,7 +63,7 @@ mode(1)
 
 P22=tf2ss(Plant);    //...in state-space form
 [ny,nu,nx]=size(P22);
-x_message('Now enter weighting matrices');
+messagebox('Now enter weighting matrices',"modal");
 rep=x_matrix('x-weighting matrix',eye(nx,nx))
 if rep==[] then return,end
 Qx=evstr(rep);
@@ -89,7 +89,7 @@ disp(clean(ss2tf(Tlqg)),'Complementary sensitivity function');
 
 mode(-1);
 
-x_message('Closed-loop response');
+messagebox('Closed-loop response',"modal");
 
 resp=['Frequency response';'Time response'];
 while %t do

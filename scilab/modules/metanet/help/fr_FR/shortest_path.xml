@@ -95,9 +95,9 @@ rand('uniform');
 g1('edge_length')=int(20*rand(1,ma));
 [p,lp]=shortest_path(13,1,g1,'length');
 p
-x_message(['Voici le chemin le plus court';
+messagebox(['Voici le chemin le plus court';
            'Le nom des arcs peut être visualisé en selectionnant la valeur ""Name"" pour les arcs';
-           'dans le menu Graph->Options.']);
+           'dans le menu Graph->Options.'],"modal");
 g1('edge_name')=string(g1('edge_length'));
 edgecolor=ones(1:ma);edgecolor(p)=11*ones(p);
 g1('edge_color')=edgecolor;
