@@ -499,7 +499,9 @@ function [sd1]=grclipoff(sd,del)
   if rhs<=0 then ,
     sd1=list("clipoff")
   end;
-  xclip();
+  // disable clipping
+  axes = gca();
+  axes.clip_state = "off";
 endfunction
 
 function [sd1]=grclipon(sd,del)
@@ -507,7 +509,9 @@ function [sd1]=grclipon(sd,del)
   if rhs<=0 then ,
     sd1=list("clipon")
   end;
-  xclip('clipgrf');
+  // axes clip
+  axes = gca();
+  axes.clip_state = "clipgrf";
 endfunction
 
 function []=redraw(sd,s_t)
