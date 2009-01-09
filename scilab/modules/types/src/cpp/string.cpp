@@ -170,7 +170,7 @@ namespace types
 			int iMaxLen = 0;
 			for(int i = 0 ; i < m_iSize ; i++)
 			{
-				iMaxLen = Max(iMaxLen, strlen(string_get(i,0)));
+				iMaxLen = Max(iMaxLen, (int)strlen(string_get(i,0)));
 			}
 
 			iMaxLen += 2;
@@ -248,7 +248,7 @@ namespace types
 			{
 				for(int iRows1 = 0 ; iRows1 < rows_get() ; iRows1++)
 				{
-					piSize[iCols1] = Max(piSize[iCols1], strlen(string_get(iRows1,iCols1)));
+					piSize[iCols1] = Max(piSize[iCols1], (int)strlen(string_get(iRows1,iCols1)));
 				}
 
 				if(iLen + piSize[iCols1] > _iLineLen)

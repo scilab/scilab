@@ -54,6 +54,8 @@ namespace types
     Double*				getAsDouble(void);
 		string				toString(int _iPrecision, int _iLineLen);
 
+		Double*				clone();
+
   protected :
 		RealType			getType(void);
 

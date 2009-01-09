@@ -53,17 +53,38 @@ namespace symbol
 			delete _scope;
 		}
 
-
+		bool isUsed(InternalType* pIT) const
+		{
+			std::map<Symbol, InternalType*>::const_iterator it_scope;
+			for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
+			{
+				if((*it_scope).second == pIT)
+					return true;
+			}
+			return false;
+		}
 
 		/** Associate value to key in the current scope. */
-		void	put (Symbol key, InternalType &value)
+		InternalType*	put (Symbol key, InternalType &value)
 		{
 			InternalType *pOld = (*_scope)[key];
 			if(pOld != NULL)
 			{
-				delete pOld;
+				pOld->DecreaseRef();
+				if(pOld->isRef() == false)
+				{
+					delete pOld;
+				}
 			}
+/*
+			if(value.isRef())
+			{
+				std::cout << "Need copy : " << key.name_get() << std::endl;
+			}
+*/
 			(*_scope)[key] = &value;
+			value.IncreaseRef();
+			return NULL;
 		}
 
 		/** If key was associated to some Entry_T in the open scopes, return the

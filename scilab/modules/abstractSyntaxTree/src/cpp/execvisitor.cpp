@@ -127,7 +127,7 @@ namespace ast
 	{
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
 		result_set(pI);
-		if(e.is_verbose())
+		if(pI != NULL && e.is_verbose())
 		{
 			std::cout << e.name_get() << " = " << std::endl;
 			std::cout << std::endl;
@@ -227,6 +227,17 @@ namespace ast
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
+			//ASTUCE POUR BRUNO
+			string sz = dynamic_cast<const SimpleVar*>(&e.name_get())->name_get().name_get();
+
+			if(sz == "scope_begin")
+			{
+				symbol::Context::getInstance()->scope_begin();
+			}
+			else if(sz == "scope_end")
+			{
+				symbol::Context::getInstance()->scope_end();
+			}
 		}
 
 		delete execVar;

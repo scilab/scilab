@@ -409,9 +409,26 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			Double *pCoefR	= pResult->poly_get(i)->coef_get();
 			double *pRR			= pCoefR->real_get();
 
-			for(int j = 0 ; j < pRank[i] ; j++)
+			for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
 			{
 				pRR[j] = p1R[j] - p2R[j];
+			}
+
+			double *pTemp = NULL;
+			int iCoef			= 1;
+			if(pRank1[i] > pRank2[i])
+			{
+				pTemp = p1R;
+				iCoef = 1;
+			}
+			else
+			{
+				pTemp = p2R;
+				iCoef = -1;
+			}
+			for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
+			{
+				pRR[j] = pTemp[j] * iCoef;
 			}
 
 			if(pResult->isComplex())
@@ -420,9 +437,26 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 				double *p2I			= pCoef2->img_get();
 				double *pRI			= pCoefR->img_get();
 
-				for(int j = 0 ; j < pRank[i] ; j++)
+				for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
 				{
 					pRI[j] = (p1I == NULL ? 0 : p1I[j]) - (p2I == NULL ? 0 : p2I[j]);
+				}
+
+				double *pTemp = NULL;
+				int iCoef			= 1;
+				if(pRank1[i] > pRank2[i])
+				{
+					pTemp = p1I;
+					iCoef = 1;
+				}
+				else
+				{
+					pTemp = p2I;
+					iCoef = -1;
+				}
+				for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
+				{
+					pRR[j] = pTemp[j] * iCoef;
 				}
 			}
 		}

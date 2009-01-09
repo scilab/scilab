@@ -79,9 +79,17 @@ namespace types
 		virtual MatrixPoly* getAsPoly(void) { return NULL; }
 
 		virtual std::string	toString(int _iPrecison, int _iLineLen){return "Internal";}
+		virtual InternalType* clone(void) { return NULL; }
+
+		void	IncreaseRef(){m_iRef++;}
+		void	DecreaseRef(){m_iRef--;}
+		bool	isRef(int _iRef = 0){return m_iRef > _iRef;}
 
   protected :
-    InternalType() {}
+    InternalType() {m_iRef = 0;}
+
+	private :
+		int m_iRef;
 	};
 }
 #endif /* !__INTERNAL_HXX__ */

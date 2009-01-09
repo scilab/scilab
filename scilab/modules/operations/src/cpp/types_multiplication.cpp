@@ -424,6 +424,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			Poly *pPoly1		= _pPoly1->poly_get(0);
 			Poly *pPoly2		= _pPoly2->poly_get(0);
 			Poly *pPolyOut	= _pPolyOut->poly_get(0);
+
+			pPolyOut->coef_get()->zero_set();
+
 			iMultiRealPolyByRealPoly(
 					pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
 					pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
@@ -434,6 +437,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			Poly *pPoly1		= _pPoly1->poly_get(0);
 			Poly *pPoly2		= _pPoly2->poly_get(0);
 			Poly *pPolyOut	= _pPolyOut->poly_get(0);
+
+			pPolyOut->coef_get()->zero_set();
+
 			iMultiRealPolyByComplexPoly(
 					pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
 					pPoly2->coef_get()->real_get(), pPoly2->coef_get()->img_get(), pPoly2->rank_get(),
@@ -444,6 +450,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			Poly *pPoly1		= _pPoly1->poly_get(0);
 			Poly *pPoly2		= _pPoly2->poly_get(0);
 			Poly *pPolyOut	= _pPolyOut->poly_get(0);
+
+			pPolyOut->coef_get()->zero_set();
+
 			iMultiComplexPolyByRealPoly(
 					pPoly1->coef_get()->real_get(), pPoly1->coef_get()->img_get(), pPoly1->rank_get(),
 					pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
@@ -458,6 +467,7 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			Double *pCoef2		= pPoly2->coef_get();
 			Double *pCoefOut	= pPolyOut->coef_get();
 
+			pCoefOut->zero_set();
 			iMultiComplexPolyByComplexPoly(
 					pCoef1->real_get(), pCoef1->img_get(), pPoly1->rank_get(),
 					pCoef2->real_get(), pCoef2->img_get(), pPoly2->rank_get(),
@@ -473,6 +483,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			{
 				Poly *pPoly2		= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut	= _pPolyOut->poly_get(iPoly);
+
+				pPolyOut->coef_get()->zero_set();
+
 				iMultiRealPolyByRealPoly(
 						pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
 						pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
@@ -485,6 +498,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			{
 				Poly *pPoly2		= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut	= _pPolyOut->poly_get(iPoly);
+
+				pPolyOut->coef_get()->zero_set();
+
 				iMultiRealPolyByComplexPoly(
 						pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
 						pPoly2->coef_get()->real_get(), pPoly2->coef_get()->img_get(), pPoly2->rank_get(),
@@ -497,6 +513,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			{
 				Poly *pPoly2		= _pPoly2->poly_get(iPoly);
 				Poly *pPolyOut	= _pPolyOut->poly_get(iPoly);
+
+				pPolyOut->coef_get()->zero_set();
+
 				iMultiComplexPolyByRealPoly(
 						pPoly1->coef_get()->real_get(), pPoly1->coef_get()->img_get(), pPoly1->rank_get(),
 						pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
@@ -512,6 +531,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 				Poly *pPolyOut		= _pPolyOut->poly_get(iPoly);
 				Double *pCoef2		= pPoly2->coef_get();
 				Double *pCoefOut	= pPolyOut->coef_get();
+
+
+				pCoefOut->zero_set();
 
 				iMultiComplexPolyByComplexPoly(
 						pCoef1->real_get(), pCoef1->img_get(), pPoly1->rank_get(),
@@ -529,6 +551,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			{
 				Poly *pPoly1		= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut	= _pPolyOut->poly_get(iPoly);
+
+				pPolyOut->coef_get()->zero_set();
+
 				iMultiRealPolyByRealPoly(
 						pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
 						pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
@@ -541,6 +566,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			{
 				Poly *pPoly1		= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut	= _pPolyOut->poly_get(iPoly);
+
+				pPolyOut->coef_get()->zero_set();
+
 				iMultiRealPolyByComplexPoly(
 						pPoly1->coef_get()->real_get(), pPoly1->rank_get(),
 						pPoly2->coef_get()->real_get(), pPoly2->coef_get()->img_get(), pPoly2->rank_get(),
@@ -553,6 +581,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 			{
 				Poly *pPoly1		= _pPoly1->poly_get(iPoly);
 				Poly *pPolyOut	= _pPolyOut->poly_get(iPoly);
+
+				pPolyOut->coef_get()->zero_set();
+
 				iMultiComplexPolyByRealPoly(
 						pPoly1->coef_get()->real_get(), pPoly1->coef_get()->img_get(), pPoly1->rank_get(),
 						pPoly2->coef_get()->real_get(), pPoly2->rank_get(),
@@ -568,6 +599,9 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 				Poly *pPolyOut		= _pPolyOut->poly_get(iPoly);
 				Double *pCoef1		= pPoly1->coef_get();
 				Double *pCoefOut	= pPolyOut->coef_get();
+
+
+				pCoefOut->zero_set();
 
 				iMultiComplexPolyByComplexPoly(
 						pCoef1->real_get(), pCoef1->img_get(), pPoly1->rank_get(),

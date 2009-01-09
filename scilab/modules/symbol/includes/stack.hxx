@@ -49,8 +49,24 @@ namespace symbol
     /** Associate value to key in the current scope. */
     void	put (Symbol key, InternalType &value)
     {
-      (this->l_scope.front()).put(key, value);
-    }
+      InternalType *pOld = (this->l_scope.front()).put(key, value);
+/*			if(pOld != NULL)
+			{
+				std::list<Scope>::const_iterator it_list_scope;
+				it_list_scope = this->l_scope.begin();
+
+				do
+				{
+					bool bUsed = (*it_list_scope).isUsed(pOld);
+					if(bUsed)
+					{
+						return;
+					}
+				}while(&(*it_list_scope) != &l_scope.front());
+//				std::cout << pOld->getAsDouble()->toString(10,100) << std::endl;
+				delete pOld;
+			}
+*/    }
 
     /** If key was associated to some Entry_T in the open scopes, return the
      ** most recent insertion. Otherwise return the empty pointer. */

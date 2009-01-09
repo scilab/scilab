@@ -69,6 +69,7 @@ namespace types
 		if(_pdblCoefI != NULL)
 		{
 			m_pdblCoef = new Double(1, _iRank, &pR, &pI);
+			m_pdblCoef->zero_set();
 		}
 		else
 		{
@@ -296,71 +297,97 @@ namespace types
 		}
 	}
 
-	string	Poly::toStringReal(int _iPrecision, int _iLineLen, string _szVar)
+	void Poly::toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
 	{
-		ostringstream ostr;
-		ostringstream ostemp;
+		toStringInternal(m_pdblCoef->real_get(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
+	}
 
-		double *pReal = m_pdblCoef->real_get();
-		double *pImg 	= m_pdblCoef->img_get();
+	void Poly::toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
+	{
+		if(isComplex() == false)
+		{
+			_pListExp->clear();
+			_pListCoef->clear();
+			return;
+		}
+
+		toStringInternal(m_pdblCoef->img_get(),_iPrecision, _iLineLen, _szVar, _pListExp, _pListCoef);
+	}
+	
+	void Poly::toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef)
+	{
+		ostringstream ostemp;
+		ostringstream ostemp2;
+
+		ostemp << "  ";
 
 		//to add exponant value a the good place
 		int *piIndexExp = new int[m_iRank];
 
+		int iLen				= 0;
+		int iLastFlush	= 2;
 		for(int i = 0 ; i < m_iRank ; i++)
 		{
 			piIndexExp[i] = 0;
-			if(isZero(pReal[i]) == false)
+			if(isZero(_pdblVal[i]) == false)
 			{
 				int iWidth = 0, iPrec = 0;
 				bool bFP = false; // FloatingPoint
-				GetFormat(pReal[i], _iPrecision, &iWidth, &iPrec, &bFP);
-				Add_Value(&ostemp, pReal[i], iWidth, iPrec, true/*, ostemp.str().size() != 0, i == 0*/);
+				GetFormat(_pdblVal[i], _iPrecision, &iWidth, &iPrec, &bFP);
 
+				if(iLen + iWidth + 2 >= _iLineLen)
+				{//flush
+					for(int j = iLastFlush ; j < i ; j++)
+					{
+						if(piIndexExp[j] == 0)
+						{
+							continue;
+						}
+
+						Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
+						if(isZero(_pdblVal[j]) == false)
+							ostemp2 << j;
+					}
+					iLastFlush = i;
+					_pListExp->push_back(ostemp2.str());
+					ostemp2.str("\x00"); //reset stream
+					Add_Space(&ostemp2, 12); //take from scilab ... why not ...
+
+					_pListCoef->push_back(ostemp.str());
+					ostemp.str("\x00"); //reset stream
+					Add_Space(&ostemp, 12); //take from scilab ... why not ...
+				}
+				Add_Value(&ostemp, _pdblVal[i], iWidth, iPrec, ostemp.str().size() != 2, i == 0);
+			
 				if(i != 0)
 				{
 					ostemp << _szVar;
-					if(i > 1)
-					{
-						ostemp << " ";
-					}
-					cout << "piIndexExp[" << i << "] <- " << ostemp.str().size() << "\"" << ostemp.str() << "\"" << endl;
 					piIndexExp[i] = ostemp.str().size();
 				}
 				ostemp << " ";
+				iLen = ostemp.str().size();
 			}
 		}
 
-		cout << "m_iRank : " << m_iRank << endl;
-		for(int i = 2 ; i < m_iRank ; i++)
+		if(iLastFlush != 0)
 		{
-			if(piIndexExp[i] == 0)
+			for(int j = iLastFlush ; j < m_iRank ; j++)
 			{
-				continue;
+				if(piIndexExp[j] == 0)
+				{
+					continue;
+				}
+
+				Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
+				if(isZero(_pdblVal[j]) == false)
+					ostemp2 << j;
 			}
-			cout << "old : " << ostr.str().size() << endl;
-			cout << "piIndexExp[" << i << "] -> " << piIndexExp[i] - ostr.str().size() << endl;
-			Config_Stream(&ostr, piIndexExp[i] - ostr.str().size(), 0, ' ');
-			if(isZero(pReal[i]) == false || (pImg != NULL && isZero(pImg[i])))
-				ostr << right << i;
+			_pListExp->push_back(ostemp2.str());
+			_pListCoef->push_back(ostemp.str());
 		}
-		ostr << endl;
-		ostr << ostemp.str();
 
 		delete[] piIndexExp;
-		return ostr.str();
-	}
-
-	string	Poly::toStringImg(int _iPrecision, int _iLineLen, string _szVar)
-	{
-		if(isComplex() == false)
-		{
-			return "";
-		}
-
-		ostringstream ostr;
-
-		return ostr.str();
+		return;
 	}
 }
 

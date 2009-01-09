@@ -47,6 +47,13 @@ namespace ast
 				{//Var doesn't exist, create it with good dimensions
 					bNew = true;
 				}
+				else
+				{
+					if(pIT->isRef(1) == true)
+					{
+						pIT = pIT->clone();
+					}
+				}
 
 				//Create list of indexes
 				//std::vector<std::vector<int>> IndexList;

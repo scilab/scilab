@@ -188,6 +188,14 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 
 }
 
+void Add_Space(ostringstream *_postr, int _iSpace)
+{
+	for(int i = 0 ; i < _iSpace ; i++)
+	{
+		*_postr << " ";
+	}
+}
+
 void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill)
 {
 	_postr->width(_iWidth);

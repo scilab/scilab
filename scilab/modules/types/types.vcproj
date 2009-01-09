@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes; ../operations/includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -106,7 +106,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes"
+				AdditionalIncludeDirectories="includes;../elementary_functions/includes;../core/includes; ../operations/includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\tostring_common.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\types.cpp"
 				>
 			</File>
@@ -248,6 +252,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\string.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\tostring_common.hxx"
 				>
 			</File>
 			<File

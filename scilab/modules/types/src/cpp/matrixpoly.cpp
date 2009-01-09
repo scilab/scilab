@@ -320,78 +320,108 @@ namespace types
 	std::string	MatrixPoly::toString(int _iPrecison, int _iLineLen)
 	{
 		ostringstream ostr;
+		ostringstream osExp;
+		ostringstream osCoef;
 
-		for(int iRow = 0 ; iRow < m_iRows ; iRow++)
+		list<string>::const_iterator it_Exp;
+		list<string>::const_iterator it_Coef;
+
+		if(m_iRows == 1 && m_iCols == 1)
 		{
-			for(int iCol = 0 ; iCol < m_iCols ; iCol++)
+			list<string> listExpR, listCoefR, listExpI, listCoefI;
+			if(m_bComplex)
 			{
-				cout << poly_get(iRow, iCol)->toStringReal(_iPrecison, _iLineLen, var_get()) << endl;
+				ostr << "real part" << endl << endl << endl;
+				poly_get(0)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+				for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+				{
+					ostr << *it_Exp << endl << *it_Coef << endl;
+				}
+
+				ostr << "imaginary part" << endl << endl << endl ;
+				poly_get(0)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpI, &listCoefI);
+				for(it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; it_Coef++,it_Exp++)
+				{
+					ostr << *it_Exp << endl << *it_Coef << endl;
+				}
+			}
+			else
+			{
+				poly_get(0)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+
+				for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+				{
+					ostr << *it_Exp << endl << *it_Coef << endl;
+				}
 			}
 		}
-		return "";//ostr.str();
+		else if(m_iRows == 1)
+		{
+			list<string> listExpR, listCoefR, listExpI, listCoefI;
+			if(m_bComplex)
+			{
+			}
+			else
+			{
+				int iLen				= 0;
+				int iLastFlush	= -1;
+				for(int i = 0 ; i < m_iSize ; i++)
+				{
+					string szExp, szCoef;
+					poly_get(i)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+					if(iLen != 0 && (int)(iLen + listCoefR.front().size()) > _iLineLen)
+					{//flush strean
+						if(i == iLastFlush + 1)
+						{
+							ostr << endl << "         column " << i << endl << endl;
+						}
+						else
+						{
+							ostr << endl << "         column " << iLastFlush + 2 /* 2 is better than 1, no ? */<< " to " << i + 1 << endl << endl;
+						}
+
+						iLastFlush	= i;
+						iLen				= 0;
+						ostr << osExp.str() << endl;
+						ostr << osCoef.str() << endl;
+						osExp.str("\x00");
+						osCoef.str("\x00");
+						listCoefR.clear();
+					}
+
+					for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+					{
+						osExp << *it_Exp;
+						osCoef << *it_Coef;
+					}
+
+					iLen = osExp.str().size();
+				}
+
+				if(iLastFlush != 0)
+				{//last line of a multiline output
+					if(iLastFlush + 1 == m_iSize - 1)
+					{
+						ostr << endl << "         column " << m_iSize << endl << endl;
+					}
+					else
+					{
+						ostr << endl << "         column " << iLastFlush + 1 << " to " << m_iSize << endl << endl;
+					}
+				}
+
+				ostr << osExp.str() << endl;
+				ostr << osCoef.str() << endl;
+				listCoefR.clear();
+			}
+		}
+		else if(m_iCols == 1)
+		{
+		}
+		else
+		{
+		}
+		return ostr.str();
+
 	}
 }
-
-/*
-					MatrixPoly *pMP = (*it_scope).second->getAsPoly();
-					ostr << "( " << pMP->rows_get() << ", " << pMP->cols_get() << " )" << std::endl;
-					for(int i = 0 ; i < pMP->rows_get(); i++)
-					{
-						for(int j = 0 ; j < pMP->cols_get(); j++)
-						{
-							ostr << "| ";
-							Poly *poPoly	= pMP->poly_get(i,j);
-							Double *pdbl	= poPoly->coef_get();
-							double *pR		= pdbl->real_get();
-							double *pI		= pdbl->img_get();
-
-							for(int k = poPoly->rank_get() - 1 ; k >= 0 ; k--)
-							{
-								if(k != poPoly->rank_get() - 1)
-								{
-									ostr << " + ";
-								}
-
-								ostr << "(";
-								if(pR[k] != 0 || pI == NULL || pI[k] == 0)
-								{
-									ostr << pR[k];
-								}
-
- 								if((pI != NULL && pI[k] != 0))
-								{
-									if(pR[k] != 0 && pI[k] > 0)
-									{
-										ostr << "+";
-									}
-
-									if(pI[k] == 1)
-									{
-										ostr << "i";
-									}
-									else if(pI[k] == -1)
-									{
-										ostr << "-i";
-									}
-									else
-									{
-										ostr << pI[k] << "i";
-									}
-								}
-								ostr << ")";
-
-								if(k != 0)
-								{
-									ostr << " * " << pMP->var_get();
-									if(k != 1)
-									{
-										ostr << "^" << k;
-									}
-								}
-							}
-							ostr << " |";
-						}
-						ostr << std::endl;
-					}
-					ostr << std::endl << std::endl;
-*/

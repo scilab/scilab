@@ -13,10 +13,12 @@
 #ifndef __POLY_HH__
 #define __POLY_HH__
 
+#include <list>
 #include "types.hxx"
 #include "double.hxx"
 
 using std::string;
+using std::list;
 
 namespace types
 {
@@ -46,13 +48,15 @@ namespace types
 		void					update_rank(void);
 
 		void					CreatePoly(double**_pdblCoefR, double**_pdblCoefI, int _iRank);
-		string				toStringReal(int _iPrecision, int _iLineLen, string _szVar);
-		string				toStringImg(int _iPrecision, int _iLineLen, string _szVar);
+		void					toStringReal(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+		void					toStringImg(int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
 
   protected :
 		RealType			getType(void);
 
-		/*clean values array*/
+	private : 
+		void					toStringInternal(double *_pdblVal, int _iPrecision, int _iLineLen, string _szVar, list<string>* _pListExp , list<string>* _pListCoef);
+
 
   private :
 		bool m_bComplex;

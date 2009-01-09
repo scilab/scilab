@@ -259,16 +259,28 @@ MatrixPoly* AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2)
 			double *pRR			= pCoefR->real_get();
 			double *pRI			= pCoefR->img_get();
 
-			for(int j = 0 ; j < pRank[i] ; j++)
+			for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
 			{
 				pRR[j] = p1R[j] + p2R[j];
 			}
 
+			double *pTemp = (pRank1[i] > pRank2[i] ? p1R : p2R);
+			for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
+			{
+				pRR[j] = pTemp[j];
+			}
+
 			if(pResult->isComplex())
 			{
-				for(int j = 0 ; j < pRank[i] ; j++)
+				for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
 				{
 					pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
+				}
+
+				double *pTemp = (pRank1[i] > pRank2[i] ? p1I : p2I);
+				for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]); j++)
+				{
+					pRI[j] = pTemp == NULL ? 0 : pTemp[j];
 				}
 			}
 		}
@@ -311,16 +323,28 @@ MatrixPoly* AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2)
 			double *pRR			= pCoefR->real_get();
 			double *pRI			= pCoefR->img_get();
 
-			for(int j = 0 ; j < pRank[i] ; j++)
+			for(int j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
 			{
 				pRR[j] = p1R[j] + p2R[j];
 			}
 
+			double *pTemp = (pRank1[0] > pRank2[i] ? p1R : p2R);
+			for(int j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]) ; j++)
+			{
+				pRR[j] = pTemp[j];
+			}
+
 			if(pResult->isComplex())
 			{
-				for(int j = 0 ; j < pRank[i] ; j++)
+				for(int j = 0 ; j < Min(pRank1[0], pRank2[i]) ; j++)
 				{
 					pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
+				}
+
+				double *pTemp = (pRank1[0] > pRank2[i] ? p1I : p2I);
+				for(int j = Min(pRank1[0], pRank2[i]) ; j < Max(pRank1[0], pRank2[i]); j++)
+				{
+					pRI[j] = pTemp == NULL ? 0 : pTemp[j];
 				}
 			}
 		}
@@ -364,16 +388,28 @@ MatrixPoly* AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2)
 			double *pRR			= pCoefR->real_get();
 			double *pRI			= pCoefR->img_get();
 
-			for(int j = 0 ; j < pRank[i] ; j++)
+			for(int j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
 			{
 				pRR[j] = p1R[j] + p2R[j];
 			}
 
+			double *pTemp = (pRank1[i] > pRank2[0] ? p1R : p2R);
+			for(int j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]) ; j++)
+			{
+				pRR[j] = pTemp[j];
+			}
+
 			if(pResult->isComplex())
 			{
-				for(int j = 0 ; j < pRank[i] ; j++)
+				for(int j = 0 ; j < Min(pRank1[i], pRank2[0]) ; j++)
 				{
 					pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
+				}
+
+				double *pTemp = (pRank1[i] > pRank2[0] ? p1I : p2I);
+				for(int j = Min(pRank1[i], pRank2[0]) ; j < Max(pRank1[i], pRank2[0]); j++)
+				{
+					pRI[j] = pTemp == NULL ? 0 : pTemp[j];
 				}
 			}
 		}

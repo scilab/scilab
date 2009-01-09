@@ -331,6 +331,7 @@ namespace ast
 				{
 					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
 					Double *pR			    = execMeR.result_get()->getAsDouble();
+
 					int iRowResult 	= 0;
 					int iColResult	= 0;
 					int *piRank			= NULL;
@@ -476,13 +477,11 @@ namespace ast
 					}
 					else if(pL->size_get() == 1)
 					{
-						std::cout << "pL->size_get() == 1" << std::endl;
 						iRowResult = pR->rows_get();
 						iColResult = pR->cols_get();
 					}
 					else if (pR->size_get() == 1)
 					{
-						std::cout << "pR->size_get() == 1" << std::endl;
 						iRowResult = pL->rows_get();
 						iColResult = pL->cols_get();
 					}

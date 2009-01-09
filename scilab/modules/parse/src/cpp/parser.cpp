@@ -59,7 +59,7 @@ void Parser::parse(char *command)
   yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
 	TCHAR szFile[] = TEXT("command.temp");
-	fopen_s(&yyin, "command.temp", "a+");
+	fopen_s(&yyin, "command.temp", "w");
 	fwrite(command, 1, strlen(command), yyin);
 	fclose(yyin);
 	fopen_s(&yyin, "command.temp", "r");

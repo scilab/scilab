@@ -351,7 +351,11 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			memset(m_pdblReal, 0x00, m_iSize * sizeof(double));
+			for(int i = 0 ; i < m_iSize ; i++)
+			{
+				m_pdblReal[i] = 0;
+			}
+			//memset(m_pdblReal, 0x00, m_iSize * sizeof(double));
 		}
 		else
 			return false;
@@ -740,5 +744,21 @@ namespace types
 		}
 		*/
 		return ostr.str();
+	}
+
+	Double* Double::clone()
+	{
+		double *pReal		= NULL;
+		double *pImg		= NULL;
+
+		Double *pReturn = new Double(m_iRows, m_iCols, &pReal);
+		memcpy(pReal, m_pdblReal, m_iSize * sizeof(double));
+
+		if(m_bComplex)
+		{
+			pReturn->complex_set(true);
+			memcpy(pReturn->img_get(), m_pdblImg, m_iSize * sizeof(double));
+		}
+		return pReturn;
 	}
 }
