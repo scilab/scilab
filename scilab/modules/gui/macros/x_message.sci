@@ -11,7 +11,7 @@
 
 function varargout = x_message(msg, buttons)
 
-//warnobsolete("messagebox", "5.1");
+warnobsolete("messagebox", "5.2");
 
 rhs = argn(2);
 

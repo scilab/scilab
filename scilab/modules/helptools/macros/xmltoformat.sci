@@ -378,7 +378,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			for k=1:size(dirs_c,"*")
 				if need_to_be_build_tab_c(k) then
 					mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
-					if dirs_c(k) == pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k),%f,%f) then
+					if getshortpathname(dirs_c(k)) == getshortpathname(pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k),%f,%f)) then
 					  create_MD_scicos(dirs_c(k), dirs_c(k)+"/master_help.xml", directory_language_c(k))
 					else
 					  create_MD_dir(dirs_c(k),titles_c(k),dirs_c(k)+"/master_help.xml",directory_language_c(k));
@@ -401,7 +401,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 				else
 					mprintf(_("\nBuilding the master document in %s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 				end
-				if dirs(k)==pathconvert(SCI + "/modules/scicos/help/" + directory_language(k),%f,%f) then
+				if getshortpathname(dirs(k))==getshortpathname(pathconvert(SCI + "/modules/scicos/help/" + directory_language(k),%f,%f)) then
 				  create_MD_scicos(dirs(k), dirs(k)+"/master_help.xml", directory_language(k))
 				else
 				  create_MD_dir(dirs(k),titles(k),dirs(k)+"/master_help.xml",directory_language(k));
@@ -1429,7 +1429,7 @@ for k=1:size(tmpfiles, "*")
   if ~isdir(tmpfiles(k)) then // Each file is an entry in the reference
     entries($+1) = tmpfiles(k);
   else // Each dir is a new part under the reference
-    category = tokens(tmpfiles(k), "/");
+    category = tokens(tmpfiles(k), filesep() );
     category = category($);
 
     ref = [ref;
@@ -1461,9 +1461,21 @@ function category = dirToCat(directory, language)
 
 alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures"];
 if language == "fr_FR" then
-  allcategories = ["Fonctions en ligne de commande", "Editeur", "Palette Sources", "Palette Linéaire", "Palette Non-linéaire", "Palette Branchements", "Palette Divers", "Palette Détection", "Palette Affichage", "Palette Evènements", "Palette des Composants Electriques", "Palette des Composants Thermohydrauliques", "Palette d''Opérations Matricielles", "Palette Integer", "Palette des Blocks de Démonstration", "Blocs par Ordre Alphabétique", "Fonctions de Calcul en C", "Fonctions de Calcul Scilab", "Fonctions Utilitaires", "Programmation des Blocs Scicos", "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab"];
+  allcategories = ["Fonctions en ligne de commande", "Editeur", "Palette Sources", ..
+   "Palette Linéaire", "Palette Non-linéaire", "Palette Branchements", "Palette Divers", .. 
+   "Palette Détection", "Palette Affichage", "Palette Evènements", "Palette des Composants Electriques", ..
+    "Palette des Composants Thermohydrauliques", "Palette d''Opérations Matricielles", "Palette Integer", ..
+     "Palette des Blocks de Démonstration", "Blocs par Ordre Alphabétique", "Fonctions de Calcul en C", ..
+      "Fonctions de Calcul Scilab", "Fonctions Utilitaires", "Programmation des Blocs Scicos", ..
+      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab"];
 else
-  allcategories = [_("Batch functions"), _("Editor"), _("Sources Palette"), _("Linear Palette"), _("Non-linear Palette"), _("Branching Palette"), _("Others Palettes"), _("Threshold Palette"), _("Sinks Palette"), _("Events Palette"), _("Electrical Palette"), _("Thermohydraulics Palette"), _("Matrix Palette"), _("Integer Palette"), _("Demoblocks Palette"), _("ABCD Blocks"), _("C Computational Functions"), _("Scilab Computational Functions"), _("Utilities Functions"), _("Programming Scicos Blocks"), _("Scilab Utilities Functions"), _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures")];
+  allcategories = [_("Batch functions"), _("Editor"), _("Sources Palette"), ..
+  _("Linear Palette"), _("Non-linear Palette"), _("Branching Palette"), _("Others Palettes"), ..
+  _("Threshold Palette"), _("Sinks Palette"), _("Events Palette"), _("Electrical Palette"), ..
+   _("Thermohydraulics Palette"), _("Matrix Palette"), _("Integer Palette"), _("Demoblocks Palette"), ..
+    _("ABCD Blocks"), _("C Computational Functions"), _("Scilab Computational Functions"), ..
+     _("Utilities Functions"), _("Programming Scicos Blocks"), _("Scilab Utilities Functions"), ..
+      _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures")];
 end
 category = allcategories(find(alldirs==directory));
 endfunction
