@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents RELATIONALOP">
+  <refsection id="Contents_RELATIONALOP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RELATIONALOP">Palette</xref>
+              <xref linkend="Palette_RELATIONALOP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RELATIONALOP">Description</xref>
+              <xref linkend="Description_RELATIONALOP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box RELATIONALOP">Dialog box</xref>
+              <xref linkend="Dialogbox_RELATIONALOP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties RELATIONALOP">Default properties</xref>
+              <xref linkend="Defaultproperties_RELATIONALOP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function RELATIONALOP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_RELATIONALOP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function RELATIONALOP">Computational function</xref>
+              <xref linkend="Computationalfunction_RELATIONALOP">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors RELATIONALOP">Authors</xref>
+              <xref linkend="Authors_RELATIONALOP">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RELATIONALOP">
+  <refsection id="Palette_RELATIONALOP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RELATIONALOP">
+  <refsection id="Description_RELATIONALOP">
     <title>Description</title>
     <para>
 It performs logical comparison of its two inputs. 
 
 </para>
   </refsection>
-  <refsection id="Dialog box RELATIONALOP">
+  <refsection id="Dialogbox_RELATIONALOP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -131,7 +131,7 @@ It performs logical comparison of its two inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties RELATIONALOP">
+  <refsection id="Defaultproperties_RELATIONALOP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ It performs logical comparison of its two inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function RELATIONALOP">
+  <refsection id="Interfacingfunction_RELATIONALOP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ It performs logical comparison of its two inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function RELATIONALOP">
+  <refsection id="Computationalfunction_RELATIONALOP">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ It performs logical comparison of its two inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors RELATIONALOP">
+  <refsection id="Authors_RELATIONALOP">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

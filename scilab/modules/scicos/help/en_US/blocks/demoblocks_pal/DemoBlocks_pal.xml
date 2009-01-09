@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module DemoBlocks_pal">
+  <refsection id="Module_DemoBlocks_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DemoBlocks_pal">
+  <refsection id="Description_DemoBlocks_pal">
     <title>Description</title>
     <para>
 The Blocks of that palette are used in some Scicos
@@ -54,7 +54,7 @@ diagrams of demonstration.
 
 </para>
   </refsection>
-  <refsection id="Blocks DemoBlocks_pal">
+  <refsection id="Blocks_DemoBlocks_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

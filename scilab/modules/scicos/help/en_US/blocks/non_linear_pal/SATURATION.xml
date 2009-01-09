@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SATURATION">
+  <refsection id="Contents_SATURATION">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SATURATION">Palette</xref>
+              <xref linkend="Palette_SATURATION">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SATURATION">Description</xref>
+              <xref linkend="Description_SATURATION">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SATURATION">Dialog box</xref>
+              <xref linkend="Dialogbox_SATURATION">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SATURATION">Default properties</xref>
+              <xref linkend="Defaultproperties_SATURATION">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SATURATION">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SATURATION">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SATURATION">Computational function</xref>
+              <xref linkend="Computationalfunction_SATURATION">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SATURATION">Authors</xref>
+              <xref linkend="Authors_SATURATION">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SATURATION">
+  <refsection id="Palette_SATURATION">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SATURATION">
+  <refsection id="Description_SATURATION">
     <title>Description</title>
     <para>
 The Saturation block imposes upper and lower bounds on a signal. When
@@ -108,7 +108,7 @@ value.
 
 </para>
   </refsection>
-  <refsection id="Dialog box SATURATION">
+  <refsection id="Dialogbox_SATURATION">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SATURATION">
+  <refsection id="Defaultproperties_SATURATION">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SATURATION">
+  <refsection id="Interfacingfunction_SATURATION">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SATURATION">
+  <refsection id="Computationalfunction_SATURATION">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SATURATION">
+  <refsection id="Authors_SATURATION">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

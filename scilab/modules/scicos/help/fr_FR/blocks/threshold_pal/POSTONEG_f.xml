@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu POSTONEG_f">
+  <refsection id="Contenu_POSTONEG_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette POSTONEG_f">Palette</xref>
+              <xref linkend="Palette_POSTONEG_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description POSTONEG_f">Description</xref>
+              <xref linkend="Description_POSTONEG_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut POSTONEG_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_POSTONEG_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface POSTONEG_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_POSTONEG_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul POSTONEG_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_POSTONEG_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="POSTONEG_f">Auteurs</link>
+              <xref linkend="Auteurs_POSTONEG_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette POSTONEG_f">
+  <refsection id="Palette_POSTONEG_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description POSTONEG_f">
+  <refsection id="Description_POSTONEG_f">
     <title>Description</title>
     <para>
 Un événement est généré lorsque l'unique entrée de ce bloc traverse
@@ -98,7 +98,7 @@ la valeur zéro lors d'un front descendant.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut POSTONEG_f">
+  <refsection id="Propriétéspardéfaut_POSTONEG_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -144,7 +144,7 @@ la valeur zéro lors d'un front descendant.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface POSTONEG_f">
+  <refsection id="Fonctiondinterface_POSTONEG_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@ la valeur zéro lors d'un front descendant.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul POSTONEG_f">
+  <refsection id="Fonctiondecalcul_POSTONEG_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ la valeur zéro lors d'un front descendant.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs POSTONEG_f">
+  <refsection id="Auteurs_POSTONEG_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

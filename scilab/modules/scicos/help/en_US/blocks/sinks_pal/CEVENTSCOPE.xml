@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CEVENTSCOPE">
+  <refsection id="Contents_CEVENTSCOPE">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CEVENTSCOPE">Palette</xref>
+              <xref linkend="Palette_CEVENTSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CEVENTSCOPE">Description</xref>
+              <xref linkend="Description_CEVENTSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CEVENTSCOPE">Dialog box</xref>
+              <xref linkend="Dialogbox_CEVENTSCOPE">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CEVENTSCOPE">Default properties</xref>
+              <xref linkend="Defaultproperties_CEVENTSCOPE">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CEVENTSCOPE">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CEVENTSCOPE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CEVENTSCOPE">Computational function</xref>
+              <xref linkend="Computationalfunction_CEVENTSCOPE">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CEVENTSCOPE">Authors</xref>
+              <xref linkend="Authors_CEVENTSCOPE">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CEVENTSCOPE">
+  <refsection id="Palette_CEVENTSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CEVENTSCOPE">
+  <refsection id="Description_CEVENTSCOPE">
     <title>Description</title>
     <para>
 This block realizes the visualization of the input event signals.  
@@ -103,7 +103,7 @@ This block realizes the visualization of the input event signals.
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box CEVENTSCOPE">
+  <refsection id="Dialogbox_CEVENTSCOPE">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -159,7 +159,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CEVENTSCOPE">
+  <refsection id="Defaultproperties_CEVENTSCOPE">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CEVENTSCOPE">
+  <refsection id="Interfacingfunction_CEVENTSCOPE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CEVENTSCOPE">
+  <refsection id="Computationalfunction_CEVENTSCOPE">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CEVENTSCOPE">
+  <refsection id="Authors_CEVENTSCOPE">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

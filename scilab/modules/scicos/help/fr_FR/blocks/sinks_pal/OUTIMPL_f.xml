@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu OUTIMPL_f">
+  <refsection id="Contenu_OUTIMPL_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette OUTIMPL_f">Palette</xref>
+              <xref linkend="Palette_OUTIMPL_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description OUTIMPL_f">Description</xref>
+              <xref linkend="Description_OUTIMPL_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue OUTIMPL_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_OUTIMPL_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut OUTIMPL_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_OUTIMPL_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface OUTIMPL_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_OUTIMPL_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="OUTIMPL_f">Auteurs</link>
+              <xref linkend="Auteurs_OUTIMPL_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette OUTIMPL_f">
+  <refsection id="Palette_OUTIMPL_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description OUTIMPL_f">
+  <refsection id="Description_OUTIMPL_f">
     <title>Description</title>
     <para>
 Les ports de sortie OUTIMPL_f sont des liens qui permettent de connecter
@@ -98,7 +98,7 @@ l'extérieur d'un système vers l'intérieur.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue OUTIMPL_f">
+  <refsection id="Boîtededialogue_OUTIMPL_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -120,7 +120,7 @@ l'extérieur d'un système vers l'intérieur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut OUTIMPL_f">
+  <refsection id="Propriétéspardéfaut_OUTIMPL_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -166,7 +166,7 @@ l'extérieur d'un système vers l'intérieur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface OUTIMPL_f">
+  <refsection id="Fonctiondinterface_OUTIMPL_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -174,7 +174,7 @@ l'extérieur d'un système vers l'intérieur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs OUTIMPL_f">
+  <refsection id="Auteurs_OUTIMPL_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATCATV">
+  <refsection id="Contenu_MATCATV">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATCATV">Palette</xref>
+              <xref linkend="Palette_MATCATV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATCATV">Description</xref>
+              <xref linkend="Description_MATCATV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATCATV">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATCATV">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATCATV">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATCATV">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATCATV">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATCATV">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATCATV">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATCATV">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATCATV">Voir aussi</link>
+              <xref linkend="Voiraussi_MATCATV">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATCATV">Auteurs</link>
+              <xref linkend="Auteurs_MATCATV">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATCATV">
+  <refsection id="Palette_MATCATV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATCATV">
+  <refsection id="Description_MATCATV">
     <title>Description</title>
     <para>
 The MATCATV Block outputs the vertical concatenation of multiple matrices. It is also called concatenation according to the rows. The inputs U1,U2,...,Un must have the same number of columns. The output is a (M1+M2+...+Mn)-by-N matrix, where M1,M2,...,Mn are the numbers of rows of the inputs matrices, and N is the number of columns.  
@@ -111,7 +111,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATCATV">
+  <refsection id="Boîtededialogue_MATCATV">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -140,7 +140,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATCATV">
+  <refsection id="Propriétéspardéfaut_MATCATV">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATCATV">
+  <refsection id="Fonctiondinterface_MATCATV">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATCATV">
+  <refsection id="Fonctiondecalcul_MATCATV">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATCATV">
+  <refsection id="Voiraussi_MATCATV">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATCATV">
+  <refsection id="Auteurs_MATCATV">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

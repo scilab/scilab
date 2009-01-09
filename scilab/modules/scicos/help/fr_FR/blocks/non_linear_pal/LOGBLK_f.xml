@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu LOGBLK_f">
+  <refsection id="Contenu_LOGBLK_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette LOGBLK_f">Palette</xref>
+              <xref linkend="Palette_LOGBLK_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description LOGBLK_f">Description</xref>
+              <xref linkend="Description_LOGBLK_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue LOGBLK_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_LOGBLK_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut LOGBLK_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_LOGBLK_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface LOGBLK_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_LOGBLK_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul LOGBLK_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_LOGBLK_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="LOGBLK_f">Auteurs</link>
+              <xref linkend="Auteurs_LOGBLK_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette LOGBLK_f">
+  <refsection id="Palette_LOGBLK_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description LOGBLK_f">
+  <refsection id="Description_LOGBLK_f">
     <title>Description</title>
     <para>
 Ce bloc calcule 
@@ -104,7 +104,7 @@ Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue LOGBLK_f">
+  <refsection id="Boîtededialogue_LOGBLK_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -126,7 +126,7 @@ Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut LOGBLK_f">
+  <refsection id="Propriétéspardéfaut_LOGBLK_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface LOGBLK_f">
+  <refsection id="Fonctiondinterface_LOGBLK_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul LOGBLK_f">
+  <refsection id="Fonctiondecalcul_LOGBLK_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ Les tailles des ports d'entrée/sortie sont déterminés par le contexte.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs LOGBLK_f">
+  <refsection id="Auteurs_LOGBLK_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

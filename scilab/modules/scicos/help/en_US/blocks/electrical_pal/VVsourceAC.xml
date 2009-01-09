@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents VVsourceAC">
+  <refsection id="Contents_VVsourceAC">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VVsourceAC">Palette</xref>
+              <xref linkend="Palette_VVsourceAC">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VVsourceAC">Description</xref>
+              <xref linkend="Description_VVsourceAC">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box VVsourceAC">Dialog box</xref>
+              <xref linkend="Dialogbox_VVsourceAC">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties VVsourceAC">Default properties</xref>
+              <xref linkend="Defaultproperties_VVsourceAC">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function VVsourceAC">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_VVsourceAC">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VVsourceAC">
+  <refsection id="Palette_VVsourceAC">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VVsourceAC">
+  <refsection id="Description_VVsourceAC">
     <title>Description</title>
     <para>
 The variable voltage source block is a model for a controlled AC
@@ -101,7 +101,7 @@ of the block is zero.
 
 </para>
   </refsection>
-  <refsection id="Dialog box VVsourceAC">
+  <refsection id="Dialogbox_VVsourceAC">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -123,7 +123,7 @@ of the block is zero.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties VVsourceAC">
+  <refsection id="Defaultproperties_VVsourceAC">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function VVsourceAC">
+  <refsection id="Interfacingfunction_VVsourceAC">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model VVsourceAC">
+  <refsection id="Modelicamodel_VVsourceAC">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

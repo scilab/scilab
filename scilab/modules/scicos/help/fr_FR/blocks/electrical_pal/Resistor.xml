@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Resistor">
+  <refsection id="Contenu_Resistor">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Resistor">Palette</xref>
+              <xref linkend="Palette_Resistor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Resistor">Description</xref>
+              <xref linkend="Description_Resistor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Resistor">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Resistor">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Resistor">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Resistor">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Resistor">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Resistor">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Resistor">
+  <refsection id="Palette_Resistor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Resistor">
+  <refsection id="Description_Resistor">
     <title>Description</title>
     <para>
 Une résistance est un composant électrique à deux ports qui résiste à
@@ -113,7 +113,7 @@ les ports de la résistance divisée par le courant qui passe au travers
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Resistor">
+  <refsection id="Boîtededialogue_Resistor">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ les ports de la résistance divisée par le courant qui passe au travers
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Resistor">
+  <refsection id="Propriétéspardéfaut_Resistor">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ les ports de la résistance divisée par le courant qui passe au travers
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Resistor">
+  <refsection id="Fonctiondinterface_Resistor">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ les ports de la résistance divisée par le courant qui passe au travers
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica Resistor">
+  <refsection id="ModèleModelica_Resistor">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Gyrator">
+  <refsection id="Contenu_Gyrator">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Gyrator">Palette</xref>
+              <xref linkend="Palette_Gyrator">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Gyrator">Description</xref>
+              <xref linkend="Description_Gyrator">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Gyrator">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Gyrator">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Gyrator">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Gyrator">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Gyrator">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Gyrator">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Gyrator">Auteurs</link>
+              <xref linkend="Auteurs_Gyrator">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Gyrator">
+  <refsection id="Palette_Gyrator">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Gyrator">
+  <refsection id="Description_Gyrator">
     <title>Description</title>
     <para>
 A gyrator is a two-port element defined by the following equations:  i1 =  G2 * v2   i2 = -G1 * v1  where the constants G1, G2 are called the gyration conductance.  
@@ -103,7 +103,7 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Gyrator">
+  <refsection id="Boîtededialogue_Gyrator">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Gyrator">
+  <refsection id="Propriétéspardéfaut_Gyrator">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Gyrator">
+  <refsection id="Fonctiondinterface_Gyrator">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica Gyrator">
+  <refsection id="ModèleModelica_Gyrator">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs Gyrator">
+  <refsection id="Auteurs_Gyrator">
     <title>Auteurs</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CFSCOPE">
+  <refsection id="Contenu_CFSCOPE">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CFSCOPE">Palette</xref>
+              <xref linkend="Palette_CFSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CFSCOPE">Description</xref>
+              <xref linkend="Description_CFSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CFSCOPE">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CFSCOPE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CFSCOPE">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CFSCOPE">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CFSCOPE">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CFSCOPE">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CFSCOPE">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CFSCOPE">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CFSCOPE">Auteurs</link>
+              <xref linkend="Auteurs_CFSCOPE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CFSCOPE">
+  <refsection id="Palette_CFSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CFSCOPE">
+  <refsection id="Description_CFSCOPE">
     <title>Description</title>
     <para>
 This is a floating scope block.  
@@ -103,7 +103,7 @@ This is a floating scope block.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CFSCOPE">
+  <refsection id="Boîtededialogue_CFSCOPE">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -181,7 +181,7 @@ This is a floating scope block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CFSCOPE">
+  <refsection id="Propriétéspardéfaut_CFSCOPE">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ This is a floating scope block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CFSCOPE">
+  <refsection id="Fonctiondinterface_CFSCOPE">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -227,7 +227,7 @@ This is a floating scope block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CFSCOPE">
+  <refsection id="Fonctiondecalcul_CFSCOPE">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -235,7 +235,7 @@ This is a floating scope block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CFSCOPE">
+  <refsection id="Auteurs_CFSCOPE">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

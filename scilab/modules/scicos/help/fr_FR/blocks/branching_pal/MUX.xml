@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MUX">
+  <refsection id="Contenu_MUX">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MUX">Palette</xref>
+              <xref linkend="Palette_MUX">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MUX">Description</xref>
+              <xref linkend="Description_MUX">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MUX">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MUX">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MUX">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MUX">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MUX">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MUX">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MUX">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MUX">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MUX">Auteurs</link>
+              <xref linkend="Auteurs_MUX">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MUX">
+  <refsection id="Palette_MUX">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MUX">
+  <refsection id="Description_MUX">
     <title>Description</title>
     <para>
 Ce bloc regroupe  vecteurs d'entrée en un seul vecteur à la sortie.
@@ -109,7 +109,7 @@ Les tailles d'entrée/sortie sont soit déterminées automatiquement
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MUX">
+  <refsection id="Boîtededialogue_MUX">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -131,7 +131,7 @@ Les tailles d'entrée/sortie sont soit déterminées automatiquement
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MUX">
+  <refsection id="Propriétéspardéfaut_MUX">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ Les tailles d'entrée/sortie sont soit déterminées automatiquement
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MUX">
+  <refsection id="Fonctiondinterface_MUX">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ Les tailles d'entrée/sortie sont soit déterminées automatiquement
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MUX">
+  <refsection id="Fonctiondecalcul_MUX">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ Les tailles d'entrée/sortie sont soit déterminées automatiquement
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MUX">
+  <refsection id="Auteurs_MUX">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

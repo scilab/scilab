@@ -26,7 +26,7 @@
     <refname>getblocklabel</refname>
     <refpurpose>Retourne le label d'un bloc scicos</refpurpose>
   </refnamediv>
-  <refsection id="Module getblocklabel">
+  <refsection id="Module_getblocklabel">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -35,14 +35,11 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Séquence d'appel getblocklabel">
-    <title>Séquence d'appel</title>
     <programlisting role="example"><![CDATA[
 [label]=getblocklabel(blk)
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres getblocklabel">
+  <refsection id="Paramètres_getblocklabel">
     <title>Paramètres</title>
     <itemizedlist>
       <listitem>

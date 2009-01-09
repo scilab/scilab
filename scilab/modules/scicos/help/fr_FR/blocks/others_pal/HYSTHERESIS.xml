@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu HYSTHERESIS">
+  <refsection id="Contenu_HYSTHERESIS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette HYSTHERESIS">Palette</xref>
+              <xref linkend="Palette_HYSTHERESIS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description HYSTHERESIS">Description</xref>
+              <xref linkend="Description_HYSTHERESIS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue HYSTHERESIS">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_HYSTHERESIS">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut HYSTHERESIS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_HYSTHERESIS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface HYSTHERESIS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_HYSTHERESIS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul HYSTHERESIS">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_HYSTHERESIS">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="HYSTHERESIS">Auteurs</link>
+              <xref linkend="Auteurs_HYSTHERESIS">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette HYSTHERESIS">
+  <refsection id="Palette_HYSTHERESIS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description HYSTHERESIS">
+  <refsection id="Description_HYSTHERESIS">
     <title>Description</title>
     <para>
 Permutte la valeur de la sortie entre deux constantes.
@@ -103,7 +103,7 @@ TODO
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue HYSTHERESIS">
+  <refsection id="Boîtededialogue_HYSTHERESIS">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -153,7 +153,7 @@ TODO
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut HYSTHERESIS">
+  <refsection id="Propriétéspardéfaut_HYSTHERESIS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ TODO
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface HYSTHERESIS">
+  <refsection id="Fonctiondinterface_HYSTHERESIS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ TODO
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul HYSTHERESIS">
+  <refsection id="Fonctiondecalcul_HYSTHERESIS">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ TODO
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs HYSTHERESIS">
+  <refsection id="Auteurs_HYSTHERESIS">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

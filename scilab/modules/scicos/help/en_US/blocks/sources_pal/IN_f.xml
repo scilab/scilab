@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents IN_f">
+  <refsection id="Contents_IN_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette IN_f">Palette</xref>
+              <xref linkend="Palette_IN_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description IN_f">Description</xref>
+              <xref linkend="Description_IN_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box IN_f">Dialog box</xref>
+              <xref linkend="Dialogbox_IN_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties IN_f">Default properties</xref>
+              <xref linkend="Defaultproperties_IN_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function IN_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_IN_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors IN_f">Authors</xref>
+              <xref linkend="Authors_IN_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette IN_f">
+  <refsection id="Palette_IN_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description IN_f">
+  <refsection id="Description_IN_f">
     <title>Description</title>
     <para>
 This block must only be used inside Scicos Super Blocks to represent a
@@ -100,7 +100,7 @@ of regular input ports.
 
 </para>
   </refsection>
-  <refsection id="Dialog box IN_f">
+  <refsection id="Dialogbox_IN_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -122,7 +122,7 @@ of regular input ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties IN_f">
+  <refsection id="Defaultproperties_IN_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ of regular input ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function IN_f">
+  <refsection id="Interfacingfunction_IN_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -176,7 +176,7 @@ of regular input ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors IN_f">
+  <refsection id="Authors_IN_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

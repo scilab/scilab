@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents BOUNCEXY">
+  <refsection id="Contents_BOUNCEXY">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BOUNCEXY">Palette</xref>
+              <xref linkend="Palette_BOUNCEXY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box BOUNCEXY">Dialog box</xref>
+              <xref linkend="Dialogbox_BOUNCEXY">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties BOUNCEXY">Default properties</xref>
+              <xref linkend="Defaultproperties_BOUNCEXY">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function BOUNCEXY">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_BOUNCEXY">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function BOUNCEXY">Computational function</xref>
+              <xref linkend="Computationalfunction_BOUNCEXY">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors BOUNCEXY">Authors</xref>
+              <xref linkend="Authors_BOUNCEXY">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BOUNCEXY">
+  <refsection id="Palette_BOUNCEXY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Dialog box BOUNCEXY">
+  <refsection id="Dialogbox_BOUNCEXY">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -161,7 +161,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties BOUNCEXY">
+  <refsection id="Defaultproperties_BOUNCEXY">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function BOUNCEXY">
+  <refsection id="Interfacingfunction_BOUNCEXY">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function BOUNCEXY">
+  <refsection id="Computationalfunction_BOUNCEXY">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors BOUNCEXY">
+  <refsection id="Authors_BOUNCEXY">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

@@ -26,7 +26,7 @@
     <refname>scicos_time</refname>
     <refpurpose>Retourne le temps courant pendant la simulation</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_time">
+  <refsection id="Module_scicos_time">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -35,14 +35,11 @@
         </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Séquence d'appel scicos_time">
-    <title>Séquence d'appel</title>
     <programlisting role="example"><![CDATA[
 t=scicos_time()
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres scicos_time">
+  <refsection id="Paramètres_scicos_time">
     <title>Paramètres</title>
     <itemizedlist>
       <listitem>

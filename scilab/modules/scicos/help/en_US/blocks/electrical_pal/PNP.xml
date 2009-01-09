@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents PNP">
+  <refsection id="Contents_PNP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PNP">Palette</xref>
+              <xref linkend="Palette_PNP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PNP">Description</xref>
+              <xref linkend="Description_PNP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box PNP">Dialog box</xref>
+              <xref linkend="Dialogbox_PNP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties PNP">Default properties</xref>
+              <xref linkend="Defaultproperties_PNP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function PNP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_PNP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,19 +78,19 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also PNP">See also</xref>
+              <xref linkend="Seealso_PNP">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors PNP">Authors</xref>
+              <xref linkend="Authors_PNP">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PNP">
+  <refsection id="Palette_PNP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PNP">
+  <refsection id="Description_PNP">
     <title>Description</title>
     <para>
 This model is a simple model of a bipolar PNP junction transistor according to Ebers-Moll.  
@@ -108,7 +108,7 @@ This model is a simple model of a bipolar PNP junction transistor according to E
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box PNP">
+  <refsection id="Dialogbox_PNP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -219,7 +219,7 @@ This model is a simple model of a bipolar PNP junction transistor according to E
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Default properties PNP">
+  <refsection id="Defaultproperties_PNP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -445,7 +445,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function PNP">
+  <refsection id="Interfacingfunction_PNP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -453,7 +453,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model PNP">
+  <refsection id="Modelicamodel_PNP">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -461,7 +461,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also PNP">
+  <refsection id="Seealso_PNP">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -471,7 +471,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors PNP">
+  <refsection id="Authors_PNP">
     <title>Authors</title>
     <para><emphasis role="bold"/> - www.modelica.org</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EXTRACTBITS">
+  <refsection id="Contenu_EXTRACTBITS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXTRACTBITS">Palette</xref>
+              <xref linkend="Palette_EXTRACTBITS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXTRACTBITS">Description</xref>
+              <xref linkend="Description_EXTRACTBITS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EXTRACTBITS">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EXTRACTBITS">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EXTRACTBITS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EXTRACTBITS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EXTRACTBITS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EXTRACTBITS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EXTRACTBITS">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EXTRACTBITS">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXTRACTBITS">Voir aussi</link>
+              <xref linkend="Voiraussi_EXTRACTBITS">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXTRACTBITS">Auteurs</link>
+              <xref linkend="Auteurs_EXTRACTBITS">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXTRACTBITS">
+  <refsection id="Palette_EXTRACTBITS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXTRACTBITS">
+  <refsection id="Description_EXTRACTBITS">
     <title>Description</title>
     <para>
 This block outputs a contiguous selection of bits from the input integer number.The Bits to extract defines the method by which the user select the output bits.  
@@ -126,7 +126,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EXTRACTBITS">
+  <refsection id="Boîtededialogue_EXTRACTBITS">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -169,7 +169,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EXTRACTBITS">
+  <refsection id="Propriétéspardéfaut_EXTRACTBITS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EXTRACTBITS">
+  <refsection id="Fonctiondinterface_EXTRACTBITS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -231,7 +231,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EXTRACTBITS">
+  <refsection id="Fonctiondecalcul_EXTRACTBITS">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -335,7 +335,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi EXTRACTBITS">
+  <refsection id="Voiraussi_EXTRACTBITS">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -350,7 +350,7 @@ The extracted value depends on the forth parameter "Treat bit field as an intege
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs EXTRACTBITS">
+  <refsection id="Auteurs_EXTRACTBITS">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

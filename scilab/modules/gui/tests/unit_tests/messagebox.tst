@@ -11,18 +11,17 @@
 
 // <-- INTERACTIVE TEST -->
 
-x_message(["Simple message";"No scroll bar at all"]);
+messagebox(["Simple message";"No scroll bar at all"],"modal");
 
-x_message(["message with huge vertical part";
+messagebox(["message with huge vertical part";
            "Only vertical scroll bar"
-          string(1:50)']);
+          string(1:50)'],"modal");
 
-x_message(["message with huge horizontal  part";
+messagebox(["message with huge horizontal  part";
           "Only horizontal scroll bar"
-           strcat(string(1:150),' ')]);
+           strcat(string(1:150),' ')],"modal");
 
-x_message(["huge message";
+messagebox(["huge message";
            "Vertical and horizontal scroll bars"
            strcat(string(1:150)," ");
-           string(1:50)']);
-
+           string(1:50)'],"modal");

@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="buildouttb">
   <refnamediv>
     <refname>buildouttb</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>buildouttb</refname>
     <refpurpose>Construction d'une liste vide %cpr.state.outtb</refpurpose>
   </refnamediv>
-  <refsection id="Module buildouttb">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[outtb]=buildouttb(lnksz,lnktyp)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_buildouttb">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,17 +40,18 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description buildouttb">
+  <refsection id="Description_buildouttb">
     <title>Description</title>
     <para>
 Construit une liste "outtb" initialisée.
 
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+[outtb]=buildouttb(lnksz,lnktyp)
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_buildouttb">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">outtb :</emphasis> une liste de taille n.</para>
@@ -74,7 +75,7 @@ Construit une liste "outtb" initialisée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs buildouttb">
+  <refsection id="Auteurs_buildouttb">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

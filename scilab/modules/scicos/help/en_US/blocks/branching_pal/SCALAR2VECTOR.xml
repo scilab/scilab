@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SCALAR2VECTOR">
+  <refsection id="Contents_SCALAR2VECTOR">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SCALAR2VECTOR">Palette</xref>
+              <xref linkend="Palette_SCALAR2VECTOR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SCALAR2VECTOR">Description</xref>
+              <xref linkend="Description_SCALAR2VECTOR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SCALAR2VECTOR">Dialog box</xref>
+              <xref linkend="Dialogbox_SCALAR2VECTOR">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SCALAR2VECTOR">Default properties</xref>
+              <xref linkend="Defaultproperties_SCALAR2VECTOR">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SCALAR2VECTOR">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SCALAR2VECTOR">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SCALAR2VECTOR">Computational function</xref>
+              <xref linkend="Computationalfunction_SCALAR2VECTOR">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SCALAR2VECTOR">Authors</xref>
+              <xref linkend="Authors_SCALAR2VECTOR">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SCALAR2VECTOR">
+  <refsection id="Palette_SCALAR2VECTOR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SCALAR2VECTOR">
+  <refsection id="Description_SCALAR2VECTOR">
     <title>Description</title>
     <para>
 This block  convert a scalar value into a vector of identical
@@ -108,7 +108,7 @@ have the same number of elements.
 
 </para>
   </refsection>
-  <refsection id="Dialog box SCALAR2VECTOR">
+  <refsection id="Dialogbox_SCALAR2VECTOR">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ have the same number of elements.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SCALAR2VECTOR">
+  <refsection id="Defaultproperties_SCALAR2VECTOR">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ have the same number of elements.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SCALAR2VECTOR">
+  <refsection id="Interfacingfunction_SCALAR2VECTOR">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ have the same number of elements.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SCALAR2VECTOR">
+  <refsection id="Computationalfunction_SCALAR2VECTOR">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ have the same number of elements.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SCALAR2VECTOR">
+  <refsection id="Authors_SCALAR2VECTOR">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

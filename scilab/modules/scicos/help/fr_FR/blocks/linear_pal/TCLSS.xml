@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu TCLSS">
+  <refsection id="Contenu_TCLSS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TCLSS">Palette</xref>
+              <xref linkend="Palette_TCLSS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TCLSS">Description</xref>
+              <xref linkend="Description_TCLSS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue TCLSS">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_TCLSS">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut TCLSS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_TCLSS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface TCLSS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_TCLSS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul TCLSS">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_TCLSS">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TCLSS">
+  <refsection id="Palette_TCLSS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TCLSS">
+  <refsection id="Description_TCLSS">
     <title>Description</title>
     <para>
 Ce bloc réalise un système d'équations d'etat en temporel continu avec
@@ -106,7 +106,7 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue TCLSS">
+  <refsection id="Boîtededialogue_TCLSS">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -156,7 +156,7 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut TCLSS">
+  <refsection id="Propriétéspardéfaut_TCLSS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface TCLSS">
+  <refsection id="Fonctiondinterface_TCLSS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul TCLSS">
+  <refsection id="Fonctiondecalcul_TCLSS">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

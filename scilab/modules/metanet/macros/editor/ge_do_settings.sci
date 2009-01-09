@@ -90,7 +90,7 @@ function GraphList=ge_do_settings(GraphList)
       mess=[mess;'The answer for ""Is graph directed"" must be ""yes"" or ""no""']
     end
     if mess<>[] then
-      x_message(mess)
+      messagebox(mess,"modal");
     else
       break
     end

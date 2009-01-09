@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SineVoltage">
+  <refsection id="Contents_SineVoltage">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SineVoltage">Palette</xref>
+              <xref linkend="Palette_SineVoltage">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SineVoltage">Description</xref>
+              <xref linkend="Description_SineVoltage">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SineVoltage">Dialog box</xref>
+              <xref linkend="Dialogbox_SineVoltage">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SineVoltage">Default properties</xref>
+              <xref linkend="Defaultproperties_SineVoltage">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SineVoltage">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SineVoltage">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SineVoltage">Authors</xref>
+              <xref linkend="Authors_SineVoltage">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SineVoltage">
+  <refsection id="Palette_SineVoltage">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SineVoltage">
+  <refsection id="Description_SineVoltage">
     <title>Description</title>
     <para>
 This Modelica block a general sine voltage source. The internal ohmic resistance is zero.  
@@ -103,7 +103,7 @@ This Modelica block a general sine voltage source. The internal ohmic resistance
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box SineVoltage">
+  <refsection id="Dialogbox_SineVoltage">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -153,7 +153,7 @@ This Modelica block a general sine voltage source. The internal ohmic resistance
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SineVoltage">
+  <refsection id="Defaultproperties_SineVoltage">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -250,7 +250,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SineVoltage">
+  <refsection id="Interfacingfunction_SineVoltage">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -258,7 +258,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model SineVoltage">
+  <refsection id="Modelicamodel_SineVoltage">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -266,7 +266,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SineVoltage">
+  <refsection id="Authors_SineVoltage">
     <title>Authors</title>
     <para><emphasis role="bold"/> - www.modelica.org</para>
   </refsection>

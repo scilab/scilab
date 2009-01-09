@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents PerteDP">
+  <refsection id="Contents_PerteDP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PerteDP">Palette</xref>
+              <xref linkend="Palette_PerteDP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PerteDP">Description</xref>
+              <xref linkend="Description_PerteDP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box PerteDP">Dialog box</xref>
+              <xref linkend="Dialogbox_PerteDP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties PerteDP">Default properties</xref>
+              <xref linkend="Defaultproperties_PerteDP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function PerteDP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_PerteDP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PerteDP">
+  <refsection id="Palette_PerteDP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PerteDP">
+  <refsection id="Description_PerteDP">
     <title>Description</title>
     <para>
 A <emphasis role="bold">PertDP</emphasis> block represents a hydraulic pipe with linear
@@ -115,7 +115,7 @@ altitudes, and some other thermal-hydraulic coefficients.
 
 </para>
   </refsection>
-  <refsection id="Dialog box PerteDP">
+  <refsection id="Dialogbox_PerteDP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -172,7 +172,7 @@ altitudes, and some other thermal-hydraulic coefficients.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties PerteDP">
+  <refsection id="Defaultproperties_PerteDP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -279,7 +279,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function PerteDP">
+  <refsection id="Interfacingfunction_PerteDP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -287,7 +287,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model PerteDP">
+  <refsection id="Modelicamodel_PerteDP">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

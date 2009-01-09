@@ -34,8 +34,8 @@ function scs_m = do_doc(scs_m,%pt)
   if type_objet == 'Block' then
     documentation = objet.doc
     if documentation == []|documentation == list() then
-      rep=x_message(['No documentation function specified'
-		     'would you like to use standard_doc ?'],['yes','no'])
+      rep=messagebox(['No documentation function specified'
+		     'would you like to use standard_doc ?'],"modal","question",['yes','no'])
       funname='standard_doc'
       if rep==2 then
 	[ok, funname] = getvalue('Enter the name of the documentation function',..
@@ -45,7 +45,7 @@ function scs_m = do_doc(scs_m,%pt)
       doc=[]
       ierr=execstr('docfun='+funname,'errcatch')
       if ierr<>0 then
-	x_message('function '+funname+' not found')
+	messagebox('function '+funname+' not found',"modal","error");
 	return
       end
       documentation=list(docfun,doc)
@@ -54,7 +54,7 @@ function scs_m = do_doc(scs_m,%pt)
     if type(funname)==10 then 
       ierr=execstr('docfun='+funname,'errcatch')
       if ierr<>0 then
-	x_message('function '+funname+' not found')
+	messagebox('function '+funname+' not found',"modal","error");
 	return
       end
     else
@@ -68,10 +68,10 @@ function scs_m = do_doc(scs_m,%pt)
       objet.doc = documentation
       scs_m.objs(numero_objet) = objet
     else
-      x_message(documentation(1)+'(''set'',...) failed')
+      messagebox(documentation(1)+'(''set'',...) failed',"modal","error");
     end
   else
-    x_message('It is impossible to set Documentation for this type of object')
+    messagebox('It is impossible to set Documentation for this type of object',"modal","error");
   end
   //
   if ok then [scs_m_save,enable_undo,edited]=resume(scs_m_save,%t,%t),end

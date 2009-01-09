@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CANIMXY">
+  <refsection id="Contents_CANIMXY">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CANIMXY">Palette</xref>
+              <xref linkend="Palette_CANIMXY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CANIMXY">Description</xref>
+              <xref linkend="Description_CANIMXY">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CANIMXY">Dialog box</xref>
+              <xref linkend="Dialogbox_CANIMXY">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CANIMXY">Default properties</xref>
+              <xref linkend="Defaultproperties_CANIMXY">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CANIMXY">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CANIMXY">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CANIMXY">Computational function</xref>
+              <xref linkend="Computationalfunction_CANIMXY">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also CANIMXY">See also</xref>
+              <xref linkend="Seealso_CANIMXY">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CANIMXY">Authors</xref>
+              <xref linkend="Authors_CANIMXY">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CANIMXY">
+  <refsection id="Palette_CANIMXY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CANIMXY">
+  <refsection id="Description_CANIMXY">
     <title>Description</title>
     <para>
 This block realizes the visualization of the evolution of the two regular input signals by drawing the second input as a function of the first at instants of events on the event input port.  When a point is drawn on screen it stays until the buffer length is reached. This scope is useful to make simple animations.  
@@ -108,7 +108,7 @@ This block realizes the visualization of the evolution of the two regular input 
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box CANIMXY">
+  <refsection id="Dialogbox_CANIMXY">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -200,7 +200,7 @@ This block realizes the visualization of the evolution of the two regular input 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CANIMXY">
+  <refsection id="Defaultproperties_CANIMXY">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -249,7 +249,7 @@ This block realizes the visualization of the evolution of the two regular input 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CANIMXY">
+  <refsection id="Interfacingfunction_CANIMXY">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -257,7 +257,7 @@ This block realizes the visualization of the evolution of the two regular input 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CANIMXY">
+  <refsection id="Computationalfunction_CANIMXY">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -265,7 +265,7 @@ This block realizes the visualization of the evolution of the two regular input 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also CANIMXY">
+  <refsection id="Seealso_CANIMXY">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -275,7 +275,7 @@ This block realizes the visualization of the evolution of the two regular input 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CANIMXY">
+  <refsection id="Authors_CANIMXY">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

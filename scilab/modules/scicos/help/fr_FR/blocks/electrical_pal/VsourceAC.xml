@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu VsourceAC">
+  <refsection id="Contenu_VsourceAC">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VsourceAC">Palette</xref>
+              <xref linkend="Palette_VsourceAC">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VsourceAC">Description</xref>
+              <xref linkend="Description_VsourceAC">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue VsourceAC">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_VsourceAC">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut VsourceAC">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_VsourceAC">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface VsourceAC">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_VsourceAC">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VsourceAC">
+  <refsection id="Palette_VsourceAC">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VsourceAC">
+  <refsection id="Description_VsourceAC">
     <title>Description</title>
     <para>
 Ce composant est une source de tension CA avec une tension de sortie
@@ -100,7 +100,7 @@ zéro.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue VsourceAC">
+  <refsection id="Boîtededialogue_VsourceAC">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -129,7 +129,7 @@ zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut VsourceAC">
+  <refsection id="Propriétéspardéfaut_VsourceAC">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface VsourceAC">
+  <refsection id="Fonctiondinterface_VsourceAC">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica VsourceAC">
+  <refsection id="ModèleModelica_VsourceAC">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

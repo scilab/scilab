@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EXPBLK_m">
+  <refsection id="Contenu_EXPBLK_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXPBLK_m">Palette</xref>
+              <xref linkend="Palette_EXPBLK_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXPBLK_m">Description</xref>
+              <xref linkend="Description_EXPBLK_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EXPBLK_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EXPBLK_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EXPBLK_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EXPBLK_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EXPBLK_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EXPBLK_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EXPBLK_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EXPBLK_m">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXPBLK_m">
+  <refsection id="Palette_EXPBLK_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXPBLK_m">
+  <refsection id="Description_EXPBLK_m">
     <title>Description</title>
     <para>
 Ce bloc calcule 
@@ -102,7 +102,7 @@ le compilateur.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EXPBLK_m">
+  <refsection id="Boîtededialogue_EXPBLK_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -124,7 +124,7 @@ le compilateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EXPBLK_m">
+  <refsection id="Propriétéspardéfaut_EXPBLK_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ le compilateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EXPBLK_m">
+  <refsection id="Fonctiondinterface_EXPBLK_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ le compilateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EXPBLK_m">
+  <refsection id="Fonctiondecalcul_EXPBLK_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

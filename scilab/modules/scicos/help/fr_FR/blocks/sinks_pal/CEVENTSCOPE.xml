@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CEVENTSCOPE">
+  <refsection id="Contenu_CEVENTSCOPE">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CEVENTSCOPE">Palette</xref>
+              <xref linkend="Palette_CEVENTSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CEVENTSCOPE">Description</xref>
+              <xref linkend="Description_CEVENTSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CEVENTSCOPE">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CEVENTSCOPE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CEVENTSCOPE">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CEVENTSCOPE">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CEVENTSCOPE">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CEVENTSCOPE">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CEVENTSCOPE">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CEVENTSCOPE">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CEVENTSCOPE">Auteurs</link>
+              <xref linkend="Auteurs_CEVENTSCOPE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CEVENTSCOPE">
+  <refsection id="Palette_CEVENTSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CEVENTSCOPE">
+  <refsection id="Description_CEVENTSCOPE">
     <title>Description</title>
     <para>
 This block realizes the visualization of the input event signals.  
@@ -103,7 +103,7 @@ This block realizes the visualization of the input event signals.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CEVENTSCOPE">
+  <refsection id="Boîtededialogue_CEVENTSCOPE">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -159,7 +159,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CEVENTSCOPE">
+  <refsection id="Propriétéspardéfaut_CEVENTSCOPE">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CEVENTSCOPE">
+  <refsection id="Fonctiondinterface_CEVENTSCOPE">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CEVENTSCOPE">
+  <refsection id="Fonctiondecalcul_CEVENTSCOPE">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ This block realizes the visualization of the input event signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CEVENTSCOPE">
+  <refsection id="Auteurs_CEVENTSCOPE">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

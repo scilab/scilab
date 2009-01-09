@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATLU">
+  <refsection id="Contents_MATLU">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATLU">Palette</xref>
+              <xref linkend="Palette_MATLU">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATLU">Description</xref>
+              <xref linkend="Description_MATLU">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATLU">Dialog box</xref>
+              <xref linkend="Dialogbox_MATLU">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATLU">Default properties</xref>
+              <xref linkend="Defaultproperties_MATLU">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATLU">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATLU">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATLU">Computational function</xref>
+              <xref linkend="Computationalfunction_MATLU">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATLU">See also</xref>
+              <xref linkend="Seealso_MATLU">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATLU">Authors</xref>
+              <xref linkend="Authors_MATLU">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATLU">
+  <refsection id="Palette_MATLU">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATLU">
+  <refsection id="Description_MATLU">
     <title>Description</title>
     <para>
 The MATLU Block outputs two matrices L and U, with row pivoting, from the LU factorization of a square input matrix. If A is the input matrix then E*A=L*U where E is the permutation matrix.The equivalent function of this block in Scilab is "[l,u,e]=lu(A)"  
@@ -108,7 +108,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATLU">
+  <refsection id="Dialogbox_MATLU">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties MATLU">
+  <refsection id="Defaultproperties_MATLU">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATLU">
+  <refsection id="Interfacingfunction_MATLU">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATLU">
+  <refsection id="Computationalfunction_MATLU">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATLU">
+  <refsection id="Seealso_MATLU">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ The MATLU Block outputs two matrices L and U, with row pivoting, from the LU fac
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATLU">
+  <refsection id="Authors_MATLU">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

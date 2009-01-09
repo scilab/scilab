@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLKGOTO">
+  <refsection id="Contenu_CLKGOTO">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLKGOTO">Palette</xref>
+              <xref linkend="Palette_CLKGOTO">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLKGOTO">Description</xref>
+              <xref linkend="Description_CLKGOTO">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLKGOTO">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLKGOTO">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLKGOTO">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLKGOTO">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLKGOTO">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLKGOTO">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLKGOTO">Voir aussi</link>
+              <xref linkend="Voiraussi_CLKGOTO">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLKGOTO">Auteurs</link>
+              <xref linkend="Auteurs_CLKGOTO">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLKGOTO">
+  <refsection id="Palette_CLKGOTO">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLKGOTO">
+  <refsection id="Description_CLKGOTO">
     <title>Description</title>
     <para>
 This block is used to connect events ports. For more information on how it works please refer to the documentation of the GOTO block by clicking on the link in the "See also" field.  
@@ -103,7 +103,7 @@ This block is used to connect events ports. For more information on how it works
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLKGOTO">
+  <refsection id="Boîtededialogue_CLKGOTO">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ This block is used to connect events ports. For more information on how it works
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLKGOTO">
+  <refsection id="Propriétéspardéfaut_CLKGOTO">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -170,7 +170,7 @@ This block is used to connect events ports. For more information on how it works
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLKGOTO">
+  <refsection id="Fonctiondinterface_CLKGOTO">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ This block is used to connect events ports. For more information on how it works
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CLKGOTO">
+  <refsection id="Voiraussi_CLKGOTO">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ This block is used to connect events ports. For more information on how it works
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CLKGOTO">
+  <refsection id="Auteurs_CLKGOTO">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

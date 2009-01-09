@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents PDE">
+  <refsection id="Contents_PDE">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PDE">Palette</xref>
+              <xref linkend="Palette_PDE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PDE">Description</xref>
+              <xref linkend="Description_PDE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box PDE">Dialog box</xref>
+              <xref linkend="Dialogbox_PDE">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties PDE">Default properties</xref>
+              <xref linkend="Defaultproperties_PDE">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function PDE">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_PDE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors PDE">Authors</xref>
+              <xref linkend="Authors_PDE">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PDE">
+  <refsection id="Palette_PDE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PDE">
+  <refsection id="Description_PDE">
     <title>Description</title>
     <para>
 This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
@@ -103,7 +103,7 @@ depending on the type of the PDE and runs the solvers.
 
 </para>
   </refsection>
-  <refsection id="Dialog box PDE">
+  <refsection id="Dialogbox_PDE">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -175,7 +175,7 @@ expressions : to give then boundray conditions expressions.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties PDE">
+  <refsection id="Defaultproperties_PDE">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -244,7 +244,7 @@ expressions : to give then boundray conditions expressions.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function PDE">
+  <refsection id="Interfacingfunction_PDE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -252,7 +252,7 @@ expressions : to give then boundray conditions expressions.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors PDE">
+  <refsection id="Authors_PDE">
     <title>Authors</title>
     <para><emphasis role="bold"/> - EADS 2005-01-16</para>
     <para> EADS 2005-01-16

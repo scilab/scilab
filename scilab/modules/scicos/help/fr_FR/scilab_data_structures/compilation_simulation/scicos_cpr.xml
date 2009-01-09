@@ -26,7 +26,7 @@
     <refname>scicos_cpr</refname>
     <refpurpose>Structure compilée Scicos</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_cpr">
+  <refsection id="Module_scicos_cpr">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="cpr scicos_cpr">
+  <refsection id="cpr_scicos_cpr">
     <title>cpr</title>
     <para>
  La liste scilab <link linkend="scicos_cpr">cpr</link>
@@ -112,7 +112,7 @@ Type : scilab list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_cpr">
+  <refsection id="Contenuduficher_scicos_cpr">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

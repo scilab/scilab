@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[psim]=phase_simulation()</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module phase_simulation">
+  <refsection id="Module_phase_simulation">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description phase_simulation">
+  <refsection id="Description_phase_simulation">
     <title>Description</title>
     <para>
 That function says if the Scicos simulator is realizing the time domain integration.  
@@ -51,7 +51,7 @@ That function says if the Scicos simulator is realizing the time domain integrat
 [psim]=phase_simulation()
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters phase_simulation">
+  <refsection id="Parameters_phase_simulation">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CUMSUM">
+  <refsection id="Contents_CUMSUM">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CUMSUM">Palette</xref>
+              <xref linkend="Palette_CUMSUM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CUMSUM">Description</xref>
+              <xref linkend="Description_CUMSUM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CUMSUM">Dialog box</xref>
+              <xref linkend="Dialogbox_CUMSUM">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CUMSUM">Default properties</xref>
+              <xref linkend="Defaultproperties_CUMSUM">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CUMSUM">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CUMSUM">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CUMSUM">Computational function</xref>
+              <xref linkend="Computationalfunction_CUMSUM">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also CUMSUM">See also</xref>
+              <xref linkend="Seealso_CUMSUM">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CUMSUM">Authors</xref>
+              <xref linkend="Authors_CUMSUM">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CUMSUM">
+  <refsection id="Palette_CUMSUM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CUMSUM">
+  <refsection id="Description_CUMSUM">
     <title>Description</title>
     <para>
 The CUMSUM block sums the element of an input m*n matrix u along either the rows, the columns or the first non singleton dimension. When the "Sum along" parameter is set to "1", the block sums across the elements of each row. The result will be displayed as a m*1 matrix.  
@@ -119,7 +119,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box CUMSUM">
+  <refsection id="Dialogbox_CUMSUM">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -148,7 +148,7 @@ When the "Sum along" parameter is set to "0", the block sums across the first no
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example CUMSUM">
+  <refsection id="Example_CUMSUM">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 2 3;4 5 6;7 8 9]
@@ -156,7 +156,7 @@ If the sum is along the row the result will be
 B=[12;15;18]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties CUMSUM">
+  <refsection id="Defaultproperties_CUMSUM">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@ B=[12;15;18]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CUMSUM">
+  <refsection id="Interfacingfunction_CUMSUM">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@ B=[12;15;18]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CUMSUM">
+  <refsection id="Computationalfunction_CUMSUM">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -241,7 +241,7 @@ B=[12;15;18]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also CUMSUM">
+  <refsection id="Seealso_CUMSUM">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -251,7 +251,7 @@ B=[12;15;18]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CUMSUM">
+  <refsection id="Authors_CUMSUM">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

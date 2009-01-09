@@ -40,7 +40,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATZCONJ">
+  <refsection id="Contents_MATZCONJ">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -52,12 +52,12 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATZCONJ">Palette</xref>
+              <xref linkend="Palette_MATZCONJ">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATZCONJ">Description</xref>
+              <xref linkend="Description_MATZCONJ">Description</xref>
             </para>
           </listitem>
           <listitem>
@@ -67,34 +67,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATZCONJ">Default properties</xref>
+              <xref linkend="Defaultproperties_MATZCONJ">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATZCONJ">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATZCONJ">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATZCONJ">Computational function</xref>
+              <xref linkend="Computationalfunction_MATZCONJ">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATZCONJ">See also</xref>
+              <xref linkend="Seealso_MATZCONJ">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATZCONJ">Authors</xref>
+              <xref linkend="Authors_MATZCONJ">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATZCONJ">
+  <refsection id="Palette_MATZCONJ">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -104,7 +104,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATZCONJ">
+  <refsection id="Description_MATZCONJ">
     <title>Description</title>
     <para>
 This blocks computes the conjugate of a complex input matrix.  
@@ -115,7 +115,7 @@ This blocks computes the conjugate of a complex input matrix.
 
 </para>
   </refsection>
-  <refsection id="Default properties MATZCONJ">
+  <refsection id="Defaultproperties_MATZCONJ">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -169,7 +169,7 @@ This blocks computes the conjugate of a complex input matrix.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATZCONJ">
+  <refsection id="Interfacingfunction_MATZCONJ">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -177,7 +177,7 @@ This blocks computes the conjugate of a complex input matrix.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATZCONJ">
+  <refsection id="Computationalfunction_MATZCONJ">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -185,7 +185,7 @@ This blocks computes the conjugate of a complex input matrix.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATZCONJ">
+  <refsection id="Seealso_MATZCONJ">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ This blocks computes the conjugate of a complex input matrix.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATZCONJ">
+  <refsection id="Authors_MATZCONJ">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATMAGPHI">
+  <refsection id="Contenu_MATMAGPHI">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATMAGPHI">Palette</xref>
+              <xref linkend="Palette_MATMAGPHI">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATMAGPHI">Description</xref>
+              <xref linkend="Description_MATMAGPHI">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATMAGPHI">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATMAGPHI">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATMAGPHI">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATMAGPHI">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATMAGPHI">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATMAGPHI">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATMAGPHI">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATMAGPHI">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATMAGPHI">Voir aussi</link>
+              <xref linkend="Voiraussi_MATMAGPHI">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATMAGPHI">Auteurs</link>
+              <xref linkend="Auteurs_MATMAGPHI">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATMAGPHI">
+  <refsection id="Palette_MATMAGPHI">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATMAGPHI">
+  <refsection id="Description_MATMAGPHI">
     <title>Description</title>
     <para>
 MATMAGPHI Block has two types of decomposotions. 
@@ -114,7 +114,7 @@ When the type is set to two, the block outputs a complex number given the magnit
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATMAGPHI">
+  <refsection id="Boîtededialogue_MATMAGPHI">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -136,7 +136,7 @@ When the type is set to two, the block outputs a complex number given the magnit
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATMAGPHI">
+  <refsection id="Propriétéspardéfaut_MATMAGPHI">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ When the type is set to two, the block outputs a complex number given the magnit
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATMAGPHI">
+  <refsection id="Fonctiondinterface_MATMAGPHI">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ When the type is set to two, the block outputs a complex number given the magnit
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATMAGPHI">
+  <refsection id="Fonctiondecalcul_MATMAGPHI">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ When the type is set to two, the block outputs a complex number given the magnit
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATMAGPHI">
+  <refsection id="Voiraussi_MATMAGPHI">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ When the type is set to two, the block outputs a complex number given the magnit
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATMAGPHI">
+  <refsection id="Auteurs_MATMAGPHI">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

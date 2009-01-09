@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu ANDBLK">
+  <refsection id="Contenu_ANDBLK">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ANDBLK">Palette</xref>
+              <xref linkend="Palette_ANDBLK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ANDBLK">Description</xref>
+              <xref linkend="Description_ANDBLK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut ANDBLK">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_ANDBLK">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface ANDBLK">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_ANDBLK">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,14 +73,14 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="ANDBLK">Auteurs</link>
+              <xref linkend="Auteurs_ANDBLK">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ANDBLK">
+  <refsection id="Palette_ANDBLK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ANDBLK">
+  <refsection id="Description_ANDBLK">
     <title>Description</title>
     <para>
 The Bus Creator block combines a set of signals, i.e., a
@@ -101,7 +101,7 @@ understand.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut ANDBLK">
+  <refsection id="Propriétéspardéfaut_ANDBLK">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -139,7 +139,7 @@ understand.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface ANDBLK">
+  <refsection id="Fonctiondinterface_ANDBLK">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -147,7 +147,7 @@ understand.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé ANDBLK">
+  <refsection id="Contenudusuperbloccompilé_ANDBLK">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -157,7 +157,7 @@ understand.
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Auteurs ANDBLK">
+  <refsection id="Auteurs_ANDBLK">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

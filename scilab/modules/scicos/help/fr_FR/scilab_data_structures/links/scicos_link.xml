@@ -26,7 +26,7 @@
     <refname>scicos_link</refname>
     <refpurpose>Définit une structure link</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_link">
+  <refsection id="Module_scicos_link">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="link scicos_link">
+  <refsection id="link_scicos_link">
     <title>link</title>
     <para>
 Size : 8.
@@ -134,7 +134,7 @@ Type : vecteur ligne de nombre entiers.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_link">
+  <refsection id="Contenuduficher_scicos_link">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

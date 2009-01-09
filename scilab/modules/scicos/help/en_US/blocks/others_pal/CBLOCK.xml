@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CBLOCK">
+  <refsection id="Contents_CBLOCK">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CBLOCK">Palette</xref>
+              <xref linkend="Palette_CBLOCK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CBLOCK">Description</xref>
+              <xref linkend="Description_CBLOCK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CBLOCK">Dialog box</xref>
+              <xref linkend="Dialogbox_CBLOCK">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CBLOCK">Default properties</xref>
+              <xref linkend="Defaultproperties_CBLOCK">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CBLOCK">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CBLOCK">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CBLOCK">Authors</xref>
+              <xref linkend="Authors_CBLOCK">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CBLOCK">
+  <refsection id="Palette_CBLOCK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CBLOCK">
+  <refsection id="Description_CBLOCK">
     <title>Description</title>
     <para>
 This block creates skeleton of the C-computing function. It also
@@ -98,7 +98,7 @@ creates library file and object files.
 
 </para>
   </refsection>
-  <refsection id="Dialog box CBLOCK">
+  <refsection id="Dialogbox_CBLOCK">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -211,7 +211,7 @@ creates library file and object files.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CBLOCK">
+  <refsection id="Defaultproperties_CBLOCK">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -264,7 +264,7 @@ creates library file and object files.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CBLOCK">
+  <refsection id="Interfacingfunction_CBLOCK">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -272,7 +272,7 @@ creates library file and object files.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CBLOCK">
+  <refsection id="Authors_CBLOCK">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

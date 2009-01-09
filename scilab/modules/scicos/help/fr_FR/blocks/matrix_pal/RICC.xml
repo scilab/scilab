@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu RICC">
+  <refsection id="Contenu_RICC">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RICC">Palette</xref>
+              <xref linkend="Palette_RICC">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RICC">Description</xref>
+              <xref linkend="Description_RICC">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue RICC">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_RICC">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut RICC">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_RICC">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface RICC">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_RICC">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul RICC">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_RICC">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="RICC">Voir aussi</link>
+              <xref linkend="Voiraussi_RICC">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="RICC">Auteurs</link>
+              <xref linkend="Auteurs_RICC">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RICC">
+  <refsection id="Palette_RICC">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RICC">
+  <refsection id="Description_RICC">
     <title>Description</title>
     <para>
 This block computes the solution of riccati equation using different method and for both case continuous and discrete.  
@@ -126,7 +126,7 @@ The user can choose between two methods of computation. For the continuous time 
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue RICC">
+  <refsection id="Boîtededialogue_RICC">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -155,7 +155,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut RICC">
+  <refsection id="Propriétéspardéfaut_RICC">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface RICC">
+  <refsection id="Fonctiondinterface_RICC">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul RICC">
+  <refsection id="Fonctiondecalcul_RICC">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -231,7 +231,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi RICC">
+  <refsection id="Voiraussi_RICC">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -241,7 +241,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs RICC">
+  <refsection id="Auteurs_RICC">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents PuitsP">
+  <refsection id="Contents_PuitsP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PuitsP">Palette</xref>
+              <xref linkend="Palette_PuitsP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PuitsP">Description</xref>
+              <xref linkend="Description_PuitsP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box PuitsP">Dialog box</xref>
+              <xref linkend="Dialogbox_PuitsP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties PuitsP">Default properties</xref>
+              <xref linkend="Defaultproperties_PuitsP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function PuitsP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_PuitsP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PuitsP">
+  <refsection id="Palette_PuitsP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PuitsP">
+  <refsection id="Description_PuitsP">
     <title>Description</title>
     <para>
 This thermal-hydraulic component represents a thermal-hydraulic
@@ -100,7 +100,7 @@ direction is positive when fluid flows into the block.
 
 </para>
   </refsection>
-  <refsection id="Dialog box PuitsP">
+  <refsection id="Dialogbox_PuitsP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ direction is positive when fluid flows into the block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties PuitsP">
+  <refsection id="Defaultproperties_PuitsP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function PuitsP">
+  <refsection id="Interfacingfunction_PuitsP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model PuitsP">
+  <refsection id="Modelicamodel_PuitsP">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

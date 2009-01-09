@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu freq_div">
+  <refsection id="Contenu_freq_div">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette freq_div">Palette</xref>
+              <xref linkend="Palette_freq_div">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description freq_div">Description</xref>
+              <xref linkend="Description_freq_div">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue freq_div">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_freq_div">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut freq_div">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_freq_div">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface freq_div">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_freq_div">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="freq_div">Auteurs</link>
+              <xref linkend="Auteurs_freq_div">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette freq_div">
+  <refsection id="Palette_freq_div">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description freq_div">
+  <refsection id="Description_freq_div">
     <title>Description</title>
     <para>
 Ce bloc est un superbloc.
@@ -103,7 +103,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue freq_div">
+  <refsection id="Boîtededialogue_freq_div">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut freq_div">
+  <refsection id="Propriétéspardéfaut_freq_div">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -170,7 +170,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface freq_div">
+  <refsection id="Fonctiondinterface_freq_div">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé freq_div">
+  <refsection id="Contenudusuperbloccompilé_freq_div">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -188,7 +188,7 @@ L'entrée événementielle est redirigée une fois parmi n à la sortie.
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Auteurs freq_div">
+  <refsection id="Auteurs_freq_div">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

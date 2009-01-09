@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents ZCROSS_f">
+  <refsection id="Contents_ZCROSS_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ZCROSS_f">Palette</xref>
+              <xref linkend="Palette_ZCROSS_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ZCROSS_f">Description</xref>
+              <xref linkend="Description_ZCROSS_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box ZCROSS_f">Dialog box</xref>
+              <xref linkend="Dialogbox_ZCROSS_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties ZCROSS_f">Default properties</xref>
+              <xref linkend="Defaultproperties_ZCROSS_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function ZCROSS_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ZCROSS_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function ZCROSS_f">Computational function</xref>
+              <xref linkend="Computationalfunction_ZCROSS_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors ZCROSS_f">Authors</xref>
+              <xref linkend="Authors_ZCROSS_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ZCROSS_f">
+  <refsection id="Palette_ZCROSS_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ZCROSS_f">
+  <refsection id="Description_ZCROSS_f">
     <title>Description</title>
     <para>
 An output event is generated when all inputs (if more than one) cross
@@ -103,7 +103,7 @@ zero simultaneously.
 
 </para>
   </refsection>
-  <refsection id="Dialog box ZCROSS_f">
+  <refsection id="Dialogbox_ZCROSS_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ zero simultaneously.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties ZCROSS_f">
+  <refsection id="Defaultproperties_ZCROSS_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ zero simultaneously.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function ZCROSS_f">
+  <refsection id="Interfacingfunction_ZCROSS_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -179,7 +179,7 @@ zero simultaneously.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function ZCROSS_f">
+  <refsection id="Computationalfunction_ZCROSS_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ zero simultaneously.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors ZCROSS_f">
+  <refsection id="Authors_ZCROSS_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

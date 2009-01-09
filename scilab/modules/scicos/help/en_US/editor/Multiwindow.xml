@@ -26,7 +26,7 @@
     <refname>Multiwindow</refname>
     <refpurpose>New Scicos multi-window editor</refpurpose>
   </refnamediv>
-  <refsection id="Module Multiwindow">
+  <refsection id="Module_Multiwindow">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Introduction Multiwindow">
+  <refsection id="Introduction_Multiwindow">
     <title>Introduction</title>
     <para>
 A serious limitation of the Scicos editor has been its inability to
@@ -57,7 +57,7 @@ gives a brief description of these functionalities.
 
 </para>
   </refsection>
-  <refsection id="Active diagram Multiwindow">
+  <refsection id="Activediagram_Multiwindow">
     <title>Active diagram</title>
     <para>
 In the new editor multiple diagrams can be simultaneously
@@ -96,7 +96,7 @@ at a given time, cannot be edited without being activated.
 
 </para>
   </refsection>
-  <refsection id="Scicos Browser Multiwindow">
+  <refsection id="ScicosBrowser_Multiwindow">
     <title>Scicos Browser</title>
     <para>
 It is very easy to lose track of the topology of a model when many
@@ -125,7 +125,7 @@ be launched again.
 
 </para>
   </refsection>
-  <refsection id="Limited Undo operations Multiwindow">
+  <refsection id="LimitedUndooperations_Multiwindow">
     <title>Limited Undo operations</title>
     <para>
 Scicos has always had a single step undo facility. This has not
@@ -142,7 +142,7 @@ inadvertent undo operation, a warning message is displayed in such situations.
 
 </para>
   </refsection>
-  <refsection id="Scilab window activation Multiwindow">
+  <refsection id="Scilabwindowactivation_Multiwindow">
     <title>Scilab window activation</title>
     <para>
 One of the most important features of the new editor is that it allows the user
@@ -164,7 +164,7 @@ replaces the Calc operation.
 
 </para>
   </refsection>
-  <refsection id="Authors Multiwindow">
+  <refsection id="Authors_Multiwindow">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

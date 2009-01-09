@@ -29,14 +29,14 @@ wdim=xget('wdim')
 //
  mb=0.1;mc=1;l=0.3;m=4*mc+mb; //constants
 //
-x_message(['Open loop simulation'
+messagebox(['Open loop simulation'
 	   ' '
 	   ' y0 = [0;0;0.1;0]; //initial state [x x'' theta theta'']'
 	   ' t = 0.03*(1:180); //observation dates'
 	   ' y = ode(y0,0,0.03*(1:180),ivpd); //differential equation integration'
 	   ' //Display'
 	   ' P = initialize_display(y0(1),y0(3))'
-	   ' for k=1:size(y,2), set_pendulum(P,y(1,k),y(3,k));end'])
+	   ' for k=1:size(y,2), set_pendulum(P,y(1,k),y(3,k));end'],"modal");
 //
  y0=[0;0;0.1;0];
  y=ode(y0,0,0.03*(1:180),ivpd);
@@ -44,13 +44,13 @@ x_message(['Open loop simulation'
  P=initialize_display(y0(1),y0(3));
  for k=1:size(y,2), set_pendulum(P,y(1,k),y(3,k));end
 //
-x_message(['Linearization'
+messagebox(['Linearization'
 	   ' '
 	   ' x0=[0;0;0;0];u0=0;'
 	   ' [f,g,h,j]=lin(pendu,x0,u0);'
 	   ' pe=syslin(''c'',f,g,h,j);'
 	   ' // display of the linear system'
-	   ' ssprint(pe)'])
+	   ' ssprint(pe)'],"modal")
 
 //
 mode(1)
@@ -61,7 +61,7 @@ mode(1)
 mode(-1)
  
 //
-x_message(['Checking the result'
+messagebox(['Checking the result'
 	   ' //comparison with linear model computed by hand';
 	   ''
 	   ' f1=[0 1        0                0'
@@ -74,7 +74,7 @@ x_message(['Checking the result'
 	   ' h1=[1 0 0 0'
 	   '     0 0 1 0];'
 	   ' '
-	   ' err=norm(f-f1,1)+norm(g-g1,1)+norm(h-h1,1)+norm(j,1)'])
+	   ' err=norm(f-f1,1)+norm(g-g1,1)+norm(h-h1,1)+norm(j,1)'],"modal")
 
  
 //
@@ -89,13 +89,13 @@ mode(1)
  err=norm(f-f1,1)+norm(g-g1,1)+norm(h-h1,1)+norm(j,1)
  mode(-1)
  
-x_message(['Linear system properties analysis'
+messagebox(['Linear system properties analysis'
 	   ' spec(f) //stability (unstable system !)'
 	   ' n=contr(f,g) //controlability'
 	   ' '
 	   ' //observability'
 	   ' m1=contr(f'',h(1,:)'') '
-	   ' [m2,t]=contr(f'',h(2,:)'')'])
+	   ' [m2,t]=contr(f'',h(2,:)'')'],"modal");
 //---------
 mode(1)
  spec(f) //stability (unstable system !)
@@ -106,14 +106,14 @@ mode(1)
  [m2,t]=contr(f',h(2,:)')
  mode(-1)
 //
-x_message(['Synthesis of a stabilizing controller using poles placement'
+messagebox(['Synthesis of a stabilizing controller using poles placement'
 	   ' '
 	   '// only x and theta are observed  : contruction of an observer'
 	   '// to estimate the state : z''=(f-k*h)*z+k*y+g*u'
 	   ' to=0.1; ' 
 	   ' k=ppol(f'',h'',-ones(4,1)/to)''  //observer gain'
 	   '// compute the compensator gain'
-	   ' kr=ppol(f,g,-ones(4,1)/to)'])
+	   ' kr=ppol(f,g,-ones(4,1)/to)'],"modal");
 
 //-------------------------------------------------
 //
@@ -131,7 +131,7 @@ x_message(['Synthesis of a stabilizing controller using poles placement'
  kr=ppol(f,g,-ones(4,1)/to)  //compensator gain
  
 //
-x_message(['Build full linear system  pendulum-observer-compensator'
+messagebox(['Build full linear system  pendulum-observer-compensator'
 	   ' '
 	   ' ft=[f-g*kr            -g*kr'
 	   '     0*f               f-k*h]'
@@ -149,7 +149,7 @@ x_message(['Build full linear system  pendulum-observer-compensator'
 	   ' '
 	   '//frequency analysis'
 	   ' black(pr,0.01,100,[''position'',''theta''])'
-	   ' g_margin(pr(1,1))'])
+	   ' g_margin(pr(1,1))'],"modal");
 
 //---------------------------------------------
 //
@@ -177,11 +177,11 @@ mode(1)
  
  
 //
-x_message(['Sampled system'
+messagebox(['Sampled system'
 	   ' '
 	   ' t=to/5; //sampling period'
 	   ' prd=dscr(pr,t); //discrete model'
-	   ' spec(prd.A) //poles of the discrete model'])
+	   ' spec(prd.A) //poles of the discrete model'],"modal");
 
 //---------------
 //
@@ -191,12 +191,12 @@ mode(1)
  spec(prd(2))
 mode(-1)
 //
-x_message(['Impulse response'
+messagebox(['Impulse response'
 	   ' '
 	   ' x0=[0;0;0;0;0;0;0;0]; //initial state'
 	   ' u(1,180)=0;u(1,1)=1; //impulse'
 	   ' y=flts(u,prd,x0);    //siscrete system simulation'
-	   ' draw1()'])
+	   ' draw1()'],"modal");
 
 //-----------------
 //
@@ -208,13 +208,13 @@ mode(1)
  draw1()
 mode(-1)
 //
-x_message(['Compensation of the non linear system with'
+messagebox(['Compensation of the non linear system with'
 	   'linear regulator'
 	   ''
 	   ' t0=0;t1=t*(1:125);'
 	   ' x0=[0 0 0.4 0   0 0 0 0]'';  // initial state'
 	   ' yd=ode(x0,t0,t1,regu); //integration of differential equation'
-	   ' draw2()'])
+	   ' draw2()'],"modal");
 ;
 //--------------------------------------
 //
@@ -227,4 +227,4 @@ mode(1)
  draw2()
 mode(-1) 
 lines(display_props(2))
-x_message('The end')
+messagebox('The end',"modal");

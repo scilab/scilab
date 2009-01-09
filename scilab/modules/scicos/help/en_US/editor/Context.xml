@@ -26,7 +26,7 @@
     <refname>Context</refname>
     <refpurpose>Using symbolic parameters, context and masking in Scicos</refpurpose>
   </refnamediv>
-  <refsection id="Modules Context">
+  <refsection id="Modules_Context">
     <title>Modules</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Introduction Context">
+  <refsection id="Introduction_Context">
     <title>Introduction</title>
     <para>
 In most cases, double clicking on a Scicos block leads to the opening of a dialog box used
@@ -71,7 +71,7 @@ Indeed, the sizes of the symbolic parameters can also be changed if it does not 
 
 </para>
   </refsection>
-  <refsection id="Diagram context Context">
+  <refsection id="Diagramcontext_Context">
     <title>Diagram context</title>
     <para>
 Each Scicos diagram (the main diagram as well as the Super Blocks) has a context associated with it.
@@ -146,7 +146,7 @@ the end of the context to avoid overloading the list of symbolic parameters.
 
 </para>
   </refsection>
-  <refsection id="Masking operation Context">
+  <refsection id="Maskingoperation_Context">
     <title>Masking operation</title>
     <para>
 The masking operation consists of modifying a Super Block in such a way that it resembles a regular block.
@@ -164,7 +164,7 @@ constructing custom blocks. The dialog box associated with the block can also be
 
 </para>
   </refsection>
-  <refsection id="Authors Context">
+  <refsection id="Authors_Context">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

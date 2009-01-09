@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents PotentialSensor">
+  <refsection id="Contents_PotentialSensor">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PotentialSensor">Palette</xref>
+              <xref linkend="Palette_PotentialSensor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PotentialSensor">Description</xref>
+              <xref linkend="Description_PotentialSensor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties PotentialSensor">Default properties</xref>
+              <xref linkend="Defaultproperties_PotentialSensor">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function PotentialSensor">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_PotentialSensor">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PotentialSensor">
+  <refsection id="Palette_PotentialSensor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PotentialSensor">
+  <refsection id="Description_PotentialSensor">
     <title>Description</title>
     <para>
 This block is used to measure the voltage with respect to the
@@ -95,7 +95,7 @@ output port.
 
 </para>
   </refsection>
-  <refsection id="Default properties PotentialSensor">
+  <refsection id="Defaultproperties_PotentialSensor">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -135,7 +135,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function PotentialSensor">
+  <refsection id="Interfacingfunction_PotentialSensor">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -143,7 +143,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model PotentialSensor">
+  <refsection id="Modelicamodel_PotentialSensor">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

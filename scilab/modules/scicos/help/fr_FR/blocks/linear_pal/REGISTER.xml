@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu REGISTER">
+  <refsection id="Contenu_REGISTER">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette REGISTER">Palette</xref>
+              <xref linkend="Palette_REGISTER">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description REGISTER">Description</xref>
+              <xref linkend="Description_REGISTER">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue REGISTER">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_REGISTER">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut REGISTER">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_REGISTER">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface REGISTER">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_REGISTER">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul REGISTER">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_REGISTER">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="REGISTER">Auteurs</link>
+              <xref linkend="Auteurs_REGISTER">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette REGISTER">
+  <refsection id="Palette_REGISTER">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description REGISTER">
+  <refsection id="Description_REGISTER">
     <title>Description</title>
     <para>
 Ce bloc réalise un registre à décalage.
@@ -103,7 +103,7 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue REGISTER">
+  <refsection id="Boîtededialogue_REGISTER">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut REGISTER">
+  <refsection id="Propriétéspardéfaut_REGISTER">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface REGISTER">
+  <refsection id="Fonctiondinterface_REGISTER">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul REGISTER">
+  <refsection id="Fonctiondecalcul_REGISTER">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs REGISTER">
+  <refsection id="Auteurs_REGISTER">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

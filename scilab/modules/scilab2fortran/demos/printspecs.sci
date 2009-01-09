@@ -31,12 +31,12 @@ for k=1:n,
   desc=[desc;'|'+num+'|'+ftyp+'|'+nl+'|'+nc+'|']
 end
 
-x_message(['       source code of Scilab function';..
+messagebox(['       source code of Scilab function';..
          '-----------------------------';' ';txt;..
          ' ';' ';..
          'type and dimension of input parameters';..
          '---------------------------------------';..
-         ' ';desc])
+         ' ';desc],"modal","info");
 
 write(%io(2),[' ';'Now translation is made...';' '])
 

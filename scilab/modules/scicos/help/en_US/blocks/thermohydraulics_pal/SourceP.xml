@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SourceP">
+  <refsection id="Contents_SourceP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SourceP">Palette</xref>
+              <xref linkend="Palette_SourceP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SourceP">Description</xref>
+              <xref linkend="Description_SourceP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SourceP">Dialog box</xref>
+              <xref linkend="Dialogbox_SourceP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SourceP">Default properties</xref>
+              <xref linkend="Defaultproperties_SourceP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SourceP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SourceP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SourceP">
+  <refsection id="Palette_SourceP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SourceP">
+  <refsection id="Description_SourceP">
     <title>Description</title>
     <para>
 This thermal-hydraulic component represents a thermal-hydraulic constant
@@ -100,7 +100,7 @@ fluid flows out of the block.
 
 </para>
   </refsection>
-  <refsection id="Dialog box SourceP">
+  <refsection id="Dialogbox_SourceP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ fluid flows out of the block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SourceP">
+  <refsection id="Defaultproperties_SourceP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SourceP">
+  <refsection id="Interfacingfunction_SourceP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model SourceP">
+  <refsection id="Modelicamodel_SourceP">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

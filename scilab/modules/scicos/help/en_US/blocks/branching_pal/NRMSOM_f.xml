@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents NRMSOM_f">
+  <refsection id="Contents_NRMSOM_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette NRMSOM_f">Palette</xref>
+              <xref linkend="Palette_NRMSOM_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description NRMSOM_f">Description</xref>
+              <xref linkend="Description_NRMSOM_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box NRMSOM_f">Dialog box</xref>
+              <xref linkend="Dialogbox_NRMSOM_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties NRMSOM_f">Default properties</xref>
+              <xref linkend="Defaultproperties_NRMSOM_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function NRMSOM_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_NRMSOM_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors NRMSOM_f">Authors</xref>
+              <xref linkend="Authors_NRMSOM_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette NRMSOM_f">
+  <refsection id="Palette_NRMSOM_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description NRMSOM_f">
+  <refsection id="Description_NRMSOM_f">
     <title>Description</title>
     <para>
 The Merge block combines its inputs into a single output line whose
@@ -100,7 +100,7 @@ block's Number of inputs parameter.
 
 </para>
   </refsection>
-  <refsection id="Dialog box NRMSOM_f">
+  <refsection id="Dialogbox_NRMSOM_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -122,7 +122,7 @@ block's Number of inputs parameter.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties NRMSOM_f">
+  <refsection id="Defaultproperties_NRMSOM_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -179,7 +179,7 @@ block's Number of inputs parameter.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function NRMSOM_f">
+  <refsection id="Interfacingfunction_NRMSOM_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ block's Number of inputs parameter.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors NRMSOM_f">
+  <refsection id="Authors_NRMSOM_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

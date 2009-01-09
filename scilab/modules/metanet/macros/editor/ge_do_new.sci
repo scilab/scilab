@@ -10,8 +10,8 @@
 
 function [ok,GraphList]=ge_do_new()
   if EGdata.Edited then
-    if x_message(['Current graph is modified'
-		  'Do you really want to erase it'],['yes','no'])==2 then
+    if messagebox(['Current graph is modified'
+		  'Do you really want to erase it'],"modal","question",['yes','no'])==2 then
       ok=%f
       graphlist=[]
       return

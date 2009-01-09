@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu RAMP">
+  <refsection id="Contenu_RAMP">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RAMP">Palette</xref>
+              <xref linkend="Palette_RAMP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RAMP">Description</xref>
+              <xref linkend="Description_RAMP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue RAMP">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_RAMP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut RAMP">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_RAMP">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface RAMP">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_RAMP">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul RAMP">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_RAMP">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="RAMP">Auteurs</link>
+              <xref linkend="Auteurs_RAMP">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RAMP">
+  <refsection id="Palette_RAMP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RAMP">
+  <refsection id="Description_RAMP">
     <title>Description</title>
     <para>
 Le bloc RAMP génére un signal qui commence à une date et à une valeur
@@ -106,7 +106,7 @@ Ces paramètres doivent avoir des dimensions identiques.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue RAMP">
+  <refsection id="Boîtededialogue_RAMP">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ Ces paramètres doivent avoir des dimensions identiques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut RAMP">
+  <refsection id="Propriétéspardéfaut_RAMP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ Ces paramètres doivent avoir des dimensions identiques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface RAMP">
+  <refsection id="Fonctiondinterface_RAMP">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ Ces paramètres doivent avoir des dimensions identiques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul RAMP">
+  <refsection id="Fonctiondecalcul_RAMP">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ Ces paramètres doivent avoir des dimensions identiques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs RAMP">
+  <refsection id="Auteurs_RAMP">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

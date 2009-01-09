@@ -26,10 +26,6 @@
     <refname>Threshold_pal</refname>
     <refpurpose>Palette détection</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Threshold_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Threshold_pal">
+  <refsection id="Module_Threshold_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Threshold_pal">
+  <refsection id="Description_Threshold_pal">
     <title>Description</title>
     <para>
 Les blocs de cette palette sont utilisés pour détecter des passages à
@@ -64,9 +54,10 @@ certaines valeurs des variables d'état pendant la simulation.
 Ces blocs utilisent les solveurs (EDO ou EAD) pour réaliser cette
 opération.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Threshold_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

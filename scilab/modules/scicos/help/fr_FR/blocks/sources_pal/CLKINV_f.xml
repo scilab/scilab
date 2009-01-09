@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLKINV_f">
+  <refsection id="Contenu_CLKINV_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLKINV_f">Palette</xref>
+              <xref linkend="Palette_CLKINV_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLKINV_f">Description</xref>
+              <xref linkend="Description_CLKINV_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLKINV_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLKINV_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLKINV_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLKINV_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLKINV_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLKINV_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLKINV_f">Auteurs</link>
+              <xref linkend="Auteurs_CLKINV_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLKINV_f">
+  <refsection id="Palette_CLKINV_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLKINV_f">
+  <refsection id="Description_CLKINV_f">
     <title>Description</title>
     <para>
 Ce bloc doit seulement être utilisé à l'intérieur des superblocs.
@@ -100,7 +100,7 @@ jusqu'au nombre de ports.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLKINV_f">
+  <refsection id="Boîtededialogue_CLKINV_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -122,7 +122,7 @@ jusqu'au nombre de ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLKINV_f">
+  <refsection id="Propriétéspardéfaut_CLKINV_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ jusqu'au nombre de ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLKINV_f">
+  <refsection id="Fonctiondinterface_CLKINV_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ jusqu'au nombre de ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CLKINV_f">
+  <refsection id="Auteurs_CLKINV_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

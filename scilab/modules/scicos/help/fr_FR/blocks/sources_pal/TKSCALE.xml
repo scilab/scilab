@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu TKSCALE">
+  <refsection id="Contenu_TKSCALE">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TKSCALE">Palette</xref>
+              <xref linkend="Palette_TKSCALE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TKSCALE">Description</xref>
+              <xref linkend="Description_TKSCALE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue TKSCALE">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_TKSCALE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut TKSCALE">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_TKSCALE">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface TKSCALE">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_TKSCALE">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul TKSCALE">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_TKSCALE">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="TKSCALE">Auteurs</link>
+              <xref linkend="Auteurs_TKSCALE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TKSCALE">
+  <refsection id="Palette_TKSCALE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TKSCALE">
+  <refsection id="Description_TKSCALE">
     <title>Description</title>
     <para>
 Ce bloc génère une sortie constante par morceaux dont la valeur est définie interactivement par un widget TK au cours de la simulation. La valeur de sortie est égale à la valeure entière affichée sur le widget divisée par le paramètre de normalisation. On peut augmenter la précisition de la sortie en augmentant proportionnellement tous les parmètres du bloc.  
@@ -103,7 +103,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue TKSCALE">
+  <refsection id="Boîtededialogue_TKSCALE">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -139,7 +139,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut TKSCALE">
+  <refsection id="Propriétéspardéfaut_TKSCALE">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -185,7 +185,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface TKSCALE">
+  <refsection id="Fonctiondinterface_TKSCALE">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul TKSCALE">
+  <refsection id="Fonctiondecalcul_TKSCALE">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs TKSCALE">
+  <refsection id="Auteurs_TKSCALE">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

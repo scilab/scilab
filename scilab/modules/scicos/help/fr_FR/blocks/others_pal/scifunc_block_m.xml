@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu scifunc_block_m">
+  <refsection id="Contenu_scifunc_block_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette scifunc_block_m">Palette</xref>
+              <xref linkend="Palette_scifunc_block_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description scifunc_block_m">Description</xref>
+              <xref linkend="Description_scifunc_block_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue scifunc_block_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_scifunc_block_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut scifunc_block_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_scifunc_block_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface scifunc_block_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_scifunc_block_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul scifunc_block_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_scifunc_block_m">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette scifunc_block_m">
+  <refsection id="Palette_scifunc_block_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scifunc_block_m">
+  <refsection id="Description_scifunc_block_m">
     <title>Description</title>
     <para>
 This block can realize any type of Scicos block. The function of the
@@ -101,7 +101,7 @@ is slower. For more information see Scicos reference manual.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue scifunc_block_m">
+  <refsection id="Boîtededialogue_scifunc_block_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -179,7 +179,7 @@ is slower. For more information see Scicos reference manual.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut scifunc_block_m">
+  <refsection id="Propriétéspardéfaut_scifunc_block_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -233,7 +233,7 @@ is slower. For more information see Scicos reference manual.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface scifunc_block_m">
+  <refsection id="Fonctiondinterface_scifunc_block_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -241,7 +241,7 @@ is slower. For more information see Scicos reference manual.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul scifunc_block_m">
+  <refsection id="Fonctiondecalcul_scifunc_block_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

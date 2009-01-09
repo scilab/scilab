@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CONVERT">
+  <refsection id="Contents_CONVERT">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CONVERT">Palette</xref>
+              <xref linkend="Palette_CONVERT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CONVERT">Description</xref>
+              <xref linkend="Description_CONVERT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CONVERT">Dialog box</xref>
+              <xref linkend="Dialogbox_CONVERT">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CONVERT">Default properties</xref>
+              <xref linkend="Defaultproperties_CONVERT">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CONVERT">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CONVERT">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CONVERT">Computational function</xref>
+              <xref linkend="Computationalfunction_CONVERT">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CONVERT">Authors</xref>
+              <xref linkend="Authors_CONVERT">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CONVERT">
+  <refsection id="Palette_CONVERT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CONVERT">
+  <refsection id="Description_CONVERT">
     <title>Description</title>
     <para>
 This block converts an input signal of any data type to a specified data type. The input can be real, complex or integer. When the output is an integer and when overflow occurs the block three different forms of results :  
@@ -115,7 +115,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box CONVERT">
+  <refsection id="Dialogbox_CONVERT">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -151,7 +151,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CONVERT">
+  <refsection id="Defaultproperties_CONVERT">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CONVERT">
+  <refsection id="Interfacingfunction_CONVERT">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CONVERT">
+  <refsection id="Computationalfunction_CONVERT">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CONVERT">
+  <refsection id="Authors_CONVERT">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

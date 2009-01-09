@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module ThermoHydraulics_pal">
+  <refsection id="Module_ThermoHydraulics_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ThermoHydraulics_pal">
+  <refsection id="Description_ThermoHydraulics_pal">
     <title>Description</title>
     <para>
 Thermal-Hydraulics toolbox contains some basic thermal-hydraulic
@@ -54,7 +54,7 @@ components such as pressure source, pipe, control valves, etc.
 
 </para>
   </refsection>
-  <refsection id="Blocks ThermoHydraulics_pal">
+  <refsection id="Blocks_ThermoHydraulics_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

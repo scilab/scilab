@@ -15,6 +15,8 @@
 
 // <-- INTERACTIVE TEST -->
 
-x_message(["Hello"])
+// 2009-01-09 - x_message(obsolete) replaced by messagebox.
 
-r = x_message(["Your problem is ill conditioned";"continue?"],["Yes","No"])
+messagebox(["Hello"])
+
+r = messagebox(["Your problem is ill conditioned";"continue?"],"modal","question",["Yes","No"])

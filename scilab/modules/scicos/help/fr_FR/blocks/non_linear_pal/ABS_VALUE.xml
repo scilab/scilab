@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu ABS_VALUE">
+  <refsection id="Contenu_ABS_VALUE">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ABS_VALUE">Palette</xref>
+              <xref linkend="Palette_ABS_VALUE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ABS_VALUE">Description</xref>
+              <xref linkend="Description_ABS_VALUE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue ABS_VALUE">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_ABS_VALUE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut ABS_VALUE">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_ABS_VALUE">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface ABS_VALUE">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_ABS_VALUE">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul ABS_VALUE">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_ABS_VALUE">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="ABS_VALUE">Auteurs</link>
+              <xref linkend="Auteurs_ABS_VALUE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ABS_VALUE">
+  <refsection id="Palette_ABS_VALUE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ABS_VALUE">
+  <refsection id="Description_ABS_VALUE">
     <title>Description</title>
     <para>
 Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue ABS_VALUE">
+  <refsection id="Boîtededialogue_ABS_VALUE">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -124,7 +124,7 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut ABS_VALUE">
+  <refsection id="Propriétéspardéfaut_ABS_VALUE">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface ABS_VALUE">
+  <refsection id="Fonctiondinterface_ABS_VALUE">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul ABS_VALUE">
+  <refsection id="Fonctiondecalcul_ABS_VALUE">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs ABS_VALUE">
+  <refsection id="Auteurs_ABS_VALUE">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

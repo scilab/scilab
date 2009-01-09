@@ -26,7 +26,7 @@
     <refname>curblock</refname>
     <refpurpose>Return the current called scicos block during the simulation</refpurpose>
   </refnamediv>
-  <refsection id="Module curblock">
+  <refsection id="Module_curblock">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -39,7 +39,7 @@
 blk=curblock()
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters curblock">
+  <refsection id="Parameters_curblock">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -47,7 +47,7 @@ blk=curblock()
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors curblock">
+  <refsection id="Authors_curblock">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

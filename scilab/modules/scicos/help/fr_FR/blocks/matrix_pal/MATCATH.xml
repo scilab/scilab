@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATCATH">
+  <refsection id="Contenu_MATCATH">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATCATH">Palette</xref>
+              <xref linkend="Palette_MATCATH">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATCATH">Description</xref>
+              <xref linkend="Description_MATCATH">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATCATH">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATCATH">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATCATH">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATCATH">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATCATH">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATCATH">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATCATH">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATCATH">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATCATH">Voir aussi</link>
+              <xref linkend="Voiraussi_MATCATH">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATCATH">Auteurs</link>
+              <xref linkend="Auteurs_MATCATH">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATCATH">
+  <refsection id="Palette_MATCATH">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATCATH">
+  <refsection id="Description_MATCATH">
     <title>Description</title>
     <para>
 The MATCATH Block outputs the horizontal concatenation of multiple matrices. It is also called concatenation according to the columns. The inputs U1,U2,...,Un must have the same number of rows. The output is a M-by-(N1+N2+...+Nn) matrix, where N1,N2,...,Nn are the numbers of columns of the inputs matrices, and M is the number of rows.  
@@ -111,7 +111,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATCATH">
+  <refsection id="Boîtededialogue_MATCATH">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -140,7 +140,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATCATH">
+  <refsection id="Propriétéspardéfaut_MATCATH">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATCATH">
+  <refsection id="Fonctiondinterface_MATCATH">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATCATH">
+  <refsection id="Fonctiondecalcul_MATCATH">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATCATH">
+  <refsection id="Voiraussi_MATCATH">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATCATH">
+  <refsection id="Auteurs_MATCATH">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

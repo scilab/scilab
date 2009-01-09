@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATSUM">
+  <refsection id="Contents_MATSUM">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATSUM">Palette</xref>
+              <xref linkend="Palette_MATSUM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATSUM">Description</xref>
+              <xref linkend="Description_MATSUM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATSUM">Dialog box</xref>
+              <xref linkend="Dialogbox_MATSUM">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATSUM">Default properties</xref>
+              <xref linkend="Defaultproperties_MATSUM">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATSUM">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATSUM">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATSUM">Computational function</xref>
+              <xref linkend="Computationalfunction_MATSUM">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATSUM">See also</xref>
+              <xref linkend="Seealso_MATSUM">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATSUM">Authors</xref>
+              <xref linkend="Authors_MATSUM">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATSUM">
+  <refsection id="Palette_MATSUM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATSUM">
+  <refsection id="Description_MATSUM">
     <title>Description</title>
     <para>
 The MATSUM block returns the sum of the element of an input matrix/vector. When the Sum along is set to all the block outputs the sum of all the elements of the matrix. The output is then a scalar. When the Sum along is set to lines the block is a row-wise sum. The output is a row vector. When the Sum along is set to Columns the block is a column-wise sum. The output is a column vector. The equivalent function of this block in Scilab is: "sum".  
@@ -108,7 +108,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATSUM">
+  <refsection id="Dialogbox_MATSUM">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -137,7 +137,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties MATSUM">
+  <refsection id="Defaultproperties_MATSUM">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATSUM">
+  <refsection id="Interfacingfunction_MATSUM">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATSUM">
+  <refsection id="Computationalfunction_MATSUM">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATSUM">
+  <refsection id="Seealso_MATSUM">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -237,7 +237,7 @@ The MATSUM block returns the sum of the element of an input matrix/vector. When 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATSUM">
+  <refsection id="Authors_MATSUM">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

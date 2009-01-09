@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CMSCOPE">
+  <refsection id="Contents_CMSCOPE">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CMSCOPE">Palette</xref>
+              <xref linkend="Palette_CMSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CMSCOPE">Description</xref>
+              <xref linkend="Description_CMSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CMSCOPE">Dialog box</xref>
+              <xref linkend="Dialogbox_CMSCOPE">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CMSCOPE">Default properties</xref>
+              <xref linkend="Defaultproperties_CMSCOPE">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CMSCOPE">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CMSCOPE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CMSCOPE">Computational function</xref>
+              <xref linkend="Computationalfunction_CMSCOPE">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CMSCOPE">Authors</xref>
+              <xref linkend="Authors_CMSCOPE">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CMSCOPE">
+  <refsection id="Palette_CMSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CMSCOPE">
+  <refsection id="Description_CMSCOPE">
     <title>Description</title>
     <para>
 When you start a simulation, Scicos open Scope windows.  The Scope
@@ -106,7 +106,7 @@ amount of time and the range of input values displayed.
 
 </para>
   </refsection>
-  <refsection id="Dialog box CMSCOPE">
+  <refsection id="Dialogbox_CMSCOPE">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -198,7 +198,7 @@ amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CMSCOPE">
+  <refsection id="Defaultproperties_CMSCOPE">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -247,7 +247,7 @@ amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CMSCOPE">
+  <refsection id="Interfacingfunction_CMSCOPE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -255,7 +255,7 @@ amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CMSCOPE">
+  <refsection id="Computationalfunction_CMSCOPE">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -263,7 +263,7 @@ amount of time and the range of input values displayed.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CMSCOPE">
+  <refsection id="Authors_CMSCOPE">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

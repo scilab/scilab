@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Inductor">
+  <refsection id="Contents_Inductor">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Inductor">Palette</xref>
+              <xref linkend="Palette_Inductor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Inductor">Description</xref>
+              <xref linkend="Description_Inductor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Inductor">Dialog box</xref>
+              <xref linkend="Dialogbox_Inductor">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Inductor">Default properties</xref>
+              <xref linkend="Defaultproperties_Inductor">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Inductor">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Inductor">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Inductor">
+  <refsection id="Palette_Inductor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Inductor">
+  <refsection id="Description_Inductor">
     <title>Description</title>
     <para>
 Inductor is an electrical component that can store energy in
@@ -115,7 +115,7 @@ signals.
 
 </para>
   </refsection>
-  <refsection id="Dialog box Inductor">
+  <refsection id="Dialogbox_Inductor">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -137,7 +137,7 @@ signals.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Inductor">
+  <refsection id="Defaultproperties_Inductor">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Inductor">
+  <refsection id="Interfacingfunction_Inductor">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model Inductor">
+  <refsection id="Modelicamodel_Inductor">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

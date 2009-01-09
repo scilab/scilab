@@ -13,8 +13,8 @@ function ge_show_new(GraphList,scale)
   w=string(win)
   execstr('global EGdata_'+w+'; edited=EGdata_'+w+'.Edited')
   if edited then
-    if x_message(['Current graph is modified'
-		  'Do you really want to erase it'],['yes','no'])==2 then
+    if messagebox(['Current graph is modified'
+		  'Do you really want to erase it'],"modal","question",['yes','no'])==2 then
       return
     end
   end

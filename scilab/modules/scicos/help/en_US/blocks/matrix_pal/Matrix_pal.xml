@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module Matrix_pal">
+  <refsection id="Module_Matrix_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Matrix_pal">
+  <refsection id="Description_Matrix_pal">
     <title>Description</title>
     <para>
 Matrix palette contains all blocks that you need to
@@ -54,7 +54,7 @@ do simple and complex matrix operations.
 
 </para>
   </refsection>
-  <refsection id="Blocks Matrix_pal">
+  <refsection id="Blocks_Matrix_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

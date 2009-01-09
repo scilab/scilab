@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu NEGTOPOS_f">
+  <refsection id="Contenu_NEGTOPOS_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette NEGTOPOS_f">Palette</xref>
+              <xref linkend="Palette_NEGTOPOS_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description NEGTOPOS_f">Description</xref>
+              <xref linkend="Description_NEGTOPOS_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut NEGTOPOS_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_NEGTOPOS_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface NEGTOPOS_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_NEGTOPOS_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul NEGTOPOS_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_NEGTOPOS_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="NEGTOPOS_f">Auteurs</link>
+              <xref linkend="Auteurs_NEGTOPOS_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette NEGTOPOS_f">
+  <refsection id="Palette_NEGTOPOS_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description NEGTOPOS_f">
+  <refsection id="Description_NEGTOPOS_f">
     <title>Description</title>
     <para>
 Un événement est généré lorsque l'unique entrée de ce bloc traverse
@@ -98,7 +98,7 @@ la valeur zéro lors d'un front montant.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut NEGTOPOS_f">
+  <refsection id="Propriétéspardéfaut_NEGTOPOS_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -144,7 +144,7 @@ la valeur zéro lors d'un front montant.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface NEGTOPOS_f">
+  <refsection id="Fonctiondinterface_NEGTOPOS_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@ la valeur zéro lors d'un front montant.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul NEGTOPOS_f">
+  <refsection id="Fonctiondecalcul_NEGTOPOS_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ la valeur zéro lors d'un front montant.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs NEGTOPOS_f">
+  <refsection id="Auteurs_NEGTOPOS_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu DLSS">
+  <refsection id="Contenu_DLSS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DLSS">Palette</xref>
+              <xref linkend="Palette_DLSS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DLSS">Description</xref>
+              <xref linkend="Description_DLSS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue DLSS">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_DLSS">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut DLSS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_DLSS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface DLSS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_DLSS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul DLSS">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_DLSS">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DLSS">
+  <refsection id="Palette_DLSS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DLSS">
+  <refsection id="Description_DLSS">
     <title>Description</title>
     <para>
 Ce bloc réalise un système d'équations d'état temporel discret.
@@ -102,7 +102,7 @@ l'état est alors mis à jour.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue DLSS">
+  <refsection id="Boîtededialogue_DLSS">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -152,7 +152,7 @@ l'état est alors mis à jour.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut DLSS">
+  <refsection id="Propriétéspardéfaut_DLSS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ l'état est alors mis à jour.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface DLSS">
+  <refsection id="Fonctiondinterface_DLSS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ l'état est alors mis à jour.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul DLSS">
+  <refsection id="Fonctiondecalcul_DLSS">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

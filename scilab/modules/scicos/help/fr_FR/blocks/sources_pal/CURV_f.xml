@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CURV_f">
+  <refsection id="Contenu_CURV_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CURV_f">Palette</xref>
+              <xref linkend="Palette_CURV_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CURV_f">Description</xref>
+              <xref linkend="Description_CURV_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CURV_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CURV_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CURV_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CURV_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CURV_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CURV_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CURV_f">Voir aussi</link>
+              <xref linkend="Voiraussi_CURV_f">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CURV_f">Auteurs</link>
+              <xref linkend="Auteurs_CURV_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CURV_f">
+  <refsection id="Palette_CURV_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CURV_f">
+  <refsection id="Description_CURV_f">
     <title>Description</title>
     <para>
 Ce bloc définit une fonction tabulée en fonction du temps.
@@ -106,7 +106,7 @@ en utilisant un éditeur graphique de courbes.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut CURV_f">
+  <refsection id="Propriétéspardéfaut_CURV_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@ en utilisant un éditeur graphique de courbes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CURV_f">
+  <refsection id="Fonctiondinterface_CURV_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ en utilisant un éditeur graphique de courbes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CURV_f">
+  <refsection id="Fonctiondecalcul_CURV_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ en utilisant un éditeur graphique de courbes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CURV_f">
+  <refsection id="Voiraussi_CURV_f">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ en utilisant un éditeur graphique de courbes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CURV_f">
+  <refsection id="Auteurs_CURV_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

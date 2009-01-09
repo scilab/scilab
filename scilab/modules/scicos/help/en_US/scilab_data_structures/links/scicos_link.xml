@@ -26,7 +26,7 @@
     <refname>scicos_link</refname>
     <refpurpose>Define a link structure</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_link">
+  <refsection id="Module_scicos_link">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="link scicos_link">
+  <refsection id="link_scicos_link">
     <title>link</title>
     <para>
 Size : 8.
@@ -136,7 +136,7 @@ Type : row vector of integers.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content scicos_link">
+  <refsection id="Filecontent_scicos_link">
     <title>File content</title>
     <itemizedlist>
       <listitem>

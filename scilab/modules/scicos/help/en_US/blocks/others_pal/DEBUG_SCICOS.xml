@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DEBUG_SCICOS">
+  <refsection id="Contents_DEBUG_SCICOS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DEBUG_SCICOS">Palette</xref>
+              <xref linkend="Palette_DEBUG_SCICOS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DEBUG_SCICOS">Description</xref>
+              <xref linkend="Description_DEBUG_SCICOS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DEBUG_SCICOS">Default properties</xref>
+              <xref linkend="Defaultproperties_DEBUG_SCICOS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DEBUG_SCICOS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DEBUG_SCICOS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DEBUG_SCICOS">Authors</xref>
+              <xref linkend="Authors_DEBUG_SCICOS">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DEBUG_SCICOS">
+  <refsection id="Palette_DEBUG_SCICOS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DEBUG_SCICOS">
+  <refsection id="Description_DEBUG_SCICOS">
     <title>Description</title>
     <para>Description</para>
     <para>
@@ -130,7 +130,7 @@ scicos_debug() function.
 
 </para>
   </refsection>
-  <refsection id="Default properties DEBUG_SCICOS">
+  <refsection id="Defaultproperties_DEBUG_SCICOS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ scicos_debug() function.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DEBUG_SCICOS">
+  <refsection id="Interfacingfunction_DEBUG_SCICOS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -176,7 +176,7 @@ scicos_debug() function.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DEBUG_SCICOS">
+  <refsection id="Authors_DEBUG_SCICOS">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

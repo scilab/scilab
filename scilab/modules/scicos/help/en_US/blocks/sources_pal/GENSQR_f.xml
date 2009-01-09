@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents GENSQR_f">
+  <refsection id="Contents_GENSQR_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GENSQR_f">Palette</xref>
+              <xref linkend="Palette_GENSQR_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GENSQR_f">Description</xref>
+              <xref linkend="Description_GENSQR_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box GENSQR_f">Dialog box</xref>
+              <xref linkend="Dialogbox_GENSQR_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties GENSQR_f">Default properties</xref>
+              <xref linkend="Defaultproperties_GENSQR_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function GENSQR_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_GENSQR_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function GENSQR_f">Computational function</xref>
+              <xref linkend="Computationalfunction_GENSQR_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors GENSQR_f">Authors</xref>
+              <xref linkend="Authors_GENSQR_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GENSQR_f">
+  <refsection id="Palette_GENSQR_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GENSQR_f">
+  <refsection id="Description_GENSQR_f">
     <title>Description</title>
     <para>
 This block is a square wave generator: output takes values  -M  and  M
@@ -104,7 +104,7 @@ switches from  -M  to  M , or  M  to  -M .
 
 </para>
   </refsection>
-  <refsection id="Dialog box GENSQR_f">
+  <refsection id="Dialogbox_GENSQR_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -126,7 +126,7 @@ switches from  -M  to  M , or  M  to  -M .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties GENSQR_f">
+  <refsection id="Defaultproperties_GENSQR_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +172,7 @@ switches from  -M  to  M , or  M  to  -M .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function GENSQR_f">
+  <refsection id="Interfacingfunction_GENSQR_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ switches from  -M  to  M , or  M  to  -M .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function GENSQR_f">
+  <refsection id="Computationalfunction_GENSQR_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ switches from  -M  to  M , or  M  to  -M .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors GENSQR_f">
+  <refsection id="Authors_GENSQR_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

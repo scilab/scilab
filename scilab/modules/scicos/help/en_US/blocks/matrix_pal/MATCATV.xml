@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATCATV">
+  <refsection id="Contents_MATCATV">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATCATV">Palette</xref>
+              <xref linkend="Palette_MATCATV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATCATV">Description</xref>
+              <xref linkend="Description_MATCATV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATCATV">Dialog box</xref>
+              <xref linkend="Dialogbox_MATCATV">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATCATV">Default properties</xref>
+              <xref linkend="Defaultproperties_MATCATV">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATCATV">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATCATV">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATCATV">Computational function</xref>
+              <xref linkend="Computationalfunction_MATCATV">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATCATV">See also</xref>
+              <xref linkend="Seealso_MATCATV">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATCATV">Authors</xref>
+              <xref linkend="Authors_MATCATV">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATCATV">
+  <refsection id="Palette_MATCATV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATCATV">
+  <refsection id="Description_MATCATV">
     <title>Description</title>
     <para>
 The MATCATV Block outputs the vertical concatenation of multiple matrices. It is also called concatenation according to the rows. The inputs U1,U2,...,Un must have the same number of columns. The output is a (M1+M2+...+Mn)-by-N matrix, where M1,M2,...,Mn are the numbers of rows of the inputs matrices, and N is the number of columns.  
@@ -116,7 +116,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATCATV">
+  <refsection id="Dialogbox_MATCATV">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -145,7 +145,7 @@ The equivalent of MATCATH in Scilab is y=[U1;U2;...;Un]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATCATV">
+  <refsection id="Example_MATCATV">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 2;3 4;5 6]
@@ -154,7 +154,7 @@ The result of the horizental concatenation is:
 C=[1 2;3 4;5 6;7 8;9 10]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATCATV">
+  <refsection id="Defaultproperties_MATCATV">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ C=[1 2;3 4;5 6;7 8;9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATCATV">
+  <refsection id="Interfacingfunction_MATCATV">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ C=[1 2;3 4;5 6;7 8;9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATCATV">
+  <refsection id="Computationalfunction_MATCATV">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -230,7 +230,7 @@ C=[1 2;3 4;5 6;7 8;9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATCATV">
+  <refsection id="Seealso_MATCATV">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -240,7 +240,7 @@ C=[1 2;3 4;5 6;7 8;9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATCATV">
+  <refsection id="Authors_MATCATV">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

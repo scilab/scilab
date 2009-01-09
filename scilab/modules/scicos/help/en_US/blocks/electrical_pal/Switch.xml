@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Switch">
+  <refsection id="Contents_Switch">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Switch">Palette</xref>
+              <xref linkend="Palette_Switch">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Switch">Description</xref>
+              <xref linkend="Description_Switch">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Switch">Dialog box</xref>
+              <xref linkend="Dialogbox_Switch">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Switch">Default properties</xref>
+              <xref linkend="Defaultproperties_Switch">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Switch">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Switch">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors Switch">Authors</xref>
+              <xref linkend="Authors_Switch">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Switch">
+  <refsection id="Palette_Switch">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Switch">
+  <refsection id="Description_Switch">
     <title>Description</title>
     <para>
 This is a non-ideal two-pole switch. If the explicit input become positive, two pins are connected via a resistor of resistance RON). Otherwise, two pins are connected via ROFF resistance.  Note that using this block may result in a stiff model, so try to choose proper error tolerances.  
@@ -103,7 +103,7 @@ This is a non-ideal two-pole switch. If the explicit input become positive, two 
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box Switch">
+  <refsection id="Dialogbox_Switch">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ This is a non-ideal two-pole switch. If the explicit input become positive, two 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Switch">
+  <refsection id="Defaultproperties_Switch">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Switch">
+  <refsection id="Interfacingfunction_Switch">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model Switch">
+  <refsection id="Modelicamodel_Switch">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -224,7 +224,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors Switch">
+  <refsection id="Authors_Switch">
     <title>Authors</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

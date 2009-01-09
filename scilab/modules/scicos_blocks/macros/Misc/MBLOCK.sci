@@ -124,8 +124,8 @@ case 'set' then
 
    if ierr<>0 then
      //You loose ! Try again ! Insert coin !
-     //x_message("Error, try again please!")
-     x_message("Error in evaluation of variables.")
+     //messagebox("Error, try again please!","modal","error");
+     messagebox("Error in evaluation of variables.","modal","error");
      ok=%f
      //break
    end
@@ -142,9 +142,9 @@ case 'set' then
        end
      end
      if ~ok then
-       x_message(["Invalid variable name for the input "+string(i)+".";
+       messagebox(["Invalid variable name for the input "+string(i)+".";
                   """"+in(i)+"""";
-                  "Please choose another variable name."] );
+                  "Please choose another variable name."],"modal","error");
      end
    end
    //out
@@ -158,9 +158,9 @@ case 'set' then
        end
      end
      if ~ok then
-       x_message(["Invalid variable name for the output "+string(i)+".";
+       messagebox(["Invalid variable name for the output "+string(i)+".";
                   """"+out(i)+"""";
-                  "Please choose another variable name."] );
+                  "Please choose another variable name."],"modal","error");
      end
    end
    //param
@@ -175,9 +175,9 @@ case 'set' then
        end
      end
      if ~ok then
-       x_message(["Invalid variable name for the parameter "+string(i)+".";
+       messagebox(["Invalid variable name for the parameter "+string(i)+".";
                   """"+param(i)+"""";
-                  "Please choose another variable name."] );
+                  "Please choose another variable name."],"modal","error");
      end
    end
 
@@ -187,7 +187,7 @@ case 'set' then
      for i=1:size(intype,'*')
        if intype(i)<>'E'&intype(i)<>'I' then
          //typeok=%f;
-         x_message("Input type should be ''E'' or ''I''!");
+         messagebox("Input type should be ''E'' or ''I''!","modal","error");
          ok=%f
          break
        end
@@ -202,7 +202,7 @@ case 'set' then
      for i=1:size(outtype,'*')
        if outtype(i)<>'E'&outtype(i)<>'I' then
          //typeok=%f;
-         x_message("Output type should be ''E'' or ''I''!");
+         messagebox("Output type should be ''E'' or ''I''!","modal","error");
          ok=%f
          break
        end
@@ -213,7 +213,7 @@ case 'set' then
    //cross size checking
    if ok then
      if or(size(intype)<>size(in)) then
-       x_message("Input variables are not well defined!");
+       messagebox("Input variables are not well defined!","modal","error");
        ok=%f
        //break;
      end
@@ -221,7 +221,7 @@ case 'set' then
 
    if ok then
      if or(size(outtype)<>size(out)) then
-       x_message("Output variables are not well defined!");
+       messagebox("Output variables are not well defined!","modal","error");
        ok=%f
        //break;
      end
@@ -231,9 +231,9 @@ case 'set' then
    if ok then
      pprop = pprop(:)
      if (size(param,'*')<>size(pprop,'*')) then
-       x_message(["There is differences in";
+       messagebox(["There is differences in";
                   "size of param and size ";
-                  "of param properties." ])
+                  "of param properties."],"modal","error");
        ok=%f
        //break;
      end
@@ -241,10 +241,10 @@ case 'set' then
 
    if ok then
      if max(pprop)>2 | min(pprop)<0 then
-       x_message(["Parameters properties must be :";
+       messagebox(["Parameters properties must be :";
                   "0 : for simple paramater,";
                   "1 : for initial state value,";
-                  "2 : for a fixed initial state value." ])
+                  "2 : for a fixed initial state value."],"modal","error");
        ok=%f
        //break;
      end
@@ -253,7 +253,7 @@ case 'set' then
    //check name of modelica file
    if ok then
      if funam=='' then
-       x_message("The filename is not defined!")
+       messagebox("The filename is not defined!","modal","error");
        ok=%f
        //break
      end
@@ -262,7 +262,7 @@ case 'set' then
    if ok then
      [dirF,nameF,extF]=fileparts(funam);
      if (extF<>'' & extF<>'.mo')|(dirF<>'' & extF<>'.mo') then
-       x_message("Filename extention should be ''.mo '' !")
+       messagebox("Filename extention should be ''.mo '' !","modal","error");
        ok=%f
        //break
      end

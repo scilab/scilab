@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLKOUTV_f">
+  <refsection id="Contenu_CLKOUTV_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLKOUTV_f">Palette</xref>
+              <xref linkend="Palette_CLKOUTV_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLKOUTV_f">Description</xref>
+              <xref linkend="Description_CLKOUTV_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLKOUTV_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLKOUTV_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLKOUTV_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLKOUTV_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLKOUTV_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLKOUTV_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLKOUTV_f">Auteurs</link>
+              <xref linkend="Auteurs_CLKOUTV_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLKOUTV_f">
+  <refsection id="Palette_CLKOUTV_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLKOUTV_f">
+  <refsection id="Description_CLKOUTV_f">
     <title>Description</title>
     <para>
 Ce bloc doit seulement être utilisé à l'intérieur des superblocs.
@@ -100,7 +100,7 @@ jusqu'au nombre de ports.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLKOUTV_f">
+  <refsection id="Boîtededialogue_CLKOUTV_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -122,7 +122,7 @@ jusqu'au nombre de ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLKOUTV_f">
+  <refsection id="Propriétéspardéfaut_CLKOUTV_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -160,7 +160,7 @@ jusqu'au nombre de ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLKOUTV_f">
+  <refsection id="Fonctiondinterface_CLKOUTV_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -168,7 +168,7 @@ jusqu'au nombre de ports.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CLKOUTV_f">
+  <refsection id="Auteurs_CLKOUTV_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Bache">
+  <refsection id="Contenu_Bache">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Bache">Palette</xref>
+              <xref linkend="Palette_Bache">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Bache">Description</xref>
+              <xref linkend="Description_Bache">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Bache">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Bache">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Bache">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Bache">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Bache">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Bache">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Bache">
+  <refsection id="Palette_Bache">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Bache">
+  <refsection id="Description_Bache">
     <title>Description</title>
     <para>
 Ce composant représente une bache thermo-hydraulique qui consiste en
@@ -104,7 +104,7 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Bache">
+  <refsection id="Boîtededialogue_Bache">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -182,7 +182,7 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Bache">
+  <refsection id="Propriétéspardéfaut_Bache">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -341,7 +341,7 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Bache">
+  <refsection id="Fonctiondinterface_Bache">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -349,7 +349,7 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica Bache">
+  <refsection id="ModèleModelica_Bache">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

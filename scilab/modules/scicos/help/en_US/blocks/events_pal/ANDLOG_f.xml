@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents ANDLOG_f">
+  <refsection id="Contents_ANDLOG_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ANDLOG_f">Palette</xref>
+              <xref linkend="Palette_ANDLOG_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ANDLOG_f">Description</xref>
+              <xref linkend="Description_ANDLOG_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties ANDLOG_f">Default properties</xref>
+              <xref linkend="Defaultproperties_ANDLOG_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function ANDLOG_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ANDLOG_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors ANDLOG_f">Authors</xref>
+              <xref linkend="Authors_ANDLOG_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ANDLOG_f">
+  <refsection id="Palette_ANDLOG_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ANDLOG_f">
+  <refsection id="Description_ANDLOG_f">
     <title>Description</title>
     <para>
 This block, with two event inputs and a regular output, outputs <emphasis role="bold">+1</emphasis> or
@@ -103,7 +103,7 @@ This block, with two event inputs and a regular output, outputs <emphasis role="
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties ANDLOG_f">
+  <refsection id="Defaultproperties_ANDLOG_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -149,7 +149,7 @@ This block, with two event inputs and a regular output, outputs <emphasis role="
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function ANDLOG_f">
+  <refsection id="Interfacingfunction_ANDLOG_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -157,7 +157,7 @@ This block, with two event inputs and a regular output, outputs <emphasis role="
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors ANDLOG_f">
+  <refsection id="Authors_ANDLOG_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

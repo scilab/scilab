@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu ESELECT_f">
+  <refsection id="Contenu_ESELECT_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ESELECT_f">Palette</xref>
+              <xref linkend="Palette_ESELECT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ESELECT_f">Description</xref>
+              <xref linkend="Description_ESELECT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue ESELECT_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_ESELECT_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut ESELECT_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_ESELECT_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface ESELECT_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_ESELECT_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="ESELECT_f">Auteurs</link>
+              <xref linkend="Auteurs_ESELECT_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ESELECT_f">
+  <refsection id="Palette_ESELECT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ESELECT_f">
+  <refsection id="Description_ESELECT_f">
     <title>Description</title>
     <para>
 Bloc spécial similaire au bloc If-Then-Else. Les entrées/sorties
@@ -100,7 +100,7 @@ l'entrée régulière.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue ESELECT_f">
+  <refsection id="Boîtededialogue_ESELECT_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -136,7 +136,7 @@ l'entrée régulière.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut ESELECT_f">
+  <refsection id="Propriétéspardéfaut_ESELECT_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -182,7 +182,7 @@ l'entrée régulière.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface ESELECT_f">
+  <refsection id="Fonctiondinterface_ESELECT_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ l'entrée régulière.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs ESELECT_f">
+  <refsection id="Auteurs_ESELECT_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

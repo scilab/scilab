@@ -26,7 +26,7 @@
     <refname>C_macros</refname>
     <refpurpose>Utilities C macros</refpurpose>
   </refnamediv>
-  <refsection id="Contents C_macros">
+  <refsection id="Contents_C_macros">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -38,49 +38,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Module C_macros">Module</xref>
+              <xref linkend="Module_C_macros">Module</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description C_macros">Description</xref>
+              <xref linkend="Description_C_macros">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Inputs/outputs C_macros">Inputs/outputs</xref>
+              <xref linkend="Inputsoutputs_C_macros">Inputs/outputs</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Events C_macros">Events</xref>
+              <xref linkend="Events_C_macros">Events</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Parameters C_macros">Parameters</xref>
+              <xref linkend="Parameters_C_macros">Parameters</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="States and work C_macros">States and work</xref>
+              <xref linkend="Statesandwork_C_macros">States and work</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Zero crossing surfaces and modes C_macros">Zero crossing surfaces and modes</xref>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_macros">Zero crossing surfaces and modes</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors C_macros">Authors</xref>
+              <xref linkend="Authors_C_macros">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Module C_macros">
+  <refsection id="Module_C_macros">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description C_macros">
+  <refsection id="Description_C_macros">
     <title>Description</title>
     <para>
 The following C macros are avialable by including the file 
@@ -100,7 +100,7 @@ in a C computational function.
 
 </para>
   </refsection>
-  <refsection id="Inputs/outputs C_macros">
+  <refsection id="Inputsoutputs_C_macros">
     <title>Inputs/outputs</title>
     <informaltable border="1" cellpadding="3">
       <tr>
@@ -272,7 +272,7 @@ y=2 for the second dimension)
 
 </para>
   </refsection>
-  <refsection id="Events C_macros">
+  <refsection id="Events_C_macros">
     <title>Events</title>
     <para>
 </para>
@@ -305,7 +305,7 @@ y=2 for the second dimension)
 
 </para>
   </refsection>
-  <refsection id="Parameters C_macros">
+  <refsection id="Parameters_C_macros">
     <title>Parameters</title>
     <para>
 </para>
@@ -409,7 +409,7 @@ y=2 for the second dimension)
 
 </para>
   </refsection>
-  <refsection id="States and work C_macros">
+  <refsection id="Statesandwork_C_macros">
     <title>States and work</title>
     <para>
 </para>
@@ -518,7 +518,7 @@ for the second dimension)
 
 </para>
   </refsection>
-  <refsection id="Zero crossing surfaces and modes C_macros">
+  <refsection id="Zerocrossingsurfacesandmodes_C_macros">
     <title>Zero crossing surfaces and modes</title>
     <para>
 </para>
@@ -553,7 +553,7 @@ for the second dimension)
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Authors C_macros">
+  <refsection id="Authors_C_macros">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

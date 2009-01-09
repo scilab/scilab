@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DEMUX">
+  <refsection id="Contents_DEMUX">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DEMUX">Palette</xref>
+              <xref linkend="Palette_DEMUX">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DEMUX">Description</xref>
+              <xref linkend="Description_DEMUX">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box DEMUX">Dialog box</xref>
+              <xref linkend="Dialogbox_DEMUX">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DEMUX">Default properties</xref>
+              <xref linkend="Defaultproperties_DEMUX">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DEMUX">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DEMUX">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function DEMUX">Computational function</xref>
+              <xref linkend="Computationalfunction_DEMUX">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DEMUX">Authors</xref>
+              <xref linkend="Authors_DEMUX">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DEMUX">
+  <refsection id="Palette_DEMUX">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DEMUX">
+  <refsection id="Description_DEMUX">
     <title>Description</title>
     <para>
 Given a vector valued input this block splits inputs over vector
@@ -106,7 +106,7 @@ determined by the context.
 
 </para>
   </refsection>
-  <refsection id="Dialog box DEMUX">
+  <refsection id="Dialogbox_DEMUX">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -128,7 +128,7 @@ determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties DEMUX">
+  <refsection id="Defaultproperties_DEMUX">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -185,7 +185,7 @@ determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DEMUX">
+  <refsection id="Interfacingfunction_DEMUX">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function DEMUX">
+  <refsection id="Computationalfunction_DEMUX">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DEMUX">
+  <refsection id="Authors_DEMUX">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

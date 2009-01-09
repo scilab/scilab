@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>scs_m = scicos([toto])</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module scicos">
+  <refsection id="Module_scicos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scicos">
+  <refsection id="Description_scicos">
     <title>Description</title>
     <para>
 Scicos is a visual editor for constructing models of hybrid
@@ -60,7 +60,7 @@ purposes.
 scs_m = scicos([toto])
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters scicos">
+  <refsection id="Parameters_scicos">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -71,7 +71,7 @@ scs_m = scicos([toto])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example scicos">
+  <refsection id="Example_scicos">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 // Open a new diagram 
@@ -85,7 +85,7 @@ load('mondiagr.cos');
 scs_m=scicos(scs_m);
 ]]></programlisting>
   </refsection>
-  <refsection id="File content scicos">
+  <refsection id="Filecontent_scicos">
     <title>File content</title>
     <itemizedlist>
       <listitem>
@@ -93,7 +93,7 @@ scs_m=scicos(scs_m);
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also scicos">
+  <refsection id="SeeAlso_scicos">
     <title>See Also</title>
     <itemizedlist>
       <listitem>

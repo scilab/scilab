@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu TIME_DELAY">
+  <refsection id="Contenu_TIME_DELAY">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TIME_DELAY">Palette</xref>
+              <xref linkend="Palette_TIME_DELAY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TIME_DELAY">Description</xref>
+              <xref linkend="Description_TIME_DELAY">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue TIME_DELAY">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_TIME_DELAY">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut TIME_DELAY">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_TIME_DELAY">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface TIME_DELAY">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_TIME_DELAY">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul TIME_DELAY">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_TIME_DELAY">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="TIME_DELAY">Auteurs</link>
+              <xref linkend="Auteurs_TIME_DELAY">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TIME_DELAY">
+  <refsection id="Palette_TIME_DELAY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TIME_DELAY">
+  <refsection id="Description_TIME_DELAY">
     <title>Description</title>
     <para>
 Ce bloc retarde l'entrée par un laps de temps spécifié.
@@ -110,7 +110,7 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue TIME_DELAY">
+  <refsection id="Boîtededialogue_TIME_DELAY">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -146,7 +146,7 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut TIME_DELAY">
+  <refsection id="Propriétéspardéfaut_TIME_DELAY">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface TIME_DELAY">
+  <refsection id="Fonctiondinterface_TIME_DELAY">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul TIME_DELAY">
+  <refsection id="Fonctiondecalcul_TIME_DELAY">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs TIME_DELAY">
+  <refsection id="Auteurs_TIME_DELAY">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

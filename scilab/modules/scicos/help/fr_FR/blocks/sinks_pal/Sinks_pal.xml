@@ -26,10 +26,6 @@
     <refname>Sinks_pal</refname>
     <refpurpose>Palette Affichage</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Sinks_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Sinks_pal">
+  <refsection id="Module_Sinks_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Sinks_pal">
+  <refsection id="Description_Sinks_pal">
     <title>Description</title>
     <para>
 Dans la palette Sinks, vous pouvez trouver une variété de
@@ -68,9 +58,10 @@ de sortie utilisés dans les superblocs.
 Les blocs de cette palette ne possèdent pas de ports réguliers
 de sortie.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Sinks_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

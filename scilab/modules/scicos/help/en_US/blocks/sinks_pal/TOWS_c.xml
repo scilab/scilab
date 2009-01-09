@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TOWS_c">
+  <refsection id="Contents_TOWS_c">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TOWS_c">Palette</xref>
+              <xref linkend="Palette_TOWS_c">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TOWS_c">Description</xref>
+              <xref linkend="Description_TOWS_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box TOWS_c">Dialog box</xref>
+              <xref linkend="Dialogbox_TOWS_c">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TOWS_c">Default properties</xref>
+              <xref linkend="Defaultproperties_TOWS_c">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TOWS_c">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TOWS_c">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function TOWS_c">Computational function</xref>
+              <xref linkend="Computationalfunction_TOWS_c">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also TOWS_c">See also</xref>
+              <xref linkend="Seealso_TOWS_c">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors TOWS_c">Authors</xref>
+              <xref linkend="Authors_TOWS_c">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TOWS_c">
+  <refsection id="Palette_TOWS_c">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TOWS_c">
+  <refsection id="Description_TOWS_c">
     <title>Description</title>
     <para>
 That block is used to put simulated data in the scilab
@@ -111,7 +111,7 @@ Each sampling time, both dates and values of input are recorded.
 
 </para>
   </refsection>
-  <refsection id="Dialog box TOWS_c">
+  <refsection id="Dialogbox_TOWS_c">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -149,7 +149,7 @@ Each sampling time, both dates and values of input are recorded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties TOWS_c">
+  <refsection id="Defaultproperties_TOWS_c">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ Each sampling time, both dates and values of input are recorded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TOWS_c">
+  <refsection id="Interfacingfunction_TOWS_c">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ Each sampling time, both dates and values of input are recorded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function TOWS_c">
+  <refsection id="Computationalfunction_TOWS_c">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ Each sampling time, both dates and values of input are recorded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also TOWS_c">
+  <refsection id="Seealso_TOWS_c">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ Each sampling time, both dates and values of input are recorded.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors TOWS_c">
+  <refsection id="Authors_TOWS_c">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

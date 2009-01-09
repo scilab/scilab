@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu AUTOMAT">
+  <refsection id="Contenu_AUTOMAT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette AUTOMAT">Palette</xref>
+              <xref linkend="Palette_AUTOMAT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description AUTOMAT">Description</xref>
+              <xref linkend="Description_AUTOMAT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue AUTOMAT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_AUTOMAT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut AUTOMAT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_AUTOMAT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface AUTOMAT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_AUTOMAT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul AUTOMAT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_AUTOMAT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="AUTOMAT">Auteurs</link>
+              <xref linkend="Auteurs_AUTOMAT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette AUTOMAT">
+  <refsection id="Palette_AUTOMAT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description AUTOMAT">
+  <refsection id="Description_AUTOMAT">
     <title>Description</title>
     <para>
 This block gives the possibility to construct hybrid automata, i.e., a
@@ -207,7 +207,7 @@ Multi-conference on Systems and Control, Singapore.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue AUTOMAT">
+  <refsection id="Boîtededialogue_AUTOMAT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -262,7 +262,7 @@ Multi-conference on Systems and Control, Singapore.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut AUTOMAT">
+  <refsection id="Propriétéspardéfaut_AUTOMAT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -322,7 +322,7 @@ Multi-conference on Systems and Control, Singapore.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface AUTOMAT">
+  <refsection id="Fonctiondinterface_AUTOMAT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -330,7 +330,7 @@ Multi-conference on Systems and Control, Singapore.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul AUTOMAT">
+  <refsection id="Fonctiondecalcul_AUTOMAT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -338,7 +338,7 @@ Multi-conference on Systems and Control, Singapore.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs AUTOMAT">
+  <refsection id="Auteurs_AUTOMAT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

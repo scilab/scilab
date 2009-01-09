@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="END_c">
   <refnamediv>
     <refname>END_c</refname>
@@ -9,12 +31,12 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/END_c_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/END_c_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents END_c">
+  <refsection id="Contents_END_c">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -26,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Description END_c">Description</xref>
+              <xref linkend="Description_END_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box END_c">Dialog box</xref>
+              <xref linkend="Dialogbox_END_c">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties END_c">Default properties</xref>
+              <xref linkend="Defaultproperties_END_c">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function END_c">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_END_c">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function END_c">Computational function</xref>
+              <xref linkend="Computationalfunction_END_c">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also END_c">See also</xref>
+              <xref linkend="Seealso_END_c">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors END_c">Authors</xref>
+              <xref linkend="Authors_END_c">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description END_c">
+  <refsection id="Description_END_c">
     <title>Description</title>
     <para>
 That block increases the current time to the final integration time of the simulation
@@ -74,7 +96,7 @@ when it is activated :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/END_c_img2_eng.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/END_c_img2_eng.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -86,12 +108,12 @@ time defined in the in the Setup item of the simulate Menu (scs_m.props.tf).
 
 </para>
   </refsection>
-  <refsection id="Dialog box END_c">
+  <refsection id="Dialogbox_END_c">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/END_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/END_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +130,7 @@ time defined in the in the Setup item of the simulate Menu (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties END_c">
+  <refsection id="Defaultproperties_END_c">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -146,7 +168,7 @@ time defined in the in the Setup item of the simulate Menu (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function END_c">
+  <refsection id="Interfacingfunction_END_c">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -154,7 +176,7 @@ time defined in the in the Setup item of the simulate Menu (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function END_c">
+  <refsection id="Computationalfunction_END_c">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -162,7 +184,7 @@ time defined in the in the Setup item of the simulate Menu (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also END_c">
+  <refsection id="Seealso_END_c">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +194,7 @@ time defined in the in the Setup item of the simulate Menu (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors END_c">
+  <refsection id="Authors_END_c">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

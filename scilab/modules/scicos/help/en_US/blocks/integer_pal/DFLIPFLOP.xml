@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DFLIPFLOP">
+  <refsection id="Contents_DFLIPFLOP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DFLIPFLOP">Palette</xref>
+              <xref linkend="Palette_DFLIPFLOP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DFLIPFLOP">Description</xref>
+              <xref linkend="Description_DFLIPFLOP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DFLIPFLOP">Default properties</xref>
+              <xref linkend="Defaultproperties_DFLIPFLOP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DFLIPFLOP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DFLIPFLOP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,19 +73,19 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also DFLIPFLOP">See also</xref>
+              <xref linkend="Seealso_DFLIPFLOP">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DFLIPFLOP">Authors</xref>
+              <xref linkend="Authors_DFLIPFLOP">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DFLIPFLOP">
+  <refsection id="Palette_DFLIPFLOP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DFLIPFLOP">
+  <refsection id="Description_DFLIPFLOP">
     <title>Description</title>
     <para>
 The DFLIPFLOP block outputs the input state when the enable is
@@ -140,7 +140,7 @@ The truth table of this block is
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Default properties DFLIPFLOP">
+  <refsection id="Defaultproperties_DFLIPFLOP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DFLIPFLOP">
+  <refsection id="Interfacingfunction_DFLIPFLOP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content DFLIPFLOP">
+  <refsection id="CompiledSuperBlockcontent_DFLIPFLOP">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>
@@ -221,7 +221,7 @@ The truth table of this block is
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="See also DFLIPFLOP">
+  <refsection id="Seealso_DFLIPFLOP">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -241,7 +241,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DFLIPFLOP">
+  <refsection id="Authors_DFLIPFLOP">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

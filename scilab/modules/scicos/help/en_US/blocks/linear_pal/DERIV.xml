@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DERIV">
+  <refsection id="Contents_DERIV">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DERIV">Palette</xref>
+              <xref linkend="Palette_DERIV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DERIV">Description</xref>
+              <xref linkend="Description_DERIV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DERIV">Default properties</xref>
+              <xref linkend="Defaultproperties_DERIV">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DERIV">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DERIV">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function DERIV">Computational function</xref>
+              <xref linkend="Computationalfunction_DERIV">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors DERIV">Authors</xref>
+              <xref linkend="Authors_DERIV">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DERIV">
+  <refsection id="Palette_DERIV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DERIV">
+  <refsection id="Description_DERIV">
     <title>Description</title>
     <para>
 The Derivative block approximates the derivative of its input
@@ -105,7 +105,7 @@ by computing:</para>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Default properties DERIV">
+  <refsection id="Defaultproperties_DERIV">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -159,7 +159,7 @@ by computing:</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DERIV">
+  <refsection id="Interfacingfunction_DERIV">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -167,7 +167,7 @@ by computing:</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function DERIV">
+  <refsection id="Computationalfunction_DERIV">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -175,7 +175,7 @@ by computing:</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors DERIV">
+  <refsection id="Authors_DERIV">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

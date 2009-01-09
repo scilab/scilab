@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents GotoTagVisibility">
+  <refsection id="Contents_GotoTagVisibility">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GotoTagVisibility">Palette</xref>
+              <xref linkend="Palette_GotoTagVisibility">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GotoTagVisibility">Description</xref>
+              <xref linkend="Description_GotoTagVisibility">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box GotoTagVisibility">Dialog box</xref>
+              <xref linkend="Dialogbox_GotoTagVisibility">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties GotoTagVisibility">Default properties</xref>
+              <xref linkend="Defaultproperties_GotoTagVisibility">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function GotoTagVisibility">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_GotoTagVisibility">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also GotoTagVisibility">See also</xref>
+              <xref linkend="Seealso_GotoTagVisibility">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors GotoTagVisibility">Authors</xref>
+              <xref linkend="Authors_GotoTagVisibility">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GotoTagVisibility">
+  <refsection id="Palette_GotoTagVisibility">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GotoTagVisibility">
+  <refsection id="Description_GotoTagVisibility">
     <title>Description</title>
     <para>
 This block defines the accessibility of the GOTO block when it is configure as "scoped". The FROM block corresponding to that GOTO must be in the same subsystem of the GotoTagVisibility or in subsystems below it in the model hierarchy.  
@@ -103,7 +103,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box GotoTagVisibility">
+  <refsection id="Dialogbox_GotoTagVisibility">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties GotoTagVisibility">
+  <refsection id="Defaultproperties_GotoTagVisibility">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function GotoTagVisibility">
+  <refsection id="Interfacingfunction_GotoTagVisibility">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also GotoTagVisibility">
+  <refsection id="Seealso_GotoTagVisibility">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ This block defines the accessibility of the GOTO block when it is configure as "
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors GotoTagVisibility">
+  <refsection id="Authors_GotoTagVisibility">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

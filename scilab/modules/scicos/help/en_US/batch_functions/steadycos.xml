@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module steadycos">
+  <refsection id="Module_steadycos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description steadycos">
+  <refsection id="Description_steadycos">
     <title>Description</title>
     <para>
 This function finds the steady state for a given system described by a Scicos diagram. The diagram consists in general of a Super block with input and output port blocks. The steady state concern only the continuous-time dynamics.  
@@ -51,7 +51,7 @@ This function finds the steady state for a given system described by a Scicos di
 [X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters steadycos">
+  <refsection id="Parameters_steadycos">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@ This function finds the steady state for a given system described by a Scicos di
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content steadycos">
+  <refsection id="Filecontent_steadycos">
     <title>File content</title>
     <itemizedlist>
       <listitem>
@@ -103,7 +103,7 @@ This function finds the steady state for a given system described by a Scicos di
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also steadycos">
+  <refsection id="SeeAlso_steadycos">
     <title>See Also</title>
     <itemizedlist>
       <listitem>
@@ -123,7 +123,7 @@ This function finds the steady state for a given system described by a Scicos di
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors steadycos">
+  <refsection id="Authors_steadycos">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

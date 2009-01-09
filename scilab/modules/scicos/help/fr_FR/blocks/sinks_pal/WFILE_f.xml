@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu WFILE_f">
+  <refsection id="Contenu_WFILE_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette WFILE_f">Palette</xref>
+              <xref linkend="Palette_WFILE_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description WFILE_f">Description</xref>
+              <xref linkend="Description_WFILE_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue WFILE_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_WFILE_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut WFILE_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_WFILE_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface WFILE_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_WFILE_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul WFILE_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_WFILE_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="WFILE_f">Auteurs</link>
+              <xref linkend="Auteurs_WFILE_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette WFILE_f">
+  <refsection id="Palette_WFILE_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description WFILE_f">
+  <refsection id="Description_WFILE_f">
     <title>Description</title>
     <para>
 Ce bloc permet à l'utilisateur de sauvegarder des données dans un fichier.
@@ -110,7 +110,7 @@ Ce bloc fonctionne de paire avec le bloc .
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue WFILE_f">
+  <refsection id="Boîtededialogue_WFILE_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -153,7 +153,7 @@ Ce bloc fonctionne de paire avec le bloc .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut WFILE_f">
+  <refsection id="Propriétéspardéfaut_WFILE_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ Ce bloc fonctionne de paire avec le bloc .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface WFILE_f">
+  <refsection id="Fonctiondinterface_WFILE_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ Ce bloc fonctionne de paire avec le bloc .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul WFILE_f">
+  <refsection id="Fonctiondecalcul_WFILE_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ Ce bloc fonctionne de paire avec le bloc .
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs WFILE_f">
+  <refsection id="Auteurs_WFILE_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Extract_Activation">
+  <refsection id="Contents_Extract_Activation">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Extract_Activation">Palette</xref>
+              <xref linkend="Palette_Extract_Activation">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Extract_Activation">Default properties</xref>
+              <xref linkend="Defaultproperties_Extract_Activation">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Extract_Activation">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Extract_Activation">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -70,7 +70,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Extract_Activation">
+  <refsection id="Palette_Extract_Activation">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Extract_Activation">
+  <refsection id="Defaultproperties_Extract_Activation">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -126,7 +126,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Extract_Activation">
+  <refsection id="Interfacingfunction_Extract_Activation">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -134,7 +134,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content Extract_Activation">
+  <refsection id="CompiledSuperBlockcontent_Extract_Activation">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>

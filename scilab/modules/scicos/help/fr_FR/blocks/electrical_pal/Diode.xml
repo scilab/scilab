@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Diode">
+  <refsection id="Contenu_Diode">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Diode">Palette</xref>
+              <xref linkend="Palette_Diode">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Diode">Description</xref>
+              <xref linkend="Description_Diode">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Diode">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Diode">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Diode">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Diode">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Diode">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Diode">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Diode">
+  <refsection id="Palette_Diode">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Diode">
+  <refsection id="Description_Diode">
     <title>Description</title>
     <para>
 Ce composant consiste en une diode simple mise en parallèle avec une résistance
@@ -114,7 +114,7 @@ la diode devient linéaire pour éviter un dépassement numérique.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Diode">
+  <refsection id="Boîtededialogue_Diode">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -157,7 +157,7 @@ la diode devient linéaire pour éviter un dépassement numérique.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Diode">
+  <refsection id="Propriétéspardéfaut_Diode">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -242,7 +242,7 @@ la diode devient linéaire pour éviter un dépassement numérique.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Diode">
+  <refsection id="Fonctiondinterface_Diode">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -250,7 +250,7 @@ la diode devient linéaire pour éviter un dépassement numérique.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica Diode">
+  <refsection id="ModèleModelica_Diode">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

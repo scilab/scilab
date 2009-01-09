@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Ground">
+  <refsection id="Contents_Ground">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Ground">Palette</xref>
+              <xref linkend="Palette_Ground">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Ground">Description</xref>
+              <xref linkend="Description_Ground">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Ground">Default properties</xref>
+              <xref linkend="Defaultproperties_Ground">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Ground">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Ground">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Ground">
+  <refsection id="Palette_Ground">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Ground">
+  <refsection id="Description_Ground">
     <title>Description</title>
     <para>
 The Ground element is a single port component providing a reference
@@ -95,7 +95,7 @@ element.
 
 </para>
   </refsection>
-  <refsection id="Default properties Ground">
+  <refsection id="Defaultproperties_Ground">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -119,7 +119,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Ground">
+  <refsection id="Interfacingfunction_Ground">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -127,7 +127,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model Ground">
+  <refsection id="Modelicamodel_Ground">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

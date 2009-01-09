@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu TEXT_f">
+  <refsection id="Contenu_TEXT_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TEXT_f">Palette</xref>
+              <xref linkend="Palette_TEXT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TEXT_f">Description</xref>
+              <xref linkend="Description_TEXT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue TEXT_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_TEXT_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut TEXT_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_TEXT_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface TEXT_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_TEXT_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="TEXT_f">Auteurs</link>
+              <xref linkend="Auteurs_TEXT_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TEXT_f">
+  <refsection id="Palette_TEXT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TEXT_f">
+  <refsection id="Description_TEXT_f">
     <title>Description</title>
     <para>
 Ce bloc spécial est utilisé pour ajouter du texte dans un diagramme scicos.
@@ -98,7 +98,7 @@ Il n'affecte pas la simulation.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue TEXT_f">
+  <refsection id="Boîtededialogue_TEXT_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -134,7 +134,7 @@ Il n'affecte pas la simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut TEXT_f">
+  <refsection id="Propriétéspardéfaut_TEXT_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +172,7 @@ Il n'affecte pas la simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface TEXT_f">
+  <refsection id="Fonctiondinterface_TEXT_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ Il n'affecte pas la simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs TEXT_f">
+  <refsection id="Auteurs_TEXT_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents GOTOMO">
+  <refsection id="Contents_GOTOMO">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GOTOMO">Palette</xref>
+              <xref linkend="Palette_GOTOMO">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GOTOMO">Description</xref>
+              <xref linkend="Description_GOTOMO">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box GOTOMO">Dialog box</xref>
+              <xref linkend="Dialogbox_GOTOMO">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties GOTOMO">Default properties</xref>
+              <xref linkend="Defaultproperties_GOTOMO">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function GOTOMO">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_GOTOMO">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also GOTOMO">See also</xref>
+              <xref linkend="Seealso_GOTOMO">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors GOTOMO">Authors</xref>
+              <xref linkend="Authors_GOTOMO">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GOTOMO">
+  <refsection id="Palette_GOTOMO">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GOTOMO">
+  <refsection id="Description_GOTOMO">
     <title>Description</title>
     <para>
 This block is used to connect Modelica blocks. For more information on how it works please refer to the documentation of the GOTO block by clicking on the link in the "See also" field.  
@@ -103,7 +103,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box GOTOMO">
+  <refsection id="Dialogbox_GOTOMO">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -132,7 +132,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties GOTOMO">
+  <refsection id="Defaultproperties_GOTOMO">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -178,7 +178,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function GOTOMO">
+  <refsection id="Interfacingfunction_GOTOMO">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also GOTOMO">
+  <refsection id="Seealso_GOTOMO">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ This block is used to connect Modelica blocks. For more information on how it wo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors GOTOMO">
+  <refsection id="Authors_GOTOMO">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

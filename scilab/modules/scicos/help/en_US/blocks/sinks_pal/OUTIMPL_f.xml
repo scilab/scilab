@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents OUTIMPL_f">
+  <refsection id="Contents_OUTIMPL_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette OUTIMPL_f">Palette</xref>
+              <xref linkend="Palette_OUTIMPL_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description OUTIMPL_f">Description</xref>
+              <xref linkend="Description_OUTIMPL_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box OUTIMPL_f">Dialog box</xref>
+              <xref linkend="Dialogbox_OUTIMPL_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties OUTIMPL_f">Default properties</xref>
+              <xref linkend="Defaultproperties_OUTIMPL_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function OUTIMPL_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_OUTIMPL_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors OUTIMPL_f">Authors</xref>
+              <xref linkend="Authors_OUTIMPL_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette OUTIMPL_f">
+  <refsection id="Palette_OUTIMPL_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description OUTIMPL_f">
+  <refsection id="Description_OUTIMPL_f">
     <title>Description</title>
     <para>
 Outport blocks are the links from a system to a destination outside
@@ -98,7 +98,7 @@ the system.
 
 </para>
   </refsection>
-  <refsection id="Dialog box OUTIMPL_f">
+  <refsection id="Dialogbox_OUTIMPL_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -120,7 +120,7 @@ the system.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties OUTIMPL_f">
+  <refsection id="Defaultproperties_OUTIMPL_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -166,7 +166,7 @@ the system.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function OUTIMPL_f">
+  <refsection id="Interfacingfunction_OUTIMPL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -174,7 +174,7 @@ the system.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors OUTIMPL_f">
+  <refsection id="Authors_OUTIMPL_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

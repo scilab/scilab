@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu DERIV">
+  <refsection id="Contenu_DERIV">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DERIV">Palette</xref>
+              <xref linkend="Palette_DERIV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DERIV">Description</xref>
+              <xref linkend="Description_DERIV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut DERIV">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_DERIV">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface DERIV">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_DERIV">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul DERIV">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_DERIV">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="DERIV">Auteurs</link>
+              <xref linkend="Auteurs_DERIV">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DERIV">
+  <refsection id="Palette_DERIV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DERIV">
+  <refsection id="Description_DERIV">
     <title>Description</title>
     <para>
 Le bloc dérivée fait l'approximation de la dérivée de son entrée en calculant:</para>
@@ -107,7 +107,7 @@ Le bloc dérivée fait l'approximation de la dérivée de son entrée en calculant:</
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut DERIV">
+  <refsection id="Propriétéspardéfaut_DERIV">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -161,7 +161,7 @@ Le bloc dérivée fait l'approximation de la dérivée de son entrée en calculant:</
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface DERIV">
+  <refsection id="Fonctiondinterface_DERIV">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -169,7 +169,7 @@ Le bloc dérivée fait l'approximation de la dérivée de son entrée en calculant:</
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul DERIV">
+  <refsection id="Fonctiondecalcul_DERIV">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -177,7 +177,7 @@ Le bloc dérivée fait l'approximation de la dérivée de son entrée en calculant:</
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs DERIV">
+  <refsection id="Auteurs_DERIV">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>
