@@ -19,6 +19,9 @@ Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 ;
 #ifdef SCILAB_X64
+;used by libifcoremd
+Source: bin\msvcrt.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;
 Source: bin\msvcr80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcm80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcp80.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
@@ -77,4 +80,3 @@ Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-
