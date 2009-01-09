@@ -235,7 +235,7 @@ static void initial_c1_local(void)
 
 #define ReadMatrix(ct,mx,nx,w)  if (! C2F(creadmat)(ct,mx,nx,w,(unsigned long)strlen(ct) )) {	return 0; }
 
-#define WriteMatrix(ct,mx,nx,w)  if (! C2F(cwritemat)(ct,mx,nx,w,strlen(ct) )) {	return 0; }
+#define WriteMatrix(ct,mx,nx,w)  if (! C2F(cwritemat)(ct,mx,nx,w,(unsigned long)strlen(ct) )) {	return 0; }
 
 #define PutVar(num, nam)  if (! C2F(putvar)( (c_local=num, &c_local), nam, (unsigned long)strlen(nam) )) {	return 0; }
 
