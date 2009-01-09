@@ -49,7 +49,7 @@ function %pt=do_block_info(%pt,scs_m)
     end
     
     if exists('txt') then
-        x_message_modeless(txt)
+        messagebox(txt);
     end
     
   else
@@ -74,7 +74,7 @@ function %pt=do_block_info(%pt,scs_m)
     elseif win==curwin then // click in the current window 
       txt = get_block_info(scs_m,k),
     end
-    x_message_modeless(txt)
+    messagebox(txt);
     
   end
   
