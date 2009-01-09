@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents HYSTHERESIS">
+  <refsection id="Contents_HYSTHERESIS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette HYSTHERESIS">Palette</xref>
+              <xref linkend="Palette_HYSTHERESIS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description HYSTHERESIS">Description</xref>
+              <xref linkend="Description_HYSTHERESIS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box HYSTHERESIS">Dialog box</xref>
+              <xref linkend="Dialogbox_HYSTHERESIS">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties HYSTHERESIS">Default properties</xref>
+              <xref linkend="Defaultproperties_HYSTHERESIS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function HYSTHERESIS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_HYSTHERESIS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function HYSTHERESIS">Computational function</xref>
+              <xref linkend="Computationalfunction_HYSTHERESIS">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors HYSTHERESIS">Authors</xref>
+              <xref linkend="Authors_HYSTHERESIS">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette HYSTHERESIS">
+  <refsection id="Palette_HYSTHERESIS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description HYSTHERESIS">
+  <refsection id="Description_HYSTHERESIS">
     <title>Description</title>
     <para>
 Switch output between two constants.The Relay block allows its output
@@ -107,7 +107,7 @@ one input and generates one output.
 
 </para>
   </refsection>
-  <refsection id="Dialog box HYSTHERESIS">
+  <refsection id="Dialogbox_HYSTHERESIS">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -157,7 +157,7 @@ one input and generates one output.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties HYSTHERESIS">
+  <refsection id="Defaultproperties_HYSTHERESIS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ one input and generates one output.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function HYSTHERESIS">
+  <refsection id="Interfacingfunction_HYSTHERESIS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ one input and generates one output.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function HYSTHERESIS">
+  <refsection id="Computationalfunction_HYSTHERESIS">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -227,7 +227,7 @@ one input and generates one output.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors HYSTHERESIS">
+  <refsection id="Authors_HYSTHERESIS">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

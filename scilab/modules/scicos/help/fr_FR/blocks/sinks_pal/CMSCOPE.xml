@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CMSCOPE">
+  <refsection id="Contenu_CMSCOPE">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CMSCOPE">Palette</xref>
+              <xref linkend="Palette_CMSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CMSCOPE">Description</xref>
+              <xref linkend="Description_CMSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CMSCOPE">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CMSCOPE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CMSCOPE">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CMSCOPE">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CMSCOPE">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CMSCOPE">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CMSCOPE">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CMSCOPE">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CMSCOPE">Auteurs</link>
+              <xref linkend="Auteurs_CMSCOPE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CMSCOPE">
+  <refsection id="Palette_CMSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CMSCOPE">
+  <refsection id="Description_CMSCOPE">
     <title>Description</title>
     <para>
 Au début de la simulation, ce bloc ouvre une fenêtre  pour afficher
@@ -108,7 +108,7 @@ qui seront définies par le paramètre <emphasis role="bold">Refresh period</empha
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CMSCOPE">
+  <refsection id="Boîtededialogue_CMSCOPE">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -200,7 +200,7 @@ qui seront définies par le paramètre <emphasis role="bold">Refresh period</empha
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CMSCOPE">
+  <refsection id="Propriétéspardéfaut_CMSCOPE">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -249,7 +249,7 @@ qui seront définies par le paramètre <emphasis role="bold">Refresh period</empha
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CMSCOPE">
+  <refsection id="Fonctiondinterface_CMSCOPE">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -257,7 +257,7 @@ qui seront définies par le paramètre <emphasis role="bold">Refresh period</empha
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CMSCOPE">
+  <refsection id="Fonctiondecalcul_CMSCOPE">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -265,7 +265,7 @@ qui seront définies par le paramètre <emphasis role="bold">Refresh period</empha
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CMSCOPE">
+  <refsection id="Auteurs_CMSCOPE">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

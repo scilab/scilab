@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EXTRACT">
+  <refsection id="Contenu_EXTRACT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXTRACT">Palette</xref>
+              <xref linkend="Palette_EXTRACT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXTRACT">Description</xref>
+              <xref linkend="Description_EXTRACT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EXTRACT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EXTRACT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EXTRACT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EXTRACT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EXTRACT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EXTRACT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EXTRACT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EXTRACT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXTRACT">Voir aussi</link>
+              <xref linkend="Voiraussi_EXTRACT">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXTRACT">Auteurs</link>
+              <xref linkend="Auteurs_EXTRACT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXTRACT">
+  <refsection id="Palette_EXTRACT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXTRACT">
+  <refsection id="Description_EXTRACT">
     <title>Description</title>
     <para>
 The EXTRACT block extracts some elements from the matrix. The size of the output depends on the number of rows and number of columns to extract.  
@@ -108,7 +108,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EXTRACT">
+  <refsection id="Boîtededialogue_EXTRACT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EXTRACT">
+  <refsection id="Propriétéspardéfaut_EXTRACT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EXTRACT">
+  <refsection id="Fonctiondinterface_EXTRACT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EXTRACT">
+  <refsection id="Fonctiondecalcul_EXTRACT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -217,7 +217,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi EXTRACT">
+  <refsection id="Voiraussi_EXTRACT">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -227,7 +227,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs EXTRACT">
+  <refsection id="Auteurs_EXTRACT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

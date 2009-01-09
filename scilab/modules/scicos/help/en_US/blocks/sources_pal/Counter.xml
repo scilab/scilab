@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Counter">
+  <refsection id="Contents_Counter">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Counter">Palette</xref>
+              <xref linkend="Palette_Counter">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Counter">Description</xref>
+              <xref linkend="Description_Counter">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Counter">Dialog box</xref>
+              <xref linkend="Dialogbox_Counter">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Counter">Default properties</xref>
+              <xref linkend="Defaultproperties_Counter">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Counter">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Counter">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function Counter">Computational function</xref>
+              <xref linkend="Computationalfunction_Counter">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also Counter">See also</xref>
+              <xref linkend="Seealso_Counter">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors Counter">Authors</xref>
+              <xref linkend="Authors_Counter">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Counter">
+  <refsection id="Palette_Counter">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Counter">
+  <refsection id="Description_Counter">
     <title>Description</title>
     <para>
 This block counts from minimal to maximal or from maximal to minimal depending on the choice of the rule.  
@@ -108,7 +108,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box Counter">
+  <refsection id="Dialogbox_Counter">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Counter">
+  <refsection id="Defaultproperties_Counter">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Counter">
+  <refsection id="Interfacingfunction_Counter">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function Counter">
+  <refsection id="Computationalfunction_Counter">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also Counter">
+  <refsection id="Seealso_Counter">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ This block counts from minimal to maximal or from maximal to minimal depending o
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors Counter">
+  <refsection id="Authors_Counter">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

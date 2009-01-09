@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATEXPM">
+  <refsection id="Contents_MATEXPM">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATEXPM">Palette</xref>
+              <xref linkend="Palette_MATEXPM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATEXPM">Description</xref>
+              <xref linkend="Description_MATEXPM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATEXPM">Dialog box</xref>
+              <xref linkend="Dialogbox_MATEXPM">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATEXPM">Default properties</xref>
+              <xref linkend="Defaultproperties_MATEXPM">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATEXPM">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATEXPM">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATEXPM">Computational function</xref>
+              <xref linkend="Computationalfunction_MATEXPM">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATEXPM">See also</xref>
+              <xref linkend="Seealso_MATEXPM">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATEXPM">Authors</xref>
+              <xref linkend="Authors_MATEXPM">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATEXPM">
+  <refsection id="Palette_MATEXPM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATEXPM">
+  <refsection id="Description_MATEXPM">
     <title>Description</title>
     <para>
 The MATEXPM outputs the matrix exponential of a square matrix input by the pade's approximants. The output is a square matrix with the same size of the input. The equivalent of this block in Scilab is "expm".  
@@ -113,7 +113,7 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATEXPM">
+  <refsection id="Dialogbox_MATEXPM">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -135,14 +135,14 @@ The MATEXPM outputs the matrix exponential of a square matrix input by the pade'
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATEXPM">
+  <refsection id="Example_MATEXPM">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 u=[1 2 3;2 3 1;4 2 1]
 y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATEXPM">
+  <refsection id="Defaultproperties_MATEXPM">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATEXPM">
+  <refsection id="Interfacingfunction_MATEXPM">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATEXPM">
+  <refsection id="Computationalfunction_MATEXPM">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATEXPM">
+  <refsection id="Seealso_MATEXPM">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ y=[182.612 196.518 141.735;172.973 190.770 133.577;204.677 220.063 159.067]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATEXPM">
+  <refsection id="Authors_MATEXPM">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

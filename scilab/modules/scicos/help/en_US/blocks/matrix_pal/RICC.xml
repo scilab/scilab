@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents RICC">
+  <refsection id="Contents_RICC">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RICC">Palette</xref>
+              <xref linkend="Palette_RICC">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RICC">Description</xref>
+              <xref linkend="Description_RICC">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box RICC">Dialog box</xref>
+              <xref linkend="Dialogbox_RICC">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties RICC">Default properties</xref>
+              <xref linkend="Defaultproperties_RICC">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function RICC">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_RICC">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function RICC">Computational function</xref>
+              <xref linkend="Computationalfunction_RICC">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also RICC">See also</xref>
+              <xref linkend="Seealso_RICC">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors RICC">Authors</xref>
+              <xref linkend="Authors_RICC">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RICC">
+  <refsection id="Palette_RICC">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RICC">
+  <refsection id="Description_RICC">
     <title>Description</title>
     <para>
 This block computes the solution of Riccati equation using different method and for both case continuous and discrete.  
@@ -126,7 +126,7 @@ The user can choose between two methods of computation. For the continuous time 
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box RICC">
+  <refsection id="Dialogbox_RICC">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -155,7 +155,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties RICC">
+  <refsection id="Defaultproperties_RICC">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function RICC">
+  <refsection id="Interfacingfunction_RICC">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function RICC">
+  <refsection id="Computationalfunction_RICC">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -231,7 +231,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also RICC">
+  <refsection id="Seealso_RICC">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -241,7 +241,7 @@ The user can choose between two methods of computation. For the continuous time 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors RICC">
+  <refsection id="Authors_RICC">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

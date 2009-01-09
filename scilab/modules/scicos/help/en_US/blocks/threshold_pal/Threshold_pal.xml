@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module Threshold_pal">
+  <refsection id="Module_Threshold_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Threshold_pal">
+  <refsection id="Description_Threshold_pal">
     <title>Description</title>
     <para>
 Threshold blocks are used to detect values crossing of state variables
@@ -55,7 +55,7 @@ This blocks use the solvers (ODE or DAE) to do that operation.
 
 </para>
   </refsection>
-  <refsection id="Blocks Threshold_pal">
+  <refsection id="Blocks_Threshold_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

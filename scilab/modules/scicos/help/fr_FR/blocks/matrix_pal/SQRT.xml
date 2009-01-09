@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SQRT">
+  <refsection id="Contenu_SQRT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SQRT">Palette</xref>
+              <xref linkend="Palette_SQRT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SQRT">Description</xref>
+              <xref linkend="Description_SQRT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SQRT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SQRT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SQRT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SQRT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SQRT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SQRT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SQRT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SQRT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SQRT">Voir aussi</link>
+              <xref linkend="Voiraussi_SQRT">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SQRT">Auteurs</link>
+              <xref linkend="Auteurs_SQRT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SQRT">
+  <refsection id="Palette_SQRT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SQRT">
+  <refsection id="Description_SQRT">
     <title>Description</title>
     <para>
 Ce bloc calcule les racines carré de cahque élément de la matrice d'entrée.
@@ -108,7 +108,7 @@ Il supporte les types de donnée réels et complexes.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SQRT">
+  <refsection id="Boîtededialogue_SQRT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ Il supporte les types de donnée réels et complexes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SQRT">
+  <refsection id="Propriétéspardéfaut_SQRT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ Il supporte les types de donnée réels et complexes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SQRT">
+  <refsection id="Fonctiondinterface_SQRT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ Il supporte les types de donnée réels et complexes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SQRT">
+  <refsection id="Fonctiondecalcul_SQRT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ Il supporte les types de donnée réels et complexes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi SQRT">
+  <refsection id="Voiraussi_SQRT">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ Il supporte les types de donnée réels et complexes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SQRT">
+  <refsection id="Auteurs_SQRT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

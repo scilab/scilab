@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents INTRP2BLK_f">
+  <refsection id="Contents_INTRP2BLK_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette INTRP2BLK_f">Palette</xref>
+              <xref linkend="Palette_INTRP2BLK_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description INTRP2BLK_f">Description</xref>
+              <xref linkend="Description_INTRP2BLK_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box INTRP2BLK_f">Dialog box</xref>
+              <xref linkend="Dialogbox_INTRP2BLK_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties INTRP2BLK_f">Default properties</xref>
+              <xref linkend="Defaultproperties_INTRP2BLK_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function INTRP2BLK_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_INTRP2BLK_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function INTRP2BLK_f">Computational function</xref>
+              <xref linkend="Computationalfunction_INTRP2BLK_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors INTRP2BLK_f">Authors</xref>
+              <xref linkend="Authors_INTRP2BLK_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette INTRP2BLK_f">
+  <refsection id="Palette_INTRP2BLK_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description INTRP2BLK_f">
+  <refsection id="Description_INTRP2BLK_f">
     <title>Description</title>
     <para>
 The output of this block is a function of the inputs obtained by
@@ -107,7 +107,7 @@ and the  coordinate of the -th data point to be interpolated and
 
 </para>
   </refsection>
-  <refsection id="Dialog box INTRP2BLK_f">
+  <refsection id="Dialogbox_INTRP2BLK_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ and the  coordinate of the -th data point to be interpolated and
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties INTRP2BLK_f">
+  <refsection id="Defaultproperties_INTRP2BLK_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ and the  coordinate of the -th data point to be interpolated and
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function INTRP2BLK_f">
+  <refsection id="Interfacingfunction_INTRP2BLK_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ and the  coordinate of the -th data point to be interpolated and
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function INTRP2BLK_f">
+  <refsection id="Computationalfunction_INTRP2BLK_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ and the  coordinate of the -th data point to be interpolated and
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors INTRP2BLK_f">
+  <refsection id="Authors_INTRP2BLK_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLKGotoTagVisibility">
+  <refsection id="Contenu_CLKGotoTagVisibility">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLKGotoTagVisibility">Palette</xref>
+              <xref linkend="Palette_CLKGotoTagVisibility">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLKGotoTagVisibility">Description</xref>
+              <xref linkend="Description_CLKGotoTagVisibility">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLKGotoTagVisibility">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLKGotoTagVisibility">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLKGotoTagVisibility">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLKGotoTagVisibility">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLKGotoTagVisibility">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLKGotoTagVisibility">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLKGotoTagVisibility">Voir aussi</link>
+              <xref linkend="Voiraussi_CLKGotoTagVisibility">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLKGotoTagVisibility">Auteurs</link>
+              <xref linkend="Auteurs_CLKGotoTagVisibility">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLKGotoTagVisibility">
+  <refsection id="Palette_CLKGotoTagVisibility">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLKGotoTagVisibility">
+  <refsection id="Description_CLKGotoTagVisibility">
     <title>Description</title>
     <para>
 This block is used in the event case. For more information on how it works please refer to the documentation of the GotoTagVisibility block by clicking on the link in the "See also" field.  
@@ -103,7 +103,7 @@ This block is used in the event case. For more information on how it works pleas
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLKGotoTagVisibility">
+  <refsection id="Boîtededialogue_CLKGotoTagVisibility">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ This block is used in the event case. For more information on how it works pleas
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLKGotoTagVisibility">
+  <refsection id="Propriétéspardéfaut_CLKGotoTagVisibility">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ This block is used in the event case. For more information on how it works pleas
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLKGotoTagVisibility">
+  <refsection id="Fonctiondinterface_CLKGotoTagVisibility">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -171,7 +171,7 @@ This block is used in the event case. For more information on how it works pleas
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CLKGotoTagVisibility">
+  <refsection id="Voiraussi_CLKGotoTagVisibility">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ This block is used in the event case. For more information on how it works pleas
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CLKGotoTagVisibility">
+  <refsection id="Auteurs_CLKGotoTagVisibility">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

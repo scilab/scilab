@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents VariableResistor">
+  <refsection id="Contents_VariableResistor">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VariableResistor">Palette</xref>
+              <xref linkend="Palette_VariableResistor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VariableResistor">Description</xref>
+              <xref linkend="Description_VariableResistor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties VariableResistor">Default properties</xref>
+              <xref linkend="Defaultproperties_VariableResistor">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function VariableResistor">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_VariableResistor">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VariableResistor">
+  <refsection id="Palette_VariableResistor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VariableResistor">
+  <refsection id="Description_VariableResistor">
     <title>Description</title>
     <para>
 This component represents a variable ohmic resistor. The resistance
@@ -101,7 +101,7 @@ This component represents a variable ohmic resistor. The resistance
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Default properties VariableResistor">
+  <refsection id="Defaultproperties_VariableResistor">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -150,7 +150,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function VariableResistor">
+  <refsection id="Interfacingfunction_VariableResistor">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -158,7 +158,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model VariableResistor">
+  <refsection id="Modelicamodel_VariableResistor">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

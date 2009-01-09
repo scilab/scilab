@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module scicos_simulate">
+  <refsection id="Module_scicos_simulate">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scicos_simulate">
+  <refsection id="Description_scicos_simulate">
     <title>Description</title>
     <para>
 This function is used to simulate Scicos diagrams in batch mode. It requires the scs_m structure which can be obtained by loading in Scilab the .cos file (e.g. load mydiagram.cos).  
@@ -54,7 +54,7 @@ Contrary to the function , the diagram need not be compiled before being saved.
 Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters scicos_simulate">
+  <refsection id="Parameters_scicos_simulate">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -74,7 +74,7 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content scicos_simulate">
+  <refsection id="Filecontent_scicos_simulate">
     <title>File content</title>
     <itemizedlist>
       <listitem>
@@ -82,7 +82,7 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also scicos_simulate">
+  <refsection id="SeeAlso_scicos_simulate">
     <title>See Also</title>
     <itemizedlist>
       <listitem>
@@ -107,7 +107,7 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors scicos_simulate">
+  <refsection id="Authors_scicos_simulate">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents EVTVARDLY">
+  <refsection id="Contents_EVTVARDLY">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EVTVARDLY">Palette</xref>
+              <xref linkend="Palette_EVTVARDLY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EVTVARDLY">Description</xref>
+              <xref linkend="Description_EVTVARDLY">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box EVTVARDLY">Dialog box</xref>
+              <xref linkend="Dialogbox_EVTVARDLY">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties EVTVARDLY">Default properties</xref>
+              <xref linkend="Defaultproperties_EVTVARDLY">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function EVTVARDLY">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_EVTVARDLY">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function EVTVARDLY">Computational function</xref>
+              <xref linkend="Computationalfunction_EVTVARDLY">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors EVTVARDLY">Authors</xref>
+              <xref linkend="Authors_EVTVARDLY">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EVTVARDLY">
+  <refsection id="Palette_EVTVARDLY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EVTVARDLY">
+  <refsection id="Description_EVTVARDLY">
     <title>Description</title>
     <para>
 One event is generated Delay after an event enters the unique input
@@ -105,7 +105,7 @@ Block may also generate an initial output event.
 
 </para>
   </refsection>
-  <refsection id="Dialog box EVTVARDLY">
+  <refsection id="Dialogbox_EVTVARDLY">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -127,7 +127,7 @@ Block may also generate an initial output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties EVTVARDLY">
+  <refsection id="Defaultproperties_EVTVARDLY">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -173,7 +173,7 @@ Block may also generate an initial output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function EVTVARDLY">
+  <refsection id="Interfacingfunction_EVTVARDLY">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ Block may also generate an initial output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function EVTVARDLY">
+  <refsection id="Computationalfunction_EVTVARDLY">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ Block may also generate an initial output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors EVTVARDLY">
+  <refsection id="Authors_EVTVARDLY">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

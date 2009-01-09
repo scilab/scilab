@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents Bache">
+  <refsection id="Contents_Bache">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Bache">Palette</xref>
+              <xref linkend="Palette_Bache">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Bache">Description</xref>
+              <xref linkend="Description_Bache">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box Bache">Dialog box</xref>
+              <xref linkend="Dialogbox_Bache">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties Bache">Default properties</xref>
+              <xref linkend="Defaultproperties_Bache">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function Bache">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_Bache">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Bache">
+  <refsection id="Palette_Bache">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Bache">
+  <refsection id="Description_Bache">
     <title>Description</title>
     <para>
 The <emphasis role="bold">Bache</emphasis> block represents a thermal-hydraulic tank or reservoir.
@@ -105,7 +105,7 @@ blocked by a <emphasis role="bold">stopper</emphasis> block.
 
 </para>
   </refsection>
-  <refsection id="Dialog box Bache">
+  <refsection id="Dialogbox_Bache">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -183,7 +183,7 @@ blocked by a <emphasis role="bold">stopper</emphasis> block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties Bache">
+  <refsection id="Defaultproperties_Bache">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -347,7 +347,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function Bache">
+  <refsection id="Interfacingfunction_Bache">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -355,7 +355,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model Bache">
+  <refsection id="Modelicamodel_Bache">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

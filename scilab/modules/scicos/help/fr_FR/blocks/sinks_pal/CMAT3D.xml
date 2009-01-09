@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CMAT3D">
+  <refsection id="Contenu_CMAT3D">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CMAT3D">Palette</xref>
+              <xref linkend="Palette_CMAT3D">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CMAT3D">Description</xref>
+              <xref linkend="Description_CMAT3D">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CMAT3D">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CMAT3D">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CMAT3D">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CMAT3D">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CMAT3D">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CMAT3D">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CMAT3D">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CMAT3D">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CMAT3D">Voir aussi</link>
+              <xref linkend="Voiraussi_CMAT3D">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CMAT3D">Auteurs</link>
+              <xref linkend="Auteurs_CMAT3D">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CMAT3D">
+  <refsection id="Palette_CMAT3D">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CMAT3D">
+  <refsection id="Description_CMAT3D">
     <title>Description</title>
     <para>
 CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.  
@@ -108,7 +108,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CMAT3D">
+  <refsection id="Boîtededialogue_CMAT3D">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -158,7 +158,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CMAT3D">
+  <refsection id="Propriétéspardéfaut_CMAT3D">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CMAT3D">
+  <refsection id="Fonctiondinterface_CMAT3D">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CMAT3D">
+  <refsection id="Fonctiondecalcul_CMAT3D">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -220,7 +220,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CMAT3D">
+  <refsection id="Voiraussi_CMAT3D">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -230,7 +230,7 @@ CMAT3D est un scope qui montre les valeurs en Z des matrices sur une grille xy.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CMAT3D">
+  <refsection id="Auteurs_CMAT3D">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

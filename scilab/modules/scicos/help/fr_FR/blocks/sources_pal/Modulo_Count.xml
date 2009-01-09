@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Modulo_Count">
+  <refsection id="Contenu_Modulo_Count">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Modulo_Count">Palette</xref>
+              <xref linkend="Palette_Modulo_Count">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Modulo_Count">Description</xref>
+              <xref linkend="Description_Modulo_Count">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Modulo_Count">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Modulo_Count">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Modulo_Count">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Modulo_Count">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Modulo_Count">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Modulo_Count">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul Modulo_Count">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_Modulo_Count">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="Modulo_Count">Auteurs</link>
+              <xref linkend="Auteurs_Modulo_Count">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Modulo_Count">
+  <refsection id="Palette_Modulo_Count">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Modulo_Count">
+  <refsection id="Description_Modulo_Count">
     <title>Description</title>
     <para>
 Ce bloc est un bloc discret.
@@ -104,7 +104,7 @@ par les choix de l'utilisateur.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Modulo_Count">
+  <refsection id="Boîtededialogue_Modulo_Count">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ par les choix de l'utilisateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Modulo_Count">
+  <refsection id="Propriétéspardéfaut_Modulo_Count">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -179,7 +179,7 @@ par les choix de l'utilisateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Modulo_Count">
+  <refsection id="Fonctiondinterface_Modulo_Count">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ par les choix de l'utilisateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul Modulo_Count">
+  <refsection id="Fonctiondecalcul_Modulo_Count">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ par les choix de l'utilisateur.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs Modulo_Count">
+  <refsection id="Auteurs_Modulo_Count">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

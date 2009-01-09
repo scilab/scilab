@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATDIV">
+  <refsection id="Contents_MATDIV">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATDIV">Palette</xref>
+              <xref linkend="Palette_MATDIV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATDIV">Description</xref>
+              <xref linkend="Description_MATDIV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATDIV">Dialog box</xref>
+              <xref linkend="Dialogbox_MATDIV">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATDIV">Default properties</xref>
+              <xref linkend="Defaultproperties_MATDIV">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATDIV">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATDIV">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATDIV">Computational function</xref>
+              <xref linkend="Computationalfunction_MATDIV">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATDIV">See also</xref>
+              <xref linkend="Seealso_MATDIV">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATDIV">Authors</xref>
+              <xref linkend="Authors_MATDIV">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATDIV">
+  <refsection id="Palette_MATDIV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATDIV">
+  <refsection id="Description_MATDIV">
     <title>Description</title>
     <para>
 The MATDIV block outputs the right matrix division. It is a solution to x*B=A. The higher input is the A matrix, the lower one is the B matrix, and the output is x. If A is an M1-by-N matrix, B must be a M2-by-N where M1 and M2 can be different or equal. The output x is a M1-by-M2 matrix.  
@@ -116,7 +116,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATDIV">
+  <refsection id="Dialogbox_MATDIV">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -138,7 +138,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATDIV">
+  <refsection id="Example_MATDIV">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 7 3;23 32 29]
@@ -147,7 +147,7 @@ then the result of the x*B=A equation is (A/B):
 x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATDIV">
+  <refsection id="Defaultproperties_MATDIV">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATDIV">
+  <refsection id="Interfacingfunction_MATDIV">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATDIV">
+  <refsection id="Computationalfunction_MATDIV">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATDIV">
+  <refsection id="Seealso_MATDIV">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -238,7 +238,7 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATDIV">
+  <refsection id="Authors_MATDIV">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

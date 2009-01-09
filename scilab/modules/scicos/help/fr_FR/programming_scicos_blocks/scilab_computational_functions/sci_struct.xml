@@ -24,13 +24,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="sci_struct">
   <refnamediv>
     <refname>sci_struct</refname>
-    <refpurpose>Contenu</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>sci_struct</refname>
     <refpurpose>Structure Scilab d'une fonction de calcul Scicos</refpurpose>
   </refnamediv>
-  <refsection id="Contenu sci_struct">
+  <refsection id="Contenu_sci_struct">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -42,54 +38,54 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Module sci_struct">Module</xref>
+              <xref linkend="Module_sci_struct">Module</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description sci_struct">Description</xref>
+              <xref linkend="Description_sci_struct">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Inputs/outputs sci_struct">Inputs/outputs</xref>
+              <xref linkend="Inputsoutputs_sci_struct">Inputs/outputs</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Events sci_struct">Events</xref>
+              <xref linkend="Events_sci_struct">Events</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Parameters sci_struct">Parameters</xref>
+              <xref linkend="Parameters_sci_struct">Parameters</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="States sci_struct">States</xref>
+              <xref linkend="States_sci_struct">States</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Zero crossing surfaces and modes sci_struct">Zero crossing surfaces and modes</xref>
+              <xref linkend="Zerocrossingsurfacesandmodes_sci_struct">Zero crossing surfaces and modes</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Miscallaneous sci_struct">Miscallaneous</xref>
+              <xref linkend="Miscallaneous_sci_struct">Miscallaneous</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="sci_struct">Auteurs</link>
+              <xref linkend="Auteurs_sci_struct">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Module sci_struct">
+  <refsection id="Module_sci_struct">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -99,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description sci_struct">
+  <refsection id="Description_sci_struct">
     <title>Description</title>
     <para>
 A Scicos computational function of type 5 can be realized by the use of a Scilab function.
@@ -135,7 +131,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="Inputs/outputs sci_struct">
+  <refsection id="Inputsoutputs_sci_struct">
     <title>Inputs/outputs</title>
     <para>
 
@@ -270,7 +266,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="Events sci_struct">
+  <refsection id="Events_sci_struct">
     <title>Events</title>
     <para>
 
@@ -290,7 +286,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="Parameters sci_struct">
+  <refsection id="Parameters_sci_struct">
     <title>Parameters</title>
     <para>
 
@@ -325,7 +321,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="States sci_struct">
+  <refsection id="States_sci_struct">
     <title>States</title>
     <para>
 
@@ -366,7 +362,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="Zero crossing surfaces and modes sci_struct">
+  <refsection id="Zerocrossingsurfacesandmodes_sci_struct">
     <title>Zero crossing surfaces and modes</title>
     <para>
 
@@ -389,7 +385,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="Miscallaneous sci_struct">
+  <refsection id="Miscallaneous_sci_struct">
     <title>Miscallaneous</title>
     <para>
 
@@ -406,7 +402,7 @@ Each fields are then accessible inside the scilab computational function by the 
 
 </para>
   </refsection>
-  <refsection id="Auteurs sci_struct">
+  <refsection id="Auteurs_sci_struct">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents BOUNCE">
+  <refsection id="Contents_BOUNCE">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BOUNCE">Palette</xref>
+              <xref linkend="Palette_BOUNCE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box BOUNCE">Dialog box</xref>
+              <xref linkend="Dialogbox_BOUNCE">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties BOUNCE">Default properties</xref>
+              <xref linkend="Defaultproperties_BOUNCE">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function BOUNCE">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_BOUNCE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function BOUNCE">Computational function</xref>
+              <xref linkend="Computationalfunction_BOUNCE">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BOUNCE">
+  <refsection id="Palette_BOUNCE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Dialog box BOUNCE">
+  <refsection id="Dialogbox_BOUNCE">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -163,7 +163,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties BOUNCE">
+  <refsection id="Defaultproperties_BOUNCE">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function BOUNCE">
+  <refsection id="Interfacingfunction_BOUNCE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -220,7 +220,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function BOUNCE">
+  <refsection id="Computationalfunction_BOUNCE">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

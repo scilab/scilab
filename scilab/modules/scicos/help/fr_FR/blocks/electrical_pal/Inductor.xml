@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Inductor">
+  <refsection id="Contenu_Inductor">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Inductor">Palette</xref>
+              <xref linkend="Palette_Inductor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Inductor">Description</xref>
+              <xref linkend="Description_Inductor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Inductor">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Inductor">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Inductor">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Inductor">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Inductor">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Inductor">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Inductor">
+  <refsection id="Palette_Inductor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Inductor">
+  <refsection id="Description_Inductor">
     <title>Description</title>
     <para>
 Une bobine est un composant électrique qui peut stocker l'énergie
@@ -116,7 +116,7 @@ Des inductances peuvent également être utilisées pour distinguer les
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Inductor">
+  <refsection id="Boîtededialogue_Inductor">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -138,7 +138,7 @@ Des inductances peuvent également être utilisées pour distinguer les
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Inductor">
+  <refsection id="Propriétéspardéfaut_Inductor">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ Des inductances peuvent également être utilisées pour distinguer les
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Inductor">
+  <refsection id="Fonctiondinterface_Inductor">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ Des inductances peuvent également être utilisées pour distinguer les
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica Inductor">
+  <refsection id="ModèleModelica_Inductor">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

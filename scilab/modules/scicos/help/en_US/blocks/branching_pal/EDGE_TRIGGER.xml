@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents EDGE_TRIGGER">
+  <refsection id="Contents_EDGE_TRIGGER">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EDGE_TRIGGER">Palette</xref>
+              <xref linkend="Palette_EDGE_TRIGGER">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EDGE_TRIGGER">Description</xref>
+              <xref linkend="Description_EDGE_TRIGGER">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box EDGE_TRIGGER">Dialog box</xref>
+              <xref linkend="Dialogbox_EDGE_TRIGGER">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties EDGE_TRIGGER">Default properties</xref>
+              <xref linkend="Defaultproperties_EDGE_TRIGGER">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function EDGE_TRIGGER">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_EDGE_TRIGGER">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EDGE_TRIGGER">
+  <refsection id="Palette_EDGE_TRIGGER">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EDGE_TRIGGER">
+  <refsection id="Description_EDGE_TRIGGER">
     <title>Description</title>
     <para>
 This block generates an event on rising, falling or both edges of the input signal (depending on block parameter). A rising edge is a change in value from strictly negative to positive or zero, or a change in value from zero to strictly positive. A falling edge is the opposite. Note that this block only generates an event if the input jumps due to an event. The generated event is synchronous with the event causing the jump. This block does not detect continuous-time zero-crossings.  
@@ -98,7 +98,7 @@ This block generates an event on rising, falling or both edges of the input sign
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box EDGE_TRIGGER">
+  <refsection id="Dialogbox_EDGE_TRIGGER">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -119,7 +119,7 @@ This block generates an event on rising, falling or both edges of the input sign
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties EDGE_TRIGGER">
+  <refsection id="Defaultproperties_EDGE_TRIGGER">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -165,7 +165,7 @@ This block generates an event on rising, falling or both edges of the input sign
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function EDGE_TRIGGER">
+  <refsection id="Interfacingfunction_EDGE_TRIGGER">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -173,7 +173,7 @@ This block generates an event on rising, falling or both edges of the input sign
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content EDGE_TRIGGER">
+  <refsection id="CompiledSuperBlockcontent_EDGE_TRIGGER">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>

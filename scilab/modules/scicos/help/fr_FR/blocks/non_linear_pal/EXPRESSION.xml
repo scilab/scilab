@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EXPRESSION">
+  <refsection id="Contenu_EXPRESSION">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXPRESSION">Palette</xref>
+              <xref linkend="Palette_EXPRESSION">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXPRESSION">Description</xref>
+              <xref linkend="Description_EXPRESSION">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EXPRESSION">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EXPRESSION">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EXPRESSION">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EXPRESSION">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EXPRESSION">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EXPRESSION">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EXPRESSION">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EXPRESSION">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EXPRESSION">Auteurs</link>
+              <xref linkend="Auteurs_EXPRESSION">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXPRESSION">
+  <refsection id="Palette_EXPRESSION">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXPRESSION">
+  <refsection id="Description_EXPRESSION">
     <title>Description</title>
     <para>
 Le bloc EXPRESSION applique à son entrée les fonctions Scilab spécifiées
@@ -103,7 +103,7 @@ en paramètre.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EXPRESSION">
+  <refsection id="Boîtededialogue_EXPRESSION">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -139,7 +139,7 @@ en paramètre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EXPRESSION">
+  <refsection id="Propriétéspardéfaut_EXPRESSION">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ en paramètre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EXPRESSION">
+  <refsection id="Fonctiondinterface_EXPRESSION">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ en paramètre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EXPRESSION">
+  <refsection id="Fonctiondecalcul_EXPRESSION">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ en paramètre.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs EXPRESSION">
+  <refsection id="Auteurs_EXPRESSION">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu c_block">
+  <refsection id="Contenu_c_block">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette c_block">Palette</xref>
+              <xref linkend="Palette_c_block">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description c_block">Description</xref>
+              <xref linkend="Description_c_block">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue c_block">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_c_block">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut c_block">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_c_block">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface c_block">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_c_block">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="c_block">Auteurs</link>
+              <xref linkend="Auteurs_c_block">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette c_block">
+  <refsection id="Palette_c_block">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description c_block">
+  <refsection id="Description_c_block">
     <title>Description</title>
     <para>
 Ce bloc crée une fonction de calcul squelette en C.
@@ -98,7 +98,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue c_block">
+  <refsection id="Boîtededialogue_c_block">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -141,7 +141,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut c_block">
+  <refsection id="Propriétéspardéfaut_c_block">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface c_block">
+  <refsection id="Fonctiondinterface_c_block">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ Il crée aussi une librairie et un fichier objet à la compilation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs c_block">
+  <refsection id="Auteurs_c_block">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

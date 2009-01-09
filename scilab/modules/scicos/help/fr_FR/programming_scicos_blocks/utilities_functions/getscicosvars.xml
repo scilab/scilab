@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getscicosvars">
   <refnamediv>
     <refname>getscicosvars</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>getscicosvars</refname>
     <refpurpose>Fonction superviseur utilitaire</refpurpose>
   </refnamediv>
-  <refsection id="Module getscicosvars">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_getscicosvars">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description getscicosvars">
+  <refsection id="Description_getscicosvars">
     <title>Description</title>
     <para>
 Cette fonction utilitaire est utilisée pour retrouver les tableaux de travail du compilateur et du simulateur scicos pendant la simulation.  
@@ -49,12 +49,14 @@ Cette fonction utilitaire est utilisée pour retrouver les tableaux de travail du
 Elle peut-être utilisée dans un bloc scilab pour retourner des informations de tous types de blocs. Cette fonction est très utile pour débugger les diagrammes et pour prototyper des simulations.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+[myvar]=getscicosvars(str)
+[myvar]=getscicosvars([str1;str2;...])
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_getscicosvars">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">str,str1,str2,... :</emphasis> Ce paramètre est soit une chaîne de caractères ou une matrice de chaine de caractère. Les entrées suivantes sont permises :</para>
@@ -127,7 +129,7 @@ Elle peut-être utilisée dans un bloc scilab pour retourner des informations de t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi getscicosvars">
+  <refsection id="Voiraussi_getscicosvars">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -137,7 +139,7 @@ Elle peut-être utilisée dans un bloc scilab pour retourner des informations de t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs getscicosvars">
+  <refsection id="Auteurs_getscicosvars">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

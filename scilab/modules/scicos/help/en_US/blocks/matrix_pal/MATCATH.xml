@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATCATH">
+  <refsection id="Contents_MATCATH">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATCATH">Palette</xref>
+              <xref linkend="Palette_MATCATH">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATCATH">Description</xref>
+              <xref linkend="Description_MATCATH">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATCATH">Dialog box</xref>
+              <xref linkend="Dialogbox_MATCATH">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATCATH">Default properties</xref>
+              <xref linkend="Defaultproperties_MATCATH">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATCATH">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATCATH">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATCATH">Computational function</xref>
+              <xref linkend="Computationalfunction_MATCATH">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATCATH">See also</xref>
+              <xref linkend="Seealso_MATCATH">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATCATH">Authors</xref>
+              <xref linkend="Authors_MATCATH">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATCATH">
+  <refsection id="Palette_MATCATH">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATCATH">
+  <refsection id="Description_MATCATH">
     <title>Description</title>
     <para>
 The MATCATH Block outputs the horizontal concatenation of multiple matrices. It is also called concatenation according to the columns. The inputs U1,U2,...,Un must have the same number of rows. The output is a M-by-(N1+N2+...+Nn) matrix, where N1,N2,...,Nn are the numbers of columns of the inputs matrices, and M is the number of rows.  
@@ -116,7 +116,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATCATH">
+  <refsection id="Dialogbox_MATCATH">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -145,7 +145,7 @@ The equivalent of MATCATH in Scilab is y=[U1 U2 ... Un].
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATCATH">
+  <refsection id="Example_MATCATH">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 2 3;4 5 6]
@@ -154,7 +154,7 @@ The result of the horizental concatenation is:
 C=[1 2 3 7 8;4 5 6 9 10]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATCATH">
+  <refsection id="Defaultproperties_MATCATH">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ C=[1 2 3 7 8;4 5 6 9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATCATH">
+  <refsection id="Interfacingfunction_MATCATH">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ C=[1 2 3 7 8;4 5 6 9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATCATH">
+  <refsection id="Computationalfunction_MATCATH">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -230,7 +230,7 @@ C=[1 2 3 7 8;4 5 6 9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATCATH">
+  <refsection id="Seealso_MATCATH">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -240,7 +240,7 @@ C=[1 2 3 7 8;4 5 6 9 10]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATCATH">
+  <refsection id="Authors_MATCATH">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

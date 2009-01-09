@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents PID">
+  <refsection id="Contents_PID">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PID">Palette</xref>
+              <xref linkend="Palette_PID">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PID">Description</xref>
+              <xref linkend="Description_PID">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box PID">Dialog box</xref>
+              <xref linkend="Dialogbox_PID">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties PID">Default properties</xref>
+              <xref linkend="Defaultproperties_PID">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function PID">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_PID">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors PID">Authors</xref>
+              <xref linkend="Authors_PID">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PID">
+  <refsection id="Palette_PID">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PID">
+  <refsection id="Description_PID">
     <title>Description</title>
     <para>
 This block implements a PID controller. The PID controller calculation (algorithm) involves three separate parameters; the Proportional, the Integral  and Derivative values. The Proportional value determines the reaction to the current error, the Integral determines the reaction based on the sum of recent errors and the Derivative determines the reaction to the rate at which the error has been changing. The weighted sum of these three actions is used to adjust the process via a control element such as the position of a control valve or the power supply of a heating element.  
@@ -103,7 +103,7 @@ This block implements a PID controller. The PID controller calculation (algorith
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box PID">
+  <refsection id="Dialogbox_PID">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -139,7 +139,7 @@ This block implements a PID controller. The PID controller calculation (algorith
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties PID">
+  <refsection id="Defaultproperties_PID">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ This block implements a PID controller. The PID controller calculation (algorith
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function PID">
+  <refsection id="Interfacingfunction_PID">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ This block implements a PID controller. The PID controller calculation (algorith
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content PID">
+  <refsection id="CompiledSuperBlockcontent_PID">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>
@@ -211,7 +211,7 @@ This block implements a PID controller. The PID controller calculation (algorith
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Authors PID">
+  <refsection id="Authors_PID">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -26,7 +26,7 @@
     <refname>scicos_block</refname>
     <refpurpose>Définit une structure bloc</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_block">
+  <refsection id="Module_scicos_block">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="block scicos_block">
+  <refsection id="block_scicos_block">
     <title>block</title>
     <para>
  Une structure de base qui définit un bloc Scicos.
@@ -110,7 +110,7 @@ Type : chaîne de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_block">
+  <refsection id="Contenuduficher_scicos_block">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

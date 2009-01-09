@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu PROD_f">
+  <refsection id="Contenu_PROD_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PROD_f">Palette</xref>
+              <xref linkend="Palette_PROD_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PROD_f">Description</xref>
+              <xref linkend="Description_PROD_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut PROD_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_PROD_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface PROD_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_PROD_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul PROD_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_PROD_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="PROD_f">Auteurs</link>
+              <xref linkend="Auteurs_PROD_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PROD_f">
+  <refsection id="Palette_PROD_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,14 +90,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PROD_f">
+  <refsection id="Description_PROD_f">
     <title>Description</title>
     <para>
 La sortie de ce bloc est le produit élément par élément des entrées.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut PROD_f">
+  <refsection id="Propriétéspardéfaut_PROD_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -154,7 +154,7 @@ La sortie de ce bloc est le produit élément par élément des entrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface PROD_f">
+  <refsection id="Fonctiondinterface_PROD_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -162,7 +162,7 @@ La sortie de ce bloc est le produit élément par élément des entrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul PROD_f">
+  <refsection id="Fonctiondecalcul_PROD_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -170,7 +170,7 @@ La sortie de ce bloc est le produit élément par élément des entrées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs PROD_f">
+  <refsection id="Auteurs_PROD_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

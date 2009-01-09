@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SATURATION">
+  <refsection id="Contenu_SATURATION">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SATURATION">Palette</xref>
+              <xref linkend="Palette_SATURATION">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SATURATION">Description</xref>
+              <xref linkend="Description_SATURATION">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SATURATION">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SATURATION">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SATURATION">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SATURATION">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SATURATION">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SATURATION">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SATURATION">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SATURATION">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SATURATION">Auteurs</link>
+              <xref linkend="Auteurs_SATURATION">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SATURATION">
+  <refsection id="Palette_SATURATION">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SATURATION">
+  <refsection id="Description_SATURATION">
     <title>Description</title>
     <para>
 Le bloc saturation impose des limites maximale et minimale sur un signal.
@@ -107,7 +107,7 @@ du bloc.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SATURATION">
+  <refsection id="Boîtededialogue_SATURATION">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -143,7 +143,7 @@ du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SATURATION">
+  <refsection id="Propriétéspardéfaut_SATURATION">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SATURATION">
+  <refsection id="Fonctiondinterface_SATURATION">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SATURATION">
+  <refsection id="Fonctiondecalcul_SATURATION">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ du bloc.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SATURATION">
+  <refsection id="Auteurs_SATURATION">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

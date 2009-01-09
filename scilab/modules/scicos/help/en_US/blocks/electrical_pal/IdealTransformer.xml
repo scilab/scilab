@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents IdealTransformer">
+  <refsection id="Contents_IdealTransformer">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette IdealTransformer">Palette</xref>
+              <xref linkend="Palette_IdealTransformer">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description IdealTransformer">Description</xref>
+              <xref linkend="Description_IdealTransformer">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box IdealTransformer">Dialog box</xref>
+              <xref linkend="Dialogbox_IdealTransformer">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties IdealTransformer">Default properties</xref>
+              <xref linkend="Defaultproperties_IdealTransformer">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function IdealTransformer">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_IdealTransformer">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors IdealTransformer">Authors</xref>
+              <xref linkend="Authors_IdealTransformer">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette IdealTransformer">
+  <refsection id="Palette_IdealTransformer">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description IdealTransformer">
+  <refsection id="Description_IdealTransformer">
     <title>Description</title>
     <para>
 The ideal transformer is an ideal two-port resistive circuit element which is characterized by the following two equations:  v1 =  n * v2   i2 = -n * i1  where n is a real number called the turns ratio.  
@@ -103,7 +103,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box IdealTransformer">
+  <refsection id="Dialogbox_IdealTransformer">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties IdealTransformer">
+  <refsection id="Defaultproperties_IdealTransformer">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function IdealTransformer">
+  <refsection id="Interfacingfunction_IdealTransformer">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model IdealTransformer">
+  <refsection id="Modelicamodel_IdealTransformer">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -209,7 +209,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors IdealTransformer">
+  <refsection id="Authors_IdealTransformer">
     <title>Authors</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

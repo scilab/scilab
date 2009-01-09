@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATSING">
+  <refsection id="Contenu_MATSING">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATSING">Palette</xref>
+              <xref linkend="Palette_MATSING">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATSING">Description</xref>
+              <xref linkend="Description_MATSING">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATSING">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATSING">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATSING">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATSING">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATSING">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATSING">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATSING">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATSING">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATSING">Voir aussi</link>
+              <xref linkend="Voiraussi_MATSING">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATSING">Auteurs</link>
+              <xref linkend="Auteurs_MATSING">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATSING">
+  <refsection id="Palette_MATSING">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATSING">
+  <refsection id="Description_MATSING">
     <title>Description</title>
     <para>
 The MATSING block computes the economy sized SVD of the M-by-N input matrix A by finding U,S and V such that  
@@ -120,7 +120,7 @@ The equivalent function of this block in Scilab is "svd".
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATSING">
+  <refsection id="Boîtededialogue_MATSING">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -149,7 +149,7 @@ The equivalent function of this block in Scilab is "svd".
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATSING">
+  <refsection id="Propriétéspardéfaut_MATSING">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ The equivalent function of this block in Scilab is "svd".
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATSING">
+  <refsection id="Fonctiondinterface_MATSING">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ The equivalent function of this block in Scilab is "svd".
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATSING">
+  <refsection id="Fonctiondecalcul_MATSING">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -228,7 +228,7 @@ The equivalent function of this block in Scilab is "svd".
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATSING">
+  <refsection id="Voiraussi_MATSING">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -243,7 +243,7 @@ The equivalent function of this block in Scilab is "svd".
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATSING">
+  <refsection id="Auteurs_MATSING">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

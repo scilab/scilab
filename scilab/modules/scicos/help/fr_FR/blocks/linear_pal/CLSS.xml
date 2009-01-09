@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CLSS">
+  <refsection id="Contenu_CLSS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLSS">Palette</xref>
+              <xref linkend="Palette_CLSS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLSS">Description</xref>
+              <xref linkend="Description_CLSS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CLSS">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CLSS">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CLSS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CLSS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CLSS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CLSS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CLSS">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CLSS">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLSS">
+  <refsection id="Palette_CLSS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLSS">
+  <refsection id="Description_CLSS">
     <title>Description</title>
     <para>
 Ce bloc réalise un système linéaire d'équations d'état en temporel continu.
@@ -113,7 +113,7 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CLSS">
+  <refsection id="Boîtededialogue_CLSS">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -163,7 +163,7 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CLSS">
+  <refsection id="Propriétéspardéfaut_CLSS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -217,7 +217,7 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CLSS">
+  <refsection id="Fonctiondinterface_CLSS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ Les dimensions des matrices et de l'état initial doivent être appropriées.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CLSS">
+  <refsection id="Fonctiondecalcul_CLSS">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

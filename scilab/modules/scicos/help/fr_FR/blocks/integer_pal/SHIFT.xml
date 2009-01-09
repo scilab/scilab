@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SHIFT">
+  <refsection id="Contenu_SHIFT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SHIFT">Palette</xref>
+              <xref linkend="Palette_SHIFT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SHIFT">Description</xref>
+              <xref linkend="Description_SHIFT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SHIFT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SHIFT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SHIFT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SHIFT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SHIFT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SHIFT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SHIFT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SHIFT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SHIFT">Voir aussi</link>
+              <xref linkend="Voiraussi_SHIFT">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SHIFT">Auteurs</link>
+              <xref linkend="Auteurs_SHIFT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SHIFT">
+  <refsection id="Palette_SHIFT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SHIFT">
+  <refsection id="Description_SHIFT">
     <title>Description</title>
     <para>
 This block shifts the bits of the input signal. In this operation the digits are moved to the right or to the left. The user can choose the rule to shifts the bits. It can be normal or cycle by setting the "Shifttype" parameter to "0" or "1".  
@@ -114,7 +114,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SHIFT">
+  <refsection id="Boîtededialogue_SHIFT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -150,7 +150,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SHIFT">
+  <refsection id="Propriétéspardéfaut_SHIFT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SHIFT">
+  <refsection id="Fonctiondinterface_SHIFT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SHIFT">
+  <refsection id="Fonctiondecalcul_SHIFT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -262,7 +262,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi SHIFT">
+  <refsection id="Voiraussi_SHIFT">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -277,7 +277,7 @@ When the "Shifttype" is 1,a circular shift is applied to the input signal. In th
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SHIFT">
+  <refsection id="Auteurs_SHIFT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

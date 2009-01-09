@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents VoltageSensor">
+  <refsection id="Contents_VoltageSensor">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VoltageSensor">Palette</xref>
+              <xref linkend="Palette_VoltageSensor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VoltageSensor">Description</xref>
+              <xref linkend="Description_VoltageSensor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties VoltageSensor">Default properties</xref>
+              <xref linkend="Defaultproperties_VoltageSensor">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function VoltageSensor">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_VoltageSensor">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VoltageSensor">
+  <refsection id="Palette_VoltageSensor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VoltageSensor">
+  <refsection id="Description_VoltageSensor">
     <title>Description</title>
     <para>
 This component is used to measure the voltage difference between two
@@ -106,7 +106,7 @@ The ohmic conductance of this block is zero.
 
 </para>
   </refsection>
-  <refsection id="Default properties VoltageSensor">
+  <refsection id="Defaultproperties_VoltageSensor">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -155,7 +155,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function VoltageSensor">
+  <refsection id="Interfacingfunction_VoltageSensor">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model VoltageSensor">
+  <refsection id="Modelicamodel_VoltageSensor">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="EVTDLY_c">
   <refnamediv>
     <refname>EVTDLY_c</refname>
@@ -9,12 +31,12 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTDLY_c_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTDLY_c_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu EVTDLY_c">
+  <refsection id="Contenu_EVTDLY_c">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -26,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Description EVTDLY_c">Description</xref>
+              <xref linkend="Description_EVTDLY_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue EVTDLY_c">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_EVTDLY_c">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut EVTDLY_c">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_EVTDLY_c">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface EVTDLY_c">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_EVTDLY_c">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul EVTDLY_c">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_EVTDLY_c">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EVTDLY_c">Voir aussi</link>
+              <xref linkend="Voiraussi_EVTDLY_c">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="EVTDLY_c">Auteurs</link>
+              <xref linkend="Auteurs_EVTDLY_c">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EVTDLY_c">
+  <refsection id="Description_EVTDLY_c">
     <title>Description</title>
     <para>
 Chaque événement de sortie est réalisé après l'événement 
@@ -77,19 +99,19 @@ La date de l'événement de sortie est donc déterminée par la formule :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTDLY_c_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTDLY_c_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue EVTDLY_c">
+  <refsection id="Boîtededialogue_EVTDLY_c">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/EVTDLY_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/EVTDLY_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -113,7 +135,7 @@ La date de l'événement de sortie est donc déterminée par la formule :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut EVTDLY_c">
+  <refsection id="Propriétéspardéfaut_EVTDLY_c">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -151,7 +173,7 @@ La date de l'événement de sortie est donc déterminée par la formule :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface EVTDLY_c">
+  <refsection id="Fonctiondinterface_EVTDLY_c">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -159,7 +181,7 @@ La date de l'événement de sortie est donc déterminée par la formule :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul EVTDLY_c">
+  <refsection id="Fonctiondecalcul_EVTDLY_c">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -167,7 +189,7 @@ La date de l'événement de sortie est donc déterminée par la formule :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi EVTDLY_c">
+  <refsection id="Voiraussi_EVTDLY_c">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -177,7 +199,7 @@ La date de l'événement de sortie est donc déterminée par la formule :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs EVTDLY_c">
+  <refsection id="Auteurs_EVTDLY_c">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

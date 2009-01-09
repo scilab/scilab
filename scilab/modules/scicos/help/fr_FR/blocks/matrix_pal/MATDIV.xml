@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATDIV">
+  <refsection id="Contenu_MATDIV">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATDIV">Palette</xref>
+              <xref linkend="Palette_MATDIV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATDIV">Description</xref>
+              <xref linkend="Description_MATDIV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATDIV">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATDIV">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATDIV">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATDIV">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATDIV">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATDIV">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATDIV">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATDIV">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATDIV">Voir aussi</link>
+              <xref linkend="Voiraussi_MATDIV">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATDIV">Auteurs</link>
+              <xref linkend="Auteurs_MATDIV">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATDIV">
+  <refsection id="Palette_MATDIV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATDIV">
+  <refsection id="Description_MATDIV">
     <title>Description</title>
     <para>
 The MATDIV block outputs the right matrix division. It is a solution to x*B=A. The higher input is the A matrix, the lower one is the B matrix, and the output is x. If A is an M1-by-N matrix, B must be a M2-by-N where M1 and M2 can be different or equal. The output x is a M1-by-M2 matrix.  
@@ -111,7 +111,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATDIV">
+  <refsection id="Boîtededialogue_MATDIV">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATDIV">
+  <refsection id="Propriétéspardéfaut_MATDIV">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATDIV">
+  <refsection id="Fonctiondinterface_MATDIV">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATDIV">
+  <refsection id="Fonctiondecalcul_MATDIV">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -209,7 +209,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATDIV">
+  <refsection id="Voiraussi_MATDIV">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -224,7 +224,7 @@ The equivalent of BACKSLASH is "/" in Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATDIV">
+  <refsection id="Auteurs_MATDIV">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

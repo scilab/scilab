@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents LOGBLK_f">
+  <refsection id="Contents_LOGBLK_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette LOGBLK_f">Palette</xref>
+              <xref linkend="Palette_LOGBLK_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description LOGBLK_f">Description</xref>
+              <xref linkend="Description_LOGBLK_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box LOGBLK_f">Dialog box</xref>
+              <xref linkend="Dialogbox_LOGBLK_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties LOGBLK_f">Default properties</xref>
+              <xref linkend="Defaultproperties_LOGBLK_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function LOGBLK_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_LOGBLK_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function LOGBLK_f">Computational function</xref>
+              <xref linkend="Computationalfunction_LOGBLK_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors LOGBLK_f">Authors</xref>
+              <xref linkend="Authors_LOGBLK_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette LOGBLK_f">
+  <refsection id="Palette_LOGBLK_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description LOGBLK_f">
+  <refsection id="Description_LOGBLK_f">
     <title>Description</title>
     <para>
 This block realizes  
@@ -104,7 +104,7 @@ sizes are determined by the context.
 
 </para>
   </refsection>
-  <refsection id="Dialog box LOGBLK_f">
+  <refsection id="Dialogbox_LOGBLK_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -126,7 +126,7 @@ sizes are determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties LOGBLK_f">
+  <refsection id="Defaultproperties_LOGBLK_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ sizes are determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function LOGBLK_f">
+  <refsection id="Interfacingfunction_LOGBLK_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ sizes are determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function LOGBLK_f">
+  <refsection id="Computationalfunction_LOGBLK_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ sizes are determined by the context.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors LOGBLK_f">
+  <refsection id="Authors_LOGBLK_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

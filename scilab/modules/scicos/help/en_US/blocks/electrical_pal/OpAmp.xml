@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents OpAmp">
+  <refsection id="Contents_OpAmp">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette OpAmp">Palette</xref>
+              <xref linkend="Palette_OpAmp">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description OpAmp">Description</xref>
+              <xref linkend="Description_OpAmp">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties OpAmp">Default properties</xref>
+              <xref linkend="Defaultproperties_OpAmp">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function OpAmp">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_OpAmp">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,14 +73,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors OpAmp">Authors</xref>
+              <xref linkend="Authors_OpAmp">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette OpAmp">
+  <refsection id="Palette_OpAmp">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description OpAmp">
+  <refsection id="Description_OpAmp">
     <title>Description</title>
     <para>
 The ideal OpAmp is a two-port. The left port is fixed to v1=0 and i1=0 (nullator). At the right port both any voltage v2 and any current i2 are possible (norator).  
@@ -98,7 +98,7 @@ The ideal OpAmp is a two-port. The left port is fixed to v1=0 and i1=0 (nullator
     <para>
 </para>
   </refsection>
-  <refsection id="Default properties OpAmp">
+  <refsection id="Defaultproperties_OpAmp">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -147,7 +147,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function OpAmp">
+  <refsection id="Interfacingfunction_OpAmp">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -155,7 +155,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model OpAmp">
+  <refsection id="Modelicamodel_OpAmp">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors OpAmp">
+  <refsection id="Authors_OpAmp">
     <title>Authors</title>
     <para><emphasis role="bold"/> - www.modelica.org</para>
   </refsection>

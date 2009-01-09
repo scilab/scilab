@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents M_freq">
+  <refsection id="Contents_M_freq">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette M_freq">Palette</xref>
+              <xref linkend="Palette_M_freq">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description M_freq">Description</xref>
+              <xref linkend="Description_M_freq">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box M_freq">Dialog box</xref>
+              <xref linkend="Dialogbox_M_freq">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties M_freq">Default properties</xref>
+              <xref linkend="Defaultproperties_M_freq">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function M_freq">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_M_freq">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function M_freq">Computational function</xref>
+              <xref linkend="Computationalfunction_M_freq">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also M_freq">See also</xref>
+              <xref linkend="Seealso_M_freq">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors M_freq">Authors</xref>
+              <xref linkend="Authors_M_freq">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette M_freq">
+  <refsection id="Palette_M_freq">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description M_freq">
+  <refsection id="Description_M_freq">
     <title>Description</title>
     <para>
 This blocks generates events at specific sample time of the simulation time. The sample time is given in the "Sample Time" field and the offset is given in the "Offset" field. This block has one event input, the number of event outputs depends on the number of different sample time. For example if the vector of sample time is [1 1 2] and the vector of offset is [0 .5 0] then the block has 7 outputs.  
@@ -133,7 +133,7 @@ So the number of outputs is equal to 2**number of different time values. Each of
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box M_freq">
+  <refsection id="Dialogbox_M_freq">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -162,7 +162,7 @@ So the number of outputs is equal to 2**number of different time values. Each of
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example M_freq">
+  <refsection id="Example_M_freq">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 Let us take the example where the sample time is equal to [1 1 2] and the offset is equal to [0 .5 0]. Consider t=simulation time.
@@ -173,7 +173,7 @@ When t=1.5, the second output is activated (010).
 When t=2 we loop back to 0.
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties M_freq">
+  <refsection id="Defaultproperties_M_freq">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ When t=2 we loop back to 0.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function M_freq">
+  <refsection id="Interfacingfunction_M_freq">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ When t=2 we loop back to 0.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function M_freq">
+  <refsection id="Computationalfunction_M_freq">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -227,7 +227,7 @@ When t=2 we loop back to 0.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also M_freq">
+  <refsection id="Seealso_M_freq">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -237,7 +237,7 @@ When t=2 we loop back to 0.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors M_freq">
+  <refsection id="Authors_M_freq">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

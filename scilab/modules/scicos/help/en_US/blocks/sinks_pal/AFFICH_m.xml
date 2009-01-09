@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents AFFICH_m">
+  <refsection id="Contents_AFFICH_m">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette AFFICH_m">Palette</xref>
+              <xref linkend="Palette_AFFICH_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description AFFICH_m">Description</xref>
+              <xref linkend="Description_AFFICH_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box AFFICH_m">Dialog box</xref>
+              <xref linkend="Dialogbox_AFFICH_m">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties AFFICH_m">Default properties</xref>
+              <xref linkend="Defaultproperties_AFFICH_m">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function AFFICH_m">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_AFFICH_m">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function AFFICH_m">Computational function</xref>
+              <xref linkend="Computationalfunction_AFFICH_m">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette AFFICH_m">
+  <refsection id="Palette_AFFICH_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description AFFICH_m">
+  <refsection id="Description_AFFICH_m">
     <title>Description</title>
     <para>
 This block displays the value of its unique input inside the block (in
@@ -98,7 +98,7 @@ the diagram) during simulation.
 
 </para>
   </refsection>
-  <refsection id="Dialog box AFFICH_m">
+  <refsection id="Dialogbox_AFFICH_m">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -162,7 +162,7 @@ the diagram) during simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties AFFICH_m">
+  <refsection id="Defaultproperties_AFFICH_m">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ the diagram) during simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function AFFICH_m">
+  <refsection id="Interfacingfunction_AFFICH_m">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ the diagram) during simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function AFFICH_m">
+  <refsection id="Computationalfunction_AFFICH_m">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

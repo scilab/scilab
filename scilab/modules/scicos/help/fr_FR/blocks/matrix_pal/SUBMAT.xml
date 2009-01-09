@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SUBMAT">
+  <refsection id="Contenu_SUBMAT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SUBMAT">Palette</xref>
+              <xref linkend="Palette_SUBMAT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SUBMAT">Description</xref>
+              <xref linkend="Description_SUBMAT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SUBMAT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SUBMAT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SUBMAT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SUBMAT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SUBMAT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SUBMAT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SUBMAT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SUBMAT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SUBMAT">Auteurs</link>
+              <xref linkend="Auteurs_SUBMAT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SUBMAT">
+  <refsection id="Palette_SUBMAT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SUBMAT">
+  <refsection id="Description_SUBMAT">
     <title>Description</title>
     <para>
 This block outputs a sub matrix of the input matrix. The output matrix will be defining by using the parameters of this block.  
@@ -103,7 +103,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SUBMAT">
+  <refsection id="Boîtededialogue_SUBMAT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -160,7 +160,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SUBMAT">
+  <refsection id="Propriétéspardéfaut_SUBMAT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SUBMAT">
+  <refsection id="Fonctiondinterface_SUBMAT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -222,7 +222,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SUBMAT">
+  <refsection id="Fonctiondecalcul_SUBMAT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -233,7 +233,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SUBMAT">
+  <refsection id="Auteurs_SUBMAT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

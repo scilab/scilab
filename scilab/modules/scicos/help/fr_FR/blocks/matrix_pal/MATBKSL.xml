@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATBKSL">
+  <refsection id="Contenu_MATBKSL">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATBKSL">Palette</xref>
+              <xref linkend="Palette_MATBKSL">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATBKSL">Description</xref>
+              <xref linkend="Description_MATBKSL">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATBKSL">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATBKSL">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATBKSL">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATBKSL">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATBKSL">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATBKSL">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATBKSL">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATBKSL">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATBKSL">Voir aussi</link>
+              <xref linkend="Voiraussi_MATBKSL">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATBKSL">Auteurs</link>
+              <xref linkend="Auteurs_MATBKSL">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATBKSL">
+  <refsection id="Palette_MATBKSL">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATBKSL">
+  <refsection id="Description_MATBKSL">
     <title>Description</title>
     <para>
 The MATBKSL block outputs the left matrix division. It is a solution to A*x=B. The higher input is the A matrix, the lower one is the B matrix, and the output is x. If A is an M-by-N1 matrix, B must be a M-by-N2 where N1 and N2 can be different or equal. The output x is a N1-by-N2 matrix.  
@@ -111,7 +111,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATBKSL">
+  <refsection id="Boîtededialogue_MATBKSL">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATBKSL">
+  <refsection id="Propriétéspardéfaut_MATBKSL">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATBKSL">
+  <refsection id="Fonctiondinterface_MATBKSL">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATBKSL">
+  <refsection id="Fonctiondecalcul_MATBKSL">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -209,7 +209,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATBKSL">
+  <refsection id="Voiraussi_MATBKSL">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -224,7 +224,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATBKSL">
+  <refsection id="Auteurs_MATBKSL">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

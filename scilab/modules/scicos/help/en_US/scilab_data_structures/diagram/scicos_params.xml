@@ -26,7 +26,7 @@
     <refname>scicos_params</refname>
     <refpurpose>Define a param structure</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_params">
+  <refsection id="Module_scicos_params">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="params scicos_params">
+  <refsection id="params_scicos_params">
     <title>params</title>
     <para>
 Size : 11.
@@ -380,7 +380,7 @@ Type : Strings.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content scicos_params">
+  <refsection id="Filecontent_scicos_params">
     <title>File content</title>
     <itemizedlist>
       <listitem>

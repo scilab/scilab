@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents ConstantVoltage">
+  <refsection id="Contents_ConstantVoltage">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ConstantVoltage">Palette</xref>
+              <xref linkend="Palette_ConstantVoltage">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ConstantVoltage">Description</xref>
+              <xref linkend="Description_ConstantVoltage">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box ConstantVoltage">Dialog box</xref>
+              <xref linkend="Dialogbox_ConstantVoltage">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties ConstantVoltage">Default properties</xref>
+              <xref linkend="Defaultproperties_ConstantVoltage">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function ConstantVoltage">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ConstantVoltage">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ConstantVoltage">
+  <refsection id="Palette_ConstantVoltage">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ConstantVoltage">
+  <refsection id="Description_ConstantVoltage">
     <title>Description</title>
     <para>
 This component is a model for any device or system that produces a
@@ -101,7 +101,7 @@ voltage source is zero.
 
 </para>
   </refsection>
-  <refsection id="Dialog box ConstantVoltage">
+  <refsection id="Dialogbox_ConstantVoltage">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -123,7 +123,7 @@ voltage source is zero.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties ConstantVoltage">
+  <refsection id="Defaultproperties_ConstantVoltage">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function ConstantVoltage">
+  <refsection id="Interfacingfunction_ConstantVoltage">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model ConstantVoltage">
+  <refsection id="Modelicamodel_ConstantVoltage">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

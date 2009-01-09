@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SAWTOOTH_f">
+  <refsection id="Contenu_SAWTOOTH_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SAWTOOTH_f">Palette</xref>
+              <xref linkend="Palette_SAWTOOTH_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SAWTOOTH_f">Description</xref>
+              <xref linkend="Description_SAWTOOTH_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SAWTOOTH_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SAWTOOTH_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SAWTOOTH_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SAWTOOTH_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SAWTOOTH_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SAWTOOTH_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SAWTOOTH_f">Auteurs</link>
+              <xref linkend="Auteurs_SAWTOOTH_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SAWTOOTH_f">
+  <refsection id="Palette_SAWTOOTH_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SAWTOOTH_f">
+  <refsection id="Description_SAWTOOTH_f">
     <title>Description</title>
     <para>
 Ce bloc est un générateur de dents de scie : 
@@ -99,7 +99,7 @@ où  et  sont les instants de deux événements d'entrée successifs.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut SAWTOOTH_f">
+  <refsection id="Propriétéspardéfaut_SAWTOOTH_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -145,7 +145,7 @@ où  et  sont les instants de deux événements d'entrée successifs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SAWTOOTH_f">
+  <refsection id="Fonctiondinterface_SAWTOOTH_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -153,7 +153,7 @@ où  et  sont les instants de deux événements d'entrée successifs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SAWTOOTH_f">
+  <refsection id="Fonctiondecalcul_SAWTOOTH_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -161,7 +161,7 @@ où  et  sont les instants de deux événements d'entrée successifs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SAWTOOTH_f">
+  <refsection id="Auteurs_SAWTOOTH_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

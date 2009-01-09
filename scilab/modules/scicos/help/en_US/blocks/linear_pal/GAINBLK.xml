@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents GAINBLK">
+  <refsection id="Contents_GAINBLK">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GAINBLK">Palette</xref>
+              <xref linkend="Palette_GAINBLK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GAINBLK">Description</xref>
+              <xref linkend="Description_GAINBLK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box GAINBLK">Dialog box</xref>
+              <xref linkend="Dialogbox_GAINBLK">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties GAINBLK">Default properties</xref>
+              <xref linkend="Defaultproperties_GAINBLK">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function GAINBLK">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_GAINBLK">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function GAINBLK">Computational function</xref>
+              <xref linkend="Computationalfunction_GAINBLK">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also GAINBLK">See also</xref>
+              <xref linkend="Seealso_GAINBLK">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors GAINBLK">Authors</xref>
+              <xref linkend="Authors_GAINBLK">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GAINBLK">
+  <refsection id="Palette_GAINBLK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GAINBLK">
+  <refsection id="Description_GAINBLK">
     <title>Description</title>
     <para>
 The GAINBLK computes the product of a square matrix A by the input matrix U, where the number of rows/cols of A is equal to the number of rows of U. The input/output datatype is defined by the type of the Gain matrix A. It can take all the datatype. On overflow, the result can take different forms:  
@@ -120,7 +120,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box GAINBLK">
+  <refsection id="Dialogbox_GAINBLK">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -149,7 +149,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties GAINBLK">
+  <refsection id="Defaultproperties_GAINBLK">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function GAINBLK">
+  <refsection id="Interfacingfunction_GAINBLK">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function GAINBLK">
+  <refsection id="Computationalfunction_GAINBLK">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -273,7 +273,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also GAINBLK">
+  <refsection id="Seealso_GAINBLK">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -288,7 +288,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors GAINBLK">
+  <refsection id="Authors_GAINBLK">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

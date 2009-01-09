@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CONVERT">
+  <refsection id="Contenu_CONVERT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CONVERT">Palette</xref>
+              <xref linkend="Palette_CONVERT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CONVERT">Description</xref>
+              <xref linkend="Description_CONVERT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CONVERT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CONVERT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CONVERT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CONVERT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CONVERT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CONVERT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CONVERT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CONVERT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CONVERT">Auteurs</link>
+              <xref linkend="Auteurs_CONVERT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CONVERT">
+  <refsection id="Palette_CONVERT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CONVERT">
+  <refsection id="Description_CONVERT">
     <title>Description</title>
     <para>
 This block converts an input signal of any data type to a specified data type. The input can be real, complex or integer. When the output is an integer and when overflow occurs the block three different forms of results :  
@@ -115,7 +115,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CONVERT">
+  <refsection id="Boîtededialogue_CONVERT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -151,7 +151,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CONVERT">
+  <refsection id="Propriétéspardéfaut_CONVERT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CONVERT">
+  <refsection id="Fonctiondinterface_CONVERT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CONVERT">
+  <refsection id="Fonctiondecalcul_CONVERT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CONVERT">
+  <refsection id="Auteurs_CONVERT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

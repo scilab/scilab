@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents EXTTRI">
+  <refsection id="Contents_EXTTRI">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXTTRI">Palette</xref>
+              <xref linkend="Palette_EXTTRI">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXTTRI">Description</xref>
+              <xref linkend="Description_EXTTRI">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box EXTTRI">Dialog box</xref>
+              <xref linkend="Dialogbox_EXTTRI">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties EXTTRI">Default properties</xref>
+              <xref linkend="Defaultproperties_EXTTRI">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function EXTTRI">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_EXTTRI">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function EXTTRI">Computational function</xref>
+              <xref linkend="Computationalfunction_EXTTRI">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also EXTTRI">See also</xref>
+              <xref linkend="Seealso_EXTTRI">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors EXTTRI">Authors</xref>
+              <xref linkend="Authors_EXTTRI">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXTTRI">
+  <refsection id="Palette_EXTTRI">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXTTRI">
+  <refsection id="Description_EXTTRI">
     <title>Description</title>
     <para>
 The EXTTRI block extracts some elements from the input matrix u.  
@@ -122,7 +122,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box EXTTRI">
+  <refsection id="Dialogbox_EXTTRI">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -151,7 +151,7 @@ When the "Extraction type" is set to "3", the block copies the elements on the m
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example EXTTRI">
+  <refsection id="Example_EXTTRI">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 2 3;4 5 6;7 8 9;10 11 12]
@@ -159,7 +159,7 @@ If the extraction type is 2 then the output is
 B=[1 0 0;4 5 0;7 8 9;10 11 12]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties EXTTRI">
+  <refsection id="Defaultproperties_EXTTRI">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function EXTTRI">
+  <refsection id="Interfacingfunction_EXTTRI">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function EXTTRI">
+  <refsection id="Computationalfunction_EXTTRI">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -244,7 +244,7 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also EXTTRI">
+  <refsection id="Seealso_EXTTRI">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -254,7 +254,7 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors EXTTRI">
+  <refsection id="Authors_EXTTRI">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

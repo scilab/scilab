@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu IdealTransformer">
+  <refsection id="Contenu_IdealTransformer">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette IdealTransformer">Palette</xref>
+              <xref linkend="Palette_IdealTransformer">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description IdealTransformer">Description</xref>
+              <xref linkend="Description_IdealTransformer">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue IdealTransformer">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_IdealTransformer">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut IdealTransformer">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_IdealTransformer">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface IdealTransformer">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_IdealTransformer">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="IdealTransformer">Auteurs</link>
+              <xref linkend="Auteurs_IdealTransformer">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette IdealTransformer">
+  <refsection id="Palette_IdealTransformer">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description IdealTransformer">
+  <refsection id="Description_IdealTransformer">
     <title>Description</title>
     <para>
 The ideal transformer is an ideal two-port resistive circuit element which is characterized by the following two equations:  v1 =  n * v2   i2 = -n * i1  where n is a real number called the turns ratio.  
@@ -103,7 +103,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue IdealTransformer">
+  <refsection id="Boîtededialogue_IdealTransformer">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -125,7 +125,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut IdealTransformer">
+  <refsection id="Propriétéspardéfaut_IdealTransformer">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface IdealTransformer">
+  <refsection id="Fonctiondinterface_IdealTransformer">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica IdealTransformer">
+  <refsection id="ModèleModelica_IdealTransformer">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs IdealTransformer">
+  <refsection id="Auteurs_IdealTransformer">
     <title>Auteurs</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

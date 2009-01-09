@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu READAU_f">
+  <refsection id="Contenu_READAU_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette READAU_f">Palette</xref>
+              <xref linkend="Palette_READAU_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description READAU_f">Description</xref>
+              <xref linkend="Description_READAU_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue READAU_f">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_READAU_f">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut READAU_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_READAU_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface READAU_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_READAU_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul READAU_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_READAU_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="READAU_f">Auteurs</link>
+              <xref linkend="Auteurs_READAU_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette READAU_f">
+  <refsection id="Palette_READAU_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description READAU_f">
+  <refsection id="Description_READAU_f">
     <title>Description</title>
     <para>
 Charge un son enregistré dans un fichier 'au'.
@@ -118,7 +118,7 @@ La lecture 'au' supporte les données multi-canaux sous les formats suivants :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Boîte de dialogue READAU_f">
+  <refsection id="Boîtededialogue_READAU_f">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -154,7 +154,7 @@ La lecture 'au' supporte les données multi-canaux sous les formats suivants :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut READAU_f">
+  <refsection id="Propriétéspardéfaut_READAU_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -200,7 +200,7 @@ La lecture 'au' supporte les données multi-canaux sous les formats suivants :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface READAU_f">
+  <refsection id="Fonctiondinterface_READAU_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -208,7 +208,7 @@ La lecture 'au' supporte les données multi-canaux sous les formats suivants :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul READAU_f">
+  <refsection id="Fonctiondecalcul_READAU_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ La lecture 'au' supporte les données multi-canaux sous les formats suivants :
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs READAU_f">
+  <refsection id="Auteurs_READAU_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

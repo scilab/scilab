@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu ISELECT_m">
+  <refsection id="Contenu_ISELECT_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ISELECT_m">Palette</xref>
+              <xref linkend="Palette_ISELECT_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ISELECT_m">Description</xref>
+              <xref linkend="Description_ISELECT_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue ISELECT_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_ISELECT_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut ISELECT_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_ISELECT_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface ISELECT_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_ISELECT_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul ISELECT_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_ISELECT_m">Fonction de calcul</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ISELECT_m">
+  <refsection id="Palette_ISELECT_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ISELECT_m">
+  <refsection id="Description_ISELECT_m">
     <title>Description</title>
     <para>
 Sélectionne des signaux suivant les événements d'entrée.
@@ -98,7 +98,7 @@ Ce bloc a un seul port régulier d'entrée.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue ISELECT_m">
+  <refsection id="Boîtededialogue_ISELECT_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -134,7 +134,7 @@ Ce bloc a un seul port régulier d'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut ISELECT_m">
+  <refsection id="Propriétéspardéfaut_ISELECT_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ Ce bloc a un seul port régulier d'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface ISELECT_m">
+  <refsection id="Fonctiondinterface_ISELECT_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ Ce bloc a un seul port régulier d'entrée.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul ISELECT_m">
+  <refsection id="Fonctiondecalcul_ISELECT_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>

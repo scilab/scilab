@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu BITSET">
+  <refsection id="Contenu_BITSET">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette BITSET">Palette</xref>
+              <xref linkend="Palette_BITSET">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description BITSET">Description</xref>
+              <xref linkend="Description_BITSET">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue BITSET">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_BITSET">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut BITSET">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_BITSET">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface BITSET">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_BITSET">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul BITSET">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_BITSET">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BITSET">Voir aussi</link>
+              <xref linkend="Voiraussi_BITSET">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="BITSET">Auteurs</link>
+              <xref linkend="Auteurs_BITSET">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette BITSET">
+  <refsection id="Palette_BITSET">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description BITSET">
+  <refsection id="Description_BITSET">
     <title>Description</title>
     <para>
 This blocks set the specified bit of the integer input to 1. The user can specify the bit in the field:"index of bit". Bit 0 is the least significant bit.  
@@ -108,7 +108,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue BITSET">
+  <refsection id="Boîtededialogue_BITSET">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -137,7 +137,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut BITSET">
+  <refsection id="Propriétéspardéfaut_BITSET">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface BITSET">
+  <refsection id="Fonctiondinterface_BITSET">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul BITSET">
+  <refsection id="Fonctiondecalcul_BITSET">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi BITSET">
+  <refsection id="Voiraussi_BITSET">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ This blocks set the specified bit of the integer input to 1. The user can specif
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs BITSET">
+  <refsection id="Auteurs_BITSET">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CONST_m">
+  <refsection id="Contenu_CONST_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CONST_m">Palette</xref>
+              <xref linkend="Palette_CONST_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CONST_m">Description</xref>
+              <xref linkend="Description_CONST_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CONST_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CONST_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CONST_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CONST_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CONST_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CONST_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CONST_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CONST_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CONST_m">Auteurs</link>
+              <xref linkend="Auteurs_CONST_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CONST_m">
+  <refsection id="Palette_CONST_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,14 +95,14 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CONST_m">
+  <refsection id="Description_CONST_m">
     <title>Description</title>
     <para>
 Ce bloc est un générateur de valeurs constantes.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CONST_m">
+  <refsection id="Boîtededialogue_CONST_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -127,7 +127,7 @@ Ce bloc est un générateur de valeurs constantes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CONST_m">
+  <refsection id="Propriétéspardéfaut_CONST_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -173,7 +173,7 @@ Ce bloc est un générateur de valeurs constantes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CONST_m">
+  <refsection id="Fonctiondinterface_CONST_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ Ce bloc est un générateur de valeurs constantes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CONST_m">
+  <refsection id="Fonctiondecalcul_CONST_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ Ce bloc est un générateur de valeurs constantes.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CONST_m">
+  <refsection id="Auteurs_CONST_m">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

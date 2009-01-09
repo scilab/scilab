@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents EVTDLY_f">
+  <refsection id="Contents_EVTDLY_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EVTDLY_f">Palette</xref>
+              <xref linkend="Palette_EVTDLY_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EVTDLY_f">Description</xref>
+              <xref linkend="Description_EVTDLY_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box EVTDLY_f">Dialog box</xref>
+              <xref linkend="Dialogbox_EVTDLY_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties EVTDLY_f">Default properties</xref>
+              <xref linkend="Defaultproperties_EVTDLY_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function EVTDLY_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_EVTDLY_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function EVTDLY_f">Computational function</xref>
+              <xref linkend="Computationalfunction_EVTDLY_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors EVTDLY_f">Authors</xref>
+              <xref linkend="Authors_EVTDLY_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EVTDLY_f">
+  <refsection id="Palette_EVTDLY_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EVTDLY_f">
+  <refsection id="Description_EVTDLY_f">
     <title>Description</title>
     <para>
 One event is generated after an event enters the unique
@@ -105,7 +105,7 @@ output event.
 
 </para>
   </refsection>
-  <refsection id="Dialog box EVTDLY_f">
+  <refsection id="Dialogbox_EVTDLY_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -134,7 +134,7 @@ output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties EVTDLY_f">
+  <refsection id="Defaultproperties_EVTDLY_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +172,7 @@ output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function EVTDLY_f">
+  <refsection id="Interfacingfunction_EVTDLY_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -180,7 +180,7 @@ output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function EVTDLY_f">
+  <refsection id="Computationalfunction_EVTDLY_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ output event.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors EVTDLY_f">
+  <refsection id="Authors_EVTDLY_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

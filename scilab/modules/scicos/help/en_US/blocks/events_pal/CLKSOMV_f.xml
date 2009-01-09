@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CLKSOMV_f">
+  <refsection id="Contents_CLKSOMV_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLKSOMV_f">Palette</xref>
+              <xref linkend="Palette_CLKSOMV_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLKSOMV_f">Description</xref>
+              <xref linkend="Description_CLKSOMV_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CLKSOMV_f">Default properties</xref>
+              <xref linkend="Defaultproperties_CLKSOMV_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CLKSOMV_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CLKSOMV_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CLKSOMV_f">Computational function</xref>
+              <xref linkend="Computationalfunction_CLKSOMV_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CLKSOMV_f">Authors</xref>
+              <xref linkend="Authors_CLKSOMV_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLKSOMV_f">
+  <refsection id="Palette_CLKSOMV_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLKSOMV_f">
+  <refsection id="Description_CLKSOMV_f">
     <title>Description</title>
     <para>
 This block is an event addition block with up to three inputs. The
@@ -100,7 +100,7 @@ compilation phase. The inputs and output of CLKSOMV are synchronized.
 
 </para>
   </refsection>
-  <refsection id="Default properties CLKSOMV_f">
+  <refsection id="Defaultproperties_CLKSOMV_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -138,7 +138,7 @@ compilation phase. The inputs and output of CLKSOMV are synchronized.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CLKSOMV_f">
+  <refsection id="Interfacingfunction_CLKSOMV_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -146,7 +146,7 @@ compilation phase. The inputs and output of CLKSOMV are synchronized.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CLKSOMV_f">
+  <refsection id="Computationalfunction_CLKSOMV_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -154,7 +154,7 @@ compilation phase. The inputs and output of CLKSOMV are synchronized.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CLKSOMV_f">
+  <refsection id="Authors_CLKSOMV_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

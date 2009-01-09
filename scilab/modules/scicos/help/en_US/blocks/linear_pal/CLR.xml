@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CLR">
+  <refsection id="Contents_CLR">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLR">Palette</xref>
+              <xref linkend="Palette_CLR">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLR">Description</xref>
+              <xref linkend="Description_CLR">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box CLR">Dialog box</xref>
+              <xref linkend="Dialogbox_CLR">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CLR">Default properties</xref>
+              <xref linkend="Defaultproperties_CLR">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CLR">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CLR">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function CLR">Computational function</xref>
+              <xref linkend="Computationalfunction_CLR">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLR">
+  <refsection id="Palette_CLR">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLR">
+  <refsection id="Description_CLR">
     <title>Description</title>
     <para>
 This block realizes a SISO linear system represented by its rational
@@ -99,7 +99,7 @@ be proper.
 
 </para>
   </refsection>
-  <refsection id="Dialog box CLR">
+  <refsection id="Dialogbox_CLR">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ be proper.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties CLR">
+  <refsection id="Defaultproperties_CLR">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ be proper.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CLR">
+  <refsection id="Interfacingfunction_CLR">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ be proper.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function CLR">
+  <refsection id="Computationalfunction_CLR">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

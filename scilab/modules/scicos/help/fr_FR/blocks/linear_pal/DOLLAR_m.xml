@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu DOLLAR_m">
+  <refsection id="Contenu_DOLLAR_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DOLLAR_m">Palette</xref>
+              <xref linkend="Palette_DOLLAR_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DOLLAR_m">Description</xref>
+              <xref linkend="Description_DOLLAR_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue DOLLAR_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_DOLLAR_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut DOLLAR_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_DOLLAR_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface DOLLAR_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_DOLLAR_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul DOLLAR_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_DOLLAR_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="DOLLAR_m">Auteurs</link>
+              <xref linkend="Auteurs_DOLLAR_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DOLLAR_m">
+  <refsection id="Palette_DOLLAR_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DOLLAR_m">
+  <refsection id="Description_DOLLAR_m">
     <title>Description</title>
     <para>
 Le bloc retard retarde ses entrées de la période spécifiée au niveau du port d'entrée événementiel. Ce bloc est équivalent à l'opérateur discret z-1. Il accepte une seule entrée et génére une seule sortie qui peuvent être aussi bien un scalaire qu'un vecteur. Si l'entrée est un vecteur alors tous les éléments du vecteur sont retardés par la même période.  
@@ -106,7 +106,7 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue DOLLAR_m">
+  <refsection id="Boîtededialogue_DOLLAR_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut DOLLAR_m">
+  <refsection id="Propriétéspardéfaut_DOLLAR_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface DOLLAR_m">
+  <refsection id="Fonctiondinterface_DOLLAR_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul DOLLAR_m">
+  <refsection id="Fonctiondecalcul_DOLLAR_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs DOLLAR_m">
+  <refsection id="Auteurs_DOLLAR_m">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

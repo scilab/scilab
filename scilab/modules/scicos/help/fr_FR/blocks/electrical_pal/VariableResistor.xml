@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu VariableResistor">
+  <refsection id="Contenu_VariableResistor">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VariableResistor">Palette</xref>
+              <xref linkend="Palette_VariableResistor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VariableResistor">Description</xref>
+              <xref linkend="Description_VariableResistor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut VariableResistor">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_VariableResistor">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface VariableResistor">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_VariableResistor">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VariableResistor">
+  <refsection id="Palette_VariableResistor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VariableResistor">
+  <refsection id="Description_VariableResistor">
     <title>Description</title>
     <para>
 Ce composant représente une résistance ohmique variable. La résistance</para>
@@ -101,7 +101,7 @@ est commandée par le port d'entrée explicite.  </para>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Propriétés par défaut VariableResistor">
+  <refsection id="Propriétéspardéfaut_VariableResistor">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -147,7 +147,7 @@ est commandée par le port d'entrée explicite.  </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface VariableResistor">
+  <refsection id="Fonctiondinterface_VariableResistor">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -155,7 +155,7 @@ est commandée par le port d'entrée explicite.  </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica VariableResistor">
+  <refsection id="ModèleModelica_VariableResistor">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

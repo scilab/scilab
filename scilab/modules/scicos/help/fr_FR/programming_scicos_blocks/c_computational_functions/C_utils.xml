@@ -24,13 +24,9 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="C_utils">
   <refnamediv>
     <refname>C_utils</refname>
-    <refpurpose>Contenu</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>C_utils</refname>
     <refpurpose>Fonctions C utilitaires</refpurpose>
   </refnamediv>
-  <refsection id="Contenu C_utils">
+  <refsection id="Contenu_C_utils">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -42,24 +38,24 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Module C_utils">Module</xref>
+              <xref linkend="Module_C_utils">Module</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description C_utils">Description</xref>
+              <xref linkend="Description_C_utils">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="C_utils">Auteurs</link>
+              <xref linkend="Auteurs_C_utils">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Module C_utils">
+  <refsection id="Module_C_utils">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -69,7 +65,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description C_utils">
+  <refsection id="Description_C_utils">
     <title>Description</title>
     <para>
 The 
@@ -168,7 +164,7 @@ functions to interact with the simulator in the C computational functions.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs C_utils">
+  <refsection id="Auteurs_C_utils">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

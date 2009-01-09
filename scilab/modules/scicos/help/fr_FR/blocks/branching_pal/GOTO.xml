@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu GOTO">
+  <refsection id="Contenu_GOTO">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GOTO">Palette</xref>
+              <xref linkend="Palette_GOTO">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GOTO">Description</xref>
+              <xref linkend="Description_GOTO">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue GOTO">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_GOTO">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut GOTO">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_GOTO">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface GOTO">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_GOTO">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GOTO">Voir aussi</link>
+              <xref linkend="Voiraussi_GOTO">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GOTO">Auteurs</link>
+              <xref linkend="Auteurs_GOTO">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GOTO">
+  <refsection id="Palette_GOTO">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GOTO">
+  <refsection id="Description_GOTO">
     <title>Description</title>
     <para>
 The main role of the GOTO/FROM blocks is to transport signals from a block to another block without connecting them physically. The GOTO block transports its input data to its corresponding FROM block. A simple GOTO block can send data to multiple FROM, although a FROM can receive data from only one GOTO.  
@@ -118,7 +118,7 @@ This block can support all the data types.
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue GOTO">
+  <refsection id="Boîtededialogue_GOTO">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -147,7 +147,7 @@ This block can support all the data types.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut GOTO">
+  <refsection id="Propriétéspardéfaut_GOTO">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ This block can support all the data types.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface GOTO">
+  <refsection id="Fonctiondinterface_GOTO">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ This block can support all the data types.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi GOTO">
+  <refsection id="Voiraussi_GOTO">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ This block can support all the data types.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs GOTO">
+  <refsection id="Auteurs_GOTO">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

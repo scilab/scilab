@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents DLSS">
+  <refsection id="Contents_DLSS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette DLSS">Palette</xref>
+              <xref linkend="Palette_DLSS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description DLSS">Description</xref>
+              <xref linkend="Description_DLSS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box DLSS">Dialog box</xref>
+              <xref linkend="Dialogbox_DLSS">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties DLSS">Default properties</xref>
+              <xref linkend="Defaultproperties_DLSS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function DLSS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_DLSS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function DLSS">Computational function</xref>
+              <xref linkend="Computationalfunction_DLSS">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette DLSS">
+  <refsection id="Palette_DLSS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description DLSS">
+  <refsection id="Description_DLSS">
     <title>Description</title>
     <para>
 This block realizes a discrete-time linear state-space system. The
@@ -100,7 +100,7 @@ event on the unique input event port, the state is updated.
 
 </para>
   </refsection>
-  <refsection id="Dialog box DLSS">
+  <refsection id="Dialogbox_DLSS">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -150,7 +150,7 @@ event on the unique input event port, the state is updated.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties DLSS">
+  <refsection id="Defaultproperties_DLSS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ event on the unique input event port, the state is updated.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function DLSS">
+  <refsection id="Interfacingfunction_DLSS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ event on the unique input event port, the state is updated.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function DLSS">
+  <refsection id="Computationalfunction_DLSS">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

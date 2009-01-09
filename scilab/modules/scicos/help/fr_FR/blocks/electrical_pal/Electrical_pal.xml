@@ -26,10 +26,6 @@
     <refname>Electrical_pal</refname>
     <refpurpose>Boîte à outils des composants électriques</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Electrical_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Electrical_pal">
+  <refsection id="Module_Electrical_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,16 +46,17 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Electrical_pal">
+  <refsection id="Description_Electrical_pal">
     <title>Description</title>
     <para>
 La boîte à outils électrique contient les composants basiques
 électriques tels que la source de tension, la diode, le condensateur,
 etc.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Electrical_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

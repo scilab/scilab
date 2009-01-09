@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu JKFLIPFLOP">
+  <refsection id="Contenu_JKFLIPFLOP">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette JKFLIPFLOP">Palette</xref>
+              <xref linkend="Palette_JKFLIPFLOP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description JKFLIPFLOP">Description</xref>
+              <xref linkend="Description_JKFLIPFLOP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue JKFLIPFLOP">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_JKFLIPFLOP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut JKFLIPFLOP">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_JKFLIPFLOP">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface JKFLIPFLOP">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_JKFLIPFLOP">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,19 +78,19 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="JKFLIPFLOP">Voir aussi</link>
+              <xref linkend="Voiraussi_JKFLIPFLOP">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="JKFLIPFLOP">Auteurs</link>
+              <xref linkend="Auteurs_JKFLIPFLOP">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette JKFLIPFLOP">
+  <refsection id="Palette_JKFLIPFLOP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description JKFLIPFLOP">
+  <refsection id="Description_JKFLIPFLOP">
     <title>Description</title>
     <para>
 The JK flip flop is the most versatile of the basic flip-flops.
@@ -153,7 +153,7 @@ The truth table of this block is
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Boîte de dialogue JKFLIPFLOP">
+  <refsection id="Boîtededialogue_JKFLIPFLOP">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -175,7 +175,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut JKFLIPFLOP">
+  <refsection id="Propriétéspardéfaut_JKFLIPFLOP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -238,7 +238,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface JKFLIPFLOP">
+  <refsection id="Fonctiondinterface_JKFLIPFLOP">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -246,7 +246,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé JKFLIPFLOP">
+  <refsection id="Contenudusuperbloccompilé_JKFLIPFLOP">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -256,7 +256,7 @@ The truth table of this block is
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Voir aussi JKFLIPFLOP">
+  <refsection id="Voiraussi_JKFLIPFLOP">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -276,7 +276,7 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs JKFLIPFLOP">
+  <refsection id="Auteurs_JKFLIPFLOP">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

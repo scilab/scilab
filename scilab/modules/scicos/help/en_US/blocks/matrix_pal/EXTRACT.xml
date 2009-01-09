@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents EXTRACT">
+  <refsection id="Contents_EXTRACT">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette EXTRACT">Palette</xref>
+              <xref linkend="Palette_EXTRACT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description EXTRACT">Description</xref>
+              <xref linkend="Description_EXTRACT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box EXTRACT">Dialog box</xref>
+              <xref linkend="Dialogbox_EXTRACT">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties EXTRACT">Default properties</xref>
+              <xref linkend="Defaultproperties_EXTRACT">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function EXTRACT">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_EXTRACT">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function EXTRACT">Computational function</xref>
+              <xref linkend="Computationalfunction_EXTRACT">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also EXTRACT">See also</xref>
+              <xref linkend="Seealso_EXTRACT">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors EXTRACT">Authors</xref>
+              <xref linkend="Authors_EXTRACT">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette EXTRACT">
+  <refsection id="Palette_EXTRACT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description EXTRACT">
+  <refsection id="Description_EXTRACT">
     <title>Description</title>
     <para>
 The EXTRACT block extracts some elements from the matrix. The size of the output depends on the number of rows and number of columns to extract.  
@@ -113,7 +113,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box EXTRACT">
+  <refsection id="Dialogbox_EXTRACT">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -149,7 +149,7 @@ The EXTRACT block extracts some elements from the matrix. The size of the output
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example EXTRACT">
+  <refsection id="Example_EXTRACT">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 2 3;4 5 6;7 8 9]
@@ -157,7 +157,7 @@ If the "Lines to extract" is 1 and 2 and the "Column to extract" is 1 and 3 then
 B=[1 3;4 6]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties EXTRACT">
+  <refsection id="Defaultproperties_EXTRACT">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -211,7 +211,7 @@ B=[1 3;4 6]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function EXTRACT">
+  <refsection id="Interfacingfunction_EXTRACT">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -219,7 +219,7 @@ B=[1 3;4 6]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function EXTRACT">
+  <refsection id="Computationalfunction_EXTRACT">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -230,7 +230,7 @@ B=[1 3;4 6]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also EXTRACT">
+  <refsection id="Seealso_EXTRACT">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -240,7 +240,7 @@ B=[1 3;4 6]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors EXTRACT">
+  <refsection id="Authors_EXTRACT">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

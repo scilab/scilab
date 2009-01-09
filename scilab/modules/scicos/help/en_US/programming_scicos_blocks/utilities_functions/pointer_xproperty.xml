@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[xprop]=pointer_xproperty</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module pointer_xproperty">
+  <refsection id="Module_pointer_xproperty">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description pointer_xproperty">
+  <refsection id="Description_pointer_xproperty">
     <title>Description</title>
     <para>
 This function returns a vector that informs the type (algebraic or differential) of the continuous state variables of a block.  
@@ -51,7 +51,7 @@ This function returns a vector that informs the type (algebraic or differential)
 [xprop]=pointer_xproperty
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters pointer_xproperty">
+  <refsection id="Parameters_pointer_xproperty">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -73,7 +73,7 @@ This function returns a vector that informs the type (algebraic or differential)
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also pointer_xproperty">
+  <refsection id="SeeAlso_pointer_xproperty">
     <title>See Also</title>
     <itemizedlist>
       <listitem>

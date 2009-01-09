@@ -26,7 +26,7 @@
     <refname>scicos_params</refname>
     <refpurpose>Définit une structure params</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_params">
+  <refsection id="Module_scicos_params">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="params scicos_params">
+  <refsection id="params_scicos_params">
     <title>params</title>
     <para>
 Size : 11.
@@ -353,7 +353,7 @@ Type : Chaînes de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_params">
+  <refsection id="Contenuduficher_scicos_params">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

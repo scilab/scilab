@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu TIME_f">
+  <refsection id="Contenu_TIME_f">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TIME_f">Palette</xref>
+              <xref linkend="Palette_TIME_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TIME_f">Description</xref>
+              <xref linkend="Description_TIME_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut TIME_f">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_TIME_f">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface TIME_f">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_TIME_f">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul TIME_f">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_TIME_f">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="TIME_f">Auteurs</link>
+              <xref linkend="Auteurs_TIME_f">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TIME_f">
+  <refsection id="Palette_TIME_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TIME_f">
+  <refsection id="Description_TIME_f">
     <title>Description</title>
     <para>
 Ce bloc est un générateur de temps.
@@ -101,7 +101,7 @@ simulation.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut TIME_f">
+  <refsection id="Propriétéspardéfaut_TIME_f">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -147,7 +147,7 @@ simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface TIME_f">
+  <refsection id="Fonctiondinterface_TIME_f">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -155,7 +155,7 @@ simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul TIME_f">
+  <refsection id="Fonctiondecalcul_TIME_f">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -163,7 +163,7 @@ simulation.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs TIME_f">
+  <refsection id="Auteurs_TIME_f">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

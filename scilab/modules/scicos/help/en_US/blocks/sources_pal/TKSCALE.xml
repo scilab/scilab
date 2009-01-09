@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TKSCALE">
+  <refsection id="Contents_TKSCALE">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TKSCALE">Palette</xref>
+              <xref linkend="Palette_TKSCALE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TKSCALE">Description</xref>
+              <xref linkend="Description_TKSCALE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box TKSCALE">Dialog box</xref>
+              <xref linkend="Dialogbox_TKSCALE">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TKSCALE">Default properties</xref>
+              <xref linkend="Defaultproperties_TKSCALE">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TKSCALE">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TKSCALE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function TKSCALE">Computational function</xref>
+              <xref linkend="Computationalfunction_TKSCALE">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors TKSCALE">Authors</xref>
+              <xref linkend="Authors_TKSCALE">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TKSCALE">
+  <refsection id="Palette_TKSCALE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TKSCALE">
+  <refsection id="Description_TKSCALE">
     <title>Description</title>
     <para>
 This source block generates a piecewise constant signal the value of which can be set interactively using a TK widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionaly all three block parameters does not change the output range, but it does increase precision.  
@@ -103,7 +103,7 @@ This source block generates a piecewise constant signal the value of which can b
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box TKSCALE">
+  <refsection id="Dialogbox_TKSCALE">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -139,7 +139,7 @@ This source block generates a piecewise constant signal the value of which can b
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties TKSCALE">
+  <refsection id="Defaultproperties_TKSCALE">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -185,7 +185,7 @@ This source block generates a piecewise constant signal the value of which can b
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TKSCALE">
+  <refsection id="Interfacingfunction_TKSCALE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ This source block generates a piecewise constant signal the value of which can b
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function TKSCALE">
+  <refsection id="Computationalfunction_TKSCALE">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ This source block generates a piecewise constant signal the value of which can b
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors TKSCALE">
+  <refsection id="Authors_TKSCALE">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

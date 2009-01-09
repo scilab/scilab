@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="END_c">
   <refnamediv>
     <refname>END_c</refname>
@@ -9,12 +31,12 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/END_c_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/END_c_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu END_c">
+  <refsection id="Contenu_END_c">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -26,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Description END_c">Description</xref>
+              <xref linkend="Description_END_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue END_c">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_END_c">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut END_c">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_END_c">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface END_c">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_END_c">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul END_c">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_END_c">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="END_c">Voir aussi</link>
+              <xref linkend="Voiraussi_END_c">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="END_c">Auteurs</link>
+              <xref linkend="Auteurs_END_c">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description END_c">
+  <refsection id="Description_END_c">
     <title>Description</title>
     <para>
 Ce bloc fait avancer le temps courant au temps final d'intégration lorsque celui-ci
@@ -74,7 +96,7 @@ est activé la première fois :
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/END_c_img2_fr.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/END_c_img2_fr.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -86,12 +108,12 @@ définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue END_c">
+  <refsection id="Boîtededialogue_END_c">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/END_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/END_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -108,7 +130,7 @@ définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut END_c">
+  <refsection id="Propriétéspardéfaut_END_c">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -146,7 +168,7 @@ définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface END_c">
+  <refsection id="Fonctiondinterface_END_c">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -154,7 +176,7 @@ définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul END_c">
+  <refsection id="Fonctiondecalcul_END_c">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -162,7 +184,7 @@ définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi END_c">
+  <refsection id="Voiraussi_END_c">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -172,7 +194,7 @@ définit via l'entrée Setup du menu Simulate (scs_m.props.tf).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs END_c">
+  <refsection id="Auteurs_END_c">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

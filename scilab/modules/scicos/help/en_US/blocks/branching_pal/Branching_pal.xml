@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module Branching_pal">
+  <refsection id="Module_Branching_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Branching_pal">
+  <refsection id="Description_Branching_pal">
     <title>Description</title>
     <para>
 In the branching palette, you can find miscellaneous blocks
@@ -54,7 +54,7 @@ for the management of the data driven by the regular links.
 
 </para>
   </refsection>
-  <refsection id="Blocks Branching_pal">
+  <refsection id="Blocks_Branching_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

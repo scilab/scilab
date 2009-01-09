@@ -26,7 +26,7 @@
     <refname>scicos_graphics</refname>
     <refpurpose>Define a graphics structure</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_graphics">
+  <refsection id="Module_scicos_graphics">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="graphics scicos_graphics">
+  <refsection id="graphics_scicos_graphics">
     <title>graphics</title>
     <para>
  Scilab object including
@@ -225,7 +225,7 @@ Type : column vector of strings.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content scicos_graphics">
+  <refsection id="Filecontent_scicos_graphics">
     <title>File content</title>
     <itemizedlist>
       <listitem>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu SAMPHOLD_m">
+  <refsection id="Contenu_SAMPHOLD_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SAMPHOLD_m">Palette</xref>
+              <xref linkend="Palette_SAMPHOLD_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SAMPHOLD_m">Description</xref>
+              <xref linkend="Description_SAMPHOLD_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue SAMPHOLD_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_SAMPHOLD_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut SAMPHOLD_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_SAMPHOLD_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface SAMPHOLD_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_SAMPHOLD_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul SAMPHOLD_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_SAMPHOLD_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="SAMPHOLD_m">Auteurs</link>
+              <xref linkend="Auteurs_SAMPHOLD_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SAMPHOLD_m">
+  <refsection id="Palette_SAMPHOLD_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SAMPHOLD_m">
+  <refsection id="Description_SAMPHOLD_m">
     <title>Description</title>
     <para>
 A chaque fois qu'un événement est reçu, ce bloc copie la valeur de son
@@ -106,7 +106,7 @@ Pour réaliser un échantillonneur bloqueur périodique, l'entrée
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue SAMPHOLD_m">
+  <refsection id="Boîtededialogue_SAMPHOLD_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -128,7 +128,7 @@ Pour réaliser un échantillonneur bloqueur périodique, l'entrée
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut SAMPHOLD_m">
+  <refsection id="Propriétéspardéfaut_SAMPHOLD_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -182,7 +182,7 @@ Pour réaliser un échantillonneur bloqueur périodique, l'entrée
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface SAMPHOLD_m">
+  <refsection id="Fonctiondinterface_SAMPHOLD_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ Pour réaliser un échantillonneur bloqueur périodique, l'entrée
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul SAMPHOLD_m">
+  <refsection id="Fonctiondecalcul_SAMPHOLD_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ Pour réaliser un échantillonneur bloqueur périodique, l'entrée
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs SAMPHOLD_m">
+  <refsection id="Auteurs_SAMPHOLD_m">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATTRAN">
+  <refsection id="Contents_MATTRAN">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATTRAN">Palette</xref>
+              <xref linkend="Palette_MATTRAN">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATTRAN">Description</xref>
+              <xref linkend="Description_MATTRAN">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATTRAN">Dialog box</xref>
+              <xref linkend="Dialogbox_MATTRAN">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATTRAN">Default properties</xref>
+              <xref linkend="Defaultproperties_MATTRAN">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATTRAN">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATTRAN">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATTRAN">Computational function</xref>
+              <xref linkend="Computationalfunction_MATTRAN">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATTRAN">See also</xref>
+              <xref linkend="Seealso_MATTRAN">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATTRAN">Authors</xref>
+              <xref linkend="Authors_MATTRAN">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATTRAN">
+  <refsection id="Palette_MATTRAN">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATTRAN">
+  <refsection id="Description_MATTRAN">
     <title>Description</title>
     <para>
 This Block transposes an MxN matrix to a NxM matrix. For complex data type it uses the hermitian transpose. The equivalent of this block in Scilab is y=u'.  
@@ -113,7 +113,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATTRAN">
+  <refsection id="Dialogbox_MATTRAN">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATTRAN">
+  <refsection id="Example_MATTRAN">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 .                        Complex 
@@ -152,7 +152,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
 .                            --      --
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATTRAN">
+  <refsection id="Defaultproperties_MATTRAN">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATTRAN">
+  <refsection id="Interfacingfunction_MATTRAN">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -214,7 +214,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATTRAN">
+  <refsection id="Computationalfunction_MATTRAN">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATTRAN">
+  <refsection id="Seealso_MATTRAN">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -235,7 +235,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATTRAN">
+  <refsection id="Authors_MATTRAN">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents NMOS">
+  <refsection id="Contents_NMOS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette NMOS">Palette</xref>
+              <xref linkend="Palette_NMOS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description NMOS">Description</xref>
+              <xref linkend="Description_NMOS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box NMOS">Dialog box</xref>
+              <xref linkend="Dialogbox_NMOS">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties NMOS">Default properties</xref>
+              <xref linkend="Defaultproperties_NMOS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function NMOS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_NMOS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,19 +78,19 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also NMOS">See also</xref>
+              <xref linkend="Seealso_NMOS">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors NMOS">Authors</xref>
+              <xref linkend="Authors_NMOS">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette NMOS">
+  <refsection id="Palette_NMOS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description NMOS">
+  <refsection id="Description_NMOS">
     <title>Description</title>
     <para>Description</para>
     <para>
@@ -328,7 +328,7 @@ resistance is included (to avoid numerical difficulties).
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Dialog box NMOS">
+  <refsection id="Dialogbox_NMOS">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -406,7 +406,7 @@ resistance is included (to avoid numerical difficulties).
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties NMOS">
+  <refsection id="Defaultproperties_NMOS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -561,7 +561,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function NMOS">
+  <refsection id="Interfacingfunction_NMOS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -569,7 +569,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model NMOS">
+  <refsection id="Modelicamodel_NMOS">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>
@@ -577,7 +577,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also NMOS">
+  <refsection id="Seealso_NMOS">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -587,7 +587,7 @@ Implicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors NMOS">
+  <refsection id="Authors_NMOS">
     <title>Authors</title>
     <para><emphasis role="bold"/> - www.modelica.org</para>
   </refsection>

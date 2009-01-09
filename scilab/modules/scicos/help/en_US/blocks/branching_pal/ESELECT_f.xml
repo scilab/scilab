@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents ESELECT_f">
+  <refsection id="Contents_ESELECT_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ESELECT_f">Palette</xref>
+              <xref linkend="Palette_ESELECT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ESELECT_f">Description</xref>
+              <xref linkend="Description_ESELECT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box ESELECT_f">Dialog box</xref>
+              <xref linkend="Dialogbox_ESELECT_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties ESELECT_f">Default properties</xref>
+              <xref linkend="Defaultproperties_ESELECT_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function ESELECT_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ESELECT_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors ESELECT_f">Authors</xref>
+              <xref linkend="Authors_ESELECT_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ESELECT_f">
+  <refsection id="Palette_ESELECT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ESELECT_f">
+  <refsection id="Description_ESELECT_f">
     <title>Description</title>
     <para>
 Special block similar to If-Then-Else. Input and output are synchronized.
@@ -99,7 +99,7 @@ on the value of the regular input.
 
 </para>
   </refsection>
-  <refsection id="Dialog box ESELECT_f">
+  <refsection id="Dialogbox_ESELECT_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ on the value of the regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties ESELECT_f">
+  <refsection id="Defaultproperties_ESELECT_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -181,7 +181,7 @@ on the value of the regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function ESELECT_f">
+  <refsection id="Interfacingfunction_ESELECT_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ on the value of the regular input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors ESELECT_f">
+  <refsection id="Authors_ESELECT_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

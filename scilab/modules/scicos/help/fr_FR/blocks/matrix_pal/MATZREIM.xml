@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATZREIM">
+  <refsection id="Contenu_MATZREIM">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATZREIM">Palette</xref>
+              <xref linkend="Palette_MATZREIM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATZREIM">Description</xref>
+              <xref linkend="Description_MATZREIM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATZREIM">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATZREIM">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATZREIM">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATZREIM">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATZREIM">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATZREIM">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATZREIM">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATZREIM">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATZREIM">Voir aussi</link>
+              <xref linkend="Voiraussi_MATZREIM">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATZREIM">Auteurs</link>
+              <xref linkend="Auteurs_MATZREIM">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATZREIM">
+  <refsection id="Palette_MATZREIM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATZREIM">
+  <refsection id="Description_MATZREIM">
     <title>Description</title>
     <para>
 This block decomposes a complex number by seperating the real and imaginary parts or compose a comples number by joining the two parts. The user can select even to seperate or to join real and imaginary part by setting the decomposition type to 1 or 2. When it is set to 1, the input is a complex matrix and the outputs are the real and imaginary parts of the input. When it set to 2, The inputs are two real matrices, the output is a complex number with real part the first input and imaginary part the second input.  
@@ -108,7 +108,7 @@ This block decomposes a complex number by seperating the real and imaginary part
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATZREIM">
+  <refsection id="Boîtededialogue_MATZREIM">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ This block decomposes a complex number by seperating the real and imaginary part
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATZREIM">
+  <refsection id="Propriétéspardéfaut_MATZREIM">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ This block decomposes a complex number by seperating the real and imaginary part
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATZREIM">
+  <refsection id="Fonctiondinterface_MATZREIM">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ This block decomposes a complex number by seperating the real and imaginary part
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATZREIM">
+  <refsection id="Fonctiondecalcul_MATZREIM">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ This block decomposes a complex number by seperating the real and imaginary part
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATZREIM">
+  <refsection id="Voiraussi_MATZREIM">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ This block decomposes a complex number by seperating the real and imaginary part
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATZREIM">
+  <refsection id="Auteurs_MATZREIM">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

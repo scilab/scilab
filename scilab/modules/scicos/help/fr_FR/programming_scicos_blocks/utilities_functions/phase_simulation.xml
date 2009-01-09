@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="phase_simulation">
   <refnamediv>
     <refname>phase_simulation</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>phase_simulation</refname>
     <refpurpose>Retourne la phase actuelle de simulation</refpurpose>
   </refnamediv>
-  <refsection id="Module phase_simulation">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[psim]=phase_simulation()</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_phase_simulation">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,18 +40,19 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description phase_simulation">
+  <refsection id="Description_phase_simulation">
     <title>Description</title>
     <para>
 Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'intégration temporelle.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+[psim]=phase_simulation()
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_phase_simulation">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">psim :</emphasis> retourne la phase courante de la simulation.</para>

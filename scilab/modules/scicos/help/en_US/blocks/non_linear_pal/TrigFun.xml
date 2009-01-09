@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TrigFun">
+  <refsection id="Contents_TrigFun">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TrigFun">Palette</xref>
+              <xref linkend="Palette_TrigFun">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TrigFun">Description</xref>
+              <xref linkend="Description_TrigFun">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box TrigFun">Dialog box</xref>
+              <xref linkend="Dialogbox_TrigFun">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TrigFun">Default properties</xref>
+              <xref linkend="Defaultproperties_TrigFun">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TrigFun">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TrigFun">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function TrigFun">Computational function</xref>
+              <xref linkend="Computationalfunction_TrigFun">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TrigFun">
+  <refsection id="Palette_TrigFun">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TrigFun">
+  <refsection id="Description_TrigFun">
     <title>Description</title>
     <para>
 The Trigonometric Function block performs numerous common
@@ -101,7 +101,7 @@ function on the input or inputs.
 
 </para>
   </refsection>
-  <refsection id="Dialog box TrigFun">
+  <refsection id="Dialogbox_TrigFun">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -123,7 +123,7 @@ function on the input or inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties TrigFun">
+  <refsection id="Defaultproperties_TrigFun">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -177,7 +177,7 @@ function on the input or inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TrigFun">
+  <refsection id="Interfacingfunction_TrigFun">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -185,7 +185,7 @@ function on the input or inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function TrigFun">
+  <refsection id="Computationalfunction_TrigFun">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>

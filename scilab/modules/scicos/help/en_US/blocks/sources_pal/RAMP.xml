@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents RAMP">
+  <refsection id="Contents_RAMP">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RAMP">Palette</xref>
+              <xref linkend="Palette_RAMP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RAMP">Description</xref>
+              <xref linkend="Description_RAMP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box RAMP">Dialog box</xref>
+              <xref linkend="Dialogbox_RAMP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties RAMP">Default properties</xref>
+              <xref linkend="Defaultproperties_RAMP">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function RAMP">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_RAMP">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function RAMP">Computational function</xref>
+              <xref linkend="Computationalfunction_RAMP">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors RAMP">Authors</xref>
+              <xref linkend="Authors_RAMP">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RAMP">
+  <refsection id="Palette_RAMP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RAMP">
+  <refsection id="Description_RAMP">
     <title>Description</title>
     <para>
 The Ramp block generates a signal that starts at a specified time and
@@ -106,7 +106,7 @@ dimensions after scalar expansion.
 
 </para>
   </refsection>
-  <refsection id="Dialog box RAMP">
+  <refsection id="Dialogbox_RAMP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ dimensions after scalar expansion.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties RAMP">
+  <refsection id="Defaultproperties_RAMP">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ dimensions after scalar expansion.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function RAMP">
+  <refsection id="Interfacingfunction_RAMP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ dimensions after scalar expansion.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function RAMP">
+  <refsection id="Computationalfunction_RAMP">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ dimensions after scalar expansion.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors RAMP">
+  <refsection id="Authors_RAMP">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

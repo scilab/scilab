@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu MATINV">
+  <refsection id="Contenu_MATINV">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATINV">Palette</xref>
+              <xref linkend="Palette_MATINV">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATINV">Description</xref>
+              <xref linkend="Description_MATINV">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue MATINV">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_MATINV">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut MATINV">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_MATINV">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface MATINV">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_MATINV">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul MATINV">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_MATINV">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATINV">Voir aussi</link>
+              <xref linkend="Voiraussi_MATINV">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="MATINV">Auteurs</link>
+              <xref linkend="Auteurs_MATINV">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATINV">
+  <refsection id="Palette_MATINV">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATINV">
+  <refsection id="Description_MATINV">
     <title>Description</title>
     <para>
 The MATINV Block outputs the inverse of a square input matrix using the LU factorization. A warning message is printed if the input is badly scaled or nearly singular. The equivalent function of this block in Scilab is "inv".  
@@ -108,7 +108,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue MATINV">
+  <refsection id="Boîtededialogue_MATINV">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -130,7 +130,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut MATINV">
+  <refsection id="Propriétéspardéfaut_MATINV">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface MATINV">
+  <refsection id="Fonctiondinterface_MATINV">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul MATINV">
+  <refsection id="Fonctiondecalcul_MATINV">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -203,7 +203,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi MATINV">
+  <refsection id="Voiraussi_MATINV">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -218,7 +218,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs MATINV">
+  <refsection id="Auteurs_MATINV">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

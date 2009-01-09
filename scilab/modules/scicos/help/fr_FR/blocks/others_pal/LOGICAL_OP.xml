@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu LOGICAL_OP">
+  <refsection id="Contenu_LOGICAL_OP">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette LOGICAL_OP">Palette</xref>
+              <xref linkend="Palette_LOGICAL_OP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description LOGICAL_OP">Description</xref>
+              <xref linkend="Description_LOGICAL_OP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue LOGICAL_OP">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_LOGICAL_OP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut LOGICAL_OP">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_LOGICAL_OP">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface LOGICAL_OP">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_LOGICAL_OP">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul LOGICAL_OP">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_LOGICAL_OP">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="LOGICAL_OP">Auteurs</link>
+              <xref linkend="Auteurs_LOGICAL_OP">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette LOGICAL_OP">
+  <refsection id="Palette_LOGICAL_OP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description LOGICAL_OP">
+  <refsection id="Description_LOGICAL_OP">
     <title>Description</title>
     <para>
 Le bloc Opérateur Logique réalise une opération logique
@@ -105,7 +105,7 @@ elle est FAUSSE (0) si elle est égale zéro.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue LOGICAL_OP">
+  <refsection id="Boîtededialogue_LOGICAL_OP">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -134,7 +134,7 @@ elle est FAUSSE (0) si elle est égale zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut LOGICAL_OP">
+  <refsection id="Propriétéspardéfaut_LOGICAL_OP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -191,7 +191,7 @@ elle est FAUSSE (0) si elle est égale zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface LOGICAL_OP">
+  <refsection id="Fonctiondinterface_LOGICAL_OP">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ elle est FAUSSE (0) si elle est égale zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul LOGICAL_OP">
+  <refsection id="Fonctiondecalcul_LOGICAL_OP">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ elle est FAUSSE (0) si elle est égale zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs LOGICAL_OP">
+  <refsection id="Auteurs_LOGICAL_OP">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

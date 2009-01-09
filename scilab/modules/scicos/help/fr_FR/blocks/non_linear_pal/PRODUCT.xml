@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu PRODUCT">
+  <refsection id="Contenu_PRODUCT">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PRODUCT">Palette</xref>
+              <xref linkend="Palette_PRODUCT">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PRODUCT">Description</xref>
+              <xref linkend="Description_PRODUCT">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue PRODUCT">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_PRODUCT">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut PRODUCT">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_PRODUCT">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface PRODUCT">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_PRODUCT">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul PRODUCT">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_PRODUCT">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="PRODUCT">Auteurs</link>
+              <xref linkend="Auteurs_PRODUCT">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PRODUCT">
+  <refsection id="Palette_PRODUCT">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PRODUCT">
+  <refsection id="Description_PRODUCT">
     <title>Description</title>
     <para>
 The Product block performs multiplication or division of its
@@ -107,7 +107,7 @@ operations to be performed on the inputs.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue PRODUCT">
+  <refsection id="Boîtededialogue_PRODUCT">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -129,7 +129,7 @@ operations to be performed on the inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut PRODUCT">
+  <refsection id="Propriétéspardéfaut_PRODUCT">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ operations to be performed on the inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface PRODUCT">
+  <refsection id="Fonctiondinterface_PRODUCT">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ operations to be performed on the inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul PRODUCT">
+  <refsection id="Fonctiondecalcul_PRODUCT">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ operations to be performed on the inputs.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs PRODUCT">
+  <refsection id="Auteurs_PRODUCT">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CSCOPE">
+  <refsection id="Contenu_CSCOPE">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CSCOPE">Palette</xref>
+              <xref linkend="Palette_CSCOPE">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CSCOPE">Description</xref>
+              <xref linkend="Description_CSCOPE">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue CSCOPE">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_CSCOPE">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CSCOPE">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CSCOPE">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CSCOPE">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CSCOPE">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul CSCOPE">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_CSCOPE">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CSCOPE">Voir aussi</link>
+              <xref linkend="Voiraussi_CSCOPE">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CSCOPE">Auteurs</link>
+              <xref linkend="Auteurs_CSCOPE">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CSCOPE">
+  <refsection id="Palette_CSCOPE">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CSCOPE">
+  <refsection id="Description_CSCOPE">
     <title>Description</title>
     <para>
 Au début de la simulation, ce bloc ouvre une fenêtre  pour afficher
@@ -113,7 +113,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue CSCOPE">
+  <refsection id="Boîtededialogue_CSCOPE">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -198,7 +198,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut CSCOPE">
+  <refsection id="Propriétéspardéfaut_CSCOPE">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -244,7 +244,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CSCOPE">
+  <refsection id="Fonctiondinterface_CSCOPE">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -252,7 +252,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul CSCOPE">
+  <refsection id="Fonctiondecalcul_CSCOPE">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -260,7 +260,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CSCOPE">
+  <refsection id="Voiraussi_CSCOPE">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -270,7 +270,7 @@ Ce bloc ne possède qu'une seule échelle temporelle.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CSCOPE">
+  <refsection id="Auteurs_CSCOPE">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

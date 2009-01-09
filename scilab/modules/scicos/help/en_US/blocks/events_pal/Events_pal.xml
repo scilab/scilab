@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Module Events_pal">
+  <refsection id="Module_Events_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -46,7 +46,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Events_pal">
+  <refsection id="Description_Events_pal">
     <title>Description</title>
     <para>
 The events palette is used to handle events in the diagram.
@@ -55,7 +55,7 @@ blocks to gather events in a single link.
 
 </para>
   </refsection>
-  <refsection id="Blocks Events_pal">
+  <refsection id="Blocks_Events_pal">
     <title>Blocks</title>
     <itemizedlist>
       <listitem>

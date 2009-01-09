@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[outtb]=buildouttb(lnksz,lnktyp)</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module buildouttb">
+  <refsection id="Module_buildouttb">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description buildouttb">
+  <refsection id="Description_buildouttb">
     <title>Description</title>
     <para>
 Build an initialized outtb list.
@@ -50,7 +50,7 @@ Build an initialized outtb list.
 [outtb]=buildouttb(lnksz,lnktyp)
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters buildouttb">
+  <refsection id="Parameters_buildouttb">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -75,7 +75,7 @@ Build an initialized outtb list.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors buildouttb">
+  <refsection id="Authors_buildouttb">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

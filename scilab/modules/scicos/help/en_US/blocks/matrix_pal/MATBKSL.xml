@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATBKSL">
+  <refsection id="Contents_MATBKSL">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATBKSL">Palette</xref>
+              <xref linkend="Palette_MATBKSL">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATBKSL">Description</xref>
+              <xref linkend="Description_MATBKSL">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATBKSL">Dialog box</xref>
+              <xref linkend="Dialogbox_MATBKSL">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATBKSL">Default properties</xref>
+              <xref linkend="Defaultproperties_MATBKSL">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATBKSL">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATBKSL">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATBKSL">Computational function</xref>
+              <xref linkend="Computationalfunction_MATBKSL">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATBKSL">See also</xref>
+              <xref linkend="Seealso_MATBKSL">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATBKSL">Authors</xref>
+              <xref linkend="Authors_MATBKSL">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATBKSL">
+  <refsection id="Palette_MATBKSL">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATBKSL">
+  <refsection id="Description_MATBKSL">
     <title>Description</title>
     <para>
 The MATBKSL block outputs the left matrix division. It is a solution to A*x=B. The higher input is the A matrix, the lower one is the B matrix, and the output is x. If A is an M-by-N1 matrix, B must be a M-by-N2 where N1 and N2 can be different or equal. The output x is a N1-by-N2 matrix.  
@@ -116,7 +116,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATBKSL">
+  <refsection id="Dialogbox_MATBKSL">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -138,7 +138,7 @@ The equivalent of BACKSLASH is "ïn Scilab.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATBKSL">
+  <refsection id="Example_MATBKSL">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 7 3;23 32 29]
@@ -147,7 +147,7 @@ then the result of the A*x=B equation is (A\B):
 x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATBKSL">
+  <refsection id="Defaultproperties_MATBKSL">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATBKSL">
+  <refsection id="Interfacingfunction_MATBKSL">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATBKSL">
+  <refsection id="Computationalfunction_MATBKSL">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -223,7 +223,7 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATBKSL">
+  <refsection id="Seealso_MATBKSL">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -238,7 +238,7 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATBKSL">
+  <refsection id="Authors_MATBKSL">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

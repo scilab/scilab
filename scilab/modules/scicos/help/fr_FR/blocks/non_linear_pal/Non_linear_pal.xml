@@ -26,10 +26,6 @@
     <refname>Non_linear_pal</refname>
     <refpurpose>Palette Non-linéaire</refpurpose>
   </refnamediv>
-  <refnamediv>
-    <refname>Non_linear_pal</refname>
-    <refpurpose>Blocs</refpurpose>
-  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -39,14 +35,8 @@
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-
-
-
-</para>
   </refsection>
-  <refsection id="Module Non_linear_pal">
+  <refsection id="Module_Non_linear_pal">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -56,14 +46,15 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Non_linear_pal">
+  <refsection id="Description_Non_linear_pal">
     <title>Description</title>
     <para>
 Cette palette contient des fonctions non-linéaires.
 
-
-
 </para>
+  </refsection>
+  <refsection id="Blocs_Non_linear_pal">
+    <title>Blocs</title>
     <itemizedlist>
       <listitem>
         <para>

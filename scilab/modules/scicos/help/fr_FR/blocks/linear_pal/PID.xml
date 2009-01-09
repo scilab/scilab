@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu PID">
+  <refsection id="Contenu_PID">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PID">Palette</xref>
+              <xref linkend="Palette_PID">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PID">Description</xref>
+              <xref linkend="Description_PID">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue PID">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_PID">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut PID">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_PID">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface PID">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_PID">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PID">Auteurs</link>
+              <xref linkend="Auteurs_PID">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PID">
+  <refsection id="Palette_PID">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PID">
+  <refsection id="Description_PID">
     <title>Description</title>
     <para>
 Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dérivé (PID) est un organe de contrôle permettant d'effectuer une régulation en boucle fermée d'un système industriel. C'est le régulateur le plus utilisé dans l'industrie et permet de contrôler la grande majorité des procédés.  
@@ -103,7 +103,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue PID">
+  <refsection id="Boîtededialogue_PID">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -139,7 +139,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut PID">
+  <refsection id="Propriétéspardéfaut_PID">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -193,7 +193,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface PID">
+  <refsection id="Fonctiondinterface_PID">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -201,7 +201,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du super-bloc compilé PID">
+  <refsection id="Contenudusuperbloccompilé_PID">
     <title>Contenu du super-bloc compilé</title>
     <para>
       <inlinemediaobject>
@@ -211,7 +211,7 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Auteurs PID">
+  <refsection id="Auteurs_PID">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

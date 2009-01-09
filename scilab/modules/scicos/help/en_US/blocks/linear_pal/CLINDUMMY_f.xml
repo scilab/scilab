@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CLINDUMMY_f">
+  <refsection id="Contents_CLINDUMMY_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,34 +48,34 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CLINDUMMY_f">Palette</xref>
+              <xref linkend="Palette_CLINDUMMY_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CLINDUMMY_f">Description</xref>
+              <xref linkend="Description_CLINDUMMY_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CLINDUMMY_f">Default properties</xref>
+              <xref linkend="Defaultproperties_CLINDUMMY_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CLINDUMMY_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CLINDUMMY_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors CLINDUMMY_f">Authors</xref>
+              <xref linkend="Authors_CLINDUMMY_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CLINDUMMY_f">
+  <refsection id="Palette_CLINDUMMY_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CLINDUMMY_f">
+  <refsection id="Description_CLINDUMMY_f">
     <title>Description</title>
     <para>
 This block should be placed in any block diagram that contains a
@@ -95,7 +95,7 @@ surfaces.
 
 </para>
   </refsection>
-  <refsection id="Default properties CLINDUMMY_f">
+  <refsection id="Defaultproperties_CLINDUMMY_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -133,7 +133,7 @@ surfaces.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CLINDUMMY_f">
+  <refsection id="Interfacingfunction_CLINDUMMY_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -141,7 +141,7 @@ surfaces.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors CLINDUMMY_f">
+  <refsection id="Authors_CLINDUMMY_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

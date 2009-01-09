@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu GAINBLK">
+  <refsection id="Contenu_GAINBLK">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette GAINBLK">Palette</xref>
+              <xref linkend="Palette_GAINBLK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description GAINBLK">Description</xref>
+              <xref linkend="Description_GAINBLK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue GAINBLK">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_GAINBLK">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut GAINBLK">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_GAINBLK">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface GAINBLK">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_GAINBLK">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul GAINBLK">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_GAINBLK">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GAINBLK">Voir aussi</link>
+              <xref linkend="Voiraussi_GAINBLK">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="GAINBLK">Auteurs</link>
+              <xref linkend="Auteurs_GAINBLK">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette GAINBLK">
+  <refsection id="Palette_GAINBLK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description GAINBLK">
+  <refsection id="Description_GAINBLK">
     <title>Description</title>
     <para>
 Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entrée U, où le nombre de lignes/colonnes de A est égal au nombre de lignes de U. Les types de données des entrées/sorties sont définis par le type de donnée de la matrice gain A.   Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différentes suivant le paramètre "DO ON OVERFLOW":  
@@ -119,7 +119,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue GAINBLK">
+  <refsection id="Boîtededialogue_GAINBLK">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -148,7 +148,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut GAINBLK">
+  <refsection id="Propriétéspardéfaut_GAINBLK">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -202,7 +202,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface GAINBLK">
+  <refsection id="Fonctiondinterface_GAINBLK">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -210,7 +210,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul GAINBLK">
+  <refsection id="Fonctiondecalcul_GAINBLK">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -272,7 +272,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi GAINBLK">
+  <refsection id="Voiraussi_GAINBLK">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -287,7 +287,7 @@ Le bloc GAINBLK calcule le produit d'une matrice carré A par une matrice d'entré
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs GAINBLK">
+  <refsection id="Auteurs_GAINBLK">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

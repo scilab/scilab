@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents ANDBLK">
+  <refsection id="Contents_ANDBLK">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette ANDBLK">Palette</xref>
+              <xref linkend="Palette_ANDBLK">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description ANDBLK">Description</xref>
+              <xref linkend="Description_ANDBLK">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties ANDBLK">Default properties</xref>
+              <xref linkend="Defaultproperties_ANDBLK">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function ANDBLK">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_ANDBLK">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,14 +73,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors ANDBLK">Authors</xref>
+              <xref linkend="Authors_ANDBLK">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette ANDBLK">
+  <refsection id="Palette_ANDBLK">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description ANDBLK">
+  <refsection id="Description_ANDBLK">
     <title>Description</title>
     <para>
 The Bus Creator block combines a set of signals, i.e., a
@@ -101,7 +101,7 @@ understand.
 
 </para>
   </refsection>
-  <refsection id="Default properties ANDBLK">
+  <refsection id="Defaultproperties_ANDBLK">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -139,7 +139,7 @@ understand.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function ANDBLK">
+  <refsection id="Interfacingfunction_ANDBLK">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -147,7 +147,7 @@ understand.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content ANDBLK">
+  <refsection id="CompiledSuperBlockcontent_ANDBLK">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>
@@ -157,7 +157,7 @@ understand.
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Authors ANDBLK">
+  <refsection id="Authors_ANDBLK">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

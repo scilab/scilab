@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TIME_DELAY">
+  <refsection id="Contents_TIME_DELAY">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TIME_DELAY">Palette</xref>
+              <xref linkend="Palette_TIME_DELAY">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TIME_DELAY">Description</xref>
+              <xref linkend="Description_TIME_DELAY">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box TIME_DELAY">Dialog box</xref>
+              <xref linkend="Dialogbox_TIME_DELAY">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TIME_DELAY">Default properties</xref>
+              <xref linkend="Defaultproperties_TIME_DELAY">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TIME_DELAY">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TIME_DELAY">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function TIME_DELAY">Computational function</xref>
+              <xref linkend="Computationalfunction_TIME_DELAY">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors TIME_DELAY">Authors</xref>
+              <xref linkend="Authors_TIME_DELAY">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TIME_DELAY">
+  <refsection id="Palette_TIME_DELAY">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TIME_DELAY">
+  <refsection id="Description_TIME_DELAY">
     <title>Description</title>
     <para>
 The Transport Delay block delays the input by a specified amount of
@@ -109,7 +109,7 @@ The Time delay parameter must be non-negative.
 
 </para>
   </refsection>
-  <refsection id="Dialog box TIME_DELAY">
+  <refsection id="Dialogbox_TIME_DELAY">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -145,7 +145,7 @@ The Time delay parameter must be non-negative.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties TIME_DELAY">
+  <refsection id="Defaultproperties_TIME_DELAY">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -199,7 +199,7 @@ The Time delay parameter must be non-negative.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TIME_DELAY">
+  <refsection id="Interfacingfunction_TIME_DELAY">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ The Time delay parameter must be non-negative.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function TIME_DELAY">
+  <refsection id="Computationalfunction_TIME_DELAY">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ The Time delay parameter must be non-negative.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors TIME_DELAY">
+  <refsection id="Authors_TIME_DELAY">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

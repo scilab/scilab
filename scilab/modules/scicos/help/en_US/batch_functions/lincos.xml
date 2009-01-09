@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module lincos">
+  <refsection id="Module_lincos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description lincos">
+  <refsection id="Description_lincos">
     <title>Description</title>
     <para>
 Construct a linear state-space system by linearizing a model given as a Scicos diagram.  
@@ -54,7 +54,7 @@ The output is a Scilab data structure of type continuous-time state-space linear
 sys= lincos(scs_m [,x0,u0 [,param] ])
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters lincos">
+  <refsection id="Parameters_lincos">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -74,7 +74,7 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content lincos">
+  <refsection id="Filecontent_lincos">
     <title>File content</title>
     <itemizedlist>
       <listitem>
@@ -82,7 +82,7 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also lincos">
+  <refsection id="SeeAlso_lincos">
     <title>See Also</title>
     <itemizedlist>
       <listitem>
@@ -97,7 +97,7 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors lincos">
+  <refsection id="Authors_lincos">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

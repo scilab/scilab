@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu VVsourceAC">
+  <refsection id="Contenu_VVsourceAC">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette VVsourceAC">Palette</xref>
+              <xref linkend="Palette_VVsourceAC">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description VVsourceAC">Description</xref>
+              <xref linkend="Description_VVsourceAC">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue VVsourceAC">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_VVsourceAC">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut VVsourceAC">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_VVsourceAC">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface VVsourceAC">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_VVsourceAC">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette VVsourceAC">
+  <refsection id="Palette_VVsourceAC">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description VVsourceAC">
+  <refsection id="Description_VVsourceAC">
     <title>Description</title>
     <para>
 Ce bloc est un modèle pour une source de tension CA contrôlable. Ce
@@ -101,7 +101,7 @@ ohmique de ce bloc est zéro.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue VVsourceAC">
+  <refsection id="Boîtededialogue_VVsourceAC">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -123,7 +123,7 @@ ohmique de ce bloc est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut VVsourceAC">
+  <refsection id="Propriétéspardéfaut_VVsourceAC">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -186,7 +186,7 @@ ohmique de ce bloc est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface VVsourceAC">
+  <refsection id="Fonctiondinterface_VVsourceAC">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -194,7 +194,7 @@ ohmique de ce bloc est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica VVsourceAC">
+  <refsection id="ModèleModelica_VVsourceAC">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

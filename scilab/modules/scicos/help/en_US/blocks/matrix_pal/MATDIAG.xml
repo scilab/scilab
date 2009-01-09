@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATDIAG">
+  <refsection id="Contents_MATDIAG">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATDIAG">Palette</xref>
+              <xref linkend="Palette_MATDIAG">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATDIAG">Description</xref>
+              <xref linkend="Description_MATDIAG">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATDIAG">Dialog box</xref>
+              <xref linkend="Dialogbox_MATDIAG">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATDIAG">Default properties</xref>
+              <xref linkend="Defaultproperties_MATDIAG">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATDIAG">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATDIAG">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATDIAG">Computational function</xref>
+              <xref linkend="Computationalfunction_MATDIAG">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATDIAG">See also</xref>
+              <xref linkend="Seealso_MATDIAG">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATDIAG">Authors</xref>
+              <xref linkend="Authors_MATDIAG">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATDIAG">
+  <refsection id="Palette_MATDIAG">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATDIAG">
+  <refsection id="Description_MATDIAG">
     <title>Description</title>
     <para>
 The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M-by-1 vector than the output is an M-by-M matrix.  
@@ -113,7 +113,7 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATDIAG">
+  <refsection id="Dialogbox_MATDIAG">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -135,14 +135,14 @@ The MATDIAG block create a diagonal matrix from a 1D vector. If the input is a M
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATDIAG">
+  <refsection id="Example_MATDIAG">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 if the input of the block is U=ones(5,1) then the output is:
 y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATDIAG">
+  <refsection id="Defaultproperties_MATDIAG">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATDIAG">
+  <refsection id="Interfacingfunction_MATDIAG">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -204,7 +204,7 @@ y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATDIAG">
+  <refsection id="Computationalfunction_MATDIAG">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATDIAG">
+  <refsection id="Seealso_MATDIAG">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -225,7 +225,7 @@ y=[1 0 0 0 0;0 1 0 0 0;0 0 1 0 0;0 0 0 1 0;0 0 0 0 1]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATDIAG">
+  <refsection id="Authors_MATDIAG">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

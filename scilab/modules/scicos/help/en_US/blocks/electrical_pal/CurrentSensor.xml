@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents CurrentSensor">
+  <refsection id="Contents_CurrentSensor">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CurrentSensor">Palette</xref>
+              <xref linkend="Palette_CurrentSensor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CurrentSensor">Description</xref>
+              <xref linkend="Description_CurrentSensor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties CurrentSensor">Default properties</xref>
+              <xref linkend="Defaultproperties_CurrentSensor">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function CurrentSensor">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_CurrentSensor">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CurrentSensor">
+  <refsection id="Palette_CurrentSensor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CurrentSensor">
+  <refsection id="Description_CurrentSensor">
     <title>Description</title>
     <para>
 This block is inserted in series in an electrical circuit to measure
@@ -96,7 +96,7 @@ resistance of this block is zero.
 
 </para>
   </refsection>
-  <refsection id="Default properties CurrentSensor">
+  <refsection id="Defaultproperties_CurrentSensor">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -145,7 +145,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function CurrentSensor">
+  <refsection id="Interfacingfunction_CurrentSensor">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -153,7 +153,7 @@ Explicit <emphasis role="bold">variable.</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modelica model CurrentSensor">
+  <refsection id="Modelicamodel_CurrentSensor">
     <title>Modelica model</title>
     <itemizedlist>
       <listitem>

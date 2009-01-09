@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu Counter">
+  <refsection id="Contenu_Counter">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,49 +48,49 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette Counter">Palette</xref>
+              <xref linkend="Palette_Counter">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description Counter">Description</xref>
+              <xref linkend="Description_Counter">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue Counter">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_Counter">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut Counter">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_Counter">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface Counter">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_Counter">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul Counter">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_Counter">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="Counter">Voir aussi</link>
+              <xref linkend="Voiraussi_Counter">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="Counter">Auteurs</link>
+              <xref linkend="Auteurs_Counter">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette Counter">
+  <refsection id="Palette_Counter">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -100,7 +100,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description Counter">
+  <refsection id="Description_Counter">
     <title>Description</title>
     <para>
 Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou d'un maximum vers un minimun.  
@@ -108,7 +108,7 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
     <para>
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue Counter">
+  <refsection id="Boîtededialogue_Counter">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -144,7 +144,7 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut Counter">
+  <refsection id="Propriétéspardéfaut_Counter">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -190,7 +190,7 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface Counter">
+  <refsection id="Fonctiondinterface_Counter">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -198,7 +198,7 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul Counter">
+  <refsection id="Fonctiondecalcul_Counter">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -206,7 +206,7 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi Counter">
+  <refsection id="Voiraussi_Counter">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -216,7 +216,7 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs Counter">
+  <refsection id="Auteurs_Counter">
     <title>Auteurs</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
   </refsection>

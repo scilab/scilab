@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents STEP_FUNCTION">
+  <refsection id="Contents_STEP_FUNCTION">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette STEP_FUNCTION">Palette</xref>
+              <xref linkend="Palette_STEP_FUNCTION">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description STEP_FUNCTION">Description</xref>
+              <xref linkend="Description_STEP_FUNCTION">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box STEP_FUNCTION">Dialog box</xref>
+              <xref linkend="Dialogbox_STEP_FUNCTION">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties STEP_FUNCTION">Default properties</xref>
+              <xref linkend="Defaultproperties_STEP_FUNCTION">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function STEP_FUNCTION">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_STEP_FUNCTION">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,14 +78,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors STEP_FUNCTION">Authors</xref>
+              <xref linkend="Authors_STEP_FUNCTION">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette STEP_FUNCTION">
+  <refsection id="Palette_STEP_FUNCTION">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description STEP_FUNCTION">
+  <refsection id="Description_STEP_FUNCTION">
     <title>Description</title>
     <para>
 The Step block provides a step between two definable levels at a
@@ -106,7 +106,7 @@ output is the Final value parameter value.
 
 </para>
   </refsection>
-  <refsection id="Dialog box STEP_FUNCTION">
+  <refsection id="Dialogbox_STEP_FUNCTION">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ output is the Final value parameter value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties STEP_FUNCTION">
+  <refsection id="Defaultproperties_STEP_FUNCTION">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -188,7 +188,7 @@ output is the Final value parameter value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function STEP_FUNCTION">
+  <refsection id="Interfacingfunction_STEP_FUNCTION">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -196,7 +196,7 @@ output is the Final value parameter value.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Compiled Super Block content STEP_FUNCTION">
+  <refsection id="CompiledSuperBlockcontent_STEP_FUNCTION">
     <title>Compiled Super Block content</title>
     <para>
       <inlinemediaobject>
@@ -206,7 +206,7 @@ output is the Final value parameter value.
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Authors STEP_FUNCTION">
+  <refsection id="Authors_STEP_FUNCTION">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

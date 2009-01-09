@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CVS">
+  <refsection id="Contenu_CVS">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CVS">Palette</xref>
+              <xref linkend="Palette_CVS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CVS">Description</xref>
+              <xref linkend="Description_CVS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CVS">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CVS">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CVS">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CVS">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,19 +73,19 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="CVS">Voir aussi</link>
+              <xref linkend="Voiraussi_CVS">Voir aussi</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CVS">Auteurs</link>
+              <xref linkend="Auteurs_CVS">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CVS">
+  <refsection id="Palette_CVS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CVS">
+  <refsection id="Description_CVS">
     <title>Description</title>
     <para>
 This block is an ideal voltage source. The voltage value is controlled through the explicit input of the block (connected to standard Scicos blocks). The current passing through  the block is independent of the voltage across the block terminals.  
@@ -103,7 +103,7 @@ This block is an ideal voltage source. The voltage value is controlled through t
     <para>
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut CVS">
+  <refsection id="Propriétéspardéfaut_CVS">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -149,7 +149,7 @@ This block is an ideal voltage source. The voltage value is controlled through t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CVS">
+  <refsection id="Fonctiondinterface_CVS">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -157,7 +157,7 @@ This block is an ideal voltage source. The voltage value is controlled through t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica CVS">
+  <refsection id="ModèleModelica_CVS">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>
@@ -165,7 +165,7 @@ This block is an ideal voltage source. The voltage value is controlled through t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi CVS">
+  <refsection id="Voiraussi_CVS">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -175,7 +175,7 @@ This block is an ideal voltage source. The voltage value is controlled through t
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs CVS">
+  <refsection id="Auteurs_CVS">
     <title>Auteurs</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

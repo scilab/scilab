@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu PerteDP">
+  <refsection id="Contenu_PerteDP">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,27 +48,27 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette PerteDP">Palette</xref>
+              <xref linkend="Palette_PerteDP">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description PerteDP">Description</xref>
+              <xref linkend="Description_PerteDP">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue PerteDP">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_PerteDP">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut PerteDP">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_PerteDP">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface PerteDP">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_PerteDP">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -80,7 +80,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette PerteDP">
+  <refsection id="Palette_PerteDP">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description PerteDP">
+  <refsection id="Description_PerteDP">
     <title>Description</title>
     <para>
 Un bloc de PertDP représente un tuyau hydraulique avec des pertes de
@@ -106,7 +106,7 @@ thermo-hydrauliques.
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue PerteDP">
+  <refsection id="Boîtededialogue_PerteDP">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -163,7 +163,7 @@ thermo-hydrauliques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut PerteDP">
+  <refsection id="Propriétéspardéfaut_PerteDP">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -268,7 +268,7 @@ thermo-hydrauliques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface PerteDP">
+  <refsection id="Fonctiondinterface_PerteDP">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -276,7 +276,7 @@ thermo-hydrauliques.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica PerteDP">
+  <refsection id="ModèleModelica_PerteDP">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

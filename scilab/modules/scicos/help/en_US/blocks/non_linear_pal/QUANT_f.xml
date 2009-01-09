@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents QUANT_f">
+  <refsection id="Contents_QUANT_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette QUANT_f">Palette</xref>
+              <xref linkend="Palette_QUANT_f">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description QUANT_f">Description</xref>
+              <xref linkend="Description_QUANT_f">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box QUANT_f">Dialog box</xref>
+              <xref linkend="Dialogbox_QUANT_f">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties QUANT_f">Default properties</xref>
+              <xref linkend="Defaultproperties_QUANT_f">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function QUANT_f">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_QUANT_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function QUANT_f">Computational function</xref>
+              <xref linkend="Computationalfunction_QUANT_f">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors QUANT_f">Authors</xref>
+              <xref linkend="Authors_QUANT_f">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette QUANT_f">
+  <refsection id="Palette_QUANT_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description QUANT_f">
+  <refsection id="Description_QUANT_f">
     <title>Description</title>
     <para>
 This block outputs the quantization of the input according to a choice
@@ -105,7 +105,7 @@ of methods:
 
 </para>
   </refsection>
-  <refsection id="Dialog box QUANT_f">
+  <refsection id="Dialogbox_QUANT_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -133,7 +133,7 @@ of methods:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties QUANT_f">
+  <refsection id="Defaultproperties_QUANT_f">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -187,7 +187,7 @@ of methods:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function QUANT_f">
+  <refsection id="Interfacingfunction_QUANT_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -195,7 +195,7 @@ of methods:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function QUANT_f">
+  <refsection id="Computationalfunction_QUANT_f">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -212,7 +212,7 @@ of methods:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors QUANT_f">
+  <refsection id="Authors_QUANT_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

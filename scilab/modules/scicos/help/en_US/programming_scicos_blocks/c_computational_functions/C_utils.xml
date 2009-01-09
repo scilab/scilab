@@ -26,7 +26,7 @@
     <refname>C_utils</refname>
     <refpurpose>Utilities C functions</refpurpose>
   </refnamediv>
-  <refsection id="Contents C_utils">
+  <refsection id="Contents_C_utils">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -38,24 +38,24 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Module C_utils">Module</xref>
+              <xref linkend="Module_C_utils">Module</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description C_utils">Description</xref>
+              <xref linkend="Description_C_utils">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors C_utils">Authors</xref>
+              <xref linkend="Authors_C_utils">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Module C_utils">
+  <refsection id="Module_C_utils">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -65,7 +65,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description C_utils">
+  <refsection id="Description_C_utils">
     <title>Description</title>
     <para>
 The 
@@ -164,7 +164,7 @@ functions to interact with the simulator in the C computational functions.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors C_utils">
+  <refsection id="Authors_C_utils">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

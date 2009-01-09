@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents MATMUL">
+  <refsection id="Contents_MATMUL">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,17 +48,17 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette MATMUL">Palette</xref>
+              <xref linkend="Palette_MATMUL">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description MATMUL">Description</xref>
+              <xref linkend="Description_MATMUL">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box MATMUL">Dialog box</xref>
+              <xref linkend="Dialogbox_MATMUL">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,34 +68,34 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties MATMUL">Default properties</xref>
+              <xref linkend="Defaultproperties_MATMUL">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function MATMUL">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_MATMUL">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function MATMUL">Computational function</xref>
+              <xref linkend="Computationalfunction_MATMUL">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also MATMUL">See also</xref>
+              <xref linkend="Seealso_MATMUL">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors MATMUL">Authors</xref>
+              <xref linkend="Authors_MATMUL">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette MATMUL">
+  <refsection id="Palette_MATMUL">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -105,7 +105,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description MATMUL">
+  <refsection id="Description_MATMUL">
     <title>Description</title>
     <para>
 The MATMUL block computes the matrix multiplication of two inputs matrices.The number of rows of the second matrix must be equal to the number of columns of the first matrix. The output is a matrix where the number of rows is equal to that of the first input matrix and the number of columns is equal to that of the second input matrix.  
@@ -113,7 +113,7 @@ The MATMUL block computes the matrix multiplication of two inputs matrices.The n
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box MATMUL">
+  <refsection id="Dialogbox_MATMUL">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -142,7 +142,7 @@ The MATMUL block computes the matrix multiplication of two inputs matrices.The n
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example MATMUL">
+  <refsection id="Example_MATMUL">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 A=[1 2 3;4 5 6]
@@ -150,7 +150,7 @@ B=[9 8 7 6;5 4 3 2;9 7 5 3]
 y=[46 37 28 19;115 94 73 52]
 ]]></programlisting>
   </refsection>
-  <refsection id="Default properties MATMUL">
+  <refsection id="Defaultproperties_MATMUL">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function MATMUL">
+  <refsection id="Interfacingfunction_MATMUL">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function MATMUL">
+  <refsection id="Computationalfunction_MATMUL">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -232,7 +232,7 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also MATMUL">
+  <refsection id="Seealso_MATMUL">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -262,7 +262,7 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors MATMUL">
+  <refsection id="Authors_MATMUL">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

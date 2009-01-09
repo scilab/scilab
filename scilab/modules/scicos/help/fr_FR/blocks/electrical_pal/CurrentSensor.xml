@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu CurrentSensor">
+  <refsection id="Contenu_CurrentSensor">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,22 +48,22 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette CurrentSensor">Palette</xref>
+              <xref linkend="Palette_CurrentSensor">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description CurrentSensor">Description</xref>
+              <xref linkend="Description_CurrentSensor">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut CurrentSensor">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_CurrentSensor">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface CurrentSensor">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_CurrentSensor">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
@@ -75,7 +75,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette CurrentSensor">
+  <refsection id="Palette_CurrentSensor">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -85,7 +85,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description CurrentSensor">
+  <refsection id="Description_CurrentSensor">
     <title>Description</title>
     <para>
 Ce bloc est inséré en série dans un circuit électrique pour mesurer le
@@ -95,7 +95,7 @@ composant est zéro.
 
 </para>
   </refsection>
-  <refsection id="Propriétés par défaut CurrentSensor">
+  <refsection id="Propriétéspardéfaut_CurrentSensor">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -141,7 +141,7 @@ composant est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface CurrentSensor">
+  <refsection id="Fonctiondinterface_CurrentSensor">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -149,7 +149,7 @@ composant est zéro.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Modèle Modelica CurrentSensor">
+  <refsection id="ModèleModelica_CurrentSensor">
     <title>Modèle Modelica</title>
     <itemizedlist>
       <listitem>

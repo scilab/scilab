@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents SIGNUM">
+  <refsection id="Contents_SIGNUM">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette SIGNUM">Palette</xref>
+              <xref linkend="Palette_SIGNUM">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description SIGNUM">Description</xref>
+              <xref linkend="Description_SIGNUM">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box SIGNUM">Dialog box</xref>
+              <xref linkend="Dialogbox_SIGNUM">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties SIGNUM">Default properties</xref>
+              <xref linkend="Defaultproperties_SIGNUM">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function SIGNUM">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_SIGNUM">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function SIGNUM">Computational function</xref>
+              <xref linkend="Computationalfunction_SIGNUM">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors SIGNUM">Authors</xref>
+              <xref linkend="Authors_SIGNUM">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette SIGNUM">
+  <refsection id="Palette_SIGNUM">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description SIGNUM">
+  <refsection id="Description_SIGNUM">
     <title>Description</title>
     <para>
 The Sign block indicates the sign of the input: 
@@ -113,7 +113,7 @@ The Sign block indicates the sign of the input:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Dialog box SIGNUM">
+  <refsection id="Dialogbox_SIGNUM">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -135,7 +135,7 @@ The Sign block indicates the sign of the input:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties SIGNUM">
+  <refsection id="Defaultproperties_SIGNUM">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -189,7 +189,7 @@ The Sign block indicates the sign of the input:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function SIGNUM">
+  <refsection id="Interfacingfunction_SIGNUM">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -197,7 +197,7 @@ The Sign block indicates the sign of the input:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function SIGNUM">
+  <refsection id="Computationalfunction_SIGNUM">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -205,7 +205,7 @@ The Sign block indicates the sign of the input:
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors SIGNUM">
+  <refsection id="Authors_SIGNUM">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

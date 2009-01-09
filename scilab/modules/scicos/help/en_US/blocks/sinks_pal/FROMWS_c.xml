@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="FROMWS_c">
   <refnamediv>
     <refname>FROMWS_c</refname>
@@ -9,12 +31,12 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMWS_c_blk.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMWS_c_blk.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents FROMWS_c">
+  <refsection id="Contents_FROMWS_c">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -26,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Description FROMWS_c">Description</xref>
+              <xref linkend="Description_FROMWS_c">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box FROMWS_c">Dialog box</xref>
+              <xref linkend="Dialogbox_FROMWS_c">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties FROMWS_c">Default properties</xref>
+              <xref linkend="Defaultproperties_FROMWS_c">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function FROMWS_c">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_FROMWS_c">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function FROMWS_c">Computational function</xref>
+              <xref linkend="Computationalfunction_FROMWS_c">Computational function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="See also FROMWS_c">See also</xref>
+              <xref linkend="Seealso_FROMWS_c">See also</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Authors FROMWS_c">Authors</xref>
+              <xref linkend="Authors_FROMWS_c">Authors</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description FROMWS_c">
+  <refsection id="Description_FROMWS_c">
     <title>Description</title>
     <para>
 This block is used in 
@@ -72,12 +94,12 @@ superblock.
     <para>
 </para>
   </refsection>
-  <refsection id="Dialog box FROMWS_c">
+  <refsection id="Dialogbox_FROMWS_c">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="images/FROMWS_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../images/FROMWS_c_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -87,7 +109,7 @@ block.
 
 </para>
   </refsection>
-  <refsection id="Default properties FROMWS_c">
+  <refsection id="Defaultproperties_FROMWS_c">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -133,7 +155,7 @@ block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function FROMWS_c">
+  <refsection id="Interfacingfunction_FROMWS_c">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -141,7 +163,7 @@ block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function FROMWS_c">
+  <refsection id="Computationalfunction_FROMWS_c">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
@@ -149,7 +171,7 @@ block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See also FROMWS_c">
+  <refsection id="Seealso_FROMWS_c">
     <title>See also</title>
     <itemizedlist>
       <listitem>
@@ -164,7 +186,7 @@ block.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors FROMWS_c">
+  <refsection id="Authors_FROMWS_c">
     <title>Authors</title>
     <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
   </refsection>

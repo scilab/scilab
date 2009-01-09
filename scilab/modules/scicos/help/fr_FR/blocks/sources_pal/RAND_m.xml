@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contenu RAND_m">
+  <refsection id="Contenu_RAND_m">
     <title>Contenu</title>
     <itemizedlist>
       <listitem>
@@ -48,44 +48,44 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette RAND_m">Palette</xref>
+              <xref linkend="Palette_RAND_m">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description RAND_m">Description</xref>
+              <xref linkend="Description_RAND_m">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîte de dialogue RAND_m">Boîte de dialogue</xref>
+              <xref linkend="Boîtededialogue_RAND_m">Boîte de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétés par défaut RAND_m">Propriétés par défaut</xref>
+              <xref linkend="Propriétéspardéfaut_RAND_m">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction d'interface RAND_m">Fonction d'interface</xref>
+              <xref linkend="Fonctiondinterface_RAND_m">Fonction d'interface</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Fonction de calcul RAND_m">Fonction de calcul</xref>
+              <xref linkend="Fonctiondecalcul_RAND_m">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="RAND_m">Auteurs</link>
+              <xref linkend="Auteurs_RAND_m">Auteurs</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette RAND_m">
+  <refsection id="Palette_RAND_m">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -95,7 +95,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description RAND_m">
+  <refsection id="Description_RAND_m">
     <title>Description</title>
     <para>
 Ce bloc est un générateur de nombres aléatoires : chaque composante de sortie
@@ -107,7 +107,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
 
 </para>
   </refsection>
-  <refsection id="Boîte de dialogue RAND_m">
+  <refsection id="Boîtededialogue_RAND_m">
     <title>Boîte de dialogue</title>
     <para>
       <inlinemediaobject>
@@ -161,7 +161,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétés par défaut RAND_m">
+  <refsection id="Propriétéspardéfaut_RAND_m">
     <title>Propriétés par défaut</title>
     <itemizedlist>
       <listitem>
@@ -207,7 +207,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction d'interface RAND_m">
+  <refsection id="Fonctiondinterface_RAND_m">
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
@@ -215,7 +215,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Fonction de calcul RAND_m">
+  <refsection id="Fonctiondecalcul_RAND_m">
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
@@ -226,7 +226,7 @@ La taille du port de sortie est déterminée par la taille des matrices <emphasis 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs RAND_m">
+  <refsection id="Auteurs_RAND_m">
     <title>Auteurs</title>
     <para>
       <emphasis role="bold"/>

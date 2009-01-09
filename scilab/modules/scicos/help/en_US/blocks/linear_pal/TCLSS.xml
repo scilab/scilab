@@ -36,7 +36,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection id="Contents TCLSS">
+  <refsection id="Contents_TCLSS">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
@@ -48,39 +48,39 @@
         <itemizedlist>
           <listitem>
             <para>
-              <xref linkend="Palette TCLSS">Palette</xref>
+              <xref linkend="Palette_TCLSS">Palette</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Description TCLSS">Description</xref>
+              <xref linkend="Description_TCLSS">Description</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Dialog box TCLSS">Dialog box</xref>
+              <xref linkend="Dialogbox_TCLSS">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Default properties TCLSS">Default properties</xref>
+              <xref linkend="Defaultproperties_TCLSS">Default properties</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacing function TCLSS">Interfacing function</xref>
+              <xref linkend="Interfacingfunction_TCLSS">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computational function TCLSS">Computational function</xref>
+              <xref linkend="Computationalfunction_TCLSS">Computational function</xref>
             </para>
           </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette TCLSS">
+  <refsection id="Palette_TCLSS">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
@@ -90,7 +90,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description TCLSS">
+  <refsection id="Description_TCLSS">
     <title>Description</title>
     <para>
 This block realizes a continuous-time linear state-space system with
@@ -106,7 +106,7 @@ are adjusted automatically.
 
 </para>
   </refsection>
-  <refsection id="Dialog box TCLSS">
+  <refsection id="Dialogbox_TCLSS">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
@@ -156,7 +156,7 @@ are adjusted automatically.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Default properties TCLSS">
+  <refsection id="Defaultproperties_TCLSS">
     <title>Default properties</title>
     <itemizedlist>
       <listitem>
@@ -213,7 +213,7 @@ are adjusted automatically.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacing function TCLSS">
+  <refsection id="Interfacingfunction_TCLSS">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
@@ -221,7 +221,7 @@ are adjusted automatically.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computational function TCLSS">
+  <refsection id="Computationalfunction_TCLSS">
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
