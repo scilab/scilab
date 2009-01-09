@@ -1429,7 +1429,7 @@ for k=1:size(tmpfiles, "*")
   if ~isdir(tmpfiles(k)) then // Each file is an entry in the reference
     entries($+1) = tmpfiles(k);
   else // Each dir is a new part under the reference
-    category = tokens(tmpfiles(k), "/");
+    category = tokens(tmpfiles(k), filesep() );
     category = category($);
 
     ref = [ref;
