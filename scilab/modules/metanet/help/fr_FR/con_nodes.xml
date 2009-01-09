@@ -66,7 +66,7 @@ g('node_x')=[197 191 106 194 296 305 305 418 422 432  552 550 549 416 548];
 g('node_y')=[76 181 276 278 276 83 174 281 177 86 175 90 290 397 399];
 show_graph(g);
 con_nodes(2,g)
-x_message('Affichage des sommets de la composante connexe #2');
+messagebox('Affichage des sommets de la composante connexe #2',"modal");
 n=g('node_number');
 nodecolor=0*ones(1,n);
 nodecolor(1,con_nodes(2,g))=11*ones(con_nodes(2,g));

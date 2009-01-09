@@ -121,19 +121,19 @@ function []=metro(demopath)
       Arrivee=x_choose(Lstation,'Choose the station of arrival');
       if(Depart==0|Arrivee==0) then return  end;
 	if (Lnode(Depart)==-1|Lnode(Arrivee)==-1) then
-	  x_message(['You have chosen an RER station to the suburbs'; 
-		     'The RER net will be added later']);
+	  messagebox(['You have chosen an RER station to the suburbs'; 
+		     'The RER net will be added later'],"modal");
 	end;
 	if (Lnode(Depart)==-2) then
-	  x_message(['Are you sure it''s time to leave?';
+	  messagebox(['Are you sure it''s time to leave?';
 		     'If yes, you go to the entrance of the campus.';
 		     'You take the INRIA shuttle to one of the 3 railway stations of Versailles.';
-		     'Then you take the train to Paris (15-20 minutes).']), 
+		     'Then you take the train to Paris (15-20 minutes).'],"modal"), 
 	  Lnode(Depart)=-1;
 	end;
 	rep=0;
 	if (Lnode(Arrivee)==-2) then 
-	  rep=x_message(['You have chosen to visit a nice place.';
+	  rep=messagebox(['You have chosen to visit a nice place.';
 			 'It is a little bit complicated to reach the campus.';
 			 'If you are a tourist you may be interested to know';
 			 'that the buildings of the campus have been designed';
@@ -141,16 +141,16 @@ function []=metro(demopath)
 			 'and you may prefer to visit the palace of Versailles.';
 			 'In both cases the first part of the travel is the same.';
 			 'If you want to know, click on Travel button'],..
-			['Travel','Cancel']); 
+			"modal","question",['Travel','Cancel']); 
 	end
 	if rep==2 then Lnode(Arrivee)=-1;end
 	if rep==1 then 
-	  x_message(['INRIA-Rocquencourt is located near Versailles.';
+	  messagebox(['INRIA-Rocquencourt is located near Versailles.';
 		     'From Paris you have to take the train to Versailles and then the INRIA shuttle.';
 		     'You have 3 possibilities from Paris:';
 		     '- starting from Saint-Lazare station you reach the Versailles-Rive Droite station';
 		     '- starting from Invalides station you reach the Versailles-Rive Gauche station';
-		     '- starting from Montparnasse-Bienvenue station you reach the Versailles-Chantiers station']);	
+		     '- starting from Montparnasse-Bienvenue station you reach the Versailles-Chantiers station'],"modal");	
 	  Lnode(Arrivee)=-1;  
 	end
       end
@@ -235,12 +235,12 @@ function []=metro(demopath)
       
       set_nodes_id(TTT,'  '+strsubst(mamat(TTT),'.',' '),'right')
     
-      x_message(['Duration of the travel (in minutes): '+string(EndTemps) ; 
+      messagebox(['Duration of the travel (in minutes): '+string(EndTemps) ; 
 		 ' ' ;
 		 'The number of changes is: '+string(EndChange);
 		 string(changename);' '  ;
 		 'You will go through the following stations:';
-		 string(routef);]);
+		 string(routef);],"modal");
       road=[];route=[];routef=[];changename=[];
       iter=x_choose(['yes','no'],'Another travel?');
       set_nodes_id(TTT,emptystr(TTT),'right')

@@ -78,7 +78,7 @@ case 'set' then
       label(3)=lab;
       rdnom=stripblanks(rdnom);     
       if rdnom==emptystr() then 
-        ok1=%f;x_message('sorry C file name not defined');
+        ok1=%f;messagebox('sorry C file name not defined',"modal","error");
       end
       if ok1 then break,end
     end
@@ -97,7 +97,7 @@ case 'set' then
         elseif (signe == 0) then,
           delta=0;
         else
-          x_message(['le discriminant n''est pas constant,'; 'Vous devez choisir son signe dans l''IHM']);
+          messagebox(['le discriminant n''est pas constant,'; 'Vous devez choisir son signe dans l''IHM'],"modal","error");
           return;
         end
       else

@@ -21,7 +21,7 @@ text = ["Lotka-Volterra:"; ..
         "You can start over by clicking on the LEFT button again"; ..
         "  or stop everything by clicking on the RIGHT button." ];
 
-x_message(text);
+messagebox(text,"modal");
 
 
 my_handle = scf(100001);

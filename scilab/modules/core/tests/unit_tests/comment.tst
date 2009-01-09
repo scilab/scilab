@@ -187,10 +187,6 @@ endfunction
 a=foo();
 if a<>1 then pause,end
 
-function  foo()
-   x_message(["http://xmllab.org"]);
-endfunction
-
 function a=foo(..
 	       )
   a=1//test

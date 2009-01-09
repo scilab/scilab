@@ -40,7 +40,7 @@ case 'set' then
     if ~ok then break,end
     if inh==0 then inh=[]; else inh=1;end
     [model,graphics,ok]=check_io(model,graphics,-1,-1,inh,[])
-    out=size(a,'*');if out==0 then ok=%f,x_message('Initial condition empty');end
+    out=size(a,'*');if out==0 then ok=%f,messagebox('Initial condition empty',"modal","error");end
     in=out
     if ok then
       graphics.exprs=exprs;

@@ -26,14 +26,14 @@ function [GraphList,ok,fname]=ge_do_SaveAs(GraphList,fname)
   
 //following test already done by tk_savefile
 //   if fileinfo(fname)<>[] then
-//     r=x_message(['File '+fname+ ' already exists'
-// 		 'erase it'],['Yes','No'])
+//     r=messagebox(['File '+fname+ ' already exists'
+// 		 'erase it'],"modal","question",['Yes','No'])
 //     if r==2 then ok=%f,return,end
 //   end
   ok=execstr('save(fname,GraphList)','errcatch')==0
   if ok then 
     GraphList.name=name
   else
-    x_message([lasterror();'';'Graph has not been saved'])
+    messagebox([lasterror();'';'Graph has not been saved'],"modal","error");
   end    
 endfunction

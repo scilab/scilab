@@ -403,7 +403,7 @@ function do_valider()
   
   // verification du domaine
   if (get(edita,'String') == '' | get(editb,'String') == '') then
-      x_message(['veuillez renseigner les valeurs';'du domaine de la discretisation']); 
+      messagebox(['veuillez renseigner les valeurs';'du domaine de la discretisation'],"modal","error");
       fin=%t;
       fin=resume(fin);
   end
@@ -411,49 +411,49 @@ function do_valider()
   // Test de renseignements sur les differents champs de l'IHM
   if (get(check_op1,'Value') == 1) then
     if (get(edita1,'String') == '' | get(editb1,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'    de l''operateur d2u/dt2']); 
+      messagebox(['veuillez renseigner les coefficients';'    de l''operateur d2u/dt2'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op2,'Value')== 1) then
     if (get(edita2,'String') == '' | get(editb2,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'    de l''operateur d2u/dx2']); 
+      messagebox(['veuillez renseigner les coefficients';'    de l''operateur d2u/dx2'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op3,'Value')== 1) then
     if (get(edita3,'String') == '' | get(editb3,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'    de l''operateur du/dt']); 
+      messagebox(['veuillez renseigner les coefficients';'    de l''operateur du/dt'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op4,'Value')== 1) then
     if (get(edita4,'String') == '' | get(editb4,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'    de l''operateur d2u/dtdx']); 
+      messagebox(['veuillez renseigner les coefficients';'    de l''operateur d2u/dtdx'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op5,'Value')== 1) then
     if (get(edita5,'String') == '' | get(editb5,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'    de l''operateur du/dx']); 
+      messagebox(['veuillez renseigner les coefficients';'    de l''operateur du/dx'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op6,'Value')== 1) then
     if (get(edita6,'String') == '' | get(editb6,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'      de l''operateur u']); 
+      messagebox(['veuillez renseigner les coefficients';'      de l''operateur u'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op7,'Value')== 1) then
     if (get(edita7,'String') == '' | get(editb7,'String') == '') then
-      x_message(['veuillez renseigner les coefficients';'      de l''operateur f']); 
+      messagebox(['veuillez renseigner les coefficients';'      de l''operateur f'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
@@ -462,7 +462,7 @@ function do_valider()
   // verification du renseignement du signe du discriminant non constant
   if (get(check2,'Value')== 1) then 
     if (get(liste_signe,'Value') == 0 ) then
-      x_message(['veuillez renseigner le signe';'du discriminant non constant']); 
+      messagebox(['veuillez renseigner le signe';'du discriminant non constant'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
@@ -471,19 +471,19 @@ function do_valider()
   // verification des informations du choix manuel  
   if (get(rad_manuel,'Value')== 1) then     
     if (get(liste_meth,'Value') == 0 ) then
-      x_message(['veuillez renseigner le type';'de la methode de discretisation']); 
+      messagebox(['veuillez renseigner le type';'de la methode de discretisation'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
     
     if (get(editdegre,'String') == '' ) then
-      x_message(['veuillez renseigner le degre';'de la methode de discretisation']); 
+      messagebox(['veuillez renseigner le degre';'de la methode de discretisation'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
     
     if (get(editpas,'String') == '' ) then
-      x_message(['veuillez renseigner le nombre';'de points de discretisation']); 
+      messagebox(['veuillez renseigner le nombre';'de points de discretisation'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end    
@@ -491,21 +491,21 @@ function do_valider()
   // verification du renseignement des conditions intiales
   if (get(check_op1,'Value')==1 | get(check_op3,'Value')== 1 | get(check_op4,'Value')== 1) then
     if (get(editCI,'String') == '' ) then
-      x_message(['veuillez renseigner la condition';'         initiale u(x,t0)']); 
+      messagebox(['veuillez renseigner la condition';'         initiale u(x,t0)'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   if (get(check_op1,'Value')== 1) then
     if (get(editCI1,'String') == '' ) then
-      x_message(['veuillez renseigner la condition';'         initiale du/dx|t0']); 
+      messagebox(['veuillez renseigner la condition';'         initiale du/dx|t0'],"modal","error");
       fin=%t;
       fin=resume(fin);
     end
   end
   // verification du renseignement des conditions aux limites
   if (get(editCLa,'String') == '' | get(editCLb,'String') == '' ) then
-    x_message(['veuillez renseigner les conditions';'         aux limites']);
+    messagebox(['veuillez renseigner les conditions';'         aux limites'],"modal","error");
     fin=%t;
     fin=resume(fin);
   end
@@ -523,7 +523,7 @@ function add_list_points()
     new = get(edit_pt,'String');
     newv=evstr(new);
     if (newv < evstr(get(edita,'String'))-%eps | newv > evstr(get(editb,'String'))+%eps) then
-      x_message('le point choisi est en dehors du domaine')
+      messagebox('le point choisi est en dehors du domaine',"modal","error");
       return;
     end
     if (list_points == '') then

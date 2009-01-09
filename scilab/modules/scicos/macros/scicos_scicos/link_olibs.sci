@@ -72,13 +72,13 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
         if fileinfo(x+'.dll')<>[] then
           if fileinfo(x+'lcc.lib')==[] then
             //** export lcc.lib
-            x_message(['I will try to export a '+x+'lcc.lib']);
+            messagebox(['I will try to export a '+x+'lcc.lib'],"modal","info");
             ok=exportlibforlcc(x,rpat)
             if ~ok then
-              x_message(['Can''t export a '+path+fname+'lcc.lib';
+              messagebox(['Can''t export a '+path+fname+'lcc.lib';
                          'Please try to do your own lcc.lib file with';
                          'the xx scilab function or change the path';
-                         'of your library '+x+'.dll']);
+                         'of your library '+x+'.dll'],"modal","error");
               ok=%f;
               return
             end
@@ -91,13 +91,13 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
         elseif fileinfo(x+'.DLL')<>[] then
           if fileinfo(x+'lcc.lib')==[] then
             //** export lcc.lib
-            x_message(['I will try to export a '+x+'lcc.lib']);
+            messagebox(['I will try to export a '+x+'lcc.lib'],"modal","info");
             ok=exportlibforlcc(x,rpat)
             if ~ok then
-              x_message(['Can''t export a '+path+fname+'lcc.lib';
+              messagebox(['Can''t export a '+path+fname+'lcc.lib';
                          'Please try to do your own lcc.lib file with';
                          'the xx scilab function or change the path';
-                         'of your library '+x+'.dll']);
+                         'of your library '+x+'.dll'],"modal","error");
               ok=%f;
               return
             end
@@ -114,9 +114,9 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
           pause
         end
       elseif fileinfo(x)==[] then
-        x_message(['Can''t include '+x;
+        messagebox(['Can''t include '+x;
                    'That file doesn''t exist';
-                   lasterror()])
+                   lasterror()],"modal","error");
         ok=%f
         return
       //** extension assume that user know what he does
@@ -131,13 +131,13 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
           link(for_link($));
           if fileinfo(x+'lcc.lib')==[] then
             //** export lcc.lib
-            x_message(['I will try to export a '+x+'lcc.lib']);
+            messagebox(['I will try to export a '+x+'lcc.lib'],"modal","info");
             ok=exportlibforlcc(path+fname,rpat)
             if ~ok then
-              x_message(['Can''t export a '+path+fname+'lcc.lib';
+              messagebox(['Can''t export a '+path+fname+'lcc.lib';
                          'Please try to do your own lcc.lib file with';
                          'the xx scilab function or change the path';
-                         'of your library '+x+'.dll']);
+                         'of your library '+x+'.dll'],"modal","error");
               ok=%f;
               return
             end
@@ -154,16 +154,16 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             link(for_link($));
           else
             //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
+            messagebox(['I don''t know what to do !';
+                      'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
           xlibs=[xlibs;x]
         else
           //link(x);
-          x_message(['I don''t know what to do !';
-                     'Please report to alan.layec@inria.fr';])
+          messagebox(['I don''t know what to do !';
+                     'Please, report this through the Scilab bug tracker.'],"modal","error");
           ok=%f
           pause
         end
@@ -189,8 +189,8 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             link(for_link($));
           //** no .dll, .DLL
           else
-            x_message(['I cant''t find a dll !';
-                       'Please report to alan.layec@inria.fr';])
+            messagebox(['I cant''t find a dll !';
+                       'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
@@ -207,8 +207,8 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             link(for_link($));
           //** no .dll, .DLL
           else
-            x_message(['I cant''t find a dll !';
-                       'Please report to alan.layec@inria.fr';])
+            messagebox(['I cant''t find a dll !';
+                       'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
@@ -217,15 +217,15 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
           //** no extension
           //   no .lib, no .ilib exists
           //   do something here please ?
-          x_message(['I don''t know what to do !';
-                     'Please report to alan.layec@inria.fr';])
+          messagebox(['I don''t know what to do !';
+                     'Please, report this through the Scilab bug tracker.';],"modal","error");
           ok=%f
           pause
         end
       elseif fileinfo(x)==[] then
-        x_message(['Can''t include '+x;
+        messagebox(['Can''t include '+x;
                    'That file doesn''t exist';
-                   lasterror()])
+                   lasterror()],"modal","error");
         ok=%f
         return
       //** extension assume that user know what he does
@@ -244,8 +244,8 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             xlibs=[xlibs;path+fname+'.lib']
           else
             //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
+            messagebox(['I don''t know what to do !';
+                      'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
@@ -259,16 +259,16 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             link(for_link($));
           else
             //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
+            messagebox(['I don''t know what to do !';
+                      'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
           xlibs=[xlibs;x]
         else
           //link(x);
-          x_message(['I don''t know what to do !';
-                     'Please report to alan.layec@inria.fr';])
+          messagebox(['I don''t know what to do !';
+                     'Please, report this through the Scilab bug tracker.'],"modal","error");
           ok=%f
           pause
         end
@@ -292,8 +292,8 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
         link(for_link($));
        else
          //link(x);
-         x_message(['I don''t know what to do !';
-                    'Please report to alan.layec@inria.fr';])
+         messagebox(['I don''t know what to do !';
+                    'Please, report this through the Scilab bug tracker.'],"modal","error");
          ok=%f
          pause
        end
@@ -303,15 +303,15 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
          xlibs=[xlibs;x+'.A']
        else
          //link(x);
-         x_message(['I don''t know what to do !';
-                    'Please report to alan.layec@inria.fr';])
+         messagebox(['I don''t know what to do !';
+                    'Please, report this through the Scilab bug tracker.'],"modal","error");
          ok=%f
          pause
        end
       elseif fileinfo(x)==[] then
-        x_message(['Can''t include '+x;
+        messagebox(['Can''t include '+x;
                    'That file doesn''t exist';
-                   lasterror()])
+                   lasterror()],"modal","error");
         ok=%f
         return
       //** extension assume that user know what he does
@@ -330,8 +330,8 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             xlibs=[xlibs;path+fname+'.A']
           else
             //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
+            messagebox(['I don''t know what to do !';
+                      'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
@@ -345,16 +345,16 @@ function [ok,libs,for_link] = link_olibs(libs,rpat)
             link(for_link($));
           else
             //link(x);
-            x_message(['I don''t know what to do !';
-                      'Please report to alan.layec@inria.fr';])
+            messagebox(['I don''t know what to do !';
+                    'Please, report this through the Scilab bug tracker.'],"modal","error");
             ok=%f
             pause
           end
           xlibs=[xlibs;x]
         else
           //link(x);
-          x_message(['I don''t know what to do !';
-                    'Please report to alan.layec@inria.fr';])
+          messagebox(['I don''t know what to do !';
+                    'Please, report this through the Scilab bug tracker.'],"modal","error");
           ok=%f
           pause
         end
