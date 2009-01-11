@@ -26,7 +26,7 @@
     <refname>scicos_state</refname>
     <refpurpose>Define a state structure</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_state">
+  <refsection id="Module_scicos_state">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="state scicos_state">
+  <refsection id="state_scicos_state">
     <title>state</title>
     <para>
  Scilab typed list of type xcs. It contains all
@@ -160,7 +160,7 @@ Type : list of scilab matrix.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="File content scicos_state">
+  <refsection id="Filecontent_scicos_state">
     <title>File content</title>
     <itemizedlist>
       <listitem>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Matrix_pal">
+  <refnamediv>
+    <refname>Matrix_pal</refname>
+    <refpurpose>Palette d'opérations matricielles</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Matrix_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_Matrix_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Matrix_pal">
+    <title>Description</title>
+    <para>
+Cette palette contient tous les blocs dont vous avez
+besoin pour réaliser des opérations matricielles 
+simples et complexes.
+
+</para>
+  </refsection>
+  <refsection id="Blocs_Matrix_pal">
+    <title>Blocs</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CUMSUM">CUMSUM - CUMSUM Somme cumulative</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="EXTRACT">EXTRACT - EXTRACT Extraction de matrices</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="EXTTRI">EXTTRI - EXTTRI Extraction diagonale ou triangulaire</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATBKSL">MATBKSL - MATBKSL Division matricielle à gauche</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATCATH">MATCATH - MATCATH Concaténation horizontale</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATCATV">MATCATV - MATCATV Concaténation verticale</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATDET">MATDET - MATDET Déterminant</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATDIAG">MATDIAG - MATDIAG Matrice diagonale</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATDIV">MATDIV - MATDIV Division matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATEIG">MATEIG - MATEIG Valeurs propes matricielles</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATEXPM">MATEXPM - MATEXPM Exponentielle matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATINV">MATINV - MATINV Matrice inverse</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATLU">MATLU - MATLU Factorisation LU matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATMAGPHI">MATMAGPHI - MATMAGPHI Convertion matricielle complexe/module-phase</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATMUL">MATMUL - MATMUL Multiplication Matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATPINV">MATPINV - MATPINV Pseudo-invertion matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATRESH">MATRESH - MATRESH Redimensionnement matriciel</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATSING">MATSING - MATSING Décomposition en valeurs singulières</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATSUM">MATSUM - Somme matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATTRAN">MATTRAN - MATTRAN Transposition Matricielle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATZCONJ">MATZCONJ - MATZCONJ Matrice conjugée</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MATZREIM">MATZREIM - MATZREIM Décomposition matricielle complexe</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RICC">RICC - RICC Equation de Riccati</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="ROOTCOEF">ROOTCOEF - Calcul de coefficients de polynômes</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SQRT">SQRT - SQRT Racine carré</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SUBMAT">SUBMAT - SUBMAT Extrait une sous-matrice</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

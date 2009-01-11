@@ -97,6 +97,7 @@ proc helpword {} {
 # a generic scrollable messagewindow, which displays the content of a text file
 proc textbox {textfile {wtitle ""}} {
     global pad menuFont textFont
+    global defaultencoding
     if {$wtitle == ""} {set wtitle $textfile}
     set tbox $pad.textbox
     catch {destroy $tbox}
@@ -107,6 +108,7 @@ proc textbox {textfile {wtitle ""}} {
     frame $tbox.f1
     text $tbox.text -font $textFont
     set newnamefile [open $textfile r]
+    fconfigure $newnamefile -encoding $defaultencoding
     while {![eof $newnamefile]} {
             $tbox.text insert end [read -nonewline $newnamefile ] 
     }

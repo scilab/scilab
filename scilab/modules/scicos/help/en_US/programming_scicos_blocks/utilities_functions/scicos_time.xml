@@ -26,7 +26,7 @@
     <refname>scicos_time</refname>
     <refpurpose>Returns the current time during simulation</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_time">
+  <refsection id="Module_scicos_time">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -39,7 +39,7 @@
 t=scicos_time()
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters scicos_time">
+  <refsection id="Parameters_scicos_time">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>

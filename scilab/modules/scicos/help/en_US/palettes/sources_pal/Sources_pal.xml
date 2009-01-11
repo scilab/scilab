@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Sources_pal">
+  <refnamediv>
+    <refname>Sources_pal</refname>
+    <refpurpose>Sources palette</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Sources_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_Sources_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Sources_pal">
+    <title>Description</title>
+    <para>
+Most of blocks of the Source palette can be viewed as data generators.
+That palette also contains blocks to read data from files and input
+ports used in superblocks.
+</para>
+    <para>
+The blocks of that palette doesn't have regular input ports.
+
+</para>
+  </refsection>
+  <refsection id="Blocks_Sources_pal">
+    <title>Blocks</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CLKINV_f">CLKINV_f - Input activation port</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLOCK_c">CLOCK_c - Activation clock</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CONST_m">CONST_m - Constant</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Counter">Counter - Counter</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CURV_f">CURV_f - Curve</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="FROMWSB">FROMWSB - Data from Scilab worspace to Scicos</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="GENSIN_f">GENSIN_f - Sin generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="GENSQR_f">GENSQR_f - Square wave generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="IN_f">IN_f - Input Port</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="INIMPL_f">INIMPL_f - Input implicit port</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Modulo_Count">Modulo_Count - Modulo counter</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RAMP">RAMP - Ramp</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RAND_m">RAND_m - Random generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="READAU_f">READAU_f - Read AU sound file</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="READC_f">READC_f - Read binary data</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RFILE_f">RFILE_f - Read from file</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SampleCLK">SampleCLK - Sample Time Clock</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SAWTOOTH_f">SAWTOOTH_f - Sawtooth generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Sigbuilder">Sigbuilder - Signal creator/generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="STEP_FUNCTION">STEP_FUNCTION - Step function generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TIME_f">TIME_f - Time</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TKSCALE">TKSCALE - Adjust constant value with a tk widget</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

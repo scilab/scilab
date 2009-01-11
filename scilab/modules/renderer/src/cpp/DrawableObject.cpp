@@ -76,6 +76,10 @@ void DrawableObject::familyHasChanged( void )
   // force redraw
   hasChanged();
 
+	// do the update now to be sure to have everything up to date
+	// specially display lists all cleared
+	update();
+
   // do the same for childrens
   sciSons * curSon = sciGetLastSons( m_pDrawed ) ;
   while ( curSon != NULL )

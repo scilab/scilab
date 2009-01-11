@@ -8,7 +8,7 @@
 
 function demo_pendulum()
 	if ~(haveacompiler()) then
-		x_message(["Scilab doesn''t find a C compiler","This demo is disabled"]);
+		messagebox(["Scilab doesn''t find a C compiler","This demo is disabled"],"modal");
 	else
 		npend_build_and_load();
 		n  = np();

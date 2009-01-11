@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[state,t] = scicosim(state,tcur,tf,sim,str,tol)</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module scicosim">
+  <refsection id="Module_scicosim">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scicosim">
+  <refsection id="Description_scicosim">
     <title>Description</title>
     <para>
 Simulator for Scicos compiled diagram.  
@@ -62,7 +62,7 @@ For advanced user it is possible to "manually" change some parameters or state v
 [state,t] = scicosim(state,tcur,tf,sim,str,tol)
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters scicosim">
+  <refsection id="Parameters_scicosim">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -91,7 +91,7 @@ For advanced user it is possible to "manually" change some parameters or state v
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also scicosim">
+  <refsection id="SeeAlso_scicosim">
     <title>See Also</title>
     <itemizedlist>
       <listitem>
@@ -106,7 +106,7 @@ For advanced user it is possible to "manually" change some parameters or state v
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors scicosim">
+  <refsection id="Authors_scicosim">
     <title>Authors</title>
     <para>
       <emphasis role="bold"/>

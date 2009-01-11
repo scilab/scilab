@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>set_blockerror(n)</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module set_blockerror">
+  <refsection id="Module_set_blockerror">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description set_blockerror">
+  <refsection id="Description_set_blockerror">
     <title>Description</title>
     <para>
 Function to set a specific error during the simulation for the current block. If it is used, then after the execution of the computational function of the block, the simulator will end and will return an error message associated to the number given in argument.  
@@ -51,7 +51,7 @@ Function to set a specific error during the simulation for the current block. If
 set_blockerror(n)
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters set_blockerror">
+  <refsection id="Parameters_set_blockerror">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -94,7 +94,7 @@ cannot allocate memory in block
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Authors set_blockerror">
+  <refsection id="Authors_set_blockerror">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos">
   <refnamediv>
     <refname>scicos</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>scicos</refname>
     <refpurpose>Editeur de schéma bloc et interface graphique pour le simulateur hybride</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>scs_m = scicos([toto])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_scicos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description scicos">
+  <refsection id="Description_scicos">
     <title>Description</title>
     <para>
 Scicos est un éditeur graphique pour construire des modèles
@@ -56,12 +56,13 @@ simulateur 'scicosim'.
 Des arguments en entrée et en sortie de la commande scicos peuvent
 aussi être utilisées pour réaliser des opérations de débogage.
 
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+scs_m = scicos([toto])
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_scicos">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">input : </emphasis> ce paramètre peut aussi bien être une structure de diagramme Scicos (scs_m) qu'une chaîne de caractères indiquant le chemin du fichier du diagramme à charger dans l'éditeur (extension .cos ou .cosf). Si aucun argument d'entrée est utilisé, un diagramme vide est ouvert (avec un nom par défaut 'Untitled'). </para>
@@ -71,7 +72,7 @@ aussi être utilisées pour réaliser des opérations de débogage.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Exemple scicos">
+  <refsection id="Exemple_scicos">
     <title>Exemple</title>
     <programlisting role="example"><![CDATA[
 // Ouvrir un nouveau diagramme 
@@ -85,7 +86,7 @@ load('mondiagr.cos');
 scs_m=scicos(scs_m);
 ]]></programlisting>
   </refsection>
-  <refsection id="Contenu du fichier scicos">
+  <refsection id="Contenudufichier_scicos">
     <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
@@ -93,7 +94,7 @@ scs_m=scicos(scs_m);
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi scicos">
+  <refsection id="Voiraussi_scicos">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>

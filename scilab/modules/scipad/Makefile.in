@@ -362,6 +362,7 @@ top_srcdir = @top_srcdir@
 @TCLTK_TRUE@tcl/mainwindow.tcl \
 @TCLTK_TRUE@tcl/menues.tcl \
 @TCLTK_TRUE@tcl/modselection.tcl \
+@TCLTK_TRUE@tcl/MRUlist.tcl \
 @TCLTK_TRUE@tcl/platformbind.tcl \
 @TCLTK_TRUE@tcl/popupmenus.tcl \
 @TCLTK_TRUE@tcl/print.tcl \

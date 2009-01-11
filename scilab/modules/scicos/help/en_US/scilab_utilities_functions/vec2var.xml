@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>[var]=vec2var(vec)</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module vec2var">
+  <refsection id="Module_vec2var">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description vec2var">
+  <refsection id="Description_vec2var">
     <title>Description</title>
     <para>
 var2vec / vec2var functions are used inside the interfacing functions of Scilab blocks to give the possibility to the user to handle Scilab objects with the register of real parameters (rpar) and with the discrete state register (z).  
@@ -51,7 +51,7 @@ var2vec / vec2var functions are used inside the interfacing functions of Scilab 
 [var]=vec2var(vec)
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters vec2var">
+  <refsection id="Parameters_vec2var">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -62,7 +62,7 @@ var2vec / vec2var functions are used inside the interfacing functions of Scilab 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Example vec2var">
+  <refsection id="Example_vec2var">
     <title>Example</title>
     <programlisting role="example"><![CDATA[
 -->a=list("cos",[1.1,2])
@@ -93,7 +93,7 @@ c(2)
 1.1    2.
 ]]></programlisting>
   </refsection>
-  <refsection id="See Also vec2var">
+  <refsection id="SeeAlso_vec2var">
     <title>See Also</title>
     <itemizedlist>
       <listitem>

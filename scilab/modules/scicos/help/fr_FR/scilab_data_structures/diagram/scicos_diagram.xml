@@ -26,7 +26,7 @@
     <refname>scicos_diagram</refname>
     <refpurpose>Définit une structure scs_m</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_diagram">
+  <refsection id="Module_scicos_diagram">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="diagram scicos_diagram">
+  <refsection id="diagram_scicos_diagram">
     <title>diagram</title>
     <para>
 Taille : 4.
@@ -100,7 +100,7 @@ Type : chaîne de caractères.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_diagram">
+  <refsection id="Contenuduficher_scicos_diagram">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

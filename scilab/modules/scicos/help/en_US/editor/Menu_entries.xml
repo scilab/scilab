@@ -26,7 +26,7 @@
     <refname>Menu_entries</refname>
     <refpurpose>Editor menu entries</refpurpose>
   </refnamediv>
-  <refsection id="File menu Menu_entries">
+  <refsection id="Filemenu_Menu_entries">
     <title>File menu</title>
     <itemizedlist>
       <listitem>
@@ -99,7 +99,7 @@ File/Close menu has the same effect.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Diagram menu Menu_entries">
+  <refsection id="Diagrammenu_Menu_entries">
     <title>Diagram menu</title>
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@ If you change the value of a symbolic Scicos parameters in
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Palette menu Menu_entries">
+  <refsection id="Palettemenu_Menu_entries">
     <title>Palette menu</title>
     <itemizedlist>
       <listitem>
@@ -192,7 +192,7 @@ If extension is ".cosf" an ASCII  formatted save is performed
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Edit menu Menu_entries">
+  <refsection id="Editmenu_Menu_entries">
     <title>Edit menu</title>
     <itemizedlist>
       <listitem>
@@ -310,7 +310,7 @@ Selecting this menu and clicking on a block opens an
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="View menu Menu_entries">
+  <refsection id="Viewmenu_Menu_entries">
     <title>View menu</title>
     <itemizedlist>
       <listitem>
@@ -350,7 +350,7 @@ Selecting this menu and clicking on a block opens an
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Simulate menu Menu_entries">
+  <refsection id="Simulatemenu_Menu_entries">
     <title>Simulate menu</title>
     <itemizedlist>
       <listitem>
@@ -419,7 +419,7 @@ You may interrupt the simulation by clicking on the
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Format menu Menu_entries">
+  <refsection id="Formatmenu_Menu_entries">
     <title>Format menu</title>
     <itemizedlist>
       <listitem>
@@ -496,7 +496,7 @@ You may use the icon_editor menu to generate the Scilab
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Tools menu Menu_entries">
+  <refsection id="Toolsmenu_Menu_entries">
     <title>Tools menu</title>
     <itemizedlist>
       <listitem>
@@ -587,7 +587,7 @@ Given this information the code is generated, compiled and linked with
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="? menu Menu_entries">
+  <refsection id="menu_Menu_entries">
     <title>? menu</title>
     <itemizedlist>
       <listitem>

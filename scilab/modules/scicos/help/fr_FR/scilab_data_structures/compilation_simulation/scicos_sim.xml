@@ -26,7 +26,7 @@
     <refname>scicos_sim</refname>
     <refpurpose>Définit une structure sim</refpurpose>
   </refnamediv>
-  <refsection id="Module scicos_sim">
+  <refsection id="Module_scicos_sim">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="sim scicos_sim">
+  <refsection id="sim_scicos_sim">
     <title>sim</title>
     <para>
  Une liste typée scilab de type scs. Cette
@@ -449,7 +449,7 @@ Type : vecteur colonne de nombre entiers.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du ficher scicos_sim">
+  <refsection id="Contenuduficher_scicos_sim">
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>

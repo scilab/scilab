@@ -94,8 +94,8 @@ g('node_y')=[56 221 316 318 316 143 214 321 217 126 215 80 330 437 439];
 show_graph(g);
 g1=g; ma=arc_number(g1); n=g1('node_number');
 g1('edge_min_cap')=0.*ones(1,ma);
-x_message(['Generation aléatoire des données';
-           'Les premiers problèmes générés peuvent être insolubles']);
+messagebox(['Generation aléatoire des données';
+           'Les premiers problèmes générés peuvent être insolubles'],"modal");
 while %T then
  rand('uniform');
  g1('edge_max_cap')=round(20*rand(1,ma))+20*ones(1,ma);
@@ -108,8 +108,8 @@ while %T then
  [c,phi,flag]=min_lcost_flow2(g1);
  if flag==1 then break; end;
 end;
-x_message(['Le cout est: '+string(c);
-           'Voici le flot sur les arcs et les demandes des sommets']);
+messagebox(['Le cout est: '+string(c);
+           'Voici le flot sur les arcs et les demandes des sommets'],"modal");
 ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
 g1('edge_color')=edgecolor;
 edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);

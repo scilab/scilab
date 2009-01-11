@@ -289,7 +289,9 @@ Refentry
     <element name="refsection">
       <ref name="common.attributes"/>
       <!-- refsection.id added for Scicos doc -->
-      <ref name="refsection.id"/>
+      <optional>
+        <ref name="refsection.id"/>
+      </optional>
       <ref name="title"/>
       <choice>
         <group>

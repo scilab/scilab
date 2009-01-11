@@ -159,7 +159,7 @@ function [edited,options] = do_options(opt,flag)
 //                               [" ", " ", " "]) ; 
 //       if ~ok then break, end
 //       if or(R < 0 | R > 1) | or(G < 0 | G > 1) | or(B < 0 | B > 1) then
-//         x_message("One or several RGB components are out of [0 1]")
+//         messagebox("One or several RGB components are out of [0 1]","modal","error");
 //       else
 //         break; //** EXIT from the input loop 
 //       end

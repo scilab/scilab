@@ -11,8 +11,7 @@
 function [ok,GraphList,edited,fname]=ge_do_load(fname)
   GraphList=[];ok=%t
   if edited then
-    ok=x_message(['Current graph is modified'
-		  'Do you really want to erase it'],['yes','no'])
+    ok=messagebox(['Current graph is modified';'Do you really want to erase it'],"modal","question",['yes','no']);
     if ok==2 then ok=%f,return,end
   end
 

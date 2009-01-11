@@ -26,14 +26,14 @@ a.clip_state = "clipgrf";
 
 deff('[v]=transl(x,t)','v=x+t*ones(x)');
 
-x_message(["[III] Setting graphic context values"]);
+messagebox(["[III] Setting graphic context values"],"modal");
 
 // Demo III.1
 expr=["x=0:0.2:2*%pi;";
 "x1=[sin(x);10*sin(x)];";
 "y1=[cos(x);10*cos(x)];";
 "xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));"];
-x_message(["[III.1] segments";expr]);
+messagebox(["[III.1] segments";expr],"modal");
 execstr(expr);
 
 // Demo III.2
@@ -45,14 +45,14 @@ expr=["xrect(150,460,100,150);";
 "y1=transl(y1,20);";
 "xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));";
 "a.clip_state = ''clipgrf'';";];
-x_message(["[III.2] segments+clipping zone";expr]);
+messagebox(["[III.2] segments+clipping zone";expr],"modal");
 execstr(expr);
 
 // Demo III.3
 expr=["xset(''dashes'',1,2,2);";
 "xget(''dashes'',1);";
 "xrect(140,470,120,170);"];
-x_message(["[III.3] Setting a dash style";expr]);
+messagebox(["[III.3] Setting a dash style";expr],"modal");
 execstr(expr);
 
 // Demo III.4
@@ -72,7 +72,7 @@ expr=["xset(''font'',2,0);";
 "xstring(0,310,''Scilab'');";
 "xset(''font'',4,5);";
 "xstring(0,350,''Scilab'');"]
-x_message(["[III.4] Setting font style and size";expr]);
+messagebox(["[III.4] Setting font style and size";expr],"modal");
 execstr(expr);
 
 // Demo III.5
@@ -80,7 +80,7 @@ expr=["xset(''line mode'',0);";
 "xlfont(''SansSerif'',6);";
 "xset(''font'',6,3);";
 "xstring(100,260,''helVB'',0,1);"];
-x_message(["[III.5] Loading a new font hlevB is now font 6";expr]);
+messagebox(["[III.5] Loading a new font hlevB is now font 6";expr],"modal");
 execstr(expr);
 
 // Demo III.6
@@ -90,7 +90,7 @@ expr0=["x1=[350,400,450];";
 expr=[expr0;
 "xset(''mark'',6,2);";
 "xpoly(x1,y1,''marks'',0);"];
-x_message(["[III.6] changing current mark";expr]);
+messagebox(["[III.6] changing current mark";expr],"modal");
 execstr(expr);
 
 // Demo III.7
@@ -99,17 +99,17 @@ expr=[expr0;
 "xpoly(x1,y1+50*ones(x1),''marks'',0);";
 "xset(''mark'',8,3);";
 "xpoly(x1,y1+100*ones(x1),''marks'',0);"];
-x_message(["[III.7] changing current mark";expr]);
+messagebox(["[III.7] changing current mark";expr],"modal");
 execstr(expr);
 
 // Demo III.8
 expr=["xset(''thickness'',5);";
 "xrect(400,200,50,100);";];
-x_message(["[III.8] Thickness)";expr]);
+messagebox(["[III.8] Thickness)";expr],"modal");
 execstr(expr);
 
 // Demo III.9
 expr=["xfrect(400,50,50,100);"];
-x_message(["[III.9] Clear a rectangle";expr]);
+messagebox(["[III.9] Clear a rectangle";expr],"modal");
 execstr(expr);
 

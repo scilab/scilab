@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="get_scicos_version">
   <refnamediv>
     <refname>get_scicos_version</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>get_scicos_version</refname>
     <refpurpose>Retourne la version courante de Scicos</refpurpose>
   </refnamediv>
-  <refsection id="Module get_scicos_version">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>scicos_ver = get_scicos_version</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_get_scicos_version">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,32 +40,33 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description get_scicos_version">
+  <refsection id="Description_get_scicos_version">
     <title>Description</title>
     <para>
 Cette fonction retourne le numéro de version courant de Scicos.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+scicos_ver = get_scicos_version
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_get_scicos_version">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scicos_ver :</emphasis> une chaîne de caractère indiquant le numéro de version.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Exemple get_scicos_version">
+  <refsection id="Exemple_get_scicos_version">
     <title>Exemple</title>
     <programlisting role="example"><![CDATA[
 //Retourne la version de scicos 
 get_scicos_version()
 ]]></programlisting>
   </refsection>
-  <refsection id="Contenu du fichier get_scicos_version">
+  <refsection id="Contenudufichier_get_scicos_version">
     <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
@@ -73,7 +74,7 @@ get_scicos_version()
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs get_scicos_version">
+  <refsection id="Auteurs_get_scicos_version">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

@@ -38,34 +38,21 @@ http://bugzilla.scilab.org/buglist.cgi?&component=Scipad+Editor&bug_status=NEW&b
 -Some shortcuts may not work on certain platforms. E.g. Control-F1 does not on
  at least one Mandrake 10.1 Official Linux. Was also found on a RH8 machine.
 
--When a function definition line ends with a comment, the line numbering is
- wrong 1 unit, resulting in various strange behaviors: execution not stopping
- at breakpoints or not up-to-date value of variables in the watch window
- This is Scilab bug 1469 (outside of Scipad) that deals with the general
- issue of mismatch between line numbering as reported by fun2string and that
- held by the breakpoint handling
-
 -logical line numbering issue:
    function a=foo(); a=1;
     a=2;
    endfunction
  In scipad, a=1 is on line 1; for scilab it is on line 2 of function foo
- Also related to bug 1469 - better wait for clarification on this one instead
+ This is bug 3911 - better wait for clarification on this one instead
  of working around Scilab parser bugs
 
--step-by-step debugging may highlight the wrong line in Scipad when continued
- lines without dots are present before the breakpoint stop. Bug 1469 again!!!
-
--Bug 1469 once more in the following case (mind the spaces before
- "endfunction"):
+-Bug 3911 also in the following case
 function test
-  a=1
-  endfunction
- In this case the debugger in single step mode will highlight line 1 after
- line 3 whereas this won't happen for:
-function test
-  a=1
 endfunction
+ The debugger in single step mode highlights line 1 after line 2 whereas
+ line 2 is the last line of the function source code
+ tree2code(macr2tree(test))  has 4 lines (including 2 empty lines) while
+ fun2string(test)  contains the correct output with only 2 lines
 
 -watching some very large variable content looks like the variable is empty
  This is Tk bug 1449858.
@@ -532,7 +519,13 @@ See also TIP #213 and TIP #324, and discussions on them on [TCLCORE].
 
 Misc notes:
 
-- Could find a use in the Scipad code (all are Tcl/Tk 8.5 features):
+- Tcl/Tk 8.5 features that could find their use in the Scipad code:
   font actual $font $char (to know whether $char is included in $font)
   text count
   text search -all
+
+- Tcl/Tk 8.6 features that could find their use in the Scipad code:
+  file tempfile (TIP #210)
+  tk busy (TIP #321)
+  tk fontchooser (TIP #324)
+  -insertunfocussed for text widgets (TIP #197)

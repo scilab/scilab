@@ -24,13 +24,13 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lincos">
   <refnamediv>
     <refname>lincos</refname>
-    <refpurpose>Séquence d'appel</refpurpose>
-  </refnamediv>
-  <refnamediv>
-    <refname>lincos</refname>
     <refpurpose>Construit par linéarisation un modèle linéaire d'équations d'état à partir d'un système dynamique décrit par un diagramme scicos</refpurpose>
   </refnamediv>
-  <refsection id="Module lincos">
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_lincos">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description lincos">
+  <refsection id="Description_lincos">
     <title>Description</title>
     <para>
 Construct a linear state-space system by linearizing a model given as a Scicos diagram.  
@@ -49,12 +49,13 @@ Construct a linear state-space system by linearizing a model given as a Scicos d
 The output is a Scilab data structure of type continuous-time state-space linear system.  
 </para>
     <para>
-
-
-
-
-
 </para>
+    <programlisting role="example"><![CDATA[
+sys= lincos(scs_m [,x0,u0 [,param] ])
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_lincos">
+    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> une structure de donnée scicos.</para>
@@ -73,7 +74,7 @@ The output is a Scilab data structure of type continuous-time state-space linear
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenu du fichier lincos">
+  <refsection id="Contenudufichier_lincos">
     <title>Contenu du fichier</title>
     <itemizedlist>
       <listitem>
@@ -81,7 +82,7 @@ The output is a Scilab data structure of type continuous-time state-space linear
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Voir aussi lincos">
+  <refsection id="Voiraussi_lincos">
     <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
@@ -96,7 +97,7 @@ The output is a Scilab data structure of type continuous-time state-space linear
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs lincos">
+  <refsection id="Auteurs_lincos">
     <title>Auteurs</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
   </refsection>

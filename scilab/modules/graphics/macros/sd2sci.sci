@@ -118,9 +118,9 @@ for k=3:size(sd)
       txt=[txt;
 	  'xpoly('+x+','+y+',""marks"")'];
     case "clipon" then
-      txt=[txt;'xclip(''clipgrf'')']
+      txt=[txt;"axes = gca()"; "axes.clip_state = ''clipgrf''"]
     case "clipoff" then
-      txt=[txt;'xclip()']     
+      txt=[txt;"axes = gca()"; "axes.clip_state = ''off''"]     
     else
 
     end

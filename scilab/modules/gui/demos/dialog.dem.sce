@@ -5,19 +5,19 @@
 // This file is distributed under the same license as the Scilab package.
 //
 
-x_message(['x_message: Simple example of message ';
+messagebox(['x_message: Simple example of message ';
 'First row of comments';
 'Second row';
-'etc...';])
+'etc...';],"modal");
 
 x_dialog('x_dialog: trial','                ')
 x_dialog('Trial           ','3.1592653')
 x_dialog(['trial           ';'trial1';'trial2';'trial3';'trial4';..
 'trial6';'trial7'],'[0 1 2 3]')
 
-x_message('trial')
-x_message(['trial';'trial1';'trial2';'trial3';'trial4';'trial6';'trial7';..
-'trial3';'trial4';'trial6';'trial7';'trial3';'trial4';'trial6';'trial7'])
+messagebox('trial',"modal");
+messagebox(['trial';'trial1';'trial2';'trial3';'trial4';'trial6';'trial7';..
+'trial3';'trial4';'trial6';'trial7';'trial3';'trial4';'trial6';'trial7'],"modal");
 
 x_choose(['trial';'trial1';'trial2';'trial3';'trial4';'trial7';..
 'trial3';'trial4';'trial6';'trial7';'trial3';'trial4';'trial6'],..

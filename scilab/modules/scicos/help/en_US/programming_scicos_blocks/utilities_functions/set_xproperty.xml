@@ -30,7 +30,7 @@
     <title>Calling Sequence</title>
     <synopsis>set_xproperty(xprop)</synopsis>
   </refsynopsisdiv>
-  <refsection id="Module set_xproperty">
+  <refsection id="Module_set_xproperty">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,7 +40,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description set_xproperty">
+  <refsection id="Description_set_xproperty">
     <title>Description</title>
     <para>
 This function set a vector to inform the type (algebraic or differential) of the continuous state variables of a block.  
@@ -51,7 +51,7 @@ This function set a vector to inform the type (algebraic or differential) of the
 set_xproperty(xprop)
 ]]></programlisting>
   </refsection>
-  <refsection id="Parameters set_xproperty">
+  <refsection id="Parameters_set_xproperty">
     <title>Parameters</title>
     <itemizedlist>
       <listitem>
@@ -73,7 +73,7 @@ set_xproperty(xprop)
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="See Also set_xproperty">
+  <refsection id="SeeAlso_set_xproperty">
     <title>See Also</title>
     <itemizedlist>
       <listitem>

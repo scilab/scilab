@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Sylvestre Koumar
+// Copyright (C) 2009 - DIGITEO - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,16 +10,15 @@
 
 function xs2emf(figureNumber, fileName, orientation)
 
-	[lhs,rhs]=argn(0);
-	
 	//Input arguments checking
+  [lhs,rhs]=argn(0);
 	if rhs <> 2 & rhs <> 3 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "xs2emf",2,3));
 		return;
 	end
 
 	//first argument checking
-	if type(figureNumber) <> 1 | size(figureNumber) <> [1,1] then
+	if type(figureNumber) <> 1 | size(figureNumber,'*') <> 1 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: Integer expected.\n"), "xs2emf",1));
 		return;
 	end
@@ -39,37 +39,26 @@ function xs2emf(figureNumber, fileName, orientation)
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), "xs2emf", 3, "landscape", "portrait"));
 			return;
 		end
-	else
+	else // rhs == 2
 		orientation = "portrait";
 	end
 	
-	//To export EMF file we need Ghostscript
-	//Test if Ghostscript is installed or not
-	
-	msgErr1 = "Please install Ghostscript 32 bits to export an EMF file.";
-	msgErr2 = "http://www.ghostscript.com/awki";
-	msg = char(msgErr1,msgErr2);
-	
-	if MSDOS then
-		try
-			winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
-		catch		
-			messagebox(msg, "Scilab error", "error")
-			return;
-		end
-	end
-	
 	if ~MSDOS then
-	  // os is a unix one
-	  // check that pstoedit is available on the computer
-	  checkPstoedit = unix_g("which pstoedit");
+    // os is a unix one
 	  error(msprintf(gettext("%s: EMF format only available under Microsoft Windows OS.\n"), "xs2emf"));
 	  return;
 	end
-
 	
-	//checking file extension	 				
-	[path,fname,extension] = fileparts(fileName);
+  if fileinfo(SCI+'/tools/pstoedit/gsdll32.dll') == [] then
+    msgErr1 = "Please install Ghostscript 32 bits to export an EMF file.";
+    msgErr2 = "http://www.ghostscript.com/awki";
+    msg = [msgErr1;msgErr2];
+    messagebox(msg, "Scilab error", "error");
+    return;
+  end
+	
+	//checking file extension
+	[path, fname, extension] = fileparts(fileName);
 	if (extension <> ".emf") then
 	  // appened emf at the end of the file name.
 	  generatedFileName = fileName + ".emf";
@@ -77,14 +66,11 @@ function xs2emf(figureNumber, fileName, orientation)
 	  generatedFileName = fileName;
 	end
 	
-	// compute pstoedit path
-	if MSDOS then
-	  // pstoedit is embedded in Scilab
-	  pstoeditPath = SCI + "\tools\pstoedit\pstoedit";
-	else
-	  // pstoedit is installed on the computer.
-	  pstoeditPath = "pstoedit";
-	end
+  // pstoedit is embedded in Scilab
+  pstoeditPath = SCI + "\tools\pstoedit\pstoedit.exe";
+  if fileinfo(pstoeditPath) == [] then 
+    error(msprintf(gettext("%s: Unable to find pstoedit.\n"), "xs2emf"));
+  end
 	
 	//When the graphic-export is too long, we inform the user that the figure is exporting
 	f = gcf();
@@ -97,14 +83,12 @@ function xs2emf(figureNumber, fileName, orientation)
 		
 	// convert it to emf
 	//get short  path name for windows because path is > then 6 caracters
-	[shortpath,bOK]=getshortpathname(path);	
-	[path2,fname2,extension2] = fileparts(generatedFileName);
+	[shortpath, bOK] = getshortpathname(path);	
+	[path2, fname2, extension2] = fileparts(generatedFileName);
 	generatedFileName = shortpath + fname2 + extension2;	
 	
-	pstoeditOptions = "-f ""emf""";
-	
 	//Check if we have the permission to export this file
-	[fd,errPermission]=mopen(generatedFileName, "w");
+	[fd, errPermission] = mopen(generatedFileName, "wt");
 	if errPermission <> 0 then
 		f.info_message = oldInfoMessage;
 		error(msprintf(gettext("%s: Unable to create export file, permission denied.\n"), "xs2emf"));
@@ -112,9 +96,10 @@ function xs2emf(figureNumber, fileName, orientation)
 	else
 		mclose(fd);
 	end
-	
+
+	pstoeditOptions = "-f ""emf""";
 	[stdout, status, stderr] = unix_g(pstoeditPath + " " + pstoeditOptions + " " + fileExport + " " + generatedFileName);		
-		
+
 	if status <> 0 then
 		f.info_message = oldInfoMessage;
 		error(msprintf(gettext("%s: Unable to execute pstoedit.\n"), "xs2emf"));
@@ -128,5 +113,3 @@ function xs2emf(figureNumber, fileName, orientation)
 	f.info_message = oldInfoMessage;
   
 endfunction
-
-
