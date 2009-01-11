@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 #####################################################################
 #
 # About the implementation of paned windows:
@@ -359,6 +360,7 @@ proc focustextarea {textarea} {
 # Set all the settings such that $textarea becomes the current one
     global pad Scheme ColorizeIt listoffile textareaid
     global buffermodifiedsincelastsearch
+    global currentencoding
 
     # clear the selection when leaving a buffer - check first that the
     # textarea still exists because it might have been destroyed when
@@ -377,6 +379,7 @@ proc focustextarea {textarea} {
     keyposn $textarea
     set Scheme $listoffile("$textarea",language)
     set ColorizeIt $listoffile("$textarea",colorize)
+    set currentencoding $listoffile("$textarea",encoding)
     schememenus $textarea
     highlighttextarea $textarea
     TextStyles $textarea
@@ -547,6 +550,7 @@ proc createnewemptytextarea {} {
 # it creates a new empty textarea
     global winopened listoffile
     global listoftextarea pad
+    global defaultencoding
 
     # ensure that the cursor is changed to the default cursor
     event generate [gettextareacur] <Leave>
@@ -565,6 +569,7 @@ proc createnewemptytextarea {} {
     set listoffile("$pad.new$winopened",undostackdepth) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
+    set listoffile("$pad.new$winopened",encoding) $defaultencoding
     lappend listoftextarea $pad.new$winopened
 
     addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
@@ -618,6 +623,7 @@ proc createpeertextwidget {ta} {
     set listoffile("$newta",undostackdepth) $listoffile("$ta",undostackdepth)
     set listoffile("$newta",redostackdepth) $listoffile("$ta",redostackdepth)
     set listoffile("$newta",progressbar_id) $listoffile("$ta",progressbar_id)
+    set listoffile("$newta",encoding) $listoffile("$ta",encoding)
     lappend listoftextarea $newta
 
     addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)

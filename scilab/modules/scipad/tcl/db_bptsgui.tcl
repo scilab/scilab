@@ -77,6 +77,13 @@ proc showbptgui_bp {} {
     #        solution here. For the time being, this dialog is not even
     #        translated and the debugger is broken (bug 2789), so let's wait.
     #        Once this is done, proc mcmaxra should be erased since no longer used
+    #        A possible solution would be to save the currently selected item in
+    #        each spinbox, search for the longest item of the spinbox, select it,
+    #        grid the spinbox, select back the item initially selected.Searching
+    #        for the longest item is more precisely gridding the item that has
+    #        max{ [font measure $item $textFont] }
+    #        See also the end of the discussion here:
+    #        http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/dfb592a3c9335b38
     set funcolwidth [mcmaxra "Function"]
     if {$funcolwidth < $maxcharinascilabname} {set funcolwidth $maxcharinascilabname}
     set lincolwidth [mcmaxra "Line"]

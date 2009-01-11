@@ -1,3 +1,10 @@
+Francois VOGEL, 11/01/09
+ * Selection of the file encoding is now possible through a new option menu,
+   with an MUR list of encodings, and auto-detection of encoding for XML files
+   (this is a request from Yung-Jang Lee)
+   This is the implementation corresponding to SEP#12_V2.1
+ * version --> 7.14
+
 Francois VOGEL, 06/01/09
  * Fixed Scipad part of bug 3407 (Scilab 5 returns physical line numbers in
    lasterror while Scilab 4 and Scilab-gtk return logical line numbers)
@@ -100,7 +107,7 @@ Francois VOGEL, 08/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000) again since the
    candidate fix in 6.156 didn't work
  * version --> 6.157 - This version comes with Scilab 5.0 final release,
-   Scilab 5.0.1 and Scilab 5.0.2
+   Scilab 5.0.1, Scilab 5.0.2 and Scilab 5.0.3
 
 Francois VOGEL, 05/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000)
