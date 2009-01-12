@@ -109,7 +109,7 @@ ref=["function []=foo()";
      "  y = 1";
      "  z = 3;";
      "endfunction"];
-mputl(ref,TMPDIR+'/foo.sci')
+mputl(ref,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci')
 if or(fun2string(foo,'foo')<>ref) then pause,end
 
