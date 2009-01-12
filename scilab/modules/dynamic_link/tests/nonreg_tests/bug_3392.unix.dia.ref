@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 3392 -->
 //
 // <-- Bugzilla URL -->
@@ -43,7 +45,7 @@ exec loader.sce
  
 libc_fun_path = get_file_path('loader.sce');
  
-list_functions = [ 'c_sum';
+list_functions = [             'c_sum';
             'c_sub';
 ];
  

@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 2085 -->
 //
 // <-- Bugzilla URL -->
@@ -46,7 +48,7 @@ exec loader.sce
  
 libbug_path = get_file_path('loader.sce');
  
-list_functions = [ 'ex2c_1';
+list_functions = [             'ex2c_1';
 ];
  
 addinter(libbug_path+'/libbug.so','libbug',list_functions);

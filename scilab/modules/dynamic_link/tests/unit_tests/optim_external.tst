@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
 //============================================
 // external with optim 
@@ -34,7 +36,7 @@
     '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
     '  }'
     '}'];
-mputl(C,TMPDIR+'/rosenc.c')
+mputl(C,TMPDIR+'/rosenc.c');
 // compile the C code
 l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
 // incremental linking
