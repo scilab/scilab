@@ -97,7 +97,9 @@ public final class RenderingCapabilities {
 			int[] res = {maxCanvasSize[0], maxCanvasSize[1]};
 			return res;
 		} else {
-			return getMaxWindowSize();
+			// canvas not already created, don't set limits
+			int[] res = {Integer.MAX_VALUE, Integer.MAX_VALUE};
+			return res;
 		}
 	}
 	

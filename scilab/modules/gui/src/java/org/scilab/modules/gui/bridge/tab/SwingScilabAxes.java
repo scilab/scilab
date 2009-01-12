@@ -31,6 +31,7 @@ import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 /**
  * Class defining the content pane of the Tab.
@@ -97,13 +98,21 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param newSize new size to apply
 	 */
 	public void setSize(Dimension newSize) {
-		super.setSize(newSize);
-		super.setPreferredSize(newSize);
+		
+		// get the greatest size we can use
+		int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
+		
+		// make sure size is not greater than the max size
+		Dimension finalDim = new Dimension(Math.min(newSize.width, maxSize[0]),
+										   Math.min(newSize.height, maxSize[1]));
+		
+		super.setSize(finalDim);
+		super.setPreferredSize(finalDim);
 
 		// force resize of canvas also
 		// to be sure that the canvas has the same size as the axes
 		if (graphicCanvas != null) {
-			graphicCanvas.setSize(newSize);
+			graphicCanvas.setSize(finalDim);
 		}
 	}
 
