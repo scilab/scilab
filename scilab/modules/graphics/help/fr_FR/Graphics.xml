@@ -564,12 +564,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xclip</term>
-        <listitem>
-          <para> définit une zone de clipping </para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xdel</term>
         <listitem>
           <para>supprime une fenêtre graphique</para>

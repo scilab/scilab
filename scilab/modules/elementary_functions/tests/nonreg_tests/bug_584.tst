@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 584 -->
 //
 // <-- Bugzilla URL -->
@@ -16,8 +18,6 @@
 //    ans  =
 //
 //        1.0000000000000007000000000E+03
-
-// Copyright INRIA
 
 // Modified by Pierre MARECHAL
 // Copyright INRIA

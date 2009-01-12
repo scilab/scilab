@@ -179,7 +179,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
 										   Math.min(newWindowSize.getHeight(), maxSize[1]));
 		
-		this.setSize(finalDim);
+		setSize(finalDim);
+		// validate so the new values are taken into account immediately
+		validate();
 	}
 
 	/**

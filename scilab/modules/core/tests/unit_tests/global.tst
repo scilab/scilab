@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+prot=funcprot();funcprot(0)
 global a
 a=133;
 clear a;
@@ -15,44 +15,51 @@ a=['1234','456'];
 if a(1)<>'1234' then pause,end
 
 global b
-b=10;a=-1
+b=10;a=-1;
 clear a b
 global a b
 if a<>-1|b<>10 then pause,end
 //
-
 clearglobal()
-errcatch(228,'continue','nomessage')
-a
-if ~iserror(228) then pause,end
-errclear(228)
-errcatch(-1)
+try
+ a
+ n=0
+catch
+ [str,n]=lasterror(%t);
+end
+if n <>228 then pause,end
 
 global a b c 
 a=1;b=2;c=3;
 clearglobal b
-errcatch(228,'continue','nomessage')
-b
-if ~iserror(228) then pause,end
-errclear(228)
-errcatch(-1)
+try
+ b
+ n=0
+catch
+ [str,n]=lasterror(%t);
+end
+if n <>228 then pause,end
+
 if a<>1|c<>3 then pause,end
 
 clearglobal c
-errcatch(228,'continue','nomessage')
-c
-if ~iserror(228) then pause,end
-errclear(228)
-errcatch(-1)
+try
+ c
+ n=0
+catch
+ [str,n]=lasterror(%t);
+end
+if n <>228 then pause,end
 if a<>1 then pause,end
 
 clearglobal a
-errcatch(228,'continue','nomessage')
-a
-if ~iserror(228) then pause,end
-errclear(228)
-errcatch(-1)
-
+try
+ a
+ n=0
+catch
+ [str,n]=lasterror(%t);
+end
+if n <>228 then pause,end
 
 clearglobal()
 
@@ -151,5 +158,5 @@ endfunction
 a13=G.a(1,3);
 X=G(1,3)
 if or(G.a(1,3)<>1) then pause,end
-
+funcprot(prot)
 

@@ -366,6 +366,7 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
 
     global tmpdir
     global pad
+    global defaultencoding
 
     set bsiz_1  4095   ;# Must be consistent with bsiz defined in stack.h
     set lsiz_1 65535   ;# Must be consistent with lsiz defined in stack.h
@@ -384,6 +385,7 @@ proc ScilabEval_lt {comm {opt1 ""} {opt2 ""}} {
             set splitsize 4000 ;# arbitrary but works up to approx. 4095
             set nbparts [expr {[string length $comm] / $splitsize + 1}]
             set fid [open $fname w]
+            fconfigure $fid -encoding $defaultencoding
             set startpos 0
             for {set i 1} {$i < $nbparts} {incr i} {
                 set stoppos  [expr {$i * $splitsize - 1}]

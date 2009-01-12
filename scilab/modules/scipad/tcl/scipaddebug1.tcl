@@ -296,6 +296,7 @@ if {$debuglog} {
     # and this one is never erased by Scipad (a new filename is used for each
     # bgerror)
         global Scipaddebuglogfileid Scipaddebuglogfilename env debuglog loginafile
+        global defaultencoding
         if {!$debuglog} {return}
         timestamp sec mil
         puts "[clock format $sec -format "%d/%m/%y|%T"].[format %03d $mil]|$value"
@@ -308,6 +309,7 @@ if {$debuglog} {
             } else {
                 set Scipaddebuglogfileid [open $Scipaddebuglogfilename a]
             }
+            fconfigure $Scipaddebuglogfileid -encoding $defaultencoding
             puts $Scipaddebuglogfileid "[clock format $sec -format "%d/%m/%y|%T"].[format %03d $mil]|$value"
             close $Scipaddebuglogfileid
         }

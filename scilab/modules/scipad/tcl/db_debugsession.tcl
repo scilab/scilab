@@ -48,6 +48,7 @@ proc execfile_bp {{stepmode "nostep"}} {
     global tmpdir
     global previousstopfun
     global bptsprops
+    global defaultencoding
 
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
@@ -114,6 +115,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         if {[catch {
             set fname [file join $tmpdir "Scipad_execfile_bp_tempfile.sci"]
             set fid [open $fname w]
+            fconfigure $fid -encoding $defaultencoding
             puts $fid $allfuntexts
             close $fid
             ScilabEval_lt "exec(\"$fname\");" "sync" "seq"

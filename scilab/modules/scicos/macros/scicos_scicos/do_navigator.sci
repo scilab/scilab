@@ -108,8 +108,6 @@ kx = 1                      ;
 
 xrect(x0(kx), bnds(2,2), x0(kx+1)-x0(kx), bnds(2,2)-bnds(1,2));
 
-//** xclip([x0(kx),bnds(4),x0(kx+1)-x0(kx),bnds(4)-bnds(2)])
-
 for k=1:size(xx,1)
   
   if k==1 then path=[]; else path=lp(k-1);end
@@ -127,15 +125,11 @@ for k=1:size(xx,1)
   
   if k==20 then 
     y0 = bnds(2,2)-h;
-    kx = kx+1
-    //** xclip() 
+    kx = kx+1 
     xrect(x0(kx),bnds(2,2),x0(kx+1)-x0(kx),bnds(2,2)-bnds(1,2))
-    //** xclip([x0(kx),bnds(4),x0(kx+1)-x0(kx),bnds(4)-bnds(2)])
   end
 
 end
-
-//** xclip()
 
 //build data structure
 Tree = tlist(['scs_tree','x','y','paths','orig'],xx,yy,lp,super_path)

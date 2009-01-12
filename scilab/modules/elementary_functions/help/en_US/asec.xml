@@ -74,8 +74,8 @@ xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="e
    <refsection>
     <title>References</title>
     <simplelist type="vert">
-      <member>Kahan, W., “Branch cuts for complex elementary
-      functions, or, Much ado about nothing's sign bit”, Proceedings
+      <member>Kahan, W., "Branch cuts for complex elementary
+      functions, or, Much ado about nothing's sign bit", Proceedings
       of the joing IMA/SIAM conference on The State of the Art in
       Numerical Analysis, University of Birmingham, A. Iserles and
       M.J.D. Powell, eds, Clarendon Press, Oxford, 1987,

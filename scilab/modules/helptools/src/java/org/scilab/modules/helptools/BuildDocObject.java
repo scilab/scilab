@@ -132,6 +132,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(SECTION_AUTOLABEL_1);
 			specificArgs.add("variablelist.as.blocks=1");
 			specificArgs.add("shade.verbatim=1");
+			specificArgs.add("img.src.path=" + outputDirectory);
 			this.styleDoc = docbookPath + "/fo/docbook.xsl";
 
 		} 

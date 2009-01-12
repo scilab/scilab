@@ -16,8 +16,7 @@
 // xget("clipping") return 5 integers instead of 4 floats.
 
 rect = [-0.1, 0.5, 0.6, 0.6];
-xclip(rect);
+axes = gca();
+axes.clip_box = rect;
+axes.clip_state = "on";
 if (xget("clipping") <> rect) then pause; end
-
-
-

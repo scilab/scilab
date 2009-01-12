@@ -30,9 +30,12 @@ proc createmenues {} {
     global listoffile listoftextarea bindset
     global FirstBufferNameInWindowsMenu
     global FirstMRUFileNameInFileMenu
+    global FirstMRUEncodingInOptEncMenu
     global Shift_Tab
     foreach c1 "$bgcolors $fgcolors" {global $c1}
     global Tk85
+    global currentencoding defaultencoding nbrecentencodings
+    global autodetectencodinginxmlfiles
 
     #destroy old menues (used when changing language)
     foreach w [winfo children $pad.filemenu] {
@@ -358,12 +361,12 @@ proc createmenues {} {
         eval "$pad.filemenu.options.windmenusort add radiobutton \
                  [me "&Most recently used"] -command {sortwindowsmenuentries}\
                  -value MRUorder -variable windowsmenusorting"
-    set recentnumbmenu [tk_optionMenu $pad.filemenu.options.recent \
+    set recentfilesnumbmenu [tk_optionMenu $pad.filemenu.options.recentf \
                     maxrecentfiles 0 1 2 3 4 5 6 7 8 9 10 15 20 50]
     eval "$pad.filemenu.options add cascade  [me "&Recent files"]\
-               -menu $recentnumbmenu"
-    for {set i 0} {$i<=[$recentnumbmenu index last]} {incr i} {
-        $recentnumbmenu entryconfigure $i -command {UpdateRecentFilesList}
+               -menu $recentfilesnumbmenu"
+    for {set i 0} {$i<=[$recentfilesnumbmenu index last]} {incr i} {
+        $recentfilesnumbmenu entryconfigure $i -command {UpdateRecentFilesList}
     }
     eval "$pad.filemenu.options add cascade  [me "&Backup files depth"]\
                -menu [tk_optionMenu $pad.filemenu.options.backup \
@@ -380,7 +383,7 @@ proc createmenues {} {
                 -variable lang -value $l -command relocalize"
         }
     }
-# feature temporary disabled as not yet 100% ok (see bindings/issues.txt)
+# feature enabled yet not 100% ok (see bindings/issues.txt) - teasing!
     menu $pad.filemenu.options.bindings -tearoff 0
     eval "$pad.filemenu.options add cascade [me "&Bindings style"] \
            -menu $pad.filemenu.options.bindings "
@@ -405,6 +408,34 @@ proc createmenues {} {
         eval "$pad.filemenu.options.messageboxes add radiobutton \
             [me "Copied in a &message box"] \
              -value true -variable ScilabErrorMessageBox"
+    eval "$pad.filemenu.options add cascade [me "Enc&oding"] \
+               -menu $pad.filemenu.options.encodings"
+        menu $pad.filemenu.options.encodings -tearoff 1
+        set FirstMRUEncodingInOptEncMenu [expr {[$pad.filemenu.options.encodings index last] + 1}]
+        BuildInitialRecentEncodingsList
+        # if the MRU list of encodings is empty, then add platform system encoding, iso8859-1 and utf-8
+        # these encodings are supposed to exist (distributed with Tcl)
+        if {$nbrecentencodings == 0} {
+            AddRecentEncoding "utf-8"
+            AddRecentEncoding "iso8859-1"
+            AddRecentEncoding $defaultencoding
+        }
+        eval "$pad.filemenu.options.encodings add cascade [me "More enc&odings"] \
+                   -menu $pad.filemenu.options.encodings.more"
+            menu $pad.filemenu.options.encodings.more -tearoff 1
+            foreach en [lsort -dictionary [encoding names]] {
+                $pad.filemenu.options.encodings.more add radiobutton -label $en \
+                    -command {setencoding} -value $en -variable currentencoding
+            }
+        set recentencodingsnumbmenu [tk_optionMenu $pad.filemenu.options.encodings.recente \
+                        maxrecentencodings 0 1 2 3 4 5 6 7 8 9 10]
+        eval "$pad.filemenu.options.encodings add cascade  [me "&Recent encodings"]\
+                   -menu $recentencodingsnumbmenu"
+        for {set i 0} {$i<=[$recentencodingsnumbmenu index last]} {incr i} {
+            $recentencodingsnumbmenu entryconfigure $i -command {UpdateRecentEncodingsList}
+        }
+        eval "$pad.filemenu.options.encodings add check [me "&Auto-detect encoding when loading XML files"] \
+          -offvalue false -onvalue true -variable autodetectencodinginxmlfiles"
     menu $pad.filemenu.options.exitopts -tearoff 0
     eval "$pad.filemenu.options add cascade [me "E&xit options"] \
            -menu $pad.filemenu.options.exitopts "
@@ -497,7 +528,7 @@ proc disablemenuesbinds {} {
     global Tk85
     set tileprocalreadyrunning true
     # File/Close
-    set iClose [expr {[GetFirstRecentInd] + $nbrecentfiles + 1}]
+    set iClose [expr {[GetFirstRecentFileInd] + $nbrecentfiles + 1}]
     $pad.filemenu.files entryconfigure $iClose -state disabled
     binddisable $pad {closecurfile yesnocancel}
     # Windows menu entries
@@ -527,7 +558,7 @@ proc restoremenuesbinds {} {
     global tileprocalreadyrunning
     global Tk85
     # File/Close
-    set iClose [expr {[GetFirstRecentInd] + $nbrecentfiles + 1}]
+    set iClose [expr {[GetFirstRecentFileInd] + $nbrecentfiles + 1}]
     $pad.filemenu.files entryconfigure $iClose -state normal
     bindenable $pad {closecurfile yesnocancel}
     # Windows menu entries
@@ -772,13 +803,13 @@ proc createarrayofmenuentriesid {root} {
 proc showinfo_menu_file {w} {
 # display full pathname of a recent file entry of the file menu
 # as a showinfo
-    global pad nbrecentfiles listofrecent
+    global pad nbrecentfiles listofrecentfiles
     if {$nbrecentfiles > 0} {
-        set rec1ind [GetFirstRecentInd]
+        set rec1ind [GetFirstRecentFileInd]
         set recnind [expr {$rec1ind + $nbrecentfiles - 1}]
         set mouseentry [$w index active]
         if {$rec1ind<=$mouseentry && $mouseentry<=$recnind} {
-            showinfo [lindex $listofrecent [expr {$mouseentry - $rec1ind}]]
+            showinfo [lindex $listofrecentfiles [expr {$mouseentry - $rec1ind}]]
         }
     }
 }

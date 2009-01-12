@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 2052 -->
 //
 // <-- Bugzilla URL -->
@@ -52,7 +54,7 @@ ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
  
 libtest_path = get_file_path('loader.sce');
  
-list_functions = [ 'changetype';
+list_functions = [             'changetype';
 ];
  
 addinter(libtest_path+'/libtest.so','libtest',list_functions);
