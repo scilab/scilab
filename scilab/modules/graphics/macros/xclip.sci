@@ -9,7 +9,7 @@
 // @OBSOLETE
 
 function []=xclip(x,y,w,h)
-warnobsolete("clip_state and clip_box")
+warnobsolete("clip_state and clip_box properties", "5.2")
 // fixe une zone de clipping en cordonnees reelles
 // (x,y,w,h) (Upper-Left,wide,Height)
 //!
