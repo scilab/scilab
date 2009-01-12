@@ -32,6 +32,7 @@
 #include <pthread.h>
 #include <CoreFoundation/CoreFoundation.h>
 #include <sys/stat.h>
+#include <ApplicationServices/ApplicationServices.h>
 #endif
 
 /*--------------------------------------------------------------------------*/
@@ -94,11 +95,7 @@ Some parts of the next three functions have been taken from simpleJavaLauncher.
         OF THE APPLE SOFTWARE, HOWEVER CAUSED AND WHETHER UNDER THEORY OF CONTRACT, TORT
         (INCLUDING NEGLIGENCE), STRICT LIABILITY OR OTHERWISE, EVEN IF APPLE HAS BEEN
         ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-       
-
 */
-
-
 
 /**
  * Actually launch Scilab under Mac OS X. Need to be in a specific thread.
@@ -117,6 +114,18 @@ static int *launchMacOSXEnv(thread_parm_t *param){
     CFURLRef    TargetJavaVM;
     UInt8 pathToTargetJVM [PATH_MAX] = "\0";
     struct stat sbuf;
+
+    /*
+     * This piece of code is mandatory because Mac OS X implementation of Java has a bug here.
+     * Cocoa does not know how to handle the new window created this way.
+     * See: http://lists.apple.com/archives/Java-dev/2009/Jan/msg00062.html
+     * Or Mac Os X bug #6484319
+     * Thanks to Mike Swingler
+     */
+    ProcessSerialNumber psn;
+    GetCurrentProcess(&psn);
+    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    /* End of the workaround */
 
     // Look for the JavaVM bundle using its identifier
     JavaVMBundle = CFBundleGetBundleWithIdentifier(CFSTR("com.apple.JavaVM") );
