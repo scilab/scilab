@@ -1,3 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Sylvestre LEDRU
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 426 -->
 //
 // <-- Bugzilla URL -->
@@ -5,9 +14,7 @@
 //
 // <-- Short Description -->
 // Wrong permutation
-// Scilab Project - Sylvestre LEDRU
-// Copyright INRIA 2008
-// Date : March 2008
+
 a = ['aaa';'eee';'ccc';'bbb';'ddd';'rrr'];
 trueValue=[1; 4; 3; 5; 2; 6];
 

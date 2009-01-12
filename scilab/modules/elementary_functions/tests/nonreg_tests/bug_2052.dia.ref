@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 2052 -->
 //
 // <-- Bugzilla URL -->
@@ -34,14 +35,14 @@ code=['#include ""stack-c.h""'
 '}'];
 mputl(code,'intchangetype.c');
 ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
-   Generate a gateway file
-   Generate a loader file
-   Generate a Makefile
-   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy intchangetype.c to TMPDIR
-   ilib_gen_Make: Copy libtest.c to TMPDIR
-   ilib_gen_Make: Modification of the Makefile in TMPDIR.
-   Running the makefile
+   G?n?re un fichier gateway
+   G?n?re un fichier loader
+   G?n?re un Makefile
+   ilib_gen_Make: Copie les fichiers de compilation (Makefile*, libtool...) vers TMPDIR
+   ilib_gen_Make: Copie intchangetype.c vers TMPDIR
+   ilib_gen_Make: Copie libtest.c vers TMPDIR
+   ilib_gen_Make: Modification du Makefile dans TMPDIR.
+   Ex?cute le makefile
  
 // ------------------------------------------------------
  
@@ -52,11 +53,11 @@ ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
  
 libtest_path = get_file_path('loader.sce');
  
-list_functions = [ 'changetype';
+list_functions = [             'changetype';
 ];
  
 addinter(libtest_path+'/libtest.so','libtest',list_functions);
-Shared archive loaded.
+Biblioth?que partag?e charg?e.
 Link done.
  
 // remove temp. variables on stack

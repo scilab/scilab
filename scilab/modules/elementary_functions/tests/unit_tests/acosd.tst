@@ -1,18 +1,18 @@
-mode(-1)
+// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA, Serge Steer
+// Copyright (C) 2008 - INRIA - Serge Steer
 //
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- JVM NOT MANDATORY -->
 
 // Maple code used to create reference
 // Digits := 40: 
 // writeto("acosd.ref"): interface(prettyprint = 0):
 // for i from -1 by 1/200 to 1 do print(i, evalf[30](arccos(i)*180/Pi, 30)) end do; 
 // writeto(terminal):
+
 ieee(2)
 pi=%pi;eps=%eps;Inf=%inf;NaN=%nan; //used to make following code runnable under Matlab
 
