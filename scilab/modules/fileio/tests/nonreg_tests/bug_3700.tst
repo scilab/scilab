@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // mputl fails to write some accents
 
-refText = [ 'יאטש$£§µûגפ^v~ח';'יאטש$£§µûגפ^v~ח'];
+refText = [ 'Ã©Ã Ã¨Ã¹$Â£Â§ÂµÃ»Ã¢Ã´^v~Ã§';'Ã©Ã Ã¨Ã¹$Â£Â§ÂµÃ»Ã¢Ã´^v~Ã§'];
 mputl(refText, TMPDIR+filesep()+'bug_3700.txt');
 
 TXT2 = mgetl(TMPDIR+filesep()+'bug_3700.txt');
