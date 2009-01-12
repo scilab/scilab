@@ -101,7 +101,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             }
           pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
 
-          if (sciGetEntityType (pParent) == SCI_UICONTROL) /* Focus management */
+          if ( (pParent != NULL) && (sciGetEntityType (pParent) == SCI_UICONTROL) ) /* Focus management */
             {
               GraphicHandle = (long)*hstk(stkAdr);
               if (pUICONTROL_FEATURE(pParent)->style == SCI_UIFRAME) /* Frame style uicontrol */
@@ -113,7 +113,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   requestWidgetFocus(pParent);
                 }
             }
-          else if ( (sciGetEntityType (pParent) == SCI_FIGURE) || (sciGetEntityType (pParent) == SCI_UIMENU) ) /* PushButton creation */
+          else if ( (pParent != NULL) && ((sciGetEntityType (pParent) == SCI_FIGURE) || (sciGetEntityType (pParent) == SCI_UIMENU)) ) /* PushButton creation */
             {
               /* Create a new pushbutton */
               GraphicHandle=sciGetHandle(CreateUIControl(NULL));
@@ -164,8 +164,8 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   if (nbRow*nbCol == 1)
                     {
                       pParent = getFigureFromIndex((int)(*stk(stkAdr)));
-                      
-                      if ( (sciGetEntityType (pParent) != SCI_FIGURE) && !((sciGetEntityType (pParent) == SCI_UICONTROL) && (pUICONTROL_FEATURE(pParent)->style == SCI_UIFRAME)))
+
+                      if ( (pParent == NULL) || (sciGetEntityType (pParent) != SCI_FIGURE) && !((sciGetEntityType (pParent) == SCI_UICONTROL) && (pUICONTROL_FEATURE(pParent)->style == SCI_UIFRAME)))
                         {
                           Scierror(999,_("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"),fname,1,"Figure", "Frame uicontrol");
                           return FALSE;
@@ -195,7 +195,7 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   return FALSE;
                 }
               pParent=sciGetPointerFromHandle((long)*hstk(stkAdr));
-              if ( (sciGetEntityType (pParent) != SCI_FIGURE) && !((sciGetEntityType (pParent) == SCI_UICONTROL) && (pUICONTROL_FEATURE(pParent)->style == SCI_UIFRAME)))
+              if ( (pParent == NULL) || (sciGetEntityType (pParent) != SCI_FIGURE) && !((sciGetEntityType (pParent) == SCI_UICONTROL) && (pUICONTROL_FEATURE(pParent)->style == SCI_UIFRAME)))
                 {
                   Scierror(999,_("%s: Wrong type for input argument #%d: A '%s' or a '%s' handle expected.\n"),fname, 1, "Figure", "Frame uicontrol");
                   return FALSE;
