@@ -21,12 +21,12 @@ function varargout = fscanf(fil, frmt)
 	  error(999, msprintf(gettext("%s: Wrong number of output argument(s).\n"),"fscanf"));
 	end
 	
-	if type(fil)<>10 then
-		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"fscanf",1));
+	if type(fil)<>10 & type(fil)<> 1 then
+		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A file descriptor expected.\n"),"fscanf",1));
 	end
 	
 	if size(fil,"*")<>1 then
-		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"fscanf",1);
+		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A file descriptor expected.\n")),"fscanf",1);
 	end
 	
 	if type(frmt)<>10 then
@@ -35,6 +35,15 @@ function varargout = fscanf(fil, frmt)
 	
 	if size(frmt,"*")<>1 then
 		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"fscanf",2);
+	end
+	
+	
+	if type(fil) == 1 then 
+	  fids = file();
+	  if ~or(fids == fil) then
+	    error(999, msprintf(gettext("%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"),"fscanf", 1));
+	    return;
+	  end
 	end
 	
   v = 'v';

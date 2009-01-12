@@ -50,6 +50,7 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
 import org.scilab.modules.gui.utils.Debug;
+import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
@@ -82,6 +83,10 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	//Debug.DEBUG("SwingScilabCanvasImpl", "GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
 	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
 	//System.getProperties().list(System.err);
+	
+	// get maximum axes size
+	RenderingCapabilities.updateMaxCanvasSize(gl);
+	
 	tmpCanvas.getContext().release();
 	tmpFrame.remove(tmpCanvas);
 	tmpFrame.setVisible(false);
