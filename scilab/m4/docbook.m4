@@ -24,13 +24,13 @@ AC_ARG_WITH(docbook,
 	if test -z "$DOCBOOK_ROOT"; then
 		AC_MSG_ERROR([Could not find the Docbook root directory. If you have installed it on your system and we haven't been able to find it. Please report a bug])
 	fi
-	# xml.apache.org SVG Library
-	AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
+	# xml.apache.org SVG Library (under mandriva for example)
+	AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library])
 	BATIK=$PACKAGE_JAR_FILE
 
-	# Named differently under Mandriva
 	if test -z "$BATIK"; then
-		AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library])
+		# Other other distribs
+		AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
 		BATIK=$PACKAGE_JAR_FILE
 	fi
 	AC_SUBST(BATIK)
