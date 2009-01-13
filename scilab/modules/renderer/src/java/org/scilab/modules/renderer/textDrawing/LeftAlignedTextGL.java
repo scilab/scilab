@@ -41,7 +41,7 @@ public class LeftAlignedTextGL extends TextAlignementStrategy {
 	 */
 	public void drawTextContent(GL gl, SciTextRenderer renderer, StringMatrixGL text,
 			                    TextGrid positionMatrix, double angle) {
-		renderer.begin3DRendering();
+		renderer.begin3DRendering(gl);
 		
 		for (int i = 0; i < text.getNbRow(); i++) {
 			for (int j = 0; j < text.getNbCol(); j++) {
@@ -54,7 +54,7 @@ public class LeftAlignedTextGL extends TextAlignementStrategy {
 			}
 		}
 		
-		renderer.end3DRendering();
+		renderer.end3DRendering(gl);
 
 	}
 

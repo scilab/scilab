@@ -98,15 +98,27 @@ public class SciTextRenderer {
 	
 	/**
 	 * Begin a rendering process
+	 * @param gl OpenGL pipeline
 	 */
-	public void begin3DRendering() {
+	public void begin3DRendering(GL gl) {
 		renderer.begin3DRendering();
+		
+		// HACK HACK HACK for Intel drivers
+		// When text is rendered using normal texture mapping (no mipmap)
+		// the result is sometime totally fuzzy or thet text is simply not displayed.
+		// Apparently setting mipmap use solves the problem on this cards.
+		// Normally it should not break display on other GC, so let use it.
+		if (!useFractionalMetrics) {
+			gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST_MIPMAP_NEAREST);
+		}
+		// END OF HACK
 	}
 	
 	/**
-	 * Terminatr a drawing sequence
+	 * Terminate a drawing sequence
+	 * @param gl OpenGL pipeline
 	 */
-	public void end3DRendering() {
+	public void end3DRendering(GL gl) {
 		renderer.end3DRendering();
 	}
 	
