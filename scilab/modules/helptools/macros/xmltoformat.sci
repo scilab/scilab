@@ -1422,7 +1422,10 @@ tmpfiles = gsort(listfiles(directory + "/*"),"lr","i");
 
 for k=1:size(tmpfiles, "*")
   // Files to be ignored
-  if ~isempty(strindex(tmpfiles(k), "master_help.xml")) | ~isempty(strindex(tmpfiles(k), "addchapter.sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".last_")) | ~isempty(strindex(tmpfiles(k), "scilab_"+language+"_help")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
+  longpathval = getlongpathname(tmpfiles(k));
+  if ~isempty(strindex(longpathval, "master_help.xml")) | ~isempty(strindex(longpathval, "addchapter.sce")) | ..
+     ~isempty(strindex(longpathval, ".list_")) | ~isempty(strindex(longpathval, ".last_")) | ..
+     ~isempty(strindex(longpathval, "scilab_"+language+"_help")) | ~isempty(strindex(longpathval, ".jar")) then
     continue
   end
 
