@@ -93,18 +93,34 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	tmpFrame.dispose();
 	Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
 
-	// If we are running on a Linux with Intel video card and with DRI activated
-	// GLJPanel will not be supported, so we force switch to GLCanvas.
 	if (OS_NAME.contains("Linux")
 		&& GL_RENDERER.contains("Intel")
-		&& GL_RENDERER.contains("DRI"))
-	{
-	    noGLJPanel = true;
+		&& GL_RENDERER.contains("DRI")) {
+			noGLJPanel = true;
 	}
 	else {
-	    noGLJPanel = false;
+		if ( OS_NAME.contains("Windows") && OS_ARCH.equals("amd64") ) {
+			// bug 3919 : JOGL x64 doesn't like x64 remote desktop on Windows
+			// @TODO : bug report to JOGL
+			String REMOTEDESKTOP = System.getenv("SCILAB_MSTS_SESSION");
+			if (REMOTEDESKTOP != null) {
+				if ( REMOTEDESKTOP.equals("OK") ) {
+					noGLJPanel = true;
+				}
+				else {
+					noGLJPanel = false;
+				}
+			}
+			else {
+				noGLJPanel = false;
+			}
+		} 
+		else {
+		noGLJPanel = false;
+		}
 	}
-    }
+	
+	}
 
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
