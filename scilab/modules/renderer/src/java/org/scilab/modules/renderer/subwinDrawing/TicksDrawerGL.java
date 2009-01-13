@@ -479,7 +479,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		GL gl = getGL();
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with text rendering
 		
-		renderer.begin3DRendering();
+		renderer.begin3DRendering(gl);
 		
 		for (int i = 0; i < nbLabels; i++) {
 			
@@ -508,10 +508,10 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		}
 		
 		
-		renderer.end3DRendering();
+		renderer.end3DRendering(gl);
 		
 		if (isDisplayingExponents()) {
-			exponentRenderer.begin3DRendering();
+			exponentRenderer.begin3DRendering(gl);
 			for (int i = 0; i < nbLabels; i++) {
 				if (ticksPosPix[i] == null) { continue; }
 				double baseWidth = bboxWidth[i + nbLabels];
@@ -524,7 +524,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 										labelsExpPositions[i].getZ(),
 										0.0);
 			}
-			exponentRenderer.end3DRendering();
+			exponentRenderer.end3DRendering(gl);
 		}
 		
 		gl.glEnable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
@@ -562,7 +562,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Draw labels from precomuted positions
+	 * Draw labels from precomputed positions
 	 * @param renderer textrenderer used to draw text
 	 * @param exponentRenderer renderer used to draw labels if needed
 	 */
@@ -572,7 +572,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 		GL gl = getGL();
 		gl.glDisable(GL.GL_COLOR_LOGIC_OP); // does not work well with thext rendering
 		
-		renderer.begin3DRendering();
+		renderer.begin3DRendering(gl);
 		
 		for (int i = 0; i < nbLabels; i++) {
 			if (labelsPositions[i] == null) { continue; }
@@ -580,12 +580,11 @@ public class TicksDrawerGL extends DrawableObjectGL {
 					        labelsPositions[i].getZ(), 0.0);
 		}
 		
-		renderer.end3DRendering();
-		
+		renderer.end3DRendering(gl);
 		
 		
 		if (labelsExpPositions != null) {
-			exponentRenderer.begin3DRendering();
+			exponentRenderer.begin3DRendering(gl);
 			for (int i = 0; i < nbLabels; i++) {
 				if (labelsExpPositions[i] == null) { continue; }
 				exponentRenderer.draw3D(gl, getLabelExponent(i),
@@ -594,7 +593,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 								labelsExpPositions[i].getZ(),
 								0.0);
 			}
-			exponentRenderer.end3DRendering();
+			exponentRenderer.end3DRendering(gl);
 		}
 		
 		
