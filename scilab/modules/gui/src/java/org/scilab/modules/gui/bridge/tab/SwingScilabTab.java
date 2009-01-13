@@ -21,6 +21,8 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Iterator;
+import java.util.Set;
 
 import javax.swing.Action;
 import javax.swing.SwingUtilities;
@@ -39,6 +41,7 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.console.Console;
@@ -61,6 +64,8 @@ import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.UIElementMapper;
+import org.scilab.modules.gui.window.Window;
 
 /**
  * Swing implementation for Scilab tabs in GUIs
@@ -143,10 +148,27 @@ public class SwingScilabTab extends View implements SimpleTab {
      * Repaint it
      */
     public void repaint() {
-	super.repaint();
-	if (isActive()) {
-	    BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
-	}
+    	super.repaint();
+
+    	/** Update toolbar / menubar / infobar / title */
+    	Window parentWindow = (Window) UIElementMapper.getCorrespondingUIElement(parentWindowId);
+    	if (parentWindow != null) {
+    		Set<Dockable> dockables = ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).getDockingPort().getDockables();
+    	
+    		if (isShowing() || isActive() || dockables.size() == 1) {
+    			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
+    		} else {
+    			/** Try to find active tab */
+    			Iterator<Dockable> it =  dockables.iterator();
+    			while (it.hasNext()) {
+    				SwingScilabTab dock = (SwingScilabTab) it.next();
+    				if (((SwingScilabTab) dock).isActive()) {
+    					BarUpdater.updateBars(getParentWindowId(), dock.getMenuBar(), dock.getToolBar(), dock.getInfoBar(), dock.getName());
+    					return;
+    				}
+    			}
+    		}
+    	}
     }
 
     /**
