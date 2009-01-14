@@ -24,14 +24,15 @@
   <refnamediv>
     <refname>xs2emf</refname>
 
-    <refpurpose>send graphics to a file in EMF syntax (Only for
-    Windows)</refpurpose>
+    <refpurpose>send graphics to an EMF file (Only for
+    Windows).</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2emf(win_num,filen [,orientation])</synopsis>
+    <synopsis>xs2emf(win_num, file_name [,orientation])
+xs2emf(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -42,15 +43,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar.</para>
+          <para>integer, id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>file_name</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
 
@@ -58,8 +67,7 @@
         <term>orientation</term>
 
         <listitem>
-          <para>optional character, with possible values 'p' (portrait) or 'l'
-          (landscape). The default value is 'p'.</para>
+          <para>optional character, with possible values 'portrait' or 'landscape'. The default value is 'portrait'.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -68,12 +76,10 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2emf</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in EMF
-    format.</para>
+    <para><literal>xs2emf</literal> exports the display of a graphic window into an EMF file.</para>
 
-    <para>For format EMF we create an EPS file which will be convert into EMF
-    format by pstoedit.</para>
+    <para>The export file is obtained by creating an EPS file and converting it into EMF
+    format using pstoedit.</para>
 
   </refsection>
 
@@ -84,6 +90,7 @@
     plot2d()
     //EMF export
     xs2emf(0,'foo.emf')
+    xs2emf(gcf(),'foo.emf')
   </programlisting>
   </refsection>
 
