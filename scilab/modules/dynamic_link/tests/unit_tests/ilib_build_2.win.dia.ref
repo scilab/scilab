@@ -1,9 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
+// Copyright (C) 2009 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 if MSDOS then
   TMP_OS_DIR = getenv('TMP','err');
   if (TMP_OS_DIR == 'err') then bugmes();quit;end;
@@ -19,10 +22,10 @@ if ~isdir(TMP_DIR) then bugmes();quit;end;
 //create the procedure files
 f1=['void c_sum(double *a,double *b, double *sum)'
     '{*sum=*a + *b;}'];
-mputl(f1,TMP_DIR+filesep()+'c_sum.c')
+mputl(f1,TMP_DIR+filesep()+'c_sum.c');
 f2=['void c_sub(double *a,double *b, double *sub)'
     '{*sub=*a - *b;}'];
-mputl(f2,TMP_DIR+filesep()+'c_sub.c')
+mputl(f2,TMP_DIR+filesep()+'c_sub.c');
 //creating the interface file
 i=['#include ""stack-c.h""'
    'extern void c_sum(double *a,double *b, double *sum);'
@@ -91,7 +94,7 @@ exec loader.sce
  
 foo_path = get_file_path('loader.sce');
  
-list_functions = [ 'c_sum';
+list_functions = [             'c_sum';
             'c_sub';
 ];
  
