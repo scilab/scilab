@@ -64,12 +64,12 @@ diagrammes de démonstration.
       </listitem>
       <listitem>
         <para>
-          <link linkend="BOUNCEXY">BOUNCEXY - Afficheur de baballes</link>
+          <link linkend="BOUNCEXY">BOUNCEXY - Afficheur de balles</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="BPLATFORM">BPLATFORM - Afficheur d'une baballe sur un plateau</link>
+          <link linkend="BPLATFORM">BPLATFORM - Afficheur d'une balle sur un plateau</link>
         </para>
       </listitem>
     </itemizedlist>
