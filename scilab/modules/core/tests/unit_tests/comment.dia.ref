@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //for version after 3.0 the comments are no more handled by a preprocessor,
 //but by the parser itself
 a=1//test
@@ -225,7 +231,7 @@ t=['function a=foo'
   '    a=a+k; //hhhhh'
   '  end //loop end'
   'endfunction'];
-mputl(t,TMPDIR+'/foo.sci')
+mputl(t,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci','n')
 a=foo();
 if a<>15 then bugmes();quit;end
@@ -246,7 +252,7 @@ t=['//sdffgfgfgggg'
    '    a=a+k; //hhhhh'
    '  end //loop end'
    'endfunction'];
-mputl(t,TMPDIR+'/foo.sci')
+mputl(t,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci','n')
 a=foo();
 if a<>15 then bugmes();quit;end

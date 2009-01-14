@@ -15,7 +15,6 @@ c
       integer retu(6),comma,eol,topk
       logical getsmat,checklhs,checkrhs,checkval
       integer iadr,sadr
-c
 c     
       data retu/27,14,29,30,27,23/,comma/52/,eol/99/
 c     
