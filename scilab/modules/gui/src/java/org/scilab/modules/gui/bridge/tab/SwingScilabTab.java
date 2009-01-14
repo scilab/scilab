@@ -155,7 +155,7 @@ public class SwingScilabTab extends View implements SimpleTab {
     	if (parentWindow != null) {
     		Set<Dockable> dockables = ((SwingScilabWindow) parentWindow.getAsSimpleWindow()).getDockingPort().getDockables();
     	
-    		if (isShowing() || isActive() || dockables.size() == 1) {
+    		if ((isShowing() && dockables.size() == 1) || isActive() || dockables.size() == 1) {
     			BarUpdater.updateBars(getParentWindowId(), getMenuBar(), getToolBar(), getInfoBar(), getName());
     		} else {
     			/** Try to find active tab */
