@@ -159,7 +159,7 @@ if n<>4 then pause,end
 
 //catched error in a exec in a try in a compiled function
 clear  foo
-mputl('r=a*z',TMPDIR+'/ev')
+mputl('r=a*z',TMPDIR+'/ev');
 function r=foo()
 r=%f;a=1;
 try
