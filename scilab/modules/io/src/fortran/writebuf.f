@@ -12,7 +12,7 @@ c     ====================================
       subroutine writebufio(buffer,line)
       
       character*(*) buffer
-      character*(*) line
+      integer line
       
       write(buffer(1:4),'(i4)') line
       
