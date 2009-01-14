@@ -26,16 +26,13 @@ Cptr = taucs_chfact(A);
 // plot the initial matrix
 xset("window",0) ; xbasc();
 PlotSparse(A) ; xtitle("Initial matrix A (bcsstk24.rsa)");
-PolylineLineDrawerJoGL::drawPolyline: No more memory.
 // plot the permuted matrix
 B = A(p,p);
 xset("window",1) ; xbasc();
 PlotSparse(B) ; xtitle("Permuted matrix B = A(p,p)");
-PolylineLineDrawerJoGL::drawPolyline: No more memory.
 // plot the upper triangle Ct
 xset("window",2) ; xbasc();
 PlotSparse(Ct) ; xtitle("The pattern of Ct (A(p,p) = C*Ct)");
-PolylineLineDrawerJoGL::drawPolyline: No more memory.
 // retrieve cnz
 [OK, n, cnz] = taucs_chinfo(Cptr);
 // cnz is superior to the realnumber of non zeros elements of C :
