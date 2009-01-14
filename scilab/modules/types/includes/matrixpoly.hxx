@@ -42,7 +42,10 @@ namespace types
 		Double* 			coef_get(void);
 		void					coef_set(Double *_pCoef);
 
-		std::string		toString(int _iPrecison, int _iLineLen);
+		string				toString(int _iPrecison, int _iLineLen);
+		string				GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);
+		string				GetColString(int _iPrecison, int _iLineLen, bool _bComplex);
+		string				GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex);
 
 
 

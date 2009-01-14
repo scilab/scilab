@@ -380,8 +380,17 @@ namespace types
 
 				Add_Space(&ostemp2, piIndexExp[j] - ostemp2.str().size());
 				if(isZero(_pdblVal[j]) == false)
+				{
 					ostemp2 << j;
+				}
 			}
+
+			if(ostemp.str() == "  ")
+			{
+				ostemp << "  0";
+				Add_Space(&ostemp2, ostemp.str().size());
+			}
+
 			_pListExp->push_back(ostemp2.str());
 			_pListCoef->push_back(ostemp.str());
 		}
@@ -391,3 +400,4 @@ namespace types
 	}
 }
 
+ 

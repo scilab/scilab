@@ -159,7 +159,7 @@ namespace types
 			if(isComplex() == false)
 			{
 				m_pdblImg = new double[m_iSize];
-				//memset(m_pdblImg, 0x00, sizeof(double) * m_iSize);
+				memset(m_pdblImg, 0x00, sizeof(double) * m_iSize);
 				m_bComplex = true;
 			}
 		}

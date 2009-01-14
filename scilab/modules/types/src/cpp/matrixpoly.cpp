@@ -13,6 +13,7 @@
 #include <sstream>
 #include "matrixpoly.hxx"
 #include "core_math.h"
+#include "tostring_common.hxx"
 
 using namespace std;
 
@@ -325,20 +326,20 @@ namespace types
 
 		list<string>::const_iterator it_Exp;
 		list<string>::const_iterator it_Coef;
+		list<string> listExpR, listCoefR, listExpI, listCoefI;
 
 		if(m_iRows == 1 && m_iCols == 1)
 		{
-			list<string> listExpR, listCoefR, listExpI, listCoefI;
 			if(m_bComplex)
 			{
-				ostr << "real part" << endl << endl << endl;
+				ostr << "Real part" << endl << endl << endl;
 				poly_get(0)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
 				for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
 				{
 					ostr << *it_Exp << endl << *it_Coef << endl;
 				}
 
-				ostr << "imaginary part" << endl << endl << endl ;
+				ostr << "Imaginary part" << endl << endl << endl ;
 				poly_get(0)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpI, &listCoefI);
 				for(it_Coef = listCoefI.begin(), it_Exp = listExpI.begin() ; it_Coef != listCoefI.end() ; it_Coef++,it_Exp++)
 				{
@@ -357,71 +358,370 @@ namespace types
 		}
 		else if(m_iRows == 1)
 		{
-			list<string> listExpR, listCoefR, listExpI, listCoefI;
 			if(m_bComplex)
 			{
+				ostr << "Real part" << endl << endl;
+				ostr << GetRowString(_iPrecison, _iLineLen, false);
+				ostr << "Imaginary part" << endl << endl;
+				ostr << GetRowString(_iPrecison, _iLineLen, true);
 			}
 			else
 			{
-				int iLen				= 0;
-				int iLastFlush	= -1;
-				for(int i = 0 ; i < m_iSize ; i++)
-				{
-					string szExp, szCoef;
-					poly_get(i)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
-					if(iLen != 0 && (int)(iLen + listCoefR.front().size()) > _iLineLen)
-					{//flush strean
-						if(i == iLastFlush + 1)
-						{
-							ostr << endl << "         column " << i << endl << endl;
-						}
-						else
-						{
-							ostr << endl << "         column " << iLastFlush + 2 /* 2 is better than 1, no ? */<< " to " << i + 1 << endl << endl;
-						}
-
-						iLastFlush	= i;
-						iLen				= 0;
-						ostr << osExp.str() << endl;
-						ostr << osCoef.str() << endl;
-						osExp.str("\x00");
-						osCoef.str("\x00");
-						listCoefR.clear();
-					}
-
-					for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
-					{
-						osExp << *it_Exp;
-						osCoef << *it_Coef;
-					}
-
-					iLen = osExp.str().size();
-				}
-
-				if(iLastFlush != 0)
-				{//last line of a multiline output
-					if(iLastFlush + 1 == m_iSize - 1)
-					{
-						ostr << endl << "         column " << m_iSize << endl << endl;
-					}
-					else
-					{
-						ostr << endl << "         column " << iLastFlush + 1 << " to " << m_iSize << endl << endl;
-					}
-				}
-
-				ostr << osExp.str() << endl;
-				ostr << osCoef.str() << endl;
-				listCoefR.clear();
+				ostr << GetRowString(_iPrecison, _iLineLen, false);
 			}
 		}
 		else if(m_iCols == 1)
 		{
+			if(m_bComplex)
+			{
+				ostr << "Real part" << endl << endl;
+				ostr << GetColString(_iPrecison, _iLineLen, false);
+				ostr << "Imaginary part" << endl << endl;
+				ostr << GetColString(_iPrecison, _iLineLen, true);
+			}
+			else
+			{
+				ostr << GetColString(_iPrecison, _iLineLen, false);
+			}
+		}
+		else
+		{//Matrix
+			if(m_bComplex)
+			{
+				ostr << "Real part" << endl << endl;
+				ostr << GetMatrixString(_iPrecison, _iLineLen, false);
+				ostr << "Imaginary part" << endl << endl;
+				ostr << GetMatrixString(_iPrecison, _iLineLen, true);
+			}
+			else
+			{
+				ostr << GetMatrixString(_iPrecison, _iLineLen, false);
+			}
+		}
+		ostr << endl;
+		return ostr.str();
+	}
+
+	string MatrixPoly::GetMatrixString(int _iPrecison, int _iLineLen, bool _bComplex)
+	{
+		ostringstream ostr;
+		ostringstream osExp;
+		ostringstream osCoef;
+
+		list<string>::const_iterator it_Exp;
+		list<string>::const_iterator it_Coef;
+		list<string> listExpR, listCoefR, listExpI, listCoefI;
+
+		int iLen				= 0;
+		int iLastFlush	= 0;
+		int iLastCol		= 0;
+
+		string szExp, szCoef;
+
+		int *piMaxLen = new int[m_iCols];
+		memset(piMaxLen, 0x00, sizeof(int) * m_iCols);
+
+		//find the largest row for each col
+		for(int iCols1 = 0 ; iCols1 < m_iCols ; iCols1++)
+		{
+			for(int iRows1 = 0 ; iRows1 < m_iRows ; iRows1++)
+			{
+				int iLen = 0;
+				if(_bComplex)
+				{
+					poly_get(iRows1, iCols1)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+				}
+				else
+				{
+					poly_get(iRows1, iCols1)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+				}
+
+				if(listExpR.size() > 1)
+				{
+					for(it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; it_Exp++)
+					{
+						iLen += (*it_Exp).size();
+					}
+				}
+				else
+				{
+					if(listExpR.front().size() != 0)
+					{
+						iLen = (int)listExpR.front().size();
+					}
+					else
+					{
+						iLen = (int)listCoefR.front().size();
+					}
+				}
+				piMaxLen[iCols1] = Min(Max(piMaxLen[iCols1], iLen), _iLineLen);
+				listExpR.clear();
+				listCoefR.clear();
+			}
+
+			//We know the length of the column
+
+			if((int)(iLen + piMaxLen[iCols1]) >= _iLineLen && iLen != 0)
+			{//if the max length exceeded
+				ostringstream ostemp;
+				for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
+				{
+					bool bMultiLine = false;
+					for(int iCols2 = iLastCol ; iCols2 < iCols1; iCols2++)
+					{
+						if(_bComplex)
+						{
+							poly_get(iRows2, iCols2)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+						}
+						else
+						{
+							poly_get(iRows2, iCols2)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+						}
+
+						if(listCoefR.size() > 1)
+						{
+							for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+							{
+								osExp << *it_Exp;
+								Add_Space(&osExp, piMaxLen[iCols2] - (*it_Exp).size());
+								osExp << endl;
+
+								osExp << *it_Coef;
+								Add_Space(&osExp, piMaxLen[iCols2] - (*it_Coef).size());
+								osExp << endl;
+								bMultiLine = true;
+							}
+						}
+						else
+						{
+							osExp << listExpR.front();
+							Add_Space(&osExp, piMaxLen[iCols2] - listExpR.front().size());
+							osCoef << listCoefR.front();
+							Add_Space(&osCoef, piMaxLen[iCols2] - listCoefR.front().size());
+							bMultiLine = false;
+						}
+						listExpR.clear();
+						listCoefR.clear();
+					}
+
+					if(bMultiLine == false)
+					{
+						osExp << endl;
+						osCoef << endl;
+					}
+					ostemp << osExp.str();
+					ostemp << osCoef.str() << endl;
+					osExp.str("\x00");
+					osCoef.str("\x00");
+
+				}
+				iLen	= 0;
+
+				//write "column x to y"
+				if(iLastCol + 1 == iCols1)
+				{
+					ostr << endl << "         Column " << iCols1 << endl << endl;
+				}
+				else
+				{
+					ostr << endl << "         Column " << iLastCol + 1 << " to " << iCols1 << endl << endl;
+				}
+
+				ostr << ostemp.str() << endl;
+
+				iLastCol = iCols1;
+			}
+			else //if((int)(iLen + piMaxLen[iCols1]) <= _iLineLen)
+			{
+				iLen += piMaxLen[iCols1];
+			}
+		}//for(int iCols1 = 0 ; iCols1 < m_iCols ; iCols1++)
+
+		if(iLastCol + 1 == m_iCols)
+		{
+			ostr << endl << "         Column " << m_iCols << endl << endl;
 		}
 		else
 		{
+			ostr << endl << "         Column " << iLastCol + 1 << " to " << m_iCols << endl << endl;
+		}
+		//print the end
+		for(int iRows2 = 0 ; iRows2 < m_iRows ; iRows2++)
+		{
+			for(int iCols2 = iLastCol ; iCols2 < m_iCols ; iCols2++)
+			{
+				if(_bComplex)
+				{
+					poly_get(iRows2, iCols2)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+				}
+				else
+				{
+					poly_get(iRows2, iCols2)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+				}
+
+				if(listCoefR.size() > 1)
+				{
+					for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+					{//normally useless ...
+						osExp << *it_Exp;
+						int titi = piMaxLen[iCols2] - (*it_Exp).size();
+						Add_Space(&osExp, piMaxLen[iCols2] - (*it_Exp).size());
+						osExp << endl;
+
+						osExp << *it_Coef;
+						Add_Space(&osExp, piMaxLen[iCols2] - (*it_Coef).size());
+						osExp << endl;
+					}
+				}
+				else
+				{
+					if(listExpR.front().size() != 0)
+					{
+						osExp << listExpR.front();
+					}
+
+					Add_Space(&osExp, piMaxLen[iCols2] - listExpR.front().size());
+					osCoef << listCoefR.front();
+					Add_Space(&osCoef, piMaxLen[iCols2] - listCoefR.front().size());
+				}
+				listExpR.clear();
+				listCoefR.clear();
+			}
+
+			if(osExp.str().size() != 0)
+			{
+				osExp << endl;
+			}
+			osCoef << endl;
+			ostr << osExp.str();
+			ostr << osCoef.str() << endl;
+			osExp.str("\x00");
+			osCoef.str("\x00");
 		}
 		return ostr.str();
+	}
 
+	string MatrixPoly::GetRowString(int _iPrecison, int _iLineLen, bool _bComplex)
+	{
+		int iLen				= 0;
+		int iLastFlush	= 0;
+
+		ostringstream ostr;
+		ostringstream osExp;
+		ostringstream osCoef;
+
+		list<string>::const_iterator it_Exp;
+		list<string>::const_iterator it_Coef;
+		list<string> listExpR, listCoefR, listExpI, listCoefI;
+
+		for(int i = 0 ; i < m_iSize ; i++)
+		{
+			string szExp, szCoef;
+
+			if(_bComplex)
+			{
+				poly_get(i)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+			}
+			else
+			{
+				poly_get(i)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+			}
+			if(iLen != 0 && (int)(iLen + listExpR.front().size()) > _iLineLen)
+			{//flush strean
+				if(i == iLastFlush + 1)
+				{
+					ostr << endl << "         Column " << i << endl << endl;
+				}
+				else
+				{
+					ostr << endl << "         Column " << iLastFlush + 1 /* 2 is better than 1, no ? */<< " to " << i << endl << endl;
+				}
+
+				iLastFlush	= i;
+				iLen				= 0;
+				ostr << osExp.str() << endl;
+				ostr << osCoef.str() << endl;
+				osExp.str("\x00");
+				osCoef.str("\x00");
+			}
+
+			if(listCoefR.size() > 1)
+			{
+				for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+				{
+					osExp << *it_Exp << endl << *it_Coef << endl;
+				}
+			}
+			else
+			{
+				osExp << listExpR.front();
+				osCoef << listCoefR.front();
+			}
+
+			if(osExp.str().size() != 0)
+			{
+				iLen = osExp.str().size();
+			}
+			else
+			{
+				iLen = osCoef.str().size();
+			}
+
+			listCoefR.clear();
+			listExpR.clear();
+		}
+
+		if(iLastFlush != 0)
+		{//last line of a multiline output
+			if(iLastFlush + 1 == m_iSize)
+			{
+				ostr << endl << "         Column " << m_iSize << endl << endl;
+			}
+			else
+			{
+				ostr << endl << "         Column " << iLastFlush + 1 << " to " << m_iSize << endl << endl;
+			}
+		}
+		ostr << osExp.str() << endl;
+		ostr << osCoef.str() << endl;
+		return ostr.str();
+	}
+
+	string MatrixPoly::GetColString(int _iPrecison, int _iLineLen, bool _bComplex)
+	{
+		int iLen				= 0;
+		int iLastFlush	= 0;
+
+		ostringstream ostr;
+		ostringstream osExp;
+		ostringstream osCoef;
+
+		list<string>::const_iterator it_Exp;
+		list<string>::const_iterator it_Coef;
+		list<string> listExpR, listCoefR, listExpI, listCoefI;
+
+		for(int i = 0 ; i < m_iSize ; i++)
+		{
+			string szExp, szCoef;
+
+			if(_bComplex)
+			{
+				poly_get(i)->toStringImg(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+			}
+			else
+			{
+				poly_get(i)->toStringReal(_iPrecison, _iLineLen, var_get(), &listExpR, &listCoefR);
+			}
+
+			for(it_Coef = listCoefR.begin(), it_Exp = listExpR.begin() ; it_Coef != listCoefR.end() ; it_Coef++,it_Exp++)
+			{
+				ostr << *it_Exp << endl << *it_Coef << endl;
+			}
+			ostr << endl;
+			listCoefR.clear();
+			listExpR.clear();
+		}
+		return ostr.str();
 	}
 }
+

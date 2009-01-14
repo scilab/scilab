@@ -8,6 +8,6 @@ if(@ARGV == 1)
 
 for( $i = 1 ; $i <= $MAX ; $i++)
 {
-    print "v".$i."=".$i;
+    print "v".$i."=".$i.";";
     print "\n";
 }
