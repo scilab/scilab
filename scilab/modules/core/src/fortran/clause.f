@@ -12,7 +12,7 @@ c     ======================================================================
 c     gestion des structures de controle
 c     ======================================================================
       include 'stack.h'
-      integer while(nsiz),else(nsiz),ennd(nsiz)
+      integer while(nsiz),iff(nsiz),else(nsiz),ennd(nsiz)
       integer do(nsiz),thenn(nsiz),cas(nsiz),sel(nsiz)
       integer elsif(nsiz)
       integer semi,equal,eol,blank,comma,name,cmt
@@ -26,6 +26,7 @@ c     ======================================================================
       data lparen/41/,rparen/42/
       data do/673716237,nz1*673720360/, else/236721422,nz1*673720360/
       data ennd/671946510,nz1*673720360/
+      data iff/673713938,nz1*673720360/
       data thenn/386797853,nz1*673720360/
       data while/353505568,673720334,nz2*673720360/
       data cas/236718604,nz1*673720360/
@@ -433,6 +434,7 @@ c     .  skip remaining instructions up to catch or end keywords
          errpt=ids(5,pt)
          sym=ids(6,pt)/10000
          lct(4)=ids(6,pt)-10000*sym-100
+         top=toperr
          if(eqid(syn,ennd)) then
 c     .     no catch keyword  "try catch" finished
             goto 76
@@ -441,18 +443,19 @@ c     .  execute catch  instructions
          icall=7
 c     * call* parse
          return
-      endif
-
-      if(comp(1).eq.0) then
-         errct=ids(2,pt)
-         err2=ids(3,pt)
-         err1=ids(4,pt)
-         errpt=ids(5,pt)
-         sym=ids(6,pt)/10000
-         lct(4)=ids(6,pt)-10000*sym-100
       else
-         call compcl(3)
-         if(err.gt.0) return
+c     .  end of try without error (or end of catch)
+         if(comp(1).eq.0) then
+            errct=ids(2,pt)
+            err2=ids(3,pt)
+            err1=ids(4,pt)
+            errpt=ids(5,pt)
+            sym=ids(6,pt)/10000
+            lct(4)=ids(6,pt)-10000*sym-100
+         else
+            call compcl(3)
+            if(err.gt.0) return
+         endif
       endif
  76   pt=pt-1
       icall=7

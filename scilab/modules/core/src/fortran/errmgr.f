@@ -73,9 +73,17 @@ c     .     error has occurred in comp
                goto 20
             endif
          elseif(rstk(p).eq.612) then
-c        .  take into account the for loop variable
-            toperr=ids(4,p)
-            goto 20
+c     .      error has occurred in a for called by a compiled macro
+            if (catch.ne.0) then
+c     .        under errcatch('continue') or errcatch('pause') mode: let the loop continue
+               pt0=p
+               errtyp=0
+            else
+c     .        under try or execstr(...,'errcatch'): terminates the loop
+c     .        take into account the for loop variable (in a compiled macro)
+               toperr=ids(4,p)
+               goto 20
+            endif
          else
             goto 20
          endif
