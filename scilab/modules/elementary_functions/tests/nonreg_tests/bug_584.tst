@@ -23,7 +23,7 @@
 // Copyright INRIA
 // Date : 23 Mar 2005
 
-format('e',32);
+format('e',25);
 result    = logspace( 3, 3, 1 );
 trueValue = 1.000000000000000000E+03;
 

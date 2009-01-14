@@ -22,7 +22,7 @@ IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void)
 	{
 		case VER_PLATFORM_WIN32_NT:
 
-			if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 8 )
+			if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
 			{
 				if( osvi.wProductType == VER_NT_WORKSTATION ) 
 				{
