@@ -9,15 +9,24 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function h =  findobj(propertyName, propertyValue)
 
-currentFig = gcf();
+rhs = argn(2);
+if rhs<>2 then
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "findobj", 2));
+  return
+end
 
 // Return value
 h = []
 
-propertyName = convstr(propertyName,"l");
-
 // Get all opened figures
 figureIds = winsid();
+if isempty(figureIds) then
+  return
+end
+
+currentFig = gcf();
+
+propertyName = convstr(propertyName,"l");
 
 // Iterate over all figures
 for figureindex = 1:size(figureIds,2)
