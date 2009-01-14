@@ -12,6 +12,9 @@
 //
 // <-- Short Description -->
 //   incorrect clause uncorrectly handled under errcatch
+
+// <-- JVM NOT MANDATORY -->
+
 mkdir(TMPDIR,'b2072');
 
 txt=['function test()'
@@ -22,12 +25,12 @@ txt=['function test()'
      '   a=7;'
      'end'
      'endfunction']
-mputl(txt,TMPDIR+'/b2072/test.sci')
+mputl(txt,TMPDIR+'/b2072/test.sci');
 txt=['function testOK()'
      'a=3;'
      '   end'
      'endfunction   ']
-mputl(txt,TMPDIR+'/b2072/testOK.sci')
+mputl(txt,TMPDIR+'/b2072/testOK.sci');
 
 if execstr('exec(TMPDIR+''/b2072/test.sci'');','errcatch')<>34 then pause,end
 if execstr('exec(TMPDIR+''/b2072/testOK.sci'');','errcatch')<>34 then pause,end

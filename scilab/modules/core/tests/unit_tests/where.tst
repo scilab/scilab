@@ -8,4 +8,4 @@
 //where
 deff("[a,b]=foo()","[a,b]=where()")
 [a,b]=foo();
-if a(1)<>1|b(1)<>"foo" then pause,end
+if a(1)<>2|b(1)<>"foo" then pause,end
