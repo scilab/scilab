@@ -66,9 +66,9 @@ xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="e
       <member>
         <link linkend="asecd">asecd</link>
       </member>
-      <member>
+      <!--<member>
         <link linkend="csgn">csgn</link>
-      </member>
+      </member>-->
     </simplelist>
   </refsection>
    <refsection>
