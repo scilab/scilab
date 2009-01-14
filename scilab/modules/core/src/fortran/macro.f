@@ -1,14 +1,15 @@
-c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
-c 
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c     Copyright (C) INRIA
+c     
+c     This file must be used under the terms of the CeCILL.
+c     This source file is licensed as described in the file COPYING,
+c     which
+c     you should have received as part of this distribution.  The terms
+c     are also available at    
+c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine macro
-c
+c     
       include 'stack.h'
 c     
       parameter (nz2=nsiz-2,nz3=nsiz-3)
@@ -23,10 +24,10 @@ c
       data blank/40/,eol/99/
       data varargin/169544223,387059739,nz2*673720360/
       data varargout/169544223,504893467,673720349,nz3*673720360/
-c
-c
+c     
+c     
       iadr(l)=l+l-1
-c
+c     
       r=rstk(pt)
       if (ddt .eq. 4) then
          write(buf(1:18),'(2i4,i6)') pt,r,fin
@@ -59,7 +60,7 @@ c     an execstr
          mlhs=0
          l=ilk+5+istk(ilk+1)*istk(ilk+2)
          lf=l+istk(ilk+4+istk(ilk+1)*istk(ilk+2))-1
-         last=bbot
+         last=isiz
          if(macr.ne.0.or.paus.ne.0) then
             k=lpt(1)-(13+nsiz)
             last=lin(k+5)
@@ -78,10 +79,10 @@ c     .        function without argument list
             else
                call putid(id,ids(1,pt))
             endif
-        endif
+         endif
 
          if(comp(1).eq.0) then
-c     .     find the index of the macro in the stack et memorize it for breakpoints
+c     .    find the index of the macro in the stack et memorize it for breakpoints
             wmacn=scivarindex(fin)
          endif
 
@@ -198,7 +199,7 @@ c     and not 0
       irhs=max(rhs,0)
       if(comp(1).eq.0.and..not.exec) then
          if( mrhs.gt.0) then
-             if(vargin.and.irhs.ge.mrhs-1) then
+            if(vargin.and.irhs.ge.mrhs-1) then
                call mklist(irhs-mrhs+1)
                infstk(top)=0
                irhs=mrhs
@@ -241,7 +242,7 @@ c     *call* run
       else
          lct(8)=1
          rstk(pt)=502
-c         pstk(pt)=0
+c     pstk(pt)=0
          icall=7
          sym=eol
 c     *call* parse
@@ -256,19 +257,28 @@ c     handle errcatch
       if(errct.ne.0.and.errpt.ge.pt.and..not.exec) then
 c     .  looking for a previous execstr(....,'errcatch') see intexecstr
          p=pt
- 401     if (rstk(p).eq.903)  goto 402
-         p=p-1
-         if (p.gt.0) goto 401
- 402     err1=0
-         err2=0
-         catch=0
-         errct=0
-         errpt=0
-         if (p.gt.0) then
-            if (ids(1,p).eq.1) errct=-900001
+ 401     continue
+         if (rstk(p).eq.903) then
+C     .     execstr(....,'errcatch') level found
+            err1=0
+            err2=0
+            catch=0
+            errct=0
+            errpt=0
+            if (p.gt.0) then
+               if (ids(1,p).eq.1) errct=-900001
+               errpt=p
+            endif
+         elseif (rstk(p).eq.808) then
+C     .     try level found
+            errct=-900001
             errpt=p
+         elseif (p-1.gt.0) then
+            p=p-1
+            goto 401
          endif
       endif
+      
 
       lhsr=lhs
 c     
@@ -284,7 +294,7 @@ c     restaure  pointers
       char1=lin(k+10)
       sym=lin(k+11)
       call putid(syn,lin(k+12))
-c
+c     
       if (err1.gt.0.and.catch.eq.0) then
          top=toperr
          toperr=ids(6,pt)
@@ -294,7 +304,7 @@ c
       endif
 
       toperr=ids(6,pt)
-   
+      
 c     
       if(comp(1).ne.0) then
          comp(2)=comp(1)
@@ -337,7 +347,7 @@ c     .              call error only if it has not been already called
             rhs=mrhs
          endif
          if(lhs1.lt.lhs) then
-c    .   extract required output variables out of varargout
+c     .   extract required output variables out of varargout
             nv=lhs-mlhs+1
             call stackgl(istk(l0),nv)
             if(err.gt.0) return
@@ -395,11 +405,14 @@ c     .      reset lpt(1) for error recovery
             do 45 i=1,lhsr
                call stackp(ids(1,ptr),0)
                if(err.gt.0) return
+               if(err1.gt.0) then
+                  goto 48
+               endif
                ptr=ptr-1
  45         continue
             lpt(1)=lpt1s
          endif
-c
+c     
 c     .  remove top variables relatives to for or select if any
          top=top-count
 c     
@@ -458,9 +471,9 @@ c     current macro context
 
       lin(k+6) = lct(4)
 c     following lines allows to distinguish between macro (<>0) and
-c      exec (=0)
+c     exec (=0)
       lin(k+7)=0
-c
+c     
       lin(k+10)=char1
       lin(k+11)=sym
       lin(k+12+nsiz)=lct(8)
