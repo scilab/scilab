@@ -286,6 +286,7 @@ voidrequestWidgetFocusjintID=NULL;
 voidrequestFrameFocusjintID=NULL; 
 voidraiseWindowjintID=NULL; 
 voiduseCanvasForDisplayjbooleanID=NULL; 
+jbooleanuseCanvasForDisplayID=NULL; 
 
 
 }
@@ -491,6 +492,7 @@ voidrequestWidgetFocusjintID=NULL;
 voidrequestFrameFocusjintID=NULL; 
 voidraiseWindowjintID=NULL; 
 voiduseCanvasForDisplayjbooleanID=NULL; 
+jbooleanuseCanvasForDisplayID=NULL; 
 
 
 }
@@ -5095,6 +5097,29 @@ jboolean onOrOff_ = ((bool) onOrOff ? JNI_TRUE : JNI_FALSE);
 if (curEnv->ExceptionCheck()) {
 curEnv->ExceptionDescribe() ;
 }
+
+}
+
+bool CallScilabBridge::useCanvasForDisplay (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread((void **) &curEnv, NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jbooleanuseCanvasForDisplayID = curEnv->GetStaticMethodID(cls, "useCanvasForDisplay", "()Z" ) ;
+if (jbooleanuseCanvasForDisplayID == NULL) {
+std::cerr << "Could not access to the method " << "useCanvasForDisplay" << std::endl;
+curEnv->ExceptionDescribe();
+exit(EXIT_FAILURE);
+}
+
+                        jboolean res =  (jboolean) curEnv->CallStaticBooleanMethod(cls, jbooleanuseCanvasForDisplayID );
+
+if (curEnv->ExceptionCheck()) {
+curEnv->ExceptionDescribe() ;
+}
+
+return (res == JNI_TRUE);
 
 }
 

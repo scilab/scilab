@@ -638,5 +638,6 @@
 	<method name="useCanvasForDisplay" returnType="void" modifier="static">
           <parameter type="boolean" name="onOrOff"/>
         </method>      
+	<method name="useCanvasForDisplay" returnType="boolean" modifier="static"/>
   </object>
 </package>
