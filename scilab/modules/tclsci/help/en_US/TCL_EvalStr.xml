@@ -2,7 +2,7 @@
   <info>
     <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
   </info>
-  <refnamediv xml:id="TCL_EvalStr">
+  <refnamediv>
     <refname>TCL_EvalStr</refname>
     <refpurpose>Evaluate a string whithin the Tcl/Tk interpreter</refpurpose>
   </refnamediv>
