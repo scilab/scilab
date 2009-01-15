@@ -184,6 +184,7 @@ namespace sciGraphics
     sciInitFontSize(m_pNames, sciGetFontSize(m_pDrawed));
     sciInitFontForeground(m_pNames, sciGetFontForeground(m_pDrawed));
     sciInitFontBackground(m_pNames, sciGetBackground(m_pDrawed));
+		sciSetFontStyle(m_pNames, sciGetFontStyle(m_pDrawed));
     sciSetFontOrientation(m_pNames, 0.0); // always horizontal
     sciInitIsClipping(m_pNames, sciGetIsClipping(m_pDrawed));
     sciSetClipping(m_pNames, sciGetClipping(m_pDrawed));

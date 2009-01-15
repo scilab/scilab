@@ -177,3 +177,4 @@ sciGetHandle
 sciZoomObject
 unzoomSubwin
 sciIsAutomaticallyRedrawn
+sciSetFontStyle
