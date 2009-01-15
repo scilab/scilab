@@ -18,28 +18,31 @@
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getcwd)(char *fname,unsigned long fname_len)
 {
-	int ierr=0;
-	int lpath=0;
-	char *path=NULL;
-	char *utfPath=NULL;
+	int ierr = 0;
+	int lpath = 0;
+	char *path = NULL;
 
-	Rhs=Max(Rhs,0);
+	Rhs = Max(Rhs,0);
 
 	CheckRhs(0,0);
 	CheckLhs(0,1);
 
 	scigetcwd(&path,&lpath,&ierr);
-    utfPath=localeToUTF(path);
+
 	if (ierr)
 	{
-		Scierror(998,_("%s: An error occurred.\n"),fname);
+		Scierror(998,_("%s: An error occurred.\n"), fname);
 		return 0;
 	}
 	else
 	{
-		static int n1,m1;
-		n1=1;
-		CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,(m1=(int)strlen(utfPath), &m1),&n1,&utfPath);
+		char *utfPath = localeToUTF(path);
+
+		int n1 = 1;
+		int m1 = (int)strlen(utfPath);
+
+		n1 = 1;
+		CreateVarFromPtr(Rhs+1, STRING_DATATYPE, &m1, &n1, &utfPath);
 		LhsVar(1) = Rhs+1;
 		C2F(putlhsvar)();
 	}
