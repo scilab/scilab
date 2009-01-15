@@ -6,7 +6,7 @@
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" OptimizeForProcessor="procOptimizeBlended" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrtd.lib" ModuleDefinitionFile="blasplus.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true" AdditionalDependencies="libcmtd.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="blasplus.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -17,7 +17,7 @@ cd.. &gt;nul"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="lib /def:blasplus_for_Scilab.def /Machine:X86 /OUT:../../../bin/blasplus.lib" Description="Create blasplus.lib for Scilab"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" BackslashAsNormalCharacter="false" FPS4Libs="false" CallingConvention="callConventionCRef" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/"/>
-				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrt.lib" ModuleDefinitionFile="blasplus.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true" AdditionalDependencies="libcmt.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="blasplus.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -28,7 +28,7 @@ cd.. &gt;nul"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="lib /def:blasplus_for_Scilab.def /Machine:X86 /OUT:../../../bin/blasplus.lib" Description="Create blasplus.lib for Scilab"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll " SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrtd.lib" ModuleDefinitionFile="blasplus.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true" AdditionalDependencies="libcmtd.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="blasplus.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
@@ -39,7 +39,7 @@ cd.. &gt;nul"/>
 				<Tool Name="VFPostBuildEventTool" CommandLine="lib /def:blasplus_for_Scilab.def /Machine:X64 /OUT:../../../bin/blasplus.lib" Description="Create blasplus.lib for Scilab"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(InputDir)$(ConfigurationName)" IntermediateDirectory="$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" BackslashAsNormalCharacter="false" FPS4Libs="false" CallingConvention="callConventionCRef" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/"/>
-				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" IgnoreDefaultLibraryNames="msvcrt.lib" ModuleDefinitionFile="blasplus.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true" AdditionalDependencies="libcmt.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="../../../bin/blasplus.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="blasplus.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="$(IntDir)/blasplus.lib" LinkDLL="true"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
