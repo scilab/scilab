@@ -23,23 +23,26 @@
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename ,char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/ 
 #ifdef _MSC_VER
-char **findfiles(char *path,char *filespec,int *sizeListReturned)
+char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
-	char **ListFiles=NULL;
-	char *strPattern=NULL;
+	char **ListFiles = NULL;
+	char *strPattern = NULL;
 	HANDLE hFile;
 	WIN32_FIND_DATA FileInformation;
 	int nbElements=0;
-	char *utfFileName;
+	
 
-	strPattern=(char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
-	sprintf(strPattern,"%s/%s",path,filespec);
+	strPattern = (char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
+	sprintf(strPattern,"%s/%s", path, filespec);
 
 	hFile = FindFirstFile(strPattern, &FileInformation);
 	if (strPattern) {FREE(strPattern);strPattern=NULL;}
@@ -49,33 +52,31 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 		{
 			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )	
 			{
+				char *utfFileName = NULL;
 				nbElements++;
-				if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-				else ListFiles=(char**)MALLOC(sizeof(char*)*(nbElements));
-				utfFileName=localeToUTF(FileInformation.cFileName);
-				ListFiles[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(utfFileName)+1));
-				strcpy(ListFiles[nbElements-1],utfFileName);
+				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+				else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
+				utfFileName = localeToUTF(FileInformation.cFileName);
+				ListFiles[nbElements-1] = strdup(utfFileName);
 			}
 
 		} while(FindNextFile(hFile, &FileInformation) == TRUE);
 	}
 	FindClose(hFile);
-
 	
-	*sizeListReturned=nbElements;
+	*sizeListReturned = nbElements;
 	return ListFiles;
 }
 #else
 /*--------------------------------------------------------------------------*/ 
-char **findfiles(char *path,char *filespec,int *sizeListReturned)
+char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
-	char **ListFiles=NULL;
-	int nbElements=0;
-	DIR *folder=NULL;
-	struct dirent *read=NULL;
-	char *utfFileName;
-
-	*sizeListReturned=0;
+	char **ListFiles = NULL;
+	int nbElements = 0;
+	DIR *folder = NULL;
+	struct dirent *read = NULL;
+	
+	*sizeListReturned = 0;
 
 	folder = opendir(path);
 	if (folder)
@@ -86,20 +87,20 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 			{
 				if ( find_spec(read->d_name ,filespec) )
 				{
+					char *utfFileName = NULL;
 					nbElements++;
-					if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-					else ListFiles=(char**)MALLOC(sizeof(char*)*(nbElements));
+					if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+					else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
 
-				    utfFileName=localeToUTF(read->d_name);
-					ListFiles[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(utfFileName)+1));
-					strcpy(ListFiles[nbElements-1],utfFileName);
+				    utfFileName = localeToUTF(read->d_name);
+					ListFiles[nbElements-1] = strdup(utfFileName);
 				}
 			}
 		}
 		closedir(folder);
 	}
 
-	*sizeListReturned=nbElements;
+	*sizeListReturned = nbElements;
 	return ListFiles;
 }
 #endif
