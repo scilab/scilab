@@ -72,33 +72,26 @@ function standard_draw (o, frame, draw_ports, up)
 
       //**---------- 3D Mode ON ------------------------------------------------
 
-      #Color3D = options('3D')(2)
-      // xpoly([orig(1)+e;orig(1)+sz(1);orig(1)+sz(1)],[orig(2)+sz(2);orig(2)+sz(2);orig(2)+e],'lines')
+      #Color3D = options('3D')(2); 
+
       xrect(orig(1)+e, orig(2)+sz(2), sz(1)-e, sz(2)-e) ;
-      gh_e            = gce() //** new graphics
-      gh_e.thickness  = 0
-      gh_e.foreground = #Color3D
+      gh_e            = gce(); 
+      gh_e.thickness  = 1    ; //** one pixel thick  
+      gh_e.foreground = #Color3D ; 
 
       if coli<>[] then
         gh_e.fill_mode = "on"  ;
         gh_e.background = coli ;
       end
 
-      xx = [ orig(1)   , orig(1)
-             orig(1)   , orig(1)+sz(1)-e
-             orig(1)+e , orig(1)+sz(1)
-             orig(1)+e , orig(1)+e       ]
+      xx = [ orig(1)  orig(1)+sz(1)-e  orig(1)+sz(1)  orig(1)+e  orig(1)+e     orig(1)];
 
-      yy = [ orig(2)         , orig(2)
-	           orig(2)+sz(2)-e , orig(2)
-	           orig(2)+sz(2)   , orig(2)+e
-	           orig(2)+e       , orig(2)+e ]
+      yy = [ orig(2)  orig(2)          orig(2)+e      orig(2)+e  orig(2)+sz(2)  orig(2)+sz(2)-e ];
 
-      xfpolys(xx,yy,-[1,1]*#Color3D); //** fill a set of polygons
-      gh_e            = gce()
-      gh_c            = gh_e.children(1:2)
-      gh_c.foreground = default_color(0)
-      gh_c.thickness  = 2
+      xfpoly(xx,yy); //** fill a set of polygons
+      gh_e            = gce(); 
+      gh_e.background = #Color3D;
+      gh_e.line_mode ="off"; 
 
     else //** not in 3D mode
 

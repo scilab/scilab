@@ -11,6 +11,7 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "gw_fileio.h"
 #include "findfiles.h"
 #include "stack-c.h"
@@ -21,22 +22,25 @@
 #include "cluni0.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 {
-	static int l1,n1,m1;
+	static int l1 = 0, n1 = 0, m1 = 0;
 	char pathextented[PATH_MAX];
 	int out_n = 0;
-	char *path=NULL;
-	char *filespec=NULL;
-	char **FilesList=NULL;
-	int sizeListReturned=0;
+	char *path = NULL;
+	char *filespec = NULL;
+	char **FilesList = NULL;
+	int sizeListReturned = 0;
 	BOOL needtofreefilespec = FALSE;
-	BOOL needtofreepath = FALSE;
 
-	Rhs=Max(Rhs,0);
+	Rhs = Max(Rhs,0);
 	CheckRhs(0,2) ;
 	CheckLhs(0,1) ;
 
@@ -44,11 +48,10 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 	{
 	default: case 0:
 		{
-			int ierr=0;
-			int lpath=0;
+			int ierr = 0;
+			int lpath = 0;
 
 			scigetcwd(&path,&lpath,&ierr);
-			needtofreepath = TRUE;
 
 			if (ierr)
 			{
@@ -57,8 +60,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));
-				strcpy(filespec,DEFAULT_FILESPEC);
+				filespec = strdup(DEFAULT_FILESPEC);
 				needtofreefilespec = TRUE;
 			}
 		}
@@ -70,11 +72,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 				path = cstk(l1);
-				needtofreepath = FALSE;
-
-				filespec=(char *)MALLOC(sizeof(char)*(strlen(DEFAULT_FILESPEC)+1));
-				strcpy(filespec,DEFAULT_FILESPEC);
-				needtofreefilespec = TRUE;
+				filespec = strdup(DEFAULT_FILESPEC);
 			}
 			else
 			{
@@ -90,11 +88,10 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 			if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
 			{
 				GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-				path=cstk(l1);
-				needtofreepath = FALSE;
+				path = cstk(l1);
 
 				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-				filespec=cstk(l1);
+				filespec = cstk(l1);
 				needtofreefilespec = FALSE;
 			}
 			else
@@ -107,41 +104,27 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 	}
 
 	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX); 
-	FilesList=findfiles(pathextented,UTFToLocale(filespec),&sizeListReturned);
-	if ( (filespec) && needtofreefilespec ) {FREE(filespec);filespec = NULL;}
-	if ( (path) && needtofreepath ) {FREE(path);path=NULL;}
+	FilesList = findfiles(pathextented,UTFToLocale(filespec),&sizeListReturned);
+	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
 
 	if (FilesList)
 	{
-		int ncol,nrow;
+		int ncol = 0, nrow = 0;
 
-		ncol=1;
-		nrow=sizeListReturned;
+		ncol = 1;
+		nrow = sizeListReturned;
 
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &nrow, &ncol, FilesList);
 		LhsVar(1) = Rhs+1;
 	}
 	else
 	{
-		n1=0;m1=0;l1=0;
+		n1 = 0; m1 = 0; l1 = 0;
 		CreateVarFromPtr(Rhs+ 1,MATRIX_OF_DOUBLE_DATATYPE,&n1,&m1,&l1);
 		LhsVar(1) = Rhs+1;
 	}
 
-	if (FilesList)
-	{
-		int i=0;
-		for (i=0;i<sizeListReturned;i++)
-		{
-			if (FilesList[i])
-			{
-				FREE(FilesList[i]);
-				FilesList[i]=NULL;
-			}
-		}
-		FREE(FilesList);
-		FilesList=NULL;
-	}
+	freeArrayOfString(FilesList,sizeListReturned);
 
 	C2F(putlhsvar)();
 	return 0;
