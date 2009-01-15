@@ -66,10 +66,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">    scf(0)
-    plot2d()
-    //JPG export
-    xs2jpg(0,'foo.jpg')
+    <programlisting role="example">
+scf(0);
+plot2d();
+//JPG export
+xs2jpg(0,'foo.jpg');
   </programlisting>
   </refsection>
 

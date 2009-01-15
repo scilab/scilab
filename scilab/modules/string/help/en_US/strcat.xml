@@ -101,7 +101,7 @@ txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
 
     <programlisting role="example">
 strcat(string(1:10),',')
-<literal>strcat(["a","b"])</literal>
+strcat(["a","b"])
 strcat(["a","b"],'|')
 strcat('A')
 strcat('A','B')

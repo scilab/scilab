@@ -69,7 +69,7 @@
     <programlisting role="example">    scf(0)
     plot2d()
     //PNG export
-    xs2png(0,'foo.png')
+    xs2png(0,'foo.png');
   </programlisting>
   </refsection>
 

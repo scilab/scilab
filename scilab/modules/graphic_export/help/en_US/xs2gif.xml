@@ -81,9 +81,9 @@
     <title>Examples</title>
 
     <programlisting role="example">    scf(0)
-    plot2d()
-    //GIF export
-    xs2gif(0,'foo.gif')
+plot2d()
+//GIF export
+xs2gif(0,'foo.gif');
   </programlisting>
   </refsection>
 
