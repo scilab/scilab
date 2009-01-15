@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="OldBlocks_pal">
+  <refnamediv>
+    <refname>OldBlocks_pal</refname>
+    <refpurpose>Old blocks palette</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/OldBlocks_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_OldBlocks_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_OldBlocks_pal">
+    <title>Description</title>
+    <para>
+That palette contains old Scicos blocks.
+It is provided to support compatibility with old diagrams
+that use old blocks.
+
+</para>
+  </refsection>
+  <refsection id="Blocks_OldBlocks_pal">
+    <title>Blocks</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ABSBLK_f">ABSBLK_f - Absolute value (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="BIGSOM_f">BIGSOM_f - Sum (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLKSOM_f">CLKSOM_f - Activation union</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLOCK_f">CLOCK_f - Activation clock (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="COSBLK_f">COSBLK_f - COSBLK</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DELAY_f">DELAY_f - Discrete time delay</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DELAYV_f">DELAYV_f - DELAYV_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DEMUX_f">DEMUX_f - Demultiplexer (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DIFF_f">DIFF_f - DIFF_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DLRADAPT_f">DLRADAPT_f - DLRADAPT_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DOLLAR_f">DOLLAR_f - Delay operator (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="GAINBLK_f">GAINBLK_f - Gain (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="GENERAL_f">GENERAL_f - GENERAL_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="generic_block">generic_block - Generic block (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Integration (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MAX_f">MAX_f - MAX</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MCLOCK_f">MCLOCK_f - MCLOCK_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MEMORY_f">MEMORY_f - MEMORY_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MFCLCK_f">MFCLCK_f - MFCLCK_f title</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MIN_f">MIN_f - MIN</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MUX_f">MUX_f - Mulitplexer (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RAND_f">RAND_f - Random generator (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SAT_f">SAT_f - Saturation (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SINBLK_f">SINBLK_f - SINBLK</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TANBLK_f">TANBLK_f - TANBLK</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TRASH_f">TRASH_f - Trash block</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

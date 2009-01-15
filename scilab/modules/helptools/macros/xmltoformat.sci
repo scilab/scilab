@@ -1466,7 +1466,7 @@ function category = dirToCat(directory, language)
 
 // TODO this function should use localization
 
-alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures","palettes"];
+alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures","palettes","oldblocks_pal"];
 if language == "fr_FR" then
   allcategories = ["Fonctions en ligne de commande", "Editeur", "Palette Sources", ..
    "Palette Linéaire", "Palette Non-linéaire", "Palette Branchements", "Palette Divers", .. 
@@ -1474,7 +1474,7 @@ if language == "fr_FR" then
     "Palette des Composants Thermohydrauliques", "Palette d''Opérations Matricielles", "Palette Integer", ..
      "Palette des Blocks de Démonstration", "Blocs par Ordre Alphabétique", "Fonctions de Calcul en C", ..
       "Fonctions de Calcul Scilab", "Fonctions Utilitaires", "Programmation des Blocs Scicos", ..
-      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab", "Palettes"];
+      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab", "Palettes", "Palette des Anciens Blocs"];
 else
   allcategories = [_("Batch functions"), _("Editor"), _("Sources Palette"), ..
   _("Linear Palette"), _("Non-linear Palette"), _("Branching Palette"), _("Others Palettes"), ..
@@ -1482,7 +1482,7 @@ else
    _("Thermohydraulics Palette"), _("Matrix Palette"), _("Integer Palette"), _("Demoblocks Palette"), ..
     _("ABCD Blocks"), _("C Computational Functions"), _("Scilab Computational Functions"), ..
      _("Utilities Functions"), _("Programming Scicos Blocks"), _("Scilab Utilities Functions"), ..
-      _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures"), _("Palettes")];
+      _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures"), _("Palettes"), _("Old Blocks Palette")];
 end
 category = allcategories(find(alldirs==directory));
 endfunction

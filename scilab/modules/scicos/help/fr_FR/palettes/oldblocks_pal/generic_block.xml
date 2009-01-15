@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="generic_block">
+  <refnamediv>
+    <refname>generic_block</refname>
+    <refpurpose>Bloc générique (Ancien bloc)</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/generic_block_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_generic_block">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="generic_block">Bloc générique (Ancien bloc)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_generic_block">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_generic_block">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_generic_block">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_generic_block">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_generic_block">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondecalcul_generic_block">Fonction de calcul</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_generic_block">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="OldBlocks_pal">OldBlocks - Palette des anciens blocs</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_generic_block">
+    <title>Description</title>
+    <para>Description</para>
+    <para>
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_generic_block">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/generic_block_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">simulation function</emphasis>
+        </para>
+        <para> Nom de la fonction de simulation à charger.</para>
+        <para> Propriétés : Type 'vec' de taille 1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">function type </emphasis>
+        </para>
+        <para> Définit le type de la fonction de calcul.</para>
+        <para> Propriétés : Type 'vec' de taille 1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">input ports sizes</emphasis>
+        </para>
+        <para> Un vecteur contenant des valeurs positives, nulles ou négatives. La taille de ce vecteur donne le nombre de ports réguliers d'entrée.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">output port sizes</emphasis>
+        </para>
+        <para> Un vecteur contenant des valeurs positives, nulles ou négatives. La taille de ce vecteur donne le nombre de ports réguliers de sortie.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">input event ports sizes</emphasis>
+        </para>
+        <para> Un vecteur contenant des valeurs 1. La taille de ce vecteur donne le nombre de ports événementiels d'entrée.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">output events ports sizes</emphasis>
+        </para>
+        <para> Un vecteur contenant des valeurs 1. La taille de ce vecteur donne le nombre de ports événementiels de sortie.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">initial continuous state</emphasis>
+        </para>
+        <para> Un vecteur colonne. Conditions initiales des états continus.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">initial discrete state</emphasis>
+        </para>
+        <para> Un vecteur colonne. Conditions initiales des états discrets.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Real parameters vector</emphasis>
+        </para>
+        <para> Vecteur des paramètres réels.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Integer parameters vector</emphasis>
+        </para>
+        <para> Vecteur des paramètres entiers.</para>
+        <para> Propriétés : Type 'vec' de taille -1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">initial firing vector </emphasis>
+        </para>
+        <para> Un vecteur. La taille de ce vecteur correspond au nombre de sorties événementielles. La valeur de la <inlinemediaobject><imageobject><imagedata fileref="../../../images/generic_block_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> entrée spécifie la date initiale préprogrammée du <inlinemediaobject><imageobject><imagedata fileref="../../../images/generic_block_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> port événementiel de sortie. Si la valeur est inférieure à zéro, alors aucun événement n'est préprogrammé.</para>
+        <para> Propriétés : Type 'vec' de taille sum(%6) </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">direct feedthrough </emphasis>
+        </para>
+        <para> L'entrée du bloc à un instant donné, détermine la sortie du bloc à ce même instant. Cela force le bloc à répondre instantanément, comme si le système était en régime établi.</para>
+        <para> Propriétés : Type 'vec' de taille 1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">time dependence </emphasis>
+        </para>
+        <para> Permet de déterminer si le bloc doit être marqué comme temps dépendant.</para>
+        <para> Propriétés : Type 'vec' de taille 1</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_generic_block">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">sorties régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">sinblk</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_generic_block">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Misc/generic_block.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondecalcul_generic_block">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/fortran/sinblk.f (Type 1)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>
