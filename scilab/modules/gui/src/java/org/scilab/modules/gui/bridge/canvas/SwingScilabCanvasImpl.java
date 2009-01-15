@@ -124,7 +124,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	if (noGLJPanel) {
 		/** Inform the users */
 		InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Due to your environment limitations, "
-				+ "Scilab switched in a mode where mixing uicontrols and graphics is not available."
+				+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
 				+ "Type \"\"help usecanvas\"\" for more informations.\")");
 	}
 	
