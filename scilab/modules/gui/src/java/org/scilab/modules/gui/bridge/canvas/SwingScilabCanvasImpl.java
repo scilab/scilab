@@ -144,6 +144,14 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	return forceGLCanvas;
     }
 
+    /**
+     * Get Global property forceGLCanvas
+     * if no GLJPanel is available, GLCanvas is forced
+     */
+    public static boolean switchToGLCanvas() {
+	return forceGLCanvas;
+    }
+
     public static boolean isGLCanvasEnabled() {
 	return forceGLCanvas || noGLJPanel;
     }
