@@ -27,10 +27,9 @@ c
 c     
       if (ddt .eq. 4) then
          call writebufio(buf,fin)
-         call basout(io,wte,' matio '//buf(1:4))
+         call basout(io,wte,' intexec '//buf(1:4))
       endif
 c     
-
       if(int(rstk(pt)/100).ne.9) goto 01
       if(rstk(pt).eq.902) goto 12
       if(rstk(pt).eq.909) goto 16
@@ -71,7 +70,6 @@ c     .        error control
             top=top-1
  11      continue
       endif
-
       if(flag.ge.4) then
          call basout(io,wte,
      $        'step-by-step mode: enter carriage return to proceed')
@@ -173,7 +171,7 @@ c     ------------------
 c     *call*  macro
       go to 999
  16   lhs=1
- 17   if(ids(1,pt).gt.0) then
+      if(ids(1,pt).gt.0) then
 c     return error number
          top=ids(1,pt)-1
          il=iadr(lstk(top))

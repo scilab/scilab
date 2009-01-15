@@ -158,10 +158,6 @@
         <submenu label="&amp;Matlab to Scilab translator">
             <callback instruction='mfile2sci();' type="0"/>
         </submenu>
-        <separator/>
-        <submenu label="&amp;Variable Editor">
-            <callback instruction='browsevar();' type="0"/>
-        </submenu>
     </menu>
 
     <!-- Help menu -->

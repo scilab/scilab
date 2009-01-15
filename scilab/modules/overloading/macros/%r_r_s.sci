@@ -21,8 +21,8 @@ function a=%r_r_s(a,b)
     return,
   end
   [ma,na]=size(a.num)
-  ma=abs(ma);na=abs(na);
-  mb=abs(mb);nb=abs(nb)
+  ma=abs(ma);na=abs(na) //handling eye()
+  mb=abs(mb);nb=abs(nb)  //handling eye()
   if na==1 then
     a=rlist(a.num/b,ones(nb,mb)*a.den,a.dt)
   else

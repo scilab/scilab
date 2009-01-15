@@ -15,5 +15,5 @@
 
 TCL_CreateSlave("myinterp");
 tcl_script = [""];  // empty script
-mputl(tcl_script,TMPDIR+"/bug_3171.tcl")
+mputl(tcl_script,TMPDIR+"/bug_3171.tcl");
 TCL_EvalFile(TMPDIR+"/bug_3171.tcl","myinterp");

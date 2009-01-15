@@ -13,7 +13,6 @@ c     ====================================
       
       character*(*) buffer
       integer  line
-      
       write(buffer(1:4),'(i4)') line
       
       end

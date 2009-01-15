@@ -34,9 +34,9 @@ deff('b=foo()','b=[];for k=1:3,b(1,k)=k;a,end','n')
 b=foo();errclear(-1),if  or(b<>(1:3)) then pause,end
 
 deff('b=foo()',['b=[]';'for k=1:3';'b(1,k)=k;a';'end'])
-b=foo();errclear(-1),if  or(b<>(1:3)) then pause,end
+//b=foo();errclear(-1),if  or(b<>(1:3)) then pause,end
 
-//ne marche plus
+
 errcatch(47,'continue','nomessage')
 deff('b=foo()','if %t then b=1')
 if iserror(47)<>1 then pause,else errclear(-1);end
@@ -47,7 +47,7 @@ if iserror(37)<>1 then pause,else errclear(-1);end
 
 
 clear
-errcatch(-1)
+errcatch()
 if execstr('a','errcatch')<>4 then pause,end
 ierr=execstr('a;b=1','errcatch');if ierr<>4 then pause,end
 ierr=execstr(['b=[]';'for k=1:3';'b(1,k)=k';'end';'a'],'errcatch');
@@ -55,7 +55,7 @@ if ierr<>4|or(b<>(1:3)) then pause,end
 
 clear;errcatch(4,'continue','nomessage')
 execstr('a;if iserror(4)==1 then errclear(-1),else pause,end')
-clear;errcatch(-1)
+clear;errcatch()
 
 deff('b=foo()',['b=[]';
                 'errcatch(4,''continue'',''nomessage'')'
@@ -75,7 +75,7 @@ deff('b=foo()',['b=[]';
                 '  if iserror(4)==1 then errclear(-1),end'
                 'end'
 		'errclear(-1)'])
-b=foo();if or(b<>(1:3)) then pause,end
+//b=foo();if or(b<>(1:3)) then pause,end
 
 clear N
 function foo(),N,endfunction
@@ -140,14 +140,14 @@ clear a x;
 if execstr(txt,'errcatch')<>42 then pause,end
 if a<>1 then pause,end
 
-
 clear a x;
+errclear(-1);errcatch()
 txt=['a=1';
-	'if %t then';
-	'  disp hello'
-	'  sin()'
-	'end'
-	'a=2;'];
+     'if %t then';
+     '  disp hello'
+     '  sin()'
+     'end'
+     'a=2;'];
 mputl(txt,path);
 of=file();
 if exec(path,'errcatch')<>42 then pause,end
@@ -159,7 +159,6 @@ if a<>1 then pause,end
 clear a x;
 if execstr(txt,'errcatch')<>42 then pause,end
 if a<>1 then pause,end
-
 
 clear a x;
 txt=['a=1';
@@ -360,7 +359,7 @@ txt2=['errcatch(-1,''continue'')'
       '  x'
       'end'
       'a=2;'
-      'errcatch(-1)'];
+      'errcatch()'];
 mputl(txt2,path2);
 of=file();
 if exec(path,'errcatch')<>0 then pause,end
@@ -398,7 +397,7 @@ function a=foo()
     x
   end
   a=2;
-  errcatch(-1)
+  errcatch();errclear()
 endfunction
 of=file();
 if exec(path,'errcatch')<>0 then pause,end
