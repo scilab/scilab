@@ -62,77 +62,83 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
-	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
-	Frame tmpFrame = new Frame();
-	tmpFrame.add(tmpCanvas);
-	tmpFrame.setVisible(true);
+	try {
+	    GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
+	    Frame tmpFrame = new Frame();
+	    tmpFrame.add(tmpCanvas);
+	    tmpFrame.setVisible(true);
 
-	tmpCanvas.getContext().makeCurrent();
-	GL gl = tmpCanvas.getGL();
-	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
-	String OS_NAME = System.getProperty("os.name");
-	Debug.DEBUG("SwingScilabCanvasImpl", "os.name="+OS_NAME);
-	String OS_ARCH = System.getProperty("os.arch");
-	Debug.DEBUG("SwingScilabCanvasImpl", "os.arch="+OS_ARCH);
-	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
-	String GL_VENDOR = gl.glGetString(GL.GL_VENDOR);
-	Debug.DEBUG("SwingScilabCanvasImpl", "GL_VENDOR="+GL_VENDOR);
-	String GL_RENDERER = gl.glGetString(GL.GL_RENDERER);
-	Debug.DEBUG("SwingScilabCanvasImpl", "GL_RENDERER="+GL_RENDERER);
-	String GL_VERSION = gl.glGetString(GL.GL_VERSION);
-	Debug.DEBUG("SwingScilabCanvasImpl", "GL_VERSION="+GL_VERSION);
-	//Debug.DEBUG("SwingScilabCanvasImpl", "GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
-	Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
-	//System.getProperties().list(System.err);
-	
-	// get maximum axes size
-	RenderingCapabilities.updateMaxCanvasSize(gl);
-	
-	tmpCanvas.getContext().release();
-	tmpFrame.remove(tmpCanvas);
-	tmpFrame.setVisible(false);
-	tmpFrame.dispose();
-	Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
+	    tmpCanvas.getContext().makeCurrent();
+	    GL gl = tmpCanvas.getGL();
+	    Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	    String OS_NAME = System.getProperty("os.name");
+	    Debug.DEBUG("SwingScilabCanvasImpl", "os.name="+OS_NAME);
+	    String OS_ARCH = System.getProperty("os.arch");
+	    Debug.DEBUG("SwingScilabCanvasImpl", "os.arch="+OS_ARCH);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	    String GL_VENDOR = gl.glGetString(GL.GL_VENDOR);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "GL_VENDOR="+GL_VENDOR);
+	    String GL_RENDERER = gl.glGetString(GL.GL_RENDERER);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "GL_RENDERER="+GL_RENDERER);
+	    String GL_VERSION = gl.glGetString(GL.GL_VERSION);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "GL_VERSION="+GL_VERSION);
+	    //Debug.DEBUG("SwingScilabCanvasImpl", "GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
+	    Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	    //System.getProperties().list(System.err);
 
-	if (OS_NAME.contains("Linux")
-		&& GL_RENDERER.contains("Intel")
-		&& GL_RENDERER.contains("DRI")) {
-			noGLJPanel = true;
-	}
-	else {
-		if ( OS_NAME.contains("Windows") && OS_ARCH.equals("amd64") ) {
-			// bug 3919 : JOGL x64 doesn't like x64 remote desktop on Windows
-			// @TODO : bug report to JOGL
-			String REMOTEDESKTOP = System.getenv("SCILAB_MSTS_SESSION");
-			if (REMOTEDESKTOP != null) {
-				if ( REMOTEDESKTOP.equals("OK") ) {
-					noGLJPanel = true;
-				}
-				else {
-					noGLJPanel = false;
-				}
-			}
-			else {
-				noGLJPanel = false;
-			}
-		} 
-		else {
-		noGLJPanel = false;
+	    // get maximum axes size
+	    RenderingCapabilities.updateMaxCanvasSize(gl);
+
+	    tmpCanvas.getContext().release();
+	    tmpFrame.remove(tmpCanvas);
+	    tmpFrame.setVisible(false);
+	    tmpFrame.dispose();
+	    Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
+
+	    noGLJPanel = false;
+
+	    // By default disable GLJPanel on Linux
+	    if (OS_NAME.contains("Linux")) {
+		noGLJPanel = true;
+		// Linux && NVIDIA 
+		if (GL_VENDOR.contains("NVIDIA")) {
+		    noGLJPanel = false;
 		}
-	}
-	
-	if (noGLJPanel) {
+		// Linux && ATI
+		if (GL_VENDOR.contains("ATI")) {
+		    noGLJPanel = false;
+		}
+	    }
+	    if ( OS_NAME.contains("Windows") && OS_ARCH.equals("amd64") ) {
+		// bug 3919 : JOGL x64 doesn't like x64 remote desktop on Windows
+		// @TODO : bug report to JOGL
+		String REMOTEDESKTOP = System.getenv("SCILAB_MSTS_SESSION");
+		if (REMOTEDESKTOP != null) {
+		    if ( REMOTEDESKTOP.equals("OK") ) {
+			noGLJPanel = true;
+		    }
+		}
+	    }
+
+	    if (noGLJPanel) {
 		/** Inform the users */
-		InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Due to your environment limitations, "
-				+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
-				+ "Type \"\"help usecanvas\"\" for more informations.\")");
+		InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Due to your configuration limitations, "
+			+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
+			+ "Type \"\"help usecanvas\"\" for more information.\")");
+	    }
 	}
-	
-	}
+	catch (GLException e) {
+	    noGLJPanel = true;
+	    /** Inform the users */
+	    InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Due to your video card drivers limitations, "+
+		    "that are not able to manage OpenGL, Scilab will not be able to draw any graphics. "+
+	    "Please update your driver.\")");
+	}	
+    }
 
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
-    boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
+    static boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
 
     /**
      * Change Global property forceGLCanvas
@@ -140,62 +146,63 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      */
     public static boolean switchToGLCanvas(boolean onOrOff) {
 	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
-	forceGLCanvas = noGLJPanel || onOrOff;
-	return forceGLCanvas;
+	if(!onOrOff && noGLJPanel) {
+	    InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Despite of our previous warning, "
+			+ "you choosed to use Scilab with advanced graphics capabilities. "
+			+ "Type \"\"help usecanvas\"\" for more information.\")"); 
+	}
+	enableGLCanvas = onOrOff;
+	return enableGLCanvas;
     }
 
     /**
      * Get Global property forceGLCanvas
      * if no GLJPanel is available, GLCanvas is forced
      */
-    public static boolean switchToGLCanvas() {
-	return forceGLCanvas;
+    public static boolean isGLCanvasEnabled() {
+	return enableGLCanvas;
     }
 
-    public static boolean isGLCanvasEnabled() {
-	return forceGLCanvas || noGLJPanel;
-    }
-    
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
 	    realGLCanvas = new GLCanvas(cap);
 	    realGLCanvas.addMouseMotionListener(new MouseMotionListener() {
-		    public void mouseDragged(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-		    public void mouseMoved(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-		});
+		public void mouseDragged(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+		public void mouseMoved(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+	    });
 	    realGLCanvas.addMouseListener(new MouseListener() {
-		    public void mouseClicked(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
+		public void mouseClicked(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
 
-		    public void mouseEntered(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
+		public void mouseEntered(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
 
-		    public void mouseExited(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
+		public void mouseExited(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
 
-		    public void mousePressed(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
+		public void mousePressed(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
 
-		    public void mouseReleased(MouseEvent arg0) {
-			arg0.setSource(realGLCanvas.getParent());
-			realGLCanvas.getParent().dispatchEvent(arg0);
-		    }
-		});
+		public void mouseReleased(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+	    });
 	}
 	else {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
