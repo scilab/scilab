@@ -13,6 +13,8 @@
 #include "CreateUIContextMenu.h"
 #include "BuildDrawingObserver.h" /* createDrawingObserver */
 #include "ContextMenu.h" /* createContextMenu */
+#include "BuildObjects.h" /* createDefaultRelationShip */
+
 sciPointObj * CreateUIContextMenu(void)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
