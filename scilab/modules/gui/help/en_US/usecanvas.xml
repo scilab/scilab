@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="usecanvas">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>usecanvas</refname>
+    <refpurpose>Get/Set the main component used for Scilab graphics.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+       [canvasusedfordisplay] = usecanvas();
+       [canvasusedfordisplay] = usecanvas(usecanvasfordisplay);
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>canvasusedfordisplay</term>
+        <listitem>
+          <para>Boolean:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>%T</literal> if a "GLCanvas" is used for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not</emphasis> available).</para>
+            </listitem>
+            <listitem>
+              <para><literal>%F</literal> if a "GLJPanel" is used for graphics display (Mixing uicontrols and graphics available).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>usecanvasfordisplay</term>
+        <listitem>
+          <para>Boolean:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>%T</literal> to use a "GLCanvas" for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not</emphasis> available).</para>
+            </listitem>
+            <listitem>
+              <para><literal>%F</literal> to use a "GLJPanel" for graphics display (Mixing uicontrols and graphics available).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Scilab uses a "GLJPanel" (a Swing OpenGL component) to display its graphics (plot3d, plot, ...). Unfortunately this component uses some high level OpenGL primitives that are not fully supported depending on the OS, Video Card, ...</para>
+    <para>There is an alternative component "GLCanvas" (AWT + OpenGL) Scilab can use to render its graphics. <emphasis role="bold">However, this disables some capabilities such as mixing plots and uicontrols. That's why it's not the default behavior.</emphasis></para>
+
+    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts, here is a list of these cases:</para>
+    <table border="2">
+      <tr>
+        <td align="center"><emphasis role="bold">OS</emphasis></td>
+        <td align="center"><emphasis role="bold">Video Card</emphasis></td>
+        <td align="center"><emphasis role="bold">Details</emphasis></td>
+      </tr>
+
+      <tr>
+        <td align="center">64-bits Windows</td>
+        <td align="center">All</td>
+        <td align="center">Only when using a remote session.</td>
+      </tr>
+
+      <tr>
+        <td rowspan="3" valign="middle" align="center">Linux</td>
+        <td align="center">NVIDIA Card</td>
+        <td align="center">With free drivers.</td>
+      </tr>
+      <tr>
+        <td align="center">ATI Card</td>
+        <td align="center">With free drivers or ATI-drivers with version &lt; ???.</td>
+      </tr>
+      <tr>
+        <td align="center">INTEL Card</td>
+        <td align="center">With Direct Rendering activated.</td>
+      </tr>
+    </table>
+
+    <para>You can also dynamically activate this component through Scilab using <literal>usecanvas</literal></para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>usecanvas(%T)</literal> will force the use of "GLCanvas" for plot rendering.</para>
+      </listitem>
+      <listitem>
+        <para><literal>usecanvas(%F)</literal> will use "GLJPanel" for rendering if your environment is not known as a one having problems with "GLJPanel" (See table above).</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Example using GLJPanel (Mixing uicontrols and graphics is available)
+usecanvas(%F);
+plot2d();
+uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
+messagebox("You can see the button on the figure.", "Usecanvas example", "info");
+
+// Example using GLCanvas (Mixing uicontrols and graphics is not available, uicontrols are not visible)
+usecanvas(%T);
+plot2d();
+uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
+messagebox("You can''t see any button on the figure.", "Usecanvas example", "info");
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>
