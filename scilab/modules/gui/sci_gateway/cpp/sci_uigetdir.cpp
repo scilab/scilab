@@ -132,10 +132,9 @@ int sci_uigetdir(char *fname,unsigned long l)
   else
     {
       /* The user canceled the selection --> returns an empty matrix */
-      nbRow = 0;
-      nbCol = 0;
-
-      CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, userSelection);
+      nbRow = 1;
+      nbCol = 1;
+      CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, NULL);
     }
 
   LhsVar(1)=Rhs+1;
