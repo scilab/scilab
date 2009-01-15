@@ -45,10 +45,7 @@ sciPointObj * CreateUIContextMenu(void)
       return NULL ;
     }
       
-  sciInitVisibility( pobj, TRUE ) ;
-      
-  pobj->pObservers = DoublyLinkedList_new() ;
-  createDrawingObserver( pobj ) ;
+  pobj->pObservers = NULL ;
       
   pobj->pDrawer = NULL ;
  
