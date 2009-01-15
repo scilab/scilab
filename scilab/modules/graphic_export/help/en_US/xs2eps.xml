@@ -79,11 +79,11 @@
     <title>Examples</title>
 
     <programlisting role="example"> 
-    scf(0)
-    plot2d()
-    //EPS export
-    filename='foo'; // ! no extension
-    xs2eps(0,filename)
+scf(0);
+plot2d();
+//EPS export
+filename='foo.eps';
+xs2eps(0,filename);
   </programlisting>
   </refsection>
 

@@ -2762,10 +2762,18 @@ public class CallScilabBridge {
 
 	/**
 	 * Change object used for graphic figure (GLCanvas or GLJPanel)
-         * @param onOrOff true to set GLCanvas display
+     * @param onOrOff true to set GLCanvas display
 	 */
 	public static void useCanvasForDisplay(boolean onOrOff) {
             SwingScilabCanvasImpl.switchToGLCanvas(onOrOff);
+	}
+
+	/**
+	 * Get object used for graphic figure (GLCanvas or GLJPanel)
+     * @return true if GLCanvas display is set
+	 */
+	public static boolean useCanvasForDisplay() {
+            return SwingScilabCanvasImpl.switchToGLCanvas();
 	}
 
 }

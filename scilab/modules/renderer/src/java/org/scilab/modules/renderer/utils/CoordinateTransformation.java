@@ -80,6 +80,13 @@ public class CoordinateTransformation {
 	}
 	
 	/**
+	 * @return true is we are displaying in 2D.
+	 */
+	public boolean is2dMode() {
+		return is2dMode;
+	}
+	
+	/**
 	 * @return current projection matrix
 	 */
 	public Matrix4D getCompleteProjectionMatrix() {

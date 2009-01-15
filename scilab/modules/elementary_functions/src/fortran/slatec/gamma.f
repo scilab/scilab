@@ -264,7 +264,8 @@ C----------------------------------------------------------------------
          ELSE
 *                  RES = XINF
 * modif bruno : return an Inf
-            RES = 2*XINF
+            xfinf = 0.d0
+            RES = 1 / xfinf
 * end modif bruno
             GO TO 900
          END IF

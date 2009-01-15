@@ -49,6 +49,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
@@ -93,18 +94,41 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	tmpFrame.dispose();
 	Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
 
-	// If we are running on a Linux with Intel video card and with DRI activated
-	// GLJPanel will not be supported, so we force switch to GLCanvas.
 	if (OS_NAME.contains("Linux")
 		&& GL_RENDERER.contains("Intel")
-		&& GL_RENDERER.contains("DRI"))
-	{
-	    noGLJPanel = true;
+		&& GL_RENDERER.contains("DRI")) {
+			noGLJPanel = true;
 	}
 	else {
-	    noGLJPanel = false;
+		if ( OS_NAME.contains("Windows") && OS_ARCH.equals("amd64") ) {
+			// bug 3919 : JOGL x64 doesn't like x64 remote desktop on Windows
+			// @TODO : bug report to JOGL
+			String REMOTEDESKTOP = System.getenv("SCILAB_MSTS_SESSION");
+			if (REMOTEDESKTOP != null) {
+				if ( REMOTEDESKTOP.equals("OK") ) {
+					noGLJPanel = true;
+				}
+				else {
+					noGLJPanel = false;
+				}
+			}
+			else {
+				noGLJPanel = false;
+			}
+		} 
+		else {
+		noGLJPanel = false;
+		}
 	}
-    }
+	
+	if (noGLJPanel) {
+		/** Inform the users */
+		InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Due to your environment limitations, "
+				+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
+				+ "Type \"\"help usecanvas\"\" for more informations.\")");
+	}
+	
+	}
 
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
@@ -117,6 +141,14 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public static boolean switchToGLCanvas(boolean onOrOff) {
 	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
 	forceGLCanvas = noGLJPanel || onOrOff;
+	return forceGLCanvas;
+    }
+
+    /**
+     * Get Global property forceGLCanvas
+     * if no GLJPanel is available, GLCanvas is forced
+     */
+    public static boolean switchToGLCanvas() {
 	return forceGLCanvas;
     }
 

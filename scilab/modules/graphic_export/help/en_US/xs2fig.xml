@@ -84,10 +84,10 @@
     <title>Examples</title>
 
     <programlisting role="example"> 
-    //simple example
-    scf(0)
-    plot2d()
-    xs2fig(0,'foo.fig')
+//simple example
+scf(0);
+plot2d();
+xs2fig(0,'foo.fig');
   </programlisting>
   </refsection>
 

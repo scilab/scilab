@@ -20,7 +20,7 @@ c
 c     
       if (ddt .eq. 4) then
          call writebufio(buf,fin)
-         call basout(io,wte,' matio '//buf(1:4))
+         call basout(io,wte,' intrat '//buf(1:4))
       endif
 c     
       tops=top

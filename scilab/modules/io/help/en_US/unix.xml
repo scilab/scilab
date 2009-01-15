@@ -54,11 +54,16 @@ if ~MSDOS then
   unix("ls $SCI/demos");
 end
 
-deff('wd=directory()','if MSDOS then unix(''cd>''+TMPDIR+''\path'');..
-                else unix(''pwd>''+TMPDIR+''/path'');end..
-      wd=read(TMPDIR+''/path'',1,1,''(a)'')')
+function wd=directory()
+  if MSDOS then
+    unix('cd>'+TMPDIR+'\path');
+  else
+    unix('pwd>'+TMPDIR+'/path');
+  end
+  wd=read(TMPDIR+'/path',1,1,'(a)');
+endfunction
+
 wd=directory()
- 
   ]]></programlisting>
   </refsection>
   <refsection>
