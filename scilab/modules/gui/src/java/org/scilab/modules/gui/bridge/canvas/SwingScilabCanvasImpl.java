@@ -49,6 +49,7 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
@@ -120,6 +121,13 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 		}
 	}
 	
+	if (noGLJPanel) {
+		/** Inform the users */
+		InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Due to your environment limitations, "
+				+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
+				+ "Type \"\"help usecanvas\"\" for more informations.\")");
+	}
+	
 	}
 
     GLCanvas realGLCanvas;
@@ -141,7 +149,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
      * if no GLJPanel is available, GLCanvas is forced
      */
     public static boolean switchToGLCanvas() {
-    	return forceGLCanvas;
+	return forceGLCanvas;
     }
 
     public static boolean isGLCanvasEnabled() {
