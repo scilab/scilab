@@ -60,11 +60,11 @@ function xs2fig(figureNumber, fileName, orientation)
 	end	
 	
 	
-	
+	pause
 	if ~MSDOS then
 	  // os is a unix one
 	  // check that pstoedit is available on the computer
-	  checkPstoedit = unix_g("which pstoedit");
+	  [checkPstoedit,stat,err] = unix_g("which pstoedit");
 	  if (checkPstoedit == [] | checkPstoedit == "") then
 	    error(msprintf(gettext("%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH to be able to use this feature.\n"), "xs2fig"));
 	    return;

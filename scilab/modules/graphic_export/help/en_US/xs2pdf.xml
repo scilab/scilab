@@ -76,11 +76,11 @@
     <title>Examples</title>
 
     <programlisting role="example"> 
-    scf(0)
-    plot2d()
-    //PDF export
-    filename='foo'; // ! no extension
-    xs2pdf(0,filename)
+scf(0);
+plot2d();
+//PDF export
+filename='foo'; // ! no extension
+xs2pdf(0,filename);
   </programlisting>
   </refsection>
 

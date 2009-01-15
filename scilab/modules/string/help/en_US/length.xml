@@ -87,7 +87,7 @@
 
     <programlisting role="example">
 length([123 ; 456 ])
-length(['hello world',SCI)
+length(['hello world',SCI])
 	</programlisting>
   </refsection>
 
