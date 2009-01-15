@@ -87,11 +87,12 @@ xs2gif(fig,file_name)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">    scf(0)
-    plot2d()
-    //GIF export
-    xs2gif(0,'foo.gif')
-    xs2gif(gcf(),'foo.gif')
+    <programlisting role="example">
+scf(0);
+plot2d();
+//GIF export
+xs2gif(0,'foo.gif');
+xs2gif(gcf(),'foo.gif');
   </programlisting>
   </refsection>
 

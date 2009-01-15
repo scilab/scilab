@@ -86,7 +86,7 @@ v=index_from_tail_head(g,1:n,match)
 hilite_edges(v);
 //
 // WITH A LARGER GRAPH
-g=load_graph(SCI+'/demos/metanet/mesh1000.graph');
+g=load_graph(SCI+'/modules/metanet/demos/mesh1000.graph');
 g.directed=0;
 ta=g.edges.tail;he=g.edges.head;n=node_number(g);
 show_graph(g,'new',1/2,[1000,400]);

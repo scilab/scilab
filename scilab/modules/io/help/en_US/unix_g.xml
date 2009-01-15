@@ -102,7 +102,7 @@ function d=DIR(path)
   end
 endfunction
 
-DIR('SCI/demos')
+DIR('SCI/etc')
  
   </programlisting>
   </refsection>
