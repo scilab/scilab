@@ -191,7 +191,7 @@
     <title>Examples</title>
 
     <programlisting role="example">
-    deff('y=f(x)','y = 'sum(x.^2)');
+    deff('y=f(x)','y = sum(x.^2)');
 
     PopSize     = 100;
     Proba_cross = 0.7;
