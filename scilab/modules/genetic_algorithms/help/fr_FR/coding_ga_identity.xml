@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="coding_ga_identity">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+  <refnamediv>
+    <refname>coding_ga_identity</refname>
+    <refpurpose> A "no-operation" conversion function </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>pop_out = coding_ga_identity(pop_in,direction,param)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>pop_in</term>
+        <listitem>
+          <para>the population to be converted.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>direction</term>
+        <listitem>
+          <para>'code' or 'decode'. This value has no influence of the state of pop_in.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>param</term>
+        <listitem>
+          <para>a parameter list. For this function, there are no useful parameters set.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pop_out</term>
+        <listitem>
+          <para>a population identical to pop_in.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+      This function is a do-nothing function. It is essentially useful to implement an evolutionnary algorithm. In an evolutionnary algorithm, we work directly on the variable and not on a binary code.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mutation_ga_default"> mutation_func_default </link>
+      </member>
+      <member>
+        <link linkend="crossover_ga_default"> crossover_func_default </link>
+      </member>
+      <member>
+        <link linkend="init_ga_default"> init_func_default </link>
+      </member>
+      <member>
+        <link linkend="optim_ga"> optim_ga </link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+        <listitem>
+          <para>
+    ycollet@freesurf.fr
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

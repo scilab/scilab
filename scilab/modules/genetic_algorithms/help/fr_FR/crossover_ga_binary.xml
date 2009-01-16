@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="coding_ga_binary" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="crossover_ga_binary"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns3="http://www.w3.org/1999/xhtml"
@@ -22,16 +22,15 @@
   </info>
 
   <refnamediv>
-    <refname>coding_ga_binary</refname>
+    <refname>crossover_ga_binary</refname>
 
-    <refpurpose>A function which performs conversion between binary and
-    continuous representation</refpurpose>
+    <refpurpose>A crossover function for binary code</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>pop_out = coding_ga_binary(pop_in,direction,param)</synopsis>
+    <synopsis>[Crossed_Indiv1,Crossed_Indiv2] = crossover_ga_binary(Indiv1,Indiv2,param)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -39,21 +38,19 @@
 
     <variablelist>
       <varlistentry>
-        <term>pop_in</term>
+        <term>Indiv1</term>
 
         <listitem>
-          <para>a list which contains all the individuals in the current
-          population.</para>
+          <para>the first individual (here a binary code) to be
+          crossed-over.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>direction</term>
+        <term>Indiv2</term>
 
         <listitem>
-          <para>'code' or 'decode'. If direction == 'code' then we perform a
-          continuous to binary encoding. Else, we convert from binary to
-          continuous.</para>
+          <para>the second individual to be crossed-over.</para>
         </listitem>
       </varlistentry>
 
@@ -61,34 +58,41 @@
         <term>param</term>
 
         <listitem>
-          <para>a parameter list.</para>
+          <para>a list of parameters. </para>
 
           <itemizedlist>
             <listitem>
-              <para>'binary_length': the number of bits by variables. If
-              binary_length = 8 and the variable X is of dimension 2 then the
-              binary code will be 16 bits length.</para>
+              <para> 'binary_length': the length of the binary code. </para>
             </listitem>
 
             <listitem>
-              <para>'minboun': a vector of minimum bounds for the variable
-              X.</para>
+              <para> 'multi_cross': a boolean. If %T then we allow several
+              cuts in the binary code. </para>
             </listitem>
 
             <listitem>
-              <para>'maxbound': a vector of maximum bounds for the variable
-              X.</para>
+              <para> 'multi_cross_nb': the number of cuts in the binary code.
+              Only used when multi_cross is set to %T.</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>pop_out</term>
+        <term>Crossed_Indiv1</term>
 
         <listitem>
-          <para>the population coded to binary or decoded to continuous
-          values.</para>
+          <para>The first individual obtained by the cross-over
+          function.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Crossed_Indiv2</term>
+
+        <listitem>
+          <para>The second individual obtained by the cross-over
+          function.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -99,9 +103,7 @@
 
     <itemizedlist>
       <listitem>
-        <para>This function allows to code or decode a population of
-        individuals from (resp. to) continuous variables to (resp. from)
-        binary.</para>
+        <para>This function implements a classical binary cross-over.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -110,13 +112,16 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="optim_ga"> optim_ga </link></member>
+      <member><link linkend="crossover_ga_binary"> crossover_ga_binary
+      </link></member>
+
+      <member><link linkend="crossover_ga_default"> crossover_ga_default
+      </link></member>
 
       <member><link linkend="mutation_ga_binary"> mutation_ga_binary
       </link></member>
 
-      <member><link linkend="crossover_ga_binary"> crossover_ga_binary
-      </link></member>
+      <member><link linkend="optim_ga"> optim_ga </link></member>
     </simplelist>
   </refsection>
 

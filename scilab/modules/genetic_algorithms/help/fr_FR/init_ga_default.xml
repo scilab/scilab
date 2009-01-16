@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="coding_ga_binary" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="init_ga_default" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -22,16 +22,15 @@
   </info>
 
   <refnamediv>
-    <refname>coding_ga_binary</refname>
+    <refname>init_ga_default</refname>
 
-    <refpurpose>A function which performs conversion between binary and
-    continuous representation</refpurpose>
+    <refpurpose>A function a initialize a population</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>pop_out = coding_ga_binary(pop_in,direction,param)</synopsis>
+    <synopsis>Pop_init = init_ga_default(popsize,param)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -39,21 +38,10 @@
 
     <variablelist>
       <varlistentry>
-        <term>pop_in</term>
+        <term>popsize</term>
 
         <listitem>
-          <para>a list which contains all the individuals in the current
-          population.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>direction</term>
-
-        <listitem>
-          <para>'code' or 'decode'. If direction == 'code' then we perform a
-          continuous to binary encoding. Else, we convert from binary to
-          continuous.</para>
+          <para>the number of individuals to generate.</para>
         </listitem>
       </varlistentry>
 
@@ -61,22 +49,20 @@
         <term>param</term>
 
         <listitem>
-          <para>a parameter list.</para>
+          <para>a list of parameters. </para>
 
           <itemizedlist>
             <listitem>
-              <para>'binary_length': the number of bits by variables. If
-              binary_length = 8 and the variable X is of dimension 2 then the
-              binary code will be 16 bits length.</para>
+              <para> 'dimension': the size of the vector X. </para>
             </listitem>
 
             <listitem>
-              <para>'minboun': a vector of minimum bounds for the variable
-              X.</para>
+              <para> 'minbound': a vector of minimum bounds for the variable
+              X. </para>
             </listitem>
 
             <listitem>
-              <para>'maxbound': a vector of maximum bounds for the variable
+              <para> 'maxbound': a vector of maximum bounds for the variable
               X.</para>
             </listitem>
           </itemizedlist>
@@ -84,11 +70,11 @@
       </varlistentry>
 
       <varlistentry>
-        <term>pop_out</term>
+        <term>Pop_init</term>
 
         <listitem>
-          <para>the population coded to binary or decoded to continuous
-          values.</para>
+          <para>a list which contains the initial population of
+          individuals.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -99,9 +85,8 @@
 
     <itemizedlist>
       <listitem>
-        <para>This function allows to code or decode a population of
-        individuals from (resp. to) continuous variables to (resp. from)
-        binary.</para>
+        <para>This function generate an initial population containing pop_size
+        individuals.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -110,13 +95,16 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="optim_ga"> optim_ga </link></member>
+      <member><link linkend="crossover_ga_default"> crossover_ga_default
+      </link></member>
+
+      <member><link linkend="mutation_ga_default"> mutation_ga_default
+      </link></member>
 
       <member><link linkend="mutation_ga_binary"> mutation_ga_binary
       </link></member>
 
-      <member><link linkend="crossover_ga_binary"> crossover_ga_binary
-      </link></member>
+      <member><link linkend="optim_ga"> optim_ga </link></member>
     </simplelist>
   </refsection>
 

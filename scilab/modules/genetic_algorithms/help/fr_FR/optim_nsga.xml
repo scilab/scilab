@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="optim_ga" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="optim_nsga" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -22,15 +22,16 @@
   </info>
 
   <refnamediv>
-    <refname>optim_ga</refname>
+    <refname>optim_nsga</refname>
 
-    <refpurpose>A flexible genetic algorithm</refpurpose>
+    <refpurpose>A multi-objective Niched Sharing Genetic
+    Algorithm</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_ga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param)</synopsis>
+    <synopsis>[pop_opt,fobj_pop_opt,pop_init,fobj_pop_init] = optim_nsga(ga_f,pop_size,nb_generation,p_mut,p_cross,Log,param,sigma,pow)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -94,50 +95,66 @@
         <term>param</term>
 
         <listitem>
-          <para>a list of parameters.</para>
+          <para>a list of parameters. </para>
 
           <itemizedlist>
             <listitem>
-              <para>'codage_func': the function which will perform the coding
-              and decoding of individuals (default function:
-              codage_identity).</para>
+              <para> 'codage_func': the function which will perform the coding
+              and decoding of individuals (default function: codage_identity).
+              </para>
             </listitem>
 
             <listitem>
-              <para>'init_func': the function which will perform the
+              <para> 'init_func': the function which will perform the
               initialization of the population (default function:
-              init_ga_default).</para>
+              init_ga_default). </para>
             </listitem>
 
             <listitem>
-              <para>'crossover_func': the function which will perform the
+              <para> 'crossover_func': the function which will perform the
               crossover between two individuals (default function:
-              crossover_ga_default).</para>
+              crossover_ga_default). </para>
             </listitem>
 
             <listitem>
-              <para>'mutation_func': the function which will perform the
+              <para> 'mutation_func': the function which will perform the
               mutation of one individual (default function:
-              mutation_ga_default).</para>
+              mutation_ga_default). </para>
             </listitem>
 
             <listitem>
-              <para>'selection_func': the function whcih will perform the
+              <para> 'selection_func': the function whcih will perform the
               selection of individuals at the end of a generation (default
-              function: selection_ga_elitist).</para>
+              function: selection_ga_elitist). </para>
             </listitem>
 
             <listitem>
-              <para>'nb_couples': the number of couples which will be selected
-              so as to perform the crossover and mutation (default value:
-              100).</para>
+              <para> 'nb_couples': the number of couples which will be
+              selected so as to perform the crossover and mutation (default
+              value: 100). </para>
             </listitem>
 
             <listitem>
-              <para>'pressure': the value the efficiency of the worst
+              <para> 'pressure': the value the efficiency of the worst
               individual (default value: 0.05).</para>
             </listitem>
           </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sigma</term>
+
+        <listitem>
+          <para>the radius of the sharing area.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pow</term>
+
+        <listitem>
+          <para>the power coefficient of the penalty formula.</para>
         </listitem>
       </varlistentry>
 
@@ -182,50 +199,11 @@
 
     <itemizedlist>
       <listitem>
-        <para>This function implements the classical genetic algorithm.</para>
+        <para>This function implements the classical "Niched Sharing Genetic
+        Algorithm". For a demonstration, see
+        SCI/modules/genetic_algorithms/examples/NSGAdemo.sce.</para>
       </listitem>
     </itemizedlist>
-  </refsection>
-
-  <refsection>
-    <title>Examples</title>
-
-    <programlisting role="example">
-    deff('y=f(x)','y = sum(x.^2)');
-
-    PopSize     = 100;
-    Proba_cross = 0.7;
-    Proba_mut   = 0.1;
-    NbGen       = 10;
-    NbCouples   = 110;
-    Log         = %T;
-    nb_disp     = 10; // Nb point to display from the optimal population
-    pressure    = 0.05;
-
-    ga_params = init_param();
-    // Parameters to adapt to the shape of the optimization problem
-    ga_params = add_param(ga_params,'minbound',[-2; -2]);
-    ga_params = add_param(ga_params,'maxbound',[2; 2]);
-    ga_params = add_param(ga_params,'dimension',2);
-    ga_params = add_param(ga_params,'beta',0);
-    ga_params = add_param(ga_params,'delta',0.1);
-    // Parameters to fine tune the Genetic algorithm. All these parameters are optional for continuous optimization
-    // If you need to adapt the GA to a special problem, you 
-    ga_params = add_param(ga_params,'init_func',init_ga_default);
-    ga_params = add_param(ga_params,'crossover_func',crossover_ga_default);
-    ga_params = add_param(ga_params,'mutation_func',mutation_ga_default);
-    ga_params = add_param(ga_params,'codage_func',codage_ga_identity);
-    ga_params = add_param(ga_params,'selection_func',selection_ga_elitist);
-    //ga_params = add_param(ga_params,'selection_func',selection_ga_random);
-    ga_params = add_param(ga_params,'nb_couples',NbCouples);
-    ga_params = add_param(ga_params,'pressure',pressure);
-
-    Min = get_param(ga_params,'minbound');
-    Max = get_param(ga_params,'maxbound');
-    x0  = (Max - Min) .* rand(size(Min,1),size(Min,2)) + Min;
-
-    [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
-  </programlisting>
   </refsection>
 
   <refsection>
@@ -234,20 +212,10 @@
     <simplelist type="inline">
       <member><link linkend="optim_moga"> optim_moga </link></member>
 
-      <member><link linkend="optim_nsga"> optim_nsga </link></member>
+      <member><link linkend="optim_ga"> optim_ga </link></member>
 
       <member><link linkend="optim_nsga2"> optim_nsga2 </link></member>
     </simplelist>
-  </refsection>
-
-  <refsection>
-    <title>References</title>
-
-    <bibliomixed>
-      <bibliomset relation="book"><surname>Michalewicz</surname>,
-      <firstname>Zbigniew</firstname><title /> Genetic Algorithms + Data
-      Structures = Evolution Programs</bibliomset>
-    </bibliomixed>
   </refsection>
 
   <refsection>

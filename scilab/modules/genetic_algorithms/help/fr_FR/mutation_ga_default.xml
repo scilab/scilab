@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="coding_ga_binary" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="mutation_ga_default"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns3="http://www.w3.org/1999/xhtml"
@@ -22,16 +22,15 @@
   </info>
 
   <refnamediv>
-    <refname>coding_ga_binary</refname>
+    <refname>mutation_ga_default</refname>
 
-    <refpurpose>A function which performs conversion between binary and
-    continuous representation</refpurpose>
+    <refpurpose>A continuous variable mutation function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>pop_out = coding_ga_binary(pop_in,direction,param)</synopsis>
+    <synopsis>Mut_Indiv = mutation_ga_default(Indiv,param)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -39,21 +38,10 @@
 
     <variablelist>
       <varlistentry>
-        <term>pop_in</term>
+        <term>Indiv</term>
 
         <listitem>
-          <para>a list which contains all the individuals in the current
-          population.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>direction</term>
-
-        <listitem>
-          <para>'code' or 'decode'. If direction == 'code' then we perform a
-          continuous to binary encoding. Else, we convert from binary to
-          continuous.</para>
+          <para>The individual to be mutated.</para>
         </listitem>
       </varlistentry>
 
@@ -61,22 +49,21 @@
         <term>param</term>
 
         <listitem>
-          <para>a parameter list.</para>
+          <para>a list of parameters. </para>
 
           <itemizedlist>
             <listitem>
-              <para>'binary_length': the number of bits by variables. If
-              binary_length = 8 and the variable X is of dimension 2 then the
-              binary code will be 16 bits length.</para>
+              <para> 'delta': a random perturbation will be sampled via an
+              uniform distribution between -delta and + delta. </para>
             </listitem>
 
             <listitem>
-              <para>'minboun': a vector of minimum bounds for the variable
-              X.</para>
+              <para> 'minbound': a vector of minimum bound for the variable X.
+              </para>
             </listitem>
 
             <listitem>
-              <para>'maxbound': a vector of maximum bounds for the variable
+              <para> 'maxbound': a vector of maximum bound for the variable
               X.</para>
             </listitem>
           </itemizedlist>
@@ -84,11 +71,10 @@
       </varlistentry>
 
       <varlistentry>
-        <term>pop_out</term>
+        <term>Mut_Indiv</term>
 
         <listitem>
-          <para>the population coded to binary or decoded to continuous
-          values.</para>
+          <para>The resulting mutated individual.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -99,9 +85,8 @@
 
     <itemizedlist>
       <listitem>
-        <para>This function allows to code or decode a population of
-        individuals from (resp. to) continuous variables to (resp. from)
-        binary.</para>
+        <para>This function performs the classical continuous variable
+        mutation function.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -110,13 +95,16 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="optim_ga"> optim_ga </link></member>
-
       <member><link linkend="mutation_ga_binary"> mutation_ga_binary
       </link></member>
 
-      <member><link linkend="crossover_ga_binary"> crossover_ga_binary
+      <member><link linkend="crossover_ga_default"> crossover_ga_default
       </link></member>
+
+      <member><link linkend="init_ga_default"> init_ga_default
+      </link></member>
+
+      <member><link linkend="optim_ga"> optim_ga </link></member>
     </simplelist>
   </refsection>
 

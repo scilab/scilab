@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="selection_ga_random"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>4-Feb-2008</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>selection_ga_random</refname>
+
+    <refpurpose>A function which performs a random selection of
+    individuals</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_random(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Pop_in</term>
+
+        <listitem>
+          <para>The initial population of individuals.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Indiv1</term>
+
+        <listitem>
+          <para>a first set of childs generated via crossover +
+          mutation.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Indiv2</term>
+
+        <listitem>
+          <para>a second set of childs generated via crossover +
+          mutation.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FObj_Pop_in</term>
+
+        <listitem>
+          <para>a vector of objective function values associated to each
+          individuals of Pop_in.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FObj_Indiv1</term>
+
+        <listitem>
+          <para>a vector of objective function values associated to each
+          individuals of Indiv1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FObj_Indiv2</term>
+
+        <listitem>
+          <para>a vector of objective function values associated to each
+          individuals of Indiv2.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>MO_Total_FObj_in</term>
+
+        <listitem>
+          <para>a matrix of multi-objective function values associated to each
+          individuals of Pop_in.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>MO_FObj_Indiv1</term>
+
+        <listitem>
+          <para>a matrix of multi-objective function values associated to each
+          individuals of Indiv1.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>MO_FObj_Indiv2</term>
+
+        <listitem>
+          <para>a matrix of multi-objective function values associated to each
+          individuals of Indiv2.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>param</term>
+
+        <listitem>
+          <para>a list of parameters. </para>
+
+          <itemizedlist>
+            <listitem>
+              <para> 'pressure': the selection pressure coefficient. Each
+              individuals with 0 efficiency will have an efficiency value
+              equal to 'pressure'.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Pop_out</term>
+
+        <listitem>
+          <para>all the selected individuals in a population of size
+          pop_size.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FObj_Pop_out</term>
+
+        <listitem>
+          <para>all the objective function values associated to each
+          individuals of Pop_out.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Efficiency</term>
+
+        <listitem>
+          <para>all the efficiency values associated to each individuals of
+          Pop_out.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>MO_Total_FObj_out</term>
+
+        <listitem>
+          <para>all the multi-objective function values associated to each
+          individuals of Pop_out.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>This function performs the random selection function. We select
+        pop_size individuals in the set of parents and childs individuals at
+        random.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="selection_ga_elitist"> selection_ga_elitist
+      </link></member>
+
+      <member><link linkend="mutation_ga_default"> mutation_ga_default
+      </link></member>
+
+      <member><link linkend="crossover_ga_default"> crossover_ga_default
+      </link></member>
+
+      <member><link linkend="init_ga_default"> init_ga_default
+      </link></member>
+
+      <member><link linkend="optim_ga"> optim_ga </link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Yann COLLETTE</term>
+
+        <listitem>
+          <para>ycollet@freesurf.fr</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>
