@@ -5,6 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK ERROR OUTPUT -->
+// <-- NEED JVM -->
+
 // <-- Non-regression test for bug 1768 -->
 //
 // <-- Bugzilla URL -->
