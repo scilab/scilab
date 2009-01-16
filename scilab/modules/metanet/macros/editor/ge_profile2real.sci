@@ -24,7 +24,7 @@ function [xyp,xya,xyl,ang]=ge_profile2real(n)
   if tail==GraphList.edges.head(n) then //loop arc
     k=find(GraphList.edges.head==tail&GraphList.edges.tail==tail)
     v=(size(find(k<=n),'*')+1)/2
-    a=xyp(1)
+    a=1.2;
     //compute the angle ti of the intersection point between
     //the node circle and arc ellipsis
     // x=r1*cos(t1)    + c1x; y=r1*sin(t1)  + c1y         the circle   
@@ -32,14 +32,13 @@ function [xyp,xya,xyl,ang]=ge_profile2real(n)
     // by elimination : cos(t1)=v*a*cos(t); sin(t1)=v*sin(t) + v
     // squaring: 1=v^2*a^2*cos(t)^2+v^2*(sin(t) + 1)^2
     // s=sin(t): v^2*a^2*(1-s^2)+v^2*(s + 1)^2-1=0
-    a2=xyp(1)^2;
+    a2=a^2;
     ti=asin(-(v-sqrt(a2^2*v^2-a2+1))/(v*(1-a2)))
     //arc length
     al=(%pi-2*ti)*(v*r1*a)
     //arc path
     t=linspace(ti,%pi-ti,round(al))';
-    //xyp=[c1x+v*r1*a*cos(t) c1y+v*r1+v*r1*sin(t)];
-    xyp=[c1x-v*r1*a;c1y+2*(v*r1);v*r1*a*2;v*r1*2;180*64*ti/%pi;180*64*(%pi-2*ti)/%pi]
+    xyp=[c1x+v*r1*a*cos(t) c1y+v*r1+v*r1*sin(t)];
     //arrow
     xya=[c1x+[0;arrowLength;0] c1y+2*(v*r1)+[arrowWidth;0;-arrowWidth]]
     //Id position
