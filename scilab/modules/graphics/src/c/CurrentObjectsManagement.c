@@ -88,6 +88,11 @@ void sciSetCurrentObj( sciPointObj * pobj )
   sciCurrentObject = pobj ;
 }
 /*----------------------------------------------------------------------------------*/
+BOOL sciIsCurrentObject(sciPointObj * pobj)
+{
+	return (pobj == sciGetCurrentObj());
+}
+/*----------------------------------------------------------------------------------*/
 long sciGetCurrentHandle( void )
 {
   return sciGetHandle( sciGetCurrentObj() );
