@@ -31,25 +31,33 @@
 /*------------------------------------------------------------------------*/
 int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ((pobj != NULL) && (valueType==sci_handles)) 
+  if(sciGetEntityType( pobj ) == SCI_UIMENU)
     {
-      if(sciGetEntityType( pobj ) == SCI_UIMENU)
+      if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix)) /* sci_matrix used for adding menus in console menu */
         {
-          return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
-        }
-      else if(sciGetEntityType(pobj) == SCI_UICONTROL)
-        {
-          return SetUicontrolParent(pobj, stackPointer, valueType, nbRow, nbCol);
+          Scierror(999,_("%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"),"set_parent_property","Parent","Figure", "Uimenu");
+          return SET_PROPERTY_ERROR ;
         }
       else
         {
-          Scierror(999, _("Parent property can not be modified directly.\n"));
+          return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
+        }
+    }
+  else if(sciGetEntityType(pobj) == SCI_UICONTROL)
+    {
+      if ((pobj == NULL) || (valueType!=sci_handles)) 
+        {
+          Scierror(999,_("%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"),"set_parent_property","Parent","Figure", "Frame uicontrol");
           return SET_PROPERTY_ERROR ;
+        }
+      else
+        {
+          return SetUicontrolParent(pobj, stackPointer, valueType, nbRow, nbCol);
         }
     }
   else
     {
-      Scierror(999,_("%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"),"set_parent_property","Parent","Figure", "Frame uicontrol");
+      Scierror(999, _("Parent property can not be modified directly.\n"));
       return SET_PROPERTY_ERROR ;
     }
 }

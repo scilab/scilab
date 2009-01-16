@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.gui.utils;
 
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
@@ -45,6 +46,8 @@ public final class BarUpdater {
 			element.addToolBar(newToolBar);
 			element.addInfoBar(newInfoBar);
 			((Window) element).setTitle(newWindowTitle);
+			/** The following line is used to update the menubar, toolbar, ... displayed on screen */
+			((SwingScilabWindow) ((Window) element).getAsSimpleWindow()).validate();
 		}
 	}
 }

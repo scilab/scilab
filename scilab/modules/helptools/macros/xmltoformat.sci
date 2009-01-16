@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+// Copyright (C) 2008-2009 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
@@ -50,7 +51,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	[lhs,rhs] = argn(0);
 	
-	// Trop de paramï¿½tres
+	// Too much parameters
 	// ---------------------------------------------------------------------
 	
 	if rhs > 5 | rhs < 1 then
@@ -59,7 +60,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	// Transformation du %helps_modules jar => help/language
 	
-	// Cas par dï¿½faut : construction de l'aide en ligne de Scilab
+	// Default case : construction de l'aide en ligne de Scilab
 	// ---------------------------------------------------------------------
 	
 	if (rhs <= 1) | ((rhs == 2) & (dirs == [])) then
@@ -128,7 +129,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			end
 		end
 	
-	// Cas ou seulement le ou les rï¿½pertoires sont prï¿½cisï¿½s
+	// Only directories are precised
 	// ---------------------------------------------------------------------
 	
 	elseif (rhs == 2) & (dirs <> []) then
@@ -150,8 +151,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			end
 		end
 		
-	// Cas ou seulement le ou les rï¿½pertoires ainsi que le ou les titres
-	// sont prï¿½cisï¿½s
+	// Only directories and title are precised
 	// ---------------------------------------------------------------------
 	
 	elseif rhs == 3 then
@@ -171,8 +171,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			end
 		end
 	
-	// Cas les rï¿½pertoires,les titres ainsi que la
-	// langue du rï¿½pertoire sont prï¿½cisï¿½s
+	// Directories, title and languages are specified
 	// ---------------------------------------------------------------------
 	
 	elseif rhs == 4 then
@@ -190,7 +189,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			end
 		end
 	
-	// Cas oï¿½ tous est prï¿½cisï¿½
+	// All is specified
 	// ---------------------------------------------------------------------
 	
 	elseif rhs == 5 then
@@ -209,7 +208,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 	end
 	
-	// On transforme le ou les chemins donnï¿½s en chemin absolu
+	// Convert paths into absolute paths
 	// ---------------------------------------------------------------------
 	
 	for k=1:size(dirs,'*');
@@ -255,7 +254,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	end
 	
 	//----------------------------------------------------------------------
-	// On ï¿½tablit la liste des rï¿½pertoires nï¿½cï¿½ssitants d'ï¿½tre reconstruit
+    // Make out the list of directories that need to be (re)build
 	//----------------------------------------------------------------------
 	
 	need_to_be_build_tab   = [];
@@ -292,7 +291,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		return;
 	end
 	
-	// Nombre de rï¿½pertoire ayant besoin d'une modification
+	// Number of directories that need to be (re)build
 	// ---------------------------------------------------------------------
 	
 	nb_dir = size( find(need_to_be_build_tab == %T) , '*' );
@@ -749,7 +748,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	end
 	
 	//----------------------------------------------------------------------
-	// Crï¿½ation du fichier "directory/.last_successful_build_output_format"
+	// Create the file "directory/.last_successful_build_output_format"
 	//----------------------------------------------------------------------
 	
 	for k=1:size(dirs,'*');
@@ -777,20 +776,20 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro complï¿½te un rï¿½pertoire dont certaines aides en ligne sont manquantes
-	// Elle le complï¿½te avec les aides en ligne de la langue par dï¿½faut
+    // This macro fill a directory which some online help are missing
+    // It fill it with the online help written in the default language
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory traitï¿½e
+	// Handled directory
 	directory = pathconvert(directory,%f,%f);
 	
 	//--------------------------------------------------------------------------
-	// Nettoyage du rï¿½pertoire
+	// Directory cleaning
 	// Si il existe un fichier .list_<directory_language> (fichier contenant tous les
-	// fichiers traduits dans la langue du rï¿½pertoire), on supprime dans l'ordre :
-	//   1. Tous les fichiers n'appartenant pas ï¿½ la liste contenue dans .list_<directory_language>
+	// fichiers traduits dans la langue du répertoire), on supprime dans l'ordre :
+	//   1. Tous les fichiers n'appartenant pas à la liste contenue dans .list_<directory_language>
 	//   2. Tous les fichiers de la forme .list_<language>
 	//--------------------------------------------------------------------------
 	
@@ -800,8 +799,8 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	end
 	
 	//--------------------------------------------------------------------------
-	// Construction du fichier list_<directory_language> contenant la liste des
-	// fichiers traduits dans la langue associï¿½e au rï¿½pertoire
+	// Make out the list of the translated file in the language linked with this
+	// directory and put this list in the file list_<directory_language>
 	//--------------------------------------------------------------------------
 	
 	dir_language_xml_files = basename(listfiles(directory+"/*.xml"));
@@ -813,23 +812,23 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//--------------------------------------------------------------------------
 	// Construction du fichier list_<default_language> contenant la liste des fichiers
-	// non traduits dans la langue associï¿½e au rï¿½pertoire qui seront rï¿½cupï¿½rï¿½s depuis le
-	// rï¿½pertoire de la langue par dï¿½faut
+	// non traduits dans la langue associée au répertoire qui seront récupérés depuis le
+	// répertoire de la langue par défaut
 	//--------------------------------------------------------------------------
 	
 	// Tous les fichiers contenus dans <directory>/../<default_language> pour commencer
 	// On afinnera par la suite
 	df_lang_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
 	
-	// On supprime de "df_lang_xml_files" tous les ï¿½lï¿½ment contenus dans
-	// "dir_language_xml_files", c'est ï¿½ dire tous les fichiers dï¿½ja traduit dans la langue
-	// associï¿½e au rï¿½pertoire.
+	// On supprime de "df_lang_xml_files" tous les élément contenus dans
+	// "dir_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
+	// associée au répertoire.
 	
 	for i=1:size(dir_language_xml_files,'*');
 		df_lang_xml_files(find(df_lang_xml_files==dir_language_xml_files(i)))=[];
 	end
 	
-	// Crï¿½ation du fichier
+	// Création du fichier
 	if df_lang_xml_files <> [] then
 		mputl(df_lang_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
 	else
@@ -856,25 +855,25 @@ function del_df_lang_xml_files(directory,directory_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro dï¿½truit tous les fichiers xml qui ne sont pas traduit dans
-	// la langue associï¿½e au rï¿½pertoire
+	// Cette macro détruit tous les fichiers xml qui ne sont pas traduit dans
+	// la langue associée au répertoire
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory traitï¿½e
+	// Directory traitée
 	directory = pathconvert(directory,%f,%t);
 	
 	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		
-		// Rï¿½cupï¿½ration de la liste des fichiers xml copiï¿½s depuis le rï¿½pertoire de la langue par dï¿½faut
+		// Récupération de la liste des fichiers xml copiés depuis le répertoire de la langue par défaut
 		dir_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
 		
-		// Liste de tous les fichiers xml contenu dans le rï¿½pertoire
+		// Liste de tous les fichiers xml contenu dans le répertoire
 		all_files = basename(listfiles(directory+"/*.xml"));
 		
-		// On retire de "all_files" tous les ï¿½lï¿½ments appartenant ï¿½ "xml_directory_language_files"
-		// Ce sont les aides en ligne traduite dans la langue associï¿½e rï¿½pertoire
+		// On retire de "all_files" tous les éléments appartenant à "xml_directory_language_files"
+		// Ce sont les aides en ligne traduite dans la langue associée répertoire
 		for i=1:size(dir_language_xml_files,'*');
 			all_files(find(all_files==dir_language_xml_files(i)))=[];
 		end
@@ -896,33 +895,33 @@ function result = need_to_be_build(directory,directory_language,default_language
 	// Copyright INRIA
 	// Date : 27, july 2006
 	//
-	// Cette fonction a pour but de dï¿½terminer si le rï¿½pertoire a besoin d'ï¿½tre
+	// Cette fonction a pour but de déterminer si le répertoire a besoin d'être
 	// reconstruit ou pas.
 	//
-	// On dï¿½termine la date de derniï¿½re modification la plus rï¿½cente parmi les
-	// dates de derniï¿½re modification suivantes :
-	//     -  date de derniï¿½re modification du rï¿½pertoire "directory".
-	//     -  dates de derniï¿½re modification des fichiers XML du rï¿½pertoire "directory".
-	//     -  date de derniï¿½re modification du rï¿½pertoire "directory/../<default_language>"
-	//        si le systï¿½me de multilinguisme est utilisï¿½
-	//      - dates de derniï¿½re modification des fichiers XML du rï¿½pertoire
-	//        "directory/../<default_language>" si le systï¿½me de multilinguisme est utilisï¿½
+	// On détermine la date de dernière modification la plus récente parmi les
+	// dates de dernière modification suivantes :
+	//     -  date de dernière modification du répertoire "directory".
+	//     -  dates de dernière modification des fichiers XML du répertoire "directory".
+	//     -  date de dernière modification du répertoire "directory/../<default_language>"
+	//        si le système de multilinguisme est utilisé
+	//      - dates de dernière modification des fichiers XML du répertoire
+	//        "directory/../<default_language>" si le système de multilinguisme est utilisé
 	//
-	// Ensuite cette valeur est comparï¿½e ï¿½ la valeur contenue dans le fichier
+	// Ensuite cette valeur est comparée à la valeur contenue dans le fichier
 	// "directory/.last_successful_build". Si elle est plus grande,
 	// need_to_be_build renvoie %T
 	//
-	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais ï¿½tï¿½
+	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais été
 	// construite donc need_to_be_build renvoie %T
 	//
 	//--------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0);
 	
-	// S'il n'y a pas de fichiers XML dans le rï¿½pertoire ni dans son homologue,
-	// Le rï¿½pertoire n'a pas besoin d'ï¿½tre construit.
-	// Cela est une sï¿½curitï¿½ pour ï¿½viter de detruire les whatis des versions binaires
-	// oï¿½ il n'y a pas de fichiers XML
+	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
+	// Le répertoire n'a pas besoin d'être construit.
+	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
+	// où il n'y a pas de fichiers XML
 	
 	xml_file_list    = listfiles(directory+"/*.xml");
 	
@@ -1133,62 +1132,62 @@ function category = title2category(mytitle)
 		category = mytitle;
 		category = strsubst(category , "&"  , "_" );
 		
-		category = strsubst(category , "ï¿½"  , "A" );
-		category = strsubst(category , "ï¿½"  , "A" );
-		category = strsubst(category , "ï¿½"  , "A" );
-		category = strsubst(category , "ï¿½"  , "A" );
-		category = strsubst(category , "ï¿½"  , "A" );
-		category = strsubst(category , "ï¿½"  , "A" );
-		category = strsubst(category , "ï¿½"  , "AE");
-		category = strsubst(category , "ï¿½"  , "C" );
-		category = strsubst(category , "ï¿½"  , "E" );
-		category = strsubst(category , "ï¿½"  , "E" );
-		category = strsubst(category , "ï¿½"  , "E" );
-		category = strsubst(category , "ï¿½"  , "E" );
-		category = strsubst(category , "ï¿½"  , "I" );
-		category = strsubst(category , "ï¿½"  , "I" );
-		category = strsubst(category , "ï¿½"  , "I" );
-		category = strsubst(category , "ï¿½"  , "I" );
-		category = strsubst(category , "ï¿½"  , "D" );
-		category = strsubst(category , "ï¿½"  , "N" );
-		category = strsubst(category , "ï¿½"  , "O" );
-		category = strsubst(category , "ï¿½"  , "O" );
-		category = strsubst(category , "ï¿½"  , "O" );
-		category = strsubst(category , "ï¿½"  , "O" );
-		category = strsubst(category , "ï¿½"  , "O" );
-		category = strsubst(category , "ï¿½"  , "U" );
-		category = strsubst(category , "ï¿½"  , "U" );
-		category = strsubst(category , "ï¿½"  , "U" );
-		category = strsubst(category , "ï¿½"  , "U" );
-		category = strsubst(category , "ï¿½"  , "Y" );
-		category = strsubst(category , "ï¿½"  , "a" );
-		category = strsubst(category , "ï¿½"  , "a" );
-		category = strsubst(category , "ï¿½"  , "a" );
-		category = strsubst(category , "ï¿½"  , "a" );
-		category = strsubst(category , "ï¿½"  , "a" );
-		category = strsubst(category , "ï¿½"  , "a" );
-		category = strsubst(category , "ï¿½"  , "ae");
-		category = strsubst(category , "ï¿½"  , "c" );
-		category = strsubst(category , "ï¿½"  , "e" );
-		category = strsubst(category , "ï¿½"  , "e" );
-		category = strsubst(category , "ï¿½"  , "e" );
-		category = strsubst(category , "ï¿½"  , "e" );
-		category = strsubst(category , "ï¿½"  , "i" );
-		category = strsubst(category , "ï¿½"  , "i" );
-		category = strsubst(category , "ï¿½"  , "i" );
-		category = strsubst(category , "ï¿½"  , "i" );
-		category = strsubst(category , "ï¿½"  , "n" );
-		category = strsubst(category , "ï¿½"  , "o" );
-		category = strsubst(category , "ï¿½"  , "o" );
-		category = strsubst(category , "ï¿½"  , "o" );
-		category = strsubst(category , "ï¿½"  , "o" );
-		category = strsubst(category , "ï¿½"  , "o" );
-		category = strsubst(category , "ï¿½"  , "u" );
-		category = strsubst(category , "ï¿½"  , "u" );
-		category = strsubst(category , "ï¿½"  , "u" );
-		category = strsubst(category , "ï¿½"  , "u" );
-		category = strsubst(category , "ï¿½"  , "y" );
-		category = strsubst(category , "ï¿½"  , "y" );
+		category = strsubst(category , "À"  , "A" );
+		category = strsubst(category , "Á"  , "A" );
+		category = strsubst(category , "Â"  , "A" );
+		category = strsubst(category , "Ã"  , "A" );
+		category = strsubst(category , "Ä"  , "A" );
+		category = strsubst(category , "Å"  , "A" );
+		category = strsubst(category , "Æ"  , "AE");
+		category = strsubst(category , "Ç"  , "C" );
+		category = strsubst(category , "È"  , "E" );
+		category = strsubst(category , "É"  , "E" );
+		category = strsubst(category , "Ê"  , "E" );
+		category = strsubst(category , "Ë"  , "E" );
+		category = strsubst(category , "Ì"  , "I" );
+		category = strsubst(category , "Í"  , "I" );
+		category = strsubst(category , "Î"  , "I" );
+		category = strsubst(category , "Ï"  , "I" );
+		category = strsubst(category , "Ð"  , "D" );
+		category = strsubst(category , "Ñ"  , "N" );
+		category = strsubst(category , "Ò"  , "O" );
+		category = strsubst(category , "Ó"  , "O" );
+		category = strsubst(category , "Ô"  , "O" );
+		category = strsubst(category , "Õ"  , "O" );
+		category = strsubst(category , "Ö"  , "O" );
+		category = strsubst(category , "Ù"  , "U" );
+		category = strsubst(category , "Ú"  , "U" );
+		category = strsubst(category , "Û"  , "U" );
+		category = strsubst(category , "Ü"  , "U" );
+		category = strsubst(category , "Ý"  , "Y" );
+		category = strsubst(category , "à"  , "a" );
+		category = strsubst(category , "á"  , "a" );
+		category = strsubst(category , "â"  , "a" );
+		category = strsubst(category , "ã"  , "a" );
+		category = strsubst(category , "ä"  , "a" );
+		category = strsubst(category , "å"  , "a" );
+		category = strsubst(category , "æ"  , "ae");
+		category = strsubst(category , "ç"  , "c" );
+		category = strsubst(category , "è"  , "e" );
+		category = strsubst(category , "é"  , "e" );
+		category = strsubst(category , "ê"  , "e" );
+		category = strsubst(category , "ë"  , "e" );
+		category = strsubst(category , "ì"  , "i" );
+		category = strsubst(category , "í"  , "i" );
+		category = strsubst(category , "î"  , "i" );
+		category = strsubst(category , "ï"  , "i" );
+		category = strsubst(category , "ñ"  , "n" );
+		category = strsubst(category , "ò"  , "o" );
+		category = strsubst(category , "ó"  , "o" );
+		category = strsubst(category , "ô"  , "o" );
+		category = strsubst(category , "õ"  , "o" );
+		category = strsubst(category , "ö"  , "o" );
+		category = strsubst(category , "ù"  , "u" );
+		category = strsubst(category , "ú"  , "u" );
+		category = strsubst(category , "û"  , "u" );
+		category = strsubst(category , "ü"  , "u" );
+		category = strsubst(category , "ý"  , "y" );
+		category = strsubst(category , "ÿ"  , "y" );
 		
 		category = strsubst(category , ":"  , ""  );
 		category = strsubst(category , "\"  , "_" );
@@ -1213,68 +1212,68 @@ function out = text2html(in)
 // 		
 // 		out = strsubst(out , """" , "&quot;"   );
 // 		out = strsubst(out , "&"  , "&amp;"    );
-// 		out = strsubst(out , "?"  , "&euro;"   );
-// 		out = strsubst(out , "ï¿½"  , "&Agrave;" );
-// 		out = strsubst(out , "ï¿½"  , "&Aacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&Acirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&Atilde;" );
-// 		out = strsubst(out , "ï¿½"  , "&Auml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&Aring;"  );
-// 		out = strsubst(out , "ï¿½"  , "&Aelig"   );
-// 		out = strsubst(out , "ï¿½"  , "&Ccedil;" );
-// 		out = strsubst(out , "ï¿½"  , "&Egrave;" );
-// 		out = strsubst(out , "ï¿½"  , "&Eacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&Ecirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&Euml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&Igrave"  );;
-// 		out = strsubst(out , "ï¿½"  , "&Iacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&Icirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&Iuml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&eth;"    );
-// 		out = strsubst(out , "ï¿½"  , "&Ntilde;" );
-// 		out = strsubst(out , "ï¿½"  , "&Ograve;" );
-// 		out = strsubst(out , "ï¿½"  , "&Oacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&Ocirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&Otilde;" );
-// 		out = strsubst(out , "ï¿½"  , "&Ouml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&Ugrave;" );
-// 		out = strsubst(out , "ï¿½"  , "&Uacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&Ucirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&Uuml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&Yacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&thorn;"  );
-// 		out = strsubst(out , "ï¿½"  , "&szlig;"  );
-// 		out = strsubst(out , "ï¿½"  , "&agrave;" );
-// 		out = strsubst(out , "ï¿½"  , "&aacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&acirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&atilde;" );
-// 		out = strsubst(out , "ï¿½"  , "&auml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&aring;"  );
-// 		out = strsubst(out , "ï¿½"  , "&aelig;"  );
-// 		out = strsubst(out , "ï¿½"  , "&ccedil;" );
-// 		out = strsubst(out , "ï¿½"  , "&egrave"  );;
-// 		out = strsubst(out , "ï¿½"  , "&eacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&ecirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&euml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&igrave"  );;
-// 		out = strsubst(out , "ï¿½"  , "&iacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&icirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&iuml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&eth;"    );
-// 		out = strsubst(out , "ï¿½"  , "&ntilde;" );
-// 		out = strsubst(out , "ï¿½"  , "&ograve;" );
-// 		out = strsubst(out , "ï¿½"  , "&oacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&ocirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&otilde;" );
-// 		out = strsubst(out , "ï¿½"  , "&ouml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&ugrave;" );
-// 		out = strsubst(out , "ï¿½"  , "&uacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&ucirc;"  );
-// 		out = strsubst(out , "ï¿½"  , "&uuml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&yacute;" );
-// 		out = strsubst(out , "ï¿½"  , "&thorn;"  );
-// 		out = strsubst(out , "ï¿½"  , "&yuml;"   );
-// 		out = strsubst(out , "ï¿½"  , "&micro;"  );
+// 		out = strsubst(out , "¤"  , "&euro;"   );
+// 		out = strsubst(out , "À"  , "&Agrave;" );
+// 		out = strsubst(out , "Á"  , "&Aacute;" );
+// 		out = strsubst(out , "Â"  , "&Acirc;"  );
+// 		out = strsubst(out , "Ã"  , "&Atilde;" );
+// 		out = strsubst(out , "Ä"  , "&Auml;"   );
+// 		out = strsubst(out , "Å"  , "&Aring;"  );
+// 		out = strsubst(out , "Æ"  , "&Aelig"   );
+// 		out = strsubst(out , "Ç"  , "&Ccedil;" );
+// 		out = strsubst(out , "È"  , "&Egrave;" );
+// 		out = strsubst(out , "É"  , "&Eacute;" );
+// 		out = strsubst(out , "Ê"  , "&Ecirc;"  );
+// 		out = strsubst(out , "Ë"  , "&Euml;"   );
+// 		out = strsubst(out , "Ì"  , "&Igrave"  );;
+// 		out = strsubst(out , "Í"  , "&Iacute;" );
+// 		out = strsubst(out , "Î"  , "&Icirc;"  );
+// 		out = strsubst(out , "Ï"  , "&Iuml;"   );
+// 		out = strsubst(out , "Ð"  , "&eth;"    );
+// 		out = strsubst(out , "Ñ"  , "&Ntilde;" );
+// 		out = strsubst(out , "Ò"  , "&Ograve;" );
+// 		out = strsubst(out , "Ó"  , "&Oacute;" );
+// 		out = strsubst(out , "Ô"  , "&Ocirc;"  );
+// 		out = strsubst(out , "Õ"  , "&Otilde;" );
+// 		out = strsubst(out , "Ö"  , "&Ouml;"   );
+// 		out = strsubst(out , "Ù"  , "&Ugrave;" );
+// 		out = strsubst(out , "Ú"  , "&Uacute;" );
+// 		out = strsubst(out , "Û"  , "&Ucirc;"  );
+// 		out = strsubst(out , "Ü"  , "&Uuml;"   );
+// 		out = strsubst(out , "Ý"  , "&Yacute;" );
+// 		out = strsubst(out , "Þ"  , "&thorn;"  );
+// 		out = strsubst(out , "ß"  , "&szlig;"  );
+// 		out = strsubst(out , "à"  , "&agrave;" );
+// 		out = strsubst(out , "á"  , "&aacute;" );
+// 		out = strsubst(out , "â"  , "&acirc;"  );
+// 		out = strsubst(out , "ã"  , "&atilde;" );
+// 		out = strsubst(out , "ä"  , "&auml;"   );
+// 		out = strsubst(out , "å"  , "&aring;"  );
+// 		out = strsubst(out , "æ"  , "&aelig;"  );
+// 		out = strsubst(out , "ç"  , "&ccedil;" );
+// 		out = strsubst(out , "è"  , "&egrave"  );;
+// 		out = strsubst(out , "é"  , "&eacute;" );
+// 		out = strsubst(out , "ê"  , "&ecirc;"  );
+// 		out = strsubst(out , "ë"  , "&euml;"   );
+// 		out = strsubst(out , "ì"  , "&igrave"  );;
+// 		out = strsubst(out , "í"  , "&iacute;" );
+// 		out = strsubst(out , "î"  , "&icirc;"  );
+// 		out = strsubst(out , "ï"  , "&iuml;"   );
+// 		out = strsubst(out , "ð"  , "&eth;"    );
+// 		out = strsubst(out , "ñ"  , "&ntilde;" );
+// 		out = strsubst(out , "ò"  , "&ograve;" );
+// 		out = strsubst(out , "ó"  , "&oacute;" );
+// 		out = strsubst(out , "ô"  , "&ocirc;"  );
+// 		out = strsubst(out , "õ"  , "&otilde;" );
+// 		out = strsubst(out , "ö"  , "&ouml;"   );
+// 		out = strsubst(out , "ù"  , "&ugrave;" );
+// 		out = strsubst(out , "ú"  , "&uacute;" );
+// 		out = strsubst(out , "û"  , "&ucirc;"  );
+// 		out = strsubst(out , "ü"  , "&uuml;"   );
+// 		out = strsubst(out , "ý"  , "&yacute;" );
+// 		out = strsubst(out , "þ"  , "&thorn;"  );
+// 		out = strsubst(out , "ÿ"  , "&yuml;"   );
+// 		out = strsubst(out , "µ"  , "&micro;"  );
 	
 endfunction
 
@@ -1323,8 +1322,13 @@ endfunction
 ////////////////////////////////
 
 function create_MD_scicos(basedir, masterdoc, language)
-	
-encoding = "UTF-8";
+
+// Encoding management
+if language == "fr_FR" then
+  encoding = "ISO-8859-1";
+else
+  encoding = "UTF-8";
+end
 
 // TODO this function should use localization
 if language=="fr_FR" then
@@ -1422,7 +1426,10 @@ tmpfiles = gsort(listfiles(directory + "/*"),"lr","i");
 
 for k=1:size(tmpfiles, "*")
   // Files to be ignored
-  if ~isempty(strindex(tmpfiles(k), "master_help.xml")) | ~isempty(strindex(tmpfiles(k), "addchapter.sce")) | ~isempty(strindex(tmpfiles(k), ".list_")) | ~isempty(strindex(tmpfiles(k), ".last_")) | ~isempty(strindex(tmpfiles(k), "scilab_"+language+"_help")) | ~isempty(strindex(tmpfiles(k), ".jar")) then
+  longpathval = getlongpathname(tmpfiles(k));
+  if ~isempty(strindex(longpathval, "master_help.xml")) | ~isempty(strindex(longpathval, "addchapter.sce")) | ..
+     ~isempty(strindex(longpathval, ".list_")) | ~isempty(strindex(longpathval, ".last_")) | ..
+     ~isempty(strindex(longpathval, "scilab_"+language+"_help")) | ~isempty(strindex(longpathval, ".jar")) then
     continue
   end
 
@@ -1459,15 +1466,15 @@ function category = dirToCat(directory, language)
 
 // TODO this function should use localization
 
-alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures","palettes"];
+alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures","palettes","oldblocks_pal"];
 if language == "fr_FR" then
   allcategories = ["Fonctions en ligne de commande", "Editeur", "Palette Sources", ..
-   "Palette LinÃ©aire", "Palette Non-linÃ©aire", "Palette Branchements", "Palette Divers", .. 
-   "Palette DÃ©tection", "Palette Affichage", "Palette EvÃ¨nements", "Palette des Composants Electriques", ..
-    "Palette des Composants Thermohydrauliques", "Palette d''OpÃ©rations Matricielles", "Palette Integer", ..
-     "Palette des Blocks de DÃ©monstration", "Blocs par Ordre AlphabÃ©tique", "Fonctions de Calcul en C", ..
+   "Palette Linéaire", "Palette Non-linéaire", "Palette Branchements", "Palette Divers", .. 
+   "Palette Détection", "Palette Affichage", "Palette Evènements", "Palette des Composants Electriques", ..
+    "Palette des Composants Thermohydrauliques", "Palette d''Opérations Matricielles", "Palette Integer", ..
+     "Palette des Blocks de Démonstration", "Blocs par Ordre Alphabétique", "Fonctions de Calcul en C", ..
       "Fonctions de Calcul Scilab", "Fonctions Utilitaires", "Programmation des Blocs Scicos", ..
-      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de DonnÃ©es Scilab", "Palettes"];
+      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab", "Palettes", "Palette des Anciens Blocs"];
 else
   allcategories = [_("Batch functions"), _("Editor"), _("Sources Palette"), ..
   _("Linear Palette"), _("Non-linear Palette"), _("Branching Palette"), _("Others Palettes"), ..
@@ -1475,7 +1482,7 @@ else
    _("Thermohydraulics Palette"), _("Matrix Palette"), _("Integer Palette"), _("Demoblocks Palette"), ..
     _("ABCD Blocks"), _("C Computational Functions"), _("Scilab Computational Functions"), ..
      _("Utilities Functions"), _("Programming Scicos Blocks"), _("Scilab Utilities Functions"), ..
-      _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures"), _("Palettes")];
+      _("Diagram"), _("Blocks"), _("Links"), _("Compilation/Simulation"), _("Scilab Data Structures"), _("Palettes"), _("Old Blocks Palette")];
 end
 category = allcategories(find(alldirs==directory));
 endfunction

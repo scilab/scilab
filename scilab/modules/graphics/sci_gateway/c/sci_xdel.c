@@ -39,9 +39,9 @@ int sci_xdel(char *fname,unsigned long fname_len)
 		windowNumbers = getDoubleMatrixFromStack(l1);
 		for (i = 0; i < m1 * n1; i++)
 		{
-			if (getFigureFromIndex((int) windowNumbers[i]) == NULL)
+			if (!sciIsExistingFigure((int) windowNumbers[i]))
 			{
-				Scierror(999, "%s: The Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
+				Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
 				LhsVar(1)=0;
 				return -1;
 			}

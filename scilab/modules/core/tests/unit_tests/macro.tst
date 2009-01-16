@@ -4,7 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- JVM NOT MANDATORY -->
+funcprot(0)
 // simple
 //
 deff('[x,y]=t1(a,b)','x=a+b,y=a-b','n')

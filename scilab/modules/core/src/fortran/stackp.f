@@ -37,7 +37,7 @@ c     compilation  stackp: <1,nom(1:4)>
          fin=0
          return
       endif
-   01 if (top .le. 0) then
+      if (top .le. 0) then
          call error(1)
          return
       endif

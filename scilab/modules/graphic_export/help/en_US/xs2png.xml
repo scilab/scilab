@@ -24,13 +24,14 @@
   <refnamediv>
     <refname>xs2png</refname>
 
-    <refpurpose>send graphics to a file in PNG syntax</refpurpose>
+    <refpurpose>send graphics to a PNG file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2png(win_num,filen)</synopsis>
+    <synopsis>xs2png(win_num, file_name)
+xs2png(fig, file_name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar.</para>
+          <para>integer, id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>file_name</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,9 +67,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2png</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in PNG
-    format. </para>
+    <para><literal>xs2png</literal> exports the display of a graphic window into a PNG file.</para>
   </refsection>
 
   <refsection>
@@ -69,7 +76,8 @@
     <programlisting role="example">    scf(0)
     plot2d()
     //PNG export
-    xs2png(0,'foo.png')
+xs2png(0,'foo.png');
+xs2png(gcf(),'foo.png');
   </programlisting>
   </refsection>
 
