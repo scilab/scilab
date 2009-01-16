@@ -13,6 +13,8 @@
 #include "CreateUIContextMenu.h"
 #include "BuildDrawingObserver.h" /* createDrawingObserver */
 #include "ContextMenu.h" /* createContextMenu */
+#include "BuildObjects.h" /* createDefaultRelationShip */
+
 sciPointObj * CreateUIContextMenu(void)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
@@ -43,10 +45,7 @@ sciPointObj * CreateUIContextMenu(void)
       return NULL ;
     }
       
-  sciInitVisibility( pobj, TRUE ) ;
-      
-  pobj->pObservers = DoublyLinkedList_new() ;
-  createDrawingObserver( pobj ) ;
+  pobj->pObservers = NULL ;
       
   pobj->pDrawer = NULL ;
  

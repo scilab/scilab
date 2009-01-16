@@ -85,11 +85,11 @@ xs2fig(fig, file_name [,orientation])</synopsis>
     <title>Examples</title>
 
     <programlisting role="example"> 
-    //simple example
-    scf(0)
-    plot2d()
-    xs2fig(0,'foo.fig')
-    xs2fig(gcf(),'foo.fig')
+//simple example
+scf(0);
+plot2d();
+xs2fig(0,'foo.fig');
+xs2fig(gcf(),'foo.fig')
   </programlisting>
   </refsection>
 

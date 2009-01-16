@@ -52,7 +52,7 @@ function xs2emf(figureNumber, fileName, orientation)
   if fileinfo(SCI+'/tools/pstoedit/gsdll32.dll') == [] then
     msgErr1 = "Please install Ghostscript 32 bits to export an EMF file.";
     msgErr2 = "http://www.ghostscript.com/awki";
-    msg = [msgErr1;msgErr2];
+    msg = [gettext(msgErr1);gettext(msgErr2)];
     messagebox(msg, "Scilab error", "error");
     return;
   end

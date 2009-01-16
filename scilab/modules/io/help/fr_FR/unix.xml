@@ -53,14 +53,21 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
+if ~MSDOS then
+  unix("ls $SCI/demos");
+end
 
-unix("ls $SCI/demos");
-deff('wd=getdir()','if MSDOS then unix(''cd>''+TMPDIR+''\path'');..
-	else unix(''pwd>''+TMPDIR+''/path'');end..
-wd=read(TMPDIR+''/path'',1,1,''(a)'')')
-wd=getdir()
+function wd=directory()
+  if MSDOS then
+    unix('cd>'+TMPDIR+'\path');
+  else
+    unix('pwd>'+TMPDIR+'/path');
+  end
+  wd=read(TMPDIR+'/path',1,1,'(a)');
+endfunction
 
-	]]></programlisting>
+wd=directory()
+  ]]></programlisting>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

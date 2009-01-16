@@ -120,17 +120,20 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   for x=libs(:)' ; mfprintf(fd," %s.lib",x);end
   mfprintf(fd,"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\Makefile.incl.mak\n");
-  if findmsvccompiler() <>'msvc90express' then
-    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
-	   " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* "+ cflags +" \n"); 
-    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
-	   " -Dmexfunction=mex$* "+ fflags +"\n"); 
-	else
-    mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
-	   " "+ cflags +" \n"); 
-    mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
-	   " "+ fflags +"\n"); 
-	end
+  
+  mexcflags = ' ';
+  mexfflags = ' ';
+  
+  if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' then
+    if findmsvccompiler() <>'msvc90express' then
+      mexcflags = " -Dmexfunction_=mex$*_  -DmexFunction=mex_$* ";
+      mexfflags = " -Dmexfunction=mex$* ";
+    end
+  end
+  mfprintf(fd,"CFLAGS = $(CC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
+	   mexcflags + cflags +" \n"); 
+  mfprintf(fd,"FFLAGS = $(FC_OPTIONS) -DFORDLL -I\""$(SCIDIR)/modules/core/includes\"""+...
+	   mexfflags + fflags +"\n"); 
   mfprintf(fd,"EXTRA_LDFLAGS = "+ ldflags+"\n");
   mfprintf(fd,"!include $(SCIDIR1)\\modules\\dynamic_link\\src\\scripts\\Makedll.incl \n");
   mclose(fd);

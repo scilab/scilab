@@ -33,6 +33,8 @@ sciPointObj *InitProgressionBar(void)
 	createDefaultRelationShip(pObj);
 
   pPROGRESSIONBAR_FEATURE(pObj)->hashMapIndex = 0;
+  pObj->pObservers = NULL;
+  pObj->pDrawer = NULL ;
   sciAddNewHandle(pObj);
   return (sciPointObj *) pObj;
 }

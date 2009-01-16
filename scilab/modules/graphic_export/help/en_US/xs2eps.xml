@@ -84,12 +84,12 @@ xs2eps(fig, file_name [,orientation])</synopsis>
     <title>Examples</title>
 
     <programlisting role="example"> 
-    scf(0)
-    plot2d()
-    //EPS export
-    xs2eps(0,'foo.eps')
-    xs2eps(gcf(),'foo.eps')
-  </programlisting>
+scf(0)
+plot2d()
+//EPS export
+xs2eps(0,'foo.eps')
+xs2eps(gcf(),'foo.eps')
+    </programlisting>
   </refsection>
 
   <refsection>

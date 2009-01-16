@@ -72,12 +72,12 @@ xs2jpg(fig, file_name)</synopsis>
 
   <refsection>
     <title>Examples</title>
-
-    <programlisting role="example">    scf(0)
-    plot2d()
-    //JPG export
-    xs2jpg(0,'foo.jpg')
-    xs2jpg(gcf(),'foo.jpg')
+    <programlisting role="example">
+scf(0);
+plot2d();
+//JPG export
+xs2jpg(0,'foo.jpg');
+xs2jpg(gcf(),'foo.jpg');
   </programlisting>
   </refsection>
 

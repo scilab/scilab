@@ -54,10 +54,10 @@ g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159];
 g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107];
 show_graph(g,'new')
 
-GraphList.nodes.number
-GraphList.nodes
+g.nodes.number
+g.nodes
 
-g=add_node_data(GraphList,'Size',rand(1,GraphList.nodes.number,'u'));    
+g=add_node_data(g,'Size',rand(1,g.nodes.number,'u'));
 g.nodes(1:10)
 
 nodedatafields(g)
