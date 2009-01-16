@@ -21,6 +21,21 @@ IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void)
 	switch (osvi.dwPlatformId)
 	{
 		case VER_PLATFORM_WIN32_NT:
+
+			if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 1 )
+			{
+				if( osvi.wProductType == VER_NT_WORKSTATION ) 
+				{
+					if (IsWow64()) return OS_WIN32_WINDOWS_SEVEN_64;
+					else return OS_WIN32_WINDOWS_SEVEN;
+				}
+				else
+				{
+					if (IsWow64()) return OS_WIN32_WINDOWS_SEVEN_SERVER_64;
+					else return  OS_WIN32_WINDOWS_SEVEN_SERVER;
+				}
+			}
+
 			if ( osvi.dwMajorVersion == 6 && osvi.dwMinorVersion == 0 )
 			{
 				if( osvi.wProductType == VER_NT_WORKSTATION ) 
@@ -63,7 +78,7 @@ IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void)
 	return OS_ERROR;
 }
 /*-----------------------------------------------------------------------------------*/
-BOOL IsWow64()
+BOOL IsWow64(void)
 {
 	BOOL bIsWow64 = FALSE;
 	LPFN_ISWOW64PROCESS fnIsWow64Process;

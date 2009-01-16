@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -33,12 +33,12 @@ int get_tics_color_property( sciPointObj * pobj )
   }
   else if (sciGetEntityType (pobj) == SCI_SUBWIN)
   {
-    sciprint(_("Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"),"tics_color","foreground");
+    Scierror(999, _("Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"),"tics_color","foreground");
     return sciReturnDouble( pSUBWIN_FEATURE(pobj)->axes.ticscolor ) ;
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"tics_color");
+    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_color");
     return -1;
   }
 

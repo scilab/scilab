@@ -102,7 +102,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscipvm_la_demosdir)" \
 	"$(DESTDIR)$(libscipvm_la_etcdir)" \
 	"$(DESTDIR)$(libscipvm_la_rootdir)" \
 	"$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" \
@@ -201,12 +200,11 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscipvm_la_SOURCES)
 DIST_SOURCES = $(am__libscipvm_la_SOURCES_DIST)
-libscipvm_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscipvm_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscipvm_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscipvm_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscipvm_la_demos_DATA) $(libscipvm_la_etc_DATA) \
-	$(libscipvm_la_root_DATA) $(libscipvm_la_sci_gateway_DATA)
+DATA = $(libscipvm_la_etc_DATA) $(libscipvm_la_root_DATA) \
+	$(libscipvm_la_sci_gateway_DATA)
 am__libscipvm_la_include_HEADERS_DIST = includes/gw_pvm.h \
 	includes/with_pvm.h
 libscipvm_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -493,13 +491,6 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@includes/with_pvm.h
 
 
-#### pvm : demos files ####
-@PVM_TRUE@libscipvm_la_demosdir = $(mydatadir)/demos/
-@PVM_TRUE@libscipvm_la_demos_DATA = demos/pvm.dem \
-@PVM_TRUE@demos/pvm1.sce \
-@PVM_TRUE@demos/script.sce
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 @PVM_FALSE@mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -563,12 +554,12 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 @PVM_FALSE@pkgmacrosdir = $(mydatadir)
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 @PVM_TRUE@pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -587,17 +578,29 @@ top_srcdir = @top_srcdir@
 @PVM_FALSE@MACROBINMASK = *.bin
 # Mask of the Scilab compiled macros
 @PVM_TRUE@MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 @PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# List of the function of a module
+# List of the standard directory for tests
 @PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+@PVM_FALSE@pkgdemosdir = $(mydatadir)
+# Where the demos should be installed
+@PVM_TRUE@pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+@PVM_FALSE@DEMOS_DIR = demos
+# List of the standard directory for demos
+@PVM_TRUE@DEMOS_DIR = demos
+# List of the standard directory for examples
+@PVM_FALSE@EXAMPLES_DIR = examples
+# List of the standard directory for examples
+@PVM_TRUE@EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 @PVM_FALSE@JARDIR = jar/
-# Where to export JAVA files (.jar)
+# Where to export JAVA archives (.jar)
 @PVM_TRUE@JARDIR = jar/
-# JAR files
+# JAR files mask
 @PVM_FALSE@JARMASK = *.jar
-# JAR files
+# JAR files mask
 @PVM_TRUE@JARMASK = *.jar
 # Chapter file 
 @PVM_FALSE@HELP_CHAPTERDIR = help/
@@ -1053,23 +1056,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscipvm_la_demosDATA: $(libscipvm_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscipvm_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_demosdir)"
-	@list='$(libscipvm_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscipvm_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscipvm_la_demosdir)/$$f'"; \
-	  $(libscipvm_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscipvm_la_demosdir)/$$f"; \
-	done
-
-uninstall-libscipvm_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscipvm_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscipvm_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscipvm_la_demosdir)/$$f"; \
-	done
 install-libscipvm_la_etcDATA: $(libscipvm_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscipvm_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscipvm_la_etcdir)"
@@ -1217,7 +1203,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_demosdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscipvm_la_etcdir)" "$(DESTDIR)$(libscipvm_la_rootdir)" "$(DESTDIR)$(libscipvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscipvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1265,8 +1251,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscipvm_la_demosDATA \
-	install-libscipvm_la_etcDATA \
+install-data-am: install-data-local install-libscipvm_la_etcDATA \
 	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
 	install-libscipvm_la_sci_gatewayDATA
@@ -1307,8 +1292,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscipvm_la_demosDATA \
-	uninstall-libscipvm_la_etcDATA \
+uninstall-am: uninstall-libscipvm_la_etcDATA \
 	uninstall-libscipvm_la_includeHEADERS \
 	uninstall-libscipvm_la_rootDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
@@ -1324,8 +1308,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscipvm_la_demosDATA \
-	install-libscipvm_la_etcDATA \
+	install-info-am install-libscipvm_la_etcDATA \
 	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
 	install-libscipvm_la_sci_gatewayDATA install-man install-pdf \
@@ -1334,8 +1317,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscipvm_la_demosDATA \
-	uninstall-libscipvm_la_etcDATA \
+	uninstall-am uninstall-libscipvm_la_etcDATA \
 	uninstall-libscipvm_la_includeHEADERS \
 	uninstall-libscipvm_la_rootDATA \
 	uninstall-libscipvm_la_sci_gatewayDATA \
@@ -1438,7 +1420,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @PVM_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@PVM_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @PVM_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @PVM_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @PVM_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1448,7 +1430,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@		    fi \
 @PVM_TRUE@		  done; \
 @PVM_TRUE@	  fi; \
-@PVM_TRUE@	done 
+@PVM_TRUE@	done
 # Install the help chapter
 @PVM_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @PVM_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1459,6 +1441,22 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@		fi; \
+@PVM_TRUE@	done
+# Install the demos & examples
+@PVM_TRUE@	@echo "-------- Install demos & examples (if any) --------"; \
+@PVM_TRUE@	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+@PVM_TRUE@	  if test -d $(srcdir)/$$dir/; then \
+@PVM_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
+@PVM_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+@PVM_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+@PVM_TRUE@		    else \
+@PVM_TRUE@		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_TRUE@	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_TRUE@		    fi \
+@PVM_TRUE@		  done; \
+@PVM_TRUE@	  fi; \
 @PVM_TRUE@	done
 # Install the macros
 @PVM_TRUE@	@echo "-------- Install macros (if any) --------"; \
@@ -1589,7 +1587,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @PVM_FALSE@	  if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@PVM_FALSE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_FALSE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @PVM_FALSE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @PVM_FALSE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @PVM_FALSE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1599,7 +1597,7 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@		    fi \
 @PVM_FALSE@		  done; \
 @PVM_FALSE@	  fi; \
-@PVM_FALSE@	done 
+@PVM_FALSE@	done
 # Install the help chapter
 @PVM_FALSE@	@echo "-------- Install the help chapter (if any) --------"; \
 @PVM_FALSE@	for lang in $(ALL_LINGUAS); do \
@@ -1610,6 +1608,22 @@ uninstall-am: uninstall-libscipvm_la_demosDATA \
 @PVM_FALSE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@		fi; \
+@PVM_FALSE@	done
+# Install the demos & examples
+@PVM_FALSE@	@echo "-------- Install demos & examples (if any) --------"; \
+@PVM_FALSE@	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+@PVM_FALSE@	  if test -d $(srcdir)/$$dir/; then \
+@PVM_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_FALSE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_FALSE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
+@PVM_FALSE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+@PVM_FALSE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+@PVM_FALSE@		    else \
+@PVM_FALSE@		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_FALSE@	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_FALSE@		    fi \
+@PVM_FALSE@		  done; \
+@PVM_FALSE@	  fi; \
 @PVM_FALSE@	done
 # Install the macros
 @PVM_FALSE@	@echo "-------- Install macros (if any) --------"; \

@@ -4,7 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-function r=Err(x),r=norm(x,1),endfunction
+function r=Err(x)
+  r=norm(x,1)
+endfunction
 rand('normal')
 //==========================================================================
 //==============================     svd      ==============================
@@ -26,7 +28,8 @@ if execstr('svd([%inf %i;2 3])','errcatch')==0 then bugmes();quit;end
 if execstr('svd([%i %i;%nan 3])','errcatch')==0 then bugmes();quit;end
 //Small dimension
 //---------------
-A=rand(3,5);Ac=A+%i*rand(A);
+A=rand(3,5);
+Ac=A+%i*rand(A);
 //Real Case
 [U,S,V]=svd(A);
 if Err(U*S*V'-A)>200*%eps then bugmes();quit;end
@@ -53,7 +56,8 @@ if Err(svd(Ac)-diag(S))> 200*%eps then bugmes();quit;end
 if Err(U*S*V'-Ac)>200*%eps then bugmes();quit;end
 //Large dimension
 //---------------
-A=rand(150,60);Ac=A+rand(A)*%i;
+A=rand(150,60);
+Ac=A+rand(A)*%i;
 //Real Case
 [U,S,V]=svd(A);
 if Err(U*S*V'-A)>10000*%eps then bugmes();quit;end
@@ -84,13 +88,7 @@ if Err(U*S*V'-Ac)>10000*%eps then bugmes();quit;end
 //Empty matrix
 if svd([])<>[] then bugmes();quit;end
 if svd([],"e")<>[] then bugmes();quit;end
-[U,S]=svd([])
- S  =
- 
-     []
- U  =
- 
-     []
+[U,S]=svd([]);
 if U<>[]|S<>[]  then bugmes();quit;end
 [U,S,V]=svd([]);
 if U<>[]|S<>[]|V<>[]  then bugmes();quit;end
@@ -293,8 +291,3 @@ if Err(S-diag(S1))>5000*%eps  then bugmes();quit;end
 if Err(U-U1)>5000*%eps  then bugmes();quit;end
 if Err(V-V1) >5000*%eps  then bugmes();quit;end
 if rk<>30 then bugmes();quit;end
-function c=cond(A)
-  if A==[] then c=1,else S=svd(A);c=S($)/S(1),end
-endfunction
-Warning : redefining function: cond                    . Use funcprot(0) to avoid this message
-

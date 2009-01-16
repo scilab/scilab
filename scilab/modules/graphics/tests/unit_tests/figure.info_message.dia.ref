@@ -13,8 +13,8 @@ if my_figure.info_message <> '' then bugmes();quit;end
 // Test the allocation
 my_figure.info_message = "TEST INFO MESSAGE";
 if my_figure.info_message <> "TEST INFO MESSAGE" then bugmes();quit;end
-my_figure.info_message = 12312;
-Incompatible type for property info_message.
+// try an invalid info message
+execstr("my_figure.info_message = 12312",'errcatch','n');
 if my_figure.info_message <> "TEST INFO MESSAGE" then bugmes();quit;end
 // Delete
 delete(my_figure);

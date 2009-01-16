@@ -4,6 +4,28 @@
 Scilab consortium would like to thank all people who helped us by reporting
 bugs, submiting patches, fixing bugs, testing ...
 
+Compilation:
+============
+
+* Do not init TK when building the doc ("make doc")... in order to be able to 
+build Scilab through ssh
+
+* Giws has lost it .py extension
+
+* Force the build for the french documentation.
+
+* Some dead code removed (SCI/scripts/, SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
+
+Enhancement:
+============
+
+* Binaries version now embed jre 1.6.0_11
+
+* Under Linux/Unix, do not launch Scilab in background when called without 
+  argument
+
+* icons are now installed into pkgdatadir/icons/
+
 Bug fixes:
 ==========
 
@@ -21,7 +43,39 @@ Bug fixes:
 
 * bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent.)
 
+* bug 3755 fixed - print files on some Windows.
 
+* bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without heading .3 in the lib name). Thanks to Andrea Florio for providing the patch
+
+* bug 3867 fixed - On the branch 5.0 nightly build 64 bits, the libmatio is
+                   defined with the GLIBC_2.7 as mandatory. There is no reason
+                   for this and it prevents Scilab binary to run under Redhat
+                   and Centos.
+                   
+* bug 3868 fixed - In the nightly 64 bits build of the branch 5.0, jogl & gluegen
+                   dyn lib are 32bits (should be 64 bits).
+                  
+* bug 3869 fixed - In the binaries, we have some useless files in thirdparty/tk8.5/demos/
+                   which are causing some issues with the LSB.
+                   
+* bug 3870 fixed - In the binaries, we incorporate checkstyle in thirdparty/checkstyle/
+                   which are causing some issues with the LSB (btw, it is useless in the binary)
+                   
+* bug 3874 fixed - When building the macros, only replaces the extension (.sci => .bin)
+
+* bug 3877 fixed - No use of interp->result any more in the Tcl interface - Compatible with Tcl/Tk 8.6
+
+* bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
+
+* bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
+
+* bug 3880 fixed - Bug with p_margin and g_margin fixed.
+
+* bug 3886 fixed - strsubst with regular expression was working only on the first element of the vector.
+
+* bug 3407 fixed - Line number where error is reported changed in Scilab may be wrong
+
+* bug 3875 fixed - No images in PDF documentation
 
                           Changes Scilab 5.0.2 -> 5.0.3
                           =============================

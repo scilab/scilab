@@ -9,9 +9,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function GraphList=ge_do_default_names(GraphList)
-  r=x_message(['This operation will replaces ALL node and arc names'
+  r=messagebox(['This operation will replaces ALL node and arc names'
 	       'by their default values.'
-	       'Do you really want to do it?'],['yes','no'])
+	       'Do you really want to do it?'],"modal","question",['yes','no'])
   if r==1 then
     
     GraphList.nodes.graphics.name=string(1:GraphList.nodes.number)

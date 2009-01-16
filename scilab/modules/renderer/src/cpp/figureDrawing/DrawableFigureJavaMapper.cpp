@@ -256,6 +256,11 @@ void DrawableFigureJavaMapper::interactiveRotation(void)
 	m_pJavaObject->interactiveRotation();
 }
 /*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setUseSingleBuffer(bool useSingleBuffer)
+{
+	m_pJavaObject->setUseSingleBuffer(useSingleBuffer);
+}
+/*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)
 {
   return org_scilab_modules_renderer_utils::RenderingChecker::isAbleToCreateWindow(getScilabJavaVM());

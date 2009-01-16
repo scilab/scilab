@@ -434,6 +434,7 @@ c     .  skip remaining instructions up to catch or end keywords
          errpt=ids(5,pt)
          sym=ids(6,pt)/10000
          lct(4)=ids(6,pt)-10000*sym-100
+         top=toperr
          if(eqid(syn,ennd)) then
 c     .     no catch keyword  "try catch" finished
             goto 76
@@ -442,18 +443,19 @@ c     .  execute catch  instructions
          icall=7
 c     * call* parse
          return
-      endif
-
-      if(comp(1).eq.0) then
-         errct=ids(2,pt)
-         err2=ids(3,pt)
-         err1=ids(4,pt)
-         errpt=ids(5,pt)
-         sym=ids(6,pt)/10000
-         lct(4)=ids(6,pt)-10000*sym-100
       else
-         call compcl(3)
-         if(err.gt.0) return
+c     .  end of try without error (or end of catch)
+         if(comp(1).eq.0) then
+            errct=ids(2,pt)
+            err2=ids(3,pt)
+            err1=ids(4,pt)
+            errpt=ids(5,pt)
+            sym=ids(6,pt)/10000
+            lct(4)=ids(6,pt)-10000*sym-100
+         else
+            call compcl(3)
+            if(err.gt.0) return
+         endif
       endif
  76   pt=pt-1
       icall=7

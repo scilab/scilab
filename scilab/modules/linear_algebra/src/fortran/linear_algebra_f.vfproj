@@ -21,7 +21,7 @@ copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt
 lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)linear_algebra.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(InputDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
-				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" UseProcessorExtensions="codeForStreamingSIMD" RequireProcessorExtensions="codeExclusivelyStreamingSIMD" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/dll" SuppressStartupBanner="true" OptimizeForProcessor="procOptimizePentiumProThruIII" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" DisableDefaultLibSearch="true"/>
 				<Tool Name="VFLinkerTool" AdditionalOptions="/DLL libcmt.lib /DLL ifconsol.lib /DLL libifport.lib /DLL libirc.lib /DLL libifcoremd.lib /DLL libmmd.lib /DLL linear_algebra.lib" OutputFile="$(SolutionDir)bin\linear_algebra_f.dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="linear_algebra_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\linear_algebra_f.lib" LinkDLL="true" AdditionalDependencies="LibScilab.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
@@ -81,7 +81,6 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intdgecon.f"/>
 		<File RelativePath=".\intdgees0.f"/>
 		<File RelativePath=".\intdgees1.f"/>
-		<File RelativePath=".\intdgeev.f"/>
 		<File RelativePath=".\intdgehrd.f"/>
 		<File RelativePath=".\intdgelsy.f"/>
 		<File RelativePath=".\intdgeqpf3.f"/>
@@ -94,10 +93,8 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intdgetri.f"/>
 		<File RelativePath=".\intdggbal.f"/>
 		<File RelativePath=".\intdgges.f"/>
-		<File RelativePath=".\intdggev.f"/>
 		<File RelativePath=".\intdoldsvd.f"/>
 		<File RelativePath=".\intdpotrf.f"/>
-		<File RelativePath=".\intdsyev.f"/>
 		<File RelativePath=".\intfschur.f"/>
 		<File RelativePath=".\intgschur.f"/>
 		<File RelativePath=".\intogschur.f"/>
@@ -109,7 +106,6 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intzgecon.f"/>
 		<File RelativePath=".\intzgees0.f"/>
 		<File RelativePath=".\intzgees1.f"/>
-		<File RelativePath=".\intzgeev.f"/>
 		<File RelativePath=".\intzgehrd.f"/>
 		<File RelativePath=".\intzgelsy.f"/>
 		<File RelativePath=".\intzgeqpf3.f"/>
@@ -122,9 +118,7 @@ lib /DEF:&quot;$(InputDir)linear_algebra_Import.def&quot; /SUBSYSTEM:WINDOWS /MA
 		<File RelativePath=".\intzgetri.f"/>
 		<File RelativePath=".\intzggbal.f"/>
 		<File RelativePath=".\intzgges.f"/>
-		<File RelativePath=".\intzggev.f"/>
 		<File RelativePath=".\intzgschur.f"/>
-		<File RelativePath=".\intzheev.f"/>
 		<File RelativePath=".\intzoldsvd.f"/>
 		<File RelativePath=".\intzpotrf.f"/>
 		<File RelativePath=".\intzschur.f"/>

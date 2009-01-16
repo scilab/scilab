@@ -13,12 +13,11 @@ c
       character*(*) fname
       integer top0,id(nsiz),vk
       logical getsmat,checkval,checklhs,eqid
-      integer iadr, sadr
+      integer iadr
       integer a, blank,percen
       data a/10/,blank/40/,percen/56/
 c
       iadr(l)=l+l-1
-c      sadr(l)=(l/2)+1
 c
       if(.not.checklhs(fname,1,1)) return
 

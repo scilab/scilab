@@ -24,8 +24,9 @@ function [gm,fr]=g_margin(h)
   if h.dt=='c' then  //continuous time case
     // get s such as h(s)=h(-s) and s=iw 
      s=%i*poly(0,"w");
-     w=roots( imag(horner(h.num,s)*conj(horner(h.den,s))) )
+     w=roots(imag(horner(h.num,s)*conj(horner(h.den,s))) )
      ws=real(w(abs(imag(w))<eps&real(w)<=0)) //points where phase is -180°
+     ws(abs(horner(h.den,ws))==0)=[];
      if ws==[] then gm=%inf,fr=[],return,end
      mingain=real(freq(h.num,h.den,%i*ws))
   else  //discrete time case

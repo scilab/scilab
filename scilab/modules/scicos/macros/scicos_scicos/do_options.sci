@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [edited,options]=do_options(opt,flag)
+function [edited,options] = do_options(opt,flag)
 //
   colors    = string(1:xget("lastpattern") + 2);
   
@@ -107,9 +107,9 @@ function [edited,options]=do_options(opt,flag)
     //++ Default link colors (regular and event ones)
     //++ "rep" contains the indexes of chosen colors in current colormap 
     
-    //lcols_rl = list("Regular links colors", options("Link")(1), colors) //++ no longer used
-    //lcols_el = list("Event links colors  ", options("Link")(2), colors) //++ no longer used
-    //rep = x_choices("Default regular and event link colors", list(lcols_rl, lcols_el)) //++ no longer used
+    // lcols_rl = list("Regular links colors", options("Link")(1), colors) //++ no longer used
+    // lcols_el = list("Event links colors  ", options("Link")(2), colors) //++ no longer used
+    // rep = x_choices("Default regular and event link colors", list(lcols_rl, lcols_el)) //++ no longer used
     
     linkColors = options("Link")
     if linkColors == [] then linkColors = [1 5], end // defaults = [black red] 
@@ -140,28 +140,35 @@ function [edited,options]=do_options(opt,flag)
     end
     
   elseif flag == "Cmap" then
-  
-    cmap = options("Cmap")
-    while %t do
-      [ok, R,G,B] = getvalue(["Enter RGB description of new colors";
-        "Each component must be greater or equal to 0" ..
-        "and less or equal to 1"], ["R","G","B"],..
-      list("vec", "-1", "vec", "size(%1,""*"")", "vec", "size(%1,""*"")"), ..
-        [" ", " ", " "])
-      if ~ok then break, end
-      if or(R < 0 | R > 1) | or(G < 0 | G > 1) | or(B < 0 | B > 1) then
-        x_message("One or several RGB components are out of [0 1]")
-      else
-        break
-      end
-    end
-    if ok then
-      options("Cmap") = [options("Cmap") ; [R(:), G(:), B(:)]]
-      if options("Background") == xget("lastpattern") + 2 then
-        options("Background") = options("Background") + size(R,"*")
-      end
-    end
-  
+  //** --------------------- Add a new color ------------------------------------------
+ 
+  [R, G, B] = uigetcolor("Add a new color at the Scicos palette");
+
+  if R<>[] & G<>[] & B<>[] then 
+     R= R/255; G= G/255; B= B/255 ; //** normalize to one 
+    options("Cmap") = [options("Cmap") ; [R, G, B]]
+  end
+
+//** ---------------------- OLD CODE---------------------------------------------------- 
+//     while %t do
+//       [ok, R,G,B] = getvalue(["Enter RGB description of new colors"; ..
+//                               "Each component must be greater or equal to 0"; ..
+//                               "and less or equal to 1"], ..
+//                               ["R","G","B"], ..
+//                               list("vec", -1, "vec", -1, "vec", -1), ..
+//                               [" ", " ", " "]) ; 
+//       if ~ok then break, end
+//       if or(R < 0 | R > 1) | or(G < 0 | G > 1) | or(B < 0 | B > 1) then
+//         messagebox("One or several RGB components are out of [0 1]","modal","error");
+//       else
+//         break; //** EXIT from the input loop 
+//       end
+//     end
+//     if ok then
+//       //** add one or more color ad the palette 
+//       options("Cmap") = [options("Cmap") ; [R(:), G(:), B(:)]]
+//     end
+
   end // if flag == ...
   
   if ok then

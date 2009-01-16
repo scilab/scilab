@@ -13,7 +13,7 @@ c     creates a variable with is a pointer on a primitive function
 C     ---------------------------------
       include 'stack.h'
 
-      logical compil,cremat
+      logical compil
       integer bl(nsiz),id(*),ffun,ffin,iadr,sadr
       data bl/nsiz*673720360/
       iadr(l)=l+l-1

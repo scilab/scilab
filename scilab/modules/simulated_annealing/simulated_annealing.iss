@@ -18,7 +18,7 @@ Source: modules\{#SIMANNEALING}\changelog.txt; DestDir: {app}\modules\{#SIMANNEA
 Source: modules\{#SIMANNEALING}\etc\{#SIMANNEALING}.quit; DestDir: {app}\modules\{#SIMANNEALING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SIMANNEALING}\etc\{#SIMANNEALING}.start; DestDir: {app}\modules\{#SIMANNEALING}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#SIMANNEALING}\examples\*.*; DestDir: {app}\modules\{#SIMANNEALING}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#SIMANNEALING}\demos\*.*; DestDir: {app}\modules\{#SIMANNEALING}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SIMANNEALING}\help\addchapter.sce; DestDir: {app}\modules\{#SIMANNEALING}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

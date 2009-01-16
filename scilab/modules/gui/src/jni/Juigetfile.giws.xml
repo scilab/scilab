@@ -1,0 +1,47 @@
+<package name="org.scilab.modules.gui.filechooser">
+  <object name="Juigetfile">  
+    <method name="uigetfile" returnType="void" modifier="static"/>	
+    <method name="uigetfile" returnType="void" modifier="static">
+      <parameter name="mask" type="String[]"/>
+      <parameter name="description" type="String[]"/>
+    </method>
+    <method name="uigetfile" returnType="void" modifier="static">
+      <parameter name="mask" type="String[]"/>
+      <parameter name="description" type="String[]"/>
+      <parameter name="initialDirectory" type="String"/>
+    </method>
+    <method name="uigetfile" returnType="void" modifier="static">
+      <parameter name="mask" type="String[]"/>
+      <parameter name="description" type="String[]"/>
+      <parameter name="initialDirectory" type="String"/>
+      <parameter name="boxtTitle" type="String"/>
+    </method>	
+    <method name="uigetfile" returnType="void" modifier="static">
+      <parameter name="mask" type="String[]"/>
+      <parameter name="description" type="String[]"/>
+      <parameter name="initialDirectory" type="String"/>
+      <parameter name="boxtTitle" type="String"/>
+      <parameter name="multipleSelection" type="boolean"/>
+    </method>
+    <method name="getTitleBox" returnType="String" modifier="static"/>   
+    <method name="getMask" returnType="String[]" modifier="static"/>     
+    <method name="getMaskDescription" returnType="String[]" modifier="static"/>  
+    <method name="getInitialDirectory" returnType="String" modifier="static"/>   
+    <method name="getSelectionSize" returnType="int" modifier="static"/>     
+    <method name="getSelection" returnType="String[]" modifier="static"/>   
+    <method name="getSelectionFileNames" returnType="String[]" modifier="static"/>   
+    <method name="isMultipleSelection" returnType="boolean" modifier="static"/>   
+    <method name="getSelectionPathName" returnType="String" modifier="static"/>    
+    <method name="getFilterIndex" returnType="int" modifier="static"/>     
+    <method name="getMenuCallback" returnType="String" modifier="static"/>		
+<!-- uigetdir -->
+    <method name="uigetdir" returnType="void" modifier="static"/>	
+    <method name="uigetdir" returnType="void" modifier="static">
+      <parameter name="initialDirectory" type="String"/>
+    </method>	
+    <method name="uigetdir" returnType="void" modifier="static">
+      <parameter name="initialDirectory" type="String"/>
+      <parameter name="title" type="String"/>
+    </method>	
+  </object>
+</package>

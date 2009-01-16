@@ -2,7 +2,7 @@
 // symbolic module initialisation file 
 // Copyright INRIA 2006
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 //load('SCI/modules/symbolic/macros/lib');
 // ====================================================================
 //add help chapter

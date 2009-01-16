@@ -21,14 +21,14 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
 /*------------------------------------------------------------------------*/
 int set_children_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  sciprint(_("Children property can not be modified directly.\n"));
+  Scierror(999, _("Children property can not be modified directly.\n"));
   return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

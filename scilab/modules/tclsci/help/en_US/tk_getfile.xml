@@ -16,8 +16,7 @@
   </info>
   <refnamediv>
     <refname>tk_getfile</refname>
-    <refpurpose>dialog to get one or more file
-  paths</refpurpose>
+    <refpurpose>dialog to get one or more file paths (obsolete)</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -77,6 +76,7 @@ path=tk_getfile(file_mask,dir,"string"[,"multip"])</synopsis>
   <refsection>
     <title>Description</title>
     <para>Creates a dialog window for file selection.</para>
+    <para>This function is obsolete and will be removed in Scilab 5.2, please use <link linkend="uigetfile">uigetfile</link> instead.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -92,7 +92,7 @@ tk_getfile(multip="1")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xgetfile">xgetfile</link>
+        <link linkend="uigetfile">uigetfile</link>
       </member>
       <member>
         <link linkend="tk_getdir">tk_getdir</link>

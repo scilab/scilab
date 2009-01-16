@@ -55,7 +55,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
   if (Rhs==0)
     {
       // Set the parent property
-      setMenuParent((sciPointObj*) GraphicHandle, -1, sci_handles, nbRow, nbCol);
+      setMenuParent(sciGetPointerFromHandle(GraphicHandle), -1, sci_handles, nbRow, nbCol);
     }
 
   /**
@@ -88,7 +88,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
 	    }
 
           // Set the parent property
-          callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, "parent");
+          callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, "parent");
           
           // Set the flag to avoid setting the parent two times
           parentDefined = TRUE;
@@ -132,19 +132,19 @@ int sci_uimenu( char *fname,unsigned long fname_len )
       switch (VarType(inputIndex + 1)) {
       case sci_matrix:
         GetRhsVar(inputIndex + 1,MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-        setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_matrix, nbRow, nbCol, propertyName);
+				setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, propertyName);
         break;
       case sci_strings:
         GetRhsVar(inputIndex + 1,STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
-        setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_strings, nbRow, nbCol, propertyName);
+        setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, propertyName);
         break;
       case sci_handles:
         GetRhsVar(inputIndex + 1,GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-        setStatus = callSetProperty((sciPointObj*) GraphicHandle, stkAdr, sci_handles, nbRow, nbCol, propertyName);
+        setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, propertyName);
         break;
       case sci_list:
         GetRhsVar(inputIndex + 1,LIST_DATATYPE,&nbRow,&nbCol,&stkAdr);
-        setStatus = callSetProperty((sciPointObj*) GraphicHandle, inputIndex + 1, sci_list, nbRow, nbCol, propertyName);
+        setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), inputIndex + 1, sci_list, nbRow, nbCol, propertyName);
         break;
       default:
         setStatus = SET_PROPERTY_ERROR;
@@ -161,7 +161,7 @@ int sci_uimenu( char *fname,unsigned long fname_len )
   if (!parentDefined)
     {
       // Set the parent property
-      setMenuParent((sciPointObj*) GraphicHandle, -1, sci_handles, nbRow, nbCol);
+      setMenuParent(sciGetPointerFromHandle(GraphicHandle), -1, sci_handles, nbRow, nbCol);
     }
 
   /* Create return variable */

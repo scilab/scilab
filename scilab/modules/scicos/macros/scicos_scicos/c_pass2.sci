@@ -1196,9 +1196,9 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     end
     if funtyp(i,1)>999&funtyp(i,1)<10000 then
       if ~c_link(funs(i)) then
-	x_message(['A C or Fortran block is used but not linked';
+	messagebox(['A C or Fortran block is used but not linked';
 		   'You can save your compiled diagram and load it';
-		   'This will automatically link the C or Fortran function'])
+		   'This will automatically link the C or Fortran function'],"modal","info");
       end
     end
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
@@ -2301,8 +2301,8 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
     sizenin=size(ll.in,'*');
     if (size(ll.dep_ut,'*') <> 2) then
       if ( size(ll.dep_ut(1:$-1),'*') <> sizenin) then
-	x_message(['the dep_ut size of the '+ll.sim(1)+' block is not correct';
-	           'it should be colonn of size '+string(sizenin+1)])     
+	messagebox(['the dep_ut size of the '+ll.sim(1)+' block is not correct';
+	           'it should be colonn of size '+string(sizenin+1)],"modal","error");
 	ok=%f;   
       end
     end

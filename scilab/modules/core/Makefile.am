@@ -83,7 +83,8 @@ src/c/gw_dynamic_generic.c \
 src/c/dynamic_gateways.c \
 src/c/readGateway.c \
 src/c/comparehandles.c \
-src/c/setPrecisionFPU.c
+src/c/setPrecisionFPU.c \
+src/c/LaunchScilabSignal.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -285,7 +286,6 @@ sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
-sci_gateway/fortran/sci_format.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
 sci_gateway/fortran/sci_predef.f \
@@ -304,7 +304,8 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
             -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/action_binding/includes \
+                        -I$(top_srcdir)/modules/intersci/includes \
+                        -I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
@@ -367,6 +368,7 @@ includes/CallScilab.h \
 includes/cluni0.h \
 includes/commandwords.h \
 includes/core_math.h \
+includes/doublecomplex.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \
@@ -431,17 +433,7 @@ includes/warningmode.h \
 includes/x_main.h \
 includes/xscion.h \
 includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h
-
-#### core : demos files ####
-libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
-libscicore_la_demosintro_DATA = demos/intro/extf.sce \
-demos/intro/Makefile.mak \
-demos/intro/MakeC.mak \
-demos/intro/MakeF.mak \
-demos/intro/dem01.dem \
-demos/intro/extc.sce \
-demos/intro/Makefile \
-demos/intro/dem01_gateway.sce
+includes/setPrecisionFPU.h \
+includes/LaunchScilabSignal.h
 
 include $(top_srcdir)/Makefile.incl.am

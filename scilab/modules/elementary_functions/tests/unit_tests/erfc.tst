@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //maple code
 //writeto("erfc.tst"):interface(prettyprint=0):
 //for i from 0 to 40 do print(evalf[30](erfc(10^(-(200-i*5))),30)): od:

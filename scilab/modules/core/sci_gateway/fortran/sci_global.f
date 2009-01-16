@@ -9,8 +9,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intglobal()
       include 'stack.h'
-      logical checklhs,getsmat,checkval,cremat
-      integer top0,topk,typ,vol
+      logical checklhs,getsmat,checkval
+      integer topk,vol
       integer id(nsiz),blank,percen,ch
       integer iadr,sadr
       data blank/40/,percen/56/

@@ -51,6 +51,7 @@ public class SciCompletionManager implements CompletionManager {
 		dictionnary	= new ArrayList<CompletionItem>();
 
 		// Get the completion part used to filter the paths/files dictionary
+		
 		String fileSearchedPattern = ((SciInputParsingManager) inputParsingManager).getFilePartLevel(compLevel);
 
 		String[] scilabFilesDictionnary = Completion.searchFilesDictionary(fileSearchedPattern);

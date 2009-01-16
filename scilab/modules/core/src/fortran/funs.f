@@ -13,12 +13,12 @@ c     scan primitive function and scilab code function lists for a given name
 c     ====================================================================
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
-      integer id(nsiz),id1(nsiz),istr(nlgh)
+      integer id(nsiz),istr(nlgh)
 c
       logical eqid,cresmat
-      integer srhs,percen,blank,fptr,mode(2),sfun,slhs,r
+      integer srhs,percen,fptr,slhs,r
       integer iadr
-      data nclas/29/,percen/56/,blank/40/
+      data nclas/29/,percen/56/
 c
       iadr(l)=l+l-1
 c     

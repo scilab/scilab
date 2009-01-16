@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "BasicAlgos.h"
 
@@ -33,25 +33,25 @@ int set_tics_labels_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"tics_labels") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"tics_labels") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"tics_labels") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"tics_labels") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1)
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_tics_labels_property",2);
+    Scierror(999, _("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_tics_labels_property",2);
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->nb_tics_labels > nbCol )
   {
-    sciprint(_("Value must have at least %d elements.\n"),pAXES_FEATURE(pobj)->nb_tics_labels) ;
+    Scierror(999, _("Value must have at least %d elements.\n"),pAXES_FEATURE(pobj)->nb_tics_labels) ;
     return SET_PROPERTY_ERROR ;
   }
 

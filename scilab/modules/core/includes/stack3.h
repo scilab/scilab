@@ -12,6 +12,7 @@
 #ifndef STACK3_H 
 #define STACK3_H 
 #include "machine.h"
+#include "doublecomplex.h"
 
 /*Constants*/
 #define ROW_LETTER		'r'
@@ -129,8 +130,10 @@ void CheckAllVarUsed(int _iStart, int _iEnd);
 void GetVarDimension(int _iVarNum, int* _piRows, int* _piCols);
 int iGetOrient(int _iVal);
 
+/* Reserve space in stack for a matrix of double. */
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
-int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+/* Reserve space in stack for a matrix of complex. */
+int	iAllocMatrixOfDoubleComplex(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
@@ -164,4 +167,51 @@ int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalE
 int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow);
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
+
+/** 
+*  Set the target real and imaginary part of an array from a source doublecomplex array.
+*  @param _poComplex the source array
+*  @param _iSize the number of elements to set
+*  @param _pdblReal, _pdblImg the target array (real and imaginary parts)
+*/
+void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
+/**
+*  Returns a target doublecomplex array constructed from the source real and imaginary parts.
+*  The real and imaginary parts can be NULL or not NULL :
+*  * if real part and imaginary part of source array are not NULL, the returned array is as expected,
+*  * if real part of source array is NULL and imaginary part is not NULL, the real part of the returned array is filled with zeros,
+*  * if real part of source array is not NULL and imaginary part is NULL, the imaginary part of the returned array is filled with zeros,
+*  * if both real and imaginary parts of source array are NULL, the returned array is NULL.
+*  @param _pdblReal the real part of the source array
+*  @param _pdblImg the imaginary part of the source array
+*  @param _iSize the size of the source array
+*/
+doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
+/**
+*  Free the given pointer of double complex.
+*  Note
+*  The goal of this function is to allow the client 
+*  code to be independent of the particular allocation system used
+*  in oGetDoubleComplexFromPointer.
+*  @param _poComplex the array to free
+*/
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
+
+/**
+* Returns a pointer on the data of a matrix of double
+*  @param number index of the Scilab variable
+*  @param _iRows number of rows in the matrix
+*  @param _iCols number of columns in the matrix
+*  @param _pdblRealData pointer to the block of data for real values
+*/
+int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
+/**
+*  Returns a pointer on the data of a matrix of double.
+*  @param number index of the Scilab variable
+*  @param _iRows number of rows in the matrix
+*  @param _iCols number of columns in the matrix
+*  @param _pdblRealData pointer to the block of data for real values
+*  @param _pdblImgData pointer to the block of data for complex values
+*/
+int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
 #endif 

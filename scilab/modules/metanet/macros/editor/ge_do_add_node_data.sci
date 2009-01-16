@@ -23,18 +23,18 @@ function [ok,GraphList]=ge_do_add_node_data(GraphList)
     ok=%t
     name=stripblanks(res(1))
     if execstr(name+'=1','errcatch')<>0 then
-      x_message('Invalid Field name')
+      messagebox('Invalid Field name',"modal","error");
       ok=%f,
     end
     if ok&or(F(2:$)==name) then
-      x_message('This field name is already defined')
+      messagebox('This field name is already defined',"modal","error");
       ok=%f,
     end
     if ok then
       ierr=execstr('default='+res(2),'errcatch')
       if ierr<>0 then 
-	x_message('Answer for ""Default Value"" cannot be evaluated'),
-	ok=%f
+	    messagebox('Answer for ""Default Value"" cannot be evaluated',"modal","error");
+	    ok=%f
       end
     end
   end

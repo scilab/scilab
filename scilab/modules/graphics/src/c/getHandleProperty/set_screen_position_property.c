@@ -20,8 +20,9 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
+#include "GetProperty.h" /* sciGetEntityType */
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
@@ -29,18 +30,26 @@
 /*------------------------------------------------------------------------*/
 int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  double * values = getDoubleMatrixFromStack( stackPointer ) ;
+  double * values;
   int status;
  
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"figure_position") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"figure_position") ;
     return SET_PROPERTY_ERROR ;
   }
 
+	values = getDoubleMatrixFromStack( stackPointer ) ;
+
   if ( nbRow * nbCol != 2 )
   {
-    sciprint(_("Wrong size for %s property: Vector of size %d expected.\n"),"screen_position",2) ;
+    Scierror(999, _("Wrong size for %s property: Vector of size %d expected.\n"),"screen_position",2) ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+	if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  {
+    Scierror(999, _("%s property undefined for this object.\n"), "figure_position") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -49,6 +58,7 @@ int set_screen_position_property( sciPointObj * pobj, size_t stackPointer, int v
   status = sciSetScreenPosition( pobj, (int)values[0], (int)values[1]);
   enableFigureSynchronization(pobj);
 
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/

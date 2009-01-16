@@ -16,7 +16,7 @@
 #include "MutexClosingScilab.h"
 #include "version.h"
 /*--------------------------------------------------------------------------*/
-static HANDLE hMutexClosingScilabID;
+static HANDLE hMutexClosingScilabID = NULL;
 /*--------------------------------------------------------------------------*/
 static char *getClosingScilabMutexName(void);
 /*--------------------------------------------------------------------------*/
@@ -25,7 +25,13 @@ void createMutexClosingScilab(void)
 	char *mutexname = getClosingScilabMutexName();
 	if (mutexname)
 	{
-		hMutexClosingScilabID = CreateMutex (NULL, FALSE, mutexname);
+		HANDLE hMutex = NULL;
+		hMutex = OpenMutex(MUTEX_ALL_ACCESS, FALSE, mutexname);
+		/* checks if a previous Mutex exists */
+		if (!hMutex)
+		{
+			hMutexClosingScilabID = CreateMutex (NULL, FALSE, mutexname);
+		}
 		FREE(mutexname); mutexname = NULL;
 	}
 }
@@ -33,7 +39,7 @@ void createMutexClosingScilab(void)
 void terminateMutexClosingScilab(void)
 {
 	/* close named mutex */
-	CloseHandle(hMutexClosingScilabID);
+	if (hMutexClosingScilabID) CloseHandle(hMutexClosingScilabID);
 }
 /*--------------------------------------------------------------------------*/
 BOOL haveMutexClosingScilab(void)

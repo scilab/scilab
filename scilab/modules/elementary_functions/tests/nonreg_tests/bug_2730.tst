@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
 ref = ["aaaaaaaaa","aaaaacccc";"aaaaaaaaaaaaaaab","aaaabbbbccc"];
 A = [ "aaaabbbbccc" "aaaaaaaaa" ; "aaaaacccc" "aaaaaaaaaaaaaaab" ];
 B = gsort(A,'g','i');

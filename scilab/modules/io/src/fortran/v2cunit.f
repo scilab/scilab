@@ -15,7 +15,6 @@ c
       logical opened
       integer fd
       character*2 mode
-      character*3 status
       double precision w
       integer iadr,sadr
 c     

@@ -534,7 +534,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
+if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -563,8 +563,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 				AC_SUBST(FLEXDOCK)
 
 				# Swing look&feel implementations
-				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
 				LOOKS=$PACKAGE_JAR_FILE
+
+				# Named differently under Opensuse
+				if test -z "$LOOKS"; then
+				    AC_JAVA_CHECK_PACKAGE([looks2],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+					LOOKS=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(LOOKS)
+
 				AC_SUBST(LOOKS)
 
 				#  Skin Look and Feel 
@@ -578,8 +586,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 				AC_SUBST(JOGL)
 
 				# Jhall
-				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser])
+				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
 				JHALL=$PACKAGE_JAR_FILE
+
+				# Named differently under Mandriva
+				if test -z "$JHALL"; then
+					AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
+					JHALL=$PACKAGE_JAR_FILE
+				fi
 				AC_SUBST(JHALL)
 
 				# JoGL Native <=> Java connector
@@ -631,7 +645,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 	fi
 fi
 
-AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes)
+AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
@@ -1057,10 +1071,11 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 #############################
 
 AC_ARG_ENABLE(build-help,
-		AC_HELP_STRING([--enable-build-help],[Enable the help build])
+		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
 HELP_ENABLE=no
-if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
+
+if test "$enable_build_help" != no; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 
@@ -1082,8 +1097,10 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 ## libtool
 #########################
 
-AC_PROG_LIBTOOL([shared static dlopen])
+AM_DISABLE_STATIC
+AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
+
 
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no

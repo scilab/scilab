@@ -106,62 +106,53 @@ proc showwatch_bp {} {
          -padx 0 -pady 0 -side left
 
     frame $watch.f.f1.f1r ;# -bg orange
-    set bestwidth [mcmaxra "Hide watch &variables" \
-                           "Hide e&xpressions" \
-                           "Hide call &stack"]
     set checkboxshowwatchvariablesarea $watch.f.f1.f1r.showwatchvariablesarea
     eval "checkbutton $checkboxshowwatchvariablesarea \
             -variable showwatchvariablesarea [bl "Hide watch &variables"] \
             -command \"closewatch_bp; showwatch_bp\" \
             -onvalue \"false\" -offvalue \"true\" \
-            -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
+            -font \[list $menuFont\] -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxshowwatchvariablesarea configure -underline -1}
     set checkboxshowgenexparea $watch.f.f1.f1r.checkboxshowgenexparea
     eval "checkbutton $checkboxshowgenexparea \
             -variable showgenexparea [bl "Hide e&xpressions"] \
             -command \"closewatch_bp; showwatch_bp\" \
             -onvalue \"false\" -offvalue \"true\" \
-            -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
+            -font \[list $menuFont\] -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxshowgenexparea configure -underline -1}
     set checkboxshowcallstackarea $watch.f.f1.f1r.showcallstackarea
-    eval "checkbutton $checkboxshowcallstackarea [bl "Hide call &stack"] \
-            -variable showcallstackarea \
+    eval "checkbutton $checkboxshowcallstackarea \
+            -variable showcallstackarea [bl "Hide call &stack"] \
             -command \"closewatch_bp; showwatch_bp\" \
             -onvalue \"false\" -offvalue \"true\" \
-            -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
+            -font \[list $menuFont\] -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxshowcallstackarea configure -underline -1}
 
-    pack $checkboxshowwatchvariablesarea $checkboxshowgenexparea \
-            $checkboxshowcallstackarea -pady 0 -anchor w
+    grid $checkboxshowwatchvariablesarea -row 0 -column 0 -sticky w
+    grid $checkboxshowgenexparea         -row 1 -column 0 -sticky w
+    grid $checkboxshowcallstackarea      -row 2 -column 0 -sticky w
     pack $watch.f.f1.f1l $watch.f.f1.f1r -side left -padx 5 -pady 0 -anchor w
     managewatchontop_bp
 
     frame $watch.f.f1.f1fr ;# -bg lightblue
-    set bestwidth [mcmaxra "Always on to&p" \
-                           "&Dock"]
     set checkboxalwaysontop $watch.f.f1.f1fr.watchalwaysontop
-    eval "checkbutton $checkboxalwaysontop [bl "Always on to&p"] \
-            -variable watchalwaysontop \
+    eval "checkbutton $checkboxalwaysontop \
+            -variable watchalwaysontop [bl "Always on to&p"] \
             -command \"managewatchontop_bp\" \
-            -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
+            -font \[list $menuFont\] -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxalwaysontop configure -underline -1}
     set checkboxdockwatch $watch.f.f1.f1fr.dockwatch
-    eval "checkbutton $checkboxdockwatch [bl "&Dock"] \
-            -variable dockwatch \
+    eval "checkbutton $checkboxdockwatch \
+            -variable dockwatch [bl "&Dock"] \
             -command \"managedockwatch_bp\" \
             -onvalue \"true\" -offvalue \"false\" \
-            -width $bestwidth -font \[list $menuFont\] \
-            -anchor w -borderwidth 1 -pady 0 "
+            -font \[list $menuFont\] -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxdockwatch configure -underline -1}
 
-    pack $checkboxalwaysontop $checkboxdockwatch -anchor w
-    pack $watch.f.f1.f1fr -expand 1
+    grid $checkboxalwaysontop -row 0 -column 0 -sticky w
+    grid $checkboxdockwatch   -row 1 -column 0 -sticky w
     pack $watch.f.f1 -anchor w -expand 0 -fill both
-    pack $watch.f.f1.f1fr -anchor w -expand 1 -fill both
+    pack $watch.f.f1.f1fr -anchor w -expand 0
 
     set watchwinicons [list "sep" "" $buttonEditBpt "" "sep" $buttonConfigure "sep" \
                             $buttonToNextBpt "" $buttonRunToReturn $buttonRunToCursor \
@@ -242,27 +233,22 @@ proc showwatch_bp {} {
     frame $watch.f.vpw.f2 -relief groove -borderwidth 2 -padx 2 -pady 4
 
     frame $watch.f.vpw.f2.f2l ;# -bg lightgrey
-    set bestwidth [mcmaxra "Watch variables:" \
-                           "Add/Chan&ge" \
-                           "&Remove" \
-                           "A&uto (local variables)" \
-                           "Au&to watch globals too"]
     set tl [mc "Watch variables:"]
     label $watch.f.vpw.f2.f2l.label -text $tl -font $menuFont
     set buttonAddw $watch.f.vpw.f2.f2l.buttonAdd
     eval "button $buttonAddw [bl "Add/Chan&ge"] \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
     if {$dockwatch} {$buttonAddw configure -underline -1}
     set buttonRemove $watch.f.vpw.f2.f2l.buttonRemove
     eval "button $buttonRemove [bl "&Remove"] \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
     if {$dockwatch} {$buttonRemove configure -underline -1}
     set checkboxautowatchlocals $watch.f.vpw.f2.f2l.autowatchlocals
     eval "checkbutton $checkboxautowatchlocals [bl "A&uto (local variables)"] \
             -variable autowatchloc \
             -command \"manageautowatchloc_bp\" \
             -onvalue \"true\" -offvalue \"false\" \
-            -width $bestwidth -font \[list $menuFont\] \
+            -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxautowatchlocals configure -underline -1}
     set checkboxautowatchglobals $watch.f.vpw.f2.f2l.autowatchglobals
@@ -270,15 +256,18 @@ proc showwatch_bp {} {
             -variable autowatchglo \
             -command \"manageautowatchglo_bp\" \
             -onvalue \"true\" -offvalue \"false\" \
-            -width $bestwidth -font \[list $menuFont\] \
+            -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0"
     if {!$autowatchloc} {
         $checkboxautowatchglobals configure -state disabled
     }
     if {$dockwatch} {$checkboxautowatchglobals configure -underline -1}
 
-    pack $watch.f.vpw.f2.f2l.label $buttonAddw $buttonRemove \
-            $checkboxautowatchlocals $checkboxautowatchglobals -pady 4
+    grid $watch.f.vpw.f2.f2l.label -row 0 -column 0 -sticky {} -pady 4
+    grid $buttonAddw               -row 1 -column 0 -sticky we -pady 4
+    grid $buttonRemove             -row 2 -column 0 -sticky we -pady 4
+    grid $checkboxautowatchlocals  -row 3 -column 0 -sticky w  -pady 4
+    grid $checkboxautowatchglobals -row 4 -column 0 -sticky w  -pady 4
     pack $watch.f.vpw.f2.f2l -anchor n
     # this will also call proc updatewatch_bp, either rather directly, or through
     # manageautowatchloc_bp -> getautowatchnames -> addautosinwatch -> getwatchvarfromshell
@@ -336,30 +325,27 @@ proc showwatch_bp {} {
     frame $watch.f.vpw.f3 -relief groove -borderwidth 2 -padx 2 -pady 4
 
     frame $watch.f.vpw.f3.f3l
-    set bestwidth [mcmaxra "Generic expressions:" \
-                           "&Add" \
-                           "Rem&ove" \
-                           "&Filter errors"]
     set gel [mc "Generic expressions:"]
     label $watch.f.vpw.f3.f3l.gelabel -text $gel -font $menuFont
-    pack $watch.f.vpw.f3.f3l.gelabel -anchor w -pady 4
     set buttonAddge $watch.f.vpw.f3.f3l.buttonAdd
     eval "button $buttonAddge [bl "&Add"] \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
     if {$dockwatch} {$buttonAddge configure -underline -1}
     set buttonRemovege $watch.f.vpw.f3.f3l.buttonRemove
     eval "button $buttonRemovege [bl "Rem&ove"] \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
     if {$dockwatch} {$buttonRemovege configure -underline -1}
     set checkboxfiltererrors $watch.f.vpw.f3.f3l.filtererrors
     eval "checkbutton $checkboxfiltererrors [bl "&Filter errors"] \
             -variable filtergenexperrors \
             -onvalue \"true\" -offvalue \"false\" \
-            -width $bestwidth -font \[list $menuFont\] \
+            -font \[list $menuFont\] \
             -anchor w -borderwidth 1 -pady 0 "
     if {$dockwatch} {$checkboxfiltererrors configure -underline -1}
-    pack $watch.f.vpw.f3.f3l.gelabel $buttonAddge $buttonRemovege \
-            $checkboxfiltererrors -pady 4
+    grid $watch.f.vpw.f3.f3l.gelabel -row 0 -column 0 -sticky {} -pady 4
+    grid $buttonAddge                -row 1 -column 0 -sticky we -pady 4
+    grid $buttonRemovege             -row 2 -column 0 -sticky we -pady 4
+    grid $checkboxfiltererrors       -row 3 -column 0 -sticky w  -pady 4
 
     frame $watch.f.vpw.f3.f3r
     set genexpwidget $watch.f.vpw.f3.f3r.genexp
@@ -1130,6 +1116,7 @@ proc createsetinscishellcomm {setofvars} {
 #   . Scipad does not transform globals into locals, which would otherwise mess
 #     up the visibility assumptions in the debugged function
     global watchvars watchvarsprops unklabel
+    global pad
     set fullcomm ""
     set varset ""
     set retcomm ""
@@ -1174,7 +1161,7 @@ proc createsetinscishellcomm {setofvars} {
                 tk_messageBox -message [concat \
                     [mc "Undefined elements are not legal in variable"] $var \
                     [mc ".\nThis variable will not be updated in Scilab."] ]\
-                    -icon warning -type ok \
+                    -icon warning -type ok  -parent $pad \
                     -title [mc "Illegal undefined element found"]
                 continue
             }

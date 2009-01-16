@@ -261,6 +261,8 @@ BOOL sciGetIsAbleToCreateWindow(void);
 
 int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
 
+BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

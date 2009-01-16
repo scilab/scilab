@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="C_utils">
+  <refnamediv>
+    <refname>C_utils</refname>
+    <refpurpose>Fonctions C utilitaires</refpurpose>
+  </refnamediv>
+  <refsection id="Contenu_C_utils">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="C_utils">C_utils - Fonctions C utilitaires</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Module_C_utils">Module</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_C_utils">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_C_utils">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Module_C_utils">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_C_utils">
+    <title>Description</title>
+    <para>
+The 
+header provides some utilities
+functions to interact with the simulator in the C computational functions.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">void do_cold_restart();</emphasis>
+        </para>
+        <para> This function forces the solver to do a cold restart. It should be used in situations where the block creates a non smooth signal. Note that in most situations, non smooth situations are detected by zero-crossings and this function is not needed. This block is used in very exceptional situations. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">int get_phase_simulation();</emphasis>
+        </para>
+        <para> That function returns an integer which says if the simulator is realizing time domain integration. It can returns :</para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">1 :</emphasis> The simulator is on a discrete activation time.
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">2 :</emphasis> The simulator is realizing a continuous time domain integration.
+      
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">double get_scicos_time();</emphasis>
+        </para>
+        <para> That function returns the current time of simulator. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">int get_block_number();</emphasis>
+        </para>
+        <para> That function returns an integer : the block index in the compiled structure. Each block in the simulated diagram have a single index, and blocks are numbered from 1 to nblk (the total number of blocks in the compiled structure). </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void set_block_error(int);</emphasis>
+        </para>
+        <para> Function to set a specific error during the simulation for the current block. If it is used, then after the execution of the computational function of the block, the simulator will end and will return an error message associated to the number given in the integer argument.</para>
+        <para> The following calls are allowed :</para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">set_block_error(-1); :</emphasis> the block has been called with input out of its domain,
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">set_block_error(-2); :</emphasis> singularity in a block,
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">set_block_error(-3); :</emphasis> block produces an internal error,
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">set_block_error(-16); :</emphasis> cannot allocate memory in block.
+       
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void end_scicos_sim();</emphasis>
+        </para>
+        <para> A very specific function to set the current time of the simulator to the final time integration.</para>
+        <para> Only expert user should use this function. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void set_pointer_xproperty(int* pointer);</emphasis>
+        </para>
+        <para> This function set a vector of integer to inform the type (algebraic or differential) of the continuous state variables of the block. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void * scicos_malloc(size_t);</emphasis>
+        </para>
+        <para> That function must be used to do allocation of scicos pointers inside a C computational function and in particular for =4 for the work pointer . </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">void scicos_free(void *p);</emphasis>
+        </para>
+        <para> That function must be used to free scicos pointers inside a C computational function and in particular for =5 for the work pointer . </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_C_utils">
+    <title>Auteurs</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -4,7 +4,7 @@
 	Version="9,00"
 	Name="hashtable"
 	ProjectGUID="{2DAEC214-B0B4-4BC3-96B2-77C6AD1450CD}"
-	
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -233,7 +233,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"

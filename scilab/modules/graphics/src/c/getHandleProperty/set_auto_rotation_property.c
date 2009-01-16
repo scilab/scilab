@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -31,13 +31,13 @@ int set_auto_rotation_property( sciPointObj * pobj, size_t stackPointer, int val
 {
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"auto_resize") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"auto_resize") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_LABEL )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "auto_rotation") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "auto_rotation") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -51,7 +51,7 @@ int set_auto_rotation_property( sciPointObj * pobj, size_t stackPointer, int val
   }
   else
   {
-	  sciprint(_("Wrong value: '%s' or '%s' expected.\n"),"on","off");
+	  Scierror(999, _("Wrong value: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_ERROR ;

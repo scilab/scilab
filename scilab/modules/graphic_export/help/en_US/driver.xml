@@ -40,7 +40,7 @@ current_driver=driver()</synopsis>
     This function is used to select a graphics driver, or with no arguments 
     to get the current graphics driver name.
     Most of the time, a user can ignore this function and change the driver
-    by calling high level functions such as <literal>xbasc</literal> or <literal>xbasimp</literal>.
+    by calling high level functions such as <literal>xbasc</literal>.
     The selected driver can be one of the followings:
   </para>
     <variablelist>
@@ -102,9 +102,6 @@ convert -delay 10  img*.gif anim.gif
       </member>
       <member>
         <link linkend="xbasc">xbasc</link>
-      </member>
-      <member>
-        <link linkend="xbasimp">xbasimp</link>
       </member>
     </simplelist>
   </refsection>

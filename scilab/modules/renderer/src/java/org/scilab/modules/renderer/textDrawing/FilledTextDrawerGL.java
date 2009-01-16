@@ -117,9 +117,9 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 			// update text renderer
 			setFont(getFont().deriveFont(newSize));
 			renderer = getTextRenderer();
-			// update StringSizes with the new renderer
-			//getTextMatrix().update(renderer);
-			getTextMatrix().scale(factor);
+			// update StringSizes with the new renderer using the real display size.
+			// Display size might not be equal to the requested font if fractional fonts are disabled
+			getTextMatrix().scale(factor * renderer.getDisplayedFontSize() / newSize);
 		}
 			//
 		//startRecordDL();

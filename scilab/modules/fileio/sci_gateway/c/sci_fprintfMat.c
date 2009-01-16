@@ -94,7 +94,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if ( Rhs >= 4 )
 	{
-		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",Str2[i]);
+		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",UTFToLocale(Str2[i]));
 	}
 
 	for (i = 0 ; i < m2 ; i++ )

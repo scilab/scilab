@@ -12,9 +12,9 @@ c
       include 'stack.h'
 c     
       integer iadr, sadr
-      integer topk,rhsk,topl, topf,mode(2)
+      integer topk,rhsk, topf,mode(2)
       logical checkrhs,checklhs,getsmat,checkval,getvect
-      logical cremat,cresmat,cresmat2,bufstore,listcremat
+      logical listcremat
       logical listcresmat,listcrestring
       logical opened
 

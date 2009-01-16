@@ -1,3 +1,53 @@
+Francois VOGEL, 11/01/09
+ * Selection of the file encoding is now possible through a new option menu,
+   with an MUR list of encodings, and auto-detection of encoding for XML files
+   (this is a request from Yung-Jang Lee)
+   This is the implementation corresponding to SEP#12_V2.1
+ * version --> 7.14
+
+Francois VOGEL, 06/01/09
+ * Fixed Scipad part of bug 3407 (Scilab 5 returns physical line numbers in
+   lasterror while Scilab 4 and Scilab-gtk return logical line numbers)
+ * Pushed copyrights to 2009
+ * version --> 7.13
+
+Francois VOGEL, 22/12/08
+ * Fixed bug 3882 by using the grid geometry manager instead of pack in
+   certain cases - See also:
+   http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/dfb592a3c9335b38
+ * version --> 7.12
+
+Francois VOGEL, 13/12/08
+ * Fixed bug 3806 (drag and drop fails because package tkdnd is not found)
+ * File/Revert did not update the readonly flag. Reverting to the saved state
+   of a buffer while the readonly flag of the file on disk has changed since
+   last read therefore ended up in wrong [ReadOnly] information in the title
+   bar
+ * Scipad automatically detects properties changes such as modification of the
+   readonly flag outside of Scipad
+ * Added -parent option to tk_messageBox to make it modal everywhere an
+   acknowledgement or an answer is requested from the user. Without this,
+   it was possible to let the message box open while continuing fiddling with
+   Scipad, and this was contrary to assumptions in most procs. Also it was
+   possible to produce Tcl errors. Example: open two files, modify one of
+   them, File/Revert, don't click the confirmation box, go back into Scipad,
+   close the modified file (don't save) and now click the confirmation box
+   This change was required for Windows because the message box is not modal
+   on this platform - On Linux it does not harm and as a bonus it centers
+   the dialog inside its parent
+ * version --> 7.11
+
+Francois VOGEL, 28/11/08
+ * Fixed bug 3793 (localization issue in Scilab with Tcl/Tk)
+ * version --> 7.10
+
+Francois VOGEL, 23/11/08
+ * Fixed bug 3782 (bug correction courtesy of Enrico) about an old Tk bug
+   that has been fixed in Tcl/Tk 8.4.2
+ * Fixed bug 3781 about unlocalized labels when upgrading with a backported
+   Scipad version
+ * version --> 7.9
+
 Francois VOGEL, 10/11/08
  * Implemented request in bug 3726 (do not exit when the last file gets
    closed), with a saved preference for selecting the behaviour
@@ -57,7 +107,7 @@ Francois VOGEL, 08/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000) again since the
    candidate fix in 6.156 didn't work
  * version --> 6.157 - This version comes with Scilab 5.0 final release,
-   Scilab 5.0.1 and Scilab 5.0.2
+   Scilab 5.0.1, Scilab 5.0.2 and Scilab 5.0.3
 
 Francois VOGEL, 05/09/08
  * Fixed bug 3416 (black Scipad icon on Windows 2000)

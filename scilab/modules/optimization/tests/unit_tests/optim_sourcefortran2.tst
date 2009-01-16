@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
 //
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case

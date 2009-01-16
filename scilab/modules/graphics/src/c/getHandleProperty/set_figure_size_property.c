@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
@@ -35,19 +35,19 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
   int status;
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s undefined for this object.\n"), "figure_size") ;
+    Scierror(999, _("%s undefined for this object.\n"), "figure_size") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"figure_position") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"figure_position") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint(_("Wrong size for %s property: Vector of size %d expected.\n"),"dimension",2) ;
+    Scierror(999, _("Wrong size for %s property: Vector of size %d expected.\n"),"dimension",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -56,6 +56,7 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
   status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
   enableFigureSynchronization(pobj);
 
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus(status);
 }
 /*------------------------------------------------------------------------*/

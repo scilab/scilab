@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
+ * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,6 +19,7 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 /**
  * Bridge dedicated to Scilab file chooser GUIs
  * @author Vincent COUVERT
+ * @author Sylvestre KOUMAR
  */
 public class ScilabFileChooserBridge {
 	
@@ -52,15 +54,6 @@ public class ScilabFileChooserBridge {
 	 */
 	public static void setTitle(FileChooser fileChooser, String title) {
 		fileChooser.getAsSimpleFileChooser().setTitle(title);
-	}
-	
-	/**
-	 * Set the mask for files to choose
-	 * @param fileChooser the file chooser we want to set the mask of
-	 * @param mask the mask to set
-	 */
-	public static void setMask(FileChooser fileChooser, String mask) {
-		fileChooser.getAsSimpleFileChooser().setMask(mask);
 	}
 	
 	/**
@@ -107,10 +100,39 @@ public class ScilabFileChooserBridge {
 	}
 
 	/**
-	 * Set the flag indicating that we want only select files
+	 * Set the flag indicating that we can select multiple files
 	 * @param fileChooser the file chooser we want to set the flag of 
+	 * @param multipleSelection enable multiple selection
 	 */
-	public static void setFileSelectionOnly(FileChooser fileChooser) {
-		fileChooser.getAsSimpleFileChooser().setFileSelectionOnly();
+	public static void setMultipleSelection(FileChooser fileChooser, boolean multipleSelection) {
+		fileChooser.getAsSimpleFileChooser().setMultipleSelection(multipleSelection);		
 	}
+	
+	/**
+	 * Get the path of selected files
+	 * @param fileChooser the file chooser we want to get the path of selected files
+	 * @return the path of selected files
+	 */
+	public static String getSelectionPathName(FileChooser fileChooser) {
+		return fileChooser.getAsSimpleFileChooser().getSelectionPathName();
+	}
+
+	/**
+	 * Get the names of selected files
+	 * @param fileChooser the file chooser we want to get the names of selected files
+	 * @return the names of selected files
+	 */
+	public static String[] getSelectionFileNames(FileChooser fileChooser) {
+		return fileChooser.getAsSimpleFileChooser().getSelectionFileNames();
+	}
+
+	/**
+	 * Get the filter index
+	 * @param fileChooser the file chooser we want to get the filter index
+	 * @return the filter index
+	 */
+	public static int getFilterIndex(FileChooser fileChooser) {
+		return fileChooser.getAsSimpleFileChooser().getFilterIndex();
+	}
+
 }

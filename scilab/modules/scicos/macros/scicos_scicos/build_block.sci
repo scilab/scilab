@@ -28,7 +28,7 @@ function [model, ok] = build_block(o)
 
   if model.sim(1)=='scifunc' then
     if model.ipar==0 then
-      x_message(sprintf(gettext("%s: Error: A scifunc block has not been defined."), "build_block"))
+      messagebox(sprintf(gettext("%s: Error: A scifunc block has not been defined."), "build_block"),"modal","error");
       ok = %f
       return
     end
@@ -72,7 +72,7 @@ function [model, ok] = build_block(o)
       //++ Check that modelica compiler is available
       //++ Otherwise, give some feedback and quit
       if ~with_modelica_compiler() then
-        x_message(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "build_block"));
+        messagebox(sprintf(gettext("%s: Error: Modelica compiler (MODELICAC) is unavailable."), "build_block"),"modal","error");
         ok = %f
       end
 

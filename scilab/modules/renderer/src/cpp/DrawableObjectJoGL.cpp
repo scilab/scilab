@@ -34,7 +34,6 @@ DrawableObjectJoGL::~DrawableObjectJoGL( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeDrawing( void )
 {
-  getJavaMapper()->setFigureIndex(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())));
   getJavaMapper()->initializeDrawing(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) );
 }
 /*---------------------------------------------------------------------------------*/

@@ -104,7 +104,8 @@ am__libscicompletion_la_SOURCES_DIST = src/jni/Completion_wrap.c \
 	src/c/completion.c src/c/completion_generic.c \
 	src/c/getfilesdictionary.c src/c/getfulldictionary.c \
 	src/c/getmacrosdictionary.c src/c/toolsdictionary.c \
-	src/c/completion_wrap_java.c sci_gateway/c/sci_completion.c \
+	src/c/completion_wrap_java.c src/c/getPartLine.c \
+	src/c/getCommonPart.c sci_gateway/c/sci_completion.c \
 	sci_gateway/c/gw_completion.c
 @GUI_TRUE@am__objects_1 = libscicompletion_la-Completion_wrap.lo
 am__objects_2 = libscicompletion_la-completion.lo \
@@ -113,7 +114,9 @@ am__objects_2 = libscicompletion_la-completion.lo \
 	libscicompletion_la-getfulldictionary.lo \
 	libscicompletion_la-getmacrosdictionary.lo \
 	libscicompletion_la-toolsdictionary.lo \
-	libscicompletion_la-completion_wrap_java.lo
+	libscicompletion_la-completion_wrap_java.lo \
+	libscicompletion_la-getPartLine.lo \
+	libscicompletion_la-getCommonPart.lo
 am__objects_3 = libscicompletion_la-sci_completion.lo \
 	libscicompletion_la-gw_completion.lo
 am_libscicompletion_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
@@ -342,7 +345,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #List of the c files
-@GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
+@GUI_TRUE@COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c 
 @GUI_TRUE@USEANT = 1
 
 # List of the c files
@@ -352,7 +355,9 @@ src/c/getfilesdictionary.c \
 src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
 src/c/toolsdictionary.c \
-src/c/completion_wrap_java.c
+src/c/completion_wrap_java.c \
+src/c/getPartLine.c \
+src/c/getCommonPart.c
 
 
 # List of the gateway c files
@@ -401,11 +406,13 @@ libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 #### completion : include files ####
 libscicompletion_la_includedir = $(pkgincludedir)/completion
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
-includes/completion.h
+includes/completion.h \
+includes/getCommonPart.h \
+includes/getPartLine.h
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i
+SWIG_WRAPPERS = src/jni/Completion.i 
 @SWIG_TRUE@BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -440,7 +447,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -451,11 +458,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -534,6 +547,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-completion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-completion_generic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-completion_wrap_java.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getCommonPart.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getPartLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getfilesdictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getfulldictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicompletion_la-getmacrosdictionary.Plo@am__quote@
@@ -617,6 +632,20 @@ libscicompletion_la-completion_wrap_java.lo: src/c/completion_wrap_java.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/completion_wrap_java.c' object='libscicompletion_la-completion_wrap_java.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-completion_wrap_java.lo `test -f 'src/c/completion_wrap_java.c' || echo '$(srcdir)/'`src/c/completion_wrap_java.c
+
+libscicompletion_la-getPartLine.lo: src/c/getPartLine.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-getPartLine.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-getPartLine.Tpo -c -o libscicompletion_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompletion_la-getPartLine.Tpo $(DEPDIR)/libscicompletion_la-getPartLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getPartLine.c' object='libscicompletion_la-getPartLine.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-getPartLine.lo `test -f 'src/c/getPartLine.c' || echo '$(srcdir)/'`src/c/getPartLine.c
+
+libscicompletion_la-getCommonPart.lo: src/c/getCommonPart.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-getCommonPart.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-getCommonPart.Tpo -c -o libscicompletion_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicompletion_la-getCommonPart.Tpo $(DEPDIR)/libscicompletion_la-getCommonPart.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getCommonPart.c' object='libscicompletion_la-getCommonPart.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -c -o libscicompletion_la-getCommonPart.lo `test -f 'src/c/getCommonPart.c' || echo '$(srcdir)/'`src/c/getCommonPart.c
 
 libscicompletion_la-sci_completion.lo: sci_gateway/c/sci_completion.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicompletion_la_CFLAGS) $(CFLAGS) -MT libscicompletion_la-sci_completion.lo -MD -MP -MF $(DEPDIR)/libscicompletion_la-sci_completion.Tpo -c -o libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/c/sci_completion.c' || echo '$(srcdir)/'`sci_gateway/c/sci_completion.c
@@ -1006,7 +1035,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1016,7 +1045,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -1027,6 +1056,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

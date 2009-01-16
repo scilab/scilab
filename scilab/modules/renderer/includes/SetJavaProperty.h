@@ -87,6 +87,11 @@ void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4]);
 void sciSetJavaBackground(sciPointObj * pFigure, int backColor);
 
 /**
+ * Force a window to be be single buffered
+ */
+void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer);
+
+/**
  * Set the title of a figure.
  */
 void sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;

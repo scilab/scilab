@@ -30,8 +30,16 @@
 //       This test will not be executed if the option "mode_nwni" is used.
 //     <-- NO TRY CATCH -->
 //     <-- NO CHECK ERROR OUTPUT -->
+//       The error output file is not checked
 //     <-- NO CHECK REF -->
 //       The .dia and the .dia.ref files are not compared.
+//     <-- ENGLISH IMPOSED -->
+//       This test will be executed with the -l en_US option.
+//     <-- FRENCH IMPOSED -->
+//       This test will be executed with the -l fr_FR option.
+//     <-- JVM NOT MANDATORY -->
+//       This test will be executed with the nwni mode by default.
+//
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
 //   created an unstable environment. It also enables the tests to be 
@@ -99,6 +107,8 @@ function test_run(varargin)
 	global check_error_output;
 	global create_ref;
 	global launch_mode;
+	global launch_mode_arg; // TRUE if user specify the launch mode
+	launch_mode_arg = %F;
 	
 	// test type
 	test_types        = ["unit_tests","nonreg_tests"];
@@ -272,11 +282,13 @@ function test_run(varargin)
 		end
 		
 		if grep(option_mat,"mode_nw") <> [] then
-			launch_mode = "-nw";
+			launch_mode     = "-nw";
+			launch_mode_arg = %T;
 		end
 		
 		if grep(option_mat,"mode_nwni") <> [] then
-			launch_mode = "-nwni";
+			launch_mode     = "-nwni";
+			launch_mode_arg = %T;
 		end
 		
 		if grep(option_mat,"list") <> [] then
@@ -465,6 +477,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	global check_ref;
 	global create_ref;
 	global launch_mode;
+	global launch_mode_arg;
 	global check_error_output;
 	
 	// Specific parameters for each tests
@@ -553,6 +566,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		end
 	end
 	
+	if ((~launch_mode_arg) & (grep(txt,"<-- JVM NOT MANDATORY -->") <> [])) then
+		launch_mode = "-nwni";
+	end
+	
 	if grep(txt,"<-- NO TRY CATCH -->") <> [] then
 		this_use_try_catch = %F;
 	end
@@ -567,6 +584,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	if grep(txt,"<-- ENGLISH IMPOSED -->") <> [] then
 		this_english_imposed = "-l en_US";
+	end
+
+	if grep(txt,"<-- FRENCH IMPOSED -->") <> [] then
+		this_english_imposed = "-l fr_FR";
 	end
 	
 	// Do some modification in tst file
@@ -793,7 +814,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		else
 			
 			// write down the resulting dia file
-			mputl(dia,diafile)
+			mputl(dia,diafile);
 			
 			//Check for diff with the .ref file
 			

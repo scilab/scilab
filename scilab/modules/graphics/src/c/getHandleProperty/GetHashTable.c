@@ -17,7 +17,7 @@
 
 #include "GetHashTable.h"
 #include "getHandleProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "getDictionaryGetProperties.h"
 #include "MALLOC.h"
@@ -243,8 +243,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
 {
   getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
   if ( accessor == NULL )
-  {
-    sciprint( _("Unknown property: %s.\n"), propertyName ) ;
+  {Scierror(999, _("Unknown property: %s.\n"), propertyName ) ;
     return -1 ;
   }
   return accessor( pObj ) ;

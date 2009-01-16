@@ -1,0 +1,197 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - Yung-Jang Lee <yjlee123@gmail.com>
+// Copyright (C) 2008 - Digiteo - Sylvestre Ledru
+// Copyright (C) 2009 - Digiteo - Pierre MARECHAL <pierre.marechal@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+//
+// Script to thest file name, path name of Scilab command
+// set specialName with system encoding characters > 127
+olddir=pwd();
+// 中文
+// =============================================================================
+    specialName = '中文';
+    cd TMPDIR;
+    // for CP950, BIG5with character code > 127
+    // and western charset
+    dirName     = 'dir_'+specialName;
+    fileName    = 'file_'+specialName;
+    fileWithExt = 'file_'+specialName+'.ext';
+    // 1. test mkdir, createdir,cd
+    // =========================================================================
+    mkdir(dirName);
+    if isdir(dirName) == %f then bugmes();quit;end
+    createdir(dirName+'_other');
+    if isdir(dirName+'_other') == %f then bugmes();quit;end
+    cd(dirName);
+    // 2. Fix bug in  sci_getcwd, for pwd and getcwd
+    // =========================================================================
+    if ~(length(pwd()) > 0) then bugmes();quit;end
+    if ~(length(getcwd()) > 0) then bugmes();quit;end
+    // 3. test mopen
+    // =========================================================================
+    fd=mopen(fileName,'w');
+    if (fileinfo(fileName)==[]) then bugmes();quit;end
+    mclose(fd);// ok
+    // 4. copyfile (host,unix)
+    // =========================================================================
+    copyfile(fileName,fileWithExt);
+    if (fileinfo(fileWithExt)==[]) then bugmes();quit;end
+    deletefile(fileWithExt);
+    copyfile(fileName,'../'+dirName+'_other');
+    if (fileinfo('../'+dirName+'_other/'+fileName)==[]) then bugmes();quit;end
+    deletefile('../'+dirName+'_other/'+fileName);
+    // 5. mputl, mfprintf
+    // =========================================================================
+    mputl([specialName+'1';specialName+'2'],fileName+'_mputl');
+    if (fileinfo(fileName+'_mputl')==[]) then bugmes();quit;end
+    fd=mopen(fileName+"_"+specialName,'w');
+    mfprintf(fd,'%s %f',specialName+'3',%pi);
+    filestuff=fileinfo(fileName+"_"+specialName);
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    mclose(fd);
+    // 6. Fortran style open/close
+    // filename fixed, but string in fortran file still in UTF encoding
+    // =========================================================================
+    fd=file('open',fileName+'_open','new');
+    if (fileinfo(fileName+'_open')==[]) then bugmes();quit;end
+    fprintf(fd,'%s %f',specialName+'3',%pi);
+    filestuff=fileinfo(fileName+'_open');
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    file('close',fd);
+    fprintf(fileName+'_fprintf','%s %f',specialName+'3',%pi);
+    filestuff=fileinfo(fileName+'_fprintf');
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    fprintfMat(fileName+"_Mat_"+specialName,[11,12;21,22],'%5.2f',specialName+'_fprintfMat Test');
+    filestuff=fileinfo(fileName+"_Mat_"+specialName);
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    // 7. findfiles.c
+    // =========================================================================
+    A = [ 'file_中文_fprintf'; ..
+          'file_中文_mputl'; ..
+          'file_中文_open'; ..
+          'file_中文_Mat_中文'; ..
+          'file_中文_中文'; ..
+          'file_中文'];
+    B = ls();
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = listfiles();
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = dir();
+    if(or(A <> sort(B(2)))) then bugmes();quit;end;
+    B = findfiles('.','*');
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = ls('../'+dirName);
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = listfiles('../'+dirName);
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = dir('../'+dirName);
+    if(or(A <> sort(B(2)))) then bugmes();quit;end;
+    B = findfiles('.','*'+specialName+'*');
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    // 8. test getshortpathname,getlongpathname
+    // =========================================================================
+    sname=getshortpathname(fileName);
+    if ~(length(sname) > 0) then bugmes();quit;end
+    lname=getlongpathname(sname);
+    if ~(length(lname) > 0) then bugmes();quit;end
+    // 9. test deletefile, removedir
+    // =========================================================================
+    removedir('../'+dirName+'_other');
+    chdir("..");
+    removedir(dirName);
+// æøå
+// =============================================================================
+    specialName = 'æøå';
+    cd TMPDIR;
+    // for CP950, BIG5with character code > 127
+    // and western charset
+    dirName     = 'dir_'+specialName;
+    fileName    = 'file_'+specialName;
+    fileWithExt = 'file_'+specialName+'.ext';
+    // 1. test mkdir, createdir,cd
+    // =========================================================================
+    mkdir(dirName);
+    if isdir(dirName) == %f then bugmes();quit;end
+    createdir(dirName+'_other');
+    if isdir(dirName+'_other') == %f then bugmes();quit;end
+    cd(dirName);
+    // 2. Fix bug in  sci_getcwd, for pwd and getcwd
+    // =========================================================================
+    if ~(length(pwd()) > 0) then bugmes();quit;end
+    if ~(length(getcwd()) > 0) then bugmes();quit;end
+    // 3. test mopen
+    // =========================================================================
+    fd=mopen(fileName,'w');
+    if (fileinfo(fileName)==[]) then bugmes();quit;end
+    mclose(fd);// ok
+    // 4. copyfile (host,unix)
+    // =========================================================================
+    copyfile(fileName,fileWithExt);
+    if (fileinfo(fileWithExt)==[]) then bugmes();quit;end
+    deletefile(fileWithExt);
+    copyfile(fileName,'../'+dirName+'_other');
+    if (fileinfo('../'+dirName+'_other/'+fileName)==[]) then bugmes();quit;end
+    deletefile('../'+dirName+'_other/'+fileName);
+    // 5. mputl, mfprintf
+    // =========================================================================
+    mputl([specialName+'1';specialName+'2'],fileName+'_mputl');
+    if (fileinfo(fileName+'_mputl')==[]) then bugmes();quit;end
+    fd=mopen(fileName+"_"+specialName,'w');
+    mfprintf(fd,'%s %f',specialName+'3',%pi);
+    filestuff=fileinfo(fileName+"_"+specialName);
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    mclose(fd);
+    // 6. Fortran style open/close
+    // filename fixed, but string in fortran file still in UTF encoding
+    // =========================================================================
+    fd=file('open',fileName+'_open','new');
+    if (fileinfo(fileName+'_open')==[]) then bugmes();quit;end
+    fprintf(fd,'%s %f',specialName+'3',%pi);
+    filestuff=fileinfo(fileName+'_open');
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    file('close',fd);
+    fprintf(fileName+'_fprintf','%s %f',specialName+'3',%pi);
+    filestuff=fileinfo(fileName+'_fprintf');
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    fprintfMat(fileName+"_Mat_"+specialName,[11,12;21,22],'%5.2f',specialName+'_fprintfMat Test');
+    filestuff=fileinfo(fileName+"_Mat_"+specialName);
+    if (filestuff==[] & filestuff(1)>0) then bugmes();quit;end
+    // 7. findfiles.c
+    // =========================================================================
+    A = [ 'file_æøå_fprintf'; ..
+          'file_æøå_mputl'; ..
+          'file_æøå_open'; ..
+          'file_æøå_Mat_æøå'; ..
+          'file_æøå_æøå'; ..
+          'file_æøå'];
+    B = ls();
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = listfiles();
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = dir();
+    if(or(A <> sort(B(2)))) then bugmes();quit;end;
+    B = findfiles('.','*');
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = ls('../'+dirName);
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = listfiles('../'+dirName);
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    B = dir('../'+dirName);
+    if(or(A <> sort(B(2)))) then bugmes();quit;end;
+    B = findfiles('.','*'+specialName+'*');
+    if(or(A <> sort(B))) then bugmes();quit;end;
+    // 8. test getshortpathname,getlongpathname
+    // =========================================================================
+    sname=getshortpathname(fileName);
+    if ~(length(sname) > 0) then bugmes();quit;end
+    lname=getlongpathname(sname);
+    if ~(length(lname) > 0) then bugmes();quit;end
+    // 9. test deletefile, removedir
+    // =========================================================================
+    removedir('../'+dirName+'_other');
+    chdir("..");
+    removedir(dirName);
+chdir(olddir);

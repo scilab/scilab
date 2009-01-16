@@ -58,20 +58,20 @@ proc printsetup_unix {} {
     $print.top.print delete 0 end
     set printvar $printCommand 
     $print.top.print insert 0 $printvar
-    set bestwidth [mcmaxra "OK" \
-                           "Cancel"]
     button $print.bottom.ok -text [mc "OK"] \
             -command "addtoprint $print" \
-            -width $bestwidth -font $menuFont
+            -font $menuFont
     button $print.bottom.cancel -text [mc "Cancel"] \
             -command "destroy $print" \
-            -width $bestwidth -font $menuFont
+            -font $menuFont
+    grid $print.bottom.ok     -row 0 -column 0 -sticky we -padx 10
+    grid $print.bottom.cancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $print.bottom 0 -uniform 1
+    grid columnconfigure $print.bottom 1 -uniform 1
     pack $print.top -side top -expand 0 -pady 2
-    pack $print.bottom -side bottom -expand 0 -pady 2
+    pack $print.bottom -side bottom -expand 1 -fill x -pady 2
     pack $print.top.label $print.top.print -in $print.top -side left -fill x \
             -fill y
-    pack $print.bottom.ok $print.bottom.cancel -in $print.bottom -side left \
-            -fill x -fill y -padx 10
     bind $print <Return> "addtoprint $print"
     bind $print <Escape> "destroy $print"
 
@@ -94,6 +94,7 @@ proc selectprint_unix {textarea} {
     if {[ismodified $textarea] ||
         ![file exists $listoffile("$textarea",fullname)]} {
         set TempPrintFile [open /tmp/SciPadtmpfile w]
+        fconfigure $TempPrintFile -encoding $listoffile("$textarea",encoding)
         puts -nonewline $TempPrintFile [$textarea get 1.0 end]
         close $TempPrintFile
         catch {eval exec "$printCommand /tmp/SciPadtmpfile"} result
@@ -120,6 +121,7 @@ proc selectprint_win {textarea} {
         ![file exists $listoffile("$textarea",fullname)]} {
         set fname [file join $tmpdir SciPadtmpfile]
         set TempPrintFile [open $fname w]
+        fconfigure $TempPrintFile -encoding $listoffile("$textarea",encoding)
         puts -nonewline $TempPrintFile [$textarea get 1.0 end]
         close $TempPrintFile
         ScilabEval_lt "toprint(\"$fname\")" "sync"

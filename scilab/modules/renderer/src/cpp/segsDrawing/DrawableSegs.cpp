@@ -38,13 +38,11 @@ DrawableObject::EDisplayStatus DrawableSegs::show( void )
   {
     return UNCHANGED;
   }
-  initializeDrawing();
   clip();
   translate();
   showSegs();
   endTranslate();
   unClip();
-  endDrawing();
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/

@@ -8,7 +8,7 @@ if %fftw then
 	if MSDOS then
 		librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
 	else
-		librarynamefftw = "libfftw3"+getdynlibext();
+		librarynamefftw = "libfftw3"+getdynlibext()+".3";
 	end
 	
 	//add help chapter
@@ -16,7 +16,7 @@ if %fftw then
 
 	if ( loadfftwlibrary(librarynamefftw) ) then
 	
-		//Load  functions librarie
+		//Load  functions libraries
 		//load('SCI/modules/fftw/macros/lib');
 		// ====================================================================
 		// replace scilab fft function by fftw

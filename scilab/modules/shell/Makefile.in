@@ -102,8 +102,7 @@ am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-GetCommandLine.lo libscishell_la-mainscic.lo \
 	libscishell_la-zzledt.lo libscishell_la-gotoxy_nw.lo \
 	libscishell_la-clrscr_nw.lo libscishell_la-InitializeShell.lo \
-	libscishell_la-TerminateShell.lo \
-	libscishell_la-preparsecompletion_nw.lo
+	libscishell_la-TerminateShell.lo
 am__objects_2 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo \
 	libscishell_la-sci_prompt.lo \
@@ -341,8 +340,7 @@ src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
-src/c/TerminateShell.c \
-src/c/preparsecompletion_nw.c
+src/c/TerminateShell.c 
 
 
 # List of the gateway c files
@@ -449,7 +447,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -460,11 +458,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -547,7 +551,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-mainscic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-preparsecompletion_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_iswaitingforinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_lines.Plo@am__quote@
@@ -654,13 +657,6 @@ libscishell_la-TerminateShell.lo: src/c/TerminateShell.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateShell.c' object='libscishell_la-TerminateShell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
-
-libscishell_la-preparsecompletion_nw.lo: src/c/preparsecompletion_nw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-preparsecompletion_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_la-preparsecompletion_nw.Tpo -c -o libscishell_la-preparsecompletion_nw.lo `test -f 'src/c/preparsecompletion_nw.c' || echo '$(srcdir)/'`src/c/preparsecompletion_nw.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-preparsecompletion_nw.Tpo $(DEPDIR)/libscishell_la-preparsecompletion_nw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/preparsecompletion_nw.c' object='libscishell_la-preparsecompletion_nw.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-preparsecompletion_nw.lo `test -f 'src/c/preparsecompletion_nw.c' || echo '$(srcdir)/'`src/c/preparsecompletion_nw.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c
@@ -1073,7 +1069,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1083,7 +1079,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -1094,6 +1090,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \

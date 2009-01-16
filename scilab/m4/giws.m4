@@ -26,7 +26,7 @@ else
 # Looks for it in the path
    AC_CHECK_PROGS(GIWS_BIN,giws,no)
    if test "x$GIWS_BIN" = "xno"; then
-		AC_MSG_ERROR([Could find giws.py in the PATH])
+		AC_MSG_ERROR([Could find giws in the PATH])
    fi
 fi
 chmod +x $GIWS_BIN

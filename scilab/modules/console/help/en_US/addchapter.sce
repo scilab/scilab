@@ -13,7 +13,7 @@
 // help console module
 // Add chapter
 // ====================================================================
-//path = SCI+'/modules/console/help/'+getdefaultlanguage();
-//add_help_chapter("console",path,%T);
-//clear path add_help_chapter;
+path = SCI+'/modules/console/help/'+getdefaultlanguage();
+add_help_chapter("Console",path,%T);
+clear path add_help_chapter;
 // ====================================================================

@@ -13,7 +13,6 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
       double precision alpha,inf,un
       data un/1.0d0/

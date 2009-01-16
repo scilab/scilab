@@ -21,7 +21,7 @@ extern "C"{
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __RADIOBUTTON_HXX__ */

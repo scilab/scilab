@@ -255,9 +255,7 @@ scipad f1 f2 ...</synopsis>
           <para></para>
         </listitem>
       </varlistentry>
-    </variablelist>
 
-    <variablelist>
       <varlistentry>
         <term>Go to next breakpoint.</term>
 
@@ -504,14 +502,14 @@ scipad f1 f2 ...</synopsis>
           Details about reasons for this can be read at <ulink
           url="http://bugzilla.scilab.org/show_bug.cgi?id=2998#c4">http://bugzilla.scilab.org/show_bug.cgi?id=2998#c4</ulink></para>
 
-          <para>Windows platforms: Download the full package (currently
-          tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the content
+          <para>Windows platforms: Download the full package
+          (tkdnd-1.0a2.tar.gz), and uncompress it somewhere. Copy the content
           of lib\tkdnd and paste it into
           <literal>SCI\modules\tclsci\tcl\tk&lt;version&gt;\tkdnd</literal>.
           That's all!</para>
 
-          <para>linux-i386 platforms: Download the rpm package (currently
-          tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may have to force
+          <para>linux-i386 platforms: Download the rpm package
+          (tkdnd-1.0-b2.i386.rpm). Install it with rpm -U (may have to force
           --nodeps if it doesn't recognize an existing Tcl installation). If
           you have a source version of Scilab and an installation of Tcl/Tk,
           check where they are installed (e.g. <literal>/usr/share/</literal>)
@@ -597,7 +595,7 @@ scipad f1 f2 ...</synopsis>
 
       <member>Enrico Segre, Weizmann Institute, 2003-2006;</member>
 
-      <member>Francois Vogel, 2004-2008.</member>
+      <member>Francois Vogel, 2004-2009.</member>
     </simplelist>
   </refsection>
 </refentry>

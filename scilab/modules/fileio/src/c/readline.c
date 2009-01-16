@@ -114,6 +114,7 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
 void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr)
 {
 	FILE *fa= GetFileOpenedInScilab(*fd);
+
 	*ierr=LineRead(fa,buf,*n,count,nr);
 }
 /*--------------------------------------------------------------------------*/

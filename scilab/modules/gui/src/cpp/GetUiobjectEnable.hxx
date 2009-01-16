@@ -20,7 +20,7 @@ extern "C"
 #include "GetProperty.h"
 #include "localization.h"
 #include "GetUiobjectEnable.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __GET_UIOBJECT_ENABLE_HXX__ */

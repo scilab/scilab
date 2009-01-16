@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
@@ -417,6 +417,7 @@
 ::msgcat::mcset it_it "The contents of " "Il contenuto di"
 ::msgcat::mcset it_it "has changed on disk, save it anyway?"\
                       "è cambiato sul disco, salvare comunque?"
+::msgcat::mcset it_it "The contents and/or properties of " "Il contenuto e/o proprietà di"
 ::msgcat::mcset it_it "has been modified outside of Scipad. Do you want to\
                        reload it?"\
                       "è stato cambiato fuori da Scipad. Ricaricarlo dal\
@@ -614,7 +615,7 @@
                        joeja@mindspring.com.\n Modificato dal Consorzio\
                        Scilab.\n Migliorato da Enrico Segre 2003-2006\n e da\
                        François Vogel (in particolare il debugger)\
-                       2004-2008.\n Traduzioni: \n   norvegese, Torbjørn\
+                       2004-2009.\n Traduzioni: \n   norvegese, Torbjørn\
                        Pettersen 2005; \n   polacco, Bartosz Kosiorek 2005;\
                        \n   svedese, Gunnar Lindholm 2005; \n   tedesco,\
                        Dirk Reusch 2005; \n   spagnolo, Juan Nicolás\

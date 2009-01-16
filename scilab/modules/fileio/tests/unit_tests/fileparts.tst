@@ -8,6 +8,18 @@
 //===============================
 // Tests fileparts
 //===============================
+ierr = execstr("[path,fname,extension] = fileparts([]);","errcatch");
+if ierr <> 999 then pause,end
+//===============================
+ierr = execstr("extension = fileparts(SCI+''/etc/scilab.start'',''rpr'');","errcatch");
+if ierr <> 999 then pause,end
+//===============================
+ierr = execstr("extension = fileparts(SCI+''/etc/scilab.start'',10);","errcatch");
+if ierr <> 999 then pause,end
+//===============================
+ierr = execstr("extension = fileparts(10,10);","errcatch");
+if ierr <> 999 then pause,end
+//===============================
 [path,fname,extension] = fileparts(SCI+'/etc/scilab.start');
 if (path <> pathconvert(SCI+'/etc/',%f,%f)) then pause,end
 if (fname <> 'scilab') then pause,end

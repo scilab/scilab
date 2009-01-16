@@ -218,7 +218,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GUI_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -392,15 +392,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\CallFileChooser.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\CallFontChooser.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\cpp\CallHelpBrowser.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\CallJuigetfile.cpp"
 				>
 			</File>
 			<File
@@ -473,10 +473,6 @@
 			</File>
 			<File
 				RelativePath="..\cpp\exportUserInterface.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\FileChooser.cpp"
 				>
 			</File>
 			<File
@@ -612,6 +608,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\Juigetfile.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\Jxclick.cpp"
 				>
 			</File>
@@ -728,7 +728,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_uigetdir.c"
+				RelativePath="..\..\sci_gateway\cpp\sci_uigetdir.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\cpp\sci_uigetfile.cpp"
 				>
 			</File>
 			<File
@@ -773,10 +777,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_x_mdialog.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_xgetfile.c"
 				>
 			</File>
 			<File
@@ -941,14 +941,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\CallFileChooser.h"
-				>
-			</File>
-			<File
-				RelativePath="..\cpp\CallFileChooser.hxx"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\CallFontChooser.h"
 				>
 			</File>
@@ -962,6 +954,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallHelpBrowser.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\CallJuigetfile.hxx"
 				>
 			</File>
 			<File
@@ -1066,10 +1062,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\exportUserInterface.hxx"
-				>
-			</File>
-			<File
-				RelativePath="..\jni\FileChooser.hxx"
 				>
 			</File>
 			<File

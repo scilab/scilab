@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="C_struct">
+  <refnamediv>
+    <refname>C_struct</refname>
+    <refpurpose>C Block structure of a computational function</refpurpose>
+  </refnamediv>
+  <refsection id="Contents_C_struct">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="C_struct">C_struct - C Block structure of a computational function</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Module_C_struct">Module</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_C_struct">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Inputsoutputs_C_struct">Inputs/outputs</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Events_C_struct">Events</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Parameters_C_struct">Parameters</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Statesandwork_C_struct">States and work</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Zerocrossingsurfacesandmodes_C_struct">Zero crossing surfaces and modes</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Miscallaneous_C_struct">Miscallaneous</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_C_struct">Authors</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Module_C_struct">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_C_struct">
+    <title>Description</title>
+    <para>
+The C structure of a Scicos block defines all the fields to handle data provided by the simulator
+such inputs/outputs, parameters, states, ...
+</para>
+    <para>
+That structure of type  is defined in the file , and user must include that header in each computational functions in the form :
+</para>
+    <para>
+
+</para>
+    <para>
+The fields, that can be either C pointers or directly data, are then accessible via the 
+structure :
+</para>
+    <para>
+
+</para>
+    <para>
+This access is a  approach and most of users should prefer the  approach for facilities purpose.
+</para>
+    <para>
+In the current version of Scicos, the  structure is defined :
+</para>
+    <para>
+
+</para>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Inputsoutputs_C_struct">
+    <title>Inputs/outputs</title>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nin :</emphasis> Integer that gives the number of regular input ports of the block.</para>
+        <para> One can't override the index when reading sizes of input ports in the array and the index when reading data in the array with a C computational function.</para>
+        <para> The number of regular input ports can also be got by the use of the C macros . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;insz :</emphasis> An array of integers of size that respectively gives the first dimensions, the second dimensions and the type of data driven by regular input ports.</para>
+        <para> Note that this array of size differs from the array and to provide full compatibilty with blocks that only use a single dimension.</para>
+        <para> Suppose that you have a block with three inputs : the first is an int32 matrix of size 3,2, the second a single complex number (matrix of size 1,1) and the last a real matrix of size 4,1.</para>
+        <para> In the<link linkend="scicos_model">scicos_model</link> of such a block, the inputs will be defined :
+
+ 
+and the corresponding  field at C computational function level will be
+                    coded as :
+ 
+
+
+ 
+Do the difference here in the type numbers defined at the  (2,1,3)
+                     and the type numbers defined at the  (84,11,10). The following table gives
+                     the correspondance for all Scicos type:
+ 
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;inptr :</emphasis> An array of pointers of size nin,1 that allow to directly acces to the data contained in the regular input matrices.</para>
+        <para> Suppose the previous example (block with three inputs : an int32 matrix of size [3,2], a complex scalar and a real matrix of size [4,1]).</para>
+        <para>  contains three pointers, and should be viewed as arrays contained the data for the int32, the real and the complex matrices :
+
+
+ 
+For i.e., to directly access to the data, the user can use theses instructions :
+ 
+
+ 
+One can also use the set of C macros :
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                     
+</para>
+        <para>
+to have the appropiate pointer of the data to handle and 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    ,  
+</para>
+        <para>
+to handle number, dimensions and type of regular input ports.
+                    ().
+</para>
+        <para> 
+For the previous example that gives :
+ 
+
+ 
+Finally note that the regular input port registers are only accessible for reading.
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nout :</emphasis> Integer that gives the number of regular output ports of the block.</para>
+        <para> One can't override the index when reading sizes of output ports in the array and the index when reading data in the array with a C computational function.</para>
+        <para> The number of regular output ports can also be got by the use of the C macros . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;outsz :</emphasis> An array of integers of size that respectively gives the first dimensions, the second dimensions and the type of data driven by regular output ports.</para>
+        <para> Note that this array of size differs from the array and to provide full compatibilty with blocks that only use a single dimension.</para>
+        <para> Suppose that you have a block with two outputs : the first is an int32 matrix of size 3,2, the second a single complex number (matrix of size 1,1) and the last a real matrix of size 4,1.</para>
+        <para> In the<link linkend="scicos_model">scicos_model</link> of such a block, the outputs will be defined :
+
+ 
+and the corresponding  field at C computational function level will be
+                     coded as :
+ 
+
+
+ 
+Do the difference here in the type numbers defined at the  (2,1,3)
+                     and the type numbers defined at the  (84,11,10) and please report to the 
+                     previous table to have the correspondence for all Scicos type.
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;outptr :</emphasis> An array of pointers of size nout,1 that allow to directly acces to the data contained in the regular output matrices.</para>
+        <para> Suppose the previous example (block with three outputs : an int32 matrix of size [3,2], a complex scalar and a real matrix of size [4,1]).</para>
+        <para>  contains three pointers, and should be viewed as arrays contained the data for the int32, the real and the complex matrices :
+
+
+ 
+For i.e., to directly access to the data, the user can use theses instructions :
+ 
+
+ 
+One can also use the set of C macros :
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                     
+</para>
+        <para>
+to have the appropiate pointer of the data to handle and 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    , , 
+</para>
+        <para>                    ,  
+</para>
+        <para>
+to handle number, dimensions and type of regular output ports.
+                    ().
+ 
+For the previous example that gives :
+ 
+
+ 
+Finally note that the regular output port registers must be only written for =1. </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Events_C_struct">
+    <title>Events</title>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nevprt :</emphasis> Integer that gives the event input port number by which the block has been activated. This number is a binary coding. For i.e, if block have two event inputs ports, can take the value 1 if the block has been called by its first event input port, the value 2 if it has been called by the second event input port and 3 if it is called by the same event on both input port 1 and 2.</para>
+        <para> Note that can be -1 if the block is internally called.</para>
+        <para> One can also retrieve this number by using the C macros . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nevout :</emphasis> Integer that gives the number of event output ports of the block (also called the length of the output event register).</para>
+        <para> One can't override the index when setting value of events in the output event register .</para>
+        <para> The number of event output ports can also be got by the use of the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;evout :</emphasis> Array of double of size nevout,1 corresponding to the output event register. That register is used to program date of events during the simulation.</para>
+        <para> When setting values in that array, you must understand that you give a delay relative to the current time of simulator :</para>
+        <para>  where <inlinemediaobject><imageobject><imagedata fileref="../../../images/C_struct_img6_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is the date of the programmed event, <inlinemediaobject><imageobject><imagedata fileref="../../../images/C_struct_img7_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> is the current time in the simulator and <inlinemediaobject><imageobject><imagedata fileref="../../../images/C_struct_img8_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> the value that must be informed in the output event register.
+For i.e, suppose that you want generate an event with the first event output port, 1ms after
+                     each calls of the block, then you'll use :
+ 
+
+</para>
+        <para> 
+Note that every events generated from output event register will be asynchronous with event
+                     coming from event input port (even if you set ). 
+</para>
+        <para>
+The event output register must be only written for =3. </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Parameters_C_struct">
+    <title>Parameters</title>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nrpar :</emphasis> Integer that gives the length of the real parameter register.</para>
+        <para> One can't override the index when reading value of real parameters in the register .</para>
+        <para> The total number of real parameters can also be got by the use of the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;rpar :</emphasis> Array of double of size nrpar,1 corresponding to the real parameter register. That register is used to pass real parameters coming from the scilab/scicos environment to your block model.</para>
+        <para> The C type of that array is (or C scicos type ).</para>
+        <para> Suppose that you have defined the following real parameters in the<link linkend="scicos_model">scicos_model</link> of a block :
+
+ 
+you can retrieve the previous data in the C computational function with :
+ 
+
+ 
+You can also use the C macro  to get the pointer of the
+                    real parameter register. For i.e., if we define the following
+                    
+in an interfacing function of a
+                    scicos block :
+ 
+
+ 
+in the corresponding C computational function of that block, we'll use :
+ 
+
+ 
+Note that real parameters register is only accessible for reading.
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nipar :</emphasis> Integer that gives the length of the integer parameter register.</para>
+        <para> One can't override the index when reading value of integer parameters in the register .</para>
+        <para> The total number of integer parameters can also be got by the use of the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;ipar :</emphasis> Array of int of size nipar,1 corresponding to the integer parameter register. That register is used to pass integer parameters coming from the scilab/scicos environment to your block model.</para>
+        <para> The C type of that array is (or C scicos type ).</para>
+        <para> Suppose that you have defined the following integer parameters in the<link linkend="scicos_model">scicos_model</link> of a block :
+
+ 
+you can retrieve the previous data in the C computational function with :
+ 
+
+ 
+You can also use the C macro  to get the pointer of the
+                    real parameter register.
+</para>
+        <para>
+Most of time in the scicos C block libraries, the integer register is used to
+                    parametrize the length of real parameters. For i.e. if you define the following
+                    
+in a block :
+ 
+
+ 
+the array of real parameters (parametrized by ipar) can be retrieved in the
+                    correspondig C computational function with :
+ 
+
+ 
+Note that integer parameters register is only accessible for reading.
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nopar :</emphasis> Integer that gives the number of the object parameters.</para>
+        <para> One can't override the index when accessing data in the arrays , and in a C computational function.</para>
+        <para> This value is also accessible via the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;oparsz :</emphasis> An array of integer of size nopar,2 that contains the dimensions of matrices of object parameters.</para>
+        <para> The first column is for the first dimension and the second for the second dimension. For i.e. if we want the dimensions of the last object parameters, we'll use the instructions :
+
+ 
+The dimensions of object parameters can be get with the following C macro :
+ 
+
+ 
+with  an integer that gives the index of the object parameter, .
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;opartyp :</emphasis> An array of integer of size nopar,1 that contains the type of matrices of object parameters.</para>
+        <para> The following table gives the correspondence for scicos type expressed in Scilab number, in C number and also corresponding C pointers and C macros used for :
+ 
+The type of object parameter can also be got by the use of the C macro
+                     . For i.e, if we want the C number type of the first
+                     object parameter, we'll use the following C instructions:
+ 
+
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;oparptr :</emphasis> An array of pointers of size nopar,1 that allow to directly acces to the data contained in the object parameter.</para>
+        <para> Suppose that you have defined in the editor a block with the following<emphasis role="bold">opar</emphasis> field in<link linkend="scicos_model">scicos_model</link> :
+
+ 
+Then we have two object parameters, one is an 32-bit integer matrix with two rows and two
+                     columns and the second is a vector of complex numbers that can be understand as a matrix
+                     of size 1,3.
+</para>
+        <para>
+At the C computational function level, the instructions ,
+                     , ,  will respectively return the
+                     values 2,1,2,3 and the instructions ,  the values 11 and
+                     84.
+</para>
+        <para>                      will contain then two pointers, and should be viewed as arrays contained data of
+                     object parameter as shown in the following figure :
+ 
+
+
+ 
+For i.e., to directly access to the data, the user can use theses instructions :
+ 
+
+ 
+One can also use the set of C macros :
+</para>
+        <para>                    ,  ,
+</para>
+        <para>                    ,  ,
+</para>
+        <para>                    , ,
+</para>
+        <para>                    , 
+</para>
+        <para>
+to have the appropiate pointer of the data to handle ().
+</para>
+        <para>
+For the previous example that gives :
+ 
+
+ 
+Note that object parameters register is only accessible for reading. </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Statesandwork_C_struct">
+    <title>States and work</title>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nx :</emphasis> Integer that gives the length of the continus state register.</para>
+        <para> One can't override the index when reading or writing data in the array , or with a C computational function. </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;x :</emphasis> Array of double of size nx,1 corresponding to the continuous state register.</para>
+        <para> That gives the result of the computation of the state derivative.</para>
+        <para> A value of a continuous state is readable (for i.e the first state) with the C instructions :
+
+ 
+Note that on =4, user can write some initial conditions in that register.
+</para>
+        <para>
+The pointer of that array can also be retrieve via the C macro .
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;xd :</emphasis> Array of double of size nx,1 corresponding to the derivative of the continuous state register.</para>
+        <para> When systems are explicitly given in terms of Ordinary Differential Equations (ODE), it can be explicitly expressed or implicitly used in the residual vector when systems are expressed in terms of Differantial Algebraic Equations (DAE).</para>
+        <para> Both systems must be programmed with .</para>
+        <para> For i.e the Lorentz attractor written as an ODE system with three state variables, of the form :
+</para>
+        <para>
+ will be defined :
+
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;res :</emphasis> Array of double of size nx,1 corresponding to Differential Algebraic Equation (DAE) residual.</para>
+        <para> It is used to write the vector of systems that have the following form :</para>
+        <para>  For i.e the Lorentz attractor written as a DAE system with three state variables, will be defined :
+
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nz :</emphasis> Integer that gives the length of the discrete state register.</para>
+        <para> One can't override the index when reading data in the array with a C computational function.</para>
+        <para> This value is also accessible via the C macros . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;z :</emphasis> Array of double of size nz,1 corresponding to the discrete state register.</para>
+        <para> A value of a discrete state is directly readable (for i.e the second state) with the C instructions :
+
+ 
+Note that the state register should be only written for =4 and =2.
+</para>
+        <para>
+The pointer of that array can also be retrieve via the C macro .
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;noz :</emphasis> Integer that gives the number of the discrete object states.</para>
+        <para> One can't override the index when accessing data in the arrays , and in a C computational function.</para>
+        <para> This value is also accessible via the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;ozsz :</emphasis> An array of integer of size noz,2 that contains the dimensions of matrices of discrete object states.</para>
+        <para> The first column is for the first dimension and the second for the second dimension. For i.e. if we want the dimensions of the last object state, we'll use the instructions :
+
+ 
+The dimensions of object discrete states can be get with the following C macro :
+ 
+
+ 
+with  an integer that gives the index of the discrete object state, .
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;oztyp :</emphasis> An array of integer of size noz,1 that contains the type of matrices of discrete object states.</para>
+        <para> The following table gives the correspondence table for scicos type expressed in Scilab number, in C number and also corresponding C pointers and C macros used for :
+ 
+The type of discrete object state can also be got by the use of the C macro
+                     . For i.e, if we want the C number type of the first
+                     discrete object state, we'll use the following C instructions:
+ 
+
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;ozptr :</emphasis> An array of pointers of size noz,1 that allow to directly acces to the data contained in the discrete object state.</para>
+        <para> Suppose that you have defined in the editor a block with the following<emphasis role="bold">odstate</emphasis> field in<link linkend="scicos_model">scicos_model</link> :
+
+ 
+Then we have two discrete object states, one is an 32-bit integer matrix with two rows and two
+                     columns and the second is a vector of complex numbers that can be understand as a matrix
+                     of size 1,3.
+</para>
+        <para>
+At the C computational function level, the instructions ,
+                     , ,  will respectively return the
+                     values 2,1,2,3 and the instructions ,  the values 11 and
+                     84.
+</para>
+        <para>                      will contain then two pointers, and should be viewed as arrays contained data of
+                     discrete object state as shown in the following figure :
+ 
+
+
+ 
+For i.e., to directly access to the data, the user can use theses instructions :
+ 
+
+ 
+One can also use the set of C macros :
+</para>
+        <para>                    ,  ,
+</para>
+        <para>                    ,  ,
+</para>
+        <para>                    , ,
+</para>
+        <para>                    ,  
+</para>
+        <para>
+to have the appropiate pointer of the data to handle ().
+</para>
+        <para>
+For the previous example that gives :
+ 
+
+ 
+Finally note that the discrete objects state should be only written for =4 and =2.
+  </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;work :</emphasis> A free pointer to set a working array for the block.</para>
+        <para> The work pointer must be firstly allocated when = 4 and finally be free in the = 5.</para>
+        <para> Then a basic life cyle of that pointer in a C computational function should be :
+
+ 
+Note that if a block use a  pointer, it will be called with =2 even if
+                           the block don't use discrete states.
+</para>
+        <para>
+The pointer of that array can also be retrieve via the C macro . </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Zerocrossingsurfacesandmodes_C_struct">
+    <title>Zero crossing surfaces and modes</title>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;ng :</emphasis> Integer that gives the number of zero crossing surface of the block.</para>
+        <para> One can't override the index when reading/writing data in the array with a C computational function.</para>
+        <para> The number of zero crossing surface can also be got by the use of the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;g :</emphasis> Array of double of size ng,1 corresponding to the zero crossing surface register.</para>
+        <para> That register is used to detect zero crossing of state variable during time domain integration.</para>
+        <para> Note that it is accessible for writting for = 9.</para>
+        <para> The pointer of that array can also be retrieve via the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;nmode :</emphasis> Integer that gives the number of mode of the block.</para>
+        <para> One can't override the index when reading/writing data in the array with a C computational function.</para>
+        <para> The number of mode can also be got by the use of the C macro . </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;mode :</emphasis> Array of integer of size nmode,1 corresponding to the mode register.</para>
+        <para> That register is used to set the mode of state variable during time domain integration.</para>
+        <para> It is typically accessible for writting for = 9.</para>
+        <para> The pointer of that array can also be retrieve via the C macro . </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+
+</para>
+  </refsection>
+  <refsection id="Miscallaneous_C_struct">
+    <title>Miscallaneous</title>
+    <para>
+
+ 
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;type :</emphasis> Integer that gives the type of the computational function. For C blocks, this number is equal to 4. </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">block-&gt;label :</emphasis> Strings array that allows to retrieve the label of the block.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_C_struct">
+    <title>Authors</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

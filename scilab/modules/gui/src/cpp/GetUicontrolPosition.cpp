@@ -65,7 +65,7 @@ int GetUicontrolPosition(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Position");
+      Scierror(999, _("No '%s' property for this object.\n"), "Position");
       return FALSE;
     }
 }

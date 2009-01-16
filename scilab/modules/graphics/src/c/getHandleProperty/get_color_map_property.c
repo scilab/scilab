@@ -43,7 +43,7 @@ int get_color_map_property( sciPointObj * pobj )
   colorMap = MALLOC( cmapSize * 3 * sizeof(double) ) ;
   if ( colorMap == NULL )
   {
-    Scierror(999, _("No more memory.\n"));
+    Scierror(999, _("%s: No more memory.\n"),"get_color_map_property");
     return -1;
   }
 

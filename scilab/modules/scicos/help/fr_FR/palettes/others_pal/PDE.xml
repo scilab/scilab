@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="PDE">
+  <refnamediv>
+    <refname>PDE</refname>
+    <refpurpose>Bloc PDE 1D</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/PDE_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_PDE">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PDE">Bloc PDE 1D</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_PDE">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_PDE">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_PDE">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_PDE">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_PDE">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_PDE">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_PDE">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Others_pal">Others - Palette Others</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_PDE">
+    <title>Description</title>
+    <para>
+This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
+Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono dimensional 
+PDE (Partial Differential Equation) within SCICOS.
+The mathematical framwork was restricts in PDEs linear scalars with maximum order 2 in time and space.
+The goal is to provide engineers and physicists with an easy to use toolbox in SCICOS that will let them
+graphically describe the PDE to be solved. A decision system selects the most efficient numerical scheme
+depending on the type of the PDE and runs the solvers.
+
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_PDE">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/PDE_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">a et b</emphasis>
+        </para>
+        <para> (double) The two edges of the discretization field. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">specification de l'EDP</emphasis>
+        </para>
+        <para> check box to select the PDE operators.
+ai(x), bi(t) (i=1:7) are the operator coefficients.
+ 
+type of PDE discriminant (constant or variable, in the
+        later case, the sign should be given).
+  </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Discretization methode</emphasis>
+        </para>
+        <para> choix (check box) : is the choice for the manual or the automatic mode.
+type : in the manual mode we can give the method type
+        (Finite differences, finite elements or finite volumes).
+ 
+degré : method degre (1 or 2 for the FD and FE methods,
+        1 for the FV method).
+ 
+Nombre de noeuds : to give the number of the nodal points.
+  </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Conditions initiales</emphasis>
+        </para>
+        <para> u(x,t0)=, du/dt at t0= : to give the initial conditions. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Conditions aux limites</emphasis>
+        </para>
+        <para> type : two type of the boundray conditions are possible : Dirichlet or Neumann.
+expressions : to give then boundray conditions expressions.
+  </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Points de mesures</emphasis>
+        </para>
+        <para> To give the list of mesurment points. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Name</emphasis>
+        </para>
+        <para> A getvalue box to give the block name's. </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_PDE">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : taille [1,1] / type 0</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 3 : taille [1,1] / type 0</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 4 : taille [1,1] / type 0</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 5 : taille [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">sorties régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [10,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : taille [0,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">PDE</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_PDE">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/PDE/PDE.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_PDE">
+    <title>Auteurs</title>
+    <para><emphasis role="bold"/> - EADS 2005-01-16</para>
+    <para> EADS 2005-01-16
+
+</para>
+    <para>
+
+
+
+
+</para>
+  </refsection>
+</refentry>

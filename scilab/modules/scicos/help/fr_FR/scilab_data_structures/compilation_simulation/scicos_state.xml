@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_state">
+  <refnamediv>
+    <refname>scicos_state</refname>
+    <refpurpose>Définit une structure state</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_state">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="state_scicos_state">
+    <title>state</title>
+    <para>
+ Une liste typée scilab de type xcs. Cette
+ liste contient tous les états du diagramme qui
+ vont évoluer pendant la simulation.
+</para>
+    <para>
+state contient x, z, oz, iz, 
+ tevts, evtspt, pointi et outtb.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Taille : 9.
+</para>
+    <para>
+Type : tlist scilab.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">x</emphasis>
+        </para>
+        <para> Le registre des états continus qui est obtenu en concatenant tous les états continus de tous les blocs.</para>
+        <para> 
+Taille : total des tailles de tous les registres des états continus.
+</para>
+        <para>
+Type : vecteur colonne de nombres réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">z</emphasis>
+        </para>
+        <para> Le registre des états discrets qui est obtenu en concatenant tous les états discrets de tous les blocs.</para>
+        <para> 
+Taille : total des tailles de tous les registres des états discrets.
+</para>
+        <para>
+Type : vecteur colonne de nombres réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">oz</emphasis>
+        </para>
+        <para> La liste des états objets discrets obtenue par la concaténation de tous les états objets de tous les blocs.</para>
+        <para> 
+Taille : total des tailles de toutes les listes des états objet.
+</para>
+        <para>
+Type : liste scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">iz</emphasis>
+        </para>
+        <para> Vecteur de taille égale au nombre de blocs.</para>
+        <para> Ce vecteur est utilisé pour enregistrer les pointeurs des registres de travail (work) Si un bloc fait une allocation du registre work à l'initialisation (flag=4) alors le pointeur associé est enregistré ici.</para>
+        <para> 
+Taille : nombre de blocs.
+</para>
+        <para>
+Type : vecteur colonne de nombres réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">tevts</emphasis>
+        </para>
+        <para> Un vecteur de taille égale au nombre de sources d'activation. C'est une table contenant les dates des événements programmés dans evtspt.</para>
+        <para> 
+Taille : nombre de sources d'activation.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">evtspt</emphasis>
+        </para>
+        <para> Un vecteur de taille égale au nombre de sources d'activation. C'est une table d'événements.</para>
+        <para> 
+Taille : nombre de sources d'activation.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">pointi</emphasis>
+        </para>
+        <para> Le numéro du prochain événement.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : entier.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">outtb</emphasis>
+        </para>
+        <para> Liste scilab contenant tous les registres de sortie des blocs. Chaque éléments de cette liste contient des données typées matricielles.</para>
+        <para> 
+Taille : nombre de ports réguliers de sortie.
+</para>
+        <para>
+Type : liste scilab contenant des matrices.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenuduficher_scicos_state">
+    <title>Contenu du ficher</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_state.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

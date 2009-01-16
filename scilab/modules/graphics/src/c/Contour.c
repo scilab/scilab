@@ -20,6 +20,7 @@
 #include <math.h>
 #include "math_graphics.h"
 #include "PloEch.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "Format.h"
@@ -32,8 +33,7 @@ typedef void (level_f)(int ival, double Cont, double xncont,double yncont);
 typedef void (*ptr_level_f)(int ival, double Cont, double xncont,double yncont);
 
 
-static void 
-contourI (ptr_level_f,double *, double *, double *, double *, int *, int *, int *);
+static int contourI (ptr_level_f,double *, double *, double *, double *, int *, int *, int *);
 
 static void
 look(ptr_level_f, int i, int j, int ib,int jb, int qq,double Cont, int style);
@@ -191,7 +191,6 @@ static void look(ptr_level_f func, int i, int j, int ib, int jb, int qq, double 
       y_cont(j));
     break;
   default :
-    sciprint(_("Error in case wrong value"));
     break;
   }
   wflag=1;
@@ -290,7 +289,7 @@ static void look(ptr_level_f func, int i, int j, int ib, int jb, int qq, double 
 *  gives the dash style for contour i
 *-------------------------------------------------------*/
 
-static void contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, int *N, int *style, int *err)
+static int contourI(ptr_level_f func, double *x, double *y, double *z, double *zCont, int *N, int *style, int *err)
 {
   int check = 1;
   char *F;
@@ -315,8 +314,8 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
     FREE( xbd_cont ) ;
     FREE( ybd_cont ) ;
     FREE( itg_cont ) ;
-    sciprint(_("%s: No more memory.\n"),"contourI");
-    return;
+    Scierror(999, _("%s: No more memory.\n"),"contourI");
+    return -1;
   }
   /* just a parametrization of the boundary points */
   for ( i = 0 ; i <  n2 ; i++)
@@ -365,7 +364,8 @@ static void contourI(ptr_level_f func, double *x, double *y, double *z, double *
   FREE( xbd_cont ) ;
   FREE( ybd_cont ) ;
   FREE( itg_cont ) ;
-
+	
+	return 0;
 }
 
 int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagnz, int *nz, double *zz, int *style)
@@ -382,8 +382,8 @@ int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagn
     {
       if ( ( zconst = MALLOC( (*nz) * sizeof(double) ) ) == 0 ) 
 	{
-	  sciprint(_("%s: No more memory.\n"),"contourif");
-	  return 0;
+	  Scierror(999, _("%s: No more memory.\n"),"contourif");
+	  return -1;
 	}
       for ( i =0 ; i < *nz ; i++) 
 	zconst[i]=zmin + (i+1)*(zmax-zmin)/(*nz+1);
@@ -398,7 +398,7 @@ int C2F(contourif)(double *x, double *y, double *z, int *n1, int *n2, int *flagn
       contourI(GContStore2,x,y,z,zz,N,style,&err);
     }
 
-  return(0);
+  return 0 ;
 }
 
 

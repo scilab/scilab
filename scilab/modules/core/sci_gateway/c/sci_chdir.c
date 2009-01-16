@@ -17,7 +17,6 @@
 #include "localization.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_chdir)(char *fname,unsigned long fname_len)
 {
@@ -40,8 +39,7 @@ int C2F(sci_chdir)(char *fname,unsigned long fname_len)
 		else
 		{
 			GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-			/* Bug 3089 */
-			strcpy(shortpath, UTFToLocale(cstk(l1)));
+			strcpy(shortpath,cstk(l1));
 		}
 
 		C2F(cluni0)(shortpath,path,&out_n,(long)strlen(shortpath),PATH_MAX);

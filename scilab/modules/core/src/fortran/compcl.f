@@ -251,6 +251,7 @@ c     initialize the try structure
 c     end of try instructions
       l0=comp(2)
       istk(l0-1)=l-(l0+1)
+      call setlnb
       return
  23   continue
 
@@ -264,6 +265,7 @@ c     .  no catch keyword,
       else
          istk(l0)=l-(l0+1)-istk(l0-1)
       endif
+      call setlnb
       return
 
    99 call error(22)

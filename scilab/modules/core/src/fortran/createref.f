@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine createref1(topk)
       include 'stack.h'
-      integer topk,sz
+      integer topk
       integer iadr
 c
       iadr(l)=l+l-1

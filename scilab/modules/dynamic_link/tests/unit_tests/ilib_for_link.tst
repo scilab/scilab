@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
 if MSDOS then
   TMP_OS_DIR = getenv('TMP','err');
@@ -27,7 +29,7 @@ f1=['int ext1c(int *n, double *a, double *b, double *c)'
     '      c[k] = a[k] + b[k];'
     '  return(0);}'];
 
-mputl(f1,TMP_DIR+filesep()+'fun1.c')
+mputl(f1,TMP_DIR+filesep()+'fun1.c');
 
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 

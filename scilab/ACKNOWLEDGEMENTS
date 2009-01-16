@@ -10,6 +10,10 @@ Scilab a better software.
 * Vorona Aleksey
 	- Russian localization
 
+* Jonathan Blanchard
+	- Misc patches for Solaris
+	- Testing of Scilab under Solaris
+
 * Yann Collette
 	- Genetic algorithm
 	- Generic probabilistic meta-algorithm
@@ -24,14 +28,25 @@ Scilab a better software.
 * Markus Dittrich 
 	- Misc patches for Gentoo
 
+* Andrea Florio
+	- Misc patches for Opensuse
+
+* Tomasz Pawel Gajc
+	- Misc patches for Mandriva
+
 * Aurélien Gérôme
 	- Misc patches for Debian & Ubuntu
+
+* Gerard Henry
+	- Misc patches for Solaris/Opensolaris
 
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )	
 	- Scilab Console console ( Jrosetta )
 
 * Yung-Jang Lee
 	- Management of non-UTF8 asian/russian charset internationalization
+	- Modification of almost all the i/o functions in order to handle directory
+	 and file names containing UTF-8 characters.
 	- Traditional Chinese localization
 
 * Séverin Lemaignan

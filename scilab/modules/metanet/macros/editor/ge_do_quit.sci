@@ -14,8 +14,8 @@ function  ok=ge_do_quit(check_if_edited)
   w=string(win)
   execstr('global EGdata_'+w+'; edited=EGdata_'+w+'.Edited')
   if edited&check_if_edited then
-    ok=x_message(['Current graph is modified'
-		  'Really quit?'],['yes','no'])
+    ok=messagebox(['Current graph is modified'
+		  'Really quit?'],"modal","question",['yes','no'])
     if ok==2 then ok=%f,return,end
   end
   if or(win==winsid()) then seteventhandler(''),end

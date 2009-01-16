@@ -31,6 +31,7 @@ scilab_bin_CFLAGS 		=
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
+$(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la
 
 if NEED_JAVA
@@ -55,11 +56,9 @@ scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
 
-
 LANG_DOMAIN=scilab
 
 TARGETS_ALL=macros
-# doc
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
@@ -88,9 +87,13 @@ $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
+$(top_srcdir)/RELEASE_NOTES_5.0.X \
+$(top_srcdir)/RELEASE_NOTES_5.1 \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
+iconsdir=$(pkgdatadir)/icons/
+icons_DATA = $(top_srcdir)/icons/scilab.xpm
 
 profilingdir=$(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
@@ -106,11 +109,11 @@ if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e \"xmltojar();exit;\"";\
-		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+		echo "LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar();exit;\"";\
+		LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
 		echo "-- Building documentation (French) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e \"xmltojar();exit;\""; \
-		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
+		echo "SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"setlanguage('fr'); xmltojar();exit;\""; \
+		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "setlanguage('fr'); xmltojar();exit;"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

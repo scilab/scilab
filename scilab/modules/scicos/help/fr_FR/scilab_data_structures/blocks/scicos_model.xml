@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_model">
+  <refnamediv>
+    <refname>scicos_model</refname>
+    <refpurpose>Définit une structure model</refpurpose>
+  </refnamediv>
+  <refsection id="Module_scicos_model">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="model_scicos_model">
+    <title>model</title>
+    <para>
+ Liste Scilab qui contient les informations
+ du bloc utilisées pour la compilation.
+</para>
+    <para>
+</para>
+    <para>
+</para>
+    <para>
+Taille : 23.
+</para>
+    <para>
+Type : liste scilab.
+</para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">sim</emphasis>
+        </para>
+        <para> Une liste Scilab contenant deux éléments. Le premier élément est une chaîne de caractères contenant le nom de la fonction de calcul (C, Fortran ou Scilab). Le deuxième élément est un entier spécifiant le type de la fonction de calcul. Les types courant sont 4 et 5, mais les anciens types sont toujours compatibles.</para>
+        <para> Pour des anciens blocs, sim peut être une simple liste, ce qui signifie que le type est supposé être 0.</para>
+        <para> 
+Taille : 2.
+</para>
+        <para>
+Type : liste Scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">in</emphasis>
+        </para>
+        <para> Un vecteur spécifiant le nombre et la première dimension des ports d'entrée réguliers du bloc indéxés du haut vers le bas.</para>
+        <para> Si il n'existe pas de port d'entrées, alors in=[].</para>
+        <para> 
+Les dimensions peuvent être négatives, égales à zéro
+          ou positives : 
+ 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>Lorsqu'une dimension négative est utilisée, 
+              alors le compilateur essaiera de déterminer 
+              quelle est la dimension appropriée.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Lorsqu'une dimension égale à zéro est utilisée, 
+              alors le compilateur déterminera la valeur de 
+              cette dimension en sommant toutes les tailles 
+              positives trouvées dans ce vecteur de dimensions.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Si les dimensions sont positives, elles sont
+              alors explicitement renseignées.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : nombre de ports réguliers d'entrée.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">in2</emphasis>
+        </para>
+        <para> Un vecteur spécifiant la deuxième dimension des ports réguliers d'entrées du bloc (indéxé du haut vers le bas).</para>
+        <para> in avec in2 forment alors les tailles des matrices d'entrée.</para>
+        <para> Pour des raisons de compatibilité, cette dimension peut rester non renseignée ([]), ce qui signifiera que les dimensions des ports seront in,1.</para>
+        <para> 
+Les dimensions peuvent être négatives, égales à zéro
+          ou positives : 
+ 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>Lorsqu'une dimension négative est utilisée, 
+              alors le compilateur essaiera de déterminer 
+              quelle est la dimension appropriée.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Lorsqu'une dimension égale à zéro est utilisée, 
+              alors le compilateur déterminera la valeur de 
+              cette dimension en sommant toutes les tailles 
+              positives trouvées dans ce vecteur de dimensions.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Si les dimensions sont positives, elles sont
+              alors explicitement renseignées.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : nombre de ports réguliers d'entrée.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">intyp</emphasis>
+        </para>
+        <para> Un vecteur spécifiant les types des ports d'entrée réguliers.</para>
+        <para> Sa taille est égale à in. Les types des ports d'entrée peuvent être :</para>
+        <itemizedlist>
+          <listitem>
+            <para>1 matrice de nombres réels,
+</para>
+          </listitem>
+          <listitem>
+            <para>2 matrice de nombres complexes,
+</para>
+          </listitem>
+          <listitem>
+            <para>3 matrice de int32,
+</para>
+          </listitem>
+          <listitem>
+            <para>4 matrice de int16,
+</para>
+          </listitem>
+          <listitem>
+            <para>5 matrice de int8,
+</para>
+          </listitem>
+          <listitem>
+            <para>6 matrice de uint32,
+</para>
+          </listitem>
+          <listitem>
+            <para>7 matrice de uint16,
+</para>
+          </listitem>
+          <listitem>
+            <para>8 matrice de uint8.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : nombre de ports réguliers d'entrée.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">out</emphasis>
+        </para>
+        <para> Un vecteur spécifiant le nombre et la première dimension des ports de sortie réguliers du bloc indéxés du haut vers le bas.</para>
+        <para> Si il n'existe pas de port de sorties, alors out=[].</para>
+        <para> 
+Les dimensions peuvent être négatives, égales à zéro
+          ou positives : 
+ 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>Lorsqu'une dimension négative est utilisée, 
+              alors le compilateur essaiera de déterminer 
+              quelle est la dimension appropriée.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Lorsqu'une dimension égale à zéro est utilisée, 
+              alors le compilateur déterminera la valeur de 
+              cette dimension en sommant toutes les tailles 
+              positives trouvées dans ce vecteur de dimensions.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Si les dimensions sont positives, elles sont
+              alors explicitement renseignées.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : nombre de ports réguliers de sortie.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">out2</emphasis>
+        </para>
+        <para> Un vecteur spécifiant la deuxième dimension des ports réguliers de sortie du bloc (indéxé du haut vers le bas).</para>
+        <para> out avec out2 forment alors les tailles des matrices de sorties.</para>
+        <para> Pour des raisons de compatibilité, cette dimension peut rester non renseignée ([]), ce qui signifiera que les dimensions des ports seront out,1.</para>
+        <para> 
+Les dimensions peuvent être négatives, égales à zéro
+          ou positives : 
+ 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>Lorsqu'une dimension négative est utilisée, 
+              alors le compilateur essaiera de déterminer 
+              quelle est la dimension appropriée.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Lorsqu'une dimension égale à zéro est utilisée, 
+              alors le compilateur déterminera la valeur de 
+              cette dimension en sommant toutes les tailles 
+              positives trouvées dans ce vecteur de dimensions.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>Si les dimensions sont positives, elles sont
+              alors explicitement renseignées.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : nombre de ports réguliers de sortie.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">outtyp</emphasis>
+        </para>
+        <para> Un vecteur spécifiant les types des ports de sortie réguliers.</para>
+        <para> Sa taille est égale à out. Les types des ports de sortie peuvent être :</para>
+        <itemizedlist>
+          <listitem>
+            <para>1  matrice de nombres réels,
+</para>
+          </listitem>
+          <listitem>
+            <para>2  matrice de nombres complexes,
+</para>
+          </listitem>
+          <listitem>
+            <para>3  matrice de int32,
+</para>
+          </listitem>
+          <listitem>
+            <para>4  matrice de int16,
+</para>
+          </listitem>
+          <listitem>
+            <para>5  matrice de int8,
+</para>
+          </listitem>
+          <listitem>
+            <para>6  matrice de uint32,
+</para>
+          </listitem>
+          <listitem>
+            <para>7  matrice de uint16,
+</para>
+          </listitem>
+          <listitem>
+            <para>8  matrice de uint8.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : nombre de ports réguliers de sortie.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">evtin</emphasis>
+        </para>
+        <para> Un vecteur indiquant la taille et le nombre de ports événementiels d'entrée. Actuellement les ports peuvent seulement avoir une taille égale à 1.</para>
+        <para> Si aucun port événementiel existe alors evtin est égal à 1.</para>
+        <para> 
+Taille : nombre de ports événementiel d'entrée.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">evtout</emphasis>
+        </para>
+        <para> Un vecteur indiquant la taille et le nombre de ports événementiels de sorties. Actuellement les ports peuvent seulement avoir une taille égale à 1.</para>
+        <para> Si aucun port événementiel existe alors evtout est égal à 1.</para>
+        <para> 
+Taille : nombre de ports événementiel de sortie.
+</para>
+        <para>
+Type : vecteur colonne de nombres entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">state</emphasis>
+        </para>
+        <para> Un vecteur contenant les valeurs initiales des états continus.</para>
+        <para> Ce vecteur doit être égal à [] si le bloc ne possède pas d'état continus.</para>
+        <para> 
+Taille : nombre d'états continus.
+</para>
+        <para>
+Type : vecteur colonne de nombres réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">dstate</emphasis>
+        </para>
+        <para> Un vecteur contenant les valeurs initiales des états discrets.</para>
+        <para> Ce vecteur doit être égal à [] si le bloc ne possède pas d'état discrets.</para>
+        <para> 
+Taille : nombre d'états discrets.
+</para>
+        <para>
+Type : vecteur colonne de nombres discrets.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">odstate</emphasis>
+        </para>
+        <para> Une liste contenant les valeurs initiales des états objets.</para>
+        <para> Ce vecteur doit être égal à [] si le bloc ne possède pas d'état discrets
+Les états objets acceptent tous les types de variables
+          Scilab.
+</para>
+        <para>
+Dans le cas des fonctions de calcul de type 4 (bloc C),
+          seul les éléments contenant des matrices de nombres réels,
+          complexes, int32, int16 ,int8 ,uint32, uit16 et uint8 seront
+          correctement fournis pour la lecture/écriture.
+</para>
+        <para>
+</para>
+        <para> 
+Taille : nombre d'états objets.
+</para>
+        <para>
+Type : liste scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">rpar</emphasis>
+        </para>
+        <para> Le vecteur des paramètres à virgule flotante.</para>
+        <para> Doit être [] si le bloc ne possède pas de paramètres réels.</para>
+        <para> 
+Taille : nombre de paramètres réels.
+</para>
+        <para>
+Type : vecteur colonne de nombre réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">ipar</emphasis>
+        </para>
+        <para> Le vecteur des parametres entiers.</para>
+        <para> Doit être [] si le bloc ne possède pas de paramètres entiers.</para>
+        <para> 
+Taille : nombre de paramètres entiers.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">opar</emphasis>
+        </para>
+        <para> La liste des parametres objets.</para>
+        <para> Doit être list() si le bloc ne possède pas de paramètres objets.</para>
+        <para> Les paramètres objets acceptent tous les types de variables Scilab.</para>
+        <para> 
+Dans le cas des fonctions de calcul de type 4 (bloc C),
+          seul les éléments contenant des matrices de nombres réels,
+          complexes, int32, int16 ,int8 ,uint32, uit16 et uint8 seront
+          correctement fournis pour la lecture.
+</para>
+        <para>
+</para>
+        <para> 
+Taille : nombre de paramètres objets.
+</para>
+        <para>
+Type : liste d'objets scilab.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">blocktype</emphasis>
+        </para>
+        <para> Un caractère qui peut être mis indifféremment à 'c' ou 'd' pour les blocs standards. 'x' est utilisé pour forcer l'appel à la fonction de calcul d'un bloc lors des calculs des états continu, même si le bloc ne possède pas de tels états.</para>
+        <para> 'l', 'm' et 's' sont réservés et ne doivent pas être utilisés.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : caractère.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">firing</emphasis>
+        </para>
+        <para> Un vecteur des temps initiaux de taille égale au nombre de ports événementiels de sortie. Celui ci contient les dates initiales (événements générés avant tout autre événements) Des valeurs négatives indiquent qu'aucun événement inital ne sera généré.</para>
+        <para> 
+Taille : nombre de ports événementiel de sortie.
+</para>
+        <para>
+Type : vecteur colonne de nombre réels.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">dep_ut</emphasis>
+        </para>
+        <para> Un vecteur de booléen. [dep_u, dep_t].</para>
+        <para> 
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">dep_u</emphasis>
+            </para>
+            <para>
+vrai si le bloc est toujours actif.
+</para>
+            <para>                   (la sortie dépend continuellement du temps)
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">dep_t</emphasis>
+            </para>
+            <para>
+vrai si le bloc à une relation directe entre
+                   une entrée régulière et une sortie régulière.
+</para>
+            <para>
+En d'autres termes, lorsque la fonction de calcul
+                   est appelée avec flag 1, la valeur d'une entrée
+                   est utilisée pour calculer la sortie.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : 2.
+</para>
+        <para>
+Type : vecteur de boléens.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">label</emphasis>
+        </para>
+        <para> Chaîne de caractères qui définit un label.</para>
+        <para> Le label peut être utilisé pour identifier un bloc pour avoir accés ou modifier ses paramètres pendant la simulation.</para>
+        <para> 
+Taille : 1.
+</para>
+        <para>
+Type : chaine de caractères.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nzcross</emphasis>
+        </para>
+        <para> Nombre de détection de surfaces.</para>
+        <para> 
+Taille : nombre de détection de surfaces.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nmode</emphasis>
+        </para>
+        <para> La longeur du registre des modes. Notez que cela donne la taille du vecteur des modes mais pas le nombre total de modes utilisés par le bloc.</para>
+        <para> En supposant qu'un bloc a 3 modes et que chaque mode peut prendre deux valeurs, alors le bloc peut avoir jusqu'à 23=8 modes.</para>
+        <para> 
+Taille : longueur du registre des modes.
+</para>
+        <para>
+Type : vecteur colonne de nombre entiers.
+</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">equations</emphasis>
+        </para>
+        <para> Utilisé dans les cas des blocs implicites.</para>
+        <para> Structure de données de type modelica qui contient des descriptions relatives au code modelica.</para>
+        <para> Cette liste contient quatre entrées :
+
+</para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">model</emphasis>
+            </para>
+            <para>
+une chaîne de caractères donnant le nom du fichier
+                     de la fonction modelica.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">inputs</emphasis>
+            </para>
+            <para>
+un vecteur colonne de chaînes de caractères donnant
+                      les noms des variables utilisées comme entrées.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">outputs</emphasis>
+            </para>
+            <para>
+un vecteur colonne de chaînes de caractères donnant
+                       les noms des variables utilisées comme sorties.
+</para>
+            <para>
+
+</para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">parameters</emphasis>
+            </para>
+            <para>
+une liste à deux entrées. La première est un vecteur
+                          de chaînes de caractères contenant les noms des variables
+                          modelica utilisées en tant que paramètres et la deuxième
+                          une liste contenant les valeurs de ces paramètres.
+</para>
+            <para>
+Les noms des états modelica peuvent aussi être informés
+                          via parameters. Dans ce cas une troisième entrée est
+                          utilisée pour différencier les paramètres des états.
+</para>
+            <para>
+Par exemple :
+                             mo.parameters=list(['C','v'],list(C,v),[0,1])
+                          signifie que 'C' est un paramètre(0) de valeur C, et
+                          que 'v' est une variable d'état(1) avec une valeur
+                          initiale v.
+</para>
+            <para>
+</para>
+            <para>           
+</para>
+          </listitem>
+        </itemizedlist>
+        <para> 
+Taille : 5.
+</para>
+        <para>
+Type : liste scilab.
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenuduficher_scicos_model">
+    <title>Contenu du ficher</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_scicos/scicos_model.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

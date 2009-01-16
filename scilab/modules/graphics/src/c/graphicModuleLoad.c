@@ -20,6 +20,7 @@
 #include "DestroyObjects.h"
 #include "graphicModuleLoad.h"
 #include "InitObjects.h"
+#include "SciHandleTab.h"
 
 #include "getScilabJavaVM.h"
 
@@ -37,6 +38,9 @@ void loadGraphicModule( void )
   createScilabGetHashTable() ;
   createScilabSetHashTable() ;
 
+	/* Create hastable for handle storing */
+	getScilabHandleTab();
+
   /* Create data for synchronization */
   createGraphicSynchronizer();
 
@@ -52,13 +56,16 @@ void closeGraphicModule( void )
   /* destroy all graphic windows */
   AllGraphWinDelete() ;
 
-  /* destroy hashtables */
+  /* destroy default objects */
+  destroyDefaultObjects() ;
+
+	/* Destroy the handle tab */
+	destroyScilabHandleTab();
+  
+	/* destroy hashtables */
   destroyScilabGetHashTable() ;
   destroyScilabSetHashTable() ;
 
-  /* destroy default objects */
-  destroyDefaultObjects() ;
-  
   /* Delete synchronization data */
   destroyGraphicSynchronizer();
 

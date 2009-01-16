@@ -19,7 +19,8 @@ src/c/TCL_ArrayExist.c \
 src/c/TCL_ArrayGetVar.c \
 src/c/TCL_ArraySize.c \
 src/c/TCL_Command.c \
-src/c/GlobalTclInterp.c
+src/c/GlobalTclInterp.c \
+src/c/TCL_getErrorLine.c
 
 GATEWAY_C_SOURCES =  sci_gateway/c/sci_opentk.c \
 sci_gateway/c/sci_TCL_SetVar.c \
@@ -248,33 +249,6 @@ includes/sci_TCL_SetVar.h \
 includes/TerminateTclTk.h \
 includes/GlobalTclInterp.h \
 includes/withtk.h
-
-#### tclsci : demos files sciGUI ####
-libscitclsci_la_demossciGUIdir=$(mydatadir)/demos/sciGUI/
-libscitclsci_la_demossciGUI_DATA = demos/sciGUI/sciGUIdemo.dpf \
-demos/sciGUI/test_demoplay.dpf \
-demos/sciGUI/scilab01.gif \
-demos/sciGUI/logo01.gif
-
-#### tclsci : demos files tk ####
-libscitclsci_la_demostkdir=$(mydatadir)/demos/tk/
-libscitclsci_la_demostk_DATA = demos/tk/timer \
-demos/tk/tcltk.dem.gateway.sce \
-demos/tk/rolodex.sce \
-demos/tk/demredraw.sci \
-demos/tk/rgb.txt \
-demos/tk/timer.sce \
-demos/tk/puzzle \
-demos/tk/scale.dem.sce \
-demos/tk/cscroll \
-demos/tk/tcolor \
-demos/tk/puzzle.dem.sce \
-demos/tk/scroll.dem.sce \
-demos/tk/color.dem.sce \
-demos/tk/rolodex \
-demos/tk/uicontrol.sci \
- demos/tk/uicontrol1.sce \
-demos/tk/vscale
 
 include $(top_srcdir)/Makefile.incl.am
 endif

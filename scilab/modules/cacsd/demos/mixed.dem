@@ -20,8 +20,8 @@ xstring(28,30,'K');xstring(56,30,'Plant');xstring(12,28.80,'-');
 xtitle('PLANT   and   CONTROLLER')
 mode(2)
 
-x_message(['Mixed Sensitivity Controller Design';
-           'file: '+SCI+'/modules/cacsd/demos/mixed.dem'])
+messagebox(['Mixed Sensitivity Controller Design';
+           'file: '+SCI+'/modules/cacsd/demos/mixed.dem'],"modal");
 mode(1)
 s=poly(0,'s');
 str='[(s-1)/((s-1)^2*(s+2))]';
@@ -53,7 +53,7 @@ end
 
 disp(spec(h_cl(Pms,r,K)),'closed loop eigenvalues')    //Check internal stability
 [Ssens,Rsens,Tsens]=sensi(P22,K);  //Sensitivity functions
-x_message('Singular values plot')
+messagebox('Singular values plot',"modal");
 fcts=['S function';'R (=K*S) function';'T function'];
 www=x_mdialog('Select sensitivity function',fcts,['Yes';'No';'Yes']);
 if www==[] then return,end

@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine useascommand(fname)
       include 'stack.h'
-      logical checkrhs,checklhs,cremat,getscalar,getsmat,checkval
+      logical checkrhs,checklhs,getsmat,checkval
       integer topk,id(nsiz)
       integer iadr
       character*1 opt

@@ -25,13 +25,11 @@
 #include "cvstr.h"
 #include "msgs.h"
 #include "scilabmode.h"
+#include "stack-def.h" /* C2F(basbrk) */
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
 /*--------------------------------------------------------------------------*/
-IMPORT struct {
-  int iflag, interruptible;
-} C2F(basbrk);
 
 /* Table of constant values */
 
@@ -830,7 +828,7 @@ int C2F(parse)(void)
       goto L98;
     }
     if (C2F(errgst).err1 > 0) {
-      --Pt;
+      if (C2F(errgst).err1 != 13||Rstk[Pt]!=502) --Pt;
       --Lhs;
       goto L98;
     }
@@ -1452,6 +1450,9 @@ int C2F(parse)(void)
     if (C2F(errgst).err1 != 0 && Rstk[Pt] == 502) { /* catched error while compiling */
       goto L88;
     }
+    if (C2F(errgst).err1 != 0 && Rstk[Pt] == 808) { /* catched error in a try */
+      goto L80;
+    }
   }
 
   if (C2F(recu).niv > 0) { /*     error in an external */
@@ -1539,7 +1540,7 @@ void handle_onprompt(int *where_)
   }
 }
 /*--------------------------------------------------------------------------*/
-void C2F(parsecomment)()
+void C2F(parsecomment)(void)
 {
 
   static int *Lstk    = C2F(vstk).lstk-1;

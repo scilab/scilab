@@ -11,7 +11,7 @@
 // ====================================================================
 // compatibility_functions module initialisation file 
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/compatibility_functions/macros/lib');
 // ====================================================================
 //add help chapter

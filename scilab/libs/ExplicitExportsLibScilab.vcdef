@@ -23,3 +23,18 @@ scizgsch_
   ls0001_
 ;
 ierode_
+;
+; Interruption CTRL-C
+;
+basbrk_
+;
+; used to synchronize thread
+;
+LaunchScilab
+LaunchScilabLock
+;
+;
+; defined for expm (elementary functions)
+;
+dcoeff_
+;

@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
 
@@ -35,7 +35,7 @@ int get_axes_visible_property( sciPointObj * pobj )
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"axes_visible") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"axes_visible") ;
     return -1 ;
   }
 
@@ -48,7 +48,7 @@ int get_axes_visible_property( sciPointObj * pobj )
       for ( j = 0 ; j < i ; j++ )
       {
         FREE( axes_visible[j] ) ;
-		sciprint(_("%s: No more memory.\n"),"get_axes_visible_property");
+				Scierror(999, _("%s: No more memory.\n"),"get_axes_visible_property");
         return -1 ;
       }
     }

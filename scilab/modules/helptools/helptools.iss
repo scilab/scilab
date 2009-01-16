@@ -19,7 +19,6 @@
 #define HELPTOOLS "helptools"
 
 Source: bin\helptools.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;Source: modules\{#HELPTOOLS}\jar\org.scilab.modules.helptools.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 Source: modules\{#HELPTOOLS}\jar\*.jar; DestDir: {app}\modules\{#HELPTOOLS}\jar; Components: {#COMPN_SCILAB}
 ;
 

@@ -187,10 +187,6 @@ endfunction
 a=foo();
 if a<>1 then pause,end
 
-function  foo()
-   x_message(["http://xmllab.org"]);
-endfunction
-
 function a=foo(..
 	       )
   a=1//test
@@ -253,7 +249,7 @@ t=['function a=foo'
   '  end //loop end'
   'endfunction'];
 
-mputl(t,TMPDIR+'/foo.sci')
+mputl(t,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci','n')
 a=foo();
 if a<>15 then pause,end
@@ -276,7 +272,7 @@ t=['//sdffgfgfgggg'
    '  end //loop end'
    'endfunction'];
 
-mputl(t,TMPDIR+'/foo.sci')
+mputl(t,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci','n')
 a=foo();
 if a<>15 then pause,end

@@ -215,7 +215,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 				{
 					int k = 0;
 
-					/* do a copy of dictionnary of Variables */
+					/* do a copy of dictionary of Variables */
 					for ( i = 0; i < sizedictionaryVariables; i++)
 					{
 						ListWordsTmp[i] = strdup(dictionaryVariables[i]);
@@ -290,7 +290,7 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 	char **dictionary = NULL;
 	int sizedictionary = 0;
 
-	dictionary = getfilesdictionary(somechars,&sizedictionary);
+	dictionary = getfilesdictionary(somechars,&sizedictionary,FALSE);
 
 	if (dictionary)
 	{

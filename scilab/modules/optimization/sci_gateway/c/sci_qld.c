@@ -36,7 +36,7 @@ int C2F(sci_qld)(char *fname,unsigned long fname_len)
 	static int x = 0, lambda = 0, inform = 0, ifail = 0;
 	int next = 0;
 
-	static int war = 0, lwar = 0, iwar = 0, iout = 0, C_mmax = 0, b_mmax = 0, k = 0, l = 0;
+	static int war = 0, lwar = 0, iwar = 0, iout = 0, k = 0, l = 0;
 	static double eps1 = 0;
 
 	/*   Check rhs and lhs   */
@@ -62,7 +62,7 @@ int C2F(sci_qld)(char *fname,unsigned long fname_len)
 		Scierror(205,_("%s: Wrong size for input argument #%d: number of columns %d expected.\n"),fname,3,n);
 		return 0;
 	}
-	mmax = m + 1;
+	mmax = m;
 	mnn = m + n + n;
 
 	/*   Variable 4 (b)   */
@@ -117,7 +117,7 @@ int C2F(sci_qld)(char *fname,unsigned long fname_len)
 	lwar = 3*n*n/2+10*n+2*mmax+2;
 	CreateVar(next+3,MATRIX_OF_DOUBLE_DATATYPE, &lwar, &un, &war);
 	CreateVar(next+4,MATRIX_OF_INTEGER_DATATYPE, &n, &un, &iwar);
-	istk(iwar)[0]=1;/*Cholesky fcatorisation required*/
+	istk(iwar)[0]=1;/*Cholesky factorisation required*/
 
 	/* Change the sign of C*/
 	for(k=0; k<n; k++) 
@@ -147,7 +147,7 @@ int C2F(sci_qld)(char *fname,unsigned long fname_len)
 	else if (ifail == 1)
 		Scierror(24,_("%s: Too many iterations (more than %d).\n"),fname,40*(n+m));
 	else if (ifail == 2)
-		Scierror(24,_("%s: Accuracy insufficient to statify convergence criterion.\n"),fname);
+		Scierror(24,_("%s: Accuracy insufficient to satisfy convergence criterion.\n"),fname);
 	else if (ifail == 5)
 		Scierror(999,_("%s: Length of working array is too short.\n"),fname);
 	else if (ifail>10)

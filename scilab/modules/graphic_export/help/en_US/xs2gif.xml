@@ -24,13 +24,14 @@
   <refnamediv>
     <refname>xs2gif</refname>
 
-    <refpurpose>send graphics to a file in GIF syntax</refpurpose>
+    <refpurpose>send graphics to a GIF file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2gif(win_num,filen)</synopsis>
+    <synopsis>xs2gif(win_num,file_name)
+xs2gif(fig,file_name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar or vector .</para>
+          <para>integer, id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>file_name</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,9 +67,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2gif</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in GIF
-    format. </para>
+    <para><literal>xs2gif</literal> exports the display of a graphic window into a GIF file.</para>
 
     <para>To convert a sequence of "GIF" files to an animated GIF file one can
     use the "convert" program for ImageMagic
@@ -84,6 +91,7 @@
     plot2d()
     //GIF export
     xs2gif(0,'foo.gif')
+    xs2gif(gcf(),'foo.gif')
   </programlisting>
   </refsection>
 

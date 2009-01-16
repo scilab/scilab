@@ -235,7 +235,7 @@
       </listitem>
     </itemizedlist>
     <para>
-  To have more informations about how to write such files, refer to directory
+  To have more information about how to write such files, refer to directory
   SCI/modules/m2sci/macros/sci_files/ which gives many examples from very simple ones
   (e.g. sci_abs.sci) to very complex ones (e.g. sci_zeros.sci).
   </para>

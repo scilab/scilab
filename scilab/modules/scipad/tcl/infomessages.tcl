@@ -173,24 +173,30 @@ proc dokeyposn {textarea} {
 
 proc modifiedtitle {textarea {panesonly "false"}} {
 # Set the Scipad window title to the name of the file displayed in $textarea
-# and add tags (modified, readonly)
+# and add tags (modified, readonly, encoding (if different from the system
+# encoding at Scipad startup))
 # Do the same for the pane title if it exists (i.e. if not maximized)
 # Update also the visual indications of the modified state of the buffer.
 # This includes title bar, colorization of the windows menu entry and
 # colorization of an area in the status bar
     global pad winTitle ScipadVersion listoffile
     global MenuEntryId
-    set fname $listoffile("$textarea",displayedname)
-    set ind [extractindexfromlabel $pad.filemenu.wind $fname]
-    set mod1 ""; set mod2 ""
+    global defaultencoding
+
     if {$listoffile("$textarea",readonly) == 1} { 
         set mod1 [mc " \[ReadOnly\]"]
+    } else {
+        set mod1 ""
     }
+
     if {[isanymodified]} {
         $pad.statusind configure -background PeachPuff
     } else {
         $pad.statusind configure -background [$pad.filemenu cget -background]
     }
+
+    set fname $listoffile("$textarea",displayedname)
+    set ind [extractindexfromlabel $pad.filemenu.wind $fname]
     if {[ismodified $textarea]} {
         set mod2 [mc " (modified)"]
         if {$ind !=-1} {
@@ -199,24 +205,34 @@ proc modifiedtitle {textarea {panesonly "false"}} {
         }
         $pad.statusind configure -background Salmon
     } else {  
+        set mod2 "" 
         if {$ind !=-1} {
             $pad.filemenu.wind entryconfigure $ind -background "" \
                -activebackground ""
         }
     }
+
+    if {$listoffile("$textarea",encoding) != $defaultencoding} {
+        set mod3 " ($listoffile("$textarea",encoding))"
+    } else {
+        set mod3 ""
+    }
+
     if {$panesonly == "false"} {
         # catched because scan will fail when launched from wish
         if {[catch {
             scan $ScipadVersion "%s - %s" ScipadVersionNumber ScipadVersionString
-            wm title $pad "$winTitle $ScipadVersionNumber - $fname$mod1$mod2"
+            wm title $pad "$winTitle $ScipadVersionNumber - $fname$mod1$mod2$mod3"
                    }] } {
-            wm title $pad "$winTitle - $fname$mod1$mod2"
+            wm title $pad "$winTitle - $fname$mod1$mod2$mod3"
         }
     }
+
     if {[isdisplayed $textarea]} {
         [getpaneframename $textarea].panetitle configure \
-          -text "$fname$mod1$mod2"
+          -text "$fname$mod1$mod2$mod3"
     }
+
     if {[ismodified $textarea] && \
           $listoffile("$textarea",thetime) !=0} { 
         $pad.filemenu.files entryconfigure \
@@ -268,6 +284,7 @@ proc pleaseuseabetterscilabversion {bugnumber {furtherrefs {}}} {
 # Many thanks to the Operational Team of the Scilab Consortium
 # Scilab 5 definitely rocks
     global ScilabBugzillaURL latestbackportedscipadversionURL
+    global pad
     set bugzillabugURL {}
     append bugzillabugURL $ScilabBugzillaURL "/show_bug.cgi?id=$bugnumber"
     set mes {}
@@ -283,7 +300,7 @@ proc pleaseuseabetterscilabversion {bugnumber {furtherrefs {}}} {
     append mes [mc "Note: Scilab 4.x and Scilab-gtk are offering this feature."] "\n" \
                [mc "A solution is to use a backported version of Scipad inside one of these environments, for instance:"] "\n" $latestbackportedscipadversionURL
     set tit [mc "Feature missing from Scilab 5"]
-    tk_messageBox -message $mes -icon error -title $tit
+    tk_messageBox -message $mes -icon error -title $tit -parent $pad
 }
 
 proc setscipadicon {toplevelname} {

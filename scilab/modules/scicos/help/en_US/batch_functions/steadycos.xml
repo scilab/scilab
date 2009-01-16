@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="steadycos">
+  <refnamediv>
+    <refname>steadycos</refname>
+    <refpurpose>Finds an equilibrium state of a general dynamical system described by a scicos diagram</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_steadycos">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_steadycos">
+    <title>Description</title>
+    <para>
+This function finds the steady state for a given system described by a Scicos diagram. The diagram consists in general of a Super block with input and output port blocks. The steady state concern only the continuous-time dynamics.  
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[
+[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
+]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_steadycos">
+    <title>Parameters</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">scs_m :</emphasis> a Scicos data structure</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">X :</emphasis> column vector. Continuous state. Can be set to [] if zero.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">U :</emphasis> column vector. Input. Can be set to [] if zero.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Y :</emphasis> column vector. Output. Can be set to [] if zero.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indx :</emphasis> index of entries of X that are not fixed. If all can vary, set to 1:$</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indu :</emphasis> index of entries of U that are not fixed. If all can vary, set to 1:$</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indy :</emphasis> index of entries of Y that are not fixed. If all can vary, set to 1:$</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indxp :</emphasis> index of entries of XP (derivative of x) that need not be zero. If all can vary, set to 1:$. Default [].</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">param :</emphasis> list with two elements (default list(1.d-6,0)). param(1): scalar. Perturbation level for linearization; the following variation is used del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): scalar. Time t.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">X :</emphasis> steady state X</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">U :</emphasis> stationary input U</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Y :</emphasis> output corresponding to steady state found</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">XP :</emphasis> derivative of the state corresponding to steady state found</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_steadycos">
+    <title>File content</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_auto/steadycos.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_steadycos">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="lincos">lincos - Constructs by linearization a linear state-space model from a general dynamical system described by a scicos diagram (Scilab Function)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="scicos_simulate">scicos_simulate - Function for running scicos simulation in batch mode (Scilab Function)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="scicos">scicos - Block diagram editor and GUI for the hybrid simulator (Scilab Function)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_steadycos">
+    <title>Authors</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

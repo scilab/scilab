@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // unit tests for sinh() function (element wise sinus inverse)
 // =============================================================================
 

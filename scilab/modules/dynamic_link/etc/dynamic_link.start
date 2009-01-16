@@ -10,7 +10,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/dynamic_link/macros/lib');
 // ====================================================================
 //add help chapter
@@ -37,6 +37,11 @@ if MSDOS then
   end
   clear findmsvccompiler
 end
+// ====================================================================
+//add demo
+pathdemos = pathconvert(SCI+"/modules/dynamic_link/demos/dynamic_link.dem.gateway.sce",%f,%t);
+add_demo(gettext("Dynamic link"),pathdemos);
+clear pathdemos ;
 // ====================================================================
 clear LCC 
 // ====================================================================

@@ -263,32 +263,4 @@ includes/gw_cacsd2.h \
 includes/gw_cacsd3.h \
 includes/gw_slicot.h
 
-####�cacsd : demos files ####
-libscicacsd_la_demosdir=$(mydatadir)
-nobase_libscicacsd_la_demos_DATA = demos/cacsd.dem.gateway.sce \
-demos/cont.dem \
-demos/flat/car.dem.sce \
-demos/flat/car.sci \
-demos/flat/demo_car_eng.htm \
-demos/flat/demo_car_fr.htm \
-demos/flat/demo_truck_eng_htm \
-demos/flat/demo_truck_fr.htm \
-demos/flat/fcts.sci \
-demos/flat/flat.dem.gateway.sce \
-demos/flat/truck.dem.sce \
-demos/flat/truck.sci \
-demos/lqg/lqg.dem \
-demos/lqg/lqg2.dem \
-demos/lqg/scheme.dem \
-demos/mixed.dem \
-demos/pendulum/graphics.sci \
-demos/pendulum/pendule.dem \
-demos/pendulum/simulation.sci \
-demos/pendulum/yy \
-demos/pid.dem \
-demos/robust/como.dem \
-demos/robust/mu.dem \
-demos/robust/rob.dem \
-demos/tracking/track.dem.sce
-
 include $(top_srcdir)/Makefile.incl.am

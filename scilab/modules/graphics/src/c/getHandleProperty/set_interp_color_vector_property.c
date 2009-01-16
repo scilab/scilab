@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -32,13 +32,13 @@ int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, i
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"interp_color_vector") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"interp_color_vector") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint(_("%s can only be set on %s objects.\n"),"interp_color_vector","Polyline");
+    Scierror(999, _("%s can only be set on %s objects.\n"),"interp_color_vector","Polyline");
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_interp_color_vector_property( sciPointObj * pobj, size_t stackPointer, i
   }
   else
   {
-    sciprint(_("Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
+    Scierror(999, _("Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"),3,4);
     return SET_PROPERTY_ERROR ;
   }
 

@@ -19,13 +19,15 @@
  *------------------------------------------------------*/
 
 #include <string.h>
-#include "stack3.h"
 #include "stack-c.h"
+
 #include "cvstr.h"
 #include "localization.h"
-#include "Scierror.h" 
+#include "Scierror.h"
 #include "code2str.h"
-extern int C2F(dmcopy)(double *a, int *na, double *b, int *nb, int *m, int *n);
+#include "elementary_functions.h"
+#include "MALLOC.h"
+
 extern int C2F(stackp)(int *id, int *macmod);
 
 /*------------------------------------------------------*/
@@ -1246,20 +1248,25 @@ int iGetOrient(int _iVal)
 	return iMode;
 }
 
-/*Reserve space in stack for a matrix of double*/
-int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
-{
-	if(_iPos + 1 > Bot) 
-		return 10;//Too many names
-
-	return iAllocComplexMatrixOfDouble(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
-}
-
-/*Reserve space in stack for a matrix of complex*/
-int	iAllocComplexMatrixOfDouble(int _iPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+/* 
+_iAllocMatrixDoubleOrComplex --
+  Reserve space in stack for a matrix of real or complex.
+Arguments
+  _iPos : index of the Scilab variable
+  _iComplex : type data in the matrix. If  is 0, the 
+     _iComplex = 0 > real data
+     _iComplex = 1 > complex data
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+  _pdblImgData : pointer to the block of data for complex values
+Note
+  This is a private, support routine for iAllocMatrixOfDouble and iAllocComplexMatrixOfDouble.
+  It should not be used outside.
+*/
+int	_iAllocMatrixDoubleOrComplex(int _iPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	int iNewPos			= Top - Rhs + _iPos;
-	//int iNewPos			= Top + _iPos;
 	int iSize			= _iRows * _iCols * (_iComplex + 1);
 	int iAddr			= iadr(*Lstk(iNewPos));
 	int iAddrData		= iAddr + 4;
@@ -1285,6 +1292,38 @@ int	iAllocComplexMatrixOfDouble(int _iPos, int _iComplex, int _iRows, int _iCols
 
 	*Lstk(iNewPos + 1) = sadr(iAddrData) + _iRows * _iCols * (_iComplex + 1);
 	return 0;
+}
+
+/* 
+iAllocMatrixOfDouble --
+  Reserve space in stack for a matrix of double.
+Arguments
+  _iPos : index of the Scilab variable
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+*/
+int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
+{
+	if(_iPos + 1 > Bot) 
+		return 10;//Too many names
+
+	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
+}
+
+/* 
+iAllocMatrixOfDoubleComplex --
+  Reserve space in stack for a matrix of complex.
+Arguments
+  _iPos : index of the Scilab variable
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+  _pdblImgData : pointer to the block of data for complex values
+*/
+int	iAllocMatrixOfDoubleComplex(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+{
+	return _iAllocMatrixDoubleOrComplex(_iPos, 1, _iRows,  _iCols, _pdblRealData, _pdblImgData);
 }
 
 /*Reserve space in stack for a matrix of polynom*/
@@ -1727,5 +1766,94 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 
 	*_piString			= cadr(iAddrData);
 	pTest3			= cstk(*_piString);
+	return 0;
+}
+void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
+{
+	int iIndex = 0;
+
+	int iTwo	= 2;
+	int iOne	= 1;
+	double *pReal = &_poComplex[0].r;
+	double *pImg = &_poComplex[0].i;
+
+	if(_pdblReal != NULL && _pdblImg != NULL)
+	{
+		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+	}
+	else if(_pdblReal != NULL && _pdblImg == NULL)
+	{
+		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+	}
+	else if(_pdblReal == NULL && _pdblImg != NULL)
+	{
+		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+	}
+}
+doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
+{
+	int iIndex = 0;
+	doublecomplex *poComplex = (doublecomplex*)MALLOC(sizeof(doublecomplex) * _iSize);
+	int iTwo	= 2;
+	int iOne	= 1;
+	double *pReal = &poComplex[0].r;
+	double *pImg = &poComplex[0].i;
+
+	if(_pdblReal != NULL && _pdblImg != NULL)
+	{
+
+		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
+		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
+	}
+	else if(_pdblReal != NULL && _pdblImg == NULL)
+	{
+		double ZERO = 0.;
+		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
+		C2F(dset)(&_iSize, &ZERO, pImg, &iTwo);
+	}
+	else if(_pdblReal == NULL && _pdblImg != NULL)
+	{
+		double ZERO = 0.;
+		C2F(dset)(&_iSize, &ZERO, pReal, &iTwo);
+		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
+	}
+	else
+	{
+		FREE(poComplex);
+		return NULL;
+	}
+	return poComplex;
+}
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
+{
+	if(_poComplex != NULL)
+		FREE(_poComplex);
+}
+
+int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData)
+{
+	unsigned long type_len;
+	int lr;
+	char typex;
+	type_len = 1L;
+	typex = MATRIX_OF_DOUBLE_DATATYPE[0];
+	C2F(getrhsvar)(&number, &typex, _iRows, _iCols, &lr, type_len);
+	*_pdblRealData = stk(lr);
+	return 0;
+}
+int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData)
+{
+	unsigned long type_len;
+	int lr;
+	int lc;
+	char typex;
+	int it;
+	it = 1;
+	type_len = 1L;
+	typex = MATRIX_OF_DOUBLE_DATATYPE[0];
+	C2F(getrhscvar)(&number, &typex, &it, _iRows, _iCols, &lr, &lc, type_len);
+	*_pdblRealData = stk(lr);
+	*_pdblImgData = stk(lc);
 	return 0;
 }

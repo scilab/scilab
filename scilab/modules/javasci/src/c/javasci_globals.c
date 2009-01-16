@@ -24,6 +24,7 @@
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
 #endif
+#include "LaunchScilabSignal.h"
 
 static int init = 0;
 /*****************************************************************************/
@@ -156,8 +157,10 @@ void Initialize(void)
   /* set TMPDIR */
   C2F(settmpdir)();
 
-  /* For the initilization of the Scilab primivite : fromjava() */
+  /* For the initiliazation of the Scilab primivite : fromjava() */
   SetFromJavaToON();
+
+  InitializeLaunchScilabSignal();
 
   /* Scilab Initialization */
   C2F(inisci)(&iflag,&stacksize,&ierr);

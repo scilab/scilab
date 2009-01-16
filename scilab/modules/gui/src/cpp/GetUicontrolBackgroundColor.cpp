@@ -66,7 +66,7 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "BackgroundColor");
+      Scierror(999, _("No '%s' property for this object.\n"), "BackgroundColor");
       return FALSE;
     }
 }

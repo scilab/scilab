@@ -52,6 +52,12 @@ void SetFileOpenedInScilab(int Id,FILE *fptr);
 int GetCurrentFileId(void);
 
 /**
+* Get the previous Id (previous file)
+* @return Id
+*/
+int GetPreviousFileId(void);
+
+/**
 * Set the current Id (current file)
 * @param Id
 */

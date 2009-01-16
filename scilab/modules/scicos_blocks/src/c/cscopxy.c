@@ -34,6 +34,7 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
+#include "SetJavaProperty.h"
 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -105,6 +106,9 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	}
       scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
     }
+
+	/* use only single buffering to be sure to draw on the screen */
+	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
 
 
@@ -180,6 +184,8 @@ void cscopxy(scicos_block * block, int flag)
 	    Pinceau = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(Pinceau)->user_data = NULL;
 	    pFIGURE_FEATURE(Pinceau)->size_of_user_data = 0;
+			/* restore double buffering */
+			sciSetJavaUseSingleBuffer(Pinceau, FALSE);
 	  }
 	scoFreeScopeMemory(block->work, &pScopeMemory);
 	break; //Break of the switch

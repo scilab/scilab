@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,46 +19,65 @@
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 void C2F(mclose) (int *fd, double *res)
-{     
-	int fd1;
-	int res1 = 1;
+{   
+	int fd1 = -1;
 	*res = 0.0;
+	
 	switch ( *fd )
 	{
-	case -2 :
+		case -2 :
 		/* closing all opened files */
-		for ( fd1=0; fd1< GetMaximumFileOpenedInScilab(); fd1++) {
+		for ( fd1=0; fd1< GetMaximumFileOpenedInScilab(); fd1++) 
+		{
 			if ( GetFileOpenedInScilab(fd1) )
 			{
+				int res1 = 1;
 				fclose( GetFileOpenedInScilab(fd1) );
 				res1 = ferror( GetFileOpenedInScilab(fd1));
 				if (res1 != 0) *res =1;
 				C2F(delfile)(&fd1);
+				/* bug 3897 */
+				/* initialize file ID */
+				SetCurrentFileId(-1);
 			}
 		}
 		break;
-	default :
-		fd1 = (*fd == -1 ) ? GetCurrentFileId() : Min(Max(*fd,0),GetMaximumFileOpenedInScilab()-1);
-		if ( fd1 != -1 ) 
-		{
-			if ( GetFileOpenedInScilab(fd1) )
+
+		default :
+		{	
+			fd1 = (*fd == -1 ) ? GetCurrentFileId() : Min(Max(*fd,0),GetMaximumFileOpenedInScilab()-1);
+			if ( fd1 != -1 ) 
 			{
-				if (fclose(GetFileOpenedInScilab(fd1)))
+				if ( GetFileOpenedInScilab(fd1) )
 				{
-					*res = (double)ferror(GetFileOpenedInScilab(fd1));
+					int prevId = -1;
+
+					if (fclose(GetFileOpenedInScilab(fd1)))
+					{
+						*res = (double)ferror(GetFileOpenedInScilab(fd1));
+					}
+					C2F(delfile)(&fd1);
+
+					/* bug 3897 */
+					/* set as current file previous opened file if exists */
+					prevId = GetPreviousFileId();
+
+					if ( GetFileOpenedInScilab(prevId) )
+					{
+						SetCurrentFileId(prevId);
+					}
 				}
-				C2F(delfile)(&fd1);
+				else
+				{
+					*res = 0.0;
+					sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"),"mclose",fd1);
+				}
 			}
-			else
+			else 
 			{
-				*res = 0.0;
-				sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"),"mclose",fd1);
+				*res = -1.0;
+				sciprint(_("%s: Cannot close file whose descriptor is %d: No file to close.\n"),"mclose",fd1);
 			}
-		}
-		else 
-		{
-			*res = -1.0;
-			sciprint(_("%s: Cannot close file whose descriptor is %d: No file to close.\n"),"mclose",fd1);
 		}
 	}
 }

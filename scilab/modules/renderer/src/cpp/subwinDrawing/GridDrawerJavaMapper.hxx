@@ -42,8 +42,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for GridDrawer
   virtual void drawGrid(const double firstAxisStart[3], const double firstAxisEnd[3],

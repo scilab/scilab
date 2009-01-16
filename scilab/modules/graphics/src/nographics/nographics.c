@@ -54,11 +54,6 @@ double Mini(double *vect, int n)
 	return 0.0;
 }
 /*--------------------------------------------------------------------------*/
-void DeleteObjs(int win_num)
-{
-
-}
-/*--------------------------------------------------------------------------*/
 BOOL sciHasFigures( void )
 {
   return FALSE;

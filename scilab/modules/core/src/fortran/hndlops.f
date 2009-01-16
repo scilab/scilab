@@ -15,10 +15,10 @@ c
       integer op
 c     
       integer dot,colon,quote
-      integer less,great,equal
+      integer less,equal
 c     
       data dot/51/,quote/53/,colon/44/
-      data less/59/,great/60/,equal/50/
+      data less/59/,equal/50/
 c     
       op=fin
 c     

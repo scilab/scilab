@@ -18,17 +18,15 @@ import java.io.*;
   {
   	public void run()
   	{
-  		int i=0;
-  		Scilab.Exec("plot2d();");
-  		System.out.println("Appuyer sur 'q' et 'return' pour quitter");
+  		System.out.println("Press 'q' and 'return' to quit.");
+  		Scilab.Exec("plot2d();quit");
   		do 
   		{
   			Scilab.Events();
   		}
-  		while ( (i==0) && ( Scilab.HaveAGraph() != false) );
+  		while ( Scilab.HaveAGraph() != false );
   		Scilab.Events();
-  		System.out.println("Fenetre Graphique fermee");
-  		Scilab.Finish();
+  		System.out.println("Graphics window closed");
   	}
   }
 
@@ -55,7 +53,14 @@ class  ExampleEvents2
    			}
 
   		}
-  		thread.stop();
+  		System.out.println("'q' pressed.");
+  		Scilab.Events();
+  		if (Scilab.HaveAGraph()) {
+  		Scilab.Exec("xdel(winsid());quit");
+  	}
+  	  thread.stop();
+  		Scilab.Finish();
+  		
   }
 
 }

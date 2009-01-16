@@ -57,8 +57,8 @@ int scilinesdefault(void)
 		int X = getXConsoleScreenSize();
 		int Y = getYConsoleScreenSize();
 
-		if (X < DEFAULT_NUMBERS_LINES) X = DEFAULT_NUMBERS_LINES;
-		if (Y < DEFAULT_NUMBERS_COLUMNS) X = DEFAULT_NUMBERS_COLUMNS;
+		if (X < DEFAULT_NUMBERS_COLUMNS) X = DEFAULT_NUMBERS_COLUMNS;
+		if (Y < DEFAULT_NUMBERS_LINES) Y = DEFAULT_NUMBERS_LINES;
 		setColumnsSize(X);
 		setLinesSize(Y);
 	}

@@ -60,7 +60,7 @@ void C2F(settmpdir)(void)
 #ifdef _MSC_VER 
 	  if (!GetTempPath(PATH_MAX,TmpDirDefault))
 	  {
-		  MessageBox(NULL,_("Cannot find Windows temporary directory."),_("Error"),MB_ICONERROR);
+		  MessageBox(NULL,gettext("Cannot find Windows temporary directory."),gettext("Error"),MB_ICONERROR);
 		  exit(1);
 	  }
 	  else
@@ -80,8 +80,8 @@ void C2F(settmpdir)(void)
 		{
 		  #ifdef _DEBUG
 		  char MsgErr[1024];
-		  wsprintf(MsgErr,_("Impossible to create : %s"),tmp_dir);
-		  MessageBox(NULL,MsgErr,_("Error"),MB_ICONERROR);
+		  wsprintf(MsgErr,gettext("Impossible to create : %s"),tmp_dir);
+		  MessageBox(NULL,MsgErr,gettext("Error"),MB_ICONERROR);
 		  exit(1);
 		  #else
 		  GetTempPath(PATH_MAX,TmpDirDefault);

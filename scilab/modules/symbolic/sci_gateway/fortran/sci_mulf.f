@@ -14,9 +14,9 @@ c     ----------------------------
       include 'stack.h'
       
       logical iseye,isnum
-      integer lparen,rparen,star,plus,minus,blanc,slash,bslash,symb
+      integer lparen,rparen,star,minus,blanc,slash,bslash,symb
       integer iadr,sadr
-      data lparen/41/,rparen/42/,star/47/,plus/45/,minus/46/,blanc/40/
+      data lparen/41/,rparen/42/,star/47/,minus/46/,blanc/40/
       data slash/48/  ,bslash/49/
       
       iadr(l)=l+l-1

@@ -187,6 +187,11 @@ public:
 	 */
 	virtual void closeGraphicCanvas(void) = 0;
 
+	/**
+	 * Force the window to be be single buffered
+	 */
+	virtual void setUseSingleBuffer(bool useSingleBuffer) = 0;
+
   /**
    * Return the drawed object
    */

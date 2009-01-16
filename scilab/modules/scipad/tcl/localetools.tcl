@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc amp {s} {
 # Given a string s containing an ampersand (&),
 # this provides a list {n clean_string}
@@ -126,12 +127,10 @@ global lang msgsdir
     createmenues
     setdbmenuentriesstates_bp
     updatepanestitles
-    set bestwidth [mcmaxra "Hide" \
-                           "Close"]
     foreach ta $listoftextarea {
         if {[isdisplayed $ta]} {
-            [getpaneframename $ta].clbutton configure -text [mc "Close"] -width $bestwidth
-            [getpaneframename $ta].hibutton configure -text [mc "Hide"]  -width $bestwidth
+            [getpaneframename $ta].topbar.f.clbutton configure -text [mc "Close"]
+            [getpaneframename $ta].topbar.f.hibutton configure -text [mc "Hide"]
             # tooltips on hide and close buttons do not need to be updated
             # because localization occurs on the fly each time the tooltip
             # displays its string content
@@ -169,7 +168,7 @@ proc setdefaultScipadlangvar {} {
 # set default lang variable
     global Scilab5 lang
     if {$Scilab5} {
-        set lang "en_US"
+        set lang "en_us"
     } else {
         set lang "eng"
     }

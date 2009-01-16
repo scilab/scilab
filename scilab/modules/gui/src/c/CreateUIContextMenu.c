@@ -32,6 +32,9 @@ sciPointObj * CreateUIContextMenu(void)
     }
   ppobj=pUICONTEXTMENU_FEATURE (pobj);
 
+	/* Create the default relationShip */
+	createDefaultRelationShip(pobj);
+
   /* add the handle in the handle list */
   if ( sciAddNewHandle(pobj) == -1 )
     {
@@ -39,13 +42,6 @@ sciPointObj * CreateUIContextMenu(void)
       FREE( pobj ) ;
       return NULL ;
     }
-
-  /* no sons for now */
-  sciInitSelectedSons( pobj ) ;
-      
-  sciGetRelationship(pobj)->psons        = NULL ;
-  sciGetRelationship(pobj)->plastsons    = NULL ;
-  sciGetRelationship(pobj)->pSelectedSon = NULL ;
       
   sciInitVisibility( pobj, TRUE ) ;
       

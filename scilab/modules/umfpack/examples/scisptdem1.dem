@@ -8,7 +8,7 @@ num2=num1+1
 num3=num1+2
 num4=num1+3
 
-x_message(["To load a sparse matrix  stored  in  the  Harwell";
+messagebox(["To load a sparse matrix  stored  in  the  Harwell";
 	   "Boeing format in scilab, you may use the function";
 	   "                                                 ";
 	   "                 ReadHBSparse                    ";
@@ -19,9 +19,7 @@ x_message(["To load a sparse matrix  stored  in  the  Harwell";
 	   "                                                 ";
 	   "    www.cise.ufl.edu/research/sparse/matrices    ";
 	   "                                                 ";	   
-	   "maintained by Tim Davis the author of UMFPACK    ";
-	   "                                                 ";
-	   "       CLICK ON OK TO CONTINUE                   "]);
+	   "maintained by Tim Davis the author of UMFPACK    "],"modal","info");
 
 mode(1)
 [A1,descr1,ref1,mtype1] = ReadHBSparse(SCI+"/modules/umfpack/examples/arc130.rua");
@@ -30,14 +28,12 @@ mode(1)
 [A4,descr4,ref4,mtype4] = ReadHBSparse(SCI+"/modules/umfpack/examples/young1c.csa");
 
 mode(-1)
-x_message(["To see the pattern of non zeros elements";
+messagebox(["To see the pattern of non zeros elements";
 	   "you may use the function :              ";
 	   "                                        ";
 	   "         PlotSparse                     ";
 	   "                                        ";
-	   "  here we will display the 4 matrices   ";
-	   "                                        ";
-	   "       CLICK ON OK TO CONTINUE          "]);
+	   "  here we will display the 4 matrices   "],"modal","info");
 
 mode(1)
 
@@ -59,15 +55,13 @@ xtitle(ref4+"."+mtype4+" : "+descr4)
 
 mode(-1)
 
-x_message(["Now use umfpack to solve some linear system :      ";
+messagebox(["Now use umfpack to solve some linear system :      ";
 	   "                                                   ";
 	   "b1 = rand(size(A1,1),1);    -> to create a rhs     ";
 	   "x1 = umfpack(A1,""\"",b1);    -> to solve A1x1 = b1  ";
 	   "norm_res = norm(A1*x1-b1);  -> norm of the residual";
 	   "                                                   ";
-	   "this is done for the 4 matrices A1, A2, A3 and A4  ";
-	   "                                                   ";
-	   "      CLICK ON OK TO CONTINUE                      "]);
+	   "this is done for the 4 matrices A1, A2, A3 and A4  "],"modal","info");
 mode(1)
 n1 = size(A1,1);
 b1 = rand(n1,1);	   
@@ -91,7 +85,7 @@ norm_res4 = norm(A4*x4-b4);
 
 mode(-1)
 
-x_message([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A1));
+messagebox([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A1));
 	   " norm of the residual = "+string(norm_res1) ;
 	   " computing time       = "+string(t1)  ;
 	   "                                     ";
@@ -105,11 +99,9 @@ x_message([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A1
 	   "                                     ";
 	   " A4 ("+descr4+") : order = "+ string(n4) + " nnz = " + string(nnz(A4));
 	   " norm of the residual = "+string(norm_res4) ;
-	   " computing time       = "+string(t4)  ;
-	   "                                     ";
-	   "      CLICK ON OK TO CONTINUE        "]);
+	   " computing time       = "+string(t4)],"modal","info");
 
-x_message(["             Now we will see how to use the lu factors                 ";
+messagebox(["             Now we will see how to use the lu factors                 ";
 	   "                                                                       ";
 	   " 1/ lu factors of a sparse matrix A are gotten with :                  ";
 	   "                                                                       ";
@@ -140,9 +132,8 @@ x_message(["             Now we will see how to use the lu factors              
 	   "        umf_ludel(lup)                                                 ";
 	   "                                                                       ";
 	   " If you have lost your pointer you may use  umf_ludel() which free all the ";
-	   " current umf lu factors.                                               ";
-	   "                                                                       ";
-	   "                       CLICK ON OK TO CONTINUE                         "]);
+	   " current umf lu factors.                                               "],"modal","info");
+       
 	   
 mode(1)
 
@@ -180,7 +171,7 @@ umf_ludel(lup4);
 
 mode(-1)
 
-x_message([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A1));
+messagebox([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A1));
            " K1 = " + string(K1);
 	   " norm of the residual      = "+string(norm_res1) ;
 	   " idem but with raffinement = "+string(norm_res1r);
@@ -198,14 +189,12 @@ x_message([" A1 ("+descr1+") : order = "+ string(n1) + " nnz = " + string(nnz(A1
 	   " A4 ("+descr4+") : order = "+ string(n4) + " nnz = " + string(nnz(A4));
            " K4 = " + string(K4);
 	   " norm of the residual      = "+string(norm_res4) ;
-	   " idem but with raffinement = "+string(norm_res4r);
-	   "                                     ";
-	   "      CLICK ON OK TO CONTINUE        "]);
+	   " idem but with raffinement = "+string(norm_res4r)],"modal","info");
 
 
 clear A1 A3 A4 x1 x3 x4 b1 b3 b4
 
-x_message(["            Now we will see how to use the taucs snmf stuff            ";
+messagebox(["            Now we will see how to use the taucs snmf stuff            ";
 	   " This is useful and recommended when your matrix is symetric positive  ";
 	   " definite (s.p.d.)                                                     ";
 	   "                                                                       ";
@@ -235,9 +224,7 @@ x_message(["            Now we will see how to use the taucs snmf stuff         
 	   "        taucs_chdel(Cp)                                                ";
 	   "                                                                       ";
 	   " If you have lost your pointer you may use  taucs_chdel() which free   ";
-	   " memory for all the current Cholesky factorizations.                   ";
-	   "                                                                       ";
-	   "                       CLICK ON OK TO CONTINUE                         "]);
+	   " memory for all the current Cholesky factorizations.                   "],"modal","info");
 
 mode(1)
 timer();
@@ -251,7 +238,7 @@ K2_norm2 = cond2sp(A2, Cp2);
 taucs_chdel(Cp2);
 mode(-1)
 
-x_message([" On the s.p.d. matrix A2 : ";
+messagebox([" On the s.p.d. matrix A2 : ";
 	   " A2 ("+descr2+") : order = "+ string(n2) + " nnz = " + string(nnz(A2));
            " K2 (1-norm) = " + string(K2);
            " K2 (2-norm) = " + string(K2_norm2);
@@ -269,15 +256,10 @@ x_message([" On the s.p.d. matrix A2 : ";
 	   "      CLICK ON OK TO CONTINUE        "]);
 
 
-x_message(["   Demo is out : I hope that this stuff will be  ";
+messagebox(["   Demo is out : I hope that this stuff will be  ";
 	   " useful for you ! Don''t hesitate to mail me about";
 	   " bugs (Bruno.Pincon@iecn.u-nancy.fr) or simply to";
-	   " tell that this interface is of interest for you ";
-	   "                                                 ";
-	   "              CLICK ON OK TO FINISH              "]);
+	   " tell that this interface is of interest for you "],"modal","info");
 	  
 xdel(num1); xdel(num2); xdel(num3) ; xdel(num4)
 if old_winsid == [] then, xdel(0), end
-
-
-

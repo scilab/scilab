@@ -211,7 +211,15 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @return BufferedImage
 	 */
 	public BufferedImage dumpAsBufferedImage() {
-				return ScilabBridge.dumpAsBufferedImage(this);
+		return ScilabBridge.dumpAsBufferedImage(this);
+	}
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	public void setSingleBuffered(boolean useSingleBuffer) {
+		ScilabBridge.setSingleBuffered(this, useSingleBuffer);
 	}
 	
 }

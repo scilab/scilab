@@ -38,7 +38,11 @@ int C2F(cvstr1)(int *n,int * line,char * str,int * job,	unsigned long  str_len)
 int C2F(codetoascii)(int *n,int * line,char * str, unsigned long str_len)
 {
   int j = 0;
-  int nn = *n;
+  int nn = 0;
+
+  /* check *n value */
+  if  (*n >= 0) nn = *n;
+  
   /* conversion code -> ascii */
   while (nn--)
   {

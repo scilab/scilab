@@ -3,11 +3,11 @@
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (nicer default plot3d)
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,7 +29,6 @@
 #include "DestroyObjects.h"
 #include "MALLOC.h"
 #include "sciCall.h"
-#include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -68,10 +67,9 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if ( get_optionals(fname,opts) == 0) return 0;
   if ( FirstOpt() < 4) {
-    sciprint(_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
+    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
       fname,1, 4);
-    Error(999); 
-    return(0);
+    return -1;
   }
 
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
@@ -80,17 +78,17 @@ int sci_plot3d( char * fname, unsigned long fname_len )
 
   if (Rhs >= 3) {
     /*     third argument can be a matrix z or a list list(z,zcol) */
-    switch ( VarType(3) ) 
+    switch ( VarType(3) )
     {
-    case 1 : 
+    case sci_matrix :
       GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE, &m3, &n3, &l3);
       izcol = 0;
       break;
-    case 15 : 
+    case sci_list :
       izcol = 1;
       /* z = list(z,colors) */
       GetRhsVar(3,LIST_DATATYPE,&m3l,&n3l,&l3l);
-      if ( m3l != 2 ) 
+      if ( m3l != 2 )
       {
         Scierror(999,_("%s: Wrong size for input argument #%d: List of size %d expected.\n"),
           fname, 3, 2);
@@ -104,16 +102,16 @@ int sci_plot3d( char * fname, unsigned long fname_len )
         Scierror(999,_("%s: Wrong size for input argument #%d: %d or %d expected.\n"),fname,3, n3,m3*n3);
         return 0;
       }
-      /* 
-      *   Added by E Segre 4/5/4000. In the case where zcol is a 
+      /*
+      *   Added by E Segre 4/5/4000. In the case where zcol is a
       *   matrix of the same size as z, we set izcol to 2. This
       *   value is later transmitted to the C2F(fac3dg) routine,
-      *   which has been modified to do the interpolated shading 
+      *   which has been modified to do the interpolated shading
       *    (see the file SCI/modules/graphics/src/c/Plo3d.c
       */
       if (   m3n*n3n == m3*n3 ) { izcol=2  ; }
       break ;
-    default : 
+    default :
       OverLoad(3);
       return 0;
     }
@@ -140,14 +138,14 @@ int sci_plot3d( char * fname, unsigned long fname_len )
       Scierror(999,_("%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"),fname, 1, 3);
       return 0;
     }
-    if ( m1*n1 <= 1 || m2*n2 <= 1 ) 
+    if ( m1*n1 <= 1 || m2*n2 <= 1 )
     {
 		Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: %s expected.\n"),fname, 2, 3, ">= 2");
       return 0;
     }
   }
 
-  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;} 
+  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;}
   SciWin() ;
 
   /******************** 24/015/2002 ********************/

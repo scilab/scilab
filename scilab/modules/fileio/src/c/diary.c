@@ -36,21 +36,22 @@ void diary(char *str,long int *n)
 	if ( u != 0 )
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
-		fwrite(str,sizeof(unsigned char),*n,fd);
-		fwrite(newline,sizeof(unsigned char),nn,fd);
+		if (fd)
+		{
+			fwrite(str,sizeof(unsigned char),*n,fd);
+			fwrite(newline,sizeof(unsigned char),nn,fd);
+		}
 	}
 }
 /*--------------------------------------------------------------------------*/
 void diary_nnl(char *str,int *n)
 {
-	int u;
-
-	u=getdiary();
+	int u = getdiary();
 
 	if (u)
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
-		fwrite(str,sizeof(unsigned char),*n,fd);
+		if (fd) fwrite(str,sizeof(unsigned char),*n,fd);
 	}
 }
 /*--------------------------------------------------------------------------*/

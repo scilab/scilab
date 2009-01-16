@@ -13,16 +13,16 @@ c
       character*(*) fname
       integer top0,id(nsiz)
       logical getsmat,checkval,checklhs
-      integer iadr, sadr
-      integer a, blank,percen,sfin,helps(nsiz),scspal(nsiz)
+      integer iadr
+      integer a, blank,percen,helps(nsiz),scspal(nsiz)
 
-      logical ok
+
       data a/10/,blank/40/,percen/56/
       data helps /353243448,673717273,nz2*673720360/
       data scspal/202509340,421796888,673715466,nz3*673720360/
 
       iadr(l)=l+l-1
-c      sadr(l)=(l/2)+1
+
 c
       if(.not.checklhs(fname,1,1)) return
 

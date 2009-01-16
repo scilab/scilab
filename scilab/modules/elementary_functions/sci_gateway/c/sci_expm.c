@@ -12,6 +12,20 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_elementary_functions.h"
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+
+/* BUG 3863 */
+/* forces to define C2F(dcoeff) only once */
+
+typedef struct {
+	double c[41];
+	int ndng;
+} DCOEFF_struct;
+
+DCOEFF_struct C2F(dcoeff);
+
+#endif
+
 extern int C2F(intexpm)(int *id);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_expm)(char *fname,unsigned long fname_len)

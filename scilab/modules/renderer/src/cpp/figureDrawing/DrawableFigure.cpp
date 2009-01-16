@@ -16,6 +16,7 @@
 #include "DrawableFigureBridge.h"
 #include "subwinDrawing/DrawableSubwin.h"
 #include "getHandleDrawer.h"
+#include "GiwsException.hxx"
 
 // here for static methods
 #include "DrawableFigureJoGL.h"
@@ -118,16 +119,13 @@ DrawableObject::EDisplayStatus DrawableFigure::draw( void )
     displaySingleObject();
     endDrawing() ;
   }
-  else if ( checkVisibility() )
+  else if ( checkVisibility() && checkAutoRedraw() )
   {
-    if (checkAutoRedraw())
-    {
-      initializeDrawing() ;
-      drawBackground();
-      setFigureParameters() ;
-      displayChildren() ;
-      endDrawing() ;
-    }
+    initializeDrawing() ;
+    drawBackground();
+    setFigureParameters() ;
+    displayChildren() ;
+    endDrawing() ;
   }
   else
   {
@@ -169,8 +167,14 @@ void DrawableFigure::forceDisplay( void )
 
 	if (needsDisplay(m_pDrawed) || isDisplayingSingleObject())
 	{
-		// to be sure that the canvas exists
-		openGraphicCanvas();
+		try {
+			// to be sure that the canvas exists
+			openGraphicCanvas();
+		}  catch (const GiwsException::JniException & e)
+			{
+				std::cerr << "An error occurred when Scilab tried to open a Canvas: " <<  e.getJavaDescription() << std::endl;
+				std::cerr << "If an exception about java.lang.UnsatisfiedLinkError has been thrown, check if etc/librarypath.xml contains the path to gluegen and jogl libraries"  << std::endl;
+			}
 	}
 	else
 	{
@@ -308,6 +312,11 @@ void DrawableFigure::openGraphicCanvas(void)
 void DrawableFigure::closeGraphicCanvas(void)
 {
 	getFigureImp()->closeGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::setUseSingleBuffer(bool useSingleBuffer)
+{
+	getFigureImp()->setUseSingleBuffer(useSingleBuffer);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigure::isAbleToCreateFigure(void)

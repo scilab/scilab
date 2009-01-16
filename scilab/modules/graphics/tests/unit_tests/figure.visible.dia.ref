@@ -13,8 +13,7 @@ if my_figure.visible <> "on" then bugmes();quit;end
 // Test the allocation
 my_figure.visible = "off";
 if my_figure.visible <> "off" then bugmes();quit;end
-my_figure.visible = "badvalue";
-Value must be 'on' or 'off'.
+execstr("my_figure.visible = ''badvalue''",'errcatch','n');
 if my_figure.visible <> "off" then bugmes();quit;end
 my_figure.visible = "on";
 if my_figure.visible <> "on" then bugmes();quit;end

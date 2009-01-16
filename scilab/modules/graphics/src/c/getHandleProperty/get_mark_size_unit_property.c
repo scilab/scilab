@@ -25,11 +25,12 @@
 /*------------------------------------------------------------------------*/
 int get_mark_size_unit_property( sciPointObj * pobj )
 {
-  if (sciGetMarkSizeUnit( pobj ) == 1)
+	int markSizeUnit = sciGetMarkSizeUnit( pobj );
+  if (markSizeUnit == 1)
   {
     return sciReturnString( "point" ) ;
   }
-  else if( sciGetMarkSizeUnit(pobj) == 2 )
+  else if( markSizeUnit == 2 )
   {
     return sciReturnString( "tabulated" ) ;
   }

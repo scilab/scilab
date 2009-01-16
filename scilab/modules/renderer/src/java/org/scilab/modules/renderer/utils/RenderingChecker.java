@@ -22,8 +22,8 @@ package org.scilab.modules.renderer.utils;
  */
 public final class RenderingChecker {
 	
-	/** Assume maxomum needed memory to create a graphic window is 20Mb for now */
-	private static final long CREATING_WINDOW_NEEDED_MEMORY = (long) 20e6;
+	/** Assume maximum needed memory to create a graphic window is 40Mb for now */
+	private static final long CREATING_WINDOW_NEEDED_MEMORY = (long) 40e6;
 	
 	/**
 	 * Should not be called
@@ -31,20 +31,20 @@ public final class RenderingChecker {
 	protected RenderingChecker() { }
 	
 	/**
-	 * Check wether the Java environement allows to create a new window
+	 * Check whether the Java environment allows to create a new window
 	 * @return true if the creation is OK, false otherwise
 	 */
 	public static boolean isAbleToCreateWindow() {
 		if (RenderingCapabilities.getAvailableJavaMemory() < CREATING_WINDOW_NEEDED_MEMORY) {
 			// try to reduce memory usage by calling the gc
 			System.gc();
+			System.runFinalization();
 			// check again
 			if (RenderingCapabilities.getAvailableJavaMemory() < CREATING_WINDOW_NEEDED_MEMORY) {
 				// still not enough memory
 				return false;
 			}
 		}
-		
 		// ok!!
 		return true;
 	}

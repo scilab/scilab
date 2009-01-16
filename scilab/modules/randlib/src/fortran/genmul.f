@@ -46,7 +46,7 @@ C     .. Array Arguments ..
       INTEGER ix(*)
 C     ..
 C     .. Local Scalars ..
-      DOUBLE PRECISION prob,ptot,sum
+      DOUBLE PRECISION prob,sum
       INTEGER i,icat,ntot
 C     ..
 C     .. External Functions ..

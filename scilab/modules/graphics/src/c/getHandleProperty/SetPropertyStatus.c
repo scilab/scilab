@@ -39,3 +39,15 @@ SetPropertyStatus sciSetFinalStatus( SetPropertyStatus status1, SetPropertyStatu
 }
 
 /*--------------------------------------------------------------------------*/
+SetPropertyStatus sciSetNoRedrawStatus(SetPropertyStatus status)
+{
+	if (status == SET_PROPERTY_SUCCEED)
+	{
+		return SET_PROPERTY_UNCHANGED;
+	}
+	else
+	{
+		return status;
+	}
+}
+/*--------------------------------------------------------------------------*/

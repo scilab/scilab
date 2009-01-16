@@ -28,7 +28,9 @@ xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
 // rectangle clipping zone 
 xbasc(); plot2d([-100,500],[-100,600],[-1,-1],"022")
 xrect(clipBox(1), clipBox(2), clipBox(3), clipBox(4));
-xclip(clipBox(1), clipBox(2), clipBox(3), clipBox(4));
+axes = gca();
+axes.clip_box = clipBox;
+axes.clip_state = "on";
 xsegs(10*x1+200*ones(x1),10*y1+200*ones(y1));
 
 // check that xsegs is clipped

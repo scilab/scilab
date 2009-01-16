@@ -41,36 +41,28 @@
         <term>&lt;arguments_entrée&gt;</term>
         <listitem>
           <para>est la liste d'arguments d'entrée. Il peut s'agir de :</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut être <literal>varargin</literal> (voir varargin)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>la séquence <literal>()</literal> ou rien du tout, si la fonction n'a pas d'argument d'entrée.</para>
+          <itemizedlist>
+            <listitem>
+              <para>une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut être <literal>varargin</literal> (voir varargin)</para>
+            </listitem>
+            <listitem>
+              <para>la séquence <literal>()</literal> ou rien du tout, si la fonction n'a pas d'argument d'entrée.</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;arguments_sortie&gt;</term>
         <listitem>
           <para>Est la liste d'arguments de sortie. Il peut s'agir de</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut être <literal>varargout</literal> (voir varargout)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>la séquence <literal>[]</literal>, si la fonction n'a pas d'argument de sortie. Dans ce cas la syntaxe d'appel peut aussi être : <literal>function &lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal></para>
+          <itemizedlist>
+            <listitem>
+              <para>une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut être <literal>varargout</literal> (voir varargout)</para>
+            </listitem>
+            <listitem>
+              <para>la séquence <literal>[]</literal>, si la fonction n'a pas d'argument de sortie. Dans ce cas la syntaxe d'appel peut aussi être : <literal>function &lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal></para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>

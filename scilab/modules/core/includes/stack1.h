@@ -12,6 +12,8 @@
 #ifndef STACK1_H 
 #define STACK1_H 
 
+#include "scisparse.h" /* SciSparse */
+
 typedef  void (*S_fp)(char *,int *);
 
 extern int C2F(ogettype)(int *lw);

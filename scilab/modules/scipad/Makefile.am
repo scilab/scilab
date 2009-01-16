@@ -48,6 +48,7 @@ tcl/localetools.tcl \
 tcl/mainwindow.tcl \
 tcl/menues.tcl \
 tcl/modselection.tcl \
+tcl/MRUlist.tcl \
 tcl/platformbind.tcl \
 tcl/popupmenus.tcl \
 tcl/print.tcl \

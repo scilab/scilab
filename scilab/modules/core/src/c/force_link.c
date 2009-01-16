@@ -21,6 +21,9 @@ SCIZGSCH_union C2F(scizgsch);
 
 IERODE_struct C2F(ierode);
 
+/* manages CTRL-C event */
+BASBRK_struct C2F(basbrk);
+
 #else
 /***********************************************************
 * Unused function just here to force linker to load some 

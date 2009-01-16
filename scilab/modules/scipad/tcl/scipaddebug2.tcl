@@ -45,7 +45,7 @@ if {$debuglog} {
     mc amp mcra mcmax mcmaxra bl \
     keyposn dokeyposn ismodified whichfun modifiedtitle \
     showinfo delinfo showinfo_menu_file showinfo_menu_wind \
-    GetFirstRecentInd extractindexfromlabel \
+    GetFirstRecentFileInd GetFirstRecentEncodingInd extractindexfromlabel \
     checkifanythingchangedondisk checkiffilechangedondisk \
     TextStyles managescroll \
     schememenus setdbmenuentriesstates_bp getdbstate pbind \

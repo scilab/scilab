@@ -29,7 +29,7 @@ c
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u1(*),u2(*)
       double precision y(*)
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
-      integer nipar,nu,ny
+      integer nipar,ny
 
 c
       do 1 i=1,nu1

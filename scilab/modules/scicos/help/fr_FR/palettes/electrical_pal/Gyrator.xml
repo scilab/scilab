@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Gyrator">
+  <refnamediv>
+    <refname>Gyrator</refname>
+    <refpurpose>Gyrateur</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Gyrator_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_Gyrator">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Gyrator">Gyrateur</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_Gyrator">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_Gyrator">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_Gyrator">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_Gyrator">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_Gyrator">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Gyrator">Modèle Modelica</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_Gyrator">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_Gyrator">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Gyrator">
+    <title>Description</title>
+    <para>
+A gyrator is a two-port element defined by the following equations:  i1 =  G2 * v2   i2 = -G1 * v1  where the constants G1, G2 are called the gyration conductance.  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_Gyrator">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Gyrator_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">G1</emphasis>
+        </para>
+        <para> Gyration conductance (-i2/v1) .</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">G2</emphasis>
+        </para>
+        <para> Gyration conductance (i1/v2).</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_Gyrator">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Entrées :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'p1'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'n1'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'p2'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'n2'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Paramètres :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'G1'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'G2'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Nom du fichier model :</emphasis> Gyrator</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_Gyrator">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Gyrator.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="ModèleModelica_Gyrator">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Gyrator.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_Gyrator">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Masoud Najafi</emphasis> - INRIA</para>
+  </refsection>
+</refentry>
