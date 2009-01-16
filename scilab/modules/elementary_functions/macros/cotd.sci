@@ -11,6 +11,17 @@ function y = cotd(x)
   if ~isreal(x)
     error(msprintf(_('%s :Argument should be real.'),'cotd'));
   end
-  y = ones(x)./tand(x);
+//  y = ones(x)./tand(x);
+  n = round(x/90);
+  x = x - n*90;
+  z = (x == 0);
+  m = pmodulo(n,2);
+  y = x
+  y(m==0) = cotg(%pi/180*x(m==0));
+  y(m==1 & ~z) = -tan(%pi/180*x(m==1 & ~z));
+  y(m==1 & z & n>=0) = 0;
+  y(m==1 & z & n<0) = -0;
+  
+  
 endfunction
 
