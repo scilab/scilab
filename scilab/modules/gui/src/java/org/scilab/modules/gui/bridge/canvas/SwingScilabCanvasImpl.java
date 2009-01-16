@@ -101,7 +101,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	    // By default disable GLJPanel on Linux
 	    if (OS_NAME.contains("Linux")) {
 		noGLJPanel = true;
-		// Linux && NVIDIA 
+		// Linux && NVIDIA
 		if (GL_VENDOR.contains("NVIDIA")) {
 		    noGLJPanel = false;
 		}
@@ -114,7 +114,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 		    int releaseVersion = Integer.parseInt(stDot.nextToken());
 		    // Only OpenGL version newer than 2.1.7873 works
 		    // available through ATI 8.8 installer
-		    // and driver newer than 8.52.3 
+		    // and driver newer than 8.52.3
 		    Debug.DEBUG("SwingScilabCanvasImpl", "majorVersion = "+majorVersion+
 			    " minorVersion = "+minorVersion+
 			    " releaseVersion = "+releaseVersion);
@@ -149,7 +149,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	    InterpreterManagement.requestScilabExec("disp(\"WARNING: Due to your video card drivers limitations, "+
 		    "that are not able to manage OpenGL, Scilab will not be able to draw any graphics. "+
 	    "Please update your driver.\")");
-	}	
+	}
     }
 
     GLCanvas realGLCanvas;
@@ -163,9 +163,9 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     public static boolean switchToGLCanvas(boolean onOrOff) {
 	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
 	if(!onOrOff && noGLJPanel) {
-	    InterpreterManagement.putCommandInScilabQueue("disp(\"WARNING: Despite of our previous warning, "
+	    InterpreterManagement.requestScilabExec("disp(\"WARNING: Despite of our previous warning, "
 			+ "you choosed to use Scilab with advanced graphics capabilities. "
-			+ "Type \"\"help usecanvas\"\" for more information.\")"); 
+			+ "Type \"\"help usecanvas\"\" for more information.\")");
 	}
 	enableGLCanvas = onOrOff;
 	return enableGLCanvas;
