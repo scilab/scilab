@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 if ~isnum('%pi')       then pause, end
 
 if ~isnum('1')         then pause, end

@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //===============================
 str1 = "Scilab string 1";
 str2 = "Scilab string 2";
