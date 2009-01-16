@@ -67,8 +67,8 @@
     <programlisting role="example"><![CDATA[
 
 // creating a directed graph with 13 nodes and 14 arcs.
-ta=[1  1 2 7 8 9 10 10 10 10 11 12 13 13];
-he=[2 10 7 8 9 7  7 11 13 13 12 13  9 10];
+ta=[1  1 2 7 8 9 10 10 10 11 12 13 13];
+he=[2 10 7 8 9 7  7 11 13 12 13  9 10];
 g=make_graph('foo',1,13,ta,he);
 g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159]
 g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107]
