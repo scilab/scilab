@@ -96,7 +96,7 @@ sink=16;g.nodes.graphics.type(sink)=1; //sink node
 show_graph(g);
 
 [v,phi,ierr]=max_flow(source,sink,g);
-g.edges.graphics.foreground(ii)=11;
+g.edges.graphics.foreground(phi<>0)=11;
 g=add_edge_data(g,'flow',phi)
 g.edges.graphics.display='flow';
 show_graph(g);
