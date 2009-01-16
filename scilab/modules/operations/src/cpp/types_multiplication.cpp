@@ -16,6 +16,7 @@
 extern "C"
 {
 	#include "matrix_multiplication.h"
+	#include "matrix_addition.h"
 	#include "operation_f.h"
 }
 
@@ -607,6 +608,140 @@ int MultiplyPolyByPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly* _pP
 						pCoef1->real_get(), pCoef1->img_get(), pPoly1->rank_get(),
 						pCoef2->real_get(), pCoef2->img_get(), pPoly2->rank_get(),
 						pCoefOut->real_get(), pCoefOut->img_get(), pPolyOut->rank_get());
+			}
+		}
+	}
+	else
+	{// matrix by matrix
+		if(bComplex1 == false && bComplex2 == false)
+		{
+			double *pReal	= NULL;
+			Poly *pTemp		= new Poly(&pReal, _pPolyOut->rank_max_get());
+
+			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				{
+					Poly *pResult = _pPolyOut->poly_get(iRow, iCol);
+					pResult->coef_get()->zero_set();
+
+					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					{
+						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
+						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
+
+						pTemp->coef_get()->zero_set();
+
+						iMultiRealPolyByRealPoly(
+								pL->coef_get()->real_get(), pL->rank_get(),
+								pR->coef_get()->real_get(), pR->rank_get(),
+								pTemp->coef_get()->real_get(), pL->rank_get() + pR->rank_get() - 1);
+				
+						iAddRealPolyToRealPoly(
+								pResult->coef_get()->real_get(), pResult->rank_get(),
+								pTemp->coef_get()->real_get(), pResult->rank_get(),
+								pResult->coef_get()->real_get(), pResult->rank_get());
+					}
+				}
+			}
+		}
+		else if(bComplex1 == false && bComplex2 == true)
+		{
+			double *pReal	= NULL;
+			double *pImg	= NULL;
+			Poly *pTemp		= new Poly(&pReal, &pImg, _pPolyOut->rank_max_get());
+
+			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				{
+					Poly *pResult = _pPolyOut->poly_get(iRow, iCol);
+					pResult->coef_get()->zero_set();
+
+					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					{
+						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
+						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
+
+						pTemp->coef_get()->zero_set();
+
+						iMultiRealPolyByComplexPoly(
+								pL->coef_get()->real_get(), pL->rank_get(),
+								pR->coef_get()->real_get(), pR->coef_get()->img_get(), pR->rank_get(),
+								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pL->rank_get() + pR->rank_get() - 1);
+				
+						iAddComplexPolyToComplexPoly(
+								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get(),
+								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pResult->rank_get(),
+								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get());
+					}
+				}
+			}
+		}
+		else if(bComplex1 == true && bComplex2 == false)
+		{
+			double *pReal	= NULL;
+			double *pImg	= NULL;
+			Poly *pTemp		= new Poly(&pReal, &pImg, _pPolyOut->rank_max_get());
+
+			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				{
+					Poly *pResult = _pPolyOut->poly_get(iRow, iCol);
+					pResult->coef_get()->zero_set();
+
+					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					{
+						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
+						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
+
+						pTemp->coef_get()->zero_set();
+
+						iMultiRealPolyByComplexPoly(
+								pR->coef_get()->real_get(), pR->rank_get(),
+								pL->coef_get()->real_get(), pL->coef_get()->img_get(), pL->rank_get(),
+								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pL->rank_get() + pR->rank_get() - 1);
+				
+						iAddComplexPolyToComplexPoly(
+								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get(),
+								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pResult->rank_get(),
+								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get());
+					}
+				}
+			}
+		}
+		else if(bComplex1 == true && bComplex2 == true)
+		{
+			double *pReal	= NULL;
+			double *pImg	= NULL;
+			Poly *pTemp		= new Poly(&pReal, &pImg, _pPolyOut->rank_max_get());
+
+			for(int iRow = 0 ; iRow < _pPoly1->rows_get() ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < _pPoly2->cols_get() ; iCol++)
+				{
+					Poly *pResult = _pPolyOut->poly_get(iRow, iCol);
+					pResult->coef_get()->zero_set();
+
+					for(int iCommon = 0 ; iCommon < _pPoly1->cols_get() ; iCommon++)
+					{
+						Poly *pL			= _pPoly1->poly_get(iRow, iCommon);
+						Poly *pR			= _pPoly2->poly_get(iCommon, iCol);
+
+						pTemp->coef_get()->zero_set();
+
+						iMultiComplexPolyByComplexPoly(
+								pL->coef_get()->real_get(), pL->coef_get()->img_get(), pL->rank_get(),
+								pR->coef_get()->real_get(), pR->coef_get()->img_get(), pR->rank_get(),
+								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pL->rank_get() + pR->rank_get() - 1);
+				
+						iAddComplexPolyToComplexPoly(
+								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get(),
+								pTemp->coef_get()->real_get(), pTemp->coef_get()->img_get(), pResult->rank_get(),
+								pResult->coef_get()->real_get(), pResult->coef_get()->img_get(), pResult->rank_get());
+					}
+				}
 			}
 		}
 	}

@@ -55,6 +55,9 @@ namespace types
 		string				toString(int _iPrecision, int _iLineLen);
 
 		Double*				clone();
+		Double*				resize(int _iNewRows, int _iNewCols);
+		bool					insert(int _iRows, int _iCols, Double *_poSource);
+
 
   protected :
 		RealType			getType(void);

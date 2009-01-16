@@ -126,6 +126,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 	if(!R aa C	-> Ci
 	*/
 
+	int iSignLen = 0;
 //	*_postr << "|%" << _iTotalWitdh << "%|";
 	if(_dblR == 0)
 	{//no real part
@@ -134,6 +135,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 
 			//0
 			ostemp << left << 0;
+			iSignLen = SIGN_LENGTH;
 		}
 		else
 		{//imaginary part
@@ -149,6 +151,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			{
 				ostemp << left << fabs(_dblI) << SYMBOL_I;
 			}
+			iSignLen = SIGN_LENGTH;
 		}
 	}
 	else
@@ -160,6 +163,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
 			ostemp << left << fabs(_dblR);
+			iSignLen = SIGN_LENGTH;
 		}
 		else
 		{//imaginary part
@@ -180,10 +184,11 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			{
 				ostemp << left << fabs(_dblI) << SYMBOL_I;
 			}
+			iSignLen = SIGN_LENGTH * 2;
 		}
 	}
 
-	Config_Stream(_postr, _iTotalWitdh  + 2 * SIGN_LENGTH, _iPrec, ' ');
+	Config_Stream(_postr, _iTotalWitdh, _iPrec, ' ');
 	*_postr << left << ostemp.str();
 
 }

@@ -430,7 +430,7 @@ namespace ast
 				if(pVar->isList())
 				{
 					double *pData = NULL;
-					Double *pTemp = new Double(((ImplicitList*)pVar)->size_get(),1, &pData);
+					Double *pTemp = new Double(1, ((ImplicitList*)pVar)->size_get(), &pData);
 					((ImplicitList*)pVar)->extract_matrix(pData);
 					delete pVar;
 					pVar = pTemp;

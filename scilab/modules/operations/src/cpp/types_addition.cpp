@@ -13,6 +13,11 @@
 #include "types_addition.hxx"
 #include "core_math.h"
 
+extern "C"
+{
+	#include "matrix_addition.h"
+}
+
 Double * AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2)
 {
 	Double *pResult			= NULL;
@@ -223,6 +228,10 @@ MatrixPoly* AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble)
 MatrixPoly* AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2)
 {
 	MatrixPoly* pResult = NULL;
+	bool bComplex1 			= _pPoly1->isComplex();
+	bool bComplex2 			= _pPoly2->isComplex();
+	bool bScalar1				= _pPoly1->rows_get() == 1 && _pPoly1->cols_get() == 1;
+	bool bScalar2				= _pPoly2->rows_get() == 1 && _pPoly2->cols_get() == 1;
 	//3 cases : 
 	//size(p1) == size(P2)
 	if(_pPoly1->rows_get() == _pPoly2->rows_get() && _pPoly1->cols_get() == _pPoly2->cols_get())
@@ -244,52 +253,51 @@ MatrixPoly* AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2)
 			pResult->complex_set(true);
 		}
 
-		//Result P1(i) + P2(i)
-		for(int i = 0 ; i < _pPoly1->size_get() ; i++)
+		if(bComplex1 == false && bComplex2 == false)
 		{
-			Double *pCoef1	= _pPoly1->poly_get(i)->coef_get();
-			double *p1R			= pCoef1->real_get();
-			double *p1I			= pCoef1->img_get();
-
-			Double *pCoef2	= _pPoly2->poly_get(i)->coef_get();
-			double *p2R			= pCoef2->real_get();
-			double *p2I			= pCoef2->img_get();
-
-			Double *pCoefR	= pResult->poly_get(i)->coef_get();
-			double *pRR			= pCoefR->real_get();
-			double *pRI			= pCoefR->img_get();
-
-			for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
 			{
-				pRR[j] = p1R[j] + p2R[j];
-			}
-
-			double *pTemp = (pRank1[i] > pRank2[i] ? p1R : p2R);
-			for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]) ; j++)
-			{
-				pRR[j] = pTemp[j];
-			}
-
-			if(pResult->isComplex())
-			{
-				for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
-				{
-					pRI[j] = (p1I == NULL ? 0 : p1I[j]) + (p2I == NULL ? 0 : p2I[j]);
-				}
-
-				double *pTemp = (pRank1[i] > pRank2[i] ? p1I : p2I);
-				for(int j = Min(pRank1[i], pRank2[i]) ; j < Max(pRank1[i], pRank2[i]); j++)
-				{
-					pRI[j] = pTemp == NULL ? 0 : pTemp[j];
-				}
+				iAddRealPolyToRealPoly(
+					_pPoly1->poly_get(i)->coef_get()->real_get(), pRank1[i],
+					_pPoly2->poly_get(i)->coef_get()->real_get(), pRank2[i],
+					pResult->poly_get(i)->coef_get()->real_get(), pRank[i]);
 			}
 		}
-
+		else if(bComplex1 == false && bComplex2 == true)
+		{
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
+			{
+				iAddRealPolyToComplexPoly(
+					_pPoly1->poly_get(i)->coef_get()->real_get(), pRank1[i],
+					_pPoly2->poly_get(i)->coef_get()->real_get(), _pPoly2->poly_get(i)->coef_get()->img_get(), pRank2[i],
+					pResult->poly_get(i)->coef_get()->real_get(), pResult->poly_get(i)->coef_get()->img_get(), pRank[i]);
+			}
+		}
+		else if(bComplex1 == true && bComplex2 == false)
+		{
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
+			{
+				iAddRealPolyToComplexPoly(
+					_pPoly2->poly_get(i)->coef_get()->real_get(), pRank2[i],
+					_pPoly1->poly_get(i)->coef_get()->real_get(), _pPoly1->poly_get(i)->coef_get()->img_get(), pRank1[i],
+					pResult->poly_get(i)->coef_get()->real_get(), pResult->poly_get(i)->coef_get()->img_get(), pRank[i]);
+			}
+		}
+		else if(bComplex1 == true && bComplex2 == true)
+		{
+			for(int i = 0 ; i < _pPoly1->size_get() ; i++)
+			{
+				iAddComplexPolyToComplexPoly(
+					_pPoly1->poly_get(i)->coef_get()->real_get(), _pPoly1->poly_get(i)->coef_get()->img_get(), pRank1[i],
+					_pPoly2->poly_get(i)->coef_get()->real_get(), _pPoly2->poly_get(i)->coef_get()->img_get(), pRank2[i],
+					pResult->poly_get(i)->coef_get()->real_get(), pResult->poly_get(i)->coef_get()->img_get(), pRank[i]);
+			}
+		}
 		delete pRank;
 		delete pRank1;
 		delete pRank2;
 	}
-	else if(_pPoly1->size_get() == 1)
+	else if(bScalar1 == 1)
 	{//size(p1) == 1
 		int *pRank	= new int[_pPoly2->size_get()];
 		int *pRank1	= new int[_pPoly2->size_get()];
@@ -353,7 +361,7 @@ MatrixPoly* AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2)
 		delete pRank1;
 		delete pRank2;
 	}
-	else if(_pPoly2->size_get() == 1)
+	else if(bScalar2 == 1)
 	{//size(p2) == 1
 		int *pRank	= new int[_pPoly1->size_get()];
 		int *pRank1	= new int[_pPoly1->size_get()];

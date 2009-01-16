@@ -251,17 +251,17 @@ namespace types
 		}
 	}
 
-	/*--------------*/
+	/*----------------*/
 	/*		val_set		*/
-	/*--------------*/
+	/*----------------*/
 	bool Double::val_set(int _iRow, int _iCol, double _dblVal)
 	{
 		return val_set(_iRow, _iCol, _dblVal, 0);
 	}
 
-	/*--------------*/
+	/*----------------*/
 	/*		val_set		*/
-	/*--------------*/
+	/*----------------*/
 	bool Double::val_set(int _iRow, int _iCol, double _dblReal, double _dblImg)
 	{
 		if(m_pdblReal != NULL)
@@ -663,6 +663,7 @@ namespace types
 							GetComplexFormat(	m_pdblReal[iCols1 * rows_get() + iRows1], m_pdblImg[iCols1 * rows_get() + iRows1], _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
+							iTotalWidth += (iWidthR == 0 ? 0 : SIGN_LENGTH) + (iWidthI == 0 ? 0 : SIGN_LENGTH + 1);
 							if(iTotalWidth > piSize[iCols1])
 							{
 								piSize[iCols1] = iTotalWidth;
@@ -671,6 +672,7 @@ namespace types
 
 						if(iLen + piSize[iCols1] > _iLineLen)
 						{//find the limit, print this part
+/*
 							for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
 							{
 //								ostr  << "|%" << piSize[iCols2] << "%|";
@@ -681,7 +683,7 @@ namespace types
 								}
 								ostr << SPACE_BETWEEN_REAL_COMPLEX << SYMBOL_I << "|" << SPACE_BETWEEN_TWO_VALUES;
 							}
-
+*/
 							for(int iRows2 = 0 ; iRows2 < rows_get() ; iRows2++)
 							{
 								for(int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
@@ -761,4 +763,74 @@ namespace types
 		}
 		return pReturn;
 	}
+
+	Double* Double::resize(int _iNewRows, int _iNewCols)
+	{
+		int iNewSize = _iNewRows * _iNewCols;
+
+		if(_iNewRows <= m_iRows && _iNewCols <= m_iCols)
+		{
+			return NULL;
+		}
+
+		Double *pNew = new Double(_iNewRows, _iNewCols, m_bComplex);
+		pNew->zero_set();
+
+		if(m_bComplex)
+		{
+			for(int iRow = 0 ; iRow < m_iRows ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < m_iCols ; iCol++)
+				{
+					pNew->val_set(iRow, iCol, real_get(iRow,iCol), img_get(iRow,iCol));
+				}
+			}
+		}
+		else
+		{
+			for(int iRow = 0 ; iRow < m_iRows ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < m_iCols ; iCol++)
+				{
+					pNew->val_set(iRow, iCol, real_get(iRow,iCol));
+				}
+			}
+		}
+		return pNew;
+	}
+
+	bool Double::insert(int _iRows, int _iCols, Double *_poSource)
+	{
+		int iRows = _poSource->rows_get();
+		int iCols = _poSource->cols_get();
+
+		//insert without resize
+		if(iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
+		{
+			return false;
+		}
+
+		if(m_bComplex)
+		{
+			for(int iRow = 0 ; iRow < iRows ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < iCols ; iCol++)
+				{
+					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol), _poSource->img_get(iRow, iCol));
+				}
+			}
+		}
+		else
+		{
+			for(int iRow = 0 ; iRow < iRows ; iRow++)
+			{
+				for(int iCol = 0 ; iCol < iCols ; iCol++)
+				{
+					val_set(_iRows + iRow, _iCols + iCol, _poSource->real_get(iRow, iCol));
+				}
+			}
+		}
+		return true;
+	}
+
 }

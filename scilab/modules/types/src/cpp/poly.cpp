@@ -132,8 +132,9 @@ namespace types
 			else
 			{
 				m_iRank = 1;
-				pCoef = new Double(1, 1, &pR);
-				pCoef->val_set(0,0,0);
+				pCoef = new Double(1, 1, &pR, &pI);
+				complex_set(m_pdblCoef->isComplex());
+				pCoef->val_set(0,0,0,0);
 			}
 			delete m_pdblCoef;
 			m_pdblCoef = pCoef;

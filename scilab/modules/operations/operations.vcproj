@@ -181,6 +181,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\matrix_addition.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\matrix_division.c"
 				>
 			</File>
@@ -224,6 +228,10 @@
 			>
 			<File
 				RelativePath=".\includes\doublecomplex.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\matrix_addition.h"
 				>
 			</File>
 			<File

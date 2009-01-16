@@ -75,7 +75,7 @@ namespace ast
 		result_set(psz);
 		if(e.is_verbose())
 		{
-			std::cout <<  psz->toString(10,75);
+			std::cout << psz->toString(10,75) << std::endl;
 		}
 	}
 
@@ -106,7 +106,7 @@ namespace ast
 		result_set(pdbl);
 		if(e.is_verbose())
 		{
-			std::cout <<  pdbl->toString(10,75);
+			std::cout <<  pdbl->toString(10,75) << std::endl;
 		}
 	}
 
