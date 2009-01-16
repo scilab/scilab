@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Sylvestre Koumar
+// Copyright (C) 2009 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -43,25 +44,18 @@ function xs2fig(figureNumber, fileName, orientation)
 		orientation = "portrait";
 	end
 	
-	//To export FIG file we need Ghostscript
+	//To export FIG file we need Ghostscript & pstoedit
 	//Test if Ghostscript is installed or not
 	
-	msgErr1 = "Please install Ghostscript 32 bits to export an FIG file.";
-	msgErr2 = "http://www.ghostscript.com/awki";
-	msg = char(msgErr1,msgErr2);
-	
 	if MSDOS then
-		try
-			winqueryreg('HKEY_LOCAL_MACHINE','SOFTWARE\GPL Ghostscript')		
-		catch			
-			messagebox(msg, "Scilab error", "error")	
-			return;
-		end
-	end	
-	
-	
-	pause
-	if ~MSDOS then
+	  if fileinfo(SCI+'/tools/pstoedit/gsdll32.dll') == [] then
+      msgErr1 = gettext("Please install Ghostscript 32 bits to export an .FIG file.");
+      msgErr2 = "http://www.ghostscript.com/awki";
+      msg = [msgErr1;msgErr2];
+      messagebox(msg, gettext("Scilab error"), gettext("error"));
+      return;
+    end
+  else
 	  // os is a unix one
 	  // check that pstoedit is available on the computer
 	  [checkPstoedit,stat,err] = unix_g("which pstoedit");
