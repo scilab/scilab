@@ -55,11 +55,11 @@ case 'set' then
     okD=%t
     if size(D,'*')<>size(C,1)*size(B,2) then
       if size(D,'*')==1 then 
-	D*ones(C*B)
+	D = ones(C*B) ; 
       elseif  size(D,'*')==0 then 
-	D*zeros(C*B)
+	D = zeros(C*B) ;
       else
-	okD=%f
+	okD = %f ;
       end
     end
     if ms<>ns|~okD then
