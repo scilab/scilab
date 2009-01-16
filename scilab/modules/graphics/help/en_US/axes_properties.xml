@@ -733,6 +733,7 @@
    delete(a.children(2)); 
    delete(); // delete current object
    
+   a = gca();
    a.labels_font_size=1;
    a.auto_clear= "on";
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
@@ -786,7 +787,6 @@
    x=(0:0.1:2*%pi)';
    plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
    sda() // back to default axes model
-
  ]]></programlisting>
   </refsection>
   <refsection>
