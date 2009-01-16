@@ -71,6 +71,13 @@ options_codes=[1;2;3;
 
   kopt=find(options_codes==opt)
   if kopt==[] then error('invalid positionning option'),end
+  
+  // the number of labels might be lower than the number of polylines
+  nbLeg = min(size(H, '*'), size(leg, '*'));
+  H = H(1:nbLeg);
+  leg = leg(1:nbLeg);
+  
+  
   drawlater()
   c=captions(H,leg)
   if with_box then c.line_mode='on',else c.line_mode='off',end
