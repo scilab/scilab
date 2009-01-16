@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 
 if mulf('1','1')<>'1' then pause,end
 if mulf('1','0')<>'0' then pause,end
