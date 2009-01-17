@@ -16,17 +16,17 @@
 //Under linux Suse 10.2, with build4, official build of 4.1.1
 // and 4.1 there is a memory leak relative to show_pixmap()
 
-nbComputation = 20000
-// force full allocation of free
-free(nbComputation) = 0;
+nbComputation = 2000
 
-f=gcf();f.pixmap='on';
 plot2d()
-free=getmemory();
-for k=1:nbComputation, show_pixmap(),free(k) = getmemory();end 
+f=gcf();f.pixmap='on';
+show_pixmap(); // show it once for memory allocation
+
+freeMemoryInit = getmemory();
+for k=1:nbComputation, show_pixmap(); end 
 
 // compute used memory during compuations
-usedMemory = free(1) - free(nbComputation);
+usedMemory = freeMemoryInit - getmemory();
 
 // 5 mega
 if (usedMemory > 5000) then pause; end

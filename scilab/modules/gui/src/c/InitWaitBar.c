@@ -33,6 +33,8 @@ sciPointObj *InitWaitBar(void)
 	createDefaultRelationShip(pObj);
 
   pWAITBAR_FEATURE(pObj)->hashMapIndex = 0;
+  pObj->pObservers = NULL;
+  pObj->pDrawer = NULL ;
   sciAddNewHandle(pObj);
   return (sciPointObj *) pObj;
 }

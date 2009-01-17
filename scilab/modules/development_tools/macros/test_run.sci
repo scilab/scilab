@@ -486,6 +486,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	this_use_try_catch      = %T;
 	this_use_graphics       = %F;
 	this_english_imposed    = '';
+	this_launch_mode        = "-nw";
 	
 	// Some definitions
 	
@@ -567,7 +568,11 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	end
 	
 	if ((~launch_mode_arg) & (grep(txt,"<-- JVM NOT MANDATORY -->") <> [])) then
-		launch_mode = "-nwni";
+		this_launch_mode = "-nwni";
+	end
+	
+	if launch_mode_arg then
+		this_launch_mode = launch_mode;
 	end
 	
 	if grep(txt,"<-- NO TRY CATCH -->") <> [] then
@@ -662,9 +667,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	// Build the command to launch
 	if MSDOS then
-		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+this_launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		test_cmd = "( "+SCI_BIN+"/bin/scilab "+this_launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
