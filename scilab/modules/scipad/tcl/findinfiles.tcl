@@ -276,6 +276,7 @@ proc displaymatchresultswin {} {
 # show the match results window, or just clean it if already open
     global pad matchres textFont menuFont
     global SELCOLOR FGCOLOR BGCOLOR FOUNDTEXTCOLOR QTXTCOLOR
+    global Tk85
 
     set matchres $pad.matchres
 
@@ -346,6 +347,9 @@ proc displaymatchresultswin {} {
         grid columnconfigure $matchres.f2 2 -uniform 1
         grid columnconfigure $matchres.f2 3 -uniform 1
         grid columnconfigure $matchres.f2 4 -uniform 1
+        if {$Tk85} {
+            grid anchor $matchres.f2 center
+        }
 
         # make all this visible (order matters wrt to clipping on external resizing)
         pack $matchres.f2 -side bottom -expand 0 -fill x

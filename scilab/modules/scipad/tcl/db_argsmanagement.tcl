@@ -33,6 +33,7 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
     global argname argvalue
     global adda getvaluefromscilab
     global textFont menuFont
+    global Tk85
 
     if {[$leftwin index end] == 0} {
         set emptylistbox true
@@ -141,7 +142,10 @@ proc Addarg_bp {w focusbut leftwin {rightwin "norightwin"}} {
     grid $adda.f.f9.buttonCancel -row 0 -column 1 -sticky we -padx 10
     grid columnconfigure $adda.f.f9 0 -uniform 1
     grid columnconfigure $adda.f.f9 1 -uniform 1
-    pack $adda.f.f9 -pady 4
+    if {$Tk85} {
+        grid anchor $adda.f.f9 center
+    }
+    pack $adda.f.f9 -expand 1 -fill x -pady 4
     pack $adda.f -expand 1 -fill x
 
     bind $adda <Return> "OKadda_bp $selecteditem $leftwin $rightwin ; destroy $adda"

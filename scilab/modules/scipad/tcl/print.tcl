@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc printsetup {} {
     global tcl_platform
     if {$tcl_platform(platform) != "unix"} {
@@ -44,6 +45,8 @@ proc selectprint {textarea} {
 proc printsetup_unix {} {
 # procedure to setup the printer on unix systems
     global printCommand pad menuFont textFont
+    global Tk85
+
     set print $pad.print
     catch {destroy $print}
     toplevel $print
@@ -68,6 +71,9 @@ proc printsetup_unix {} {
     grid $print.bottom.cancel -row 0 -column 1 -sticky we -padx 10
     grid columnconfigure $print.bottom 0 -uniform 1
     grid columnconfigure $print.bottom 1 -uniform 1
+    if {$Tk85} {
+        grid anchor $print.bottom center
+    }
     pack $print.top -side top -expand 0 -pady 2
     pack $print.bottom -side bottom -expand 1 -fill x -pady 2
     pack $print.top.label $print.top.print -in $print.top -side left -fill x \
