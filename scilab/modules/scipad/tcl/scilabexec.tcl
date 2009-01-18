@@ -491,9 +491,8 @@ proc scilaberror {funnameargs} {
                                         db_str; \
                                         \"$lineError\"+msprintf(\" %d\",db_l)+\"$funcError\"+db_func\], \"$winTitle\", \"error\", \"modal\" )" \
                           "sync" "seq"
-            # make blinkline below receive its args
-            ScilabEval_lt  "TCL_SetVar(\"errline\", msprintf(\" %d\",db_l), \"scipad\");" "sync" "seq"
-            ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
+            # warning: seq only here, because sync seq would be a deadlock
+            ScilabEval_lt  "TCL_EvalStr(\"blinkline \"+msprintf(\"%d\",db_l)+\" \"+strsubst(db_func,\"\"\"\",\"\\\"\"\"),\"scipad\")" "seq"
         } else {
             ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
             ScilabEval_lt  "TCL_SetVar(\"errnum\", msprintf(\" %d\",db_n), \"scipad\");" "sync" "seq"
@@ -515,13 +514,13 @@ proc scilaberror {funnameargs} {
                 -message [append dummyvar [mc "The shell reported an error while trying to execute "]\
                               $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
                               $errline [mc " of "] $errfunc]
+            blinkline $errline $errfunc
         }
     }
     showinfo [mc "Execution aborted!"]
     if {[getdbstate] != "NoDebug"} {
         canceldebug_bp
     }
-    blinkline $errline $errfunc
 }
 
 proc blinkline {li ma {nb 3}} {

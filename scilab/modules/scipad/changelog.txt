@@ -1,3 +1,9 @@
+Francois VOGEL, 18/01/09
+ * Fixed bug 3978 (executing script with errors from Scipad hangs Scilab)
+   This bug was affecting Linux only and was introduced in Scipad 7.13 when
+   fixing bug 3407
+ * version --> 7.16
+
 Francois VOGEL, 17/01/09
  * The fix for bug 3882 (Scipad 7.12) was not enough with Tcl/Tk 8.5 due to
    a design change (see TIP #146)
