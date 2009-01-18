@@ -2773,7 +2773,7 @@ public class CallScilabBridge {
      * @return true if GLCanvas display is set
 	 */
 	public static boolean useCanvasForDisplay() {
-            return SwingScilabCanvasImpl.switchToGLCanvas();
+            return SwingScilabCanvasImpl.isGLCanvasEnabled();
 	}
 
 }
