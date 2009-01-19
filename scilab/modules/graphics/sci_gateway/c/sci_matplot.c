@@ -50,8 +50,7 @@ int sci_matplot(char *fname,unsigned long fname_len)
 
   if ( Rhs <= 0 )
   {
-    int one = 1 ;
-    sci_demo(fname,"m=[1,2;3,4];Matplot(m);", &one);
+    sci_demo(fname,"m=[1,2;3,4];Matplot(m);", FALSE);
     return 0;
   }
   CheckRhs(1,5);
