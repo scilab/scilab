@@ -47,7 +47,11 @@ int sci_xset( char *fname, unsigned long fname_len )
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;
 
-  if (Rhs <= 0) {int zero=0; sci_demo(fname,"xsetm();",&zero); return 0; }
+  if (Rhs <= 0)
+	{
+		sci_demo(fname,"xsetm();",FALSE);
+		return 0;
+	}
 
   CheckRhs(1,6);
   CheckLhs(0,1);
