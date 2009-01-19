@@ -114,5 +114,7 @@ sciPointObj * createFirstSubwin(sciPointObj * pFigure);
 
 void createDefaultRelationShip(sciPointObj * pObj);
 
+void initUserData(sciPointObj * pObj);
+
 
 #endif /* __SCI_BUILD__ */
