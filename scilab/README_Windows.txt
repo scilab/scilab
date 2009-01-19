@@ -13,10 +13,10 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
  
-    1 - You have already installed Scilab by executing "scilab-5.0.exe".
-        By default Scilab is in "C:\Program Files\scilab-5.0" directory.
+    1 - You have already installed Scilab by executing "scilab-5.1.exe".
+        By default Scilab is in "C:\Program Files\scilab-5.1" directory.
  
-    2 - Run Scilab by executing "Scilab 5.0" from the startup menu.
+    2 - Run Scilab by executing "Scilab 5.1" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin", 
         so you can run Scilab by executing directly "wscilex.exe".
  
@@ -25,10 +25,10 @@ I - TO RUN SCILAB (BINARY VERSION)
         All examples of dynamic link given with Scilab are prepared
         for Visual C++.
  
-    4 - If you want use Microsoft Visual C++  2008 Express with Scilab 5.0
+    4 - If you want use Microsoft Visual C++  2008 Express with Scilab 5.1
         http://www.microsoft.com/express/vc/
  
-    5 - If you want use LCC-Win32 (C compiler) with Scilab 5.0
+    5 - If you want use LCC-Win32 (C compiler) with Scilab 5.1
         See :
         http://wiki.scilab.org/Using_LCC-Win32_compiler_on_Windows_for_incremental_link_with_Scilab_5.x/
         You can download at http://www.cs.virginia.edu/~lcc-win32/
