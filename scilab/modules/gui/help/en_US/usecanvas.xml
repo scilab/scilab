@@ -10,20 +10,20 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>
-       [canvasusedfordisplay] = usecanvas();
-       [canvasusedfordisplay] = usecanvas(usecanvasfordisplay);
+       [canvasused] = usecanvas();
+       [canvasused] = usecanvas(usecanvasfordisplay);
     </synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>canvasusedfordisplay</term>
+        <term>canvasused</term>
         <listitem>
           <para>Boolean:</para>
           <itemizedlist>
             <listitem>
-              <para><literal>%T</literal> if a "GLCanvas" is used for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not</emphasis> available).</para>
+              <para><literal>%T</literal> if a "GLCanvas" is used for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not available</emphasis>).</para>
             </listitem>
             <listitem>
               <para><literal>%F</literal> if a "GLJPanel" is used for graphics display (Mixing uicontrols and graphics available).</para>
@@ -37,7 +37,7 @@
           <para>Boolean:</para>
           <itemizedlist>
             <listitem>
-              <para><literal>%T</literal> to use a "GLCanvas" for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not</emphasis> available).</para>
+              <para><literal>%T</literal> to use a "GLCanvas" for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not available</emphasis>).</para>
             </listitem>
             <listitem>
               <para><literal>%F</literal> to use a "GLJPanel" for graphics display (Mixing uicontrols and graphics available).</para>
@@ -52,7 +52,7 @@
     <para>Scilab uses a "GLJPanel" (a Swing OpenGL component) to display its graphics (plot3d, plot, ...). Unfortunately this component uses some high level OpenGL primitives that are not fully supported depending on the OS, Video Card, ...</para>
     <para>There is an alternative component "GLCanvas" (AWT + OpenGL) Scilab can use to render its graphics. <emphasis role="bold">However, this disables some capabilities such as mixing plots and uicontrols. That's why it's not the default behavior.</emphasis></para>
 
-    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts, here is a list of these cases:</para>
+    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when you use a graphics function for the first time), here is a list of these cases:</para>
     <table border="2">
       <tr>
         <td align="center"><emphasis role="bold">OS</emphasis></td>
@@ -73,7 +73,7 @@
       </tr>
       <tr>
         <td align="center">ATI Card</td>
-        <td align="center">With free drivers or ATI-drivers with version &lt; ???.</td>
+        <td align="center">With free drivers or ATI-drivers with version &lt; 8.52.3 (Installer version 8.8 / OpenGL version 2.1.7873).</td>
       </tr>
       <tr>
         <td align="center">INTEL Card</td>
@@ -81,15 +81,17 @@
       </tr>
     </table>
 
-    <para>You can also dynamically activate this component through Scilab using <literal>usecanvas</literal></para>
+    <para>You can also dynamically activate this component through Scilab using <literal>usecanvas</literal>: </para>
     <itemizedlist>
       <listitem>
         <para><literal>usecanvas(%T)</literal> will force the use of "GLCanvas" for plot rendering.</para>
       </listitem>
       <listitem>
-        <para><literal>usecanvas(%F)</literal> will use "GLJPanel" for rendering if your environment is not known as a one having problems with "GLJPanel" (See table above).</para>
+        <para><literal>usecanvas(%F)</literal> will use "GLJPanel" for rendering. If your configuration is known as a one having problems with "GLJPanel" (See table above), a warning message will be displayed.</para>
       </listitem>
     </itemizedlist>
+
+    <para>If you think your configuration is able to use the "GLJPanel" and Scilab automatically forces the use of "GLCanvas", you can test your configuration by swithing to "GLJPanel" (<literal>usecanvas(%F)</literal>) and trying to plot something (<literal>plot3d()</literal> for example). If Scilab graphics work, do not hesitate to inform us about it by sending an email to <literal>support@scilab.org</literal> and giving us your OS/Video Card/Video Card driver version, this will help use to improve future versions of Scilab.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
