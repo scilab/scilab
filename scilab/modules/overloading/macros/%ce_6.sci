@@ -28,6 +28,7 @@ function s=%ce_6(varargin)
     //check if indexes are in the dimension bounds
     dims=s.dims
     if size(dims,'*')<nind then dims($:nind)=1;end
+    if size(dims,'*')>nind then dims=[dims(1:nind-1) prod(dims(nind:$))];end // Bug 3833 fix: This line where present in %st_6 but not there
     indmax=ones(1,nind);
     for k=1:nind,indmax(k)=max(varargin(k));end
 
