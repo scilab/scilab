@@ -32,27 +32,29 @@ sciPointObj * sciGetCurrentFigure( void ) ;
 BOOL sciIsCurrentFigure(sciPointObj * pFigure);
 
 /**
- * @TODO add comment
- *
- * @param mafigure  
- * @return <ReturnValue>
+ * Modify the current figure pointeR.
  */
 int sciInitCurrentFigure( sciPointObj * mafigure ) ;
 
 /**
- * @TODO add comment
- *
- * @param mafigure  
- * @return <ReturnValue>
+ * Modify the current figure if needed.
  */
-int sciSetCurrentFigure(  sciPointObj * mafigure ) ;
+int sciSetCurrentFigure( sciPointObj * mafigure ) ;
 /*-----------------------------------------------------------------------------*/
 /**
  * Get the current Object
  */
 sciPointObj * sciGetCurrentObj( void ) ;
 
+/**
+ * Modify the current object pointer.
+ */
 void sciSetCurrentObj( sciPointObj * pobj ) ;
+
+/**
+ * @return TRUE if the object is the current one, false otherwise
+ */
+BOOL sciIsCurrentObject(sciPointObj * pobj);
 
 /**
  * Return the handle on the current object

@@ -5,6 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
+// <-- NO CHECK ERROR OUTPUT -->
+// <-- NEED JVM -->
+
 // <-- Non-regression test for bug 1768 -->
 //
 // <-- Bugzilla URL -->
@@ -29,7 +33,7 @@ mkdir(TMPDIR+"/bug_1768/help");
 mkdir(TMPDIR+"/bug_1768/help/en_US");
 
 mputl(T,TMPDIR+"/bug_1768/help/en_US/foo1.xml");
-xmltohtml(TMPDIR+"/bug_1768/help/en_US","Bug 1768 Manual");
+index_file = xmltohtml(TMPDIR+"/bug_1768/help/en_US","Bug 1768 Manual");
 
 if ~isdir(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help") then pause, end
-if fileinfo(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help/index.html") == [] then pause, end
+if fileinfo(index_file) == [] then pause, end

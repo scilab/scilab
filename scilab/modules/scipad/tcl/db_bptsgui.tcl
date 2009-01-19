@@ -37,6 +37,7 @@ proc showbptgui_bp {} {
     global bptconditiontypes bpthitconditions
     global bptsguigeom
     global currentlyopeningbptsgui
+    global Tk85
 
     # currentlyopeningbptsgui is used to prevent from a Tcl error to happen
     # when Ctrl-F9 is pressed continuously: the opening of a new bptsgui window
@@ -243,7 +244,7 @@ proc showbptgui_bp {} {
     pack $bptsgui.f1.fr -expand 0 -fill y -side right
     pack $bptsguibptlist -expand 1 -fill both 
 
-    frame $bptsgui.fb ; # contains the button at the bottom
+    frame $bptsgui.fb ; # contains the buttons at the bottom
 
     set buttonHelp $bptsgui.fb.buttonHelp
     eval "button $buttonHelp [bl "&Help"] \
@@ -255,8 +256,11 @@ proc showbptgui_bp {} {
     grid $buttonClose -row 0 -column 1 -sticky we -padx 20
     grid columnconfigure $bptsgui.fb 0 -uniform 1
     grid columnconfigure $bptsgui.fb 1 -uniform 1
+    if {$Tk85} {
+        grid anchor $bptsgui.fb center
+    }
 
-    pack $bptsgui.fb -expand 0 -fill none -pady 5 -side bottom
+    pack $bptsgui.fb -expand 1 -fill x -pady 5 -side bottom
     pack $bptsgui.f1 -expand 1 -fill both
 
     bind $bptsgui <Alt-[fb $buttonHelp]> "$buttonHelp invoke"
