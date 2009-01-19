@@ -123,6 +123,14 @@ end
 if get(h, "callback_type") <> 0 then
   pause
 end
+// Remove callback --> callbackType must switch automatically to -1
+set(h, "callback", "");
+if get(h, "callback") <> "" then
+  pause
+end
+if get(h, "callback_type") <> -1 then
+  pause
+end
 // TODO tests with wrong callbackType ??
 
 // --- Enable ---
