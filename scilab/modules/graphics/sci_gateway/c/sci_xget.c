@@ -42,8 +42,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( Rhs <= 0 )
   {
-    int zero = 0 ;
-    sci_demo(fname,"xsetm();",&zero);
+    sci_demo(fname,"xsetm();",FALSE);
     return 0;
   }
 
