@@ -124,9 +124,16 @@ sciPointObj * sciGetPointerFromHandle(long handle)
 sciPointObj * sciGetPointerFromJavaIndex (int javaIndex)
 {
 	int nbFigure = sciGetNbFigure();
-	int * ids = MALLOC(nbFigure * sizeof(int));
+	int * ids = NULL;
 	int i;
 
+	if (nbFigure == 0)
+	{
+		/* No figures, nothing to search */
+		return NULL;
+	}
+
+	ids = MALLOC(nbFigure * sizeof(int));
 	if (ids == NULL)
 	{
 		return NULL;
