@@ -250,8 +250,70 @@ a = a * a;
 a = a * a;
 z = 8 + %s
 z = 8 + %s - 4*%s*%s + 1*%s*%s*%s*%s + 4*a - 6*a*a
-*/
-a = %s
-a = a * a;
 
-          2     3     4     5      6      7      8       9     10     11   
+
+a = [10,10];
+b = [20,20,20,20];
+c = [30,30,30,30,30,30];
+d = [a,b;c];
+e = [a,b;c;d*4];
+f = [e,e*%i];
+f = [f,f];
+f = [f,f];
+f = [f,f];
+f = [f,f];
+f = [f,f];
+f = [f,f];
+f = [f,f];
+f = [f+f*%i,f+f*%i];
+*/
+
+/*
+// substraction 
+a = 5
+b = 2*%i + 4
+c = [1, 2 ; 3, 4]
+d = [1+2*%i, 3-4*%i ; -5+6*%i, -7-8*%i]
+
+//Matrix - Scalar
+c - a
+c - b
+d - a
+d - b
+
+//Scalar - Matrix
+a - c
+a - d
+b - c
+b - d
+
+//Matrix - Matrix
+c - c
+c - d
+d - c
+d - d
+*/
+
+//Addition
+a = 5
+b = 2*%i + 4
+c = [1, 2 ; 3, 4]
+d = [1+2*%i, 3-4*%i ; -5+6*%i, -7-8*%i]
+
+//Matrix + Scalar
+c + a
+c + b
+d + a
+d + b
+
+//Scalar + Matrix
+a + c
+a + d
+b + c
+b + d
+
+//Matrix + Matrix
+c + c
+c + d
+d + c
+d + d

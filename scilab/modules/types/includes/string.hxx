@@ -38,10 +38,10 @@ namespace types
 		string		toString(int _iPrecision, int _iLineLen);
 
   protected :
-    RealType getType();//			{ return RealString; }
+    RealType	getType();//			{ return RealString; }
 
   private :
-		char** m_pcData;
+		char**		m_pcData;
 
 		void 			all_delete();
 		void 			string_delete(int _iRows, int _iCols);

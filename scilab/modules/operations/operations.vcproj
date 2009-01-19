@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\matrix_substraction.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\operations.cpp"
 				>
 			</File>
@@ -248,6 +252,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\matrix_right_division.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\matrix_substraction.h"
 				>
 			</File>
 			<File
