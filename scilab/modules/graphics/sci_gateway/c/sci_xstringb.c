@@ -44,9 +44,8 @@ int sci_xstringb(char *fname,unsigned long fname_len)
   if ( Rhs <= 0 )
   {
     /* demo */
-    int zero = 1 ;
     char demo[] = "scf(); axes = gca() ; axes.axes_visible = 'on' ; str = ['Scilab','is';'not','Esilab']; xstringb(0.1,0.1,str,0.5,0.5,'fill') ; txt = gce() ; txt.box = 'on' ;" ;
-    sci_demo( fname, demo, &zero ) ;
+    sci_demo( fname, demo, FALSE ) ;
     return 0 ;
   }
 
