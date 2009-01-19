@@ -8,8 +8,6 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
-	#pragma comment(lib,"ifconsol.lib")
-	#pragma comment(lib,"libifport.lib")
 	#ifdef _DEBUG
 		#pragma comment(lib,"libifcoremdd.lib")
 		#pragma comment(lib,"libmmdd.lib")
@@ -17,13 +15,6 @@
 		#pragma comment(lib,"libifcoremd.lib")
 		#pragma comment(lib,"libmmd.lib")
 	#endif
-	#pragma comment(lib,"libirc.lib")
-#endif
-/*-----------------------------------------------------------------------------------*/ 
-#ifdef WITH_PVM
-#pragma comment(lib,"../../pvm3/lib/WIN32/libpvm3.lib")
-#pragma comment(lib,"../../pvm3/lib/WIN32/libgpvm3.lib")
-#pragma comment(lib,"../../libs/pvm_f.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/libxml2.lib")
