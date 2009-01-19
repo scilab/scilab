@@ -53,7 +53,7 @@
     <para>There is an alternative component "GLCanvas" (AWT + OpenGL) Scilab can use to render its graphics. <emphasis role="bold">However, this disables some capabilities such as mixing plots and uicontrols. That's why it's not the default behavior.</emphasis></para>
 
     <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when you use a graphics function for the first time), here is a list of these cases:</para>
-    <table border="2">
+    <informaltable border="2">
       <tr>
         <td align="center"><emphasis role="bold">OS</emphasis></td>
         <td align="center"><emphasis role="bold">Video Card</emphasis></td>
@@ -79,7 +79,7 @@
         <td align="center">INTEL Card</td>
         <td align="center">With Direct Rendering activated.</td>
       </tr>
-    </table>
+    </informaltable>
 
     <para>You can also dynamically activate this component through Scilab using <literal>usecanvas</literal>: </para>
     <itemizedlist>
