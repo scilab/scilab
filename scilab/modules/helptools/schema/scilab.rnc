@@ -166,11 +166,16 @@ synopsis = element synopsis {
 preserve.space =
   [ a:defaultValue = "preserve" ] attribute xml:space { "preserve" }?
 
+# refsection.id added for Scicos doc
 refsection = element refsection {
     common.attributes,
+    refsection.id?,
     title,
     ((any.block+, refsection*) | refsection+)
 }
+
+# refsection.id added for Scicos doc
+refsection.id = attribute id { xsd:string }
 
 ### --------------------------------------------------------------------------
 ### Chapter, appendix, section
@@ -425,10 +430,21 @@ member = element member {
 ### Paragraphs
 ### -------------------------------------
 
+# para.xref added for Scicos doc
 para = element para {
     common.attributes,
+    any.inline*,
+    para.xref*
+}
+
+# para.xref added for Scicos doc
+para.xref = element xref {
+    xref.linkend.attribute,
     any.inline*
 }
+
+# xref.linkend.attribute added for Scicos doc
+xref.linkend.attribute = attribute linkend { xsd:string }
 
 programlisting = element programlisting {
     common.attributes,
