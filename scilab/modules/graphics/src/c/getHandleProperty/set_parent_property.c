@@ -45,7 +45,7 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
     }
   else if(sciGetEntityType(pobj) == SCI_UICONTROL)
     {
-      if ((pobj == NULL) || (valueType!=sci_handles)) 
+      if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix)) 
         {
           Scierror(999,_("%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"),"set_parent_property","Parent","Figure", "Frame uicontrol");
           return SET_PROPERTY_ERROR ;
