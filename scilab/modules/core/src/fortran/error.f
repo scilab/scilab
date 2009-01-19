@@ -50,8 +50,14 @@ c
             if(first) then
                buf='at line '
                m=11
-               nlc=0
-               call linestore(lct(8))
+               if (istk(ilk).eq.13) then 
+c     .           compiled macro
+                  nlc=0
+               else
+c     .           uncompiled macro
+                  nlc=1
+               endif
+               call linestore(lct(8)-nlc)
             else
                buf='line '
                m=6
