@@ -60,6 +60,8 @@ scilab6_bin_CPPFLAGS	= \
 						-I$(top_srcdir)/modules/parse/includes/ \
 						-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 						-I$(top_srcdir)/modules/symbol/includes/ \
+						-I$(top_srcdir)/modules/operations/includes/ \
+						-I$(top_srcdir)/modules/elementary_functions/includes/ \
 						-I$(top_srcdir)/modules/types/includes/ \
 						-I$(top_srcdir)/modules/system_env/includes/ \
 						-I$(top_srcdir)/modules/functions_manager/includes/

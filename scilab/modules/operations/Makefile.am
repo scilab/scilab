@@ -5,6 +5,8 @@
 
 OPERATIONS_C_SOURCES = 	src/c/doublecomplex.c \
 			src/c/matrix_multiplication.c \
+			src/c/matrix_addition.c \
+			src/c/matrix_substraction.c \
 			src/c/matrix_division.c \
 			src/c/matrix_finite.c
 

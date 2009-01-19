@@ -38,7 +38,7 @@ namespace ast
 			std::list<Exp *>::const_iterator	col;
 			//store all element after evaluation
 
-			list<list<InternalType*>> MatrixList;
+			list<list<InternalType*> > MatrixList;
 			for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
 			{
 				list<InternalType*> RowList;
@@ -91,7 +91,7 @@ namespace ast
 				MatrixList.push_back(RowList);
 			}
 
-			list<list<InternalType*>>::const_iterator it_ML;
+			list<list<InternalType*> >::const_iterator it_ML;
 			list<InternalType*>::const_iterator it_RL;
 
 			int iAddRow = 0;
