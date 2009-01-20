@@ -78,9 +78,9 @@
 #define M_PI 3.14159265358979323846 
 #endif
 
-double Mini(double *vect, int n) ;
+double Mini(const double vect[], int n) ;
 
-double Maxi(double *vect,int n) ;
+double Maxi(const double vect[], int n) ;
 
 
 

@@ -23,7 +23,7 @@
 #include "rendererBasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
-double sciFindStPosMin( double x[], int n )
+double sciFindStPosMin( const double x[], int n )
 {
   double min ;
   int i ;
@@ -47,7 +47,7 @@ double sciFindStPosMin( double x[], int n )
   return min ;
 }
 /*------------------------------------------------------------------------*/
-int checkMonotony( double vector[], int nbElement )
+int checkMonotony( const double vector[], int nbElement )
 {
   int i ;
   if( vector[1] >= vector[0] )
@@ -79,6 +79,19 @@ int checkMonotony( double vector[], int nbElement )
   }
   return 0 ;
 
+}
+/*------------------------------------------------------------------------*/
+BOOL containsOneFiniteElement(const double vector[], int nbElement)
+{
+	int i;
+	for (i = 0; i < nbElement; i++)
+	{
+		if (finite(vector[i]))
+		{
+			return TRUE;
+		}
+	}
+	return FALSE;
 }
 /*------------------------------------------------------------------------*/
 void doubleArrayCopy( double dest[], const double src[], int nbElement )
