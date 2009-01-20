@@ -30,5 +30,5 @@ RESOURCES= $(SCIDIR)/routines/wsci/Rscilab.res
 $(SCIDIR)/bin/prog.exe : $(OBJSC)
 	@echo "Linking" 
 	$(LINKER) $(LINKER_FLAGS) -OUT:"$*.exe" \
-	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(XLIBSBIN) 
+	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(SCILAB_LIBS) 
 	@echo "done " $(SCIDIR)/bin/prog.exe 

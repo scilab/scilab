@@ -122,13 +122,13 @@ clean	::
 distclean:: 	clean
 
 tests:: 
-  @"$(SCIDIR1)\bin\scilex.exe" -nwni -nb -e scitest('lapackscilab.tst',%t);quit; 
+  @"$(SCIDIR1)/bin/scilex.exe" -nwni -nb -e scitest('lapackscilab.tst',%t);quit; 
 
 $(LIBRARY).dll: $(OBJS)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
-	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
-	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
+	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(SCILAB_LIBS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(SCILAB_LIBS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 	
 
