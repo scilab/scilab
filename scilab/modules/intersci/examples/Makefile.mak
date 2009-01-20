@@ -8,7 +8,7 @@ SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
 INTERSCI="$(SCIDIR1)\modules\intersci\bin\intersci"
 F2C="$(SCIDIR1)\bin\f2c.exe"
 
-include ../../../Makefile.incl.mak 
+include ../../dynamic_link/src/scripts/Makefile.incl.mak 
 
 FFLAGS = $(FC_OPTIONS) -DFORDLL INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 
 CFLAGS = $(CC_OPTIONS) -DFORDLL INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" -I"$(SCIDIR)\modules\core\includes" -I"$(SCIDIR)/libs/f2c" -I"$(SCIDIR)/modules/mexlib/includes" 

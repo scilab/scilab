@@ -23,7 +23,7 @@ OTHERFOBJS =
 DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB="$(SCIDIR1)\bin\LibScilab.lib"
 
-!include ..\..\..\Makefile.incl.mak
+!include ..\..\dynamic_link\src\scripts\Makefile.incl.mak
 
 FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines"
 CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"

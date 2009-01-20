@@ -119,7 +119,7 @@ function ilib_gen_Make_win32(name,table,files,libs,Makename,with_gateway,ldflags
   mfprintf(fd,"OTHERLIBS = ");
   for x=libs(:)' ; mfprintf(fd," %s.lib",x);end
   mfprintf(fd,"\n");
-  mfprintf(fd,"!include $(SCIDIR1)\\Makefile.incl.mak\n");
+  mfprintf(fd,"!include $(SCIDIR1)\\modules\\dynamic_link\\src\\scripts\\Makefile.incl.mak\n");
   
   mexcflags = ' ';
   mexfflags = ' ';
