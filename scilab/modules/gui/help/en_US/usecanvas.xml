@@ -52,8 +52,9 @@
     <para>Scilab uses a "GLJPanel" (a Swing OpenGL component) to display graphics (plot3d, plot, ...). Unfortunately, this component uses some high level OpenGL primitives which are correctly supported on some platform (depending on the operating system, video cards, drivers ...)</para>
     <para>"GLCanvas" (AWT + OpenGL) is an alternative component provided by the Java Framework. Scilab can use it to render graphics. <emphasis role="bold">However, using this component disables some capabilities such as mixing plots and uicontrols (see demo GUI/UIcontrol2). That's why it's not the default behavior.</emphasis></para>
 
-    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when a graphics function is used for the first time), here is a list of these cases:</para>
+
     <informaltable border="2">
+    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when a graphics function is used for the first time), here is a list of these cases:</para>
       <tr>
         <td align="center"><emphasis role="bold">Operating System</emphasis></td>
         <td align="center"><emphasis role="bold">Video Card</emphasis></td>
