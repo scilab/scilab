@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009-2009 - Digiteo - Jean-Baptiste Silvy
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- TEST WITH GRAPHIC -->
+
+// <-- Non-regression test for bug 3991-->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3991
+//
+// <-- Short Description -->
+// It is not possible to set a font_style greater than 10 even if one has added a new font using xlfont.
+// 
+
+xlfont('Arial Black',15);
+
+a = gca();
+// should not complain about the fact that font_style is greater than 10.
+a.font_style = 15;
