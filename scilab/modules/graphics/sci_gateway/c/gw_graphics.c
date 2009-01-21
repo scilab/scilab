@@ -50,7 +50,6 @@ static gw_generic_table Tab[]={
 	{sci_drawaxis,"drawaxis"},
 	{sci_xchange,"xchange"},
 	{sci_show_pixmap,"show_pixmap"},
-	{sci_xclear,"xclear"},
 	{sci_xclick,"xclick"},
 	{sci_xdel,"xdel"},
 	{sci_xarc,"xfarc"},

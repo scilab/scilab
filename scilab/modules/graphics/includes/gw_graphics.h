@@ -32,7 +32,6 @@
 #include "sci_xchange.h"
 #include "sci_show_pixmap.h"
 #include "sci_xrect.h"
-#include "sci_xclear.h"
 #include "sci_xclick.h"
 #include "sci_xfpoly.h"
 #include "sci_xfpolys.h"
