@@ -19,7 +19,7 @@
 #include "setenvc.h"
 #include "../../tclsci/includes/setenvtcl.h"
 #include "MALLOC.h" /* MALLOC */
-
+#include "charEncoding.h"
 #ifdef _MSC_VER
 #define putenv _putenv
 static char *env = NULL;
@@ -27,12 +27,17 @@ static char *env = NULL;
 
 static int UpdateEnvVar = 0;
 /*--------------------------------------------------------------------------*/
-BOOL setenvc(char *string,char *value)
+BOOL setenvc(char *stringIn,char *valueIn)
 {
 	int ret = 0;
 	/* 2 is = and \0 */
+	char* string;
+	char* value;
+	char *env;
 
-	char *env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
+	string = UTFToLocale(stringIn);
+	value = UTFToLocale(valueIn);
+	env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
 
 #ifdef _MSC_VER
 	/* 
@@ -61,7 +66,7 @@ BOOL setenvc(char *string,char *value)
     }
 
 	if (ret) {
-		setenvtcl(string,value);
+		setenvtcl(stringIn,valueIn);
 	}
 
 

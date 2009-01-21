@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,95 +10,116 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graph_2_mat">
+<refentry version="5.0-subset Scilab" xml:id="graph_2_mat" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>graph_2_mat</refname>
-    <refpurpose> matrice d'incidence sommets-arcs ou sommets-sommets d'un graphe  </refpurpose>
+
+    <refpurpose>matrice d'incidence sommets-arcs ou sommets-sommets d'un
+    graphe</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>a = graph_2_mat(g,mat)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>g  </term>
+        <term>g</term>
+
         <listitem>
-          <para>graphe (liste)
-</para>
+          <para>graphe (liste)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>mat  </term>
+        <term>mat</term>
+
         <listitem>
-          <para>chaîne optionnelle, 'node-arc' ou 'node-node'
-</para>
+          <para>chaÃ®ne optionnelle, <literal>'node-arc'</literal> ou
+          <literal>'node-node'</literal></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>a  </term>
+        <term>a</term>
+
         <listitem>
-          <para>matrice d'incidence (creuse)
-</para>
+          <para>matrice d'incidence (creuse)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>graph_2_mat</literal> calcule la matrice d'incidence sommets-arcs ou sommets-sommets d'un 
-    graphe <literal>g</literal>. 
-  </para>
-    <para>
-    Si l'argument optionnel <literal>mat</literal> est omis ou est égal à la chaîne de caractères 
-    <literal>'node-arc'</literal>, la matrice sommets-arcs est calculée. Si <literal>mat</literal> est la chaîne de caractères
-    <literal>'node-node'</literal>, la matrice sommets-sommets est calculée.
-  </para>
-    <para>
-    Si <literal>n</literal> est le nombre de sommets du graphe et 
-    <literal>m</literal> est le nombre d'arêtes du graphe, la matrice sommets-arcs est une
-    matrice creuse de taille <literal>(n,m)</literal>.
-  </para>
-    <para>
-    Elle est définie comme suit; si le graphe est orienté :
-  </para>
-    <para><literal>a(i,j) = +1</literal> si le sommet <literal>i</literal> est l'origine de l'arc <literal>j</literal>
-  </para>
-    <para><literal>a(i,j) = -1</literal> si le sommet <literal>i</literal> est la destination de l'arc <literal>j</literal>
-  </para>
-    <para>
-    Si le graphe est non-orienté :
-  </para>
-    <para><literal>a(i,j) = 1</literal> si le sommet <literal>i</literal> est l'origine ou la destination de l'arc <literal>j</literal>
-  </para>
-    <para>
-    Si <literal>n</literal> est le nombre de sommets du graphe, la matrice sommets-sommets 
-    est une matrice creuse de taille <literal>(n,n)</literal>.
-  </para>
-    <para>
-    Elle est définie comme suit :
-  </para>
-    <para><literal>a(i,j) = 1</literal> si il y a un arc du sommet <literal>i</literal> au sommet <literal>j</literal>
-  </para>
+
+    <para><literal>graph_2_mat</literal> calcule la matrice d'incidence
+    sommets-arcs ou sommets-sommets d'un graphe <literal>g</literal>.</para>
+
+    <para>Si l'argument optionnel <literal>mat</literal> est omis ou est Ã©gal
+    Ã  la chaÃ®ne de caractÃ¨res <literal>'node-arc'</literal>, la matrice
+    sommets-arcs est calculÃ©e. Si <literal>mat</literal> est la chaÃ®ne de
+    caractÃ¨res <literal>'node-node'</literal>, la matrice sommets-sommets est
+    calculÃ©e.</para>
+
+    <para>Si <literal>n</literal> est le nombre de sommets du graphe et
+    <literal>m</literal> est le nombre d'arÃªtes du graphe, la matrice
+    sommets-arcs est une matrice creuse de taille
+    <literal>(n,m)</literal>.</para>
+
+    <para>Elle est dÃ©finie comme suit; si le graphe est orientÃ© :</para>
+
+    <para><literal>a(i,j) = +1</literal> si le sommet <literal>i</literal> est
+    l'origine de l'arc <literal>j</literal></para>
+
+    <para><literal>a(i,j) = -1</literal> si le sommet <literal>i</literal> est
+    la destination de l'arc <literal>j</literal></para>
+
+    <para>Si le graphe est non-orientÃ© :</para>
+
+    <para><literal>a(i,j) = 1</literal> si le sommet <literal>i</literal> est
+    l'origine ou la destination de l'arc <literal>j</literal></para>
+
+    <para>Si <literal>n</literal> est le nombre de sommets du graphe, la
+    matrice sommets-sommets est une matrice creuse de taille
+    <literal>(n,n)</literal>.</para>
+
+    <para>Elle est dÃ©finie comme suit :</para>
+
+    <para><literal>a(i,j) = 1</literal> si il y a un arc du sommet
+    <literal>i</literal> au sommet <literal>j</literal></para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-g=load_graph(SCI+'/modules/metanet/demos/colored');
+
+    <programlisting role="example">
+g=load_graph(metanet_module_path()+'/demos/colored.graph');
 a=graph_2_mat(g)
 a=graph_2_mat(g,'node-node')
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="mat_2_graph">mat_2_graph</link>
-      </member>
+      <member><link linkend="mat_2_graph">mat_2_graph</link></member>
     </simplelist>
   </refsection>
 </refentry>

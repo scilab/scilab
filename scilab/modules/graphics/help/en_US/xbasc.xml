@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>xbasc</refname>
-    <refpurpose> clear a graphics window and erase the associated recorded graphics</refpurpose>
+    <refpurpose> clears a graphics window.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -36,18 +36,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    Without any argument, this function clears the current graphics window and 
-    erases the recorded graphics.
-    Otherwise it clears the graphics windows whose numbers are included 
-    in the vector <literal>window-id</literal>,
-    and erases the corresponding recorded graphics. For example 
-    <literal>xbasc(1:3)</literal> clears windows 1, 2 and 3 and erases the corresponding 
-    recorded graphics. If one of the windows does not 
+    Without any argument, this function clears the current graphic figure by deleting all its children.
+    Otherwise it clears the graphic figures whose ids are included 
+    in the vector <literal>window-id</literal>. For example 
+    <literal>xbasc(1:3)</literal> clears windows 1, 2 and 3. If one of the windows does not 
     exist, then it is automatically created.
     </para>
     <para>
-      With the new graphic mode prefer <link linkend="clf">clf</link> to  <literal>xbasc</literal>
-    </para>
+		Function <literal>xbasc</literal> is obsolete.
+		To erase a figure, please use instead the <literal>clf</literal> function.
+	</para>
+
   </refsection>
   <refsection>
     <title>See Also</title>

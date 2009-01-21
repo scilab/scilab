@@ -57,7 +57,7 @@
         <term>func</term>
 
         <listitem>
-          <para>string,the last recorded function name</para>
+          <para>string, the last recorded function name</para>
         </listitem>
       </varlistentry>
 
@@ -75,20 +75,22 @@
   <refsection>
     <title>Description</title>
 
-    <para>Each time an error occur, the Scilab error handler records it in
-    internal tables (only the last one is retained). The
+    <para>Each time an error occurs, the Scilab error handler records it in an
+    internal table (only the last one is retained). The
     <literal>lasterror</literal> function allows to get the message, the error
-    number, the current function (if any) and the current line of the current
-    function out of these tables.</para>
+    number, the current function (if any) and the current line number in the
+    current function out of this table.</para>
 
-    <para>The line number reported is the <emphasis>physical</emphasis> line
+    <para>The reported line number is the <emphasis>physical</emphasis> line
     number where the last error occurred. Note that Scilab versions before 5.0
     used to report the <emphasis>logical</emphasis> line number of the last
-    error. The difference does matter only if the function in error includes
-    continued lines before the point where the error happened.</para>
+    error. There is a difference only if the function in error includes
+    <emphasis>continued lines</emphasis> (see <link linkend="dot">dot</link>)
+    before the point where the error happened.</para>
 
-    <para>This function is useful while using <literal>errcatch</literal> or
-    <literal>execstr</literal>.</para>
+    <para>This function is especially useful while using <link
+    linkend="errcatch">errcatch</link> or <link
+    linkend="execstr">execstr</link>.</para>
 
     <para>The recorded error message may be retained for a further call to
     <literal>lasterror</literal> using

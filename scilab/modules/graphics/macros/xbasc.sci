@@ -16,11 +16,36 @@ function xbasc(win_num)
 //!
 
   [lhs,rhs]=argn(0);
-  if rhs==0, win_num=xget("window"), delete('all') ;end
-  [n1,n2]=size(win_num);
-  yyy=xget('window');
-  for xxx=win_num, xset('window',xxx);delete('all');end
-  xset('window',yyy);
+  if (rhs == 0) then
+    // clear the current figure
+    clf();
+  elseif (rhs == 1) then 
+     // clear a set of figures
+    if (type(win_num) <> 1) then
+	  error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A vector expected.\n"), "xbasc", 1));
+	  return;
+	end
+	
+	if (winsid() == []) then
+	  // no current figure
+	  curFig = [];
+	else
+	  curFig = gcf();
+	end
+	
+    for figNum = win_num,
+      clf(scf(figNum));
+    end
+	
+	// restore current figure
+	if (curFig <> []) then
+	  scf(curFig);
+	end
+	
+  else
+	error(999, msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "xbasc", 0, 1));
+	return;
+  end
 endfunction 
 
 

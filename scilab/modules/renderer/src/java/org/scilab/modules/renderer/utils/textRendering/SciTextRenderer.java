@@ -29,6 +29,10 @@ public class SciTextRenderer {
 
 	private static final float EPSILON = 1.0e-4f; 
 
+	private static boolean areMipmapsAvailable;
+	
+	private static boolean areMMsAvailableUpToDate;
+	
 	/** Size of the font to use */
 	private float fontSize;
 	
@@ -39,10 +43,6 @@ public class SciTextRenderer {
 	private float scaleFactor;
 	
 	private boolean useFractionalMetrics;
-	
-	private static boolean areMipmapsAvailable;
-	
-	private static boolean areMMsAvailableUpToDate;
 	
 	/**
 	 * Constructor from a Font to use.

@@ -48,7 +48,7 @@
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -66,7 +66,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="doublylinkedlist.def"
@@ -130,7 +129,7 @@
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -148,7 +147,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="doublylinkedlist.def"
@@ -210,7 +208,7 @@
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -293,7 +291,7 @@
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;../MALLOC/includes"
 				PreprocessorDefinitions="EXPORT_DOUBLYLINKEDLIST_DLL;_CRT_SECURE_NO_WARNINGS"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"

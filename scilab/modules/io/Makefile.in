@@ -128,9 +128,9 @@ am__objects_3 = libsciio_la-sci_execstr.lo libsciio_la-sci_read4b.lo \
 	libsciio_la-sci_newest.lo \
 	libsciio_la-sci_get_absolute_file_path.lo
 am__objects_4 = oldloadsave.lo intwrite4b.lo intexec.lo intgetf.lo \
-	intrat.lo intwritb.lo intgetenv.lo intwrite.lo intprint.lo \
-	intdisp.lo intread4b.lo intdeff.lo intlib.lo intdiary.lo \
-	intread.lo intexecstr.lo intreadb.lo intfile.lo
+	intrat.lo intwritb.lo intwrite.lo intprint.lo intdisp.lo \
+	intread4b.lo intdeff.lo intlib.lo intdiary.lo intread.lo \
+	intexecstr.lo intreadb.lo intfile.lo
 am_libsciio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
@@ -411,7 +411,6 @@ sci_gateway/fortran/intexec.f \
 sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
-sci_gateway/fortran/intgetenv.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intprint.f \
 sci_gateway/fortran/intdisp.f \
@@ -969,9 +968,6 @@ intrat.lo: sci_gateway/fortran/intrat.f
 
 intwritb.lo: sci_gateway/fortran/intwritb.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intwritb.lo `test -f 'sci_gateway/fortran/intwritb.f' || echo '$(srcdir)/'`sci_gateway/fortran/intwritb.f
-
-intgetenv.lo: sci_gateway/fortran/intgetenv.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intgetenv.lo `test -f 'sci_gateway/fortran/intgetenv.f' || echo '$(srcdir)/'`sci_gateway/fortran/intgetenv.f
 
 intwrite.lo: sci_gateway/fortran/intwrite.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intwrite.lo `test -f 'sci_gateway/fortran/intwrite.f' || echo '$(srcdir)/'`sci_gateway/fortran/intwrite.f

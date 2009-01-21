@@ -46,9 +46,9 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
+				PreprocessorDefinitions="_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -74,8 +74,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
@@ -137,9 +135,9 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
+				PreprocessorDefinitions="_DLL;_DEBUG;_CRT_SECURE_NO_DEPRECATE;FORDLL"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -165,8 +163,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="msvcrtd.lib libcmtd.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
@@ -229,9 +225,9 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_DLL;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -258,7 +254,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib libcmt.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="0"
@@ -321,9 +316,9 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=""
-				PreprocessorDefinitions="_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_DLL;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -350,7 +345,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib libcmt.lib"
 				OutputFile="..\..\bin\hashtable.dll"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="0"

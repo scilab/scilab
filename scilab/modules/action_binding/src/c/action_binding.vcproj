@@ -48,7 +48,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;STATIC_LINKED"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -67,7 +67,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib libjvm.lib scilab_windows.lib scilocalization.lib"
 				OutputFile="../../../../bin/sciaction_binding.dll"
 				LinkIncremental="1"
@@ -133,7 +132,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;STATIC_LINKED"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -152,7 +151,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib libjvm.lib scilab_windows.lib scilocalization.lib"
 				OutputFile="../../../../bin/sciaction_binding.dll"
 				LinkIncremental="1"
@@ -219,7 +217,7 @@
 				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;STATIC_LINKED"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -309,7 +307,7 @@
 				AdditionalIncludeDirectories=".;../../includes;../jni;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../localization/includes;../../../../libs/intl"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;STATIC_LINKED"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"

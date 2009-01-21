@@ -77,8 +77,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -107,9 +105,9 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
   sciInitVisibility( pobj, TRUE ) ;
 
-  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
+	/* Clone user data from parent */
+  initUserData(pobj);
+	cloneUserData(pfiguremdl, pobj);
 
 
   pobj->pObservers = DoublyLinkedList_new() ;
@@ -221,317 +219,320 @@ sciPointObj *
 ConstructSubWin(sciPointObj * pparentfigure)
 {
 
-  char logFlags[3];
-  int i;
-  char dir;
-  BOOL autoTicks[3];
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciSubWindow * ppsubwin = NULL;
-  sciPointObj * paxesmdl = getAxesModel() ;
-  sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+	char logFlags[3];
+	int i;
+	char dir;
+	BOOL autoTicks[3];
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciSubWindow * ppsubwin = NULL;
+	sciPointObj * paxesmdl = getAxesModel() ;
+	sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
 
-  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
-    {
-
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return NULL;
-      sciSetEntityType (pobj, SCI_SUBWIN);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
+	if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
 	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+			return NULL;
+		sciSetEntityType (pobj, SCI_SUBWIN);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		startFigureDataWriting(pparentfigure);
+
+		if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			endFigureDataWriting(pparentfigure);
+			return NULL ;
+		}
+
+		ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
+
+
+		ppsubwin->callback = (char *)NULL;
+		ppsubwin->callbacklen = 0;
+		ppsubwin->callbackevent = 100;
+
+		if (sciInitGraphicContext (pobj) == -1)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+		if (sciInitGraphicMode (pobj) == -1)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		/* F.Leray 08.04.04 */
+		if (sciInitFontContext (pobj) == -1)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		/* update colors so they will fit the colormap of parent figure and not model one*/
+		sciRecursiveUpdateBaW(pobj, sciGetNumColors(getFigureModel()), sciGetNumColors(sciGetParentFigure(pobj)));
+
+		sciGetLogFlags(paxesmdl, logFlags);
+		sciInitLogFlags(pobj, logFlags);
+
+		ppsubwin->axes.ticscolor  = ppaxesmdl->axes.ticscolor;
+		ppsubwin->axes.subint[0]  = ppaxesmdl->axes.subint[0];
+		ppsubwin->axes.subint[1]  = ppaxesmdl->axes.subint[1];
+		ppsubwin->axes.subint[2]  = ppaxesmdl->axes.subint[2];
+
+		dir= ppaxesmdl->axes.xdir;
+		ppsubwin->axes.xdir = dir;
+		dir= ppaxesmdl->axes.ydir;
+		ppsubwin->axes.ydir = dir;
+
+		ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
+		sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
+		for (i=0 ; i<7 ; i++)
+			ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
+
+		for (i=0 ; i<3 ; i++)
+			ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
+		ppsubwin->alpha  = ppaxesmdl->alpha;
+		ppsubwin->theta  = ppaxesmdl->theta;
+		ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;
+		ppsubwin->theta_kp  = ppaxesmdl->theta_kp;
+		ppsubwin->is3d  = ppaxesmdl->is3d;
+
+		/* F.Leray 22.09.04 */
+
+		ppsubwin->axes.u_xlabels = (char **) NULL; /* init. ci-apres */
+		ppsubwin->axes.u_ylabels = (char **) NULL; /* init. ci-apres */
+		ppsubwin->axes.u_zlabels = (char **) NULL; /* init. ci-apres */
+		ppsubwin->axes.u_xgrads  = (double *)NULL;
+		ppsubwin->axes.u_ygrads  = (double *)NULL;
+		ppsubwin->axes.u_zgrads  = (double *)NULL;
+
+
+		(ppsubwin->axes).axes_visible[0] = ppaxesmdl->axes.axes_visible[0];
+		(ppsubwin->axes).axes_visible[1] = ppaxesmdl->axes.axes_visible[1];
+		(ppsubwin->axes).axes_visible[2] = ppaxesmdl->axes.axes_visible[2];
+		(ppsubwin->axes).reverse[0] = ppaxesmdl->axes.reverse[0];
+		(ppsubwin->axes).reverse[1] = ppaxesmdl->axes.reverse[1];
+		(ppsubwin->axes).reverse[2] = ppaxesmdl->axes.reverse[2];
+		ppsubwin->flagNax = ppaxesmdl->flagNax;
+
+		/* do not forget the nbsubtics ! */
+		(ppsubwin->axes).nbsubtics[0] = ppaxesmdl->axes.nbsubtics[0];
+		(ppsubwin->axes).nbsubtics[1] = ppaxesmdl->axes.nbsubtics[1];
+		(ppsubwin->axes).nbsubtics[2] = ppaxesmdl->axes.nbsubtics[2];
+
+		(ppsubwin->axes).nxgrads = ppaxesmdl->axes.nxgrads;
+		(ppsubwin->axes).nygrads = ppaxesmdl->axes.nygrads;
+		(ppsubwin->axes).nzgrads = ppaxesmdl->axes.nzgrads;
+
+		for(i=0;i<(ppsubwin->axes).nxgrads;i++) ppsubwin->axes.xgrads[i] = ppaxesmdl->axes.xgrads[i];
+		for(i=0;i<(ppsubwin->axes).nygrads;i++) ppsubwin->axes.ygrads[i] = ppaxesmdl->axes.ygrads[i];
+		for(i=0;i<(ppsubwin->axes).nzgrads;i++) ppsubwin->axes.zgrads[i] = ppaxesmdl->axes.zgrads[i];
+
+		(ppsubwin->axes).u_nxgrads = ppaxesmdl->axes.u_nxgrads;
+		(ppsubwin->axes).u_nygrads = ppaxesmdl->axes.u_nygrads;
+		(ppsubwin->axes).u_nzgrads = ppaxesmdl->axes.u_nzgrads;
+		(ppsubwin->axes).u_xgrads  = AllocUserGrads(ppsubwin->axes.u_xgrads,ppaxesmdl->axes.u_nxgrads);
+		CopyUserGrads(ppaxesmdl->axes.u_xgrads,
+			ppsubwin->axes.u_xgrads,
+			ppsubwin->axes.u_nxgrads);
+		(ppsubwin->axes).u_ygrads  = AllocUserGrads(ppsubwin->axes.u_ygrads,ppaxesmdl->axes.u_nygrads);
+		CopyUserGrads(ppaxesmdl->axes.u_ygrads,
+			ppsubwin->axes.u_ygrads,
+			ppsubwin->axes.u_nygrads);
+		(ppsubwin->axes).u_zgrads  = AllocUserGrads(ppsubwin->axes.u_zgrads,ppaxesmdl->axes.u_nzgrads);
+		CopyUserGrads(ppaxesmdl->axes.u_zgrads,
+			ppsubwin->axes.u_zgrads,
+			ppsubwin->axes.u_nzgrads);
+		(ppsubwin->axes).u_xlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_xlabels,
+			ppaxesmdl->axes.u_xlabels,
+			ppsubwin->axes.u_nxgrads);
+
+		(ppsubwin->axes).u_ylabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_ylabels,
+			ppaxesmdl->axes.u_ylabels,
+			ppsubwin->axes.u_nygrads);
+
+		(ppsubwin->axes).u_zlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_zlabels,
+			ppaxesmdl->axes.u_zlabels,
+			ppsubwin->axes.u_nzgrads);
+
+		sciGetAutoTicks(paxesmdl, autoTicks);
+		sciInitAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
+		/* end 22.09.04 */
+
+		ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
+		ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
+		ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];
+		sciInitHiddenAxisColor(pobj, sciGetHiddenAxisColor(paxesmdl));
+		ppsubwin->project[0]= ppaxesmdl->project[0];
+		ppsubwin->project[1]= ppaxesmdl->project[1];
+		ppsubwin->project[2]= ppaxesmdl->project[2];
+		sciInitHiddenColor(pobj, sciGetHiddenColor(paxesmdl));
+		ppsubwin->isoview= ppaxesmdl->isoview;
+		ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
+		ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
+		ppsubwin->WRect[2]   = ppaxesmdl->WRect[2];
+		ppsubwin->WRect[3]   = ppaxesmdl->WRect[3];
+
+		ppsubwin->ARect[0]   = ppaxesmdl->ARect[0];
+		ppsubwin->ARect[1]   = ppaxesmdl->ARect[1];
+		ppsubwin->ARect[2]   = ppaxesmdl->ARect[2];
+		ppsubwin->ARect[3]   = ppaxesmdl->ARect[3];
+
+		ppsubwin->FRect[0]   = ppaxesmdl->FRect[0];
+		ppsubwin->FRect[1]   = ppaxesmdl->FRect[1] ;
+		ppsubwin->FRect[2]   = ppaxesmdl->FRect[2];
+		ppsubwin->FRect[3]   = ppaxesmdl->FRect[3];
+		ppsubwin->FRect[4]   = ppaxesmdl->FRect[4] ;
+		ppsubwin->FRect[5]   = ppaxesmdl->FRect[5];
+
+		ppsubwin->visible = ppaxesmdl->visible;
+
+		ppsubwin->clip_region_set = 0 ;
+		sciInitIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
+		sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
+
+		ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
+
+		ppsubwin->SRect[0]  =  ppaxesmdl->SRect[0];
+		ppsubwin->SRect[1]  =  ppaxesmdl->SRect[1];
+		ppsubwin->SRect[2]  =  ppaxesmdl->SRect[2];
+		ppsubwin->SRect[3]  =  ppaxesmdl->SRect[3];
+		ppsubwin->SRect[4]  =  ppaxesmdl->SRect[4];
+		ppsubwin->SRect[5]  =  ppaxesmdl->SRect[5];
+
+		ppsubwin->tight_limits = ppaxesmdl->tight_limits;
+		ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
+
+		sciInitUseNurbs(pobj, sciGetUseNurbs(paxesmdl));
+
+		/* clone user data from model */
+		cloneUserData(paxesmdl, pobj);
+
+		if (sciInitSelectedSubWin(pobj) < 0 )
+		{
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *)NULL ;
+		}
+
+		/* Construction des labels: x,y,z et Title */
+
+		if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
+			sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		sciSetStrings( ppsubwin->mon_title,
+			sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_title) ) ;
+
+
+		/*------------------------------------*/
+		if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
+			DestroyLabel(ppsubwin->mon_title);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		sciSetStrings( ppsubwin->mon_x_label,
+			sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_x_label) ) ;
+
+
+		/*------------------------------------*/
+		if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
+			DestroyLabel(ppsubwin->mon_title);
+			DestroyLabel(ppsubwin->mon_x_label);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+		sciSetStrings( ppsubwin->mon_y_label,
+			sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_y_label) ) ;
+
+		/*------------------------------------*/
+		if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
+			DestroyLabel(ppsubwin->mon_title);
+			DestroyLabel(ppsubwin->mon_x_label);
+			DestroyLabel(ppsubwin->mon_y_label);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+		sciSetStrings( ppsubwin->mon_z_label,
+			sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)  ) ;
+
+		/* labels auto_position modes */
+		pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_position;
+
+		pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_position;
+
+		pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_position;
+
+		pLABEL_FEATURE(ppsubwin->mon_title)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_position;
+
+		/* labels auto_rotation modes */
+		pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_rotation;
+
+		pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_rotation;
+
+		pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_rotation;
+
+		pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
+
+		cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label ) ;
+		cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label ) ;
+		cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
+		cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
+
+		endFigureDataWriting(pparentfigure);
+
+		return (sciPointObj *)pobj;
+
 	}
-
-      startFigureDataWriting(pparentfigure);
-
-      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        endFigureDataWriting(pparentfigure);
-        return NULL ;
-      }
-
-      ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
-
-
-      ppsubwin->callback = (char *)NULL;
-      ppsubwin->callbacklen = 0;
-      ppsubwin->callbackevent = 100;
-
-      if (sciInitGraphicContext (pobj) == -1)
+	else
 	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-          endFigureDataWriting(pparentfigure);
-	  return (sciPointObj *) NULL;
+		Scierror(999, _("The parent has to be a FIGURE\n"));
+		return NULL;
 	}
-      if (sciInitGraphicMode (pobj) == -1)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-          endFigureDataWriting(pparentfigure);
-	  return (sciPointObj *) NULL;
-	}
-
-      /* F.Leray 08.04.04 */
-      if (sciInitFontContext (pobj) == -1)
-	{
-          sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-          endFigureDataWriting(pparentfigure);
-	  return (sciPointObj *) NULL;
-	}
-
-      /* update colors so they will fit the colormap of parent figure and not model one*/
-      sciRecursiveUpdateBaW(pobj, sciGetNumColors(getFigureModel()), sciGetNumColors(sciGetParentFigure(pobj)));
-
-      sciGetLogFlags(paxesmdl, logFlags);
-      sciInitLogFlags(pobj, logFlags);
-
-      ppsubwin->axes.ticscolor  = ppaxesmdl->axes.ticscolor;
-      ppsubwin->axes.subint[0]  = ppaxesmdl->axes.subint[0];
-      ppsubwin->axes.subint[1]  = ppaxesmdl->axes.subint[1];
-      ppsubwin->axes.subint[2]  = ppaxesmdl->axes.subint[2];
-
-      dir= ppaxesmdl->axes.xdir;
-      ppsubwin->axes.xdir = dir;
-      dir= ppaxesmdl->axes.ydir;
-      ppsubwin->axes.ydir = dir;
-
-      ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
-      sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
-      for (i=0 ; i<7 ; i++)
-	ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
-
-      for (i=0 ; i<3 ; i++)
-	ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
-      ppsubwin->alpha  = ppaxesmdl->alpha;
-      ppsubwin->theta  = ppaxesmdl->theta;
-      ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;
-      ppsubwin->theta_kp  = ppaxesmdl->theta_kp;
-      ppsubwin->is3d  = ppaxesmdl->is3d;
-
-      /* F.Leray 22.09.04 */
-
-      ppsubwin->axes.u_xlabels = (char **) NULL; /* init. ci-apres */
-      ppsubwin->axes.u_ylabels = (char **) NULL; /* init. ci-apres */
-      ppsubwin->axes.u_zlabels = (char **) NULL; /* init. ci-apres */
-      ppsubwin->axes.u_xgrads  = (double *)NULL;
-      ppsubwin->axes.u_ygrads  = (double *)NULL;
-      ppsubwin->axes.u_zgrads  = (double *)NULL;
-
-
-      (ppsubwin->axes).axes_visible[0] = ppaxesmdl->axes.axes_visible[0];
-      (ppsubwin->axes).axes_visible[1] = ppaxesmdl->axes.axes_visible[1];
-      (ppsubwin->axes).axes_visible[2] = ppaxesmdl->axes.axes_visible[2];
-      (ppsubwin->axes).reverse[0] = ppaxesmdl->axes.reverse[0];
-      (ppsubwin->axes).reverse[1] = ppaxesmdl->axes.reverse[1];
-      (ppsubwin->axes).reverse[2] = ppaxesmdl->axes.reverse[2];
-      ppsubwin->flagNax = ppaxesmdl->flagNax;
-
-      /* do not forget the nbsubtics ! */
-      (ppsubwin->axes).nbsubtics[0] = ppaxesmdl->axes.nbsubtics[0];
-      (ppsubwin->axes).nbsubtics[1] = ppaxesmdl->axes.nbsubtics[1];
-      (ppsubwin->axes).nbsubtics[2] = ppaxesmdl->axes.nbsubtics[2];
-
-      (ppsubwin->axes).nxgrads = ppaxesmdl->axes.nxgrads;
-      (ppsubwin->axes).nygrads = ppaxesmdl->axes.nygrads;
-      (ppsubwin->axes).nzgrads = ppaxesmdl->axes.nzgrads;
-
-      for(i=0;i<(ppsubwin->axes).nxgrads;i++) ppsubwin->axes.xgrads[i] = ppaxesmdl->axes.xgrads[i];
-      for(i=0;i<(ppsubwin->axes).nygrads;i++) ppsubwin->axes.ygrads[i] = ppaxesmdl->axes.ygrads[i];
-      for(i=0;i<(ppsubwin->axes).nzgrads;i++) ppsubwin->axes.zgrads[i] = ppaxesmdl->axes.zgrads[i];
-
-      (ppsubwin->axes).u_nxgrads = ppaxesmdl->axes.u_nxgrads;
-      (ppsubwin->axes).u_nygrads = ppaxesmdl->axes.u_nygrads;
-      (ppsubwin->axes).u_nzgrads = ppaxesmdl->axes.u_nzgrads;
-      (ppsubwin->axes).u_xgrads  = AllocUserGrads(ppsubwin->axes.u_xgrads,ppaxesmdl->axes.u_nxgrads);
-      CopyUserGrads(ppaxesmdl->axes.u_xgrads,
-		    ppsubwin->axes.u_xgrads,
-		    ppsubwin->axes.u_nxgrads);
-      (ppsubwin->axes).u_ygrads  = AllocUserGrads(ppsubwin->axes.u_ygrads,ppaxesmdl->axes.u_nygrads);
-      CopyUserGrads(ppaxesmdl->axes.u_ygrads,
-		    ppsubwin->axes.u_ygrads,
-		    ppsubwin->axes.u_nygrads);
-      (ppsubwin->axes).u_zgrads  = AllocUserGrads(ppsubwin->axes.u_zgrads,ppaxesmdl->axes.u_nzgrads);
-      CopyUserGrads(ppaxesmdl->axes.u_zgrads,
-		    ppsubwin->axes.u_zgrads,
-		    ppsubwin->axes.u_nzgrads);
-      (ppsubwin->axes).u_xlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_xlabels,
-								ppaxesmdl->axes.u_xlabels,
-								ppsubwin->axes.u_nxgrads);
-
-      (ppsubwin->axes).u_ylabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_ylabels,
-								ppaxesmdl->axes.u_ylabels,
-								ppsubwin->axes.u_nygrads);
-
-      (ppsubwin->axes).u_zlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_zlabels,
-								ppaxesmdl->axes.u_zlabels,
-								ppsubwin->axes.u_nzgrads);
-
-      sciGetAutoTicks(paxesmdl, autoTicks);
-      sciInitAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
-      /* end 22.09.04 */
-
-      ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
-      ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
-      ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];
-      sciInitHiddenAxisColor(pobj, sciGetHiddenAxisColor(paxesmdl));
-      ppsubwin->project[0]= ppaxesmdl->project[0];
-      ppsubwin->project[1]= ppaxesmdl->project[1];
-      ppsubwin->project[2]= ppaxesmdl->project[2];
-      sciInitHiddenColor(pobj, sciGetHiddenColor(paxesmdl));
-      ppsubwin->isoview= ppaxesmdl->isoview;
-      ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
-      ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
-      ppsubwin->WRect[2]   = ppaxesmdl->WRect[2];
-      ppsubwin->WRect[3]   = ppaxesmdl->WRect[3];
-
-      ppsubwin->ARect[0]   = ppaxesmdl->ARect[0];
-      ppsubwin->ARect[1]   = ppaxesmdl->ARect[1];
-      ppsubwin->ARect[2]   = ppaxesmdl->ARect[2];
-      ppsubwin->ARect[3]   = ppaxesmdl->ARect[3];
-
-      ppsubwin->FRect[0]   = ppaxesmdl->FRect[0];
-      ppsubwin->FRect[1]   = ppaxesmdl->FRect[1] ;
-      ppsubwin->FRect[2]   = ppaxesmdl->FRect[2];
-      ppsubwin->FRect[3]   = ppaxesmdl->FRect[3];
-      ppsubwin->FRect[4]   = ppaxesmdl->FRect[4] ;
-      ppsubwin->FRect[5]   = ppaxesmdl->FRect[5];
-
-      ppsubwin->visible = ppaxesmdl->visible;
-
-      ppsubwin->clip_region_set = 0 ;
-      sciInitIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
-      sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
-
-      ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
-
-      ppsubwin->SRect[0]  =  ppaxesmdl->SRect[0];
-      ppsubwin->SRect[1]  =  ppaxesmdl->SRect[1];
-      ppsubwin->SRect[2]  =  ppaxesmdl->SRect[2];
-      ppsubwin->SRect[3]  =  ppaxesmdl->SRect[3];
-      ppsubwin->SRect[4]  =  ppaxesmdl->SRect[4];
-      ppsubwin->SRect[5]  =  ppaxesmdl->SRect[5];
-
-      ppsubwin->tight_limits = ppaxesmdl->tight_limits;
-      ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
-
-      sciInitUseNurbs(pobj, sciGetUseNurbs(paxesmdl));
-
-      if (sciInitSelectedSubWin(pobj) < 0 )
-      {
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *)NULL ;
-      }
-
-      /* Construction des labels: x,y,z et Title */
-
-      if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
-	sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-
-      sciSetStrings( ppsubwin->mon_title,
-                     sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_title) ) ;
-
-
-      /*------------------------------------*/
-      if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
-	DestroyLabel(ppsubwin->mon_title);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-
-      sciSetStrings( ppsubwin->mon_x_label,
-                     sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_x_label) ) ;
-
-
-      /*------------------------------------*/
-      if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
-	DestroyLabel(ppsubwin->mon_title);
-	DestroyLabel(ppsubwin->mon_x_label);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-      sciSetStrings( ppsubwin->mon_y_label,
-                     sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_y_label) ) ;
-
-      /*------------------------------------*/
-      if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
-	DestroyLabel(ppsubwin->mon_title);
-	DestroyLabel(ppsubwin->mon_x_label);
-	DestroyLabel(ppsubwin->mon_y_label);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-      sciSetStrings( ppsubwin->mon_z_label,
-                     sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)  ) ;
-
-      /* labels auto_position modes */
-      pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_position;
-
-      pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_position;
-
-      pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_position;
-
-      pLABEL_FEATURE(ppsubwin->mon_title)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_position;
-
-      /* labels auto_rotation modes */
-      pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_rotation;
-
-      pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_rotation;
-
-      pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_rotation;
-
-      pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
-
-      cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label ) ;
-      cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label ) ;
-      cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
-      cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
-
-      endFigureDataWriting(pparentfigure);
-
-      return (sciPointObj *)pobj;
-
-    }
-  else
-    {
-      Scierror(999, _("The parent has to be a FIGURE\n"));
-      return NULL;
-    }
 }
 
 
@@ -578,8 +579,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
 
   ppText = pTEXT_FEATURE( pObj ) ;
 
-  ppText->user_data = (int *) NULL;
-  ppText->size_of_user_data = 0;
+  initUserData(pObj);
 
 
   /* it must be specified for some functions */
@@ -872,9 +872,6 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 {
   sciPointObj * pobj = NULL;
   sciPolyline * ppPoly = NULL;
-
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
   int i = 0;
   if (sciGetEntityType (pparentsubwin) != SCI_SUBWIN)
   {
@@ -1040,9 +1037,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
   sciInitVisibility( pobj, TRUE ) ;
 
-  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
+  initUserData(pobj);
 
   pobj->pObservers = NULL;
 
@@ -2242,8 +2237,7 @@ ConstructCompoundSeq (int number)
   sciInitSelectedSons(pobj);
 
   /* set Compound properties*/
-  ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
-  ppagr->size_of_user_data = 0;
+  initUserData(pobj);
   ppagr->callback = (char *)NULL;
   ppagr->callbacklen = 0;
   ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));
@@ -2333,8 +2327,6 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
  */
 sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
 {
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
 
 	/* Allocate relationShip */
 	createDefaultRelationShip(pObj);
@@ -2355,10 +2347,7 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
 
   sciInitVisibility( pObj, TRUE ) ;
 
-  sciGetPointerToUserData( pObj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
-
+  initUserData(pObj);
 
   pObj->pObservers = DoublyLinkedList_new() ;
   createDrawingObserver( pObj ) ;
@@ -2484,4 +2473,16 @@ void createDefaultRelationShip(sciPointObj * pObj)
 
 }
 /*----------------------------------------------------------------------------*/
+/**
+ * Initialize the user data of a graphic obj
+ */
+void initUserData(sciPointObj * pObj)
+{
+	int ** userData = NULL ;
+  int *  udSize   = NULL ;
 
+	sciGetPointerToUserData( pObj, &userData, &udSize ) ;
+  *userData = NULL ;
+  *udSize   = 0    ;
+}
+/*----------------------------------------------------------------------------*/

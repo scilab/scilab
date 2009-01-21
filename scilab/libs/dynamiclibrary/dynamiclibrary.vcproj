@@ -48,7 +48,7 @@
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -66,7 +66,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
@@ -129,7 +128,7 @@
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -147,7 +146,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
@@ -208,7 +206,7 @@
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -290,7 +288,7 @@
 				WholeProgramOptimization="false"
 				AdditionalIncludeDirectories="includes;../../modules/core/includes;"
 				PreprocessorDefinitions="EXPORT_DYNAMICLIBRARY_DLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"

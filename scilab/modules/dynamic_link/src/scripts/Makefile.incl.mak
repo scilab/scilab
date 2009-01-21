@@ -28,17 +28,17 @@ LINKER_OPTIMISATION_MODE=/RELEASE
 CC__OPTIMISATION_MODE=-Z7 -O2
 !ENDIF
 
-CC_COMMON=-D__MSC__ $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES) $(DTK) $(USE_MT)
+CC_COMMON=-D__MSC__ $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
 LINKER_FLAGS=/NOLOGO $(MACHINE) $(LINKER_OPTIMISATION_MODE)
 CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE)
 
 # include options 
-INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
--I"$(SCIDIR)\modules\core\includes" \
--I"$(SCIDIR)\modules\output_stream\includes" \
--I"$(SCIDIR)\modules\jvm\includes" \
--I"$(SCIDIR)\modules\localization\includes" \
--I"$(SCIDIR)\libs\intl" \
+INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
+-I"$(SCIDIR)/modules/core/includes" \
+-I"$(SCIDIR)/modules/output_stream/includes" \
+-I"$(SCIDIR)/modules/jvm/includes" \
+-I"$(SCIDIR)/modules/localization/includes" \
+-I"$(SCIDIR)/libs/intl" \
 -I"$(SCIDIR)/libs/f2c" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
@@ -72,18 +72,14 @@ RCVARS=-r -DWIN32
 #==================================================
 # Libraries 
 #==================================================
-GUIFLAGS=-SUBSYSTEM:console
-GUI=comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib 
-GUILIBS=-NODEFAULTLIB:libc.lib -NODEFAULTLIB:msvcrt.lib $(GUI) libcmt.lib oldnames.lib
-
-# XLIBSBIN is used by the binary version of Scilab for linking examples
-XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
-"$(SCIDIR1)\bin\libf2c.lib" "$(SCIDIR1)\bin\lapack.lib" \
-"$(SCIDIR1)\bin\scicos.lib" "$(SCIDIR1)\bin\intersci.lib" \
-"$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib" \
-"$(SCIDIR1)\bin\integer.lib" "$(SCIDIR1)\bin\optimization_f.lib" \
-"$(SCIDIR1)\bin\libjvm.lib" "$(SCIDIR1)\bin\scilocalization.lib" \
-"$(SCIDIR1)\bin\libintl.lib" "$(SCIDIR1)\bin\linpack_f.lib"
+# SCILAB_LIBS is used by the binary version of Scilab for linking external codes
+SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
+"$(SCIDIR1)/bin/libf2c.lib" "$(SCIDIR1)/bin/lapack.lib" \
+"$(SCIDIR1)/bin/scicos.lib" "$(SCIDIR1)/bin/intersci.lib" \
+"$(SCIDIR1)/bin/scioutput_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
+"$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
+"$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
+"$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib"
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
@@ -103,7 +99,7 @@ XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
 
 .f.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 2>NUL
+	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
 	@$(CC) $(CFLAGS) $*.c 
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 

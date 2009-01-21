@@ -885,12 +885,11 @@ AC_LIBXML2()
 ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
 
 AC_ARG_ENABLE(build-localization,
-		AC_HELP_STRING([--enable-build-localization],[Enable the localization build]),
-		[with_localization=yes],
-		[with_localization='no']
+		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
 		)
+BUILD_LOCALIZATION_ENABLE=no
 
-if test $with_localization != no; then
+if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
 
@@ -904,9 +903,9 @@ if test $with_localization != no; then
 	if test x$MSGCAT = xno; then
 	  AC_ERROR([As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
 	fi
-
+	BUILD_LOCALIZATION_ENABLE=yes
 fi
-AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
+AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$BUILD_LOCALIZATION_ENABLE" = yes)
 
 #######################
 ## Test for blas/Atlas and lapack
@@ -1454,7 +1453,7 @@ echo ""
 #fi
 
 echo ""
-if test $with_localization != no; then
+if test $enable_build_localization != no; then
    echo "Gettext/localization configuration:"
    echo "xgettext ............... = $XGETTEXT"
    echo "msgfmt  ................ = $MSGFMT"
