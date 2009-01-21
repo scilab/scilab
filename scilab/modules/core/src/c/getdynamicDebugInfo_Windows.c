@@ -18,6 +18,7 @@
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyCPUIdentifier(void);
 static char * GetRegKeyVideoCard(void);
@@ -202,7 +203,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetNumberMonitors());
 	
 	#define PATH_var "Path"
-	fromGetenv = getenv(PATH_var);
+	fromGetenv = localeToUTF(getenv(PATH_var));
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) +1) );
@@ -211,7 +212,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 		
 	#define COMSPEC_var "ComSpec"
-	fromGetenv = getenv(COMSPEC_var);
+	fromGetenv = localeToUTF(getenv(COMSPEC_var));
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
@@ -220,7 +221,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 	
 	#define TMP_var "TMP"
-	fromGetenv = getenv(TMP_var);
+	fromGetenv = localeToUTF(getenv(TMP_var));
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TMP_var) + 1) );
@@ -229,7 +230,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 
 	#define TEMP_var "TEMP"
-	fromGetenv = getenv(TEMP_var);
+	fromGetenv = localeToUTF(getenv(TEMP_var));
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
@@ -238,7 +239,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 
 	#define SCIHOME_var "SCIHOME"
-	fromGetenv = getenv(SCIHOME_var);
+	fromGetenv = localeToUTF(getenv(SCIHOME_var));
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );
