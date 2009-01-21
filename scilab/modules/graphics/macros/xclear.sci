@@ -14,22 +14,37 @@ function xclear(win_num)
 // win_num can also be a vector of window Id to clear a set of windows
 //!
 
+	
   [lhs,rhs]=argn(0);
-  vvv=xget("old_style");
-
-  if vvv==0 then
-    if rhs==0, win_num=xget("window"), win=get('current_figure'),
-      set(win,'visible','off') ;end
-      [n1,n2]=size(win_num);
-      yyy=xget('window');
-      for xxx=win_num, xset('window',xxx); win=get('current_figure'),
-	set(win,'visible','off') ;end
-	xset('window',yyy);
-  else
-    if rhs==1 then
-      oldxclear(win_num)
-    else
-      oldxclear()
+  if (rhs == 0) then
+    // clear the current figure
+    set(gcf(), 'visible', 'off');
+  elseif (rhs == 1) then 
+     // clear a set of figures
+    if (type(win_num) <> 1) then
+	  error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A vector expected.\n"), "xclear", 1));
+	  return;
+	end
+	
+	if (winsid() == []) then
+	  // no current figure
+	  curFig = [];
+	else
+	  curFig = gcf();
+	end
+	
+    for figNum = win_num,
+      set(scf(figNum), 'visible', 'off');
     end
+	
+	// restore current figure
+	if (curFig <> []) then
+	  scf(curFig);
+	end
+	
+  else
+	error(999, msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "xclear", 0, 1));
+	return;
   end
-endfunction 
+endfunction
+
