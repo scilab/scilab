@@ -1189,10 +1189,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xclear.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xclick.c"
 				>
 			</File>
@@ -2164,10 +2160,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xchange.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xclear.h"
 				>
 			</File>
 			<File
