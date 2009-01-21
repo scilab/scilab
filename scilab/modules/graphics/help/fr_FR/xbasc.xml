@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>xbasc</refname>
-    <refpurpose> efface une fenêtre graphique et efface les graphiques enregistrés  </refpurpose>
+    <refpurpose> efface une fenêtre graphique.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -26,17 +26,16 @@
   <refsection>
     <title>Description</title>
     <para>
-      Sans argument, cette fonction efface la fenêtre graphique courante et 
-      les graphiques enregistrés.
-      Sinon elle efface les fenêtres graphiques dont les numéros sont donnés 
-      dans le vecteur <literal>window-id</literal>, et efface les graphiques enregistrés. Par exemple 
+      Sans argument, cette fonction efface la figure graphique courante en supprimant tous ses enfants.
+      Sinon elle efface les figures graphiques dont les numéros sont donnés 
+      dans le vecteur <literal>window-id</literal>. Par exemple 
       <literal>xbasc(1:3)</literal> efface les fenêtres 1, 2 et 3. Si une des
       fenêtres n'existe pas, elle est automatiquement créée.
     </para>
     <para>
-      Avec le nouveau mode graphique, utilisez <link linkend="clf">clf</link> au lieu de
-      <literal>xbasc</literal>.
-    </para>
+		La fonction <literal>xbasc</literal> est obsolète.
+		Pour effacer une fenêtre graphique, la fonction <literal>clf</literal> peut être utilisée.
+	</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

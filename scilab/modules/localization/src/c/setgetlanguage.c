@@ -267,7 +267,7 @@ BOOL exportLocaleToSystem(char *locale){
 		return FALSE;
 	}
 
-	/* It will put in the env something like LC_ALL=fr_FR */
+	/* It will put in the env something like LC_MESSAGES=fr_FR */
 	if ( !setenvc(EXPORTENVLOCALESTR,locale))
 	{
 		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);

@@ -26,7 +26,6 @@ The option is "disableUnderMode" and can be:
 -->
 
 <classpaths>
-<path value="$SCILAB/thirdparty/"/>
 
 <!-- Mandatory on startup -->
 <path value="@FLEXDOCK@"/>
