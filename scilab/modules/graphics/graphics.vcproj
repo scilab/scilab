@@ -1139,10 +1139,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_set_posfig_dim.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_show_pixmap.c"
 				>
 			</File>
@@ -1284,10 +1280,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xstringb.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xtape.c"
 				>
 			</File>
 			<File
@@ -2125,10 +2117,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_set_posfig_dim.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_show_pixmap.h"
 				>
 			</File>
@@ -2270,10 +2258,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xstringb.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xtape.h"
 				>
 			</File>
 			<File

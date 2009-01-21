@@ -326,9 +326,7 @@ sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
 sci_gateway/c/sci_xclear.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xtape.c \
 sci_gateway/c/sci_xset.c \
-sci_gateway/c/sci_set_posfig_dim.c \
 sci_gateway/c/sci_xgetech.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
@@ -473,7 +471,6 @@ includes/InitObjects.h \
 includes/sci_xfpoly.h \
 includes/sci_drawlater.h \
 includes/Format.h \
-includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
 includes/sci_delete.h \
 includes/sci_plot2d.h \
@@ -494,7 +491,6 @@ includes/sci_newaxes.h \
 includes/PloEch.h \
 includes/sci_xclick.h \
 includes/sci_xclear.h \
-includes/sci_xtape.h \
 includes/sci_xset.h \
 includes/sci_xgetech.h \
 includes/sci_glue.h \
