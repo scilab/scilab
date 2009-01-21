@@ -84,12 +84,14 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"-display") == 0 || strcmp(argv[i],"-d") == 0)
       {
+		  /* @TODO Buffer overflow here */
 		  char dpy[128];
 		  sprintf(dpy,"DISPLAY=%s",argv[++i]);
 		  putenv(dpy);
       }
       else if ( strcmp(argv[i],"-l") == 0)
       {
+		  /* @TODO Buffer overflow here */
 		  char lang[128];
 		  char *argLang=strdup(argv[++i]);
 
