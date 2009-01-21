@@ -76,6 +76,7 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\hashtable.dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
@@ -165,6 +166,7 @@
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\hashtable.dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				GenerateDebugInformation="true"
 				RandomizedBaseAddress="1"
@@ -255,6 +257,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\hashtable.dll"
+				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
@@ -346,6 +349,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				OutputFile="..\..\bin\hashtable.dll"
+				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="..\..\bin\hashtable.def"
 				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
