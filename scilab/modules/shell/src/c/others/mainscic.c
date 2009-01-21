@@ -93,14 +93,15 @@ fpsetmask(0);
 		  char lang[128];
 		  char *argLang=strdup(argv[++i]);
 
+		  /* Export the locale. This is going to be used by setlanguage("") in
+			 modules/localization/src/c/InitializeLocalization.c */
 		  if (strcmp(argLang,"en")==0) {/* backward compatiblity en => en_US */
-			  exportLocaleToSystem("en_US");
-
+			  setenvc("LANG","en_US"); 
 		  }else{
 			  if (strcmp(argLang,"fr")==0) { /* backward compatiblity fr => fr_FR */
-				  exportLocaleToSystem("fr_FR");
+				  setenvc("LANG","fr_FR");
 			  }else{
-				  exportLocaleToSystem(argLang);
+				  setenvc("LANG",argLang);
 			  }
 		  }
       }
