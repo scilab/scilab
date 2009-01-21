@@ -12,7 +12,7 @@ function [a,b,c]=minreal(a,b,c,domaine,tol)
 
   [lhs,rhs]=argn(0)
   select typeof(a)
-  case 'state_space' then
+  case 'state-space' then
     if lhs<>1 then 
       error(msprintf(gettext("%s: Wrong number of output arguments: %d expected.\n"),"minreal",1)),
     end;
