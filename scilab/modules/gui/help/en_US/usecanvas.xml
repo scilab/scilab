@@ -53,7 +53,7 @@
     <para>"GLCanvas" (AWT + OpenGL) is an alternative component provided by the Java Framework. Scilab can use it to render graphics. <emphasis role="bold">However, using this component disables some capabilities such as mixing plots and uicontrols (see demo GUI/UIcontrol2). That's why it's not the default behavior.</emphasis></para>
 
     <informaltable border="2">
-    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when you use a graphics function for the first time), here is a list of these cases:</para>
+    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when a graphics function is used for the first time), here is a list of these cases:</para>
       <tr>
         <td align="center"><emphasis role="bold">Operating System</emphasis></td>
         <td align="center"><emphasis role="bold">Video Card</emphasis></td>
