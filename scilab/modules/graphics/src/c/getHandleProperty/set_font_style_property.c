@@ -25,11 +25,14 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "RendererFontManager.h"
 
 /*------------------------------------------------------------------------*/
 int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   int value;
+	/* number of fonts available */
+	int nbInstalledFonts = getNbInstalledFonts();
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -39,9 +42,10 @@ int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
 	value = (int) getDoubleFromStack( stackPointer ) ;
 
-  if ( value > 10 || value < 0 )
+	/* Check that the wanted value is a correct font */
+  if ( value >= nbInstalledFonts || value < 0 )
   {
-    Scierror(999, _("Wrong value: In [%d %d] expected.\n"),0,10) ;
+    Scierror(999, _("Wrong value for property %s: An Integer between %d and %d expected.\n"), "font_style", 0, nbInstalledFonts - 1) ;
     return SET_PROPERTY_ERROR ;
   }
   
