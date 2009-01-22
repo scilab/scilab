@@ -25,5 +25,5 @@ r = xlfont("Arial",20);
 if r <> 20 then bugmes();quit;end
 fonts = xlfont();
 size_fonts = size(fonts,'*');
-if size_fonts <> 20 then bugmes();quit;end
-if fonts(20) <> "Arial" then bugmes();quit;end
+if size_fonts <> 21 then bugmes();quit;end
+if fonts(21) <> "Arial" then bugmes();quit;end
