@@ -999,6 +999,14 @@
 			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\c\ObjectSelection.c"
