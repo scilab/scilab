@@ -179,7 +179,7 @@ public class FontManager {
   */
  public final int addFont(Font newFont) {
   sciFonts.add(newFont);
-  return sciFonts.size();
+  return sciFonts.size() - 1;
  }
  
  /**
@@ -189,21 +189,21 @@ public class FontManager {
   * @return index of the added font or -1 if an error occured.
   */
  public final int changeFont(int index, Font newFont) {
-  int nbFonts = sciFonts.size();
-  if (index > nbFonts) {
-   // we need to add fonts untils index
-   for (int i = nbFonts; i < index - 1; i++) {
-    addFont(DEFAULT_FONT);
-   }
-   return addFont(newFont);
-  } else if (index == nbFonts) {
-   // add a new Font
-   return addFont(newFont);
-  } else {
-   sciFonts.set(index, newFont);
-   return index;
-  }
-  
+	 int nbFonts = sciFonts.size();
+	 if (index > nbFonts) {
+		 // we need to add fonts until index
+		 for (int i = nbFonts; i < index; i++) {
+			 addFont(DEFAULT_FONT);
+		 }
+		 return addFont(newFont);
+	 } else if (index == nbFonts) {
+		 // add a new Font
+		 return addFont(newFont);
+	 } else {
+		 sciFonts.set(index, newFont);
+		 return index;
+	 }
+
  }
  
  /**
