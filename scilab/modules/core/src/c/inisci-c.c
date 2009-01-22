@@ -81,7 +81,7 @@ int SetSci(void)
 		#ifdef  _MSC_VER
 		MessageBox(NULL,gettext("SCI environment variable not defined.\n"),gettext("Warning"),MB_ICONWARNING);
 		#else
-		fprintf(stderr, _("SCI environment variable not defined.\n"));
+		fprintf(stderr, "%s", _("SCI environment variable not defined.\n"));
 		#endif
 		exit(1);
 		}
@@ -134,8 +134,7 @@ int C2F(getscihome)(char *buf,int *nbuf,long int lbuf)
 			#ifdef  _MSC_VER
 				MessageBox(NULL,gettext("SCIHOME not defined.\n"),gettext("Warning"),MB_ICONWARNING);
 			#else
-				/* @TODO change that to the error output */
-				fprintf(stderr,_("SCIHOME not defined.\n"));
+				fprintf(stderr,"%s",_("SCIHOME not defined.\n"));
 			#endif
 			exit(1);
 		}
@@ -165,7 +164,7 @@ int C2F(gettmpdir)(char *buf,int *nbuf,long int lbuf)
 #ifdef  _MSC_VER
 		MessageBox(NULL,gettext("TMPDIR not defined.\n"),gettext("Warning"),MB_ICONWARNING);
 #else
-		fprintf(stderr,_("TMPDIR not defined.\n"));
+		fprintf(stderr,"%s",_("TMPDIR not defined.\n"));
 #endif
 		exit(1);
 	}
