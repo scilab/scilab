@@ -226,22 +226,30 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
 	}
     }
 
+    /**
+     * @return BLOUNO
+     */
     private GLAutoDrawable getAsGL() {
-	if (enableGLCanvas) {
-	    return realGLCanvas;
-	}
-	else {
-	    return realGLJPanel;
-	}
+    	/* Don't use enableGLCanvas. */
+    	/* It might change but not current type of the canvas.*/
+    	if (realGLCanvas != null) {
+    		return realGLCanvas;
+    	} else {
+    		return realGLJPanel;
+    	}
     }
 
+    /**
+     * @return BLOUNO
+     */
     public Component getAsComponent() {
-	if (enableGLCanvas) {
-	    return realGLCanvas;
-	}
-	else {
-	    return realGLJPanel;
-	}
+    	/* Don't use enableGLCanvas. */
+    	/* It might change but not current type of the canvas.*/
+    	if (realGLCanvas != null) {
+    		return realGLCanvas;
+    	} else {
+    		return realGLJPanel;
+    	}
     }
 
     public void addGLEventListener(GLEventListener arg0) {
@@ -444,6 +452,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void setBackground(Color arg0) {
+    	
 	getAsComponent().setBackground(arg0);
     }
 
