@@ -1156,11 +1156,11 @@ distclean-recursive: clean-recursive
 clean-recursive: clean-doc clean-localization clean-macros
 
 clean-macros:
-	@echo "-- Cleanning macros (*.bin) --"; \
+	@echo "-- Cleaning macros (*.bin) --"; \
 	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning names files (names) --"; \
+	echo "-- Cleaning names files (names) --"; \
 	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning lib files (lib) --"; \
+	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
 
 clean-doc:
