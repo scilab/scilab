@@ -55,6 +55,12 @@ set_posfig_dim(0,0)</synopsis>
     <literal>&lt;graphic figure height&gt;</literal></para>
     <para><literal>set_posfig_dim(0,0)</literal> resets the default values:
     <literal>w=600</literal>, <literal>h=424</literal>.</para>
+	
+	<para>
+		Function <literal>set_posfig_dim</literal> is obsolete and will be permanently removed in Scilab 5.2.
+		In current version, set_posfig_dim has no influence on exported files.
+		Their width and height instead match the exported figure <literal>axes_size</literal> property.
+	</para>
   </refsection>
   <refsection>
     <title>Examples</title>

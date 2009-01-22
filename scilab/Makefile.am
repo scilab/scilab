@@ -32,8 +32,8 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/io/libsciio.la \
-$(top_builddir)/modules/localization/libscilocalization.la
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/io/libsciio.la
 
 if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)

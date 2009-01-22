@@ -25,15 +25,11 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "Scierror.h"
+#include "dynamic_menus.h"
 
 int sci_demo( char * fname, char * code, BOOL flagx )
 {
-  int mlhs = 0;
-	int mrhs = 1;
-	int ibegin = 1;
-	int stackPointer;
-	int n1 = 1;
-	static char name[] = "execstr" ;
+	char name[] = "execstr" ;
 
 	/* Include the code inside a function */
 	/* The code will then be launched inside a scope */
@@ -55,19 +51,8 @@ int sci_demo( char * fname, char * code, BOOL flagx )
 
 	/* Add scope to the code and put it inside finalCode */
 	sprintf(finalCode, "%s%s%s", scopeOpening, code, scopeClosing);
-
-	Nbvars = 0 ;
-
-	/* Put the code on the stack */
-	CreateVar(1,STRING_DATATYPE, &launchCodeLength, &n1, &stackPointer);
-	strcpy(cstk(stackPointer), finalCode);
-
-	FREE(finalCode);
 	
-	/* back conversion to Scilab coding */
-	Convert2Sci(1);
-	
-	/* execute the Scilab execstr function */
+	/* display demo code if needed */
 	if (flagx){
 		sciprint("\n");
 		sciprint(_("Demo of %s().\n"), fname);
@@ -76,10 +61,12 @@ int sci_demo( char * fname, char * code, BOOL flagx )
 		sciprint("%s\n", code);
 		sciprint("\n");
 	}
+
+	/* the demo will be launched just after the function returns */
+	StoreCommand(finalCode);
+
+	FREE(finalCode);
 	
-	/* execute it */
-	C2F(recu).krec=-1; /* added to avoid recursion errors */
-	SciString(&ibegin,name,&mlhs,&mrhs);
 	
 	/* check if an error has occured while running a_function */
 	LhsVar(1) = 0; 

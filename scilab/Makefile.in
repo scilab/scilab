@@ -94,8 +94,8 @@ scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
-	$(top_builddir)/modules/io/libsciio.la \
-	$(top_builddir)/modules/localization/libscilocalization.la
+	$(top_builddir)/modules/localization/libscilocalization.la \
+	$(top_builddir)/modules/io/libsciio.la
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -374,8 +374,8 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/io/libsciio.la \
-$(top_builddir)/modules/localization/libscilocalization.la
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/io/libsciio.la
 
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`

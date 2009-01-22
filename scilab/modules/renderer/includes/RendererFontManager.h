@@ -20,6 +20,11 @@ extern "C" {
 #include "BOOL.h"
 
 /**
+ * @return number of fonts installed (used) by scilab
+ */
+int getNbInstalledFonts(void);
+
+/**
 * returns fontnames installed (used) by scilab
 * @param[out] size of array returned
 * @return fonts name 
