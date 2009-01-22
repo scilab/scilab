@@ -48,6 +48,8 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	generated_files = [];
 	
 	all_scilab_help     = %F;
+	my_wanted_language  = getlanguage(); // This variable is only need when
+	                                     // build all scilab help
 	
 	[lhs,rhs] = argn(0);
 	
@@ -63,17 +65,25 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	// Default case : construction de l'aide en ligne de Scilab
 	// ---------------------------------------------------------------------
 	
-	if (rhs <= 1) | ((rhs == 2) & (dirs == [])) then
+	if (  (rhs <= 1) ..
+		| ((rhs == 2) & (dirs == [])) ..
+		| ((rhs == 3) & (dirs == []) & (titles == [])) ..
+		| ((rhs == 4) & (dirs == []) & (titles == [])) ) then
 		
-		all_scilab_help      = %T;
+		all_scilab_help        = %T;
+		
+		// "directory_language" input argument is defined !
+		if rhs == 4 then
+			my_wanted_language = directory_language;
+		end
 		
 		dirs_to_build          = %HELPS;
 		dirs_to_build_m        = %helps_modules;
 		dirs_to_build_c        = %helps;
 		
-		dirs                   = get_xml_path(dirs_to_build(:,1));
-		dirs_m                 = get_xml_path(dirs_to_build_m(:,1));
-		dirs_c                 = get_xml_path(dirs_to_build_c(:,1));
+		dirs                   = get_xml_path(dirs_to_build(:,1),my_wanted_language);
+		dirs_m                 = get_xml_path(dirs_to_build_m(:,1),my_wanted_language);
+		dirs_c                 = get_xml_path(dirs_to_build_c(:,1),my_wanted_language);
 		
 		titles                 = dirs_to_build(:,2);
 		titles_m               = dirs_to_build_m(:,2);
@@ -98,32 +108,32 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		language_system_m      = []; // a help directory needs to be completed
 		language_system_c      = []; // with the default language
 		
-		if getlanguage() == getdefaultlanguage() then
+		if my_wanted_language == getdefaultlanguage() then
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;getdefaultlanguage()];
+				directory_language = [directory_language;my_wanted_language];
 				language_system    = [language_system;%F];
 			end
 			for k=1:size(dirs_m,'*')
-				directory_language_m = [directory_language_m;getdefaultlanguage()];
+				directory_language_m = [directory_language_m;my_wanted_language];
 				language_system_m    = [language_system_m;%F];
 			end
 			for k=1:size(dirs_c,'*')
-				directory_language_c = [directory_language_c;getdefaultlanguage()];
+				directory_language_c = [directory_language_c;my_wanted_language];
 				language_system_c    = [language_system_c;%F];
 			end
 		else
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;getlanguage()];
+				directory_language = [directory_language;my_wanted_language];
 				default_language   = [default_language;getdefaultlanguage()];
 				language_system    = [language_system;%T]; // Enable the language system
 			end
 			for k=1:size(dirs_m,'*')
-				directory_language_m = [directory_language_m;getlanguage()];
+				directory_language_m = [directory_language_m;my_wanted_language];
 				default_language_m   = [default_language_m;getdefaultlanguage()];
 				language_system_m    = [language_system_m;%T]; // Enable the language system
 			end
 			for k=1:size(dirs_c,'*')
-				directory_language_c = [directory_language_c;getlanguage()];
+				directory_language_c = [directory_language_c;my_wanted_language];
 				default_language_c   = [default_language_c;getdefaultlanguage()];
 				language_system_c    = [language_system_c;%T]; // Enable the language system
 			end
@@ -365,11 +375,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	if all_scilab_help then
 		
-		master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
+		master_doc = SCI+"/modules/helptools/master_"+my_wanted_language+"_help.xml";
 		
 		if or(need_to_be_build_tab_m) then
-			mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
-			create_MD(dirs_m,titles_m,master_doc,getlanguage());
+			mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),my_wanted_language);
+			create_MD(dirs_m,titles_m,master_doc,my_wanted_language);
 			
 		end
 		
@@ -393,7 +403,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			if need_to_be_build_tab(k) then
 				if nb_dir > 1 then
 					if displaydone == 0 then
-						mprintf(_("\nBuilding the master document for %s.\n"),getlanguage());
+						mprintf(_("\nBuilding the master document for %s.\n"),my_wanted_language);
 						displaydone = 1;
 					end
 					mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
@@ -426,9 +436,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
 		
-		// Define and create the path of buildDoc working directory
-		//buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
-		
 		// Define and create the final output directory if does not exist
 		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
 		
@@ -437,7 +444,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		end
 		
 		if is_html then
-			final_output_dir = pathconvert(final_output_dir+"/"+getlanguage(),%f,%f);
+			final_output_dir = pathconvert(final_output_dir+"/"+my_wanted_language,%f,%f);
 			if ~isdir(final_output_dir) then
 				mkdir(final_output_dir);
 			end
@@ -447,11 +454,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		if is_html then
 			final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
 		else
-			final_help_file = pathconvert(final_output_dir+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+			final_help_file = pathconvert(final_output_dir+"/scilab_" + my_wanted_language + "_help." + output_format_ext,%f,%f);
 		end
 		
 		// Define and create the path of buildDoc working directory
-		buildDoc_dir  = pathconvert(SCI+"/modules/helptools/"+ output_format + "/scilab_" + getlanguage() + "_help",%t,%f);
+		buildDoc_dir  = pathconvert(SCI+"/modules/helptools/"+ output_format + "/scilab_" + my_wanted_language + "_help",%t,%f);
 		if ~isdir(pathconvert(SCI+"/modules/helptools/"+output_format,%f,%f)) then
 			mkdir(pathconvert(SCI+"/modules/helptools/"+output_format,%f,%f));
 		end
@@ -463,7 +470,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		if is_html then
 			buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
 		else
-			buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+			buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + my_wanted_language + "_help." + output_format_ext,%f,%f);
 		end
 		
 		// Save the current directory
@@ -1023,7 +1030,7 @@ function create_MD(dirs,titles,output_filename,language)
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
 		"]>"; ..
-		"<book version=""5.0-subset Scilab"" xml:lang="""+getlanguage()+""""; ..
+		"<book version=""5.0-subset Scilab"" xml:lang="""+language+""""; ..
 		"      xmlns=""http://docbook.org/ns/docbook"""; ..
 		"      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
 		"      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
@@ -1278,7 +1285,7 @@ function out = text2html(in)
 endfunction
 
 
-function dirs_out = get_xml_path(dirs_in)
+function dirs_out = get_xml_path(dirs_in,my_wanted_language)
 	
 	dirs_out = [];
 	
@@ -1288,10 +1295,10 @@ function dirs_out = get_xml_path(dirs_in)
 			
 			help_basepath = part(dirs_in(k),1:length(dirs_in(k))-4) + filesep() + "help";
 			
-			if isdir(help_basepath + filesep() +getlanguage()) then
-				dirs_out(k) = help_basepath + filesep() + getlanguage();
+			if isdir(help_basepath + filesep() +my_wanted_language) then
+				dirs_out(k) = help_basepath + filesep() + my_wanted_language;
 			elseif isdir(help_basepath+filesep()+getdefaultlanguage()) then
-				dirs_out(k) = help_basepath+filesep()+getlanguage();
+				dirs_out(k) = help_basepath+filesep()+getdefaultlanguage();
 			else
 				dirs_out(k) = "";
 			end
