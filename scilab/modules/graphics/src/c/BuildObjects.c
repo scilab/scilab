@@ -841,6 +841,10 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 			return (sciPointObj *) NULL;
 		}
 
+		/* With legends, force drawing of background */
+		/* Otherwise underlying lines can be seen */
+		sciSetIsFilled(pobj, TRUE);
+
 		if (sciInitFontContext (pobj) == -1)
 		{
 			Scierror(999, _("Problem with sciInitFontContext\n"));
