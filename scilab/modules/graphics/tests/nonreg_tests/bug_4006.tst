@@ -33,6 +33,6 @@ if r <> 20 then pause,end
 
 fonts = xlfont();
 size_fonts = size(fonts,'*');
-if size_fonts <> 20 then pause,end
+if size_fonts <> 21 then pause,end
 
-if fonts(20) <> "Arial" then pause,end
+if fonts(21) <> "Arial" then pause,end
