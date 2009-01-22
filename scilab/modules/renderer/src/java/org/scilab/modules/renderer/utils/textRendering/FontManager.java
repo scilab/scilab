@@ -192,7 +192,7 @@ public class FontManager {
   int nbFonts = sciFonts.size();
   if (index > nbFonts) {
    // we need to add fonts untils index
-   for (int i = nbFonts - 1; i < index; i++) {
+   for (int i = nbFonts; i < index - 1; i++) {
     addFont(DEFAULT_FONT);
    }
    return addFont(newFont);
