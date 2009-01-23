@@ -85,12 +85,11 @@
 
       <varlistentry>
         <term>font_size:</term>
-
         <listitem>
-          <para>The <literal>font_size</literal> property is used to select
-          the type of size of the text. Its value should be an integer in
-          between 0 and 5 which stands for 8pt, 10pt, 12pt, 14pt, 18pt and
-          24pt.</para>
+          <para>It is a scalar specifying the displayed characters size.
+			If <literal>fractional_font</literal> property is <literal>"off"</literal>
+		 	only the integer part of the value is used.
+			For more information see <link linkend="graphics_fonts">graphics_fonts</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -98,10 +97,11 @@
         <term>font_style:</term>
 
         <listitem>
-          <para>Seven differents fonts are available : "Courrier", "Symbol",
-          "Times", "Times Italic", "Times Bold", "User defined". The
-          <literal>font_style</literal> property is an index in [0 6] which is
-          associated to the previous font names.</para>
+          <para>Specifies the font used to display the legend labels.
+		    This is a positive integer referecing one of the loaded fonts.
+			Its value must be between 0, referecing the first font,
+			and the number of loaded fonts minus one, referencing the last font.
+			For more information see <link linkend="graphics_fonts">graphics_fonts</link>.</para>
         </listitem>
       </varlistentry>
 
