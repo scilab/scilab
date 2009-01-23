@@ -7,6 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/genetic_algorithms/help/en_US";
+path = SCI+"/modules/genetic_algorithms/help/fr_FR";
 add_help_chapter("Algorithmes génétiques",path,%T);
 clear path add_help_chapter;

@@ -7,6 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/parameters/help/en_US";
+path = SCI+"/modules/parameters/help/fr_FR";
 add_help_chapter("Parameters",path,%T);
 clear path add_help_chapter;
