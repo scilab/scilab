@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help fileio module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/fileio/help/'+getlanguage();
+path = SCI+"/modules/fileio/help/fr_FR";
 add_help_chapter("Entrées/Sorties [fichiers]",path,%T);
 clear path add_help_chapter;

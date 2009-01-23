@@ -7,10 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help umfpack module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/umfpack/help/'+getlanguage();
+path = SCI+"/modules/umfpack/help/fr_FR";
 add_help_chapter("Interface avec UMFPACK",path,%T);
 clear path add_help_chapter;

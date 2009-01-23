@@ -7,11 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help elementary_functions module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/elementary_functions/help/'+getdefaultlanguage();
+path = SCI+"/modules/elementary_functions/help/en_US";
 add_help_chapter("Elementary Functions",path,%T);
 clear path add_help_chapter;

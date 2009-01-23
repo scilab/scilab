@@ -7,12 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help io module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/io/help/'+getlanguage();
+path = SCI+"/modules/io/help/fr_FR";
 add_help_chapter("Entrées/Sorties",path,%T);
 clear path add_help_chapter;
-// ====================================================================

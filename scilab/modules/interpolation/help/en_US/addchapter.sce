@@ -1,4 +1,3 @@
-
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007 - INRIA - Allan CORNET
 // 
@@ -8,11 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help interpolation module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/interpolation/help/'+getdefaultlanguage();
+path = SCI+"/modules/interpolation/help/en_US";
 add_help_chapter("Interpolation",path,%T);
 clear path add_help_chapter;
-// ====================================================================

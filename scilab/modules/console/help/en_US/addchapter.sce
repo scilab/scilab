@@ -8,12 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help console module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/console/help/'+getdefaultlanguage();
+path = SCI+"/modules/console/help/en_US";
 add_help_chapter("Console",path,%T);
 clear path add_help_chapter;
-// ====================================================================

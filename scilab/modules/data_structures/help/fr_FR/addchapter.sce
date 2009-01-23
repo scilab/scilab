@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help data_structures module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/data_structures/help/'+getlanguage();
+path = SCI+"/modules/data_structures/help/fr_FR";
 add_help_chapter("Structures",path,%T);
 clear path add_help_chapter;

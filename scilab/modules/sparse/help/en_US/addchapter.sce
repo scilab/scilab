@@ -7,12 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help sparse module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/sparse/help/'+getdefaultlanguage();
+path = SCI+"/modules/sparse/help/en_US";
 add_help_chapter("Sparses Matrix",path,%T);
 clear path add_help_chapter;
-// ====================================================================

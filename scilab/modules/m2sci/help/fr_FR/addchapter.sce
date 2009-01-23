@@ -7,11 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help m2sci module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/m2sci/help/'+getlanguage();
+path = SCI+"/modules/m2sci/help/fr_FR";
 add_help_chapter("Aide à la conversion Matlab vers Scilab",path,%T);
 clear path add_help_chapter;
-// ====================================================================

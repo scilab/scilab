@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help cacsd module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/cacsd/help/'+getlanguage();
+path = SCI+"/modules/cacsd/help/fr_FR";
 add_help_chapter("CACSD",path,%T);
 clear path add_help_chapter;

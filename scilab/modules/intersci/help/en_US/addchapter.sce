@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help intersci module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/intersci/help/'+getdefaultlanguage();
+path = SCI+"/modules/intersci/help/en_US";
 add_help_chapter("Intersci",path,%T);
 clear path add_help_chapter;
-// ====================================================================

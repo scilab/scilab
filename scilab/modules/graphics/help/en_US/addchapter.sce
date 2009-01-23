@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help graphics module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/graphics/help/'+getdefaultlanguage();
+path = SCI+"/modules/graphics/help/en_US";
 add_help_chapter("Graphics Library",path,%T);
 clear path add_help_chapter;

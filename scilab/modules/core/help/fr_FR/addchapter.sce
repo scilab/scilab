@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help core module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/core/help/'+getlanguage();
+path = SCI+"/modules/core/help/fr_FR";
 add_help_chapter("Scilab",path,%T);
 clear path add_help_chapter;

@@ -7,11 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help scipad module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/scipad/help/'+getdefaultlanguage();
+path = SCI+"/modules/scipad/help/en_US";
 add_help_chapter("Scipad",path,%T);
 clear path add_help_chapter;

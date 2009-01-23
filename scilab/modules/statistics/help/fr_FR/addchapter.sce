@@ -6,13 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-// 
 
-// ====================================================================
-// help statitics module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/statistics/help/'+getlanguage();
+path = SCI+"/modules/statistics/help/fr_FR";
 add_help_chapter("Statistiques",path,%T);
 clear path add_help_chapter;
-// ====================================================================

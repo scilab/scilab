@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@inria.fr>
+// Copyright (C) 2007-2008 - INRIA - Allan CORNET <allan.cornet@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,11 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help windows_tools module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/windows_tools/help/'+getdefaultlanguage();
+path = SCI+"/modules/windows_tools/help/en_US";
 add_help_chapter("Windows tools",path,%T);
 clear path add_help_chapter;
-// ====================================================================

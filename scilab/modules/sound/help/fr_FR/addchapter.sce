@@ -7,11 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help sound module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/sound/help/'+getlanguage();
+path = SCI+"/modules/sound/help/fr_FR";
 add_help_chapter("Manipulation de fichiers sons",path,%T);
 clear path add_help_chapter;
-// ====================================================================

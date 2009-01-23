@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help polynomials module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/polynomials/help/'+getdefaultlanguage();
+path = SCI+"/modules/polynomials/help/en_US";
 add_help_chapter("Polynomials",path,%T);
 clear path add_help_chapter;
-// ====================================================================

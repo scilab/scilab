@@ -7,12 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help javasci module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/javasci/help/'+getdefaultlanguage();
+path = SCI+"/modules/javasci/help/en_US";
 add_help_chapter("Java Interface",path,%T);
 clear path add_help_chapter;
-// ====================================================================

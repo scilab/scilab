@@ -7,12 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help differential_equations module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/differential_equations/help/'+getdefaultlanguage();
+path = SCI+"/modules/differential_equations/help/en_US";
 add_help_chapter("Differential Equations",path,%T);
 clear path add_help_chapter;
