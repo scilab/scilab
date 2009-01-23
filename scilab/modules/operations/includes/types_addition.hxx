@@ -18,9 +18,9 @@
 
 using namespace types;
 
-EXTERN_OP Double* AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2);
-EXTERN_OP MatrixPoly* AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
-EXTERN_OP MatrixPoly* AddPolyToPoly(MatrixPoly* pPoly1, MatrixPoly* _pPoly2);
-EXTERN_OP String* AddStringToString(String *_pString1, String *_pString2);
+EXTERN_OP int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut);
+EXTERN_OP int AddDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly ** _pPolyOut);
+EXTERN_OP int AddPolyToPoly(MatrixPoly* pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPolyOut);
+EXTERN_OP int AddStringToString(String *_pString1, String *_pString2, String** _pStringOut);
 
 #endif /* __TYPES_ADD_H__ */

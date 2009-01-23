@@ -46,8 +46,8 @@ namespace ast
 					Double *pL = execMeL.result_get()->getAsDouble();
 					Double *pR = execMeR.result_get()->getAsDouble();
 
-					pResult = AddDoubleToDouble(pL, pR);
-					if(pResult == NULL)
+					int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -66,9 +66,9 @@ namespace ast
 					String *pL = execMeL.result_get()->getAsString();
 					String *pR = execMeR.result_get()->getAsString();
 
-					pResult = AddStringToString(pL, pR);
+					int iResult = AddStringToString(pL, pR, (String**)&pResult);
 
-					if(pResult == NULL)
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -89,8 +89,8 @@ namespace ast
 					Double *pL				= execMeL.result_get()->getAsDouble();
 					MatrixPoly *pR		= execMeR.result_get()->getAsPoly();
 
-					pResult = AddDoubleToPoly(pR, pL);
-					if(pResult == NULL)
+					int iResult = AddDoubleToPoly(pR, pL, (MatrixPoly**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -105,8 +105,8 @@ namespace ast
 					Double *pR				= execMeR.result_get()->getAsDouble();
 					MatrixPoly *pL		= execMeL.result_get()->getAsPoly();
 
-					pResult = AddDoubleToPoly(pL, pR);
-					if(pResult == NULL)
+					int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -121,10 +121,10 @@ namespace ast
 					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
 					MatrixPoly *pR	= execMeR.result_get()->getAsPoly();
 
-					if(pL->var_get() == pR->var_get())
+					int iResult = AddPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult != 0)
 					{
-						pResult = AddPolyToPoly(pL, pR);
-						if(pResult == NULL)
+						if(iResult == 1)
 						{
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
@@ -132,16 +132,16 @@ namespace ast
 							string szErr(os.str());
 							throw szErr;
 						}
-						result_set(pResult);
+						else if(iResult == 2)
+						{
+							std::ostringstream os;
+							os << "variables don't have the same formal variable";
+							os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+							string szErr(os.str());
+							throw szErr;
+						}
 					}
-					else
-					{
-						std::ostringstream os;
-						os << "variables don't have the same formal variable";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
-						string szErr(os.str());
-						throw szErr;
-					}
+					result_set(pResult);
 				}
 				break;
 			}
@@ -152,8 +152,8 @@ namespace ast
 					Double *pL = execMeL.result_get()->getAsDouble();
 					Double *pR = execMeR.result_get()->getAsDouble();
 
-					pResult = SubstractDoubleToDouble(pL, pR);
-					if(pResult == NULL)
+					int iResult = SubstractDoubleToDouble(pL, pR, (Double**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -168,8 +168,8 @@ namespace ast
 					Double *pL					= execMeL.result_get()->getAsDouble();
 					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
 
-					pResult = SubstractPolyToDouble(pL, pR);
-					if(pResult == NULL)
+					int iResult = SubstractPolyToDouble(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -184,8 +184,8 @@ namespace ast
 					MatrixPoly *pL			= execMeL.result_get()->getAsPoly();
 					Double *pR					= execMeR.result_get()->getAsDouble();
 
-					pResult = SubstractDoubleToPoly(pL, pR);
-					if(pResult == NULL)
+					int iResult = SubstractDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -200,8 +200,8 @@ namespace ast
 					MatrixPoly *pL			= execMeL.result_get()->getAsPoly();
 					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
 
-					pResult = SubstractPolyToPoly(pL, pR);
-					if(pResult == NULL)
+					int iResult = SubstractPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult != 0)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -469,87 +469,57 @@ namespace ast
 				{
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
+
+					int iResult = DivideDoubleByDouble(pL, pR, (Double**)&pResult);
+					if(iResult)
+					{//manage errors
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+					result_set(pResult);
+				}
+				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+				{
+					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
+					Double *pR			= execMeR.result_get()->getAsDouble();
 					int iRowResult 	= 0;
 					int iColResult	= 0;
+					int *piRank			= NULL;
 
-					if(pL->size_get() == 0 || pR->size_get() == 0)
-					{//return empty matrix of double
-					}
-					else if(pL->size_get() == 1)
+					if(pL->size_get() == 1)
 					{
 						iRowResult = pR->rows_get();
 						iColResult = pR->cols_get();
-					}
-					else if (pR->size_get() == 1)
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pL->cols_get();
-					}
-					else if(pL->cols_get() == pR->cols_get())
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pR->rows_get();
-					}
 
-					pResult = new Double(iRowResult, iColResult, pL->isComplex() || pR->isComplex());
-
-
-					int iResult = DivideDoubleByDouble(pL, pR, pResult->getAsDouble());
-					if(iResult)
-					{//manage errors
-					}
-
-/*
-					if(pR->size_get() == 1)
-					{
-						double *pReal			= NULL;
-						double *pImg			= NULL;
-
-						double *pdblRealL	= pL->real_get();
-						double *pdblImgL	= pL->img_get();
-						double pdblRealR	= pR->real_get() == NULL ? 0 : pR->real_get()[0];
-						double pdblImgR		= pR->img_get() == NULL ? 0 : pR->img_get()[0];
-
-						pResult						= new Double(pL->rows_get(), pL->cols_get(), &pReal, &pImg);
-
-						for(int i = 0 ; i < pL->size_get() ; i++)
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
 						{
-							pReal[i]	= (pdblRealL == NULL ? 0 : pdblRealL[i])	/ pdblRealR;
-							pImg[i]		= (pdblImgL == NULL ? 0 : pdblImgL[i])		/ pdblImgR;
-						}
-
-						if(pL->isComplex() == false && pR->isComplex() == false)
-						{
-							pResult->getAsDouble()->complex_set(false);
+							piRank[i] = pL->poly_get(0)->rank_get();
 						}
 					}
 					else if(pR->size_get() == 1)
-					{//add pL with each element of pR
-						double *pReal			= NULL;
-						double *pImg			= NULL;
+					{
+						iRowResult = pL->rows_get();
+						iColResult = pL->cols_get();
 
-						double *pdblRealR	= pR->real_get();
-						double *pdblImgR	= pR->img_get();
-						double pdblRealL	= pL->real_get() == NULL ? 0 : pL->real_get()[0];
-						double pdblImgL		= pL->img_get() == NULL ? 0 : pL->img_get()[0];
-
-						pResult						= new Double(pR->rows_get(), pR->cols_get(), &pReal, &pImg);
-
-						for(int i = 0 ; i < pR->size_get() ; i++)
+						piRank = new int[iRowResult * iColResult];
+						for(int i = 0 ; i < iRowResult * iColResult ; i++)
 						{
-							pReal[i]	= pdblRealL * (pdblRealR == NULL ? 0 : pdblRealR[i])	-  pdblImgL	* (pdblImgR == NULL ? 0 : pdblImgR[i]);
-							pImg[i]		= pdblRealL	* (pdblImgR == NULL ? 0 : pdblImgR[i])		+  pdblImgL	* (pdblRealR == NULL ? 0 : pdblRealR[i]);
-						}
-
-						if(pL->isComplex() == false && pR->isComplex() == false)
-						{
-							pResult->getAsDouble()->complex_set(false);
+							piRank[i] = pL->poly_get(i)->rank_get();
 						}
 					}
-					else
-					{//matrix * matrix call atlas :(
+					else if(pL->rows_get() == pR->rows_get() && pL->cols_get() == pR->cols_get())
+					{//Je ne sais pas encore comment ca marche ce machin la !!!
+						iRowResult = pR->rows_get();
+						iColResult = pR->cols_get();
 					}
-*/					result_set(pResult);
+
+					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
+
+					DividePolyByDouble(pL, pR, pResult->getAsPoly());
 				}
 				break;
 			}

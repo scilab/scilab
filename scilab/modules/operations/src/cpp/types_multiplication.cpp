@@ -395,7 +395,8 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly *_pPol
 
 					Double TimeDouble(pPolyCoef->rows_get(), pPolyCoef->cols_get(), bComplexOut);
 					MultiplyDoubleByDouble(pPolyCoef, pDouble, &TimeDouble);
-					Double *pAddDouble 		= AddDoubleToDouble(&TimeDouble, _pPolyOut->poly_get(iRow1, iCol2)->coef_get());
+					Double *pAddDouble = NULL;
+					AddDoubleToDouble(&TimeDouble, _pPolyOut->poly_get(iRow1, iCol2)->coef_get(), &pAddDouble);
 					_pPolyOut->poly_set(iRow1, iCol2, pAddDouble);
 
 					delete pAddDouble;

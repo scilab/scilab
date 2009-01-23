@@ -18,14 +18,13 @@ extern "C"
 	#include "matrix_substraction.h"
 }
 
-Double* SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2)
+int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut)
 {
 	bool bComplex1		= _pDouble1->isComplex();
 	bool bComplex2		= _pDouble2->isComplex();
 	bool bScalar1			= _pDouble1->rows_get() == 1 && _pDouble1->cols_get() == 1;
 	bool bScalar2			= _pDouble2->rows_get() == 1 && _pDouble2->cols_get() == 1;
 
-	Double *pResult = NULL;
 	double *pReal			= NULL;
 	double *pImg			= NULL;
 
@@ -33,131 +32,134 @@ Double* SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2)
 	{//add pL with each element of pR
 		if(bComplex1 == false && bComplex2 == false)
 		{
-			pResult = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal);
 			iSubstractRealMatrixToRealScalar(
 					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					_pDouble1->real_get()[0],
-					pResult->real_get());
+					(*_pDoubleOut)->real_get());
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
-			pResult = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
 			iSubstractComplexMatrixToRealScalar(
 					_pDouble2->real_get(), _pDouble2->img_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					_pDouble1->real_get()[0],
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
-			pResult = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
 			iSubstractRealMatrixToComplexScalar(
 					_pDouble2->real_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					_pDouble1->real_get()[0], _pDouble1->img_get()[0],
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 		else if(bComplex1 == true && bComplex2 == true)
 		{
-			pResult = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble2->rows_get(), _pDouble2->cols_get(), &pReal, &pImg);
 			iSubstractComplexMatrixToComplexScalar(
 					_pDouble2->real_get(), _pDouble2->img_get(), _pDouble2->rows_get(), _pDouble2->cols_get(),
 					_pDouble1->real_get()[0], _pDouble1->img_get()[0],
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 	}
 	else if(bScalar2)
 	{//add pL with each element of pR
 		if(bComplex1 == false && bComplex2 == false)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
 			iSubstractRealScalarToRealMatrix(
 					_pDouble2->real_get()[0],
 					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get());
+					(*_pDoubleOut)->real_get());
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractComplexScalarToRealMatrix(
 					_pDouble2->real_get()[0], _pDouble2->img_get()[0],
 					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractRealScalarToComplexMatrix(
 					_pDouble2->real_get()[0],
 					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 		else if(bComplex1 == true && bComplex2 == true)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractComplexScalarToComplexMatrix(
 					_pDouble2->real_get()[0], _pDouble2->img_get()[0],
 					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 	}
 	else if(_pDouble1->rows_get() == _pDouble2->rows_get() && _pDouble1->cols_get() == _pDouble2->cols_get())//same dimension
 	{//add pL and pR element wise
 		if(bComplex1 == false && bComplex2 == false)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal);
 			iSubstractRealMatrixToRealMatrix(
 					_pDouble2->real_get(),
 					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get());
+					(*_pDoubleOut)->real_get());
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractComplexMatrixToRealMatrix(
 					_pDouble2->real_get(), _pDouble2->img_get(),
 					_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractRealMatrixToComplexMatrix(
 					_pDouble2->real_get(),
 					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 		else if(bComplex1 == true && bComplex2 == true)
 		{
-			pResult = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
+			(*_pDoubleOut) = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), &pReal, &pImg);
 			iSubstractComplexMatrixToComplexMatrix(
 					_pDouble2->real_get(), _pDouble2->img_get(),
 					_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-					pResult->real_get(), pResult->img_get());
+					(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 	}
-	return pResult;
+	else
+	{
+		return 1;
+	}
+	return 0;
 }
 
-MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
+int SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly, MatrixPoly** _pPolyOut)
 {
-	MatrixPoly* pResult = NULL;
 	double *pInDblR			= _pDouble->real_get();
 	double *pInDblI			= _pDouble->img_get();
 
 	if(_pDouble->size_get() == 1)
 	{
-		pResult = new MatrixPoly();
+		(*_pPolyOut) = new MatrixPoly();
 		//Create new Poly
-		*pResult = *_pPoly;
+		**_pPolyOut = *_pPoly;
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
 		{
-			pResult->complex_set(true);
+			(*_pPolyOut)->complex_set(true);
 		}
 		
-		for(int i = 0 ; i < pResult->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
-			Poly *pOutPoly		= pResult->poly_get(i);
+			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 			double *pInPolyR	= pInPoly->coef_get()->real_get();
 			double *pOutPolyR	= pOutPoly->coef_get()->real_get();
 
@@ -169,13 +171,13 @@ MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
 			}
 		}
 
-		if(pResult->isComplex())
+		if((*_pPolyOut)->isComplex())
 		{
-			pResult->complex_set(true);
-			for(int i = 0 ; i < pResult->size_get() ; i++)
+			(*_pPolyOut)->complex_set(true);
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(i);
-				Poly *pOutPoly		= pResult->poly_get(i);
+				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 				double *pInPolyI	= pInPoly->coef_get()->img_get();
 				double *pOutPolyI	= pOutPoly->coef_get()->img_get();
 
@@ -190,14 +192,14 @@ MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
 	}
 	else if (_pDouble->rows_get() == _pPoly->rows_get() && _pDouble->cols_get() == _pPoly->cols_get())
 	{
-		pResult = new MatrixPoly();
+		(*_pPolyOut) = new MatrixPoly();
 		//Create new Poly
-		*pResult = *_pPoly;
+		**_pPolyOut = *_pPoly;
 
-		for(int i = 0 ; i < pResult->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
-			Poly *pOutPoly		= pResult->poly_get(i);
+			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 			double *pInPolyR	= pInPoly->coef_get()->real_get();
 			double *pOutPolyR	= pOutPoly->coef_get()->real_get();
@@ -212,11 +214,11 @@ MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
 		{
-			pResult->complex_set(true);
-			for(int i = 0 ; i < pResult->size_get() ; i++)
+			(*_pPolyOut)->complex_set(true);
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(i);
-				Poly *pOutPoly		= pResult->poly_get(i);
+				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 				double *pInPolyI	= pInPoly->coef_get()->img_get();
 				double *pOutPolyI	= pOutPoly->coef_get()->img_get();
@@ -238,12 +240,12 @@ MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
 			piRank[i] = _pPoly->poly_get(0)->rank_get();
 		}
 
-		pResult = new MatrixPoly(_pPoly->var_get(), _pDouble->rows_get(), _pDouble->cols_get(), piRank);
+		(*_pPolyOut) = new MatrixPoly(_pPoly->var_get(), _pDouble->rows_get(), _pDouble->cols_get(), piRank);
 
-		for(int i = 0 ; i < pResult->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(0);
-			Poly *pOutPoly		= pResult->poly_get(i);
+			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 			double *pInPolyR	= pInPoly->coef_get()->real_get();
 			double *pOutPolyR	= pOutPoly->coef_get()->real_get();
@@ -258,11 +260,11 @@ MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
 		{
-			pResult->complex_set(true);
-			for(int i = 0 ; i < pResult->size_get() ; i++)
+			(*_pPolyOut)->complex_set(true);
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(0);
-				Poly *pOutPoly		= pResult->poly_get(i);
+				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 				double *pInPolyI	= pInPoly->coef_get()->img_get();
 				double *pOutPolyI	= pOutPoly->coef_get()->img_get();
@@ -276,25 +278,28 @@ MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly)
 			}
 		}
 	}
+	else
+	{
+		return 1;
+	}
 
-	return pResult;	
+	return 0;	
 }
 
-MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
+int SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble, MatrixPoly **_pPolyOut)
 {
-	MatrixPoly *pResult = NULL;
 	double *pInDblR			= _pDouble->real_get();
 	double *pInDblI			= _pDouble->img_get();
 
 	if(_pDouble->size_get() == 1)
 	{
-		pResult = new MatrixPoly();
+		(*_pPolyOut) = new MatrixPoly();
 		//Create new Poly
-		*pResult = *_pPoly;
-		for(int i = 0 ; i < pResult->size_get() ; i++)
+		**_pPolyOut = *_pPoly;
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
-			Poly *pOutPoly		= pResult->poly_get(i);
+			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 			double *pInPolyR	= pInPoly->coef_get()->real_get();
 			double *pOutPolyR	= pOutPoly->coef_get()->real_get();
 
@@ -303,11 +308,11 @@ MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
 		{ 
-			pResult->complex_set(true);
-			for(int i = 0 ; i < pResult->size_get() ; i++)
+			(*_pPolyOut)->complex_set(true);
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(i);
-				Poly *pOutPoly		= pResult->poly_get(i);
+				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 				double *pInPolyI	= pInPoly->coef_get()->img_get();
 				double *pOutPolyI	= pOutPoly->coef_get()->img_get();
 
@@ -317,13 +322,13 @@ MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
 	}
 	else if (_pDouble->rows_get() == _pPoly->rows_get() && _pDouble->cols_get() == _pPoly->cols_get())
 	{
-		pResult = new MatrixPoly();
+		(*_pPolyOut) = new MatrixPoly();
 		//Create new Poly
-		*pResult = *_pPoly;
-		for(int i = 0 ; i < pResult->size_get() ; i++)
+		**_pPolyOut = *_pPoly;
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(i);
-			Poly *pOutPoly		= pResult->poly_get(i);
+			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 			double *pInPolyR	= pInPoly->coef_get()->real_get();
 			double *pInPolyI	= pInPoly->coef_get()->img_get();
@@ -340,11 +345,11 @@ MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
 		{
-			pResult->complex_set(true);
-			for(int i = 0 ; i < pResult->size_get() ; i++)
+			(*_pPolyOut)->complex_set(true);
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(i);
-				Poly *pOutPoly		= pResult->poly_get(i);
+				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 				double *pInPolyI	= pInPoly->coef_get()->img_get();
 				double *pOutPolyI	= pOutPoly->coef_get()->img_get();
@@ -366,12 +371,12 @@ MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
 			piRank[i] = _pPoly->poly_get(0)->rank_get();
 		}
 
-		pResult = new MatrixPoly(_pPoly->var_get(), _pDouble->rows_get(), _pDouble->cols_get(), piRank);
+		(*_pPolyOut) = new MatrixPoly(_pPoly->var_get(), _pDouble->rows_get(), _pDouble->cols_get(), piRank);
 
-		for(int i = 0 ; i < pResult->size_get() ; i++)
+		for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 		{
 			Poly *pInPoly			= _pPoly->poly_get(0);
-			Poly *pOutPoly		= pResult->poly_get(i);
+			Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 			double *pInPolyR	= pInPoly->coef_get()->real_get();
 			double *pInPolyI	= pInPoly->coef_get()->img_get();
@@ -388,11 +393,11 @@ MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
 
 		if(_pPoly->isComplex() || _pDouble->isComplex())
 		{
-			pResult->complex_set(true);
-			for(int i = 0 ; i < pResult->size_get() ; i++)
+			(*_pPolyOut)->complex_set(true);
+			for(int i = 0 ; i < (*_pPolyOut)->size_get() ; i++)
 			{
 				Poly *pInPoly			= _pPoly->poly_get(0);
-				Poly *pOutPoly		= pResult->poly_get(i);
+				Poly *pOutPoly		= (*_pPolyOut)->poly_get(i);
 
 				double *pInPolyI	= pInPoly->coef_get()->img_get();
 				double *pOutPolyI	= pOutPoly->coef_get()->img_get();
@@ -406,12 +411,15 @@ MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly,Double *_pDouble)
 			}
 		}
 	}
-	return pResult;
+	else
+	{
+		return 1;
+	}
+	return 0;
 }
 
-MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
+int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_pPolyOut)
 {
-	MatrixPoly *pResult = NULL;
 	//3 cases : 
 	//size(p1) == size(P2)
 	if(_pPoly1->rows_get() == _pPoly2->rows_get() && _pPoly1->cols_get() == _pPoly2->cols_get())
@@ -427,10 +435,10 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			pRank[i] = Max(pRank1[i], pRank2[i]);
 		}
 
-		pResult = new MatrixPoly(_pPoly2->var_get(), _pPoly1->rows_get(), _pPoly1->cols_get(), pRank);
+		(*_pPolyOut) = new MatrixPoly(_pPoly2->var_get(), _pPoly1->rows_get(), _pPoly1->cols_get(), pRank);
 		if(_pPoly1->isComplex() || _pPoly2->isComplex())
 		{
-			pResult->complex_set(true);
+			(*_pPolyOut)->complex_set(true);
 		}
 
 		//Result P1(i) + P2(i)
@@ -442,7 +450,7 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			Double *pCoef2	= _pPoly2->poly_get(i)->coef_get();
 			double *p2R			= pCoef2->real_get();
 
-			Double *pCoefR	= pResult->poly_get(i)->coef_get();
+			Double *pCoefR	= (*_pPolyOut)->poly_get(i)->coef_get();
 			double *pRR			= pCoefR->real_get();
 
 			for(int j = 0 ; j < Min(pRank1[i], pRank2[i]) ; j++)
@@ -467,7 +475,7 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 				pRR[j] = pTemp[j] * iCoef;
 			}
 
-			if(pResult->isComplex())
+			if((*_pPolyOut)->isComplex())
 			{
 				double *p1I			= pCoef1->img_get();
 				double *p2I			= pCoef2->img_get();
@@ -515,10 +523,10 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			pRank[i] = Max(pRank1[0], pRank2[i]);
 		}
 
-		pResult = new MatrixPoly(_pPoly2->var_get(), _pPoly2->rows_get(), _pPoly2->cols_get(), pRank);
+		(*_pPolyOut) = new MatrixPoly(_pPoly2->var_get(), _pPoly2->rows_get(), _pPoly2->cols_get(), pRank);
 		if(_pPoly1->isComplex() || _pPoly2->isComplex())
 		{
-			pResult->complex_set(true);
+			(*_pPolyOut)->complex_set(true);
 		}
 
 		//Result P1(0) + P2(i)
@@ -530,7 +538,7 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			Double *pCoef2	= _pPoly2->poly_get(i)->coef_get();
 			double *p2R			= pCoef2->real_get();
 
-			Double *pCoefR	= pResult->poly_get(i)->coef_get();
+			Double *pCoefR	= (*_pPolyOut)->poly_get(i)->coef_get();
 			double *pRR			= pCoefR->real_get();
 
 			for(int j = 0 ; j < pRank[i] ; j++)
@@ -538,7 +546,7 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 				pRR[j] = p1R[j] - p2R[j];
 			}
 
-			if(pResult->isComplex())
+			if((*_pPolyOut)->isComplex())
 			{
 				double *p1I			= pCoef1->img_get();
 				double *p2I			= pCoef2->img_get();
@@ -569,10 +577,10 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			pRank[i] = Max(pRank1[i], pRank2[0]);
 		}
 
-		pResult = new MatrixPoly(_pPoly1->var_get(), _pPoly1->rows_get(), _pPoly1->cols_get(), pRank);
+		(*_pPolyOut) = new MatrixPoly(_pPoly1->var_get(), _pPoly1->rows_get(), _pPoly1->cols_get(), pRank);
 		if(_pPoly1->isComplex() || _pPoly2->isComplex())
 		{
-			pResult->complex_set(true);
+			(*_pPolyOut)->complex_set(true);
 		}
 
 		//Result P1(i) + P2(0)
@@ -584,7 +592,7 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 			Double *pCoef1	= _pPoly1->poly_get(i)->coef_get();
 			double *p1R			= pCoef1->real_get();
 
-			Double *pCoefR	= pResult->poly_get(i)->coef_get();
+			Double *pCoefR	= (*_pPolyOut)->poly_get(i)->coef_get();
 			double *pRR			= pCoefR->real_get();
 
 			for(int j = 0 ; j < pRank[i] ; j++)
@@ -592,7 +600,7 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 				pRR[j] = p1R[j] - p2R[j];
 			}
 
-			if(pResult->isComplex())
+			if((*_pPolyOut)->isComplex())
 			{
 				double *p2I			= pCoef2->img_get();
 				double *p1I			= pCoef1->img_get();
@@ -608,13 +616,16 @@ MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2)
 		delete pRank1;
 		delete pRank2;
 	}
-
-	if(pResult != NULL)
+	else
 	{
-		pResult->update_rank();
+		return 1;
 	}
 
-	//if pResult == NULL -> incompatible dimensions
-	return pResult;
+	if((*_pPolyOut) != NULL)
+	{
+		(*_pPolyOut)->update_rank();
+	}
+
+	return 0;
 }
 

@@ -15,11 +15,13 @@
 #include "double.hxx"
 #include "tostring_common.hxx"
 
+extern "C"
+{
+	#include "elem_common.h"
+}
+
 using namespace std;
 
-
-#define Max max
-#define Min min
 
 namespace types
 {
@@ -410,14 +412,19 @@ namespace types
 		//if(isComplex() == false)
 		{
 			/*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
-			if(cols_get() == 1 && rows_get() == 1)
+			if(cols_get() == 0 || rows_get() == 0)
+			{
+				ostr << "   []";
+				ostr << endl;
+			}
+			else if(cols_get() == 1 && rows_get() == 1)
 			{//scalar
 				if(isComplex() == false)
 				{
 					int iWidth = 0, iPrec = 0;
 					bool bFP = false; // FloatingPoint
-					GetFormat(m_pdblReal[0], _iPrecision, &iWidth, &iPrec, &bFP);
-					Add_Value(&ostr, m_pdblReal[0], iWidth, iPrec);
+					GetFormat(ZeroIsZero(m_pdblReal[0]), _iPrecision, &iWidth, &iPrec, &bFP);
+					Add_Value(&ostr, ZeroIsZero(m_pdblReal[0]), iWidth, iPrec);
 					ostr << endl;
 				}
 				else
@@ -425,9 +432,9 @@ namespace types
 					int iWidthR = 0, iWidthI = 0;
 					int iPrecR = 0, iPrecI = 0;
 					bool bFPR = false, bFPI = false; // FloatingPoint
-					GetFormat(m_pdblReal[0],	_iPrecision, &iWidthR, &iPrecR, &bFPR);
-					GetFormat(m_pdblImg[0],		_iPrecision, &iWidthI, &iPrecI, &bFPI);
-					Add_Complex_Value(&ostr, m_pdblReal[0], m_pdblImg[0], iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+					GetFormat(ZeroIsZero(m_pdblReal[0]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
+					GetFormat(ZeroIsZero(m_pdblImg[0]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
+					Add_Complex_Value(&ostr, ZeroIsZero(m_pdblReal[0]), ZeroIsZero(m_pdblImg[0]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
 					ostr << endl;
 				}
 			}
@@ -445,8 +452,8 @@ namespace types
 					{
 						int iWidth = 0, iPrec = 0;
 						bool bFP = false; // FloatingPoint
-						GetFormat(m_pdblReal[i], _iPrecision, &iWidth, &iPrec, &bFP);
-						Add_Value(&ostr, m_pdblReal[i], iWidth, iPrec);
+						GetFormat(ZeroIsZero(m_pdblReal[i]), _iPrecision, &iWidth, &iPrec, &bFP);
+						Add_Value(&ostr, ZeroIsZero(m_pdblReal[i]), iWidth, iPrec);
 						ostr << endl;
 					}
 				}
@@ -457,9 +464,9 @@ namespace types
 						int iWidthR = 0, iWidthI = 0;
 						int iPrecR = 0, iPrecI = 0;
 						bool bFPR = false, bFPI = false; // FloatingPoint
-						GetFormat(m_pdblReal[i],	_iPrecision, &iWidthR, &iPrecR, &bFPR);
-						GetFormat(m_pdblImg[i],		_iPrecision, &iWidthI, &iPrecI, &bFPI);
-						Add_Complex_Value(&ostr, m_pdblReal[i], m_pdblImg[i], iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+						GetFormat(ZeroIsZero(m_pdblReal[i]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
+						GetFormat(ZeroIsZero(m_pdblImg[i]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
+						Add_Complex_Value(&ostr, ZeroIsZero(m_pdblReal[i]), ZeroIsZero(m_pdblImg[i]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
 						ostr << endl;
 					}
 				}
@@ -481,7 +488,7 @@ namespace types
 						int iWidth = 0, iPrec = 0;
 						bool bFP = false; // FloatingPoint
 						int iLen = 0;
-						GetFormat(m_pdblReal[i], _iPrecision, &iWidth, &iPrec, &bFP);
+						GetFormat(ZeroIsZero(m_pdblReal[i]), _iPrecision, &iWidth, &iPrec, &bFP);
 						iLen = iWidth + bFP + ostemp.str().size();
 						if(iLen > _iLineLen)
 						{//Max length, new line
@@ -496,7 +503,7 @@ namespace types
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}
 
-						Add_Value(&ostemp, m_pdblReal[i], iWidth, iPrec);
+						Add_Value(&ostemp, ZeroIsZero(m_pdblReal[i]), iWidth, iPrec);
 					}
 
 					if(iLastVal != 0)
@@ -512,13 +519,13 @@ namespace types
 						int iPrecR = 0, iPrecI = 0;
 						bool bFPR = false, bFPI = false; // FloatingPoint
 						int iLen = 0;
-						GetFormat(m_pdblReal[i],	_iPrecision, &iWidthR, &iPrecR, &bFPR);
-						GetFormat(m_pdblImg[i],		_iPrecision, &iWidthI, &iPrecI, &bFPI);
+						GetFormat(ZeroIsZero(m_pdblReal[i]),	_iPrecision, &iWidthR, &iPrecR, &bFPR);
+						GetFormat(ZeroIsZero(m_pdblImg[i]),		_iPrecision, &iWidthI, &iPrecI, &bFPI);
 
 						iLen = ostemp.str().size();
-						if(m_pdblImg[i] == 0)
+						if(isZero(m_pdblImg[i]))
 						{
-							if(m_pdblReal[i] == 0)
+							if(isZero(m_pdblReal[i]))
 							{
 								iLen += 1; //"0"
 							}
@@ -530,7 +537,7 @@ namespace types
 						}
 						else
 						{
-							if(m_pdblReal[i] == 0)
+							if(isZero(m_pdblReal[i]))
 							{
 								iLen		+= iWidthI + bFPI;
 								iWidthR	= 0;
@@ -556,7 +563,7 @@ namespace types
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}
 
-						Add_Complex_Value(&ostemp, m_pdblReal[i], m_pdblImg[i], iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
+						Add_Complex_Value(&ostemp, ZeroIsZero(m_pdblReal[i]), ZeroIsZero(m_pdblImg[i]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
 					}
 
 					if(iLastVal != 0)
@@ -595,7 +602,7 @@ namespace types
 							bool bFP				= false; // FloatingPoint
 							int iCurrentLen = 0;
 
-							GetFormat(m_pdblReal[iCols1 * rows_get() + iRows1], _iPrecision, &iWidth, &iPrec, &bFP);
+							GetFormat(ZeroIsZero(m_pdblReal[iCols1 * rows_get() + iRows1]), _iPrecision, &iWidth, &iPrec, &bFP);
 							iCurrentLen	= iWidth + bFP;
 
 							if(iCurrentLen > piSize[iCols1])
@@ -613,8 +620,8 @@ namespace types
 									int iWidth			= 0;
 									int iPrec				= 0;
 									bool bFP				= false; // FloatingPoint
-									GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth, &iPrec, &bFP);
-									Add_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], piSize[iCols2], iPrec);
+									GetFormat(ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), _iPrecision, &iWidth, &iPrec, &bFP);
+									Add_Value(&ostemp, ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), piSize[iCols2], iPrec);
 									ostemp << SPACE_BETWEEN_TWO_VALUES;
 								}
 								ostemp << endl;
@@ -636,8 +643,8 @@ namespace types
 							int iWidth			= 0;
 							int iPrec				= 0;
 							bool bFP				= false; // FloatingPoint
-							GetFormat(m_pdblReal[iCols2 * rows_get() + iRows2], _iPrecision, &iWidth, &iPrec, &bFP);
-							Add_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], piSize[iCols2], iPrec);
+							GetFormat(ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), _iPrecision, &iWidth, &iPrec, &bFP);
+							Add_Value(&ostemp, ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), piSize[iCols2], iPrec);
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}
 						ostemp << endl;
@@ -660,7 +667,7 @@ namespace types
 							bool bFPR = false, bFPI = false; // FloatingPoint
 							int iCurrentLen = 0;
 
-							GetComplexFormat(	m_pdblReal[iCols1 * rows_get() + iRows1], m_pdblImg[iCols1 * rows_get() + iRows1], _iPrecision,
+							GetComplexFormat(	ZeroIsZero(m_pdblReal[iCols1 * rows_get() + iRows1]), ZeroIsZero(m_pdblImg[iCols1 * rows_get() + iRows1]), _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
 							iTotalWidth += (iWidthR == 0 ? 0 : SIGN_LENGTH) + (iWidthI == 0 ? 0 : SIGN_LENGTH + 1);
@@ -693,10 +700,10 @@ namespace types
 									bool bFPR = false, bFPI = false; // FloatingPoint
 									int iCurrentLen = 0;
 
-									GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision,
+									GetComplexFormat(	ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), ZeroIsZero(m_pdblImg[iCols2 * rows_get() + iRows2]), _iPrecision,
 										&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-									Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2],
+									Add_Complex_Value(&ostemp, ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), ZeroIsZero(m_pdblImg[iCols2 * rows_get() + iRows2]),
 										piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
 									ostemp << SPACE_BETWEEN_TWO_VALUES;
 								}
@@ -721,10 +728,10 @@ namespace types
 							bool bFPR = false, bFPI = false; // FloatingPoint
 							int iCurrentLen = 0;
 
-							GetComplexFormat(	m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2], _iPrecision,
+							GetComplexFormat(	ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), ZeroIsZero(m_pdblImg[iCols2 * rows_get() + iRows2]), _iPrecision,
 								&iTotalWidth, &iWidthR, &iWidthI, &iPrecR, &iPrecI, &bFPR, &bFPI);
 
-							Add_Complex_Value(&ostemp, m_pdblReal[iCols2 * rows_get() + iRows2], m_pdblImg[iCols2 * rows_get() + iRows2],
+							Add_Complex_Value(&ostemp, ZeroIsZero(m_pdblReal[iCols2 * rows_get() + iRows2]), ZeroIsZero(m_pdblImg[iCols2 * rows_get() + iRows2]),
 								piSize[iCols2], iWidthR, iWidthI, Max(iPrecR, iPrecI));
 							ostemp << SPACE_BETWEEN_TWO_VALUES;
 						}

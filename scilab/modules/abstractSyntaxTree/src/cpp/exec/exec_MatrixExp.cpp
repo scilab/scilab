@@ -37,29 +37,51 @@ namespace ast
 			std::list<MatrixLineExp *>::const_iterator	row;
 			std::list<Exp *>::const_iterator	col;
 			//store all element after evaluation
-
-			list<list<InternalType*> > MatrixList;
-			for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
+			if(e.lines_get().size() == 0)
 			{
-				list<InternalType*> RowList;
-				for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
+				poResult = new Double(0,0);
+			}
+			else
+			{
+				list<list<InternalType*> > MatrixList;
+				for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
 				{
-					ExecVisitor* execMe = new ast::ExecVisitor();
-					(*col)->accept (*execMe);
-					if(execMe->result_get()->getType() == InternalType::RealImplicitList)
+					list<InternalType*> RowList;
+					for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
 					{
-						Double *pTemp = new Double(1, execMe->result_get()->getAsList()->size_get(), false);
-						execMe->result_get()->getAsList()->extract_matrix(pTemp->real_get());
-						delete execMe->result_get();
-						execMe->result_set(pTemp);
+						ExecVisitor* execMe = new ast::ExecVisitor();
+						(*col)->accept (*execMe);
+						if(execMe->result_get()->getType() == InternalType::RealImplicitList)
+						{
+							Double *pTemp = new Double(1, execMe->result_get()->getAsList()->size_get(), false);
+							execMe->result_get()->getAsList()->extract_matrix(pTemp->real_get());
+							delete execMe->result_get();
+							execMe->result_set(pTemp);
+						}
+
+						iCurCol += ((GenericType*)execMe->result_get())->cols_get();
+						if(iCurRow == -1)
+						{
+							iCurRow = ((GenericType*)execMe->result_get())->rows_get();
+						}
+						else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get())
+						{
+							std::ostringstream os;
+							os << "inconsistent row/column dimensions";
+							os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
+							string szErr(os.str());
+							throw szErr;
+						}
+
+						RowList.push_back(execMe->result_get());
+						delete execMe;
 					}
 
-					iCurCol += ((GenericType*)execMe->result_get())->cols_get();
-					if(iCurRow == -1)
+					if(iCols == -1)
 					{
-						iCurRow = ((GenericType*)execMe->result_get())->rows_get();
+						iCols = iCurCol;
 					}
-					else if(iCurRow != ((GenericType*)execMe->result_get())->rows_get())
+					else if(iCols != iCurCol)
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
@@ -68,54 +90,39 @@ namespace ast
 						throw szErr;
 					}
 
-					RowList.push_back(execMe->result_get());
-					delete execMe;
+					iRows += iCurRow;
+					iCurCol = 0;
+					iCurRow = -1;
+					MatrixList.push_back(RowList);
 				}
 
-				if(iCols == -1)
-				{
-					iCols = iCurCol;
-				}
-				else if(iCols != iCurCol)
-				{
-					std::ostringstream os;
-					os << "inconsistent row/column dimensions";
-					os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
-					string szErr(os.str());
-					throw szErr;
-				}
+				list<list<InternalType*> >::const_iterator it_ML;
+				list<InternalType*>::const_iterator it_RL;
 
-				iRows += iCurRow;
-				iCurCol = 0;
-				iCurRow = -1;
-				MatrixList.push_back(RowList);
+				int iAddRow = 0;
+				iCurRow			= 0;
+				iCurCol			= 0;
+				for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
+				{
+					int iAddCol = 0;
+					for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
+					{
+						if(poResult == NULL)
+						{
+							poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
+							iCurCol += iAddCol;
+						}
+						else
+						{
+							poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
+							iCurCol += iAddCol;
+						}
+					}
+					iCurRow += iAddRow;
+					iCurCol = 0;
+				}
 			}
 
-			list<list<InternalType*> >::const_iterator it_ML;
-			list<InternalType*>::const_iterator it_RL;
-
-			int iAddRow = 0;
-			iCurRow			= 0;
-			iCurCol			= 0;
-			for(it_ML = MatrixList.begin() ; it_ML != MatrixList.end() ; it_ML++)
-			{
-				int iAddCol = 0;
-				for(it_RL = (*it_ML).begin() ; it_RL != (*it_ML).end() ; it_RL++)
-				{
-					if(poResult == NULL)
-					{
-						poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
-						iCurCol += iAddCol;
-					}
-					else
-					{
-						poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
-						iCurCol += iAddCol;
-					}
-				}
-				iCurRow += iAddRow;
-				iCurCol = 0;
-			}
 			result_set(poResult);
 			if(e.is_verbose())
 			{
@@ -294,15 +301,14 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 			if(_poSource->getAsDouble()->size_get() != 1)
 			{
 				poResult->getAsDouble()->insert(iCurRow, iCurCol, _poSource->getAsDouble());
-				*_piRows = _poSource->getAsDouble()->rows_get();
-				*_piCols = _poSource->getAsDouble()->cols_get();
 			}
 			else
 			{
 				poResult->getAsDouble()->val_set(iCurRow, iCurCol, _poSource->getAsDouble()->real_get(0,0), _poSource->getAsDouble()->img_get(0,0));
-				*_piRows = 1;
-				*_piCols = 1;
 			}
+
+			*_piRows = _poSource->getAsDouble()->rows_get();
+			*_piCols = _poSource->getAsDouble()->cols_get();
 			break;
 		case GenericType::RealPoly :
 			{
@@ -312,19 +318,26 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
 				_poDest->getAsPoly()->poly_set(iCurRow, iCurCol, _poSource->getAsPoly()->poly_get(0)->coef_get());
 */
 
-				Poly* pPolyIn		= _poSource->getAsPoly()->poly_get(0);
 				if(_poSource->getAsPoly()->isComplex())
 				{
 					poResult->getAsPoly()->complex_set(true);
 				}
 
-				Poly* pPolyOut	= poResult->getAsPoly()->poly_get(iCurRow, iCurCol);
+				if(_poSource->getAsPoly()->size_get() != 1)
+				{
+					poResult->getAsPoly()->insert(iCurRow, iCurCol, _poSource->getAsPoly());
+				}
+				else
+				{
+					Poly* pPolyOut	= poResult->getAsPoly()->poly_get(iCurRow, iCurCol);
+					Poly* pPolyIn		= _poSource->getAsPoly()->poly_get(0);
 
-				pPolyOut->rank_set(pPolyIn->rank_get());
-				pPolyOut->coef_set(pPolyIn->coef_get());
-				*_piRows = 1;
-				*_piCols = 1;
+					pPolyOut->rank_set(pPolyIn->rank_get());
+					pPolyOut->coef_set(pPolyIn->coef_get());
+				}
 
+				*_piRows = _poSource->getAsPoly()->rows_get();
+				*_piCols = _poSource->getAsPoly()->cols_get();
 				break;
 			}
 		case GenericType::RealBool:

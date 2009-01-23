@@ -277,7 +277,7 @@ namespace ast
 								{
 									pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
 								}
-								else if(pOld->rows_get() == 1)
+								else if(pOld->rows_get() == 1 || pOld->size_get() == 0)
 								{
 									pOut = new Double(1, piMaxDim[0], pIn->isComplex());
 								}
@@ -400,6 +400,13 @@ namespace ast
 						{
 							symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pOut));
 						}
+
+						if(e.is_verbose())
+						{
+							std::cout << Var->name_get() << " = " << std::endl;
+							std::cout << std::endl;
+							std::cout << pOut->toString(10,75) << std::endl;
+						}
 					}
 					else
 					{//manage error
@@ -437,6 +444,7 @@ namespace ast
 				}
 
 				symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
+
 				if(e.is_verbose())
 				{
 					std::cout << Var->name_get() << " = " << std::endl;

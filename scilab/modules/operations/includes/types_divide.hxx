@@ -18,6 +18,8 @@
 
 using namespace types;
 
-EXTERN_OP int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double *_pDoubleOut);
+EXTERN_OP int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut);
+EXTERN_OP int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly* _pDoubleOut);
+
 
 #endif /* __TYPES_DIV_H__ */

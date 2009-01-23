@@ -42,6 +42,8 @@ namespace types
 		Double* 			coef_get(void);
 		void					coef_set(Double *_pCoef);
 
+		bool					insert(int _iRows, int _iCols, MatrixPoly* _poSource);
+
 		string				toString(int _iPrecison, int _iLineLen);
 		string				GetRowString(int _iPrecison, int _iLineLen, bool _bComplex);
 		string				GetColString(int _iPrecison, int _iLineLen, bool _bComplex);

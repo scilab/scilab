@@ -48,6 +48,7 @@
 #define getOverflowThreshold()					C2F(dlamch)((char*)"o", 1L)
 #define isZero(x)												fabs((double)x) <= getRelativeMachinePrecision()
 #define isEqual(x,y)										fabs((double)x) - fabs((double)y) <= getRelativeMachinePrecision()
+#define ZeroIsZero(x)										fabs((double)x) <= getRelativeMachinePrecision() ? 0 : (double)x
 
 extern double C2F(dlamch)  (char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);

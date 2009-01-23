@@ -18,9 +18,9 @@
 
 using namespace types;
 
-EXTERN_OP Double* SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2);
-EXTERN_OP MatrixPoly* SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly);
-EXTERN_OP MatrixPoly* SubstractDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble);
-EXTERN_OP MatrixPoly* SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2);
+EXTERN_OP int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDoubleOut);
+EXTERN_OP int SubstractPolyToDouble(Double *_pDouble, MatrixPoly *_pPoly, MatrixPoly **_pPolyOut);
+EXTERN_OP int SubstractDoubleToPoly(MatrixPoly *_pPoly, Double *_pDouble, MatrixPoly **_pPolyOut);
+EXTERN_OP int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_pPolyOut);
 
 #endif /* __TYPES_SUB_H__ */
