@@ -7,6 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/simulated_annealing/help/en_US";
+path = SCI+"/modules/simulated_annealing/help/fr_FR";
 add_help_chapter("Simulated Annealing",path,%T);
 clear path add_help_chapter;

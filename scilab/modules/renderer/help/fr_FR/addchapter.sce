@@ -8,6 +8,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-path = SCI+"/modules/renderer/help/fr_FR";
-add_help_chapter("Renderer",path,%T);
-clear path add_help_chapter;
+// path = SCI+"/modules/renderer/help/fr_FR";
+// add_help_chapter("Renderer",path,%T);
+// clear path add_help_chapter;
