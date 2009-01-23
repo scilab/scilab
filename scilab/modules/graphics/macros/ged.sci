@@ -92,8 +92,6 @@ function ged(k,win)
     TCL_SetVar("sciGedIsAlive",string(ged_cur_fig_handle.figure_id)) ;
     TCL_SetVar("SCIHOME", SCIHOME) // to know the home directory to put temporary files
     
-    //ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"];
-    
     ged_figure(ged_cur_fig_handle)
     case 9 then //edit current axes
       // hierarchical viewer
@@ -461,9 +459,10 @@ function ged_axes(h)
   //TCL_SetVar("curfillmode",h.fill_mode);
   TCL_SetVar("curalpharotation",string(h.rotation_angles(1)))
   TCL_SetVar("curthetarotation",string(h.rotation_angles(2)))
-  ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
-	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
-	 "Helvetica Bold" "Helvetica Bold Italic"];
+  ged_fontarray = ["Monospaced" "Symbol" "Serif",..
+                   "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+				   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+				   "SansSerif Bold Italic"];
   TCL_SetVar("Xlabelpos",h.x_location)
   TCL_SetVar("Ylabelpos",h.y_location)
   TCL_SetVar("Xlabelfontstyle",ged_fontarray(h.x_label.font_style+1))
@@ -855,9 +854,10 @@ function ged_text(h)
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curfontforeground",string(h.font_foreground))
-  ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
-	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
-	 "Helvetica Bold" "Helvetica Bold Italic"];
+  ged_fontarray = ["Monospaced" "Symbol" "Serif",..
+                   "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+				   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+				   "SansSerif Bold Italic"];
   TCL_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
   TCL_SetVar("curfontsize",string(h.font_size))
   TCL_SetVar("curfontangle",string(h.font_angle))
@@ -910,9 +910,10 @@ function ged_legend(h)
   TCL_SetVar("curvis",h.visible)
   TCL_SetVar("ncolors",string(size(f.color_map,1)))
   TCL_SetVar("curforeground",string(h.foreground))
-  ged_fontarray = ["Courier" "Symbol" "Times" "Times Italic"...
-	 "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica  Italic"...
-	 "Helvetica Bold" "Helvetica Bold Italic"];
+  ged_fontarray = ["Monospaced" "Symbol" "Serif",..
+                   "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+				   "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+				   "SansSerif Bold Italic"];
   TCL_SetVar("curfontstyle",ged_fontarray(h.font_style+1))
   TCL_SetVar("curfontsize",string(h.font_size))
   TCL_SetVar("curtext",h.text)
@@ -1616,10 +1617,10 @@ function setMarkStyle(sty)
 endfunction
 function setFontStyle(ftn)
   global ged_handle; h=ged_handle
-  h.font_style=find(ftn==["Courier" "Symbol" "Times",..
-		    "Times Italic" "Times Bold" "Times Bold Italic",..
-		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
-		   "Helvetica Bold Italic"])-1
+  h.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+						  "SansSerif Bold Italic"])-1;
 endfunction
 
 function setLabelsFontStyle(label,ftn)
@@ -1627,25 +1628,25 @@ function setLabelsFontStyle(label,ftn)
 select label
 case "t"
     TCL_EvalStr("Notebook:raise $uf.n Z");
-  h.title.font_style=find(ftn==["Courier" "Symbol" "Times",..
-		    "Times Italic" "Times Bold" "Times Bold Italic",..
-		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
-		   "Helvetica Bold Italic"])-1
+  h.title.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+						  "SansSerif Bold Italic"])-1;
 case "x"
-  h.x_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
-		    "Times Italic" "Times Bold" "Times Bold Italic",..
-		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
-		   "Helvetica Bold Italic"])-1
+  h.x_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+						  "SansSerif Bold Italic"])-1;
 case "y"
-  h.y_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
-		    "Times Italic" "Times Bold" "Times Bold Italic",..
-		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
-		   "Helvetica Bold Italic"])-1
+  h.y_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+						  "SansSerif Bold Italic"])-1;
 case "z"
-  h.z_label.font_style=find(ftn==["Courier" "Symbol" "Times",..
-		    "Times Italic" "Times Bold" "Times Bold Italic",..
-		   "Helvetica"  "Helvetica Italic" "Helvetica Bold",..
-		   "Helvetica Bold Italic"])-1
+  h.z_label.font_style=find(ftn==["Monospaced" "Symbol" "Serif",..
+                          "Serif Italic" "Serif Bold" "Serif Bold Italic" ,..
+						  "SansSerif"  "SansSerif Italic" "SansSerif Bold",..
+						  "SansSerif Bold Italic"])-1;
 end;
 endfunction
 

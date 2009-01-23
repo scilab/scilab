@@ -422,7 +422,7 @@ public class FontManager {
       sciFonts.add(createFont(SERIF, true, false));     /* scilab font_style 4 */
       sciFonts.add(createFont(SERIF, true, true));      /* scilab font_style 5 */
       sciFonts.add(createFont(SANSSERIF));              /* scilab font_style 6 */
-      sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 7 */
+      sciFonts.add(createFont(SANSSERIF, false, true)); /* scilab font_style 7 */
       sciFonts.add(createFont(SANSSERIF, true, false)); /* scilab font_style 8 */
       sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 9 */
       sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 10 */
