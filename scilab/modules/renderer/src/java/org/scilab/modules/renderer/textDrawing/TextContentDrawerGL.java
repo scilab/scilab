@@ -307,9 +307,6 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	
 		textCenterPix = transform.getCanvasCoordinates(gl, getTextCenter());
 		
-		
-		
-		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
@@ -534,6 +531,16 @@ public abstract class TextContentDrawerGL extends DrawableObjectGL implements Te
 	 */
 	private double roundHalf(double value) {
 		return Math.round(value + PIXEL_CENTERING_OFFSET) - PIXEL_CENTERING_OFFSET;
+	}
+	
+	/**
+	 * @param vect input vector to copy
+	 * @return copy of vect but with X and Y coordinate rounded to the closest integer
+	 */
+	protected Vector3D getRoundedVector(Vector3D vect) {
+		return new Vector3D(Math.round(vect.getX()),
+				            Math.round(vect.getY()),
+				            vect.getZ());
 	}
 	
 	/**
