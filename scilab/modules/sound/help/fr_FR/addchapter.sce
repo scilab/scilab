@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007 - INRIA - Allan CORNET
+// Copyright (C) 2009 - DIGITEO
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,11 +8,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help sound module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/sound/help/'+getlanguage();
+path = SCI+"/modules/sound/help/fr_FR";
 add_help_chapter("Manipulation de fichiers sons",path,%T);
 clear path add_help_chapter;
-// ====================================================================

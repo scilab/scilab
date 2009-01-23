@@ -7,11 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help matio module
-// Add chapter
-// ====================================================================
 path = SCI+"/modules/matio/help/"+getdefaultlanguage();
 add_help_chapter("Matlab binary files I/O",path,%T);
 clear path add_help_chapter;
-// ====================================================================
