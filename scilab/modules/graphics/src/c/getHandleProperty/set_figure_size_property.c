@@ -57,6 +57,6 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
   enableFigureSynchronization(pobj);
 
   /* return set property unchanged since repaint is not really needed */
-	return sciSetNoRedrawStatus(status);
+	return sciSetNoRedrawStatus((SetPropertyStatus)status);
 }
 /*------------------------------------------------------------------------*/
