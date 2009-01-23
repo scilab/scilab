@@ -159,10 +159,10 @@
             <varlistentry>
               <term>labels_font_size: </term>
               <listitem>
-                <para>An real value specifying the font size used to draw the tics
-			labels.
+                <para>It is a scalar specifying the character size of tics labels.
 			If <literal>fractional_font</literal> property is <literal>"off"</literal>
-			only the integer part of the value is used.
+		 	only the integer part of the value is used.
+			For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
                 </para>
               </listitem>
             </varlistentry>
