@@ -44,7 +44,9 @@ proc setScipadVersionString {} {
     set comm7   "end;"
     set comm8 "end;"
     # update title bar
-    set comm9 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
+    # catched because of bug 4011 and because "sync" "seq" options cannot be used
+    # in the ScilabEval-ed command (see below)
+    set comm9 "TCL_EvalStr(\"catch {modifiedtitle [gettextareacur]}\",\"scipad\");"
     # <TODO> SCI_VERSION_REVISION is not used until some automatic way to
     #        fill in this field at commit exists
     #        Well, there is one:  svn:keywords  with  $Revision$
