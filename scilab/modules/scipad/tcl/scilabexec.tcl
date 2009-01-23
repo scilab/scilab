@@ -524,9 +524,11 @@ proc scilaberror {funnameargs} {
 }
 
 proc blinkline {li ma {nb 3}} {
-# Blink $nb times logical line $li in macro function named $ma
+# Blink $nb times line $li in macro function named $ma
 # The macro is supposed to be defined in one of the opened buffers (no
 # opening of files occur here)
+# The line number $li to blink is taken as being logical when running in
+# Scilab before 5.0, or physical from Scilab 5 on.
 # Warning: This proc is also used from outside of Scipad by edit_error
     global Scilab5 SELCOLOR
     set funtogoto [funnametofunnametafunstart $ma]
