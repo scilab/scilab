@@ -7,11 +7,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help matio module
-// Add chapter
-// ====================================================================
-path = SCI+"/modules/matio/help/"+getlanguage();
+path = SCI+"/modules/matio/help/fr_FR";
 add_help_chapter("Lecture/Ecriture de fichiers binaires Matlab",path,%T);
 clear path add_help_chapter;
-// ====================================================================

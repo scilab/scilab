@@ -1849,7 +1849,7 @@ public class CallScilabBridge {
 	 * @return the index of the item selected
 	 */
 	public static int getPopupMenuSelectedIndex(int id) {
-		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getSelectedIndex();
+		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getUserSelectedIndex();
 	}
 
 	/**

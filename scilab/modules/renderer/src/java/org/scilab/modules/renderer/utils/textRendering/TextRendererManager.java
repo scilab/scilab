@@ -46,13 +46,13 @@ public class TextRendererManager extends HashMap<String, TextRenderer[]> {
 															 14.0f,
 															 18.0f,
 															 24.0f,
-															 34.0f,
-															 44.0f,
+															 30.0f,
+															 36.0f,
+															 42.0f,
+															 48.0f,
 															 54.0f,
-															 64.0f,
-															 74.0f,
-															 84.0f,
-															 94.0f};
+															 75.0f,
+															 90.0f};
 	
 	/** choose between JOGL factory and GL2PS one */
 	private TextRendererFactory factory;

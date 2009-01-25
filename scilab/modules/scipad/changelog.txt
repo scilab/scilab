@@ -1,3 +1,11 @@
+Francois VOGEL, 23/01/09
+ * Fixed bug 3997 (Goto line in function jumps to the wrong line number)
+ * Fixed bug 3998 (Goto line dialog is not application modal)
+ * Removed code useless since at least Scipad 5.21 (19 July 2005) - The pad
+   variable is always unset in proc killscipad when exiting Scipad
+ * Fixed bug 4011 (Tcl error at Scipad startup when quickly opening files)
+ * version --> 7.17
+
 Francois VOGEL, 18/01/09
  * Fixed bug 3978 (executing script with errors from Scipad hangs Scilab)
    This bug was affecting Linux only and was introduced in Scipad 7.13 when
@@ -11,7 +19,7 @@ Francois VOGEL, 17/01/09
 
 Francois VOGEL, 11/01/09
  * Selection of the file encoding is now possible through a new option menu,
-   with an MUR list of encodings, and auto-detection of encoding for XML files
+   with an MRU list of encodings, and auto-detection of encoding for XML files
    (this is a request from Yung-Jang Lee)
    This is the implementation corresponding to SEP#12_V2.1
  * version --> 7.14

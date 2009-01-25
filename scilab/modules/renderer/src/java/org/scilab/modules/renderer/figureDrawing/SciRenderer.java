@@ -140,7 +140,8 @@ implements GLEventListener {
 		gl.glClearDepth(1.0f);                      // Depth Buffer Setup
 		gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
 		gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
-		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_FASTEST);	// Really fast
+		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);	// Really fast
+		gl.glHint(GL.GL_TEXTURE_COMPRESSION_HINT, GL.GL_NICEST);
 		gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
 
 		// Color of texture will not be 
