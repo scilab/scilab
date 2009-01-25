@@ -101,7 +101,8 @@ libscilocalization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscilocalization_la-InitializeLocalization.lo \
 	libscilocalization_la-setgetlanguage.lo \
-	libscilocalization_la-charEncoding.lo
+	libscilocalization_la-charEncoding.lo \
+	libscilocalization_la-Messages_wrap.lo
 am__objects_2 = libscilocalization_la-gw_localization.lo \
 	libscilocalization_la-sci_gettext.lo \
 	libscilocalization_la-sci_dgettext.lo \
@@ -335,7 +336,8 @@ top_srcdir = @top_srcdir@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/charEncoding.c
+src/c/charEncoding.c \
+src/jni/Messages_wrap.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
@@ -388,6 +390,10 @@ includes/localetoutf.h \
 includes/charEncoding.h
 
 @GUI_TRUE@USEANT = 1
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/Messages.i 
+@SWIG_TRUE@BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -447,7 +453,8 @@ JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
-all: all-am
+all: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
 .SUFFIXES: .sci .bin .c .lo .o .obj
@@ -517,6 +524,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-InitializeLocalization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-Messages_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-charEncoding.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-gw_localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_dgettext.Plo@am__quote@
@@ -568,6 +576,13 @@ libscilocalization_la-charEncoding.lo: src/c/charEncoding.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/charEncoding.c' object='libscilocalization_la-charEncoding.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-charEncoding.lo `test -f 'src/c/charEncoding.c' || echo '$(srcdir)/'`src/c/charEncoding.c
+
+libscilocalization_la-Messages_wrap.lo: src/jni/Messages_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-Messages_wrap.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-Messages_wrap.Tpo -c -o libscilocalization_la-Messages_wrap.lo `test -f 'src/jni/Messages_wrap.c' || echo '$(srcdir)/'`src/jni/Messages_wrap.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilocalization_la-Messages_wrap.Tpo $(DEPDIR)/libscilocalization_la-Messages_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/Messages_wrap.c' object='libscilocalization_la-Messages_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-Messages_wrap.lo `test -f 'src/jni/Messages_wrap.c' || echo '$(srcdir)/'`src/jni/Messages_wrap.c
 
 libscilocalization_la-gw_localization.lo: sci_gateway/c/gw_localization.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-gw_localization.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-gw_localization.Tpo -c -o libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
@@ -767,13 +782,15 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
-check: check-am
+check: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
 	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscilocalization_la_etcdir)" "$(DESTDIR)$(libscilocalization_la_rootdir)" "$(DESTDIR)$(libscilocalization_la_sci_gatewaydir)" "$(DESTDIR)$(libscilocalization_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
-install: install-am
+install: $(BUILT_SOURCES)
+	$(MAKE) $(AM_MAKEFLAGS) install-am
 install-exec: install-exec-am
 install-data: install-data-am
 uninstall: uninstall-am
@@ -797,6 +814,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
