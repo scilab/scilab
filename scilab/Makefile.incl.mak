@@ -103,7 +103,11 @@ XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
 
 .f.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
-	@"$(SCIDIR1)\bin\f2c.exe" -I"$(SCIDIR1)\modules\core\includes" $(FFLAGS) $*.f 2>NUL
+!IF "$(F2C_IMPORT_COMMON)" == "YES"	
+	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
+!ELSE	
+	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
+!ENDIF
 	@$(CC) $(CFLAGS) $*.c 
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 
