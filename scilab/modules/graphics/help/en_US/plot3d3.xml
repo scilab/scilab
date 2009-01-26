@@ -64,48 +64,27 @@ plot3d3(X,Y,Z, &lt;opt_args&gt;)</synopsis>
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>a real vector of size three.
-          <literal>flag=[mode,type,box]</literal>.</para>
+          <para>a real vector of size four.
+          <literal>flag=[vertical_color, horizontal_color,type,box]</literal>.</para>
           <variablelist>
             <varlistentry>
-              <term>mode</term>
+              <term>vertical_color</term>
               <listitem>
-                <para>an integer (surface color).</para>
-                <variablelist>
-                  <varlistentry>
-                    <term>mode&gt;0</term>
-                    <listitem>
-                      <para>the surface is painted with color
-                      <literal>"mode"</literal> ; the boundary of the facet is drawn
-                      with current line style and color.</para>
-                    </listitem>
-                  </varlistentry>
-                  <varlistentry>
-                    <term>mode=0: </term>
-                    <listitem>
-                      <para>a mesh of the surface is drawn.</para>
-                    </listitem>
-                  </varlistentry>
-                  <varlistentry>
-                    <term>mode&lt;0:</term>
-                    <listitem>
-                      <para> the surface is painted with color
-                      <literal>"-mode"</literal> ; the boundary of the facet is not
-                      drawn.</para>
-                      <para>Note that the surface color treatement can be done
-                      using <literal>color_mode</literal> and
-                      <literal>color_flag</literal> options through the surface
-                      entity properties (see
-                      <link linkend="surface_properties">surface_properties</link>).</para>
-                    </listitem>
-                  </varlistentry>
-                </variablelist>
+                <para>an integer (surface color), default is 3.</para>
+                <para>Colormap index defining the color used to draw vertical edges.</para>
+              </listitem>
+            </varlistentry>
+			<varlistentry>
+              <term>horizontal_color</term>
+              <listitem>
+                <para>an integer (surface color), default is 4.</para>
+                <para>Colormap index defining the color used to draw horizontal edges.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>type</term>
               <listitem>
-                <para>an integer (scaling).</para>
+                <para>an integer (scaling) default is 2.</para>
                 <variablelist>
                   <varlistentry>
                     <term>type=0:</term>
@@ -171,7 +150,7 @@ plot3d3(X,Y,Z, &lt;opt_args&gt;)</synopsis>
             <varlistentry>
               <term>box</term>
               <listitem>
-                <para>an integer (frame around the plot).</para>
+                <para>an integer (frame around the plot), default is 4.</para>
                 <variablelist>
                   <varlistentry>
                     <term>box=0:</term>

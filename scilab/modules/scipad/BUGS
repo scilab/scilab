@@ -94,7 +94,8 @@ endfunction
  example: watch Q in   M=list(1,2,[1,2]);M(5)=33;Q=list(M,888);
 
 -bug in the font chooser: If I tag some properties, then OK, then reopen
- the dialog, sometimes they are reshown tagged, sometimes not.
+ the dialog, sometimes they are reshown tagged, sometimes not (anybody
+ able to exhibit a reproducible test case?)
 
 -on at least one system (RH Linux), opening the font chooser, clicking OK
  and reopening it can make the font size increase everytime the chooser
@@ -112,6 +113,10 @@ endfunction
  This happens when the load on Scipad is heavy, for instance with the test
  case provided here:
  http://groups.google.fr/group/comp.soft-sys.math.scilab/browse_thread/thread/ea6b6dc9bce5f0e6
+
+-Cut/Delete then undo on large chunks (more than a few lines) does sometimes
+ forget to colorize the text put back in place in the textarea by the undo.
+ No reproducible testcase exhibited so far.
 
 
 Old bugs/whishes which have been hacked but could have been done better:
@@ -311,6 +316,11 @@ Debugger wishes:
 
 
 Other wishes:
+
+- Add a margin displaying logical line numbers. Displaying this area should
+  be a saved preference. Or use the existing margin and add a saved option
+  for selecting between display of logical or physical line numbers? - Don't
+  forget to disable logical line numbers for non-scipad buffers
 
 - Add command "Toggle comments". When given a selection, this comments the
   lines in that selection that are not already commented, and uncomments

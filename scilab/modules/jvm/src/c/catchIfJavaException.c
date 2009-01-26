@@ -22,7 +22,7 @@ BOOL catchIfJavaException(char *errorMsg)
 
 	if ((*currentENV)->ExceptionCheck(currentENV) == JNI_TRUE)
 	{
-		printf(errorMsg);
+		printf("%s",errorMsg);
 		fflush(NULL);
 		(*currentENV)->ExceptionDescribe(currentENV);
 		(*currentENV)->ExceptionClear(currentENV);

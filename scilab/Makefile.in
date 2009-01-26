@@ -94,7 +94,8 @@ scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
-	$(top_builddir)/modules/localization/libscilocalization.la
+	$(top_builddir)/modules/localization/libscilocalization.la \
+	$(top_builddir)/modules/io/libsciio.la
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -373,7 +374,8 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/localization/libscilocalization.la
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/io/libsciio.la
 
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
@@ -1154,11 +1156,11 @@ distclean-recursive: clean-recursive
 clean-recursive: clean-doc clean-localization clean-macros
 
 clean-macros:
-	@echo "-- Cleanning macros (*.bin) --"; \
+	@echo "-- Cleaning macros (*.bin) --"; \
 	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning names files (names) --"; \
+	echo "-- Cleaning names files (names) --"; \
 	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning lib files (lib) --"; \
+	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
 
 clean-doc:
@@ -1184,7 +1186,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	LC=LC_MESSAGES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	LC="LC_MESSAGES"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	FILENAME="*.po*"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	rm modules/*/locales/*/*~ 2> /dev/null; \
@@ -1199,9 +1201,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	done; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
+@GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
 @GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \

@@ -60,7 +60,7 @@ public class StandardTextDrawerGL extends FixedFontTextDrawerGL {
 	 */
 	public TextGrid placeTextGrid(TextGrid stringPositions, Vector3D textCenterPix, double rotationAngle) {
 		GL gl = getGL();
-		gl.glTranslated(textCenterPix.getX(), textCenterPix.getY(), textCenterPix.getZ());
+		gl.glTranslated(Math.round(textCenterPix.getX()), Math.round(textCenterPix.getY()), textCenterPix.getZ());
 		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
 		return stringPositions;
 	}

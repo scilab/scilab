@@ -422,6 +422,10 @@
 				RelativePath="..\includes\localization.h"
 				>
 			</File>
+			<File
+				RelativePath="..\includes\localizationJava.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"
@@ -477,6 +481,10 @@
 			</File>
 			<File
 				RelativePath=".\c\LanguagePreferences_Windows.c"
+				>
+			</File>
+			<File
+				RelativePath=".\jni\Messages_wrap.c"
 				>
 			</File>
 			<File

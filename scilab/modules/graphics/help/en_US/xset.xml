@@ -79,9 +79,8 @@ xset()</synopsis>
       <varlistentry>
         <term>xset("background",color)</term>
         <listitem>
-          <para>Set the background color of the current graphics window. The
-        graphics window means the current axes selection where plots are
-        drawn, not the whole figure.</para>
+          <para>Set the background color of the current Axes object.
+		  The <literal>color</literal> argument is the colormap index of the color to use.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -143,7 +142,8 @@ xset()</synopsis>
       <varlistentry>
         <term>xset("foreground",color)</term>
         <listitem>
-          <para>Set the foreground color of the current graphics window.</para>
+          <para>Set the foreground color of the current Axes object.
+		  The <literal>color</literal> argument is the colormap index of the color to use.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA - Allan Cornet
+// Copyright (C) 2009 - DIGITEO
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,12 +8,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-// ====================================================================
-// help elementary_functions module
-// Add chapter
-// ====================================================================
-
-path = SCI+'/modules/elementary_functions/help/'+getlanguage();
+path = SCI+"/modules/elementary_functions/help/fr_FR";
 add_help_chapter("Fonctions Elémentaires",path,%T);
 clear path add_help_chapter;

@@ -149,7 +149,7 @@ proc packnewbuffer {textarea targetpw forcetitlebar {whereafter ""} {wherebefore
     grid columnconfigure $tapwfr.topbar.f 0 -uniform 1
     grid columnconfigure $tapwfr.topbar.f 1 -uniform 1
     if {$Tk85} {
-        # not absolutely mandatory because $tapwfr.topbar.f is alter packed
+        # not absolutely mandatory because $tapwfr.topbar.f is already packed
         # with -expand 0 -fill none (and not -expand 1 -fill x), but does not hurt
         grid anchor $tapwfr.topbar.f center
     }
@@ -1564,18 +1564,22 @@ proc gotoline {} {
     if {![info exists linetogo]} {set linetogo 1}
     if {![info exists funtogoto]} {
         set funtogoto [list $unklabel 0 0]
+        set itemnumberofpreviouschoice -1
     } else {
         # Do not propose a function defined in a closed buffer (in case the goto box is reopened
         # after a buffer has been closed)
         set stillexists "false"
+        set itemnumberofpreviouschoice 0
         foreach {fn ta fsl} $funtogotolist {
             if {$fn == [lindex $funtogoto 0]} {
                 set stillexists true
                 break
             }
+            incr itemnumberofpreviouschoice
         }
         if {$stillexists == "false"} {
             set funtogoto [list $unklabel 0 0]
+            set itemnumberofpreviouschoice -1
         }
     }
 
@@ -1652,6 +1656,8 @@ proc gotoline {} {
     wm deiconify $gotln
 
     focus $gotln.f1.en1
+    grab $gotln
+
     $gotln.f1.en1 selection range 0 end
 
     bind $gotln <Return> {if {[[winfo toplevel %W].f3.ok cget -state] == "normal"} { \
@@ -1676,9 +1682,14 @@ proc gotoline {} {
         $gotln.f1.f1l.rbut2 invoke
         $gotln.rbut4 invoke
     } else {
-        # preselect the first function found if no previous choice was made
-        if {[lindex $funtogoto 0] == $unklabel} {
+        # preselect the the previous choice if it can still be found
+        # otherwise preselect the first function found
+        if {$itemnumberofpreviouschoice == -1} {
+            # first time the dialog is opened, or previous choice no longer exists
             $gotln.f2.mb.om1 invoke 0
+        } else {
+            # previous choice is still available among the buffers
+            $gotln.f2.mb.om1 invoke $itemnumberofpreviouschoice
         }
     }
 
@@ -1691,7 +1702,8 @@ proc updatemenubutlabelgoto {w} {
 # It contains the currently selected function name to go to
     global funtogoto
     $w.f2.mb configure -text [lindex $funtogoto 0]
-    # if a function has been selected it is likely the goto will use it, hence invoke this choice
+    # if a function has been selected it is likely the goto will use it,
+    # hence invoke the "in function" choice rather than keep "in buffer"
     $w.f2.rbut3 invoke
     updateOKbuttonstategoto $w
 }

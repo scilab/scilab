@@ -23,11 +23,11 @@ static SciHandleTab * scilabHandleTab = NULL;
 /**
  * Hash function used by the SciHashTable
  */
-static int sciHashTableHash(void * hash)
+static unsigned int sciHashTableHash(void * hash)
 {
 	/* normally its a long, here we use an int */
 	long * key = (long *) hash;
-	return (int) *key;
+	return (unsigned int) *key;
 }
 /*--------------------------------------------------------------------------*/
 /**
@@ -40,7 +40,8 @@ static int sciHashTableEqualsKeys(void * k1, void * k2)
 /*--------------------------------------------------------------------------*/
 SciHandleTab * createHandleTab(void)
 {
-	return create_hashtable(16, sciHashTableHash, sciHashTableEqualsKeys);
+	unsigned int minsize = 16;
+	return create_hashtable(minsize, sciHashTableHash, sciHashTableEqualsKeys);
 }
 /*--------------------------------------------------------------------------*/
 void destroyHandleTab(SciHandleTab * tab)

@@ -22,13 +22,14 @@
 #define _BASIC_ALGOS_H_
 
 #include <string.h>
+#include "BOOL.h"
 
 /**
  * Find the striclty positive minimum value of an array of double.
  * @param[in] x array of size n.
  * @return The stricly posistive minimum of x if exists, a negative value otherwise
  */
-double sciFindStPosMin( double x[], int n ) ;
+double sciFindStPosMin( const double x[], int n ) ;
 
 
 /**
@@ -38,7 +39,13 @@ double sciFindStPosMin( double x[], int n ) ;
  *          0 if not monotonous
  * @param nbElement must be greater than 2.
  */
-int checkMonotony( double vector[], int nbElement ) ;
+int checkMonotony( const double vector[], int nbElement ) ;
+
+/**
+ * @return TRUE if the array contains one element which is not %inf, -%inf or %nan
+ *         FALSE is all its elements are not finite
+ */
+BOOL containsOneFiniteElement(const double vector[], int nbElement);
 
 /*--------------------------------------------------------------------------*/
 /**
