@@ -11,11 +11,11 @@ function kp=krac2(n)
 
   select typeof(n)
   case 'rational' then
-    [n,d,dom]==n(['num','den','dt'])
+    [n,d,dom]=n(['num','den','dt'])
   case 'state-space' then
     n=ss2tf(n);[n,d,dom]=n(['num','den','dt'])
   else
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"kpure",1))
+     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"krac2",1))
   end
   if dom<>'c' then 
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"krac2",1))
