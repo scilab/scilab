@@ -8,8 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function x = sind(x)
 //Sine of x in degrees with exact values for integer multiples of 90
-  if ~isreal(x)
-    error(msprintf(_('%s :Argument should be real.'),'sind'))
+  if ~isreal(x) then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"sind",1)); 
   end
   n = round(x/90);
   x = x - n*90;

@@ -10,3 +10,4 @@ function y = asec(x)
 //Inverse secant.
   y = acos(ones(x)./x);
 endfunction
+ 
