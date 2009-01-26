@@ -8,8 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function x = secd(x)
 // Secant argument in degree
-    if ~isreal(x)
-    error(msprintf(_('%s :Argument should be real.'),'secd'));
+  if ~isreal(x) then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"secd",1)); 
   end
  
   n = round(x/90);

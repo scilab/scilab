@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="asech">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>asech</refname>
+    <refpurpose>sécante hyperbolique inverse des éléments de l'argument. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>y = asech(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+            Tableau réel ou complexe.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>
+            Tableau réel ou complexe.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Les éléments de <literal>y</literal> sont les séquentes hyperboliques
+    inverses  des éléments correspondants de
+    <literal>x</literal>.  Pour les données
+    réelles dont la valeur absolue est inférieure à
+    <literal>1</literal>, les résultats sont réels.</para>
+    <para>
+      Les inégalités suivantes sont respectées: 
+      <literal>asech(x) = acosh(1 ./ x)= %i*csgn(%i*(1−1 ./ x))*asec(x)=csgn(%i*(1 − 1 ./ x))*(%pi/2*(%i+acsch(%i*x)))</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+        asech(1)
+    ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sech" >sech</link>
+        <link linkend="csgn" >csgn</link>
+      </member>
+    </simplelist>
+  </refsection>
+   <refsection>
+    <title>Références</title>
+    <simplelist type="vert">
+      <member>Kahan, W., “Branch cuts for complex elementary
+      functions, or, Much ado about nothing's sign bit”, Proceedings
+      of the joing IMA/SIAM conference on The State of the Art in
+      Numerical Analysis, University of Birmingham, A. Iserles and
+      M.J.D. Powell, eds, Clarendon Press, Oxford, 1987,
+      165-210.</member>
+    </simplelist>
+  </refsection>
+   <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>
