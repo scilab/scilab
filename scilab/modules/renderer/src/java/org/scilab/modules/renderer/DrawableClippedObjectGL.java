@@ -23,7 +23,7 @@ import org.scilab.modules.renderer.utils.glTools.MovableClipPlane3D;
 public abstract class DrawableClippedObjectGL extends DrawableObjectGL {
 
 	/** Experimental value to avoid to strict clipping */
-	private static final double EPSILON = 1.0e-6;
+	private static final double EPSILON = 1.0e-5;
 	
 	private MovableClipPlane3D planeXmin;
 	private MovableClipPlane3D planeXmax;
