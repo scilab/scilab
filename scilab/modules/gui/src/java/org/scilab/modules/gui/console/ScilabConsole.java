@@ -57,7 +57,7 @@ public class ScilabConsole extends ScilabDockable implements Console {
 	 */
 	public static Console getConsole() {
 		if (instance == null) {
-			instance = new ScilabConsole();
+			return new ScilabConsole();
 		}
 		return instance;
 	}
