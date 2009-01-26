@@ -97,9 +97,8 @@ xset()</synopsis>
         <term>xset("background",color)</term>
 
         <listitem>
-          <para>Change la couleur d'arrière plan de la fenêtre graphique
-          courante. La fenêtre graphique courante désigne la zone des axes où
-          les dessins sont dessinés, pas la figure entière.</para>
+          <para>Change la couleur d'arrière plan du système d'axes courant.
+		  L'argument <literal>color</literal> correspond a un indice de la table de couleur.</para>
         </listitem>
       </varlistentry>
 
@@ -184,8 +183,8 @@ xset()</synopsis>
         <term>xset("foreground",color)</term>
 
         <listitem>
-          <para>Choisit la couleur de premier plan pour la fenêtre graphique
-          courante.</para>
+          <para>Choisit la couleur de premier plan du système d'axes courant.
+		  L'argument <literal>color</literal> correspond a un indice de la table de couleur.</para>
         </listitem>
       </varlistentry>
 
