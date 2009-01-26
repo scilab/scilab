@@ -8,8 +8,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function y = tand(x)
 // Tangent of x in degrees.
-  if ~isreal(x)
-    error(msprintf(_('%s :Argument should be real.'),'tand'))
+  if ~isreal(x) then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"tand",1)); 
   end
   
   n = round(x/90);
