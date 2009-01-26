@@ -20,7 +20,7 @@
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
 #include "charEncoding.h"
-
+#include "zzledt.h"
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -54,8 +54,6 @@ static BOOL WatchGetCmdLineThreadAlive = FALSE;
 static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
-
-char *TermReadAndProcess(void);
 
 /***********************************************************************
  * line editor
