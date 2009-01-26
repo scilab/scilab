@@ -117,7 +117,7 @@ void C2F(scipvmreduce)(char *func, int *l1,
       SciToF77(buff, size, size);
       break;
     default :
-      (void) fprintf(stderr, _("Error pvm_reduce: Not scalar type\n"));
+      (void) fprintf(stderr, "%s", _("Error pvm_reduce: Not scalar type\n"));
       *res = PvmBadMsg;
       return;
     }
