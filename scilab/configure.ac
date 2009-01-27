@@ -371,7 +371,7 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++ -Werror=format-security"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
@@ -396,7 +396,7 @@ case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
+	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Werror=format-security"
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
 	  case "$host" in
@@ -885,12 +885,11 @@ AC_LIBXML2()
 ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
 
 AC_ARG_ENABLE(build-localization,
-		AC_HELP_STRING([--enable-build-localization],[Enable the localization build]),
-		[with_localization=yes],
-		[with_localization='no']
+		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
 		)
+BUILD_LOCALIZATION_ENABLE=no
 
-if test $with_localization != no; then
+if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
 
@@ -904,9 +903,9 @@ if test $with_localization != no; then
 	if test x$MSGCAT = xno; then
 	  AC_ERROR([As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
 	fi
-
+	BUILD_LOCALIZATION_ENABLE=yes
 fi
-AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
+AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$BUILD_LOCALIZATION_ENABLE" = yes)
 
 #######################
 ## Test for blas/Atlas and lapack
@@ -1454,7 +1453,7 @@ echo ""
 #fi
 
 echo ""
-if test $with_localization != no; then
+if test $BUILD_LOCALIZATION_ENABLE != no; then
    echo "Gettext/localization configuration:"
    echo "xgettext ............... = $XGETTEXT"
    echo "msgfmt  ................ = $MSGFMT"

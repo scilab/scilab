@@ -33,12 +33,6 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
         return SET_PROPERTY_ERROR;
       }
       
-      if (nbRow == 0) {
-        // This case should never happen because if nbRow==0 then nbCol is also 0
-        Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
-        return SET_PROPERTY_ERROR;
-      }
-
       cbString = getStringFromStack(stackPointer);
     }
   else if (valueType == sci_list)

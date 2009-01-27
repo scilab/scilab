@@ -9,7 +9,7 @@ SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
 CFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/modules/core/includes" /EHsc
 CPPFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/modules/core/includes" /EHsc
 
-!include $(SCIDIR)/Makefile.incl.mak 
+!include $(SCIDIR)/modules/dynamic_link/src/scripts/Makefile.incl.mak 
 
 OBJSC = myprog.obj ccmatrix1.obj 
 

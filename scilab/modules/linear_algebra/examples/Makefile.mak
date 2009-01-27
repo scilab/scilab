@@ -23,7 +23,7 @@ OTHERFOBJS =
 DUMPEXTS="$(SCIDIR1)\bin\dumpexts"
 SCIIMPLIB="$(SCIDIR1)\bin\LibScilab.lib"
 
-!include ..\..\..\Makefile.incl.mak
+!include ..\..\dynamic_link\src\scripts\Makefile.incl.mak
 
 FFLAGS = $(FC_OPTIONS) -DFORDLL -I"$(SCIDIR1)\routines"
 CFLAGS = $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
@@ -122,13 +122,13 @@ clean	::
 distclean:: 	clean
 
 tests:: 
-  @"$(SCIDIR1)\bin\scilex.exe" -nwni -nb -e scitest('lapackscilab.tst',%t);quit; 
+  @"$(SCIDIR1)/bin/scilex.exe" -nwni -nb -e scitest('lapackscilab.tst',%t);quit; 
 
 $(LIBRARY).dll: $(OBJS)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	@$(DUMPEXTS) -o "$*.def" "$*.dll" $**
-	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
-	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
+	@echo $(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(SCILAB_LIBS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
+	@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(SCILAB_LIBS) /nologo /dll /out:"$*.dll" /implib:"$*.lib" /def:"$*.def" 
 	
 

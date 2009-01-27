@@ -147,6 +147,8 @@ src/c/getHandleProperty/get_fractional_font_property.c \
 src/c/getHandleProperty/get_links_property.c \
 src/c/getHandleProperty/get_legend_location_property.c \
 src/c/getHandleProperty/get_filled_property.c \
+src/c/getHandleProperty/get_color_range_property.c \
+src/c/getHandleProperty/get_outside_colors_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -280,6 +282,8 @@ src/c/getHandleProperty/set_fractional_font_property.c \
 src/c/getHandleProperty/set_links_property.c \
 src/c/getHandleProperty/set_legend_location_property.c \
 src/c/getHandleProperty/set_filled_property.c \
+src/c/getHandleProperty/set_color_range_property.c \
+src/c/getHandleProperty/set_outside_colors_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -324,11 +328,8 @@ sci_gateway/c/sci_xlfont.c \
 sci_gateway/c/sci_xgraduate.c \
 sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
-sci_gateway/c/sci_xclear.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xtape.c \
 sci_gateway/c/sci_xset.c \
-sci_gateway/c/sci_set_posfig_dim.c \
 sci_gateway/c/sci_xgetech.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
@@ -473,7 +474,6 @@ includes/InitObjects.h \
 includes/sci_xfpoly.h \
 includes/sci_drawlater.h \
 includes/Format.h \
-includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
 includes/sci_delete.h \
 includes/sci_plot2d.h \
@@ -493,8 +493,6 @@ includes/sci_swap_handles.h \
 includes/sci_newaxes.h \
 includes/PloEch.h \
 includes/sci_xclick.h \
-includes/sci_xclear.h \
-includes/sci_xtape.h \
 includes/sci_xset.h \
 includes/sci_xgetech.h \
 includes/sci_glue.h \

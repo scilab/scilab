@@ -491,9 +491,8 @@ proc scilaberror {funnameargs} {
                                         db_str; \
                                         \"$lineError\"+msprintf(\" %d\",db_l)+\"$funcError\"+db_func\], \"$winTitle\", \"error\", \"modal\" )" \
                           "sync" "seq"
-            # make blinkline below receive its args
-            ScilabEval_lt  "TCL_SetVar(\"errline\", msprintf(\" %d\",db_l), \"scipad\");" "sync" "seq"
-            ScilabEval_lt  "TCL_SetVar(\"errfunc\", strsubst(db_func,\"\"\"\",\"\\\"\"\"), \"scipad\")" "sync" "seq"
+            # warning: seq only here, because sync seq would be a deadlock
+            ScilabEval_lt  "TCL_EvalStr(\"blinkline \"+msprintf(\"%d\",db_l)+\" \"+strsubst(db_func,\"\"\"\",\"\\\"\"\"),\"scipad\")" "seq"
         } else {
             ScilabEval_lt "\[db_str,db_n,db_l,db_func\]=lasterror();" "sync" "seq"
             ScilabEval_lt  "TCL_SetVar(\"errnum\", msprintf(\" %d\",db_n), \"scipad\");" "sync" "seq"
@@ -515,19 +514,21 @@ proc scilaberror {funnameargs} {
                 -message [append dummyvar [mc "The shell reported an error while trying to execute "]\
                               $funnameargs [mc ": error "] $errnum "\n" $errmsg "\n" [mc "at line "]\
                               $errline [mc " of "] $errfunc]
+            blinkline $errline $errfunc
         }
     }
     showinfo [mc "Execution aborted!"]
     if {[getdbstate] != "NoDebug"} {
         canceldebug_bp
     }
-    blinkline $errline $errfunc
 }
 
 proc blinkline {li ma {nb 3}} {
-# Blink $nb times logical line $li in macro function named $ma
+# Blink $nb times line $li in macro function named $ma
 # The macro is supposed to be defined in one of the opened buffers (no
 # opening of files occur here)
+# The line number $li to blink is taken as being logical when running in
+# Scilab before 5.0, or physical from Scilab 5 on.
 # Warning: This proc is also used from outside of Scipad by edit_error
     global Scilab5 SELCOLOR
     set funtogoto [funnametofunnametafunstart $ma]

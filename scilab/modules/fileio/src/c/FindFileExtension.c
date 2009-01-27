@@ -38,7 +38,7 @@ char *FindFileExtension(char *filename)
 		{
 			int lengthextension = lengthfilename - i;
 			extension = (char*)MALLOC(sizeof(char)*(lengthextension+1));
-			if (extension) sprintf(extension,&filename[i]);
+			if (extension) sprintf(extension,"%s",&filename[i]);
 		}
 		#else
 		extension = strdup(PathFindExtension(filename));

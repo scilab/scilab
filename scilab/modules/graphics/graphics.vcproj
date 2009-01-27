@@ -48,7 +48,7 @@
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -67,10 +67,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -131,7 +131,7 @@
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -150,10 +150,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -214,7 +214,7 @@
 				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../../../jvm/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -238,6 +238,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -303,7 +304,7 @@
 				AdditionalIncludeDirectories="includes;../../java/jdk/include;../../java/jdk/include/win32;../output_stream/includes;../fileio/includes;../gui/includes;../core/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/doublylinkedlist/includes;../../libs/hashtable;src/c;src/c/getHandleProperty;../renderer/includes;../jvm/includes;includes/handleDrawing;../action_binding/includes;../graphic_export/includes;../string/includes;../windows_tools/includes;../../../jvm/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
@@ -327,6 +328,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -555,6 +557,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_color_range_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_colored_property.c"
 				>
 			</File>
@@ -768,6 +774,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_outside_colors_property.c"
 				>
 			</File>
 			<File
@@ -997,6 +1007,14 @@
 			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\c\ObjectSelection.c"
@@ -1139,10 +1157,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_set_posfig_dim.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_show_pixmap.c"
 				>
 			</File>
@@ -1188,10 +1202,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xchange.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xclear.c"
 				>
 			</File>
 			<File
@@ -1284,10 +1294,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xstringb.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xtape.c"
 				>
 			</File>
 			<File
@@ -1432,6 +1438,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_color_mode_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_color_range_property.c"
 				>
 			</File>
 			<File
@@ -1640,6 +1650,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_outside_colors_property.c"
 				>
 			</File>
 			<File
@@ -2125,10 +2139,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_set_posfig_dim.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_show_pixmap.h"
 				>
 			</File>
@@ -2174,10 +2184,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xchange.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xclear.h"
 				>
 			</File>
 			<File
@@ -2270,10 +2276,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xstringb.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xtape.h"
 				>
 			</File>
 			<File

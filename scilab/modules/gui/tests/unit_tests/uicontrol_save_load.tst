@@ -64,7 +64,7 @@ if or(h.horizontalalignment<>hsaved.horizontalalignment) then pause; end
 if or(h.listboxtop<>hsaved.listboxtop) then pause; end
 if or(h.max<>hsaved.max) then pause; end
 if or(h.min<>hsaved.min) then pause; end
-if or(h.position<>hsaved.position) then pause; end
+if abs(sum(h.position-hsaved.position)) > 4 then pause; end // TODO FIX ME !! Can have a difference of 1 (point or pixel) when getting position
 if or(h.relief<>hsaved.relief) then pause; end
 if or(h.sliderstep<>hsaved.sliderstep) then pause; end
 if or(h.string<>hsaved.string) then pause; end

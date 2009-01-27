@@ -36,6 +36,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "Scierror.h"
+#include "BasicAlgos.h"
 
 
 /**CloneText
@@ -101,21 +102,8 @@ CloneText (sciPointObj * pthis)
   ppCopyText->userSize[0] = ppThisText->userSize[0];
   ppCopyText->userSize[1] = ppThisText->userSize[1];
 
-  
-  if((ppThisText->size_of_user_data != 0) && (ppThisText->user_data != (int *) NULL))
-  {
-    int size = ppThisText->size_of_user_data;
-    
-    if((ppCopyText->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-      Scierror(999, _("Can not allocate user_data for cloned object.\n"));
-      ppCopyText->user_data = (int *) NULL;
-      ppCopyText->size_of_user_data = 0;
-    }
-    else{
-      memcpy(ppCopyText->user_data, ppThisText->user_data,  size);
-      ppCopyText->size_of_user_data = pTEXT_FEATURE (pthis)->size_of_user_data;
-    }
-  }
+  /* copy user data */
+	cloneUserData(pthis, pobj);
   
   return (sciPointObj *)pobj;
 }
@@ -198,20 +186,7 @@ CloneRectangle (sciPointObj * pthis)
   if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
     return (sciPointObj *)NULL;
   
-  if((pRECTANGLE_FEATURE (pthis)->size_of_user_data != 0) && (pRECTANGLE_FEATURE (pthis)->user_data != (int *) NULL))
-    {
-      int size = pRECTANGLE_FEATURE (pthis)->size_of_user_data;
-      
-      if((pRECTANGLE_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-		  Scierror(999, _("%s: No more memory.\n"),"CloneRectangle");
-		  pRECTANGLE_FEATURE (pobj)->user_data = (int *) NULL;
-		  pRECTANGLE_FEATURE (pobj)->size_of_user_data = 0;
-      }
-      else{
-	memcpy(pRECTANGLE_FEATURE (pobj)->user_data, pRECTANGLE_FEATURE (pthis)->user_data,  size);
-	pRECTANGLE_FEATURE (pobj)->size_of_user_data = pRECTANGLE_FEATURE (pthis)->size_of_user_data;
-      }
-    }
+  cloneUserData(pthis, pobj);
   
   return (sciPointObj *)pobj;
 }
@@ -258,20 +233,7 @@ ClonePolyline (sciPointObj * pthis)
   if (sciSetLineWidth(pobj, sciGetLineWidth (pthis)) == -1)
     return (sciPointObj *)NULL;
 
-  if((pPOLYLINE_FEATURE (pthis)->size_of_user_data != 0) && (pPOLYLINE_FEATURE (pthis)->user_data != (int *) NULL))
-    {
-      int size = pPOLYLINE_FEATURE (pthis)->size_of_user_data;
-      
-      if((pPOLYLINE_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-		  Scierror(999, _("%s: No more memory.\n"),"ClonePolyline");
-		  pPOLYLINE_FEATURE (pobj)->user_data = (int *) NULL;
-		  pPOLYLINE_FEATURE (pobj)->size_of_user_data = 0;
-      }
-      else{
-	memcpy(pPOLYLINE_FEATURE (pobj)->user_data, pPOLYLINE_FEATURE (pthis)->user_data,  size);
-	pPOLYLINE_FEATURE (pobj)->size_of_user_data = pPOLYLINE_FEATURE (pthis)->size_of_user_data;
-      }
-    }
+	cloneUserData(pthis, pobj);
   
   return (sciPointObj *)pobj;
 }
@@ -315,20 +277,7 @@ CloneArc (sciPointObj * pthis)
   if (sciSetIsFilled(pobj, sciGetIsFilled (pthis)) == -1)
     return (sciPointObj *)NULL;
 
-  if((pARC_FEATURE (pthis)->size_of_user_data != 0) && (pARC_FEATURE (pthis)->user_data != (int *) NULL))
-    {
-      int size = pARC_FEATURE (pthis)->size_of_user_data;
-      
-      if((pARC_FEATURE (pobj)->user_data = (int *) MALLOC(size*sizeof(int)))==NULL){
-		  Scierror(999, _("%s: No more memory.\n"),"CloneArc");
-		  pARC_FEATURE (pobj)->user_data = (int *) NULL;
-		  pARC_FEATURE (pobj)->size_of_user_data = 0;
-      }
-      else{
-	memcpy(pARC_FEATURE (pobj)->user_data, pARC_FEATURE (pthis)->user_data,  size);
-	pARC_FEATURE (pobj)->size_of_user_data = pARC_FEATURE (pthis)->size_of_user_data;
-      }
-    }
+	cloneUserData(pthis, pobj);
  
   return (sciPointObj *)pobj;
 }
@@ -362,27 +311,39 @@ int cloneUserData( sciPointObj * pObjSource, sciPointObj * pObjDest )
   int *  srcSize   ;
   int ** dstUserData ;
   int *  dstSize     ;
+	
+	/* Get pointer and data of both source and destination */
   sciGetPointerToUserData( pObjSource, &srcUserData, &srcSize ) ;
   sciGetPointerToUserData( pObjDest  , &dstUserData, &dstSize ) ;
+
+	/* Deallocate current user data */
+	if (*dstUserData != NULL)
+	{
+		FREE(*dstUserData);
+		*dstUserData = NULL;
+		*dstSize = 0;
+	}
+
+	/* Reallocate if needed */
   if ( *srcSize > 0 )
   {
+		/* update size */
     *dstSize = *srcSize ;
-    if ( *dstUserData != NULL ) { FREE(*dstUserData) ; }
+    
+		/* reallocation */
     *dstUserData = MALLOC( *srcSize * sizeof(int) ) ;
     if ( *dstUserData == NULL )
     {
 		  Scierror(999, _("%s: No more memory.\n"),"CloneUserData");
 		  *dstSize     = 0 ;
-		  *srcUserData = NULL ;
+		  *dstUserData = NULL ;
 		  return -1 ;
     }
-    memcpy( *dstUserData, *srcUserData, *srcSize ) ;
+
+		/* copy */
+    intArrayCopy( *dstUserData, *srcUserData, *srcSize ) ;
   }
-  else
-  {
-    *dstSize     = 0 ;
-    *srcUserData = NULL ;
-  }
+
   return 0 ;
 }
 /*--------------------------------------------------------------------------*/

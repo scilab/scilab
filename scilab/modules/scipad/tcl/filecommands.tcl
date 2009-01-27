@@ -460,6 +460,7 @@ proc opensourceof {} {
 # wants to open
     global pad menuFont textFont
     global opensoflb opensofbOK
+    global Tk85
 
     if {[isscilabbusy 0]} {return}
 
@@ -501,7 +502,10 @@ proc opensourceof {} {
     grid $opensof.f3.buttonCancel -row 0 -column 1 -sticky we -padx 10
     grid columnconfigure $opensof.f3 0 -uniform 1
     grid columnconfigure $opensof.f3 1 -uniform 1
-    pack $opensof.f3 -pady 4 -after $opensof.f2 -expand 0 -fill x
+    if {$Tk85} {
+        grid anchor $opensof.f3 center
+    }
+    pack $opensof.f3 -pady 4 -after $opensof.f2 -expand 1 -fill x
 
     # arrange for the buttons to disappear last
     # when the window size is reduced

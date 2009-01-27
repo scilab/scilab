@@ -377,8 +377,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
     end
     if is_higher_than([3 0 0 0]) then
-      if mget(1,characterFormat,fd)<>0 then
-	set(a,"zoom_box"          , mget(4,'dl',fd))  // zoom_box
+      zoom_box_size = mget(1,characterFormat,fd);
+      if zoom_box_size<>0 then
+	set(a,"zoom_box"          , mget(zoom_box_size,'dl',fd))  // zoom_box
       end
     end
     if is_higher_than([3 1 0 1]) then
@@ -1047,6 +1048,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     h=unglue(get('hdl'))
     set(h,"visible",visible)
     set(h,"z_bounds",z_bounds)
+	if is_higher_than( [5 0 3 0] ) then
+	  set(h,"color_range",mget(2,'dl',fd)); // color_range
+	  set(h,"outside_colors",mget(2,'dl',fd)); // color_range
+	  set(h,"line_mode" ,toggle(mget(1,characterFormat,fd))) // line_mode
+	  set(h,"foreground", mget(1,'il',fd)); // foreground
+	end
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
       set(h,"clip_box", mget(4,'dl',fd)) // clip_box
@@ -1248,8 +1255,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.enable = toggle(mget(1,"c",fd)); // Enable
       h.fontangle = ascii(mget(mget(1,"c",fd),"c",fd)); // FontAngle
       h.fontname = ascii(mget(mget(1,"c",fd),"c",fd)); // FontName
-      h.fontsize = mget(1,"dl",fd); // FontSize
+      fontsize_in_units = mget(1,"dl",fd); // FontSize
       h.fontunits = ascii(mget(mget(1,"c",fd),"c",fd)); // FontUnits
+      h.fontsize = fontsize_in_units; // FontSize written after 'FontUnits' to avoid them to be computed again 
       h.fontweight = ascii(mget(mget(1,"c",fd),"c",fd)); // FontWeight
       ncolors = mget(1,"il",fd); // Foregroundcolor (size)
       h.foregroundcolor = mget(ncolors,"dl",fd); // ForegroundColor (data)
@@ -1259,12 +1267,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.max = mget(1,"dl",fd); // Max
       h.min = mget(1,"dl",fd); // Min
       ndata = mget(1,"il",fd); // Position (size)
-      h.position = mget(ndata,"dl",fd); // Position (data)
+      position_in_units = mget(ndata,"dl",fd); // Position (data)
       h.relief = ascii(mget(mget(1,"c",fd),"c",fd)); // Relief
       ndata = mget(1,"il",fd); // SliderStep (size)
       h.sliderstep = mget(ndata,"dl",fd); // SliderStep (data)
       h.string = load_text_matrix(fd) ; // String
       h.units = ascii(mget(mget(1,"c",fd),"c",fd)); // Units
+      h.position = position_in_units; // Position written after 'Units' to avoid them to be computed again 
       ndata = mget(1,"il",fd); // Value (size)
       h.value = mget(ndata,"dl",fd); // Value (data)
       h.verticalalignment = ascii(mget(mget(1,"c",fd),"c",fd)); // VerticalAlignment

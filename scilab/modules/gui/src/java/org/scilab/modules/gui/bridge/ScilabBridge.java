@@ -4304,8 +4304,8 @@ public class ScilabBridge {
 	 * @param popupMenu the PopupMenu we want to get the selected index of
 	 * @return the index of the item selected
 	 */
-	public static int getSelectedIndex(PopupMenu popupMenu) {
-		return ScilabPopupMenuBridge.getSelectedIndex(popupMenu);
+	public static int getUserSelectedIndex(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getUserSelectedIndex(popupMenu);
 	}
 	
 	/**
@@ -4474,7 +4474,7 @@ public class ScilabBridge {
 	
 	/**
 	 * Enable the multiple selection
-	 * @param scilabFileChooser the file chooser we want to get the  muliple selection 
+	 * @param fileChooser the file chooser we want to get the  muliple selection 
 	 * @param multipleSelection boolean for the multiple selection 
 	 */
 	public static void setMultipleSelection(FileChooser fileChooser, boolean multipleSelection) {
@@ -4492,7 +4492,7 @@ public class ScilabBridge {
 	
 	/**
 	 * Get the filter index
-	 * @param scilabFileChooser the file chooser we want to get the filter indexs
+	 * @param fileChooser the file chooser we want to get the filter indexs
 	 * @return the filter index
 	 */
 	public static int getFilterIndex(FileChooser fileChooser) {

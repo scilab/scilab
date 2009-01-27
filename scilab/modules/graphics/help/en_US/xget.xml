@@ -95,8 +95,8 @@ xget()</synopsis>
         <term>color=xget("background")</term>
 
         <listitem>
-          <para>Get the background color of the current graphics
-          window.</para>
+          <para>Get the background color of the current Axes object.
+		  The result is a colormap index corresponding to the color.</para>
         </listitem>
       </varlistentry>
 
@@ -162,8 +162,8 @@ xget()</synopsis>
         <term>color=xget("foreground")</term>
 
         <listitem>
-          <para>Get the foreground color of the current graphics
-          window.</para>
+          <para>Get the foreground color of the current Axes object.
+		  The result is a colormap index corresponding to the color.</para>
         </listitem>
       </varlistentry>
 

@@ -9,11 +9,11 @@
 function z = atand(x,y)
 //Inverse tangent, result in degrees.
   if ~isreal(x)
-     error(msprintf(_('%s :Argument #%d should be real.'),'atand',1));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"atand",1)); 
   end
   if argn(2)==2 then
     if ~isreal(y)
-      error(msprintf(_('%s :Argument #%d should be real.'),'atand',2));
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of reals expected.\n"),"atand",2)); 
     end
     z = 180/%pi*atan(x,y);
   else

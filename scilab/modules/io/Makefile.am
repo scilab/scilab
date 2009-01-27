@@ -54,7 +54,6 @@ sci_gateway/fortran/intexec.f \
 sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
-sci_gateway/fortran/intgetenv.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intprint.f \
 sci_gateway/fortran/intdisp.f \

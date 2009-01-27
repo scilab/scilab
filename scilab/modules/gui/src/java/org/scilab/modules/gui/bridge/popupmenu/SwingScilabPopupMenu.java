@@ -208,7 +208,7 @@ public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 	 * Get the selected index of the PopupMenu
 	 * @return the index of the item selected
 	 */
-	public int getSelectedIndex() {
+	public int getUserSelectedIndex() {
 		Object itemSelected = getModel().getSelectedItem();
 		for (int i = 0; i < getItemCount(); i++) {
 			if (itemSelected.equals(getItemAt(i))) {

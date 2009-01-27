@@ -27,8 +27,10 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class SciTextRenderer {
 
-	private static final float EPSILON = 1.0e-4f; 
-
+	private static boolean areMipmapsAvailable;
+	
+	private static boolean areMMsAvailableUpToDate;
+	
 	/** Size of the font to use */
 	private float fontSize;
 	
@@ -39,10 +41,6 @@ public class SciTextRenderer {
 	private float scaleFactor;
 	
 	private boolean useFractionalMetrics;
-	
-	private static boolean areMipmapsAvailable;
-	
-	private static boolean areMMsAvailableUpToDate;
 	
 	/**
 	 * Constructor from a Font to use.
@@ -82,7 +80,7 @@ public class SciTextRenderer {
 		} else {
 			// we need to add a little offset othrwise texture interpolation
 			// sometimes (especially for title) leads to jaggy text.
-			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f + EPSILON);
+			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f);
 		}
 	}
 	

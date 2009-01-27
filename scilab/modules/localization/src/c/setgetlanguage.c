@@ -262,15 +262,24 @@ char *convertlanguagealias(char *strlanguage)
  */
 BOOL exportLocaleToSystem(char *locale){
 
-	if (locale==NULL) {
-		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default.\n", EXPORTENVLOCALE);
+	if (locale==NULL) 
+	{
+#ifdef _MSC_VER
+		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", "LC_CTYPE");
+#else
+		fprintf(stderr,"Localization: Haven't been able to find a suitable locale. Remains to default %s.\n", EXPORTENVLOCALE);
+#endif
 		return FALSE;
 	}
 
-	/* It will put in the env something like LC_ALL=fr_FR */
+	/* It will put in the env something like LC_MESSAGES=fr_FR */
 	if ( !setenvc(EXPORTENVLOCALESTR,locale))
 	{
-		fprintf(stderr,"Localization: Failed to declare the system variable %s\n", EXPORTENVLOCALE);
+#ifdef _MSC_VER
+		fprintf(stderr,"Localization: Failed to declare the system variable %s.\n", "LC_CTYPE");
+#else
+		fprintf(stderr,"Localization: Failed to declare the system variable %s.\n", EXPORTENVLOCALE);
+#endif
 		return FALSE;
 	}
 

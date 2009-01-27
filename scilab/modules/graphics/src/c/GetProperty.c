@@ -3789,6 +3789,63 @@ BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj)
 }
 /*----------------------------------------------------------------------------------*/
 /**
+ * Get the subset of colormap bounds used by a particular object (colminmax).
+ */
+void sciGetColorRange(sciPointObj * pObj, int subset[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		subset[0] = pFEC_FEATURE(pObj)->colminmax[0];
+		subset[1] = pFEC_FEATURE(pObj)->colminmax[1];
+		break;
+  default:
+    printSetGetErrorMessage("color_range");
+		subset[0] = 0;
+		subset[1] = 0;
+		break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the color to use for an objects when it uses index outside of the colormap (colout).
+ */
+void sciGetOutsideColor(sciPointObj * pObj, int colors[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		colors[0] = pFEC_FEATURE(pObj)->colout[0];
+		colors[1] = pFEC_FEATURE(pObj)->colout[1];
+		break;
+  default:
+    printSetGetErrorMessage("outside_color");
+		colors[0] = 0;
+		colors[1] = 0;
+		break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the Z range used by a fec object (zminmax).
+ */
+void sciGetZBounds(sciPointObj * pObj, double bounds[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		bounds[0] = pFEC_FEATURE(pObj)->zminmax[0];
+		bounds[1] = pFEC_FEATURE(pObj)->zminmax[1];
+		break;
+  default:
+    printSetGetErrorMessage("z_bounds");
+		bounds[0] = 0;
+		bounds[1] = 0;
+		break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
  * Print the message "This object has no xxx property." in Scilab.
  */
 void printSetGetErrorMessage(const char * propertyName)

@@ -18,6 +18,9 @@
 
 x = rand(5,5,100)+%i;
 warning('off');
-ierr = execstr('savematfile SCI/modules/compatibility_functions/nonreg_tests/bug_649.mat x','errcatch');
+ierr = execstr('savematfile SCI/modules/compatibility_functions/tests/nonreg_tests/bug_649.mat x','errcatch');
 warning('on');
-if ierr <> 10000 then pause,end;
+fields = getfield(1,x);
+if ierr<>999 | lasterror()<>msprintf(gettext("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fields(1)) then
+  pause
+end

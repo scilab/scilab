@@ -23,6 +23,7 @@
 #include "sciprint.h"
 #include "PATH_MAX.h"
 #include "FileExist.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static void searchenv_others(const char *filename, const char *varname,
@@ -32,27 +33,30 @@ static void searchenv_others(const char *filename, const char *varname,
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
 	#ifdef _MSC_VER
-	if (GetEnvironmentVariable(var,buf,(DWORD)*buflen) == 0)
+	if (GetEnvironmentVariable(UTFToLocale(var),buf,(DWORD)*buflen) == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
 	}
 	else
 	{
-		*buflen = (int)strlen(buf);
+
+	    char *local=localeToUTF(buf);
+		*buflen = (int)strlen(local);
+	    strncpy(buf,local,*buflen);
 		*ierr=0;
 	}
 	#else
 	char *local;
-	if ( (local=getenv(var)) == 0)
+	if ( (local=localeToUTF(getenv(UTFToLocale(var))) ) == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
 	}
 	else
 	{
-		strncpy(buf,local,*buflen);
-		*buflen = strlen(buf);
+		*buflen = (int)strlen(local);
+	        strcpy(buf,local);
 		*ierr=0;
 	}
 	#endif
@@ -137,12 +141,12 @@ char *searchEnv(const char *name,const char *env_var)
 	strcpy(fullpath,"");
 
 	#if _MSC_VER 
-		_searchenv(name,env_var,fullpath);
+		_searchenv((const char*)UTFToLocale((char*)name),(const char*)env_var,fullpath);
 	#else
-		searchenv_others(name,env_var,fullpath);
+		searchenv_others(UTFToLocale(name),env_var,fullpath);
 	#endif
 
-	if (strlen(fullpath) > 0) buffer = strdup(fullpath);
+	if (strlen(fullpath) > 0) buffer = strdup(localeToUTF(fullpath));
 	return buffer;
 }
 /*--------------------------------------------------------------------------*/

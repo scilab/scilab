@@ -1,0 +1,29 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009-2009 - Digiteo - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- TEST WITH GRAPHIC -->
+// <-- Non-regression test for bug 4006 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4006
+//
+// <-- Short Description -->
+// xlfont does not give fonts the right index.
+//
+fonts = xlfont();
+size_fonts = size(fonts,'*');
+if size_fonts <> 11 then bugmes();quit;end
+r = xlfont('Arial',0);
+if r <> 0 then bugmes();quit;end
+fonts = xlfont();
+size_fonts = size(fonts,'*');
+if size_fonts <> 11 then bugmes();quit;end
+r = xlfont("Arial",20);
+if r <> 20 then bugmes();quit;end
+fonts = xlfont();
+size_fonts = size(fonts,'*');
+if size_fonts <> 21 then bugmes();quit;end
+if fonts(21) <> "Arial" then bugmes();quit;end

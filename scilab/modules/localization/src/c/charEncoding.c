@@ -35,7 +35,9 @@ static iconv_t UTFToLocaleConvert = (iconv_t)-1; /* initialize to -1,  */
 BOOL unicodeSubset = TRUE; /* if charset is subset of unicode, no need to convert */
 /*--------------------------------------------------------------------------*/
 #define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
-static char ENCODE_BUF[ENCODE_BUF_SIZE]; // buffer to store the converted string
+static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
+static char ENCODE_BUF2[ENCODE_BUF_SIZE]; // the second buffer  to store the converted string
+static char* ENCODE_BUF=ENCODE_BUF1; // pointer to the next buffer for the converted string
 static char* _CharVec[255] ;    // Global pointers to point the converted UTF-8 or locale strings (multiple lines)
 
 /*--------------------------------------------------------------------------*/
@@ -49,27 +51,42 @@ char *getEncoding(char *lang)
 		{    
 			strcpy(encoding,pch+1);
 		}
-		else
+		else // if encoding not explicitly given 
 		{
-			/*in "lang_contry" format*/
-			if(stricmp("zh_TW",lang) ==0) 
+			/* in "lang_contry" format */
+			if(stricmp("zh_TW",lang) ==0)  //chinese traditional 
 			{
 			        strcpy(encoding,"BIG5");
 			}
-			else
-			if(stricmp("ru_RU",lang) ==0)
+			else if(stricmp("zh_CN",lang) ==0)//chinese simplified
+			{
+			        strcpy(encoding,"GB2312");
+			}
+			else if(stricmp("ru_RU",lang) ==0) //russian
 			{
 			        strcpy(encoding,"ISO-8859-5");
 			}
+			else if((stricmp("ja_JP",lang) ==0) ||(stricmp("jp_JP",lang) ==0)  ) //japaness
+			{
+			        strcpy(encoding,"eucJP");
+			}
+			else if((stricmp("ko",lang) ==0) ||(stricmp("ko_KR",lang) ==0)  ) //korean
+			{
+			        strcpy(encoding,"eucKR");
+			}
 			else
 			{
-				/*default to UTF8*/
-				/* under linux language_countryXX.utf8 */
-				strcpy(encoding,"UTF-8");
+				/* default to ISO8859-1, LATIN-1 languages*/
+				/* under linux language_countryXX.ISO8859-1 */
+				strcpy(encoding,"ISO8859-1");
 			}
 		}
 	}
-	else strcpy(encoding,"UTF-8"); 
+	else 
+		{
+			/*default to ISO8859-1, LATIN-1 languages*/
+			strcpy(encoding,"ISO8859-1"); 
+		}
 	return encoding;
 }
 
@@ -80,7 +97,8 @@ char* localeToUTF(char* buffer) {
 	char *inPtr = buffer;
 	char *outPtr = ENCODE_BUF;
 
-	if(unicodeSubset) return buffer; /*no need to convert for unicode subset encoding*/
+	/* no need to convert for unicode subset encoding*/
+	if(unicodeSubset) return buffer; 
 
 	if (buffer == NULL) return NULL;
 	inbytesleft = strlen(buffer);
@@ -90,11 +108,17 @@ char* localeToUTF(char* buffer) {
 	{
 		fprintf(stderr, "Error during call to localeToUTF: %s\n", strerror(errno));
 		fprintf(stderr, "String Input: %s\n", inPtr);
-		return buffer;//return unconverted text 
+		return buffer; // return unconverted text 
 	}
 	*outPtr='\0';
-	return ENCODE_BUF;
-
+	/* switch to the other buffer for store next converted string*/
+	if(ENCODE_BUF==ENCODE_BUF1) {
+       ENCODE_BUF=ENCODE_BUF2;
+	   return ENCODE_BUF1;
+	} else {
+       ENCODE_BUF=ENCODE_BUF1;
+	   return ENCODE_BUF2;
+	}
 }
 
 char* UTFToLocale(char* buffer) 
@@ -116,7 +140,14 @@ char* UTFToLocale(char* buffer)
 		return buffer;//return unconverted text 
 	}
 	*outPtr='\0';
-	return ENCODE_BUF;
+	/* switch to the other buffer for store next converted string*/
+	if(ENCODE_BUF==ENCODE_BUF1) {
+       ENCODE_BUF=ENCODE_BUF2;
+	   return ENCODE_BUF1;
+	} else {
+       ENCODE_BUF=ENCODE_BUF1;
+	   return ENCODE_BUF2;
+	}
 
 }
 
@@ -138,8 +169,6 @@ void openCharEncodingConverter(char *encoding)
 		unicodeSubset = FALSE;
 	}
 #endif
-
-
 
 	/* if not utf-8 encoding and multi-byte language ..*/
 	if ( ! unicodeSubset)
@@ -205,7 +234,7 @@ char* readNextUTFChar(char* utfstream,int* size)
 		UTFChar[1]=*(utfstream+1);
 		UTFChar[2]='\0';
 	    *size=2;
-	} else if(charcode > 223 && charcode <= 239 ) {/* three bytes UTF-8*/					  
+	} else if(charcode > 223 && charcode <= 239 ) {/* three bytes UTF-8*/ 
 		UTFChar[0]=*utfstream;
 		UTFChar[1]=*(utfstream+1);
 		UTFChar[2]=*(utfstream+2);;

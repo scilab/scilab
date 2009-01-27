@@ -25,15 +25,11 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "ColorMapManagement.h"
-#include "MALLOC.h"
-#include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
 int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
-  sciFec * ppFec = NULL;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -49,14 +45,11 @@ int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Argument #%d must have %d elements.\n"),2,2) ;
+    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"z_bounds",2) ;
     return SET_PROPERTY_ERROR ;
   }
-  ppFec = pFEC_FEATURE(pobj);
 
-  ppFec->zminmax[0] = values[0] ;
-  ppFec->zminmax[1] = values[1] ;
 
-  return SET_PROPERTY_SUCCEED ;
+	return sciSetZBounds(pobj, values);
 }
 /*------------------------------------------------------------------------*/

@@ -15,7 +15,7 @@ OBJS = __OBJS__
 # added libraries
 OTHERLIBS = __OTHERSLIBS__
 # ------------------------------------------------------
-!include $(SCIDIR1)\Makefile.incl.mak
+!include $(SCIDIR1)\modules\dynamic_link\src\scripts\Makefile.incl.mak
 # ------------------------------------------------------
 CC = __CC__
 # ------------------------------------------------------

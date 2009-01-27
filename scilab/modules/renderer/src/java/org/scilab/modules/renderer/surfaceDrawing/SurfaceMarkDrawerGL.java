@@ -68,7 +68,6 @@ public class SurfaceMarkDrawerGL extends MarkDrawerGL {
 	 * @param nbVertices number of vertices for each facet
 	 */
 	public void drawSurface(double[] xCoords, double[] yCoords, double[] zCoords, int nbVertices) {
-	
 		decomposer.setFacetsPositions(xCoords, yCoords, zCoords, nbVertices);
 		
 		// create a new array of marks positions
@@ -79,14 +78,16 @@ public class SurfaceMarkDrawerGL extends MarkDrawerGL {
 			// find positions of the facet vertices
 			Vector3D[] curFacetPos = decomposer.next();
 			
-			// copy the found values into the array of mark positions
-			for (int i = 0; i < curFacetPos.length; i++) {
-				marksPos[markIndex] = curFacetPos[i];
-				markIndex++;
+			if (curFacetPos != null) {
+				// copy the found values into the array of mark positions
+				for (int i = 0; i < curFacetPos.length; i++) {
+					marksPos[markIndex] = curFacetPos[i];
+					markIndex++;
+				}
 			}
 		}
 		
-		drawMarks(marksPos);
+		drawMarks(marksPos, markIndex);
 		
 		// decomposer is no longer needed, we got the array of marks positions
 		decomposer = null;

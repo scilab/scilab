@@ -179,7 +179,7 @@ public class FontManager {
   */
  public final int addFont(Font newFont) {
   sciFonts.add(newFont);
-  return sciFonts.size();
+  return sciFonts.size() - 1;
  }
  
  /**
@@ -189,21 +189,21 @@ public class FontManager {
   * @return index of the added font or -1 if an error occured.
   */
  public final int changeFont(int index, Font newFont) {
-  int nbFonts = sciFonts.size();
-  if (index > nbFonts) {
-   // we need to add fonts untils index
-   for (int i = nbFonts - 1; i < index; i++) {
-    addFont(DEFAULT_FONT);
-   }
-   return addFont(newFont);
-  } else if (index == nbFonts) {
-   // add a new Font
-   return addFont(newFont);
-  } else {
-   sciFonts.set(index, newFont);
-   return index;
-  }
-  
+	 int nbFonts = sciFonts.size();
+	 if (index > nbFonts) {
+		 // we need to add fonts until index
+		 for (int i = nbFonts; i < index; i++) {
+			 addFont(DEFAULT_FONT);
+		 }
+		 return addFont(newFont);
+	 } else if (index == nbFonts) {
+		 // add a new Font
+		 return addFont(newFont);
+	 } else {
+		 sciFonts.set(index, newFont);
+		 return index;
+	 }
+
  }
  
  /**
@@ -422,7 +422,7 @@ public class FontManager {
       sciFonts.add(createFont(SERIF, true, false));     /* scilab font_style 4 */
       sciFonts.add(createFont(SERIF, true, true));      /* scilab font_style 5 */
       sciFonts.add(createFont(SANSSERIF));              /* scilab font_style 6 */
-      sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 7 */
+      sciFonts.add(createFont(SANSSERIF, false, true)); /* scilab font_style 7 */
       sciFonts.add(createFont(SANSSERIF, true, false)); /* scilab font_style 8 */
       sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 9 */
       sciFonts.add(createFont(SANSSERIF, true, true));  /* scilab font_style 10 */

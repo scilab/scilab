@@ -32,7 +32,8 @@ scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
-$(top_builddir)/modules/localization/libscilocalization.la
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/io/libsciio.la
 
 if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
@@ -146,11 +147,11 @@ distclean-recursive: clean-recursive
 clean-recursive: clean-doc clean-localization clean-macros
 
 clean-macros:
-	@echo "-- Cleanning macros (*.bin) --"; \
+	@echo "-- Cleaning macros (*.bin) --"; \
 	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning names files (names) --"; \
+	echo "-- Cleaning names files (names) --"; \
 	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning lib files (lib) --"; \
+	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
 
 
@@ -181,7 +182,7 @@ if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
-	LC=LC_MESSAGES; \
+	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	FILENAME="*.po*"; \
 	rm modules/*/locales/*/*~ 2> /dev/null; \
@@ -196,9 +197,7 @@ localization:
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 		$(MSGCAT) -o $$POFILE $$FILES; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-	done; \
-	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
+	done;
 endif
 
 # Misc variable for the documentation installation

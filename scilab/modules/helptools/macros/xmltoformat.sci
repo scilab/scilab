@@ -48,6 +48,8 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	generated_files = [];
 	
 	all_scilab_help     = %F;
+	my_wanted_language  = getlanguage(); // This variable is only need when
+	                                     // build all scilab help
 	
 	[lhs,rhs] = argn(0);
 	
@@ -63,17 +65,27 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	// Default case : construction de l'aide en ligne de Scilab
 	// ---------------------------------------------------------------------
 	
-	if (rhs <= 1) | ((rhs == 2) & (dirs == [])) then
+	if (  (rhs <= 1) ..
+		| ((rhs == 2) & (dirs == [])) ..
+		| ((rhs == 3) & (dirs == []) & (titles == [])) ..
+		| ((rhs == 4) & (dirs == []) & (titles == [])) ) then
 		
-		all_scilab_help      = %T;
+		all_scilab_help        = %T;
+		
+		// "directory_language" input argument is defined !
+		if rhs == 4 then
+			my_wanted_language = directory_language;
+			reset_help_modules_var(my_wanted_language);
+			%HELPS=[%helps_modules;%helps];
+		end
 		
 		dirs_to_build          = %HELPS;
 		dirs_to_build_m        = %helps_modules;
 		dirs_to_build_c        = %helps;
 		
-		dirs                   = get_xml_path(dirs_to_build(:,1));
-		dirs_m                 = get_xml_path(dirs_to_build_m(:,1));
-		dirs_c                 = get_xml_path(dirs_to_build_c(:,1));
+		dirs                   = get_xml_path(dirs_to_build(:,1),my_wanted_language);
+		dirs_m                 = get_xml_path(dirs_to_build_m(:,1),my_wanted_language);
+		dirs_c                 = get_xml_path(dirs_to_build_c(:,1),my_wanted_language);
 		
 		titles                 = dirs_to_build(:,2);
 		titles_m               = dirs_to_build_m(:,2);
@@ -98,32 +110,32 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		language_system_m      = []; // a help directory needs to be completed
 		language_system_c      = []; // with the default language
 		
-		if getlanguage() == getdefaultlanguage() then
+		if my_wanted_language == getdefaultlanguage() then
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;getdefaultlanguage()];
+				directory_language = [directory_language;my_wanted_language];
 				language_system    = [language_system;%F];
 			end
 			for k=1:size(dirs_m,'*')
-				directory_language_m = [directory_language_m;getdefaultlanguage()];
+				directory_language_m = [directory_language_m;my_wanted_language];
 				language_system_m    = [language_system_m;%F];
 			end
 			for k=1:size(dirs_c,'*')
-				directory_language_c = [directory_language_c;getdefaultlanguage()];
+				directory_language_c = [directory_language_c;my_wanted_language];
 				language_system_c    = [language_system_c;%F];
 			end
 		else
 			for k=1:size(dirs,'*')
-				directory_language = [directory_language;getlanguage()];
+				directory_language = [directory_language;my_wanted_language];
 				default_language   = [default_language;getdefaultlanguage()];
 				language_system    = [language_system;%T]; // Enable the language system
 			end
 			for k=1:size(dirs_m,'*')
-				directory_language_m = [directory_language_m;getlanguage()];
+				directory_language_m = [directory_language_m;my_wanted_language];
 				default_language_m   = [default_language_m;getdefaultlanguage()];
 				language_system_m    = [language_system_m;%T]; // Enable the language system
 			end
 			for k=1:size(dirs_c,'*')
-				directory_language_c = [directory_language_c;getlanguage()];
+				directory_language_c = [directory_language_c;my_wanted_language];
 				default_language_c   = [default_language_c;getdefaultlanguage()];
 				language_system_c    = [language_system_c;%T]; // Enable the language system
 			end
@@ -365,11 +377,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	if all_scilab_help then
 		
-		master_doc = SCI+"/modules/helptools/master_"+getlanguage()+"_help.xml";
+		master_doc = SCI+"/modules/helptools/master_"+my_wanted_language+"_help.xml";
 		
 		if or(need_to_be_build_tab_m) then
-			mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),getlanguage());
-			create_MD(dirs_m,titles_m,master_doc,getlanguage());
+			mprintf(_("\nBuilding the Scilab manual master document for %s.\n"),my_wanted_language);
+			create_MD(dirs_m,titles_m,master_doc,my_wanted_language);
 			
 		end
 		
@@ -393,7 +405,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			if need_to_be_build_tab(k) then
 				if nb_dir > 1 then
 					if displaydone == 0 then
-						mprintf(_("\nBuilding the master document for %s.\n"),getlanguage());
+						mprintf(_("\nBuilding the master document for %s.\n"),my_wanted_language);
 						displaydone = 1;
 					end
 					mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
@@ -426,9 +438,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
 		
-		// Define and create the path of buildDoc working directory
-		//buildDoc_dir  = pathconvert(dirs_c(k) + "/scilab_" + getlanguage() + "_help",%t,%f);
-		
 		// Define and create the final output directory if does not exist
 		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
 		
@@ -437,7 +446,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		end
 		
 		if is_html then
-			final_output_dir = pathconvert(final_output_dir+"/"+getlanguage(),%f,%f);
+			final_output_dir = pathconvert(final_output_dir+"/"+my_wanted_language,%f,%f);
 			if ~isdir(final_output_dir) then
 				mkdir(final_output_dir);
 			end
@@ -447,11 +456,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		if is_html then
 			final_help_file = pathconvert(final_output_dir+"/index.html",%f,%f);
 		else
-			final_help_file = pathconvert(final_output_dir+"/scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+			final_help_file = pathconvert(final_output_dir+"/scilab_" + my_wanted_language + "_help." + output_format_ext,%f,%f);
 		end
 		
 		// Define and create the path of buildDoc working directory
-		buildDoc_dir  = pathconvert(SCI+"/modules/helptools/"+ output_format + "/scilab_" + getlanguage() + "_help",%t,%f);
+		buildDoc_dir  = pathconvert(SCI+"/modules/helptools/"+ output_format + "/scilab_" + my_wanted_language + "_help",%t,%f);
 		if ~isdir(pathconvert(SCI+"/modules/helptools/"+output_format,%f,%f)) then
 			mkdir(pathconvert(SCI+"/modules/helptools/"+output_format,%f,%f));
 		end
@@ -463,7 +472,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		if is_html then
 			buildDoc_file = pathconvert(buildDoc_dir + "index.html",%f,%f);
 		else
-			buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + getlanguage() + "_help." + output_format_ext,%f,%f);
+			buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + my_wanted_language + "_help." + output_format_ext,%f,%f);
 		end
 		
 		// Save the current directory
@@ -475,7 +484,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		end
 		
 		// process the build
-		buildDoc(output_format);
+		buildDoc(output_format,master_doc,my_wanted_language);
 		
 		// Check if the help file has been generated
 		if fileinfo(buildDoc_file)==[] then
@@ -788,8 +797,8 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	//--------------------------------------------------------------------------
 	// Directory cleaning
 	// Si il existe un fichier .list_<directory_language> (fichier contenant tous les
-	// fichiers traduits dans la langue du répertoire), on supprime dans l'ordre :
-	//   1. Tous les fichiers n'appartenant pas à la liste contenue dans .list_<directory_language>
+	// fichiers traduits dans la langue du rÃ©pertoire), on supprime dans l'ordre :
+	//   1. Tous les fichiers n'appartenant pas Ã  la liste contenue dans .list_<directory_language>
 	//   2. Tous les fichiers de la forme .list_<language>
 	//--------------------------------------------------------------------------
 	
@@ -812,23 +821,23 @@ function complete_with_df_lang(directory,directory_language,default_language)
 	
 	//--------------------------------------------------------------------------
 	// Construction du fichier list_<default_language> contenant la liste des fichiers
-	// non traduits dans la langue associée au répertoire qui seront récupérés depuis le
-	// répertoire de la langue par défaut
+	// non traduits dans la langue associÃ©e au rÃ©pertoire qui seront rÃ©cupÃ©rÃ©s depuis le
+	// rÃ©pertoire de la langue par dÃ©faut
 	//--------------------------------------------------------------------------
 	
 	// Tous les fichiers contenus dans <directory>/../<default_language> pour commencer
 	// On afinnera par la suite
 	df_lang_xml_files = basename(listfiles(pathconvert(directory+"/../"+default_language+"/*.xml",%f,%f)));
 	
-	// On supprime de "df_lang_xml_files" tous les élément contenus dans
-	// "dir_language_xml_files", c'est à dire tous les fichiers déja traduit dans la langue
-	// associée au répertoire.
+	// On supprime de "df_lang_xml_files" tous les Ã©lÃ©ment contenus dans
+	// "dir_language_xml_files", c'est Ã  dire tous les fichiers dÃ©ja traduit dans la langue
+	// associÃ©e au rÃ©pertoire.
 	
 	for i=1:size(dir_language_xml_files,'*');
 		df_lang_xml_files(find(df_lang_xml_files==dir_language_xml_files(i)))=[];
 	end
 	
-	// Création du fichier
+	// CrÃ©ation du fichier
 	if df_lang_xml_files <> [] then
 		mputl(df_lang_xml_files,pathconvert(directory+"/.list_"+default_language,%f,%f));
 	else
@@ -855,25 +864,25 @@ function del_df_lang_xml_files(directory,directory_language)
 	// Copyright INRIA
 	// Date : 26, july 2006
 	//
-	// Cette macro détruit tous les fichiers xml qui ne sont pas traduit dans
-	// la langue associée au répertoire
+	// Cette macro dÃ©truit tous les fichiers xml qui ne sont pas traduit dans
+	// la langue associÃ©e au rÃ©pertoire
 	//
 	// macro non-visible de l'utilisateur
 	//--------------------------------------------------------------------------
 	
-	// Directory traitée
+	// Directory traitÃ©e
 	directory = pathconvert(directory,%f,%t);
 	
 	if listfiles(pathconvert(directory+"/.list_"+directory_language,%f,%f)) <> [] then
 		
-		// Récupération de la liste des fichiers xml copiés depuis le répertoire de la langue par défaut
+		// RÃ©cupÃ©ration de la liste des fichiers xml copiÃ©s depuis le rÃ©pertoire de la langue par dÃ©faut
 		dir_language_xml_files = mgetl(pathconvert(directory+"/.list_"+directory_language,%f,%f));
 		
-		// Liste de tous les fichiers xml contenu dans le répertoire
+		// Liste de tous les fichiers xml contenu dans le rÃ©pertoire
 		all_files = basename(listfiles(directory+"/*.xml"));
 		
-		// On retire de "all_files" tous les éléments appartenant à "xml_directory_language_files"
-		// Ce sont les aides en ligne traduite dans la langue associée répertoire
+		// On retire de "all_files" tous les Ã©lÃ©ments appartenant Ã  "xml_directory_language_files"
+		// Ce sont les aides en ligne traduite dans la langue associÃ©e rÃ©pertoire
 		for i=1:size(dir_language_xml_files,'*');
 			all_files(find(all_files==dir_language_xml_files(i)))=[];
 		end
@@ -895,33 +904,33 @@ function result = need_to_be_build(directory,directory_language,default_language
 	// Copyright INRIA
 	// Date : 27, july 2006
 	//
-	// Cette fonction a pour but de déterminer si le répertoire a besoin d'être
+	// Cette fonction a pour but de dÃ©terminer si le rÃ©pertoire a besoin d'Ãªtre
 	// reconstruit ou pas.
 	//
-	// On détermine la date de dernière modification la plus récente parmi les
-	// dates de dernière modification suivantes :
-	//     -  date de dernière modification du répertoire "directory".
-	//     -  dates de dernière modification des fichiers XML du répertoire "directory".
-	//     -  date de dernière modification du répertoire "directory/../<default_language>"
-	//        si le système de multilinguisme est utilisé
-	//      - dates de dernière modification des fichiers XML du répertoire
-	//        "directory/../<default_language>" si le système de multilinguisme est utilisé
+	// On dÃ©termine la date de derniÃ¨re modification la plus rÃ©cente parmi les
+	// dates de derniÃ¨re modification suivantes :
+	//     -  date de derniÃ¨re modification du rÃ©pertoire "directory".
+	//     -  dates de derniÃ¨re modification des fichiers XML du rÃ©pertoire "directory".
+	//     -  date de derniÃ¨re modification du rÃ©pertoire "directory/../<default_language>"
+	//        si le systÃ¨me de multilinguisme est utilisÃ©
+	//      - dates de derniÃ¨re modification des fichiers XML du rÃ©pertoire
+	//        "directory/../<default_language>" si le systÃ¨me de multilinguisme est utilisÃ©
 	//
-	// Ensuite cette valeur est comparée à la valeur contenue dans le fichier
+	// Ensuite cette valeur est comparÃ©e Ã  la valeur contenue dans le fichier
 	// "directory/.last_successful_build". Si elle est plus grande,
 	// need_to_be_build renvoie %T
 	//
-	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais été
+	// Si le fichier "directory/.last_successful_build" n'existe pas, l'aide n'a jamais Ã©tÃ©
 	// construite donc need_to_be_build renvoie %T
 	//
 	//--------------------------------------------------------------------------
 	
 	[lhs,rhs]=argn(0);
 	
-	// S'il n'y a pas de fichiers XML dans le répertoire ni dans son homologue,
-	// Le répertoire n'a pas besoin d'être construit.
-	// Cela est une sécurité pour éviter de detruire les whatis des versions binaires
-	// où il n'y a pas de fichiers XML
+	// S'il n'y a pas de fichiers XML dans le rÃ©pertoire ni dans son homologue,
+	// Le rÃ©pertoire n'a pas besoin d'Ãªtre construit.
+	// Cela est une sÃ©curitÃ© pour Ã©viter de detruire les whatis des versions binaires
+	// oÃ¹ il n'y a pas de fichiers XML
 	
 	xml_file_list    = listfiles(directory+"/*.xml");
 	
@@ -1023,7 +1032,7 @@ function create_MD(dirs,titles,output_filename,language)
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
 		"]>"; ..
-		"<book version=""5.0-subset Scilab"" xml:lang="""+getlanguage()+""""; ..
+		"<book version=""5.0-subset Scilab"" xml:lang="""+language+""""; ..
 		"      xmlns=""http://docbook.org/ns/docbook"""; ..
 		"      xmlns:xlink=""http://www.w3.org/1999/xlink"""; ..
 		"      xmlns:xi=""http://www.w3.org/2001/XInclude"""; ..
@@ -1132,62 +1141,62 @@ function category = title2category(mytitle)
 		category = mytitle;
 		category = strsubst(category , "&"  , "_" );
 		
-		category = strsubst(category , "À"  , "A" );
-		category = strsubst(category , "Á"  , "A" );
-		category = strsubst(category , "Â"  , "A" );
-		category = strsubst(category , "Ã"  , "A" );
-		category = strsubst(category , "Ä"  , "A" );
-		category = strsubst(category , "Å"  , "A" );
-		category = strsubst(category , "Æ"  , "AE");
-		category = strsubst(category , "Ç"  , "C" );
-		category = strsubst(category , "È"  , "E" );
-		category = strsubst(category , "É"  , "E" );
-		category = strsubst(category , "Ê"  , "E" );
-		category = strsubst(category , "Ë"  , "E" );
-		category = strsubst(category , "Ì"  , "I" );
-		category = strsubst(category , "Í"  , "I" );
-		category = strsubst(category , "Î"  , "I" );
-		category = strsubst(category , "Ï"  , "I" );
-		category = strsubst(category , "Ð"  , "D" );
-		category = strsubst(category , "Ñ"  , "N" );
-		category = strsubst(category , "Ò"  , "O" );
-		category = strsubst(category , "Ó"  , "O" );
-		category = strsubst(category , "Ô"  , "O" );
-		category = strsubst(category , "Õ"  , "O" );
-		category = strsubst(category , "Ö"  , "O" );
-		category = strsubst(category , "Ù"  , "U" );
-		category = strsubst(category , "Ú"  , "U" );
-		category = strsubst(category , "Û"  , "U" );
-		category = strsubst(category , "Ü"  , "U" );
-		category = strsubst(category , "Ý"  , "Y" );
-		category = strsubst(category , "à"  , "a" );
-		category = strsubst(category , "á"  , "a" );
-		category = strsubst(category , "â"  , "a" );
-		category = strsubst(category , "ã"  , "a" );
-		category = strsubst(category , "ä"  , "a" );
-		category = strsubst(category , "å"  , "a" );
-		category = strsubst(category , "æ"  , "ae");
-		category = strsubst(category , "ç"  , "c" );
-		category = strsubst(category , "è"  , "e" );
-		category = strsubst(category , "é"  , "e" );
-		category = strsubst(category , "ê"  , "e" );
-		category = strsubst(category , "ë"  , "e" );
-		category = strsubst(category , "ì"  , "i" );
-		category = strsubst(category , "í"  , "i" );
-		category = strsubst(category , "î"  , "i" );
-		category = strsubst(category , "ï"  , "i" );
-		category = strsubst(category , "ñ"  , "n" );
-		category = strsubst(category , "ò"  , "o" );
-		category = strsubst(category , "ó"  , "o" );
-		category = strsubst(category , "ô"  , "o" );
-		category = strsubst(category , "õ"  , "o" );
-		category = strsubst(category , "ö"  , "o" );
-		category = strsubst(category , "ù"  , "u" );
-		category = strsubst(category , "ú"  , "u" );
-		category = strsubst(category , "û"  , "u" );
-		category = strsubst(category , "ü"  , "u" );
-		category = strsubst(category , "ý"  , "y" );
-		category = strsubst(category , "ÿ"  , "y" );
+		category = strsubst(category , "Ã€"  , "A" );
+		category = strsubst(category , "Ã"  , "A" );
+		category = strsubst(category , "Ã‚"  , "A" );
+		category = strsubst(category , "Ãƒ"  , "A" );
+		category = strsubst(category , "Ã„"  , "A" );
+		category = strsubst(category , "Ã…"  , "A" );
+		category = strsubst(category , "Ã†"  , "AE");
+		category = strsubst(category , "Ã‡"  , "C" );
+		category = strsubst(category , "Ãˆ"  , "E" );
+		category = strsubst(category , "Ã‰"  , "E" );
+		category = strsubst(category , "ÃŠ"  , "E" );
+		category = strsubst(category , "Ã‹"  , "E" );
+		category = strsubst(category , "ÃŒ"  , "I" );
+		category = strsubst(category , "Ã"  , "I" );
+		category = strsubst(category , "ÃŽ"  , "I" );
+		category = strsubst(category , "Ã"  , "I" );
+		category = strsubst(category , "Ã"  , "D" );
+		category = strsubst(category , "Ã‘"  , "N" );
+		category = strsubst(category , "Ã’"  , "O" );
+		category = strsubst(category , "Ã“"  , "O" );
+		category = strsubst(category , "Ã”"  , "O" );
+		category = strsubst(category , "Ã•"  , "O" );
+		category = strsubst(category , "Ã–"  , "O" );
+		category = strsubst(category , "Ã™"  , "U" );
+		category = strsubst(category , "Ãš"  , "U" );
+		category = strsubst(category , "Ã›"  , "U" );
+		category = strsubst(category , "Ãœ"  , "U" );
+		category = strsubst(category , "Ã"  , "Y" );
+		category = strsubst(category , "Ã "  , "a" );
+		category = strsubst(category , "Ã¡"  , "a" );
+		category = strsubst(category , "Ã¢"  , "a" );
+		category = strsubst(category , "Ã£"  , "a" );
+		category = strsubst(category , "Ã¤"  , "a" );
+		category = strsubst(category , "Ã¥"  , "a" );
+		category = strsubst(category , "Ã¦"  , "ae");
+		category = strsubst(category , "Ã§"  , "c" );
+		category = strsubst(category , "Ã¨"  , "e" );
+		category = strsubst(category , "Ã©"  , "e" );
+		category = strsubst(category , "Ãª"  , "e" );
+		category = strsubst(category , "Ã«"  , "e" );
+		category = strsubst(category , "Ã¬"  , "i" );
+		category = strsubst(category , "Ã­"  , "i" );
+		category = strsubst(category , "Ã®"  , "i" );
+		category = strsubst(category , "Ã¯"  , "i" );
+		category = strsubst(category , "Ã±"  , "n" );
+		category = strsubst(category , "Ã²"  , "o" );
+		category = strsubst(category , "Ã³"  , "o" );
+		category = strsubst(category , "Ã´"  , "o" );
+		category = strsubst(category , "Ãµ"  , "o" );
+		category = strsubst(category , "Ã¶"  , "o" );
+		category = strsubst(category , "Ã¹"  , "u" );
+		category = strsubst(category , "Ãº"  , "u" );
+		category = strsubst(category , "Ã»"  , "u" );
+		category = strsubst(category , "Ã¼"  , "u" );
+		category = strsubst(category , "Ã½"  , "y" );
+		category = strsubst(category , "Ã¿"  , "y" );
 		
 		category = strsubst(category , ":"  , ""  );
 		category = strsubst(category , "\"  , "_" );
@@ -1212,73 +1221,73 @@ function out = text2html(in)
 // 		
 // 		out = strsubst(out , """" , "&quot;"   );
 // 		out = strsubst(out , "&"  , "&amp;"    );
-// 		out = strsubst(out , "¤"  , "&euro;"   );
-// 		out = strsubst(out , "À"  , "&Agrave;" );
-// 		out = strsubst(out , "Á"  , "&Aacute;" );
-// 		out = strsubst(out , "Â"  , "&Acirc;"  );
-// 		out = strsubst(out , "Ã"  , "&Atilde;" );
-// 		out = strsubst(out , "Ä"  , "&Auml;"   );
-// 		out = strsubst(out , "Å"  , "&Aring;"  );
-// 		out = strsubst(out , "Æ"  , "&Aelig"   );
-// 		out = strsubst(out , "Ç"  , "&Ccedil;" );
-// 		out = strsubst(out , "È"  , "&Egrave;" );
-// 		out = strsubst(out , "É"  , "&Eacute;" );
-// 		out = strsubst(out , "Ê"  , "&Ecirc;"  );
-// 		out = strsubst(out , "Ë"  , "&Euml;"   );
-// 		out = strsubst(out , "Ì"  , "&Igrave"  );;
-// 		out = strsubst(out , "Í"  , "&Iacute;" );
-// 		out = strsubst(out , "Î"  , "&Icirc;"  );
-// 		out = strsubst(out , "Ï"  , "&Iuml;"   );
-// 		out = strsubst(out , "Ð"  , "&eth;"    );
-// 		out = strsubst(out , "Ñ"  , "&Ntilde;" );
-// 		out = strsubst(out , "Ò"  , "&Ograve;" );
-// 		out = strsubst(out , "Ó"  , "&Oacute;" );
-// 		out = strsubst(out , "Ô"  , "&Ocirc;"  );
-// 		out = strsubst(out , "Õ"  , "&Otilde;" );
-// 		out = strsubst(out , "Ö"  , "&Ouml;"   );
-// 		out = strsubst(out , "Ù"  , "&Ugrave;" );
-// 		out = strsubst(out , "Ú"  , "&Uacute;" );
-// 		out = strsubst(out , "Û"  , "&Ucirc;"  );
-// 		out = strsubst(out , "Ü"  , "&Uuml;"   );
-// 		out = strsubst(out , "Ý"  , "&Yacute;" );
-// 		out = strsubst(out , "Þ"  , "&thorn;"  );
-// 		out = strsubst(out , "ß"  , "&szlig;"  );
-// 		out = strsubst(out , "à"  , "&agrave;" );
-// 		out = strsubst(out , "á"  , "&aacute;" );
-// 		out = strsubst(out , "â"  , "&acirc;"  );
-// 		out = strsubst(out , "ã"  , "&atilde;" );
-// 		out = strsubst(out , "ä"  , "&auml;"   );
-// 		out = strsubst(out , "å"  , "&aring;"  );
-// 		out = strsubst(out , "æ"  , "&aelig;"  );
-// 		out = strsubst(out , "ç"  , "&ccedil;" );
-// 		out = strsubst(out , "è"  , "&egrave"  );;
-// 		out = strsubst(out , "é"  , "&eacute;" );
-// 		out = strsubst(out , "ê"  , "&ecirc;"  );
-// 		out = strsubst(out , "ë"  , "&euml;"   );
-// 		out = strsubst(out , "ì"  , "&igrave"  );;
-// 		out = strsubst(out , "í"  , "&iacute;" );
-// 		out = strsubst(out , "î"  , "&icirc;"  );
-// 		out = strsubst(out , "ï"  , "&iuml;"   );
-// 		out = strsubst(out , "ð"  , "&eth;"    );
-// 		out = strsubst(out , "ñ"  , "&ntilde;" );
-// 		out = strsubst(out , "ò"  , "&ograve;" );
-// 		out = strsubst(out , "ó"  , "&oacute;" );
-// 		out = strsubst(out , "ô"  , "&ocirc;"  );
-// 		out = strsubst(out , "õ"  , "&otilde;" );
-// 		out = strsubst(out , "ö"  , "&ouml;"   );
-// 		out = strsubst(out , "ù"  , "&ugrave;" );
-// 		out = strsubst(out , "ú"  , "&uacute;" );
-// 		out = strsubst(out , "û"  , "&ucirc;"  );
-// 		out = strsubst(out , "ü"  , "&uuml;"   );
-// 		out = strsubst(out , "ý"  , "&yacute;" );
-// 		out = strsubst(out , "þ"  , "&thorn;"  );
-// 		out = strsubst(out , "ÿ"  , "&yuml;"   );
-// 		out = strsubst(out , "µ"  , "&micro;"  );
+// 		out = strsubst(out , "â‚¬"  , "&euro;"   );
+// 		out = strsubst(out , "Ã€"  , "&Agrave;" );
+// 		out = strsubst(out , "Ã"  , "&Aacute;" );
+// 		out = strsubst(out , "Ã‚"  , "&Acirc;"  );
+// 		out = strsubst(out , "Ãƒ"  , "&Atilde;" );
+// 		out = strsubst(out , "Ã„"  , "&Auml;"   );
+// 		out = strsubst(out , "Ã…"  , "&Aring;"  );
+// 		out = strsubst(out , "Ã†"  , "&Aelig"   );
+// 		out = strsubst(out , "Ã‡"  , "&Ccedil;" );
+// 		out = strsubst(out , "Ãˆ"  , "&Egrave;" );
+// 		out = strsubst(out , "Ã‰"  , "&Eacute;" );
+// 		out = strsubst(out , "ÃŠ"  , "&Ecirc;"  );
+// 		out = strsubst(out , "Ã‹"  , "&Euml;"   );
+// 		out = strsubst(out , "ÃŒ"  , "&Igrave"  );;
+// 		out = strsubst(out , "Ã"  , "&Iacute;" );
+// 		out = strsubst(out , "ÃŽ"  , "&Icirc;"  );
+// 		out = strsubst(out , "Ã"  , "&Iuml;"   );
+// 		out = strsubst(out , "Ã"  , "&eth;"    );
+// 		out = strsubst(out , "Ã‘"  , "&Ntilde;" );
+// 		out = strsubst(out , "Ã’"  , "&Ograve;" );
+// 		out = strsubst(out , "Ã“"  , "&Oacute;" );
+// 		out = strsubst(out , "Ã”"  , "&Ocirc;"  );
+// 		out = strsubst(out , "Ã•"  , "&Otilde;" );
+// 		out = strsubst(out , "Ã–"  , "&Ouml;"   );
+// 		out = strsubst(out , "Ã™"  , "&Ugrave;" );
+// 		out = strsubst(out , "Ãš"  , "&Uacute;" );
+// 		out = strsubst(out , "Ã›"  , "&Ucirc;"  );
+// 		out = strsubst(out , "Ãœ"  , "&Uuml;"   );
+// 		out = strsubst(out , "Ã"  , "&Yacute;" );
+// 		out = strsubst(out , "Ãž"  , "&thorn;"  );
+// 		out = strsubst(out , "ÃŸ"  , "&szlig;"  );
+// 		out = strsubst(out , "Ã "  , "&agrave;" );
+// 		out = strsubst(out , "Ã¡"  , "&aacute;" );
+// 		out = strsubst(out , "Ã¢"  , "&acirc;"  );
+// 		out = strsubst(out , "Ã£"  , "&atilde;" );
+// 		out = strsubst(out , "Ã¤"  , "&auml;"   );
+// 		out = strsubst(out , "Ã¥"  , "&aring;"  );
+// 		out = strsubst(out , "Ã¦"  , "&aelig;"  );
+// 		out = strsubst(out , "Ã§"  , "&ccedil;" );
+// 		out = strsubst(out , "Ã¨"  , "&egrave"  );;
+// 		out = strsubst(out , "Ã©"  , "&eacute;" );
+// 		out = strsubst(out , "Ãª"  , "&ecirc;"  );
+// 		out = strsubst(out , "Ã«"  , "&euml;"   );
+// 		out = strsubst(out , "Ã¬"  , "&igrave"  );;
+// 		out = strsubst(out , "Ã­"  , "&iacute;" );
+// 		out = strsubst(out , "Ã®"  , "&icirc;"  );
+// 		out = strsubst(out , "Ã¯"  , "&iuml;"   );
+// 		out = strsubst(out , "Ã°"  , "&eth;"    );
+// 		out = strsubst(out , "Ã±"  , "&ntilde;" );
+// 		out = strsubst(out , "Ã²"  , "&ograve;" );
+// 		out = strsubst(out , "Ã³"  , "&oacute;" );
+// 		out = strsubst(out , "Ã´"  , "&ocirc;"  );
+// 		out = strsubst(out , "Ãµ"  , "&otilde;" );
+// 		out = strsubst(out , "Ã¶"  , "&ouml;"   );
+// 		out = strsubst(out , "Ã¹"  , "&ugrave;" );
+// 		out = strsubst(out , "Ãº"  , "&uacute;" );
+// 		out = strsubst(out , "Ã»"  , "&ucirc;"  );
+// 		out = strsubst(out , "Ã¼"  , "&uuml;"   );
+// 		out = strsubst(out , "Ã½"  , "&yacute;" );
+// 		out = strsubst(out , "Ã¾"  , "&thorn;"  );
+// 		out = strsubst(out , "Ã¿"  , "&yuml;"   );
+// 		out = strsubst(out , "Âµ"  , "&micro;"  );
 	
 endfunction
 
 
-function dirs_out = get_xml_path(dirs_in)
+function dirs_out = get_xml_path(dirs_in,my_wanted_language)
 	
 	dirs_out = [];
 	
@@ -1288,10 +1297,10 @@ function dirs_out = get_xml_path(dirs_in)
 			
 			help_basepath = part(dirs_in(k),1:length(dirs_in(k))-4) + filesep() + "help";
 			
-			if isdir(help_basepath + filesep() +getlanguage()) then
-				dirs_out(k) = help_basepath + filesep() + getlanguage();
+			if isdir(help_basepath + filesep() +my_wanted_language) then
+				dirs_out(k) = help_basepath + filesep() + my_wanted_language;
 			elseif isdir(help_basepath+filesep()+getdefaultlanguage()) then
-				dirs_out(k) = help_basepath+filesep()+getlanguage();
+				dirs_out(k) = help_basepath+filesep()+getdefaultlanguage();
 			else
 				dirs_out(k) = "";
 			end
@@ -1469,12 +1478,12 @@ function category = dirToCat(directory, language)
 alldirs = ["batch_functions","editor", "sources_pal", "linear_pal", "non_linear_pal", "branching_pal", "others_pal", "threshold_pal", "sinks_pal", "events_pal", "electrical_pal", "thermohydraulics_pal", "matrix_pal", "integer_pal", "demoblocks_pal", "abcd_blocks", "c_computational_functions", "scilab_computational_functions", "utilities_functions", "programming_scicos_blocks", "scilab_utilities_functions", "diagram", "blocks", "links", "compilation_simulation", "scilab_data_structures","palettes","oldblocks_pal"];
 if language == "fr_FR" then
   allcategories = ["Fonctions en ligne de commande", "Editeur", "Palette Sources", ..
-   "Palette Linéaire", "Palette Non-linéaire", "Palette Branchements", "Palette Divers", .. 
-   "Palette Détection", "Palette Affichage", "Palette Evènements", "Palette des Composants Electriques", ..
-    "Palette des Composants Thermohydrauliques", "Palette d''Opérations Matricielles", "Palette Integer", ..
-     "Palette des Blocks de Démonstration", "Blocs par Ordre Alphabétique", "Fonctions de Calcul en C", ..
+   "Palette LinÃ©aire", "Palette Non-linÃ©aire", "Palette Branchements", "Palette Divers", .. 
+   "Palette DÃ©tection", "Palette Affichage", "Palette EvÃ¨nements", "Palette des Composants Electriques", ..
+    "Palette des Composants Thermohydrauliques", "Palette d''OpÃ©rations Matricielles", "Palette Integer", ..
+     "Palette des Blocks de DÃ©monstration", "Blocs par Ordre AlphabÃ©tique", "Fonctions de Calcul en C", ..
       "Fonctions de Calcul Scilab", "Fonctions Utilitaires", "Programmation des Blocs Scicos", ..
-      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de Données Scilab", "Palettes", "Palette des Anciens Blocs"];
+      "Fonctions Utilitaires Scilab", "Diagramme", "Blocs", "Liens", "Compilation/Simulation", "Structures de DonnÃ©es Scilab", "Palettes", "Palette des Anciens Blocs"];
 else
   allcategories = [_("Batch functions"), _("Editor"), _("Sources Palette"), ..
   _("Linear Palette"), _("Non-linear Palette"), _("Branching Palette"), _("Others Palettes"), ..
@@ -1487,3 +1496,23 @@ end
 category = allcategories(find(alldirs==directory));
 endfunction
 
+
+function reset_help_modules_var(language)
+	
+	global %helps_modules;
+	
+	// Reset the variable in hand
+	%helps_modules = [];
+	
+	// Get module list
+	module_list = getmodules();
+	
+	// Loop on modules
+	for k=1:size(module_list,'*');
+		addchapter_path = getlongpathname(SCI+"/modules/"+module_list(k)+"/help/"+language+"/addchapter.sce");
+		if fileinfo(addchapter_path)<>[] then
+			exec(addchapter_path,-1);
+		end
+	end
+	
+endfunction

@@ -203,17 +203,19 @@ public class FilledTextDrawerGL extends TextContentDrawerGL {
 	public TextGrid placeTextGrid(TextGrid stringPositions,
 								  Vector3D textCenterPix, Vector3D rotationCenter, double rotationAngle) {
 		GL gl = getGL();
-		gl.glTranslated(rotationCenter.getX(), rotationCenter.getY(), rotationCenter.getZ());
+		Vector3D rotationRound = getRoundedVector(rotationCenter);
+		gl.glTranslated(rotationRound.getX(), rotationRound.getY(), rotationRound.getZ());
 		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
-		gl.glTranslated(-rotationCenter.getX(), -rotationCenter.getY(), -rotationCenter.getZ());
+		gl.glTranslated(-rotationRound.getX(), -rotationRound.getY(), -rotationRound.getZ());
 		
 		// move the text in the middle of the bounfing box
 		Vector3D[] bbox = stringPositions.getExtremBounds();
 		double halfBoxWidth = (bbox[2].getX() - bbox[1].getX()) / 2.0;
 		double halfBoxHeight = (bbox[0].getY() - bbox[1].getY()) / 2.0;
 		
-		gl.glTranslated(textCenterPix.getX(), textCenterPix.getY(), textCenterPix.getZ());
-		gl.glTranslated(filledBoxWidth / 2.0 - halfBoxWidth, filledBoxHeight / 2.0 - halfBoxHeight, 0.0);
+		gl.glTranslated(Math.round(textCenterPix.getX() + filledBoxWidth / 2.0 - halfBoxWidth),
+						Math.round(textCenterPix.getY() + filledBoxHeight / 2.0 - halfBoxHeight),
+						textCenterPix.getZ());
 		return stringPositions;
 	}
 

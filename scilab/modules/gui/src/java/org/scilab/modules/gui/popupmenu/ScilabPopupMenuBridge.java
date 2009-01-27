@@ -243,8 +243,8 @@ public class ScilabPopupMenuBridge {
 	 * @param popupMenu the PopupMenu we want to get the selected index of
 	 * @return the index of the item selected
 	 */
-	public static int getSelectedIndex(PopupMenu popupMenu) {
-		return popupMenu.getAsSimplePopupMenu().getSelectedIndex();
+	public static int getUserSelectedIndex(PopupMenu popupMenu) {
+		return popupMenu.getAsSimplePopupMenu().getUserSelectedIndex();
 	}
 	
 	/**
