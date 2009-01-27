@@ -1121,11 +1121,11 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 @BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
-@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar();exit;\"";\
-@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar([],[],'en_US');exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
-@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"setlanguage('fr'); xmltojar();exit;\""; \
-@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "setlanguage('fr'); xmltojar();exit;"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "xmltojar([],[],'fr_FR');exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab binary"; \
 @BUILD_HELP_TRUE@	fi
