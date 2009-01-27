@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,68 +15,58 @@
 #include "librarieslist.h"
 #include "libraryinfo.h"
 #include "MALLOC.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static int getsizemacrosdictionary(void);
 /*--------------------------------------------------------------------------*/
 char **getmacrosdictionary(int *sizearray)
 {
-	int sizelibraries = 0;
-	char **libraries = getlibrarieslist(&sizelibraries);
 	char **dictionary = NULL;
 	int sizedictionary = getsizemacrosdictionary();
 
 	*sizearray = 0;
 
-	dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
-
-	if (dictionary)
+	if (sizedictionary > 0)
 	{
-		int m = 0;
-		if (libraries)
-		{
-			int i = 0;
-			for (i = 0;i < sizelibraries; i++)
-			{
-				int j = 0;
-				char **macros = NULL;
-				int sizemacros = 0;
+		int sizelibraries = 0;
+		char **libraries = getlibrarieslist(&sizelibraries);
 
-				macros = getlistmacrosfromlibrary(libraries[i],&sizemacros);
-				if (macros)
+		dictionary = (char**)MALLOC(sizeof(char*)*sizedictionary);
+
+		if (dictionary)
+		{
+			int m = 0;
+			if (libraries)
+			{
+				int i = 0;
+				for (i = 0;i < sizelibraries; i++)
 				{
-					for (j=0;j<sizemacros;j++)
+					int j = 0;
+					char **macros = NULL;
+					int sizemacros = 0;
+
+					macros = getlistmacrosfromlibrary(libraries[i],&sizemacros);
+
+					if (macros)
 					{
-						dictionary[m] = macros[j];
-						m++;
+						for (j=0;j<sizemacros;j++)
+						{
+							dictionary[m] = macros[j];
+							m++;
+						}
+						FREE(macros);
+						macros = NULL;
 					}
-					FREE(macros);
-					macros = NULL;
 				}
+				*sizearray = sizedictionary;
 			}
-
-			*sizearray = sizedictionary;
 		}
-	}
-	else
-	{
-		*sizearray = 0;
-	}
-
-	if (libraries)
-	{
-		int i = 0;
-		for (i = 0;i < sizelibraries; i++)
+		else
 		{
-			if (libraries[i])
-			{
-				FREE(libraries[i]);
-				libraries[i] = NULL;
-			}
+			*sizearray = 0;
 		}
-		FREE(libraries);
-		libraries = NULL;
+		freeArrayOfString(libraries, sizelibraries);
 	}
-
 	return dictionary;
 }
 /*--------------------------------------------------------------------------*/
@@ -90,7 +81,6 @@ static int getsizemacrosdictionary(void)
 		int i = 0;
 		for (i = 0;i < sizelibraries; i++)
 		{
-			int j = 0;
 			char **macros = NULL;
 			int sizemacros = 0;
 
@@ -99,16 +89,7 @@ static int getsizemacrosdictionary(void)
 			{
 				sizedictionary = sizedictionary + sizemacros;
 
-				for (j = 0;j < sizemacros; j++)
-				{
-					if(macros[j])
-					{
-						FREE(macros[j]);
-						macros[j] = NULL;
-					}
-				}
-				FREE(macros);
-				macros = NULL;
+				freeArrayOfString(macros, sizemacros);
 			}
 
 			FREE(libraries[i]);
