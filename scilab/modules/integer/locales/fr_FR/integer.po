@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2007-11-26 16:35+0100\n"
 "Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
@@ -18,25 +18,22 @@ msgstr ""
 
 # File: src/c/mputi.c, line: 53
 # File: src/c/mgeti.c, line: 57
-#, c-format
-msgid "%s: format is of 0 length\n"
-msgstr "%s: format de taille 0\n"
+#~ msgid "%s: format is of 0 length\n"
+#~ msgstr "%s: format de taille 0\n"
 
 #
 # File: src/c/mputi.c, line: 155
 # File: src/c/mputi.c, line: 161
-#, c-format
-msgid "%s: %s format not recognized\n"
-msgstr "%s: %s format non reconnu\n"
+#~ msgid "%s: %s format not recognized\n"
+#~ msgstr "%s: %s format non reconnu\n"
 
 #
 # File: src/c/mputi.c, line: 168
 # File: src/c/mgeti.c, line: 181
-msgid "No input file\n"
-msgstr "Pas de fichier d'entrée\n"
+#~ msgid "No input file\n"
+#~ msgstr "Pas de fichier d'entrée\n"
 
 #
 # File: src/c/mgeti.c, line: 199
-#, c-format
-msgid "%s: unknown format %s\n"
-msgstr "%s: format inconnu %s\n"
+#~ msgid "%s: unknown format %s\n"
+#~ msgstr "%s: format inconnu %s\n"

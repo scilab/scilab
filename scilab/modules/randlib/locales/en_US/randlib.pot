@@ -14,8 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-09-22 14:09+0100\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
 
+# File: etc/randlib.start, line: 23
+msgid "Random"
+msgstr ""
+#
 # File: sci_gateway/c/sci_grand.c, line: 147
 # File: sci_gateway/c/sci_grand.c, line: 416
 # File: sci_gateway/c/sci_grand.c, line: 462
@@ -283,7 +287,7 @@ msgid "Low > High\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 677
-msgid "Missing Low and High for Uniform integer law\n"
+msgid "Missing Low and High for Uniform int law\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 685
@@ -442,52 +446,6 @@ msgstr ""
 msgid "%s: Wrong value for input argument %s.\n"
 msgstr ""
 #
-# File: etc/randlib.start, line: 23
-msgid "Random"
-msgstr ""
-#
-# File: src/norandlib/norandlib.c, line: 19
-msgid "Scilab randlib interface not installed.\n"
-msgstr ""
-#
-# File: src/c/mt.c, line: 138
-msgid "Bad seed for mt, must be an integer in [0, 2^32-1]\n"
-msgstr ""
-#
-# File: src/c/mt.c, line: 165
-msgid ""
-"The first component of the mt state mt, must be an integer in [1, 624]\n"
-msgstr ""
-#
-# File: src/c/kiss.c, line: 64
-msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
-msgstr ""
-#
-# File: src/c/fsultra.c, line: 165
-msgid ""
-"\n"
-"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
-msgstr ""
-#
-# File: src/c/fsultra.c, line: 178
-#, c-format
-msgid ""
-"\n"
-"The first component of the fsultra state, must be an integer in [0, %d]\n"
-msgstr ""
-#
-# File: src/c/fsultra.c, line: 186
-msgid ""
-"\n"
-"The second component of the fsultra state, must be 0 or 1\n"
-msgstr ""
-#
-# File: src/c/fsultra.c, line: 194
-msgid ""
-"\n"
-"The third component of the fsultra state, must be an integer in [1, 2^32-1]\n"
-msgstr ""
-#
 # File: src/c/clcg2.c, line: 82
 msgid ""
 "\n"
@@ -513,8 +471,49 @@ msgid ""
 "    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
 msgstr ""
 #
+# File: src/c/fsultra.c, line: 165
+msgid ""
+"\n"
+"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+msgstr ""
+#
+# File: src/c/fsultra.c, line: 178
+#, c-format
+msgid ""
+"\n"
+"The first component of the fsultra state, must be an int in [0, %d]\n"
+msgstr ""
+#
+# File: src/c/fsultra.c, line: 186
+msgid ""
+"\n"
+"The second component of the fsultra state, must be 0 or 1\n"
+msgstr ""
+#
+# File: src/c/fsultra.c, line: 194
+msgid ""
+"\n"
+"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+msgstr ""
+#
+# File: src/c/kiss.c, line: 64
+msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
+msgstr ""
+#
+# File: src/c/mt.c, line: 138
+msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
+msgstr ""
+#
+# File: src/c/mt.c, line: 165
+msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
+msgstr ""
+#
 # File: src/c/urand.c, line: 47
 msgid ""
 "\n"
-"Bad seed for urand, must be an integer in [0,  2147483647]\n"
+"Bad seed for urand, must be an int in [0,  2147483647]\n"
+msgstr ""
+#
+# File: src/norandlib/norandlib.c, line: 19
+msgid "Scilab randlib interface not installed.\n"
 msgstr ""

@@ -3,12 +3,11 @@
 # Copyright (C) 2007/2008 - INRIA / Scilab
 # This file is distributed under the same license as the Scilab package.
 # Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
-#, 
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-08-18 10:19+0100\n"
+"POT-Creation-Date: 2008-09-22 14:07+0100\n"
 "PO-Revision-Date: 2008-08-18 11:07+0200\n"
 "Last-Translator: Serge Steer <Serge.Steer@scilab.org>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
@@ -16,28 +15,18 @@ msgstr ""
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-# File: macros/warnobsolete.sci, line: 29
+#
+# File: macros/bytecode.sci, line: 29
 #, c-format
-msgid "Function %s is obsolete."
-msgstr "La fonction %s est obsolete."
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
 
 #
-# File: macros/warnobsolete.sci, line: 31
+# File: macros/bytecodewalk.sci, line: 58
+# File: macros/bytecodewalk.sci, line: 97
 #, c-format
-msgid "Please use %s instead."
-msgstr "Elle peut être remplacée par %s."
-
-#
-# File: macros/warnobsolete.sci, line: 34
-#, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr "Cette fonction sera supprimée définitivement de Scilab %s"
-
-#
-# File: macros/get_function_path.sci, line: 23
-#, c-format
-msgid "%s: There is no file named %s.sci in the library directory %s.\n"
-msgstr "%s: Il n'y a pas de fichier nommé %s.sci dans le répertoire de la bibliothèque %s.\n"
+msgid "%s: obsolete op-code %d.\n"
+msgstr "%s: Le code opératoire %d est obsolète.\n"
 
 #
 # File: macros/check_gateways.sci, line: 22
@@ -58,11 +47,18 @@ msgid "%s: File %s doesn''t exist.\n"
 msgstr "%s: Le fichier %s n'existe pas.\n"
 
 #
+# File: macros/genlib.sci, line: 24
+#, c-format
+msgid "-- Creation of [%s] (Macros) --\n"
+msgstr "-- Création de [%s] (Macros) --\n"
+
+#
 # File: macros/genlib_old.sci, line: 53
 # File: macros/genlib.sci, line: 79
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s: Aucun fichier d'exension %s n'a été trouvé dans le répertoire %s.\n"
+msgstr ""
+"%s: Aucun fichier d'exension %s n'a été trouvé dans le répertoire %s.\n"
 
 #
 # File: macros/genlib_old.sci, line: 73
@@ -95,10 +91,10 @@ msgstr "%s: Le fichier %s n'a pu être créé.\n"
 #
 # File: macros/genlib_old.sci, line: 124
 # File: macros/genlib.sci, line: 160
-#, c-format
+#, fuzzy, c-format
 msgid ""
 "Library file %s has been updated,\n"
-"but cannot be loaded into Scilab because ''%s'' is a protected variable.\n"
+"but cannot be loaded into Scilab because %s is a protected variable.\n"
 msgstr ""
 "Le fichier de bibliothèque %s a été mis à jour,\n"
 "mais n'a pas pu être chargé dans Scilab car %s est une variable protégée.\n"
@@ -108,7 +104,9 @@ msgstr ""
 # File: macros/genlib.sci, line: 180
 #, c-format
 msgid "%s: Warning: Error in file %s : %s. File ignored\n"
-msgstr "%s: Attention une erreur a été rencontrée dans le fichier %s: %s. Le fichier a été ignoré.\n"
+msgstr ""
+"%s: Attention une erreur a été rencontrée dans le fichier %s: %s. Le fichier "
+"a été ignoré.\n"
 
 #
 # File: macros/genlib_old.sci, line: 154
@@ -125,16 +123,70 @@ msgid "%s: File %s does not contain any function.\n"
 msgstr "%s: Le fichier %s ne contient aucune fonction.\n"
 
 #
-# File: macros/profile.sci, line: 18
+# File: macros/get_function_path.sci, line: 23
 #, c-format
-msgid "%s: The function has not been built for profiling"
-msgstr "%s: Cette fonction n'a pas été construite pour être profilée."
+msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+msgstr ""
+"%s: Il n'y a pas de fichier nommé %s.sci dans le répertoire de la "
+"bibliothèque %s.\n"
+
+#
+# File: macros/genlib_old.sci, line: 53
+# File: macros/getd.sci, line: 46
+# File: macros/genlib.sci, line: 79
+#, c-format
+msgid "%s: I cannot find any files with extension %s in %s\n"
+msgstr "%s: Il n'y a pas de fichier d'extension %s dans le répertoire %s.\n"
+
+#
+# File: macros/getd.sci, line: 56
+#, c-format
+msgid "%s: Incorrect function in file %s.\n"
+msgstr "%s: Fonction incorrecte dans le fichier %s.\n"
+
+#
+# File: macros/head_comments.sci, line: 14
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaine de caractères "
+"est attendue.\n"
+
+#
+# File: macros/head_comments.sci, line: 18
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: La variable %s n'est pas définie.\n"
+
+#
+# File: macros/head_comments.sci, line: 23
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Le nom d'une fonction "
+"Scilab est attendu.\n"
+
+#
+# File: macros/head_comments.sci, line: 35
+msgid "No comment available.\n"
+msgstr "Aucun commentaire n'est présent.\n"
+
+#
+# File: macros/macrovar.sci, line: 23
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'arguemnt d'entrée  n° %d: Une fonction Scilab est "
+"attendue.\n"
 
 #
 # File: macros/plotprofile.sci, line: 45
 #, c-format
 msgid "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr "%s: Mauvaise valeur pour l'argument d'entrée: Il n'y a aucune donnée de profile.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée: Il n'y a aucune donnée de "
+"profile.\n"
 
 #
 # File: macros/plotprofile.sci, line: 68
@@ -229,37 +281,10 @@ msgid "&Tools"
 msgstr ""
 
 #
-# File: macros/bytecode.sci, line: 29
+# File: macros/profile.sci, line: 18
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
-
-#
-# File: macros/genlib_old.sci, line: 53
-# File: macros/getd.sci, line: 46
-# File: macros/genlib.sci, line: 79
-#, c-format
-msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr "%s: Il n'y a pas de fichier d'extension %s dans le répertoire %s.\n"
-
-#
-# File: macros/getd.sci, line: 56
-#, c-format
-msgid "%s: Incorrect function in file %s.\n"
-msgstr "%s: Fonction incorrecte dans le fichier %s.\n"
-
-#
-# File: macros/genlib.sci, line: 24
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Création de [%s] (Macros) --\n"
-
-#
-# File: macros/bytecodewalk.sci, line: 58
-# File: macros/bytecodewalk.sci, line: 97
-#, c-format
-msgid "%s: obsolete op-code %d.\n"
-msgstr "%s: Le code opératoire %d est obsolète.\n"
+msgid "%s: The function has not been built for profiling"
+msgstr "%s: Cette fonction n'a pas été construite pour être profilée."
 
 #
 # File: macros/recompilefunction.sci, line: 5
@@ -274,7 +299,9 @@ msgstr "Il n'y a pas de variable de nom: %s"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr "%s: Mauvaise valeur pour l'argument d'entrée n°%d: Le nom d'une fonction Scilab est attendu.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n°%d: Le nom d'une fonction "
+"Scilab est attendu.\n"
 
 #
 # File: macros/recompilefunction.sci, line: 15
@@ -294,32 +321,19 @@ msgstr "%s est déja sous forme compilée, il n'y a rien à faire!"
 msgid "%s is already compiled for profiling, nothing to do!"
 msgstr "%s est déjà prète pour être profilée, il n'y a rien à faire!"
 
-#
-# File: macros/head_comments.sci, line: 14
+# File: macros/warnobsolete.sci, line: 29
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Une chaine de caractères est attendue.\n"
+msgid "Function %s is obsolete."
+msgstr "La fonction %s est obsolete."
 
 #
-# File: macros/head_comments.sci, line: 18
+# File: macros/warnobsolete.sci, line: 31
 #, c-format
-msgid "%s: Undefined variable %s.\n"
-msgstr "%s: La variable %s n'est pas définie.\n"
+msgid "Please use %s instead."
+msgstr "Elle peut être remplacée par %s."
 
 #
-# File: macros/head_comments.sci, line: 23
+# File: macros/warnobsolete.sci, line: 34
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: Le nom d'une fonction Scilab est attendu.\n"
-
-#
-# File: macros/head_comments.sci, line: 35
-msgid "No comment available.\n"
-msgstr "Aucun commentaire n'est présent.\n"
-
-#
-# File: macros/macrovar.sci, line: 23
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr "%s: Mauvais type pour l'arguemnt d'entrée  n° %d: Une fonction Scilab est attendue.\n"
+msgid "This function will be permanently removed in Scilab %s"
+msgstr "Cette fonction sera supprimée définitivement de Scilab %s"

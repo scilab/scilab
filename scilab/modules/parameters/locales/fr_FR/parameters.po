@@ -27,13 +27,13 @@ msgid "%s: not a plist"
 msgstr ""
 
 #
-# File: macros/set_param.sci, line: 20
-#, c-format
-msgid "%s: parameter doesn''t exist"
-msgstr ""
-
-#
 # File: macros/get_param.sci, line: 29
 #, c-format
 msgid "%s: parameter %s not defined"
+msgstr ""
+
+#
+# File: macros/set_param.sci, line: 20
+#, c-format
+msgid "%s: parameter doesn''t exist"
 msgstr ""
