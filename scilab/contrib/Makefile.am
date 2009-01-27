@@ -53,8 +53,12 @@ loader.sce
 
 
 install-data-local:
-	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/contrib/toolbox_skeleton; \
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/; \
+	$(mkinstalldirs) -m 755 $(DESTDIR)$(pkgdatadir)/contrib/toolbox_skeleton; \
 	for file in $(SKELETON_FILES) ; do \
-		echo "$(INSTALL_DATA) -D $$file $(DESTDIR)$(pkgdatadir)/contrib/$$file" ; \
-		$(INSTALL_DATA) -D "$$file" $(DESTDIR)$(pkgdatadir)/contrib/$$file ; \
+		filePath=`dirname $(DESTDIR)$(pkgdatadir)/contrib/$$file`; \
+		echo "$(mkinstalldirs) -m 755 $$filePath/"; \
+		$(mkinstalldirs) -m 755 $$filePath/; \
+		echo "$(INSTALL_DATA) $$file $$filePath" ; \
+		$(INSTALL_DATA) "$$file" $$filePath; \
 	done
