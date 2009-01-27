@@ -112,7 +112,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
             }
           //Here pTemp2 is the pointer on the current Axes
           pTemp2 = scoGetPointerAxes(pScopeMemory,i);
-          sciInitFontSize(pTemp2, 0);
+          sciInitFontSize(pTemp2, 1); //** axes font size (numbers)
           
           //** sciSetIsBoxed(pTemp2,TRUE); //** obsolete in Scilab 5
           sciSetBoxType(pTemp2,BT_ON);
@@ -941,9 +941,9 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,&y_title,1,1);/* 1,1 is nbrow, nbcol */
 
       
-      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
-      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 0);
-      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 0);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 1);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 1);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 1);
       forceRedraw(scoGetPointerAxes(pScopeMemory,i));
     }
 
@@ -954,7 +954,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
 
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
         {
-          sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
+          sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 1);
           sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,&z_title,1,1); /* 1,1 is nbrow, nbcol */
         }
     }
