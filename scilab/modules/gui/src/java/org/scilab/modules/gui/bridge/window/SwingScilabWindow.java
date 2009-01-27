@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU (Mac OS X port)
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -37,6 +38,7 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.tab.Tab;
@@ -57,6 +59,8 @@ import org.scilab.modules.renderer.utils.RenderingCapabilities;
  * @author Vincent COUVERT
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
+ * @author Sylvestre LEDRU (Mac OS X port)
+
  */
 public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
@@ -114,7 +118,41 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 				removeWindowListener(this);
 			}
 		});
+		registerForMacOSXEvents();
 	}
+
+    /**
+     * This method registers some methods against the specific Mac OS X API
+     * (in order to set the "special" mac os x menus)
+     */
+    private void registerForMacOSXEvents() {
+	boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
+	if (MAC_OS_X) {
+	    try {
+		// Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
+		// use as delegates for various com.apple.eawt.ApplicationListener methods
+		OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
+		OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
+	    } catch (java.lang.NoSuchMethodException e) {
+		System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
+	    }
+	}
+    }
+
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X about menu is called. It is the only case where this method
+     * should be used
+     */
+    public void OSXabout() {
+	InterpreterManagement.requestScilabExec("about()");
+    }
+
+    public void OSXquit() {
+	InterpreterManagement.requestScilabExec("exit()");
+    }
+
+
 
 	/**
 	 * Creates a swing Scilab window
