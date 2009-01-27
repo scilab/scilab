@@ -262,7 +262,12 @@ Bug fixes:
 
 * bug 3653 fixed - Figure menus were deleted when deleting current axis.
 
+* bug 4015 fixed - "Flip left to right" no longer worked on hypermatrices.
+
+* bug 3515 fixed - Erroneous submenu numbering for setmenu() and unsetmenu() in Scilab 5.0.1
+
 * bug 3947 fixed - format old syntax reintroduced.
+
 
 Obsolete functions removed :
 ============================
@@ -300,3 +305,8 @@ Obsolete functions removed :
 * buttondialog() (Please use messagebox() instead).
 
 * tk_getvalue() (Please use getvalue() instead).
+
+Known incompatibilty:
+=====================
+ * Function unsetmenu behavior is incompatible under Linux with versions <= 4.1.2: submenu numbering now begins at 1 instead of 2.
+
