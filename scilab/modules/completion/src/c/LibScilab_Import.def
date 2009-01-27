@@ -21,4 +21,5 @@ cluni0_
 getVariablesName
 getcommandkeywords
 GetFunctionsList
+freeArrayOfString
 ;

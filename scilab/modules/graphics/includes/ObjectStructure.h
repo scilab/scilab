@@ -1076,9 +1076,8 @@ typedef struct
   int Nnode; /* number of nodes */
   int Ntr;   /* number of triangles */
   double zminmax[2]; /* Array of size 2 containing zmin and zmax */
-  int colminmax[2]; /*  */
-  int colout[2]; /* */
-  BOOL with_mesh;
+  int colminmax[2]; /* subset of the colormap to use */
+  int colout[2]; /* color to use when outside zmin/zmax */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */ 

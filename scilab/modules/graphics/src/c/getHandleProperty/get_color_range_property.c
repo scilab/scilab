@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Allan Cornet
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,8 +12,8 @@
 
 
 /*------------------------------------------------------------------------*/
-/* file: get_z_bounds_property.c                                          */
-/* desc : function to retrieve in Scilab the z_bounds field of            */
+/* file: get_color_range_property.c                                       */
+/* desc : function to retrieve in Scilab the color_range field of         */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -26,18 +24,18 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int get_z_bounds_property( sciPointObj * pobj )
+int get_color_range_property( sciPointObj * pobj )
 {
-  double zBounds[2];
+  int range[2];
   if (sciGetEntityType (pobj) != SCI_FEC)
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"z_bounds") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"range") ;
     return -1 ;
   }
 
-	sciGetZBounds(pobj, zBounds);
+	sciGetColorRange(pobj, range);
 
-  return sciReturnRowVector( zBounds, 2 ) ;
+  return sciReturnRowVectorFromInt( range, 2 ) ;
 
 }
 /*------------------------------------------------------------------------*/

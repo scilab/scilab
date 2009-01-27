@@ -1048,6 +1048,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     h=unglue(get('hdl'))
     set(h,"visible",visible)
     set(h,"z_bounds",z_bounds)
+	if is_higher_than( [5 0 3 0] ) then
+	  set(h,"color_range",mget(2,'dl',fd)); // color_range
+	  set(h,"outside_colors",mget(2,'dl',fd)); // color_range
+	  set(h,"line_mode" ,toggle(mget(1,characterFormat,fd))) // line_mode
+	  set(h,"foreground", mget(1,'il',fd)); // foreground
+	end
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
       set(h,"clip_box", mget(4,'dl',fd)) // clip_box
