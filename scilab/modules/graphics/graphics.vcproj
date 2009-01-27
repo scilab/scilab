@@ -555,6 +555,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_color_range_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_colored_property.c"
 				>
 			</File>
@@ -768,6 +772,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_outside_colors_property.c"
 				>
 			</File>
 			<File
@@ -1423,6 +1431,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_color_range_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_colored_property.c"
 				>
 			</File>
@@ -1628,6 +1640,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_outside_colors_property.c"
 				>
 			</File>
 			<File

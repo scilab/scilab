@@ -1913,7 +1913,6 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 			pfec->colminmax[i] = colminmax[i];
 			pfec->colout[i] = colout[i];
 		}
-		pfec->with_mesh = with_mesh;
 		pfec->Nnode = Nnode;
 		pfec->Ntr = Ntr;
 		if (sciInitGraphicContext (pobj) == -1)
@@ -1927,13 +1926,16 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 			FREE(pobj);
 			return (sciPointObj *) NULL;
 		}
-      return pobj;
-    }
-  else
-    {
-      Scierror(999, _("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
+		/* sline mdoe is set using with_mesh */
+		sciInitIsLine(pobj, with_mesh);
+
+		return pobj;
+	}
+	else
+	{
+		Scierror(999, _("The parent has to be a SUBWIN\n"));
+		return (sciPointObj *) NULL;
+	}
 }
 
 

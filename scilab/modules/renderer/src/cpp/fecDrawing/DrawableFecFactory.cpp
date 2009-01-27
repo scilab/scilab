@@ -45,10 +45,9 @@ void DrawableFecFactory::update( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableFecFactory::setStrategies(ConcreteDrawableFec * fec)
 {
-  sciFec * ppFec = pFEC_FEATURE(m_pDrawed);
   fec->removeDrawingStrategies();
   
-  if (ppFec->with_mesh)
+  if (sciGetIsLine(m_pDrawed))
   {
     fec->addDrawingStrategy(new FecLineDrawerJoGL(fec));
   }
