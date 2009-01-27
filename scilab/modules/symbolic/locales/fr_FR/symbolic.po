@@ -18,5 +18,6 @@ msgstr ""
 
 #
 # File: sci_gateway/c/gw_symbolic.c, line: 25
-msgid "Incorrect number of input arguments.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "Nombre incorrect d'argument d'entrée.\n"
