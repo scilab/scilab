@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-20 16:50+0100\n"
 "PO-Revision-Date: 2008-09-25 13:58+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
+
+msgid "Only on Windows Mode, not in Console Mode.\n"
+msgstr "Seulement en mode graphique, non disponible en mode batch\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
@@ -32,40 +40,6 @@ msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr "%s: Mauvais type pour l'argument d'entrée: Scalaire attendu.\n"
 
 #, c-format
-msgid "Unsupported language '%s'.\n"
-msgstr "Langage '%s' non supporté.\n"
-
-msgid "The language for menus cannot be changed on a running console.\n"
-msgstr ""
-"Le langage des menus ne peut pas être changé dans une console en cours de "
-"fonctionnement.\n"
-
-msgid "Restart Scilab to apply to menus.\n"
-msgstr "Redémarré Scilab pour appliquer les changements aux menus.\n"
-
-#, c-format
-msgid "%s: Wrong type for first input argument: String expected.\n"
-msgstr ""
-"%s: Mauvais type pour le premier argument en entrée: Chaîne de caractères "
-"attendue\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: %s.\n"
-msgstr "%s: Mauvaise valeur pour l'argument d'entrée: %s.\n"
-
-msgid "see help"
-msgstr "voir l'aide"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: '%s' attendu.\n"
 
@@ -75,8 +49,16 @@ msgstr ""
 "%s: Mauvais type pour les arguments en entrée: Chaîne de caractères "
 "attendue.\n"
 
-msgid "Only on Windows Mode, not in Console Mode.\n"
-msgstr "Seulement en mode graphique, non disponible en mode batch\n"
+#, c-format
+msgid "%s: Wrong value for input argument: %s.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée: %s.\n"
+
+msgid "see help"
+msgstr "voir l'aide"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Ne peut pas ouvrir le fichier %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
@@ -91,3 +73,19 @@ msgstr "%s: Ne peut pas ouvrir la base de registre Windows.\n"
 #, c-format
 msgid "%s: Cannot query value of this type.\n"
 msgstr "%s: Ne peut pas renseigner la valeur de ce type.\n"
+
+#~ msgid "Unsupported language '%s'.\n"
+#~ msgstr "Langage '%s' non supporté.\n"
+
+#~ msgid "The language for menus cannot be changed on a running console.\n"
+#~ msgstr ""
+#~ "Le langage des menus ne peut pas être changé dans une console en cours de "
+#~ "fonctionnement.\n"
+
+#~ msgid "Restart Scilab to apply to menus.\n"
+#~ msgstr "Redémarré Scilab pour appliquer les changements aux menus.\n"
+
+#~ msgid "%s: Wrong type for first input argument: String expected.\n"
+#~ msgstr ""
+#~ "%s: Mauvais type pour le premier argument en entrée: Chaîne de caractères "
+#~ "attendue\n"

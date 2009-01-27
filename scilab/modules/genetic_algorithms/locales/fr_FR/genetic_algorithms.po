@@ -16,9 +16,17 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2008-06-02 10:00+0100\n"
 
-# File: macros/optim_nsga.sci, line: 28
-# File: macros/optim_moga.sci, line: 28
-msgid "optim_moga: ga_f is mandatory"
+#
+# File: macros/coding_ga_identity.sci, line: 19
+# File: macros/coding_ga_binary.sci, line: 47
+#, c-format
+msgid "%s: wrong direction"
+msgstr ""
+
+#
+# File: macros/optim_ga.sci, line: 28
+#, c-format
+msgid "%s: ga_f is mandatory"
 msgstr ""
 
 #
@@ -46,10 +54,9 @@ msgstr ""
 msgid " - min / max value found = %f / %f\n"
 msgstr ""
 
-#
-# File: macros/optim_ga.sci, line: 28
-#, c-format
-msgid "%s: ga_f is mandatory"
+# File: macros/optim_nsga.sci, line: 28
+# File: macros/optim_moga.sci, line: 28
+msgid "optim_moga: ga_f is mandatory"
 msgstr ""
 
 #
@@ -67,11 +74,4 @@ msgstr ""
 # File: macros/pareto_filter.sci, line: 16
 #, c-format
 msgid "%s: F_in is mandatory"
-msgstr ""
-
-#
-# File: macros/coding_ga_identity.sci, line: 19
-# File: macros/coding_ga_binary.sci, line: 47
-#, c-format
-msgid "%s: wrong direction"
 msgstr ""

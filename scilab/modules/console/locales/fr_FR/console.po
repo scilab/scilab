@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-10-03 17:11+0200\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: \t2007-10-03 17:11+0200\n"
 "PO-Revision-Date: 2008-09-28 07:41+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
@@ -16,15 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-msgid "Out of Screen"
-msgstr "Plus de place sur l'écran"
-
-msgid "Could not change the Console Font."
-msgstr "Ne peux pas changer la police de la console."
-
-msgid "Could not change the Console Foreground."
-msgstr "Ne peux pas changer la couleur de fond de la console."
 
 msgid "File or Directory"
 msgstr "Fichier ou répertoire"
@@ -46,3 +37,12 @@ msgstr "Variable Scilab"
 
 msgid "No help"
 msgstr "Pas d'aide"
+
+msgid "Out of Screen"
+msgstr "Plus de place sur l'écran"
+
+msgid "Could not change the Console Font."
+msgstr "Ne peux pas changer la police de la console."
+
+msgid "Could not change the Console Foreground."
+msgstr "Ne peux pas changer la couleur de fond de la console."

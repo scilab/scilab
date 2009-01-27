@@ -1,0 +1,4 @@
+# File: macros/%c_mclose.sci, line: 19
+#, c-format
+msgid "%s: No such file opened file.\n"
+msgstr ""

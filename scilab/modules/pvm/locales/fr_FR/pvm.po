@@ -16,26 +16,54 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: Thu, 15 Nov 2007 10:57:19+0100\n"
 
-# File: src/nopvm/nopvm.c, line: 11
-msgid "Scilab PVM module not installed.\n"
+# File: etc/pvm.start, line: 23
+msgid "PVM parallel Toolbox"
 msgstr ""
 
 #
-# File: src/c/sci_tools.c, line: 81
+# File: sci_gateway/c/sci_pvm_send.c, line: 38
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 37
 #, c-format
-msgid "SciToF77: Error malloc\n"
+msgid "%s: work space (stacksize) is too small d\n"
 msgstr ""
 
 #
-# File: src/c/sci_tools.c, line: 105
+# File: sci_gateway/c/sci_pvm_send.c, line: 40
+# File: sci_gateway/c/sci_pvm_bcast.c, line: 39
 #, c-format
-msgid "F77ToSci: Error malloc\n"
+msgid "%s: Unknow type or not yet implemented\n"
 msgstr ""
 
 #
-# File: src/c/pvm_recv.c, line: 57
+# File: sci_gateway/c/sci_pvm_config.c, line: 38
+# File: sci_gateway/c/sci_pvm_tasks.c, line: 44
+# File: src/c/pvm_info.c, line: 52
+# File: src/c/pvm_info.c, line: 115
 #, c-format
-msgid "RECV: %d:%d:%d\n"
+msgid "%s: An error occurred: %s\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_pvm_error_mode.c, line: 43
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: src/c/pvm_grp.c, line: 110
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr ""
+
+#
+# File: src/c/pvm_grp.c, line: 128
+#, c-format
+msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+msgstr ""
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 203
+# File: src/c/pvm_proc_ctrl.c, line: 217
+msgid "Unknown Error"
 msgstr ""
 
 #
@@ -169,6 +197,16 @@ msgid "No such task"
 msgstr ""
 
 #
+# File: src/c/pvm_proc_ctrl.c, line: 234
+msgid "PVM not found"
+msgstr ""
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 235
+msgid "PVM exists"
+msgstr ""
+
+#
 # File: src/c/pvm_proc_ctrl.c, line: 201
 msgid "No such (group,instance)"
 msgstr ""
@@ -179,24 +217,14 @@ msgid "(group,instance) already exists"
 msgstr ""
 
 #
-# File: src/c/pvm_proc_ctrl.c, line: 203
-# File: src/c/pvm_proc_ctrl.c, line: 217
-msgid "Unknown Error"
-msgstr ""
-
-#
 # File: src/c/pvm_proc_ctrl.c, line: 288
-#, c-format
 msgid "Error MALLOC in pvm_error\n"
 msgstr ""
 
 #
-# File: src/c/pvm_proc_ctrl.c, line: 297
+# File: src/c/pvm_proc_ctrl.c, line: 292
 #, c-format
-msgid ""
-"The configuration file\n"
-" %s\n"
-"is used.\n"
+msgid "The configuration file %s is used.\n"
 msgstr ""
 
 #
@@ -207,95 +235,68 @@ msgstr ""
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 300
-msgid "\tbut there exists no configuration file:\n"
+msgid "but there exists no configuration file:\n"
 msgstr ""
 
 #
-# File: src/c/pvm_proc_ctrl.c, line: 307
-#, c-format
-msgid "Error malloc in pvm_error\n"
+# File: src/c/pvm_proc_ctrl.c, line: 306
+msgid "Warning: PVM_ROOT is not set.\n"
 msgstr ""
 
 #
-# File: src/c/pvm_proc_ctrl.c, line: 314
+# File: src/c/pvm_proc_ctrl.c, line: 315
+# File: src/c/sci_tools.c, line: 94
+# File: src/c/sci_tools.c, line: 118
 #, c-format
-msgid ""
-"The standard configuration file $SCI%s will be used.\n"
-"\tWith SCI=%s\n"
-"\tSCI will have to be set on remote hosts\n"
-"\tin order to spawn scilab\n"
-msgstr ""
-
-#
-# File: src/c/pvm_proc_ctrl.c, line: 319
-#, c-format
-msgid ""
-"Warning: The standard configuration file $SCI%s was not found.\n"
-"\tWe supposed that PVM and scilab are in standard place on your net\n"
-"\t (Cf. man pvmd3)\n"
+msgid "%s: No more memory.\n"
 msgstr ""
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 324
 #, c-format
-msgid "%s: No such file or directory\n"
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 329
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 339
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+
+#
+# File: src/c/pvm_proc_ctrl.c, line: 347
+#, c-format
+msgid "%s: No such file or directory.\n"
 msgstr ""
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 343
 # File: src/c/pvm_proc_ctrl.c, line: 354
 # File: src/c/pvm_proc_ctrl.c, line: 360
-#, c-format
 msgid "Error pvm_halt - signal\n"
 msgstr ""
 
 #
-# File: src/c/pvm_grp.c, line: 110
+# File: src/c/pvm_proc_ctrl.c, line: 470
 #, c-format
-msgid "Error pvm_reduce: Not scalar type\n"
+msgid "%s: Error while creating processes: %s.\n"
 msgstr ""
 
-#
-# File: src/c/pvm_grp.c, line: 128
-#, c-format
-msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-msgstr ""
-
-#
-# File: src/c/pvm_info.c, line: 39
-#, c-format
-msgid "pvm_config: Error  %d\n"
-msgstr ""
-
-#
-# File: src/c/pvm_info.c, line: 102
-#, c-format
-msgid "pvm_tasks: Error in C routine pvm_tasks  %d\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_pvm_send.c, line: 38
-# File: sci_gateway/c/sci_pvm_bcast.c, line: 37
-#, c-format
-msgid "%s: work space (stacksize) is too small d\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_pvm_send.c, line: 40
-# File: sci_gateway/c/sci_pvm_bcast.c, line: 39
-#, c-format
-msgid "%s: Unknow type or not yet implemented\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_pvm_tasks.c, line: 31
-# File: sci_gateway/c/sci_pvm_config.c, line: 25
-#, c-format
-msgid "%s: Error\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_pvm_error_mode.c, line: 30
-#, c-format
-msgid "%s: first argument should be \"stop\" or \"continue\"\n"
+# File: src/nopvm/nopvm.c, line: 11
+msgid "Scilab PVM module not installed.\n"
 msgstr ""
