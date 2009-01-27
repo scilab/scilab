@@ -43,9 +43,9 @@
 	      </para>
 		  
 		  <para>
-		    La Liste de 11 polices de caractères disponibles par défaut est donnée ci-dessous.
+		    La Liste de 11 polices de caractères disponibles par défaut est donnée ci-dessous.</para>
 			<informaltable border="1">
-            <tr><td><term>Numéro de police</term></td><td><term>Famille de police</term></td><td><term>Gras</term></td><td><term>Italique</term></td></tr>
+            <tr><td><emphasis role="bold">Numéro de police</emphasis></td><td><emphasis role="bold">Famille de police</emphasis></td><td><emphasis role="bold">Gras</emphasis></td><td><emphasis role="bold">Italique</emphasis></td></tr>
             <tr><td>0</td><td>Monospaced</td><td>Non</td><td>Non</td></tr>
             <tr><td>1</td><td>ScilabSymbols</td><td>Non</td><td>Non</td></tr>
 			<tr><td>2</td><td>Serif</td><td>Non</td><td>Non</td></tr>
@@ -58,7 +58,6 @@
 			<tr><td>9</td><td>SansSerif</td><td>Oui</td><td>Oui</td></tr>
 			<tr><td>10</td><td>SansSerif</td><td>Oui</td><td>Oui</td></tr>
             </informaltable>
-		  </para>
 		  
 		  <para>
 		    La police de caractère utilisée par une entité graphique est déterminée par sa propriété <literal>font_style</literal>.
@@ -78,9 +77,9 @@
 			</para>
 			<para>
 			La taille des cractère en Scilab est différente de celle utilisée par Java.
-			L'équivalence entre les deux échelles est donnée ci-dessous.
+			L'équivalence entre les deux échelles est donnée ci-dessous.</para>
 			<informaltable border="1">
-            <tr><td><term>Taille en Scilab</term></td><td><term>Taille en Java</term></td></tr>
+            <tr><td><emphasis role="bold">Taille en Scilab</emphasis></td><td><emphasis role="bold">Taille en Java</emphasis></td></tr>
             <tr><td>0</td><td>8</td></tr>
             <tr><td>1</td><td>10</td></tr>
             <tr><td>2</td><td>12</td></tr>
@@ -93,7 +92,7 @@
 			<tr><td>9</td><td>48</td></tr>
 			<tr><td>10</td><td>54</td></tr>
             </informaltable>
-			La taille des caractères peut prendre des valeurs non entière. Dans ce cas, le résultat dépend de la propriété <literal>fractional_font</literal> .
+			<para>La taille des caractères peut prendre des valeurs non entière. Dans ce cas, le résultat dépend de la propriété <literal>fractional_font</literal> .
 			Si <literal>fractional_font</literal> a pour valeur <literal>'on'</literal>, alors la taille de caractère est interpolée
 			entre les deux tailles entière les plus proches. Par exemple, une taille de 2.5 permet d'afficher des caractères dont la taille
 			en Java est 13.
