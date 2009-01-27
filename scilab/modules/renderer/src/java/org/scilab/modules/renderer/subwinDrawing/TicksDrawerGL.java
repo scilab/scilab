@@ -428,8 +428,8 @@ public class TicksDrawerGL extends DrawableObjectGL {
 			res = 0.0;
 			break;
 		}
-		
-		centerPosition.setValues(textCenter);
+		/* We need to use rounded values to avoid grabbaled text */
+		centerPosition.setValues(Math.round(textCenter.getX()), Math.round(textCenter.getY()), textCenter.getZ());
 		return res;
 	}
 	
@@ -441,7 +441,7 @@ public class TicksDrawerGL extends DrawableObjectGL {
 	 * @return position of the exponent to draw
 	 */
 	private Vector3D computeExponentPosition(Vector3D textCenter, double labelWidth, double labelHeight) {
-		return textCenter.add(new Vector3D(labelWidth, labelHeight, 0.0));
+		return textCenter.add(new Vector3D(Math.round(labelWidth), Math.round(labelHeight), 0.0));
 	}
 	
 	/**
