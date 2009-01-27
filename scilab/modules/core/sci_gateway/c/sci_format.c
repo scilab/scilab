@@ -27,6 +27,7 @@
 static void setVariableFormat(int numberDigits);
 static void set_e_Format(int numberDigits);
 static void getFormat(int *e_mode, int *numberDigits);
+static void setVariableMode(void);
 static int sci_format_norhs(char *fname);
 static int sci_format_onerhs(char *fname);
 static int sci_format_tworhs(char *fname);
@@ -58,6 +59,11 @@ static void setVariableFormat(int numberDigits)
 
 	numberDigitsAdjusted = Min( Max(format_MIN, numberDigits), format_MAX );
 	C2F(iop).lct[6] = numberDigitsAdjusted;
+}
+/*--------------------------------------------------------------------------*/
+static void setVariableMode(void)
+{
+	C2F(iop).lct[5] = mode_variable; /* set 'v' mode */
 }
 /*--------------------------------------------------------------------------*/
 static void set_e_Format(int numberDigits)
@@ -186,8 +192,63 @@ static int sci_format_onerhs(char *fname)
 /*--------------------------------------------------------------------------*/
 static int sci_format_tworhs(char *fname)
 {
+	/* format(1,10) */
+	if ((GetType(1) == sci_matrix) && (GetType(2) == sci_matrix))
+	{
+		int n1 = 0, m1 = 0, l1 = 0, m1n1 = 0;
+		int n2 = 0, m2 = 0, l2 = 0, m2n2 = 0;
+
+		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+		m1n1 = m1 * n1;
+
+		GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
+		m2n2 = m2 * n2;
+
+		if ( (m1n1 == 1) && (m2n2 == 1) )
+		{
+			double type_value_d = *stk(l2);
+			double v_value_d = *stk(l1);
+			int v_value = (int)v_value_d;
+
+			if ( (type_value_d != (double)0) && (type_value_d != (double)1) )
+			{
+				Scierror(999,_("%s: Wrong value for input argument #%d: '0' or '1' expected.\n"),fname,2);
+				return 0;
+			}
+
+			if (v_value_d != (double)v_value)
+			{
+				Scierror(999,_("%s: Wrong value for input argument #%d: A int expected.\n"),fname,1);
+				return 0;
+			}
+
+			if ( (v_value < format_MIN) || (v_value > format_MAX) )
+			{
+				Scierror(999,_("%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"),fname,2,format_MIN,format_MAX);
+				return 0;
+			}
+
+			if (type_value_d == 0)
+			{
+				setVariableFormat(v_value);
+			}
+			else
+			{
+				set_e_Format(v_value);
+			}
+
+			setVariableMode();
+
+			LhsVar(1) = 0;
+			C2F(putlhsvar)();
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong size for inputs arguments.\n"),fname);
+		}
+	}
 	/* format('e',10) & format(10,'e') syntax */
-	if ( ((GetType(1) == sci_strings) && (GetType(2) == sci_matrix)) ||
+	else if ( ((GetType(1) == sci_strings) && (GetType(2) == sci_matrix)) ||
 		 ((GetType(1) == sci_matrix) && (GetType(2) == sci_strings)) )
 	{
 		int n1 = 0, m1 = 0, l1 = 0;
@@ -219,7 +280,6 @@ static int sci_format_tworhs(char *fname)
 				Scierror(999,_("%s: Wrong values for input argument #%d: A int expected.\n"),fname,2);
 				return 0;
 			}
-
 		}
 		else /* matrix */
 		{
