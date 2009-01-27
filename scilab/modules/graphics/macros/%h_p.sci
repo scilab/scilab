@@ -393,6 +393,10 @@ function %h_p(h)
                 "data = "+d
                 "triangles = "+f
                 "z_bounds = "+sci2exp(h.z_bounds,0)
+				"color_range = " + sci2exp(h.color_range, 0);
+				"outside_colors = " + sci2exp(h.outside_colors, 0);
+				"line_mode = " + sci2exp(h.line_mode);
+				"foreground = " + sci2exp(h.foreground);
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)

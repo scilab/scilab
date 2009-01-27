@@ -3758,6 +3758,99 @@ int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics
   return sciInitIsUsingFractionalMetrics(pObj, useFractionalMetrics);
 }
 /*----------------------------------------------------------------------------------*/
+int sciInitColorRange(sciPointObj * pObj, int subset[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		pFEC_FEATURE(pObj)->colminmax[0] = subset[0];
+		pFEC_FEATURE(pObj)->colminmax[1] = subset[1];
+		return 0;
+  default:
+    printSetGetErrorMessage("color_range");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the subset of colormap bounds used by a particular object (colminmax).
+ */
+int sciSetColorRange(sciPointObj * pObj, int subset[2])
+{
+
+	double curColorRange[2];
+	sciGetColorRange(pObj, curColorRange);
+	if (curColorRange[0] == subset[0] && curColorRange[1] == subset[1])
+	{
+		/* nothing to do */
+		return 1;
+	}
+
+	return sciInitColorRange(pObj, subset);
+
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitOutsideColors(sciPointObj * pObj, int colors[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		pFEC_FEATURE(pObj)->colout[0] = colors[0];
+		pFEC_FEATURE(pObj)->colout[1] = colors[1];
+		return 0;
+  default:
+    printSetGetErrorMessage("outside_color");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the color to use for an objects when it uses index outside of the colormap (colout).
+ */
+int sciSetOutsideColors(sciPointObj * pObj, int colors[2])
+{
+
+	double curColors[2];
+	sciGetOutsideColor(pObj, curColors);
+	if (curColors[0] == colors[0] && curColors[1] == colors[1])
+	{
+		/* nothing to do */
+		return 1;
+	}
+
+  return sciInitOutsideColors(pObj, colors);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitZBounds(sciPointObj * pObj, double bounds[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		pFEC_FEATURE(pObj)->zminmax[0] = bounds[0];
+		pFEC_FEATURE(pObj)->zminmax[1] = bounds[1];
+		return 0;
+  default:
+    printSetGetErrorMessage("z_bounds");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the Z range used by a fec object (zminmax).
+ */
+int sciSetZBounds(sciPointObj * pObj, double bounds[2])
+{
+  double curBounds[2];
+	sciGetZBounds(pObj, curBounds);
+	if (curBounds[0] == bounds[0] && curBounds[1] == bounds[1])
+	{
+		/* nothing to do */
+		return 1;
+	}
+
+	return sciInitZBounds(pObj, bounds);
+}
+/*----------------------------------------------------------------------------------*/
 /**
  * Check that a color index is within the colormap range or not
  * @param pObj object conatining the color
