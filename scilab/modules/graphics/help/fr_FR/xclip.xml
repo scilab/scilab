@@ -43,12 +43,11 @@ xclip("clipgrf")</synopsis>
   </para>
     <para>
     Pour supprimer l'effet d'une commande xclip précédente, utiliser <literal>xclip()</literal>.
-	<para>
+	</para><para>
 		La fonction <literal>xclip</literal> est obsolète et sera supprimée définitivement de Scilab 5.2.
 		Pour définir une zone de "clipping", les propriétés <literal>clip_state</literal> et <literal>clip_box</literal>
 		des entités graphiques peuvent être utilisées.
 	</para>
-  </para>
   </refsection>
   <refsection>
     <title>Exemples</title>

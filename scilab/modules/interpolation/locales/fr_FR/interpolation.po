@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2008-09-25 13:39+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -24,16 +24,44 @@ msgstr ""
 "attendues.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour les arguments d'entrée n° %d, n° %d ou n° %d.\n"
+"%s: Mauvaise dimension pour les arguments d'entrée n° %d, n° %d et n° %d: La "
+"même dimension est attendue.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s tlist attendu.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Mauvaises valeurs pour l'argument d'entrée n° %d.\n"
+
+#, c-format
+msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
+msgstr "%s: xyz doit être une (n,3) matrice réelle avec n >= 10\n"
+
+#, c-format
+msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgstr "%s: Noeuds dupliqués ou tous les noeuds sont colinéaires (ier = %d).\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: x et/ou y ne sont pas rangés dans un ordre strictement croissant (ou +-"
-"inf détecté)\n"
+"%s: Mauvaise dimension pour les arguments d'entrée n° %d et n° %d: Même "
+"dimensions attendues.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
+msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Type '%s' inconnu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour les arguments d'entrée n° %d et n° %d: Même "
+"dimensions attendue.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
@@ -44,13 +72,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s : Mauvais nombre d'argument(s) en entrée.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour les arguments d'entrée n° %d et n° %d: Même "
-"dimensions attendues.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -68,8 +89,8 @@ msgstr "%s: %s doit être une hypermatrice réelle à %d dimensions.\n"
 
 #, c-format
 msgid ""
-"%s: Size incompatibility between grid points and grid values in dimension "
-"%d.\n"
+"%s: Size incompatibility between grid points and grid values in dimension %"
+"d.\n"
 msgstr ""
 "%s: Incompatibilité de dimension entre les points de la grille et les "
 "valeurs de la grille sur la dimension %d.\n"
@@ -83,25 +104,67 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Size incompatibility between grid points and values in dimension %d or "
-"%d.\n"
+"%s: Size incompatibility between grid points and values in dimension %d or %"
+"d.\n"
 msgstr ""
 "%s: Incompatibilité entre les points de la grille et les valeurs suivant la "
 "dimension %d ou %d.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
+"detected.\n"
 msgstr ""
-"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Type '%s' inconnu.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Pas (strictement) "
+"croissant ou +-inf détecté.\n"
 
 #, c-format
-msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
-msgstr "%s: xyz doit être une (n,3) matrice réelle avec n >= 10\n"
+msgid "%s: Not enought points for the fit.\n"
+msgstr "%s: Pas assez de points pour l'ajustement.\n"
 
 #, c-format
-msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
+msgstr "%s: Attention: Déficience du Rang de la matrice des moindres carrés.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
+"expected.\n"
 msgstr ""
-"%s: Noeuds dupliqués ou tous les noeuds sont colinéaires (ier = %d).\n"
+"%s: Mauvaise dimension pour les arguments d'entrée n° %d et n° %d: Des "
+"vecteurs de même taille sont attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d: Doit être %s.\n"
+
+#, c-format
+msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
+msgstr ""
+"%s: Pour une spline encastrée, vous devez donner les pentes du dernier "
+"points.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Pentes du point "
+"terminal.\n"
+
+#, c-format
+msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
+msgstr ""
+"%s: Mauvaise valeur pour une spline périodique %s: Doit être égal à %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgstr ""
+"%s: Mauvaise dimension pour les arguments d'entrée n° %d, n° %d ou n° %d.\n"
+
+#, c-format
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr ""
+"%s: x et/ou y ne sont pas rangés dans un ordre strictement croissant (ou +-"
+"inf détecté)\n"
 
 #, c-format
 msgid ""
@@ -127,77 +190,8 @@ msgstr ""
 "composante est attendu.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d.\n"
-msgstr "%s: Mauvaises valeurs pour l'argument d'entrée n° %d.\n"
-
-#, c-format
 msgid "%s: Problem with 'flag' = %d\n"
 msgstr "%s: Problème avec 'flag' = %d\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour les arguments d'entrée n° %d, n° %d et n° %d: La "
-"même dimension est attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s tlist attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
-"detected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Pas (strictement) "
-"croissant ou +-inf détecté.\n"
-
-#, c-format
-msgid "%s: Not enought points for the fit.\n"
-msgstr "%s: Pas assez de points pour l'ajustement.\n"
-
-#, c-format
-msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
-msgstr ""
-"%s: Attention: Déficience du Rang de la matrice des moindres carrés.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
-"expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour les arguments d'entrée n° %d et n° %d: Des "
-"vecteurs de même taille sont attendus.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Doit être %s.\n"
-
-#, c-format
-msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
-msgstr ""
-"%s: Pour une spline encastrée, vous devez donner les pentes du dernier "
-"points.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Pentes du point "
-"terminal.\n"
-
-#, c-format
-msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
-msgstr ""
-"%s: Mauvaise valeur pour une spline périodique %s: Doit être égal à %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour les arguments d'entrée n° %d et n° %d: Même "
-"dimensions attendue.\n"
 
 #, c-format
 msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"

@@ -64,6 +64,8 @@ Bug fixes:
 
 * In the binary, the path to the fortran include directory was wrong.
 
+* bug 1073 fixed - All the properties for fec objects are not accessible.
+
 * bug 2365 fixed - plot3d3 without flags option removes ticks.
 
 * bug 2540 fixed - plot3d hangs scilab when plotting a matrix full with NaN.
@@ -200,6 +202,8 @@ Bug fixes:
 
 * bug 3912 fixed - strsubst() used with regular expression may return very stange result.
 
+* bug 3918 fixed - The documentation can be built without the french locale installed (under !Windows)
+
 * bug 3919 fixed - scilab x64 doesn't display graphics from a remote desktop.
 
 * bug 3924 fixed - I used uicontrol with bad parameters, but uicontrol makes scilab hangs.
@@ -238,6 +242,8 @@ Bug fixes:
 
 * bug 3991 fixed - It is not possible to set a font_style greater than 10 even if one has added a new font using xlfont.
 
+* bug 3995 fixed - install -D does not work under Mac OS X (used by the make install)
+
 * bug 3999 fixed - xbasc() doesn't clear the current graphics window.
 
 * bug 3941 fixed - Error in function minreal when used with state-space linear system.
@@ -263,6 +269,16 @@ Bug fixes:
 * bug 3653 fixed - Figure menus were deleted when deleting current axis.
 
 * bug 4015 fixed - "Flip left to right" no longer worked on hypermatrices.
+
+* bug 3515 fixed - Erroneous submenu numbering for setmenu() and unsetmenu() in Scilab 5.0.1
+
+* bug 3947 fixed - format old syntax reintroduced.
+
+* bug 3996 fixed - tabulation included in a paste string may make scilab crash in -nw or -nwni mode
+
+* bug 3756 fixed - undocumented input argument for prompt()
+
+* bug 3667 fixed - Function input() now accepts a \n in the text to be printed and colon is no more added.
 
 
 Obsolete functions removed :
@@ -301,3 +317,8 @@ Obsolete functions removed :
 * buttondialog() (Please use messagebox() instead).
 
 * tk_getvalue() (Please use getvalue() instead).
+
+Known incompatibilty:
+=====================
+ * Function unsetmenu behavior is incompatible under Linux with versions <= 4.1.2: submenu numbering now begins at 1 instead of 2.
+

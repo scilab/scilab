@@ -24,11 +24,29 @@ function [x]=input(msg,flag)
     mprintf(msg(k)+"\n")
   end
   if argn(2)==2 then
-    prompt(msg(n) + gettext(": "));
+    
+    // Manage \n in last msg entry
+    t = sprintf(msg(n) + "\n");
+    tsize=size(t,"*")
+    for k=1:tsize-1
+      mprintf(t(k)+"\n")
+    end
+    
+    prompt(t(tsize));
+    
     x=mscanf(fmt) 
   else
     while %t
-      prompt(msg(n) + gettext(": "));
+      
+      // Manage \n in last msg entry
+      t = sprintf(msg(n) + "\n");
+      tsize=size(t,"*")
+      for k=1:tsize-1
+	mprintf(t(k)+"\n")
+      end
+      
+      prompt(t(tsize));
+
       x=stripblanks(mscanf(fmt))
       if length(x)==0 then x="[]",end
       ierr=execstr("x="+x,"errcatch")

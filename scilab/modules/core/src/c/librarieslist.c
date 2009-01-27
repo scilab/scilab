@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,31 +27,37 @@ char **getlibrarieslist(int *sizearray)
 	char **librarieslist = NULL;
 	int nbElements = getnumberoflibraries();
 
-	librarieslist = (char**)MALLOC(sizeof(char*)*(nbElements));
-
-	if (librarieslist)
+	if (nbElements > 0)
 	{
-		int Lused=0; int Ltotal=0;
-		int j = 0; int i = 0;
-		int lw = 0;	int fin = 0;
-
-		C2F(getvariablesinfo)(&Ltotal,&Lused);
-
-		for (j=1;j<Lused+1;++j)
+		librarieslist = (char**)MALLOC(sizeof(char*)*(nbElements));
+		if (librarieslist)
 		{
-			char *NameVariable = getLocalNamefromId(j);
-			if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable))) 
+			int Lused=0; int Ltotal=0;
+			int j = 0; int i = 0;
+			int lw = 0;	int fin = 0;
+
+			C2F(getvariablesinfo)(&Ltotal,&Lused);
+
+			for (j=1;j<Lused+1;++j)
 			{
-				int *header = istk( iadr(*Lstk(fin)));
-				if ( (header) && (header[0] == sci_lib ) ) 
+				char *NameVariable = getLocalNamefromId(j);
+				if (C2F(objptr)(NameVariable,&lw,&fin,(unsigned long)strlen(NameVariable))) 
 				{
-					librarieslist[i] = strdup(NameVariable);
-					i++;
+					int *header = istk( iadr(*Lstk(fin)));
+					if ( (header) && (header[0] == sci_lib ) ) 
+					{
+						librarieslist[i] = strdup(NameVariable);
+						i++;
+					}
 				}
+				if (NameVariable) {FREE(NameVariable);NameVariable = NULL;}
 			}
-			if (NameVariable) {FREE(NameVariable);NameVariable = NULL;}
+			*sizearray = i;
 		}
-		*sizearray = i;
+		else
+		{
+			*sizearray = 0;
+		}
 	}
 	else
 	{

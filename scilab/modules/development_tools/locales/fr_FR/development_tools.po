@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-26 15:01+0100\n"
 "PO-Revision-Date: 2008-09-28 08:03+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -18,27 +18,15 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "No variable %s_ref in reference file"
-msgstr "Pas de variable %s_ref dans le fichier de référence"
-
-#, c-format
 msgid "%s is not an installed module"
 msgstr "%s n'est pas un module installé"
 
-#, c-format
-msgid "%s: Wrong size for input argument."
-msgstr "%s: Mauvaise dimension pour l'argument d'entrée."
+msgid "error : Input argument sizes are not valid"
+msgstr "erreur : les dimensions de l'argument d'entrée ne sont pas valides"
 
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr "Le test %s n'est pas disponible dans le module %s"
-
-#, c-format
-msgid "The ref file (%s) doesn''t exist"
-msgstr "Le fichier ref (%s) n''existe pas"
-
-msgid "error : Input argument sizes are not valid"
-msgstr "erreur : les dimensions de l'argument d'entrée ne sont pas valides"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
@@ -58,3 +46,23 @@ msgstr "Echec du test. Voir: diff -wu %s"
 
 msgid "Test passed"
 msgstr "Succès du test"
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: Mauvaise dimension pour l'argument d'entrée."
+
+#, fuzzy, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s n'est pas un module installé"
+
+#, fuzzy, c-format
+msgid "The test %s is not available from the %s toolbox"
+msgstr "Le test %s n'est pas disponible dans le module %s"
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "Le fichier ref (%s) n''existe pas"
+
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "Pas de variable %s_ref dans le fichier de référence"

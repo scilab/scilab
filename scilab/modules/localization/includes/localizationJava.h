@@ -27,7 +27,7 @@
  * Now, only the native one is used. 
  * However, for an unknown reason, gettext() is not working. Only 
  * dgettext is */
-#define scigettext(String1) dgettext(NAMELOCALIZATIONDOMAIN,String1)
+#define scigettext(String1) localeToUTF(dgettext(NAMELOCALIZATIONDOMAIN,String1))
 
 #else
 /* Restore the normal behaviour ... all the string will be in english */

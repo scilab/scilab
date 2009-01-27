@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
 "PO-Revision-Date: 2008-10-05 11:45+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -16,18 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2008-10-28 14:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s : Plus de mémoire disponible.\n"
-
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr "  (continue) %s\n"
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr "     (fin) %s\n"
 
 msgid "Incorrect assignment.\n"
 msgstr "Affectation incorrecte.\n"
@@ -46,8 +34,7 @@ msgid "Inconsistent row/column dimensions.\n"
 msgstr "Dimension ligne/colonne incohérente.\n"
 
 msgid "Dot cannot be used as modifier for this operator.\n"
-msgstr ""
-"Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
+msgstr "Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
 
 msgid "Inconsistent addition.\n"
 msgstr "Addition incohérente.\n"
@@ -642,8 +629,8 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr "%s: Mauvais type pour l'argument %d: Polynôme attendu.\n"
 
-#, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+#, fuzzy, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
 "%s: mauvais type pour l'argument %d: Matrice de travail d'entiers attendue.\n"
 
@@ -791,13 +778,11 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
-msgstr ""
-"Mauvaise valeur pour l'argument %d: le handle lu n'est plus valide.\n"
+msgstr "Mauvaise valeur pour l'argument %d: le handle lu n'est plus valide.\n"
 
 #, c-format
 msgid "Wrong value for argument %d: Valid variable name expected.\n"
-msgstr ""
-"Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
+msgstr "Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
 
 #, c-format
 msgid "Wrong value for argument %d: Empty string expected.\n"
@@ -898,8 +883,7 @@ msgstr ""
 msgid "endfunction is missing.\n"
 msgstr "endfunction est manquant.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Partie gauche de l'instruction: en attente d'un point ou d'une parenthèse "
 "ouvrante.\n"
@@ -1013,8 +997,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Fin de l'optimisation (échec de la recherche en ligne).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : convergence incomplète. Précision relative atteinte: 10**(%s).\n"
 
@@ -1271,13 +1254,12 @@ msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
 
 msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr ""
-"Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+msgstr "Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
 
 #, c-format
 msgid ""
-"%s: both actual and predicted relative reductions in the criterion at most "
-"%s.\n"
+"%s: both actual and predicted relative reductions in the criterion at most %"
+"s.\n"
 msgstr ""
 
 #, c-format
@@ -1314,3 +1296,15 @@ msgstr ""
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: le nom de variable doit faire moins de 5 caractères de long.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr "  (continue) %s\n"
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr "     (fin) %s\n"

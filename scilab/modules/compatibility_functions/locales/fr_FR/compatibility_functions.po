@@ -18,58 +18,6 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: Not yet implemented.\n"
-msgstr "%s: Pas encore implémenté.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) de sortie: %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) en entrée: %d attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: Les éléments de la cellule "
-"doivent être des tableaux de caractères.\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Cette fonction n'a pas encore été implémentée.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: Cell expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée: Cell attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: Mauvais type pour les arguments d'entrée: Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Unhandled class ''%s''.\n"
-msgstr "%s: Classe ''%s'' non traitée.\n"
-
-#, c-format
-msgid "%s: Unknown type.\n"
-msgstr "%s: Type inconnu.\n"
-
-#, c-format
-msgid "%s: Unknown type ''%s'': IGNORED.\n"
-msgstr "%s: Type inconnu ''%s'': IGNORE.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: Une valeur d'un entier "
-"positif attendue.\n"
-
-#, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr "%s: Mauvais argument d'entrée n° %d: Taille non compatible.\n"
 
@@ -82,8 +30,33 @@ msgstr ""
 "matrice de chaîne de caractère attendu.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d à %d attendu.\n"
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Cette fonction n'a pas encore été implémentée.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée: Les éléments de la cellule "
+"doivent être des tableaux de caractères.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée: Cell attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+"%s: Mauvais type pour les arguments d'entrée: Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: %s, %s, %s, ''%s'', ''%"
+"s'' ou ''%s'' attendue.\n"
 
 #, c-format
 msgid ""
@@ -92,37 +65,6 @@ msgid ""
 msgstr ""
 "%s: Mauvais arguments d'entrée : Les dimensions données comme premier "
 "argument ne correspondent pas aux contenus de la cellule spécifiée.\n"
-
-#, c-format
-msgid "%s: This particular case is not implemented.\n"
-msgstr "%s: Ce cas particulier n'est pas implémenté.\n"
-
-#, c-format
-msgid "%s: Cannot open file ''%s''.\n"
-msgstr "%s: Ne peut pas ouvrir le fichier ''%s''.\n"
-
-#, c-format
-msgid "%s: use with %d input argument(s) is not yet implemented.\n"
-msgstr ""
-"%s: L'utilisation avec %d argument(s) d'entré n'est pas encore implémentée.\n"
-
-#, c-format
-msgid "%s: No minor grid in Scilab.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: ''%s'', ''%s'' ou ''%"
-"s'' attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Un vecteur Matlab de "
-"chaînes de caractères attendu.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
@@ -135,96 +77,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° #%d: Une matrice de chaîne de "
 "caractères attendue.\n"
-
-#, c-format
-msgid "%s: ''%s'' not implemented.\n"
-msgstr "%s: ''%s'' pas implémenté.\n"
-
-#, c-format
-msgid "%s: End of string reached before data has been read.\n"
-msgstr ""
-"%s: Arrivé à la fin de la chaîne de caractères avant que les données aient "
-"été lues.\n"
-
-#, c-format
-msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
-msgstr "%s: Ne peut pas ouvrir ni ''%s'' ni ''%s'' ni ''%s''.\n"
-
-#, c-format
-msgid "%s: pencil is not diagonalizable.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° #%d: Vecteur colonne attendu.\n"
-
-#, c-format
-msgid "%s: ''%s'' ignored.\n"
-msgstr "%s: ''%s'' ignoré.\n"
-
-#, c-format
-msgid "%s: All windows deleted.\n"
-msgstr "%s: Toutes les fenêtres supprimées.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° #%d: Matrice carrée attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: %s, %s,''%s'' ou ''%s'' "
-"attendue.\n"
-
-#, c-format
-msgid "%s: %s is not implemented.\n"
-msgstr "%s: %s n'est pas implémenté.\n"
-
-#, c-format
-msgid ""
-"%s: %s Scilab function does not work with more than one row variables.\n"
-msgstr ""
-"%s: la fonction scilab %s ne fonctionne pas avec plus d'une ligne de "
-"variables.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: %s, %s, %s, ''%s'', ''%"
-"s'' ou ''%s'' attendue.\n"
-
-msgid "Close"
-msgstr "Fermer"
-
-#, c-format
-msgid "%s: The format ''%s'' is unknown.\n"
-msgstr "%s: Le format ''%s'' est inconnu.\n"
-
-#, c-format
-msgid "%s: The format ''%s'' is not yet handled.\n"
-msgstr "%s: Le format ''%s'' n'est pas encore traité.\n"
-
-#, c-format
-msgid "%s: End of file reached before all matrix is read.\n"
-msgstr ""
-"%s: Fin du fichier atteinte avant que toutes les matrices soient lues.\n"
-
-#, c-format
-msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: ''%s'' option ignorée.\n"
-
-#, c-format
-msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
-msgstr "%s: Style de ligne inconnu trouvé dans ''%s'' -> mettre à 6.\n"
-
-#, c-format
-msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
-msgstr "%s: Couleur inconnue trouvée dans ''%s'' -> mettre noir\n"
 
 #, c-format
 msgid "%s: Wrong size for ''%s'': Vector expected.\n"
@@ -247,25 +99,28 @@ msgid "%s: This feature has not been implemented: Argument of type %d.\n"
 msgstr ""
 "%s: Cette fonctionnalité n'a pas été implémentée: Argument de type %d.\n"
 
-#, c-format
-msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: Pas d'équivalent pour la propriété ''%s''.\n"
+msgid "Close"
+msgstr "Fermer"
 
-#, fuzzy, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d à %d attendu.\n"
-
-#
-# File: macros/mtlb_var.sci, line: 44
 #, c-format
-msgid "%s: The normalization m - 1 factor is zero.\n"
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s: ''%s'' ignoré.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: Toutes les fenêtres supprimées.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Matrice carrée attendue.\n"
 
-#
-# File: macros/mtlb_var.sci, line: 51
 #, c-format
-msgid "%s: The normalization n - 1 factor is zero.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
 msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: %s, %s,''%s'' ou ''%s'' "
+"attendue.\n"
 
 msgid "Jan"
 msgstr "Jan"
@@ -302,6 +157,151 @@ msgstr "Nov"
 
 msgid "Dec"
 msgstr "Déc"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: Pas encore implémenté.\n"
+
+#, c-format
+msgid "%s: use with %d input argument(s) is not yet implemented.\n"
+msgstr ""
+"%s: L'utilisation avec %d argument(s) d'entré n'est pas encore implémentée.\n"
+
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr "%s: Ne peut pas ouvrir le fichier ''%s''.\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: Type inconnu.\n"
+
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s: Type inconnu ''%s'': IGNORE.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s n'est pas implémenté.\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr ""
+"%s: la fonction scilab %s ne fonctionne pas avec plus d'une ligne de "
+"variables.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s: Le format ''%s'' est inconnu.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s: Le format ''%s'' n'est pas encore traité.\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr ""
+"%s: Fin du fichier atteinte avant que toutes les matrices soient lues.\n"
+
+#, c-format
+msgid "%s: No equivalent for ''%s'' property.\n"
+msgstr "%s: Pas d'équivalent pour la propriété ''%s''.\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: ''%s'', ''%s'' ou ''%"
+"s'' attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Un vecteur Matlab de "
+"chaînes de caractères attendu.\n"
+
+#, c-format
+msgid "%s: Unhandled class ''%s''.\n"
+msgstr "%s: Classe ''%s'' non traitée.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: Une valeur d'un entier "
+"positif attendue.\n"
+
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s: ''%s'' option ignorée.\n"
+
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr "%s: Style de ligne inconnu trouvé dans ''%s'' -> mettre à 6.\n"
+
+#, c-format
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr "%s: Couleur inconnue trouvée dans ''%s'' -> mettre noir\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) de sortie: %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) en entrée: %d attendu.\n"
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d à %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° #%d: Vecteur colonne attendu.\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: Ce cas particulier n'est pas implémenté.\n"
+
+#, c-format
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s: ''%s'' pas implémenté.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr ""
+"%s: Arrivé à la fin de la chaîne de caractères avant que les données aient "
+"été lues.\n"
+
+#, c-format
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s: Ne peut pas ouvrir ni ''%s'' ni ''%s'' ni ''%s''.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d à %d attendu.\n"
+
+#
+# File: macros/mtlb_var.sci, line: 44
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr ""
+
+#
+# File: macros/mtlb_var.sci, line: 51
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr ""
 
 #~ msgid "%s: All inputs must be character strings.\n"
 #~ msgstr "%s: Toutes les entrées doivent être des chaînes de caractères.\n"
