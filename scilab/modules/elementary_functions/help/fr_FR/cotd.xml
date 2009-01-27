@@ -55,7 +55,6 @@ xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/Ma
     les éléments égaux à <literal>n*90</literal> avec
     <literal>n</literal> entier et impair le résultat est exactement
     0.</para>
-</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
