@@ -377,8 +377,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
     end
     if is_higher_than([3 0 0 0]) then
-      if mget(1,characterFormat,fd)<>0 then
-	set(a,"zoom_box"          , mget(4,'dl',fd))  // zoom_box
+      zoom_box_size = mget(1,characterFormat,fd);
+      if zoom_box_size<>0 then
+	set(a,"zoom_box"          , mget(zoom_box_size,'dl',fd))  // zoom_box
       end
     end
     if is_higher_than([3 1 0 1]) then
