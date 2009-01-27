@@ -21,6 +21,9 @@
 #include "dynamic_menus.h" /* for ismenu() */
 #include "charEncoding.h"
 #include "zzledt.h"
+#if _MSC_VER
+#include "TermReadAndProcess.h"
+#endif
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
