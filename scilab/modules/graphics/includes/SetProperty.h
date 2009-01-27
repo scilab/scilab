@@ -258,6 +258,15 @@ int sciSetUseNurbs(sciPointObj * pObj, BOOL useNurbs); /* SET */
 int sciInitIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics);
 int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics); /* SET */
 
+int sciInitColorRange(sciPointObj * pObj, int subset[2]); 
+int sciSetColorRange(sciPointObj * pObj, int subset[2]); /* SET */
+
+int sciInitOutsideColors(sciPointObj * pObj, int colors[2]);
+int sciSetOutsideColors(sciPointObj * pObj, int colors[2]); /* SET */
+
+int sciInitZBounds(sciPointObj * pObj, double bounds[2]);
+int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
+
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

@@ -73,15 +73,59 @@
       <varlistentry>
         <term>z_bounds: </term>
         <listitem>
-          <para>This <literal>[zmin,zmax]</literal> vector gives the z values associated
+          <para>This vector of size 2, <literal>[zmin,zmax]</literal>, gives the z values associated
         with the first and the last color (of the current colormap). More
         exactly if the colormap have <literal>nc</literal> colors and if we note <literal>dz
         = (zmax-zmin)/nc</literal>, then the part of the triangulation where
         <literal>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</literal> is filled with the
-        color <literal>i</literal>). By default <literal>zmin = min(func)</literal> and <literal>zmax =
-        max(func)</literal>. If you want to do an animation with func values that
-        varie in time, take for <literal>zmin</literal> and <literal>zmax</literal> the global
-        minimum and maximum or something close. </para>
+        color <literal>i</literal>). By default the <literal>z_bounds</literal> property value
+		is <literal>[0,0]</literal>. In this case, the <literal>zmin</literal> and <literal>zmax</literal> are
+		autommatically set to the minumum and maximum of the <literal>func</literal> argument.
+		</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>outside_color: </term>
+        <listitem>
+          <para>
+		    This vector of size 2, <literal>[cmin, cmax]</literal>, defines the color used
+			when nodes values are outside the <literal>z_bounds = [zmin,zmax]</literal> interval.
+			When node values are lower than <literal>zmin</literal> the color with index <literal>cmin</literal>
+			is used. When node values are greater than <literal>zmax</literal> the color with index <literal>cmax</literal>
+			is used. By default, the <literal>outside_color</literal> property value is <literal>[0,0]</literal>.
+			In this case, <literal>cmin</literal> and <literal>cmax</literal> are automatically set to the two bounds of the colormap.
+			If <literal>cmin</literal> or <literal>cmax</literal> are negative, then values outside z_bounds interval are
+			not displayed, they appear transparent.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>color_range: </term>
+        <listitem>
+          <para>
+		    This vector of size 2, <literal>[rmin, rmax]</literal>, allows to use only a part of the
+			colormap for display. <literal>rmin</literal> and <literal>rmax</literal> stand for
+			colormap indices. If they are both greater than 1, then the actual colormap used to
+			display the fec entity is <literal>colormap(rmin:rmax)</literal> where <literal>colormap</literal>
+			is the colormap of the parent figure. By default, the <literal>color_range</literal> property value is <literal>[0,0]</literal>.
+			In this case, the whole colormap is used.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>line_mode:</term>
+        <listitem>
+          <para>If <literal>"on"</literal>, the wireframe enclosing triangles is drawn.
+		  If <literal>"off"</literal>, only the inside of triangles are drawn.</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>foreground:</term>
+        <listitem>
+          <para>This color index specifies the color of the mesh.
+		  If <literal>line_mode</literal> property is <literal>"on"</literal>,
+		  the wireframe is drawn using this color.
+		  </para>
         </listitem>
       </varlistentry>
       <varlistentry>

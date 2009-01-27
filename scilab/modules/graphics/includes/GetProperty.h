@@ -263,6 +263,10 @@ int sciGetSubwinIndex(sciPointObj * pSubwin); /* GET */
 
 BOOL sciIsAutomaticallyRedrawn(sciPointObj * pObj);
 
+void sciGetColorRange(sciPointObj * pObj, int subset[2]); /* GET */
+void sciGetOutsideColor(sciPointObj * pObj, int colors[2]); /* GET */
+void sciGetZBounds(sciPointObj * pObj, double bounds[2]); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

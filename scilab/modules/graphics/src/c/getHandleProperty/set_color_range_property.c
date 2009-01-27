@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Allan Cornet
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,8 +11,8 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file: set_z_bounds_property.c                                          */
-/* desc : function to modify in Scilab the z_bounds field of              */
+/* file: set_color_range_property.c                                       */
+/* desc : function to modify in Scilab the color_range field of           */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -25,31 +23,45 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "ColorMapManagement.h"
+#include "sciprint.h"
 
 /*------------------------------------------------------------------------*/
-int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_color_range_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  double * values = getDoubleMatrixFromStack( stackPointer ) ;
+  int values[2];
+	int nbColors = 0;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"z_bounds") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"color_range") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"z_bounds") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"color_range") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"z_bounds",2) ;
+    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"color_range",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
+	copyDoubleVectorToIntFromStack(stackPointer, values, 2);
 
-	return sciSetZBounds(pobj, values);
+	nbColors = sciGetNumColors(sciGetParentFigure(pobj));
+
+	if (   values[0] > nbColors || values[0] < 0
+		  || values[1] > nbColors || values[1] < 0)
+	{
+		/* It is possible to set color_range outside the colormap, however it won't be used.*/
+		sciprint(_("WARNING: Wrong value for property %s: indices oustside the colormap will be clamped.\n"), "color_range");
+	}
+
+
+	return sciSetColorRange(pobj, values);
 }
 /*------------------------------------------------------------------------*/
