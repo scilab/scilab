@@ -66,7 +66,6 @@ includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
 includes/TerminateLocalization.h \
-includes/localetoutf.h \
 includes/charEncoding.h
 
 if GUI
