@@ -20,7 +20,7 @@
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */
 #include <libintl.h>
-
+#include "charEncoding.h" /* localeToUTF */
 /* This piece of code has been written because of the bug #4005
  * in version 5.0, we were using two localization system (native and 
  * Java).
