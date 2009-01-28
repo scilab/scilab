@@ -131,7 +131,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
 	src/c/comparehandles.c src/c/setPrecisionFPU.c \
-	src/c/LaunchScilabSignal.c src/c/scimem64.c \
+	src/c/LaunchScilabSignal.c src/c/getos.c src/c/scimem64.c \
 	src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
@@ -280,7 +280,8 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-dynamic_gateways.lo libscicore_la-readGateway.lo \
 	libscicore_la-comparehandles.lo \
 	libscicore_la-setPrecisionFPU.lo \
-	libscicore_la-LaunchScilabSignal.lo $(am__objects_1)
+	libscicore_la-LaunchScilabSignal.lo libscicore_la-getos.lo \
+	$(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
 	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
@@ -603,7 +604,7 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/callDynamicGateway.c src/c/gw_dynamic_generic.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
 	src/c/comparehandles.c src/c/setPrecisionFPU.c \
-	src/c/LaunchScilabSignal.c $(am__append_1)
+	src/c/LaunchScilabSignal.c src/c/getos.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
@@ -863,7 +864,8 @@ includes/x_main.h \
 includes/xscion.h \
 includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
-includes/LaunchScilabSignal.h
+includes/LaunchScilabSignal.h \
+includes/getos.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1025,6 +1027,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getdynamicdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmodules.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getstaticdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getvariablesname.Plo@am__quote@
@@ -1686,6 +1689,13 @@ libscicore_la-LaunchScilabSignal.lo: src/c/LaunchScilabSignal.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/LaunchScilabSignal.c' object='libscicore_la-LaunchScilabSignal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-LaunchScilabSignal.lo `test -f 'src/c/LaunchScilabSignal.c' || echo '$(srcdir)/'`src/c/LaunchScilabSignal.c
+
+libscicore_la-getos.lo: src/c/getos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-getos.lo -MD -MP -MF $(DEPDIR)/libscicore_la-getos.Tpo -c -o libscicore_la-getos.lo `test -f 'src/c/getos.c' || echo '$(srcdir)/'`src/c/getos.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-getos.Tpo $(DEPDIR)/libscicore_la-getos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getos.c' object='libscicore_la-getos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getos.lo `test -f 'src/c/getos.c' || echo '$(srcdir)/'`src/c/getos.c
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
