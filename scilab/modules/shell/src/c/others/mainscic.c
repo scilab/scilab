@@ -97,6 +97,17 @@ Some parts of the next three functions have been taken from simpleJavaLauncher.
         ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/** 
+ * Set the name of the application (the mac os x way)
+ * @param name the name of the application
+ */
+static void setAppName(const char * name) {
+  char a[32];
+  pid_t id = getpid();
+  sprintf(a,"APP_NAME_%ld",(long)id);
+  setenv(a, name, 1);
+}
+
 /**
  * Actually launch Scilab under Mac OS X. Need to be in a specific thread.
  * See http://wiki.scilab.org/Compiling_Scilab_5.x_under_MacOSX
@@ -199,6 +210,7 @@ static int initMacOSXEnv(int no_startup_flag_l, char *initial_script, InitScript
   CFRunLoopSourceContext sourceContext;
   /* Start the thread that runs the VM. */
   pthread_t vmthread;
+  setAppName("Scilab");
 
   /* Create the structure which is going to be giving to the function inside the thread */
   thread_parm_t         *param=NULL;
