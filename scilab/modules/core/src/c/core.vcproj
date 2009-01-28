@@ -451,6 +451,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\getos.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getstaticdebuginfo.c"
 				>
 			</File>
@@ -1044,6 +1048,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\getos.h"
+				>
+			</File>
+			<File
 				RelativePath=".\getstaticDebugInfo_Windows.h"
 				>
 			</File>
@@ -1193,10 +1201,6 @@
 			</File>
 			<File
 				RelativePath=".\scicurdir.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\Scierror.h"
 				>
 			</File>
 			<File
