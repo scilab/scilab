@@ -16,11 +16,11 @@
 #ifdef integer
 #undef integer
 #endif
-typedef long int /* long int */ integer;
+typedef int integer;
 
 typedef double doublereal;
 
-typedef unsigned long int /* long */ uinteger;
+typedef unsigned int uinteger;
 typedef char *address;
 typedef short int shortint;
 typedef float real;
