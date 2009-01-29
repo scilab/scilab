@@ -16,7 +16,7 @@ Compilation:
 * More warnings in C/C++/Fortran during the compilation process.
 See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
-* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies). Same for --enable-build-localization.
+* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies)
 
 * interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
 
@@ -47,6 +47,8 @@ For more information, see SEP #2.
 
 * Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
 
+* Better error report in the documentation build process (docbook)
+
 Internationalization:
 =====================
 
@@ -63,12 +65,6 @@ Bug fixes:
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
-
-* bug 1073 fixed - All the properties for fec objects are not accessible.
-
-* bug 2365 fixed - plot3d3 without flags option removes ticks.
-
-* bug 2540 fixed - plot3d hangs scilab when plotting a matrix full with NaN.
 
 * bug 3080 fixed - When we click many times on a button of the Graphic window the instruction will be done as much times we have clicked.
 
@@ -202,87 +198,13 @@ Bug fixes:
 
 * bug 3912 fixed - strsubst() used with regular expression may return very stange result.
 
-* bug 3918 fixed - The documentation can be built without the french locale installed (under !Windows)
-
 * bug 3919 fixed - scilab x64 doesn't display graphics from a remote desktop.
 
 * bug 3924 fixed - I used uicontrol with bad parameters, but uicontrol makes scilab hangs.
 
 * bug 3931 fixed - fileparts returns invalid values with some special filenames.
 
-* bug 3935 fixed - Online Help of findfiles() function crashes Scilab.
-
-* bug 3940 fixed - uigetdir returns a invalid value if you do "cancel".
-
-* bug 3953 fixed - legend only works when the number of strings equals the number of polylines.
-
-* bug 3954 fixed - Graphic demos launched using functions without arguments (such as plot3d()) may modify variables.
-
-* bug 3955 fixed - getlinestyle() just opens an blank graphic window.
-
-* bug 3956 fixed - Changing legend font style is taken into account.
-
-* bug 3963 fixed - Destroying wait bars or progression bars crashes Scilab.
-
-* bug 3964 fixed - uigetfile() crashes Scilab if the description of the mask is specified.
-
-* bug 3009 fixed - Default figure and axes handles "user_data" field is not taken into account when creating a new figure.
-
 * Docking bugs fixed (problems with menubar, toolbar, infobar updates).
-
-* bug 3833 fixed - Problems in cell insertion (loss of data).
-
-* bug 3821 fixed - Problems with uicontrol scrolling when parent figure has property auto_resize set to "off".
-
-* bug 3967 fixed - When called with a tf, pfss should of course return a tf.
-
-* bug 3987 fixed - The relation between the font_size property and the size in point is not clearly given in the help pages.
-
-* bug 3988 fixed - The title help page is not properly formatted.
-
-* bug 3991 fixed - It is not possible to set a font_style greater than 10 even if one has added a new font using xlfont.
-
-* bug 3995 fixed - install -D does not work under Mac OS X (used by the make install)
-
-* bug 3999 fixed - xbasc() doesn't clear the current graphics window.
-
-* bug 3941 fixed - Error in function minreal when used with state-space linear system.
-
-* bug 4006 fixed - xlfont does not return the right index.
-
-* bug 3664 fixed - an error occurs when a change directory operation implies a directory name with french accent letter ('é' for example).
-
-* bug 3326 fixed - ESC key clears the command line in the console. 
-
-* bug 4005 fixed - Only localization system is used (only native now)
-
-* bug 4014 fixed - Wrong positioning in console after its clearing.
-
-* bug 3989 fixed - xlfont help updated.
-
-* bug 3951 fixed - krac2 did not work for rational input (Example in help page failed).
-
-* bug 3950 fixed - Invalid index in kpure function (Example in help page failed).
-
-* bug 4009 fixed - savematfile crashed when could not open the file for writing (error message added).
-
-* bug 3653 fixed - Figure menus were deleted when deleting current axis.
-
-* bug 4015 fixed - "Flip left to right" no longer worked on hypermatrices.
-
-* bug 3515 fixed - Erroneous submenu numbering for setmenu() and unsetmenu() in Scilab 5.0.1
-
-* bug 3947 fixed - format old syntax reintroduced.
-
-* bug 3996 fixed - tabulation included in a paste string may make scilab crash in -nw or -nwni mode
-
-* bug 3756 fixed - undocumented input argument for prompt()
-
-* bug 3667 fixed - Function input() now accepts a \n in the text to be printed and colon is no more added.
-
-* bug 3667 fixed - Function input() now accepts a \n in the text to be printed and colon is no more added.
-
-* bug 4027 fixed - Impossible to create hypermatrices under Linux x64 (actually a bug with int32 values).
 
 Obsolete functions removed :
 ============================
@@ -320,8 +242,3 @@ Obsolete functions removed :
 * buttondialog() (Please use messagebox() instead).
 
 * tk_getvalue() (Please use getvalue() instead).
-
-Known incompatibilty:
-=====================
- * Function unsetmenu behavior is incompatible under Linux with versions <= 4.1.2: submenu numbering now begins at 1 instead of 2.
-
