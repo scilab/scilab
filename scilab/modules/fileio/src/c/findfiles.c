@@ -17,6 +17,7 @@
 	#include <sys/types.h>
 	#include <dirent.h>
 	#include <errno.h>
+	#include "localization.h"
 #endif
 #include <stdio.h>
 #include <string.h>
