@@ -31,12 +31,13 @@ BOOL setenvc(char *stringIn,char *valueIn)
 {
 	int ret = 0;
 	/* 2 is = and \0 */
-	char* string;
-	char* value;
+	char *string = NULL;
+	char *value = NULL;
+	char szTemp[4096];
 	char *env;
 
-	string = UTFToLocale(stringIn);
-	value = UTFToLocale(valueIn);
+	string = UTFToLocale(stringIn, szTemp);
+	value = UTFToLocale(valueIn, szTemp);
 	env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
 
 #ifdef _MSC_VER

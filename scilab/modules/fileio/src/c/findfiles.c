@@ -52,11 +52,12 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 		{
 			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )
 			{
+				char szTemp[4096];
 				char *utfFileName = NULL;
 				nbElements++;
 				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
 				else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
-				utfFileName = localeToUTF(FileInformation.cFileName);
+				utfFileName = localeToUTF(FileInformation.cFileName, szTemp);
 				ListFiles[nbElements-1] = strdup(utfFileName);
 			}
 
@@ -93,7 +94,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 			{
 				if ( find_spec(read->d_name ,filespec) )
 				{
-					char *utfFileName = NULL;
+					char utfFileName[bsiz];
 					nbElements++;
 					if (ListFiles)
 					{
@@ -106,7 +107,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 
 					printf("avant filespec(0x%x) : %s\n", filespec, filespec);
 					printf("avant utfFileName(0x%x) : %s\n", utfFileName, utfFileName);
-					utfFileName = localeToUTFTonio(read->d_name);
+					utfFileName = localeToUTFTonio(read->d_name, utfFileName);
 					printf("apres filespec(0x%x) : %s\n", filespec, filespec);
 					printf("apres utfFileName(0x%x) : %s\n\n", utfFileName, utfFileName);
 					ListFiles[nbElements-1] = strdup(utfFileName);

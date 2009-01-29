@@ -39,6 +39,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 	char **FilesList = NULL;
 	int sizeListReturned = 0;
 	BOOL needtofreefilespec = FALSE;
+	char szTempLocale[bsiz];
 
 	Rhs = Max(Rhs,0);
 	CheckRhs(0,2) ;
@@ -104,7 +105,7 @@ int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
 	}
 
 	C2F(cluni0)(path,pathextented,&out_n,(long)strlen(path),PATH_MAX); 
-	FilesList = findfiles(pathextented,UTFToLocale(filespec),&sizeListReturned);
+	FilesList = findfiles(pathextented,UTFToLocale(filespec, szTempLocale),&sizeListReturned);
 	if (needtofreefilespec) { if (filespec) FREE(filespec); filespec = NULL;}
 
 	if (FilesList)

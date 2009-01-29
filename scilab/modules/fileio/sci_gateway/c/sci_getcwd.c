@@ -36,7 +36,8 @@ int C2F(sci_getcwd)(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		char *utfPath = localeToUTF(path);
+		char szTemp[bsiz];
+		char* utfPath = localeToUTF(path, szTemp);
 
 		int n1 = 1;
 		int m1 = (int)strlen(utfPath);

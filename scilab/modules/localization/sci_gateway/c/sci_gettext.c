@@ -29,6 +29,7 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 
 			char *msgid=NULL;
 			char *TranslatedString=NULL;
+			char szTemp[bsiz];
                         
                         int revertStrsub = FALSE;
                         
@@ -56,7 +57,7 @@ int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 
                                 revertStrsub = TRUE;
 			}
-			TranslatedString=localeToUTF(gettext(msgid));
+			TranslatedString=localeToUTF(gettext(msgid), szTemp);
 
                         /* Add removed slashes */
                         if (revertStrsub)

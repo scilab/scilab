@@ -213,8 +213,9 @@ void moveBackHistory(void)
 
 	if (newline)
 	{
+		char szLocale[4096];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline));
+		copyLine(UTFToLocale(newline, szLocale));
 		FREE(newline);
 		newline = NULL;
 	}
@@ -237,8 +238,9 @@ void moveForwardHistory(void)
 
 	if (newline)
 	{
+		char szLocale[4096];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline));
+		copyLine(UTFToLocale(newline, szLocale));
 		FREE(newline);
 		newline = NULL;
 	}
@@ -424,7 +426,8 @@ void putLineSearchedHistory(void)
 
 	if (line)
 	{
-		copyLine(UTFToLocale(line));
+		char szLocale[4096];
+		copyLine(UTFToLocale(line, szLocale));
 		FREE(line);
 		line = NULL;
 	}

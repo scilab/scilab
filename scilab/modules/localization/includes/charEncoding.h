@@ -42,16 +42,15 @@ char *getEncoding(char *lang);
  * @param buffer
  * @return <ReturnValue>
  */
-char* UTFToLocale(char* buffer);
+char* UTFToLocale(char* _szBufferIn, char *_szBuffOut);
 
-char* localeToUTF(char* buffer);
-char* localeToUTFTonio(char* buffer);
+char* localeToUTF(char* _szBufferIn, char *_szBuffOut);
 
 void openCharEncodingConverter(char *encoding);
 
 void closeCharEncodingConverter(void);
 
-char* UTFToConsole(char* line);
+char * UTFToConsole(char* _szLineIn, char* _szLineOut);
 
 char* readNextUTFChar(char* utfstream,int* size);
 

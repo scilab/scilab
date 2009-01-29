@@ -85,7 +85,8 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      __CommandLine = localeToUTF(TermReadAndProcess());
+			char szTempUTF[4096];
+      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
     }
 }
 

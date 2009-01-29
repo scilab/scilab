@@ -27,7 +27,8 @@
  * Now, only the native one is used. 
  * However, for an unknown reason, gettext() is not working. Only 
  * dgettext is */
-#define scigettext(String1) localeToUTF(dgettext(NAMELOCALIZATIONDOMAIN,String1))
+static char szlocaleToUTF[4096];
+#define scigettext(String1) localeToUTF(dgettext(NAMELOCALIZATIONDOMAIN,String1),szlocaleToUTF)
 
 #else
 /* Restore the normal behaviour ... all the string will be in english */
