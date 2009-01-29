@@ -100,8 +100,8 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 		TMPDir=NULL;
 	}
 
-	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c %s && echo DOS>%s")+1)*sizeof(char) );
-	sprintf(CmdLine,"%s /a /c %s && echo DOS>%s",shellCmd,command,FileTMPDir);
+	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c \"%s\" && echo DOS>%s")+1)*sizeof(char) );
+	sprintf(CmdLine,"%s /a /c \"%s\" && echo DOS>%s",shellCmd,command,FileTMPDir);
 	if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
 	if (CreateProcess(NULL, CmdLine, NULL, NULL, TRUE,0, NULL, NULL, &siStartInfo, &piProcInfo))
