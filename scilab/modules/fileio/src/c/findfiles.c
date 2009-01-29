@@ -92,7 +92,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 				if ( find_spec(read->d_name ,filespec) )
 				{
 					char *utfFileName = NULL;
-					char szTemp[4096];
+					char szTemp[bsiz];
 					nbElements++;
 					if (ListFiles)
 					{

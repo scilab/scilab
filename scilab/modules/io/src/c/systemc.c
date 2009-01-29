@@ -46,7 +46,7 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		char szLocale[4096];
+		char szLocale[nsiz];
 		status=system(UTFToLocale(command, szLocale));
 		*stat=(int) status;
 	}
