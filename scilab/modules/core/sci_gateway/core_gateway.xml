@@ -63,31 +63,28 @@
   <PRIMITIVE gatewayId="13" primitiveId="33" primitiveName="clear" />
   <PRIMITIVE gatewayId="13" primitiveId="34" primitiveName="what" />
   <PRIMITIVE gatewayId="13" primitiveId="35" primitiveName="sciargs" />
-  <PRIMITIVE gatewayId="13" primitiveId="36" primitiveName="chdir" />
-  <PRIMITIVE gatewayId="13" primitiveId="37" primitiveName="ieee" />
-  <PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="typename" />
-  <PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="global" />
-  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="pwd" />
-  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="getcwd" />
-  <PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="clearglobal" />
-  <PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="isglobal" />
-  <PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="gstacksize" />
-  <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="intppty" />
-  <PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="lasterror" />
-  <PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="getversion" />
-  <PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="macr2tree" />
-  <PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="getos" />
-  <PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="banner" />
-  <PRIMITIVE gatewayId="13" primitiveId="50" primitiveName="fromjava" />
-  <PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="getmemory" />
-  <PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="fromc" />
-  <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="getmd5" />
-  <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="getmodules" />
-  <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="with_module" />
-  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="librarieslist" />
-  <PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="libraryinfo" />
-  <PRIMITIVE gatewayId="13" primitiveId="58" primitiveName="getdebuginfo" />
-  <PRIMITIVE gatewayId="13" primitiveId="59" primitiveName="readgateway" />
+  <PRIMITIVE gatewayId="13" primitiveId="36" primitiveName="ieee" />
+  <PRIMITIVE gatewayId="13" primitiveId="37" primitiveName="typename" />
+  <PRIMITIVE gatewayId="13" primitiveId="38" primitiveName="global" />
+  <PRIMITIVE gatewayId="13" primitiveId="39" primitiveName="clearglobal" />
+  <PRIMITIVE gatewayId="13" primitiveId="40" primitiveName="isglobal" />
+  <PRIMITIVE gatewayId="13" primitiveId="41" primitiveName="gstacksize" />
+  <PRIMITIVE gatewayId="13" primitiveId="42" primitiveName="intppty" />
+  <PRIMITIVE gatewayId="13" primitiveId="43" primitiveName="lasterror" />
+  <PRIMITIVE gatewayId="13" primitiveId="44" primitiveName="getversion" />
+  <PRIMITIVE gatewayId="13" primitiveId="45" primitiveName="macr2tree" />
+  <PRIMITIVE gatewayId="13" primitiveId="46" primitiveName="getos" />
+  <PRIMITIVE gatewayId="13" primitiveId="47" primitiveName="banner" />
+  <PRIMITIVE gatewayId="13" primitiveId="48" primitiveName="fromjava" />
+  <PRIMITIVE gatewayId="13" primitiveId="49" primitiveName="getmemory" />
+  <PRIMITIVE gatewayId="13" primitiveId="50" primitiveName="fromc" />
+  <PRIMITIVE gatewayId="13" primitiveId="51" primitiveName="getmd5" />
+  <PRIMITIVE gatewayId="13" primitiveId="52" primitiveName="getmodules" />
+  <PRIMITIVE gatewayId="13" primitiveId="53" primitiveName="with_module" />
+  <PRIMITIVE gatewayId="13" primitiveId="54" primitiveName="librarieslist" />
+  <PRIMITIVE gatewayId="13" primitiveId="55" primitiveName="libraryinfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="56" primitiveName="getdebuginfo" />
+  <PRIMITIVE gatewayId="13" primitiveId="57" primitiveName="readgateway" />
   <PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="user" />
   
 </GATEWAY>

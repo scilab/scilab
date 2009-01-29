@@ -15,7 +15,7 @@
 #include "stack-def.h"
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
-#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
+#include "scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
 #include "cluni0.h"

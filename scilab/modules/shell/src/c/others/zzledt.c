@@ -82,13 +82,13 @@
 #define TERMCAP
 #endif
 
-#if !defined(linux) && !defined(netbsd) && !defined(freebsd)
+#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__)
 #ifdef  __alpha
 #define B42UNIX
 #endif
 #endif
 
-#ifdef linux
+#if defined(linux) || defined(__APPLE__)
 #define ATTUNIX
 #define TERMCAP
 #endif
@@ -112,9 +112,15 @@ static struct tchars arg1;
 
 #ifdef ATTUNIX
 #define KEYPAD
+#ifdef HAVE_TERMIOS_H
+#include <termios.h>
+static struct termios save_term;
+static struct termios arg;
+#else
 #include <termio.h>
 static struct termio save_term;
 static struct termio arg;
+#endif
 #endif
 
 #define EXCL                  0x0021
@@ -314,7 +320,6 @@ char *TermReadAndProcess(void)
   sendprompt=1;
 
   setSearchedTokenInScilabHistory(NULL);
-
 
   while(1)
     {
@@ -1160,7 +1165,11 @@ static void set_cbreak()
   arg.c_oflag &= ~OPOST;
   arg.c_cc [VMIN] = 1;
   arg.c_cc [VTIME] = 0;
+#ifdef HAVE_TERMIOS_H
+  (void) tcsetattr (fd, TCSANOW, &arg);
+#else
   ioctl(fd, TCSETAW, &arg);
+#endif
 #endif
   cbreak_crmod = 0;
   return;
@@ -1180,7 +1189,11 @@ static void set_crmod()
   ioctl(fd, TIOCSETC, &arg1);
 #endif
 #ifdef ATTUNIX
+#ifdef HAVE_TERMIOS_H
+  (void) tcsetattr (fd, TCSANOW, &save_term);
+#else
   ioctl(fd, TCSETAW, &save_term);
+#endif
 #endif
   cbreak_crmod = 1;
   return;
@@ -1212,8 +1225,13 @@ static void init_io()
 #endif
 
 #ifdef ATTUNIX
+#ifdef HAVE_TERMIOS_H
+  (void) tcgetattr (fd, &arg);
+  (void) tcgetattr (fd, &save_term);
+#else
   ioctl(fd, TCGETA, &arg);
   ioctl(fd, TCGETA, &save_term);
+#endif
   erase_char = save_term.c_cc [VERASE];
 #endif
 

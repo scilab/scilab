@@ -13,7 +13,6 @@ getrhsvar_
 checkrhs_
 checklhs_
 intersci_
-cluni0_
 createvar_
 gettype_
 vstk_

@@ -1,23 +1,23 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 #include <stdlib.h>
+#include "machine.h"
 #ifndef _MSC_VER
-#include <tcl.h>
+ #ifdef WITH_TK
+ #include <tcl.h>
+ #endif
 #endif
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
-#ifndef _MSC_VER
-#include "tcl.h"
-#endif
 #include "tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
@@ -43,9 +43,9 @@ int GetInterfState(void)
 	return init;
 }
 /**
- * Initialisation of Scilab 
+ * Initialisation of Scilab
  */
-void Initialize(void) 
+void Initialize(void)
 {
   static char env[1024];
   static char initstr[]="exec(\"SCI/etc/scilab.start\",-1);quit;";
@@ -59,9 +59,9 @@ void Initialize(void)
     static char nb[]="-nb";
   #endif
 
-  
+
   char *sciPath = (char*)getenv("SCI");
-  
+
   #ifdef _MSC_VER
   /* Delete the windows mode and the banner */
   {
@@ -70,10 +70,10 @@ void Initialize(void)
 	argv[2] = nb;
 	setCommandLineArgs(argv, nb_args);
   }
-  
+
   #endif
-  
-  #ifdef _MSC_VER 
+
+  #ifdef _MSC_VER
     if ( sciPath== NULL )
     {
 		/* Detection Scilab path */
@@ -98,7 +98,7 @@ void Initialize(void)
 			}
 		}
     }
-    else 
+    else
 	{
 		char *pathSCI=(char*)MALLOC((strlen(sciPath)+1)*sizeof(char));
 		strcpy(pathSCI,sciPath);
@@ -123,11 +123,11 @@ void Initialize(void)
 	* official binary
 	* The problem in this case is that the TCL_LIBRARY & TK_LIBRARY are not
 	* set correctly and TCL has trouble to find himself.
-	* 
-	* As we are sure to use the binary, we know where to find 
+	*
+	* As we are sure to use the binary, we know where to find
 	* See: http://bugzilla.scilab.org/show_bug.cgi?id=3605
 	*/
-
+#ifdef WITH_TK
 	#define BASEPATHTOTHIRDPARTY "/../../thirdparty/"
 	#define DIRECTORYOFTCL "tcl"
 	#define DIRECTORYOFTK "tk"
@@ -135,8 +135,8 @@ void Initialize(void)
 	char *pathToTcl=(char*)MALLOC((strlen(DIRECTORYOFTCL)+commonPart)*sizeof(char));
 	sprintf(pathToTcl, "%s%s%s%s", sciPath, BASEPATHTOTHIRDPARTY, DIRECTORYOFTCL, TCL_VERSION);
 
-   /* Test if we find the thirdparty directory. If it is the case, it is most 
-	* probable that we are working with the binary version of Scilab 
+   /* Test if we find the thirdparty directory. If it is the case, it is most
+	* probable that we are working with the binary version of Scilab
 	*/
    if (isdir(pathToTcl)){
 #define EXPORTTCL "TCL_LIBRARY="
@@ -152,6 +152,7 @@ void Initialize(void)
 	   putenv(exportTcl);
 	   putenv(exportTk);
    }
+#endif
 
   #endif
   /* set TMPDIR */
@@ -164,7 +165,7 @@ void Initialize(void)
 
   /* Scilab Initialization */
   C2F(inisci)(&iflag,&stacksize,&ierr);
-  if ( ierr > 0 ) 
+  if ( ierr > 0 )
     {
       fprintf(stderr,"Scilab initialization failed !\n");
       exit(1);
@@ -172,6 +173,6 @@ void Initialize(void)
 
   /* Load of Scilab.start */
   C2F(scirun)(initstr,(int)strlen(initstr));
- 
+
 }
 

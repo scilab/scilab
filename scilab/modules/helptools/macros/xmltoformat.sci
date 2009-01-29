@@ -1060,11 +1060,13 @@ function create_MD(dirs,titles,output_filename,language)
 	
 	for k=1:size(dirs,"*");
 		xml_files = gsort(basename(listfiles(dirs(k)+"/*.xml")),"lr","i");
-		master_document    = [ master_document; ..
+		if (size(xml_files,"*") <> 0) then
+		  master_document    = [ master_document; ..
 			"<reference xml:id=''"+title2category(titles(k))+"''>"; ..
 			"<title>"+text2html(titles(k))+"</title>"; ..
 			"&"+xml_files+";"; ..
 			"</reference>"]
+		end
 			
 	end
 	
