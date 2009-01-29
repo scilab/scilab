@@ -2,15 +2,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#include <Windows.h>
 #else
@@ -26,11 +26,11 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename ,char *filespec);
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
@@ -39,7 +39,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 	HANDLE hFile;
 	WIN32_FIND_DATA FileInformation;
 	int nbElements=0;
-	
+
 
 	strPattern = (char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
 	sprintf(strPattern,"%s/%s", path, filespec);
@@ -50,7 +50,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 	{
 		do
 		{
-			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )	
+			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )
 			{
 				char *utfFileName = NULL;
 				nbElements++;
@@ -63,20 +63,26 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 		} while(FindNextFile(hFile, &FileInformation) == TRUE);
 	}
 	FindClose(hFile);
-	
+
 	*sizeListReturned = nbElements;
 	return ListFiles;
 }
 #else
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
 	char **ListFiles = NULL;
 	int nbElements = 0;
 	DIR *folder = NULL;
 	struct dirent *read = NULL;
-	
+
 	*sizeListReturned = 0;
+
+	printf("**********************\n");
+	printf("Call filespec(0x%x) : %s\n", filespec, filespec);
+	printf("**********************\n");
+
+
 
 	folder = opendir(path);
 	if (folder)
@@ -89,10 +95,20 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 				{
 					char *utfFileName = NULL;
 					nbElements++;
-					if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-					else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
+					if (ListFiles)
+					{
+						ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+					}
+					else
+					{
+						ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
+					}
 
-				    utfFileName = localeToUTF(read->d_name);
+					printf("avant filespec(0x%x) : %s\n", filespec, filespec);
+					printf("avant utfFileName(0x%x) : %s\n", utfFileName, utfFileName);
+					utfFileName = localeToUTFTonio(read->d_name);
+					printf("apres filespec(0x%x) : %s\n", filespec, filespec);
+					printf("apres utfFileName(0x%x) : %s\n\n", utfFileName, utfFileName);
 					ListFiles[nbElements-1] = strdup(utfFileName);
 				}
 			}
@@ -104,7 +120,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 	return ListFiles;
 }
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename ,char *filespec)
 {
@@ -143,4 +159,4 @@ static BOOL find_spec( char *filename ,char *filespec)
 	return TRUE;
 }
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

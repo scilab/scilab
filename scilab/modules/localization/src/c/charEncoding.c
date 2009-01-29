@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yung-Jang Lee
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -37,7 +37,7 @@ BOOL unicodeSubset = TRUE; /* if charset is subset of unicode, no need to conver
 #define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
 static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
 static char ENCODE_BUF2[ENCODE_BUF_SIZE]; // the second buffer  to store the converted string
-static char* ENCODE_BUF=ENCODE_BUF1; // pointer to the next buffer for the converted string
+//static char* ENCODE_BUF=ENCODE_BUF1; // pointer to the next buffer for the converted string
 static char* _CharVec[255] ;    // Global pointers to point the converted UTF-8 or locale strings (multiple lines)
 
 /*--------------------------------------------------------------------------*/
@@ -48,13 +48,13 @@ char *getEncoding(char *lang)
 	{
 		char *pch = strchr(lang, '.'); /* for example, if we have zh_TW.UTF8 */
 		if (pch)
-		{    
+		{
 			strcpy(encoding,pch+1);
 		}
-		else // if encoding not explicitly given 
+		else // if encoding not explicitly given
 		{
 			/* in "lang_contry" format */
-			if(stricmp("zh_TW",lang) ==0)  //chinese traditional 
+			if(stricmp("zh_TW",lang) ==0)  //chinese traditional
 			{
 			        strcpy(encoding,"BIG5");
 			}
@@ -82,10 +82,10 @@ char *getEncoding(char *lang)
 			}
 		}
 	}
-	else 
+	else
 		{
 			/*default to ISO8859-1, LATIN-1 languages*/
-			strcpy(encoding,"ISO8859-1"); 
+			strcpy(encoding,"ISO8859-1");
 		}
 	return encoding;
 }
@@ -95,10 +95,10 @@ char* localeToUTF(char* buffer) {
 	size_t inbytesleft = 0;
 	size_t outbytesleft = ENCODE_BUF_SIZE;
 	char *inPtr = buffer;
-	char *outPtr = ENCODE_BUF;
+	char *outPtr = ENCODE_BUF1;
 
 	/* no need to convert for unicode subset encoding*/
-	if(unicodeSubset) return buffer; 
+	if(unicodeSubset) return buffer;
 
 	if (buffer == NULL) return NULL;
 	inbytesleft = strlen(buffer);
@@ -108,25 +108,77 @@ char* localeToUTF(char* buffer) {
 	{
 		fprintf(stderr, "Error during call to localeToUTF: %s\n", strerror(errno));
 		fprintf(stderr, "String Input: %s\n", inPtr);
-		return buffer; // return unconverted text 
+		return buffer; // return unconverted text
 	}
 	*outPtr='\0';
+	return ENCODE_BUF1;
 	/* switch to the other buffer for store next converted string*/
-	if(ENCODE_BUF==ENCODE_BUF1) {
+/*	if(ENCODE_BUF==ENCODE_BUF1) {
        ENCODE_BUF=ENCODE_BUF2;
 	   return ENCODE_BUF1;
 	} else {
        ENCODE_BUF=ENCODE_BUF1;
 	   return ENCODE_BUF2;
 	}
-}
+*/}
 
-char* UTFToLocale(char* buffer) 
+char* localeToUTFTonio(char* buffer) {
+	size_t inbytesleft = 0;
+	size_t outbytesleft = ENCODE_BUF_SIZE;
+	char *inPtr = buffer;
+	char *outPtr = ENCODE_BUF1;
+
+	/* no need to convert for unicode subset encoding*/
+	if(unicodeSubset) return buffer;
+
+	if (buffer == NULL) return NULL;
+	inbytesleft = strlen(buffer);
+
+
+	printf("ENCODE_BUF_SIZE : %i\n",ENCODE_BUF_SIZE);
+	printf("Avant inPtr(0x%x) : %s\n", inPtr, inPtr);
+	printf("Avant outPtr(0x%x) : %s\n", outPtr, outPtr);
+	printf("******************\n");
+	if (iconv (localeToUTFConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1))
+	{
+		fprintf(stderr, "Error during call to localeToUTF: %s\n", strerror(errno));
+		fprintf(stderr, "String Input: %s\n", inPtr);
+		return buffer; // return unconverted text
+	}
+	printf("Apres outPtr(0x%x) : %s\n", outPtr, inPtr);
+
+	*outPtr='\0';
+	printf("Apres ENCODE_BUF1(0x%x) : %s\n", ENCODE_BUF1, ENCODE_BUF1);
+
+//	printf("ENCODE_BUF : %x\n",ENCODE_BUF);
+	printf("ENCODE_BUF1(0x%x) : \n",ENCODE_BUF1);
+//	printf("ENCODE_BUF2 : %x\n",ENCODE_BUF2);
+	printf("******************\n");
+
+
+
+	return ENCODE_BUF1;
+	/* switch to the other buffer for store next converted string*/
+/*	if(ENCODE_BUF==ENCODE_BUF1)
+	{
+		ENCODE_BUF=ENCODE_BUF2;
+		printf("ENCODE_BUF1 : %s\n\n",ENCODE_BUF1);
+	  return ENCODE_BUF1;
+	}
+	else
+	{
+		ENCODE_BUF=ENCODE_BUF1;
+		printf("ENCODE_BUF2 : %s\n\n",ENCODE_BUF2);
+		return ENCODE_BUF2;
+	}
+*/}
+
+char* UTFToLocale(char* buffer)
 {
 	size_t inbytesleft = 0;
 	size_t outbytesleft = ENCODE_BUF_SIZE;
 	char *inPtr = buffer;
-	char *outPtr= ENCODE_BUF;
+	char *outPtr= ENCODE_BUF2;
 
 	if (buffer == NULL) return NULL;
 	inbytesleft = strlen(buffer);
@@ -137,18 +189,19 @@ char* UTFToLocale(char* buffer)
 	{
 		fprintf(stderr, "Error during call to UTFToLocale: %s\n", strerror(errno));
 		fprintf(stderr, "String Input: %s\n", inPtr);
-		return buffer;//return unconverted text 
+		return buffer;//return unconverted text
 	}
 	*outPtr='\0';
+	return ENCODE_BUF2;
 	/* switch to the other buffer for store next converted string*/
-	if(ENCODE_BUF==ENCODE_BUF1) {
+/*	if(ENCODE_BUF==ENCODE_BUF1) {
        ENCODE_BUF=ENCODE_BUF2;
 	   return ENCODE_BUF1;
 	} else {
        ENCODE_BUF=ENCODE_BUF1;
 	   return ENCODE_BUF2;
 	}
-
+*/
 }
 
 /*--------------------------------------------------------------------------*/
@@ -172,9 +225,9 @@ void openCharEncodingConverter(char *encoding)
 
 	/* if not utf-8 encoding and multi-byte language ..*/
 	if ( ! unicodeSubset)
-	{ 
+	{
 		/* need locale to utf convert */
-		if(localeToUTFConvert !=(iconv_t)-1) { 
+		if(localeToUTFConvert !=(iconv_t)-1) {
 			iconv_close(localeToUTFConvert); /* close iconv localeToUTF server */
 		}
 		if(UTFToLocaleConvert !=(iconv_t)-1) {
@@ -191,7 +244,7 @@ void openCharEncodingConverter(char *encoding)
 		if (UTFToLocaleConvert==(iconv_t) -1) {
 			fprintf(stderr, "Error during call to iconv_open for UTF to locale converter: %s\nCharset encoding %s\n", strerror(errno),encoding);
 		}
-	} 
+	}
 	else closeCharEncodingConverter();
 }
 
@@ -212,7 +265,7 @@ void closeCharEncodingConverter(void)
 
 
 //
-// getScilabMode()  =  SCILAB_API) || SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI) 
+// getScilabMode()  =  SCILAB_API) || SCILAB_STD) || (newmode == SCILAB_NW) || (newmode == SCILAB_NWNI)
 //
 
 char * UTFToConsole(char* line)
@@ -234,7 +287,7 @@ char* readNextUTFChar(char* utfstream,int* size)
 		UTFChar[1]=*(utfstream+1);
 		UTFChar[2]='\0';
 	    *size=2;
-	} else if(charcode > 223 && charcode <= 239 ) {/* three bytes UTF-8*/ 
+	} else if(charcode > 223 && charcode <= 239 ) {/* three bytes UTF-8*/
 		UTFChar[0]=*utfstream;
 		UTFChar[1]=*(utfstream+1);
 		UTFChar[2]=*(utfstream+2);;
@@ -260,7 +313,7 @@ char* readNextUTFChar(char* utfstream,int* size)
 static BOOL outputInUTFEncoding = TRUE;
 /* Only used inside do_xxprintf.c set_xxorintf.c*/
 
-void setOutputInUTF(BOOL isUTF) { 
+void setOutputInUTF(BOOL isUTF) {
 	outputInUTFEncoding=isUTF;
 }
 

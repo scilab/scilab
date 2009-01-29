@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -15,7 +15,7 @@
 #include "BOOL.h"
 
 /**
- * Set if the output must be in UTF or not (many used by do_xxprintf.c 
+ * Set if the output must be in UTF or not (many used by do_xxprintf.c
  * set_xxorintf.c)
  *
  */
@@ -39,12 +39,13 @@ char *getEncoding(char *lang);
 /**
  * @TODO add comment
  *
- * @param buffer    
+ * @param buffer
  * @return <ReturnValue>
  */
 char* UTFToLocale(char* buffer);
 
 char* localeToUTF(char* buffer);
+char* localeToUTFTonio(char* buffer);
 
 void openCharEncodingConverter(char *encoding);
 
