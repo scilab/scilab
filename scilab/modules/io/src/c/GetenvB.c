@@ -12,7 +12,7 @@
  */
  
 #include "GetenvB.h"
-#include "../../io/includes/getenvc.h"
+#include "getenvc.h"
 
 void GetenvB(char *name, char *env, int len)
 {

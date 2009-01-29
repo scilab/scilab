@@ -16,7 +16,7 @@
 #include "PATH_MAX.h"
 #include "core_math.h"
 #include "Os_specific.h"
-#include "../../../io/includes/setenvc.h"
+#include "setenvc.h"
 #include "cluni0.h"
 #include "GetenvB.h"
 #include "charEncoding.h"

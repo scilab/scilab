@@ -49,8 +49,6 @@ int C2F(sci_mtlb_mode)(char *fname,unsigned long fname_len);
 int C2F(sci_clear)(char *fname,unsigned long fname_len);
 int C2F(sci_what)(char *fname,unsigned long fname_len);
 int C2F(sci_sciargs)(char *fname,unsigned long fname_len);
-int C2F(sci_chdir)(char *fname,unsigned long fname_len);
-int C2F(sci_getcwd)(char *fname,unsigned long fname_len);
 int C2F(sci_ieee)(char *fname,unsigned long fname_len);
 int C2F(sci_typename)(char *fname,unsigned long fname_len);
 int C2F(sci_global)(char *fname,unsigned long fname_len);

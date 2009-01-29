@@ -6,7 +6,8 @@
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
-src/c/getenvc.c
+src/c/getenvc.c \
+src/c/GetenvB.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
@@ -115,6 +116,7 @@ libsciio_la_includedir=$(pkgincludedir)/io
 libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h \
 includes/getenvc.h \
-includes/setenvc.h
+includes/setenvc.h \
+includes/GetenvB.h
 
 include $(top_srcdir)/Makefile.incl.am
