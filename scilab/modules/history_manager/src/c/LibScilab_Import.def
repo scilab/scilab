@@ -3,7 +3,6 @@
 
 EXPORTS
 ;core
-cluni0_
 createvar_
 stack_
 createvarfromptr_
