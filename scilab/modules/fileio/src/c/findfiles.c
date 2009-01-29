@@ -79,12 +79,6 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 
 	*sizeListReturned = 0;
 
-	printf("**********************\n");
-	printf("Call filespec(0x%x) : %s\n", filespec, filespec);
-	printf("**********************\n");
-
-
-
 	folder = opendir(path);
 	if (folder)
 	{
@@ -94,7 +88,8 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 			{
 				if ( find_spec(read->d_name ,filespec) )
 				{
-					char utfFileName[bsiz];
+					char *utfFileName = NULL;
+					char szTemp[4096];
 					nbElements++;
 					if (ListFiles)
 					{
@@ -105,11 +100,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 						ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
 					}
 
-					printf("avant filespec(0x%x) : %s\n", filespec, filespec);
-					printf("avant utfFileName(0x%x) : %s\n", utfFileName, utfFileName);
-					utfFileName = localeToUTFTonio(read->d_name, utfFileName);
-					printf("apres filespec(0x%x) : %s\n", filespec, filespec);
-					printf("apres utfFileName(0x%x) : %s\n\n", utfFileName, utfFileName);
+					utfFileName = localeToUTF(read->d_name, szTemp);
 					ListFiles[nbElements-1] = strdup(utfFileName);
 				}
 			}

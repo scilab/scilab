@@ -2,16 +2,16 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <string.h> /* strlen */
 #ifdef _MSC_VER
 	#include <Windows.h> /* GetEnvironmentVariable */
@@ -32,6 +32,7 @@ static void searchenv_others(const char *filename, const char *varname,
 /*--------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
+	char *locale = NULL;
 	char szTemp[4096];
 	#ifdef _MSC_VER
 	if (GetEnvironmentVariable(UTFToLocale(var, szTemp),buf,(DWORD)*buflen) == 0)
@@ -41,13 +42,13 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	}
 	else
 	{
-		char *locale = localeToUTF(buf, szTemp);
+		locale = localeToUTF(buf, szTemp);
 		*buflen = (int)strlen(locale);
 		strncpy(buf,locale,*buflen);
 		*ierr=0;
 	}
 	#else
-	if ( (local=localeToUTF(getenv(UTFToLocale(var, locale)), locale) ) == 0)
+	if ( (locale=localeToUTF(getenv(UTFToLocale(var, szTemp)), szTemp) ) == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
@@ -62,7 +63,7 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 }
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
-static void searchenv_others(const char *filename, 
+static void searchenv_others(const char *filename,
 			    const char *varname,
 			    char *pathname)
 {
@@ -75,7 +76,7 @@ static void searchenv_others(const char *filename,
 		strcpy(pathname, filename);
 		return;
 	}
-	
+
 	cp = getenv(varname);
 	if(cp == NULL)
 	{
@@ -101,14 +102,14 @@ static void searchenv_others(const char *filename,
 			cp++;
 			concat++;
 		}
-		
+
 		if ( concat == pathname )
 		{
 			/* filename not found */
 			*pathname = '\0';
 			return;
 		}
-		
+
 		if( *(concat-1) != DIR_SEPARATOR[0] )
 		{
 			/* add directory separator */
@@ -140,7 +141,7 @@ char *searchEnv(const char *name,const char *env_var)
 
 	strcpy(fullpath,"");
 
-	#if _MSC_VER 
+	#if _MSC_VER
 		_searchenv((const char*)UTFToLocale((char*)name, szLocale),(const char*)env_var,fullpath);
 	#else
 		searchenv_others(UTFToLocale(name, szLocale),env_var,fullpath);
