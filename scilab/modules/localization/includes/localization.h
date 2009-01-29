@@ -22,9 +22,10 @@
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */
 #include <libintl.h>
+#include "stack-def.h"
 #include "charEncoding.h"
 
-static char szlocaleToUTF[4096];
+static char szlocaleToUTF[bsiz];
 #define _(String)  localeToUTF(gettext(String), szlocaleToUTF)/** for console message*/
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 

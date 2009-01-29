@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
@@ -37,7 +38,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	char *str_info = NULL;
 	char **outputDynamicList=NULL;
 	char *fromGetenv = NULL;
-	char szTemp[4096];
+	char szTemp[bsiz];
 
 
 	MEMORYSTATUSEX statex;

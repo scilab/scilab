@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "setenvc.h"
 #include "../../tclsci/includes/setenvtcl.h"
 #include "MALLOC.h" /* MALLOC */
@@ -33,7 +34,7 @@ BOOL setenvc(char *stringIn,char *valueIn)
 	/* 2 is = and \0 */
 	char *string = NULL;
 	char *value = NULL;
-	char szTemp[4096];
+	char szTemp[bsiz];
 	char *env;
 
 	string = UTFToLocale(stringIn, szTemp);

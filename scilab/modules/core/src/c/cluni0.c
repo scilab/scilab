@@ -13,6 +13,7 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "stack-def.h"
 #include "PATH_MAX.h"
 #include "core_math.h"
 #include "Os_specific.h"
@@ -39,7 +40,7 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	static char SCI[PATH_MAX],HOME[PATH_MAX],TMP[PATH_MAX];
 	static int k;
 	char *in_nameL = NULL;
-	char szTemp[4096];
+	char szTemp[bsiz];
   long int linL;
 	char in_nameTmp[PATH_MAX];
 	strncpy(in_nameTmp,in_name,lin);

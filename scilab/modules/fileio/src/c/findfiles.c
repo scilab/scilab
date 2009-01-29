@@ -19,6 +19,7 @@
 #endif
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "BOOL.h"
@@ -52,7 +53,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 		{
 			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )
 			{
-				char szTemp[4096];
+				char szTemp[bsiz];
 				char *utfFileName = NULL;
 				nbElements++;
 				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));

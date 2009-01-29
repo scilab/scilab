@@ -12,6 +12,7 @@
 #include <string.h> /* strcmp */
 #include <stdio.h> /* sprintf */
 #include <stdlib.h> /* qsort */
+#include "stack-def.h"
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
 #include "../../../core/src/c/scicurdir.h" /* scigetcwd */
@@ -41,7 +42,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		char path[PATH_MAX];
 		
 		char filespec[PATH_MAX];
-		char szLocale[4096];
+		char szLocale[bsiz];
 
 		char pathname[PATH_MAX];
 		char filename[PATH_MAX];
