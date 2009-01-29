@@ -16,6 +16,8 @@
 #else
 	#include <sys/types.h>
 	#include <dirent.h>
+	#include <errno.h>
+	#include "localization.h"
 #endif
 #include <stdio.h>
 #include <string.h>
@@ -98,6 +100,10 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 			}
 		}
 		closedir(folder);
+	}
+	else
+	{
+		sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
 	}
 
 	*sizeListReturned = nbElements;

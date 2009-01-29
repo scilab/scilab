@@ -18,6 +18,7 @@
 #include <string>
 
 #include "DrawableLegend.h"
+#include "../subwinDrawing/Camera.h"
 
 namespace sciGraphics
 {
@@ -120,6 +121,11 @@ protected:
    */
   void placeBox(const double upperLeftCorner[3], const double lowerLeftCorner[3],
                  const double lowerRightCorner[3], const double upperRightCorner[3]);
+
+	/**
+	 * @return Camera of the parent subwin.
+	 */
+	Camera * getCamera(void);
 
 
 
