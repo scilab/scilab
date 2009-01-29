@@ -31,7 +31,8 @@ int C2F(systemc)(char *command, int *stat)
 #ifdef _MSC_VER
 	{
 		BOOL Status=FALSE;
-		Status=CallWindowsShell(UTFToLocale(command),FALSE);
+		char szLocale[4096];
+		Status=CallWindowsShell(UTFToLocale(command, szLocale),FALSE);
 		if (Status)
 		{
 			*stat=(int) 0;
@@ -44,7 +45,8 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		status=system(UTFToLocale(command));
+		char szLocale[bsiz];
+		status=system(UTFToLocale(command, szLocale));
 		*stat=(int) status;
 	}
 #endif
