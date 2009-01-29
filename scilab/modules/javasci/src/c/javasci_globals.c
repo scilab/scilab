@@ -18,9 +18,6 @@
 #endif
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
-#ifndef _MSC_VER
- #include "tcl.h"
-#endif
 #include "tmpdir.h"
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
