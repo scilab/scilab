@@ -371,60 +371,59 @@ namespace sciGraphics
 		// we got all the information we need, we can compute the 4 corners
 
 		// First set the upper left point of the bounding box according to selected place option
-		double pixBoxCorner1[3];
-		pixBoxCorner1[2] = pixelDepth;
+		upperBoxLeftCorner[2] = pixelDepth;
 		switch(sciGetLegendPlace(m_pDrawed))  {
 		case  SCI_LEGEND_OUT_UPPER_RIGHT: 
-			pixBoxCorner1[0] = axesXpos + axesWidth + xOffset;
-			pixBoxCorner1[1] = axesYpos;
+			upperBoxLeftCorner[0] = axesXpos + axesWidth + xOffset;
+			upperBoxLeftCorner[1] = axesYpos;
 			if (sciGetyLocation(parentSubwin)=='r') 
-				pixBoxCorner1[0] = pixBoxCorner1[0] + 10*xOffset; //should be improved computing the ticks_label boundingbox
+				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] + 10*xOffset; //should be improved computing the ticks_label boundingbox
 			break;
 		case  SCI_LEGEND_OUT_UPPER_LEFT: 
-			pixBoxCorner1[0] = axesXpos - pixelBoxWidth - xOffset  ;
-			pixBoxCorner1[1] = axesYpos; 
+			upperBoxLeftCorner[0] = axesXpos - pixelBoxWidth - xOffset  ;
+			upperBoxLeftCorner[1] = axesYpos; 
 			if (sciGetyLocation(parentSubwin)=='l') 
-				pixBoxCorner1[0] = pixBoxCorner1[0] - 10*xOffset; //should be improved  computing the ticks_label boundingbox
+				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] - 10*xOffset; //should be improved  computing the ticks_label boundingbox
 			break;
 		case  SCI_LEGEND_OUT_LOWER_RIGHT: 
-			pixBoxCorner1[0] = axesXpos + axesWidth  + xOffset;
-			pixBoxCorner1[1] = axesYpos + axesHeight - pixelBoxHeight;
+			upperBoxLeftCorner[0] = axesXpos + axesWidth  + xOffset;
+			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight;
 			if (sciGetyLocation(parentSubwin)=='r') 
-				pixBoxCorner1[0] = pixBoxCorner1[0] + 11*xOffset; //should be improved  computing the ticks_label boundingbox
+				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] + 11*xOffset; //should be improved  computing the ticks_label boundingbox
 			break;
 		case SCI_LEGEND_OUT_LOWER_LEFT: 
-			pixBoxCorner1[0] = axesXpos - pixelBoxWidth - xOffset ;
-			pixBoxCorner1[1] = axesYpos + axesHeight - pixelBoxHeight;
+			upperBoxLeftCorner[0] = axesXpos - pixelBoxWidth - xOffset ;
+			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight;
 			if (sciGetyLocation(parentSubwin)=='l') 
-				pixBoxCorner1[0] = pixBoxCorner1[0] - 11*xOffset; //should be improved computing the ticks_label boundingbox
+				upperBoxLeftCorner[0] = upperBoxLeftCorner[0] - 11*xOffset; //should be improved computing the ticks_label boundingbox
 			break;
 		case  SCI_LEGEND_IN_UPPER_RIGHT: 
-			pixBoxCorner1[0] = axesXpos + axesWidth  - pixelBoxWidth - xOffset;
-			pixBoxCorner1[1] = axesYpos + yOffset;
+			upperBoxLeftCorner[0] = axesXpos + axesWidth  - pixelBoxWidth - xOffset;
+			upperBoxLeftCorner[1] = axesYpos + yOffset;
 			break;
 		case  SCI_LEGEND_IN_UPPER_LEFT: 
-			pixBoxCorner1[0] = axesXpos + xOffset;
-			pixBoxCorner1[1] = axesYpos + yOffset;
+			upperBoxLeftCorner[0] = axesXpos + xOffset;
+			upperBoxLeftCorner[1] = axesYpos + yOffset;
 			break;
 		case  SCI_LEGEND_IN_LOWER_RIGHT: 
-			pixBoxCorner1[0] = axesXpos + axesWidth  - pixelBoxWidth - xOffset ;
-			pixBoxCorner1[1] = axesYpos + axesHeight - pixelBoxHeight - yOffset;
+			upperBoxLeftCorner[0] = axesXpos + axesWidth  - pixelBoxWidth - xOffset ;
+			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight - yOffset;
 			break;
 		case  SCI_LEGEND_IN_LOWER_LEFT: 
-			pixBoxCorner1[0] = axesXpos + xOffset;
-			pixBoxCorner1[1] = axesYpos + axesHeight - pixelBoxHeight - yOffset;
+			upperBoxLeftCorner[0] = axesXpos + xOffset;
+			upperBoxLeftCorner[1] = axesYpos + axesHeight - pixelBoxHeight - yOffset;
 			break;
 		case  SCI_LEGEND_LOWER_CAPTION: 
-			pixBoxCorner1[0] = axesXpos;
-			pixBoxCorner1[1] = axesYpos + axesHeight + yOffset; 
+			upperBoxLeftCorner[0] = axesXpos;
+			upperBoxLeftCorner[1] = axesYpos + axesHeight + yOffset; 
 			if (sciGetxLocation(parentSubwin)=='d') 
-				pixBoxCorner1[1] = pixBoxCorner1[1] +8*yOffset; //should be improved computing the ticks_label boundingbox
+				upperBoxLeftCorner[1] = upperBoxLeftCorner[1] +8*yOffset; //should be improved computing the ticks_label boundingbox
 			break;
 		case  SCI_LEGEND_UPPER_CAPTION: 
-			pixBoxCorner1[0] = axesXpos;
-			pixBoxCorner1[1] = axesYpos - pixelBoxHeight - yOffset;
+			upperBoxLeftCorner[0] = axesXpos;
+			upperBoxLeftCorner[1] = axesYpos - pixelBoxHeight - yOffset;
 			if (sciGetxLocation(parentSubwin)=='u') 
-				pixBoxCorner1[1] = pixBoxCorner1[1] - 8*yOffset; //should be improved
+				upperBoxLeftCorner[1] = upperBoxLeftCorner[1] - 8*yOffset; //should be improved
 			break;
 		case  SCI_LEGEND_BY_COORDINATES:
 			{ //The upper left corner of the legend position is given by its relative position with 
@@ -434,8 +433,8 @@ namespace sciGraphics
 				double *wrect=sciGetAxesBounds(parentSubwin);//get canvas portion used by current axes
 				double pos[2];
 				sciGetLegendPos (m_pDrawed,pos);
-				pixBoxCorner1[0] = (wrect[0]+ pos[0]*(wrect[2]))*size[0] ;
-				pixBoxCorner1[1] = (wrect[1]+ pos[1]*(wrect[3]))*size[1] ;
+				upperBoxLeftCorner[0] = (wrect[0]+ pos[0]*(wrect[2]))*size[0] ;
+				upperBoxLeftCorner[1] = (wrect[1]+ pos[1]*(wrect[3]))*size[1] ;
 				break;
 			}
 		}
@@ -445,47 +444,47 @@ namespace sciGraphics
 			sciGetJavaFigureSize(sciGetParent(parentSubwin), size) ;//get canvas width and height
 			double *wrect=sciGetAxesBounds(parentSubwin);//get canvas portion used by current axes
 			double pos[2];
-			pos[0]=(pixBoxCorner1[0]/size[0]-wrect[0])/(wrect[2]);
-			pos[1]=(pixBoxCorner1[1]/size[1]-wrect[1])/(wrect[3]);
+			pos[0]=(upperBoxLeftCorner[0]/size[0]-wrect[0])/(wrect[2]);
+			pos[1]=(upperBoxLeftCorner[1]/size[1]-wrect[1])/(wrect[3]);
 			sciSetLegendPos (m_pDrawed,pos);
 
 		}
+
 		// lower left point of the bounding box
-		double pixBoxCorner2[3] = {pixBoxCorner1[0]  ,pixBoxCorner1[1] + pixelBoxHeight , pixelDepth};
+		lowerBoxLeftCorner[0] = upperBoxLeftCorner[0];
+		lowerBoxLeftCorner[1] = upperBoxLeftCorner[1] + pixelBoxHeight;
+		lowerBoxLeftCorner[2] = pixelDepth;
 
 		//  lower right point of the bounding box
-		double pixBoxCorner3[3] = {pixBoxCorner1[0] + pixelBoxWidth, pixBoxCorner2[1], pixelDepth};
+		lowerBoxRightCorner[0] = upperBoxLeftCorner[0] + pixelBoxWidth;
+		lowerBoxRightCorner[1] = lowerBoxLeftCorner[1];
+		lowerBoxRightCorner[2] = pixelDepth;
 
 		// upper right point  of the bounding box
-		double pixBoxCorner4[3] = {pixBoxCorner3[0],  pixBoxCorner1[1],pixelDepth };
+		upperBoxRightCorner[0] = lowerBoxRightCorner[0];
+		upperBoxRightCorner[1] = upperBoxLeftCorner[1];
+		upperBoxRightCorner[2] = pixelDepth;
 
 
 		// upper left point of the Lines box
-		double pixCorner1[3] = {pixBoxCorner1[0] + xOffset, pixBoxCorner1[1] + yOffset, pixelDepth};
+		upperLeftCorner[0] = upperBoxLeftCorner[0] + xOffset;
+		upperLeftCorner[1] = upperBoxLeftCorner[1] + yOffset;
+		upperLeftCorner[2] = pixelDepth;
 
 		// lower left point of the Lines box
-		double pixCorner2[3] = {pixCorner1[0], pixCorner1[1] + textBoxPixelHeight, pixelDepth};
+		lowerLeftCorner[0] = upperLeftCorner[0];
+		lowerLeftCorner[1] = upperLeftCorner[1] + textBoxPixelHeight;
+		lowerLeftCorner[2] = pixelDepth;
 
 		// lower right point of the Lines box
-		double pixCorner3[3] = {pixCorner1[0] + linePixelLength, pixCorner2[1], pixelDepth};
+		lowerRightCorner[0] = upperLeftCorner[0] + linePixelLength;
+		lowerRightCorner[1] = lowerLeftCorner[1];
+		lowerRightCorner[2] = pixelDepth;
 
 		// upper right point of the Lines box
-		double pixCorner4[3] = {pixCorner3[0], pixCorner1[1],pixelDepth };
-
-
-
-		// convert everything to scene coordinates
-		Camera * curCam = getSubwinDrawer(parentSubwin)->getCamera();
-		curCam->getSceneCoordinates(pixCorner1, upperLeftCorner);
-		curCam->getSceneCoordinates(pixCorner2, lowerLeftCorner);
-		curCam->getSceneCoordinates(pixCorner3, lowerRightCorner);
-		curCam->getSceneCoordinates(pixCorner4, upperRightCorner);
-
-		curCam->getSceneCoordinates(pixBoxCorner1, upperBoxLeftCorner);
-		curCam->getSceneCoordinates(pixBoxCorner2, lowerBoxLeftCorner);
-		curCam->getSceneCoordinates(pixBoxCorner3, lowerBoxRightCorner);
-		curCam->getSceneCoordinates(pixBoxCorner4, upperBoxRightCorner);
-
+		upperRightCorner[0] = lowerRightCorner[0];
+		upperRightCorner[1] = upperLeftCorner[1];
+		upperRightCorner[2] = pixelDepth;
 
 	}
 	/*---------------------------------------------------------------------------------*/
@@ -495,56 +494,72 @@ namespace sciGraphics
 
 		int nblegends = getNbLegend();
 
+		Camera * curCam = getCamera();
+
 		// interpolate between top to bottom
 		for (int i = 0; i < nblegends; i++)
 		{
 			sciPointObj * legendedObject = sciGetPointerFromHandle((long)(pLEGEND_FEATURE(m_pDrawed)->tabofhandles[i]));
 
-			// our polylines are composed of at most four points
+			// polyline used for legend
 			sciPolyline * curPoly = pPOLYLINE_FEATURE(m_aLines[i]);
+
+			// our polylines are composed of at most four points
+			double curPolyData[4][3];
 
 			// interpolate on left side
 			double interpolationFactor = (i + 0.5) / nblegends;
 
 			if ( (sciGetPolylineStyle(legendedObject)!= 5 ) &&  !sciGetIsFilled(legendedObject))  {
-				curPoly->pvx[0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * interpolationFactor;
-				curPoly->pvy[0] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * interpolationFactor;
-				curPoly->pvz[0] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * interpolationFactor;
 
-				// then on right side
-				curPoly->pvx[2] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * interpolationFactor;
-				curPoly->pvy[2] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * interpolationFactor;
-				curPoly->pvz[2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * interpolationFactor;
+				curPolyData[0][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * interpolationFactor;
+				curPolyData[0][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * interpolationFactor;
+				curPolyData[0][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * interpolationFactor;
 
-				// middle of the two others
-				curPoly->pvx[1] = 0.5 * (curPoly->pvx[0] + curPoly->pvx[2]);
-				curPoly->pvy[1] = 0.5 * (curPoly->pvy[0] + curPoly->pvy[2]);
-				curPoly->pvz[1] = 0.5 * (curPoly->pvz[0] + curPoly->pvz[2]);
+				curPolyData[2][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * interpolationFactor;
+				curPolyData[2][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * interpolationFactor;
+				curPolyData[2][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * interpolationFactor;
+
+				curPolyData[1][0] = 0.5 * (curPolyData[0][0] + curPolyData[2][0]);
+				curPolyData[1][1] = 0.5 * (curPolyData[0][1] + curPolyData[2][1]);
+				curPolyData[1][2] = 0.5 * (curPolyData[0][2] + curPolyData[2][2]);
+
 				curPoly->n1 = 3; //restrict polyline length the  first three points
 				curPoly->closed = 0;
 				sciInitIsFilled(m_aLines[i],FALSE);
 			}
 			else {
 				double shift=0.25/nblegends;
-				curPoly->pvx[0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor+shift);
-				curPoly->pvy[0] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor+shift);
-				curPoly->pvz[0] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor+shift);
+				curPolyData[0][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor+shift);
+				curPolyData[0][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor+shift);
+				curPolyData[0][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor+shift);
 
-				curPoly->pvx[1] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor+shift);
-				curPoly->pvy[1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor+shift);
-				curPoly->pvz[1] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor+shift);
+				curPolyData[1][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor+shift);
+				curPolyData[1][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor+shift);
+				curPolyData[1][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor+shift);
 
-				curPoly->pvx[2] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor-shift);
-				curPoly->pvy[2] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor-shift);
-				curPoly->pvz[2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor-shift);
+				curPolyData[2][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor-shift);
+				curPolyData[2][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor-shift);
+				curPolyData[2][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor-shift);
 
-				curPoly->pvx[3] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor-shift);
-				curPoly->pvy[3] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor-shift);
-				curPoly->pvz[3] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor-shift);
+				curPolyData[3][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor-shift);
+				curPolyData[3][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor-shift);
+				curPolyData[3][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor-shift);
+
 				curPoly->n1 = 4;//set polyline length to the max allocated size
 				curPoly->closed = 1;
 				sciInitIsFilled(m_aLines[i],TRUE);
 			}
+
+			// convert polyline to user coords
+			for (int i = 0; i < curPoly->n1; i++)
+			{
+				curCam->getSceneCoordinates(curPolyData[i], curPolyData[i]);
+				curPoly->pvx[i] = curPolyData[i][0];
+				curPoly->pvy[i] = curPolyData[i][1];
+				curPoly->pvz[i] = curPolyData[i][2];
+			}
+
 		}
 
 	}
@@ -553,13 +568,17 @@ namespace sciGraphics
 		const double lowerRightCorner[3], const double upperRightCorner[3])
 	{
 		// use the lowerLeftcorner, but move a little to the right
-		double xOffset[3];
-		vectSubstract3D(lowerRightCorner, lowerLeftCorner, xOffset);
-		scalarMult3D(xOffset, 0.2, xOffset);
-		//double xOffset = (lowerRightCorner[0] - lowerLeftCorner[0]) * 0.2;
-		sciSetTextPos(m_pNames, lowerRightCorner[0] + xOffset[0],
-														lowerRightCorner[1] + xOffset[1],
-														lowerRightCorner[2] + xOffset[2]);
+		double xOffset = 0.2 * (lowerRightCorner[0] - lowerLeftCorner[0]);
+
+		double finalCoord[3] = {lowerRightCorner[0] + xOffset,
+			                      lowerRightCorner[1],
+														lowerRightCorner[2]};
+		
+		// convert coordinates to scene ones
+		getCamera()->getSceneCoordinates(finalCoord, finalCoord);
+
+		sciSetTextPos(m_pNames, finalCoord[0], finalCoord[1], finalCoord[2]);
+
 	}
 	/*---------------------------------------------------------------------------------*/
 	void ConcreteDrawableLegend::placeBox(const double upperLeftCorner[3], const double lowerLeftCorner[3],
@@ -567,22 +586,38 @@ namespace sciGraphics
 	{
 		sciPolyline * curPoly = pPOLYLINE_FEATURE(m_aBox);
 
+		// retrieve scene coordinates
+		double tempsPos[3];
+		Camera * curCam = getCamera();
+		curCam->getSceneCoordinates(lowerLeftCorner, tempsPos);
 
-		curPoly->pvx[0] = lowerLeftCorner[0]; 
-		curPoly->pvy[0] = lowerLeftCorner[1]; 
-		curPoly->pvz[0] = lowerLeftCorner[2];
+		curPoly->pvx[0] = tempsPos[0]; 
+		curPoly->pvy[0] = tempsPos[1]; 
+		curPoly->pvz[0] = tempsPos[2];
 
-		curPoly->pvx[1] = upperLeftCorner[0]; 
-		curPoly->pvy[1] = upperLeftCorner[1]; 
-		curPoly->pvz[1] = upperLeftCorner[2];
+		curCam->getSceneCoordinates(upperLeftCorner, tempsPos);
+
+		curPoly->pvx[1] = tempsPos[0]; 
+		curPoly->pvy[1] = tempsPos[1]; 
+		curPoly->pvz[1] = tempsPos[2];
+
+		curCam->getSceneCoordinates(upperRightCorner, tempsPos);
 
 
-		curPoly->pvx[2] = upperRightCorner[0];
-		curPoly->pvy[2] = upperRightCorner[1];
-		curPoly->pvz[2] = upperRightCorner[2];
+		curPoly->pvx[2] = tempsPos[0];
+		curPoly->pvy[2] = tempsPos[1];
+		curPoly->pvz[2] = tempsPos[2];
 
-		curPoly->pvx[3] = lowerRightCorner[0];
-		curPoly->pvy[3] = lowerRightCorner[1];
-		curPoly->pvz[3] = lowerRightCorner[2];
+		curCam->getSceneCoordinates(lowerRightCorner, tempsPos);
+
+		curPoly->pvx[3] = tempsPos[0];
+		curPoly->pvy[3] = tempsPos[1];
+		curPoly->pvz[3] = tempsPos[2];
 	}
+	/*---------------------------------------------------------------------------------*/
+	Camera * ConcreteDrawableLegend::getCamera(void)
+	{
+		return getSubwinDrawer(sciGetParentSubwin(m_pDrawed))->getCamera();
+	}
+	/*---------------------------------------------------------------------------------*/
 }
