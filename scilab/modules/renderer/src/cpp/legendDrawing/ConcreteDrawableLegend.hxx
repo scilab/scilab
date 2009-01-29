@@ -18,7 +18,7 @@
 #include <string>
 
 #include "DrawableLegend.h"
-#include "../SubwinDrawing/Camera.h"
+#include "../subwinDrawing/Camera.h"
 
 namespace sciGraphics
 {
