@@ -16,7 +16,7 @@ Compilation:
 * More warnings in C/C++/Fortran during the compilation process.
 See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
-* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies). Same for --enable-build-localization.
+* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies)
 
 * interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
 
@@ -47,6 +47,8 @@ For more information, see SEP #2.
 
 * Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
 
+* Better error report in the documentation build process (docbook)
+
 Internationalization:
 =====================
 
@@ -63,12 +65,6 @@ Bug fixes:
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
-
-* bug 1073 fixed - All the properties for fec objects are not accessible.
-
-* bug 2365 fixed - plot3d3 without flags option removes ticks.
-
-* bug 2540 fixed - plot3d hangs scilab when plotting a matrix full with NaN.
 
 * bug 3080 fixed - When we click many times on a button of the Graphic window the instruction will be done as much times we have clicked.
 
@@ -202,31 +198,11 @@ Bug fixes:
 
 * bug 3912 fixed - strsubst() used with regular expression may return very stange result.
 
-* bug 3918 fixed - The documentation can be built without the french locale installed (under !Windows)
-
 * bug 3919 fixed - scilab x64 doesn't display graphics from a remote desktop.
 
 * bug 3924 fixed - I used uicontrol with bad parameters, but uicontrol makes scilab hangs.
 
 * bug 3931 fixed - fileparts returns invalid values with some special filenames.
-
-* bug 3935 fixed - Online Help of findfiles() function crashes Scilab.
-
-* bug 3940 fixed - uigetdir returns a invalid value if you do "cancel".
-
-* bug 3953 fixed - legend only works when the number of strings equals the number of polylines.
-
-* bug 3954 fixed - Graphic demos launched using functions without arguments (such as plot3d()) may modify variables.
-
-* bug 3955 fixed - getlinestyle() just opens an blank graphic window.
-
-* bug 3956 fixed - Changing legend font style is taken into account.
-
-* bug 3963 fixed - Destroying wait bars or progression bars crashes Scilab.
-
-* bug 3964 fixed - uigetfile() crashes Scilab if the description of the mask is specified.
-
-* bug 3009 fixed - Default figure and axes handles "user_data" field is not taken into account when creating a new figure.
 
 * Docking bugs fixed (problems with menubar, toolbar, infobar updates).
 
@@ -325,8 +301,3 @@ Obsolete functions removed :
 * buttondialog() (Please use messagebox() instead).
 
 * tk_getvalue() (Please use getvalue() instead).
-
-Known incompatibilty:
-=====================
- * Function unsetmenu behavior is incompatible under Linux with versions <= 4.1.2: submenu numbering now begins at 1 instead of 2.
-
