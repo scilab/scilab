@@ -121,6 +121,14 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 #endif
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
+/**
+ * Check if the file matches the mask
+ * '*' for all chars
+ * '?' for only one
+ * @TODO check if it can be optimized
+ * @param filename the filename
+ * @param filespec the mask
+ */
 static BOOL find_spec( char *filename ,char *filespec)
 {
 	char *any = NULL;
