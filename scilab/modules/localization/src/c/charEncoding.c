@@ -96,10 +96,8 @@ char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 	size_t inbytesleft = 0;
 	size_t outbytesleft = bsiz;
 	char *inPtr = _szBufferIn;
-//	char *outPtr = _szBufferOut;
-	char *outPtr = ENCODE_BUF1;
+	char *outPtr = _szBufferOut;
 
-	printf("*** localeToUTF START***");
 	/* no need to convert for unicode subset encoding*/
 	if(unicodeSubset)
 	{
@@ -122,8 +120,7 @@ char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 	}
 
 	*outPtr='\0';
-	printf("*** localeToUTF END***\n");
-	return ENCODE_BUF1;
+	return _szBufferOut;
 }
 
 char* UTFToLocale(char* _szBufferIn, char* _szBufferOut)
@@ -133,7 +130,6 @@ char* UTFToLocale(char* _szBufferIn, char* _szBufferOut)
 	char *inPtr = _szBufferIn;
 	char *outPtr= _szBufferOut;
 
-	printf("*** UTFToLocale START***");
 	inbytesleft = strlen(_szBufferIn);
 
 	/* no need to convert for unicode subset encoding*/
@@ -154,9 +150,6 @@ char* UTFToLocale(char* _szBufferIn, char* _szBufferOut)
 		return _szBufferIn;//return unconverted text
 	}
 	*outPtr='\0';
-	outPtr++;
-	*outPtr='\0';
-	printf("*** UTFToLocale END***\n");
 	return _szBufferOut;
 }
 

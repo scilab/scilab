@@ -23,10 +23,8 @@
 /* Have been able to find the libintl.h file on the system */
 #include <libintl.h>
 #include "stack-def.h"
-#include "charEncoding.h"
 
-static char szlocaleToUTF[bsiz];
-#define _(String)  localeToUTF(gettext(String), szlocaleToUTF)/** for console message*/
+#define _(String)  gettext(String)/** for console message*/
 #define _t(String1,String2,n) ngettext (String1,String2,n)
 
 #else

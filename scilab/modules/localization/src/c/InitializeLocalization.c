@@ -86,7 +86,7 @@ BOOL InitializeLocalization(void)
 		fprintf(stderr, "Localization: Error while declaring the text domain %s\n", NAMELOCALIZATIONDOMAIN);
 		return FALSE;
 	}
-
+//	 bind_textdomain_codeset (NAMELOCALIZATIONDOMAIN,"UTF-8"); /*such that gettext and dgettext return UTF8 string*/
 #ifndef _MSC_VER
 	/* Here, the "" means that we will try to use the language of the system
 	 * first. If it doesn't work, we switch back to default (English) */
