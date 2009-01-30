@@ -34,8 +34,8 @@ static iconv_t UTFToLocaleConvert = (iconv_t)-1; /* initialize to -1,  */
 
 BOOL unicodeSubset = TRUE; /* if charset is subset of unicode, no need to convert */
 /*--------------------------------------------------------------------------*/
-//#define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
-//static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
+#define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
+static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
 //static char ENCODE_BUF2[ENCODE_BUF_SIZE]; // the second buffer  to store the converted string
 //static char* ENCODE_BUF=ENCODE_BUF1; // pointer to the next buffer for the converted string
 //static char* _CharVec[255] ;    // Global pointers to point the converted UTF-8 or locale strings (multiple lines)
@@ -96,8 +96,10 @@ char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 	size_t inbytesleft = 0;
 	size_t outbytesleft = bsiz;
 	char *inPtr = _szBufferIn;
-	char *outPtr = _szBufferOut;
+//	char *outPtr = _szBufferOut;
+	char *outPtr = ENCODE_BUF1;
 
+	printf("*** localeToUTF START***");
 	/* no need to convert for unicode subset encoding*/
 	if(unicodeSubset)
 	{
@@ -120,16 +122,18 @@ char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 	}
 
 	*outPtr='\0';
-	return _szBufferOut;
+	printf("*** localeToUTF END***\n");
+	return ENCODE_BUF1;
 }
 
-char* UTFToLocale(char* _szBufferIn, char* _szBuffOut)
+char* UTFToLocale(char* _szBufferIn, char* _szBufferOut)
 {
 	size_t inbytesleft = 0;
 	size_t outbytesleft = bsiz;
 	char *inPtr = _szBufferIn;
-	char *outPtr= _szBuffOut;
+	char *outPtr= _szBufferOut;
 
+	printf("*** UTFToLocale START***");
 	inbytesleft = strlen(_szBufferIn);
 
 	/* no need to convert for unicode subset encoding*/
@@ -150,7 +154,10 @@ char* UTFToLocale(char* _szBufferIn, char* _szBuffOut)
 		return _szBufferIn;//return unconverted text
 	}
 	*outPtr='\0';
-	return _szBuffOut;
+	outPtr++;
+	*outPtr='\0';
+	printf("*** UTFToLocale END***\n");
+	return _szBufferOut;
 }
 
 /*--------------------------------------------------------------------------*/
