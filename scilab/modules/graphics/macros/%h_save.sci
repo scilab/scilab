@@ -389,7 +389,8 @@ function save_graphichandle(h,fd)
     mput(bool2s(h.fill_mode=='on'),characterFormat,fd) // fill_mode
     mput(h.foreground,'il',fd) // foreground
     mput(h.background,'il',fd) // background
-    mput(h.data,'dl',fd) // data
+	mput(size(h.data, '*'), 'il', fd); // data
+    mput(h.data,'dl',fd);
     mput(length(h.clip_state),characterFormat,fd); // clip_state
     mput(ascii(h.clip_state),characterFormat,fd);
     if h.clip_state=='on' then
@@ -407,7 +408,8 @@ function save_graphichandle(h,fd)
     mput(bool2s(h.fill_mode=='on'),characterFormat,fd) // fill_mode
     mput(h.foreground,'il',fd) // foreground
     mput(h.background,'il',fd) ; // background
-    mput(h.data,'dl',fd) // data
+	mput(size(h.data, '*'), 'il', fd); // data
+    mput(h.data,'dl',fd);
     mput(length(h.arc_drawing_method),characterFormat,fd); // arc_drawing_method
     mput(ascii(h.arc_drawing_method),characterFormat,fd);
     mput(length(h.clip_state),characterFormat,fd); // clip_state
@@ -505,6 +507,10 @@ function save_graphichandle(h,fd)
     mput(size(h.data),'il',fd);mput(h.data,'dl',fd) // data
     mput(size(h.triangles),'il',fd);mput(h.triangles,'dl',fd) // triangles
     mput(h.z_bounds,'dl',fd); // z_bounds
+	mput(h.color_range,'dl',fd); // color_range
+	mput(h.outside_colors,'dl',fd); // outside_colors
+	mput(bool2s(h.line_mode=='on'),characterFormat,fd) // line_mode
+	mput(h.foreground,'il',fd) // foreground
     mput(length(h.clip_state),characterFormat,fd); // clip_state
     mput(ascii(h.clip_state),characterFormat,fd);
     if h.clip_state=='on' then

@@ -279,7 +279,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 		{
 			if ((path = (char *) MALLOC( (nc+strlen(PVM_CONFIG_FILE)+1) *sizeof(char))) == NULL) 
 			{
-				(void) fprintf(stderr, _("Error MALLOC in pvm_error\n"));
+				(void) fprintf(stderr, "%s",_("Error MALLOC in pvm_error\n"));
 				*res = PvmNoMem;
 				return;
 			}
@@ -365,7 +365,7 @@ void C2F(scipvmhalt)(int *res)
 {
   /* Catch the SIGTERM */
   if (SIG_ERR == signal(SIGTERM,SIG_IGN)){
-    (void) fprintf(stderr, _("Error pvm_halt - signal\n"));
+    (void) fprintf(stderr, "%s", _("Error pvm_halt - signal\n"));
     *res = -1;
     return;
   }
@@ -376,13 +376,13 @@ void C2F(scipvmhalt)(int *res)
   /* Catch the SIGPIPE and deflect SIGTERM */
 #ifdef SIGPIPE
   if (SIG_ERR == signal(SIGPIPE,SIG_IGN)){
-    (void) fprintf(stderr, _("Error pvm_halt - signal\n"));
+    (void) fprintf(stderr, "%s", _("Error pvm_halt - signal\n"));
     *res = -1;
     return;
   }
 #endif 
   if (SIG_ERR == signal(SIGTERM,SIG_DFL)){
-    (void) fprintf(stderr, _("Error pvm_halt - signal\n"));
+    (void) fprintf(stderr, "%s", _("Error pvm_halt - signal\n"));
     *res = -1;
     return;
   }         

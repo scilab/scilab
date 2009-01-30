@@ -377,8 +377,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       end
     end
     if is_higher_than([3 0 0 0]) then
-      if mget(1,characterFormat,fd)<>0 then
-	set(a,"zoom_box"          , mget(4,'dl',fd))  // zoom_box
+      zoom_box_size = mget(1,characterFormat,fd);
+      if zoom_box_size<>0 then
+	set(a,"zoom_box"          , mget(zoom_box_size,'dl',fd))  // zoom_box
       end
     end
     if is_higher_than([3 1 0 1]) then
@@ -813,8 +814,17 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     if is_higher_than([3 1 0 1]) then
       background = mget(1,'il',fd); // background
     end
-    
-    data           = mget(4,'dl',fd); // data
+    if (is_higher_than([5 0 3 0])) then
+	  // data size might be 4 or 5
+	  data = mget(mget(1,'il',fd),'dl',fd); // data
+	else
+	  parentAxes = gca();
+	  if (parentAxes.view == "2d") then
+        data = mget(4,'dl',fd);
+	  else
+	    data = mget(5,'dl',fd);
+	  end
+	end
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) ; // clip_stata
     if clip_state=='on' then
       clip_box     = mget(4,'dl',fd) // clip_box
@@ -823,8 +833,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     
     // draw the rectangle
-    xrect(data);
+    xrect(0,1,1,1); // create the rectangle with dummy values
     h=get('hdl')
+	set(h,"data",data);
     set(h,"visible",visible)
     set(h,"thickness",thickness)
     set(h,"mark_style",mark_style),
@@ -863,7 +874,17 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       background = mget(1,'il',fd) ; // background
     end
     
-    data           = mget(6,'dl',fd); // data
+    if (is_higher_than([5 0 3 0])) then
+	  // data size might be 6 or 7
+	  data = mget(mget(1,'il',fd),'dl',fd); // data
+	else
+      parentAxes = gca();
+	  if (parentAxes.view == "2d") then
+        data = mget(6,'dl',fd);
+	  else
+	    data = mget(7,'dl',fd);
+	  end
+	end
 
     if is_higher_than([4 1 2 0]) then
       drawing_method = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // drawing_method
@@ -877,14 +898,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     else
       clip_box=[]
     end
-    if is_higher_than([4 1 2 0]) then
-      // angle is given in degree
-      xarc(data(1),data(2),data(3),data(4),data(5),data(6) * 64);
-    else
-      // angle is stored by 64th of degree
-      xarc(data(1),data(2),data(3),data(4),data(5),data(6));
-    end
+	xarc(0,1,1,1,0,360); // create the arc dummy values
     h=get('hdl')
+	if ~is_higher_than([4 1 2 0]) then
+      // angle wass stored by 64th of degree
+      data($) = data($) / 64;
+	  data($-1) = data($-1) / 64;
+    end
+	set(h,"data",data);
     set(h,"visible",visible)
     set(h,"thickness",thickness)
     set(h,"line_style",line_style)
@@ -1047,6 +1068,12 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     h=unglue(get('hdl'))
     set(h,"visible",visible)
     set(h,"z_bounds",z_bounds)
+	if is_higher_than( [5 0 3 0] ) then
+	  set(h,"color_range",mget(2,'dl',fd)); // color_range
+	  set(h,"outside_colors",mget(2,'dl',fd)); // color_range
+	  set(h,"line_mode" ,toggle(mget(1,characterFormat,fd))) // line_mode
+	  set(h,"foreground", mget(1,'il',fd)); // foreground
+	end
     clip_state     = ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // clip_state
     if clip_state=='on' then
       set(h,"clip_box", mget(4,'dl',fd)) // clip_box
@@ -1148,6 +1175,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     end
     
     h=get('hdl');
+	set(h,"data",data);
     set(h,"visible",visible) ;
     set(h,"text_box_mode",text_box_mode)
     set(h,"foreground"           , mget(1,'il',fd)); // foreground

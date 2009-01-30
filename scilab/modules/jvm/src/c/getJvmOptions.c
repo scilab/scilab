@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -25,6 +26,7 @@
 #include "strdup_windows.h"
 #endif
 #include "strsubst.h"
+#include "getos.h"
 /*--------------------------------------------------------------------------*/ 
 JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_JavaVMOption)
 {
@@ -44,6 +46,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			char *jvm_option_string = NULL;
 
 			int indice = 0;
+
 			doc = xmlParseFile (filename_xml_conf);
 
 			if (doc == NULL) 
@@ -55,7 +58,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option | //jvm_options/option[@os='OSNAME']", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{

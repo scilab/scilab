@@ -11,7 +11,6 @@ freeArrayOfString
 checkrhs_
 checklhs_
 gettype_
-cluni0_
 getWarningMode
 islittleendian
 callFunctionFromGateway

@@ -14,8 +14,29 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-09-22 14:08+0100\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
 
+# File: sci_gateway/c/sci_clc.c, line: 41
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_clc.c, line: 47
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_clc.c, line: 60
+# File: sci_gateway/c/sci_tohome.c, line: 29
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_iswaitingforinput.c, line: 38
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_lines.c, line: 56
 # File: sci_gateway/c/sci_lines.c, line: 70
 #, c-format
@@ -32,32 +53,36 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_tohome.c, line: 29
-# File: sci_gateway/c/sci_clc.c, line: 60
-#, c-format
-msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_iswaitingforinput.c, line: 38
-#, c-format
-msgid "%s: Not implemented in this mode.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_clc.c, line: 41
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_clc.c, line: 47
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr ""
-#
 # File: src/c/more.c, line: 25
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 #
-# File: src/c/others/GetCharWithEventsLoop.c, line: 68
-#, c-format
-msgid "%s: An error occurred: %s\n"
+# File: src/c/others/zzledt.c, line: 806
+# File: src/c/windows/TermCompletion.c, line: 80
+msgid "File or Directory"
+msgstr ""
+#
+# File: src/c/others/zzledt.c, line: 940
+# File: src/c/windows/TermCompletion.c, line: 222
+msgid "Scilab Function"
+msgstr ""
+#
+# File: src/c/others/zzledt.c, line: 941
+# File: src/c/windows/TermCompletion.c, line: 223
+msgid "Scilab Command"
+msgstr ""
+#
+# File: src/c/others/zzledt.c, line: 942
+# File: src/c/windows/TermCompletion.c, line: 224
+msgid "Scilab Macro"
+msgstr ""
+#
+# File: src/c/others/zzledt.c, line: 943
+# File: src/c/windows/TermCompletion.c, line: 225
+msgid "Scilab Variable"
+msgstr ""
+#
+# File: src/c/others/zzledt.c, line: 944
+# File: src/c/windows/TermCompletion.c, line: 226
+msgid "Graphics handle field"
 msgstr ""

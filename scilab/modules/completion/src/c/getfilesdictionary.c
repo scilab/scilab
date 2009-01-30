@@ -12,9 +12,10 @@
 #include <string.h> /* strcmp */
 #include <stdio.h> /* sprintf */
 #include <stdlib.h> /* qsort */
+#include "stack-def.h"
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
-#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
+#include "scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
 #include "cluni0.h"
@@ -41,6 +42,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		char path[PATH_MAX];
 		
 		char filespec[PATH_MAX];
+		char szLocale[bsiz];
 
 		char pathname[PATH_MAX];
 		char filename[PATH_MAX];
@@ -82,7 +84,7 @@ char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 		}
 
 		C2F(cluni0)(path,pathextended,&out_n,(long)strlen(path),PATH_MAX);
-		dictionary = findfiles(pathextended, UTFToLocale(filespec), &sizeListReturned);
+		dictionary = findfiles(pathextended, UTFToLocale(filespec, szLocale), &sizeListReturned);
 		if (fullpath)
 		{
 			dictionary = addPath(dictionary, sizeListReturned, path);

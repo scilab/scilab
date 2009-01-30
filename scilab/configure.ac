@@ -1453,7 +1453,7 @@ echo ""
 #fi
 
 echo ""
-if test $enable_build_localization != no; then
+if test $BUILD_LOCALIZATION_ENABLE != no; then
    echo "Gettext/localization configuration:"
    echo "xgettext ............... = $XGETTEXT"
    echo "msgfmt  ................ = $MSGFMT"

@@ -11,7 +11,8 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/charEncoding.c
+src/c/charEncoding.c \
+src/jni/Messages_wrap.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
@@ -65,11 +66,18 @@ includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
 includes/TerminateLocalization.h \
-includes/localetoutf.h \
 includes/charEncoding.h
 
 if GUI
 USEANT=1
 endif
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/Messages.i 
+
+if SWIG
+BUILT_SOURCES=swig
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

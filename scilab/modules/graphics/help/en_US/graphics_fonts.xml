@@ -41,9 +41,9 @@
 	      </para>
 		  
 		  <para>
-		    Here is the list of the 11 default fonts.
+		    Here is the list of the 11 default fonts.</para>
 			<informaltable border="1">
-            <tr><td><term>Font number</term></td><td><term>Font Family</term></td><td><term>Bold</term></td><td><term>Italic</term></td></tr>
+            <tr><td><emphasis role="bold">Font number</emphasis></td><td><emphasis role="bold">Font Family</emphasis></td><td><emphasis role="bold">Bold</emphasis></td><td><emphasis role="bold">Italic</emphasis></td></tr>
             <tr><td>0</td><td>Monospaced</td><td>No</td><td>No</td></tr>
             <tr><td>1</td><td>ScilabSymbols</td><td>No</td><td>No</td></tr>
 			<tr><td>2</td><td>Serif</td><td>No</td><td>No</td></tr>
@@ -56,7 +56,6 @@
 			<tr><td>9</td><td>SansSerif</td><td>Yes</td><td>Yes</td></tr>
 			<tr><td>10</td><td>SansSerif</td><td>Yes</td><td>Yes</td></tr>
             </informaltable>
-		  </para>
 		  
 		  <para>
             The font used by a graphic entities can be modified with its <literal>font_style</literal> property.
@@ -74,9 +73,9 @@
 			It is a scalar specifying the displayed character size.
 			</para>
 			<para>
-			The Scilab character size is different from the Java size. Here is the equivalence between the two scales.
+			The Scilab character size is different from the Java size. Here is the equivalence between the two scales.</para>
 			<informaltable border="1">
-            <tr><td><term>Scilab Size</term></td><td><term>Java Size</term></td></tr>
+            <tr><td><emphasis role="bold">Scilab Size</emphasis></td><td><emphasis role="bold">Java Size</emphasis></td></tr>
             <tr><td>0</td><td>8</td></tr>
             <tr><td>1</td><td>10</td></tr>
             <tr><td>2</td><td>12</td></tr>
@@ -89,6 +88,7 @@
 			<tr><td>9</td><td>48</td></tr>
 			<tr><td>10</td><td>54</td></tr>
             </informaltable>
+                        <para>
 			The character size might not be an integer. In this case, the result depends on the entities <literal>fractional_font</literal> property.
 			If <literal>fractional_font</literal> property is <literal>'on'</literal> then the displayed font size is interpolated between the two
 			closest integer. For example, a font size of 2.5 displays characters with a Java size of 13.
@@ -107,7 +107,7 @@
         <link linkend="xlfont">xlfont</link>
       </member>
       <member>
-        <link linkend="graphic_entities">graphic_entities</link>
+        <link linkend="graphics_entities">graphics_entities</link>
       </member>
     </simplelist>
   </refsection>

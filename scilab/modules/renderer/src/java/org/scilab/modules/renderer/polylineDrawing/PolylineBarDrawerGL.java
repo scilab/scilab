@@ -18,6 +18,7 @@ package org.scilab.modules.renderer.polylineDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.AutoDrawableObjectGL;
+import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
@@ -154,6 +155,10 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		double[] color = getBackColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
+		// push a little bars to the background
+		CoordinateTransformation transform = getCoordinateTransformation();
+		transform.pushPolygonsBack(gl);
+		
 		gl.glBegin(GL.GL_QUADS);
 		for (int i = 0; i < left.length; i++) {
 			gl.glVertex3d(left[i], bottom[i], zCoord[i]);
@@ -162,6 +167,8 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 			gl.glVertex3d(left[i], top[i], zCoord[i]);
 		}
 		gl.glEnd();
+		
+		transform.endPushPolygonsBack(gl);
 	}
 	
 	/**
@@ -186,8 +193,7 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 		// set dash mode
 		GLTools.beginDashMode(gl, getLineStyle(), getThickness());
 
-		// push a little bars to the background
-		GLTools.pushPolygonsBack(gl);
+		
 		
 		for (int i = 0; i < left.length; i++) {
 			gl.glBegin(GL.GL_LINE_LOOP);
@@ -197,8 +203,6 @@ public class PolylineBarDrawerGL extends AutoDrawableObjectGL {
 			gl.glVertex3d(left[i], top[i], zCoord[i]);
 			gl.glEnd();
 		}
-		
-		GLTools.endPushPolygonsBack(gl);
 		
 		GLTools.endDashMode(gl);
 		

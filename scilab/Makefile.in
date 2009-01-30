@@ -1121,11 +1121,11 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 @BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
-@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar();exit;\"";\
-@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar([],[],'en_US');exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
-@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"setlanguage('fr'); xmltojar();exit;\""; \
-@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "setlanguage('fr'); xmltojar();exit;"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "xmltojar([],[],'fr_FR');exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab binary"; \
 @BUILD_HELP_TRUE@	fi
@@ -1186,7 +1186,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	LC=LC_MESSAGES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	LC="LC_MESSAGES"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	FILENAME="*.po*"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	rm modules/*/locales/*/*~ 2> /dev/null; \
@@ -1201,9 +1201,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	done; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
+@GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
 @GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \

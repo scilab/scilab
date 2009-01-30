@@ -29,6 +29,7 @@ extern int C2F(writelunitstring)();
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
 	char *buffer = NULL;
+	char szlocaleToUTF[bsiz];
 	static int ich;
 
 	int i = 0;
@@ -81,7 +82,7 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		buffer = UTFToLocale(string); /** convert string to system locale encoding for file output*/
+		buffer = UTFToLocale(string, szlocaleToUTF); /** convert string to system locale encoding for file output*/
         nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 

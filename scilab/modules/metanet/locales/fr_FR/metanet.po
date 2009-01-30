@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
 "POT-Creation-Date: 2007-11-20 18:15+0100\n"
 "PO-Revision-Date: 2008-09-28 08:54+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -16,6 +16,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Metanet"
+msgstr "Metanet"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Tools"
+msgstr "&Outils"
+
+msgid "&Edit"
+msgstr "&Edition"
+
+msgid "&?"
+msgstr "&?"
 
 #, c-format
 msgid "%s: First argument must be a vector of size greater or equal to 2.\n"
@@ -54,21 +69,6 @@ msgstr ""
 "%s: Le troisième argument doit être un vecteur composé de valeurs entières "
 "positives.\n"
 
-msgid "&File"
-msgstr "&Fichier"
-
-msgid "&Tools"
-msgstr "&Outils"
-
-msgid "&Edit"
-msgstr "&Edition"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "Metanet"
-msgstr "Metanet"
-
 msgid "Running out of memory"
 msgstr "Plus de mémoire disponible"
 
@@ -98,6 +98,9 @@ msgstr ""
 "Mauvais fichier graphe. Le noeud \"%s\" référencé par l'arc \"%s\" est "
 "introuvable"
 
+msgid "Scilab module metanet not installed.\n"
+msgstr "Le module Scilab metanet n'est pas installé.\n"
+
 #, c-format
 msgid "Bad internal node number %d"
 msgstr "Mauvais numéro interne de noeud %d"
@@ -110,6 +113,3 @@ msgstr "Mauvais numéro interne d'arc %d"
 msgid "Unable to write file in directory %s, check access"
 msgstr ""
 "Impossible d'écrire le fichier dans le répertoire %s, vérifiez les droits"
-
-msgid "Scilab module metanet not installed.\n"
-msgstr "Le module Scilab metanet n'est pas installé.\n"

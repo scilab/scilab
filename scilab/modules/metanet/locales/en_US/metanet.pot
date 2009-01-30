@@ -14,8 +14,28 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-09-22 14:08+0100\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
 
+# File: etc/metanet.start, line: 24
+msgid "Metanet"
+msgstr ""
+#
+# File: macros/editor/ge_create_menus.sci, line: 13
+msgid "&File"
+msgstr ""
+#
+# File: macros/editor/ge_create_menus.sci, line: 14
+msgid "&Tools"
+msgstr ""
+#
+# File: macros/editor/ge_create_menus.sci, line: 15
+msgid "&Edit"
+msgstr ""
+#
+# File: macros/editor/ge_create_menus.sci, line: 16
+msgid "&?"
+msgstr ""
+#
 # File: macros/graph_tools/knapsack.sci, line: 22
 #, c-format
 msgid "%s: First argument must be a vector of size greater or equal to 2.\n"
@@ -47,26 +67,7 @@ msgstr ""
 msgid "%s: Third argument must be a vector with positive integer values.\n"
 msgstr ""
 #
-# File: macros/editor/ge_create_menus.sci, line: 13
-msgid "&File"
-msgstr ""
-#
-# File: macros/editor/ge_create_menus.sci, line: 14
-msgid "&Tools"
-msgstr ""
-#
-# File: macros/editor/ge_create_menus.sci, line: 15
-msgid "&Edit"
-msgstr ""
-#
-# File: macros/editor/ge_create_menus.sci, line: 16
-msgid "&?"
-msgstr ""
-#
-# File: etc/metanet.start, line: 24
-msgid "Metanet"
-msgstr ""
-#
+# File: src/c/connex.c, line: 22
 # File: src/c/dmtree.c, line: 36
 # File: src/c/dmtree.c, line: 40
 # File: src/c/dmtree.c, line: 44
@@ -106,6 +107,13 @@ msgstr ""
 # File: src/c/loadg.c, line: 371
 # File: src/c/loadg.c, line: 378
 # File: src/c/loadg.c, line: 402
+# File: src/c/paths.c, line: 59
+# File: src/c/paths.c, line: 79
+# File: src/c/paths.c, line: 91
+# File: src/c/paths.c, line: 127
+# File: src/c/paths.c, line: 205
+# File: src/c/paths.c, line: 222
+# File: src/c/saveg.c, line: 51
 # File: src/c/transc.c, line: 29
 # File: src/c/transc.c, line: 33
 # File: src/c/transc.c, line: 38
@@ -121,14 +129,6 @@ msgstr ""
 # File: src/c/transc.c, line: 78
 # File: src/c/transc.c, line: 82
 # File: src/c/transc.c, line: 86
-# File: src/c/paths.c, line: 59
-# File: src/c/paths.c, line: 79
-# File: src/c/paths.c, line: 91
-# File: src/c/paths.c, line: 127
-# File: src/c/paths.c, line: 205
-# File: src/c/paths.c, line: 222
-# File: src/c/connex.c, line: 22
-# File: src/c/saveg.c, line: 51
 msgid "Running out of memory"
 msgstr ""
 #
@@ -167,6 +167,10 @@ msgstr ""
 msgid "Bad graph file. Node \"%s\" referenced by arc \"%s\" not found"
 msgstr ""
 #
+# File: src/c/nometanet/nometanet.c, line: 19
+msgid "Scilab module metanet not installed.\n"
+msgstr ""
+#
 # File: src/c/paths.c, line: 49
 # File: src/c/paths.c, line: 54
 # File: src/c/paths.c, line: 97
@@ -183,8 +187,4 @@ msgstr ""
 # File: src/c/saveg.c, line: 130
 #, c-format
 msgid "Unable to write file in directory %s, check access"
-msgstr ""
-#
-# File: src/c/nometanet/nometanet.c, line: 19
-msgid "Scilab module metanet not installed.\n"
 msgstr ""

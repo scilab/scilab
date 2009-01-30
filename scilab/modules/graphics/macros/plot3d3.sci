@@ -12,7 +12,9 @@ function plot3d3(x,y,z,vect,theta,alpha,leg,flags,ebox)
 // the mesh is drawn using the colums and rows of [x,y,z]
 //---------------------------------------------------------
 [lhs,rhs]=argn(0);
-if rhs<3, error(' I need at least 3 arguments'),end;
+if rhs<3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plot3d3", 3) );
+end;
 if exists('vect','local')==0 then vect=-1,end
 if vect<>-1 then
   nobjs=prod(size(vect))+1;
@@ -33,7 +35,12 @@ opts=[]
 if exists('theta','local')==1 then opts=[opts,'theta=theta'],end
 if exists('alpha','local')==1 then opts=[opts,'alpha=alpha'],end
 if exists('leg'  ,'local')==1 then opts=[opts,'leg=leg']    ,end
-if exists('flags' ,'local')==0 then flags=[3,4,2,3];  ,end
+// set default flags
+// flag(1): color of outide lines
+// flag(2): color of inside lines
+// flag(3): scaling type
+// flag(4): box type
+if exists('flags' ,'local')==0 then flags=[3,4,2,4];  ,end
 if exists('ebox' ,'local')==1 then opts=[opts,'ebox=ebox']  ,end
 
 

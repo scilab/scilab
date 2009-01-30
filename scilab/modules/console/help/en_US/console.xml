@@ -30,7 +30,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><informaltable border="1">
+    <informaltable border="1">
         <tr>
           <td>UP or Ctrl+P</td>
 
@@ -176,6 +176,6 @@
 
           <td>select current word.</td>
         </tr>
-      </informaltable></para>
+      </informaltable>
   </refsection>
 </refentry>

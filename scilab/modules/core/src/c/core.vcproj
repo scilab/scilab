@@ -355,10 +355,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cluni0.c"
-				>
-			</File>
-			<File
 				RelativePath=".\commandwords.c"
 				>
 			</File>
@@ -419,10 +415,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\GetenvB.c"
-				>
-			</File>
-			<File
 				RelativePath=".\GetExceptionCode.c"
 				>
 			</File>
@@ -449,6 +441,10 @@
 						CompileAs="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath=".\getos.c"
+				>
 			</File>
 			<File
 				RelativePath=".\getstaticdebuginfo.c"
@@ -595,10 +591,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_chdir.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_clear.c"
 				>
 			</File>
@@ -660,10 +652,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_funptr.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_getcwd.c"
 				>
 			</File>
 			<File
@@ -827,10 +815,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\scicurdir.c"
-				>
-			</File>
-			<File
 				RelativePath=".\SCIHOME.c"
 				>
 			</File>
@@ -956,10 +940,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\cluni0.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\includes\commandwords.h"
 				>
 			</File>
@@ -1008,11 +988,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -1041,6 +1021,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getmodules.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getos.h"
 				>
 			</File>
 			<File
@@ -1189,14 +1173,6 @@
 			</File>
 			<File
 				RelativePath=".\run.h"
-				>
-			</File>
-			<File
-				RelativePath=".\scicurdir.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\Scierror.h"
 				>
 			</File>
 			<File
