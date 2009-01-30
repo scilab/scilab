@@ -20,6 +20,8 @@ extern "C"
 #include "math_graphics.h"
 }
 
+#define DEPTH_FRONT 0.01
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -60,7 +62,7 @@ bool TitlePositioner::getAutoPosition(double pos[3])
   double pixCoords[3];
   pixCoords[0] = xPos + (width - textWidth) / 2.0;
   pixCoords[1] = yPos - textHeight / 2.0;
-  pixCoords[2] = 0.01; // put it in front of depth buffer
+  pixCoords[2] = DEPTH_FRONT; // put it in front of depth buffer
 
   // Title may flicker because its position is computed
   // using several projections and truncation, it may move
@@ -73,7 +75,7 @@ bool TitlePositioner::getAutoPosition(double pos[3])
     // use new position
     m_aPreviousPosition[0] = round(pixCoords[0]);
     m_aPreviousPosition[1] = round(pixCoords[1]);
-    m_aPreviousPosition[2] = round(pixCoords[2]);
+    m_aPreviousPosition[2] = pixCoords[2];
   }
   else
   {
