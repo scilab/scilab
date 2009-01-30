@@ -10,10 +10,11 @@
  *
  */
 #include <stdlib.h>
+#include "machine.h"
 #ifndef _MSC_VER
  #ifdef WITH_TK
  #include <tcl.h>
-#endif
+ #endif
 #endif
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"

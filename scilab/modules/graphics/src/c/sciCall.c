@@ -727,6 +727,9 @@ void Objplot3d ( char    * fname ,
 
 			pobj = sciGetCurrentObj();
 
+			/* Force clipping */
+		  sciSetIsClipping(pobj, 0);  /* clipgrf */
+
 			hdltab[i]=sciGetHandle(pobj);
 		}
 

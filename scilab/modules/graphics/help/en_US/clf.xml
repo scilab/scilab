@@ -66,6 +66,12 @@ clf(num,&lt;opt_job_arg&gt;)</synopsis>
 	    <literal>figure_id==num</literal>.</para><para><literal>clf(h)</literal> clear or reset the figure pointed to by
     the handle <literal>h</literal>.</para>
     <para><literal>clf()</literal> clear or reset the current figure.</para>
+	<para>
+	  <literal>clf</literal> function delete every children of specified windows including
+	  menus and uicontrols added by user.
+	  To prevent menus and uicontrols from being deleted, the <literal>delete(gca())</literal> command
+	  might be used instead.
+	</para>
   </refsection>
   <refsection>
     <title>Examples</title>
