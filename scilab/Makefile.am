@@ -184,6 +184,11 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 
+if IS_MACOSX
+# Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
+MACOSX=1
+endif
+
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
@@ -204,6 +209,7 @@ localization:
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 		$(MSGCAT) -o $$POFILE $$FILES; \
+		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;
 endif

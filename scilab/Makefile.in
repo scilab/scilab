@@ -417,6 +417,9 @@ icons/puffin.icns \
 icons/scilab.icns
 
 
+# Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
+@IS_MACOSX_TRUE@MACOSX = 1
+
 # Misc variable for the documentation installation
 
 # How help files look like.
@@ -1186,6 +1189,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
