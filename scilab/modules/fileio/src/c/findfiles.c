@@ -21,6 +21,7 @@
 #endif
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "BOOL.h"
@@ -54,7 +55,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 		{
 			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )
 			{
-				char szTemp[4096];
+				char szTemp[bsiz];
 				char *utfFileName = NULL;
 				nbElements++;
 				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
@@ -91,7 +92,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 				if ( find_spec(read->d_name ,filespec) )
 				{
 					char *utfFileName = NULL;
-					char szTemp[4096];
+					char szTemp[bsiz];
 					nbElements++;
 					if (ListFiles)
 					{
@@ -120,6 +121,14 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 #endif
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
+/**
+ * Check if the file matches the mask
+ * '*' for all chars
+ * '?' for only one
+ * @TODO check if it can be optimized
+ * @param filename the filename
+ * @param filespec the mask
+ */
 static BOOL find_spec( char *filename ,char *filespec)
 {
 	char *any = NULL;

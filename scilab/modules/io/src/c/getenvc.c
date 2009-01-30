@@ -17,6 +17,7 @@
 	#include <Windows.h> /* GetEnvironmentVariable */
 	#include "strdup_windows.h"
 #endif
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "getenvc.h"
 #include "localization.h"
@@ -32,8 +33,8 @@ static void searchenv_others(const char *filename, const char *varname,
 /*--------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
+	char szTemp[bsiz];
 	char *locale = NULL;
-	char szTemp[4096];
 	#ifdef _MSC_VER
 	if (GetEnvironmentVariable(UTFToLocale(var, szTemp),buf,(DWORD)*buflen) == 0)
 	{
@@ -137,7 +138,7 @@ char *searchEnv(const char *name,const char *env_var)
 {
 	char *buffer = NULL;
 	char fullpath[PATH_MAX];
-	char szLocale[4096];
+	char szLocale[bsiz];
 
 	strcpy(fullpath,"");
 
@@ -149,8 +150,7 @@ char *searchEnv(const char *name,const char *env_var)
 
 	if (strlen(fullpath) > 0)
 	{
-		char szTempUTF[4096];
-		buffer = strdup(localeToUTF(fullpath, szTempUTF));
+		buffer = strdup(localeToUTF(fullpath, szLocale));
 	}
 	return buffer;
 }

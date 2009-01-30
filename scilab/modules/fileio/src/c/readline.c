@@ -17,6 +17,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "readline.h"
 #include "filesmanagement.h"
 #include "charEncoding.h"
@@ -39,7 +40,7 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
   int c,count,info;
   long int offset;
   char *tmpChar = NULL;
-	char szTemp[4096];
+	char szTemp[bsiz];
   count=0;
   *nr=0;
   

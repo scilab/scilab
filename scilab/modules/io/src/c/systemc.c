@@ -15,6 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */
 #include "PATH_MAX.h"
 #include "systemc.h"
@@ -31,7 +32,7 @@ int C2F(systemc)(char *command, int *stat)
 #ifdef _MSC_VER
 	{
 		BOOL Status=FALSE;
-		char szLocale[4096];
+		char szLocale[bsiz];
 		Status=CallWindowsShell(UTFToLocale(command, szLocale),FALSE);
 		if (Status)
 		{
@@ -45,7 +46,7 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		char szLocale[4096];
+		char szLocale[bsiz];
 		status=system(UTFToLocale(command, szLocale));
 		*stat=(int) status;
 	}

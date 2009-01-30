@@ -16,6 +16,7 @@
 #include "ConsolePrintf.hxx"
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
+#include "stack-def.h"
 extern "C" {
 #include "getScilabJavaVM.h"
 #include "charEncoding.h"
@@ -28,7 +29,7 @@ int ConsolePrintf(char *line)
 	JavaVM *vm = getScilabJavaVM();
 	if (vm == NULL) 
 	{ /* Java not yet or badly initialized */
-		char szLocale[4096];
+		char szLocale[bsiz];
 		printf("%s",UTFToLocale(line, szLocale));
 	}
 	else
