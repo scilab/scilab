@@ -94,7 +94,7 @@ proc dokeyposn {textarea} {
                 $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help from hea&d comments..."]) -state normal
             } else {
                 # nothing to do, the menu entry is always disabled
-                # since the above condition is the only place where it can be enableds
+                # since the above condition is the only place where it can be enabled
             }
         } else {
             # display logical line number in current buffer

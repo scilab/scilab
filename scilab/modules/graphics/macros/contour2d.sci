@@ -76,6 +76,9 @@ if ( frameflag == 2 | frameflag == 4 | frameflag == 6 | frameflag == 8 )
   end
   // the rect will be taken into account
   frameflag = frameflag - 1 ;
+elseif (~rectSpecified) then
+  // get rect any way for clipping
+  rect = [min(x),min(y),max(x),max(y)];
 end
 
 k=1;n=yc(k); c=0; level = %inf;
@@ -104,9 +107,17 @@ while k < length(xc)
     cnt = cnt+1
 
    if stripblanks(fpf)<>'' then
-      xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
-	  e = gce();e.clip_state = "off"
-      cnt=cnt+1;
+      labelText = " " + msprintf(fpf,level);
+	  labelPos = [xc(k+1+n/2),yc(k+1+n/2)];
+	  labelBox = stringbox(labelText, labelPos(1), labelPos(2));
+	  // check that the text is not outside the box
+	  // better than clipping to avoid half cut strings
+      if labelBox(1,1) > rect(1) & labelBox(2,1) > rect(2) & ...
+         labelBox(1,3) < rect(3) & labelBox(2,3) < rect(4) then
+        xstring(labelPos(1),labelPos(2),labelText)
+		e = gce();e.clip_state = "off";
+        cnt=cnt+1;
+      end
    end
    k=k+n+1;
 end

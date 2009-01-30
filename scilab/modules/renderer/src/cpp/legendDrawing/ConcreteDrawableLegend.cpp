@@ -26,6 +26,9 @@ extern "C"
 #include "math_graphics.h"
 }
 
+#define DEPTH_FRONT 0.01
+#define DEPTH_OFFSET 0.001
+
 namespace sciGraphics
 {
 	using namespace std;
@@ -277,7 +280,18 @@ namespace sciGraphics
 			sciInitBackground(m_aLines[i], sciGetBackground(legendedObject));
 			sciInitLineWidth(m_aLines[i], sciGetLineWidth(legendedObject));
 			sciInitLineStyle(m_aLines[i], sciGetLineStyle(legendedObject));
-			sciInitIsLine(m_aLines[i], sciGetIsLine(legendedObject));
+
+			if (   sciGetIsLine(legendedObject)
+				  || sciGetPolylineStyle(legendedObject) == 3
+					|| sciGetPolylineStyle(legendedObject) == 6)
+			{
+				// polyline with line drawing or bar plot
+				sciInitIsLine(m_aLines[i], TRUE);
+			}
+			else
+			{
+				sciInitIsLine(m_aLines[i], FALSE);
+			}
 
 			// use clip state of legend object
 			sciInitIsClipping(m_aLines[i], sciGetIsClipping(m_pDrawed));
@@ -366,7 +380,7 @@ namespace sciGraphics
 		sciGetDataBounds(parentSubwin, axesBounds);
 
 		// put the Z coordinate in front of Z buffer
-		double pixelDepth = 0.01;
+		double pixelDepth = DEPTH_FRONT;
 
 		// we got all the information we need, we can compute the 4 corners
 
@@ -510,8 +524,36 @@ namespace sciGraphics
 			// interpolate on left side
 			double interpolationFactor = (i + 0.5) / nblegends;
 
-			if ( (sciGetPolylineStyle(legendedObject)!= 5 ) &&  !sciGetIsFilled(legendedObject))  {
+			if (   sciGetPolylineStyle(legendedObject) == 5
+				  || sciGetPolylineStyle(legendedObject) == 6
+					|| sciGetIsFilled(legendedObject))
+			{
+				// filled polyline or bar
+				double shift=0.25/nblegends;
+				curPolyData[0][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor+shift);
+				curPolyData[0][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor+shift);
+				// use depth offset to avoid depth fitting with box background
+				curPolyData[0][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor+shift) - DEPTH_OFFSET;
 
+				curPolyData[1][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor+shift);
+				curPolyData[1][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor+shift);
+				curPolyData[1][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor+shift) - DEPTH_OFFSET;
+
+				curPolyData[2][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor-shift);
+				curPolyData[2][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor-shift);
+				curPolyData[2][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor-shift) - DEPTH_OFFSET;
+
+				curPolyData[3][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor-shift);
+				curPolyData[3][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor-shift);
+				curPolyData[3][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor-shift) - DEPTH_OFFSET;
+
+				curPoly->n1 = 4;//set polyline length to the max allocated size
+				curPoly->closed = 1;
+				sciInitIsFilled(m_aLines[i],TRUE);
+			}
+			else
+			{
+				// other kind of polylines
 				curPolyData[0][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * interpolationFactor;
 				curPolyData[0][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * interpolationFactor;
 				curPolyData[0][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * interpolationFactor;
@@ -527,28 +569,6 @@ namespace sciGraphics
 				curPoly->n1 = 3; //restrict polyline length the  first three points
 				curPoly->closed = 0;
 				sciInitIsFilled(m_aLines[i],FALSE);
-			}
-			else {
-				double shift=0.25/nblegends;
-				curPolyData[0][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor+shift);
-				curPolyData[0][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor+shift);
-				curPolyData[0][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor+shift);
-
-				curPolyData[1][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor+shift);
-				curPolyData[1][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor+shift);
-				curPolyData[1][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor+shift);
-
-				curPolyData[2][0] = lowerRightCorner[0] + (upperRightCorner[0] - lowerRightCorner[0]) * (interpolationFactor-shift);
-				curPolyData[2][1] = lowerRightCorner[1] + (upperRightCorner[1] - lowerRightCorner[1]) * (interpolationFactor-shift);
-				curPolyData[2][2] = lowerRightCorner[2] + (upperRightCorner[2] - lowerRightCorner[2]) * (interpolationFactor-shift);
-
-				curPolyData[3][0] = lowerLeftCorner[0] + (upperLeftCorner[0] - lowerLeftCorner[0]) * (interpolationFactor-shift);
-				curPolyData[3][1] = lowerLeftCorner[1] + (upperLeftCorner[1] - lowerLeftCorner[1]) * (interpolationFactor-shift);
-				curPolyData[3][2] = lowerLeftCorner[2] + (upperLeftCorner[2] - lowerLeftCorner[2]) * (interpolationFactor-shift);
-
-				curPoly->n1 = 4;//set polyline length to the max allocated size
-				curPoly->closed = 1;
-				sciInitIsFilled(m_aLines[i],TRUE);
 			}
 
 			// convert polyline to user coords

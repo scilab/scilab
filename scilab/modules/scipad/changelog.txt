@@ -1,3 +1,8 @@
+Francois VOGEL, 30/01/09
+ * Fixed bug 4038 (-->scipad;scipad;) by re-adding code mistakenly removed
+   in Scipad 7.17
+ * version --> 7.18
+
 Francois VOGEL, 23/01/09
  * Fixed bug 3997 (Goto line in function jumps to the wrong line number)
  * Fixed bug 3998 (Goto line dialog is not application modal)
