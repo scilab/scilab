@@ -44,6 +44,8 @@
 //** -------------------- LINUX VERSION ------------------------------------------------------------------
 #ifndef _MSC_VER
 
+#ifdef HAVE_CLOCK_GETTIME
+
    #include <time.h>
    #include <sched.h>
 
@@ -66,7 +68,10 @@
            clock_gettime(0, &t_crt); /* get current time */
 		   return (double) t_crt.tv_sec + (double)1.0E-9 * (double) t_crt.tv_nsec; //** the current real time in seconds as double (52 bit resolution) 
          }
+#else
+/* not clock gettime on the system√ ... Macosx case? */
 
+#endif /* have clock_gettime */
 #else
 //** -------------------- WINDOWS VERSION ------------------------------------------------------------------ 
 #include <windows.h>
