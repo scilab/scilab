@@ -7,13 +7,15 @@ New Features:
 * Added elementary functions: acosd acoth asecd asech asec asind
                        atand cosd cotd cscd csc secd sech sec sind tand 
 
-* Scicos documentation in Docbook format (PDF, PS, JAR and other versions now available).
+* Scicos documentation in Docbook format.
+  PDF, PS, JAR and other versions now available.
 
 * Graphics available on all platforms and OS using function usecanvas
   See help page of usecanvas function for more details.
 
 * New function dae (for Differential Algebraic Equations) added.
-  This function is providing the same features as dassl with ode (ordinary differential equations) profile.
+  This function is providing the same features as dassl with ode 
+  (ordinary differential equations) profile.
   For more information, see SEP #2.
 
 * Request 564: completion add '\' or '/' at the end of a directory
@@ -27,17 +29,22 @@ Enhancement:
 
 * Update of some output strings (standard, warning & error)
 
-* Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
+* Update of the example in the dynamic_link modules and in the toolbox skeleton
+  (use the actual filename instead of the .o)
 
 * Scilab uses Atlas 3.9.4 on Windows
 
-* test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
+* test_run() now accepts absolute paths as first input argument. It permits 
+  toolboxes to use this system.
 
 * Directive FRENCH IMPOSED added to test_run() to force the test in french
 
-* Errors occuring when getting or setting graphic/gui handles properties are now teated as any other Scilab errors.
+* Errors occuring when getting or setting graphic/gui handles properties are now 
+  treated as any other Scilab errors.
 
-* Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
+* Now catch the exception when JOGL is crashing because native library 
+  gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and 
+  display a nice message
 
 * Better error report in the documentation build process (docbook)
 
@@ -73,7 +80,8 @@ UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
 Misc:
 =====
 
-* Some dead code removed (SCI/scripts/, SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
+* Some dead code removed (SCI/scripts/, 
+                          SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
 
 
 Compilation:
@@ -84,13 +92,17 @@ Compilation:
 * More warnings in C/C++/Fortran during the compilation process.
 See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 
-* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies)
+* --enable-build-help is now the default behaviour
+  (--disable-build-help removes the check of the dependencies)
 
-* --with-fftw, --with-pvm and --with-umfpack are now the default behaviour (--without-fftw, --without-pvm and --without-umfpack removes their builds)
+* --with-fftw, --with-pvm and --with-umfpack are now the default behaviour 
+  (--without-fftw, --without-pvm and --without-umfpack removes their builds)
 
-* interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
+* interpolation, signal_processing, statistics modules are loaded dynamically 
+  by Scilab.
 
-* cc and cc-* are not longer consider as GNU C compiler when detecting the compiler (use gcc & gcc-*) because it was causing some issues under Solaris
+* cc and cc-* are not longer consider as GNU C compiler when detecting the 
+  compiler (use gcc & gcc-*) because it was causing some issues under Solaris
 
 * By default, under Linux/Unix/Macosx, static libraries are no longer built.
 
@@ -111,21 +123,27 @@ Bug fixes:
 
 * Some bashims in the starting script were causing startup issues.
 
-* bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is different from the one given in the manual
+* bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is 
+                   different from the one given in the manual
 
-* bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was caused by a dead lock in the TCL thread (we were trying to get access to a TCL interpretor which was locked).
+* bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
+                   caused by a dead lock in the TCL thread (we were trying to 
+                   get access to a TCL interpretor which was locked).
 
-* bug 3608 fixed - Scilab freezes when executing a combination of "eventhandler", "xchange" and "plot"
+* bug 3608 fixed - Scilab freezes when executing a combination of 
+                   "eventhandler", "xchange" and "plot"
 
 * bug 3749 fixed - Scilab error when building scilab help in HTML
 
 * bug 3753 fixed - drawaxis produces unreadable labels
 
-* bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent.)
+* bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent)
 
 * bug 3755 fixed - print files on some Windows.
 
-* bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without heading .3 in the lib name). Thanks to Andrea Florio for providing the patch
+* bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without
+                   heading .3 in the lib name). Thanks to Andrea Florio for 
+                   providing the patch
 
 * bug 3867 fixed - On the branch 5.0 nightly build 64 bits, the libmatio is
                    defined with the GLIBC_2.7 as mandatory. There is no reason
