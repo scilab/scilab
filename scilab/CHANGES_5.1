@@ -7,6 +7,20 @@ New Features:
 * Added elementary functions: acosd acoth asecd asech asec asind
                        atand cosd cotd cscd csc secd sech sec sind tand 
 
+* Scicos documentation in Docbook format (PDF, PS, JAR and other versions now available).
+
+* Graphics available on all platforms and OS using function usecanvas
+  See help page of usecanvas function for more details.
+
+* New function dae (for Differential Algebraic Equations) added.
+  This function is providing the same features as dassl with ode (ordinary differential equations) profile.
+  For more information, see SEP #2.
+
+* Request 564: completion add '\' or '/' at the end of a directory
+
+* Added uigetfile (Functions xgetfile and tk_getfile are now obsolete).
+  For more information, see SEP #8.
+
 
 Enhancement:
 ============
@@ -21,12 +35,6 @@ Enhancement:
 
 * Directive FRENCH IMPOSED added to test_run() to force the test in french
 
-* New function dae (for Differential Algebraic Equations) added.
-This function is providing the same features as dassl with ode (ordinary differential equations) profile.
-For more information, see SEP #2.
-
-* Request 564 : completion add '\' or '/' at the end of a directory
-
 * Errors occuring when getting or setting graphic/gui handles properties are now teated as any other Scilab errors.
 
 * Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
@@ -35,10 +43,15 @@ For more information, see SEP #2.
 
 * Binary versions embed jre 1.6.0_11
 
-* Under Linux/Unix, do not launch Scilab in background when called without 
-  argument
+* Under Linux/Unix, do not launch Scilab in background when called without argument
 
 * icons are now installed into pkgdatadir/icons/
+
+* Graphics stabilty improved.
+
+* Graphics speed improved.
+
+* Menubar/toolbar update improved (particularly when (un)docking windows).
 
 
 Tests:
