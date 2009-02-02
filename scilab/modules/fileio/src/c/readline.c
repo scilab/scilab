@@ -21,6 +21,7 @@
 #include "readline.h"
 #include "filesmanagement.h"
 #include "charEncoding.h"
+#include "stack-def.h"
 /*--------------------------------------------------------------------------*/
 #if (defined(sun) && !defined(SYSV)) || defined(sgi)
 #define SEEK_SET 0

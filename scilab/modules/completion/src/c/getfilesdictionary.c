@@ -22,6 +22,7 @@
 #include "machine.h"
 #include "isdir.h"
 #include "charEncoding.h"
+#include "stack-def.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
