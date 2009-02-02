@@ -16,6 +16,7 @@
     <method name="setGridParameters" returnType="void">
       <param type="int" name="gridColor" />
       <param type="float" name="gridThickness" />
+      <param type="boolean" name="drawFront" />
     </method>
     <method name="drawGrid" returnType="void">
       <param type="double[]" name="firstAxisStart" />

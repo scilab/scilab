@@ -178,3 +178,4 @@ sciZoomObject
 unzoomSubwin
 sciIsAutomaticallyRedrawn
 sciSetFontStyle
+sciGetGridFront

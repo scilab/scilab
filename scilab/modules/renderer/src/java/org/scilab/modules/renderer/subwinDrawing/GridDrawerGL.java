@@ -29,6 +29,7 @@ public class GridDrawerGL extends DrawableObjectGL {
 
 	private int gridColor;
 	private float gridThickness;
+	private boolean drawFront;
 	
 	private double[] gridPositions;
 	
@@ -81,6 +82,21 @@ public class GridDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
+	 * Specify whether the grid should be drawn above or behind other objects. 
+	 * @param drawFront if true draw above, if false draw behind
+	 */
+	public void setDrawFront(boolean drawFront) {
+		this.drawFront = drawFront;
+	}
+	
+	/**
+	 * @return true if the grid is drawn above other objects, false otherwise
+	 */
+	public boolean isDrawingFront() {
+		return drawFront;
+	}
+	
+	/**
 	 * @param index index of the grid line
 	 * @return Position along axis for the index grid line
 	 */
@@ -106,10 +122,13 @@ public class GridDrawerGL extends DrawableObjectGL {
 	 * Set all the constant parameters of the grid
 	 * @param gridColor color index of the color
 	 * @param gridThickness thickness in pixels
+	 * @param drawFront if true draw the grid above other objects
+	 *                  if false draw behind
 	 */
-	public void setGridParameters(int gridColor, float gridThickness) {
+	public void setGridParameters(int gridColor, float gridThickness, boolean drawFront) {
 		setGridColor(gridColor);
 		setGridThickness(gridThickness);
+		setDrawFront(drawFront);
 	}
 	
 	/**
@@ -207,9 +226,14 @@ public class GridDrawerGL extends DrawableObjectGL {
 		double[] color = getGridColor();
 		gl.glColor3d(color[0], color[1], color[2]);
 		
-		// draw grid behind
+		// draw grid above or behind
 		CoordinateTransformation transform = getParentFigureGL().getCoordinateTransformation();
-		transform.drawBack(gl);
+		if (isDrawingFront()) {
+			transform.drawFront(gl);
+		} else {
+			transform.drawBack(gl);
+		}
+		
 		//gl.glDisable(GL.GL_DEPTH_TEST);
 		gl.glBegin(GL.GL_LINES);
 		for (int i = 0; i < startingPoints.length; i++) {
@@ -229,6 +253,7 @@ public class GridDrawerGL extends DrawableObjectGL {
 			
 		}
 		gl.glEnd();
+		// disable front or back drawing
 		//gl.glEnable(GL.GL_DEPTH_TEST);
 		transform.drawMiddle(gl);
 		
