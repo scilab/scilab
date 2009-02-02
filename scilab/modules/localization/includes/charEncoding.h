@@ -56,3 +56,4 @@ char* readNextUTFChar(char* utfstream,int* size);
 
 
 #endif /* __CHARENCODING_H__ */
+
