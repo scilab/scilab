@@ -20,14 +20,14 @@
 #ifdef HAVE_LIBINTL_H
 /* Have been able to find the libintl.h file on the system */
 #include <libintl.h>
-#include "charEncoding.h" /* localeToUTF */
+#include "stack-def.h"
 /* This piece of code has been written because of the bug #4005
  * in version 5.0, we were using two localization system (native and 
  * Java).
  * Now, only the native one is used. 
  * However, for an unknown reason, gettext() is not working. Only 
  * dgettext is */
-#define scigettext(String1) localeToUTF(dgettext(NAMELOCALIZATIONDOMAIN,String1))
+#define scigettext(String1) dgettext(NAMELOCALIZATIONDOMAIN,String1)
 
 #else
 /* Restore the normal behaviour ... all the string will be in english */
