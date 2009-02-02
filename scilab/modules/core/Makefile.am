@@ -426,6 +426,7 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/stamp-h1 \
 includes/syncexec.h \
+includes/scisparse.h \
 includes/texmacs.h \
 includes/timerEvents.h \
 includes/tmpdir.h \
