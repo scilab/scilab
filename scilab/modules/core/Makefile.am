@@ -84,7 +84,8 @@ src/c/dynamic_gateways.c \
 src/c/readGateway.c \
 src/c/comparehandles.c \
 src/c/setPrecisionFPU.c \
-src/c/LaunchScilabSignal.c
+src/c/LaunchScilabSignal.c \
+src/c/getos.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -304,8 +305,8 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
             -I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-                        -I$(top_srcdir)/modules/intersci/includes \
-                        -I$(top_srcdir)/modules/action_binding/includes \
+            -I$(top_srcdir)/modules/intersci/includes \
+            -I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
@@ -434,6 +435,7 @@ includes/x_main.h \
 includes/xscion.h \
 includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
-includes/LaunchScilabSignal.h
+includes/LaunchScilabSignal.h \
+includes/getos.h
 
 include $(top_srcdir)/Makefile.incl.am

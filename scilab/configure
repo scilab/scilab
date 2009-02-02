@@ -1665,10 +1665,10 @@ Optional Packages:
   --with-ant=DIR          Use ant from DIR
   --without-scicos        Compile without Scicos
   --without-ocaml         Do not compile ocaml modules (modelica)
-  --with-fftw             Compile with the FFTW 3 library
+  --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
-  --with-pvm              Compile with PVM library
+  --without-pvm           Disable the interface to the PVM library
   --with-pvm-include=DIR  Set the path to the PVM headers
   --with-pvm-library=DIR  Set the path to the PVM library
   --with-libxml2=PREFIX   Set the path to your libxml2 installation
@@ -1676,7 +1676,7 @@ Optional Packages:
                           library
   --with-lapack-library=DIR
                           set the path to the LAPACK library
-  --with-umfpack          Compile with the UMFPACK library
+  --without-umfpack       Disable the interface to the UMFPACK library
   --with-umfpack-library=DIR
                           Set the path to the UMFPACK libraries
   --with-umfpack-include=DIR
@@ -17821,7 +17821,7 @@ fi
 
 
 FFTW_ENABLE=no
-if test "$with_fftw" = yes; then
+if test "$with_fftw" != no; then
 
 
 
@@ -18292,7 +18292,7 @@ _ACEOF
 fi
 
 
- if test "$with_fftw" = yes; then
+ if test "$with_fftw" != no; then
   FFTW_TRUE=
   FFTW_FALSE='#'
 else
@@ -18327,7 +18327,7 @@ fi
 
 
 PVM_ENABLE=no
-if test "$with_pvm" = yes; then
+if test "$with_pvm" != no; then
 
 
    { echo "$as_me:$LINENO: checking for PVM" >&5
@@ -18950,7 +18950,7 @@ fi
 fi
 
 
- if test "$with_pvm" = yes; then
+ if test "$with_pvm" != no; then
   PVM_TRUE=
   PVM_FALSE='#'
 else
@@ -21898,7 +21898,7 @@ fi
 
 
 UMFPACK_ENABLE=no
-if test "$with_umfpack" = yes; then
+if test "$with_umfpack" != no; then
 
 
 BLAS_LIBS="$BLAS_LIBS"
@@ -22848,7 +22848,7 @@ _ACEOF
 fi
 
 
- if test "$with_umfpack" = yes; then
+ if test "$with_umfpack" != no; then
   UMFPACK_TRUE=
   UMFPACK_FALSE='#'
 else

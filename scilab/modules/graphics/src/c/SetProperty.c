@@ -3778,7 +3778,7 @@ int sciInitColorRange(sciPointObj * pObj, int subset[2])
 int sciSetColorRange(sciPointObj * pObj, int subset[2])
 {
 
-	double curColorRange[2];
+	int curColorRange[2];
 	sciGetColorRange(pObj, curColorRange);
 	if (curColorRange[0] == subset[0] && curColorRange[1] == subset[1])
 	{
@@ -3810,7 +3810,7 @@ int sciInitOutsideColors(sciPointObj * pObj, int colors[2])
 int sciSetOutsideColors(sciPointObj * pObj, int colors[2])
 {
 
-	double curColors[2];
+	int curColors[2];
 	sciGetOutsideColor(pObj, curColors);
 	if (curColors[0] == colors[0] && curColors[1] == colors[1])
 	{

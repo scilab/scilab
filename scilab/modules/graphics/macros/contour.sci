@@ -86,6 +86,8 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
     
     cnt = cnt+1
     if stripblanks(fpf)<>'' then
+	  // don't clip as in contour2d since we are in 3D here
+	  // and stringbox gives data in 2D
       xstring(xc(k+1+n/2),yc(k+1+n/2)," "+msprintf(fpf,level))
       e=gce();e.data(3)=zz;e.clip_state = "off"
       cnt=cnt+1

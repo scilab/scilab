@@ -36,7 +36,7 @@
     linkend="graph_data_structure">graph_data_structure</link>). La fonction
     <link linkend="ge_old2new">ge_old2new</link> permet de traduire les
     anciennes structures dans la nouvelle représentation. La fonction <link
-    linkend="load_graph">load_graph</link> fait automatiquement la conversion
+    linkend="update_graph">update_graph</link> fait automatiquement la conversion
     si le fichier de sauvegarde correspond a l'ancienne version.</para>
   </refsection>
 </refentry>

@@ -98,9 +98,6 @@ convert -delay 10  img*.gif anim.gif
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="xtape">xtape</link>
-      </member>
-      <member>
         <link linkend="xbasc">xbasc</link>
       </member>
     </simplelist>

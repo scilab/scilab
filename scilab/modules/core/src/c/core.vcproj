@@ -451,6 +451,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\getos.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getstaticdebuginfo.c"
 				>
 			</File>
@@ -1008,11 +1012,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1041,6 +1045,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\getmodules.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getos.h"
 				>
 			</File>
 			<File
@@ -1193,10 +1201,6 @@
 			</File>
 			<File
 				RelativePath=".\scicurdir.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\Scierror.h"
 				>
 			</File>
 			<File

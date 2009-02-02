@@ -831,16 +831,16 @@ AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 #################
 
 AC_ARG_WITH(fftw,
-    AC_HELP_STRING([--with-fftw],[Compile with the FFTW 3 library]))
+    AC_HELP_STRING([--without-fftw],[Disable the interface to the FFTW 3 library]))
 
 FFTW_ENABLE=no
-if test "$with_fftw" = yes; then
+if test "$with_fftw" != no; then
    AC_FFTW()
    FFTW_ENABLE=yes
 fi
 
 AC_SUBST(FFTW_ENABLE)
-AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
+AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
 #################
 ## MPI
@@ -861,16 +861,16 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 #################
 
 AC_ARG_WITH(pvm,
-    AC_HELP_STRING([--with-pvm],[Compile with PVM library]))
+    AC_HELP_STRING([--without-pvm],[Disable the interface to the PVM library]))
 
 PVM_ENABLE=no
-if test "$with_pvm" = yes; then
+if test "$with_pvm" != no; then
    AC_PVM()	
    PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
 
-AM_CONDITIONAL(PVM, test "$with_pvm" = yes)
+AM_CONDITIONAL(PVM, test "$with_pvm" != no)
 
 #######################
 ## Test for libxml
@@ -939,16 +939,16 @@ AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
 #################
 
 AC_ARG_WITH(umfpack,
-    AC_HELP_STRING([--with-umfpack],[Compile with the UMFPACK library]))
+    AC_HELP_STRING([--without-umfpack],[Disable the interface to the UMFPACK library]))
 
 UMFPACK_ENABLE=no
-if test "$with_umfpack" = yes; then
+if test "$with_umfpack" != no; then
    AC_UMFPACK([$BLAS_LIBS])
    UMFPACK_ENABLE=yes
 fi
 
 AC_SUBST(UMFPACK_ENABLE)
-AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
+AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 
 #######################
 ## Test for PCRE

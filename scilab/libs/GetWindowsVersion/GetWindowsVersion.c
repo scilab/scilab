@@ -26,13 +26,21 @@ IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void)
 			{
 				if( osvi.wProductType == VER_NT_WORKSTATION ) 
 				{
-					if (IsWow64()) return OS_WIN32_WINDOWS_SEVEN_64;
-					else return OS_WIN32_WINDOWS_SEVEN;
+					#ifdef  _WIN64
+						return OS_WIN32_WINDOWS_SEVEN_64;
+					#else
+						if (IsWow64()) return OS_WIN32_WINDOWS_SEVEN_64;
+						else return OS_WIN32_WINDOWS_SEVEN;
+					#endif
 				}
 				else
 				{
-					if (IsWow64()) return OS_WIN32_WINDOWS_SEVEN_SERVER_64;
-					else return  OS_WIN32_WINDOWS_SEVEN_SERVER;
+					#ifdef  _WIN64
+						return OS_WIN32_WINDOWS_SEVEN_SERVER_64;
+					#else
+						if (IsWow64()) return OS_WIN32_WINDOWS_SEVEN_SERVER_64;
+						else return  OS_WIN32_WINDOWS_SEVEN_SERVER;
+					#endif
 				}
 			}
 
@@ -40,13 +48,21 @@ IMPORT_EXPORT_GETWINDOWSVERSION_DLL int GetWindowsVersion(void)
 			{
 				if( osvi.wProductType == VER_NT_WORKSTATION ) 
 				{
-					if (IsWow64()) return OS_WIN32_WINDOWS_VISTA_64;
-					else return OS_WIN32_WINDOWS_VISTA;
+					#ifdef  _WIN64
+						return OS_WIN32_WINDOWS_VISTA_64;
+					#else
+						if (IsWow64()) return OS_WIN32_WINDOWS_VISTA_64;
+						else return OS_WIN32_WINDOWS_VISTA;
+					#endif
 				}
 				else
 				{
-					if (IsWow64()) return OS_WIN32_WINDOWS_SERVER_2008_64;
-					else return  OS_WIN32_WINDOWS_SERVER_2008;
+					#ifdef  _WIN64
+						return OS_WIN32_WINDOWS_SERVER_2008_64;
+					#else
+						if (IsWow64()) return OS_WIN32_WINDOWS_SERVER_2008_64;
+						else return  OS_WIN32_WINDOWS_SERVER_2008;
+					#endif
 				}
 			}
 
