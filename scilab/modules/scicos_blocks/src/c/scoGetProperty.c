@@ -62,12 +62,9 @@
    double scoGetRealTime(void) 
          {
            struct timespec t_crt      ; //** the current real time as "timespec" (32+32 bit) data structure  
-           double d_current_real_time ; //** the current real time in seconds as double (52 bit resolution)  
- 
-           clock_gettime(0, &t_crt); /* get current time */
-           d_current_real_time = (double) t_crt.tv_sec + (double)1.0E-9 * (double) t_crt.tv_nsec;
-           return d_current_real_time ; 
 
+           clock_gettime(0, &t_crt); /* get current time */
+		   return (double) t_crt.tv_sec + (double)1.0E-9 * (double) t_crt.tv_nsec; //** the current real time in seconds as double (52 bit resolution) 
          }
 
 #else
