@@ -18950,7 +18950,7 @@ fi
 fi
 
 
- if test "$with_pvm" = no; then
+ if test "$with_pvm" != no; then
   PVM_TRUE=
   PVM_FALSE='#'
 else

@@ -870,7 +870,7 @@ if test "$with_pvm" != no; then
 fi
 AC_SUBST(PVM_ENABLE)
 
-AM_CONDITIONAL(PVM, test "$with_pvm" = no)
+AM_CONDITIONAL(PVM, test "$with_pvm" != no)
 
 #######################
 ## Test for libxml
