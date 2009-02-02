@@ -1,53 +1,71 @@
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
 
-Tests:
-======
+New Features:
+=============
 
-* Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
 * Added elementary functions: acosd acoth asecd asech asec asind
                        atand cosd cotd cscd csc secd sech sec sind tand 
 
-Compilation:
-============
+* Scicos documentation in Docbook format.
+  PDF, PS, JAR and other versions now available.
 
-* libmatio is now detected thanks to pkg-config
+* Graphics available on all platforms and OS using function usecanvas
+  See help page of usecanvas function for more details.
 
-* More warnings in C/C++/Fortran during the compilation process.
-See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
+* New function dae (for Differential Algebraic Equations) added.
+  This function is providing the same features as dassl with ode 
+  (ordinary differential equations) profile.
+  For more information, see SEP #2.
 
-* --enable-build-help is now the default behaviour (--disable-build-help removes the check of the dependencies)
+* Request 564: completion add '\' or '/' at the end of a directory
 
-* interpolation, signal_processing, statistics modules are loaded dynamically by scilab.
+* Added uigetfile (Functions xgetfile and tk_getfile are now obsolete).
+  For more information, see SEP #8.
 
-* cc and cc-* are not longer consider as GNU C compiler when detecting the compiler (use gcc & gcc-*) because it was causing some issues under Solaris
-
-* By default, under Linux/Unix/Macosx, static libraries are no longer built.
 
 Enhancement:
 ============
 
 * Update of some output strings (standard, warning & error)
 
-* Update of the example in the dynamic_link modules and in the toolbox skeleton (use the actual filename instead of the .o)
+* Update of the example in the dynamic_link modules and in the toolbox skeleton
+  (use the actual filename instead of the .o)
 
 * Scilab uses Atlas 3.9.4 on Windows
 
-* test_run() now accepts absolute paths as first input argument. It permits toolboxes to use this system.
+* test_run() now accepts absolute paths as first input argument. It permits 
+  toolboxes to use this system.
 
 * Directive FRENCH IMPOSED added to test_run() to force the test in french
 
-* New function dae (for Differential Algebraic Equations) added.
-This function is providing the same features as dassl with ode (ordinary differential equations) profile.
-For more information, see SEP #2.
+* Errors occuring when getting or setting graphic/gui handles properties are now 
+  treated as any other Scilab errors.
 
-* Request 564 : completion add '\' or '/' at the end of a directory
-
-* Errors occuring when getting or setting graphic/gui handles properties are now teated as any other Scilab errors.
-
-* Now catch the exception when JOGL is crashing because native library gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and display a nice message
+* Now catch the exception when JOGL is crashing because native library 
+  gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and 
+  display a nice message
 
 * Better error report in the documentation build process (docbook)
+
+* Binary versions embed jre 1.6.0_11
+
+* Under Linux/Unix, do not launch Scilab in background when called without argument
+
+* icons are now installed into pkgdatadir/icons/
+
+* Graphics stabilty improved.
+
+* Graphics speed improved.
+
+* Menubar/toolbar update improved (particularly when (un)docking windows).
+
+
+Tests:
+======
+
+* Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
+
 
 Internationalization:
 =====================
@@ -59,12 +77,103 @@ UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
 (Unitary tests provided) 
 
 
+Misc:
+=====
+
+* Some dead code removed (SCI/scripts/, 
+                          SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
+
+
+Compilation:
+============
+
+* libmatio is now detected thanks to pkg-config
+
+* More warnings in C/C++/Fortran during the compilation process.
+See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
+
+* --enable-build-help is now the default behaviour
+  (--disable-build-help removes the check of the dependencies)
+
+* --with-fftw, --with-pvm and --with-umfpack are now the default behaviour 
+  (--without-fftw, --without-pvm and --without-umfpack removes their builds)
+
+* interpolation, signal_processing, statistics modules are loaded dynamically 
+  by Scilab.
+
+* cc and cc-* are not longer consider as GNU C compiler when detecting the 
+  compiler (use gcc & gcc-*) because it was causing some issues under Solaris
+
+* By default, under Linux/Unix/Macosx, static libraries are no longer built.
+
+* Do not init TK when building the doc ("make doc")... in order to be able to 
+build Scilab through ssh
+
+* Giws has lost it .py extension
+
+* Force the build for the french documentation.
+
+
 Bug fixes:
 ==========
 
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
+
+* Some bashims in the starting script were causing startup issues.
+
+* bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is 
+                   different from the one given in the manual
+
+* bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
+                   caused by a dead lock in the TCL thread (we were trying to 
+                   get access to a TCL interpretor which was locked).
+
+* bug 3608 fixed - Scilab freezes when executing a combination of 
+                   "eventhandler", "xchange" and "plot"
+
+* bug 3749 fixed - Scilab error when building scilab help in HTML
+
+* bug 3753 fixed - drawaxis produces unreadable labels
+
+* bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent)
+
+* bug 3755 fixed - print files on some Windows.
+
+* bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without
+                   heading .3 in the lib name). Thanks to Andrea Florio for 
+                   providing the patch
+
+* bug 3867 fixed - On the branch 5.0 nightly build 64 bits, the libmatio is
+                   defined with the GLIBC_2.7 as mandatory. There is no reason
+                   for this and it prevents Scilab binary to run under Redhat
+                   and Centos.
+                   
+* bug 3868 fixed - In the nightly 64 bits build of the branch 5.0, jogl & gluegen
+                   dyn lib are 32bits (should be 64 bits).
+                  
+* bug 3869 fixed - In the binaries, we have some useless files in thirdparty/tk8.5/demos/
+                   which are causing some issues with the LSB.
+                   
+* bug 3870 fixed - In the binaries, we incorporate checkstyle in thirdparty/checkstyle/
+                   which are causing some issues with the LSB (btw, it is useless in the binary)
+                   
+* bug 3874 fixed - When building the macros, only replaces the extension (.sci => .bin)
+
+* bug 3877 fixed - No use of interp->result any more in the Tcl interface - Compatible with Tcl/Tk 8.6
+
+* bug 3878 fixed - Under mandriva, the javahelp package is not called jhall but javahelp2.
+
+* bug 3879 fixed - Under mandriva, the batik package is not called batik but batik-all.
+
+* bug 3880 fixed - Bug with p_margin and g_margin fixed.
+
+* bug 3886 fixed - strsubst with regular expression was working only on the first element of the vector.
+
+* bug 3407 fixed - Line number where error is reported changed in Scilab may be wrong
+
+* bug 3875 fixed - No images in PDF documentation
 
 * bug 1582 fixed - If parametric 3d curve values are out of given ebox of 3d axes, this curve values are netherveless plotted.
 
@@ -272,6 +381,9 @@ Bug fixes:
 
 * bug 4026 fixed - With the "unix" command under Windows, it is not possible to run an external program which has a long path name.
 
+* bug 4037 fixed - wavread detects broadcast file format and return a error (not yet managed)
+
+* bug 4046 fixed - core/includes/scisparse.h wasn't installed
 
 Obsolete functions removed :
 ============================
