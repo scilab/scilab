@@ -20,6 +20,7 @@
 extern "C" {
 #include "getScilabJavaVM.h"
 #include "charEncoding.h"
+#include "stack-def.h"
 }
 
 using namespace  org_scilab_modules_gui_bridge;
