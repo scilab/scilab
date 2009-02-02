@@ -597,6 +597,10 @@ if test "$rest" = "yes"; then
     case $sciarg in
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	      ;;
+      -psn_*)
+	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
+	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
+	    ;;
       -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;
