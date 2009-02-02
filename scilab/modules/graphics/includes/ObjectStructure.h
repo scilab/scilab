@@ -691,7 +691,9 @@ typedef struct
   double ZRect[6]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
 
   char logflags[3]; /* Z has a logflag now F.Leray 03.11.04 */
-  int grid[3];
+  int grid[3]; /* Specify color of grid for each axis. If -1, no grid is drawn */
+	BOOL gridFront; /* If TRUE grid is drawn in front, if FALSE it is drawn behind other objects */
+
   /*   BOOL isaxes; */
 
   BOOL is3d;

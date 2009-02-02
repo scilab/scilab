@@ -102,6 +102,14 @@
             using the color given indexed by the grid value.</para>
               </listitem>
             </varlistentry>
+			<varlistentry>
+              <term>grid_position: </term>
+              <listitem>
+                <para>This character string specifies the grid position compared with other graphic entities.
+				Its value can be either <literal>"foreground"</literal>
+				to draw the grid ahead other graphic entities or <literal>"background"</literal> to draw the grid behind.</para>
+              </listitem>
+            </varlistentry>
             <varlistentry>
               <term>x_location: </term>
               <listitem>

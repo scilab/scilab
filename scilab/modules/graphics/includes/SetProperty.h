@@ -267,6 +267,9 @@ int sciSetOutsideColors(sciPointObj * pObj, int colors[2]); /* SET */
 int sciInitZBounds(sciPointObj * pObj, double bounds[2]);
 int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
 
+BOOL sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
+BOOL sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
+
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/
