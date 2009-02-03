@@ -27,7 +27,7 @@
 /*------------------------------------------------------------------------*/
 int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-
+	int status;
   if ( !isParameterStringMatrix( valueType ) )
   {
     Scierror(999, _("Incompatible type for property %s.\n"),"event_handler_enable") ;
@@ -42,14 +42,19 @@ int set_event_handler_enable_property( sciPointObj * pobj, size_t stackPointer, 
 
   if ( isStringParamEqual( stackPointer, "on" ) )
   {
-    return sciSetIsEventHandlerEnable( pobj, TRUE ) ;
+    status = sciSetIsEventHandlerEnable( pobj, TRUE ) ;
   }
   else if ( isStringParamEqual( stackPointer, "off" ) )
   {
-    return sciSetIsEventHandlerEnable( pobj, FALSE ) ;
+    status = sciSetIsEventHandlerEnable( pobj, FALSE ) ;
   }
-  Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_event_handler_enable_property",2,"on","off");
-  return SET_PROPERTY_ERROR ;
+	else
+	{
+		Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_event_handler_enable_property",2,"on","off");
+		return SET_PROPERTY_ERROR ;
+	}
+
+	return sciSetNoRedrawStatus((SetPropertyStatus)status);
 
 }
 /*------------------------------------------------------------------------*/
