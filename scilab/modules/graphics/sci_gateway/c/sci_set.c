@@ -214,7 +214,7 @@ int sci_set(char *fname, unsigned long fname_len)
 
 			parentFigure = sciGetParentFigure(pobj);
 
-			if (sciIsAutomaticallyRedrawn(pobj) && parentFigure != NULL)
+			if (!sciIsAutomaticallyRedrawn(pobj) && parentFigure != NULL)
 			{
 				/* try to protect figure if possible */
 				startFigureDataWriting(parentFigure);
