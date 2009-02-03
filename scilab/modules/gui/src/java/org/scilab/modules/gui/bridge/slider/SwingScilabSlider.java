@@ -49,6 +49,8 @@ public class SwingScilabSlider extends JScrollBar implements SimpleSlider {
 	 */
 	public SwingScilabSlider() {
 		super();
+		// needed to have slider working with GLCanvas
+		setOpaque(true);
 	}
 
 	/**

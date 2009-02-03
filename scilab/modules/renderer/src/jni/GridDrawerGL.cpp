@@ -104,7 +104,7 @@ voidinitializeDrawingjintID=NULL;
 voidendDrawingID=NULL; 
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
-voidsetGridParametersjintjfloatID=NULL; 
+voidsetGridParametersjintjfloatjbooleanID=NULL; 
 voiddrawGridjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 voidshowGridID=NULL; 
 
@@ -134,7 +134,7 @@ voidinitializeDrawingjintID=NULL;
 voidendDrawingID=NULL; 
 voidshowjintID=NULL; 
 voiddestroyjintID=NULL; 
-voidsetGridParametersjintjfloatID=NULL; 
+voidsetGridParametersjintjfloatjbooleanID=NULL; 
 voiddrawGridjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayjdoubleArrayID=NULL; 
 voidshowGridID=NULL; 
 
@@ -236,16 +236,18 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void GridDrawerGL::setGridParameters (int gridColor, float gridThickness){
+void GridDrawerGL::setGridParameters (int gridColor, float gridThickness, bool drawFront){
 
 JNIEnv * curEnv = getCurrentEnv();
 
-if (voidsetGridParametersjintjfloatID==NULL) { /* Use the cache Luke */ voidsetGridParametersjintjfloatID = curEnv->GetMethodID(this->instanceClass, "setGridParameters", "(IF)V" ) ;
-if (voidsetGridParametersjintjfloatID == NULL) {
+if (voidsetGridParametersjintjfloatjbooleanID==NULL) { /* Use the cache Luke */ voidsetGridParametersjintjfloatjbooleanID = curEnv->GetMethodID(this->instanceClass, "setGridParameters", "(IFZ)V" ) ;
+if (voidsetGridParametersjintjfloatjbooleanID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "setGridParameters");
 }
 }
-                         curEnv->CallVoidMethod( this->instance, voidsetGridParametersjintjfloatID ,gridColor, gridThickness);
+jboolean drawFront_ = ((bool) drawFront ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetGridParametersjintjfloatjbooleanID ,gridColor, gridThickness, drawFront_);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

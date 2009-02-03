@@ -1,8 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Allan Cornet
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,8 +11,8 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file: set_isoview_property.c                                           */
-/* desc : function to modify in Scilab the isoview field of               */
+/* file: set_grid_position_property.c                                     */
+/* desc : function to modify in Scilab the grid_position field of         */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
@@ -27,31 +25,32 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int set_isoview_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_grid_position_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+
+	if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+  {
+    Scierror(999, _("%s property does not exist for this handle.\n"),"grid_position") ;
+    return SET_PROPERTY_ERROR ;
+  }
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    Scierror(999, _("Incompatible type for property %s.\n"),"isoview") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"grid_position") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+  if ( isStringParamEqual( stackPointer, "foreground" ) )
   {
-    Scierror(999, _("%s property does not exist for this handle.\n"),"isoview") ;
-    return SET_PROPERTY_ERROR ;
+		sciSetGridFront(pobj, TRUE);
   }
-  if ( isStringParamEqual( stackPointer, "on" ) )
+  else if ( isStringParamEqual( stackPointer, "background" ) )
   {
-    pSUBWIN_FEATURE (pobj)->isoview = TRUE ;
-  }
-  else if ( isStringParamEqual( stackPointer, "off" ) )
-  {
-    pSUBWIN_FEATURE (pobj)->isoview = FALSE ;
+    sciSetGridFront(pobj, FALSE);
   }
   else
   {
-    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off") ;
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"foreground","background") ;
     return SET_PROPERTY_ERROR ;
   }
 

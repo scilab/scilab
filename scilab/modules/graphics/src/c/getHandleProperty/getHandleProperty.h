@@ -177,5 +177,6 @@ int get_legend_location_property(      sciPointObj * pobj ) ;
 int get_filled_property(               sciPointObj * pobj ) ;
 int get_color_range_property(          sciPointObj * pobj ) ;
 int get_outside_colors_property(       sciPointObj * pobj ) ;
+int get_grid_position_property(        sciPointObj * pobj ) ;
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

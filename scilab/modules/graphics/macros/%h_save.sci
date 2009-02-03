@@ -93,6 +93,8 @@ function save_graphichandle(h,fd)
     mput(size(h.axes_reverse,'*'),characterFormat,fd); // axes_reverse
     mput(bool2s(h.axes_reverse=='on'),characterFormat,fd) ;
     mput(size(h.grid,'*'),characterFormat,fd); mput(h.grid,'il',fd); // grid
+	mput(length(h.grid_position),characterFormat,fd); // grid_position
+    mput(ascii(h.grid_position),characterFormat,fd);
     mput(length(h.x_location),characterFormat,fd); // x_location
     mput(ascii(h.x_location),characterFormat,fd);
     mput(length(h.y_location),characterFormat,fd); // y_location
