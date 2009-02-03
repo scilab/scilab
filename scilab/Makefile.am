@@ -94,7 +94,14 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
 iconsdir=$(pkgdatadir)/icons/
-icons_DATA = $(top_srcdir)/icons/scilab.xpm
+icons_DATA = $(top_srcdir)/icons/scilab.xpm \
+icons/puffin_128.xpm \
+icons/puffin_256.xpm \
+icons/puffin_32.xpm \
+icons/puffin_48.xpm \
+icons/puffin.icns \
+icons/scilab.icns
+
 
 profilingdir=$(pkgdatadir)/tools/profiling/
 profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp

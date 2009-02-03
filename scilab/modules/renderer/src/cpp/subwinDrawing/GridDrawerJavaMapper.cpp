@@ -74,9 +74,9 @@ void GridDrawerJavaMapper::drawGrid(const double firstAxisStart[3], const double
                           (double *) relativeTicksPositions, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void GridDrawerJavaMapper::setGridParameters(int gridColor, float gridThickness)
+void GridDrawerJavaMapper::setGridParameters(int gridColor, float gridThickness, bool drawFront)
 {
-  m_pJavaObject->setGridParameters(gridColor, gridThickness);
+  m_pJavaObject->setGridParameters(gridColor, gridThickness, drawFront);
 }
 /*--------------------------------------------------------------------------*/
 }

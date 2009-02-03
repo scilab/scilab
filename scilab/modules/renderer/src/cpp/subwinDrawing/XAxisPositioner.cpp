@@ -13,6 +13,11 @@
 
 #include "XAxisPositioner.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -43,8 +48,17 @@ void XAxisPositioner::getGridEdges(double startBound1[3], double startBound2[3],
   startBound2[1] = yCoordinate;
   startBound2[2] = zCoordinate;
 
-  // middle points, invert Y bounds
-  yCoordinate = findOtherYBound(yCoordinate);
+  // middle points
+	if (sciGetGridFront(m_pSubwin->getDrawedObject()))
+	{
+		// invert Z bound
+		zCoordinate = findOtherZBound(zCoordinate);
+	}
+	else
+	{
+		//invert Y bounds
+		yCoordinate = findOtherYBound(yCoordinate);
+	}
   middleBound1[0] = m_dXmin;
   middleBound1[1] = yCoordinate;
   middleBound1[2] = zCoordinate;
@@ -53,8 +67,17 @@ void XAxisPositioner::getGridEdges(double startBound1[3], double startBound2[3],
   middleBound2[1] = yCoordinate;
   middleBound2[2] = zCoordinate;
 
-  // end points, invert Z bounds
-  zCoordinate = findOtherZBound(zCoordinate);
+  // end points, invert other bound
+	if (sciGetGridFront(m_pSubwin->getDrawedObject()))
+	{
+		//invert Y bounds
+		yCoordinate = findOtherYBound(yCoordinate);
+	}
+	else
+	{
+		// invert Z bound
+		zCoordinate = findOtherZBound(zCoordinate);
+	}
   endBound1[0] = m_dXmin;
   endBound1[1] = yCoordinate;
   endBound1[2] = zCoordinate;

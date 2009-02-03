@@ -20,6 +20,7 @@
 #include "cluni0.h"
 #include "GetenvB.h"
 #include "charEncoding.h"
+#include "stack-def.h"
 
 static char *SCI_a[]  = {  "SCI/"   , "sci/"   , "$SCI"   , "SCI\\"    , "sci\\"   , (char *) 0 };
 static char *HOME_a[] = {  "HOME/"  , "home/"  , "~/"     , "HOME\\"   , "home\\"  , "~\\" , "$HOME" , (char *) 0};
@@ -38,18 +39,19 @@ int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long in
 	int nc= PATH_MAX;
 	static char SCI[PATH_MAX],HOME[PATH_MAX],TMP[PATH_MAX];
 	static int k;
-	char* in_nameL=NULL;
+	char *in_nameL = NULL;
+	char szTemp[bsiz];
     long int linL;
 	char in_nameTmp[PATH_MAX];
 	strncpy(in_nameTmp,in_name,lin);
-    in_nameTmp[lin]='\0';
+	in_nameTmp[lin]='\0';
 	/* To convert to UTF-8 */
-    in_nameL = UTFToLocale(in_nameTmp);
+	in_nameL = UTFToLocale(in_nameTmp, szTemp);
 	/* Get the new size of the converted string */
 	linL=(long)strlen(in_nameL);
 	/* Copy it back into the in_nameTmp variable */
 	strncpy(in_nameTmp,in_nameL,linL);
-    in_nameL=in_nameTmp;
+	in_nameL=in_nameTmp;
 	if ( ( n==0 ) || (getUpdateEnvVar() == 1) )
 	{
 		GetenvB("SCI"   , SCI ,nc);

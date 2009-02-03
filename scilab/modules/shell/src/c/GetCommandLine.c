@@ -23,6 +23,7 @@
 #if _MSC_VER
 #include "TermReadAndProcess.h"
 #endif
+#include "stack-def.h"
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -86,7 +87,8 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      __CommandLine = localeToUTF(TermReadAndProcess());
+		char szTempUTF[bsiz];
+      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
     }
 }
 

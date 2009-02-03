@@ -154,6 +154,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     set(a,"axes_visible", axes_visible)
     set(a,"axes_reverse", axes_reverse)
     set(a,"grid"        , mget(mget(1,characterFormat,fd),'il',fd)) //grid
+	if (is_higher_than([5 0 3 0])) then
+	  set(a,"grid_position",ascii(mget(mget(1,characterFormat,fd),characterFormat,fd))); // grid_position
+	else
+	  set(a,"grid_position","background"); // grid_position
+	end
     set(a,"x_location"  , ascii(mget(mget(1,characterFormat,fd),characterFormat,fd))) // x_location
     set(a,"y_location"  , ascii(mget(mget(1,characterFormat,fd),characterFormat,fd))) // y_location
 
