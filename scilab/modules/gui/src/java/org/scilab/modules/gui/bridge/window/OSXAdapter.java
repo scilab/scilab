@@ -63,6 +63,7 @@ package org.scilab.modules.gui.bridge.window;
 
 import java.lang.reflect.*;
 import java.util.HashMap;
+import java.awt.Image;
 
 
 public class OSXAdapter implements InvocationHandler {
@@ -114,7 +115,23 @@ public class OSXAdapter implements InvocationHandler {
             ex.printStackTrace();
         }
     }
+
+	/*
+	 * Pass this method an Image which is going to be the Dock Icon of Scilab 
+	 * @param icon the icon itself
+	 */
+    public static void setDockIcon(Image icon) {
+ 
+       try {
+            Method setDockIconMethod = macOSXApplication.getClass().getDeclaredMethod("setDockIconImage", new Class[] { Image.class });
+			setDockIconMethod.invoke(macOSXApplication, new Object[] { icon });
+        } catch (Exception ex) {
+            System.err.println("OSXAdapter could not access the set Dock Icon");
+            ex.printStackTrace();
+        }
     
+	}
+
     // Pass this method an Object and a Method equipped to handle document events from the Finder
     // Documents are registered with the Finder via the CFBundleDocumentTypes dictionary in the 
     // application bundle's Info.plist

@@ -15,6 +15,7 @@
 
 package org.scilab.modules.gui.bridge.window;
 
+import java.awt.Image;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -129,12 +130,13 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
 	if (MAC_OS_X) {
 	    try {
-		// Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
-		// use as delegates for various com.apple.eawt.ApplicationListener methods
-		OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
-		OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
+			// Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
+			// use as delegates for various com.apple.eawt.ApplicationListener methods
+			OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
+			OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
+			OSXAdapter.setDockIcon(new ImageIcon(System.getenv("SCI") + "/icons/puffin.png").getImage());
 	    } catch (java.lang.NoSuchMethodException e) {
-		System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
+			System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
 	    }
 	}
     }
