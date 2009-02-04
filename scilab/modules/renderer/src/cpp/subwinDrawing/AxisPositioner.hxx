@@ -43,6 +43,8 @@ public:
    * Box. Grid is drawn on 2 facets, then 3 edges are necessary.
    * This function is not useful for all axes drawer and drawer
    * which need it must redefine it.
+	 * @param drawFront specify whether the grid should be drawn above other
+	 *                  objects or behind
    */
   virtual void getGridEdges(double startBound1[3], double startBound2[3],
                             double middleBound1[3], double middleBound2[3],
