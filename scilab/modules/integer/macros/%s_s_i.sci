@@ -9,6 +9,9 @@
 
 
 function r=%s_s_i(a,b)
-if a==[] then r=[],return,end
-r=iconvert(a,inttype(b))-b
+  if a==[] then 
+    if mtlb_mode() then r=[],else r=-b,end
+  else
+    r=iconvert(a,inttype(b))-b
+  end
 endfunction
