@@ -77,12 +77,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	private SimpleTextBox infoBar;
 	
 	private int elementId; // the id of the Window which contains this SimpleWindow
-	
+	boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
+
 	/**
 	 * Constructor
 	 */
 	public SwingScilabWindow() {
 		super();
+
+
 		// TODO : Only for testing : Must be removed
 		this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
 		this.setTitle("Scilab");
@@ -119,7 +122,10 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 				removeWindowListener(this);
 			}
 		});
-		registerForMacOSXEvents();
+		
+		if (MAC_OS_X) {
+			registerForMacOSXEvents();
+		}
 	}
 
     /**
@@ -127,8 +133,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
      * (in order to set the "special" mac os x menus)
      */
     private void registerForMacOSXEvents() {
-	boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
-	if (MAC_OS_X) {
 	    try {
 			// Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
 			// use as delegates for various com.apple.eawt.ApplicationListener methods
@@ -138,7 +142,6 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	    } catch (java.lang.NoSuchMethodException e) {
 			System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
 	    }
-	}
     }
 
     /**
