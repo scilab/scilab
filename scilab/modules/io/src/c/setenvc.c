@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2005 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -34,15 +34,16 @@ BOOL setenvc(char *stringIn,char *valueIn)
 	/* 2 is = and \0 */
 	char *string = NULL;
 	char *value = NULL;
-	char szTemp[bsiz];
+	char szTemp1[bsiz];
+	char szTemp2[bsiz];
 	char *env;
 
-	string = UTFToLocale(stringIn, szTemp);
-	value = UTFToLocale(valueIn, szTemp);
+	string = UTFToLocale(stringIn, szTemp1);
+	value = UTFToLocale(valueIn, szTemp2);
 	env = (char*)MALLOC((strlen(string)+strlen(value)+2)*sizeof(char));
 
 #ifdef _MSC_VER
-	/* 
+	/*
 	On Windows :
 	each process has two copies of the environment variables,
 	one managed by the OS and one managed by the C library. We set
@@ -61,7 +62,7 @@ BOOL setenvc(char *stringIn,char *valueIn)
 
 		ret = FALSE;
 	}
-	else 
+	else
 	{
 		UpdateEnvVar = 1;
 		ret = TRUE;
