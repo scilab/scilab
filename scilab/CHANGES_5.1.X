@@ -321,6 +321,8 @@ Bug fixes:
 
 * bug 3912 fixed - strsubst() used with regular expression may return very stange result.
 
+* bug 3918 fixed - The french documentation fails to build when french locales are not available on the system
+
 * bug 3919 fixed - scilab x64 doesn't display graphics from a remote desktop.
 
 * bug 3924 fixed - I used uicontrol with bad parameters, but uicontrol makes scilab hangs.
