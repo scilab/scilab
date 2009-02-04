@@ -892,6 +892,7 @@ BUILD_LOCALIZATION_ENABLE=no
 if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
    AC_PATH_PROG(MSGFMT, msgfmt, no)
