@@ -763,7 +763,7 @@ clean-am: clean-generic clean-libtool clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-generic distclean-local
 
 dvi: dvi-am
 
@@ -828,12 +828,12 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 
 .PHONY: all all-am all-local check check-am check-local clean \
 	clean-generic clean-libtool clean-local distclean \
-	distclean-generic distclean-libtool distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciscipad_la_bindingsDATA \
+	distclean-generic distclean-libtool distclean-local distdir \
+	dvi dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciscipad_la_bindingsDATA \
 	install-libsciscipad_la_etcDATA \
 	install-libsciscipad_la_iconsDATA \
 	install-libsciscipad_la_msgfilesDATA \
@@ -1016,6 +1016,9 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @NEED_JAVA_TRUE@@TCLTK_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@@TCLTK_TRUE@clean-local: clean-macros
 
+@TCLTK_TRUE@distclean-local:
+@TCLTK_TRUE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
+
 @TCLTK_TRUE@.PHONY: macros java swig giws
 
 # This target enables tests for Scilab
@@ -1182,6 +1185,9 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@@TCLTK_FALSE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@@TCLTK_FALSE@clean-local: clean-macros
+
+@TCLTK_FALSE@distclean-local:
+@TCLTK_FALSE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 @TCLTK_FALSE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
