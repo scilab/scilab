@@ -54,6 +54,7 @@
 #include "WindowList.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -523,7 +524,10 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 
     if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
     {
+			/* disable protection since this function will call Java */
+		  disableFigureSynchronization(pobj);
       sciSetJavaBackground(pobj, newIndex);
+			enableFigureSynchronization(pobj);
     }
 
     return 0;
