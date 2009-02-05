@@ -378,10 +378,9 @@ case $OS in
 	# For Mac OS X, Since path are different from the JVM normal tree, don't need to detect 
 	# the CPU
 	JAVA_SHLIB="libjava.jnilib"
-	LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
 	;;
 	*)
-		echo "Could not find the Java configuration for the OS <${OS}>. Please contact us."
+		echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
 		;;
 esac
 
@@ -418,7 +417,6 @@ export GTK_MODULES
 if test $SCIVERBOSE -ne 0; then
 	echo "SCI : $SCI"
 	echo "SCIBIN : $SCIBIN"
-	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
 	echo "PATH : $PATH"
 fi
 
@@ -440,10 +438,27 @@ cd "$OLDPWD"
 #fi
 #export PVM_ARCH
 
-LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+
+case $OS in
+    *darwin* | *Darwin*) # MacOS X
+        # When using some packaging tools like fink which are storing the info in /sw/lib
+        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
+	# Export the path to the Scilab lib when Scilab has been install ...
+	# to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
+        DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
+	export DYLD_LIBRARY_PATH
+        ;;
+    *)
+esac
+
 
 if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+	if test ! -z "$DYLD_LIBRARY_PATH"; then
+	    echo "DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+	fi
 fi
 export LD_LIBRARY_PATH
 export PATH
