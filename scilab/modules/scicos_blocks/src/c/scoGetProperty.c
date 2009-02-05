@@ -76,6 +76,11 @@
  * maybe http://www.wand.net.nz/~smr26/wordpress/2009/01/19/monotonic-time-in-mac-os-x/ 
  * could help
  */
+double scoGetRealTime(void) 
+{
+  /* @TODO Fill the blank */
+  return 0;
+}
 #else
 #error "Could not find clock_gettime equivalent on this platform, please submit a bug report on http://bugzilla.scilab.org/"
 #endif
