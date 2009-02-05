@@ -45,19 +45,30 @@ int AutoLogTicksComputer::getNbTicks(void)
 {
   if (m_iNbTicks < 0)
   {
+		// ticks not already decimated
+		int nbTicks = 0;
     double ticks[20];
-    GradLog(m_dMinBounds, m_dMaxBounds, ticks, &m_iNbTicks, FALSE);
+    GradLog(m_dMinBounds, m_dMaxBounds, ticks, &nbTicks, FALSE);
+		return nbTicks;
   }
-  return m_iNbTicks;
+	else
+	{
+		// ticks decimated, use the specified value
+		return m_iNbTicks;
+	}
 }
 /*------------------------------------------------------------------------------------------*/
 void AutoLogTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
 
-  // Number of ticks has already been computed.
-	// As in AutomaticTicksComputer, recompute number
-	// of ticks to be sure to have the same result.
-  GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, TRUE);
+	if (m_iNbTicks < 0)
+	{
+		GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, FALSE);
+	}
+	else
+	{
+		GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, TRUE);
+	}
 
   // ticks labels are 10^i
   // i is computed by grad log

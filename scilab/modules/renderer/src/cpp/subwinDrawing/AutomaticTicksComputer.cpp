@@ -49,20 +49,33 @@ int AutomaticTicksComputer::getNbTicks(void)
 
   if (m_iNbTicks < 0)
   {
+		// ticks not already decimated
+		int nbTicks = 0;
     double ticks[20];
-    TheTicks(&m_dMinBounds, &m_dMaxBounds, ticks, &m_iNbTicks, FALSE);
+    TheTicks(&m_dMinBounds, &m_dMaxBounds, ticks, &nbTicks, FALSE);
+		return nbTicks;
   }
-  return m_iNbTicks;
+	else
+	{
+		// ticks decimated, use the specified value
+		return m_iNbTicks;
+	}
 }
 /*------------------------------------------------------------------------------------------*/
 void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
 
-  // Number of ticks has already been computed.
-	// However, TheTicks gives different results if 
-	// number of ticks computation is on or off, so we need to compute number of
-	// ticks again.
-  TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, FALSE);
+	if (m_iNbTicks < 0)
+	{
+		// TheTicks gives different results if 
+  	// number of ticks computation is on or off, so we need to compute number of
+	  // ticks again.
+		TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, FALSE);
+	}
+	else
+	{
+		TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, TRUE);
+	}
 
   // now convert ticks positions in strings for labels
   // find ticks format
