@@ -379,6 +379,8 @@ Bug fixes:
 
 * bug 3667 fixed - Function input() now accepts a \n in the text to be printed and colon is no more added.
 
+* bug 4021 fixed - make distclean is cleaning also some temporary help files
+
 * bug 4022 fixed - Having the source tree and packaged version of Scilab on the same system caused the system library to be loaded first (should be the source tree first).
 
 * bug 4027 fixed - Impossible to create hypermatrices under Linux x64 (actually a bug with int32 values).
@@ -390,6 +392,8 @@ Bug fixes:
 * bug 4037 fixed - wavread detects broadcast file format and returns a error (format not yet managed)
 
 * bug 4046 fixed - core/includes/scisparse.h wasn't installed
+
+* bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a blank graphic windows. (Windows)
 
 Obsolete functions removed :
 ============================

@@ -894,7 +894,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -963,12 +963,13 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscidynamic_link_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscidynamic_link_la_etcDATA \
 	install-libscidynamic_link_la_includeHEADERS \
 	install-libscidynamic_link_la_rootDATA \
 	install-libscidynamic_link_la_sci_gatewayDATA \
@@ -1153,6 +1154,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
