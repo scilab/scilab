@@ -43,7 +43,6 @@ AutoLogTicksComputer::~AutoLogTicksComputer(void)
 /*------------------------------------------------------------------------------------------*/
 int AutoLogTicksComputer::getNbTicks(void)
 {
-
   if (m_iNbTicks < 0)
   {
     double ticks[20];
@@ -54,12 +53,10 @@ int AutoLogTicksComputer::getNbTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void AutoLogTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
-  if (m_iNbTicks < 0)
-  {
-    getNbTicks();
-  }
 
   // Number of ticks has already been computed.
+	// As in AutomaticTicksComputer, recompute number
+	// of ticks to be sure to have the same result.
   GradLog(m_dMinBounds, m_dMaxBounds, positions, &m_iNbTicks, TRUE);
 
   // ticks labels are 10^i
