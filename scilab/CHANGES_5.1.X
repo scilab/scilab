@@ -397,6 +397,8 @@ Bug fixes:
 
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a blank graphic windows. (Windows)
 
+* bug 3596 fixed - In the graphic export (bitmap) the exported file is stored in vertical mirrored fashion.
+
 Obsolete functions removed :
 ============================
 
