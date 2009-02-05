@@ -393,6 +393,8 @@ Bug fixes:
 
 * bug 4046 fixed - core/includes/scisparse.h wasn't installed
 
+* bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a blank graphic windows. (Windows)
+
 Obsolete functions removed :
 ============================
 
