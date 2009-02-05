@@ -131,6 +131,8 @@ Bug fixes:
 				   
 * bug 2682 fixed - chart() is inconsistent in the second argument, angle.
                    It might be treated as degrees or radian.
+				   
+* bug 2814 fixed - Ticks graduation produce some unwanted decimals.			   
 
 * bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
                    caused by a dead lock in the TCL thread (we were trying to 

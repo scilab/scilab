@@ -57,13 +57,12 @@ int AutomaticTicksComputer::getNbTicks(void)
 /*------------------------------------------------------------------------------------------*/
 void AutomaticTicksComputer::getTicksPosition(double positions[], char * labels[], char * labelsExponents[])
 {
-  if (m_iNbTicks < 0)
-  {
-    getNbTicks();
-  }
 
   // Number of ticks has already been computed.
-  TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, TRUE);
+	// However, TheTicks gives different results if 
+	// number of ticks computation is on or off, so we need to compute number of
+	// ticks again.
+  TheTicks(&m_dMinBounds, &m_dMaxBounds, positions, &m_iNbTicks, FALSE);
 
   // now convert ticks positions in strings for labels
   // find ticks format
