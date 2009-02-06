@@ -133,8 +133,8 @@ if ~alreadyExists
   set(axes, "background", addcolor(defaultColor)); // same as figure
 end
 
-set(axes,"visible","off");
 set(axes, "filled", "off"); // transparent axes so no need to display them
+set(axes, "axes_visible", "off"); 
 
 set(curFig, "immediate_drawing", "on"); // we can draw now
 
