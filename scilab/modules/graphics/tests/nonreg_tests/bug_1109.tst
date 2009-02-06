@@ -7,10 +7,10 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-// <-- Non-regression test for bug 3527 -->
+// <-- Non-regression test for bug 1109 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3527
+// http://bugzilla.scilab.org/show_bug.cgi?id=1109
 //
 // <-- Short Description -->
 // Argument axesflag=2 does not work with plot2d
