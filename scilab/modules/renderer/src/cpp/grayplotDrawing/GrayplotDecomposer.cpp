@@ -85,8 +85,8 @@ void GrayplotDecomposer::decomposeGrayplot(double xGrid[], double yGrid[], int c
   }
 
   // apply log scale if needed
-  m_pDrawed->pointScale(xGrid, NULL, NULL, nbRow);
-  m_pDrawed->pointScale(NULL, yGrid, NULL, nbCol);
+  m_pDrawed->pointScale(xGrid, NULL, NULL, nbCol);
+  m_pDrawed->pointScale(NULL, yGrid, NULL, nbRow);
 
 }
 /*---------------------------------------------------------------------------------*/
