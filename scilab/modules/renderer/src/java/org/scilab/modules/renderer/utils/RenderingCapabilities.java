@@ -71,7 +71,6 @@ public final class RenderingCapabilities {
 	 */
 	public static int[] getMaxWindowSize() {
 		GraphicsDevice[] screens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-		System.err.println("size = " + Toolkit.getDefaultToolkit().getScreenSize());
 		int[] res = {0, 0};
 		// take the sum of each screen width and screen height.
 		// It might be a bit large, but it's better than using a too small value.
