@@ -182,7 +182,7 @@ function black(varargin)
     kf=kf+ilf
   end
  
-  xtitle(" ",_("Frequency (Hz)"),_("Magnitude (Db)"));
+  xtitle(" ",_("Phase (deg)"),_("Magnitude (Db)"));
   //  2.3 db curve
   mbf=2.3;
   lmda=exp(log(10)/20*mbf);
