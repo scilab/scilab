@@ -134,7 +134,9 @@ Bug fixes:
 				   
 * bug 2814 fixed - Ticks graduation produce some unwanted decimals.
 
-* bug 3470 fixed - plot2d(), followed by legends produce an unexpected error.	   
+* bug 3470 fixed - plot2d(), followed by legends produce an unexpected error.
+
+* bug 3527 fixed - Graphic windows created by figure are unable to display plots.
 
 * bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
                    caused by a dead lock in the TCL thread (we were trying to 
