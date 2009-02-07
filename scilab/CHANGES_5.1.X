@@ -131,6 +131,12 @@ Bug fixes:
 				   
 * bug 2682 fixed - chart() is inconsistent in the second argument, angle.
                    It might be treated as degrees or radian.
+				   
+* bug 2814 fixed - Ticks graduation produce some unwanted decimals.
+
+* bug 3470 fixed - plot2d(), followed by legends produce an unexpected error.
+
+* bug 3527 fixed - Graphic windows created by figure are unable to display plots.
 
 * bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
                    caused by a dead lock in the TCL thread (we were trying to 
@@ -394,6 +400,10 @@ Bug fixes:
 * bug 4037 fixed - wavread detects broadcast file format and returns a error (format not yet managed)
 
 * bug 4046 fixed - core/includes/scisparse.h wasn't installed
+
+* bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a blank graphic windows. (Windows)
+
+* bug 3596 fixed - In the graphic export (bitmap) the exported file is stored in vertical mirrored fashion.
 
 Obsolete functions removed :
 ============================
