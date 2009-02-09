@@ -35,6 +35,9 @@ static JavaVM *SearchCreatedJavaVMPath(void);
  */
 #undef SHARED_LIB_EXT
 #define SHARED_LIB_EXT ".jnilib"
+#define LIBJAVANAME "libjava"
+#else
+#define LIBJAVANAME "libjvm"
 #endif
 
 /*--------------------------------------------------------------------------*/ 
@@ -50,27 +53,16 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	char *JVMLibFullName=NULL;
 	
 	/* 1. search in SCI/java/jre */
-	#ifdef __APPLE__
-	JVMLibFullName="/System/Library/Frameworks/JavaVM.framework/Libraries/libjava.jnilib";
-	#else
 	JVMLibFullName=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMLibFullName,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
-	#endif
-	printf("plop : %s",JVMLibFullName);
-	JVMLibFullName=(char *)MALLOC ( (strlen("/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjava.jnilib")+1)*sizeof(char));
-	strcpy(JVMLibFullName,"/System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjava.jnilib");
-        printf("plop 2 : %s",JVMLibFullName);
 
 	if (LoadFuntionsJVM(JVMLibFullName)==NULL)
 	{
 		  /* 2. search in LD_LIBRARY_PATH */
 			if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
-			JVMLibFullName=(char*)MALLOC( (strlen("libjvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			sprintf(JVMLibFullName,"%s%s","libjvm",SHARED_LIB_EXT);
-			//			JVMLibFullName=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			//			sprintf(JVMLibFullName,"%s%s","libjava",SHARED_LIB_EXT);
-			 printf("plop : %s",JVMLibFullName);
 
+                        JVMLibFullName=(char*)MALLOC( (strlen(LIBJAVANAME)+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+                        sprintf(JVMLibFullName,"%s%s",LIBJAVANAME,SHARED_LIB_EXT);
 			if (LoadFuntionsJVM(JVMLibFullName)) bOK=TRUE;
 	}
 	else 
@@ -79,7 +71,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 		bOK=TRUE;
 	}
 
-	//	if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
+	if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
 	
 	return bOK;
 
