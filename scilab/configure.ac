@@ -457,13 +457,8 @@ case "$CC" in
 
 	;;
   *-*-darwin*)
-
-#     if test "$enable_debug_C" = yes; then
-#	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
-#	 else
-#	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
-#	 fi
-#     LDFLAGS="$LDFLAGS -L/sw/lib"
+	 CFLAGS=" $CFLAGS -I/sw/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
 	;;
 esac
 ;; # end of the gcc case on the $CC
