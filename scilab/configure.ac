@@ -459,6 +459,7 @@ case "$CC" in
   *-*-darwin*)
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
+	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
 	;;
 esac
 ;; # end of the gcc case on the $CC
