@@ -453,12 +453,12 @@ case "$CC" in
 
 	;;
   *-*-darwin*)
-     if test "$enable_debug_C" = yes; then
-	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
-	 else
-	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
-	 fi
-     LDFLAGS="$LDFLAGS -L/sw/lib"
+#     if test "$enable_debug_C" = yes; then
+#	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
+#	 else
+#	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
+#	 fi
+#     LDFLAGS="$LDFLAGS -L/sw/lib"
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -803,13 +803,13 @@ SCICOS_ENABLE=no
 if test "$with_scicos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
-   save_LIBS="$LIBS"
-   AC_CHECK_LIB([rt], [clock_gettime],
-		      [RT_LIB="-lrt"],
-        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
-   )
-   LIBS="$save_LIBS"
-   AC_SUBST(RT_LIB)
+#   save_LIBS="$LIBS"
+#   AC_CHECK_LIB([rt], [clock_gettime],
+#		      [RT_LIB="-lrt"],
+#        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
+#   )
+#   LIBS="$save_LIBS"
+#   AC_SUBST(RT_LIB)
 
 #################
 ## ocaml which only called with using Scicos
