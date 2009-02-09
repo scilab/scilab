@@ -98,12 +98,15 @@ function test_run(varargin)
 	rhs = argn(2);
 	
 	global MACOSX;
+	global LINUX;
 	
 	if ~MSDOS then
 		OSNAME = unix_g('uname');
 		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX  = (strcmpi(OSNAME,"linux") == 0);
 	else
 		MACOSX = %F;
+		LINUX  = %F;
 	end
 	
 	global test_list;
@@ -484,6 +487,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	status_details = "";
 	
 	global MACOSX;
+	global LINUX;
 	
 	global check_ref;
 	global create_ref;
@@ -519,6 +523,8 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		altreffile = [ pathconvert(fullPath+".win.dia.ref",%f,%f) ];
 	elseif MACOSX then
 		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".macosx.dia.ref",%f,%f) ];
+	elseif LINUX then
+		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".linux.dia.ref",%f,%f) ];
 	else
 		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ];
 	end
