@@ -130,9 +130,10 @@ public class ExportBitmap extends ExportToFile {
 	 * Gives the extension of a file name
 	 * @return the extension of the file
 	 */
-	public String getFileExtension() {
+	public String getFileExtension() {		
+		
 		String fileName = file.getName().toLowerCase();
-		fileExtension = fileName.substring(fileName.indexOf('.') + 1, fileName.length());
+		fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length());
 		return fileExtension;
 	}	
 
