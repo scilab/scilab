@@ -84,6 +84,7 @@ $(top_srcdir)/CHANGES_3.X \
 $(top_srcdir)/CHANGES_4.X \
 $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
+$(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
