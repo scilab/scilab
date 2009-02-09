@@ -18,6 +18,10 @@ src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
 src/c/TerminateShell.c 
 
+if IS_MACOSX
+SHELL_C_SOURCES += src/c/others/initMacOSXEnv.c
+endif
+
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
 sci_gateway/c/sci_clc.c \
