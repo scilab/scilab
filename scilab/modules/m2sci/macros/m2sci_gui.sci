@@ -40,6 +40,7 @@ figw = 500;
 figh = 17*margin + btnh + 7*widgeth;
 m2scifig.axes_size = [figw figh];
 m2scifig.auto_resize = "off";
+m2scifig.visible = "off"; // to be sure that no plot can appear in the window
 
 //-------------------
 // --- Validation ---
