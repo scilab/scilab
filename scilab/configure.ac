@@ -1279,7 +1279,7 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 #fi
 
 # Generate stack.h
-if test $IS_64_BITS_CPU = true; then
+if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
    stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
 else
    stack_h_cpp_flags=
