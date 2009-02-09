@@ -85,7 +85,7 @@ double scilab_timer(void)
 		init_clock = 0;
 		previousTimerValue = now ;
 	}
-	*etime =  now - previousTimerValue;
+	etime =  now - previousTimerValue;
 	previousTimerValue = now ;
 #endif
 	return etime;
