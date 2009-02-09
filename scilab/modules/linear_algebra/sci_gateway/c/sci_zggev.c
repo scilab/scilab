@@ -16,12 +16,87 @@
 #include "msgs.h"
 #include "vfinite.h"
 #include "assembleEigenvectors.h"
+#include "gw_linear_algebra.h"
+
 extern int C2F(dsyev)();
 extern int C2F(dlaset)();
 extern int C2F(dcopy)();
 extern int C2F(zggev)();
 extern int C2F(wwdiv)(double *ar, double *ai, double *br, double *bi, double *cr, double *ci, int *ierr);
 extern int C2F(dggev)();
+
+static int isarrayzero(int size , double * values);
+static int intzggev_real(char *fname);
+static int intzggev_complex(char *fname);
+
+//
+// intzggev --
+//   Interface to LAPACK's zggev
+//   Computes the generalized eigenvalues and, if required, the generalized 
+//	 eigenvectors of two real matrix.
+//   Possible uses :
+//   * With 1 LHS :
+//       eigenvalues=spec(A,B)
+//     where
+//       A : square real matrix of size NxN
+//       B : square real matrix of size NxN
+//       eigenvalues : matrix of size Nx1 with right eigenvectors, type complex
+//   * With 2 LHS :
+//       [alpha,beta]=spec(A,B)
+//     where 
+//       alpha,beta : the coefficients such that the generalized eigenvalues 
+//	       are alpha(i)/beta(i), where alpha is of type complex, beta is real
+//   * With 3 LHS :
+//       [alpha,beta,R]=spec(A,B)
+//     where 
+//       R : the matrix of generalized right eigenvectors, type complex
+//   * With 4 LHS :
+//       [alpha,beta,L,R]=spec(A,B)
+//     where 
+//       L : the matrix of generalized left eigenvectors, type complex
+//
+int sci_zggev(char *fname, unsigned long fname_len)
+{	
+	int totalsizeA;
+	int totalsizeB;
+	int iRowsA = 0;
+	int iColsA = 0;
+	int iRowsB = 0;
+	int iColsB = 0;
+	int isImaginaryMatrixAZero;
+	int isImaginaryMatrixBZero;
+
+	double *pdblMatrixAReal = NULL;
+	double *pdblMatrixAImg = NULL;
+	double *pdblMatrixBReal = NULL;
+	double *pdblMatrixBImg = NULL;
+
+	CheckRhs(2,2) ;
+
+	GetRhsVarMatrixComplex(1, &iRowsA, &iColsA, &pdblMatrixAReal, &pdblMatrixAImg);
+	totalsizeA = iRowsA * iColsA;
+	GetRhsVarMatrixComplex(2, &iRowsB, &iColsB, &pdblMatrixBReal, &pdblMatrixBImg);
+	totalsizeB = iRowsB * iColsB;
+
+	// Check the imaginary parts of both matrices.
+	isImaginaryMatrixAZero = isarrayzero(totalsizeA, pdblMatrixAImg);
+	isImaginaryMatrixBZero = isarrayzero(totalsizeB, pdblMatrixBImg);
+	if (isImaginaryMatrixAZero == 1 && isImaginaryMatrixBZero == 1)
+	{
+		// If both imaginary parts are zero, then the used solver is DGGEV.
+		// This is a work-around for bug #3652
+		// http://bugzilla.scilab.org/show_bug.cgi?id=3652
+		// When LAPACK bug is solved, this thin layer may be removed.
+		// For simplicity reasons, the two branches are separated rather than factored.
+		// Moreover, when the bug is solved (if ever ?), the current layer will be easier to disconnect.
+		intzggev_real(fname);
+	} else {
+		// If one imaginary part non-zero, then the used solver is ZGGEV.
+		intzggev_complex(fname);
+	}
+	return 0;
+}
+
 
 //
 // isarrayzero --
@@ -30,7 +105,7 @@ extern int C2F(dggev)();
 //   size : the size of the array
 //   values : the values
 //
-int isarrayzero(int size , double * values)
+static int isarrayzero(int size , double * values)
 {	
 	int index;
 	int result;
@@ -51,7 +126,7 @@ int isarrayzero(int size , double * values)
 //   matrices.
 //   Interface to LAPACK's zggev
 //
-int intzggev_complex(char *fname)
+static int intzggev_complex(char *fname)
 {	
 	int totalsize;
 	int iRowsA = 0;
@@ -296,7 +371,7 @@ int intzggev_complex(char *fname)
 //   Interface to LAPACK's dggev
 //   The following source code is an adaptation of intdggev.
 //
-int intzggev_real(char *fname)
+static int intzggev_real(char *fname)
 {	
 	int totalsize;
 	int iRowsA = 0;
@@ -497,72 +572,5 @@ int intzggev_real(char *fname)
 	}
 	vFreeDoubleComplexFromPointer(pdblMatrixA);
 	vFreeDoubleComplexFromPointer(pdblMatrixB);
-	return 0;
-}
-//
-// intzggev --
-//   Interface to LAPACK's zggev
-//   Computes the generalized eigenvalues and, if required, the generalized 
-//	 eigenvectors of two real matrix.
-//   Possible uses :
-//   * With 1 LHS :
-//       eigenvalues=spec(A,B)
-//     where
-//       A : square real matrix of size NxN
-//       B : square real matrix of size NxN
-//       eigenvalues : matrix of size Nx1 with right eigenvectors, type complex
-//   * With 2 LHS :
-//       [alpha,beta]=spec(A,B)
-//     where 
-//       alpha,beta : the coefficients such that the generalized eigenvalues 
-//	       are alpha(i)/beta(i), where alpha is of type complex, beta is real
-//   * With 3 LHS :
-//       [alpha,beta,R]=spec(A,B)
-//     where 
-//       R : the matrix of generalized right eigenvectors, type complex
-//   * With 4 LHS :
-//       [alpha,beta,L,R]=spec(A,B)
-//     where 
-//       L : the matrix of generalized left eigenvectors, type complex
-//
-int intzggev(char *fname)
-{	
-	int totalsizeA;
-	int totalsizeB;
-	int iRowsA = 0;
-	int iColsA = 0;
-	int iRowsB = 0;
-	int iColsB = 0;
-	int isImaginaryMatrixAZero;
-	int isImaginaryMatrixBZero;
-
-	double *pdblMatrixAReal = NULL;
-	double *pdblMatrixAImg = NULL;
-	double *pdblMatrixBReal = NULL;
-	double *pdblMatrixBImg = NULL;
-
-	CheckRhs(2,2) ;
-
-	GetRhsVarMatrixComplex(1, &iRowsA, &iColsA, &pdblMatrixAReal, &pdblMatrixAImg);
-	totalsizeA = iRowsA * iColsA;
-	GetRhsVarMatrixComplex(2, &iRowsB, &iColsB, &pdblMatrixBReal, &pdblMatrixBImg);
-	totalsizeB = iRowsB * iColsB;
-
-	// Check the imaginary parts of both matrices.
-	isImaginaryMatrixAZero = isarrayzero(totalsizeA, pdblMatrixAImg);
-	isImaginaryMatrixBZero = isarrayzero(totalsizeB, pdblMatrixBImg);
-	if (isImaginaryMatrixAZero == 1 && isImaginaryMatrixBZero == 1)
-	{
-		// If both imaginary parts are zero, then the used solver is DGGEV.
-		// This is a work-around for bug #3652
-		// http://bugzilla.scilab.org/show_bug.cgi?id=3652
-		// When LAPACK bug is solved, this thin layer may be removed.
-		// For simplicity reasons, the two branches are separated rather than factored.
-		// Moreover, when the bug is solved (if ever ?), the current layer will be easier to disconnect.
-		intzggev_real(fname);
-	} else {
-		// If one imaginary part non-zero, then the used solver is ZGGEV.
-		intzggev_complex(fname);
-	}
 	return 0;
 }

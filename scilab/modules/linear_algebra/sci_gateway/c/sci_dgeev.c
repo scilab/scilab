@@ -14,6 +14,8 @@
 #include "error.h"
 #include "MALLOC.h"
 #include "assembleEigenvectors.h"
+#include "gw_linear_algebra.h"
+
 extern int C2F(dsyev)();
 extern int C2F(dlaset)();
 extern int C2F(dcopy)();
@@ -36,7 +38,7 @@ extern int C2F(dgeev)();
 //       eigenvalues : matrix of size NxN with eigenvalues as diagonal terms
 //       eigenvectors : matrix of size NxN with right eigenvectors, type complex
 //
-int intdgeev(char *fname)
+int sci_dgeev(char *fname, unsigned long fname_len)
 {	
 	int totalsize;
 	int iRows = 0;
