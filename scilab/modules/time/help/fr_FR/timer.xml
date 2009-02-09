@@ -39,6 +39,8 @@
 
     <para>Renvoie le temps CPU consommé par Scilab depuis le dernier appel à
     <literal>timer()</literal>.</para>
+    
+    <para>timer a une precision de 100 nanosecondes.</para>
 
     <para>Remarque : Le temps CPU est le nombre de cycles processeur utilisé
     pour l'execution.</para>
