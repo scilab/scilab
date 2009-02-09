@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
 "PO-Revision-Date: 2008-09-28 08:28+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -38,10 +38,9 @@ msgstr "-- Suppression des fichiers d'aide --\n"
 msgid "Processing %s to %s"
 msgstr "Traitement de %s à %s"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument n° %d: Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -51,13 +50,9 @@ msgstr "%s: Le navigateur d'aide n'est pas accessible dans le mode %s.\n"
 msgid "%s: help module is not installed.\n"
 msgstr "%s: le module help n'est pas installé.\n"
 
-#
-# File: macros/help_from_sci.sci, line: 107
 msgid "Scilab 5.0 or more is required."
 msgstr ""
 
-#
-# File: macros/help_from_sci.sci, line: 160
 msgid "...demodir must be a directory."
 msgstr ""
 
@@ -67,7 +62,8 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée: %d attendus.\n"
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s: Cette fonction n'est utilisable que sur les plateformes Windows.\n"
+msgstr ""
+"%s: Cette fonction n'est utilisable que sur les plateformes Windows.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
@@ -154,25 +150,19 @@ msgstr "%s: %s n'a pas été généré."
 msgid "%s: %s file hasn''t been moved in the %s directory."
 msgstr "%s: le fichier %s n'a pas été déplacé dans le répertoire %s."
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s] in %s. (Please wait building ... this can take "
 "a while)\n"
 msgstr ""
-"\n"
-"Construit le fichier manuel [%s] dans %s. (Patientez pendant la "
-"génération ... cela peut prendre près de 10 minutes)\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid ""
 "\n"
 "Building the manual file [%s]. (Please wait building ... this can take a "
 "while)\n"
 msgstr ""
-"\n"
-"Construit le fichier manuel [%s]. (Patientez pendant la génération ... cela "
-"peut prendre près de 10 minutes)\n"
 
 #, c-format
 msgid ""
@@ -193,152 +183,93 @@ msgstr ""
 msgid "Scilab manual"
 msgstr "Manuel Scilab"
 
-#
-# File: macros/xmltoformat.sci, line: 1347
 msgid "About Scicos"
 msgstr ""
 
-#, fuzzy
 msgid "Scicos Manual"
-msgstr "Manuel Scilab"
+msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1488
 msgid "Batch functions"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1488
 msgid "Editor"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1488
 msgid "Sources Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1489
 msgid "Linear Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1489
 msgid "Non-linear Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1489
 msgid "Branching Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1489
 msgid "Others Palettes"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1490
 msgid "Threshold Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1490
 msgid "Sinks Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1490
 msgid "Events Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1490
 msgid "Electrical Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1491
 msgid "Thermohydraulics Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1491
 msgid "Matrix Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1491
 msgid "Integer Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1491
 msgid "Demoblocks Palette"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1492
 msgid "ABCD Blocks"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1492
 msgid "C Computational Functions"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1492
 msgid "Scilab Computational Functions"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1493
 msgid "Utilities Functions"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1493
 msgid "Programming Scicos Blocks"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1493
 msgid "Scilab Utilities Functions"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Diagram"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Blocks"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Links"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Compilation/Simulation"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Scilab Data Structures"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Palettes"
 msgstr ""
 
-#
-# File: macros/xmltoformat.sci, line: 1494
 msgid "Old Blocks Palette"
 msgstr ""
 

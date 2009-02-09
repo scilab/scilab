@@ -14,38 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-msgid " For this demo the current stack size is not enought "
-msgstr " 目前的栈大小无法满足本demo的需求 "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " 请在Scilab提示窗口中输入下面的内容：          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           然后重新输入 scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               点击以继续                    "
-
-msgid "how to use this stuff"
-msgstr "如何使用此内容"
-
-msgid "display a speed comparison test"
-msgstr "显示一个速度比较测试"
-
-msgid "small tests for condestsp"
-msgstr "condestsp的小测试"
-
-msgid "Click to choose a demo"
-msgstr "点击来选择一个demo"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -58,6 +28,28 @@ msgstr "%s：输入参数#%d的类型错误：应该为系数矩阵。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+msgid "Choose a sparse matrix"
+msgstr "请选择一个系数矩阵"
+
+msgid "   then click on OK   "
+msgstr "   然后点击OK   "
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s：文件包含一个rhs但是它没有被读！"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s：目前没有读unassembled（elemental）稀疏矩阵。"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s：此矩阵没有值（只有非零模式）：请输入一些1。"
 
 msgid ""
 "\n"
@@ -121,87 +113,39 @@ msgstr "%s：矩阵和LU系数不具有同样的维数！\n"
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr "%s：第二个参数的类型和（或）大小和（或）值不正确。\n"
 
-msgid "Choose a sparse matrix"
-msgstr "请选择一个系数矩阵"
+msgid " For this demo the current stack size is not enought "
+msgstr " 目前的栈大小无法满足本demo的需求 "
 
-msgid "   then click on OK   "
-msgstr "   然后点击OK   "
+msgid " enter the following at the scilab prompt :          "
+msgstr " 请在Scilab提示窗口中输入下面的内容：          "
 
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少%d个。\n"
+msgid "                                                     "
+msgstr "                                                     "
 
-#, c-format
-msgid "%s: The file contains a rhs but it will not be read !"
-msgstr "%s：文件包含一个rhs但是它没有被读！"
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
 
-#, c-format
-msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
-msgstr "%s：目前没有读unassembled（elemental）稀疏矩阵。"
+msgid "           then re enter scisptdemo()                "
+msgstr "           然后重新输入 scisptdemo()                "
 
-#, c-format
-msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr "%s：此矩阵没有值（只有非零模式）：请输入一些1。"
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               点击以继续                    "
+
+msgid "how to use this stuff"
+msgstr "如何使用此内容"
+
+msgid "display a speed comparison test"
+msgstr "显示一个速度比较测试"
+
+msgid "small tests for condestsp"
+msgstr "condestsp的小测试"
+
+msgid "Click to choose a demo"
+msgstr "点击来选择一个demo"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
 msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
-"LU factors.\n"
-msgstr "%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
-
-#, c-format
-msgid "%s: An error occurred: %s.\n"
-msgstr "%s：发生一个错误：%s。\n"
-
-msgid "This is not a factorisation of a square matrix"
-msgstr "这不是一个方阵的因式分解"
-
-msgid "This is a factorisation of a singular matrix"
-msgstr "这是一个奇异阵的因式分解"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：输入参数#%d的大小错误。\n"
-
-#, c-format
-msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: %s.\n"
-msgstr "%s：输入参数#%d的大小错误：%s。\n"
-
-msgid "Matrix is not compatible with the given LU factors"
-msgstr "矩阵跟给定的LU系数不兼容。"
-
-#, c-format
-msgid "%s: An error occurred: %s: %s\n"
-msgstr "%s：发生了一个错误：%s：%s\n"
-
-msgid "symbolic factorization"
-msgstr "对称因式分解"
-
-msgid "numeric factorization"
-msgstr "数字因式分解"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
-msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解的参考（reference）"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid ""
-"%s: No more memory : increase stacksize %d supplementary words needed.\n"
-msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
 
 #, c-format
 msgid ""
@@ -215,11 +159,59 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：必须是对称正定。"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr "%s：出现错误：%s\n"
 
 msgid "factorization"
 msgstr "因式分解"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr "%s：输入参数#%d的值错误：必须是一个Cholesky因式分解的参考（reference）"
+
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr "%s：内存不足：请增加stacksize，需再增加%d个数值存储。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr "%s：输入参数#%d的值错误：不是一个正确的Cholesky因子参考（reference）"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
+
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s：内存不足。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr "%s：输入参数#%d的值错误：必须是一个正确的(umf)LU系数的参考（reference）。\n"
+
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s：发生了一个错误：%s：%s\n"
+
+msgid "symbolic factorization"
+msgstr "对称因式分解"
 
 msgid "Warning"
 msgstr "警告"
@@ -231,20 +223,28 @@ msgid "no place to store the LU pointer in ListNumeric."
 msgstr "在ListNumeric中没有空间来存储LU pointer"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
-"factors"
-msgstr "%s：输入参数#%d的值错误：不是一个正确的Cholesky因子参考（reference）"
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s：发生一个错误：%s。\n"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "这不是一个方阵的因式分解"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "这是一个奇异阵的因式分解"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: not compatible with the Choleski "
-"factorisation.\n"
-msgstr "%s：输入参数#%d的大小错误：跟Cholesky因式分解不兼容。\n"
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s：输入参数#%d错误：应该为'%s'或'%s'。\n"
 
 #, c-format
-msgid "%s: not enough memory.\n"
-msgstr "%s：内存不足。\n"
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s：输入参数#%d的大小错误：%s。\n"
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "矩阵跟给定的LU系数不兼容。"
+
+msgid "numeric factorization"
+msgstr "数字因式分解"
 
 msgid "singular matrix"
 msgstr "奇异矩阵"

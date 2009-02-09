@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-09-22 14:07+0100\n"
 "PO-Revision-Date: 2008-10-04 14:19+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:57+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Scicos"
@@ -50,11 +50,13 @@ msgstr "%s: Mauvais nombre d'arguments d'entrée. Doit être entre %d et %d.\n"
 
 #, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr "%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
+msgstr ""
+"%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
 
 #, c-format
 msgid "%s: An error occurred during the compilation of the Modelica block."
-msgstr "%s: Une erreur s'est produite pendant la compilation du bloc Modelica."
+msgstr ""
+"%s: Une erreur s'est produite pendant la compilation du bloc Modelica."
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
