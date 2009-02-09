@@ -102,6 +102,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		sciDockingListener = new SciDockingListener();
 		sciDockingPort.addDockingListener(sciDockingListener);
 		
+		// let the OS choose the window position if not specified by user.
+		setLocationByPlatform(true);
+		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				Object[] dockArray = sciDockingPort.getDockables().toArray();
