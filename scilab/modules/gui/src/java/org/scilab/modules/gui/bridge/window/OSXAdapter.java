@@ -64,6 +64,7 @@ package org.scilab.modules.gui.bridge.window;
 import java.lang.reflect.*;
 import java.util.HashMap;
 import java.awt.Image;
+import javax.swing.ImageIcon;
 
 
 public class OSXAdapter implements InvocationHandler {
@@ -120,15 +121,27 @@ public class OSXAdapter implements InvocationHandler {
 	 * Pass this method an Image which is going to be the Dock Icon of Scilab 
 	 * @param icon the icon itself
 	 */
-    public static void setDockIcon(Image icon) {
+    public static void setDockIcon(String pathIcon) {
  
        try {
             Method setDockIconMethod = macOSXApplication.getClass().getDeclaredMethod("setDockIconImage", new Class[] { Image.class });
-			setDockIconMethod.invoke(macOSXApplication, new Object[] { icon });
-        } catch (Exception ex) {
-            System.err.println("OSXAdapter could not access the set Dock Icon");
+	   setDockIconMethod.invoke(macOSXApplication, new Object[] { new ImageIcon(pathIcon).getImage() });
+    }catch (java.lang.NoSuchMethodException ex){
+	   System.err.println("Could not access to the method setDockIconImage. ");
+	   System.err.println("This is due to your version of Java / Mac OS X which is too old or not up-to-date");
+	   System.err.println("Please update Mac OS X.");
+       }catch (java.lang.IllegalAccessException ex){
+	   System.err.println("Exception occured while accessing the method setDockIconImage");
+       }catch (java.lang.reflect.InvocationTargetException ex){
+           System.err.println("Exception occured while the method was invocated setDockIconImage");
+       }catch (java.lang.NullPointerException ex){
+           System.err.println("Exception occured while the method was executed with the icon "+pathIcon);
+       }
+       
+	   /*        } catch (Exception ex) {
+            System.err.println("OSXAdapter could not access the set Dock Icon: ");
             ex.printStackTrace();
-        }
+	    }*/
     
 	}
 
