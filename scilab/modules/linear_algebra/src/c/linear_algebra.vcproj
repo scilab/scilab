@@ -386,27 +386,27 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intdgeev.c"
+				RelativePath="..\..\sci_gateway\c\sci_dgeev.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intdggev.c"
+				RelativePath="..\..\sci_gateway\c\sci_dggev.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intdsyev.c"
+				RelativePath="..\..\sci_gateway\c\sci_dsyev.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intzgeev.c"
+				RelativePath="..\..\sci_gateway\c\sci_zgeev.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intzggev.c"
+				RelativePath="..\..\sci_gateway\c\sci_zggev.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intzheev.c"
+				RelativePath="..\..\sci_gateway\c\sci_zheev.c"
 				>
 			</File>
 			<File

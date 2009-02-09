@@ -82,12 +82,12 @@ sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
 sci_gateway/c/sci_lsq.c \
 sci_gateway/c/assembleEigenvectors.c \
-sci_gateway/c/intdgeev.c \
-sci_gateway/c/intdggev.c \
-sci_gateway/c/intdsyev.c \
-sci_gateway/c/intzgeev.c \
-sci_gateway/c/intzggev.c \
-sci_gateway/c/intzheev.c
+sci_gateway/c/sci_dgeev.c \
+sci_gateway/c/sci_dggev.c \
+sci_gateway/c/sci_dsyev.c \
+sci_gateway/c/sci_zgeev.c \
+sci_gateway/c/sci_zggev.c \
+sci_gateway/c/sci_zheev.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
