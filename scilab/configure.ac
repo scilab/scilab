@@ -349,6 +349,9 @@ case "$host" in
 	 *-*-solaris*)
 	 SOLARIS=1
 	 ;;
+	*darwin*)
+	  MACOSX=1
+	;;
 esac
 
 AM_CONDITIONAL(IS_HPUX, test -n "$HPUX")
@@ -453,6 +456,7 @@ case "$CC" in
 
 	;;
   *-*-darwin*)
+
 #     if test "$enable_debug_C" = yes; then
 #	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
 #	 else
@@ -515,15 +519,15 @@ CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MA
 CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
-if test $IS_64_BITS_CPU = true; then
+if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
       AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
-   AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
+   AC_DEFINE([USE_DYNAMIC_STACK], [], [If we are building a 64 bits version])
 fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test "$IS_64_BITS_CPU" = true)
-AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true)
+AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1")
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
@@ -1143,11 +1147,6 @@ AH_BOTTOM([
 	   #undef DIR_SEPARATOR
 #endif
 #define DIR_SEPARATOR "/"
-
-/* Force usage of dynamically located stack on 64 bits */
-#ifdef IS_64_BITS_CPU
-#define USE_DYNAMIC_STACK
-#endif
 
 #endif /* MACHINE_H  */
 ])
