@@ -61,22 +61,22 @@
         <term>param</term>
 
         <listitem>
-          <para>a parameter list. </para>
+          <para>a parameter list.</para>
 
           <itemizedlist>
             <listitem>
-              <para> 'binary_length': the number of bits by variables. If
+              <para>'binary_length': the number of bits by variables. If
               binary_length = 8 and the variable X is of dimension 2 then the
-              binary code will be 16 bits length. </para>
+              binary code will be 16 bits length.</para>
             </listitem>
 
             <listitem>
-              <para> 'minboun': a vector of minimum bounds for the variable X.
-              </para>
+              <para>'minboun': a vector of minimum bounds for the variable
+              X.</para>
             </listitem>
 
             <listitem>
-              <para> 'maxbound': a vector of maximum bounds for the variable
+              <para>'maxbound': a vector of maximum bounds for the variable
               X.</para>
             </listitem>
           </itemizedlist>
@@ -128,7 +128,7 @@
         <term>Yann COLLETTE</term>
 
         <listitem>
-          <para>ycollet@freesurf.Fr</para>
+          <para>ycollet@freesurf.fr</para>
         </listitem>
       </varlistentry>
     </variablelist>
