@@ -354,6 +354,7 @@ case "$host" in
 	;;
 esac
 
+AM_CONDITIONAL(IS_MACOSX, test -n "$MACOSX")
 AM_CONDITIONAL(IS_HPUX, test -n "$HPUX")
 AM_CONDITIONAL(IS_SPARC, test -n "$SPARC")
 AM_CONDITIONAL(IS_SOLARIS, test -n "$SOLARIS")
