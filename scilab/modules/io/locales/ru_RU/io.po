@@ -8,22 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-20 18:25+0100\n"
-"PO-Revision-Date: 2008-05-30 18:36+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"PO-Revision-Date: 2009-01-17 22:38+0000\n"
+"Last-Translator: Nkolay Parukhin <nik@sevpinro.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: невозможно отобразить систему на этой странице.\n"
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Неверное количество выходных аргументов.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -34,12 +38,16 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: Неверный размер аргумента #%d: Ожидалась строка.\n"
 
 #, c-format
-msgid "%s: error during %s execution"
-msgstr "%s: ошибка во время выполнения %s"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: The system interpreter does not answer..."
-msgstr "%s: Системный интерпретатор не отвечает..."
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Неверное количество аргументов.\n"
+
+msgid ": "
+msgstr ": "
 
 #, c-format
 msgid "%s: Incorrect format.\n"
@@ -53,26 +61,25 @@ msgstr "%s: Неправильное преобразование.\n"
 msgid "%s: end of input reached before final conversion.\n"
 msgstr "%s: входной поток закончился до окончания преобразования.\n"
 
-msgid ": "
-msgstr ": "
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: невозможно отобразить систему на этой странице.\n"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Неверное количество выходных аргументов.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument.\n"
-msgstr "%s: Неверное количество аргументов.\n"
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: Системный интерпретатор не отвечает..."
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
-msgstr ""
-"%s: Неверный размер аргумента #%d: Не может быть больше %d символов.\n"
+msgid "%s: error during %s execution"
+msgstr "%s: ошибка во время выполнения %s"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string.\n"
@@ -83,16 +90,22 @@ msgid "%s: Wrong value for input argument: no empty string expected.\n"
 msgstr "%s: Неверное значение аргумента: пустые строки недопустимы.\n"
 
 #, c-format
-msgid "%s: The file %s not found. current directory returned.\n"
-msgstr "%s: Файл %s не найден. Возвращаю текущую директорию.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer scalar expected.\n"
+msgid "%s: The file %s does not exist.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: Неверный тип аргумента #%d: Ожидалась матрица строк.\n"
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr ""
+"%s: Неверный размер аргумента #%d: Не может быть больше %d символов.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
