@@ -62,6 +62,10 @@
 			This is a positive integer referecing one of the loaded fonts. Its value must be between 0, referecing the first font,
 		    and the number of loaded fonts minus one, referencing the last font.
 		  </para>
+		  <para>
+		    The <literal>fractional_font</literal> controls the font anti-aliasing. Its value can be either <literal>'on'</literal>
+			or <literal>'off'</literal>. If its value is <literal>'on'</literal> the font is smoothed, otherwise it's not.
+		  </para>
 		  <para/>
         </listitem>
       </varlistentry>
