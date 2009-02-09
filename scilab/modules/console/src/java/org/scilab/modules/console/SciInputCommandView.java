@@ -42,25 +42,43 @@ import com.artenum.rosetta.util.StringConstants;
  */
 public class SciInputCommandView extends ConsoleTextPane implements InputCommandView {
 
-	private static final long serialVersionUID = 1L;
-	private static final String END_LINE = "\n";
-	private static final Point ERROR_POINT = new Point(0, 0);
-	private static final int TOP_BORDER = 1;
-	private static final int BOTTOM_BORDER = 2;
-	private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
-	private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
+    private static final long serialVersionUID = 1L;
+    private static final String END_LINE = "\n";
+    private static final Point ERROR_POINT = new Point(0, 0);
+    private static final int TOP_BORDER = 1;
+    private static final int BOTTOM_BORDER = 2;
 
-	private SciConsole console;
+    private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+    private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
 
-	/**
-	 * Constructor
-	 */
-	public SciInputCommandView() {
-		super();
-		setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
+    private Thread concurrentThread = null;
 
-		// Input command line is not editable when created
-		this.setEditable(false);
+    private SciConsole console;
+
+    /**
+     * Constructor
+     */
+    public SciInputCommandView() {
+	super();
+	setBorder(BorderFactory.createEmptyBorder(TOP_BORDER, 0, BOTTOM_BORDER, 0));
+
+	// Input command line is not editable when created
+	this.setEditable(false);
+    }
+
+    /**
+     * Gets the location of the caret in the UI
+     * @return the location as a Point object
+     * @see com.artenum.rosetta.interfaces.ui.InputCommandView#getCaretLocation()
+     */
+    public Point getCaretLocation() {
+	FontMetrics fontMetric = getFontMetrics(getFont());
+	String[] lines = null;
+	try {
+	    lines = getStyledDocument().getText(0, getCaretPosition()).split(END_LINE);
+	} catch (BadLocationException e1) {
+	    e1.printStackTrace();
+	    return ERROR_POINT;
 	}
 
 	Point result = new Point(fontMetric.stringWidth(lines[lines.length - 1]), (lines.length * fontMetric.getHeight()));
