@@ -68,7 +68,7 @@ set DebugScipadWithRamDebugger no
 
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
-        lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
+        lappend ::auto_path K:/Francois/Developpement/RamDebugger6.1.1/addons
         lappend ::auto_path D:/Scilab/Tools/RamDebugger5.5/addons
         package require commR
         comm::register Scipad 1
@@ -225,6 +225,44 @@ if {0} {
 }
 
 # End of useful binding triggering a command
+#############
+
+
+#############
+# Miscellaneous helper procs
+
+if {1} {
+
+    proc arrayval {array {pattern *}} {
+    # return the content of an array as a string
+    # this is pretty much the same as parray but the result is returned in a string
+    # instead of just printed in the console
+    # this code originates from  http://wiki.tcl.tk/9788
+    # see also  http://wiki.tcl.tk/13816  for a proc TK_editArray allowing
+    # to edit any array in a convenient gui
+    upvar $array a
+    if { ![array exists a] } { error "\"$array\" isn't an array" }
+    set lines [list]
+    set max 0
+    foreach name [array names a $pattern] {
+        set len [string length $name]
+        if { $len > $max } { set max $len }
+    }
+    set max [expr {$max + [string length $array] + 2}]
+    foreach name [array names a $pattern] {
+        set line [format %s(%s) $array $name]
+        lappend lines [format "%-*s = %s" $max $line $a($name)]
+    }
+    return [join [lsort $lines] \n]
+    }
+    # examples
+    # set parrayenv [arrayval ::env]
+    # set dumpchset [arrayval chset]
+    # then, from Scilab, it's possible to:  TCL_EvalStr("arrayval chset","scipad")
+
+}
+
+# End of miscellaneous helper procs
 #############
 
 

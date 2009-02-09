@@ -664,11 +664,19 @@ proc openlistoffiles {filelist tiledisplay} {
 # open many files at once - for use with file list provided by TkDnD
 # the open dialog is not shown
 # in case a directory is given, open all the files in that directory
+    global tcl_platform
     foreach f $filelist {
         regsub "^file:" $f "" f
         # in unix, .* files are not matched by *, but .* matches . and ..
         # If we don't exclude them, we have infinite recursion
         if {[file tail $f] == "." | [file tail $f] == ".."} continue
+        # on Linux, TkDnD provides filenames that can contain %xy escape sequences
+        # that must be substituted - This is bug 2998, fixed for all platforms
+        # I know of but Ubuntu 8.04.x because the latter is affected by Ubuntu bug 320959
+        # see  https://bugs.launchpad.net/ubuntu/+bug/320959
+        if {$tcl_platform(platform) == "unix"} {
+            set f [substitutepercentescapesequences $f]
+        }
         if {[file isfile $f] == 1} {
             openfile $f $tiledisplay
         } elseif {[file isdirectory $f] == 1} {
@@ -1823,6 +1831,24 @@ proc globtails {directoryname pat} {
         set matchfiles [lreplace $matchfiles $i $i [file tail [lindex $matchfiles $i]]]
     }
     return $matchfiles
+}
+
+proc substitutepercentescapesequences {str} {
+# substitute all %xy sequences in $str (x and y being two hex digits)
+# by the character whose hex code is xy and return the substituted string
+# this is used in URLs, where the percent sign is an escape character indicating
+# that the next two characters are hex digits representing a single ASCII character
+    global percenthexseqRE
+    # first find out where %xy must be substituted
+    set percentmatches [regexp -all -inline -indices -- $percenthexseqRE $str]
+    # second, replace each %xy by the character which hex code can be found in range {$sta+1 $sto} in $str
+    # lreverse the list of matches so that it's possible to work in place
+    foreach amatch [lreverse $percentmatches] {
+        foreach {sta sto} $amatch {}
+        set newchar [format %c [expr 0x[string range $str [expr $sta + 1] $sto]]]
+        set str [string replace $str $sta $sto $newchar]
+    }
+    return $str
 }
 
 ##################################################
