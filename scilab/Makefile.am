@@ -90,7 +90,7 @@ $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
 $(top_srcdir)/RELEASE_NOTES_5.0.X \
-$(top_srcdir)/RELEASE_NOTES_5.1 \
+$(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
