@@ -19,7 +19,8 @@
 using namespace types;
 
 EXTERN_OP int DivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut);
-EXTERN_OP int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly* _pDoubleOut);
+EXTERN_OP int DividePolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPolyOut);
+EXTERN_OP int DivideDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPolyOut);
 
 
 #endif /* __TYPES_DIV_H__ */

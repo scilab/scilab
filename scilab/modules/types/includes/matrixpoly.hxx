@@ -41,6 +41,8 @@ namespace types
 		void					update_rank(void);
 		Double* 			coef_get(void);
 		void					coef_set(Double *_pCoef);
+		Double*				extract_coef(int _iRank);
+		bool					insert_coef(int _iRank, Double* _pCoef);
 
 		bool					insert(int _iRows, int _iCols, MatrixPoly* _poSource);
 

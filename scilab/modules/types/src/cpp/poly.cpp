@@ -69,13 +69,13 @@ namespace types
 		if(_pdblCoefI != NULL)
 		{
 			m_pdblCoef = new Double(1, _iRank, &pR, &pI);
-			m_pdblCoef->zero_set();
 		}
 		else
 		{
 			m_pdblCoef = new Double(1, _iRank, &pR);
 		}
 
+		m_pdblCoef->zero_set();
 		if(_pdblCoefR != NULL)
 		{
 			*_pdblCoefR = pR;

@@ -138,7 +138,7 @@ namespace types
 		else
 			m_pdblImg = NULL;
 
-		//zero_set();
+//		zero_set();
 	}
 
 	bool Double::isComplex()

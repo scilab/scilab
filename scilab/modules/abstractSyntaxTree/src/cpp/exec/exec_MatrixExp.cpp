@@ -53,13 +53,24 @@ namespace ast
 						(*col)->accept (*execMe);
 						if(execMe->result_get()->getType() == InternalType::RealImplicitList)
 						{
-							Double *pTemp = new Double(1, execMe->result_get()->getAsList()->size_get(), false);
-							execMe->result_get()->getAsList()->extract_matrix(pTemp->real_get());
-							delete execMe->result_get();
-							execMe->result_set(pTemp);
+							if(execMe->result_get()->getAsList()->computable() == true)
+							{
+								Double *pTemp = new Double(1, execMe->result_get()->getAsList()->size_get(), false);
+								execMe->result_get()->getAsList()->extract_matrix(pTemp->real_get());
+								delete execMe->result_get();
+								execMe->result_set(pTemp);
+								iCurCol += ((GenericType*)execMe->result_get())->cols_get();
+							}
+							else
+							{
+								iCurCol++;
+							}
+						}
+						else
+						{
+							iCurCol += ((GenericType*)execMe->result_get())->cols_get();
 						}
 
-						iCurCol += ((GenericType*)execMe->result_get())->cols_get();
 						if(iCurRow == -1)
 						{
 							iCurRow = ((GenericType*)execMe->result_get())->rows_get();

@@ -233,28 +233,7 @@ namespace ast
 					Double *pL			= execMeL.result_get()->getAsDouble();
 					Double *pR			= execMeR.result_get()->getAsDouble();
 
-					int iRowResult 	= 0;
-					int iColResult	= 0;
-
-					if(pL->size_get() == 1)
-					{
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
-					}
-					else if (pR->size_get() == 1)
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pL->cols_get();
-					}
-					else if(pL->cols_get() == pR->rows_get())
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pR->cols_get();
-					}
-
-					pResult = new Double(iRowResult, iColResult, pL->isComplex() || pR->isComplex());
-
-					int iResult = MultiplyDoubleByDouble(pL, pR, pResult->getAsDouble());
+					int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
 					if(iResult)
 					{
 						std::ostringstream os;
@@ -271,50 +250,7 @@ namespace ast
 					Double *pL			    = execMeL.result_get()->getAsDouble();
 					MatrixPoly *pR	    = execMeR.result_get()->getAsPoly();
 
-					int iRowResult 	= 0;
-					int iColResult	= 0;
-					int *piRank			= NULL;
-					if(pL->size_get() == 1)
-					{
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pR->poly_get(i)->rank_get();
-						}
-					}
-					else if (pR->size_get() == 1)
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pL->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pR->poly_get(0)->rank_get();
-						}
-					}
-					else if(pL->cols_get() == pR->rows_get())
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pR->cols_get();
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pR->rank_max_get();
-						}
-					}
-
-					pResult = new MatrixPoly(pR->var_get(), iRowResult, iColResult, piRank);
-					delete piRank;
-					if(pL->isComplex() || pR->isComplex())
-					{
-						pResult->getAsPoly()->complex_set(true);
-					}
-
-					int iResult = MultiplyDoubleByPoly(pL, pR, pResult->getAsPoly());
+					int iResult = MultiplyDoubleByPoly(pL, pR, (MatrixPoly**)&pResult);
 
 					if(iResult)
 					{
@@ -332,50 +268,7 @@ namespace ast
 					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
 					Double *pR			    = execMeR.result_get()->getAsDouble();
 
-					int iRowResult 	= 0;
-					int iColResult	= 0;
-					int *piRank			= NULL;
-					if(pL->size_get() == 1)
-					{
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->poly_get(0)->rank_get();
-						}
-					}
-					else if (pR->size_get() == 1)
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pL->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->poly_get(i)->rank_get();
-						}
-					}
-					else if(pL->cols_get() == pR->rows_get())
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pR->cols_get();
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->rank_max_get();
-						}
-					}
-
-					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
-					delete piRank;
-					if(pL->isComplex() || pR->isComplex())
-					{
-						pResult->getAsPoly()->complex_set(true);
-					}
-
-					int iResult = MultiplyPolyByDouble(pL, pR, pResult->getAsPoly());
+					int iResult = MultiplyPolyByDouble(pL, pR, (MatrixPoly**)&pResult);
 
 					if(iResult)
 					{
@@ -390,65 +283,10 @@ namespace ast
 				}
 				else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
 				{
-					timer timed;
 					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
 					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
 
-					int iRowResult 	= 0;
-					int iColResult	= 0;
-					int *piRank			= NULL;
-
-					if(pL->size_get() == 1 && pR->size_get() == 1)
-					{
-						iRowResult = 1;
-						iColResult = 1;
-
-						piRank = new int[1];
-						piRank[0] = pL->poly_get(0)->rank_get() + pR->poly_get(0)->rank_get() - 1;
-					}
-					else if(pL->size_get() == 1)
-					{
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->poly_get(0)->rank_get() + pR->poly_get(i)->rank_get() - 1;
-						}
-					}
-					else if (pR->size_get() == 1)
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pL->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pR->poly_get(0)->rank_get() * pL->poly_get(i)->rank_get();
-						}
-					}
-					else if(pL->cols_get() == pR->rows_get())
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pR->cols_get();
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->rank_max_get() * pR->rank_max_get();
-						}
-					}
-
-					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
-
-					delete[] piRank;
-
-					if(pL->isComplex() || pR->isComplex())
-					{
-						pResult->getAsPoly()->complex_set(true);
-					}
-
-					int iResult = MultiplyPolyByPoly(pL, pR, pResult->getAsPoly());
+					int iResult = MultiplyPolyByPoly(pL, pR, (MatrixPoly**)&pResult);
 
 					if(iResult)
 					{
@@ -485,42 +323,36 @@ namespace ast
 				{
 					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
 					Double *pR			= execMeR.result_get()->getAsDouble();
-					int iRowResult 	= 0;
-					int iColResult	= 0;
-					int *piRank			= NULL;
 
-					if(pL->size_get() == 1)
-					{
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->poly_get(0)->rank_get();
-						}
-					}
-					else if(pR->size_get() == 1)
-					{
-						iRowResult = pL->rows_get();
-						iColResult = pL->cols_get();
-
-						piRank = new int[iRowResult * iColResult];
-						for(int i = 0 ; i < iRowResult * iColResult ; i++)
-						{
-							piRank[i] = pL->poly_get(i)->rank_get();
-						}
-					}
-					else if(pL->rows_get() == pR->rows_get() && pL->cols_get() == pR->cols_get())
-					{//Je ne sais pas encore comment ca marche ce machin la !!!
-						iRowResult = pR->rows_get();
-						iColResult = pR->cols_get();
+					int iResult = DividePolyByDouble(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult)
+					{//manage errors
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
 					}
 
-					pResult = new MatrixPoly(pL->var_get(), iRowResult, iColResult, piRank);
-
-					DividePolyByDouble(pL, pR, pResult->getAsPoly());
+					result_set(pResult);
 				}
+				else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+				{
+					Double *pL			= execMeL.result_get()->getAsDouble();
+					MatrixPoly *pR	= execMeR.result_get()->getAsPoly();
+
+					int iResult = DivideDoubleByPoly(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult)
+					{//manage errors
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+					result_set(pResult);
+				}
+
 				break;
 			}
 		case OpExp::eq :

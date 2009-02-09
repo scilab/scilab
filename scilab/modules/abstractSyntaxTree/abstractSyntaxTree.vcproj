@@ -157,10 +157,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\cpp\execvisitor.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\libAst.cpp"
 				>
 			</File>
@@ -181,6 +177,10 @@
 				</File>
 				<File
 					RelativePath=".\src\cpp\exec\exec_OpExp.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\src\cpp\exec\execvisitor.cpp"
 					>
 				</File>
 			</Filter>

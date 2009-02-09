@@ -15,17 +15,17 @@
 #include <string>
 
 using std::string;
+using ast::Exp;
+using ast::ExecVisitor;
 
 //std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List);
-void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
-int GetVarMaxDim(InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
 
 namespace ast
 {
 	void ExecVisitor::visit (const AssignExp  &e)
 	{
 		/*Create local exec visitor*/
-		ExecVisitor* execMeR = new ast::ExecVisitor();
+		ExecVisitor* execMeR = new ExecVisitor();
 		try
 		{
 			/*getting what to assign*/
@@ -35,13 +35,12 @@ namespace ast
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
 			if(Var == NULL)
 			{//dynamic_cast failed : left operand is not a SimpleVar ;)
-				bool bNew = false;
-				ExecVisitor* execMeArg = new ast::ExecVisitor();
-				CallExp *CallVar = (CallExp *)(&e.left_exp_get());
-				Var = (SimpleVar*)&CallVar->name_get();
-				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
-				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
-				bool bSeeAsVector	= CallVar->args_get().size() == 1;
+				bool bNew								= false;
+				CallExp *CallVar				= (CallExp *)(&e.left_exp_get());
+				int iProductElem				= CallVar->args_get().size();
+				Var											= (SimpleVar*)&CallVar->name_get();
+				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
+				bool bSeeAsVector				= iProductElem == 1;
 
 				if(pIT == NULL)
 				{//Var doesn't exist, create it with good dimensions
@@ -55,120 +54,10 @@ namespace ast
 					}
 				}
 
-				//Create list of indexes
-				//std::vector<std::vector<int>> IndexList;
-				int *piTabSize = new int[CallVar->args_get().size()];
-				int *piMaxDim = new int[CallVar->args_get().size()];
-				int **piIndexList = NULL;
-				int iTotalCombi		= 1;
-
-				piIndexList = new int*[CallVar->args_get().size()];
-
-
-				int k = 0;
-				std::list<Exp *>::const_iterator	i;
-				for(i = CallVar->args_get().begin() ; i != CallVar->args_get().end() ; i++,k++)
-				{
-					(*i)->accept(*execMeArg);
-					InternalType *pIn = NULL;
-					Double *pDbl = NULL;
-					bool bDeleteDbl = false;
-
-					if(execMeArg->result_get()->getType() == InternalType::RealImplicitList)
-					{//a:b:c
-						int iMaxDim = 0;
-						if(pIT != NULL)
-						{
-							iMaxDim = GetVarMaxDim(pIT, k, CallVar->args_get().size());
-						}
-
-						Double dbl(iMaxDim); // $
-						ImplicitList *pIL = execMeArg->result_get()->getAsList();
-						if(pIL->computable() == false)
-						{
-							if(pIL->start_type_get() == InternalType::RealPoly)
-							{
-								MatrixPoly *poPoly	= pIL->start_poly_get();
-								pIL->start_set(poPoly->evaluate(&dbl)->real_get(0,0));
-							}
-							if(pIL->step_type_get() == InternalType::RealPoly)
-							{
-								MatrixPoly *poPoly	= pIL->step_poly_get();
-								pIL->step_set(poPoly->evaluate(&dbl)->real_get(0,0));
-							}
-							if(pIL->end_type_get() == InternalType::RealPoly)
-							{
-								MatrixPoly *poPoly	= pIL->end_poly_get();
-								pIL->end_set(poPoly->evaluate(&dbl)->real_get(0,0));
-							}
-						}
-
-						double *pDblData = NULL;
-						pDbl = new Double(1, pIL->size_get(), &pDblData);
-						pIL->extract_matrix(pDblData);
-						bDeleteDbl = true;
-					}
-					else
-					{
-						pIn = execMeArg->result_get();
-
-						if(pIn->getType() == InternalType::RealPoly)
-						{//manage $
-							MatrixPoly *pPoly = pIn->getAsPoly();
-
-							if(pIT != NULL)
-							{
-								int iMaxDim = GetVarMaxDim(pIT, k, CallVar->args_get().size());
-								Double dbl(iMaxDim); // $
-								pDbl = pPoly->evaluate(&dbl);
-							}
-							else
-							{//houston we have a problem ...
-								//Allow empty matrix
-							}
-						}
-						else if(pIn->getType() == InternalType::RealDouble)
-						{
-							pDbl	= pIn->getAsDouble();
-						}
-						else
-						{//Heu ... ?
-						}
-					}
-
-					double *pData = pDbl->real_get();
-
-//					std::vector<int> SubList;
-					piTabSize[k] = pDbl->size_get();
-					piIndexList[k] = new int[piTabSize[k]];
-
-					piMaxDim[k] = (int)(pData[0] + 0.5);
-					int iSize = pDbl->size_get();
-					for(int j = 0 ; j < iSize ; j++)
-					{
-						if((int)(pData[j] + 0.5) > piMaxDim[k])
-						{
-							piMaxDim[k] = (int)(pData[j] + 0.5);
-						}
-						//SubList.push_back((int)pData[j]);
-						piIndexList[k][j] = (int)(pData[j] + 0.5);
-
-					}
-					iTotalCombi *= iSize;
-					//IndexList.push_back(SubList);
-
-					if(bDeleteDbl == true)
-					{
-						delete pDbl;
-					}
-				}
-
-				int iTabSize = iTotalCombi * CallVar->args_get().size();
-				//std::vector<std::vector<int>> IndexSeq;
-//				IndexSeq = ExpandList(&IndexList);
-				int *piIndexSeq		= new int[iTabSize];
-				int iProductElem	= CallVar->args_get().size();
-				ExpandList(piIndexList, piTabSize, CallVar->args_get().size(), piIndexSeq);
+				int *piIndexSeq		= NULL;
+				int *piMaxDim			= NULL;
+				int *piDimSize			= new int[iProductElem];
+				int iTotalCombi		= GetIndexList(CallVar->args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
 
 				/*I have  the indexlist expanded and the max index*/
 
@@ -186,7 +75,15 @@ namespace ast
 						//if Index is a vector, we can enalge Out only if it's a vector
 						if(bNew || pOld->rows_get() < piMaxDim[0] || pOld->cols_get() < piMaxDim[1])
 						{//new or smaller
-							pOut = new Double(piMaxDim[0], piMaxDim[1], pIn->isComplex());
+							if(bNew == false)
+							{
+								pOut = new Double(Max(piMaxDim[0], pOld->rows_get()), Max(piMaxDim[1], pOld->cols_get()), pIn->isComplex());
+							}
+							else
+							{
+								pOut = new Double(piMaxDim[0], piMaxDim[1], pIn->isComplex());
+							}
+								pOut->zero_set();
 
 							if(bNew == false)
 							{//copy old values
@@ -422,17 +319,11 @@ namespace ast
 					getchar();
 				}
 
-				delete piTabSize;
 				delete piMaxDim;
-				for(int i = 0 ; i < (int)CallVar->args_get().size() ; i++)
-				{
-					delete piIndexList[i];
-				}
-				delete piIndexList;
-				delete execMeArg;
+				delete[] piDimSize;
 			}
 			else
-			{//Var == NULL
+			{//Var != NULL
 				InternalType *pVar	=	execMeR->result_get();
 				if(pVar->isList())
 				{
@@ -449,7 +340,7 @@ namespace ast
 				{
 					std::cout << Var->name_get() << " = " << std::endl;
 					std::cout << std::endl;
-					std::cout << pVar->toString(10,75) << std::endl;
+					std::cout << pVar->toString(20,75) << std::endl;
 				}
 			}
 		}
@@ -498,66 +389,3 @@ std::vector<std::vector<int>> ExpandList(std::vector<std::vector<int>> *_List)
 	return ReturnList;
 }
 */
-
-void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
-{
-	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
-	{
-		int iPreOcc = 1;
-		int iPostOcc = 1;
-		for(int k = 0 ; k < i ; k++)
-		{
-			if(k != i)
-			{
-				iPreOcc *= _piListSize[k];
-			}
-		}
-
-		for(int k = i + 1 ; k < _iListSizeSize ; k++)
-		{
-			if(k != i)
-			{
-				iPostOcc *= _piListSize[k];
-			}
-		}
-
-		int iSize = _piListSize[i];
-		for(int m = iSize - 1 ; m >= 0  ; m--)
-		{
-			for(int j1 = iPreOcc - 1 ; j1 >= 0 ; j1--)
-			{
-				for(int j2 = iPostOcc - 1 ; j2 >= 0 ; j2--)
-				{
-					//Bloc Offset				-> j1 * ( iPostOcc * iSize) * _iListSizeSize
-					//Offset in Bloc		-> m * iPostOcc * _iListSizeSize
-					//Offset in SubBloc -> j2 * _iListSizeSize + i
-					int iPos = j1 * ( iPostOcc * iSize) * _iListSizeSize + m * iPostOcc * _iListSizeSize + j2 * _iListSizeSize + i;
-					_piResultList[iPos] = _piList[i][m];
-				}
-			}
-		}
-	}
-}
-
-int GetVarMaxDim(InternalType *_pIT, int _iCurrentDim, int _iMaxDim)
-{
-	if(_iCurrentDim == 0)
-	{
-		if(_iMaxDim != 1)
-		{
-			return ((GenericType*)_pIT)->rows_get();
-		}
-		else
-		{
-			return ((GenericType*)_pIT)->size_get();
-		}
-	}
-	else if(_iCurrentDim == 1)
-	{
-		return ((GenericType*)_pIT)->cols_get();
-	}
-	else
-	{//more than 2 dimansions ? :(
-		return ((GenericType*)_pIT)->size_get();
-	}
-}

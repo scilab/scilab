@@ -131,7 +131,7 @@ namespace ast
 		{
 			std::cout << e.name_get() << " = " << std::endl;
 			std::cout << std::endl;
-			std::cout << pI->toString(10,75) << std::endl;
+			std::cout << pI->toString(16,75) << std::endl;
 		}
 	}
 
@@ -196,37 +196,130 @@ namespace ast
 			}
 		}
 		else if(execFunc->result_get() != NULL)
-		{//a(xxx) with a variable
+		{//a(xxx) with a variable, extraction
 
 			//get symbol of variable
 			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
-
-			InternalType *pData = NULL;
-			if(execFunc->result_get()->getType() == InternalType::RealDouble)
+			if(Var != NULL)
 			{
-				pData = execFunc->result_get()->getAsDouble();
-			}
+				Double *pResult = NULL;
+				ExecVisitor* execMeArg = new ast::ExecVisitor();
+				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
+				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
+				int iArgDim				= e.args_get().size();
+				bool bSeeAsVector	= iArgDim == 1;
 
-			//visit each args
-			typed_list in;
-			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
-			{
-				(*i)->accept (*execVar);
-				in.push_back(execVar->result_get());
-			}
 
-			typed_list::const_iterator	j;
-			for(j = in.begin() ; j != in.end() ; j++)
-			{
-				if((*j)->getType() == InternalType::RealImplicitList)
-				{//ca pue la mort ca !
+				//Create list of indexes
+				//std::vector<std::vector<int>> IndexList;
 
+				int *piIndexSeq		= NULL;
+				int *piMaxDim			= NULL;
+				int *piDimSize		= new int[iArgDim];
+				int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
+				
+				if(pIT->getType() == InternalType::RealDouble)
+				{
+					Double *pDouble	= pIT->getAsDouble();
+					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector	
+							iArgDim == 2 && (piMaxDim[0] > pDouble->rows_get() || piMaxDim[0] > pDouble->cols_get()) || //check dimension to extract
+							iArgDim > 2) //more than 2 dimensions ?
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+				
+					
+					int iRowOut = 0;
+					int iColOut	= 0;
+					if(iArgDim == 1)
+					{
+						pResult = new Double(piDimSize[0], 1, pDouble->isComplex());
+						iRowOut = piDimSize[0];
+						iColOut = 1;
+					}
+					else
+					{
+						pResult = new Double(piDimSize[0], piDimSize[1], pDouble->isComplex());
+						iRowOut = piDimSize[0];
+						iColOut = piDimSize[1];
+					}
+
+					double *pRealIn		= pDouble->real_get();
+					double *pImgIn		= pDouble->img_get();
+					double *pRealOut	= pResult->real_get();
+					double *pImgOut		= pResult->img_get();
+
+					if(bSeeAsVector)
+					{
+						if(pResult->isComplex())
+						{
+							for(int i = 0 ; i < iTotalCombi ; i++)
+							{
+								pRealOut[i] = pRealIn[piIndexSeq[i]];
+								pImgOut[i]	= pImgIn[piIndexSeq[i]];
+							}
+						}
+						else
+						{
+							for(int i = 0 ; i < iTotalCombi ; i++)
+							{
+								pRealOut[i] = pRealIn[piIndexSeq[i]];
+							}
+						}
+					}
+					else//matrix
+					{
+						int iRowIn = pDouble->rows_get();
+						if(pResult->isComplex())
+						{
+							for(int i = 0 ; i < iTotalCombi ; i++)
+							{
+								int iCurIndex	= (i % iColOut) * iRowOut + (i / iColOut);
+								pRealOut[iCurIndex] = pRealIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
+								pImgOut[iCurIndex] = pImgIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
+							}
+						}
+						else
+						{
+							for(int i = 0 ; i < iTotalCombi ; i++)
+							{
+								//convert vertical indexes to horizontal indexes
+								int iCurIndex	= (i % iColOut) * iRowOut + (i / iColOut);
+								pRealOut[iCurIndex] = pRealIn[(piIndexSeq[i * 2] - 1) + (piIndexSeq[i * 2 + 1] - 1) * iRowIn];
+							}
+						}
+					}
+
+					result_set(pResult);
+				}
+				else
+				{
+				}
+				delete[] piDimSize;
+				if(e.is_verbose())
+				{
+					std::cout <<  pResult->toString(10,75) << std::endl;
 				}
 
+			}
+			else
+			{
+				printf("error Var == NULL\x0d\x0a");
 			}
 		}
 		else
 		{//result == NULL ,variable doesn't exist :(
+			std::ostringstream os;
+			os << "variable must exist";
+			os << " (" << e.location_get().first_line << "," << e.location_get().first_column << ")" << std::endl;
+			string szErr(os.str());
+			throw szErr;					
+
+/*
 			//ASTUCE POUR BRUNO
 			string sz = dynamic_cast<const SimpleVar*>(&e.name_get())->name_get().name_get();
 
@@ -238,8 +331,8 @@ namespace ast
 			{
 				symbol::Context::getInstance()->scope_end();
 			}
+*/
 		}
-
 		delete execVar;
 		delete execFunc;
 	}
@@ -530,6 +623,9 @@ namespace ast
 
 }
 
+using namespace ast;
+//using ast::ExecVisitor;
+
 bool bConditionState(ast::ExecVisitor *exec)
 {
 	if(((GenericType*)exec->result_get())->isDouble() && ((Double*)exec->result_get())->isComplex() == false)
@@ -614,5 +710,197 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 			//Conjugate
 			_pdblImgOut[iNewCoord]	= -_pdblImgIn[iIndex];
 		}
+	}
+}
+
+
+int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
+{
+	//Create list of indexes
+	//std::vector<std::vector<int>> IndexList;
+	int iProductElem				= _plstArg.size();
+	int **piIndexList				= NULL;
+	int iTotalCombi					= 1;
+
+	int *piTabSize					= new int[iProductElem];
+	ExecVisitor* execMeArg	= new ExecVisitor();
+	(*_piMaxDim)						= new int[iProductElem];
+	piIndexList							= new int*[iProductElem];
+
+
+	int k = 0;
+	std::list<Exp *>::const_iterator	i;
+	for(i = _plstArg.begin() ; i != _plstArg.end() ; i++,k++)
+	{
+		(*i)->accept(*execMeArg);
+		InternalType *pIn = NULL;
+		Double *pDbl = NULL;
+		bool bDeleteDbl = false;
+
+		if(execMeArg->result_get()->getType() == InternalType::RealImplicitList)
+		{//a:b:c
+			int iMaxDim = 0;
+			if(_pRefVar != NULL)
+			{
+				iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
+			}
+
+			Double dbl(iMaxDim); // $
+			ImplicitList *pIL = execMeArg->result_get()->getAsList();
+			if(pIL->computable() == false)
+			{
+				if(pIL->start_type_get() == InternalType::RealPoly)
+				{
+					MatrixPoly *poPoly	= pIL->start_poly_get();
+					pIL->start_set(poPoly->evaluate(&dbl)->real_get(0,0));
+				}
+				if(pIL->step_type_get() == InternalType::RealPoly)
+				{
+					MatrixPoly *poPoly	= pIL->step_poly_get();
+					pIL->step_set(poPoly->evaluate(&dbl)->real_get(0,0));
+				}
+				if(pIL->end_type_get() == InternalType::RealPoly)
+				{
+					MatrixPoly *poPoly	= pIL->end_poly_get();
+					pIL->end_set(poPoly->evaluate(&dbl)->real_get(0,0));
+				}
+			}
+
+			double *pDblData = NULL;
+			pDbl = new Double(1, pIL->size_get(), &pDblData);
+			pIL->extract_matrix(pDblData);
+			bDeleteDbl = true;
+		}
+		else
+		{
+			pIn = execMeArg->result_get();
+
+			if(pIn->getType() == InternalType::RealPoly)
+			{//manage $
+				MatrixPoly *pPoly = pIn->getAsPoly();
+
+				if(_pRefVar != NULL)
+				{
+					int iMaxDim = GetVarMaxDim(_pRefVar, k, iProductElem);
+					Double dbl(iMaxDim); // $
+					pDbl = pPoly->evaluate(&dbl);
+				}
+				else
+				{//houston we have a problem ...
+					//Allow empty matrix
+					return 0;
+				}
+			}
+			else if(pIn->getType() == InternalType::RealDouble)
+			{
+				pDbl	= pIn->getAsDouble();
+			}
+			else
+			{//Heu ... ?
+			}
+		}
+
+		double *pData = pDbl->real_get();
+
+//					std::vector<int> SubList;
+		piTabSize[k] = pDbl->size_get();
+		piIndexList[k] = new int[piTabSize[k]];
+
+		(*_piMaxDim)[k] = (int)(pData[0] + 0.5);
+		int iSize = pDbl->size_get();
+		if(_iDimSize != NULL)
+		{
+			_iDimSize[k] = iSize;
+		}
+
+		for(int j = 0 ; j < iSize ; j++)
+		{
+			if((int)(pData[j] + 0.5) > (*_piMaxDim)[k])
+			{
+				(*_piMaxDim)[k] = (int)(pData[j] + 0.5);
+			}
+			//SubList.push_back((int)pData[j]);
+			piIndexList[k][j] = (int)(pData[j] + 0.5);
+
+		}
+		iTotalCombi *= iSize;
+		//IndexList.push_back(SubList);
+
+		if(bDeleteDbl == true)
+		{
+			delete pDbl;
+		}
+	}
+
+	int iTabSize	= iTotalCombi * iProductElem;
+	*_piIndexSeq	= new int[iTabSize];
+	ExpandList(piIndexList, piTabSize, iProductElem, *_piIndexSeq);
+	return iTotalCombi;
+}
+
+void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList)
+{
+	for(int i = _iListSizeSize - 1 ; i >= 0 ; i--)
+	{
+		int iPreOcc = 1;
+		int iPostOcc = 1;
+		for(int k = 0 ; k < i ; k++)
+		{
+			if(k != i)
+			{
+				iPreOcc *= _piListSize[k];
+			}
+		}
+
+		for(int k = i + 1 ; k < _iListSizeSize ; k++)
+		{
+			if(k != i)
+			{
+				iPostOcc *= _piListSize[k];
+			}
+		}
+
+		int iSize = _piListSize[i];
+		for(int m = iSize - 1 ; m >= 0  ; m--)
+		{
+			for(int j1 = iPreOcc - 1 ; j1 >= 0 ; j1--)
+			{
+				for(int j2 = iPostOcc - 1 ; j2 >= 0 ; j2--)
+				{
+					//Bloc Offset				-> j1 * ( iPostOcc * iSize) * _iListSizeSize
+					//Offset in Bloc		-> m * iPostOcc * _iListSizeSize
+					//Offset in SubBloc -> j2 * _iListSizeSize + i
+					int iPos = j1 * ( iPostOcc * iSize) * _iListSizeSize + m * iPostOcc * _iListSizeSize + j2 * _iListSizeSize + i;
+					_piResultList[iPos] = _piList[i][m];
+				}
+			}
+		}
+	}
+}
+
+int GetVarMaxDim(InternalType *_pIT, int _iCurrentDim, int _iMaxDim)
+{
+	if(_pIT == NULL)
+	{
+		return 0;
+	}
+	if(_iCurrentDim == 0)
+	{
+		if(_iMaxDim != 1)
+		{
+			return ((GenericType*)_pIT)->rows_get();
+		}
+		else
+		{
+			return ((GenericType*)_pIT)->size_get();
+		}
+	}
+	else if(_iCurrentDim == 1)
+	{
+		return ((GenericType*)_pIT)->cols_get();
+	}
+	else
+	{//more than 2 dimansions ? :(
+		return ((GenericType*)_pIT)->size_get();
 	}
 }

@@ -318,7 +318,7 @@ static int interactiveMain (void)
 		char *command = TermReadAndProcess();
 
 
-		if (strcmp(command, "quit") == 0)
+		if (strcmp(command, "quit") == 0 || strcmp(command, "exit") == 0)
 		{
 			exit = true;
 			return 0;

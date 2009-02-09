@@ -515,7 +515,7 @@ namespace types
 					osCoef.str("\x00");
 
 				}
-				iLen	= 0;
+				iLen	= piMaxLen[iCols1];
 
 				//write "column x to y"
 				if(iLastCol + 1 == iCols1)
@@ -743,5 +743,57 @@ namespace types
 		}
 		return true;
 	}
+	Double* MatrixPoly::extract_coef(int _iRank)
+	{
+		Double *pdbl	= new Double(m_iRows, m_iCols, m_bComplex);
+		double *pReal	= pdbl->real_get();
+		double *pImg	= pdbl->img_get();
+
+		for(int i = 0 ; i < m_iSize ; i++)
+		{
+			Poly *pPoly = poly_get(i);
+
+			if(pPoly->rank_get() <= _iRank)
+			{
+				pReal[i] = 0;
+				if(m_bComplex)
+				{
+					pImg[i]		= 0;
+				}
+			}
+			else
+			{
+				pReal[i]		= pPoly->coef_get()->real_get()[_iRank];
+				if(m_bComplex)
+				{
+					pImg[i]		= pPoly->coef_get()->img_get()[_iRank];
+				}
+			}
+		}
+
+		return pdbl;
+	}
+	bool MatrixPoly::insert_coef(int _iRank, Double* _pCoef)
+	{
+		double *pReal	= _pCoef->real_get();
+		double *pImg	= _pCoef->img_get();
+
+		for(int i = 0 ; i < m_iSize ; i++)
+		{
+			Poly *pPoly = poly_get(i);
+			if(pPoly->rank_get() <= _iRank)
+			{
+				return false;
+			}
+
+			pPoly->coef_get()->real_get()[_iRank] = pReal[i];
+			if(m_bComplex)
+			{
+				pPoly->coef_get()->img_get()[_iRank] = pImg[i];
+			}
+		}
+		return true;
+	}
+
 }
 
