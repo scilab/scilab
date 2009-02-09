@@ -106,7 +106,6 @@ char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 	{
 		return _szBufferIn;
 	}
-
 	if (_szBufferIn == NULL)
 	{
 		return NULL;
