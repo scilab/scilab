@@ -97,6 +97,15 @@ function test_run(varargin)
 	lhs = argn(1);
 	rhs = argn(2);
 	
+	global MACOSX;
+	
+	if ~MSDOS then
+		OSNAME = unix_g('uname');
+		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
+	else
+		MACOSX = %F;
+	end
+	
 	global test_list;
 	global test_count;
 	global displayed_txt;
@@ -473,7 +482,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	status_id      = 0 ;
 	status_msg     = "passed" ;
 	status_details = "";
-
+	
+	global MACOSX;
+	
 	global check_ref;
 	global create_ref;
 	global launch_mode;
@@ -502,10 +513,20 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	diafile     = pathconvert(fullPath+".dia",%f,%f);
 	reffile     = pathconvert(fullPath+".dia.ref",%f,%f);
 	
+	// Reference file management OS by OS
+	
 	if MSDOS then
-		altreffile = pathconvert(fullPath+".win.dia.ref",%f,%f);
+		altreffile = [ pathconvert(fullPath+".win.dia.ref",%f,%f) ];
+	elseif MACOSX then
+		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".macosx.dia.ref",%f,%f) ];
 	else
-		altreffile = pathconvert(fullPath+".unix.dia.ref",%f,%f);
+		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ];
+	end
+	
+	for k=1:size(altreffile,'*')
+		if fileinfo(altreffile(k)) <> [] then
+			reffile = altreffile(k);
+		end
 	end
 	
 	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
@@ -734,24 +755,18 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
-        // Check the reference file only if check_ref (i.e. for the whole 
-        // test sequence) is true and this_check_ref (i.e. for the specific current .tst)
-        // is true.
-
+	// Check the reference file only if check_ref (i.e. for the whole 
+	// test sequence) is true and this_check_ref (i.e. for the specific current .tst)
+	// is true.
+	
 	if ( check_ref & this_check_ref ) then
-		if (fileinfo(reffile) == []) & (fileinfo(altreffile) == []) then
+		if fileinfo(reffile) == [] then
 			status_msg     = "failed  : the ref file doesn''t exist";
 			status_details = "     Add or create the following file"+reffile+" file";
 			status_details = sprintf("     Add or create the following file : \n     - %s",reffile);
 			status_id      = 5;
 			return;
 		end
-		
-		// Gestion du fichier alternatif ( prioritaire s'il existe )
-		if fileinfo(altreffile) <> [] then
-			reffile = altreffile;
-		end
-		
 	end
 	
 	// Comparaison ref <--> dia
