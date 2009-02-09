@@ -941,8 +941,8 @@ FigureModelData * newFigureModelData( void )
   modelData->figureHeight = 460 ;
   modelData->windowWidth  = 620 ;
   modelData->windowHeight = 590 ;
-  modelData->windowPosition[0] = 200 ;
-  modelData->windowPosition[1] = 200 ;
+  modelData->windowPosition[0] = -1 ; /* Set [-1,-1] to let the os use the position */
+  modelData->windowPosition[1] = -1 ;
   modelData->colorMap = NULL ;
   modelData->numColors = 0 ;
   modelData->autoResizeMode = TRUE;

@@ -139,11 +139,14 @@ Bug fixes:
                                               to remain to the english notation.
 
 * bug 2647 fixed - Bad display of some numbers in special cases due to a 
-                   gfortran bug
+                   gfortran bug.
 
 * bug 2682 fixed - chart() is inconsistent in the second argument, angle.
                    It might be treated as degrees or radian.
 				   
+* bug 2767 fixed - By default graphic windows are opened one above each others
+				   whereas they should be tiled.
+                   
 * bug 2814 fixed - Ticks graduation produce some unwanted decimals.
 
 * bug 2959 fixed - functions on F1, F2, F12 keys are not mapped as scilab 4.x
