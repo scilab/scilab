@@ -102,11 +102,6 @@ icons/puffin_48.xpm \
 icons/puffin.icns \
 icons/scilab.icns
 
-
-profilingdir=$(pkgdatadir)/tools/profiling/
-profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
-
-
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \

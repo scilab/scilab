@@ -6,9 +6,10 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-
 function r=%i_s_s(a,b)
-if b==[] then r=[],return,end
-r=a-iconvert(b,inttype(a))
+  if b==[] then 
+    if mtlb_mode() then r=[],else r=a,end
+  else
+    r=a-iconvert(b,inttype(a))
+  end
 endfunction

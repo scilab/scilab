@@ -561,8 +561,12 @@ BOOL needsDisplay(sciPointObj * pFigure)
 {
 	/* return false if the figure contains no or one subwindow and the subwindow is not displayed. */
 	
-
-	if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 0)
+	if (!sciGetVisibility(pFigure))
+	{
+		/* Figure not visible */
+		return FALSE;
+	}
+	else if (sciGetNbTypedObjects(pFigure, SCI_SUBWIN) == 0)
 	{
 		/* No subwindows, return false */
 		return FALSE;
@@ -583,7 +587,12 @@ static BOOL subwinNeedsDisplay(sciPointObj * pSubwin)
 {
 	/* the subwindow is not displayed if it does not have any children, its box is of and is transparent or */
 	/* has the same background as the figure */
-	if (sciGetNbChildren(pSubwin) > 4)
+	if (!sciGetVisibility(pSubwin))
+	{
+		/* subwin invisible */
+		return FALSE;
+	}
+	else if (sciGetNbChildren(pSubwin) > 4)
 	{
 		/* Other children than the labels */
 		return TRUE;

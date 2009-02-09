@@ -251,20 +251,23 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 					break;
 				default:
 					/* putc */
-					UTFChar = readNextUTFChar(currentchar,&charBytes);
-					currentchar += charBytes;
-					if (isOutputInUTF() ) /** if output in UTF encoding*/
-					{
-						outStr = UTFChar;
-						retval += charBytes;
-					}
-					else 
-					{
-						char szTemp[bsiz];
-						outStr  = UTFToLocale(UTFChar, szTemp);
-						retval += (int)strlen(outStr);
-					}
-					(*xxprintf) ((VPTR) target, "%s",outStr);	
+					//UTFChar = readNextUTFChar(currentchar,&charBytes);
+					//currentchar += charBytes;
+					//if (isOutputInUTF() ) /** if output in UTF encoding*/
+					//{
+					//	outStr = UTFChar;
+					//	retval += charBytes;
+					//}
+					//else 
+					//{
+					//	char szTemp[bsiz];
+					//	outStr  = UTFToLocale(UTFChar, szTemp);
+					//	retval += (int)strlen(outStr);
+					//}
+					//(*xxprintf) ((VPTR) target, "%s",outStr);	
+					(*xxprintf) ((VPTR) target, "%c",currentchar[0]);	
+					currentchar++;;
+					retval++;
 					break;
 				}
 			}

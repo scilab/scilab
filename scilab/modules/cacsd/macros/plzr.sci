@@ -93,6 +93,7 @@ function plzr(a,b,c,d)
     lhandle=[lhandle;e]
   end
   ax.grid=ones(1,3)*color('gray')
+  ax.box = "on";
   xarc(-1,1,2,2,0,360*64)
   xtitle(gettext("Transmission zeros and poles"),gettext("Real axis"), ...
 	 gettext("Imaginary axis"));

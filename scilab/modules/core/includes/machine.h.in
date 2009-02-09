@@ -36,6 +36,9 @@
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
+/* Define to 1 if you have the `bind_textdomain_codeset' function. */
+#undef HAVE_BIND_TEXTDOMAIN_CODESET
+
 /* Define to 1 if you have the `bzero' function. */
 #undef HAVE_BZERO
 
