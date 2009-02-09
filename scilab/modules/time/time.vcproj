@@ -458,6 +458,10 @@
 				RelativePath=".\includes\sci_xpause.h"
 				>
 			</File>
+			<File
+				RelativePath=".\src\c\timer.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

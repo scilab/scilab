@@ -21,8 +21,10 @@ Input/Output functions:
 Bug fixes:
 ==========
 
+* bug 1628 fixed - with long programs (several hours) I get a negative value for timer()
+
+* bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
+
 * bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
-
-* bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
