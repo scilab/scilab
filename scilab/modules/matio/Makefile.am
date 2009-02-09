@@ -1,7 +1,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
 # Copyright (C) 2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 include $(top_srcdir)/Makefile.incl.am
@@ -46,6 +46,7 @@ endif
 libscimatio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/matio/ \
+			-I$(top_srcdir)/modules/operations/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/string/includes/ \
 			$(MATIO_CFLAGS)
