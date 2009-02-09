@@ -49,7 +49,7 @@ public:
                         const double thirdAxisStart[3], const double thirdAxisEnd[3],
                         const double relativeTicksPositions[], int nbTicks);
 
-  virtual void setGridParameters(int gridColor, float gridThickness);
+  virtual void setGridParameters(int gridColor, float gridThickness, bool drawFront);
   /*----------------------------------------------------------------------*/
 
 

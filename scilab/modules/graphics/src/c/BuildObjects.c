@@ -306,10 +306,17 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
 		sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
 		for (i=0 ; i<7 ; i++)
+		{
 			ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
+		}
 
 		for (i=0 ; i<3 ; i++)
+		{
 			ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
+		}
+
+		ppsubwin->gridFront = ppaxesmdl->gridFront;
+
 		ppsubwin->alpha  = ppaxesmdl->alpha;
 		ppsubwin->theta  = ppaxesmdl->theta;
 		ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;

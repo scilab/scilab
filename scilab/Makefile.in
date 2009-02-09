@@ -84,8 +84,7 @@ CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" \
-	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" \
-	"$(DESTDIR)$(rootdir)"
+	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = scilab_bin-mainscic.$(OBJEXT)
@@ -143,10 +142,8 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 iconsDATA_INSTALL = $(INSTALL_DATA)
 infofilesDATA_INSTALL = $(INSTALL_DATA)
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
-profilingDATA_INSTALL = $(INSTALL_DATA)
 rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) \
-	$(profiling_DATA) $(root_DATA)
+DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) $(root_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -408,9 +405,14 @@ $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
 iconsdir = $(pkgdatadir)/icons/
-icons_DATA = $(top_srcdir)/icons/scilab.xpm
-profilingdir = $(pkgdatadir)/tools/profiling/
-profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
+icons_DATA = $(top_srcdir)/icons/scilab.xpm \
+icons/puffin_128.xpm \
+icons/puffin_256.xpm \
+icons/puffin_32.xpm \
+icons/puffin_48.xpm \
+icons/puffin.icns \
+icons/scilab.icns
+
 
 # Misc variable for the documentation installation
 
@@ -663,23 +665,6 @@ uninstall-pkgconfigDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(pkgconfigdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(pkgconfigdir)/$$f"; \
-	done
-install-profilingDATA: $(profiling_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(profilingdir)" || $(MKDIR_P) "$(DESTDIR)$(profilingdir)"
-	@list='$(profiling_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(profilingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(profilingdir)/$$f'"; \
-	  $(profilingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(profilingdir)/$$f"; \
-	done
-
-uninstall-profilingDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(profiling_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(profilingdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(profilingdir)/$$f"; \
 	done
 install-rootDATA: $(root_DATA)
 	@$(NORMAL_INSTALL)
@@ -984,7 +969,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -1034,8 +1019,7 @@ info: info-recursive
 info-am:
 
 install-data-am: install-data-local install-iconsDATA \
-	install-infofilesDATA install-pkgconfigDATA \
-	install-profilingDATA install-rootDATA
+	install-infofilesDATA install-pkgconfigDATA install-rootDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1075,8 +1059,7 @@ ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-iconsDATA uninstall-infofilesDATA \
-	uninstall-pkgconfigDATA uninstall-profilingDATA \
-	uninstall-rootDATA
+	uninstall-pkgconfigDATA uninstall-rootDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -1094,15 +1077,15 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-iconsDATA install-info install-info-am \
 	install-infofilesDATA install-man install-pdf install-pdf-am \
-	install-pkgconfigDATA install-profilingDATA install-ps \
-	install-ps-am install-rootDATA install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
+	install-pkgconfigDATA install-ps install-ps-am \
+	install-rootDATA install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
 	uninstall-binPROGRAMS uninstall-binSCRIPTS uninstall-iconsDATA \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
-	uninstall-profilingDATA uninstall-rootDATA
+	uninstall-rootDATA
 
 
 @NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)

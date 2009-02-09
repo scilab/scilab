@@ -54,6 +54,7 @@
 #include "WindowList.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -523,7 +524,10 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 
     if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
     {
+			/* disable protection since this function will call Java */
+		  disableFigureSynchronization(pobj);
       sciSetJavaBackground(pobj, newIndex);
+			enableFigureSynchronization(pobj);
     }
 
     return 0;
@@ -3849,6 +3853,32 @@ int sciSetZBounds(sciPointObj * pObj, double bounds[2])
 	}
 
 	return sciInitZBounds(pObj, bounds);
+}
+/*----------------------------------------------------------------------------------*/
+BOOL sciInitGridFront(sciPointObj * pObj, BOOL gridFront)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_SUBWIN:
+		pSUBWIN_FEATURE(pObj)->gridFront = gridFront;
+		return 0;
+	default:
+    printSetGetErrorMessage("grid_position");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify whether the grid is drawn in background or foreground.
+ */
+BOOL sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
+{
+	if (sciGetGridFront(pObj) == gridFront)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitGridFront(pObj, gridFront);
 }
 /*----------------------------------------------------------------------------------*/
 /**

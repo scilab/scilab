@@ -285,7 +285,9 @@ double TicksDrawer::drawTicks(void)
     double secondAxisEnd[3];
     double thirdAxisStart[3];
     double thirdAxisEnd[3];
-    m_pPositioner->getGridEdges(firstAxisStart, firstAxisEnd, secondAxisStart, secondAxisEnd, thirdAxisStart, thirdAxisEnd);
+    m_pPositioner->getGridEdges(firstAxisStart, firstAxisEnd,
+																secondAxisStart, secondAxisEnd,
+																thirdAxisStart, thirdAxisEnd);
 
     m_pGridDrawer->draw(firstAxisStart, firstAxisEnd, secondAxisStart, secondAxisEnd, thirdAxisStart, thirdAxisEnd,
                         ticksPos, nbTicks, subticksPos, nbSubticks);

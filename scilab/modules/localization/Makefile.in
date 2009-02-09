@@ -59,10 +59,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c
 DIST_COMMON = $(libscilocalization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/localization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -99,18 +100,27 @@ libscilocalization_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscilocalization_la-InitializeLocalization.lo \
+am__libscilocalization_la_SOURCES_DIST =  \
+	src/c/InitializeLocalization.c src/c/setgetlanguage.c \
+	src/c/charEncoding.c src/jni/Messages_wrap.c \
+	sci_gateway/c/gw_localization.c sci_gateway/c/sci_gettext.c \
+	sci_gateway/c/sci_dgettext.c sci_gateway/c/sci_setlanguage.c \
+	sci_gateway/c/sci_getdefaultlanguage.c \
+	sci_gateway/c/sci_getlanguage.c \
+	sci_gateway/c/sci_setdefaultlanguage.c
+@NEED_JAVA_TRUE@am__objects_1 =  \
+@NEED_JAVA_TRUE@	libscilocalization_la-Messages_wrap.lo
+am__objects_2 = libscilocalization_la-InitializeLocalization.lo \
 	libscilocalization_la-setgetlanguage.lo \
-	libscilocalization_la-charEncoding.lo \
-	libscilocalization_la-Messages_wrap.lo
-am__objects_2 = libscilocalization_la-gw_localization.lo \
+	libscilocalization_la-charEncoding.lo $(am__objects_1)
+am__objects_3 = libscilocalization_la-gw_localization.lo \
 	libscilocalization_la-sci_gettext.lo \
 	libscilocalization_la-sci_dgettext.lo \
 	libscilocalization_la-sci_setlanguage.lo \
 	libscilocalization_la-sci_getdefaultlanguage.lo \
 	libscilocalization_la-sci_getlanguage.lo \
 	libscilocalization_la-sci_setdefaultlanguage.lo
-am_libscilocalization_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscilocalization_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscilocalization_la_OBJECTS = $(am_libscilocalization_la_OBJECTS)
 libscilocalization_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
@@ -129,7 +139,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscilocalization_la_SOURCES)
-DIST_SOURCES = $(libscilocalization_la_SOURCES)
+DIST_SOURCES = $(am__libscilocalization_la_SOURCES_DIST)
 libscilocalization_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscilocalization_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscilocalization_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -333,12 +343,8 @@ sysconfdir = @sysconfdir@
 target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-LOCALIZATION_C_SOURCES = \
-src/c/InitializeLocalization.c \
-src/c/setgetlanguage.c \
-src/c/charEncoding.c \
-src/jni/Messages_wrap.c
-
+LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
+	src/c/setgetlanguage.c src/c/charEncoding.c $(am__append_1)
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
@@ -405,7 +411,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -823,7 +829,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -888,12 +894,13 @@ uninstall-am: uninstall-libscilocalization_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscilocalization_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscilocalization_la_etcDATA \
 	install-libscilocalization_la_includeHEADERS \
 	install-libscilocalization_la_rootDATA \
 	install-libscilocalization_la_sci_gatewayDATA install-man \
@@ -1074,6 +1081,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

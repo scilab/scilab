@@ -24,7 +24,7 @@
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/
-static int CURRENT_MAX_LINE_SIZE = 4096;
+static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */	
 static char *currentPrompt = NULL;
 static int cur_pos = 0;		/* current position of the cursor */
@@ -213,8 +213,9 @@ void moveBackHistory(void)
 
 	if (newline)
 	{
+		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline));
+		copyLine(UTFToLocale(newline, szLocale));
 		FREE(newline);
 		newline = NULL;
 	}
@@ -237,8 +238,9 @@ void moveForwardHistory(void)
 
 	if (newline)
 	{
+		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline));
+		copyLine(UTFToLocale(newline, szLocale));
 		FREE(newline);
 		newline = NULL;
 	}
@@ -424,7 +426,8 @@ void putLineSearchedHistory(void)
 
 	if (line)
 	{
-		copyLine(UTFToLocale(line));
+		char szLocale[bsiz];
+		copyLine(UTFToLocale(line, szLocale));
 		FREE(line);
 		line = NULL;
 	}

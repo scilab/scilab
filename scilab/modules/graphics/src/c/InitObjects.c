@@ -562,6 +562,8 @@ int InitAxesModel()
     ppaxesmdl->grid[i]  = -1;
   }
 
+	ppaxesmdl->gridFront = FALSE; /* draw in background */
+
   ppaxesmdl->alpha  = 0.0;
   ppaxesmdl->theta  = 270.0;
   ppaxesmdl->alpha_kp  = 45.0;

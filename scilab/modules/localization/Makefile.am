@@ -11,8 +11,11 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/charEncoding.c \
-src/jni/Messages_wrap.c
+src/c/charEncoding.c
+
+if NEED_JAVA
+LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \

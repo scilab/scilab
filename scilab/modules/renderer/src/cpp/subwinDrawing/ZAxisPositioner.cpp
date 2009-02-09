@@ -13,6 +13,11 @@
 
 #include "ZAxisPositioner.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -47,7 +52,10 @@ void ZAxisPositioner::getGridEdges(double startBound1[3], double startBound2[3],
   startBound2[2] = m_dZmax;
 
   // middle points, invert Y bounds
-  if (isSharingEndWithXaxis(findLowerZCoordinate(), xCoordinate))
+	bool xAndzAxesAdjacent = isSharingEndWithXaxis(findLowerZCoordinate(), xCoordinate);
+	bool drawFront = (sciGetGridFront(m_pSubwin->getDrawedObject()) == TRUE);
+  if (   (xAndzAxesAdjacent && !drawFront)
+		  || (!xAndzAxesAdjacent && drawFront))
   {
     // invert y
     yCoordinate = findOtherYBound(yCoordinateBase);

@@ -123,8 +123,20 @@ Bug fixes:
 
 * Some bashims in the starting script were causing startup issues.
 
+* bug 2265 fixed - Add a property to toggle grid position between background
+                   and foreground.
+
 * bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is 
-                   different from the one given in the manual
+                   different from the one given in the manual.
+				   
+* bug 2682 fixed - chart() is inconsistent in the second argument, angle.
+                   It might be treated as degrees or radian.
+				   
+* bug 2814 fixed - Ticks graduation produce some unwanted decimals.
+
+* bug 3470 fixed - plot2d(), followed by legends produce an unexpected error.
+
+* bug 3527 fixed - Graphic windows created by figure are unable to display plots.
 
 * bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
                    caused by a dead lock in the TCL thread (we were trying to 
@@ -373,7 +385,9 @@ Bug fixes:
 
 * bug 3667 fixed - Function input() now accepts a \n in the text to be printed and colon is no more added.
 
-* bug 3667 fixed - Function input() now accepts a \n in the text to be printed and colon is no more added.
+* bug 4021 fixed - make distclean is cleaning also some temporary help files
+
+* bug 4022 fixed - Having the source tree and packaged version of Scilab on the same system caused the system library to be loaded first (should be the source tree first).
 
 * bug 4027 fixed - Impossible to create hypermatrices under Linux x64 (actually a bug with int32 values).
 
@@ -381,6 +395,13 @@ Bug fixes:
 
 * bug 4026 fixed - With the "unix" command under Windows, it is not possible to run an external program which has a long path name.
 
+* bug 4037 fixed - wavread detects broadcast file format and returns a error (format not yet managed)
+
+* bug 4046 fixed - core/includes/scisparse.h wasn't installed
+
+* bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a blank graphic windows. (Windows)
+
+* bug 3596 fixed - In the graphic export (bitmap) the exported file is stored in vertical mirrored fashion.
 
 Obsolete functions removed :
 ============================
