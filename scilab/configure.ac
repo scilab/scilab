@@ -734,7 +734,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -803,13 +803,15 @@ SCICOS_ENABLE=no
 if test "$with_scicos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
-#   save_LIBS="$LIBS"
-#   AC_CHECK_LIB([rt], [clock_gettime],
-#		      [RT_LIB="-lrt"],
-#        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
-#   )
-#   LIBS="$save_LIBS"
-#   AC_SUBST(RT_LIB)
+   save_LIBS="$LIBS"
+
+   AC_CHECK_LIB([rt], [clock_gettime],
+		      [RT_LIB="-lrt";
+		      AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
+        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
+   )
+   LIBS="$save_LIBS"
+   AC_SUBST(RT_LIB)
 
 #################
 ## ocaml which only called with using Scicos
