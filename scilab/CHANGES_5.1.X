@@ -409,6 +409,10 @@ Bug fixes:
 * bug 3991 fixed - It is not possible to set a font_style greater than 10 even 
                    if one has added a new font using xlfont.
 
+* bug 3993 fixed - Scilab menu is not located in the "Apple menu bar" like other applications
+
+* bug 3995 fixed - install -D does not work under Mac OS X (used by the make install)
+
 * bug 3995 fixed - install -D does not work under Mac OS X
                    (used by the make install).
 

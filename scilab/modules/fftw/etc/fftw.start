@@ -8,17 +8,18 @@ if %fftw then
 	if MSDOS then
 		librarynamefftw = SCI+"/bin/fftw/libfftw3-3"+getdynlibext();
 	else
-		librarynamefftw = "libfftw3"+getdynlibext()+".3";
+		librarynamefftw = "libfftw3"+getdynlibext();
+		// Some distribs/os are not adding the .3 extension...
+		librarynamefftw3 = librarynamefftw+".3";
 	end
 	
 	//add help chapter
 	add_module_help_chapter('fftw');
 
-	if ( loadfftwlibrary(librarynamefftw) ) then
-	
+	if ( loadfftwlibrary(librarynamefftw3) | loadfftwlibrary(librarynamefftw)) then
 		//Load  functions libraries
 		//load('SCI/modules/fftw/macros/lib');
-		// ====================================================================
+		// ===========================================================
 		// replace scilab fft function by fftw
 		clearfun fft;
 		fft=fftw;
