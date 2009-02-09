@@ -36,7 +36,7 @@ c     .     clear within a macro, an execstr, an exec or a pause
             k = lpt(1) - (13+nsiz)
             if(lin(k+7).ne.0.and.istk(lin(k+6)).eq.10) goto 02
 c     .     clear within a macro, an exec or a pause
-            bot = lin(k+5)
+            bot = min(bbot,lin(k+5))
             goto 02
          endif
 

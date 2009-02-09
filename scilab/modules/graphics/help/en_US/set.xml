@@ -106,8 +106,6 @@ h.prop=val</synopsis>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
-
    clf()
    set("auto_clear","off") ;
    // Exemple of a Plot 2D
@@ -129,8 +127,6 @@ h.prop=val</synopsis>
    plot2d(x-2,x.^2/20);
    p3= a.children(1).children;
    set([a p1 p2 p3],"foreground",5)
-
- 
   ]]></programlisting>
   </refsection>
   <refsection>

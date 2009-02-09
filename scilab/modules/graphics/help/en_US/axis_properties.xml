@@ -170,10 +170,11 @@
               <term>fractional_font: </term>
               <listitem>
 	        <para>
-		  This property specify whether ticks might be displayed using fractional font sizes.
+		  This property specify whether ticks labels are displayed using fractional font sizes.
 		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
 		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
-		  is used for display. If <literal>"off"</literal> only the integer part is used.
+		  is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
+		  and the font is not smoothed.
 		</para>
               </listitem>
             </varlistentry>

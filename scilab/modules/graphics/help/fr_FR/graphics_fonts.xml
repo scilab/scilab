@@ -65,6 +65,11 @@
 			Sa valeur doit être comprise entre 0, référençant la première police, et le nombre de polices chargées moins un, référençant alors
 			la dernière police.
 		  </para>
+		  <para>
+		    La propriété <literal>fractional_font</literal> premet d'activer l'anticrénelage des fonts. La propriété peut prendre les
+			valeurs <literal>'on'</literal> ou <literal>'off'</literal>. Si sa valeur est <literal>'on'</literal> alors la font est lissée,
+			sinon elle ne l'est pas.
+		  </para>
 		  <para/>
         </listitem>
       </varlistentry>
@@ -79,7 +84,7 @@
 			La taille des cractère en Scilab est différente de celle utilisée par Java.
 			L'équivalence entre les deux échelles est donnée ci-dessous.</para>
 			<informaltable border="1">
-            <tr><td><emphasis role="bold">Taille en Scilab</emphasis></td><td><emphasis role="bold">Taille en Java</emphasis></td></tr>
+            <tr><td><emphasis role="bold">Taille Scilab</emphasis></td><td><emphasis role="bold">Taille Java</emphasis></td></tr>
             <tr><td>0</td><td>8</td></tr>
             <tr><td>1</td><td>10</td></tr>
             <tr><td>2</td><td>12</td></tr>
