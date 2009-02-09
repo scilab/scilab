@@ -21,8 +21,13 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
-scilab_bin_LDFLAGS 		=
-scilab_bin_CFLAGS 		= 
+scilab_bin_LDFLAGS 		= 
+if IS_MACOSX
+scilab_bin_LDFLAGS 		+= -framework Cocoa
+endif
+
+scilab_bin_CFLAGS 		=
+# --no-undefined --relax
 
 
 # libshell is mandatory here since main_linux.c depends on it.
