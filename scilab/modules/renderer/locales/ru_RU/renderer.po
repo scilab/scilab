@@ -1,0 +1,42 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-01-12 22:29+0000\n"
+"Last-Translator: Nkolay Parukhin <nik@sevpinro.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+msgid "Unable to render polyline, memory full.\n"
+msgstr "Невозможно визуализировать полилинию, переполнение памяти.\n"
+
+#, c-format
+msgid ""
+"Warning !!!\n"
+"Scilab has found a critical error (%s).\n"
+"Save your data and restart Scilab.\n"
+msgstr ""
+
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr ""
+
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr ""
+
+msgid "Scilab Renderer module not installed.\n"
+msgstr "Модуль визуализации Scilab не установлен.\n"

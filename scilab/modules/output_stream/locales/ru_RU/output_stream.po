@@ -8,26 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-09-16 07:24+0000\n"
-"Last-Translator: voronaam <voronaam@yandex.ru>\n"
+"PO-Revision-Date: 2009-01-18 16:07+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:52+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "  (cont'd) %s\n"
-msgstr ""
-
-#, c-format
-msgid "     (end) %s\n"
-msgstr ""
 
 msgid "Incorrect assignment.\n"
 msgstr "Некорректное присвоение.\n"
@@ -127,7 +115,7 @@ msgid "Too complex recursion! (recursion tables are full)\n"
 msgstr "Слишком сложная рекурсия! (заполнена таблица рекурсии)\n"
 
 msgid "Division by zero...\n"
-msgstr "Деление на ноль...\n"
+msgstr "Деление на нуль…\n"
 
 msgid "Empty function...\n"
 msgstr "Пустая функция...\n"
@@ -627,10 +615,8 @@ msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
 msgstr "%s:Неверный тип аргумента %d: Ожидался полином.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Working integer matrix expected.\n"
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась корректная целочисленная матрица "
-"(Working integer matrix).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -739,10 +725,11 @@ msgstr "Вы не можете связать больше функций, до�
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
 msgstr ""
+"Файл \"%s\" уже существует или нет прав доступа на запись в каталог.\n"
 
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "Файл \"%s\" не существует или нет прав доступа на чтение.\n"
 
 msgid "Binary direct acces files must be opened by 'file'.\n"
 msgstr ""
@@ -1117,7 +1104,7 @@ msgstr ""
 "          устарело. Используйте tlist.\n"
 
 msgid "Warning : division by zero...\n"
-msgstr "Внимание : делений на ноль...\n"
+msgstr "Внимание: деление на нуль…\n"
 
 msgid "Warning : singularity of 'log' or 'tan' function.\n"
 msgstr "Внимание : особая точка функции 'log' или 'tan'.\n"
@@ -1198,10 +1185,10 @@ msgid "%s: maxpts was too small to obtain the required accuracy.\n"
 msgstr "%s: maxpts слишком мало для достижения заданной точности.\n"
 
 msgid "Too many input/output ports for hilited block.\n"
-msgstr ""
+msgstr "Слишком много портов ввода/вывода для подсвеченого блока.\n"
 
 msgid "Too many input/output entries for hilited block.\n"
-msgstr ""
+msgstr "Слишком много элементов ввода/вывода для подсвеченого блока.\n"
 
 msgid "Undefined display for this data type.\n"
 msgstr "Неопределено отображение для этого типа данных.\n"
@@ -1247,6 +1234,8 @@ msgstr ""
 #, c-format
 msgid "%s: relative error between two consecutive iterates is at most %s.\n"
 msgstr ""
+"%s: относительная ошибка между двумя последовательными итерациями не больше "
+"%s.\n"
 
 #, c-format
 msgid ""
@@ -1261,7 +1250,7 @@ msgstr "%s: Количество вызовов %s достигло или пр�
 #, c-format
 msgid ""
 "%s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr ""
+msgstr "%s: %s слишком мало. Невозможно дальнейшее уменьшение по критерию.\n"
 
 #, c-format
 msgid ""
@@ -1270,4 +1259,16 @@ msgid ""
 msgstr ""
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr "poly: имя переменной должно быть длиной менее 5 символов.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
 msgstr ""
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr "     (конец) %s\n"
