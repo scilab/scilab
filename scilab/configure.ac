@@ -349,8 +349,12 @@ case "$host" in
 	 *-*-solaris*)
 	 SOLARIS=1
 	 ;;
+	*darwin*)
+	  MACOSX=1
+	;;
 esac
 
+AM_CONDITIONAL(IS_MACOSX, test -n "$MACOSX")
 AM_CONDITIONAL(IS_HPUX, test -n "$HPUX")
 AM_CONDITIONAL(IS_SPARC, test -n "$SPARC")
 AM_CONDITIONAL(IS_SOLARIS, test -n "$SOLARIS")
@@ -371,11 +375,11 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++ -Werror=format-security"
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option"
+                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
 	  esac
    else
@@ -396,7 +400,7 @@ case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Werror=format-security"
+	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
 	  case "$host" in
@@ -405,7 +409,7 @@ case "$CC" in
 		if test "$enable_debugLinker" = yes; then
 	  	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
 		fi
-		  CFLAGS="$CFLAGS -fdiagnostics-show-option"
+		  CFLAGS="$CFLAGS -fdiagnostics-show-option -Werror=format-security"
 		  ;;
 		  esac
    else
@@ -453,12 +457,9 @@ case "$CC" in
 
 	;;
   *-*-darwin*)
-     if test "$enable_debug_C" = yes; then
-	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
-	 else
-	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
-	 fi
-     LDFLAGS="$LDFLAGS -L/sw/lib"
+	 CFLAGS=" $CFLAGS -I/sw/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
+	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -515,15 +516,15 @@ CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MA
 CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
-if test $IS_64_BITS_CPU = true; then
+if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
       AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
-   AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
+   AC_DEFINE([USE_DYNAMIC_STACK], [], [If we are building a 64 bits version])
 fi
 
-AM_CONDITIONAL(IS_64_BITS_CPU, test "$IS_64_BITS_CPU" = true)
-AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true)
+AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
+AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
@@ -734,7 +735,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -804,9 +805,11 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
    save_LIBS="$LIBS"
+
    AC_CHECK_LIB([rt], [clock_gettime],
-		      [RT_LIB="-lrt"],
-        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
+		      [RT_LIB="-lrt";
+		      AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
+        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
    )
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
@@ -1144,11 +1147,6 @@ AH_BOTTOM([
 #endif
 #define DIR_SEPARATOR "/"
 
-/* Force usage of dynamically located stack on 64 bits */
-#ifdef IS_64_BITS_CPU
-#define USE_DYNAMIC_STACK
-#endif
-
 #endif /* MACHINE_H  */
 ])
 
@@ -1279,7 +1277,7 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 #fi
 
 # Generate stack.h
-if test $IS_64_BITS_CPU = true; then
+if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
    stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
 else
    stack_h_cpp_flags=

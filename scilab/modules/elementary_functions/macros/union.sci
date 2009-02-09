@@ -20,7 +20,7 @@ function [x,ka,kb]=union(a,b,orient)
       x=x'
       kab=kab(k)
       ka=kab(kab>0)
-      kb=kab(kab<0)
+      kb=-kab(kab<0)
     end
   else
     if  orient==1|orient=="r" then
@@ -31,7 +31,7 @@ function [x,ka,kb]=union(a,b,orient)
 	[x,k]=unique([a;b],'r')
 	kab=kab(k)
 	ka=kab(kab>0)
-	kb=kab(kab<0)
+	kb=-kab(kab<0)
       end  
     elseif orient==2|orient=="c" then
       if argn(1)==1 then
@@ -41,7 +41,7 @@ function [x,ka,kb]=union(a,b,orient)
 	[x,k]=unique([a b],'c')
 	kab=kab(k)
 	ka=kab(kab>0)
-	kb=kab(kab<0)
+	kb=-kab(kab<0)
       end  
       
     else

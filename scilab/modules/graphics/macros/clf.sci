@@ -99,7 +99,11 @@ if (job == 'reset') then
 
     for i = 1:size(defaultProps,'*')
       defaultValue = get(defaultFig, defaultProps(i));
-      set(curFig, defaultProps(i), defaultValue);
+	  if (defaultProps(i) <> "figure_position" | defaultValue <> [-1,-1]) then
+	    // don't reset figure pos is defaultValue is [-1,-1]
+		set(curFig, defaultProps(i), defaultValue);
+	  end
+      
     end
 
     // drawnow

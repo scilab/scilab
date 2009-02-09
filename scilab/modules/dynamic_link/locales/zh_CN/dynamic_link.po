@@ -14,12 +14,89 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Dynamic link"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s：文件%s不存在。\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s：无法打开文件%s。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr "%s：该特性需要微软 Visual Studio C 语言编译器。\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s：该特性已经为 Windows 实现。\n"
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s：在微软 Windows 下该功能不可用。\n"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s：需要一个 Fortran 或 C 语言编译器。\n"
+
+msgid "   Generate a gateway file"
+msgstr "   生成 gateway 文件"
+
+msgid "   Generate a loader file"
+msgstr "   生成 loader 文件"
+
+#, c-format
+msgid "   Generate a Makefile: %s"
+msgstr "   生成 Makefile：%s"
+
+msgid "   Generate a Makefile"
+msgstr "   生成 Makefile"
+
+msgid "   Running the makefile"
+msgstr "   运行 Makefile"
+
+msgid "A Fortran or C compiler is required."
+msgstr "需要 Fortran 或 C 语言编译器。"
+
+msgid "   Compilation of "
+msgstr "   编译 "
+
+msgid "   Building shared library (be patient)"
+msgstr "   生成共享库（时间稍长，请耐心等待）"
+
+#, c-format
+msgid "%s: An error occured during the compilation:\n"
+msgstr "%s：在编译中发生一个错误：\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s：命令为：\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr "%s：警告：编译过程中没有返回错误代码，但是错误输出非空。\n"
+
+msgid "   Running the Makefile"
+msgstr "   运行 Makefile"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
@@ -50,82 +127,8 @@ msgid "   %s: configure : Generate Makefile.\n"
 msgstr "   %s：configure：生成 Makefile。\n"
 
 #, c-format
-msgid "%s: Feature not available under Microsoft Windows.\n"
-msgstr "%s：在微软 Windows 下该功能不可用。\n"
-
-msgid "   Generate a loader file"
-msgstr "   生成 loader 文件"
-
-msgid "   Generate a Makefile"
-msgstr "   生成 Makefile"
-
-msgid "   Running the Makefile"
-msgstr "   运行 Makefile"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s：输入参数#%d的大小错误。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s：文件%s不存在。\n"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s：无法打开文件%s。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
-
-#, c-format
-msgid "%s: This feature required Microsoft visual studio C compiler.\n"
-msgstr "%s：该特性需要微软 Visual Studio C 语言编译器。\n"
-
-#, c-format
-msgid "%s: This feature has been implemented for Windows.\n"
-msgstr "%s：该特性已经为 Windows 实现。\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为%d。\n"
-
-msgid "   Generate a gateway file"
-msgstr "   生成 gateway 文件"
-
-#, c-format
-msgid "   Generate a Makefile: %s"
-msgstr "   生成 Makefile：%s"
-
-msgid "   Running the makefile"
-msgstr "   运行 Makefile"
-
-msgid "A Fortran or C compiler is required."
-msgstr "需要 Fortran 或 C 语言编译器。"
-
-msgid "   Compilation of "
-msgstr "   编译 "
-
-msgid "   Building shared library (be patient)"
-msgstr "   生成共享库（时间稍长，请耐心等待）"
-
-#, c-format
-msgid "%s: An error occured during the compilation:\n"
-msgstr "%s：在编译中发生一个错误：\n"
-
-#, c-format
-msgid "%s: The command was:\n"
-msgstr "%s：命令为：\n"
-
-#, c-format
-msgid ""
-"%s: Warning: No error code returned by the compilation but the error output "
-"is not empty:\n"
-msgstr "%s：警告：编译过程中没有返回错误代码，但是错误输出非空。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -138,10 +141,6 @@ msgstr "%s：输入参数#%d大小错误：应该为字符串向量。\n"
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s：输入参数的类型错误：应该为字符串。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s：输入参数#%d类型错误：应该为整数。\n"
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
@@ -172,6 +171,10 @@ msgstr "%s：输入参数的类型错误：应该为字符串。\n"
 #, c-format
 msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d值错误：应该为'%s'或'%s'。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s：输入参数#%d类型错误：应该为整数。\n"
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s\n"

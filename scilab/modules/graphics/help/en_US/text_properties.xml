@@ -115,8 +115,14 @@
         strings are displayed using the given font and the data field
         specifies the position of the lower-left point of the text. If
         <emphasis role="bold">'centered'</emphasis>, the text is displayed in the middle of the
-        rectangle whose size is given by text_box. If <emphasis role="bold">'filled' </emphasis>the
+        rectangle whose size is given by text_box. If <emphasis role="bold">'filled'</emphasis> the
         font size of the strings will be expanded to fill the rectangle.</para>
+		<para>
+		  When using <emphasis role="bold">'off'</emphasis> or <emphasis role="bold">'centered'</emphasis> modes,
+		  text size remains constant upon zooming. They are the best modes to create annotations
+		  in a graph. On the contrary, when using the <emphasis role="bold">'filled'</emphasis> mode, the text size follow
+		  the graphic scale. It is then possible to zoom upon text objects.
+		</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -166,10 +172,11 @@
               <term>fractional_font: </term>
               <listitem>
 	        <para>
-		  This property specify whether text might be displayed using fractional font sizes.
+		  This property specify whether text is displayed using fractional font sizes.
 		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
 		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
-		  is used for display. If <literal>"off"</literal> only the integer part is used.
+		  is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
+		  and the font is not smoothed.
 		</para>
               </listitem>
             </varlistentry>

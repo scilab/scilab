@@ -37,7 +37,7 @@
                 <para>This handles represent the vector of the figure's children .
             Note that all figure children are of type <literal>"Axes"</literal>.
             Also keep in mind that, when creating a figure entity (using
-            <literal>scf</literal> command), an <literal>Axes</literal> entity is
+            <link linkend="scf">scf</link> command), an <literal>Axes</literal> entity is
             simultaneously built too.</para>
               </listitem>
             </varlistentry>
@@ -53,9 +53,15 @@
               <term>figure_position: </term>
               <listitem>
                 <para>This field contains the position in pixel of the graphic
-            window on the screen. The size is the vector <literal>[x,y]</literal>.
-            The point <literal>[0,0]</literal> if the upper-left corner of the
+            window on the screen. This is a vector <literal>[x,y]</literal>
+			defining the position of the upper-left corner of the window.
+            The position <literal>[0,0]</literal> is the upper-left corner of the
             screen.</para>
+			<para>The initial position of graphic windows is taken from the default figure entity (see
+			<link linkend="gdf">gdf</link>). The only exception is when default figure <literal>figure_position</literal>
+			value is <literal>[-1,-1]</literal>. In this case, the initial position of graphic windows is automatically set
+			by the windowing system.
+			</para>
               </listitem>
             </varlistentry>
             <varlistentry>
