@@ -367,7 +367,7 @@ Bug fixes:
 
 * bug 3898 fixed - There was no way to check if mputl() has done his job.
 
-* bug 3898 fixed - The help for "startup" was incorrect.
+* bug 3899 fixed - The help for "startup" was incorrect.
 
 * bug 3903 fixed - "xdel" of a non existent window crashes Scilab
 
