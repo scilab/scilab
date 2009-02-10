@@ -164,8 +164,8 @@ void DrawableFigure::forceDisplay( void )
     // if a single object is available this override drawlater()/ drawnow()
     return;
   }
-
-	if (needsDisplay(m_pDrawed) || isDisplayingSingleObject())
+	bool displaySingleObject = isDisplayingSingleObject();
+	if (needsDisplay(m_pDrawed) || displaySingleObject)
 	{
 		try {
 			// to be sure that the canvas exists
@@ -187,7 +187,7 @@ void DrawableFigure::forceDisplay( void )
   //clock_gettime(0, &t_t1);
   drawCanvas() ;
 
-	if (!needsDisplay(m_pDrawed))
+	if (!needsDisplay(m_pDrawed) && !displaySingleObject)
 	{
 		closeGraphicCanvas();
 	}

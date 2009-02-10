@@ -4,8 +4,8 @@
 New Features:
 =============
 
-* Added elementary functions: acosd acoth asecd asech asec asind
-                       atand cosd cotd cscd csc secd sech sec sind tand 
+* Added elementary functions: acosd acot actod acoth asecd asech asec asind
+  acsc acscd acsch csch atand cosd cotd cscd csc secd sech sec sind tand
 
 * Scicos documentation in Docbook format.
   PDF, PS, JAR and other versions now available.
@@ -23,24 +23,27 @@ New Features:
 * Added uigetfile (Functions xgetfile and tk_getfile are now obsolete).
   For more information, see SEP #8.
 
+* Scilab is now supported natively under Mac OS X (See RELEASE_NOTES_5.1.X)
+
+* Uses termios instead of termio in NW & NWNI modes
 
 Enhancement:
 ============
 
-* Update of some output strings (standard, warning & error)
+* Graphics stabilty improved.
 
-* Update of the example in the dynamic_link modules and in the toolbox skeleton
-  (use the actual filename instead of the .o)
+* Graphics speed improved.
+
+* Menubar/toolbar update improved (particularly when (un)docking windows).
+
+* Update of some output strings (standard, warning & error)
 
 * Scilab uses Atlas 3.9.4 on Windows
 
-* test_run() now accepts absolute paths as first input argument. It permits 
-  toolboxes to use this system.
-
 * Directive FRENCH IMPOSED added to test_run() to force the test in french
 
-* Errors occuring when getting or setting graphic/gui handles properties are now 
-  treated as any other Scilab errors.
+* Errors occuring when getting or setting graphic/gui handles properties are
+  now treated as any other Scilab errors.
 
 * Now catch the exception when JOGL is crashing because native library 
   gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and 
@@ -50,22 +53,20 @@ Enhancement:
 
 * Binary versions embed jre 1.6.0_11
 
+* test_run() now accepts absolute paths as first input argument. It permits
+  toolboxes to use this system.
+
 * Under Linux/Unix, do not launch Scilab in background when called without argument
 
 * icons are now installed into pkgdatadir/icons/
 
-* Graphics stabilty improved.
-
-* Graphics speed improved.
-
-* Menubar/toolbar update improved (particularly when (un)docking windows).
-
+* Update of the example in the dynamic_link modules and in the toolbox skeleton
+  (use the actual filename instead of the .o)
 
 Tests:
 ======
 
 * Tests added for functions: umf_luget, taucs_chget, pcg, removedir, rmdir, ones
-
 
 Internationalization:
 =====================
@@ -369,6 +370,8 @@ Bug fixes:
 * bug 3897 fixed - macros perturbs the behavior of mfprintf().
 
 * bug 3898 fixed - There was no way to check if mputl() has done his job.
+					mputl returns %t or %f to check if function has correctly 
+					written on the file.
 
 * bug 3899 fixed - The help for "startup" was incorrect.
 
@@ -383,7 +386,9 @@ Bug fixes:
 * bug 3912 fixed - strsubst() used with regular expression may return very 
                    stange result.
 
-* bug 3919 fixed - Scilab x64 doesn't display graphics from a remote desktop.
+* bug 3918 fixed - The french documentation fails to build when french locales are not available on the system
+
+* bug 3919 fixed - scilab x64 doesn't display graphics from a remote desktop.
 
 * bug 3924 fixed - I used uicontrol with bad parameters, but uicontrol makes Scilab hangs.
 
@@ -408,6 +413,8 @@ Bug fixes:
 
 * bug 3991 fixed - It is not possible to set a font_style greater than 10 even 
                    if one has added a new font using xlfont.
+
+* bug 3993 fixed - Scilab menu is not located in the "Apple menu bar" like other applications
 
 * bug 3995 fixed - install -D does not work under Mac OS X
                    (used by the make install).
