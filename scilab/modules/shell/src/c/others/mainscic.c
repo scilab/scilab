@@ -20,7 +20,6 @@
 #include "getcommandlineargs.h"
 #include "texmacs.h"
 #include "x_main.h"
-#include "LaunchScilabSignal.h"
 #include "Thread_Wrapper.h"
 #include "core_math.h"
 #include "setgetlanguage.h"
@@ -38,11 +37,6 @@
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
 int  sci_show_banner=1;
-/*--------------------------------------------------------------------------*/
-
-/*--------------------------------------------------------------------------*/
-__threadSignal	LaunchScilab;
-__threadLock	LaunchScilabLock;
 /*--------------------------------------------------------------------------*/
 
 int main(int argc, char **argv)
@@ -109,7 +103,7 @@ fpsetmask(0);
 		  /* Export the locale. This is going to be used by setlanguage("") in
 			 modules/localization/src/c/InitializeLocalization.c */
 		  if (strcmp(argLang,"en")==0) {/* backward compatiblity en => en_US */
-			  setenvc("LANG","en_US"); 
+			  setenvc("LANG","en_US");
 		  }else{
 			  if (strcmp(argLang,"fr")==0) { /* backward compatiblity fr => fr_FR */
 				  setenvc("LANG","fr_FR");
