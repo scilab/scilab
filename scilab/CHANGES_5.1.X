@@ -455,8 +455,6 @@ Bug fixes:
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
                    blank graphic windows. (Windows)
 
-* bug 4067 fixed - Completion bug for filenames
-
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
