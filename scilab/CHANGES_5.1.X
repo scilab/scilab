@@ -38,6 +38,9 @@ Enhancement:
 
 * Update of some output strings (standard, warning & error)
 
+* mputl returns %t or %f to check if function has correctly written on the 
+  file.
+
 * Scilab uses Atlas 3.9.4 on Windows
 
 * Directive FRENCH IMPOSED added to test_run() to force the test in french
