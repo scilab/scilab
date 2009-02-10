@@ -55,9 +55,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@IS_MACOSX_TRUE@am__append_1 = -framework JavaVM
 DIST_COMMON = $(libscijvm_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/jvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -367,7 +368,8 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/fileio/includes/
 
 pkglib_LTLIBRARIES = libscijvm.la
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
+libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) \
+	$(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS) $(am__append_1)
 libscijvm_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 modulename = jvm
 
@@ -442,7 +444,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
