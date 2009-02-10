@@ -102,7 +102,7 @@ public class SciInputParsingManager implements InputParsingManager {
 		int caretPos = getCaretPosition();
 
 		String lineToParse = wholeLine.substring(0, caretPos);
-		if ( lineToParse.length() > 0 ) {
+		if (lineToParse.length() > 0) {
 			returnLine = Completion.getPartLevel(lineToParse);
 		}
 		return returnLine;
@@ -120,7 +120,7 @@ public class SciInputParsingManager implements InputParsingManager {
 		int caretPos = getCaretPosition();
 		
 		String lineToParse = wholeLine.substring(0, caretPos);
-		if ( lineToParse.length() > 0 ) {
+		if (lineToParse.length() > 0) {
 			returnLine = Completion.getFilePartLevel(lineToParse);
 		}
 		return returnLine;
@@ -171,7 +171,11 @@ public class SciInputParsingManager implements InputParsingManager {
 	 */
 	public void writeCompletionPart(String completionResult) {
 		// Add to the input view the end of the selected item
-		inputCommandView.append(completionResult.substring(getPartLevel(getCompletionLevel()).length()));
+		if (getFilePartLevel(getCompletionLevel()) != null) { /* Is it a file completion ? */
+			inputCommandView.append(completionResult.substring(getFilePartLevel(getCompletionLevel()).length()));
+		} else {
+			inputCommandView.append(completionResult.substring(getPartLevel(getCompletionLevel()).length()));
+		}
 	}
 
 	/**
