@@ -89,6 +89,7 @@ function []=bode(varargin)
   axes.log_flags = "lnn" ;
   axes.grid=color('lightgrey')*ones(1,3);
   axes.axes_visible="on";
+  axes.clip_state = "clipgrf";
   if size(d,2)>1&size(frq,2)==1 then
     xpolys(frq(:,ones(1,mn)),d,1:mn)
   else
@@ -107,6 +108,7 @@ function []=bode(varargin)
   axes.log_flags = "lnn" ;
   axes.grid=color('lightgrey')*ones(1,3);
   axes.axes_visible="on";
+  axes.clip_state = "clipgrf";
   if size(phi,2)>1&size(frq,2)==1 then
     xpolys(frq(:,ones(1,mn)),phi,1:mn)
   else
