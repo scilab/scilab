@@ -1,3 +1,8 @@
+Francois VOGEL, 10/02/09
+ * Fixed regression on Linux introduced in Scipad 7.19 when fixing bug 2998:
+   File/Open a file containing percent signs in its name was no longer working
+ * version --> 7.20
+
 Francois VOGEL, 09/02/09
  * Added helper proc to aid in debugging bug 4053 (colorization stops on
    an error)
