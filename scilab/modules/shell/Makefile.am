@@ -11,7 +11,6 @@ src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
 src/c/GetCommandLine.c \
-src/c/others/mainscic.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
