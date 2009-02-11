@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //poly (coeff)
 
 v=[1 2 3];nam='s';job='c';p=1+2*%s+3*%s^2;
