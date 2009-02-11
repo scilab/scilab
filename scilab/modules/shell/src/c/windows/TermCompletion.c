@@ -35,6 +35,23 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 								  char *currentline, char *filePattern, char *defaultPattern);
 static void TermCompletionOnAll(char *currentline, char *defaultPattern);
 /*--------------------------------------------------------------------------*/
+char * strrstr(char *string, char *find)
+{
+	size_t stringlen, findlen;
+	char *cp;
+
+	findlen = strlen(find);
+	stringlen = strlen(string);
+	if (findlen > stringlen)
+		return NULL;
+
+	for (cp = string + stringlen - findlen; cp >= string; cp--)
+		if (strncmp(cp, find, findlen) == 0)
+			return cp;
+
+	return NULL;
+}
+/*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
 								  char *currentline, char *filePattern, char *defaultPattern)
 {
@@ -51,7 +68,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 				{
 					char *ptr_strrchar2 = NULL;
 					char *newline = NULL;
-					ptr_strrchar2 = strstr(currentline, defaultPattern);
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
 					newline = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(dictionaryFiles[0])));
 
 					if (newline)
@@ -96,7 +113,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 				{
 					char *ptr_strrchar2 = NULL;
 					char *newline = NULL;
-					ptr_strrchar2 = strstr(currentline, defaultPattern);
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
 					newline = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(ptr_strrchar1)));
 
 					if (newline)
