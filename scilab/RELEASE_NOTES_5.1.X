@@ -52,4 +52,6 @@ There are some known issues with the Mac OS X version:
 If you find bugs under Mac OS X which are not in this list, please submit them
 on:
 http://bugzilla.scilab.org/
+Please provide the relevant part from /var/log/system.log
+
 And patches are welcome!
