@@ -15,6 +15,7 @@ c
       integer lw
       integer iadr,sadr
       double precision ck
+      integer itr
       
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -68,10 +69,20 @@ c     x
          call error(52)
          return
       endif
-
       l2=sadr(il2+4)
-      lw=lstk(top+1)
-      err=lw+2*length-lstk(bot)
+      itr=0
+      do i=0,length-1
+         if (stk(l2+i).lt.0.0d0) then
+            err=1
+            call error(42)
+            return
+         elseif (stk(l2+i).gt.1.0d0) then
+            itr=1
+            goto 10
+         endif
+      enddo
+ 10   lw=lstk(top+1)
+      err=lw+(itr+1)*length-lstk(bot)
       if(err.gt.0)then
          call error(17)
          return
@@ -81,10 +92,12 @@ c     x
       istk(il2)=1
       istk(il2+1)=m2
       istk(il2+2)=n2
-      istk(il2+3)=1
+      istk(il2+3)=itr
       call unsfdcopy(length,stk(lw),1,stk(l2),1)
-      call unsfdcopy(length,stk(lw+length),1,stk(l2+length),1)
-      lstk(top+1)=l2+2*length
+      if (itr.eq.1) then
+         call unsfdcopy(length,stk(lw+length),1,stk(l2+length),1)
+      endif
+      lstk(top+1)=l2+(itr+1)*length
       return
 
       end
