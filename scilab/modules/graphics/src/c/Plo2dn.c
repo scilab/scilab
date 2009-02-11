@@ -514,11 +514,6 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     ppsubwin->axes.axes_visible[0] = TRUE;
     ppsubwin->axes.axes_visible[1] = TRUE;
     ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-		if(ppsubwin->FirstPlot)
-		{
-			ppsubwin->axes.rect = BT_OFF;
-      ppsubwin->axes.ydir ='l';
-		}
   }
 
 	/* Find if something has changed */
