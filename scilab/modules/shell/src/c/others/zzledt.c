@@ -799,7 +799,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 					char *ptr_strrchar2 = NULL;
 					char *new_line = NULL;
 
-					ptr_strrchar2 = strstr(currentline, defaultPattern);
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
 
 					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(dictionaryFiles[0])));
 
@@ -848,7 +848,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 				{
 					char *ptr_strrchar2 = NULL;
 					char *new_line = NULL;
-					ptr_strrchar2 = strstr(currentline, defaultPattern);
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
 					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(ptr_strrchar1)));
 
 					if (new_line)
