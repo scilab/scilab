@@ -37,7 +37,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	FILE  *f;
 	char *Format = NULL;
 	
-	char shortcut_path = NULL;	// filename process
+	char *shortcut_path = NULL;	// filename process
 	char szTemp[bsiz];
 	char *real_path     = NULL; //       "
 	long int lout = 0;          //       "
