@@ -19,7 +19,7 @@ m=uimenu(f,"label","test");
 a=gca();
 delete(a);
 
-menu = findobj("label","test")
+menu = findobj("label","test");
 if isempty(menu) then
   pause
 end

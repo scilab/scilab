@@ -15,6 +15,7 @@
 #include "MALLOC.h"
 #include "vfinite.h"
 #include "assembleEigenvectors.h"
+#include "gw_linear_algebra.h"
 
 extern int C2F(dlaset)();
 extern int C2F(zgeev)();
@@ -36,7 +37,7 @@ extern int C2F(zgeev)();
 //     eigenvalues : matrix of size NxN with eigenvalues as diagonal terms, type complex
 //     eigenvectors : matrix of size NxN, type complex
 //
-int intzgeev(char *fname)
+int sci_zgeev(char *fname, unsigned long fname_len)
 {	
 	int lA = 0;
 	int totalsize;

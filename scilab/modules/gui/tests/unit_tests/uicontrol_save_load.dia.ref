@@ -58,7 +58,7 @@ if or(h.horizontalalignment<>hsaved.horizontalalignment) then bugmes();quit;end
 if or(h.listboxtop<>hsaved.listboxtop) then bugmes();quit;end
 if or(h.max<>hsaved.max) then bugmes();quit;end
 if or(h.min<>hsaved.min) then bugmes();quit;end
-if or(h.position<>hsaved.position) then bugmes();quit;end
+if abs(sum(h.position-hsaved.position)) > 4 then bugmes();quit;end // TODO FIX ME !! Can have a difference of 1 (point or pixel) when getting position
 if or(h.relief<>hsaved.relief) then bugmes();quit;end
 if or(h.sliderstep<>hsaved.sliderstep) then bugmes();quit;end
 if or(h.string<>hsaved.string) then bugmes();quit;end

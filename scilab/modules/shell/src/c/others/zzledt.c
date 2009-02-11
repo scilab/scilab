@@ -764,6 +764,23 @@ static char **concatenateStrings(int *sizearrayofstring, char *string1,
 	return arrayOfString;
 }
 /*--------------------------------------------------------------------------*/
+char * strrstr(char *string, char *find)
+{
+        size_t stringlen, findlen;
+        char *cp;
+
+        findlen = strlen(find);
+        stringlen = strlen(string);
+        if (findlen > stringlen)
+                return NULL;
+
+        for (cp = string + stringlen - findlen; cp >= string; cp--)
+                if (strncmp(cp, find, findlen) == 0)
+                        return cp;
+
+        return NULL;
+}
+/*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
 				  char *currentline, char *filePattern, char *defaultPattern,
 				  char *wk_buf, int *cursor, int *cursor_max)
@@ -776,17 +793,21 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 			{
 				char *ptr_strrchar1 = NULL;
 
-				ptr_strrchar1 = strrchr(dictionaryFiles[0], defaultPattern[0]);
+				ptr_strrchar1 = strstr(dictionaryFiles[0], defaultPattern);
 				if (ptr_strrchar1) 
 				{
 					char *ptr_strrchar2 = NULL;
 					char *new_line = NULL;
-					ptr_strrchar2 = strrchr(currentline, defaultPattern[0]);
+
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
+
 					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(dictionaryFiles[0])));
 
 					if (new_line)
 					{
-						int l = strlen(currentline)- strlen(ptr_strrchar2);
+						int l = 0;
+						if (ptr_strrchar2) l = strlen(currentline)- strlen(ptr_strrchar2);
+						else l = strlen(currentline);
 						if (l < 0) l = 0 - l;
 
 						strncpy(new_line,currentline, l);
@@ -794,7 +815,8 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 
 						/* special case with files begin with a '.' */
 						if (new_line[l-1] == '.') strcat(new_line, &(dictionaryFiles[0][1]));
-						else strcat(new_line, ptr_strrchar1);
+						else if (ptr_strrchar1) strcat(new_line, ptr_strrchar1);
+
 
 						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
 						FREE(new_line);
@@ -821,12 +843,12 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 			{
 				char *ptr_strrchar1 = NULL;
 
-				ptr_strrchar1 = strrchr(common, defaultPattern[0]);
+				ptr_strrchar1 = strstr(common, defaultPattern);
 				if (ptr_strrchar1) 
 				{
 					char *ptr_strrchar2 = NULL;
 					char *new_line = NULL;
-					ptr_strrchar2 = strrchr(currentline, defaultPattern[0]);
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
 					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(ptr_strrchar1)));
 
 					if (new_line)

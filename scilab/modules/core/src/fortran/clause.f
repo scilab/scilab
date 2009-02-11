@@ -379,6 +379,7 @@ c---------
       if ( eptover(1,psiz)) return
       rstk(pt)=808
       if(comp(1).ne.0) then
+         ids(1,pt)=0
          call compcl(1)
          if(err.gt.0) return
       else

@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-25 13:41+0000\n"
+"PO-Revision-Date: 2009-02-11 10:03+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Optimization and Simulation"
@@ -29,7 +29,8 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: une table de dimension N "
 "attendue.\n"
@@ -77,17 +78,18 @@ msgstr "%s: Problème non-borné!"
 msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
 msgstr " nombre de contraintes (%s)'),'lmisolver',%m,%fm));"
 
-#, fuzzy, c-format
-msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
-"Mauvaise dimension pour l'argument d'entrée n° %d: nombre de colonnes %d "
-"attendue.\n"
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: nombre de colonnes %d "
+"attendu.\n"
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
 msgstr "%s: Trop d'itérations (plus de %d).\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
 msgstr ""
 "%s: Précision insuffisante pour satisfaire le critère de convergence.\n"

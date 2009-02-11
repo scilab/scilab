@@ -14,6 +14,7 @@
 #include "error.h"
 #include "MALLOC.h"
 #include "assembleEigenvectors.h"
+#include "gw_linear_algebra.h"
 
 extern int C2F(dsyev)();
 extern int C2F(dlaset)();
@@ -35,7 +36,7 @@ extern int C2F(dcopy)();
 //       eigenvalues : matrix of size NxN with eigenvalues as diagonal terms, type real
 //       eigenvectors : matrix of size NxN, type real
 //
-int intdsyev(char *fname)
+int sci_dsyev(char *fname, unsigned long fname_len)
 {	
 	int totalsize;
 

@@ -40,12 +40,13 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) $(am__EXEEXT_1)
+@IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_1 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_2 = localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
 subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
@@ -361,8 +362,9 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-scilab_bin_LDFLAGS = 
+scilab_bin_LDFLAGS = $(am__append_1)
 scilab_bin_CFLAGS = 
+# --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -379,7 +381,7 @@ $(top_builddir)/modules/io/libsciio.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_2)
+TARGETS_ALL = macros $(am__append_3)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -395,13 +397,14 @@ $(top_srcdir)/CHANGES_3.X \
 $(top_srcdir)/CHANGES_4.X \
 $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
+$(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
 $(top_srcdir)/RELEASE_NOTES_5.0.X \
-$(top_srcdir)/RELEASE_NOTES_5.1 \
+$(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
@@ -411,9 +414,13 @@ icons/puffin_128.xpm \
 icons/puffin_256.xpm \
 icons/puffin_32.xpm \
 icons/puffin_48.xpm \
+icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
 
+
+# Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
+@IS_MACOSX_TRUE@MACOSX = 1
 
 # Misc variable for the documentation installation
 
@@ -1184,6 +1191,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done;
 

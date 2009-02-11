@@ -20,33 +20,27 @@ c!
       call compel(ck,compk)
       call compel(ck1,compk1)
       do 1 k=1,n
-      xx=x(k)
-      if(xx.ge.0.0d+0.and.xx.le.1.0d+0) then
-      call deli2(1,r,xx,ck)
-      resr(k)=r
-      resi(k)=0.0d+0
-      goto 100
-      endif
-      xxxxx=1.0d+0/ck-xx
-      if(xx.gt.1.0d+0.and.xx.le.(1.0d+0/ck)) then
-c      change of variable : integral from 1 to xx of
-c      dt/sqrt((1-mt^2)(t^2-1)) = integral from o to yy of
-c      dt/sqrt((1-t^2)(1-m1t^2))  with m1=1-m and
-c      yy = (1/sqrt(m1))*sqrt((x^2-1)/x^2)
-      yy=(1.0d+0/ck1)*sqrt((xx*xx-1.0d+0)/(xx*xx))
-      call deli2(1,r,yy,ck1)
-      resi(k)=r
-      resr(k)=compk
-      goto 100
-      endif
-      if(xx.ge.(1.0d+0/ck)) then
-      xxxxx=1.0d+0/(ck*xx)
-      call deli2(1,r,xxxxx,ck)
-      resi(k)=compk1
-      resr(k)=r
-      goto 100
-      endif
- 100  continue
-   1  continue
+         xx=x(k)
+         if(xx.ge.0.0d+0.and.xx.le.1.0d+0) then
+            call deli2(1,r,xx,ck)
+            resr(k)=r
+            resi(k)=0.0d+0
+         elseif (xx.gt.1.0d+0.and.xx.le.(1.0d+0/ck)) then
+            xxxxx=1.0d+0/ck-xx
+c     .     change of variable : integral from 1 to xx of
+c     .     dt/sqrt((1-mt^2)(t^2-1)) = integral from o to yy of
+c     .     dt/sqrt((1-t^2)(1-m1t^2))  with m1=1-m and
+c     .     yy = (1/sqrt(m1))*sqrt((x^2-1)/x^2)
+            yy=(1.0d+0/ck1)*sqrt((xx*xx-1.0d+0)/(xx*xx))
+            call deli2(1,r,yy,ck1)
+            resi(k)=r
+            resr(k)=compk
+         elseif(xx.ge.(1.0d+0/ck)) then
+            xxxxx=1.0d+0/(ck*xx)
+            call deli2(1,r,xxxxx,ck)
+            resi(k)=compk1
+            resr(k)=r
+         endif
+ 1    continue
       return
       end

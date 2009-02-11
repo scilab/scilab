@@ -1,0 +1,68 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 15:01+0100\n"
+"PO-Revision-Date: 2008-09-27 09:59+0000\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s 並非已安裝之模組"
+
+msgid "error : Input argument sizes are not valid"
+msgstr "%s: 輸入參數長度錯誤"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "測試 %s 不在模組 %s 內"
+
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr "%s: 第一輸入參數錯誤: 檔案應以　.dia 為延伸名."
+
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "測試錯誤, 執行 %s 時出現 ERROR DETECTED 訊息"
+
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "測試錯誤, 參考 : fc /L /N %s"
+
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "測試錯誤, 參考 : diff -wu %s"
+
+msgid "Test passed"
+msgstr "測試通過"
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: 輸入參數長度錯誤"
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr ""
+
+#, c-format
+msgid "The test %s is not available from the %s toolbox"
+msgstr ""
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "參考檔 (%s) 不存在"
+
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "參考檔 (reference file) 未含變數   %s"

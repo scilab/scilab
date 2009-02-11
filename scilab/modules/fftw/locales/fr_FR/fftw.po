@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-23 11:10+0100\n"
-"PO-Revision-Date: 2008-09-28 08:23+0000\n"
+"PO-Revision-Date: 2009-02-11 09:29+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -39,7 +39,8 @@ msgid "%s: Wrong values for input argument #%d.\n"
 msgstr "%s: Mauvaises valeurs pour l'argument d'entrée n° %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° %d: une table de dimension N "
 "attendue.\n"
@@ -48,13 +49,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: matrice d'entier attendue.\n"
+"%s: Mauvais type pour l'argument d'entrée n° %d: matrice d'entiers "
+"attendue.\n"
 
 #, c-format
-msgid "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
 msgstr ""
 "%s: Arguments d'entrée n° %d et n° %d incompatiblesd: Même tailles "
 "attendues.\n"

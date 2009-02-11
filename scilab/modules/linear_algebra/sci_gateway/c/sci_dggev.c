@@ -15,6 +15,8 @@
 #include "MALLOC.h"
 #include "msgs.h"
 #include "assembleEigenvectors.h"
+#include "gw_linear_algebra.h"
+
 extern int C2F(dsyev)();
 extern int C2F(dlaset)();
 extern int C2F(dcopy)();
@@ -46,7 +48,7 @@ extern int C2F(dggev)();
 //     where 
 //       L : the matrix of generalized left eigenvectors, type complex
 //
-int intdggev(char *fname)
+int sci_dggev(char *fname, unsigned long fname_len)
 {	
 	int totalsize;
 	int iRowsA = 0;

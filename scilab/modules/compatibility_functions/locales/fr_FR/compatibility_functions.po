@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-25 12:46+0000\n"
+"PO-Revision-Date: 2009-02-11 09:15+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:09+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -55,8 +55,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: %s, %s, %s, ''%s'', ''%"
-"s'' ou ''%s'' attendue.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: %s, %s, %s, ''%s'', "
+"''%s'' ou ''%s'' attendue.\n"
 
 #, c-format
 msgid ""
@@ -67,7 +67,8 @@ msgstr ""
 "argument ne correspondent pas aux contenus de la cellule spécifiée.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Cette fonctionnalité n'a pas été implémentée: Support pour les "
 "hypermatrices.\n"
@@ -215,8 +216,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: ''%s'', ''%s'' ou ''%"
-"s'' attendu.\n"
+"%s: Mauvaise valeur pour l'argument d'entrée n° #%d: ''%s'', ''%s'' ou "
+"''%s'' attendu.\n"
 
 #, c-format
 msgid ""
@@ -287,59 +288,14 @@ msgstr ""
 msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
 msgstr "%s: Ne peut pas ouvrir ni ''%s'' ni ''%s'' ni ''%s''.\n"
 
-#, fuzzy, c-format
+#, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d à %d attendu.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée: %d à %d attendus.\n"
 
-#
-# File: macros/mtlb_var.sci, line: 44
 #, c-format
 msgid "%s: The normalization m - 1 factor is zero.\n"
-msgstr ""
+msgstr "%s: Le facteur de normalisation m - 1 est zéros.\n"
 
-#
-# File: macros/mtlb_var.sci, line: 51
 #, c-format
 msgid "%s: The normalization n - 1 factor is zero.\n"
-msgstr ""
-
-#~ msgid "%s: All inputs must be character strings.\n"
-#~ msgstr "%s: Toutes les entrées doivent être des chaînes de caractères.\n"
-
-#~ msgid ""
-#~ "%s: Name conflict, it is not possible to save variable with name ''%s''.\n"
-#~ msgstr ""
-#~ "%s: Conflit de nom, ce n'est pas possible de sauvegarder la variable avec "
-#~ "le nom ''%s''.\n"
-
-#~ msgid "%s: Attempt to write an unsupported data type to an ASCII file.\n"
-#~ msgstr ""
-#~ "%s: Essaye d'écrire un type de données non supporté par un fichier "
-#~ "ASCII.\n"
-
-#~ msgid "%s: Unknown or misplaced option ''%s''.\n"
-#~ msgstr "%s: Option ''%s'' inconnue ou mal placée.\n"
-
-#~ msgid "%s: Unknown option ''%s''.\n"
-#~ msgstr "%s: Option ''%s'' inconnue.\n"
-
-#~ msgid "%s: File ''%s'' cannot be opened for reading.\n"
-#~ msgstr "%s: Le fichier ''%s'' ne peut pas être ouvert en lecture.\n"
-
-#~ msgid "%s: Incorrect file.\n"
-#~ msgstr "%s: Fichier incorrecte.\n"
-
-#~ msgid "%s: VAX D-float not handled.\n"
-#~ msgstr "%s: flottant de type VAX D non traité.\n"
-
-#~ msgid "%s: VAX G-float not handled.\n"
-#~ msgstr "%s: flottant de type VAX G non traité.\n"
-
-#~ msgid "%s: Cray encoding not handled.\n"
-#~ msgstr "%s: l'encodage de type Cray n'est as supporté.\n"
-
-#~ msgid "%s: Unknown binary number format.\n"
-#~ msgstr "%s: Format nombre binaire inconnu.\n"
-
-#~ msgid "%s: Unknown sparse type.\n"
-#~ msgstr "%s: type sparse inconnu.\n"
+msgstr "%s: Le facteur de normalisation n - 1 est zéros.\n"

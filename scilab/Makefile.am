@@ -21,8 +21,13 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
-scilab_bin_LDFLAGS 		=
-scilab_bin_CFLAGS 		= 
+scilab_bin_LDFLAGS 		= 
+if IS_MACOSX
+scilab_bin_LDFLAGS 		+= -framework Cocoa
+endif
+
+scilab_bin_CFLAGS 		=
+# --no-undefined --relax
 
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -84,13 +89,14 @@ $(top_srcdir)/CHANGES_3.X \
 $(top_srcdir)/CHANGES_4.X \
 $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
+$(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
 $(top_srcdir)/RELEASE_NOTES_5.0.X \
-$(top_srcdir)/RELEASE_NOTES_5.1 \
+$(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
@@ -100,6 +106,7 @@ icons/puffin_128.xpm \
 icons/puffin_256.xpm \
 icons/puffin_32.xpm \
 icons/puffin_48.xpm \
+icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
 
@@ -179,6 +186,11 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 
+if IS_MACOSX
+# Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
+MACOSX=1
+endif
+
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
@@ -199,6 +211,7 @@ localization:
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 		$(MSGCAT) -o $$POFILE $$FILES; \
+		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
 	done;
 endif

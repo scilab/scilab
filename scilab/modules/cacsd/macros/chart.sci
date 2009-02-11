@@ -111,7 +111,8 @@ function chart(attenu,angl,flags)
 	   m=[m %nan module($:-1:1)]
 	   if att>0 then 
 	     xstring(p($),m($),string(att),0,0),
-	     e=gce();e.clip_state='off';
+	     e=gce();
+	     if ~flags(1) then e.clip_state='off';end
 	     S=[e S]
 	   end
 	 else
@@ -119,7 +120,8 @@ function chart(attenu,angl,flags)
 	   m=[m %nan module]
 	   if att<0 then 
 	     xstring(p($),m($),string(att),0,0),
-	     e=gce();e.clip_state='off';
+	     e=gce();
+	     if ~flags(1) then e.clip_state='off';end
 	     S=[e S]
 	   end
 	 end

@@ -50,6 +50,7 @@
 static int sciSwapObjects( sciPointObj * firstObject, sciPointObj * secondObject );
 static int sciRelocateObject( sciPointObj * movedObj, sciPointObj * newParent );
 static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex);
+static sciPointObj * getPointerFromChildrenJavaIndex(sciPointObj * pObj, int javaIndex);
 
 /*********************************** Handle ******************************************/
 
@@ -168,30 +169,40 @@ static sciPointObj * getPointerFromJavaIndex(sciPointObj * pObj, int javaIndex)
 		{
 			return pObj;
 		}
+		/* look inside the children */
+		return getPointerFromChildrenJavaIndex(pObj, javaIndex);
 		break;
 	case SCI_UIMENU:
 		if (pUIMENU_FEATURE(pObj)->hashMapIndex == javaIndex)
 		{
 			return pObj;
 		}
+		/* look inside the children */
+		return getPointerFromChildrenJavaIndex(pObj, javaIndex);
 		break;
 	case SCI_FIGURE:
-		{
-			sciSons * children = sciGetSons(pObj);
-			while (children != NULL)
-			{
-				sciPointObj * found = getPointerFromJavaIndex(children->pointobj, javaIndex);
-				if (found != NULL)
-				{
-					return found;
-				}
-				children = children->pnext;
-			}
-		}
+		return getPointerFromChildrenJavaIndex(pObj, javaIndex);
 		break;
 	}
 
-	/* The object has not been found */
+	/* The object is not a one which can contained java objects */
+	return NULL;
+}
+
+static sciPointObj * getPointerFromChildrenJavaIndex(sciPointObj * pObj, int javaIndex)
+{
+	sciSons * children = sciGetSons(pObj);
+	while (children != NULL)
+	{
+		sciPointObj * found = getPointerFromJavaIndex(children->pointobj, javaIndex);
+		if (found != NULL)
+		{
+			return found;
+		}
+		children = children->pnext;
+	}
+
+	/* No pointer found from the children */
 	return NULL;
 }
 

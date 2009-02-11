@@ -37,13 +37,14 @@ function dynamickeywords()
 
 
   function setscipadwords(wset,wtype)
-    // checks that scipad interp exists
-    if TCL_ExistInterp('scipad') then
+    // checks that scipad interp exists (test added by the opteam 26/08/08, no idea why)
+    if TCL_ExistInterp("scipad") then
       if or(wset=="") then
-        warning(" suspect empty name found of type "+wtype+" (BUG #3631)")
+        warning("suspect empty name found of type "+wtype+" (BUG #3631)")
         wset=wset(wset<>"")
       end
       lp=lineform(wset);
+
       TCL_EvalStr("set chset(scilab."+wtype+") {}","scipad")
       for i=1:size(lp,1)
         initial=part(lp(i),1);
@@ -52,6 +53,8 @@ function dynamickeywords()
         TCL_EvalStr("set words(scilab."+wtype+"."+initial+") """+..
                  lp(i)+"""","scipad")
       end
+    else
+      warning("TCL_ExistInterp(""scipad"") returned %F in function setscipadwords - This is not supposed to happen! Please report to bugzilla.");
     end
   endfunction
 
@@ -74,7 +77,7 @@ function dynamickeywords()
        libvar=[libvar;names(i)];
        libstring=string(eval(names(i)));
        if or(libstring=="") then
-         warning(" suspect empty function name found in "+names(i)+" (BUG #2338)")
+         warning("suspect empty function name found in "+names(i)+" (BUG #2338)")
          libstring=libstring(libstring<>"")
        end
        libfun=[libfun;libstring(2:$)];

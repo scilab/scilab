@@ -622,6 +622,12 @@ set xml_prologstart_RE_rep {<\?xml[[:blank:]]+version[[:blank:]]*=[[:blank:]]*["
 
 ###
 
+# a sequence of three characters %xy (x and y being hex digits),
+# that is used for substituting this sequence in filenames provided by TkDnD
+set percenthexseqRE {%[[:xdigit:]]{2}}
+
+###
+
 # the user might want the same behaviour on Windows as on Linux for
 # double-clicking - this is bug 1792, see also
 # http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/659fd6c1f41d9a81/eb2a841ac335580e

@@ -22,6 +22,7 @@
 #include "dynamic_menus.h" /* for ismenu() */
 #include "charEncoding.h"
 #include "zzledt.h"
+#include "GetCommandLine.h"
 #if _MSC_VER
 #include "TermReadAndProcess.h"
 #endif
@@ -151,8 +152,9 @@ static void *watchGetCommandLine(void *in) {
 
 /***********************************************************************/
 /*
-** Old zzledt... Called by Fortran...
-** @TODO rename that function !!!
+ * Old zzledt... Called by Fortran...
+ * @TODO rename that function !!!
+ * @TODO remove unused arg buf_size, menusflag, modex & dummy1
 */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
