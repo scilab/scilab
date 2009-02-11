@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-28 07:40+0000\n"
+"PO-Revision-Date: 2009-02-11 09:14+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "CACSD"
@@ -316,7 +316,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
-msgstr ""
+msgstr "%s: L'action directe est réglée sur le coefficient d'ordre 0.\n"
 
 #, c-format
 msgid "%s: Direct feedthrough set to zero.\n"
@@ -727,7 +727,7 @@ msgid "Poles"
 msgstr "Pôles"
 
 msgid "Transmission zeros and poles"
-msgstr ""
+msgstr "Zéros et pôles de transmission"
 
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
