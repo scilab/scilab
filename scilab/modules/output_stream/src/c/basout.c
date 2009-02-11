@@ -20,7 +20,6 @@
 #include "MALLOC.h"
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 #define bufferformat "%s\n"
 /*--------------------------------------------------------------------------*/ 
@@ -28,24 +27,22 @@ extern int C2F(writelunitstring)();
 /*--------------------------------------------------------------------------*/ 
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
-	char *buffer = NULL;
-	char szlocaleToUTF[bsiz];
-	static int ich;
-
 	int i = 0;
 	/* bug 3831 */
 	for (i = 0; i < nbcharacters; i++) 
 	{
-		if (string[i] == 0) string[i] = ' ';
+		 if (string[i] == 0) string[i] = ' ';
 	}
 
 	if (*lunit == C2F(iop).wte)
 	{
+		char *buffer = NULL;
+
 		/* Display on the standard output */
 
 		/* We haven't called this function before ... Then we call it and 
-		   store the result once for all because it won't change 
-		 */
+		store the result once for all because it won't change 
+		*/
 		*io = 0;
 		if (C2F(iop).lct[0] == -1) { return 0; }
 		if (getLinesSize() > 0) 
@@ -53,6 +50,8 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 			/* Management of the page numbering (pagination in French) */
 			if (C2F(iop).lct[0] + 3 > getLinesSize())
 			{
+				int ich = 0;
+
 				/* Number of max line reached, management of the 'more' */
 				C2F(iop).lct[0] = 0;
 
@@ -82,16 +81,14 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		buffer = UTFToLocale(string, szlocaleToUTF); /** convert string to system locale encoding for file output*/
-        nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 
 		{
-			diary(buffer, &nbcharacters);
+			diary(string, &nbcharacters);
 		}
 		else 
 		{
-			C2F(writelunitstring)(lunit, buffer,nbcharacters);
+			C2F(writelunitstring)(lunit, string,nbcharacters);
 		}
 	}
 	return 0;
