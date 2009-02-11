@@ -110,10 +110,14 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 		}
 		closedir(folder);
 	}
-	else
-	{
-		sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
-	}
+		/*
+		 * Commented for now because some functions call it even if the 
+		 * directory does not exist.
+		 * See bug 4079
+		 else
+		 {
+		  sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+		  } */
 
 	*sizeListReturned = nbElements;
 	return ListFiles;
