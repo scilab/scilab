@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-25 13:54+0000\n"
+"PO-Revision-Date: 2009-02-11 10:24+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:09+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "&File"
@@ -74,7 +74,7 @@ msgid "Tcl/Tk interface not loaded."
 msgstr "Interface TCL/TK n'est pas chargée."
 
 msgid "Open"
-msgstr ""
+msgstr "Ouvrir"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr ""
@@ -198,7 +198,7 @@ msgstr "Erreur TCL: Erreur pendant l'initialisation de TCL (Tcl_Init): %s\n"
 
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
-msgstr ""
+msgstr "Erreur Tcl: Erreur pendant l'initialisation de TK (Tk_Init): %s\n"
 
 #, c-format
 msgid ""
