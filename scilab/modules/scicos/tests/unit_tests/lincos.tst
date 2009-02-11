@@ -1,6 +1,16 @@
-exec(fullfile(SCI,'modules','scicos','tests','unit_tests','PENDULUM_ANIM.sci'))
-exec(fullfile(SCI,'modules','scicos','tests','unit_tests','anim_pen.sci'))
-load(fullfile(SCI,'modules','scicos','tests','unit_tests','pendulum_anim45.cos'))
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- ENGLISH IMPOSED -->
+
+exec(fullfile(SCI,'modules','scicos','tests','unit_tests','PENDULUM_ANIM.sci'));
+exec(fullfile(SCI,'modules','scicos','tests','unit_tests','anim_pen.sci'));
+load(fullfile(SCI,'modules','scicos','tests','unit_tests','pendulum_anim45.cos'));
 M=10;
 m=3;
 l=3;
