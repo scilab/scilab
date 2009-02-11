@@ -16,20 +16,7 @@ f=figure(1);
 m=uimenu(f,"label","test");
 a=gca();
 delete(a);
-menu = findobj("label","test")
- menu  =
- 
-Handle of type "uimenu" with properties:
-========================================
-Parent: Figure
-Children: []
-Enable = "on"
-Foregroundcolor = [0.0627451,0.0627451,0.0627451]
-Label = test
-Visible = "on"
-Callback = 
-CallbackType = 0
-Tag = 
+menu = findobj("label","test");
 if isempty(menu) then
   pause
 end
