@@ -152,7 +152,7 @@ public class TexturedColorMap extends ColorMap {
 	 * @return The buffered image used to draw the texture
 	 */
 	private BufferedImage getImage() {
-		if (textureImage == null) {
+		if (textureImage == null || hasChanged) {
 			// create a new image
 			int colorMapSize = getSize();
 			textureImage = new BufferedImage(colorMapSize + 2, 1, BufferedImage.TYPE_INT_RGB);
@@ -193,7 +193,6 @@ public class TexturedColorMap extends ColorMap {
 	 * @return a new texture data.
 	 */
 	private TextureData createTextureData() {
-		textureImage = null;
 		return getTextureData();
 	}
 	
