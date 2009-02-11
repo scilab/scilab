@@ -22,7 +22,7 @@
 - Mac OS X port:
 There are some known issues with the Mac OS X version:
 
-       	* For now, Tcl/Tk has been disabled. The technical reason is because 
+   	* For now, Tcl/Tk has been disabled. The technical reason is because 
 	both Swing and Tk need to be driven by the Core Foundation 
 	(CFRunLoopRun) and it is tricky to handle both at the sametime.
 	* As a consequence, TclSci (Scilab / Tcl interface) Scipad, GED 
@@ -32,6 +32,8 @@ There are some known issues with the Mac OS X version:
 	cannot be set can occur. Please update your Mac OS X Java.
 
 	* Scilab starts in the background (ie behind other applications).
+
+	* The merge of windows provided by the docking system does not work
 
 	* Because of a Mac OS X bug, Scilab is not using the typical 
 	Mac OS X Screen Menu Bar.
@@ -46,14 +48,12 @@ There are some known issues with the Mac OS X version:
 	issues with the unsfdcopy function. This might be related to the
 	version of your compiler/libraries.
 
-	* Tests of the dynamic links are wrong. It is not a problem with the
-	feature itself. It is due to a wrong reference which has been 
-	generated on a GNU/Linux platform (.so instead of .dylib)
-
 	* The refresh on some demos is not done correctly which can cause
 	some refresh issues.
 
 If you find bugs under Mac OS X which are not in this list, please submit them
 on:
 http://bugzilla.scilab.org/
+Please provide the relevant part from /var/log/system.log
+
 And patches are welcome!
