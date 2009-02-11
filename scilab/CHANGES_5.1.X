@@ -38,9 +38,6 @@ Enhancement:
 
 * Update of some output strings (standard, warning & error)
 
-* mputl returns %t or %f to check if function has correctly written on the 
-  file.
-
 * Scilab uses Atlas 3.9.4 on Windows
 
 * Directive FRENCH IMPOSED added to test_run() to force the test in french
@@ -373,6 +370,8 @@ Bug fixes:
 * bug 3897 fixed - macros perturbs the behavior of mfprintf().
 
 * bug 3898 fixed - There was no way to check if mputl() has done his job.
+					mputl returns %t or %f to check if function has correctly 
+					written on the file.
 
 * bug 3899 fixed - The help for "startup" was incorrect.
 
@@ -455,8 +454,6 @@ Bug fixes:
 
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
                    blank graphic windows. (Windows)
-
-* bug 4067 fixed - Completion bug for filenames
 
 * Side effect in the setenvc function.
 

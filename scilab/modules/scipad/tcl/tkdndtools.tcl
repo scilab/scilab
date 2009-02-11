@@ -62,9 +62,9 @@ proc tkdndbind {w} {
     update idletasks
 
     # Drag and drop files or directories to Scipad - Just a few lines!
-    dnd bindtarget $pad text/uri-list <Drop> "openlistoffiles %D currenttile"
+    dnd bindtarget $pad text/uri-list <Drop> "openlistoffiles %D currenttile substpercentseq"
     dnd bindtarget $pad text/uri-list <Drag> "return %A"
-    dnd bindtarget $w   text/uri-list <Drop> "openlistoffiles %D currenttile"
+    dnd bindtarget $w   text/uri-list <Drop> "openlistoffiles %D currenttile substpercentseq"
     dnd bindtarget $w   text/uri-list <Drag> "focustextarea %W ; return %A"
 
     # Drag and drop text within Scipad, or coming from the outside - More complicated!
