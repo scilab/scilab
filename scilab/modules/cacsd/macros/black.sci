@@ -169,7 +169,7 @@ function black(varargin)
 	//	[d(k,ks(1:last));d(k,ks(1:last))+d_d./dd],1.5)
 	e2=gce();e2.children.foreground=k;
         e2.children.polyline_style = 4;
-        e2.children.arrow_size_factor = 2;
+        e2.children.arrow_size_factor = 1.5;
       end
     end
     //add frequency values
