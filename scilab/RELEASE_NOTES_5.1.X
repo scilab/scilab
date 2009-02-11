@@ -33,6 +33,8 @@ There are some known issues with the Mac OS X version:
 
 	* Scilab starts in the background (ie behind other applications).
 
+	* The merge of windows provided by the docking system does not work
+
 	* Because of a Mac OS X bug, Scilab is not using the typical 
 	Mac OS X Screen Menu Bar.
 	See: http://bugzilla.scilab.org/show_bug.cgi?id=4074
