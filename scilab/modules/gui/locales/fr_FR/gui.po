@@ -168,7 +168,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Type %s is not implemented.\n"
-msgstr "%s : Le type %s n''est pas encore implémenté.\n"
+msgstr "%s : Le type %s n'est pas encore implémenté.\n"
 
 #, c-format
 msgid ""
@@ -278,7 +278,7 @@ msgstr "%s : Fonction non disponible en mode NWNI.\n"
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr ""
-"%s : Le numéro de figure doit être donné quand on n''est pas dans le mode "
+"%s : Le numéro de figure doit être donné quand on n'est pas dans le mode "
 "'%s'.\n"
 
 #, c-format
@@ -867,7 +867,7 @@ msgid ""
 msgstr ""
 "disp(\"ATTENTION : A cause des limitations de votre configuration, Scilab "
 "est passé dans un mode dans lequel mélanger des uicontrols et des graphiques "
-"n''est pas possible. Tapez \"\"help usecanvas\"\" pour plus d'information.\")"
+"n''est pas possible. Tapez \"\"help usecanvas\"\" pour plus d''information.\")"
 
 msgid ""
 "disp(\"WARNING: Due to your video card drivers limitations, that are not "
@@ -885,7 +885,7 @@ msgid ""
 msgstr ""
 "disp(\"ATTENTION : Malgré notre avertissement précédent, vous avez choisi "
 "d'utiliser Scilab avec des fonctionnalités graphiques avancées. Tapez "
-"\"\"help usecanvas\"\" pour plus d'information.\")"
+"\"\"help usecanvas\"\" pour plus d''information.\")"
 
 msgid "Loading help browser..."
 msgstr "Chargement du navigateur d'aide..."
@@ -901,7 +901,7 @@ msgstr "Clic gauche pour terminer la sélection. Clic droit pour annuler."
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Le module '%s' de Scilab n''est pas installé.\n"
+msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
