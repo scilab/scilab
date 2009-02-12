@@ -817,7 +817,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 						if (new_line[l-1] == '.') strcat(new_line, &(dictionaryFiles[0][1]));
 						else if (ptr_strrchar1) strcat(new_line, ptr_strrchar1);
 
-
 						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
 						FREE(new_line);
 						return;
@@ -847,23 +846,15 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 				if (ptr_strrchar1) 
 				{
 					char *ptr_strrchar2 = NULL;
-					char *new_line = NULL;
 					ptr_strrchar2 = strrstr(currentline, defaultPattern);
-					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(ptr_strrchar1)));
 
-					if (new_line)
-					{
-						int l = strlen(currentline)- strlen(ptr_strrchar2);
-						if (l < 0) l = 0 - l;
+					int l = strlen(currentline)- strlen(ptr_strrchar2);
+					if (l < 0) l = 0 - l;
 
-						strncpy(new_line,currentline, l);
-						new_line[l] = '\0';
-						strcat(new_line, ptr_strrchar1);
+					strncpy(wk_buf,currentline, l);
+					wk_buf[l] = '\0';
 
-						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
-
-						FREE(new_line);
-					}
+					CopyLineAtPrompt(wk_buf, strcat(wk_buf, ptr_strrchar1), cursor, cursor_max);
 				}
 				else
 				{
@@ -977,19 +968,13 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern,
 				{
 					char *result = NULL;
 					char *partResult = NULL;
-					char *new_line = NULL;
 
 					result = commonAll;
 					partResult = &result[strlen(defaultPattern)];
-					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(partResult)));
 
-					if (new_line)
-					{
-						strcpy(new_line, currentline);
-						strcat(new_line,partResult);
-						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
-						FREE(new_line);
-					}
+					strcpy(wk_buf, currentline);
+					CopyLineAtPrompt(wk_buf, strcat(wk_buf,partResult), cursor, cursor_max);
+
 					FREE(commonAll);
 					commonAll = NULL;
 				}
