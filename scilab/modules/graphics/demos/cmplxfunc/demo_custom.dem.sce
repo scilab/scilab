@@ -688,7 +688,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	
 	my_title_axes             = newaxes();
 	my_title_axes.axes_bounds = [1/3,0,2/3,1];
-	my_title_axes.margins     = [ 0 0 0 0 ]
+	my_title_axes.margins     = [ 0.08 0.08	0.08 0.08 ]
 
 	// make axes transparent
 	my_title_axes.filled = "off";
@@ -711,7 +711,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	
 	my_title_axes.title.text       = the_title;
 	my_title_axes.title.font_size  = 3;
-	my_title_axes.title.position   = [0.5 0.97];
 	
 endfunction
 
