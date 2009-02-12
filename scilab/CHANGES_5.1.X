@@ -1,4 +1,4 @@
-               Changes between version 5.1.1 and 5.1.2 of Scilab
+               Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
 Bug fixes:
