@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2008-10-05 11:45+0000\n"
+"PO-Revision-Date: 2009-02-11 10:03+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Incorrect assignment.\n"
@@ -633,6 +633,8 @@ msgstr "%s: Mauvais type pour l'argument %d: Polynôme attendu.\n"
 #, c-format
 msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument n° %d: Matrice de travail d'entiers "
+"attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Vector expected.\n"
@@ -906,6 +908,7 @@ msgstr "Trop de commandes définies.\n"
 #, c-format
 msgid "%s: Input arguments should have the same formal variable name.\n"
 msgstr ""
+"%s: Les arguments d'entrée devrait avoir le même nom formel de variable.\n"
 
 msgid "\"unknown data\""
 msgstr "\"Donnée inconnue\""
@@ -1266,6 +1269,8 @@ msgid ""
 "%s: both actual and predicted relative reductions in the criterion at most "
 "%s.\n"
 msgstr ""
+"%s: les réductions relatives actuelle et prédite du critère sont au plus "
+"%s.\n"
 
 #, c-format
 msgid "%s: relative error between two consecutive iterates is at most %s.\n"

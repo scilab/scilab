@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-28 08:28+0000\n"
+"PO-Revision-Date: 2009-02-11 09:54+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:09+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -41,6 +41,8 @@ msgstr "Traitement de %s à %s"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"est attendue.\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
@@ -51,10 +53,10 @@ msgid "%s: help module is not installed.\n"
 msgstr "%s: le module help n'est pas installé.\n"
 
 msgid "Scilab 5.0 or more is required."
-msgstr ""
+msgstr "Scilab 5.0 ou supérieur est nécessaire."
 
 msgid "...demodir must be a directory."
-msgstr ""
+msgstr "...demodir doit être un répertoire."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -156,6 +158,9 @@ msgid ""
 "Building the manual file [%s] in %s. (Please wait building ... this can take "
 "a while)\n"
 msgstr ""
+"\n"
+"Construction du fichier manuel [%s] dans %s. (Veuillez patienter ... cela "
+"peut prendre un certain temps)\n"
 
 #, c-format
 msgid ""
@@ -163,6 +168,9 @@ msgid ""
 "Building the manual file [%s]. (Please wait building ... this can take a "
 "while)\n"
 msgstr ""
+"\n"
+"Construction du fichier manuel [%s]. (Veuillez patienter ... cela peut "
+"prendre un certain temps)\n"
 
 #, c-format
 msgid ""
@@ -184,58 +192,58 @@ msgid "Scilab manual"
 msgstr "Manuel Scilab"
 
 msgid "About Scicos"
-msgstr ""
+msgstr "A propos de Scicos"
 
 msgid "Scicos Manual"
-msgstr ""
+msgstr "Manuel Scicos"
 
 msgid "Batch functions"
-msgstr ""
+msgstr "Fonctions Batch"
 
 msgid "Editor"
-msgstr ""
+msgstr "Editeur"
 
 msgid "Sources Palette"
-msgstr ""
+msgstr "Palette Sources"
 
 msgid "Linear Palette"
-msgstr ""
+msgstr "Palette Linéaire"
 
 msgid "Non-linear Palette"
-msgstr ""
+msgstr "Palette Non-Linéaire"
 
 msgid "Branching Palette"
-msgstr ""
+msgstr "Palette Connections"
 
 msgid "Others Palettes"
-msgstr ""
+msgstr "Palettes Autres"
 
 msgid "Threshold Palette"
-msgstr ""
+msgstr "Palette Seuil"
 
 msgid "Sinks Palette"
 msgstr ""
 
 msgid "Events Palette"
-msgstr ""
+msgstr "Palette Evènements"
 
 msgid "Electrical Palette"
-msgstr ""
+msgstr "Palette Electricité"
 
 msgid "Thermohydraulics Palette"
-msgstr ""
+msgstr "Palette Thermo-Hydrauliques"
 
 msgid "Matrix Palette"
-msgstr ""
+msgstr "Palette Matrice"
 
 msgid "Integer Palette"
-msgstr ""
+msgstr "Palette Entier"
 
 msgid "Demoblocks Palette"
-msgstr ""
+msgstr "Palette Demoblocks"
 
 msgid "ABCD Blocks"
-msgstr ""
+msgstr "Blocs ABCD"
 
 msgid "C Computational Functions"
 msgstr ""
@@ -253,25 +261,25 @@ msgid "Scilab Utilities Functions"
 msgstr ""
 
 msgid "Diagram"
-msgstr ""
+msgstr "Diagramme"
 
 msgid "Blocks"
-msgstr ""
+msgstr "Blocs"
 
 msgid "Links"
-msgstr ""
+msgstr "Liens"
 
 msgid "Compilation/Simulation"
-msgstr ""
+msgstr "Compilation/Simulation"
 
 msgid "Scilab Data Structures"
-msgstr ""
+msgstr "Structures de données Scilab"
 
 msgid "Palettes"
-msgstr ""
+msgstr "Palettes"
 
 msgid "Old Blocks Palette"
-msgstr ""
+msgstr "Palette Anciens Blocs"
 
 #, c-format
 msgid "\tProcessing file %s.xml\n"

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-
+// <-- JVM NOT MANDATORY -->
 
 // <-- NO CHECK REF -->
 // <-- Non-regression test for bug 415 -->

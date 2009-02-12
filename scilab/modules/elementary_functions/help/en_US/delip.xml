@@ -42,7 +42,7 @@
         <term>x</term>
 
         <listitem>
-          <para>real number (or real vector)</para>
+          <para>real vector with non negative elements</para>
         </listitem>
       </varlistentry>
 

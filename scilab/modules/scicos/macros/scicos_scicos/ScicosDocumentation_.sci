@@ -21,7 +21,7 @@
 
 function ScicosDocumentation_()
 
-  if execstr('help(''whatis_scicos'');' , 'errcatch') <>0 then
+  if execstr('help(''scicos'');' , 'errcatch') <>0 then
      message("No help available.");
   end
 
