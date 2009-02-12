@@ -11,7 +11,7 @@
 	
 - input('xxx') from Scipad (bug #2578):
   The function input('xxx') called from scipad is crashing Scilab.
-  Due to internal issues, this bug
+  This bug is due to internal issues and will be fixed in a future version.
 
 - Scipad Debugger:
   The Scipad debugger is still broken because of code reorganization that has
