@@ -55,6 +55,9 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
 /** \brief parse the given file command */
 void Parser::parse(char *command)
 {
+   char *codeLine = NULL;
+   size_t len = 0;
+
   yylloc.first_line = yylloc.last_line = 1;
   yylloc.first_column = yylloc.last_column = 1;
 #ifdef _MSC_VER
@@ -67,17 +70,32 @@ void Parser::parse(char *command)
   yyin = fmemopen(command, strlen(command), "r");
 #endif
 
-  Parser::getInstance()->setFileName("prompt");
-  Parser::getInstance()->setProgName("prompt");
-
+  Parser::getInstance()->setFileName(*new std::string("prompt"));
   Parser::getInstance()->setExitStatus(Succeded);
+
   yyparse();
+
   fclose(yyin);
 #ifdef _MSC_VER
 	DeleteFile(szFile);
 #endif
-	
+
 }
+
+/** \brief put the asked line in codeLine */
+char *Parser::getCodeLine(int line, char **codeLine) {
+   size_t len = 0;
+
+   rewind(yyin);
+   /*
+   ** WARNING : *codeLine will be allocated by getline
+   ** so it must be manually freed !
+   */
+   getline(codeLine, &len, yyin);
+
+   return *codeLine;
+}
+
 
 /** \brief enable Bison trace mode */
 void Parser::enableParseTrace(void)

@@ -19,29 +19,31 @@ void Parser::PrintError(std::string msg) {
 
  // std::ifstream file(Parser::getInstance()->getFileName()->c_str());
 
- std::string codeLine;
+ char *codeLine = NULL;
 
+ /** First print where in the script the error is located */
+ std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ std::cerr << Parser::getInstance()->getCodeLine(yylloc.first_line, &codeLine) << std::endl;
+
+ /** Then underline what causes the trouble */
+ std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+ for( i = 1 ; i < yylloc.first_column ; ++i) {
+   std::cerr << " ";
+ }
+ std::cerr << "^";
+ for( i = i + 1 ; i < yylloc.last_column ; ++i) {
+   std::cerr << "~";
+ }
+ if( yylloc.first_column != yylloc.last_column ) {
+   std::cerr << "^" ;
+ }
+ std::cerr << std::endl;
+
+ /** Finally display the Lexer / Parser message */
  std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
  std::cerr << *(Parser::getInstance()->getFileName()) << " : " <<
    yylloc.first_line << "." << yylloc.first_column <<
    " - " <<
    yylloc.last_line << "." << yylloc.last_column <<
    " : "<< msg << std::endl;
-
-
- /*
-   while(!file.eof() && i < yylloc.first_line)
-   {
-     getline(file, codeLine);
-     ++i;
-   }
- std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
- std::cerr << codeLine << std::endl;
-
- std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
- for( i = 1 ; i < yylloc.first_column ; ++i) {
-   std::cerr << " ";
- }
- std::cerr << "^" << std::endl;
- */
 }

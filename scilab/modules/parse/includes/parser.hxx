@@ -67,6 +67,15 @@ public:
   void	setExitStatus(ParserStatus exit_status) { _exit_status = exit_status; }
   /** \} */
 
+  /*
+  ** \brief This funnction returns the parsed code written
+  ** at the given line.
+  ** out = getCodeLine(10, codeline)
+  ** When returning, out == *codeLine, _BUT_ out is allocated by a inner
+  ** function and must be manually free.
+  */
+  char* getCodeLine(int line, char **codeLine);
+
   static void PrintError(std::string msg);
 
 private :
