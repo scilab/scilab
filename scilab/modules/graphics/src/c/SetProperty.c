@@ -1851,7 +1851,6 @@ int sciInitName(sciPointObj * pobj, char * newName)
     case SCI_FIGURE:
     {
       int newNameLength;
-      int percentStatus = 0 ;
 
 			/* first case newName is NULL */
 			if (newName == NULL)

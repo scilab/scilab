@@ -46,7 +46,6 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
     {
       /* trace for debugging */
       int argc=1;
-      char *AsciiFromUTF8=NULL;
       char *msg=_("TCL_EvalScilabCmd %s");
 
  

@@ -36,7 +36,6 @@ int C2F(sci_createdir)(char *fname,unsigned long l)
 		int m1 = 0, n1 = 0, l1 = 0;
 		char expandedpath[PATH_MAX+1];
 		int out_n = 0;
-		char *VarName = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
