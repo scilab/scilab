@@ -35,7 +35,7 @@ static iconv_t UTFToLocaleConvert = (iconv_t)-1; /* initialize to -1,  */
 BOOL unicodeSubset = TRUE; /* if charset is subset of unicode, no need to convert */
 /*--------------------------------------------------------------------------*/
 #define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
-static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
+//static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
 //static char ENCODE_BUF2[ENCODE_BUF_SIZE]; // the second buffer  to store the converted string
 //static char* ENCODE_BUF=ENCODE_BUF1; // pointer to the next buffer for the converted string
 //static char* _CharVec[255] ;    // Global pointers to point the converted UTF-8 or locale strings (multiple lines)
