@@ -17,13 +17,15 @@
 void Parser::PrintError(std::string msg) {
  int i = 0;
 
- // std::ifstream file(Parser::getInstance()->getFileName()->c_str());
-
+ // FIXME : Should work under Windows
+ // Need to have getline !!!
+#ifndef _MSC_VER
  char *codeLine = NULL;
 
  /** First print where in the script the error is located */
  std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
  std::cerr << Parser::getInstance()->getCodeLine(yylloc.first_line, &codeLine) << std::endl;
+ free(codeLine);
 
  /** Then underline what causes the trouble */
  std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
@@ -38,6 +40,7 @@ void Parser::PrintError(std::string msg) {
    std::cerr << "^" ;
  }
  std::cerr << std::endl;
+#endif
 
  /** Finally display the Lexer / Parser message */
  std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";

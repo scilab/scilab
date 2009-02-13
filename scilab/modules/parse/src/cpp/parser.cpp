@@ -84,6 +84,7 @@ void Parser::parse(char *command)
 
 /** \brief put the asked line in codeLine */
 char *Parser::getCodeLine(int line, char **codeLine) {
+#ifndef _MSC_VER
    size_t len = 0;
 
    rewind(yyin);
@@ -92,7 +93,7 @@ char *Parser::getCodeLine(int line, char **codeLine) {
    ** so it must be manually freed !
    */
    getline(codeLine, &len, yyin);
-
+#endif
    return *codeLine;
 }
 
