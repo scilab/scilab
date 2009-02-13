@@ -10,3 +10,5 @@ SEP #10 :
 SEP #11 : 
 SEP #12 : Scipad / Add support for text encodings
 SEP #13 : Add missing trigonometric functions
+SEP #14 : OS Tag added in the JVM options configuration file
+SEP #15 : Scilab Tree component
