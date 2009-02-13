@@ -19,8 +19,6 @@
   therefore been unplugged from Scipad and will be plugged back as soon as
   possible.
 
-- We are aware of a crash on the lastest version of Fedora (bug #4052).
-
 - Mac OS X port:
 There are some known issues with the Mac OS X version:
 
