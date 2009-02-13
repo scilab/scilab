@@ -11,6 +11,7 @@
 */
 #include <math.h>
 #include "implicitlist.hxx"
+#include "core_math.h"
 
 namespace types
 {
@@ -189,9 +190,33 @@ namespace types
 	{
 		if(computable() == true)
 		{
-			m_iSize		= (int)(((m_dblEnd - m_dblStart) / m_dblStep) + 1.5);
+			m_iSize = 0;
+			if(m_dblStep > 0)
+			{
+				double dblTemp = m_dblStart;
+				while(dblTemp <= m_dblEnd)
+				{
+					m_iSize++;
+					dblTemp += m_dblStep;
+				}
+			}
+			else if(m_dblStep < 0)
+			{
+				double dblTemp = m_dblEnd;
+				while(dblTemp <= m_dblStart)
+				{
+					m_iSize++;
+					dblTemp -= m_dblStep;
+				}
+			}
+			else
+			{//Houston
+			}
+
+/*			m_iSize		= (int)(((m_dblEnd - m_dblStart) / m_dblStep) + 0.5);
 			//for bad case
 			m_iSize		= m_iSize < 0 ? 0 : m_iSize;
+*/
 		}
 	}
 
@@ -202,7 +227,7 @@ namespace types
 
 	InternalType::RealType ImplicitList::step_type_get()
 	{
-		return m_eStartType;
+		return m_eStepType;
 	}
 
 	InternalType::RealType ImplicitList::end_type_get()

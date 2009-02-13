@@ -222,8 +222,6 @@ static void printAstTask(void)
 */
 static void execAstTask(void)
 {
-	//FuncManager *pFM = new FuncManager();
-
 	ast::ExecVisitor *execMe = new ast::ExecVisitor();
 
 	if (timed) { _timer.start(); }
@@ -375,6 +373,7 @@ int main(int argc, char *argv[])
 	/* Scilab Startup */
 	SetScilabEnvironment();
 	Add_All_Variables();
+	FuncManager *pFM = new FuncManager();
 
 	if (i == INTERACTIVE)
 	{

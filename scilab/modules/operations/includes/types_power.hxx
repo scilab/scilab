@@ -10,15 +10,15 @@
 *
 */
 
-#ifndef __LOG_H__
-#define __LOG_H__
+#ifndef __TYPES_POWER_HXX__
+#define __TYPES_POWER_HXX__
 
-#include "export_ef.h"
+#include "alltypes.hxx" 
+#include "operation.hxx"
 
-EXTERN_EF double dlogs(double _dblVal);
-EXTERN_EF void wlog(double _dblRealIn, double _dblImgIn, double* _pdblRealOut, double* _pdblImgOut);
-EXTERN_EF double dlog1ps(double _dblVal);
-EXTERN_EF double lnp1m1(double _dblVar);
+using namespace types;
 
+EXTERN_OP int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
+EXTERN_OP int PowerPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly** _pPolyOut);
 
-#endif /* __LOG_H__ */
+#endif /* __TYPES_POWER_HXX__ */

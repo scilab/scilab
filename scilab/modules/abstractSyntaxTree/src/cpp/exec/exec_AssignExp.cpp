@@ -170,13 +170,21 @@ namespace ast
 							else
 							{//pOut smaller than pIn, enlarge pOut
 								bNew = true;
-								if(pOld->cols_get() == 1)
+								if(pOld->cols_get() == 1 || pOld->size_get() == 0)
 								{
 									pOut = new Double(piMaxDim[0], 1, pIn->isComplex());
 								}
-								else if(pOld->rows_get() == 1 || pOld->size_get() == 0)
+								else if(pOld->rows_get() == 1)
 								{
 									pOut = new Double(1, piMaxDim[0], pIn->isComplex());
+								}
+								else
+								{
+									std::ostringstream os;
+									os << "inconsistent row/column dimensions";
+									os << " (" << e.left_exp_get().location_get().first_line << "," << e.left_exp_get().location_get().first_column << ")" << std::endl;
+									string szErr(os.str());
+									throw szErr;
 								}
 
 								double *pOldR = pOld->real_get();

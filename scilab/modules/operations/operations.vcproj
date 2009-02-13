@@ -197,6 +197,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\matrix_power.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\matrix_substraction.c"
 				>
 			</File>
@@ -218,6 +222,10 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\types_multiplication.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\src\cpp\types_power.cpp"
 				>
 			</File>
 			<File
@@ -251,6 +259,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\includes\matrix_power.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\matrix_right_division.h"
 				>
 			</File>
@@ -280,6 +292,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\types_multiplication.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\types_power.hxx"
 				>
 			</File>
 			<File

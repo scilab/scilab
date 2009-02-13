@@ -267,7 +267,7 @@ namespace ast
 						{
 							for(int i = 0 ; i < iTotalCombi ; i++)
 							{
-								pRealOut[i] = pRealIn[piIndexSeq[i]];
+								pRealOut[i] = pRealIn[piIndexSeq[i] - 1];
 							}
 						}
 					}
@@ -557,57 +557,62 @@ namespace ast
 	** \{ */
 	void ExecVisitor::visit(const ListExp &e)
 	{
-			double dblStart = -1;
-			double dblStep = -1;
-			double dblEnd = -1;
+		double dblStart = -1;
+		double dblStep = -1;
+		double dblEnd = -1;
 
-			ExecVisitor*	execMeStart = new ast::ExecVisitor();
-			ExecVisitor*	execMeStep	= new ast::ExecVisitor();
-			ExecVisitor*	execMeEnd		= new ast::ExecVisitor();
+		ExecVisitor*	execMeStart = new ast::ExecVisitor();
+		ExecVisitor*	execMeStep	= new ast::ExecVisitor();
+		ExecVisitor*	execMeEnd		= new ast::ExecVisitor();
 
 
-			e.start_get().accept(*execMeStart);
-/*			if(execMeStart->result_get()->isDouble())
-			{
-				pIL->start_set(((Double*)execMeStart->result_get())->real_get(0,0));
-			}
-			else if(execMeStart->result_get()->isPoly())
-			{
-				pIL->start_set(((Poly*)execMeStart->result_get()));
-			}
-*/
+		e.start_get().accept(*execMeStart);
+		/*			if(execMeStart->result_get()->isDouble())
+		{
+		pIL->start_set(((Double*)execMeStart->result_get())->real_get(0,0));
+		}
+		else if(execMeStart->result_get()->isPoly())
+		{
+		pIL->start_set(((Poly*)execMeStart->result_get()));
+		}
+		*/
 
-			e.step_get().accept(*execMeStep);
-/*			if(execMeStep->result_get()->isDouble())
-			{
-				pIL->step_set(((Double*)execMeStep->result_get())->real_get(0,0));
-			}
-			else if(execMeStep->result_get()->isPoly())
-			{
-				pIL->step_set(((Poly*)execMeStep->result_get()));
-			}
-*/
+		e.step_get().accept(*execMeStep);
+		/*			if(execMeStep->result_get()->isDouble())
+		{
+		pIL->step_set(((Double*)execMeStep->result_get())->real_get(0,0));
+		}
+		else if(execMeStep->result_get()->isPoly())
+		{
+		pIL->step_set(((Poly*)execMeStep->result_get()));
+		}
+		*/
 
-			e.end_get().accept(*execMeEnd);
-/*			if(execMeEnd->result_get()->isDouble())
-			{
-				pIL->end_set(((Double*)execMeEnd->result_get())->real_get(0,0));
-			}
-			else if(execMeEnd->result_get()->isPoly())
-			{
-				pIL->end_set(((Poly*)execMeEnd->result_get()));
-			}
-*/
+		e.end_get().accept(*execMeEnd);
+		/*			if(execMeEnd->result_get()->isDouble())
+		{
+		pIL->end_set(((Double*)execMeEnd->result_get())->real_get(0,0));
+		}
+		else if(execMeEnd->result_get()->isPoly())
+		{
+		pIL->end_set(((Poly*)execMeEnd->result_get()));
+		}
+		*/
 
-			ImplicitList *pIL	= new ImplicitList(
-				execMeStart->result_get(),
-				execMeStep->result_get(),
-				execMeEnd->result_get());
+		ImplicitList *pIL	= new ImplicitList(
+			execMeStart->result_get(),
+			execMeStep->result_get(),
+			execMeEnd->result_get());
 
-			result_set(pIL);
-			delete execMeStart;
-			delete execMeStep;
-			delete execMeEnd;
+		result_set(pIL);
+		delete execMeStart;
+		delete execMeStep;
+		delete execMeEnd;
+
+		if(e.is_verbose())
+		{
+			std::cout <<  pIL->toString(10,75) << std::endl;
+		}
 	}
 	/** \} */
 

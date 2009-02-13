@@ -423,8 +423,8 @@ namespace types
 				{
 					int iWidth = 0, iPrec = 0;
 					bool bFP = false; // FloatingPoint
-					GetFormat(ZeroIsZero(m_pdblReal[0]), _iPrecision, &iWidth, &iPrec, &bFP);
-					Add_Value(&ostr, ZeroIsZero(m_pdblReal[0]), iWidth, iPrec);
+					GetFormat((m_pdblReal[0]), _iPrecision, &iWidth, &iPrec, &bFP);
+					Add_Value(&ostr, (m_pdblReal[0]), iWidth, iPrec);
 					ostr << endl;
 				}
 				else

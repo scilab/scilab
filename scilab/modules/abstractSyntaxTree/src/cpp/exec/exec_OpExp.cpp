@@ -19,6 +19,7 @@
 #include "types_addition.hxx"
 #include "types_substraction.hxx"
 #include "types_divide.hxx"
+#include "types_power.hxx"
 
 using std::string;
 
@@ -663,7 +664,48 @@ namespace ast
 				break;
 			}
 		case OpExp::power :
-			break;
+			{
+				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+				{
+					Double *pL			= execMeL.result_get()->getAsDouble();
+					Double *pR			= execMeR.result_get()->getAsDouble();
+
+					int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
+					if(iResult != 0)
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+					result_set(pResult);
+				}
+				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+				{
+					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
+					Double *pR			= execMeR.result_get()->getAsDouble();
+
+					int iResult = PowerPolyByDouble(pL, pR, (MatrixPoly**)&pResult);
+					if(iResult != 0)
+					{
+						std::ostringstream os;
+						os << "inconsistent row/column dimensions";
+						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						string szErr(os.str());
+						throw szErr;
+					}
+					result_set(pResult);
+				}
+				else
+				{
+					std::ostringstream os;
+					os << "invalid types";
+					string szErr(os.str());
+					throw szErr;
+				}
+				break;
+			}
 		default :
 			break;
 		}
