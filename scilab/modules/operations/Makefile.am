@@ -8,6 +8,7 @@ OPERATIONS_C_SOURCES = 	src/c/doublecomplex.c \
 			src/c/matrix_addition.c \
 			src/c/matrix_substraction.c \
 			src/c/matrix_division.c \
+			src/c/matrix_power.c \
 			src/c/matrix_finite.c
 
 OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
@@ -15,6 +16,7 @@ OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_multiplication.cpp \
 			src/cpp/types_divide.cpp \
 			src/cpp/types_addition.cpp \
+			src/cpp/types_power.cpp \
 			src/cpp/types_finite.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
