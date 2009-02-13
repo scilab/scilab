@@ -166,9 +166,9 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 	FLUSH flush                = NULL;
 	char *target               = NULL;
 	register char *currentchar = NULL;
-	int  charBytes;
-	char* UTFChar;
-	char* outStr; /** locale char at most 2 bytes*/
+	//	int  charBytes;
+	//	char* UTFChar;
+	//	char* outStr; /** locale char at most 2 bytes*/
 
 	currentchar = format;
 	arg_count   = argcount;
