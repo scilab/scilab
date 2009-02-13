@@ -175,6 +175,7 @@ static void __slashToAntislash(std::string *in)
     catch(GiwsException::JniException ex)
       {
 		  Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
+		  Scierror(999,_("%s: Execution Java stack %s.\n"), fname, ex.getJavaStackTrace().c_str());
 		  return FALSE;
       }
 
