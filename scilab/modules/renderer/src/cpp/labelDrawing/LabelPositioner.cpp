@@ -125,15 +125,16 @@ void LabelPositioner::getLabelDisplacement(const double ticksDirection[3], doubl
   // rotate ticksDirection relatively to label angle
   rotate2D(ticksDirPix, origin, -textAngle, ticksDirPix);
 
-  // compute displacement coordinates within the width, height coordinates
-  //   \  top /
-  //    \    /
-  //     \  /
-  // left \/ right
-  //      /\
-  //     /  \
-  //    /    \
-  //   /bottom\
+  /* compute displacement coordinates within the width, height coordinates
+   *   \  top /
+   *    \    /
+   *     \  /
+   * left \/ right
+   *      /\
+   *     /  \
+   *    /    \
+   *   /bottom\
+   */
  
   double localDisplacement[3];
   if (ticksDirPix[0] > Abs(ticksDirPix[1]))

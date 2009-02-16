@@ -1853,7 +1853,7 @@ sciIsExistingSubWin (double WRect[4])
   sciSons *psonstmp;
 
   double WRectTmp[4];
-  int stop = 0,i;
+  int i;
 
 
   /* Initialisation de WRectTmp a 0*/

@@ -33,7 +33,6 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		char *filename2 = NULL;
 		char szTemp[bsiz];
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 

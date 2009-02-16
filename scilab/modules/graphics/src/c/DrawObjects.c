@@ -74,7 +74,6 @@ void sciRedrawFigure( void )
 
 void sciClearFigure(sciPointObj * pFigure)
 {
-  sciPointObj * newSubWin = NULL;
   destroyGraphicsSons(pFigure);
 
 	/* recreate the subwindow */
