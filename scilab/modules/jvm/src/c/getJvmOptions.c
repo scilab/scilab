@@ -130,6 +130,16 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			*/
 			xmlCleanupParser();
 
+			if (getenv("SCI_JAVA_ENABLE_HEADLESS")!=NULL) {
+				/* When Scilab is built from a virtual machine, it needs
+				 * an X11 server / input
+				 * This is only called by "make doc" by the SCI/Makefile.am
+				 */
+				jvm_options = (JavaVMOption *)REALLOC(jvm_options,sizeof(JavaVMOption)*(indice+1));
+				jvm_options[indice].optionString = "-Djava.awt.headless=true";
+				indice++;
+			}
+
 			*size_JavaVMOption = indice;
 			return jvm_options;
 		}

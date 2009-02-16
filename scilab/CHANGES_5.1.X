@@ -1,6 +1,13 @@
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
+Compilation:
+============
+
+* Defining the environment variable SCI_JAVA_ENABLE_HEADLESS disables the X11
+  access when building the documentation (necessary when building the 
+  documentation in a chroot)
+
 Bug fixes:
 ==========
 
