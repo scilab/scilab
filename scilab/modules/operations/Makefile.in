@@ -66,7 +66,8 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
-	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltsugar.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
 	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
@@ -93,12 +94,14 @@ am__objects_1 = libscioperations_la-doublecomplex.lo \
 	libscioperations_la-matrix_addition.lo \
 	libscioperations_la-matrix_substraction.lo \
 	libscioperations_la-matrix_division.lo \
+	libscioperations_la-matrix_power.lo \
 	libscioperations_la-matrix_finite.lo
 am__objects_2 = libscioperations_la-operations.lo \
 	libscioperations_la-types_substraction.lo \
 	libscioperations_la-types_multiplication.lo \
 	libscioperations_la-types_divide.lo \
 	libscioperations_la-types_addition.lo \
+	libscioperations_la-types_power.lo \
 	libscioperations_la-types_finite.lo
 am_libscioperations_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscioperations_la_OBJECTS = $(am_libscioperations_la_OBJECTS)
@@ -342,6 +345,7 @@ OPERATIONS_C_SOURCES = src/c/doublecomplex.c \
 			src/c/matrix_addition.c \
 			src/c/matrix_substraction.c \
 			src/c/matrix_division.c \
+			src/c/matrix_power.c \
 			src/c/matrix_finite.c
 
 OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
@@ -349,6 +353,7 @@ OPERATIONS_CPP_SOURCES = src/cpp/operations.cpp \
 			src/cpp/types_multiplication.cpp \
 			src/cpp/types_divide.cpp \
 			src/cpp/types_addition.cpp \
+			src/cpp/types_power.cpp \
 			src/cpp/types_finite.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
@@ -492,12 +497,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_division.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_multiplication.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_power.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-matrix_substraction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_divide.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_finite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_multiplication.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_power.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioperations_la-types_substraction.Plo@am__quote@
 
 .c.o:
@@ -555,6 +562,13 @@ libscioperations_la-matrix_division.lo: src/c/matrix_division.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_division.c' object='libscioperations_la-matrix_division.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_division.lo `test -f 'src/c/matrix_division.c' || echo '$(srcdir)/'`src/c/matrix_division.c
+
+libscioperations_la-matrix_power.lo: src/c/matrix_power.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_power.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_power.Tpo -c -o libscioperations_la-matrix_power.lo `test -f 'src/c/matrix_power.c' || echo '$(srcdir)/'`src/c/matrix_power.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioperations_la-matrix_power.Tpo $(DEPDIR)/libscioperations_la-matrix_power.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/matrix_power.c' object='libscioperations_la-matrix_power.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -c -o libscioperations_la-matrix_power.lo `test -f 'src/c/matrix_power.c' || echo '$(srcdir)/'`src/c/matrix_power.c
 
 libscioperations_la-matrix_finite.lo: src/c/matrix_finite.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CFLAGS) $(CFLAGS) -MT libscioperations_la-matrix_finite.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-matrix_finite.Tpo -c -o libscioperations_la-matrix_finite.lo `test -f 'src/c/matrix_finite.c' || echo '$(srcdir)/'`src/c/matrix_finite.c
@@ -618,6 +632,13 @@ libscioperations_la-types_addition.lo: src/cpp/types_addition.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_addition.cpp' object='libscioperations_la-types_addition.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_addition.lo `test -f 'src/cpp/types_addition.cpp' || echo '$(srcdir)/'`src/cpp/types_addition.cpp
+
+libscioperations_la-types_power.lo: src/cpp/types_power.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_power.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_power.Tpo -c -o libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscioperations_la-types_power.Tpo $(DEPDIR)/libscioperations_la-types_power.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/types_power.cpp' object='libscioperations_la-types_power.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -c -o libscioperations_la-types_power.lo `test -f 'src/cpp/types_power.cpp' || echo '$(srcdir)/'`src/cpp/types_power.cpp
 
 libscioperations_la-types_finite.lo: src/cpp/types_finite.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioperations_la_CXXFLAGS) $(CXXFLAGS) -MT libscioperations_la-types_finite.lo -MD -MP -MF $(DEPDIR)/libscioperations_la-types_finite.Tpo -c -o libscioperations_la-types_finite.lo `test -f 'src/cpp/types_finite.cpp' || echo '$(srcdir)/'`src/cpp/types_finite.cpp
