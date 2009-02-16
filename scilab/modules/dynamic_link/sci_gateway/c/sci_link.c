@@ -172,7 +172,6 @@ static int linkNoRhs(void)
 
 	if ( (FunctionsList) && (sizeFunctionsList > 0) )
 	{
-		int i = 0;
 		m1 = sizeFunctionsList;
 		n1 = 1;
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &n1, &m1, FunctionsList);

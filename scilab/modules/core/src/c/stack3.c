@@ -848,7 +848,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
 	int iValType		= *istk(iAddrBase);
 	int iAddrOffset		= 0;
-	int iIndex			= 0;
 
 	if(iValType < 0)
 	{
@@ -1201,8 +1200,6 @@ int iGetOrient(int _iVal)
 	int iCols			= 0;
 	int iRealData		= 0;
 	char **szRealData	= 0;
-	double dblSel = 0;
-	double *pdblRealData = 0;
 
 	if(GetType(2) == sci_matrix)
 	{
@@ -1517,10 +1514,6 @@ int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType)
 	int iAddrOffset		= iAddrBase + 2;
 	int iAddrItem		= 0;
 
-	int *pTest1		= 0;
-	int *pTest2		= 0;
-	int *pTest3		= 0;
-
 	int iIndex			= 0;
 	if(iValType < 0)
 	{
@@ -1629,7 +1622,6 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg)
 {
-	int iIndex			= 0;
 	int iAddrOffset		= 0;
 	*_piRows			= *istk(_iAddr + 1);
 	*_piCols			= *istk(_iAddr + 2);

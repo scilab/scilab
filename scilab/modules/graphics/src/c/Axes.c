@@ -44,7 +44,7 @@
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
 static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
 
-static int nbCheckRedraw = 0;
+//static int nbCheckRedraw = 0;
 
 /*--------------------------------------------------------------------------------*/
 /* clear a subwindow from all of its children */

@@ -98,6 +98,9 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.ScilabTreeBridge;
+import org.scilab.modules.gui.tree.SimpleTree;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.waitbar.ScilabWaitBarBridge;
@@ -4888,5 +4891,14 @@ public class ScilabBridge {
 	 */
 	public static void displayAndWait(ColorChooser colorChooser) {
 		ScilabColorChooserBridge.displayAndWait(colorChooser);
+	}
+	
+	
+	/******************/
+	/* Tree Bridge */
+	/******************/
+
+	public static void  showTree(Tree tree) {
+		ScilabTreeBridge.showTree(tree);
 	}
 }

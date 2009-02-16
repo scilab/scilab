@@ -1,3 +1,20 @@
+               Changes between version 5.1.0 and 5.1.1 of Scilab
+               =================================================
+
+Compilation:
+============
+
+* Defining the environment variable SCI_JAVA_ENABLE_HEADLESS disables the X11
+  access when building the documentation (necessary when building the 
+  documentation in a chroot)
+
+Bug fixes:
+==========
+
+* bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
+
+* bug 4132 fixed - fullpath crashs
+
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
 
@@ -451,6 +468,10 @@ Bug fixes:
                    (format not yet managed).
 
 * bug 4046 fixed - core/includes/scisparse.h wasn't installed.
+
+* bug 4052 fixed - Due to a bug in the libxml2 provided by Fedora/Redhat,
+				   Scilab was crashing on startup. Scilab binaries under Linux
+				   are now shipping libxml2 as a workaround to this bug. 
 
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
                    blank graphic windows. (Windows)
