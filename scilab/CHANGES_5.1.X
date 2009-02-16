@@ -4,7 +4,7 @@
 Bug fixes:
 ==========
 
-
+* bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
