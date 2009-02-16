@@ -27,7 +27,7 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
 	public static Toolkit toolkit = Toolkit.getDefaultToolkit();
 	public static Image plus = toolkit.getImage("SCI/modules/gui/images/icons/plus.png");
 	public static Image moins = toolkit.getImage("SCI/modules/gui/images/icons/moins.gif");
-	public static Image scilab = toolkit.getImage("SCI/modules/gui/images/icons/leaf.gif");
+	public static Image scilab = toolkit.getImage("SCI/modules/gui/images/icons/scilab.png");
 	public static Image puff = toolkit.getImage("SCI/modules/gui/images/icons/puff.gif");
 	
 	public static Image myNewPlus = plus.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
