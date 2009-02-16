@@ -54,6 +54,11 @@ int sciGetJavaInfoMessageLength(sciPointObj * pFigure)
 	return getFigureDrawer(pFigure)->getInfoMessageLength();
 }
 /*---------------------------------------------------------------------------------*/
+int sciGetJavaAntialiasingQuality(sciPointObj * pFigure)
+{
+	return getFigureDrawer(pFigure)->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2])
 {
   getSubwinDrawer(pSubwin)->getCamera()->getPixelCoordinates(userCoord, pixCoord);

@@ -338,11 +338,11 @@ public class ScilabRendererProperties implements RendererProperties {
      * @return Scilab code of the pressed button
      */
     public int rubberBox(int figureIndex, boolean isClick, boolean isZoom, int[] initialRect, int[] endRect) {
-	// rubber box needs an OpenGL canvas to display the selection rectangle.
-	if (parentCanvas == null) {
-	    openGraphicCanvas(figureIndex);
-	}
-	return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
+		// rubber box needs an OpenGL canvas to display the selection rectangle.
+		if (parentCanvas == null) {
+		    openGraphicCanvas(figureIndex, 0);
+		}
+		return parentCanvas.rubberBox(isClick, isZoom, initialRect, endRect);
     }
 
     /**
@@ -400,31 +400,33 @@ public class ScilabRendererProperties implements RendererProperties {
      * If the window does not already contains a 3D canvas,
      * add one.
      * @param figureIndex of the figure that need a canvas
+     * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
      */
-    public void openGraphicCanvas(int figureIndex) {
-	if (parentCanvas == null) {
+    public void openGraphicCanvas(int figureIndex, int antialiasingQuality) {
+    	if (parentCanvas == null) {
 
-	    // create canvas
-	    parentCanvas = ScilabCanvas.createCanvas(figureIndex);
+    		// create canvas
+    		parentCanvas = ScilabCanvas.createCanvas(figureIndex, antialiasingQuality);
 
-	    // add it to the tab
-	    parentTab.addMember(parentCanvas);
+    		// add it to the tab
+    		parentTab.addMember(parentCanvas);
 
-	}
+    	}
     }
 
     /**
      * Destroy the canvas if one already exists
      */
     public void closeGraphicCanvas() {
-	if (parentCanvas != null) {
-	    // disable the canvas
-	    parentCanvas.close();
+    	if (parentCanvas != null) {
+    		// disable the canvas
+    		parentCanvas.close();
 
-	    // remove it from the tab
-	    parentTab.removeMember(parentCanvas);
-	}
-	parentCanvas = null;
+    		// remove it from the tab
+    		parentTab.removeMember(parentCanvas);
+    	}
+    	parentCanvas = null;
     }
 
     /**
@@ -450,6 +452,20 @@ public class ScilabRendererProperties implements RendererProperties {
 	public void setSingleBuffered(boolean useSingleBuffer) {
 		if (parentCanvas != null) {
 			parentCanvas.setSingleBuffered(useSingleBuffer);
+		}
+	}
+	
+	/**
+	 * Change the quality for antialiasing.
+	 * @param figureIndex index of the figure
+	 * @param quality 0 if no antialiasing or the number of passes to use.
+	 */
+	public void setAntialiasingQuality(int figureIndex, int quality) {
+		// we need to close the canvas and open a new to change
+		// the quality
+		if (parentCanvas != null) {
+			closeGraphicCanvas();
+			openGraphicCanvas(figureIndex, quality);
 		}
 	}
 

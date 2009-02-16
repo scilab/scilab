@@ -71,6 +71,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
       pixel_drawing_mode=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // pixel_drawing_mode
+	  if (is_higher_than([5 1 0 0])) then
+	    anti_aliasing=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // anti_aliasing
+	  end
       immediate_drawing=toggle(mget(1,characterFormat,fd));// immediate drawing // init. global variable immediate_drawing
       h.immediate_drawing = 'off';  // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd) // background
@@ -110,6 +113,9 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       h.color_map=matrix(mget(mget(1,'il',fd),"dl",fd),-1,3) // color_map
       h.pixmap=toggle(mget(1,characterFormat,fd)); // pixmap
       h.pixel_drawing_mode=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)) // pixel_drawing_mode
+	  if (is_higher_than([5 1 0 0])) then
+	    h.anti_aliasing=ascii(mget(mget(1,characterFormat,fd),characterFormat,fd)); // anti_aliasing
+	  end
       immediate_drawing=toggle(mget(1,characterFormat,fd)); // immediate_drawing  // init. global variable immediate_drawing
       h.immediate_drawing = 'off'; // set it to 'off' to pass useless redraw due to several 'set' calls
       h.background=mget(1,'il',fd); // background

@@ -187,6 +187,8 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
 
   sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
 
+	sciInitAntialiasingQuality(pobj, sciGetAntialiasingQuality(pfiguremdl));
+
   /* Colormap */
   sciInitNumColors(pobj, 0);
   sciSetDefaultColorMap(pobj);

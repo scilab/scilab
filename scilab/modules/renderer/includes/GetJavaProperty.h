@@ -60,6 +60,11 @@ void sciGetJavaInfoMessage(sciPointObj * pFigure, char * infoMessage);
 int sciGetJavaInfoMessageLength(sciPointObj * pFigure);
 
 /**
+ * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+ */
+int sciGetJavaAntialiasingQuality(sciPointObj * pFigure);
+
+/**
  * Convert user Coordinate to pixel coordinates.
  */
 void sciGetJavaPixelCoordinates(sciPointObj * pSubwin, const double userCoord[3], int pixCoord[2]);
