@@ -15,7 +15,6 @@
 import java.io.File;
 import java.io.IOException;
 
-import javax.media.opengl.DebugGL;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
 
@@ -131,22 +130,20 @@ public class GL2PSRenderer extends ExportRenderer {
 			exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
 			exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 			exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
-
+			exportedFigure.disableAntialiasing();
+			
+			
 			sciRend.init(gLDrawable);
 			sciRend.display(gLDrawable);
 			
 			
-			DebugGL debug = new DebugGL(newGL);
-			
-			
-			
-
 			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
 
 			gLDrawable.setGL(gl);
 			exportedFigure.setDefaultArcRendererFactory();
 			exportedFigure.setDefaultTextRenderer();
 			exportedFigure.setDefaultShadeFacetDrawer();
+			exportedFigure.enableAntialiasing();
 
 			if (gl2psEndPageStatut != GL2PS.GL2PS_SUCCESS) {
 				//Get the GL2PS error and convert it into an export error

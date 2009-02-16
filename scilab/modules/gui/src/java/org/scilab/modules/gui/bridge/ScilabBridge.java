@@ -1288,10 +1288,12 @@ public class ScilabBridge {
 	/**
 	 * Creates a Scilab Canvas
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas(int figureIndex) {
-		return ScilabCanvasBridge.createCanvas(figureIndex);
+	public static SimpleCanvas createCanvas(int figureIndex, int antialiasingQuality) {
+		return ScilabCanvasBridge.createCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**
