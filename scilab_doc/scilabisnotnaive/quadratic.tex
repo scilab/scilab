@@ -28,7 +28,7 @@ x_+ &=& \frac{-b+ \sqrt{b^2-4ac}}{2a}, \label{real:x+}
 with the hypothesis that the discriminant $\Delta=b^2-4ac$
 is positive.
 
-The naive, simplified, algorithm to use to compute the roots of the 
+The naive, simplified, algorithm which computes the roots of the 
 quadratic is presented in figure \ref{naive-quadratic}.
 
 \begin{figure}[htbp]
@@ -124,7 +124,7 @@ Naive method : 9.094947e-009 (error=9.050530e-002)
 Scilab method : 1.000000e-008 (error=1.654361e-016)
 \end{verbatim}
 
-The result is astonishing, since the naive root has 
+The result is surprising, since the naive root has 
 no correct digit and a relative error which is 14 orders 
 of magnitude greater than the relative error of the Scilab root.
 
@@ -187,7 +187,7 @@ x_+ &\approx& -\epsilon \rightarrow 0^-, \qquad \epsilon \rightarrow 0
 To create a difficult case, we search $\epsilon$ so that 
 $1/\epsilon^2 = 10^{310}$, because we know that $10^{308}$
 is the maximum value available with double precision floating 
-point numbers. The solution is $\epsilon=10^{-155}$.
+point numbers. One possible solution is $\epsilon=10^{-155}$.
 
 The following Scilab script shows an example of the computation
 of the roots of such a polynomial with the \emph{roots}

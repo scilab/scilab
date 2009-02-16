@@ -309,11 +309,21 @@ a function of one variable is presented in figure \ref{robust-numericalderivativ
 
 \subsection{One step further}
 
-As we can see, the \emph{derivative} command is based on 
-floating point comprehension. Is it completely \emph{bulletproof} ?
-Not exactly. 
+In this section, we analyse the behaviour of \emph{derivative}
+when the point $x$ is either large $x \rightarrow \infty$, 
+when $x$ is small $x \rightarrow 0$ and when $x = 0$.
+We compare these results with the \emph{numdiff} command,
+which does not use the same step strategy. As we are going 
+to see, both commands performs the same when $x$ is near 1, but 
+performs very differently when x is large or small.
 
-See for example the following Scilab session.
+We have allready explained the theory of the floating 
+point implementation of the \emph{derivative} command.
+Is it completely \emph{bulletproof} ? Not exactly. 
+
+See for example the following Scilab session, where one computes the 
+numerical derivative of $f(x)=x^2$ for $x=10^{-100}$. The 
+expected result is $f'(x) = 2. \times 10^{-100}$.
 
 \begin{verbatim}
 -->fp = derivative(myfunction,1.e-100,order=1)
@@ -327,12 +337,9 @@ See for example the following Scilab session.
     7.450580596923828243D+91  
 \end{verbatim}
 
-The exact answer is $x_e=2. \times 10^{-100}$ so that the 
-result does not have any significant digits.
+The result does not have any significant digits.
 
-The additionnal experiment 
-
-The explanation is that the step is computed with $h = \sqrt(eps)\approx 10^{-8}$.
+The explanation is that the step is computed with $h = \sqrt{eps}\approx 10^{-8}$.
 Then $f(x+h)=f(10^{-100} + 10^{-8}) \approx f(10^{-8}) = 10^{-16}$, because the 
 term $10^{-100}$ is much smaller than $10^{-8}$. The result of the 
 computation is therefore $(f(x+h) - f(x))/h = (10^{-16} + 10^{-200})/10^{-8} \approx 10^{-8}$.
@@ -345,10 +352,12 @@ The additionnal experiment
     0.0000000149011611938477  
 \end{verbatim}
 
-explains the final result.
+allows to check that the result of the computation simply is $\sqrt{eps}$.
+That experiment shows that the \emph{derivative} command uses a 
+wrong defaut step $h$ when $x$ is very small.
 
 To improve the accuracy of the computation, one can take control of the 
-step $h$. A reasonable solution is to use $h=\sqrt{\epsilon}*x$ so that the 
+step $h$. A reasonable solution is to use $h=\sqrt{\epsilon}|x|$ so that the 
 step is scaled depending on $x$. 
 The following script illustrates than method, which produces 
 results with 8 significant digits.
@@ -369,10 +378,16 @@ But when $x$ is exactly zero, the scaling method cannot work, because
 it would produce the step $h=0$, and therefore a division by zero
 exception. In that case, the default step provides a good accuracy.
 
+Another command is available in Scilab to compute the 
+numerical derivatives of a given function, that is \emph{numdiff}.
 The \emph{numdiff} command uses the step 
 \begin{eqnarray}
-h=\sqrt{\epsilon}(1+10^{-3}|x|)
+h=\sqrt{\epsilon}(1+10^{-3}|x|).
 \end{eqnarray}
+In the following paragraphs, we try to analyse why this formula 
+has been chosen. As we are going to check experimentally, this step
+formula performs better than \emph{derivative} when $x$ is 
+large.
 
 As we can see the following session, the behaviour is approximately 
 the same when the value of $x$ is 1.
@@ -408,5 +423,6 @@ results, while \emph{derivative} performs poorly.
 
 This step is a trade-off because it allows to keep a good accuracy with
 large values of $x$, but produces a slightly sub-optimal step size when 
-$x$ is near 1. The behaviour near zero is the same.
+$x$ is near 1. The behaviour near zero is the same, i.e. both commands 
+produce wrong results when $x \rightarrow 0$ and $x\neq 0$.
 
