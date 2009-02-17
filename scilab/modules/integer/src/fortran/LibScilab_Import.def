@@ -3,37 +3,30 @@
 
 EXPORTS
 
-; core
-com_
-stack_
-vstk_
-recu_
-iop_
-mtlbc_
-adre_
-cha1_
-gettype_
-checkval_
-getsmat_
-getscalar_
-crewimat_
-;
-;core_f
-funnam_
-checklhs_
-checkrhs_
-indxg_
-indxgc_
-cvname_
-setfunnam_
-ref2val_
-
-;
-;elementary_functions
-unsfdcopy_
-mtlbsel_
-getorient_
-dset_
-iset_
-int2db_
-;
+ ref2val_
+ dset_
+ iset_
+ int2db_
+ setfunnam_
+ checkval_
+ getsmat_
+ getscalar_
+ crewimat_
+ funnam_
+ recu_
+ cvname_
+ indxgc_
+ indxg_
+ cha1_
+ getorient_
+ mtlbsel_
+ checkrhs_
+ checklhs_
+ adre_
+ unsfdcopy_
+ iop_
+ mtlbc_
+ vstk_
+ stack_
+ gettype_
+ com_

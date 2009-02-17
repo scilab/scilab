@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.utils;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.drawers.FillDrawerGL;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.utils.geom3D.Matrix4D;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -40,6 +41,59 @@ public class CoordinateTransformation {
 	/** relative front depth is between 0 and this value*/
 	private static final double END_FRONT_DEPTH = 0.05;
 	
+	/**
+	 * Offsets used for antialiasing using accumulation buffer.
+	 * Values taken from OpenGL red book (see
+	 * http://www.opengl.org/resources/code/samples/sig99/advanced99/notes/node124.html).
+	 * the values must be recentered on 0 and multiplied by 2 (see example in the page).
+	 * In the example, note that ortho[0] = ortho[5] = 1 in our case.
+	 */
+	private static final double[][][] ANTIALIASING_OFFSET =
+		{null, /* 0 */
+		 {{0.0, 0.0}}, /* 1 */
+		 {{-0.5, 0.5},
+		 {0.5, -0.5}}, /* 2 */
+		 null, /* 3 */
+		 {{-0.25, -0.5},
+		 {0.25, 0.5},
+		 {0.75, -0.5},
+		 {0.25, 0.5}}, /* 4 */
+		 null, /* 5 */
+		 null, /* 6 */
+		 null, /* 7 */
+		 {{0.125, -0.125},
+		  {-0.875, 0.875},
+		  {-0.375, 0.375},
+		  {0.375, 0.625},
+		  {0.625, -0.625},
+		  {0.875, 0.125},
+		  {-0.125, -0.875},
+		  {-0.625, -0.375}}, /* 8 */
+		 null, /* 9 */
+		 null, /* 10 */
+		 null, /* 11 */
+		 null, /* 12 */
+		 null, /* 13 */
+		 null, /* 14 */
+		 null, /* 15 */
+		 {{-0.25, -0.125},
+		  {0.25, -0.875},
+		  {0.75, -0.625},
+		  {-0.75, -0.875},
+		  {-0.25, 0.375},
+		  {0.75, -0.125},
+		  {0.25, 0.125},
+		  {-0.25, 0.875},
+		  {0.25, -0.375},
+		  {-0.75, 0.125},
+		  {-0.75, 0.625},
+		  {-0.25, -0.625},
+		  {0.75, 0.875},
+		  {0.75, 0.375},
+		  {-0.75, -0.375},
+		  {0.25, 0.625}} /* 16 */
+		};
+	
 	private Matrix4D projectionMatrix;
 	private Matrix4D modelViewMatrix;
 	
@@ -53,12 +107,25 @@ public class CoordinateTransformation {
 	private double zNear;
 	private double zFar;
 	
+	private DrawableFigureGL displayedFigure;
+	
 	private boolean is2dMode;
+	
+	/** Current pass for accum buffer antialiasing (1,2,3 or 4) */
+	private int antiAliasingPass;
+	
+	private int antiAliasingQuality;
+	
+	private int antiAliasingQualityBackup;
+	
+	/** switch between multisampling and accumuluation buffer */
+	private boolean useFallBackAntialiasing;
 	
 	/**
 	 * default constructor
+	 * @param figure displayed figure
 	 */
-	public CoordinateTransformation() {
+	public CoordinateTransformation(DrawableFigureGL figure) {
 		completeProjectMatrix = null;
 		unprojectMatrix = null;
 		projectionMatrix = new Matrix4D();
@@ -69,6 +136,11 @@ public class CoordinateTransformation {
 		zNear = 0.0;
 		zFar = 1.0;
 		is2dMode = false;
+		antiAliasingPass = 0;
+		antiAliasingQuality = 0;
+		antiAliasingQualityBackup = 0;
+		this.displayedFigure = figure;
+		useFallBackAntialiasing = false;
 	}
 	
 	
@@ -155,12 +227,14 @@ public class CoordinateTransformation {
 		double[] oglProjectionMatrix = new double[MATRIX_4X4_SIZE];
 		gl.glGetDoublev(GL.GL_MODELVIEW_MATRIX, oglModelViewMatrix, 0);
 		gl.glGetDoublev(GL.GL_PROJECTION_MATRIX, oglProjectionMatrix, 0);
-		gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
+		//gl.glGetDoublev(GL.GL_VIEWPORT, viewPort, 0);
 		// force values to 0 to be compatible when
 		// OpenGL pipeline is enable. The viewport position
 		// is modified. See http://www.javagaming.org/forums/index.php?topic=16414.0.
 		viewPort[0] = 0;
 		viewPort[1] = 0;
+		viewPort[2] = displayedFigure.getCanvasWidth();
+		viewPort[VIEW_PORT_SIZE - 1] = displayedFigure.getCanvasHeight();
 		
 		// projection (without viewport is done by v' = P.M.v
 		// where v' is the canvas coordinates and v scene coordinates
@@ -381,5 +455,189 @@ public class CoordinateTransformation {
 		}
 	}
 	
+	/**
+	 * Get the number of pass used for antialiasing with accum buffer.
+	 * @return number of pass that must be down
+	 */
+	protected int getNbAntialisingPass() {
+		return getAntialiasingFactors(antiAliasingQuality).length;
+	}
+	
+	/**
+	 * Go to the next pass of antialiasing with accumulation buffer. 
+	 * @param gl curren GL pointer
+	 * @return true if some rendering of the scene is needed, false otherwise
+	 */
+	public boolean nextAntialiasingPass(GL gl) {
+		if (isAccumBufferAntialiasingEnable()) {
+			// perform anti-aliasing using accumulation buffers
+			if (antiAliasingPass == 0) {
+				// before the first pass
+				gl.glClear(GL.GL_ACCUM_BUFFER_BIT);
+			} else  {
+				// just after the end of a pass
+				gl.glAccum(GL.GL_ACCUM, 1.0f / ((float) getNbAntialisingPass()));
+			}
+			
+			if (antiAliasingPass == getNbAntialisingPass()) {
+				// just after the last pass
+				gl.glAccum(GL.GL_RETURN, 1.0f);
+				
+				// reset before next call
+				antiAliasingPass = 0;
+				
+				// the end
+				return false;
+			}
+			
+			antiAliasingPass++;
+			
+			// some more accumulation is needed
+			return true;
+		} else if (antiAliasingPass == 0) {
+			
+			// render as usual
+			antiAliasingPass++;
+			return true;
+		} else {
+			
+			// normal render already done
+			antiAliasingPass = 0;
+			return false;
+		}
+	}
+	
+	/**
+	 * @return true is antialiasing is enable, false otherwise
+	 */
+	public boolean isAntiAliasingEnable() {
+		return (antiAliasingQuality > 0);
+	}
+	
+	/**
+	 * @return true if accum buffer antialiasing should be used
+	 */
+	private boolean isAccumBufferAntialiasingEnable() {
+		return isAntiAliasingEnable() && useFallBackAntialiasing;
+	}
+	
+	/**
+	 * Get the aliasing factors to use for a given quality.
+	 * @param quality Quality to use (2,4,8 or 16).
+	 * @return matrix of index.
+	 */
+	private double[][] getAntialiasingFactors(int quality) {
+		if (quality < ANTIALIASING_OFFSET.length && ANTIALIASING_OFFSET[quality] != null) {
+			// should be the case normally
+			return ANTIALIASING_OFFSET[quality];
+		} else {
+			// return the quality just below
+			return getAntialiasingFactors(quality - 1);
+		}
+	}
+	
+	/**
+	 * Move the viewport in order to perform antizliased display.
+	 * @param gl current GL pointer
+	 */
+	public void loadIdentityWithAntialiasing(GL gl) {
+		
+		gl.glLoadIdentity();
+		if (isAccumBufferAntialiasingEnable() && antiAliasingPass > 0) {
+		    // move viewpoint a little to perform anti-aliasing
+			double[][] antialiasingFactors = getAntialiasingFactors(antiAliasingQuality);
+			gl.glTranslated(antialiasingFactors[antiAliasingPass - 1][0] / displayedFigure.getCanvasWidth(),
+					        antialiasingFactors[antiAliasingPass - 1][1] / displayedFigure.getCanvasHeight(),
+							0.0);
+		}
+	}
+	
+	/**
+	 * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+	 */
+	public int getAntialiasingQuality() {
+		return antiAliasingQuality;
+	}
+	
+	/**
+	 * Modify the quality of antialiasing or disable it.
+	 * If quality if 0, the antialiasing is disables,
+	 * otherwise it might be either 1, 2, 4, 8 or 16 and then
+	 * specify the number of pass for antialiasing.
+	 * @param quality positive integer.
+	 */
+	public void setAntialiasingQuality(int quality) {
+		antiAliasingQuality = quality;
+	}
+	
+	
+	/**
+	 * Initialize anti-aliasing factors for a figure.
+	 * @param gl current GL pointer.
+	 */
+	public void initalizeAntialiasing(GL gl) {
+		if (isAntiAliasingEnable()) {
+			// anti-aliasing is enable, check if we can use
+			// multiSampling
+			if (gl.isExtensionAvailable("GL_VERSION_1_3")) {
+				// multisampling can be enabled
+				// but check if we really have the requested number of buffers
+				int[] nbSampleBuffers = {0};
+				gl.glGetIntegerv(GL.GL_SAMPLES, nbSampleBuffers, 0);
+				if (nbSampleBuffers[0] == antiAliasingQuality) {
+					// every thing ok, we have as many samples as we need
+					useFallBackAntialiasing = false;
+				} else {
+					// we don't have the same, number we need to use accumulation buffers
+					useFallBackAntialiasing = true;
+				}
+			} else {
+				// gl version is lower than 1.3, multi sampling is not available
+				useFallBackAntialiasing = true;
+			}
+			
+			// if fallback mode is on, check that accum buffer is OK
+			if (useFallBackAntialiasing) {
+				int[] nbAccumBits = {0, 0, 0};
+				gl.glGetIntegerv(GL.GL_ACCUM_RED_BITS, nbAccumBits, 0);
+				gl.glGetIntegerv(GL.GL_ACCUM_GREEN_BITS, nbAccumBits, 1);
+				gl.glGetIntegerv(GL.GL_ACCUM_BLUE_BITS, nbAccumBits, 2);
+				
+				if (nbAccumBits[0] == 0 || nbAccumBits[1] == 0 || nbAccumBits[2] == 0) {
+					// accum buffers not there, so disable antiAliasing
+					antiAliasingQuality = 0;
+				}
+			}
+		}
+		
+		if (!isAntiAliasingEnable() || useFallBackAntialiasing) {
+			// no need for multi sampling
+			gl.glDisable(GL.GL_MULTISAMPLE);
+		} else {
+			gl.glEnable(GL.GL_MULTISAMPLE);
+		}
+		
+		
+	}
+	
+	/**
+	 * Disable antiAliasing until enableAntiAliasing is called.
+	 */
+	public void disableAntialiasing() {
+		if (antiAliasingQuality > 0) {
+			antiAliasingQualityBackup = antiAliasingQuality;
+		}
+		antiAliasingQuality = 0;
+	}
+	
+	/**
+	 * Enable antialiasing again after a call to disableAntiAliasing.
+	 */
+	public void enableAntialiasing() {
+		if (antiAliasingQuality == 0) {
+			antiAliasingQuality = antiAliasingQualityBackup;
+		}
+		antiAliasingQualityBackup = 0;
+	}
 	
 }

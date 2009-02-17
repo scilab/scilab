@@ -1,17 +1,27 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Sylvestre KOUMAR
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
 package org.scilab.modules.gui.tree;
 
-import java.awt.Component;
-import java.util.ArrayList;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.util.Vector;
 
-import javax.swing.JTree;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 import org.scilab.modules.gui.bridge.ScilabBridge;
-
-
+import org.scilab.modules.gui.bridge.tree.ScilabTreeCellRenderer;
+import org.scilab.modules.gui.events.callback.CallBack;
 
 /**
  * Swing implementation for Scilab Tree in GUIs
@@ -19,224 +29,111 @@ import org.scilab.modules.gui.bridge.ScilabBridge;
  */
 public class ScilabTree implements Tree {
 	
-	private String label;
-	private String icon;
-	private String callback;
-	private Vector<Tree> children;
-	
-	public ScilabTree(String label, String icon, String callback) {
-		this.label = label;
-		this.icon = icon;
-		this.callback = callback;
-		this.children = new Vector<Tree>();
-	}
-
 	private static final long serialVersionUID = 1L;
 	
-
-	/**
-	 * Concatenate tree2 into tree1
-	 * @param tree1 into we concatenate tree2
-	 * @param tree2 concatenate into tree1
-	 * @return a tree1 concatenated with tree2
-	 */
-	public DefaultMutableTreeNode concatTree(DefaultMutableTreeNode tree1, DefaultMutableTreeNode tree2) {
-		return null;
-	}
-
-	/**
-	 * Create a node(subTree) 
-	 * @param label text label of the node
-	 * @param iconPath icon image of the node
-	 * @param callback callback function of the node
-	 * @return the created node
-	 */
-	public DefaultMutableTreeNode createNode(String label, String iconPath, String callback) {
-		return null;
-	}
-
-	/**
-	 * Create a Tree with node given in input 
-	 * @param nodes will contain the tree
-	 * @return the created tree
-	 */
-	public DefaultMutableTreeNode createTree(DefaultMutableTreeNode[] nodes) {
-		return null;
-	}
-
-	/**
-	 * Delete a node at the given position from a tree 
-	 * @param tree into we want to delete
-	 * @param position of the deletion
-	 * @return a tree without the deleted node
-	 */
-	public DefaultMutableTreeNode deleteNode(DefaultMutableTreeNode tree, String position) {
-		return null;
-	}
-
-	/**
-	 * Delete a node from a tree 
-	 * @param tree into we want to delete
-	 * @param node we want to delete
-	 * @return a tree without the deleted node
-	 */
-	public DefaultMutableTreeNode deleteNode(DefaultMutableTreeNode tree, DefaultMutableTreeNode node) {
-		return null;
-	}
-
-	/**
-	 * Text display of this tree 
-	 * @param tree we want to display
-	 * @param displayTreeDetail display or not of each node features (text display)
-	 */
-	public void dumpTree(DefaultMutableTreeNode tree, boolean displayTreeDetail) {
+	private String label;
+	private Icon icon;
+	private CallBack callback;
+	private Vector<Tree> children;
+	
+	public ScilabTree(String label, String iconPath, String callbackString) {
+		this.label = label;
 		
+		// Creating an Iconimage with the image's path 
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		if (iconPath.equals("default")) {
+			this.icon = ScilabTreeCellRenderer.iconeDefaut;
+		} else if (iconPath.equals("")) {
+			this.icon = null;
+		} else {
+			Image image = (toolkit.getImage(iconPath)).getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+			this.icon = new ImageIcon(image);
+		}
+		
+		// Creating a callback with the callback's string
+		this.callback = CallBack.createCallback(callbackString, CallBack.SCILAB_FUNCTION);
+		
+		this.children = new Vector<Tree>();
 	}
-
-	/**
-	 * Find the matching node 
-	 * @param tree into we find
-	 * @param position of finding node 
-	 * @return founded node
-	 */
-	public DefaultMutableTreeNode[] findNode(DefaultMutableTreeNode tree, String position) {
-		return null;
-	}
-
-	/**
-	 * Find matching node(s) 
-	 * @param tree into we find
-	 * @param node we find 
-	 * @return founded node(s)
-	 */
-	public DefaultMutableTreeNode[] findNode(DefaultMutableTreeNode tree, DefaultMutableTreeNode node) {
-		return null;
-	}
-
-	/**
-	 * Find matching node(s) 
-	 * @param tree into we find
-	 * @param property of the node
-	 * @param value of the property
-	 * @return founded node(s)
-	 */
-	public DefaultMutableTreeNode[] findNode(DefaultMutableTreeNode tree, String property, String value) {
-		return null;
-	}
-
-	/**
-	 * Get children node(s) node of the node at position 
-	 * @param tree into we want to get children node(s)
-	 * @param position of the parent node
-	 * @return children node(s)
-	 */
-	public DefaultMutableTreeNode[] getChildrenNodes(DefaultMutableTreeNode tree, String position) {
-		return null;
-	}
-
-	/**
-	 * Get children node(s) of a node 
-	 * @param tree into we want to get children node(s)
-	 * @param node we want to get children node(s)
-	 * @return children node(s)
-	 */
-	public DefaultMutableTreeNode[] getChildrenNodes(DefaultMutableTreeNode tree, DefaultMutableTreeNode node) {
-		return null;
-	}
-
-	/**
-	 * Get the position of a node 
-	 * @param tree into we find the position
-	 * @param node of the wanted position
-	 * @return founded node(s)
-	 */
-	public String[] getNodePosition(DefaultMutableTreeNode tree, DefaultMutableTreeNode node) {
-		return null;
-	}
-
-	/**
-	 * Get the parent node of the node at position  
-	 * @param tree into we want to get parent node
-	 * @param position of the child node
-	 * @return the parent node
-	 */
-	public DefaultMutableTreeNode getParentNode(DefaultMutableTreeNode tree, String position) {
-		return null;
-	}
-
-	/**
-	 * Get the parent node of a child node 
-	 * @param tree into we want to get parent node
-	 * @param node we want to get the parent
-	 * @return the parent node
-	 */
-	public DefaultMutableTreeNode getParentNode(DefaultMutableTreeNode tree, DefaultMutableTreeNode node) {
-		return null;
-	}
-
-	/**
-	 * Insert a node into a tree at the given position
-	 * @param tree into we want to insert
-	 * @param position of the insertion
-	 * @param node we want to insert
-	 * @return a tree with the node inserted
-	 */
-	public DefaultMutableTreeNode insertNode(DefaultMutableTreeNode tree, String position, DefaultMutableTreeNode node) {
-		return null;
-	}
-
-	/**
-	 * Insert a node into a tree at the given position
-	 * @param tree into we want to insert
-	 * @param parentNode of the node we want to insert
-	 * @param node we want to insert
-	 * @return a tree with the node inserted
-	 */
-	public DefaultMutableTreeNode insertNode(DefaultMutableTreeNode tree, DefaultMutableTreeNode parentNode, DefaultMutableTreeNode node) {
-		return null;
-	}
-
+	
 	/**
 	 * GUI display of this tree 
-	 * @param tree we want to display
 	 */
 	public void showTree() {
-		ScilabBridge.showTree(this);
-		
+		ScilabBridge.showTree(this);		
 	}
 
 	/**
-	 * Get tree renderer 
-	 * @param tree we want to display
-	 * @param value of the node
-	 * @param sel is selected
-	 * @param expanded is expanded
-	 * @param leaf is a leaf
-	 * @param row of the tree
-	 * @param hasFocus 
-	 * @return component renderer
+	 * Get label of a node
+	 * @return node's label
 	 */
-	public Component getTreeCellRendererComponent(JTree tree, Object value, 
-			  									  boolean sel, boolean expanded, boolean leaf, 
-			  									  int row, boolean hasFocus)  {	
-		return null;
-	}
-
 	public String getLabel() {
 		return label;
 	}
 
+	/**
+	 * Set label for a node
+	 * @param label of the node
+	 */
 	public void setLabel(String label) {
 		this.label = label;
 	}
 
-	public void addChild(Tree firstChild) {
-		children.add(firstChild);
-		
+	/**
+	 * Get icon of a node
+	 * @return node's icon
+	 */
+	public Icon getIcon() {
+		return icon;
 	}
 
+	/**
+	 * Set icon for a node
+	 * @param icon of the node
+	 */
+	public void setIcon(Icon icon) {
+		this.icon = icon;
+	}
+
+	/**
+	 * Get callback of a node
+	 * @return node's callback
+	 */
+	public CallBack getCallback() {
+		return callback;
+	}
+
+	/**
+	 * Set callback for a node
+	 * @param callback of the node
+	 */
+	public void setCallback(CallBack callback) {
+		this.callback = callback;
+	}	
+
+	/**
+	 * Get children of a tree
+	 * @return children
+	 */	
 	public Vector<Tree> getChildren() {
 		return children;
+	}
+	
+	/**
+	 * Add children for a tree
+	 * @param firstChild of the tree
+	 */
+	public void addChild(Tree firstChild) {
+		children.add(firstChild);
+	}
+
+	/**
+	 * Gets this Bridge component object
+	 * @return this Bridge component object
+	 */
+	public SimpleTree getAsSimpleTree() {
+		//return component;
+		return (SimpleTree) null;
 	}
 
 }

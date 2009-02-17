@@ -951,6 +951,7 @@ FigureModelData * newFigureModelData( void )
   modelData->viewport[2] = 610;
   modelData->viewport[3] = 461;
 	modelData->infoMessage = NULL;
+	modelData->antialiasingQuality = 0;
 
   return modelData ;
 }

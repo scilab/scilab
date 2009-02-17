@@ -17,6 +17,11 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#include "BOOL.h"
+extern BOOL BuildWithVS8ExpressF2C(void);
+#endif
+/*--------------------------------------------------------------------------*/
 static int C2F(scivoid)(char *fname,unsigned long fname_len)
 {
 	return 0;
@@ -53,7 +58,21 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_integer(void)
 {  
-	callFunctionFromGateway(Tab);
+	#ifdef _MSC_VER
+	#ifndef _DEBUG
+	if  ( BuildWithVS8ExpressF2C() )
+	{
+		/* Bug 4123 F2C code (i_prod.f) returns a wrong exception after callFunctionFromGateway */
+		/* and it crashs with release mode */
+		/* workaround disabled callFunctionFromGateway and call function without check */
+		if (*(Tab[Fin-1].f) != NULL) (*(Tab[Fin-1].f)) (Tab[Fin-1].name,(unsigned long)strlen(Tab[Fin-1].name));
+	}
+	else
+	#endif
+	#endif
+	{
+		callFunctionFromGateway(Tab);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -219,6 +219,16 @@ void DrawableFigureJoGL::setUseSingleBuffer(bool useSingleBuffer)
 	getFigureJavaMapper()->setUseSingleBuffer(useSingleBuffer);
 }
 /*---------------------------------------------------------------------------------*/
+int DrawableFigureJoGL::getAntialiasingQuality(void)
+{
+	return getFigureJavaMapper()->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setAntialiasingQuality(int quality)
+{
+	getFigureJavaMapper()->setAntialiasingQuality(quality);
+}
+/*---------------------------------------------------------------------------------*/
 bool DrawableFigureJoGL::isAbleToCreateFigure(void)
 {
   return DrawableFigureJavaMapper::isAbleToCreateFigure();
