@@ -54,6 +54,8 @@ import java.lang.reflect.InvocationTargetException;
 public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCanvas {
 
 	private static final long serialVersionUID = 6101347094617535625L;
+	
+	private static final int ACCUM_BUFFER_BITS = 16;
 
 	private GLEventListener renderer;
 	
@@ -86,10 +88,23 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 	 * Create a Scilab Canvas
 	 * 
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static SwingScilabCanvas createCanvas(int figureIndex) {
+	public static SwingScilabCanvas createCanvas(int figureIndex, int antialiasingQuality) {
 		GLCapabilities cap = new GLCapabilities();
+		
+		if (antialiasingQuality > 0) {
+			// try to enable both
+			// multisampling and accumulation buffers
+			// since we don't know the one that will be choose for now.
+			cap.setSampleBuffers(true);
+			cap.setNumSamples(antialiasingQuality);
+			cap.setAccumRedBits(ACCUM_BUFFER_BITS);
+			cap.setAccumGreenBits(ACCUM_BUFFER_BITS);
+			cap.setAccumAlphaBits(ACCUM_BUFFER_BITS);
+		}
 		
 		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);
 		

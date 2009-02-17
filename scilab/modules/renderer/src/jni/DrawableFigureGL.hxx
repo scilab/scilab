@@ -91,6 +91,8 @@ jmethodID voidsetNbSubwinsjintID; // cache method id
 jmethodID voidopenGraphicCanvasID; // cache method id
 jmethodID voidcloseGraphicCanvasID; // cache method id
 jmethodID voidsetUseSingleBufferjbooleanID; // cache method id
+jmethodID jintgetAntialiasingQualityID; // cache method id
+jmethodID voidsetAntialiasingQualityjintID; // cache method id
 
 
 /**
@@ -205,6 +207,10 @@ void openGraphicCanvas();
 void closeGraphicCanvas();
 
 void setUseSingleBuffer(bool useSingleBuffer);
+
+int getAntialiasingQuality();
+
+void setAntialiasingQuality(int quality);
 
 
                         /**

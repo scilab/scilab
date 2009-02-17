@@ -49,7 +49,6 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
 	int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
 	int nbRowOutPath = 1, nbColOutPath = 1;
 
-	char **userSelection = NULL;
 	int voidSelectionAdr = 0;
 
 	char *optName = NULL;

@@ -319,6 +319,16 @@ void DrawableFigure::setUseSingleBuffer(bool useSingleBuffer)
 	getFigureImp()->setUseSingleBuffer(useSingleBuffer);
 }
 /*---------------------------------------------------------------------------------*/
+int DrawableFigure::getAntialiasingQuality(void)
+{
+	return getFigureImp()->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::setAntialiasingQuality(int quality)
+{
+	getFigureImp()->setAntialiasingQuality(quality);
+}
+/*---------------------------------------------------------------------------------*/
 bool DrawableFigure::isAbleToCreateFigure(void)
 {
   return DrawableFigureJoGL::isAbleToCreateFigure();

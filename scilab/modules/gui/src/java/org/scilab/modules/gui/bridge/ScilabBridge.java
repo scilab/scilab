@@ -99,7 +99,6 @@ import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.ScilabTreeBridge;
-import org.scilab.modules.gui.tree.SimpleTree;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -1289,10 +1288,12 @@ public class ScilabBridge {
 	/**
 	 * Creates a Scilab Canvas
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas(int figureIndex) {
-		return ScilabCanvasBridge.createCanvas(figureIndex);
+	public static SimpleCanvas createCanvas(int figureIndex, int antialiasingQuality) {
+		return ScilabCanvasBridge.createCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**
@@ -4895,7 +4896,7 @@ public class ScilabBridge {
 	
 	
 	/******************/
-	/* Tree Bridge */
+	/* Tree Bridge    */
 	/******************/
 
 	public static void  showTree(Tree tree) {

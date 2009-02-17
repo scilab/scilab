@@ -1,10 +1,19 @@
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
+Compilation:
+============
+
+* Defining the environment variable SCI_JAVA_ENABLE_HEADLESS disables the X11
+  access when building the documentation (necessary when building the 
+  documentation in a chroot)
+
 Bug fixes:
 ==========
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
+
+* bug 4132 fixed - fullpath crashs
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================

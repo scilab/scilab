@@ -164,6 +164,17 @@
             <literal>"set"</literal> ,</para>
               </listitem>
             </varlistentry>
+			<varlistentry>
+              <term>anti_aliasing: </term>
+              <listitem>
+                <para>This property controls the anti-aliasing level used to improve graphic quality.
+				If the property is set to "off", anti-aliasing is disable. To enable anti-aliasing
+				the property must set to either "2x", "4x", "8x" or "16x". In this case, it stands for the anti-aliasing level.
+				For example, "16x" is a higher quality level than "2x".
+				Specifying a higher anti-aliasing level improves image quality but also decreases graphic performances. 
+				</para>
+              </listitem>
+            </varlistentry>
             <varlistentry>
               <term>immediate_drawing: </term>
               <listitem>

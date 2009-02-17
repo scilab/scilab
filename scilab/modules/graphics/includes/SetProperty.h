@@ -270,6 +270,9 @@ int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
 BOOL sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
 BOOL sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
 
+int sciInitAntialiasingQuality(sciPointObj * pObj, int quality);
+int sciSetAntialiasingQuality(sciPointObj * pObj, int quality); /* SET */
+
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

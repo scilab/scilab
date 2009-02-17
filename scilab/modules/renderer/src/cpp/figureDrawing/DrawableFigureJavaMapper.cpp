@@ -261,6 +261,16 @@ void DrawableFigureJavaMapper::setUseSingleBuffer(bool useSingleBuffer)
 	m_pJavaObject->setUseSingleBuffer(useSingleBuffer);
 }
 /*---------------------------------------------------------------------------------*/
+int DrawableFigureJavaMapper::getAntialiasingQuality(void)
+{
+	return m_pJavaObject->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJavaMapper::setAntialiasingQuality(int quality)
+{
+	m_pJavaObject->setAntialiasingQuality(quality);
+}
+/*---------------------------------------------------------------------------------*/
 bool DrawableFigureJavaMapper::isAbleToCreateFigure(void)
 {
   return org_scilab_modules_renderer_utils::RenderingChecker::isAbleToCreateWindow(getScilabJavaVM());
