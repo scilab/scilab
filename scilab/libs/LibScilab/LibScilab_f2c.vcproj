@@ -490,6 +490,10 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="..\ExplicitExportsLibScilab.vcdef"
+			>
+		</File>
+		<File
 			RelativePath="..\..\bin\libf2c.lib"
 			>
 		</File>

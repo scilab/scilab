@@ -13,6 +13,8 @@ Bug fixes:
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
+* bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C only)
+
 * bug 4132 fixed - fullpath crashs
 
                Changes between version 5.0.X and 5.1 of Scilab
