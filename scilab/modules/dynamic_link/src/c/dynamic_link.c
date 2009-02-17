@@ -99,7 +99,7 @@ int scilabLink(int idsharedlibrary,
 			#ifdef _MSC_VER
 			{
 				char *pathSearch = searchEnv(filename,"PATH");
-				if (pathSearch)
+				if ( (pathSearch) && ((int)strlen(pathSearch) > 0) )
 				{
 					sciprint(_("%s: The file %s does not exist.\n" ),"link",filename);
 					FREE(pathSearch);
