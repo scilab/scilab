@@ -100,7 +100,7 @@ int sci_zheev(char *fname, unsigned long fname_len)
 	else
 	{
 		iAllocMatrixOfDouble(2, iCols, iCols, &pdblFinalEigenvalues);
-		iAllocMatrixOfDoubleComplex(3, iCols, iCols, &pdblFinalEigenvectorsReal, &pdblFinalEigenvectorsImg);
+		iAllocComplexMatrixOfDouble(3, iCols, iCols, &pdblFinalEigenvectorsReal, &pdblFinalEigenvectorsImg);
 	}
 
 	pdblEigenValues = (double*)MALLOC(sizeof(double) * iCols);

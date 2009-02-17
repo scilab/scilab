@@ -133,7 +133,7 @@ int iGetOrient(int _iVal);
 /* Reserve space in stack for a matrix of double. */
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
 /* Reserve space in stack for a matrix of complex. */
-int	iAllocMatrixOfDoubleComplex(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
