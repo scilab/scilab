@@ -109,12 +109,12 @@ int sci_dgeev(char *fname, unsigned long fname_len)
 	}
 	if (Lhs==1)
 	{
-		iAllocMatrixOfDoubleComplex(2, iCols, ONE, &pdblFinalEigenvaluesReal, &pdblFinalEigenvaluesImg);
+		iAllocComplexMatrixOfDouble(2, iCols, ONE, &pdblFinalEigenvaluesReal, &pdblFinalEigenvaluesImg);
 	}
 	else
 	{
-		iAllocMatrixOfDoubleComplex(2, iCols, iCols, &pdblFinalEigenvaluesReal, &pdblFinalEigenvaluesImg);
-		iAllocMatrixOfDoubleComplex(3, iCols, iCols, &pdblFinalEigenvectorsReal, &pdblFinalEigenvectorsImg);
+		iAllocComplexMatrixOfDouble(2, iCols, iCols, &pdblFinalEigenvaluesReal, &pdblFinalEigenvaluesImg);
+		iAllocComplexMatrixOfDouble(3, iCols, iCols, &pdblFinalEigenvectorsReal, &pdblFinalEigenvectorsImg);
 		pdblRightvectors = (double*)MALLOC(totalsize * sizeof(double));
 	}
 	pdblEigenvalReal = (double*)MALLOC(iCols * sizeof(double));

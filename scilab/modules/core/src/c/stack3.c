@@ -1309,7 +1309,7 @@ int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealDa
 }
 
 /* 
-iAllocMatrixOfDoubleComplex --
+iAllocComplexMatrixOfDouble --
   Reserve space in stack for a matrix of complex.
 Arguments
   _iPos : index of the Scilab variable
@@ -1318,7 +1318,7 @@ Arguments
   _pdblRealData : pointer to the block of data for real values
   _pdblImgData : pointer to the block of data for complex values
 */
-int	iAllocMatrixOfDoubleComplex(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+int	iAllocComplexMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	return _iAllocMatrixDoubleOrComplex(_iPos, 1, _iRows,  _iCols, _pdblRealData, _pdblImgData);
 }
