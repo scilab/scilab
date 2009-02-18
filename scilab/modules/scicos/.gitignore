@@ -7,6 +7,12 @@ src/modelica_compiler/*.mll
 src/modelica_compiler/.depend
 src/modelica_compiler/doc
 #
+#modelicac (windows)
+#
+src/modelica_compiler/modelicac.exe
+src/modelica_compiler/*.obj
+
+#
 #generated .def files (windows)
 #
 src/c/noscicos/noscicos.def
