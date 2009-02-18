@@ -5,24 +5,27 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 4095 -->
+// <-- Non-regression test for bug 3398 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4095
+// http://bugzilla.scilab.org/show_bug.cgi?id=3398
 //
 // <-- Short Description -->
-// Completion delete some characters of the string we are typing (With NW mode).
+// A bug in the completion:
+// it removes the line. It should add it at the end instead instead.
 
 // <-- INTERACTIVE TEST -->
 
-cd SCI/mod<TAB>   // OK
+exec le<TAB>
 
-cd SCI/modules/file<TAB>   // OK
+// it should be :
+-->exec le
+Fonction Scilab:
+legendre length
 
-cd SCI/modules/fileio/te<TAB>   // OK
+Macro Scilab:
+leastsq legend legends leqe leqr lev levin lex_sort
 
-cd SCI/modules/fileio/tests/u<TAB> 
-
-// if not cd SCI/modules/fileio/tests/units this test is fail.
-
+Champ d'un handle graphique:
+legend_location
                     
