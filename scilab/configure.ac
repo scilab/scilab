@@ -389,13 +389,20 @@ case "$CXX" in
    ;;
 esac
 
+#### 64 bits detection
+IS_64_BITS_CPU=false
+case "$host" in
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+                IS_64_BITS_CPU=true
+	;;
+esac
+
 ##########"
 # not useful under Linux (and was only defined here with scilab 4)
 #AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
 
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
-IS_64_BITS_CPU=false
 case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
@@ -424,19 +431,16 @@ case "$CC" in
 	;;
 	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
-		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
 		CFLAGS="$CFLAGS  -DNARROWPROTO"
 	;;		
 	 ia64-*-linux-gnu )
 		CFLAGS="$CFLAGS -DNARROWPROTO"
-		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
 		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
-		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
