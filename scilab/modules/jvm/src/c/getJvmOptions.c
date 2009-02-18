@@ -46,23 +46,6 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			char *jvm_option_string = NULL;
 
 			int indice = 0;
-			/**
-			 * Serie of dirty ifdef in order to detect the OS for customized xpath queries against the OS
-			 */
-			#ifdef __APPLE__
-			#define OSNAME macosx
-			#else
-			#ifdef __linux__
-			#define OSNAME linux
-			#else
-			#ifdef _MSC_VER
-			#define OSNAME windows
-			#else
-			#define OSNAME other
-			#endif
-			#endif
-			#endif
-			#undef OSNAME
 
 			doc = xmlParseFile (filename_xml_conf);
 
