@@ -26,23 +26,23 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
     // Images
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
     public static Image plus = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/plus.png");
-    public static Image moins = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/moins.gif");
+    public static Image minus = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/minus.png");
     public static Image scilab = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/scilab.png");
-    public static Image puff = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/puff.gif");
+    public static Image puff = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/puff.png");
 
     public static Image myNewPlus = plus.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-    public static Image myNewMoins = moins.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+    public static Image myNewMinus = minus.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
     public static Image myNewScilab = scilab.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
     public static Image myNewPuff = puff.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
 
-    public static Icon iconePlus = new ImageIcon(myNewPlus);
-    public static Icon iconeMoins = new ImageIcon(myNewMoins);        
-    public static Icon iconeScilab = new ImageIcon(myNewScilab);
-    public static Icon iconePuff = new ImageIcon(myNewPuff);
+    public static Icon iconPlus = new ImageIcon(myNewPlus);
+    public static Icon iconMinus = new ImageIcon(myNewMinus);        
+    public static Icon iconScilab = new ImageIcon(myNewScilab);
+    public static Icon iconPuff = new ImageIcon(myNewPuff);
 
     public static Image defaut = toolkit.getImage("");
     public static Image myNewDefaut = defaut.getScaledInstance(25, 25, Image.SCALE_DEFAULT);
-    public static Icon iconeDefaut = new ImageIcon(myNewDefaut);
+    public static Icon iconDefaut = new ImageIcon(myNewDefaut);
 
 
     private static final long serialVersionUID = 1L;
@@ -77,8 +77,8 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
 	    if (node instanceof SwingScilabTree) {
 		// Set icon for the type of leaf
 		if (node.getIcon() != null) {
-		    if (node.getIcon() == iconeDefaut){				
-			this.setLeafIcon(iconeScilab);
+		    if (node.getIcon() == iconDefaut){				
+			this.setLeafIcon(iconScilab);
 		    } else {	
 			this.setLeafIcon(node.getIcon());
 		    }
@@ -92,8 +92,8 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
 	if(expanded){
 	    // Node is opened
 	    if (node.getIcon() != null) {
-		if (node.getIcon() == iconeDefaut) {
-		    this.setOpenIcon(iconeMoins);
+		if (node.getIcon() == iconDefaut) {
+		    this.setOpenIcon(iconMinus);
 		} else {
 		    this.setOpenIcon(node.getIcon());
 		}
@@ -104,8 +104,8 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
 	else{
 	    // Node is closed
 	    if (node.getIcon() != null) {
-		if (node.getIcon() == iconeDefaut) {
-		    this.setClosedIcon(iconePlus);
+		if (node.getIcon() == iconDefaut) {
+		    this.setClosedIcon(iconPlus);
 		} else {
 		    this.setClosedIcon(node.getIcon());
 		}
