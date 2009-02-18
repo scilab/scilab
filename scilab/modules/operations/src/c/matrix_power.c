@@ -169,12 +169,12 @@ int iPowerRealScalarByComplexScalar(
 		else
 		{//0 ^ C
 			if(_dblReal2 > 0)
-			{//0 ^ (r E Z*+ ) & ( c E R )
+			{//0 ^ (r E R*+ ) & ( c E R )
 				*_pdblRealOut				= 0;
 				*_pdblImgOut				= 0;
 			}
 			else if(_dblReal2 < 0)
-			{//0 ^ (r E Z*- ) & ( c E R )
+			{//0 ^ (r E R*- ) & ( c E R )
 				//FIXME : ieee 
 				//generate +Inf
 				double dblZero	= 0.0;
@@ -326,6 +326,7 @@ int iPowerComplexScalarByComplexScalar(
 	return 0;
 }
 
+/*s .^ []*/
 int iPowerRealScalarByRealMatrix(
 		double _dblReal1,
 		double* _pdblReal2, int _iRows2, int _iCols2,

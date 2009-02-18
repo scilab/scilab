@@ -32,5 +32,6 @@ void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, b
 void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec);
 void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
 void Add_Space(ostringstream *_postr, int _iSpace);
+void Print_Var(ostringstream *_postr,  double _dblVal);
 
 #endif /* __TOSTRING_COMMON_HXX__ */

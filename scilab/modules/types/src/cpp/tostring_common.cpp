@@ -112,7 +112,18 @@ void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, b
 
 	if(bPrintOne == true || isEqual(_dblVal, 1) == false)
 	{
-		*_postr << left << fabs(_dblVal);
+		if(_isnan(_dblVal) == 1)
+		{//NaN
+			*_postr << left << "NaN";
+		}
+		else if(finite(_dblVal))
+		{//Normal case
+			*_postr << left << fabs(_dblVal);
+		}
+		else
+		{//Inf
+			*_postr << left << "Inf";
+		}	
 	}
 }
 
@@ -134,6 +145,8 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 		{//no imaginary part
 
 			//0
+			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
+			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
 			ostemp << left << 0;
 			iSignLen = SIGN_LENGTH;
 		}
@@ -143,14 +156,11 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//I
 			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
-			if(fabs(_dblI) == 1)
+			if(fabs(_dblI) != 1)
 			{//specail case if I == 1 write only i and not 1i
-				ostemp << left << SYMBOL_I;
+				Print_Var(&ostemp, _dblR);
 			}
-			else
-			{
-				ostemp << left << fabs(_dblI) << SYMBOL_I;
-			}
+			ostemp << left << SYMBOL_I;
 			iSignLen = SIGN_LENGTH;
 		}
 	}
@@ -162,7 +172,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			ostemp << left << fabs(_dblR);
+			Print_Var(&ostemp, _dblR);
 			iSignLen = SIGN_LENGTH;
 		}
 		else
@@ -171,19 +181,17 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			//R
 			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
 			Config_Stream(&ostemp, _iWidthR, _iPrec, ' ');
-			ostemp << left << fabs(_dblR) << SPACE_BETWEEN_REAL_COMPLEX;
+			Print_Var(&ostemp, _dblR);
+			ostemp << SPACE_BETWEEN_REAL_COMPLEX;
 
 			//I
 			ostemp << (_dblI < 0 ? MINUS_STRING : PLUS_STRING);
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
-			if(fabs(_dblI) == 1)
-			{//specail case if I == 1 write only i and not 1i
-				ostemp << left << SYMBOL_I;
+			if(fabs(_dblI) != 1)
+			{//special case if I == 1 write only i and not 1i
+				Print_Var(&ostemp, _dblI);
 			}
-			else
-			{
-				ostemp << left << fabs(_dblI) << SYMBOL_I;
-			}
+			ostemp << left << SYMBOL_I;
 			iSignLen = SIGN_LENGTH * 2;
 		}
 	}
@@ -193,6 +201,22 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 
 }
 
+void Print_Var(ostringstream *_postr,  double _dblVal)
+{
+	if(_isnan(_dblVal) == 1)
+	{//NaN
+		*_postr << left << "NaN";
+	}
+	else if(finite(_dblVal))
+	{//Normal case
+		*_postr << left << fabs(_dblVal);
+	}
+	else
+	{//Inf
+		*_postr << left << "Inf";
+	}	
+
+}
 void Add_Space(ostringstream *_postr, int _iSpace)
 {
 	for(int i = 0 ; i < _iSpace ; i++)

@@ -308,7 +308,7 @@ namespace ast
 			}
 			else
 			{
-				printf("error Var == NULL\x0d\x0a");
+				std::cout << "error Var == NULL\x0d\x0a";
 			}
 		}
 		else

@@ -956,10 +956,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\doublecomplex.h"
-				>
-			</File>
-			<File
 				RelativePath=".\dynamic_gateways.h"
 				>
 			</File>
