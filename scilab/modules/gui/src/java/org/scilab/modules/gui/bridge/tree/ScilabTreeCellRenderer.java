@@ -25,8 +25,8 @@ public class ScilabTreeCellRenderer extends DefaultTreeCellRenderer {
 
     // Images
     public static Toolkit toolkit = Toolkit.getDefaultToolkit();
-    public static Image plus = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/plus.png");
-    public static Image minus = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/minus.png");
+    public static Image plus = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/list-add.png");
+    public static Image minus = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/list-remove.png");
     public static Image scilab = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/scilab.png");
     public static Image puff = toolkit.getImage(System.getenv("SCI")+"/modules/gui/images/icons/puff.png");
 
