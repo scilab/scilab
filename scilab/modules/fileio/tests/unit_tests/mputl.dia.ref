@@ -20,7 +20,8 @@ TXT = [ 'I am a dummy String'; ..
         'to check that'; ..
         ' mputl is okay'; ..
         ' on linux and windows ... '];
-mputl(TXT, 'dummyFile.dummy')
+r = mputl(TXT, 'dummyFile.dummy');
+if r <> %T then bugmes();quit;end
 TXT2 = mgetl('dummyFile.dummy');
 if TXT2 <> TXT then bugmes();quit;end
 // =============================================================================

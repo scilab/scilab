@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Interaction.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
@@ -33,7 +33,7 @@ int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
       if ( (!isParameterStringMatrix( valueType )) && (valueType != sci_list) )
         {
-          sciprint(_("Incompatible type for property %s.\n"),"callback") ;
+          Scierror(999, _("Incompatible type for property %s.\n"),"callback") ;
           return SET_PROPERTY_ERROR ;
         }
       return SetUiobjectCallback(pobj, stackPointer, valueType, nbRow, nbCol);
@@ -42,7 +42,7 @@ int set_callback_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     {
       if ( !isParameterStringMatrix( valueType ) )
         {
-          sciprint(_("Incompatible type for property %s.\n"),"callback") ;
+          Scierror(999, _("Incompatible type for property %s.\n"),"callback") ;
           return SET_PROPERTY_ERROR ;
         }
      return sciAddCallback( pobj, getStringFromStack( stackPointer ), nbRow * nbCol, 1 ) ;

@@ -32,7 +32,15 @@ int get_callback_property( sciPointObj * pobj )
     }
   else
     {
-      return sciReturnString( sciGetCallback( pobj ) ) ;
+			char * callBack = sciGetCallback(pobj);
+			if (callBack == NULL)
+			{
+				return sciReturnString("");
+			}
+			else
+			{
+				return sciReturnString( sciGetCallback( pobj ) ) ;
+			}
     }
 }
 /*------------------------------------------------------------------------*/

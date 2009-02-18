@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,16 +17,18 @@
 /* desc : function used to laubch a demo of a command                     */
 /*------------------------------------------------------------------------*/
 
-#ifndef _INT_DEMO_
-#define _INT_DEMO_
+#ifndef _SCI_DEMO_H_
+#define _SCI_DEMO_H_
+
+#include "BOOL.h"
 
 /**
- * Launch a demo of a scilab routine
- * @param[in] fname Came of the routine which demo is launched
+ * Lacunch some code inside Scilab.
+ * @param[in] fname Name of the routine from which demo is launched
  * @param[in] code  Scilab script of the demo
- * @param[in] flagx If *flagx == 1, display the code of the demo in the
+ * @param[in] flagx If flagx is TRUE, display the code of the demo in the
  *                  console. Otherwise, silent execution.
  */
-int sci_demo( char * fname, char * code, int * flagx ) ;
+int sci_demo( char * fname, char * code, BOOL flagx ) ;
 
-#endif /* _INT_DEMO_ */
+#endif /* _SCI_DEMO_H_ */

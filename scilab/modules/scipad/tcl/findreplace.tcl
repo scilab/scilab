@@ -38,7 +38,7 @@ proc findtextdialog {typ} {
     if {[IsBufferEditable] == "No" && $typ=="replace"} {return}
 
     if {$findreplaceboxalreadyopen} {
-        tk_messageBox -message [mc "Dialog box already open!"] -icon warning
+        tk_messageBox -message [mc "Dialog box already open!"] -icon warning -parent $find
         return
     }
     set findreplaceboxalreadyopen true
@@ -80,65 +80,57 @@ proc findtextdialog {typ} {
 
     # entry fields
     frame $find.u
-    frame $find.u.f1
-    if {$typ=="replace"} {
-        set bestwidth [mcmaxra "Find what:" "Replace with:"]
-    } else {
-        set bestwidth [mcmaxra "Find what:"]
-    }
-    label $find.u.f1.label -text [mc "Find what:"] \
-        -width $bestwidth -font $menuFont
-    entry $find.u.f1.entry -textvariable SearchString \
-        -width 30 -font $textFont -exportselection 1
-    menubutton $find.u.f1.mb -indicatoron 0 -text ">" \
+    label $find.u.label -text [mc "Find what:"] \
         -font $menuFont
-    menu $find.u.f1.mb.om1 -tearoff 0 -font $menuFont
-    $find.u.f1.mb configure -menu $find.u.f1.mb.om1
+    entry $find.u.entry -textvariable SearchString \
+        -font $textFont -exportselection 1
+    menubutton $find.u.mb -indicatoron 0 -text ">" \
+        -font $menuFont
+    menu $find.u.mb.om1 -tearoff 0 -font $menuFont
+    $find.u.mb configure -menu $find.u.mb.om1
     foreach {pattern label} [regexpsforfind] {
-        $find.u.f1.mb.om1 add command -font $menuFont \
+        $find.u.mb.om1 add command -font $menuFont \
             -label "$label      $pattern" \
             -command [list insertregexpforfind $pattern]
     }
-    pack $find.u.f1.label $find.u.f1.entry $find.u.f1.mb -side left
-    pack configure $find.u.f1.entry -expand 1 -fill x
+    grid $find.u.label -row 0 -column 0 -sticky we
+    grid $find.u.entry -row 0 -column 1 -sticky we
+    grid $find.u.mb    -row 0 -column 2
     if {$typ=="replace"} {
-        frame $find.u.f2
-        label $find.u.f2.label2 -text [mc "Replace with:"] \
-            -width $bestwidth -font $menuFont
-        entry $find.u.f2.entry2 -textvariable ReplaceString \
-            -width 30 -font $textFont -exportselection 1
-        pack $find.u.f2.label2 $find.u.f2.entry2 -side left
-        pack configure $find.u.f2.entry2 -expand 1 -fill x
-        pack $find.u.f1 $find.u.f2 -side top -pady 2 -padx 8 -expand 1 -fill x
+        label $find.u.label2 -text [mc "Replace with:"] \
+            -font $menuFont
+        entry $find.u.entry2 -textvariable ReplaceString \
+            -font $textFont -exportselection 1
+        grid $find.u.label2 -row 1 -column 0 -sticky we
+        grid $find.u.entry2 -row 1 -column 1 -sticky we -columnspan 2
     } else {
-        pack $find.u.f1 -pady 4 -padx 8 -expand 1 -fill x
     }
+    grid columnconfigure $find.u 0 -weight 0
+    grid columnconfigure $find.u 1 -weight 1
+    grid columnconfigure $find.u 2 -weight 0
 
     # buttons
     frame $find.f2
-    if {$typ=="replace"} {
-        set bestwidth [mcmaxra "Find &Next" "Cance&l" \
-                               "Re&place" "Replace &All"]
-    } else {
-        set bestwidth [mcmaxra "Find &Next" "Cance&l"]
-    }
     eval "button $find.f2.button1 [bl "Find &Next"] \
         -command \"multiplefilesfindreplace $find findit\" \
-        -width $bestwidth -font \[list $menuFont\] "
+        -font \[list $menuFont\] "
     eval "button $find.f2.button2 [bl "Cance&l"] \
         -command \"cancelfind\" \
-        -width $bestwidth -font \[list $menuFont\] "
+        -font \[list $menuFont\] "
     if {$typ == "replace"} {
         eval "button $find.f2.button3 [bl "Re&place"] \
             -command \"multiplefilesfindreplace $find replaceit\" \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
         eval "button $find.f2.button4 [bl "Replace &All"] \
             -command \"multiplefilesreplaceall $find\" \
-            -width $bestwidth -font \[list $menuFont\] "
-        pack $find.f2.button1 $find.f2.button3 $find.f2.button4 \
-            $find.f2.button2 -padx 2 -pady 4
+            -font \[list $menuFont\] "
+        grid $find.f2.button1 -row 0 -column 0 -sticky we
+        grid $find.f2.button3 -row 1 -column 0 -sticky we
+        grid $find.f2.button4 -row 2 -column 0 -sticky we
+        grid $find.f2.button2 -row 3 -column 0 -sticky we
     } else {
-        pack $find.f2.button1 $find.f2.button2 -padx 2 -pady 4
+        grid $find.f2.button1 -row 0 -column 0 -sticky we
+        grid $find.f2.button2 -row 3 -column 0 -sticky we
     }
 
     pack $find.u -expand 1 -fill x
@@ -278,41 +270,40 @@ proc findtextdialog {typ} {
             -fill x -expand 1
         pack configure $find.b.f0.cbox6 -fill none
         pack $find.b.f0 -anchor w -fill x -expand 1
-        frame $find.b.f1
-        set bestwidth [mcmaxra "In files/file types:" \
-                               "In directory:"]
-        label $find.b.f1.labelt -text [mc "In files/file types:"] \
-            -width $bestwidth -font $menuFont
-        entry $find.b.f1.entryt -textvariable fileglobpat \
-            -width 30 -font $textFont -exportselection 1
-        menubutton $find.b.f1.mbselectpat -text ">" -indicatoron 0 \
+        frame $find.b.f
+        label $find.b.f.labelt -text [mc "In files/file types:"] \
+            -font $menuFont
+        entry $find.b.f.entryt -textvariable fileglobpat \
+            -font $textFont -exportselection 1
+        menubutton $find.b.f.mbselectpat -text ">" -indicatoron 0 \
             -relief raised -font $menuFont
-        menu $find.b.f1.mbselectpat.pat -tearoff 0 -font $menuFont
-        $find.b.f1.mbselectpat configure -menu $find.b.f1.mbselectpat.pat
+        menu $find.b.f.mbselectpat.pat -tearoff 0 -font $menuFont
+        $find.b.f.mbselectpat configure -menu $find.b.f.mbselectpat.pat
         set predefsearchinfilespatterns [knowntypes]
         foreach item $predefsearchinfilespatterns {
             foreach {patname patlist} $item {
-                $find.b.f1.mbselectpat.pat add command -label $patname \
+                $find.b.f.mbselectpat.pat add command -label $patname \
                 -font $menuFont -command "getsearchpattern [list $patlist]"
             }
         }
-        frame $find.b.f2
-        label $find.b.f2.labeld -text [mc "In directory:"] \
-            -width $bestwidth -font $menuFont
-        entry $find.b.f2.entryd -textvariable initdir \
-            -width 30 -font $textFont -exportselection 1
-        button $find.b.f2.buttonselectdir -text "..." \
+        label $find.b.f.labeld -text [mc "In directory:"] \
+            -font $menuFont
+        entry $find.b.f.entryd -textvariable initdir \
+            -font $textFont -exportselection 1
+        button $find.b.f.buttonselectdir -text "..." \
             -command \"getinitialdirforsearch\" \
             -font $menuFont
 
-        pack $find.b.f1.labelt $find.b.f1.entryt $find.b.f1.mbselectpat \
-            -side left -padx 2
-        pack $find.b.f1 -anchor w -expand 1 -fill x
-        pack $find.b.f2.labeld $find.b.f2.entryd $find.b.f2.buttonselectdir \
-            -side left -padx 2
-        pack $find.b.f2 -anchor w -expand 1 -fill x
-        pack configure $find.b.f1.entryt -expand 1 -fill x -padx 5 -pady 5
-        pack configure $find.b.f2.entryd -expand 1 -fill x -padx 5 -pady 5
+        grid $find.b.f.labelt          -row 0 -column 0 -sticky we
+        grid $find.b.f.entryt          -row 0 -column 1 -sticky we
+        grid $find.b.f.mbselectpat     -row 0 -column 2 -sticky we
+        grid $find.b.f.labeld          -row 1 -column 0 -sticky we
+        grid $find.b.f.entryd          -row 1 -column 1 -sticky we
+        grid $find.b.f.buttonselectdir -row 1 -column 2 -sticky we
+        grid columnconfigure $find.b.f 0 -weight 0
+        grid columnconfigure $find.b.f 1 -weight 1
+        grid columnconfigure $find.b.f 2 -weight 0
+        pack $find.b.f -expand 1 -fill x
     }
 
     pack $find.l.f4.f5 $find.l.f4.f1 -side left -padx 5 -anchor n -expand 1 -fill y
@@ -343,10 +334,10 @@ proc findtextdialog {typ} {
     # after 0 in the following Alt binding is mandatory for Linux only
     # This is Tk bug 1236306 (still unfixed in Tk8.4.15 and Tk 8.5a6)
     bind $find <Alt-[fb $find.f2.button2]> "after 0 cancelfind"
-    bind $find <Visibility> {raise $find $pad ; focus $find.u.f1.entry}
-    bind $pad  <Expose>     {catch {raise $find ; focus $find.u.f1.entry}}
+    bind $find <Visibility> {raise $find $pad ; focus $find.u.entry}
+    bind $pad  <Expose>     {catch {raise $find ; focus $find.u.entry}}
 
-    focus $find.u.f1.entry
+    focus $find.u.entry
     update
     grab $find
 
@@ -355,7 +346,7 @@ proc findtextdialog {typ} {
 
     # the directory entry box is a drop target for text/plain content
     if {$typ == "find"} {
-        dndbinddirentrybox $find.b.f2.entryd
+        dndbinddirentrybox $find.b.f.entryd
     }
 
     # initial settings for direction
@@ -379,15 +370,15 @@ proc findtextdialog {typ} {
         } else {
             # this is a single line single selection
             $find.l.f4.f5.cbox4 deselect
-            $find.u.f1.entry delete 0 end
-            $find.u.f1.entry insert 0 $seltexts
+            $find.u.entry delete 0 end
+            $find.u.entry insert 0 $seltexts
         }
     }
 
     # this must be done here and not before because the validatecommand is
     # called and resetfind uses the searchinsel value set by the tests on
     # $seltexts above
-    $find.u.f1.entry configure -validate key \
+    $find.u.entry configure -validate key \
         -validatecommand {resetfind ; return 1}
 
     # initial settings for searching in multiple files
@@ -401,7 +392,7 @@ proc findtextdialog {typ} {
     # initial settings for search in files from a directory
     if {$typ == "find"} {
         if {$fileglobpat == ""} {
-            $find.b.f1.mbselectpat.pat invoke 0
+            $find.b.f.mbselectpat.pat invoke 0
         }
         if {$initdir == ""} {
             set initdir [file normalize "."]
@@ -431,21 +422,21 @@ proc findtextdialog {typ} {
     setsearchintagsettings
 
     # preselect the entry field -
-    $find.u.f1.entry selection range 0 end
+    $find.u.entry selection range 0 end
 
     # arrange for the entry boxes selection to be erased when pasting
-    bind $find.u.f1.entry <Control-v> { \
+    bind $find.u.entry <Control-v> { \
         if {[%W selection present]} { \
             %W delete sel.first sel.last \
         } ; \
         # no need to event generate %W <<Paste>> since Tk does it for us (class binding)! \
     }
     if {$typ == "replace"} {
-        bind $find.u.f2.entry2 <Control-v> [bind $find.u.f1.entry <Control-v>]
+        bind $find.u.entry2 <Control-v> [bind $find.u.entry <Control-v>]
     }
     if {$typ == "find"} {
-        bind $find.b.f1.entryt <Control-v> [bind $find.u.f1.entry <Control-v>]
-        bind $find.b.f2.entryd <Control-v> [bind $find.u.f1.entry <Control-v>]
+        bind $find.b.f.entryt <Control-v> [bind $find.u.entry <Control-v>]
+        bind $find.b.f.entryd <Control-v> [bind $find.u.entry <Control-v>]
     }
 
     # initialize all the remaining startup settings
@@ -467,9 +458,9 @@ proc tryrestoreseltag {textarea} {
 proc setregexpstatesettings {} {
     global find regexpcase
     if {$regexpcase == "regexp"} {
-        $find.u.f1.mb configure -state normal
+        $find.u.mb configure -state normal
     } else {
-        $find.u.f1.mb configure -state disabled
+        $find.u.mb configure -state disabled
     }
 }
 
@@ -526,12 +517,12 @@ proc searchindirenabled {} {
     $find.l.f4.f5.cbox4 deselect
     $find.b.f0.cbox6 configure -state normal
     $find.b.f0.cbox8 configure -state normal
-    $find.b.f1.labelt configure -state normal
-    $find.b.f1.entryt configure -state normal
-    $find.b.f1.mbselectpat configure -state normal
-    $find.b.f2.labeld configure -state normal
-    $find.b.f2.entryd configure -state normal
-    $find.b.f2.buttonselectdir configure -state normal
+    $find.b.f.labelt configure -state normal
+    $find.b.f.entryt configure -state normal
+    $find.b.f.mbselectpat configure -state normal
+    $find.b.f.labeld configure -state normal
+    $find.b.f.entryd configure -state normal
+    $find.b.f.buttonselectdir configure -state normal
     $find.l.f4.f1.f1.up configure -state disabled
     $find.l.f4.f1.f1.down invoke
     $find.l.f4.f5.cbox7 deselect
@@ -547,12 +538,12 @@ proc searchindirdisabled {} {
     global find 
     $find.b.f0.cbox6 configure -state disabled
     $find.b.f0.cbox8 configure -state disabled
-    $find.b.f1.labelt configure -state disabled
-    $find.b.f1.entryt configure -state disabled
-    $find.b.f1.mbselectpat configure -state disabled
-    $find.b.f2.labeld configure -state disabled
-    $find.b.f2.entryd configure -state disabled
-    $find.b.f2.buttonselectdir configure -state disabled
+    $find.b.f.labelt configure -state disabled
+    $find.b.f.entryt configure -state disabled
+    $find.b.f.mbselectpat configure -state disabled
+    $find.b.f.labeld configure -state disabled
+    $find.b.f.entryd configure -state disabled
+    $find.b.f.buttonselectdir configure -state disabled
     $find.l.f4.f5.cbox7 configure -state normal
     $find.l.f4.f1.f1.up configure -state normal
     $find.l.f4.f1.f2.f1.lb configure -state normal
@@ -1886,15 +1877,15 @@ proc insertregexpforfind {pat} {
 # insert input argument $pat (a regexp pattern) in the "Search for"
 # entry place of the find/replace dialog
     global find
-    $find.u.f1.entry selection clear
-    $find.u.f1.entry insert insert $pat
+    $find.u.entry selection clear
+    $find.u.entry insert insert $pat
     # on windows at least, when clicking on the menubutton and maintaining
     # mouse button down while selecting the menu option, then the button
     # does not return to the flat state automatically (the buttonrelease
     # event must be directed to the wrong widget, which is the menu
     # attached to the menubutton) - therefore generate the adequate event
     # by hand
-    event generate $find.u.f1.mb <ButtonRelease-1>
+    event generate $find.u.mb <ButtonRelease-1>
 }
 
 proc tagsandtagnamesforfind {} {

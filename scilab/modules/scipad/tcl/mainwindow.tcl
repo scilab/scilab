@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 toplevel $pad
 setscipadicon $pad
 
@@ -42,9 +43,10 @@ setlistoffile_colorize "$pad.new$winopened" "";
 set listoffile("$pad.new$winopened",undostackdepth) 0; # used to enable/disable the undo menu entry
 set listoffile("$pad.new$winopened",redostackdepth) 0; # used to enable/disable the redo menu entry
 set listoffile("$pad.new$winopened",progressbar_id) ""; # colorization progressbar identifier
+set listoffile("$pad.new$winopened",encoding) $defaultencoding
 
-set chset()                 {} 
-set words()                 {}  
+array unset chset  ; # see description of this array at the top of colorize.tcl
+array unset words  ; # see description of this array at the top of colorize.tcl
 
 # main window settings
 eval destroy [winfo children $pad]

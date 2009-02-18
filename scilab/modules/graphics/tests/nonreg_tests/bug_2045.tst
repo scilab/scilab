@@ -18,29 +18,29 @@
 
 // should not draw anything
 xpolys([],[],-1) ;
-e = gce() ;
-if ( e.type <> "Axes" ) then pause,end
+entity = gce() ;
+if ( entity.type <> "Axes" ) then pause,end
 xpoly([],[]) ;
 
 // should create an empty polyline
-e = gce() ;
-if ( e.type <> "Polyline" )  then pause,end
-if ( size(e.data) <> [0,0] ) then pause,end
+entity = gce() ;
+if ( entity.type <> "Polyline" )  then pause,end
+if ( size(entity.data) <> [0,0] ) then pause,end
 
 // check if scilab don't crash
 plot3d ;
-e.data = rand(100,2) ;
-e.data = [] ;
+entity.data = rand(100,2) ;
+entity.data = [] ;
 xdel(winsid()) ;
 
 // check if nothing is broken
 xpolys(rand(12,12), rand(12,12) ) ;
-e = gce();
+entity = gce();
 
-if ( e.type <> "Compound" )   then pause,end
-if ( size(e.children) <> 12 ) then pause,end
+if ( entity.type <> "Compound" )   then pause,end
+if ( size(entity.children) <> 12 ) then pause,end
 
 delete(gca());
 xpoly( rand(1,12), rand(1,12) ) ;
-e = gce();
-if ( e.type <> "Polyline" )   then pause,end
+entity = gce();
+if ( entity.type <> "Polyline" )   then pause,end

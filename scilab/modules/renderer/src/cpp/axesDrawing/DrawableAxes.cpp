@@ -38,13 +38,11 @@ DrawableObject::EDisplayStatus DrawableAxes::show( void )
   {
     return UNCHANGED;
   }
-  initializeDrawing();
   clip();
   translate();
   showAxes();
   endTranslate();
   unClip();
-  endDrawing();
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/

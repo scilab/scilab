@@ -24,12 +24,26 @@ for entities handling
 #include "DrawObjects.h"
 #include "MALLOC.h"
 #include "sciprint.h"
+#include "Scierror.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "localization.h"
 #include "PloEch.h"
 #include "Plot2d.h"
 #include "get_ticks_utils.h"
+
+
+/**
+ * Before Scilab 5.1, default colout was [-1, -1].
+ * However, to be more coherent with other fec object properties
+ * (which were interfaced from Scilab in version 5.1),
+ * the default value is now [0,0].
+ * However, to keep backward compatibilty, we made a patch for
+ * the fec function.
+ * In other word, this function converts colout from fec function
+ * colout argument to fec handle outside_colors properties.
+ */
+static void coloutPatch(int colout[2]);
 
 /*------------------------------------------------------------
  *  Iso contour with grey level or colors 
@@ -159,17 +173,20 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   if(bounds_changed || axes_properties_changed )
   {
     forceRedraw(psubwin);
-    //sciDrawObj(sciGetCurrentFigure());
   }
   
   /* Construct the object */
+	/* Patch on colout */
+	/* For coherence with other properties, default colout is [0, 0] for fec handles instead of  */
+	/* [-1,-1] */
+	coloutPatch(colout);
   pFec = ConstructFec(psubwin,x,y,triangles,func,
                       *Nnode,*Ntr,zminmax,colminmax,colout, with_mesh); 
 
   if (pFec == NULL)
   {
     // error in allocation
-    sciprint(_("%s: No more memory.\n"), "fec");
+    Scierror(999, _("%s: No more memory.\n"), "fec");
     return -1;
   }
 
@@ -190,11 +207,30 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
   return(0);
    
 }
+/*--------------------------------------------------------------------------*/
+static void coloutPatch(int colout[2])
+{
+	if (colout[0] < 0)
+	{
+		/* default mode */
+		colout[0] = 0;
+	}
+	else if (colout[0] == 0)
+	{
+		/* transparent facet */
+		colout[0] = -1;
+	}
 
+	if (colout[1] < 0)
+	{
+		/* default mode */
+		colout[1] = 0;
+	}
+	else if (colout[1] == 0)
+	{
+		/* transparent facet */
+		colout[1] = -1;
+	}
 
-
-
-
-
-
-
+}
+/*--------------------------------------------------------------------------*/

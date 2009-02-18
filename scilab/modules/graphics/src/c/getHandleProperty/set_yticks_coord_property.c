@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "BasicAlgos.h"
 #include "Format.h"
@@ -39,25 +39,25 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "ytics_coord") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "ytics_coord") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1 )
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_yticks_coord_property",2) ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_yticks_coord_property",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->ny == 1 && nbCol != 1 )
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_yticks_coord_property",2) ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_yticks_coord_property",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (  pAXES_FEATURE(pobj)->ny != 1 && nbCol == 1 )
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Vector expected.\n"), "set_yticks_coord_property",2) ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Vector expected.\n"), "set_yticks_coord_property",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -84,7 +84,7 @@ int set_ytics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( pAXES_FEATURE(pobj)->str == NULL )
   {
-    sciprint( "error allocating vector.\n");
+    Scierror(999, "error allocating vector.\n");
     return SET_PROPERTY_ERROR ;
   }
 

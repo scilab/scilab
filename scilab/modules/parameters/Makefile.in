@@ -89,14 +89,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libparameters_la_demosdir)" \
-	"$(DESTDIR)$(libparameters_la_etcdir)" \
+am__installdirs = "$(DESTDIR)$(libparameters_la_etcdir)" \
 	"$(DESTDIR)$(libparameters_la_rootdir)"
-libparameters_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libparameters_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libparameters_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libparameters_la_demos_DATA) $(libparameters_la_etc_DATA) \
-	$(libparameters_la_root_DATA)
+DATA = $(libparameters_la_etc_DATA) $(libparameters_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -315,10 +312,6 @@ libparameters_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libparameters_la_etcdir = $(mydatadir)/etc
 libparameters_la_etc_DATA = etc/parameters.quit etc/parameters.start
 
-#### parameters : demos files ####
-libparameters_la_demosdir = $(mydatadir)/demos
-libparameters_la_demos_DATA = demos/params_demo.sce
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -410,23 +403,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libparameters_la_demosDATA: $(libparameters_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libparameters_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libparameters_la_demosdir)"
-	@list='$(libparameters_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libparameters_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libparameters_la_demosdir)/$$f'"; \
-	  $(libparameters_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libparameters_la_demosdir)/$$f"; \
-	done
-
-uninstall-libparameters_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libparameters_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libparameters_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libparameters_la_demosdir)/$$f"; \
-	done
 install-libparameters_la_etcDATA: $(libparameters_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libparameters_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libparameters_la_etcdir)"
@@ -499,7 +475,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libparameters_la_demosdir)" "$(DESTDIR)$(libparameters_la_etcdir)" "$(DESTDIR)$(libparameters_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libparameters_la_etcdir)" "$(DESTDIR)$(libparameters_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -544,8 +520,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libparameters_la_demosDATA \
-	install-libparameters_la_etcDATA \
+install-data-am: install-data-local install-libparameters_la_etcDATA \
 	install-libparameters_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -582,8 +557,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libparameters_la_demosDATA \
-	uninstall-libparameters_la_etcDATA \
+uninstall-am: uninstall-libparameters_la_etcDATA \
 	uninstall-libparameters_la_rootDATA
 
 .MAKE: install-am install-strip
@@ -595,14 +569,12 @@ uninstall-am: uninstall-libparameters_la_demosDATA \
 	install-data-am install-data-local install-dvi install-dvi-am \
 	install-exec install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
-	install-libparameters_la_demosDATA \
 	install-libparameters_la_etcDATA \
 	install-libparameters_la_rootDATA install-man install-pdf \
 	install-pdf-am install-ps install-ps-am install-strip \
 	installcheck installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libparameters_la_demosDATA \
 	uninstall-libparameters_la_etcDATA \
 	uninstall-libparameters_la_rootDATA
 

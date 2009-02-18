@@ -9,8 +9,7 @@
 
 if GUI
 #List of the c files
-COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c \
-src/jni/GetPartLine_wrap.c
+COMPLETION_JNI_SOURCES = src/jni/Completion_wrap.c
 USEANT=1
 
 endif
@@ -23,7 +22,8 @@ src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
-src/c/getPartLine.c
+src/c/getPartLine.c \
+src/c/getCommonPart.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -36,8 +36,8 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/operations/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -54,7 +54,7 @@ INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #$(top_builddir)/modules/graphics/libscigraphics.la
 #### Name of the module and the path ######
 modulename=completion
@@ -74,11 +74,12 @@ libscicompletion_la_sci_gateway_DATA = sci_gateway/completion_gateway.xml
 #### completion : include files ####
 libscicompletion_la_includedir=$(pkgincludedir)/completion
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
-includes/completion.h
+includes/completion.h \
+includes/getCommonPart.h \
+includes/getPartLine.h
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Completion.i \
-src/jni/GetPartLine.i
+SWIG_WRAPPERS = src/jni/Completion.i
 
 if SWIG
 BUILT_SOURCES=swig

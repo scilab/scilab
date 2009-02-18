@@ -120,8 +120,8 @@ sci_gateway/fortran/Ex-lsqrsolve.f
 
 libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscioptimization.la
 
@@ -129,7 +129,7 @@ libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
 
-libscioptimization_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscioptimization_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 if USE_EMBEDDED_LAPACK
 libscioptimization_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
@@ -159,28 +159,5 @@ libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
 libscioptimization_la_includedir=$(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
-
-
-####�optimization : demos files ####
-libscioptimization_la_demosdir=$(mydatadir)
-nobase_libscioptimization_la_demos_DATA = demos/datafit/datafit.dem.sce \
-demos/datafit/demo_datafit.sci \
-demos/datafit/demo_datafit_fr.htm \
-demos/icse/icob.sci \
-demos/icse/icot.sci \
-demos/icse/icse.contexte \
-demos/icse/icse.sci \
-demos/icse/icsegen.sci \
-demos/icse/icseinit.sce \
-demos/icse/icsu.sci \
-demos/icse/icsua.sci \
-demos/icse/icsuq.sci \
-demos/icse/icsvisu.sci \
-demos/icse/lqv.sce \
-demos/icse/navet.sce \
-demos/icse/README \
-demos/icse/sero.mes \
-demos/icse/seros.sce \
-demos/optimization.dem.gateway.sce
 
 include $(top_srcdir)/Makefile.incl.am

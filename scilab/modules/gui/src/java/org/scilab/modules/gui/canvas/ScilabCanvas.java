@@ -37,18 +37,22 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	/**
 	 * Constructor
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 */
-	protected ScilabCanvas(int figureIndex) {
-		component = ScilabBridge.createCanvas(figureIndex);
+	protected ScilabCanvas(int figureIndex, int antialiasingQuality) {
+		component = ScilabBridge.createCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**
 	 * Creates a Scilab Canvas
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static Canvas createCanvas(int figureIndex) {
-		return new ScilabCanvas(figureIndex);
+	public static Canvas createCanvas(int figureIndex, int antialiasingQuality) {
+		return new ScilabCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**
@@ -211,7 +215,15 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
 	 * @return BufferedImage
 	 */
 	public BufferedImage dumpAsBufferedImage() {
-				return ScilabBridge.dumpAsBufferedImage(this);
+		return ScilabBridge.dumpAsBufferedImage(this);
+	}
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	public void setSingleBuffered(boolean useSingleBuffer) {
+		ScilabBridge.setSingleBuffered(this, useSingleBuffer);
 	}
 	
 }

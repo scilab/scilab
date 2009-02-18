@@ -46,7 +46,7 @@ if type(ListArg(1)) == 9
     sca(ListArg(1));
     ListArg(1) = null(); // remove this parameter from the list
   else
-    disp("Handle should be an Axes handle")
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"), "surf", 1));
     return;
   end
 end
@@ -84,18 +84,14 @@ current_figure=gcf();
 cur_draw_mode = current_figure.immediate_drawing;
 current_figure.immediate_drawing = 'off';
 
-
-// set some defaults here
-// current_figure=gcf(); // already init. before
-// current_figure.color_map=jetcolormap(64); // bad choice -> init must be done somewhere else.
-
 colormap_size = size(current_figure.color_map,1);
 
 if given_data == 1 //surf(Z) with Z giving us data + color info.
   // ---------------------------------------------------------- //
+  
   if or(size(ListArg(1))==1)
-    disp("Z must not be a scalar or vector, not rendering surface.");
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%d expected.\n"), "surf", 1,  2, 2));
     return;
   end
   
@@ -110,14 +106,15 @@ if given_data == 1 //surf(Z) with Z giving us data + color info.
 elseif given_data == 2 //surf(Z,COLOR)
   // ---------------------------------------------------------- //
   if or(size(ListArg(1))==1)
-    disp("Z must not be a scalar or vector, not rendering surface.");
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%d expected.\n"), "surf", 1,  2, 2));
     return;
   end
   
   if ((size(ListArg(1)) <> size(ListArg(2))) & (size(ListArg(1))-1 <> size(ListArg(2))))
-    disp("Color Data must equal size(ZData) or size(ZData)-1 for flat shading ; not rendering surface.")
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix expected.\n"),..
+	               "surf", 2, size(ListArg(1),1), size(ListArg(1),2), size(ListArg(1),1) - 1, size(ListArg(1),2) -1 ));
     return;
   end
   
@@ -143,15 +140,21 @@ elseif given_data == 3 //surf(X,Y,Z) with Z giving us data + color info.
   X = ListArg(1)
   Y = ListArg(2);
   Z = ListArg(3);
+		  
+  // check if the call is OK
+  err = execstr('[XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode)','errcatch','n');
   
-  [XX,YY,ZZ,CC] = CreateFacetsFromXYZ(X,Y,Z,current_figure, cur_draw_mode);
+  if (err <> 0) then
+    // reset data
+    processSurfError(current_figure, cur_draw_mode);
+  end
   
 elseif given_data == 4 //surf(X,Y,Z,COLOR)
   // ---------------------------------------------------------- //
-
-  if ((size(ListArg(1)) <> size(ListArg(2))) & (size(ListArg(1))-1 <> size(ListArg(2))))
-    disp("Color Data must equal size(ZData) or size(ZData)-1 for flat shading ; not rendering surface.")
+  if ((size(ListArg(3)) <> size(ListArg(4))) & (size(ListArg(3))-1 <> size(ListArg(4))))
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix expected.\n"),..
+	               "surf", 4, size(ListArg(3),1), size(ListArg(3),2), size(ListArg(3),1) - 1, size(ListArg(3),2) -1 ));
     return;
   end
   
@@ -160,7 +163,12 @@ elseif given_data == 4 //surf(X,Y,Z,COLOR)
   Z = ListArg(3);
   C = ListArg(4);
   
-  [XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode);
+  // check if the call is OK
+  err = execstr('[XX,YY,ZZ,CC] = CreateFacetsFromXYZColor(X,Y,Z,C,current_figure, cur_draw_mode)','errcatch','n');
+  if (err <> 0) then
+    // reset data
+    processSurfError(current_figure, cur_draw_mode);
+  end
 end
 
 
@@ -178,8 +186,8 @@ while ((Property <> 0) & (Property <= nv-1))
   if (PName == 'xdata')
     
     if (type(PropertyValue)<>1)
-      disp("X data must be a vector or matrix.");
-      ResetFigureDDM(current_figure, cur_draw_mode);
+	  ResetFigureDDM(current_figure, cur_draw_mode);
+	  error(msprintf(gettext("%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"), "surf", 'xdata'));
       return;
     end
     
@@ -190,8 +198,8 @@ while ((Property <> 0) & (Property <= nv-1))
   elseif (PName == 'ydata')
     
     if (type(PropertyValue)<>1)
-      disp("Y data must be a vector or matrix.");
-      ResetFigureDDM(current_figure, cur_draw_mode);
+	  ResetFigureDDM(current_figure, cur_draw_mode);
+      error(msprintf(gettext("%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"), "surf", 'ydata'));
       return;
     end
     
@@ -201,9 +209,14 @@ while ((Property <> 0) & (Property <= nv-1))
     // Zdata
   elseif (PName == 'zdata')
     
-    if (type(PropertyValue)<>1 | or(size(PropertyValue)==1))
-      disp("Z data must be a real matrix.");
-      ResetFigureDDM(current_figure, cur_draw_mode);
+    if (type(PropertyValue)<>1) then
+	  ResetFigureDDM(current_figure, cur_draw_mode);
+	  error(msprintf(gettext("%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"), "surf", 'zdata'));
+      return;
+	end
+	if (or(size(PropertyValue)==1)) then
+	  ResetFigureDDM(current_figure, cur_draw_mode);
+      error(msprintf(gettext("%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-by-%d expected.\n"), "surf", 'zdata',  2, 2));
       return;
     end
     
@@ -223,24 +236,19 @@ end
 // surf is made now !
 // with default option to simulate the Matlab mode
 
-err = execstr('plot3d(XX,YY,list(ZZ,CC))','errcatch','m');
+err = execstr('plot3d(XX,YY,list(ZZ,CC))','errcatch','n');
 
 if err <> 0
-  mprintf("Error %d : in plot3d called by surf",err);
-  ResetFigureDDM(current_figure, cur_draw_mode);
-  return;
+   processSurfError(current_figure, cur_draw_mode);
 end
 
 a=gca();
 a.cube_scaling = 'on';
 a.rotation_angles = [51 -125];
 e=gce();
-e.hiddencolor=0;
+e.hiddencolor=0; // to avoid painting the hidden facets
 e.color_flag=4; // Matlab special flat mode by default (different from mode 2)
 e.cdata_mapping = 'scaled'
-
-
-
 
 
 
@@ -316,8 +324,6 @@ e.cdata_mapping = 'scaled'
 // P1 is the position of the first PropertyName field.
 Property = P1;
 
-//disp("JE SUIS LA...");
-
 current_surface = gce(); // get the newly created fac3d
 current_surface.mark_size_unit='point';
 
@@ -328,16 +334,6 @@ while ((Property <> 0) & (Property <= nv-1))
   
   Property = Property+2;
 end
-
-
-
-//disp("PUIS LA...");
-
-
-//disp("End Global Property treatment")
-
-
-
 
 
 //postponed drawings are done now !
@@ -389,9 +385,15 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   X = Y;
   Y = tmp;
   
-  if size(X,'*') ~= size(Z,1) | size(Y,'*') ~= size(Z,2)
-    warning('surf : Vectors X, Y must match Z matrix dimensions');
+  if size(X,'*') ~= size(Z,1) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'Y', size(Z,1)));
+    return;
+  end
+  
+  if size(Y,'*') ~= size(Z,2) then
+	ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'X', size(Z,2)));
     return;
   end 
 
@@ -402,9 +404,15 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   
 elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
-  if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
-    warning('surf : Matrices must be the same size');
+  if or(size(X) ~= size(Y)) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Y'));
+    return;
+  end
+  
+  if or(size(X) ~= size(Z)) then
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Z'));
     return;
   end 
   
@@ -415,9 +423,15 @@ elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
 elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
-  if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
-    warning('surf : Matrices must be the same size');
+  if size(X,'*') ~= size(Z,2) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'X', size(Z,2)));
+    return;
+  end
+  
+  if or(size(Y) ~= size(Z)) then
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'Y', 'Z'));
     return;
   end 
   
@@ -439,11 +453,17 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
 elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
-  if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
-    warning('surf : Matrices must be the same size');
+  if or(size(X) ~= size(Z)) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Z'));
     return;
   end 
+  
+  if size(Y,'*') ~= size(Z,2) then
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'Y', size(Z,2)));
+    return;
+  end
   
   // Y vector
   // X matrix
@@ -462,8 +482,8 @@ elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   CC = ZZ;
   
 else
-  disp("Error: X and Y must be of the same type\n");
   ResetFigureDDM(current_figure, cur_draw_mode);
+  error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"), "surf", 'X', 'Y'));
   return;
 end
 
@@ -480,11 +500,17 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   Z = Z'; // here a transposition is needed
   C = C'; // here a transposition is needed
   
-  if size(X,'*') ~= size(Z,2) | size(Y,'*') ~= size(Z,1)
-    warning('surf : Vectors X, Y must match Z matrix dimensions');
+  if size(X,'*') ~= size(Z,2) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'X', size(Z,1)));
     return;
-  end 
+  end
+  
+  if size(Y,'*') ~= size(Z,1) then
+	ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'Y', size(Z,2)));
+    return;
+  end
   
   [XX,YY,ZZ] = genfac3d(X,Y,Z);
   
@@ -498,11 +524,17 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
     [XX,YY,CC] = genfac3d(X,Y,Ctmp);     // CC must be a color matrix of size nf x n
   end
   
-elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
+elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrices
   
-  if or(size(X) ~= size(Y)) | or(size(X) ~= size(Z))
-    warning('surf : Matrices must be the same size');
+  if or(size(X) ~= size(Y)) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Y'));
+    return;
+  end
+  
+  if or(size(X) ~= size(Z)) then
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Z'));
     return;
   end 
   
@@ -520,9 +552,15 @@ elseif and(size(X)>1) & and(size(Y)>1) // X and Y are matrix
   
 elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
-  if size(X,'*') ~= size(Z,2) | or(size(Y) ~= size(Z))
-    warning('surf : Matrices must be the same size');
+  if size(X,'*') ~= size(Z,2) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'X', size(Z,2)));
+    return;
+  end
+  
+  if or(size(Y) ~= size(Z)) then
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'Y', 'Z'));
     return;
   end 
   
@@ -553,11 +591,18 @@ elseif or(size(X)==1) & and(size(Y)>1) // X is a vector and Y is a matrix
   
 elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   
-  if size(Y,'*') ~= size(Z,2) | or(size(X) ~= size(Z))
-    warning('surf : Matrices must be the same size');
+  if or(size(X) ~= size(Z)) then
     ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Z'));
     return;
   end 
+  
+  if size(Y,'*') ~= size(Z,2) then
+    ResetFigureDDM(current_figure, cur_draw_mode);
+    error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'Y', size(Z,2)));
+    return;
+  end
+  
   
   // Y vector
   // X matrix
@@ -583,8 +628,8 @@ elseif or(size(Y)==1) & and(size(X)>1) // Y is a vector and X is a matrix
   end
   
 else
-  disp("Error: X and Y must be of the same type\n")
   ResetFigureDDM(current_figure, cur_draw_mode);
+  error(msprintf(gettext("%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"), "surf", 'X', 'Y'));
   return;
 end
 
@@ -596,12 +641,28 @@ endfunction
 function ResetFigureDDM(cur_figure, cur_draw_mode)
 
 if type(cur_figure == 9)
-  if cur_figure.type == "Figure"
-    cur_figure.immediate_drawing = cur_draw_mode;
-  else
-    disp("Error in ResetFigureDDM : input argument must be a figure graphic handle");
-    return;
-  end
+  cur_figure.immediate_drawing = cur_draw_mode;
 end
 
+endfunction
+
+// If an error occurs in the surf code, we need to catch it
+// order to reset some default values
+function processSurfError(cur_figure, cur_draw_mode)
+  // reset data
+    ResetFigureDDM(current_figure, cur_draw_mode);
+
+    // get the error
+    [err_message, err_number, err_line, err_func] = lasterror(%t);
+		
+	// rethrow it
+	
+	// for now error can only have a single string as input.
+	// If there are several lines we need to concatane them.
+	err_message_nbLines = size(err_message, '*');
+	if (err_message_nbLines > 1) then
+	  // put a \n betwee, each string
+	  err_message(1) = strcat(err_message, "\n");
+	end
+	error(err_message(1), err_number);
 endfunction

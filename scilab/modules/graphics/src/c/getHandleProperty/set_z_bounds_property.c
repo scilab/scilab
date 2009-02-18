@@ -23,40 +23,33 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
-#include "ColorMapManagement.h"
-#include "MALLOC.h"
-#include "BasicAlgos.h"
 
 /*------------------------------------------------------------------------*/
 int set_z_bounds_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
-  sciFec * ppFec = NULL;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"z_bounds") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FEC )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"z_bounds") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"z_bounds") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint(_("Argument #%d must have %d elements.\n"),2,2) ;
+    Scierror(999, _("Wrong size for property %s: A vector of size %d expected.\n"),"z_bounds",2) ;
     return SET_PROPERTY_ERROR ;
   }
-  ppFec = pFEC_FEATURE(pobj);
 
-  ppFec->zminmax[0] = values[0] ;
-  ppFec->zminmax[1] = values[1] ;
 
-  return SET_PROPERTY_SUCCEED ;
+	return sciSetZBounds(pobj, values);
 }
 /*------------------------------------------------------------------------*/

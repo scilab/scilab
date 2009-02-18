@@ -105,7 +105,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphics_la_etcdir)" \
 	"$(DESTDIR)$(libscigraphics_la_rootdir)" \
 	"$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscigraphics_la_demosdir)" \
 	"$(DESTDIR)$(libscigraphics_la_geddir)" \
 	"$(DESTDIR)$(libscigraphics_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
@@ -255,6 +254,10 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/get_links_property.c \
 	src/c/getHandleProperty/get_legend_location_property.c \
 	src/c/getHandleProperty/get_filled_property.c \
+	src/c/getHandleProperty/get_color_range_property.c \
+	src/c/getHandleProperty/get_outside_colors_property.c \
+	src/c/getHandleProperty/get_grid_position_property.c \
+	src/c/getHandleProperty/get_anti_aliasing_property.c \
 	src/c/getHandleProperty/GetHashTable.c \
 	src/c/graphicModuleLoad.c \
 	src/c/getHandleProperty/set_old_style_property.c \
@@ -388,6 +391,10 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/set_links_property.c \
 	src/c/getHandleProperty/set_legend_location_property.c \
 	src/c/getHandleProperty/set_filled_property.c \
+	src/c/getHandleProperty/set_color_range_property.c \
+	src/c/getHandleProperty/set_outside_colors_property.c \
+	src/c/getHandleProperty/set_grid_position_property.c \
+	src/c/getHandleProperty/set_anti_aliasing_property.c \
 	src/c/DefaultCommandArg.c src/c/Axes.c src/c/sciMatrix.c \
 	src/c/DrawObjects.c src/c/GetProperty.c src/c/Contour.c \
 	src/c/SetProperty.c src/c/BasicAlgos.c src/c/BuildObjects.c \
@@ -399,14 +406,13 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/HandleManagement.c src/c/StringBox.c src/c/axesScale.c \
 	src/c/TerminateGraphics.c src/c/CurrentObjectsManagement.c \
 	src/c/ObjectSelection.c src/c/periEmpty.c src/c/scitokenize.c \
-	src/c/get_ticks_utils.c sci_gateway/c/sci_swap_handles.c \
-	sci_gateway/c/sci_grayplot.c sci_gateway/c/sci_matplot1.c \
-	sci_gateway/c/sci_xfpolys.c sci_gateway/c/sci_xget.c \
-	sci_gateway/c/sci_newaxes.c sci_gateway/c/sci_xlfont.c \
-	sci_gateway/c/sci_xgraduate.c sci_gateway/c/sci_xgrid.c \
-	sci_gateway/c/sci_xclick.c sci_gateway/c/sci_xclear.c \
-	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xtape.c \
-	sci_gateway/c/sci_xset.c sci_gateway/c/sci_set_posfig_dim.c \
+	src/c/get_ticks_utils.c src/c/SciHandleTab.c \
+	sci_gateway/c/sci_swap_handles.c sci_gateway/c/sci_grayplot.c \
+	sci_gateway/c/sci_matplot1.c sci_gateway/c/sci_xfpolys.c \
+	sci_gateway/c/sci_xget.c sci_gateway/c/sci_newaxes.c \
+	sci_gateway/c/sci_xlfont.c sci_gateway/c/sci_xgraduate.c \
+	sci_gateway/c/sci_xgrid.c sci_gateway/c/sci_xclick.c \
+	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xset.c \
 	sci_gateway/c/sci_xgetech.c sci_gateway/c/sci_unzoom.c \
 	sci_gateway/c/sci_xsegs.c sci_gateway/c/sci_clear_pixmap.c \
 	sci_gateway/c/sci_glue.c sci_gateway/c/sci_xarc.c \
@@ -569,6 +575,10 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-get_links_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_legend_location_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_filled_property.lo \
+@GUI_TRUE@	libscigraphics_la-get_color_range_property.lo \
+@GUI_TRUE@	libscigraphics_la-get_outside_colors_property.lo \
+@GUI_TRUE@	libscigraphics_la-get_grid_position_property.lo \
+@GUI_TRUE@	libscigraphics_la-get_anti_aliasing_property.lo \
 @GUI_TRUE@	libscigraphics_la-GetHashTable.lo \
 @GUI_TRUE@	libscigraphics_la-graphicModuleLoad.lo \
 @GUI_TRUE@	libscigraphics_la-set_old_style_property.lo \
@@ -702,6 +712,10 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-set_links_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_legend_location_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_filled_property.lo \
+@GUI_TRUE@	libscigraphics_la-set_color_range_property.lo \
+@GUI_TRUE@	libscigraphics_la-set_outside_colors_property.lo \
+@GUI_TRUE@	libscigraphics_la-set_grid_position_property.lo \
+@GUI_TRUE@	libscigraphics_la-set_anti_aliasing_property.lo \
 @GUI_TRUE@	libscigraphics_la-DefaultCommandArg.lo \
 @GUI_TRUE@	libscigraphics_la-Axes.lo \
 @GUI_TRUE@	libscigraphics_la-sciMatrix.lo \
@@ -733,7 +747,8 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-ObjectSelection.lo \
 @GUI_TRUE@	libscigraphics_la-periEmpty.lo \
 @GUI_TRUE@	libscigraphics_la-scitokenize.lo \
-@GUI_TRUE@	libscigraphics_la-get_ticks_utils.lo
+@GUI_TRUE@	libscigraphics_la-get_ticks_utils.lo \
+@GUI_TRUE@	libscigraphics_la-SciHandleTab.lo
 @GUI_TRUE@am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
 @GUI_TRUE@	libscigraphics_la-sci_grayplot.lo \
 @GUI_TRUE@	libscigraphics_la-sci_matplot1.lo \
@@ -744,11 +759,8 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-sci_xgraduate.lo \
 @GUI_TRUE@	libscigraphics_la-sci_xgrid.lo \
 @GUI_TRUE@	libscigraphics_la-sci_xclick.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xclear.lo \
 @GUI_TRUE@	libscigraphics_la-sci_geom3d.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xtape.lo \
 @GUI_TRUE@	libscigraphics_la-sci_xset.lo \
-@GUI_TRUE@	libscigraphics_la-sci_set_posfig_dim.lo \
 @GUI_TRUE@	libscigraphics_la-sci_xgetech.lo \
 @GUI_TRUE@	libscigraphics_la-sci_unzoom.lo \
 @GUI_TRUE@	libscigraphics_la-sci_xsegs.lo \
@@ -829,11 +841,9 @@ DIST_SOURCES = $(am__libscigraphics_la_SOURCES_DIST)
 libscigraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscigraphics_la_demosDATA_INSTALL = $(install_sh_DATA)
 nobase_libscigraphics_la_gedDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
 	$(libscigraphics_la_sci_gateway_DATA) \
-	$(nobase_libscigraphics_la_demos_DATA) \
 	$(nobase_libscigraphics_la_ged_DATA)
 am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sci_winsid.h includes/sci_addcb.h \
@@ -854,18 +864,16 @@ am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
 	includes/sciCall.h includes/sci_showalluimenushandles.h \
 	includes/sci_get.h includes/InitObjects.h \
 	includes/sci_xfpoly.h includes/sci_drawlater.h \
-	includes/Format.h includes/sci_set_posfig_dim.h \
-	includes/sci_set.h includes/sci_delete.h includes/sci_plot2d.h \
-	includes/sci_StringBox.h includes/sci_xgetmouse.h \
-	includes/Interaction.h includes/sci_xfarcs.h \
-	includes/sci_contour2di.h includes/HandleManagement.h \
-	includes/sci_fec.h includes/sci_matplot1.h \
-	includes/XsetXgetParameters.h includes/sci_xfpolys.h \
-	includes/WindowList.h includes/sci_xget.h \
-	includes/sci_swap_handles.h includes/sci_newaxes.h \
-	includes/PloEch.h includes/sci_xclick.h includes/sci_xclear.h \
-	includes/sci_xtape.h includes/sci_xset.h \
-	includes/sci_xgetech.h includes/sci_glue.h \
+	includes/Format.h includes/sci_set.h includes/sci_delete.h \
+	includes/sci_plot2d.h includes/sci_StringBox.h \
+	includes/sci_xgetmouse.h includes/Interaction.h \
+	includes/sci_xfarcs.h includes/sci_contour2di.h \
+	includes/HandleManagement.h includes/sci_fec.h \
+	includes/sci_matplot1.h includes/XsetXgetParameters.h \
+	includes/sci_xfpolys.h includes/WindowList.h \
+	includes/sci_xget.h includes/sci_swap_handles.h \
+	includes/sci_newaxes.h includes/PloEch.h includes/sci_xclick.h \
+	includes/sci_xset.h includes/sci_xgetech.h includes/sci_glue.h \
 	includes/sci_xstringb.h includes/sci_xname.h \
 	includes/DrawObjects.h includes/sci_xpoly.h \
 	includes/sci_xchange.h includes/sci_demo.h \
@@ -1106,8 +1114,8 @@ libscigraphics_la_CFLAGS =  \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ $(am__append_1) \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/ $(am__append_1) \
 	$(am__append_4)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
@@ -1242,6 +1250,10 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/get_links_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_legend_location_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_filled_property.c \
+@GUI_TRUE@src/c/getHandleProperty/get_color_range_property.c \
+@GUI_TRUE@src/c/getHandleProperty/get_outside_colors_property.c \
+@GUI_TRUE@src/c/getHandleProperty/get_grid_position_property.c \
+@GUI_TRUE@src/c/getHandleProperty/get_anti_aliasing_property.c \
 @GUI_TRUE@src/c/getHandleProperty/GetHashTable.c \
 @GUI_TRUE@src/c/graphicModuleLoad.c \
 @GUI_TRUE@src/c/getHandleProperty/set_old_style_property.c \
@@ -1375,6 +1387,10 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/set_links_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_legend_location_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_filled_property.c \
+@GUI_TRUE@src/c/getHandleProperty/set_color_range_property.c \
+@GUI_TRUE@src/c/getHandleProperty/set_outside_colors_property.c \
+@GUI_TRUE@src/c/getHandleProperty/set_grid_position_property.c \
+@GUI_TRUE@src/c/getHandleProperty/set_anti_aliasing_property.c \
 @GUI_TRUE@src/c/DefaultCommandArg.c \
 @GUI_TRUE@src/c/Axes.c \
 @GUI_TRUE@src/c/sciMatrix.c \
@@ -1406,7 +1422,8 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/ObjectSelection.c \
 @GUI_TRUE@src/c/periEmpty.c \
 @GUI_TRUE@src/c/scitokenize.c \
-@GUI_TRUE@src/c/get_ticks_utils.c
+@GUI_TRUE@src/c/get_ticks_utils.c \
+@GUI_TRUE@src/c/SciHandleTab.c
 
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 @GUI_TRUE@sci_gateway/c/sci_grayplot.c \
@@ -1418,11 +1435,8 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@sci_gateway/c/sci_xgraduate.c \
 @GUI_TRUE@sci_gateway/c/sci_xgrid.c \
 @GUI_TRUE@sci_gateway/c/sci_xclick.c \
-@GUI_TRUE@sci_gateway/c/sci_xclear.c \
 @GUI_TRUE@sci_gateway/c/sci_geom3d.c \
-@GUI_TRUE@sci_gateway/c/sci_xtape.c \
 @GUI_TRUE@sci_gateway/c/sci_xset.c \
-@GUI_TRUE@sci_gateway/c/sci_set_posfig_dim.c \
 @GUI_TRUE@sci_gateway/c/sci_xgetech.c \
 @GUI_TRUE@sci_gateway/c/sci_unzoom.c \
 @GUI_TRUE@sci_gateway/c/sci_xsegs.c \
@@ -1557,7 +1571,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_xfpoly.h \
 @GUI_TRUE@includes/sci_drawlater.h \
 @GUI_TRUE@includes/Format.h \
-@GUI_TRUE@includes/sci_set_posfig_dim.h \
 @GUI_TRUE@includes/sci_set.h \
 @GUI_TRUE@includes/sci_delete.h \
 @GUI_TRUE@includes/sci_plot2d.h \
@@ -1577,8 +1590,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@includes/sci_newaxes.h \
 @GUI_TRUE@includes/PloEch.h \
 @GUI_TRUE@includes/sci_xclick.h \
-@GUI_TRUE@includes/sci_xclear.h \
-@GUI_TRUE@includes/sci_xtape.h \
 @GUI_TRUE@includes/sci_xset.h \
 @GUI_TRUE@includes/sci_xgetech.h \
 @GUI_TRUE@includes/sci_glue.h \
@@ -1663,149 +1674,6 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@tcl/ged/images/rectangle.gif \
 @GUI_TRUE@tcl/ged/images/segs.gif \
 @GUI_TRUE@tcl/ged/images/text.gif
-
-
-####�graphics : demos files ####
-@GUI_TRUE@libscigraphics_la_demosdir = $(mydatadir)
-@GUI_TRUE@nobase_libscigraphics_la_demos_DATA = demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
-@GUI_TRUE@demos/2d_3d_plots/abaque.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/champ.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour_3d_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour_3d_3.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contour_3d_4.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/contourf.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/errbar.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fac3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fac3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fchamp.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fcontour.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fgrayplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot2d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/fplot3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/grayplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/histplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/param3d_1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/param3d_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d1_1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d1_2.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot2d3.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot3d.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/plot3d1.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/subplot.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/xgeom.dem.sce \
-@GUI_TRUE@demos/2d_3d_plots/zgrid.dem.sce \
-@GUI_TRUE@demos/anim/anim.dem.gateway.sce \
-@GUI_TRUE@demos/anim/anim1/anim1.sce \
-@GUI_TRUE@demos/anim/anim1/anim1_gateway.sce \
-@GUI_TRUE@demos/anim/anim2/anim2.sce \
-@GUI_TRUE@demos/anim/anim2/anim2_gateway.sce \
-@GUI_TRUE@demos/anim/anim3/anim3.sce \
-@GUI_TRUE@demos/anim/anim3/anim3_gateway.sce \
-@GUI_TRUE@demos/anim/anim4/anim4.sce \
-@GUI_TRUE@demos/anim/anim4/anim4_gateway.sce \
-@GUI_TRUE@demos/anim/anim5/anim5.sce \
-@GUI_TRUE@demos/anim/anim5/anim5_gateway.sce \
-@GUI_TRUE@demos/anim/anim6/anim6.sce \
-@GUI_TRUE@demos/anim/anim6/anim6.sci \
-@GUI_TRUE@demos/anim/anim6/anim6_gateway.sce \
-@GUI_TRUE@demos/anim/anim6/yt.wrt \
-@GUI_TRUE@demos/anim/anim7/anim7.sce \
-@GUI_TRUE@demos/anim/anim7/anim7_gateway.sce \
-@GUI_TRUE@demos/anim/anim8/anim8.sci \
-@GUI_TRUE@demos/anim/anim8/anim8_gateway.sce \
-@GUI_TRUE@demos/bar/bar.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions.dem.gateway.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_1.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_2.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_3.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_4.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_5.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_6.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_7.dem.sce \
-@GUI_TRUE@demos/basic_functions/basic_functions_8.dem.sce \
-@GUI_TRUE@demos/bezier/bezier.dem.gateway.sce \
-@GUI_TRUE@demos/bezier/bezier3dtest.sce \
-@GUI_TRUE@demos/bezier/beziersurftest.sce \
-@GUI_TRUE@demos/bezier/beziertest.sce \
-@GUI_TRUE@demos/bezier/c1test.sce \
-@GUI_TRUE@demos/bezier/cltest.sce \
-@GUI_TRUE@demos/bezier/gammatest.sce \
-@GUI_TRUE@demos/bezier/Macros.sci \
-@GUI_TRUE@demos/bike.dem \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.sce \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc.sci \
-@GUI_TRUE@demos/cmplxfunc/cmplxfunc_dial.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_acos.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_acosh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_asin.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_asinh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_atan.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_atanh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_cos.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_cosh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_custom.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_exp.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_log.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_sin.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_sinh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_tan.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/demo_tanh.dem.sce \
-@GUI_TRUE@demos/cmplxfunc/MacCmplx.sci \
-@GUI_TRUE@demos/cmplxfunc/warning.png \
-@GUI_TRUE@demos/colormap.dem.sce \
-@GUI_TRUE@demos/colormap.dem.sci \
-@GUI_TRUE@demos/contourf.dem \
-@GUI_TRUE@demos/fec/fec.dem.gateway.sce \
-@GUI_TRUE@demos/fec/fec.ex1 \
-@GUI_TRUE@demos/fec/fec.ex2 \
-@GUI_TRUE@demos/fec/fec.ex2.dem.sce \
-@GUI_TRUE@demos/fec/fec.ex3 \
-@GUI_TRUE@demos/fec/fec.ex3.dem.sce \
-@GUI_TRUE@demos/fec/fec.ex4 \
-@GUI_TRUE@demos/fec/fec.ex4.dem.sce \
-@GUI_TRUE@demos/fec/fec.info \
-@GUI_TRUE@demos/fec/fec_demo.sci \
-@GUI_TRUE@demos/fec/MESH \
-@GUI_TRUE@demos/fec/MESH.VAL \
-@GUI_TRUE@demos/graphics.dem.gateway.sce \
-@GUI_TRUE@demos/misc/misc.dem \
-@GUI_TRUE@demos/misc/misc.dem.sce \
-@GUI_TRUE@demos/misc/misc.dem.sci \
-@GUI_TRUE@demos/misc/numerique.dem \
-@GUI_TRUE@demos/misc/oscil.dem \
-@GUI_TRUE@demos/misc/oscil.sci \
-@GUI_TRUE@demos/misc/point.dem \
-@GUI_TRUE@demos/misc.dem.sci \
-@GUI_TRUE@demos/misc_new/misc.dem.gateway.sce \
-@GUI_TRUE@demos/misc_new/misc.sce \
-@GUI_TRUE@demos/misc_new/numerique.dem \
-@GUI_TRUE@demos/misc_new/oscil.dem \
-@GUI_TRUE@demos/misc_new/oscil.sci \
-@GUI_TRUE@demos/misc_new/point.dem \
-@GUI_TRUE@demos/peaks.sci \
-@GUI_TRUE@demos/portrait.dem \
-@GUI_TRUE@demos/sd.sav \
-@GUI_TRUE@demos/surface/bh.sce \
-@GUI_TRUE@demos/surface/cplxroot.sce \
-@GUI_TRUE@demos/surface/hole3d.sce \
-@GUI_TRUE@demos/surface/hole3d1.sce \
-@GUI_TRUE@demos/surface/Macros.sci \
-@GUI_TRUE@demos/surface/moebius.sce \
-@GUI_TRUE@demos/surface/rings.sce \
-@GUI_TRUE@demos/surface/shell.sce \
-@GUI_TRUE@demos/surface/sphere.sce \
-@GUI_TRUE@demos/surface/spiral.sce \
-@GUI_TRUE@demos/surface/surfaces.dem \
-@GUI_TRUE@demos/surface/surfaces.dem.gateway.sce \
-@GUI_TRUE@demos/surface/surfaces.sci \
-@GUI_TRUE@demos/surface/torus.sce \
-@GUI_TRUE@demos/surface/torus1.sce \
-@GUI_TRUE@demos/surface/tube.sce \
-@GUI_TRUE@demos/xsetechfig.sce
 
 @GUI_TRUE@USEANT = 1
 pkglib_LTLIBRARIES = libscigraphics.la
@@ -1957,6 +1825,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-ObjectSelection.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dEch.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-Plo2dn.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SciHandleTab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-SetPropertyStatus.Plo@am__quote@
@@ -1967,6 +1836,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-axesScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-getPropertyAssignedValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_alignment_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arc_drawing_method_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arrow_size_factor_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arrow_size_property.Plo@am__quote@
@@ -1996,6 +1866,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_color_flag_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_color_map_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_color_mode_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_color_range_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_colored_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_cube_scaling_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_current_axes_property.Plo@am__quote@
@@ -2025,6 +1896,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_foreground_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_format_n_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_fractional_font_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_grid_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_grid_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_handle_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_hidden_axis_color_property.Plo@am__quote@
@@ -2050,6 +1922,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_mark_size_unit_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_mark_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_old_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_parent_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_pixel_drawing_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_pixmap_property.Plo@am__quote@
@@ -2136,7 +2009,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_rotate_axes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_rubberbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_set.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_show_pixmap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_show_window.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_showalluimenushandles.Plo@am__quote@
@@ -2148,7 +2020,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xarcs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xarrows.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xchange.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xclear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xdel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xfarcs.Plo@am__quote@
@@ -2170,12 +2041,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xsetech.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xstring.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xstringb.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xtape.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_xtitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-sci_zoom_rect.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-scitokenize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-setGetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_alignment_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_arc_drawing_method_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_arrow_size_factor_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_arrow_size_property.Plo@am__quote@
@@ -2205,6 +2076,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_color_flag_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_color_map_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_color_mode_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_color_range_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_colored_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_cube_scaling_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_current_axes_property.Plo@am__quote@
@@ -2232,6 +2104,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_foreground_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_format_n_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_fractional_font_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_grid_position_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_grid_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_handle_visible_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_hidden_axis_color_property.Plo@am__quote@
@@ -2257,6 +2130,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_mark_size_unit_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_mark_style_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_old_style_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_outside_colors_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_parent_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_pixel_drawing_mode_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_pixmap_property.Plo@am__quote@
@@ -3254,6 +3128,34 @@ libscigraphics_la-get_filled_property.lo: src/c/getHandleProperty/get_filled_pro
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_filled_property.lo `test -f 'src/c/getHandleProperty/get_filled_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_filled_property.c
 
+libscigraphics_la-get_color_range_property.lo: src/c/getHandleProperty/get_color_range_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_color_range_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_color_range_property.Tpo -c -o libscigraphics_la-get_color_range_property.lo `test -f 'src/c/getHandleProperty/get_color_range_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_color_range_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_color_range_property.Tpo $(DEPDIR)/libscigraphics_la-get_color_range_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_color_range_property.c' object='libscigraphics_la-get_color_range_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_color_range_property.lo `test -f 'src/c/getHandleProperty/get_color_range_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_color_range_property.c
+
+libscigraphics_la-get_outside_colors_property.lo: src/c/getHandleProperty/get_outside_colors_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_outside_colors_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_outside_colors_property.Tpo -c -o libscigraphics_la-get_outside_colors_property.lo `test -f 'src/c/getHandleProperty/get_outside_colors_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_outside_colors_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_outside_colors_property.Tpo $(DEPDIR)/libscigraphics_la-get_outside_colors_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_outside_colors_property.c' object='libscigraphics_la-get_outside_colors_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_outside_colors_property.lo `test -f 'src/c/getHandleProperty/get_outside_colors_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_outside_colors_property.c
+
+libscigraphics_la-get_grid_position_property.lo: src/c/getHandleProperty/get_grid_position_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_grid_position_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_grid_position_property.Tpo -c -o libscigraphics_la-get_grid_position_property.lo `test -f 'src/c/getHandleProperty/get_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_position_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_grid_position_property.Tpo $(DEPDIR)/libscigraphics_la-get_grid_position_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_grid_position_property.c' object='libscigraphics_la-get_grid_position_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_grid_position_property.lo `test -f 'src/c/getHandleProperty/get_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_position_property.c
+
+libscigraphics_la-get_anti_aliasing_property.lo: src/c/getHandleProperty/get_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_anti_aliasing_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Tpo -c -o libscigraphics_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Tpo $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_anti_aliasing_property.c' object='libscigraphics_la-get_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
+
 libscigraphics_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-GetHashTable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo -c -o libscigraphics_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo $(DEPDIR)/libscigraphics_la-GetHashTable.Plo
@@ -4185,6 +4087,34 @@ libscigraphics_la-set_filled_property.lo: src/c/getHandleProperty/set_filled_pro
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_filled_property.lo `test -f 'src/c/getHandleProperty/set_filled_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_filled_property.c
 
+libscigraphics_la-set_color_range_property.lo: src/c/getHandleProperty/set_color_range_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_color_range_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_color_range_property.Tpo -c -o libscigraphics_la-set_color_range_property.lo `test -f 'src/c/getHandleProperty/set_color_range_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_color_range_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_color_range_property.Tpo $(DEPDIR)/libscigraphics_la-set_color_range_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_color_range_property.c' object='libscigraphics_la-set_color_range_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_color_range_property.lo `test -f 'src/c/getHandleProperty/set_color_range_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_color_range_property.c
+
+libscigraphics_la-set_outside_colors_property.lo: src/c/getHandleProperty/set_outside_colors_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_outside_colors_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_outside_colors_property.Tpo -c -o libscigraphics_la-set_outside_colors_property.lo `test -f 'src/c/getHandleProperty/set_outside_colors_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_outside_colors_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_outside_colors_property.Tpo $(DEPDIR)/libscigraphics_la-set_outside_colors_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_outside_colors_property.c' object='libscigraphics_la-set_outside_colors_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_outside_colors_property.lo `test -f 'src/c/getHandleProperty/set_outside_colors_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_outside_colors_property.c
+
+libscigraphics_la-set_grid_position_property.lo: src/c/getHandleProperty/set_grid_position_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_grid_position_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_grid_position_property.Tpo -c -o libscigraphics_la-set_grid_position_property.lo `test -f 'src/c/getHandleProperty/set_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_position_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_grid_position_property.Tpo $(DEPDIR)/libscigraphics_la-set_grid_position_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_grid_position_property.c' object='libscigraphics_la-set_grid_position_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_grid_position_property.lo `test -f 'src/c/getHandleProperty/set_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_position_property.c
+
+libscigraphics_la-set_anti_aliasing_property.lo: src/c/getHandleProperty/set_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_anti_aliasing_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Tpo -c -o libscigraphics_la-set_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/set_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Tpo $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_anti_aliasing_property.c' object='libscigraphics_la-set_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/set_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_anti_aliasing_property.c
+
 libscigraphics_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-DefaultCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo -c -o libscigraphics_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Plo
@@ -4409,6 +4339,13 @@ libscigraphics_la-get_ticks_utils.lo: src/c/get_ticks_utils.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_ticks_utils.lo `test -f 'src/c/get_ticks_utils.c' || echo '$(srcdir)/'`src/c/get_ticks_utils.c
 
+libscigraphics_la-SciHandleTab.lo: src/c/SciHandleTab.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-SciHandleTab.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-SciHandleTab.Tpo -c -o libscigraphics_la-SciHandleTab.lo `test -f 'src/c/SciHandleTab.c' || echo '$(srcdir)/'`src/c/SciHandleTab.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-SciHandleTab.Tpo $(DEPDIR)/libscigraphics_la-SciHandleTab.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SciHandleTab.c' object='libscigraphics_la-SciHandleTab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-SciHandleTab.lo `test -f 'src/c/SciHandleTab.c' || echo '$(srcdir)/'`src/c/SciHandleTab.c
+
 libscigraphics_la-sci_swap_handles.lo: sci_gateway/c/sci_swap_handles.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_swap_handles.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_swap_handles.Tpo -c -o libscigraphics_la-sci_swap_handles.lo `test -f 'sci_gateway/c/sci_swap_handles.c' || echo '$(srcdir)/'`sci_gateway/c/sci_swap_handles.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_swap_handles.Tpo $(DEPDIR)/libscigraphics_la-sci_swap_handles.Plo
@@ -4479,13 +4416,6 @@ libscigraphics_la-sci_xclick.lo: sci_gateway/c/sci_xclick.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclick.lo `test -f 'sci_gateway/c/sci_xclick.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclick.c
 
-libscigraphics_la-sci_xclear.lo: sci_gateway/c/sci_xclear.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xclear.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xclear.Tpo -c -o libscigraphics_la-sci_xclear.lo `test -f 'sci_gateway/c/sci_xclear.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclear.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xclear.Tpo $(DEPDIR)/libscigraphics_la-sci_xclear.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xclear.c' object='libscigraphics_la-sci_xclear.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xclear.lo `test -f 'sci_gateway/c/sci_xclear.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xclear.c
-
 libscigraphics_la-sci_geom3d.lo: sci_gateway/c/sci_geom3d.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_geom3d.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_geom3d.Tpo -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/c/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_geom3d.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_geom3d.Tpo $(DEPDIR)/libscigraphics_la-sci_geom3d.Plo
@@ -4493,26 +4423,12 @@ libscigraphics_la-sci_geom3d.lo: sci_gateway/c/sci_geom3d.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_geom3d.lo `test -f 'sci_gateway/c/sci_geom3d.c' || echo '$(srcdir)/'`sci_gateway/c/sci_geom3d.c
 
-libscigraphics_la-sci_xtape.lo: sci_gateway/c/sci_xtape.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xtape.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xtape.Tpo -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/c/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtape.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xtape.Tpo $(DEPDIR)/libscigraphics_la-sci_xtape.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xtape.c' object='libscigraphics_la-sci_xtape.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xtape.lo `test -f 'sci_gateway/c/sci_xtape.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xtape.c
-
 libscigraphics_la-sci_xset.lo: sci_gateway/c/sci_xset.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xset.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xset.Tpo -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/c/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xset.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_xset.Tpo $(DEPDIR)/libscigraphics_la-sci_xset.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xset.c' object='libscigraphics_la-sci_xset.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_xset.lo `test -f 'sci_gateway/c/sci_xset.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xset.c
-
-libscigraphics_la-sci_set_posfig_dim.lo: sci_gateway/c/sci_set_posfig_dim.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_set_posfig_dim.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Tpo -c -o libscigraphics_la-sci_set_posfig_dim.lo `test -f 'sci_gateway/c/sci_set_posfig_dim.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_posfig_dim.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Tpo $(DEPDIR)/libscigraphics_la-sci_set_posfig_dim.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_set_posfig_dim.c' object='libscigraphics_la-sci_set_posfig_dim.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-sci_set_posfig_dim.lo `test -f 'sci_gateway/c/sci_set_posfig_dim.c' || echo '$(srcdir)/'`sci_gateway/c/sci_set_posfig_dim.c
 
 libscigraphics_la-sci_xgetech.lo: sci_gateway/c/sci_xgetech.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-sci_xgetech.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-sci_xgetech.Tpo -c -o libscigraphics_la-sci_xgetech.lo `test -f 'sci_gateway/c/sci_xgetech.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetech.c
@@ -4955,25 +4871,6 @@ uninstall-libscigraphics_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)/$$f"; \
 	done
-install-nobase_libscigraphics_la_demosDATA: $(nobase_libscigraphics_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigraphics_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_demosdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscigraphics_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscigraphics_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigraphics_la_demosdir)/$$f'"; \
-	  $(nobase_libscigraphics_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigraphics_la_demosdir)/$$f"; \
-	done
-
-uninstall-nobase_libscigraphics_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscigraphics_la_demos_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscigraphics_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscigraphics_la_demosdir)/$$f"; \
-	done
 install-nobase_libscigraphics_la_gedDATA: $(nobase_libscigraphics_la_ged_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigraphics_la_geddir)" || $(MKDIR_P) "$(DESTDIR)$(libscigraphics_la_geddir)"
@@ -5089,7 +4986,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_demosdir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigraphics_la_etcdir)" "$(DESTDIR)$(libscigraphics_la_rootdir)" "$(DESTDIR)$(libscigraphics_la_sci_gatewaydir)" "$(DESTDIR)$(libscigraphics_la_geddir)" "$(DESTDIR)$(libscigraphics_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -5141,7 +5038,6 @@ install-data-am: install-data-local install-libscigraphics_la_etcDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA \
-	install-nobase_libscigraphics_la_demosDATA \
 	install-nobase_libscigraphics_la_gedDATA
 
 install-dvi: install-dvi-am
@@ -5184,7 +5080,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
-	uninstall-nobase_libscigraphics_la_demosDATA \
 	uninstall-nobase_libscigraphics_la_gedDATA \
 	uninstall-pkglibLTLIBRARIES
 
@@ -5202,7 +5097,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	install-libscigraphics_la_includeHEADERS \
 	install-libscigraphics_la_rootDATA \
 	install-libscigraphics_la_sci_gatewayDATA install-man \
-	install-nobase_libscigraphics_la_demosDATA \
 	install-nobase_libscigraphics_la_gedDATA install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -5213,7 +5107,6 @@ uninstall-am: uninstall-libscigraphics_la_etcDATA \
 	uninstall-libscigraphics_la_includeHEADERS \
 	uninstall-libscigraphics_la_rootDATA \
 	uninstall-libscigraphics_la_sci_gatewayDATA \
-	uninstall-nobase_libscigraphics_la_demosDATA \
 	uninstall-nobase_libscigraphics_la_gedDATA \
 	uninstall-pkglibLTLIBRARIES
 

@@ -23,7 +23,7 @@ class ExampleEvents
   {
     int i=0;
         
-	  Scilab.Exec("plot3d();");
+	  Scilab.Exec("plot3d();quit");
   	
   	while (Scilab.HaveAGraph()!=false)
   	{
@@ -36,9 +36,10 @@ class ExampleEvents
    		{
    		}
    		
-   		System.out.println("Boucle Java sans fin "+i);
+   		System.out.println("Java loop "+i);
 		  i++;
   	}
+  	System.out.println("Graphics window closed");
   	Scilab.Finish();
   	
   }

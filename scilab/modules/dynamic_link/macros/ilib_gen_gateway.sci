@@ -80,11 +80,11 @@ function ilib_gen_gateway(name,tables)
       mclose(fd);
       t1 = mgetl(path+tname+'.c') 
       if t1 <> t then 
-	      mputl(t,path+tname+'.c')    
+	      mputl(t,path+tname+'.c');    
       end
     else
        // file does not exist we create it 
-       mputl(t,path+tname+'.c')    
+       mputl(t,path+tname+'.c') ;   
     end
   end
 endfunction

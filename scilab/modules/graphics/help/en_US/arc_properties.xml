@@ -102,7 +102,7 @@
 
         <listitem>
           <para>This field contains the default <literal>foreground</literal>
-          property value used to draw or to fill arc. It should be a color
+          property value used to draw the outside of the arc. It should be a color
           index (relative to the current colormap).</para>
         </listitem>
       </varlistentry>

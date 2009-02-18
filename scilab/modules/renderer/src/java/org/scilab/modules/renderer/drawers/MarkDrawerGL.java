@@ -35,6 +35,8 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	
 	private Vector3D[] markPos;
 	
+	private int nbMarks;
+	
 	/**
 	 * Default Constructor
 	 */
@@ -42,6 +44,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		super();
 		drawer = new MarkDrawer();
 		markPos = null;
+		nbMarks = 0;
 	}
 	
 	
@@ -163,17 +166,20 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		
 		CoordinateTransformation transform = getCoordinateTransformation();
 		
-		// need to perform this befaore swithching to pixel coordinates
-		Vector3D[] pixCoords = transform.getCanvasCoordinates(gl, markPos);
+		// need to perform this before switching to pixel coordinates
+		Vector3D[] pixCoords = new Vector3D[nbMarks];
+		for (int i = 0; i < nbMarks; i++) {
+			pixCoords[i] = transform.getCanvasCoordinates(gl, markPos[i]);
+		}
 		
 		// switch to pixel coordinates
 		GLTools.usePixelCoordinates(gl, getParentFigureGL());
 		
 		// create the display list using pixel coordinates
 		startRecordDL();
-		// mark are drawn with a line width of 1.
+		// marks are drawn with a line width of 1.
 		gl.glLineWidth(1.0f);
-		for (int i = 0; i < markPos.length; i++) {
+		for (int i = 0; i < nbMarks; i++) {
 			// switch back to the new frame
 			getDrawer().drawMark(pixCoords[i].getX(), pixCoords[i].getY(), pixCoords[i].getZ());
 		}
@@ -185,7 +191,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	}
 	
 	/**
-	 * Show the compute ddisplay list
+	 * Show the compute display list
 	 */
 	public void showMarks() {
 		GL gl = getGL();
@@ -202,8 +208,18 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	 * @param marksPosition positions in 3D of marks
 	 */
 	public void drawMarks(Vector3D[] marksPosition) {
+		drawMarks(marksPosition, marksPosition.length);
+	}
+	
+	/**
+	 * Display the marks at the positions specified by marksPosition
+	 * @param marksPosition positions in 3D of marks
+	 * @param nbMarks number of marks to display
+	 */
+	public void drawMarks(Vector3D[] marksPosition, int nbMarks) {
 		this.markPos = marksPosition;
-		// mark object has chnaged, we mey need to recreate the display list
+		this.nbMarks = nbMarks;
+		// mark object has changed, we may need to recreate the display list
 		getDrawer().createDisplayList();
 		redrawMarks();
 	}

@@ -71,12 +71,15 @@ public final class RenderingCapabilities {
 	 */
 	public static int[] getMaxWindowSize() {
 		GraphicsDevice[] screens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-		
 		int[] res = {0, 0};
 		// take the sum of each screen width and screen height.
 		// It might be a bit large, but it's better than using a too small value.
 		for (int i = 0; i < screens.length; i++) {
 			DisplayMode dm = screens[i].getDisplayMode();
+			if (dm == null) {
+				// workaround for bug 3547
+				dm = screens[i].getDisplayModes()[0];
+			}
 			res[0] += dm.getWidth();
 			res[1] += dm.getHeight();
 		}
@@ -97,7 +100,9 @@ public final class RenderingCapabilities {
 			int[] res = {maxCanvasSize[0], maxCanvasSize[1]};
 			return res;
 		} else {
-			return getMaxWindowSize();
+			// canvas not already created, don't set limits
+			int[] res = {Integer.MAX_VALUE, Integer.MAX_VALUE};
+			return res;
 		}
 	}
 	

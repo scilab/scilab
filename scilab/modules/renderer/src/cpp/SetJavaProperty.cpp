@@ -45,6 +45,11 @@ void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage )
   getFigureDrawer(pFigure)->setInfoMessage(infoMessage);
 }
 /*---------------------------------------------------------------------------------*/
+void sciSetJavaAntialiasingQuality( sciPointObj * pFigure, int quality )
+{
+	getFigureDrawer(pFigure)->setAntialiasingQuality(quality);
+}
+/*---------------------------------------------------------------------------------*/
 BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height)
 {
   if (getSubwinDrawer(pSubwin)->getCamera()->zoomRect(posX, posY, width, height))
@@ -80,6 +85,11 @@ void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4])
 void sciSetJavaBackground(sciPointObj * pFigure, int backColor)
 {
   getFigureDrawer(pFigure)->setBackgroundColor(backColor);
+}
+/*---------------------------------------------------------------------------------*/
+void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer)
+{
+	getFigureDrawer(pFigure)->setUseSingleBuffer(useSingleBuffer == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
 void sciSetJavaTitle( sciPointObj * pFigure, const char * title )

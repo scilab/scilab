@@ -95,8 +95,13 @@ public:
 
 	virtual void interactiveRotation(void);
 
-  static bool isAbleToCreateFigure(void);
+	virtual void setUseSingleBuffer(bool useSingleBuffer);
 
+  int getAntialiasingQuality(void);
+	
+	void setAntialiasingQuality(int quality);
+
+  static bool isAbleToCreateFigure(void);
   /*----------------------------------------------------------------------*/
 
 protected:

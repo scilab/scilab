@@ -87,8 +87,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscispreadsheet_la_demosdir)" \
-	"$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_etcdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_rootdir)" \
 	"$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" \
@@ -130,14 +128,10 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscispreadsheet_la_SOURCES)
 DIST_SOURCES = $(libscispreadsheet_la_SOURCES)
-libscispreadsheet_la_demosDATA_INSTALL = $(INSTALL_DATA)
-libscispreadsheet_la_demosxlsDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscispreadsheet_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscispreadsheet_la_demos_DATA) \
-	$(libscispreadsheet_la_demosxls_DATA) \
-	$(libscispreadsheet_la_etc_DATA) \
+DATA = $(libscispreadsheet_la_etc_DATA) \
 	$(libscispreadsheet_la_root_DATA) \
 	$(libscispreadsheet_la_sci_gateway_DATA)
 libscispreadsheet_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -368,6 +362,8 @@ libscispreadsheet_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ripole \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/io/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
@@ -396,21 +392,6 @@ libscispreadsheet_la_sci_gateway_DATA = sci_gateway/spreadsheet_gateway.xml
 ####�spreadsheet : include files ####
 libscispreadsheet_la_includedir = $(pkgincludedir)/spreadsheet
 libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h
-
-####�core : demos files ####
-libscispreadsheet_la_demosdir = $(mydatadir)/demos/
-libscispreadsheet_la_demos_DATA = demos/spreadsheet.dem.sce
-
-####�spreadsheet : demos files ####
-libscispreadsheet_la_demosxlsdir = $(mydatadir)/demos/xls/
-libscispreadsheet_la_demosxls_DATA = demos/xls/Testo1.xls \
-demos/xls/o1.xls \
-demos/xls/Test1.xls \
-demos/xls/Testobig.xls \
-demos/xls/Testbig.xls \
-demos/xls/t1.xls \
-demos/xls/README
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -648,40 +629,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscispreadsheet_la_demosDATA: $(libscispreadsheet_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscispreadsheet_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_demosdir)"
-	@list='$(libscispreadsheet_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscispreadsheet_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f'"; \
-	  $(libscispreadsheet_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f"; \
-	done
-
-uninstall-libscispreadsheet_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscispreadsheet_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscispreadsheet_la_demosdir)/$$f"; \
-	done
-install-libscispreadsheet_la_demosxlsDATA: $(libscispreadsheet_la_demosxls_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscispreadsheet_la_demosxlsdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)"
-	@list='$(libscispreadsheet_la_demosxls_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscispreadsheet_la_demosxlsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f'"; \
-	  $(libscispreadsheet_la_demosxlsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f"; \
-	done
-
-uninstall-libscispreadsheet_la_demosxlsDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscispreadsheet_la_demosxls_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)/$$f"; \
-	done
 install-libscispreadsheet_la_etcDATA: $(libscispreadsheet_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscispreadsheet_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscispreadsheet_la_etcdir)"
@@ -829,7 +776,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispreadsheet_la_demosdir)" "$(DESTDIR)$(libscispreadsheet_la_demosxlsdir)" "$(DESTDIR)$(libscispreadsheet_la_etcdir)" "$(DESTDIR)$(libscispreadsheet_la_rootdir)" "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" "$(DESTDIR)$(libscispreadsheet_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscispreadsheet_la_etcdir)" "$(DESTDIR)$(libscispreadsheet_la_rootdir)" "$(DESTDIR)$(libscispreadsheet_la_sci_gatewaydir)" "$(DESTDIR)$(libscispreadsheet_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -878,8 +825,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
-	install-libscispreadsheet_la_demosDATA \
-	install-libscispreadsheet_la_demosxlsDATA \
 	install-libscispreadsheet_la_etcDATA \
 	install-libscispreadsheet_la_includeHEADERS \
 	install-libscispreadsheet_la_rootDATA \
@@ -921,9 +866,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
-	uninstall-libscispreadsheet_la_demosxlsDATA \
-	uninstall-libscispreadsheet_la_etcDATA \
+uninstall-am: uninstall-libscispreadsheet_la_etcDATA \
 	uninstall-libscispreadsheet_la_includeHEADERS \
 	uninstall-libscispreadsheet_la_rootDATA \
 	uninstall-libscispreadsheet_la_sci_gatewayDATA \
@@ -939,9 +882,7 @@ uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscispreadsheet_la_demosDATA \
-	install-libscispreadsheet_la_demosxlsDATA \
-	install-libscispreadsheet_la_etcDATA \
+	install-info-am install-libscispreadsheet_la_etcDATA \
 	install-libscispreadsheet_la_includeHEADERS \
 	install-libscispreadsheet_la_rootDATA \
 	install-libscispreadsheet_la_sci_gatewayDATA install-man \
@@ -951,8 +892,6 @@ uninstall-am: uninstall-libscispreadsheet_la_demosDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libscispreadsheet_la_demosDATA \
-	uninstall-libscispreadsheet_la_demosxlsDATA \
 	uninstall-libscispreadsheet_la_etcDATA \
 	uninstall-libscispreadsheet_la_includeHEADERS \
 	uninstall-libscispreadsheet_la_rootDATA \

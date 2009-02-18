@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,55 +10,74 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="best_match">
+<refentry version="5.0-subset Scilab" xml:id="best_match" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>best_match</refname>
-    <refpurpose> meilleur appariement d'un graphe  </refpurpose>
+
+    <refpurpose>meilleur appariement d'un graphe</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>[card,match] = best_match(g)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>g  </term>
+        <term>g</term>
+
         <listitem>
-          <para>graphe (liste) 
-</para>
+          <para>graphe (liste)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>card  </term>
+        <term>card</term>
+
         <listitem>
-          <para>entier 
-</para>
+          <para>entier</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>match  </term>
+        <term>match</term>
+
         <listitem>
-          <para>vecteur ligne d'entiers 
-</para>
+          <para>vecteur ligne d'entiers</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>best_match</literal> trouve un appariement optimal pour le graphe <literal>g</literal>.
-    Les sorties sont <literal>card</literal> et le vecteur <literal>match</literal>. <literal>card</literal> est la 
-    cardinalité d'un appariement optimal de g. <literal>match(i)</literal> est le sommet adjacent
-    au sommet <literal>i</literal> dans l'appariement optimal ou 0 si <literal>i</literal> n'est pas apparié.
-  </para>
+
+    <para><literal>best_match</literal> trouve un appariement optimal pour le
+    graphe <literal>g</literal>. Les sorties sont <literal>card</literal> et
+    le vecteur <literal>match</literal>. <literal>card</literal> est la
+    cardinalitÃ© d'un appariement optimal de g. <literal>match(i)</literal> est
+    le sommet adjacent au sommet <literal>i</literal> dans l'appariement
+    optimal ou 0 si <literal>i</literal> n'est pas appariÃ©.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
   
 ta=[27 27 3 12 11 12 27 26 26 25 25 24 23 23 21 22 21 20 19 18 18];
 ta=[ta  16 15 15 14 12 9 10 6 9 17 8 17 10 20 11 23 23 12 18 28]; 
@@ -78,7 +97,7 @@ sp1=sparse([[1:n]' match'],ones(1,size(match,2))',[n,n]);
 show_arcs(v');
 //
 // AVEC UN GRAPHE PLUS GRAND
-g=load_graph(SCI+'/demos/metanet/mesh1000');
+g=load_graph(metanet_module_path()+'/demos/mesh1000.graph');
 g('directed')=0;
 ta=g('tail');he=g('head');n=node_number(g);
 show_graph(g,'new',1/2,[1000,400]);
@@ -88,14 +107,14 @@ sp1=sparse([[1:n]' match'],ones(1,size(match,2))',[n,n]);
 [ij,v,mn]=spget(sp.*sp1);
 show_arcs(v');
  
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="perfect_match">perfect_match</link>
-      </member>
+      <member><link linkend="perfect_match">perfect_match</link></member>
     </simplelist>
   </refsection>
 </refentry>

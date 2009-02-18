@@ -122,4 +122,10 @@ public interface SimpleCanvas {
 	 * @return BufferedImage
 	 */
 	BufferedImage dumpAsBufferedImage();
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	void setSingleBuffered(boolean useSingleBuffer);
 }

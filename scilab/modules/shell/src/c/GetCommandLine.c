@@ -10,6 +10,7 @@
  *
  */
 #include <string.h>
+#include "stack-def.h"
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
 #include "ConsoleRead.h"
@@ -20,7 +21,11 @@
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
 #include "charEncoding.h"
-
+#include "zzledt.h"
+#include "GetCommandLine.h"
+#if _MSC_VER
+#include "TermReadAndProcess.h"
+#endif
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -55,8 +60,6 @@ static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
 
-char *TermReadAndProcess(void);
-
 /***********************************************************************
  * line editor
  **********************************************************************/
@@ -84,8 +87,19 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      __CommandLine = localeToUTF(TermReadAndProcess());
+			char szTempUTF[bsiz];
+      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
     }
+}
+
+/***********************************************************************/
+/*
+** used by mscanf to get a line from the Scilab console
+*/
+char *getConsoleInputLine(void)
+{
+  getCommandLine();
+  return strdup(__CommandLine);
 }
 
 /***********************************************************************/
@@ -138,8 +152,9 @@ static void *watchGetCommandLine(void *in) {
 
 /***********************************************************************/
 /*
-** Old zzledt... Called by Fortran...
-** @TODO rename that function !!!
+ * Old zzledt... Called by Fortran...
+ * @TODO rename that function !!!
+ * @TODO remove unused arg buf_size, menusflag, modex & dummy1
 */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)

@@ -92,7 +92,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_etcdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_rootdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscisignal_processing_la_demosdir)" \
 	"$(DESTDIR)$(libscisignal_processing_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -113,9 +112,7 @@ am__objects_1 = sci_ffir.lo degree.lo parcha.lo ouch.lo dfftbi.lo \
 	deli1.lo trbipo.lo rpem.lo dfft2.lo dgee01.lo romeg.lo \
 	snell.lo fft842.lo tg02ad.lo remez.lo poles.lo desi00.lo \
 	desi21.lo dfftmx.lo
-am__objects_2 = libscisignal_processing_la-corrtable.lo \
-	libscisignal_processing_la-sci_levinson.lo \
-	libscisignal_processing_la-sci_fftnew.lo
+am__objects_2 = libscisignal_processing_la-corrtable.lo
 am__objects_3 = libscisignal_processing_la-sci_remez.lo \
 	libscisignal_processing_la-sci_rpem.lo \
 	libscisignal_processing_la-sci_corr.lo \
@@ -161,11 +158,9 @@ DIST_SOURCES = $(libscisignal_processing_la_SOURCES)
 libscisignal_processing_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscisignal_processing_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscisignal_processing_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscisignal_processing_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscisignal_processing_la_etc_DATA) \
 	$(libscisignal_processing_la_root_DATA) \
-	$(libscisignal_processing_la_sci_gateway_DATA) \
-	$(nobase_libscisignal_processing_la_demos_DATA)
+	$(libscisignal_processing_la_sci_gateway_DATA)
 libscisignal_processing_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscisignal_processing_la_include_HEADERS)
 ETAGS = etags
@@ -376,10 +371,7 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c \
-src/c/sci_levinson.c \
-src/c/sci_fftnew.c
-
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
 src/fortran/degree.f \
 src/fortran/parcha.f \
@@ -468,11 +460,9 @@ sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS = -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/double/includes
+					-I$(top_srcdir)/modules/output_stream/includes \
+					-I$(top_srcdir)/modules/dynamic_link/includes \
+					-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 libscisignal_processing_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -506,21 +496,6 @@ libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gate
 ####�signal_processing : include files ####
 libscisignal_processing_la_includedir = $(pkgincludedir)/signal_processing
 libscisignal_processing_la_include_HEADERS = includes/gw_signal.h
-
-####�signal_processing : demos files ####
-libscisignal_processing_la_demosdir = $(mydatadir)
-nobase_libscisignal_processing_la_demos_DATA = demos/arma/arma1.dem.sce \
-demos/arma/arma2.dem.sce \
-demos/arma/arma3.dem.sce \
-demos/winfilt.dem.sce \
-demos/signal.dem.gateway.sce \
-demos/spect.dem.sce \
-demos/remezfilt.dem.sce \
-demos/iirfilt.dem.sce \
-demos/iir.dem.sce \
-demos/bode.dem.sce \
-demos/wiener.dem.sce
-
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -650,9 +625,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_delip.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_ffir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_fft.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_fftnew.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_fiir.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_levinson.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_remez.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_rpem.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscisignal_processing_la-sci_syredi.Plo@am__quote@
@@ -684,20 +657,6 @@ libscisignal_processing_la-corrtable.lo: src/c/corrtable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/corrtable.c' object='libscisignal_processing_la-corrtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-corrtable.lo `test -f 'src/c/corrtable.c' || echo '$(srcdir)/'`src/c/corrtable.c
-
-libscisignal_processing_la-sci_levinson.lo: src/c/sci_levinson.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_levinson.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_levinson.Tpo -c -o libscisignal_processing_la-sci_levinson.lo `test -f 'src/c/sci_levinson.c' || echo '$(srcdir)/'`src/c/sci_levinson.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisignal_processing_la-sci_levinson.Tpo $(DEPDIR)/libscisignal_processing_la-sci_levinson.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_levinson.c' object='libscisignal_processing_la-sci_levinson.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_levinson.lo `test -f 'src/c/sci_levinson.c' || echo '$(srcdir)/'`src/c/sci_levinson.c
-
-libscisignal_processing_la-sci_fftnew.lo: src/c/sci_fftnew.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_fftnew.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_fftnew.Tpo -c -o libscisignal_processing_la-sci_fftnew.lo `test -f 'src/c/sci_fftnew.c' || echo '$(srcdir)/'`src/c/sci_fftnew.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscisignal_processing_la-sci_fftnew.Tpo $(DEPDIR)/libscisignal_processing_la-sci_fftnew.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sci_fftnew.c' object='libscisignal_processing_la-sci_fftnew.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -c -o libscisignal_processing_la-sci_fftnew.lo `test -f 'src/c/sci_fftnew.c' || echo '$(srcdir)/'`src/c/sci_fftnew.c
 
 libscisignal_processing_la-sci_remez.lo: sci_gateway/c/sci_remez.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscisignal_processing_la_CFLAGS) $(CFLAGS) -MT libscisignal_processing_la-sci_remez.lo -MD -MP -MF $(DEPDIR)/libscisignal_processing_la-sci_remez.Tpo -c -o libscisignal_processing_la-sci_remez.lo `test -f 'sci_gateway/c/sci_remez.c' || echo '$(srcdir)/'`sci_gateway/c/sci_remez.c
@@ -1056,25 +1015,6 @@ uninstall-libscisignal_processing_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)/$$f"; \
 	done
-install-nobase_libscisignal_processing_la_demosDATA: $(nobase_libscisignal_processing_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscisignal_processing_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscisignal_processing_la_demosdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscisignal_processing_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscisignal_processing_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscisignal_processing_la_demosdir)/$$f'"; \
-	  $(nobase_libscisignal_processing_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscisignal_processing_la_demosdir)/$$f"; \
-	done
-
-uninstall-nobase_libscisignal_processing_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscisignal_processing_la_demos_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscisignal_processing_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscisignal_processing_la_demosdir)/$$f"; \
-	done
 install-libscisignal_processing_la_includeHEADERS: $(libscisignal_processing_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscisignal_processing_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscisignal_processing_la_includedir)"
@@ -1171,7 +1111,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisignal_processing_la_etcdir)" "$(DESTDIR)$(libscisignal_processing_la_rootdir)" "$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)" "$(DESTDIR)$(libscisignal_processing_la_demosdir)" "$(DESTDIR)$(libscisignal_processing_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscisignal_processing_la_etcdir)" "$(DESTDIR)$(libscisignal_processing_la_rootdir)" "$(DESTDIR)$(libscisignal_processing_la_sci_gatewaydir)" "$(DESTDIR)$(libscisignal_processing_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1223,8 +1163,7 @@ install-data-am: install-data-local \
 	install-libscisignal_processing_la_etcDATA \
 	install-libscisignal_processing_la_includeHEADERS \
 	install-libscisignal_processing_la_rootDATA \
-	install-libscisignal_processing_la_sci_gatewayDATA \
-	install-nobase_libscisignal_processing_la_demosDATA
+	install-libscisignal_processing_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1266,7 +1205,6 @@ uninstall-am: uninstall-libscisignal_processing_la_etcDATA \
 	uninstall-libscisignal_processing_la_includeHEADERS \
 	uninstall-libscisignal_processing_la_rootDATA \
 	uninstall-libscisignal_processing_la_sci_gatewayDATA \
-	uninstall-nobase_libscisignal_processing_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1283,7 +1221,6 @@ uninstall-am: uninstall-libscisignal_processing_la_etcDATA \
 	install-libscisignal_processing_la_includeHEADERS \
 	install-libscisignal_processing_la_rootDATA \
 	install-libscisignal_processing_la_sci_gatewayDATA install-man \
-	install-nobase_libscisignal_processing_la_demosDATA \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -1294,7 +1231,6 @@ uninstall-am: uninstall-libscisignal_processing_la_etcDATA \
 	uninstall-libscisignal_processing_la_includeHEADERS \
 	uninstall-libscisignal_processing_la_rootDATA \
 	uninstall-libscisignal_processing_la_sci_gatewayDATA \
-	uninstall-nobase_libscisignal_processing_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

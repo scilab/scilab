@@ -33,7 +33,7 @@ public final class Helpers {
     public static String reason(Throwable e) {
         String reason = e.getMessage();
         if (reason == null) {
-            reason = e.getClass().getName();
+            return e.getClass().getName();
 		}
 
         return reason;

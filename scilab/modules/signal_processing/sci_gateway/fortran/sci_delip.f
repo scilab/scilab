@@ -14,14 +14,17 @@ c
       character*(*) fname
       integer lw
       integer iadr,sadr
+      double precision ck
+      integer itr
       
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
       
-            if(rhs.ne.2.or.lhs.ne.1) then
+      if(rhs.ne.2.or.lhs.ne.1) then
          call error(39)
          return
       endif
+C     ck
       il1=iadr(lstk(top))
       itv1=istk(il1)
       if(itv1.ne.1) then
@@ -37,7 +40,19 @@ c
          return
       endif
       it1=istk(il1+3)
+      if(it1.ne.0) then
+         err=2
+         call error(52)
+         return
+      endif
       l1=sadr(il1+4)
+      ck=stk(l1)
+      if (abs(ck).gt.1.0d0) then
+         err=2
+         call error(42)
+         return
+      endif
+c     x
       il2=iadr(lstk(top-1))
       itv2=istk(il2)
       if(itv2.ne.1) then
@@ -49,9 +64,25 @@ c
       n2=istk(il2+2)
       length=m2*n2
       it2=istk(il2+3)
+      if(it2.ne.0) then
+         err=1
+         call error(52)
+         return
+      endif
       l2=sadr(il2+4)
-      lw=lstk(top+1)
-      err=lw+2*length-lstk(bot)
+      itr=0
+      do i=0,length-1
+         if (stk(l2+i).lt.0.0d0) then
+            err=1
+            call error(42)
+            return
+         elseif (stk(l2+i).gt.1.0d0) then
+            itr=1
+            goto 10
+         endif
+      enddo
+ 10   lw=lstk(top+1)
+      err=lw+(itr+1)*length-lstk(bot)
       if(err.gt.0)then
          call error(17)
          return
@@ -61,10 +92,12 @@ c
       istk(il2)=1
       istk(il2+1)=m2
       istk(il2+2)=n2
-      istk(il2+3)=1
+      istk(il2+3)=itr
       call unsfdcopy(length,stk(lw),1,stk(l2),1)
-      call unsfdcopy(length,stk(lw+length),1,stk(l2+length),1)
-      lstk(top+1)=l2+2*length
+      if (itr.eq.1) then
+         call unsfdcopy(length,stk(lw+length),1,stk(l2+length),1)
+      endif
+      lstk(top+1)=l2+(itr+1)*length
       return
 
       end

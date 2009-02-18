@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -35,7 +35,7 @@ int get_labels_font_size_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint(_("%s does not exist for this handle.\n"), "labels_font_size property");
+    Scierror(999, _("%s does not exist for this handle.\n"), "labels_font_size property");
     return -1;
   }
 

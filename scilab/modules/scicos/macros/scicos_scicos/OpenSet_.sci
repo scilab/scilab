@@ -92,10 +92,13 @@ function OpenSet_()
 
   //**-----------------------------------------------------------------
   if %kk<>[] then //** if the double click is not in the void ---------
-    Select_back = Select; 
-    selecthilite(Select_back, "off") ; //  unHilite previous objects
-    Select = [%kk %win];               //** select the double clicked block 
-    selecthilite(Select, "on") ;       
+    
+    drawlater(); 
+      Select_back = Select; 
+      selecthilite(Select_back, "off") ; //  unHilite previous objects
+      Select = [%kk %win];               //** select the double clicked block 
+      selecthilite(Select, "on") ;       
+    drawnow();
 				       
     inactive_windows(1)($+1)=super_path;inactive_windows(2)($+1)=curwin
 		       

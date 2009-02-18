@@ -129,6 +129,6 @@ if Err(U*S/U-testmat1(3+2*%i,50))>1000*%eps then pause,end
 //Symmetric
 if Checktestmat2(3+2*%i,50)>1000*%eps then pause,end
 [U,S]=spec(testmat2(3+2*%i,50));
-if Err(U*S/U-testmat2(3+2*%i,50))>1000*%eps then pause,end 
+if Err(U*S/U-testmat2(3+2*%i,50))>10000*%eps then pause,end 
 
 

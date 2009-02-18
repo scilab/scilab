@@ -179,7 +179,7 @@ function  [blklst,cmat,ccmat,cor,corinv,ok,scs_m,flgcdgen,freof] = c_pass1(scs_m
     // modelica blocks with events ports are not allowed yet
     if size(ccmat,1)>0 then
       if or(dsearch(ccmat(:,[1 3]),imp,'d')>0) then
-	x_message('An implicit block has an event port')
+	messagebox('An implicit block has an event port',"modal","error");
 	ok=%f;return
       end
     end

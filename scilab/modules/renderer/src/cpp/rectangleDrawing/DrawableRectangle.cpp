@@ -50,13 +50,11 @@ DrawableObject::EDisplayStatus DrawableRectangle::show( void )
   {
     return UNCHANGED;
   }
-  initializeDrawing();
   clip();
   translate();
   showRectangle();
   endTranslate();
   unClip();
-  endDrawing();
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/

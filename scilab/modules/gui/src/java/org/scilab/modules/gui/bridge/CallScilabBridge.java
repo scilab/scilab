@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -47,7 +48,6 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
-import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.checkbox.CheckBox;
 import org.scilab.modules.gui.checkbox.ScilabCheckBox;
@@ -59,13 +59,13 @@ import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editbox.ScilabEditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
 import org.scilab.modules.gui.filechooser.FileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.fontchooser.FontChooser;
 import org.scilab.modules.gui.fontchooser.ScilabFontChooser;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.ScilabFrame;
-import org.scilab.modules.gui.graphicWindow.ScilabGraphicWindow;
 import org.scilab.modules.gui.graphicWindow.ScilabRendererProperties;
 import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.label.Label;
@@ -88,13 +88,19 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.ImageExporter;
+import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.ScilabPrint;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.utils.WebBrowser;
 import org.scilab.modules.gui.utils.PrinterHelper;
@@ -105,6 +111,7 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.renderer.FigureMapper;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
  * This class is used to call Scilab GUIs objects from Scilab
@@ -143,6 +150,13 @@ public class CallScilabBridge {
 
 	private static PrintRequestAttributeSet scilabPageFormat = new HashPrintRequestAttributeSet();
 	private static String tmpPrinterFile = System.getenv("TMPDIR") + "scilabfigure";
+	
+	private static final String FIGURE_TITLE = "Graphic window number ";
+	
+	private static final String SCIDIR = System.getenv("SCI");
+	
+	private static final String MENUBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_menubar.xml";
+	private static final String TOOLBARXMLFILE = SCIDIR + "/modules/gui/etc/graphics_toolbar.xml";
 
 	/**
 	 * Constructor
@@ -282,24 +296,6 @@ public class CallScilabBridge {
 	public static int newColorChooser() {
 		ColorChooser colorChooser = ScilabColorChooser.createColorChooser();
 		return UIElementMapper.add(colorChooser);
-	}
-	/**
-	 * Create a new File Chooser in Scilab GUIs
-	 * @return the ID of the File Chooser in the UIElementMapper
-	 */
-	public static int newFileChooser() {
-		FileChooser fileChooser = ScilabFileChooser.createFileChooser();
-		return UIElementMapper.add(fileChooser);
-	}
-
-	/**
-	 * Create a new Graphic Export File Chooser in Scilab GUIs
-	 * @param figureId id of the figure to export
-	 * @return the ID of the File Chooser in the UIElementMapper
-	 */
-	public static int newExportFileChooser(int figureId) {
-		FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
-		return UIElementMapper.add(fileChooser);
 	}
 
 	/**
@@ -563,7 +559,48 @@ public class CallScilabBridge {
 	 * @return id of the window
 	 */
 	public static int newWindow(int figureIndex) {
-		return ScilabGraphicWindow.newWindow(figureIndex);
+		Window newWindow = ScilabWindow.createWindow();
+		
+		newWindow.setTitle(FIGURE_TITLE + figureIndex);
+		/* MENUBAR */
+		MenuBar menuBar = MenuBarBuilder.buildMenuBar(MENUBARXMLFILE, figureIndex);
+		/* TOOLBAR */
+		ToolBar toolBar = ToolBarBuilder.buildToolBar(TOOLBARXMLFILE, figureIndex);
+		
+		TextBox infoBar = ScilabTextBox.createTextBox();
+		
+		// create a tab able to display a figure handle
+		Tab graphicTab = ScilabTab.createTab(FIGURE_TITLE + figureIndex, figureIndex);
+		/* Destroy the graphic figure when the tab is closed */
+		// // check if figure is already closed
+		// if (get_figure_handle(fid) <> []) then
+		//   if (get(get_figure_handle(fid), 'event_handler_enable') == 'on') then
+		//     // execute closing call back
+		//     execstr(get(get_figure_handle(fid), 'event_handler') + '(fid, -1, -1, -1000)');
+		//   end
+		//   // destory the figure
+		//   delete(get_figure_handle(fid));
+		// end
+		String closingCommand = 
+			       "if (get_figure_handle(" + figureIndex + ") <> []) then"
+			+      "  if (get(get_figure_handle(" + figureIndex + "), 'event_handler_enable') == 'on') then"
+			+      "    execstr(get(get_figure_handle(" + figureIndex + "), 'event_handler')+'(" + figureIndex + ", -1, -1, -1000)');"
+			+      "  end;"
+			+      "  delete(get_figure_handle(" + figureIndex + "));"
+			+      "end;";
+		graphicTab.setCallback(ScilabCloseCallBack.create(figureIndex, closingCommand));
+		graphicTab.addMenuBar(menuBar);
+		graphicTab.addToolBar(toolBar);
+		graphicTab.addInfoBar(infoBar);
+		newWindow.addTab(graphicTab);
+		
+		// link the tab and canvas with their figure
+		DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+		//associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
+		associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
+		// don't draw now, figure will show itself when all its parameters will be set
+		
+		return 0;
 	}
 
 	/****************************/
@@ -1048,74 +1085,20 @@ public class CallScilabBridge {
 	/*                     */
 	/***********************/
 
+	
+	
 	/**
-	 * Set the file chooser title
-	 * @param id the id of the fileChooser
-	 * @param title the title of the fileChooser
+	 * Create a new Graphic Export File Chooser in Scilab GUIs
+	 * @param figureId id of the figure to export
+	 * @return the ID of the File Chooser in the UIElementMapper
 	 */
-	public static void setFileChooserTitle(int id, String title) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setTitle(title);
+
+	public static int newExportFileChooser(int figureId) {
+		FileChooser fileChooser = ScilabFileChooser.createExportFileChooser(figureId);
+		return 0;
+		//return UIElementMapper.add(fileChooser);
 	}
 
-	/**
-	 * Set the initial directory used for file search
-	 * @param id the id of the fileChooser
-	 * @param path the default path
-	 */
-	public static void setFileChooserInitialDirectory(int id, String path) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setInitialDirectory(path);
-	}
-
-	/**
-	 * Set the mask for files that can be selected
-	 * @param id the id of the fileChooser
-	 * @param mask the mask to apply
-	 */
-	public static void setFileChooserMask(int id, String mask) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setMask(mask);
-	}
-
-	/**
-	 * Display this chooser and wait for user selection
-	 * @param id the id of the fileChooser
-	 */
-	public static void fileChooserDisplayAndWait(int id) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
-	}
-
-	/**
-	 * Get the number of files selected
-	 * @param id the id of the fileChooser
-	 * @return the number of files selected
-	 */
-	public static int getFileChooserSelectionSize(int id) {
-		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelectionSize();
-	}
-
-	/**
-	 * Get the names of selected files
-	 * @param id the id of the fileChooser
-	 * @return the names of selected files
-	 */
-	public static String[] getFileChooserSelection(int id) {
-		return ((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).getSelection();
-	}
-
-	/**
-	 * Set the flag indicating that we want only select directories
-	 * @param id the id of the fileChooser
-	 */
-	public static void setFileChooserDirectorySelectionOnly(int id) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setDirectorySelectionOnly();
-	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 * @param id the id of the fileChooser
-	 */
-	public static void setFileChooserFileSelectionOnly(int id) {
-		((FileChooser) UIElementMapper.getCorrespondingUIElement(id)).setFileSelectionOnly();
-	}
 
 
 	/**********************/
@@ -1866,7 +1849,7 @@ public class CallScilabBridge {
 	 * @return the index of the item selected
 	 */
 	public static int getPopupMenuSelectedIndex(int id) {
-		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getSelectedIndex();
+		return ((PopupMenu) UIElementMapper.getCorrespondingUIElement(id)).getUserSelectedIndex();
 	}
 
 	/**
@@ -2779,10 +2762,18 @@ public class CallScilabBridge {
 
 	/**
 	 * Change object used for graphic figure (GLCanvas or GLJPanel)
-         * @param onOrOff true to set GLCanvas display
+     * @param onOrOff true to set GLCanvas display
 	 */
 	public static void useCanvasForDisplay(boolean onOrOff) {
             SwingScilabCanvasImpl.switchToGLCanvas(onOrOff);
+	}
+
+	/**
+	 * Get object used for graphic figure (GLCanvas or GLJPanel)
+     * @return true if GLCanvas display is set
+	 */
+	public static boolean useCanvasForDisplay() {
+            return SwingScilabCanvasImpl.isGLCanvasEnabled();
 	}
 
 }

@@ -26,19 +26,19 @@ function ge_do_find(key,GraphList)
       r=stripblanks(r);
       r(r=='')=[]
       if size(r,'*')>1 then
-	x_message('Only one node should be selected:'+r)
+	messagebox('Only one node should be selected:'+r,"modal","error");
 	ok=%f
       else
 	ierr=execstr('n='+r,'errcatch')
 	if ierr==0 then // a node number
 	  if n<1|n>size(GraphList.nodes) then
-	    x_message('Incorrect node number:'+r)
+	    messagebox('Incorrect node number:'+r,"modal","error");
 	    ok=%f
 	  end
 	else
 	  n=find(GraphList.nodes.graphics.name==r)
 	  if n==[] then
-	    x_message('Unknown node :'+r)
+	    messagebox('Unknown node :'+r,"modal","error");
 	    ok=%f
 	  end
 	end
@@ -56,19 +56,19 @@ function ge_do_find(key,GraphList)
       r=stripblanks(r);
       r(r=='')=[]
       if size(r,'*')>1 then
-	x_message('Only one arc should be selected:'+r)
-	ok=%f
+	    messagebox('Only one arc should be selected:'+r,"modal","error");
+	    ok=%f
       else
 	ierr=execstr('n='+r,'errcatch')
 	if ierr==0 then // a node number
 	  if n<1|n>size(GraphList.edges) then
-	    x_message('Incorrect arc number:'+r)
+	    messagebox('Incorrect arc number:'+r,"modal","error");
 	    ok=%f
 	  end
 	else
 	  n=find(GraphList.edges.graphics.name==r)
 	  if n==[] then
-	    x_message('Unknown arc :'+r)
+	    messagebox('Unknown arc :'+r,"modal","error");
 	    ok=%f
 	  end
 	end

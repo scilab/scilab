@@ -92,7 +92,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioptimization_la_etcdir)" \
 	"$(DESTDIR)$(libscioptimization_la_rootdir)" \
 	"$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscioptimization_la_demosdir)" \
 	"$(DESTDIR)$(libscioptimization_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -163,11 +162,9 @@ DIST_SOURCES = $(libscioptimization_la_SOURCES)
 libscioptimization_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscioptimization_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscioptimization_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscioptimization_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscioptimization_la_etc_DATA) \
 	$(libscioptimization_la_root_DATA) \
-	$(libscioptimization_la_sci_gateway_DATA) \
-	$(nobase_libscioptimization_la_demos_DATA)
+	$(libscioptimization_la_sci_gateway_DATA)
 libscioptimization_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscioptimization_la_include_HEADERS)
 ETAGS = etags
@@ -494,8 +491,8 @@ sci_gateway/fortran/Ex-lsqrsolve.f
 
 libscioptimization_la_CFLAGS = -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/dynamic_link/includes
+-I$(top_srcdir)/modules/dynamic_link/includes \
+-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscioptimization.la
 libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -527,29 +524,6 @@ libscioptimization_la_sci_gateway_DATA = sci_gateway/optimization_gateway.xml
 libscioptimization_la_includedir = $(pkgincludedir)/optimization
 libscioptimization_la_include_HEADERS = includes/gw_optim.h \
 includes/spd.h
-
-
-####�optimization : demos files ####
-libscioptimization_la_demosdir = $(mydatadir)
-nobase_libscioptimization_la_demos_DATA = demos/datafit/datafit.dem.sce \
-demos/datafit/demo_datafit.sci \
-demos/datafit/demo_datafit_fr.htm \
-demos/icse/icob.sci \
-demos/icse/icot.sci \
-demos/icse/icse.contexte \
-demos/icse/icse.sci \
-demos/icse/icsegen.sci \
-demos/icse/icseinit.sce \
-demos/icse/icsu.sci \
-demos/icse/icsua.sci \
-demos/icse/icsuq.sci \
-demos/icse/icsvisu.sci \
-demos/icse/lqv.sce \
-demos/icse/navet.sce \
-demos/icse/README \
-demos/icse/sero.mes \
-demos/icse/seros.sce \
-demos/optimization.dem.gateway.sce
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1142,25 +1116,6 @@ uninstall-libscioptimization_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)/$$f"; \
 	done
-install-nobase_libscioptimization_la_demosDATA: $(nobase_libscioptimization_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscioptimization_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscioptimization_la_demosdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscioptimization_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscioptimization_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscioptimization_la_demosdir)/$$f'"; \
-	  $(nobase_libscioptimization_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscioptimization_la_demosdir)/$$f"; \
-	done
-
-uninstall-nobase_libscioptimization_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscioptimization_la_demos_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscioptimization_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscioptimization_la_demosdir)/$$f"; \
-	done
 install-libscioptimization_la_includeHEADERS: $(libscioptimization_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscioptimization_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscioptimization_la_includedir)"
@@ -1257,7 +1212,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioptimization_la_etcdir)" "$(DESTDIR)$(libscioptimization_la_rootdir)" "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" "$(DESTDIR)$(libscioptimization_la_demosdir)" "$(DESTDIR)$(libscioptimization_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioptimization_la_etcdir)" "$(DESTDIR)$(libscioptimization_la_rootdir)" "$(DESTDIR)$(libscioptimization_la_sci_gatewaydir)" "$(DESTDIR)$(libscioptimization_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1309,8 +1264,7 @@ install-data-am: install-data-local \
 	install-libscioptimization_la_etcDATA \
 	install-libscioptimization_la_includeHEADERS \
 	install-libscioptimization_la_rootDATA \
-	install-libscioptimization_la_sci_gatewayDATA \
-	install-nobase_libscioptimization_la_demosDATA
+	install-libscioptimization_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1352,7 +1306,6 @@ uninstall-am: uninstall-libscioptimization_la_etcDATA \
 	uninstall-libscioptimization_la_includeHEADERS \
 	uninstall-libscioptimization_la_rootDATA \
 	uninstall-libscioptimization_la_sci_gatewayDATA \
-	uninstall-nobase_libscioptimization_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1369,17 +1322,16 @@ uninstall-am: uninstall-libscioptimization_la_etcDATA \
 	install-libscioptimization_la_includeHEADERS \
 	install-libscioptimization_la_rootDATA \
 	install-libscioptimization_la_sci_gatewayDATA install-man \
-	install-nobase_libscioptimization_la_demosDATA install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscioptimization_la_etcDATA \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am \
+	uninstall-libscioptimization_la_etcDATA \
 	uninstall-libscioptimization_la_includeHEADERS \
 	uninstall-libscioptimization_la_rootDATA \
 	uninstall-libscioptimization_la_sci_gatewayDATA \
-	uninstall-nobase_libscioptimization_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

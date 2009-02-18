@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 3191 -->
 //
 // <-- Bugzilla URL -->
@@ -43,7 +45,7 @@ exec loader.sce
  
 libc_fun_path = get_file_path('loader.sce');
  
-list_functions = [ 'c_fun';
+list_functions = [             'c_fun';
 ];
  
 addinter(libc_fun_path+'/libc_fun.so','libc_fun',list_functions);

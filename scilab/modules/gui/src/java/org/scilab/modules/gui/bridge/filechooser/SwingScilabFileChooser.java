@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -19,28 +20,34 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
+import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
 import org.scilab.modules.gui.utils.SciFileFilter;
 
 /**
  * Swing implementation of a Scilab File ChooserS
  * @author Vincent COUVERT
+ * @author Sylvestre KOUMAR
  */
 public class SwingScilabFileChooser extends JFileChooser implements SimpleFileChooser {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int elementId;
-
-	private String[] selection; 
+	private String[] selection;	// Path + filenames
+	private String selectionPath; // Path
+	private String[] selectionFileNames; // Filenames	
+	private int selectionSize; 	
+	private int filterIndex;
+	private int maskSize;
 	
-	private int selectionSize; 		
+	private String[] maskDescription;	
 
 	/**
 	 * Default constructor
 	 */
 	public SwingScilabFileChooser() {
 		super();
+		//System.out.println("[Constructor] SwingScilabFileChooser");
 		/** Bug 3231 fixed: do not explore all zip files on desktop under Windows */
 		putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);
 	}	
@@ -54,11 +61,30 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	}
 	
 	/**
-	 * Set the mask for files to choose
+	 * Set the mask & the mask description for the filechooser
 	 * @param mask the mask to set
+	 * @param fileMaskDescription the maskDescription to set
 	 */
-	public void setMask(String mask) {
-		super.addChoosableFileFilter(new SciFileFilter(mask));
+	public void addMask(String[] mask, String[] fileMaskDescription) {	
+		
+		//size of the mask list
+		maskSize = mask.length;
+		
+		//If the mask description is empty we allocate description 
+		//according to the extensions given
+		if (fileMaskDescription.length == 0) {
+			maskDescription = new String[mask.length];			
+			for (int i = 0; i < mask.length; i++) {
+				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i], i/*, maskSize*/));
+			}
+		} else {
+			//If the mask description is filled
+			//we use those descriptions given by the user
+			this.maskDescription = fileMaskDescription;
+			for (int i = 0; i < mask.length; i++) {
+				super.addChoosableFileFilter(new SciFileFilter(mask[i], maskDescription[i],i/*, maskSize*/));
+			}
+		}
 	}
 	
 	/**
@@ -73,56 +99,83 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		// Replace beginning of the path if is an environment variable
 		String newPath = path;
 		StringTokenizer tok = new StringTokenizer(path, File.separator);
-		String firstToken = tok.nextToken();
-		if (firstToken != null && System.getenv(firstToken) != null)  {
+		if (tok.hasMoreTokens()) { /* It is possible that we don't have any more token here when
+					      Scilab is started from / for example */
+		    String firstToken = tok.nextToken();
+		    if (firstToken != null && System.getenv(firstToken) != null)  {
 			newPath = newPath.replaceFirst(firstToken, System.getenv(firstToken));
+		    }		
 		}
-		
 		super.setCurrentDirectory(new File(newPath));
-	}
-	
-	/**
-	 * Set the element id for this file chooser
-	 * @param id the id of the corresponding file chooser object
-	 */
-	public void setElementId(int id) {
-		this.elementId = id;
-	}
-	
-	/**
-	 * Get the element id for this chooser
-	 * @return id the id of the corresponding chooser object
-	 */
-	public int getElementId() {
-		return this.elementId;
 	}
 	
 	/**
 	 * Display this chooser and wait for user selection 
 	 */
 	public void displayAndWait() {
+		
 		JFrame parentFrame = new JFrame();
 		parentFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		int returnValue = this.showOpenDialog(parentFrame);
+		
+		//User validate the uigetfile
 		if (returnValue == APPROVE_OPTION) {
 			if (this.isMultiSelectionEnabled()) {
 				File[] files = this.getSelectedFiles();
 				selection = new String[files.length];
+				selectionFileNames = new String[files.length];
 				selectionSize = files.length;
 				for (int i = 0; i < files.length; i++) {
 					selection[i] = files[i].getAbsolutePath();
-				}
-				
+					selectionPath = files[i].getParentFile().getPath();
+					selectionFileNames[i] = files[i].getAbsolutePath().substring(selectionPath.length() + 1);
+				}					
 			} else {
 				File file = this.getSelectedFile();
 				selection = new String[1];
 				selection[0] = file.getAbsolutePath();
-				selectionSize = 1;
+				selectionPath = file.getParentFile().getPath();
+				selectionFileNames = new String[1];
+				selectionFileNames[0] = file.getAbsolutePath().substring(selectionPath.length() + 1);
+				selectionSize = 1;						
 			}
-		} else {
-			selection = null;
+			
+			//return the filechooser's informations 
+			//they are stocked into FileChooserInfos
+			FileChooserInfos.getInstance().setSelection(selection);
+			FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
+			FileChooserInfos.getInstance().setSelectionFileNames(selectionFileNames);
+			FileChooserInfos.getInstance().setSelectionSize(selectionSize);		
+			
+			//set the filter index at the last index 
+			//of the list box if the mask "All files" is selected  
+			javax.swing.filechooser.FileFilter AllFilesSelected = getFileFilter();
+			if (AllFilesSelected.getDescription().equals("All Files")){
+				FileChooserInfos.getInstance().setFilterIndex(maskSize + 1);
+			}
+			
+		//User cancel the uigetfile	
+		} else {			
+			selection = new String[1];
+			selection[0] = "";
 			selectionSize = 0;
-		}
+			selectionPath = "";	
+			selectionFileNames = new String[1];
+			selectionFileNames[0] = "";
+			//set the filter index of the JFileChooser at 0 if "cancel" button was selected
+			filterIndex = 0;
+			
+			//return the filechooser's informations 
+			//they are stocked into FileChooserInfos
+			FileChooserInfos.getInstance().setSelection(selection);
+			FileChooserInfos.getInstance().setSelectionPathName(selectionPath);
+			FileChooserInfos.getInstance().setSelectionFileNames(selectionFileNames);
+			FileChooserInfos.getInstance().setSelectionSize(selectionSize);			
+			FileChooserInfos.getInstance().setFilterIndex(filterIndex);			
+		}				
+		
+	
+
 	}
 	
 	/**
@@ -147,12 +200,44 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 	public void setDirectorySelectionOnly() {
 		setFileSelectionMode(DIRECTORIES_ONLY);
 	}
-
+	
 	/**
-	 * Set the flag indicating that we want only select files
+	 * Set the flag indicating that we can select multiple files
+	 * @param multipleSelection is enable or not
 	 */
-	public void setFileSelectionOnly() {
-		setFileSelectionMode(FILES_ONLY);
+	public void setMultipleSelection(boolean multipleSelection) {
+		setMultiSelectionEnabled(multipleSelection);
 	}
 	
+	/**
+	 * Get the path of selected files
+	 * @return selectionPath selected file(s) path
+	 */
+	public String getSelectionPathName() {
+		return selectionPath;
+	}
+	
+	/**
+	 * Get the names of selected files
+	 * @return selectionFileNnames selected file(s) path
+	 */
+	public String[] getSelectionFileNames() {
+		return selectionFileNames;
+	}
+	
+	/**
+	 * Get the filter index
+	 * @return this.getFilterIndex() filter index
+	 */
+	public int getFilterIndex() {
+		return getFilterIndex();
+	}
+	
+	/**
+	 * Set the flag indicating the filter index
+	 * @param filterIndex index of the filter
+	 */
+	public void setFilterIndex(int filterIndex) {
+		setFilterIndex(filterIndex);
+	}
 }

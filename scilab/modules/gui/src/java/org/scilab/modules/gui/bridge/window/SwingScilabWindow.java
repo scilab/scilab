@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Bruno JOFRET
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
+ * Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU (Mac OS X port)
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,6 +15,7 @@
 
 package org.scilab.modules.gui.bridge.window;
 
+import java.awt.Image;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -25,9 +27,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingConstants;
 import org.flexdock.docking.DockingManager;
 import org.flexdock.docking.DockingPort;
+import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.defaults.DefaultDockingPort;
 import org.flexdock.view.View;
 
@@ -35,6 +39,7 @@ import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.gui.bridge.toolbar.SwingScilabToolBar;
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.SimpleMenuBar;
 import org.scilab.modules.gui.tab.Tab;
@@ -55,6 +60,8 @@ import org.scilab.modules.renderer.utils.RenderingCapabilities;
  * @author Vincent COUVERT
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
+ * @author Sylvestre LEDRU (Mac OS X port)
+
  */
 public class SwingScilabWindow extends JFrame implements SimpleWindow {
 
@@ -70,12 +77,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	private SimpleTextBox infoBar;
 	
 	private int elementId; // the id of the Window which contains this SimpleWindow
-	
+	boolean MAC_OS_X = (System.getProperty("os.name").toLowerCase().startsWith("mac os x"));
+
 	/**
 	 * Constructor
 	 */
 	public SwingScilabWindow() {
 		super();
+
+
 		// TODO : Only for testing : Must be removed
 		this.setDims(new Size(DEFAULTWIDTH, DEFAULTHEIGHT));
 		this.setTitle("Scilab");
@@ -100,15 +110,54 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		sciDockingListener = new SciDockingListener();
 		sciDockingPort.addDockingListener(sciDockingListener);
 		
+		// let the OS choose the window position if not specified by user.
+		setLocationByPlatform(true);
+		
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				Object[] dockArray = sciDockingPort.getDockables().toArray();
 				for (int i = 0; i < dockArray.length; i++) {
 					((View) dockArray[i]).getActionButton(DockingConstants.CLOSE_ACTION).getAction().actionPerformed(null);
 				}
+				removeWindowListener(this);
 			}
 		});
+		
+		if (MAC_OS_X) {
+			registerForMacOSXEvents();
+		}
 	}
+
+    /**
+     * This method registers some methods against the specific Mac OS X API
+     * (in order to set the "special" mac os x menus)
+     */
+    private void registerForMacOSXEvents() {
+	    try {
+			// Generate and register the OSXAdapter, passing it a hash of all the methods we wish to
+			// use as delegates for various com.apple.eawt.ApplicationListener methods
+			OSXAdapter.setAboutHandler(this, getClass().getDeclaredMethod("OSXabout", (Class[])null));
+			OSXAdapter.setQuitHandler(this, getClass().getDeclaredMethod("OSXquit", (Class[])null));
+			OSXAdapter.setDockIcon(System.getenv("SCI") + "/icons/puffin.png");
+	    } catch (java.lang.NoSuchMethodException e) {
+			System.err.println("OSXAdapter could not find the method: "+e.getLocalizedMessage());
+	    }
+    }
+
+    /**
+     * This method is called by the OSXAdapter class when the specific Mac
+     * OS X about menu is called. It is the only case where this method
+     * should be used
+     */
+    public void OSXabout() {
+	InterpreterManagement.requestScilabExec("about()");
+    }
+
+    public void OSXquit() {
+	InterpreterManagement.requestScilabExec("exit()");
+    }
+
+
 
 	/**
 	 * Creates a swing Scilab window
@@ -176,7 +225,9 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 		Dimension finalDim = new Dimension(Math.min(newWindowSize.getWidth(), maxSize[0]),
 										   Math.min(newWindowSize.getHeight(), maxSize[1]));
 		
-		this.setSize(finalDim);
+		setSize(finalDim);
+		// validate so the new values are taken into account immediately
+		validate();
 	}
 
 	/**
@@ -248,10 +299,12 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 */
 	public void removeTab(Tab tab) {
 		DockingManager.close(((SwingScilabTab) tab.getAsSimpleTab()));
+		DockingManager.unregisterDockable((Dockable) ((SwingScilabTab) tab.getAsSimpleTab()));
 		((SwingScilabTab) tab.getAsSimpleTab()).close();
 		if (getDockingPort().getDockables().isEmpty()) {
+			// remove xxxBars
 			if (toolBar != null) {
-				UIElementMapper.removeMapping(toolBar.getElementId());
+				((SwingScilabToolBar) toolBar).close();
 			}
 			if (menuBar != null) {
 				UIElementMapper.removeMapping(menuBar.getElementId());
@@ -261,8 +314,15 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 			addInfoBar(null);
 			UIElementMapper.removeMapping(this.elementId);
 			
+			// clean all
 			this.removeAll();
 			this.dispose();
+			
+			// disable docking port
+			ActiveDockableTracker.getTracker(this).setActive(null);
+			sciDockingPort.removeDockingListener(sciDockingListener);
+			sciDockingPort = null;
+			sciDockingListener = null;
 		} else {
 			/* Make sur a Tab is active */
 			Set<SwingScilabTab> docks = sciDockingPort.getDockables();
@@ -392,9 +452,7 @@ public class SwingScilabWindow extends JFrame implements SimpleWindow {
 	 * Only useful when the window is not yet visible
 	 */
 	public void updateDimensions() {
-		if (!isVisible()) {
-			this.pack();
-		}
+		pack();
 	}
 	
 }

@@ -39,13 +39,11 @@ DrawableObject::EDisplayStatus DrawableGrayplot::show( void )
   {
     return UNCHANGED;
   }
-  initializeDrawing();
   clip();
   translate();
   showGrayplot();
   endTranslate();
   unClip();
-  endDrawing();
   return SUCCESS;
 }
 /*---------------------------------------------------------------------------------*/

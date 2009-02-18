@@ -48,7 +48,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 #ifdef _MSC_VER
    {
 		char *path=cstk(l2);
-		wsprintf(DriveTemp,"%s",path);
+		sprintf(DriveTemp,"%s",path);
 		if (path)
 		{
 			if ( (path[strlen(path)-1]=='/') || (path[strlen(path)-1]=='\\') )
@@ -80,7 +80,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 			 CreateVar(2,MATRIX_OF_DOUBLE_DATATYPE,&one,&n1,&l2);
 
 			 *stk(l2+0) =  0.0;
-			 *stk(l2+1) =  16895; /* TODO: explain what the hell is 16895 */
+			 *stk(l2+1) =  16895; /* default file mode for a directory on Windows 40777*/
 			 *stk(l2+2) =  0.0;
 			 *stk(l2+3) =  0.0;
 			 *stk(l2+4) =  0.0;

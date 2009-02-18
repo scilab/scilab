@@ -87,7 +87,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscirandlib_la_demosdir)" \
 	"$(DESTDIR)$(libscirandlib_la_etcdir)" \
 	"$(DESTDIR)$(libscirandlib_la_rootdir)" \
 	"$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" \
@@ -137,12 +136,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscirandlib_la_SOURCES)
 DIST_SOURCES = $(libscirandlib_la_SOURCES)
-libscirandlib_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscirandlib_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscirandlib_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscirandlib_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscirandlib_la_demos_DATA) $(libscirandlib_la_etc_DATA) \
-	$(libscirandlib_la_root_DATA) \
+DATA = $(libscirandlib_la_etc_DATA) $(libscirandlib_la_root_DATA) \
 	$(libscirandlib_la_sci_gateway_DATA)
 libscirandlib_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscirandlib_la_include_HEADERS)
@@ -365,7 +362,7 @@ src/c/sexpo.c \
 src/c/ignbin.c \
 src/c/ignpoi.c \
 src/c/sgamma.c \
-src/c/genbet.c 
+src/c/genbet.c
 
 RANDLIB_FORTRAN_SOURCES = \
 src/fortran/gennf.f \
@@ -388,7 +385,7 @@ src/fortran/genprm.f \
 src/fortran/gennor.f
 
 #src/fortran/genbet.f
-#src/fortran/sexpo.f 
+#src/fortran/sexpo.f
 #src/fortran/ignbin.f
 #src/fortran/ignpoi.f
 #src/fortran/sgamma.f
@@ -429,20 +426,6 @@ libscirandlib_la_include_HEADERS = includes/grand.h \
 includes/clcg4.h \
 includes/others_generators.h \
 includes/gw_randlib.h
-
-
-#### randlib : demos files ####
-libscirandlib_la_demosdir = $(mydatadir)/demos/
-libscirandlib_la_demos_DATA = demos/binomial.dem.sce \
-demos/discrete.dem.sce \
-demos/discrete_uni.dem.sce \
-demos/erlang.dem.sce \
-demos/exp.dem.sce \
-demos/geometric.dem.sce \
-demos/hypergeom.dem.sce \
-demos/poisson.dem.sce \
-demos/random.dem.gateway.sce \
-demos/weibull.dem.sce
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -768,23 +751,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscirandlib_la_demosDATA: $(libscirandlib_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscirandlib_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_demosdir)"
-	@list='$(libscirandlib_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscirandlib_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscirandlib_la_demosdir)/$$f'"; \
-	  $(libscirandlib_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscirandlib_la_demosdir)/$$f"; \
-	done
-
-uninstall-libscirandlib_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscirandlib_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscirandlib_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscirandlib_la_demosdir)/$$f"; \
-	done
 install-libscirandlib_la_etcDATA: $(libscirandlib_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscirandlib_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscirandlib_la_etcdir)"
@@ -932,7 +898,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscirandlib_la_demosdir)" "$(DESTDIR)$(libscirandlib_la_etcdir)" "$(DESTDIR)$(libscirandlib_la_rootdir)" "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" "$(DESTDIR)$(libscirandlib_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscirandlib_la_etcdir)" "$(DESTDIR)$(libscirandlib_la_rootdir)" "$(DESTDIR)$(libscirandlib_la_sci_gatewaydir)" "$(DESTDIR)$(libscirandlib_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -980,8 +946,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscirandlib_la_demosDATA \
-	install-libscirandlib_la_etcDATA \
+install-data-am: install-data-local install-libscirandlib_la_etcDATA \
 	install-libscirandlib_la_includeHEADERS \
 	install-libscirandlib_la_rootDATA \
 	install-libscirandlib_la_sci_gatewayDATA
@@ -1022,8 +987,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscirandlib_la_demosDATA \
-	uninstall-libscirandlib_la_etcDATA \
+uninstall-am: uninstall-libscirandlib_la_etcDATA \
 	uninstall-libscirandlib_la_includeHEADERS \
 	uninstall-libscirandlib_la_rootDATA \
 	uninstall-libscirandlib_la_sci_gatewayDATA \
@@ -1039,8 +1003,7 @@ uninstall-am: uninstall-libscirandlib_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscirandlib_la_demosDATA \
-	install-libscirandlib_la_etcDATA \
+	install-info-am install-libscirandlib_la_etcDATA \
 	install-libscirandlib_la_includeHEADERS \
 	install-libscirandlib_la_rootDATA \
 	install-libscirandlib_la_sci_gatewayDATA install-man \
@@ -1049,9 +1012,7 @@ uninstall-am: uninstall-libscirandlib_la_demosDATA \
 	installcheck-am installdirs maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags uninstall uninstall-am \
-	uninstall-libscirandlib_la_demosDATA \
-	uninstall-libscirandlib_la_etcDATA \
+	tags uninstall uninstall-am uninstall-libscirandlib_la_etcDATA \
 	uninstall-libscirandlib_la_includeHEADERS \
 	uninstall-libscirandlib_la_rootDATA \
 	uninstall-libscirandlib_la_sci_gatewayDATA \

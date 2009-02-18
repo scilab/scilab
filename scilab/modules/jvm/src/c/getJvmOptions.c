@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -25,6 +26,7 @@
 #include "strdup_windows.h"
 #endif
 #include "strsubst.h"
+#include "getos.h"
 /*--------------------------------------------------------------------------*/ 
 JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_JavaVMOption)
 {
@@ -44,6 +46,24 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			char *jvm_option_string = NULL;
 
 			int indice = 0;
+			/**
+			 * Serie of dirty ifdef in order to detect the OS for customized xpath queries against the OS
+			 */
+			#ifdef __APPLE__
+			#define OSNAME macosx
+			#else
+			#ifdef __linux__
+			#define OSNAME linux
+			#else
+			#ifdef _MSC_VER
+			#define OSNAME windows
+			#else
+			#define OSNAME other
+			#endif
+			#endif
+			#endif
+			#undef OSNAME
+
 			doc = xmlParseFile (filename_xml_conf);
 
 			if (doc == NULL) 
@@ -55,7 +75,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option | //jvm_options/option[@os='OSNAME']", xpathCtxt);
 
 			if(xpathObj && xpathObj->nodesetval->nodeMax) 
 			{
@@ -109,6 +129,16 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			* Cleanup function for the XML library.
 			*/
 			xmlCleanupParser();
+
+			if (getenv("SCI_JAVA_ENABLE_HEADLESS")!=NULL) {
+				/* When Scilab is built from a virtual machine, it needs
+				 * an X11 server / input
+				 * This is only called by "make doc" by the SCI/Makefile.am
+				 */
+				jvm_options = (JavaVMOption *)REALLOC(jvm_options,sizeof(JavaVMOption)*(indice+1));
+				jvm_options[indice].optionString = "-Djava.awt.headless=true";
+				indice++;
+			}
 
 			*size_JavaVMOption = indice;
 			return jvm_options;

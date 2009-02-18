@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "MALLOC.h"
@@ -35,25 +35,25 @@ int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"x_shift") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"x_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint(_("This handle has no %s property.\n"),"x_shift") ;
+    Scierror(999, _("This handle has no %s property.\n"),"x_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow > 1 && nbCol > 1 )
   {
-    sciprint(_("Bad input, %s should be a row or column vector.\n"),"x_shift") ;
+    Scierror(999, _("Bad input, %s should be a row or column vector.\n"),"x_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbElement != 0 && nbElement != pPOLYLINE_FEATURE (pobj)->n1 ) /* we can specify [] (null vector) to reset to default */
   {
-    sciprint(_("Wrong size for input vector.\n"));
+    Scierror(999, _("Wrong size for input vector.\n"));
     return SET_PROPERTY_ERROR ;
   }
 
@@ -66,7 +66,7 @@ int set_x_shift_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
     if ( pPOLYLINE_FEATURE (pobj)->x_shift == NULL )
     {
-      sciprint(_("%s: No more memory.\n"),"set_x_shift_property");
+      Scierror(999, _("%s: No more memory.\n"),"set_x_shift_property");
       return SET_PROPERTY_ERROR ;
     }
   }

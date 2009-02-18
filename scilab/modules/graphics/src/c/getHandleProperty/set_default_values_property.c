@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
 #include "SetPropertyStatus.h"
@@ -31,13 +31,13 @@ int set_default_values_property( sciPointObj * pobj, size_t stackPointer, int va
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"default_values") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"default_values") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( getDoubleFromStack( stackPointer ) != 1 )
   {
-    sciprint(_("Value must be %d to set default values.\n"),1) ;
+    Scierror(999, _("Value must be %d to set default values.\n"),1) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -49,10 +49,13 @@ int set_default_values_property( sciPointObj * pobj, size_t stackPointer, int va
   {
     return InitAxesModel();
   }
-  else
+  else if (pobj == NULL)
   {
+		/* set default values for current figure */
     return sciSetDefaultValues();
   }
+
+	Scierror(999, _("%s property does not exist for this handle.\n"), "default_values");
   return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

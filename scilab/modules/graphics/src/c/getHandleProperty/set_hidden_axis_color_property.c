@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
@@ -35,13 +35,13 @@ int set_hidden_axis_color_property( sciPointObj * pobj, size_t stackPointer, int
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"hidden_axis_color") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"hidden_axis_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"hidden_axis_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"hidden_axis_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -51,7 +51,7 @@ int set_hidden_axis_color_property( sciPointObj * pobj, size_t stackPointer, int
   }
   else
   {
-    sciprint(_("Color outside of color map boundaries.\n"));
+    Scierror(999, _("Color outside of color map boundaries.\n"));
     return SET_PROPERTY_ERROR ;
   }
 

@@ -5,6 +5,5 @@ EXPORTS
 ;--------------------------
 ; elementary_functions
 ;--------------------------
-dsort_
+callFunctionFromGateway
 
-EXPORTS

@@ -22,9 +22,7 @@ import org.scilab.modules.renderer.jni.FigureScilabCall;
  */
 public class InteractiveZoomEvent extends GraphicEvent {
 
-	
 	private DrawableFigureGL trackedCanvas;
-	private String curInfoMessage;
 	private long objectHandle;
 	
 	/**
@@ -54,12 +52,10 @@ public class InteractiveZoomEvent extends GraphicEvent {
 	 * Perform the interactive zoom
 	 */
 	public void performEvent() {
-		// set a new info message
-		curInfoMessage = trackedCanvas.getInfoMessage();
-		trackedCanvas.setInfoMessage(Messages.gettext("Click on the figure to select zooming area. Click again to stop."));
 		
 		int[] area = {0, 0, 0, 0};
 		// get the zooming area
+		// the info message is modified there
 		trackedCanvas.getRendererProperties().rubberBox(trackedCanvas.getFigureId(), true, true, null, area);
 		
 		// zoom
@@ -67,9 +63,6 @@ public class InteractiveZoomEvent extends GraphicEvent {
 		
 		// redraw the figure to see the changes
 		trackedCanvas.drawCanvas();
-		
-		// reset the infoMessage
-		trackedCanvas.setInfoMessage(curInfoMessage);
 	}
 
 }

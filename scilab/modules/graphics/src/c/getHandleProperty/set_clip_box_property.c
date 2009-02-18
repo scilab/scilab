@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -34,14 +34,14 @@ int set_clip_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"clip_box") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"clip_box") ;
     return SET_PROPERTY_ERROR ;
   }
 
   /* We must have a matrix of 4x1 */
   if ( nbRow * nbCol != 4 )
   {
-    sciprint(_("Argument must be a vector of size %d.\n"),4);
+    Scierror(999, _("Argument must be a vector of size %d.\n"),4);
     return SET_PROPERTY_ERROR ;
   }
   status1 = sciSetClipping( pobj, getDoubleMatrixFromStack( stackPointer ) ) ;

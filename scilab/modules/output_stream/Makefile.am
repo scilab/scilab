@@ -37,8 +37,8 @@ libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 
@@ -80,10 +80,6 @@ includes/Scierror.h \
 includes/basout.h \
 includes/msgs.h \
 includes/sciprint_full.h
-
-#### output_stream : demos files ####
-libscioutput_stream_la_demosintrodir=$(mydatadir)/demos/intro/
-libscioutput_stream_la_demosintro_DATA =
 
 include $(top_srcdir)/Makefile.incl.am
 

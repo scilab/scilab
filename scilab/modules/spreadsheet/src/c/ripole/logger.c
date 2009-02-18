@@ -327,7 +327,7 @@ int LOGGER_log( char *format, ...)
 			break;
 		case _LOGGER_SYSLOG:
 			#ifndef _MSC_VER
-			syslog(_LOGGER_syslog_mode,output);
+			syslog(_LOGGER_syslog_mode,"%s",output);
 			#endif
 			break;
 		case _LOGGER_STDOUT:

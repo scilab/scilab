@@ -27,36 +27,39 @@
 #include "BOOL.h"
 
 /* Handle functions */
-extern void sciSetHandle (sciPointObj * pobj, sciHandleTab * pvalue);
-extern sciHandleTab * sciGetpendofhandletab(void); /* HANDLE MANAGEMENT */
-extern int sciAddNewHandle (sciPointObj * pobj);
-extern int sciDelHandle (sciPointObj * pobj);
-extern long sciGetHandle (sciPointObj * pobj);
-extern sciHandleTab *sciGetHandleTabPointer (sciPointObj * pobj);
-extern sciPointObj *sciGetPointerFromHandle (long handle);
+void sciSetHandle (sciPointObj * pobj, long value);
+int sciAddNewHandle (sciPointObj * pobj);
+int sciDelHandle (sciPointObj * pobj);
+long sciGetHandle (sciPointObj * pobj);
+sciPointObj *sciGetPointerFromHandle (long handle);
 sciPointObj *sciGetPointerFromJavaIndex (int javaIndex);
 
-extern sciRelationShip *sciGetRelationship (sciPointObj * pobj); /* HANDLE MANAGEMENT */
-extern int sciSetParent (sciPointObj * pson, sciPointObj * pparent); /* HANDLE MANAGEMENT */
-extern sciPointObj *sciGetParent (sciPointObj * pobj); /* HANDLE MANAGEMENT */
-extern BOOL sciAddThisToItsParent (sciPointObj * pthis,  sciPointObj * pparent); /* HANDLE MANAGEMENT */
+sciRelationShip *sciGetRelationship (sciPointObj * pobj); /* HANDLE MANAGEMENT */
+int sciSetParent (sciPointObj * pson, sciPointObj * pparent); /* HANDLE MANAGEMENT */
+sciPointObj *sciGetParent (sciPointObj * pobj); /* HANDLE MANAGEMENT */
+BOOL sciAddThisToItsParent (sciPointObj * pthis,  sciPointObj * pparent); /* HANDLE MANAGEMENT */
 BOOL sciAddThisToItsParentLastPos(sciPointObj * pthis, sciPointObj * parent); /* HANDLE MANAGEMENT */
-extern BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent); /* HANDLE MANAGEMENT */
+BOOL sciDelThisToItsParent (sciPointObj * pthis, sciPointObj * pparent); /* HANDLE MANAGEMENT */
 BOOL sciDelSonFromItsParent(sciSons * son, sciPointObj * parent); /* HANDLE MANAGEMENT */
-extern sciSons *sciGetSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
-extern sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
-extern sciSons * sciGetNextAccessibleSon( sciSons * son ) ; /* HANDLE MANAGEMENT */
-extern sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj ) ; /* HANDLE MANAGEMENT */
-extern sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
-extern int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle ) ;
-extern BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;
-extern int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
+sciSons *sciGetSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
+sciSons *sciGetLastSons (sciPointObj * pobj); /* HANDLE MANAGEMENT */
+sciSons * sciGetNextAccessibleSon( sciSons * son ) ; /* HANDLE MANAGEMENT */
+sciSons * sciGetFirstAccessibleSon( sciPointObj * pObj ) ; /* HANDLE MANAGEMENT */
+sciSons * sciFindSon( sciPointObj * searchedObj, sciPointObj * parentObj ) ;
+int sciRelocateHandles( unsigned long handles[], int nbHandles, unsigned long newParentHandle ) ;
+BOOL sciCanBeSonOf( sciPointObj * son, sciPointObj * parent ) ;
+int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
 
 /**
  * Check if a handle is still valid
  */
 BOOL isHandleValid(long handle);
 
-sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int index);
+sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int lindex);
+
+/**
+ * Generate a new handle index for an object.
+ */
+long generateNewHandle(sciPointObj * pObj);
 
 #endif /* __SCI_HANDLE_MANAGEMENT__ */

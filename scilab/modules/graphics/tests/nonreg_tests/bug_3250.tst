@@ -36,7 +36,7 @@ if ((freeMemInit - freeMemEnd) > 1.0e5) then pause; end
 // second test. Open a lot of window. Scilab should provide an error but not crash.
 
 for i=1:1000,
- scf();
+ execstr("scf()","errcatch");
 end
 
 

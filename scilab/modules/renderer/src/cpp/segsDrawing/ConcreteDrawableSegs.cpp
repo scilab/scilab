@@ -89,6 +89,9 @@ void ConcreteDrawableSegs::removeDrawingStrategies(void)
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableSegs::getBoundingBox(double bounds[6])
 {
+	// to be sure that the inner structure is up to date.
+	update();
+
   m_pDecomposer->getBoundingBox(bounds);
 }
 /*---------------------------------------------------------------------------------*/

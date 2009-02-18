@@ -149,6 +149,7 @@ function %h_p(h)
                 "axes_visible = "+sci2exp(h.axes_visible)
                 "axes_reverse = "+sci2exp(h.axes_reverse)
                 "grid = "+sci2exp(h.grid,0)
+				"grid_position = "+sci2exp(h.grid_position)
                 "x_location = "+sci2exp(h.x_location)
                 "y_location = "+sci2exp(h.y_location)
                 "title: "+fmtchildren(h.title)
@@ -296,6 +297,7 @@ function %h_p(h)
                 "color_map= matrix "+strcat(string(size(h.color_map)),'x')
                 "pixmap = "+sci2exp(h.pixmap)
                 "pixel_drawing_mode = "+sci2exp(h.pixel_drawing_mode,0)
+				"anti_aliasing = " + sci2exp(h.anti_aliasing)
                 "immediate_drawing = "+sci2exp(h.immediate_drawing)
                 "background =  "+string(h.background)
                 "visible = "+sci2exp(h.visible)
@@ -393,6 +395,10 @@ function %h_p(h)
                 "data = "+d
                 "triangles = "+f
                 "z_bounds = "+sci2exp(h.z_bounds,0)
+				"color_range = " + sci2exp(h.color_range, 0);
+				"outside_colors = " + sci2exp(h.outside_colors, 0);
+				"line_mode = " + sci2exp(h.line_mode);
+				"foreground = " + sci2exp(h.foreground);
                 "clip_state = "+sci2exp(h.clip_state)
                 "clip_box = "+sci2exp(h.clip_box,0)
                 "user_data = "+fmtuser_data(u)

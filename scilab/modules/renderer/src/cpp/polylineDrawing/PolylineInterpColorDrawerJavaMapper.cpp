@@ -57,11 +57,6 @@ void PolylineInterpColorDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineInterpColorDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void PolylineInterpColorDrawerJavaMapper::drawPolyline(const double xCoords[], const double yCoords[],
                                                        const double zCoords[], const int colors[], int nbCoords)
 {

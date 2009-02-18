@@ -12,7 +12,7 @@
 // action_binding module initialisation file
 // ====================================================================
 
-//Load  functions librarie
+//Load  functions libraries
 //load("SCI/modules/action_binding/macros/lib");
 
 //add help chapter

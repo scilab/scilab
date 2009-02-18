@@ -821,7 +821,7 @@ int iIsComplex(int _iVar)
 
 	In			:
 	_iVarNum	: Variable number in the stack
-sci_abs
+
 	Out			:
 	_piRows		: Matrix lines
 	_piCols		: Matrix columns
@@ -848,7 +848,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
 	int iValType		= *istk(iAddrBase);
 	int iAddrOffset		= 0;
-	int iIndex			= 0;
 
 	if(iValType < 0)
 	{
@@ -1099,8 +1098,7 @@ int GetDimFromVar(int _iVarNum, int _iNum/*Oo*/, int* _piVal)
 		}
 		GetRhsVar(_iVarNum, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iRealData);
 		pdblRealData = stk(iRealData);
-		//*_piVal = (int)Max(pdblRealData[0], 0);
-		*_piVal	= (int)Max(pdblRealData[0], 0);
+		*_piVal = (int)Max(pdblRealData[0], 0);
 	}
 	else if(iType == sci_ints)
 	{
@@ -1221,8 +1219,6 @@ int iGetOrient(int _iVal)
 	int iCols			= 0;
 	int iRealData		= 0;
 	char **szRealData	= 0;
-	double dblSel = 0;
-	double *pdblRealData = 0;
 
 	if(GetType(2) == sci_matrix)
 	{
@@ -1338,8 +1334,8 @@ int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealDa
 	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
 }
 
-/*
-iAllocMatrixOfDoubleComplex --
+/* 
+iAllocComplexMatrixOfDouble --
   Reserve space in stack for a matrix of complex.
 Arguments
   _iPos : index of the Scilab variable
@@ -1692,7 +1688,6 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg)
 {
-	int iIndex			= 0;
 	int iAddrOffset		= 0;
 	*_piRows			= *istk(_iAddr + 1);
 	*_piCols			= *istk(_iAddr + 2);

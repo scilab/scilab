@@ -5,3 +5,6 @@ EXPORTS
 ; from graphics
 sciGetNum
 getFigureFromIndex
+sciIsExistingFigure
+sciGetEntityType
+sciGetPointerFromHandle

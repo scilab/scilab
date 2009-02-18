@@ -97,19 +97,18 @@ proc configurefoo_bp {} {
     pack $conf.f.f1
 
     frame $conf.f.f2
-    set bestwidth [mcmaxra "Input arguments:" \
-                           "Add/Chan&ge" \
-                           "&Remove"]
     frame $conf.f.f2.f2l
     set tl [mc "Input arguments:"]
     label $conf.f.f2.f2l.label -text $tl -font $menuFont
     set buttonAddc $conf.f.f2.f2l.buttonAdd
     eval "button $buttonAddc [bl "Add/Chan&ge"] \
-            -width $bestwidth -font \[list $menuFont\] "
+            -font \[list $menuFont\] "
     set buttonRemove $conf.f.f2.f2l.buttonRemove
     eval "button $buttonRemove [bl "&Remove"] \
-            -width $bestwidth -font \[list $menuFont\] "
-    pack $conf.f.f2.f2l.label $buttonAddc $buttonRemove -pady 4
+            -font \[list $menuFont\] "
+    grid $conf.f.f2.f2l.label -row 0 -column 0 -sticky we -pady 4
+    grid $buttonAddc          -row 1 -column 0 -sticky we -pady 4
+    grid $buttonRemove        -row 2 -column 0 -sticky we -pady 4
     frame $conf.f.f2.f2r
     set listboxinput $conf.f.f2.f2r.listboxinput
     set listboxinputval $conf.f.f2.f2r.listboxinputval
@@ -137,15 +136,15 @@ proc configurefoo_bp {} {
     pack $conf.f.f2 -pady 4
 
     frame $conf.f.f9
-    set bestwidth [mcmaxra "OK" \
-                           "Cancel"]
     button $conf.f.f9.buttonOK -text "OK" -command "OKconf_bp $conf"\
-           -width $bestwidth -font $menuFont
+           -font $menuFont
 #    set bl [mc "Cancel"]
 #    button $conf.f.f9.buttonCancel -text $bl -command "Cancelconf_bp $conf"\
-#           -width $bestwidth -font $menuFont
-#    pack $conf.f.f9.buttonOK $conf.f.f9.buttonCancel -side left -padx 10
-    pack $conf.f.f9.buttonOK
+#           -font $menuFont
+    grid $conf.f.f9.buttonOK     -row 0 -column 0 -sticky we -padx 10
+#    grid $conf.f.f9.buttonCancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $conf.f.f9 0 -uniform 1
+#    grid columnconfigure $conf.f.f9 1 -uniform 1
     pack $conf.f.f9 -pady 4
 
     pack $conf.f
@@ -514,6 +513,7 @@ proc checkarglist {funname} {
 
 #proc Cancelconf_bp {w} {
 # Better always close the window with OK button. Saves variables management.
+# <TODO> what's happening if the user closes the configure dialog with the upper-right red cross? It's not forbidden!
 #    destroy $w
 #}
 
@@ -544,6 +544,7 @@ proc Obtainall_bp {} {
     # it means that the current buffer is indeed a Scipad ancillary file
     if {[llength $funsinfo] == 0} {
         tk_messageBox -icon warning -type ok -title [mc "Scipad ancillary file"] \
+                -parent $conf \
                 -message [append messagestring \
                     [mc "The current file contains only Scipad ancillaries that cannot be debugged in Scipad."] "\n\n" \
                     [mc "Reserved function names are:\n"] \
@@ -772,7 +773,7 @@ proc checkforduplicateorunterminatedfuns {} {
 # functions without an endfunction keyword
 # otherwise (no duplicate found), return false
 
-    global listoffile
+    global listoffile pad
 
     set allfuns [getallfunsinalltextareas]
 
@@ -807,7 +808,7 @@ proc checkforduplicateorunterminatedfuns {} {
                             when \"Colorize \'strings\'\" is unchecked in the Options menu."] "\n " \
                             [mc "This known bug can be worked around simply by checking \"Colorize \'&strings\'\"."]
                     set tit [mc "Unterminated function definition found"]
-                    tk_messageBox -message $mes -icon warning -title $tit
+                    tk_messageBox -message $mes -icon warning -title $tit -parent $pad
                     return true
                 }
                 lappend listoffunnames $funnam "$listoffile(\"$textarea\",fullname)\n"
@@ -840,7 +841,7 @@ proc checkforduplicateorunterminatedfuns {} {
                  The debugger cannot cope with multiple copies of functions.\n \
                  The following duplicates were detected:\n"] $dupfunfilesstr
         set tit [mc "Duplicate function definitions found"]
-        tk_messageBox -message $mes -icon warning -title $tit
+        tk_messageBox -message $mes -icon warning -title $tit -parent $pad
         return true
     } else {
         return false

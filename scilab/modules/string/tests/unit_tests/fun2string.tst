@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 funcprot(0);
 
 function y=foo(a)
@@ -109,7 +111,7 @@ ref=["function []=foo()";
      "  y = 1";
      "  z = 3;";
      "endfunction"];
-mputl(ref,TMPDIR+'/foo.sci')
+mputl(ref,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci')
 if or(fun2string(foo,'foo')<>ref) then pause,end
 

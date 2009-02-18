@@ -246,13 +246,13 @@ if test -z "$JAVA_HOME"; then
             case $OS in
                 *darwin* | *Darwin*)
                     # Seems to be always that under Mac OS X. Don't hesitate to submit a bug report if it is not the case.
-					JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
-                    LD_LIBRARY_PATH="/System/Library/Frameworks/JavaVM.framework/Libraries:$LD_LIBRARY_PATH"
-					if test $SCIVERBOSE -ne 0; then
-						echo "Using default Mac OS X vm: $JAVA_HOME"
-						echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-					fi
-					;;
+		    JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
+                    LD_LIBRARY_PATH="$JAVA_HOME/../Libraries:$LD_LIBRARY_PATH"
+		    if test $SCIVERBOSE -ne 0; then
+			echo "Using default Mac OS X vm: $JAVA_HOME"
+			echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+		    fi
+		    ;;
                 *)
 					;;
 			esac
@@ -261,7 +261,7 @@ fi
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
 if test -z "$JAVA_HOME"; then
-	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ "
+	JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/"
     for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
 		if test $SCIVERBOSE -ne 0; then
 			echo "Trying to find Java in $JAVA_HOME "
@@ -377,9 +377,10 @@ case $OS in
     *darwin* | *Darwin*) # MacOS X
 	# For Mac OS X, Since path are different from the JVM normal tree, don't need to detect 
 	# the CPU
+	JAVA_SHLIB="libjava.jnilib"
 	;;
 	*)
-		echo "Could not find the Java configuration for the OS <${OS}>. Please contact us."
+		echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
 		;;
 esac
 
@@ -416,7 +417,6 @@ export GTK_MODULES
 if test $SCIVERBOSE -ne 0; then
 	echo "SCI : $SCI"
 	echo "SCIBIN : $SCIBIN"
-	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
 	echo "PATH : $PATH"
 fi
 
@@ -438,13 +438,27 @@ cd "$OLDPWD"
 #fi
 #export PVM_ARCH
 
-if test "$LD_LIBRARY_PATH" = ""; then
-	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/
-else
-	LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$LD_LIBRARY_PATH
-fi
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+
+case $OS in
+    *darwin* | *Darwin*) # MacOS X
+        # When using some packaging tools like fink which are storing the info in /sw/lib
+        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
+	# Export the path to the Scilab lib when Scilab has been install ...
+	# to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
+        DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
+	export DYLD_LIBRARY_PATH
+        ;;
+    *)
+esac
+
+
 if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+	if test ! -z "$DYLD_LIBRARY_PATH"; then
+	    echo "DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+	fi
 fi
 export LD_LIBRARY_PATH
 export PATH
@@ -483,7 +497,7 @@ do_help()
 	echo     "      -ns             : do not execute scilab.start startup file."
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
 	echo     "      -nw             : start Scilab without specialized Scilab Window."
-	echo     "      -nwni           : start Scilab without user interaction (batch mode)."
+	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disable the need of Java."
 	echo     "      -nogui          : start Scilab without user GUI (batch mode)."
 	echo     "      -version        : print product version and exit."
 	echo     "      --texmacs       : reserved for TeXMacs."
@@ -531,7 +545,7 @@ do_lib()
 rest="no"
 case $# in
     0) # No arg, run Scilab
-		do_scilex &
+		do_scilex
         ;;
     2) # Only two arg
         case $1 in
@@ -599,6 +613,10 @@ if test "$rest" = "yes"; then
     case $sciarg in
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	      ;;
+      -psn_*)
+	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
+	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
+	    ;;
       -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;

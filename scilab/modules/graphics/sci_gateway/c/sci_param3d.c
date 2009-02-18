@@ -24,7 +24,6 @@
 #include "DestroyObjects.h"
 #include "GetProperty.h"
 #include "sciCall.h"
-#include "sciprint.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -35,7 +34,7 @@ int sci_param3d( char * fname, unsigned long fname_len )
   static double  ebox_def[6]= { 0,1,0,1,0,1};
   double *ebox = ebox_def ;
   static int iflag_def[3]= {1,2,4};
-  int iflag[3], *ifl, ix1, one=1, zero=0;
+  int iflag[3], *ifl, ix1, one=1;
   double  alpha_def=35.0 , theta_def=45.0 ;
   double *alpha=&alpha_def, *theta=&theta_def;
   int m1, n1, l1, m2, n2, l2, m3, n3, l3;
@@ -51,7 +50,7 @@ int sci_param3d( char * fname, unsigned long fname_len )
   char * labels = NULL ;
 
   if (Rhs <= 0) {
-    sci_demo(fname,"t=0:0.1:5*%pi;param3d(sin(t),cos(t),t/10,35,45,'X@Y@Z',[2,4]);", &zero);
+    sci_demo(fname,"t=0:0.1:5*%pi;param3d(sin(t),cos(t),t/10,35,45,'X@Y@Z',[2,4]);", FALSE);
     return 0;
   }
 

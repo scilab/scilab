@@ -4,7 +4,9 @@
 EXPORTS
 
 ; core
-vstk_
-stack_
-callFunctionFromGateway
-blktit_
+ blktit_
+ callFunctionFromGateway
+ vstk_
+ stack_
+ com_
+ BuildWithVS8ExpressF2C

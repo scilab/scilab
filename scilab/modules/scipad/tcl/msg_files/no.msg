@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the 
 #  individual authors, listed in the header of each file
@@ -329,6 +329,7 @@
 ::msgcat::mcset no "The contents of " "Innholdet i"
 ::msgcat::mcset no "has changed on disk, save it anyway?"\
                    "er endret på disken, lagre den uansett?"
+::msgcat::mcset no "The contents and/or properties of " "Innholdet i"
 ::msgcat::mcset no "has been modified outside of Scipad. Do you want to\
                     reload it?"\
                    "har blitt modifisert utenfor Scipad. Ønsker du å lese\
@@ -517,7 +518,7 @@
                    "\n Lagd av Joseph Acosta, joeja@mindspring.com.\n\
                     Modifisert av Scilab Constortium.\n Revidert av Enrico\
                     Segre 2003-2006.\n Diverse forbedringer, spesielt\
-                    feilsøkingsverktøy av FranÃ§ois Vogel 2004-2008."
+                    feilsøkingsverktøy av FranÃ§ois Vogel 2004-2009."
 
 
 # infomessages.tcl

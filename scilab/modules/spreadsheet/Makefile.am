@@ -23,6 +23,8 @@ libscispreadsheet_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ripole \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/io/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
@@ -56,21 +58,5 @@ libscispreadsheet_la_sci_gateway_DATA = sci_gateway/spreadsheet_gateway.xml
 ####�spreadsheet : include files ####
 libscispreadsheet_la_includedir=$(pkgincludedir)/spreadsheet
 libscispreadsheet_la_include_HEADERS = includes/gw_spreadsheet.h
-
-
-####�core : demos files ####
-libscispreadsheet_la_demosdir=$(mydatadir)/demos/
-libscispreadsheet_la_demos_DATA = demos/spreadsheet.dem.sce
-
-
-####�spreadsheet : demos files ####
-libscispreadsheet_la_demosxlsdir=$(mydatadir)/demos/xls/
-libscispreadsheet_la_demosxls_DATA = demos/xls/Testo1.xls \
-demos/xls/o1.xls \
-demos/xls/Test1.xls \
-demos/xls/Testobig.xls \
-demos/xls/Testbig.xls \
-demos/xls/t1.xls \
-demos/xls/README
 
 include $(top_srcdir)/Makefile.incl.am

@@ -11,7 +11,7 @@
 // ====================================================================
 // localization module initialisation file 
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 //load('SCI/modules/localization/macros/lib');
 // ====================================================================
 //add help chapter

@@ -58,11 +58,6 @@ void ArcFillDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void ArcFillDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void ArcFillDrawerJavaMapper::setBackColor(int color)
 {
   m_pJavaObject->setBackColor(color);

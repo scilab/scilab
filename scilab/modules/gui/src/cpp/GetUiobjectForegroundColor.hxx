@@ -21,7 +21,7 @@ extern "C"
 #include "localization.h"
 #include "UicontrolStyleToString.h"
 #include "GetUiobjectForegroundColor.h"
-#include "sciprint.h"
+#include "Scierror.h"
 }
 
 #endif /* __GET_UIOBJECT_FOREGROUNDCOLOR_HXX__ */

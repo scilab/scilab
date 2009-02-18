@@ -105,7 +105,7 @@ function genlib_old(nam,path,force,verbose,names)
     end
     
     if names_changed
-      mputl(names,path+'names') // write 'names' file in directory 
+      mputl(names,path+'names'); // write 'names' file in directory 
     end
     // create library
     execstr(nam+'=lib('''+path1+''')')

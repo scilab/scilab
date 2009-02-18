@@ -17,7 +17,7 @@
 
 #include "GetHashTable.h"
 #include "getHandleProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "getDictionaryGetProperties.h"
 #include "MALLOC.h"
@@ -46,7 +46,7 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 154
+#define NB_PROPERTIES 158
 
 /**
  * list of all property names and associated functions in scilab
@@ -206,7 +206,11 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
   { "fractional_font"     , get_fractional_font_property      },
   { "links"               , get_links_property                },
   { "legend_location"     , get_legend_location_property      },
-  { "filled"              , get_filled_property               }
+  { "filled"              , get_filled_property               },
+	{ "outside_colors"      , get_outside_colors_property       },
+	{ "color_range"         , get_color_range_property          },
+	{ "grid_position"       , get_grid_position_property        },
+	{ "anti_aliasing"       , get_anti_aliasing_property        }
 } ;
 
 /*--------------------------------------------------------------------------*/
@@ -243,8 +247,7 @@ int callGetProperty( sciPointObj * pObj, char * propertyName )
 {
   getPropertyFunc accessor = searchGetHashtable( getHashTable, propertyName ) ;
   if ( accessor == NULL )
-  {
-    sciprint( _("Unknown property: %s.\n"), propertyName ) ;
+  {Scierror(999, _("Unknown property: %s.\n"), propertyName ) ;
     return -1 ;
   }
   return accessor( pObj ) ;

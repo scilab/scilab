@@ -38,7 +38,6 @@ function show_edges(p,sup,leg)
       ge_do_replot(GraphList)
     end
     ge_hilite_edges(p,GraphList)
-    show_pixmap()
   end
   scf(old)
 endfunction

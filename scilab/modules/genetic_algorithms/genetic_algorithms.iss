@@ -18,7 +18,7 @@ Source: modules\{#GENETICALGORITHMS}\changelog.txt; DestDir: {app}\modules\{#GEN
 Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.quit; DestDir: {app}\modules\{#GENETICALGORITHMS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#GENETICALGORITHMS}\etc\{#GENETICALGORITHMS}.start; DestDir: {app}\modules\{#GENETICALGORITHMS}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#GENETICALGORITHMS}\examples\*.*; DestDir: {app}\modules\{#GENETICALGORITHMS}\examples; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#GENETICALGORITHMS}\demos\*.*; DestDir: {app}\modules\{#GENETICALGORITHMS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#GENETICALGORITHMS}\help\addchapter.sce; DestDir: {app}\modules\{#GENETICALGORITHMS}\help; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

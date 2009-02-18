@@ -98,10 +98,16 @@ int int_objsprintf(char *fname,unsigned long fname_len)
 	while (1)
 	{
 		if ((rval=do_xxprintf("msprintf",(FILE *) 0,cstk(l1),Rhs,1,lcount,(char **) &lstr)) < 0) break;
+		
 		lcount++;
 		str =(char *) lstr;
+		if ( str == NULL )
+		{
+			Scierror(999,_("%s: Wrong value of input argument %d: data doesn't fit with format.\n"),fname,1);
+			return 0;
+		}
 		str1 = str;
-		while (*str != '\0') {
+		while (*str != '\0')  {
 			if (strncmp(str,"\\n",2) ==0) {
 				k=(int)(str-str1);
 				if (! cat_to_last) 

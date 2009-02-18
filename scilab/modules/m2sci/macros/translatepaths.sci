@@ -147,7 +147,7 @@ for i=1:size(funpath,1)
       txt=[]
       txt=mgetl(scipath)
       txt=[txt;" ";mgetl(tmp_sci_file)]
-      mputl(txt,scipath) 
+      mputl(txt,scipath);
       mdelete(tmp_sci_file)
     end
     
@@ -179,8 +179,8 @@ for i=1:size(funpath,1)
       mdelete(tmp_resume_m2sci_file)
     end
   end
-  mputl(logtxt,res_path+'log')
-  mputl(resumelogtxt,res_path+'resumelog')
+  mputl(logtxt,res_path+'log');
+  mputl(resumelogtxt,res_path+'resumelog');
 end
 
 // File closing
@@ -205,12 +205,12 @@ buildertxt=[]
 buildertxt($+1)="path=get_absolute_file_path(""builder.sce"")"
 buildertxt($+1)="genlib("""+namelib+"lib"",path)"
 builderfile=res_path+"builder.sce"
-mputl(buildertxt,builderfile)
+mputl(buildertxt,builderfile);
 //loader.sce
 loadertxt=[]
 loadertxt($+1)="path=get_absolute_file_path(""loader.sce"")"
 loadertxt($+1)="load(path+"+"""lib"")"
 loaderfile=res_path+"loader.sce"
-mputl(loadertxt,loaderfile)
+mputl(loadertxt,loaderfile);
 
 endfunction

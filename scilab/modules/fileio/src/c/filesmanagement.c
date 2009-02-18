@@ -36,12 +36,13 @@ typedef struct {
 } scilabfile;
 /*--------------------------------------------------------------------------*/
 static scilabfile *ScilabFileList = NULL;
-static int CurFile =-1;
+static int CurFile = -1;
+static int PreviousFile = -1;
 static int CurrentMaxFiles=DEFAULT_MAX_FILES;
 /*--------------------------------------------------------------------------*/
 FILE *GetFileOpenedInScilab(int Id)
 {
-	int fd1=0;
+	int fd1 = 0;
 
 	fd1 = (Id != -1) ?  Min(Max(Id,0),GetMaximumFileOpenedInScilab()-1) : CurFile ;
 
@@ -57,9 +58,17 @@ int GetCurrentFileId(void)
 	return CurFile;
 }
 /*--------------------------------------------------------------------------*/
+int GetPreviousFileId(void)
+{
+	return PreviousFile;
+}
+/*--------------------------------------------------------------------------*/
 void SetCurrentFileId(int Id)
 {
-	CurFile=Id;
+	if (Id == -1) PreviousFile = -1;
+	else PreviousFile = CurFile;
+	
+	CurFile = Id;
 }
 /*--------------------------------------------------------------------------*/
 void SetFileOpenedInScilab(int Id,FILE *fptr)

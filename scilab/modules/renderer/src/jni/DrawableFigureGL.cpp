@@ -135,6 +135,9 @@ voidshowWindowID=NULL;
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
 voidcloseGraphicCanvasID=NULL; 
+voidsetUseSingleBufferjbooleanID=NULL; 
+jintgetAntialiasingQualityID=NULL; 
+voidsetAntialiasingQualityjintID=NULL; 
 
 
 }
@@ -193,6 +196,9 @@ voidshowWindowID=NULL;
 voidsetNbSubwinsjintID=NULL; 
 voidopenGraphicCanvasID=NULL; 
 voidcloseGraphicCanvasID=NULL; 
+voidsetUseSingleBufferjbooleanID=NULL; 
+jintgetAntialiasingQualityID=NULL; 
+voidsetAntialiasingQualityjintID=NULL; 
 
 
 }
@@ -861,6 +867,55 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "closeGraphicCanvas");
 }
 }
                          curEnv->CallVoidMethod( this->instance, voidcloseGraphicCanvasID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void DrawableFigureGL::setUseSingleBuffer (bool useSingleBuffer){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetUseSingleBufferjbooleanID==NULL) { /* Use the cache Luke */ voidsetUseSingleBufferjbooleanID = curEnv->GetMethodID(this->instanceClass, "setUseSingleBuffer", "(Z)V" ) ;
+if (voidsetUseSingleBufferjbooleanID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUseSingleBuffer");
+}
+}
+jboolean useSingleBuffer_ = ((bool) useSingleBuffer ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallVoidMethod( this->instance, voidsetUseSingleBufferjbooleanID ,useSingleBuffer_);
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+int DrawableFigureGL::getAntialiasingQuality (){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (jintgetAntialiasingQualityID==NULL) { /* Use the cache Luke */ jintgetAntialiasingQualityID = curEnv->GetMethodID(this->instanceClass, "getAntialiasingQuality", "()I" ) ;
+if (jintgetAntialiasingQualityID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "getAntialiasingQuality");
+}
+}
+                        jint res =  (jint) curEnv->CallIntMethod( this->instance, jintgetAntialiasingQualityID );
+                        if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+void DrawableFigureGL::setAntialiasingQuality (int quality){
+
+JNIEnv * curEnv = getCurrentEnv();
+
+if (voidsetAntialiasingQualityjintID==NULL) { /* Use the cache Luke */ voidsetAntialiasingQualityjintID = curEnv->GetMethodID(this->instanceClass, "setAntialiasingQuality", "(I)V" ) ;
+if (voidsetAntialiasingQualityjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setAntialiasingQuality");
+}
+}
+                         curEnv->CallVoidMethod( this->instance, voidsetAntialiasingQualityjintID ,quality);
                         if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

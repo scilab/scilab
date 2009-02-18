@@ -33,12 +33,12 @@ function [blklstr,cmatr,ccmat,cor,corinv,ok]=extract_implicit(blklst,cmat,ccmat)
   
   if size(ccmat,1)>0 then
     if or(dsearch(ccmat(:,1),imp,'d')<>0) then
-      x_message('An implicit block has an event input')
+      messagebox('An implicit block has an event input',"modal","error");
       ok=%f
       return
     end
     if  or(dsearch(ccmat(:,3),imp,'d')<>0) then
-      x_message('An implicit block has an event output')
+      messagebox('An implicit block has an event output',"modal","error");
       ok=%f
       return
     end

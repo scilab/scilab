@@ -187,6 +187,26 @@ public:
 	 */
 	virtual void closeGraphicCanvas(void) = 0;
 
+	/**
+	 * Force the window to be be single buffered
+	 */
+	virtual void setUseSingleBuffer(bool useSingleBuffer) = 0;
+
+
+	/**
+	 * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+	 */
+	virtual int getAntialiasingQuality(void) = 0;
+	
+	/**
+	 * Modify the quality of antialiasing or disable it.
+	 * If quality if 0, the antialiasing is disables,
+	 * otherwise it might be either 1, 2, 4, 8 or 16 and then
+	 * specify the number of pass for antialiasing.
+	 * @param quality positive integer.
+	 */
+	virtual void setAntialiasingQuality(int quality) = 0;
+
   /**
    * Return the drawed object
    */

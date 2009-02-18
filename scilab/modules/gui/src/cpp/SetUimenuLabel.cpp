@@ -19,17 +19,17 @@ int SetUimenuLabel(sciPointObj* sciObj, size_t stackPointer, int valueType, int 
 {
   // Label must be only one character string
   if (valueType != sci_strings) {
-    sciprint(_("Wrong type for '%s' property: A string expected.\n"), "Label");
+    Scierror(999, _("Wrong type for '%s' property: A string expected.\n"), "Label");
     return SET_PROPERTY_ERROR;
   }
   if (nbCol != 1) {
-    sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Label");
+    Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Label");
     return SET_PROPERTY_ERROR;
   }
 
   if (nbRow == 0) {
     // This case should never happen beacause if nbRow==0 then nbCol is also 0
-    sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Label");
+    Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Label");
     return SET_PROPERTY_ERROR;
   }
 
@@ -41,7 +41,7 @@ int SetUimenuLabel(sciPointObj* sciObj, size_t stackPointer, int valueType, int 
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Label");
+      Scierror(999, _("No '%s' property for this object.\n"), "Label");
       return SET_PROPERTY_ERROR;
     }
 }

@@ -82,7 +82,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscioutput_stream_la_demosintrodir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_etcdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_rootdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" \
@@ -127,12 +126,10 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscioutput_stream_la_SOURCES)
 DIST_SOURCES = $(libscioutput_stream_la_SOURCES)
-libscioutput_stream_la_demosintroDATA_INSTALL = $(INSTALL_DATA)
 libscioutput_stream_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscioutput_stream_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscioutput_stream_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscioutput_stream_la_demosintro_DATA) \
-	$(libscioutput_stream_la_etc_DATA) \
+DATA = $(libscioutput_stream_la_etc_DATA) \
 	$(libscioutput_stream_la_root_DATA) \
 	$(libscioutput_stream_la_sci_gateway_DATA)
 libscioutput_stream_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -368,8 +365,8 @@ libscioutput_stream_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/string/includes
+-I$(top_srcdir)/modules/string/includes \
+-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -409,10 +406,6 @@ includes/basout.h \
 includes/msgs.h \
 includes/sciprint_full.h
 
-
-#### output_stream : demos files ####
-libscioutput_stream_la_demosintrodir = $(mydatadir)/demos/intro/
-libscioutput_stream_la_demosintro_DATA = 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -682,23 +675,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscioutput_stream_la_demosintroDATA: $(libscioutput_stream_la_demosintro_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscioutput_stream_la_demosintrodir)" || $(MKDIR_P) "$(DESTDIR)$(libscioutput_stream_la_demosintrodir)"
-	@list='$(libscioutput_stream_la_demosintro_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscioutput_stream_la_demosintroDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscioutput_stream_la_demosintrodir)/$$f'"; \
-	  $(libscioutput_stream_la_demosintroDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscioutput_stream_la_demosintrodir)/$$f"; \
-	done
-
-uninstall-libscioutput_stream_la_demosintroDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscioutput_stream_la_demosintro_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscioutput_stream_la_demosintrodir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscioutput_stream_la_demosintrodir)/$$f"; \
-	done
 install-libscioutput_stream_la_etcDATA: $(libscioutput_stream_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscioutput_stream_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscioutput_stream_la_etcdir)"
@@ -846,7 +822,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioutput_stream_la_demosintrodir)" "$(DESTDIR)$(libscioutput_stream_la_etcdir)" "$(DESTDIR)$(libscioutput_stream_la_rootdir)" "$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" "$(DESTDIR)$(libscioutput_stream_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscioutput_stream_la_etcdir)" "$(DESTDIR)$(libscioutput_stream_la_rootdir)" "$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" "$(DESTDIR)$(libscioutput_stream_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -895,7 +871,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
-	install-libscioutput_stream_la_demosintroDATA \
 	install-libscioutput_stream_la_etcDATA \
 	install-libscioutput_stream_la_includeHEADERS \
 	install-libscioutput_stream_la_rootDATA \
@@ -937,8 +912,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscioutput_stream_la_demosintroDATA \
-	uninstall-libscioutput_stream_la_etcDATA \
+uninstall-am: uninstall-libscioutput_stream_la_etcDATA \
 	uninstall-libscioutput_stream_la_includeHEADERS \
 	uninstall-libscioutput_stream_la_rootDATA \
 	uninstall-libscioutput_stream_la_sci_gatewayDATA \
@@ -954,8 +928,7 @@ uninstall-am: uninstall-libscioutput_stream_la_demosintroDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscioutput_stream_la_demosintroDATA \
-	install-libscioutput_stream_la_etcDATA \
+	install-info-am install-libscioutput_stream_la_etcDATA \
 	install-libscioutput_stream_la_includeHEADERS \
 	install-libscioutput_stream_la_rootDATA \
 	install-libscioutput_stream_la_sci_gatewayDATA install-man \
@@ -965,7 +938,6 @@ uninstall-am: uninstall-libscioutput_stream_la_demosintroDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libscioutput_stream_la_demosintroDATA \
 	uninstall-libscioutput_stream_la_etcDATA \
 	uninstall-libscioutput_stream_la_includeHEADERS \
 	uninstall-libscioutput_stream_la_rootDATA \

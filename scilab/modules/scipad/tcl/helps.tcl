@@ -44,7 +44,9 @@ proc setScipadVersionString {} {
     set comm7   "end;"
     set comm8 "end;"
     # update title bar
-    set comm9 "TCL_EvalStr(\"modifiedtitle [gettextareacur]\",\"scipad\");"
+    # catched because of bug 4011 and because "sync" "seq" options cannot be used
+    # in the ScilabEval-ed command (see below)
+    set comm9 "TCL_EvalStr(\"catch {modifiedtitle [gettextareacur]}\",\"scipad\");"
     # <TODO> SCI_VERSION_REVISION is not used until some automatic way to
     #        fill in this field at commit exists
     #        Well, there is one:  svn:keywords  with  $Revision$
@@ -97,6 +99,7 @@ proc helpword {} {
 # a generic scrollable messagewindow, which displays the content of a text file
 proc textbox {textfile {wtitle ""}} {
     global pad menuFont textFont
+    global defaultencoding
     if {$wtitle == ""} {set wtitle $textfile}
     set tbox $pad.textbox
     catch {destroy $tbox}
@@ -107,6 +110,7 @@ proc textbox {textfile {wtitle ""}} {
     frame $tbox.f1
     text $tbox.text -font $textFont
     set newnamefile [open $textfile r]
+    fconfigure $newnamefile -encoding $defaultencoding
     while {![eof $newnamefile]} {
             $tbox.text insert end [read -nonewline $newnamefile ] 
     }

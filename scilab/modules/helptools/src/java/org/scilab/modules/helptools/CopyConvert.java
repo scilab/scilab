@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.zip.GZIPInputStream;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.SAXException;
 import org.xml.sax.Locator;
 import org.xml.sax.Attributes;
@@ -95,7 +96,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     // -----------------------------------------------------------------------
 
     public void run(File inFile, File outFile)
-        throws SAXException, IOException {
+        throws SAXParseException, IOException {
         outFile = outFile.getCanonicalFile();
         outDir = outFile.getParentFile();
         if (!outDir.isDirectory() && !outDir.mkdirs()) {
@@ -113,8 +114,8 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
 
             parser = factory.newSAXParser();
         } catch (Exception e) {
-            throw new SAXException(
-                "Cannot create a properly configured SAX parser: " + Helpers.reason(e));
+            throw new SAXParseException(
+                "Cannot create a properly configured SAX parser: " + Helpers.reason(e),locator);
         }
 
         inScopePrefixes = new ArrayList<String[]>();
@@ -126,11 +127,14 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
         out = new PrintWriter(
             new OutputStreamWriter(new FileOutputStream(outFile), "UTF-8"));
         try {
-               parser.parse(inFile, this);
-               out.flush();
+			parser.parse(inFile, this);
+			out.flush();
             if (out.checkError()) {
                 throw new IOException("Error writing '" + outFile + "'");
 			}
+		} catch (SAXException e){
+			throw new SAXParseException(
+                "Cannot parse " + inFile + " " + Helpers.reason(e),locator);
         } finally {
             out.close();
         }

@@ -86,7 +86,7 @@
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="io_f.def"
@@ -180,7 +180,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="2"
 				ModuleDefinitionFile="io_f.def"
@@ -265,7 +265,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="io_f.def"
@@ -354,7 +354,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Libscilab.lib io.lib"
+				AdditionalDependencies="Libscilab.lib"
 				OutputFile="$(SolutionDir)bin\io_f.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="io_f.def"
@@ -420,10 +420,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetenv.c"
 				>
 			</File>
 			<File
@@ -560,10 +556,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intfile.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intgetenv.f"
 				>
 			</File>
 			<File

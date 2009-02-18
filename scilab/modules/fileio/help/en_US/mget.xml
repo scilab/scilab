@@ -107,28 +107,74 @@ x=mgeti([n,type,fd])</synopsis>
 
     <para>Data type:</para>
 
-    <para><term>d</term> double</para>
+    <variablelist>
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>double</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>f</term> float</para>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>float</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>l</term> long</para>
+      <varlistentry>
+        <term>l</term>
+        <listitem>
+          <para>long</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>i</term> int</para>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>int</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>s</term> short</para>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>short</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>c</term> character</para>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>character</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
     <para>Optional flag:</para>
 
-    <para><term>u..</term> unsigned (in combination with one of the above
-    types)</para>
+    <variablelist>
+      <varlistentry>
+        <term>u..</term>
+        <listitem>
+          <para>unsigned (in combination with one of the above types)</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>..l</term> little endian (in combination with one of the above
-    types)</para>
+      <varlistentry>
+        <term>..l</term>
+        <listitem>
+          <para>little endian (in combination with one of the above types)</para>
+        </listitem>
+      </varlistentry>
 
-    <para><term>..b</term> big endian (in combination with one of the above
-    types)</para>
+      <varlistentry>
+        <term>..b</term>
+        <listitem>
+          <para>big endian (in combination with one of the above types)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
 
     <para>Bytes read are automatically swapped if necessary (by checking
     little=endian status).</para>

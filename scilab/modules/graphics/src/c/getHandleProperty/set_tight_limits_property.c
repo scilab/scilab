@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,13 +32,13 @@ int set_tight_limits_property( sciPointObj * pobj, size_t stackPointer, int valu
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"tight_limits") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"tight_limits") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"tight_limits") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"tight_limits") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -52,7 +52,7 @@ int set_tight_limits_property( sciPointObj * pobj, size_t stackPointer, int valu
   }
   else
   {
-    sciprint(_("%s: Wrong value for input argument #%d: '%s' or '%s' expected."),"set_tight_limits_property",2,"on","off") ;
+    Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected."),"set_tight_limits_property",2,"on","off") ;
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

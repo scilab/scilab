@@ -25,6 +25,15 @@
 /*------------------------------------------------------------------------*/
 int get_parent_property( sciPointObj * pobj )
 {
-  return sciReturnHandle( sciGetHandle( sciGetParent( pobj ) ) ) ;
+	sciPointObj * parent = sciGetParent( pobj );
+	if (parent == NULL)
+	{
+		/* No parent for this object */
+		return sciReturnEmptyMatrix();
+	}
+	else
+	{
+		return sciReturnHandle(sciGetHandle(parent)) ;
+	}
 }
 /*------------------------------------------------------------------------*/

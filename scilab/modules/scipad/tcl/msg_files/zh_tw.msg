@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the 
 #  individual authors, listed in the header of each file
@@ -327,6 +327,7 @@
 ::msgcat::mcset zh_tw "The contents of " "磁碟內之檔案內容"
 ::msgcat::mcset zh_tw "has changed on disk, save it anyway?"\
                       "已經變更, 繼續進行儲存?"
+::msgcat::mcset zh_tw "The contents and/or properties of " "磁碟內之檔案內容"
 ::msgcat::mcset zh_tw "has been modified outside of Scipad. Do you want to\
                        reload it?"\
                       "已再 Scipad\
@@ -838,7 +839,7 @@
                        所開發\n 由 Scilab Consortium 修改.\n Enrico\
                        Segre 2003-2006 進一步改寫.\n\
                        其他貢獻者，,\n 偵錯工具:\n  François\
-                       Vogel 2004-2008 \n 各國語文翻譯:\n 瑞典文\
+                       Vogel 2004-2009 \n 各國語文翻譯:\n 瑞典文\
                        Gunnar Lindholm 2005.\n 挪威文 Torbjørn Pettersen\
                        2005.\n 德文   Dirk Reusch 2005.\n 波蘭文\
                        Bartosz Kosiorek 2005.\n 西班牙文 Juan Nicolás\

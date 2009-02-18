@@ -16,12 +16,14 @@
 //
 //    I can reproduce the bug with integers data type not with imaginary
 
+// 2009-01-09 mtlb_save is removed => savematfile
+
 my_mat_file = TMPDIR+"/bug_577.mat";
 
 x=rand(5,5,100)+%i;
 warning('off');
-ierr = execstr("mtlb_save(my_mat_file,""x"")","errcatch");
+ierr = execstr("savematfile(my_mat_file,""x"")","errcatch");
 warning('on');
 
-if ierr <> 10000 then pause,end
-if lasterror()<>msprintf(gettext("%s: Attempt to write an unsupported data type to an ASCII file.\n"), "mtlb_save") then pause,end
+if ierr == 0 then pause,end
+if lasterror()<>msprintf(gettext("%s: Mlists of type hm can not be written to Matlab binary files.\n"), "GetMlistVariable") then pause,end

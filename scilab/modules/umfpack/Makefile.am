@@ -71,31 +71,20 @@ libsciumfpack_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
 endif
 
 if USE_EMBEDDED_BLAS
-libsciumfpack_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 
+libsciumfpack_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
 endif
 
 libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
-			-I$(top_srcdir)/modules/mexlib/includes
+			-I$(top_srcdir)/modules/mexlib/includes \
+			-I$(top_srcdir)/modules/operations/includes
 
 #### umfpack : include files ####
 libsciumfpack_la_includedir=$(pkgincludedir)/umfpack
 libsciumfpack_la_include_HEADERS = includes/gw_umfpack.h \
 includes/with_umfpack.h
-
-libsciumfpack_la_examplesdir=$(mydatadir)
-libsciumfpack_la_examples_DATA = examples/bench.txt \
-examples/scisptdem2.dem \
-examples/bcsstk24.rsa \
-examples/arc130.rua \
-examples/young1c.csa \
-examples/scisptdem1.dem \
-examples/scisptdem3.dem \
-examples/utm300.rua \
-examples/ex14.rua
-
 
 else
 

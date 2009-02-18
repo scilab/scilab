@@ -274,7 +274,7 @@ function txt=help_skeleton(funname,path,language)
   end
   
   if rhs >= 2 then
-    mputl(txt,pathconvert(path,%t,%f)+funname+'.xml')
+    mputl(txt,pathconvert(path,%t,%f)+funname+'.xml');
     txt=pathconvert(path,%t,%f)+funname+'.xml'
   end
   

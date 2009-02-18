@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 [v,ka,kb] = intersect([],[]);
 if v <> [] then pause,end
 if ka <> [] then pause,end

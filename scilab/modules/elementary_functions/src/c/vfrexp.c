@@ -12,7 +12,6 @@
 
 #include <math.h>
 #include "machine.h"
-
 void C2F(vfrexp)(int *n, double *x, int *ix,double *y,int *iy,double *z, int *iz);
 
 void C2F(vfrexp)(int *n, double *x, int *ix,double *y,int *iy,double *z, int *iz)

@@ -228,8 +228,21 @@ int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _p
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool);
 int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, int* _piString);
 
-// GetRhsVarMatrixOfDouble : Returns a pointer on the data of a matrix of double.
+/**
+* Returns a pointer on the data of a matrix of double
+*  @param number index of the Scilab variable
+*  @param _iRows number of rows in the matrix
+*  @param _iCols number of columns in the matrix
+*  @param _pdblRealData pointer to the block of data for real values
+*/
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
-// GetRhsVarMatrixComplex : Returns a pointer on the data of a matrix of double.
+/**
+*  Returns a pointer on the data of a matrix of double.
+*  @param number index of the Scilab variable
+*  @param _iRows number of rows in the matrix
+*  @param _iCols number of columns in the matrix
+*  @param _pdblRealData pointer to the block of data for real values
+*  @param _pdblImgData pointer to the block of data for complex values
+*/
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
 #endif

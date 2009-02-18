@@ -23,11 +23,9 @@ src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/sciquit.c \
 src/c/stack1.c \
-src/c/scicurdir.c \
 src/c/realmain.c \
 src/c/stack3.c \
 src/c/str2sci.c \
-src/c/cluni0.c \
 src/c/getmodules.c \
 src/c/fromc.c \
 src/c/setgetSCIpath.c \
@@ -63,7 +61,6 @@ src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
 src/c/GetXmlFileEncoding.c \
-src/c/GetenvB.c \
 src/c/islittleendian.c \
 src/c/terme.c \
 src/c/ifexpr.c \
@@ -83,7 +80,9 @@ src/c/gw_dynamic_generic.c \
 src/c/dynamic_gateways.c \
 src/c/readGateway.c \
 src/c/comparehandles.c \
-src/c/setPrecisionFPU.c
+src/c/setPrecisionFPU.c \
+src/c/LaunchScilabSignal.c \
+src/c/getos.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -238,7 +237,6 @@ sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clear.c \
-sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
@@ -247,7 +245,6 @@ sci_gateway/c/sci_what.c \
 sci_gateway/c/sci_predef.c \
 sci_gateway/c/sci_clearglobal.c \
 sci_gateway/c/sci_arg.c \
-sci_gateway/c/sci_getcwd.c \
 sci_gateway/c/sci_type.c \
 sci_gateway/c/sci_typename.c \
 sci_gateway/c/sci_mode.c \
@@ -303,6 +300,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 						-I$(top_srcdir)/libs/MALLOC/includes/ \
 						-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 						-I$(top_srcdir)/libs/doublylinkedlist/includes \
+            			-I$(top_srcdir)/modules/intersci/includes \
 						-I$(top_srcdir)/modules/action_binding/includes \
 						-I$(top_srcdir)/modules/output_stream/includes \
 						-I$(top_srcdir)/modules/localization/includes \
@@ -364,7 +362,6 @@ includes/callFunctionFromGateway.h \
 includes/callinter.h \
 includes/callinterf.h \
 includes/CallScilab.h \
-includes/cluni0.h \
 includes/commandwords.h \
 includes/core_math.h \
 includes/ExceptionMessage.h \
@@ -373,7 +370,6 @@ includes/freeArrayOfString.h \
 includes/fromjava.h \
 includes/Funtab.h \
 includes/getcommandlineargs.h \
-includes/GetenvB.h \
 includes/GetExceptionCode.h \
 includes/getfunctionslist.h \
 includes/getmemory.h \
@@ -423,6 +419,7 @@ includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/stamp-h1 \
 includes/syncexec.h \
+includes/scisparse.h \
 includes/texmacs.h \
 includes/timerEvents.h \
 includes/tmpdir.h \
@@ -431,17 +428,8 @@ includes/warningmode.h \
 includes/x_main.h \
 includes/xscion.h \
 includes/Thread_Wrapper.h \
-includes/setPrecisionFPU.h
-
-#### core : demos files ####
-libscicore_la_demosintrodir=$(mydatadir)/demos/intro/
-libscicore_la_demosintro_DATA = demos/intro/extf.sce \
-demos/intro/Makefile.mak \
-demos/intro/MakeC.mak \
-demos/intro/MakeF.mak \
-demos/intro/dem01.dem \
-demos/intro/extc.sce \
-demos/intro/Makefile \
-demos/intro/dem01_gateway.sce
+includes/setPrecisionFPU.h \
+includes/LaunchScilabSignal.h \
+includes/getos.h
 
 include $(top_srcdir)/Makefile.incl.am

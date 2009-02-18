@@ -17,7 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
@@ -132,6 +132,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(SECTION_AUTOLABEL_1);
 			specificArgs.add("variablelist.as.blocks=1");
 			specificArgs.add("shade.verbatim=1");
+			specificArgs.add("img.src.path=" + outputDirectory);
 			this.styleDoc = docbookPath + "/fo/docbook.xsl";
 
 		} 
@@ -199,9 +200,13 @@ public class BuildDocObject extends StyleSheet {
 		
         try {
             copyConvert.run(new File(masterXML), masterXMLTransformed);
-        } catch (SAXException e) {
+        } catch (SAXParseException e) {
             System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
 					   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
+            System.err.println("Line: "+e.getLineNumber());
+			System.err.println("Column: " + e.getColumnNumber());
+			System.err.println("Public ID: "+e.getPublicId());
+			System.err.println("System Id: "+ e.getSystemId());
             return null;
         } catch (IOException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES

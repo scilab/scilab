@@ -42,48 +42,44 @@
     <variablelist>
       <varlistentry>
         <term>A</term>
-
+        
         <term></term>
-
+        
         <listitem>
           <para>a matrix, or a function, or a list computing
-          <literal>A*x</literal> for each given <literal>x</literal>. The
-          following is a description of the computation of A*x depending on
-          the type of A.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <listitem>
+            <literal>A*x</literal> for each given <literal>x</literal>. The
+            following is a description of the computation of A*x depending on
+            the type of A.
+          </para>
           <itemizedlist>
             <listitem>
               <para><literal>matrix.</literal>If A is a matrix, it can be
-              dense or sparse</para>
+                dense or sparse</para>
             </listitem>
-
+            
             <listitem>
               <para><literal>function.</literal>If A is a function, it must
-              have the following header :</para>
-
+                have the following header :</para>
+              
               <programlisting>
-      
-      function y = A ( x , mymatrix )
-      
-    </programlisting>
+                
+                function y = A ( x , mymatrix )
+                
+              </programlisting>
             </listitem>
-
+            
             <listitem>
               <para><literal>list.</literal>If A is a list, the first element
-              of the list is expected to be a function and the other elements
-              in the list are the arguments of the function, from index 2 to
-              the end. When the function is called, the current value of x is
-              passed to the function as the first argument. The other
-              arguments passed are the one given in the list.</para>
+                of the list is expected to be a function and the other elements
+                in the list are the arguments of the function, from index 2 to
+                the end. When the function is called, the current value of x is
+                passed to the function as the first argument. The other
+                arguments passed are the one given in the list.</para>
             </listitem>
           </itemizedlist>
         </listitem>
       </varlistentry>
-
+      
       <varlistentry>
         <term>b</term>
 

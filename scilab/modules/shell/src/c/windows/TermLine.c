@@ -13,27 +13,77 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include <wincon.h>
+#include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "TermLine.h"
 #include "HistoryManager.h"
 #include "TermConsole.h"
 #include "localization.h"
 #include "MALLOC.h"
 #include "strdup_windows.h"
+#include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/
-/* TODO : remove static array */
-static char cur_line[4096];	/* current contents of the line */	
+static int CURRENT_MAX_LINE_SIZE = bsiz;
+static char *cur_line = NULL;	/* current contents of the line */	
 static char *currentPrompt = NULL;
-
 static int cur_pos = 0;		/* current position of the cursor */
 static int max_pos = 0;
 /*--------------------------------------------------------------------------*/
 /* do backspace on line */
 static void backSpace(void);
+static void initializeLineBuffer(void);
+static void reallocLineBuffer(void);
+/*--------------------------------------------------------------------------*/
+static void initializeLineBuffer(void)
+{
+	int i = 0;
+	if (cur_line)
+	{
+		FREE(cur_line);
+		cur_line = NULL;
+	}
+	cur_line = (char*) MALLOC(sizeof(char)*CURRENT_MAX_LINE_SIZE);
+	if (cur_line)
+	{
+		for (i = 0; i < CURRENT_MAX_LINE_SIZE; i++) cur_line[i] = '\0';
+	}
+	else
+	{
+		fprintf(stderr, "Error: Buffer line allocation.\n");
+		exit(1);
+	}
+}
+/*--------------------------------------------------------------------------*/
+static void reallocLineBuffer(void)
+{
+	if (cur_line)
+	{
+		if ( max_pos > (CURRENT_MAX_LINE_SIZE - 1) )
+		{
+			char *ptrBackup = cur_line;
+			int newCURRENT_MAX_LINE_SIZE = CURRENT_MAX_LINE_SIZE * 2;
+			cur_line = (char*)REALLOC(cur_line, sizeof(char)*(newCURRENT_MAX_LINE_SIZE));
+			if (cur_line == NULL)
+			{
+				cur_line = ptrBackup;
+			}
+			else
+			{
+				CURRENT_MAX_LINE_SIZE = newCURRENT_MAX_LINE_SIZE;
+			}
+		}
+	}
+	else
+	{
+		initializeLineBuffer();
+	}
+}
 /*--------------------------------------------------------------------------*/
 void moveBeginningLine(void)
 {
+	reallocLineBuffer();
 	while (cur_pos > 0)
 	{
 		cur_pos -= 1;
@@ -43,6 +93,7 @@ void moveBeginningLine(void)
 /*--------------------------------------------------------------------------*/
 void moveEndLine(void)
 {
+	reallocLineBuffer();
 	while (cur_pos < max_pos)
 	{
 		TerminalPutc (cur_line[cur_pos]);
@@ -52,6 +103,7 @@ void moveEndLine(void)
 /*--------------------------------------------------------------------------*/
 void moveBackSingleChar(void)
 {
+	reallocLineBuffer();
 	if (cur_pos > 0)
 	{
 		cur_pos -= 1;
@@ -61,6 +113,7 @@ void moveBackSingleChar(void)
 /*--------------------------------------------------------------------------*/
 void moveForwardSingleChar(void)
 {
+	reallocLineBuffer();
 	if (cur_pos < max_pos)
 	{
 		TerminalPutc(cur_line[cur_pos]);
@@ -70,6 +123,7 @@ void moveForwardSingleChar(void)
 /*--------------------------------------------------------------------------*/
 void moveBackSingleWord(void)
 {
+	reallocLineBuffer();
 	while ((cur_pos > 0) && (isspace(cur_line[cur_pos - 1]) ))
 	{
 		cur_pos -= 1;
@@ -85,6 +139,7 @@ void moveBackSingleWord(void)
 /*--------------------------------------------------------------------------*/
 void moveForwardSingleWord(void)
 {
+	reallocLineBuffer();
 	while ( !isspace(cur_line[cur_pos]) && (cur_pos < max_pos) ) 
 	{
 		TerminalPutc(cur_line[cur_pos]);
@@ -101,6 +156,7 @@ void moveForwardSingleWord(void)
 void killCurrentPositionToEndLine(void)
 {
 	int i = 0;
+	reallocLineBuffer();
 	for (i = cur_pos; i < max_pos; i++)  cur_line[i] = '\0';
 	for (i = cur_pos; i < max_pos; i++) TerminalPutc(VK_SPACE);
 	for (i = cur_pos; i < max_pos; i++) backSpace ();
@@ -109,6 +165,7 @@ void killCurrentPositionToEndLine(void)
 /*--------------------------------------------------------------------------*/
 void deletePreviousChar(void)
 {
+	reallocLineBuffer();
 	if (cur_pos > 0)
 	{
 		int i = 0;
@@ -123,6 +180,7 @@ void deletePreviousChar(void)
 /*--------------------------------------------------------------------------*/
 void deleteCurrentChar(void)
 {
+	reallocLineBuffer();
 	if (max_pos == 0) 
 	{
 		TerminalBeep();
@@ -143,6 +201,8 @@ void moveBackHistory(void)
 {
 	char *newline = NULL;
 
+	reallocLineBuffer();
+
 	cur_line[max_pos + 1] = '\0';
 	if (cur_line[0]== '\0')
 	{
@@ -154,8 +214,9 @@ void moveBackHistory(void)
 
 	if (newline)
 	{
+		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline));
+		copyLine(UTFToLocale(newline, szLocale));
 		FREE(newline);
 		newline = NULL;
 	}
@@ -164,6 +225,8 @@ void moveBackHistory(void)
 void moveForwardHistory(void)
 {
 	char *newline = NULL;
+
+	reallocLineBuffer();
 
 	cur_line[max_pos + 1] = '\0';
 	if (cur_line[0]== '\0')
@@ -176,8 +239,9 @@ void moveForwardHistory(void)
 
 	if (newline)
 	{
+		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline));
+		copyLine(UTFToLocale(newline, szLocale));
 		FREE(newline);
 		newline = NULL;
 	}
@@ -188,7 +252,6 @@ void redrawLine(void)
 	int i =0;
 	char *line = getCurrentLine();
 
-	TerminalPutc('\n');
 	displayPrompt();
 	for (i = max_pos; i > cur_pos; i--)  backSpace ();
 	if (line)
@@ -201,6 +264,8 @@ void redrawLine(void)
 /*--------------------------------------------------------------------------*/
 void copyLine(char *line)
 {
+	reallocLineBuffer();
+
 	if (line)
 	{
 		TerminalPrintf(line);
@@ -211,6 +276,8 @@ void copyLine(char *line)
 /*--------------------------------------------------------------------------*/
 void killLastWord(void)
 {
+	reallocLineBuffer();
+
 	while ((cur_pos > 0) && (cur_line[cur_pos - 1] == VK_SPACE))
 	{
 		cur_pos -= 1;
@@ -227,6 +294,8 @@ void killLastWord(void)
 /*--------------------------------------------------------------------------*/
 void newLine(void)
 {
+	reallocLineBuffer();
+
 	cur_line[0] = '\0';
 	cur_pos = 0;
 	max_pos = 0;
@@ -235,6 +304,8 @@ void newLine(void)
 void refreshLine(void)
 {
 	int i = 0;
+
+	reallocLineBuffer();
 
 	/* write tail of string */
 	for (i = cur_pos; i < max_pos; i++) TerminalPutc(cur_line[i]);
@@ -251,6 +322,8 @@ void clearCurrentLine(void)
 {
 	int i = 0;
 
+	reallocLineBuffer();
+
 	for (i = 0; i < max_pos; i++) cur_line[i] = '\0';
 
 	moveBeginningLine();
@@ -265,18 +338,15 @@ void clearCurrentLine(void)
 /*--------------------------------------------------------------------------*/
 static void backSpace(void)
 {
-	COORD pt;
-	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	int X = 0, Y = 0;
+	reallocLineBuffer();
 
-	GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
-	pt.X = csbi.dwCursorPosition.X;
-	pt.Y = csbi.dwCursorPosition.Y;
-
-	if ( (pt.X - 1) < 0 )
+	TermGetPosition(&X, &Y);
+	if ( (X - 1) < 0 )
 	{
-		pt.X = getXConsoleScreenSize();
-		pt.Y = pt.Y - 1;
-		SetConsoleCursorPosition (GetStdHandle(STD_OUTPUT_HANDLE), pt);
+		X = getXConsoleScreenSize();
+		Y = Y - 1;
+		TermSetPosition(X, Y);
 	}
 	else TerminalPutc(VK_BACK);
 }
@@ -293,12 +363,21 @@ void setCurrentPrompt(char *prompt)
 /*--------------------------------------------------------------------------*/
 void displayPrompt(void)
 {
+	int X = 0, Y = 0;
+
+	/* check position */
+	TermGetPosition(&X, &Y);
+	if (X) TerminalPrintf("\n");
+
 	TerminalPrintf(getCurrentPrompt());
 }
 /*--------------------------------------------------------------------------*/
 char *getCurrentLine(void)
 {
 	char *line = NULL;
+
+	reallocLineBuffer();
+
 	cur_line[max_pos + 1] = '\0';
 	line = strdup_windows(cur_line);
 	if (line) OemToChar(cur_line, line);
@@ -308,6 +387,9 @@ char *getCurrentLine(void)
 void addCharacterCurrentLine(unsigned char ch)
 {
 	int i = 0;
+
+	reallocLineBuffer();
+
 	for (i = max_pos; i > cur_pos; i--) cur_line[i] = cur_line[i - 1];
 
 	cur_line[cur_pos] = ch;
@@ -345,7 +427,8 @@ void putLineSearchedHistory(void)
 
 	if (line)
 	{
-		copyLine(UTFToLocale(line));
+		char szLocale[bsiz];
+		copyLine(UTFToLocale(line, szLocale));
 		FREE(line);
 		line = NULL;
 	}

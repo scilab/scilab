@@ -110,7 +110,7 @@ public abstract class CameraGL extends ObjectGL {
 	public void showCamera() {
 		GL gl = getGL();
 		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
+		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
 		gl.glMatrixMode(GL.GL_MODELVIEW);
 		gl.glLoadMatrixd(projectionMatrix.getOpenGLRepresentation(), 0);
 		gl.glPushMatrix();
@@ -314,7 +314,7 @@ public abstract class CameraGL extends ObjectGL {
 		double ratio = viewWidth / viewHeight;
 		
 		// reduction need to be performed on the center of the screen
-		// use ration to take normalisation into account
+		// use ration to take normalization into account
 		if (ratio < 1.0) {
 			gl.glScaled(1.0 / (normalizeScale.getX() * ratio),
 						1.0 / (normalizeScale.getY()),
@@ -538,7 +538,7 @@ public abstract class CameraGL extends ObjectGL {
 		// reset the projection matrix by just modifying zNear and zFar
 		GL gl = getGL();
 		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
+		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
 		
 		// apperently we need to use the opposite of depth range
 		gl.glOrtho(0.0, getViewportWidth(), 0.0, getViewportHeight(), -depthRange[1], -depthRange[0]);
@@ -596,7 +596,7 @@ public abstract class CameraGL extends ObjectGL {
 	protected void setProjectionMatrix(double zNear, double zFar) {
 		GL gl = getGL();
 		gl.glMatrixMode(GL.GL_PROJECTION);
-		gl.glLoadIdentity();
+		getParentFigureGL().getCoordinateTransformation().loadIdentityWithAntialiasing(gl);
 		gl.glOrtho(0.0, viewPortWidth, 0.0, viewPortHeight, zNear, zFar);
 		
 		// beck to default mode

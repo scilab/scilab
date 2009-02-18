@@ -37,7 +37,8 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	FILE  *f;
 	char *Format = NULL;
 	
-	char *shortcut_path = NULL; // filename process
+	char *shortcut_path = NULL;	// filename process
+	char szTemp[bsiz];
 	char *real_path     = NULL; //       "
 	long int lout = 0;          //       "
 	int out_n = 0;              //       "
@@ -74,7 +75,7 @@ int int_objfscanfMat(char *fname,unsigned long fname_len)
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 
 	/* BUG 3714 */
-	shortcut_path = UTFToLocale(cstk(l1));
+	shortcut_path = UTFToLocale(cstk(l1), szTemp);
 
 	real_path     = (char*)MALLOC(sizeof(char*)*FILENAME_MAX);
 	lout          = FILENAME_MAX;

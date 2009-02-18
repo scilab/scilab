@@ -20,8 +20,9 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
+#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
@@ -32,7 +33,13 @@ int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int value
   int status = SET_PROPERTY_ERROR;
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"auto_resize") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"auto_resize") ;
+    return SET_PROPERTY_ERROR ;
+  }
+
+	if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  {
+    Scierror(999, _("%s undefined for this object.\n"), "auto_resize") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -48,10 +55,11 @@ int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int value
   }
   else
   {
-    sciprint(_("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_resize_property","on","off");
+    Scierror(999, _("%s: Wrong input argument: '%s' or '%s' expected.\n"),"set_auto_resize_property","on","off");
     return SET_PROPERTY_ERROR ;
   }
   enableFigureSynchronization(pobj);
-  return status;
+  /* return set property unchanged since repaint is not really needed */
+	return sciSetNoRedrawStatus((SetPropertyStatus)status);
 }
 /*------------------------------------------------------------------------*/

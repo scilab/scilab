@@ -105,7 +105,7 @@ public final class BuildJavaHelp {
 				if (workingFile.getPath().indexOf("JavaHelpSearch") == -1) {
 					relativeFileName = baseName + "/" + workingFile.getName();
 				} else {
-					relativeFileName = baseName + JAVAHELPSEARCH_DIR + workingFile.getName();
+ 					relativeFileName = baseName + JAVAHELPSEARCH_DIR + workingFile.getName();
 				}
 				ZipEntry zipEntry = new ZipEntry(relativeFileName);
 				jarFile.putNextEntry(zipEntry);

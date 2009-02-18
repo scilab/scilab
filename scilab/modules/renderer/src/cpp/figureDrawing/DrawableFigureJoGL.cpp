@@ -16,13 +16,13 @@
 #include "DrawableFigureBridge.h"
 #include "DrawableFigureJoGL.h"
 #include "GraphicSynchronizerInterface.h"
-#include "ScilabGraphicWindow.hxx"
 
 extern "C"
 {
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
+#include "CallFigure.h"
 }
 
 #include <string.h>
@@ -41,7 +41,7 @@ DrawableFigureJoGL::DrawableFigureJoGL( DrawableFigure * drawer )
 /*---------------------------------------------------------------------------------*/
 DrawableFigureJoGL::~DrawableFigureJoGL( void )
 {
-  closeVisualFigure() ;
+  // do nothing here, figure is alredy closed
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::drawCanvas( void )
@@ -55,15 +55,15 @@ void DrawableFigureJoGL::createVisualFigure( int figureIndex )
 	getFigureJavaMapper()->setFigureIndex(figureIndex);
 
 	// create the window
-	org_scilab_modules_gui_graphicWindow::ScilabGraphicWindow::newWindow(getScilabJavaVM(), figureIndex);
+	newFigure(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::closeVisualFigure( void )
 {
   // disable synchrnonization here to avoid deadlocks
-  endGraphicDataWriting();
+	disableFigureSynchronization(m_pDrawer->getDrawedObject());
   DrawableObjectJoGL::destroy() ;
-  startGraphicDataWriting();
+	enableFigureSynchronization(m_pDrawer->getDrawedObject());
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableFigureJoGL::setFigureParameters(void)
@@ -212,6 +212,21 @@ void DrawableFigureJoGL::openGraphicCanvas(void)
 void DrawableFigureJoGL::closeGraphicCanvas(void)
 {
 	getFigureJavaMapper()->closeGraphicCanvas();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setUseSingleBuffer(bool useSingleBuffer)
+{
+	getFigureJavaMapper()->setUseSingleBuffer(useSingleBuffer);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigureJoGL::getAntialiasingQuality(void)
+{
+	return getFigureJavaMapper()->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setAntialiasingQuality(int quality)
+{
+	getFigureJavaMapper()->setAntialiasingQuality(quality);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJoGL::isAbleToCreateFigure(void)

@@ -11,8 +11,8 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/operations/includes/ \
-	-I$(top_srcdir)/modules/string/includes/
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/operations/includes/
 
 if GUI
 
@@ -148,6 +148,10 @@ src/c/getHandleProperty/get_fractional_font_property.c \
 src/c/getHandleProperty/get_links_property.c \
 src/c/getHandleProperty/get_legend_location_property.c \
 src/c/getHandleProperty/get_filled_property.c \
+src/c/getHandleProperty/get_color_range_property.c \
+src/c/getHandleProperty/get_outside_colors_property.c \
+src/c/getHandleProperty/get_grid_position_property.c \
+src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -281,6 +285,10 @@ src/c/getHandleProperty/set_fractional_font_property.c \
 src/c/getHandleProperty/set_links_property.c \
 src/c/getHandleProperty/set_legend_location_property.c \
 src/c/getHandleProperty/set_filled_property.c \
+src/c/getHandleProperty/set_color_range_property.c \
+src/c/getHandleProperty/set_outside_colors_property.c \
+src/c/getHandleProperty/set_grid_position_property.c \
+src/c/getHandleProperty/set_anti_aliasing_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -312,7 +320,8 @@ src/c/CurrentObjectsManagement.c \
 src/c/ObjectSelection.c \
 src/c/periEmpty.c \
 src/c/scitokenize.c \
-src/c/get_ticks_utils.c
+src/c/get_ticks_utils.c \
+src/c/SciHandleTab.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
 sci_gateway/c/sci_grayplot.c \
@@ -324,11 +333,8 @@ sci_gateway/c/sci_xlfont.c \
 sci_gateway/c/sci_xgraduate.c \
 sci_gateway/c/sci_xgrid.c \
 sci_gateway/c/sci_xclick.c \
-sci_gateway/c/sci_xclear.c \
 sci_gateway/c/sci_geom3d.c \
-sci_gateway/c/sci_xtape.c \
 sci_gateway/c/sci_xset.c \
-sci_gateway/c/sci_set_posfig_dim.c \
 sci_gateway/c/sci_xgetech.c \
 sci_gateway/c/sci_unzoom.c \
 sci_gateway/c/sci_xsegs.c \
@@ -473,7 +479,6 @@ includes/InitObjects.h \
 includes/sci_xfpoly.h \
 includes/sci_drawlater.h \
 includes/Format.h \
-includes/sci_set_posfig_dim.h \
 includes/sci_set.h \
 includes/sci_delete.h \
 includes/sci_plot2d.h \
@@ -493,8 +498,6 @@ includes/sci_swap_handles.h \
 includes/sci_newaxes.h \
 includes/PloEch.h \
 includes/sci_xclick.h \
-includes/sci_xclear.h \
-includes/sci_xtape.h \
 includes/sci_xset.h \
 includes/sci_xgetech.h \
 includes/sci_glue.h \
@@ -579,148 +582,6 @@ tcl/ged/images/rectangle.gif \
 tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
-
-####�graphics : demos files ####
-libscigraphics_la_demosdir=$(mydatadir)
-nobase_libscigraphics_la_demos_DATA = demos/2d_3d_plots/2d_3d_plots.dem.gateway.sce \
-demos/2d_3d_plots/abaque.dem.sce \
-demos/2d_3d_plots/champ.dem.sce \
-demos/2d_3d_plots/contour.dem.sce \
-demos/2d_3d_plots/contour_3d_2.dem.sce \
-demos/2d_3d_plots/contour_3d_3.dem.sce \
-demos/2d_3d_plots/contour_3d_4.dem.sce \
-demos/2d_3d_plots/contourf.dem.sce \
-demos/2d_3d_plots/errbar.dem.sce \
-demos/2d_3d_plots/fac3d.dem.sce \
-demos/2d_3d_plots/fac3d1.dem.sce \
-demos/2d_3d_plots/fchamp.dem.sce \
-demos/2d_3d_plots/fcontour.dem.sce \
-demos/2d_3d_plots/fgrayplot.dem.sce \
-demos/2d_3d_plots/fplot2d.dem.sce \
-demos/2d_3d_plots/fplot3d.dem.sce \
-demos/2d_3d_plots/fplot3d1.dem.sce \
-demos/2d_3d_plots/grayplot.dem.sce \
-demos/2d_3d_plots/histplot.dem.sce \
-demos/2d_3d_plots/param3d_1.dem.sce \
-demos/2d_3d_plots/param3d_2.dem.sce \
-demos/2d_3d_plots/plot2d.dem.sce \
-demos/2d_3d_plots/plot2d1_1.dem.sce \
-demos/2d_3d_plots/plot2d1_2.dem.sce \
-demos/2d_3d_plots/plot2d3.dem.sce \
-demos/2d_3d_plots/plot3d.dem.sce \
-demos/2d_3d_plots/plot3d1.dem.sce \
-demos/2d_3d_plots/subplot.dem.sce \
-demos/2d_3d_plots/xgeom.dem.sce \
-demos/2d_3d_plots/zgrid.dem.sce \
-demos/anim/anim.dem.gateway.sce \
-demos/anim/anim1/anim1.sce \
-demos/anim/anim1/anim1_gateway.sce \
-demos/anim/anim2/anim2.sce \
-demos/anim/anim2/anim2_gateway.sce \
-demos/anim/anim3/anim3.sce \
-demos/anim/anim3/anim3_gateway.sce \
-demos/anim/anim4/anim4.sce \
-demos/anim/anim4/anim4_gateway.sce \
-demos/anim/anim5/anim5.sce \
-demos/anim/anim5/anim5_gateway.sce \
-demos/anim/anim6/anim6.sce \
-demos/anim/anim6/anim6.sci \
-demos/anim/anim6/anim6_gateway.sce \
-demos/anim/anim6/yt.wrt \
-demos/anim/anim7/anim7.sce \
-demos/anim/anim7/anim7_gateway.sce \
-demos/anim/anim8/anim8.sci \
-demos/anim/anim8/anim8_gateway.sce \
-demos/bar/bar.dem.sce \
-demos/basic_functions/basic_functions.dem.gateway.sce \
-demos/basic_functions/basic_functions_1.dem.sce \
-demos/basic_functions/basic_functions_2.dem.sce \
-demos/basic_functions/basic_functions_3.dem.sce \
-demos/basic_functions/basic_functions_4.dem.sce \
-demos/basic_functions/basic_functions_5.dem.sce \
-demos/basic_functions/basic_functions_6.dem.sce \
-demos/basic_functions/basic_functions_7.dem.sce \
-demos/basic_functions/basic_functions_8.dem.sce \
-demos/bezier/bezier.dem.gateway.sce \
-demos/bezier/bezier3dtest.sce \
-demos/bezier/beziersurftest.sce \
-demos/bezier/beziertest.sce \
-demos/bezier/c1test.sce \
-demos/bezier/cltest.sce \
-demos/bezier/gammatest.sce \
-demos/bezier/Macros.sci \
-demos/bike.dem \
-demos/cmplxfunc/cmplxfunc.dem.gateway.sce \
-demos/cmplxfunc/cmplxfunc.sce \
-demos/cmplxfunc/cmplxfunc.sci \
-demos/cmplxfunc/cmplxfunc_dial.sce \
-demos/cmplxfunc/demo_acos.dem.sce \
-demos/cmplxfunc/demo_acosh.dem.sce \
-demos/cmplxfunc/demo_asin.dem.sce \
-demos/cmplxfunc/demo_asinh.dem.sce \
-demos/cmplxfunc/demo_atan.dem.sce \
-demos/cmplxfunc/demo_atanh.dem.sce \
-demos/cmplxfunc/demo_cos.dem.sce \
-demos/cmplxfunc/demo_cosh.dem.sce \
-demos/cmplxfunc/demo_custom.dem.sce \
-demos/cmplxfunc/demo_exp.dem.sce \
-demos/cmplxfunc/demo_log.dem.sce \
-demos/cmplxfunc/demo_sin.dem.sce \
-demos/cmplxfunc/demo_sinh.dem.sce \
-demos/cmplxfunc/demo_tan.dem.sce \
-demos/cmplxfunc/demo_tanh.dem.sce \
-demos/cmplxfunc/MacCmplx.sci \
-demos/cmplxfunc/warning.png \
-demos/colormap.dem.sce \
-demos/colormap.dem.sci \
-demos/contourf.dem \
-demos/fec/fec.dem.gateway.sce \
-demos/fec/fec.ex1 \
-demos/fec/fec.ex2 \
-demos/fec/fec.ex2.dem.sce \
-demos/fec/fec.ex3 \
-demos/fec/fec.ex3.dem.sce \
-demos/fec/fec.ex4 \
-demos/fec/fec.ex4.dem.sce \
-demos/fec/fec.info \
-demos/fec/fec_demo.sci \
-demos/fec/MESH \
-demos/fec/MESH.VAL \
-demos/graphics.dem.gateway.sce \
-demos/misc/misc.dem \
-demos/misc/misc.dem.sce \
-demos/misc/misc.dem.sci \
-demos/misc/numerique.dem \
-demos/misc/oscil.dem \
-demos/misc/oscil.sci \
-demos/misc/point.dem \
-demos/misc.dem.sci \
-demos/misc_new/misc.dem.gateway.sce \
-demos/misc_new/misc.sce \
-demos/misc_new/numerique.dem \
-demos/misc_new/oscil.dem \
-demos/misc_new/oscil.sci \
-demos/misc_new/point.dem \
-demos/peaks.sci \
-demos/portrait.dem \
-demos/sd.sav \
-demos/surface/bh.sce \
-demos/surface/cplxroot.sce \
-demos/surface/hole3d.sce \
-demos/surface/hole3d1.sce \
-demos/surface/Macros.sci \
-demos/surface/moebius.sce \
-demos/surface/rings.sce \
-demos/surface/shell.sce \
-demos/surface/sphere.sce \
-demos/surface/spiral.sce \
-demos/surface/surfaces.dem \
-demos/surface/surfaces.dem.gateway.sce \
-demos/surface/surfaces.sci \
-demos/surface/torus.sce \
-demos/surface/torus1.sce \
-demos/surface/tube.sce \
-demos/xsetechfig.sce
 
 USEANT=1
 

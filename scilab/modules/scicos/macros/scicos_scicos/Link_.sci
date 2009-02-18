@@ -21,6 +21,23 @@
 
 function Link_()
 
-  [scs_m, needcompile] = getlink(%pt, scs_m, needcompile);
-  Cmenu = []; %pt = []; Select = [] ;
+//** 28 Nov 2008 : begin with the "Simulink like" (SL) mode 
+  
+  //** "0" standard scicos oblique link ; "1" SL orthogonanal links 
+  global SL_mode ; 
+
+  //** use a global variable in oder to switch 
+  //** from/to the two operating modes 
+  if SL_mode==0 then 
+    //** This is the original Scicos routine
+    [scs_m, needcompile] = getlink(%pt, scs_m, needcompile); 
+  else
+  //** This is the new mode "getlink_qd"
+    [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile);
+  end 
+
+  Cmenu = []; 
+  %pt = []; 
+  Select = [] ;
+
 endfunction

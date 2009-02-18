@@ -13,12 +13,10 @@
     <method name="destroy" returnType="void">
       <param type="int" name="figureIndex" />
     </method>
-    <method name="setFigureIndex" returnType="void">
-      <param type="int" name="figureIndex" />
-    </method>
     <method name="setGridParameters" returnType="void">
       <param type="int" name="gridColor" />
       <param type="float" name="gridThickness" />
+      <param type="boolean" name="drawFront" />
     </method>
     <method name="drawGrid" returnType="void">
       <param type="double[]" name="firstAxisStart" />

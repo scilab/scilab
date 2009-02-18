@@ -89,7 +89,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifileio_la_etcdir)" \
 	"$(DESTDIR)$(libscifileio_la_rootdir)" \
 	"$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscifileio_la_demosdir)" \
 	"$(DESTDIR)$(libscifileio_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -120,7 +119,8 @@ am__objects_1 = libscifileio_la-FileExist.lo libscifileio_la-fileio.lo \
 	libscifileio_la-URIFileToFilename.lo \
 	libscifileio_la-createdirectory.lo libscifileio_la-isdir.lo \
 	libscifileio_la-isDrive.lo libscifileio_la-removedir.lo \
-	libscifileio_la-set_xxprintf.lo
+	libscifileio_la-set_xxprintf.lo libscifileio_la-cluni0.lo \
+	libscifileio_la-scicurdir.lo
 am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_fileio.lo libscifileio_la-sci_mfprintf.lo \
 	libscifileio_la-sci_mprintf.lo libscifileio_la-sci_msprintf.lo \
@@ -139,7 +139,8 @@ am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_getlongpathname.lo \
 	libscifileio_la-sci_fileext.lo libscifileio_la-sci_isdir.lo \
 	libscifileio_la-sci_removedir.lo \
-	libscifileio_la-sci_createdir.lo
+	libscifileio_la-sci_createdir.lo libscifileio_la-sci_chdir.lo \
+	libscifileio_la-sci_getcwd.lo
 am_libscifileio_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscifileio_la_OBJECTS = $(am_libscifileio_la_OBJECTS)
 libscifileio_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -162,10 +163,8 @@ DIST_SOURCES = $(libscifileio_la_SOURCES)
 libscifileio_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscifileio_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscifileio_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscifileio_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscifileio_la_etc_DATA) $(libscifileio_la_root_DATA) \
-	$(libscifileio_la_sci_gateway_DATA) \
-	$(nobase_libscifileio_la_demos_DATA)
+	$(libscifileio_la_sci_gateway_DATA)
 libscifileio_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscifileio_la_include_HEADERS)
 ETAGS = etags
@@ -413,7 +412,9 @@ src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
 src/c/removedir.c \
-src/c/set_xxprintf.c 
+src/c/set_xxprintf.c \
+src/c/cluni0.c \
+src/c/scicurdir.c
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -439,14 +440,18 @@ sci_gateway/c/sci_getlongpathname.c \
 sci_gateway/c/sci_fileext.c \
 sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
-sci_gateway/c/sci_createdir.c
+sci_gateway/c/sci_createdir.c \
+sci_gateway/c/sci_chdir.c \
+sci_gateway/c/sci_getcwd.c
 
 libscifileio_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-                -I$(top_srcdir)/modules/string/includes
+				-I$(top_srcdir)/modules/io/includes \
+                		-I$(top_srcdir)/modules/string/includes \
+                		-I$(top_srcdir)/modules/localization/includes \
+                		-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscifileio.la
 libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -497,12 +502,10 @@ includes/mget.h \
 includes/mput.h \
 includes/mseek.h \
 includes/deleteafile.h \
-includes/readline.h
+includes/readline.h \
+includes/cluni0.h \
+includes/scicurdir.h
 
-
-#### fileio : demos files ####
-libscifileio_la_demosdir = $(mydatadir)
-nobase_libscifileio_la_demos_DATA = 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -630,6 +633,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-Status2Mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-URIFileToFilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-addfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-cluni0.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-createdirectory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-deleteafile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-delfile.Plo@am__quote@
@@ -664,6 +668,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-readline.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-removedir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_NumTokens.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_chdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_createdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_deletefile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fileext.Plo@am__quote@
@@ -673,6 +678,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fprintfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fscanfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fullpath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getcwd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getdrives.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getlongpathname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getshortpathname.Plo@am__quote@
@@ -686,6 +692,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_msscanf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_pathsep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_removedir.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-scicurdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-set_xxprintf.Plo@am__quote@
 
 .c.o:
@@ -975,6 +982,20 @@ libscifileio_la-set_xxprintf.lo: src/c/set_xxprintf.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-set_xxprintf.lo `test -f 'src/c/set_xxprintf.c' || echo '$(srcdir)/'`src/c/set_xxprintf.c
 
+libscifileio_la-cluni0.lo: src/c/cluni0.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-cluni0.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-cluni0.Tpo -c -o libscifileio_la-cluni0.lo `test -f 'src/c/cluni0.c' || echo '$(srcdir)/'`src/c/cluni0.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-cluni0.Tpo $(DEPDIR)/libscifileio_la-cluni0.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cluni0.c' object='libscifileio_la-cluni0.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-cluni0.lo `test -f 'src/c/cluni0.c' || echo '$(srcdir)/'`src/c/cluni0.c
+
+libscifileio_la-scicurdir.lo: src/c/scicurdir.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-scicurdir.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-scicurdir.Tpo -c -o libscifileio_la-scicurdir.lo `test -f 'src/c/scicurdir.c' || echo '$(srcdir)/'`src/c/scicurdir.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-scicurdir.Tpo $(DEPDIR)/libscifileio_la-scicurdir.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scicurdir.c' object='libscifileio_la-scicurdir.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-scicurdir.lo `test -f 'src/c/scicurdir.c' || echo '$(srcdir)/'`src/c/scicurdir.c
+
 libscifileio_la-gw_fileio.lo: sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-gw_fileio.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-gw_fileio.Tpo -c -o libscifileio_la-gw_fileio.lo `test -f 'sci_gateway/c/gw_fileio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-gw_fileio.Tpo $(DEPDIR)/libscifileio_la-gw_fileio.Plo
@@ -1143,6 +1164,20 @@ libscifileio_la-sci_createdir.lo: sci_gateway/c/sci_createdir.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_createdir.lo `test -f 'sci_gateway/c/sci_createdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_createdir.c
 
+libscifileio_la-sci_chdir.lo: sci_gateway/c/sci_chdir.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_chdir.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_chdir.Tpo -c -o libscifileio_la-sci_chdir.lo `test -f 'sci_gateway/c/sci_chdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chdir.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-sci_chdir.Tpo $(DEPDIR)/libscifileio_la-sci_chdir.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_chdir.c' object='libscifileio_la-sci_chdir.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_chdir.lo `test -f 'sci_gateway/c/sci_chdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chdir.c
+
+libscifileio_la-sci_getcwd.lo: sci_gateway/c/sci_getcwd.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_getcwd.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_getcwd.Tpo -c -o libscifileio_la-sci_getcwd.lo `test -f 'sci_gateway/c/sci_getcwd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcwd.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-sci_getcwd.Tpo $(DEPDIR)/libscifileio_la-sci_getcwd.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getcwd.c' object='libscifileio_la-sci_getcwd.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_getcwd.lo `test -f 'sci_gateway/c/sci_getcwd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getcwd.c
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1198,25 +1233,6 @@ uninstall-libscifileio_la_sci_gatewayDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(libscifileio_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscifileio_la_sci_gatewaydir)/$$f"; \
-	done
-install-nobase_libscifileio_la_demosDATA: $(nobase_libscifileio_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscifileio_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscifileio_la_demosdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscifileio_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscifileio_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscifileio_la_demosdir)/$$f'"; \
-	  $(nobase_libscifileio_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscifileio_la_demosdir)/$$f"; \
-	done
-
-uninstall-nobase_libscifileio_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscifileio_la_demos_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscifileio_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscifileio_la_demosdir)/$$f"; \
 	done
 install-libscifileio_la_includeHEADERS: $(libscifileio_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
@@ -1314,7 +1330,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifileio_la_etcdir)" "$(DESTDIR)$(libscifileio_la_rootdir)" "$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" "$(DESTDIR)$(libscifileio_la_demosdir)" "$(DESTDIR)$(libscifileio_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscifileio_la_etcdir)" "$(DESTDIR)$(libscifileio_la_rootdir)" "$(DESTDIR)$(libscifileio_la_sci_gatewaydir)" "$(DESTDIR)$(libscifileio_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1365,8 +1381,7 @@ info-am:
 install-data-am: install-data-local install-libscifileio_la_etcDATA \
 	install-libscifileio_la_includeHEADERS \
 	install-libscifileio_la_rootDATA \
-	install-libscifileio_la_sci_gatewayDATA \
-	install-nobase_libscifileio_la_demosDATA
+	install-libscifileio_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1408,7 +1423,6 @@ uninstall-am: uninstall-libscifileio_la_etcDATA \
 	uninstall-libscifileio_la_includeHEADERS \
 	uninstall-libscifileio_la_rootDATA \
 	uninstall-libscifileio_la_sci_gatewayDATA \
-	uninstall-nobase_libscifileio_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1425,17 +1439,15 @@ uninstall-am: uninstall-libscifileio_la_etcDATA \
 	install-libscifileio_la_includeHEADERS \
 	install-libscifileio_la_rootDATA \
 	install-libscifileio_la_sci_gatewayDATA install-man \
-	install-nobase_libscifileio_la_demosDATA install-pdf \
-	install-pdf-am install-pkglibLTLIBRARIES install-ps \
-	install-ps-am install-strip installcheck installcheck-am \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscifileio_la_etcDATA \
+	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
+	install-ps install-ps-am install-strip installcheck \
+	installcheck-am installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags uninstall uninstall-am uninstall-libscifileio_la_etcDATA \
 	uninstall-libscifileio_la_includeHEADERS \
 	uninstall-libscifileio_la_rootDATA \
 	uninstall-libscifileio_la_sci_gatewayDATA \
-	uninstall-nobase_libscifileio_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

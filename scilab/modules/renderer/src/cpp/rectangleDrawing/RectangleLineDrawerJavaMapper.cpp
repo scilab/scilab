@@ -57,11 +57,6 @@ void RectangleLineDrawerJavaMapper::destroy(int parentFigureIndex)
 {
  m_pJavaObject->destroy(parentFigureIndex); 
 }
-/*--------------------------------------------------------------------------*/
-void RectangleLineDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void RectangleLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
 {

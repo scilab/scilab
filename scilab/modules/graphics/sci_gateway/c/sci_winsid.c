@@ -19,7 +19,7 @@
 #include "sci_winsid.h"
 #include "MALLOC.h"
 #include "WindowList.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "returnProperty.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -39,7 +39,7 @@ int sci_winsid(char *fname,unsigned long fname_len)
     int * ids = MALLOC(nbFigure * sizeof(int));
     if (ids == NULL)
     {
-      sciprint(_("%s: No more memory.\n"),fname);
+      Scierror(999, _("%s: No more memory.\n"),fname);
       return 0;
     }
     sciGetFiguresId(ids);

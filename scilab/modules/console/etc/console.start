@@ -11,10 +11,10 @@
 // ====================================================================
 // console module initialisation file
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 //load("SCI/modules/console/macros/lib");
 // ====================================================================
 //add help chapter
-//add_module_help_chapter("console");
-//clear add_module_help_chapter;
+add_module_help_chapter("console");
+clear add_module_help_chapter;
 // ====================================================================

@@ -59,11 +59,6 @@ void SubwinBackgroundDrawerJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void SubwinBackgroundDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void SubwinBackgroundDrawerJavaMapper::setBoxParameters(int backgroundColor)
 {
   m_pJavaObject->setBoxParameters(backgroundColor);

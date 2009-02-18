@@ -23,44 +23,45 @@
 #
 # See the file scipad/license.txt
 #
+
 #####################################################################
 #
 # There are two relevant arrays used for colorization and keyword
 # matching: chset and words.
 #
-# words contains elements addressed as words(MODE.TAG.INITIAL). 
-# MODE by now is always scilab,
-# TAG is one of {comm intfun predef libfun scicos userfun}
-# INITIAL is a single character, a valid scilab name initial.
-# Each element is a tcl list containing all the words of the given TAG
-# beginning with INITIAL (not all possible INITIALs need to be present,
+# words contains elements addressed as words($MODE.$TAG.$INITIAL). 
+# $MODE by now is always scilab,
+# $TAG is one of {comm intfun predef libfun scicos userfun}
+# $INITIAL is a single character, a valid scilab name initial.
+# Each element is a Tcl list containing all the words of the given $TAG
+# beginning with $INITIAL (not all possible INITIALs need to be present,
 # if there are no keywords beginning with that letter).
 # The script dynamickeywords.sce actually orders them alphabetically.
 # This is not exploited by the colorize procs, nor for autocompletion.
 #
-# Special case for the words array: TAG == userfun - this entry is not
+# Special case for the words array: $TAG == userfun - this entry is not
 # sorted, and does not only contain the functions names but for each
 # function a list of the following form: {$fname $buf $precf}, where:
 #    . $fname : function name
-#    . $buf : name of the textarea containing that function
-#    . precf : physical line number in $buf identifying the beginning
-#              of $fname
+#    . $buf   : name of the textarea containing that function
+#    . $precf : physical line number in $buf identifying the beginning
+#               of $fname
 # This is required for the goto function feature, in order not to
 # confuse functions with the same name defined more than once (in a
 # single buffer or among opened buffers)
 # 
-# chset contains elements addressed as chset(MODE.TAG). Each element there
+# chset contains elements addressed as chset($MODE.$TAG). Each element there
 # is a string of all the represented initials of the keywords in class
-# MODE.TAG. Also this is presently alphabetically sorted, though the fact
+# $MODE.$TAG. Also this is presently alphabetically sorted, though the fact
 # is not exploited.
-# Special case: TAG == userfun - this entry is not sorted
+# Special case: $TAG == userfun - this entry is not sorted
 #
 # Thus a word encountered in the text is matched with the database of
 # keywords in the following way:
 #
-# take the first character of the word
-# if initial is in the relevant chset(MODE.TAG)
-#   check for a match in {words($MODE.$TAG.$INITIAL)}
+#    take the first character of the word
+#    if initial is in the relevant chset($MODE.$TAG)
+#        check for a match in {words($MODE.$TAG.$INITIAL)}
 #
 #####################################################################
 
@@ -111,7 +112,7 @@ proc load_words {} {
 
     set chset(scilab.userfun) {}
 
-#presently empty lists for other schemes
+#presently empty lists for other schemes - not used, thus commented
 #    set chset(none) {}
 #    set chset(xml) {}
 }
@@ -627,13 +628,13 @@ proc colorizationinprogress {} {
 # certain actions (those that make use of the colorization result such as the
 # rem2 or textquoted tag) cannot be executed during colorization
 
-    global nbfilescurrentlycolorized
+    global nbfilescurrentlycolorized pad
 
     if {$nbfilescurrentlycolorized > 0} {
         set mes [mc "You can't do that while colorization is in progress.\
                  Please try again when finished."]
         set tit [mc "Command forbidden during colorization"]
-        tk_messageBox -message $mes -icon warning -title $tit
+        tk_messageBox -message $mes -icon warning -title $tit -parent $pad
         return true
     } else {
         return false
@@ -644,11 +645,11 @@ proc colorizationinprogress {} {
 proc iscurrentbufnotcolorized {} {
 # return true if current buffer is not colorized
 # certain debugger commands cannot be executed if colorization is disabled
-    global ColorizeIt
+    global ColorizeIt pad
     if {!$ColorizeIt} {
         set mes [mc "You must enable colorization to be able to launch the debugger!"]
         set tit [mc "The debugger needs colorization"]
-        tk_messageBox -message $mes -icon error -title $tit
+        tk_messageBox -message $mes -icon error -title $tit -parent $pad
         return true
     } else {
         return false

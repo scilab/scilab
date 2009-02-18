@@ -24,12 +24,10 @@ static gw_generic_table Tab[]=
 	{C2F(sci_amell),"amell"},
 	{C2F(sci_delip),"delip"},
 	{C2F(sci_remez),"remez"},
-	{C2F(sci_syredi),"syredi"},
-	{C2F(sci_fftnew),"fftnew"},
-	{C2F(sci_levinson),"levinson"}
+	{C2F(sci_syredi),"syredi"}
 };
 /*--------------------------------------------------------------------------*/
-int gw_signal(void)
+int gw_signal_processing(void)
 {  
 	callFunctionFromGateway(Tab);
 	return 0;

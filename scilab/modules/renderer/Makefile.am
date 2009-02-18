@@ -80,7 +80,6 @@ src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-src/jni/ScilabGraphicWindow.cpp \
 src/jni/DrawableFigureGL.cpp \
 src/jni/DrawableSubwinGL.cpp \
 src/jni/DrawablePolylineGL.cpp \
@@ -275,8 +274,9 @@ libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
-				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/elementary_functions/includes/
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(top_srcdir)/modules/gui/includes/ \
+				-I$(top_srcdir)/modules/operations/includes/
 
 libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 
@@ -289,7 +289,7 @@ INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-# cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
+# cyclic $(top_builddir)/modules/graphics/libscigraphics.la
 libscirenderer_la_LIBADD =  $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
@@ -327,7 +327,6 @@ src/jni/PolylineMarkdrawerGL.giws.xml \
 src/jni/RectangleFillDrawerGL.giws.xml \
 src/jni/RectangleLineDrawerGL.giws.xml \
 src/jni/RectangleMarkDrawerGL.giws.xml \
-src/jni/ScilabGraphicWindow.giws.xml \
 src/jni/SegsArrowDrawerGL.giws.xml \
 src/jni/SegsLineDrawerGL.giws.xml \
 src/jni/SegsMarkDrawerGL.giws.xml \

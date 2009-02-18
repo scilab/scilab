@@ -8,9 +8,14 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function mputl(str,fd)
+function bok = mputl(str,fd)
 
-[lhs,rhs]=argn()
+[lhs,rhs]=argn();
+
+if ~or(lhs ==[0 1]) then
+  error(999,msprintf(gettext("%s: Wrong number of output argument(s).\n"),'mputl'));
+  return
+end
 
 if ~or(rhs ==[1 2]) then
   error(999,msprintf(gettext("%s: Wrong number of input argument(s).\n"),'mputl'));
@@ -23,7 +28,7 @@ if type(str) <> 10 then
 end
 
 mn = size(str);
-if ~or(mn ==1) then
+if ~or(mn == 1) then
   error(999,msprintf(gettext("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"),'mputl',1));
   return
 end
@@ -33,6 +38,8 @@ opened = %f;
 if rhs == 1 then //write to last opened file
   opened = %f;
   fd = -1;
+  // @OBSOLETE
+  warnobsolete("mputl with a second input parameter", "5.2");
 else
   if type(fd) == 10 then // file given by its path
     opened = %t;
@@ -46,11 +53,27 @@ else
   end
 end  
 
+// checks that file is not read only
+// units,typ,nams,mod,swap
+[uk, tk, nk, mk, sk] = file(fd);
+// READ ONLY MODE mk
+if ( (mk >= 100) & (mk < 200) ) then 
+  bok = %f;
+  return
+end
+
 mn = size(str,'*');
 for i = 1:mn
-  mfprintf(fd, '%s\n',str(i));
+	try
+    mfprintf(fd, '%s\n',str(i));
+  catch
+    bok = %f;
+    return
+  end
 end
 
 if opened then mclose(fd),end
+
+bok = %t;
 
 endfunction

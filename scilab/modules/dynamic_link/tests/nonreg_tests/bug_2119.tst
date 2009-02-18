@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
 // <-- Non-regression test for bug 2119 -->
 //
@@ -31,7 +32,7 @@ mputl(['      subroutine dgesvtst( n,nrhs,a,lda,ipiv,b,ldb,info )'
        '         call dgetrs(''no transpose'',n,nrhs,a,lda,ipiv,b,ldb,info)'
        '      end if'
        '      return'
-       '      end'],TMPDIR+'/dgesvtst.f')
+       '      end'],TMPDIR+'/dgesvtst.f');
 
 function [X, LU, IPIV, INFO] = msolve(A,B)
 // Simplified From Mark code, solve AX = B for matrix X with DGESV from LAPACK

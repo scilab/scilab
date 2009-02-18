@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 # Localization of the module interpolation
@@ -91,7 +91,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libsciinterpolation_la_demosdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_etcdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_rootdir)" \
 	"$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" \
@@ -149,12 +148,10 @@ F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libsciinterpolation_la_SOURCES)
 DIST_SOURCES = $(libsciinterpolation_la_SOURCES)
-libsciinterpolation_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libsciinterpolation_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsciinterpolation_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libsciinterpolation_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libsciinterpolation_la_demos_DATA) \
-	$(libsciinterpolation_la_etc_DATA) \
+DATA = $(libsciinterpolation_la_etc_DATA) \
 	$(libsciinterpolation_la_root_DATA) \
 	$(libsciinterpolation_la_sci_gateway_DATA)
 libsciinterpolation_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
@@ -395,8 +392,8 @@ libsciinterpolation_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-                -I$(top_srcdir)/modules/string/includes
+		                -I$(top_srcdir)/modules/string/includes \
+                		-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
@@ -428,11 +425,7 @@ libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 
 ####�interpolation : include files ####
 libsciinterpolation_la_includedir = $(pkgincludedir)/interpolation
-libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h 
-
-####�interpolation : demos files ####
-libsciinterpolation_la_demosdir = $(mydatadir)/demos/
-libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
+libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -718,23 +711,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libsciinterpolation_la_demosDATA: $(libsciinterpolation_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsciinterpolation_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciinterpolation_la_demosdir)"
-	@list='$(libsciinterpolation_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsciinterpolation_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f'"; \
-	  $(libsciinterpolation_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f"; \
-	done
-
-uninstall-libsciinterpolation_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsciinterpolation_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsciinterpolation_la_demosdir)/$$f"; \
-	done
 install-libsciinterpolation_la_etcDATA: $(libsciinterpolation_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsciinterpolation_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libsciinterpolation_la_etcdir)"
@@ -882,7 +858,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciinterpolation_la_demosdir)" "$(DESTDIR)$(libsciinterpolation_la_etcdir)" "$(DESTDIR)$(libsciinterpolation_la_rootdir)" "$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" "$(DESTDIR)$(libsciinterpolation_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciinterpolation_la_etcdir)" "$(DESTDIR)$(libsciinterpolation_la_rootdir)" "$(DESTDIR)$(libsciinterpolation_la_sci_gatewaydir)" "$(DESTDIR)$(libsciinterpolation_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -931,7 +907,6 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
-	install-libsciinterpolation_la_demosDATA \
 	install-libsciinterpolation_la_etcDATA \
 	install-libsciinterpolation_la_includeHEADERS \
 	install-libsciinterpolation_la_rootDATA \
@@ -973,8 +948,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
-	uninstall-libsciinterpolation_la_etcDATA \
+uninstall-am: uninstall-libsciinterpolation_la_etcDATA \
 	uninstall-libsciinterpolation_la_includeHEADERS \
 	uninstall-libsciinterpolation_la_rootDATA \
 	uninstall-libsciinterpolation_la_sci_gatewayDATA \
@@ -990,8 +964,7 @@ uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libsciinterpolation_la_demosDATA \
-	install-libsciinterpolation_la_etcDATA \
+	install-info-am install-libsciinterpolation_la_etcDATA \
 	install-libsciinterpolation_la_includeHEADERS \
 	install-libsciinterpolation_la_rootDATA \
 	install-libsciinterpolation_la_sci_gatewayDATA install-man \
@@ -1001,7 +974,6 @@ uninstall-am: uninstall-libsciinterpolation_la_demosDATA \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags uninstall uninstall-am \
-	uninstall-libsciinterpolation_la_demosDATA \
 	uninstall-libsciinterpolation_la_etcDATA \
 	uninstall-libsciinterpolation_la_includeHEADERS \
 	uninstall-libsciinterpolation_la_rootDATA \

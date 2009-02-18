@@ -213,11 +213,13 @@ public interface RendererProperties {
 	void disableCanvas();
 	
 	/**
-	 * If the window does not already contains a 3D canvas,
-	 * add one.
-	 * @param figureIndex of the figure that need a canvas
-	 */
-	void openGraphicCanvas(int figureIndex);
+     * If the window does not already contains a 3D canvas,
+     * add one.
+     * @param figureIndex of the figure that need a canvas
+     * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
+     */
+    void openGraphicCanvas(int figureIndex, int antialiasingQuality);
 	
 	/**
 	 * Destroy the canvas if one already exists
@@ -236,6 +238,19 @@ public interface RendererProperties {
 	 * @param status is true to set the event handler active
 	 */
 	void setEventHandlerEnabled(boolean status);
+	
+	/**
+	 * Turn on or off single buffering
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 */
+	void setSingleBuffered(boolean useSingleBuffer);
+	
+	/**
+	 * Change the quality for antialiasing.
+	 * @param figureIndex index of the figure
+	 * @param quality 0 if no antialiasing or the number of passes to use.
+	 */
+	void setAntialiasingQuality(int figureIndex, int quality);
 	
 	
 }

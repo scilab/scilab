@@ -122,7 +122,7 @@ libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_
 CHECK_SRC= ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
 
-libscipolynomials_la_LIBADD =  $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscipolynomials_la_LIBADD =  $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 if USE_EMBEDDED_LAPACK
@@ -155,12 +155,5 @@ libscipolynomials_la_sci_gateway_DATA = sci_gateway/polynomials_gateway.xml
 #### polynomials : include files ####
 libscipolynomials_la_includedir=$(pkgincludedir)/polynomials
 libscipolynomials_la_include_HEADERS = includes/gw_polynomials.h
-
-
-#### polynomials : demos files ####
-libscipolynomials_la_demosdir=$(mydatadir)
-nobase_libscipolynomials_la_demos_DATA = demos/polynomials.dem.gateway.sce \
-demos/rootsdemo.sci \
-demos/intro/poly.intro.dem.sce
 
 include $(top_srcdir)/Makefile.incl.am

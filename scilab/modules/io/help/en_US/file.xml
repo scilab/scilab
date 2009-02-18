@@ -300,7 +300,7 @@ mclose(u2);
         <link linkend="readb">readb</link>
       </member>
       <member>
-        <link linkend="xgetfile">xgetfile</link>
+        <link linkend="uigetfile">uigetfile</link>
       </member>
       <member>
         <link linkend="mopen">mopen</link>

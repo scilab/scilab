@@ -34,8 +34,9 @@ libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 
 libsciintersci_la_CFLAGS = 	-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-                -I$(top_srcdir)/modules/string/includes	
+				-I$(srcdir)/includes \
+		                -I$(top_srcdir)/modules/string/includes	\
+		                -I$(top_srcdir)/modules/operations/includes
 
 # For the code check (splint)
 CHECK_SRC= $(libsciintersci_la_SOURCES)

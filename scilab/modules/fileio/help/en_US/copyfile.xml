@@ -49,8 +49,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">copyfile(SCI+'/etc/scilab.start',TMPDIR+/'scilab.start')
-[status,message] = copyfile(SCI+'/etc/scilab.start',TMPDIR)
+    <programlisting role="example">
+copyfile(SCI+"/etc/scilab.start",TMPDIR+"/scilab.start")
+[status,message] = copyfile(SCI+"/etc/scilab.start",TMPDIR);
  </programlisting>
   </refsection>
 

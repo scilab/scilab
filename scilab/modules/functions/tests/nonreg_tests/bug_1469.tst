@@ -74,7 +74,7 @@ clear foo;
 function foo
 endfunction
 L=macr2lst(foo);
-R5=L(4)(1)=='15'&size(L)==6
+R5=L(4)(1)=='15'&size(L)==7
 if ~R5 then pause,end
 clear foo;
 
@@ -83,7 +83,7 @@ clear foo;
 function foo,
 endfunction
 L=macr2lst(foo);
-R6=L(4)(1)=='15'&size(L)==6
+R6=L(4)(1)=='15'&size(L)==7
 if ~R6 then pause,end
 clear foo;
 
@@ -92,7 +92,7 @@ clear foo;
 function foo//ZZZZ
 endfunction
 L=macr2lst(foo);
-R7=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==7
+R7=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==8
 if ~R7 then pause,end
 clear foo;
 
@@ -101,7 +101,7 @@ clear foo;
 function foo,//ZZZZ
 endfunction
 L=macr2lst(foo);
-R8=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==7
+R8=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==8
 if ~R8 then pause,end
 clear foo;
 
@@ -111,7 +111,7 @@ function foo
 //ZZZZ
 endfunction
 L=macr2lst(foo);
-R9=L(4)(1)=='15'&L(5)(1)=='31'&size(L)==8
+R9=L(4)(1)=='15'&L(5)(1)=='31'&size(L)==9
 if ~R9 then pause,end
 clear foo;
 
@@ -121,7 +121,7 @@ function foo,//ZZZZ
   a=1
 endfunction
 L=macr2lst(foo);
-R10=L(4)(1)=='31'&L(5)(1)=='15'&L(6)(1)=='6'&size(L)==10
+R10=L(4)(1)=='31'&L(5)(1)=='15'&L(6)(1)=='6'&size(L)==11
 if ~R10 then pause,end
 clear foo;
 
@@ -241,7 +241,7 @@ t=['function foo,//ZZZZ'
 mputl(t,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci')
 L=macr2lst(foo); //getf ignores declaration line comments
-R21=L(4)(1)=='15'&L(5)(1)=='6'&size(L)==9
+R21=L(4)(1)=='15'&L(5)(1)=='6'&size(L)==10
 if ~R21 then pause,end
 clear foo;
 
@@ -254,6 +254,29 @@ t=['function foo'
 mputl(t,TMPDIR+'/foo.sci');
 getf(TMPDIR+'/foo.sci')
 L=macr2lst(foo); //getf ignores declaration line comments
-R22=L(4)(1)=='15'&L(5)(1)=='31'&L(6)(1)=='15'&size(L)==11
+R22=L(4)(1)=='15'&L(5)(1)=='31'&L(6)(1)=='15'&size(L)==12
 if ~R22 then pause,end
 clear foo;
+
+// ================ Test 23 ====================================================
+function foo()
+  function bar()
+    a=1
+endfunction
+endfunction
+t=fun2string(foo,'foo')
+if size(t,1)<>5 then pause,end
+
+clear foo
+function foo()
+  function bar()
+    a=1
+ endfunction
+endfunction
+t1=fun2string(foo,'foo')
+if or(t<>t1) then pause,end
+// ================ Test 24 ====================================================
+function test;endfunction
+L=macr2lst(test)
+if size(L)<>6 then pause,end
+if L(4)<>'15'|L(5)<>'99'| L(6)<>'15' then pause,end

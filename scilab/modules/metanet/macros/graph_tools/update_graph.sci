@@ -67,6 +67,9 @@ function GraphList=update_graphv5(G)
   kloop=find(GraphList.edges.tail==GraphList.edges.head)
   index=0*ones(1,n);index(kloop)=1
   GraphList.edges.graphics.profile_index=index;
+  if GraphList.edges.graphics.name==[] then 
+    GraphList.edges.graphics.name=emptystr(1,n);
+  end
   
   //  add missing data fields for edges
   for f=['min_cap','max_cap','q_orig','cost','weight','length']

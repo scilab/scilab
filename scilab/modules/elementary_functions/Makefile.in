@@ -1093,11 +1093,11 @@ sci_gateway/fortran/sci_f_exp.f
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
-libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
+libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
-	src/fortran/pade.f \
+	src/fortran/linpack/pade.f \
 	src/c/unsfdcopy.c \
-	src/fortran/icopy.f
+	src/fortran/linpack/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 libdummy_elementary_functions_la_CFLAGS = $(CFLAGS:-O%=) \
@@ -1165,7 +1165,9 @@ includes/int2db.h \
 includes/rea2b.h \
 includes/rea2db.h \
 includes/scidcopy.h \
-includes/unsfdcopy.h
+includes/unsfdcopy.h \
+includes/finite.h \
+includes/vfinite.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)

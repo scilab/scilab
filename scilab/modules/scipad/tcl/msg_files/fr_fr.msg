@@ -2,7 +2,7 @@
 #
 #  Copyright (C) 2002 -      INRIA, Matthieu Philippe
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
-#  Copyright (C) 2004-2008 - Francois Vogel
+#  Copyright (C) 2004-2009 - Francois Vogel
 #
 #  Localization files ( in tcl/msg_files/) are copyright of the 
 #  individual authors, listed in the header of each file
@@ -25,7 +25,7 @@
 #
 
 # Scipad texts in French by Francois Vogel
-# in sync at least with v7.8
+# in sync at least with v7.14
 
 
 # commons
@@ -319,6 +319,7 @@
 ::msgcat::mcset fr_fr "cannot be written!" "est en lecture seule !"
 ::msgcat::mcset fr_fr "The contents of " "Le contenu de"
     ::msgcat::mcset fr_fr "has changed on disk, save it anyway?" "a changé sur le disque, êtes-vous sûr de vouloir le sauvegarder ?"
+::msgcat::mcset fr_fr "The contents and/or properties of " "Le contenu ou les propriétés de"
     ::msgcat::mcset fr_fr "has been modified outside of Scipad. Do you want to reload it?" \
                        "a été modifié hors de Scipad. Voulez-vous le recharger à partir du disque ?"
 ::msgcat::mcset fr_fr "File has changed!" "Le fichier a changé"
@@ -481,7 +482,7 @@
                    "\n Créé par Joseph Acosta, joeja@mindspring.com.\n\
                     Modifié par le Consortium Scilab.\n\
                     Amélioré par Enrico Segre 2003-2006.\n\
-                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2008.\n\
+                    Améliorations diverses, dont outils de débug, par François Vogel 2004-2009.\n\
                     Traductions :\n\
                      . Suédois, Gunnar Lindholm 2005\n\
                      . Norvégien, Torbjørn Pettersen 2005\n\
@@ -639,6 +640,10 @@
     ::msgcat::mcset fr_fr "Execution &errors" "E&rreurs d'exécution"
         ::msgcat::mcset fr_fr "In Scilab &shell only" "Dans la fenêtre &Scilab seulement"
         ::msgcat::mcset fr_fr "Copied in a &message box" "Recopiées dans une &boîte de dialogue"
+    ::msgcat::mcset fr_fr "Enc&oding" "Encod&age"
+        ::msgcat::mcset fr_fr "More enc&odings" "Plus d'encod&ages"
+        ::msgcat::mcset fr_fr "&Recent encodings" "Encodages &récents"
+        ::msgcat::mcset fr_fr "&Auto-detect encoding when loading XML files" "&Auto-detection de l'encodage à l'ouverture des fichiers XML"
     ::msgcat::mcset fr_fr "E&xit options" "Option&s de fermeture"
         ::msgcat::mcset fr_fr "Show closure &X" "Afficher le bouton &X de fermeture"
         ::msgcat::mcset fr_fr "Exit on &last file close" "Quitte si &dernier fichier fermé"

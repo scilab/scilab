@@ -169,6 +169,12 @@ public abstract class SubwinLineBoxDrawer extends SubwinBoxDrawer {
 	 * @param concealedCornerIndex index of the concealed corner
 	 */
 	protected void drawTrihedron(int concealedCornerIndex) {
+		
+		if (getCoordinateTransformation().is2dMode()) {
+			// don't display back trihedron in 2d mode, it may give some bad results
+			return;
+		}
+		
 		GL gl = getGL();
 		
 		// the concealed line is draw wiht dashes

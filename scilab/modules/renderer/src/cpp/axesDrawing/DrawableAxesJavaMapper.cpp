@@ -58,11 +58,6 @@ void DrawableAxesJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void DrawableAxesJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void DrawableAxesJavaMapper::translate(const double translation[3])
 {
   m_pJavaObject->translate(translation[0], translation[1], translation[2]);

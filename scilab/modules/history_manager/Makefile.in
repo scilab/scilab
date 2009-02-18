@@ -99,7 +99,8 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscihistory_manager_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/fileio/libscifileio.la
 am__libscihistory_manager_la_SOURCES_DIST =  \
 	src/c/getCommentDateSession.c src/jni/HistoryManagement_wrap.c \
 	src/cpp/CommandLine.cpp src/cpp/HistoryFile.cpp \
@@ -418,7 +419,7 @@ sci_gateway/c/sci_historymanager.c
 @GUI_TRUE@USEANT = 1
 
 # Includes need for the compilation
-libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/
+libscihistory_manager_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/ -I$(top_srcdir)/modules/fileio/includes/
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
@@ -427,8 +428,9 @@ libscihistory_manager_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
--I$(top_srcdir)/modules/operations/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/ \
+-I$(top_srcdir)/modules/operations/includes/
 
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
@@ -442,7 +444,7 @@ libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGE
 # For the code check (splint)
 CHECK_SRC = $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
-libscihistory_manager_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscihistory_manager_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 modulename = history_manager
 
 #### history_manager : Conf files ####

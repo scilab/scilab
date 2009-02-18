@@ -38,16 +38,15 @@ case 'set' then
   xx=rpar(1:n);yy=rpar(n+1:2*n)
   while %t do
     [ln,fun]=where();  
+
     if or(fun == "clickin") then // cas standard  
-      old_win=xget('window')
-      win=maxi(winsid())+1
-      xset('window',win);xsetech([0 0 1 1])
-      [xx,yy,ok]=edit_curv(xx,yy,'axy')
-      xdel(win)
-      xset('window',old_win)
+      gh_old_win = gcf(); 
+        [xx,yy,ok,gc] = edit_curv(xx,yy,'axy');
+      scf(gh_old_win); 
     else
       ok=%t
     end  // no need anymore to overload edit_curv in do_eval
+
     if ~ok then break,end
     n=size(xx,'*')
     if or(xx(2:n)-xx(1:n-1)<=0) then

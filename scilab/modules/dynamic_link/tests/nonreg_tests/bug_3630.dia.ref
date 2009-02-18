@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 3630 -->
 //
 // <-- Bugzilla URL -->
@@ -24,10 +25,12 @@ files=['bug_3630.o'];
 ilib_build('libc_fun',['c_sum','c_intsum';'c_sub','c_intsub'],files,[]);
    Generate a gateway file
    Generate a loader file
-   Generate a Makefile: Makelib
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy bug_3630.c to TMPDIR
+   ilib_gen_Make: Copy libc_fun.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
-   Compilation of bug_3630
-   Building shared library (be patient)
 // disable message
 warning_mode = warning('query');
 warning('off');
@@ -45,11 +48,11 @@ exec loader.sce
  
 libc_fun_path = get_file_path('loader.sce');
  
-list_functions = [ 'c_sum';
+list_functions = [             'c_sum';
             'c_sub';
 ];
  
-addinter(libc_fun_path+'/libc_fun.dll','libc_fun',list_functions);
+addinter(libc_fun_path+'/libc_fun.so','libc_fun',list_functions);
  
 // remove temp. variables on stack
  

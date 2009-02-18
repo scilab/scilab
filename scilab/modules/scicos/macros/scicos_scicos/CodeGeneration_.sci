@@ -869,8 +869,8 @@ function ok=gen_ccode42();
 
   created=fileinfo(rpat+'/'+rdnom+'_act_sens_events.c')
   if created~=[] then
-    reponse=x_message(['File: ""'+rdnom+'_act_sens_events.c"" already exists,';
-                       'do you want to replace it ?'],['Yes','No']);
+    reponse=messagebox(['File: ""'+rdnom+'_act_sens_events.c"" already exists,';
+                       'do you want to replace it ?'],"modal","question",['Yes','No']);
   end
 
   if reponse==1 |  reponse==[] then
@@ -1438,16 +1438,16 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
       [pathrp,fnamerp,extensionrp]=fileparts(rpat)
       ok=mkdir(pathrp,fnamerp+extensionrp)
       if ~ok then 
-        x_message('Directory '+rpat+' cannot be created');
+        messagebox('Directory '+rpat+' cannot be created',"modal","info");
       end
     elseif filetype(dirinfo(2))<>'Directory' then
       ok=%f;
-      x_message(rpat+' is not a directory');
+      messagebox(rpat+' is not a directory',"modal","error");
     end
 
     if stripblanks(rdnom)==emptystr() then 
       ok=%f;
-      x_message('sorry C file name not defined');
+      messagebox('sorry C file name not defined',"modal","error");
     end
     if ok then break,end
   end

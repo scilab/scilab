@@ -30,7 +30,8 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2svg(win_num,filen [,orientation])</synopsis>
+    <synopsis>xs2svg(win_num, file_name [,orientation])
+xs2svg(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar or vector .</para>
+          <para>integer, id of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>fig</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>handle of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>file_name</term>
+
+        <listitem>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
 
@@ -57,8 +66,8 @@
         <term>orientation</term>
 
         <listitem>
-          <para>optional character, with possible values 'p' (portrait) or 'l'
-          (landscape). The default value is 'p'.</para>
+          <para>optional character, with possible values 'portrait' or
+          'landscape'. The default value is 'portrait'.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -67,9 +76,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2svg</literal> saves the recorded graphics of the window
-    <literal>win_num</literal> to file <literal>filen</literal> in SVG syntax.
-    Note that <literal>filen</literal> must not have extension.</para>
+    <para><literal>xs2svg</literal> exports the display of a graphic window into a SVG file.</para>
   </refsection>
 
   <refsection>
@@ -79,8 +86,8 @@
     scf(0)
     plot2d()
     //SVG export
-    filename='foo'; // ! no extension
-    xs2svg(0,filename)
+    xs2svg(0,'foo.svg')
+    xs2svg(gcf(),'foo.svg');
   </programlisting>
   </refsection>
 
@@ -93,8 +100,6 @@
       <member><link linkend="toprint">toprint</link></member>
 
       <member><link linkend="printfigure">printfigure</link></member>
-
-      <member><link linkend="xbasimp">xbasimp</link></member>
 
       <member><link linkend="xs2bmp">xs2bmp</link></member>
 

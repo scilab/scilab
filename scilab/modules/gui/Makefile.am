@@ -34,7 +34,6 @@ src/cpp/CallJxclick.cpp \
 src/jni/Jxgetmouse.cpp \
 src/cpp/CallJxgetmouse.cpp \
 src/cpp/CallColorChooser.cpp \
-src/cpp/CallFileChooser.cpp \
 src/cpp/CallFontChooser.cpp \
 src/cpp/CallFigure.cpp \
 src/cpp/CallMessageBox.cpp \
@@ -108,16 +107,18 @@ src/cpp/exportUserInterface.cpp \
 src/jni/LookAndFeelManager.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
-src/jni/GiwsException.cpp
+src/jni/GiwsException.cpp \
+src/jni/Juigetfile.cpp \
+src/cpp/CallJuigetfile.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
-src/jni/FileChooser.giws.xml \
 src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
-src/jni/UIElementMapper.giws.xml
+src/jni/UIElementMapper.giws.xml \
+src/jni/Juigetfile.giws.xml
 
 
 if GIWS
@@ -131,13 +132,11 @@ sci_gateway/c/sci_x_mdialog.c \
 sci_gateway/c/sci_x_dialog.c \
 sci_gateway/c/sci_x_choose.c \
 sci_gateway/c/sci_x_choose_modeless.c \
-sci_gateway/c/sci_xgetfile.c \
 sci_gateway/c/sci_unsetmenu.c \
 sci_gateway/c/sci_delmenu.c \
 sci_gateway/c/sci_setmenu.c \
 sci_gateway/c/sci_ClipBoard.c \
 sci_gateway/c/sci_toolbar.c \
-sci_gateway/c/sci_uigetdir.c \
 sci_gateway/c/sci_uicontrol.c \
 sci_gateway/c/sci_uicontextmenu.c \
 sci_gateway/c/sci_uimenu.c \
@@ -158,7 +157,9 @@ sci_gateway/cpp/sci_toprint.cpp \
 sci_gateway/cpp/sci_printfigure.cpp \
 sci_gateway/cpp/sci_setlookandfeel.cpp \
 sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
-sci_gateway/cpp/sci_getlookandfeel.cpp
+sci_gateway/cpp/sci_getlookandfeel.cpp \
+sci_gateway/cpp/sci_uigetdir.cpp \
+sci_gateway/cpp/sci_uigetfile.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \
@@ -170,21 +171,21 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/tclsci/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/shell/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/libs/hashtable \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
-			-I$(top_srcdir)/modules/operations/includes \
 			-I$(srcdir)/src/cpp/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/
 
 libscigui_la_CFLAGS += $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/string/includes/
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/
 
 libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -192,6 +193,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \
@@ -202,9 +204,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/graphics/includes/ \
 			-I$(top_srcdir)/modules/graphics/src/c/getHandleProperty/ \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/string/includes/
-
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/operations/includes/
 else
 libscigui_la_CFLAGS=			-Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
@@ -260,7 +261,6 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallColorChooser.h \
-includes/CallFileChooser.h \
 includes/CallFontChooser.h \
 includes/CallFigure.h \
 includes/CallJxclick.h \
@@ -344,19 +344,11 @@ includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
-includes/exportUserInterface.hxx
-
-#### gui : demos files ####
-libscigui_la_demosdir=$(mydatadir)/demos/
-libscigui_la_demos_DATA = demos/cb_uicontrol_plot3d.dem.sci \
-demos/dialog.dem.sce \
-demos/gui.dem.gateway.sce \
-demos/uicontrol.dem.sce \
-demos/uicontrol_plot3d.dem.sce \
-demos/background.png \
-demos/test.png \
-demos/uicontrol.test.dem.sce \
-demos/uicontrol_plot3d.dem.html
+includes/exportUserInterface.hxx \
+includes/CallJuigetfile.hxx \
+src/jni/Juigetfile.hxx \
+includes/sci_uigetfile.h \
+includes/CallJuigetfile.h
 
 #### gui : icons files ####
 libscigui_la_iconsdir=$(mydatadir)/

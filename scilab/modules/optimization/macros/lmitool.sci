@@ -12,7 +12,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
 txtdo=[]
 
 if RHS ~=3 then
-x_message([gettext('Welcome to LMITOOL');'      ';'   ';
+messagebox([gettext('Welcome to LMITOOL');'      ';'   ';
     gettext('LMITOOL is a Scilab package for LMI optimization');
       '            ';
       '           ';
@@ -35,7 +35,7 @@ x_message([gettext('Welcome to LMITOOL');'      ';'   ';
       gettext('For a detailed description and examples consult: ');
       gettext('          ''LMITOOL: a Package for LMI Optimization in Scilab, User''s Guide'' ');
       '          ';
-      gettext('LMITOOL uses Semidefinite Programming package SP developed by L. Vandenberghe and S. Boyd.')]);
+      gettext('LMITOOL uses Semidefinite Programming package SP developed by L. Vandenberghe and S. Boyd.')],"modal","scilab");
 
 
 
@@ -171,7 +171,7 @@ x_message([gettext('Welcome to LMITOOL');'      ';'   ';
               gettext('file with the same name exists already)')],[fname+'                '])
           fname=stripblanks(fname);
         else
-          x_message(gettext('functions saved in ')+fname');
+          messagebox(gettext('functions saved in ')+fname',"modal","info");
         end
         if fname<>[] then
         deletefile(fname)
@@ -190,7 +190,7 @@ x_message([gettext('Welcome to LMITOOL');'      ';'   ';
               '           Good luck! ';
               'To check the result, use [LME,LMI,OBJ]='+PROBNAME+'_eval(list('+XNAME+'))']
           
-          x_message(txtdo);return
+          messagebox(txtdo,"modal","info");return
         end
         if RHS==3 then
           txtdo = [gettext('    To solve your problem, you need to ');

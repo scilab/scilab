@@ -33,7 +33,7 @@ title(_("chemical process (implicit)"))
 l=legend(['y1';'10^4 y2';'y3']);l.legend_location = "lower_caption"
 drawnow()
 
-x_message("Click Ok to continue.");
+messagebox("Click Ok to continue.","modal");
 
 // Add surface condition
 nt = prod(size(t));

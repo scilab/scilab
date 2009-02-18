@@ -8,7 +8,8 @@
 cd('home');
 mkdir('testdir');
 cd('testdir');
-mputl('Scilab can do it :p','files.txt')
+r = mputl('Scilab can do it :p','files.txt');
+if r <> %t then pause,end
 
 cd('home');
 res = ls('home/testdir');

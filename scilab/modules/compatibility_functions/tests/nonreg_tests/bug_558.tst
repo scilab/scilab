@@ -18,10 +18,12 @@
 //
 //    the last 'or' looks superfluous to me.
 
+// 2009-01-09 mtlb_save is removed => savematfile
+
 fileName = TMPDIR+'/bug558.mat';
 x = 20;
 warning('off');
-mtlb_save(fileName,'x');
+savematfile(fileName,'x');
 warning('on');
 w=fileinfo(fileName);
 if ( (w == []) | (w(1) == 0) )  then pause,end

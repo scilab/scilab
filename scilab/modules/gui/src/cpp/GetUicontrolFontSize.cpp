@@ -37,7 +37,7 @@ int GetUicontrolFontSize(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "FontSize");
+      Scierror(999, _("No '%s' property for this object.\n"), "FontSize");
       return FALSE;
     }
 }

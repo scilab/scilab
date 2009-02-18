@@ -35,7 +35,7 @@
       <varlistentry>
         <term>isSafe</term>
         <listitem>
-          <para>Boolean: <literal>%T</literal> to create a safe slave interpreter, <literal>%F</literal> otherwise. The default value is <literal>%F</literal>. A safe slave is not allowed to perform some operations, see the TCL documentation for more informations.</para>
+          <para>Boolean: <literal>%T</literal> to create a safe slave interpreter, <literal>%F</literal> otherwise. The default value is <literal>%F</literal>. A safe slave is not allowed to perform some operations, see the TCL documentation for more information.</para>
         </listitem>
       </varlistentry>
     </variablelist>

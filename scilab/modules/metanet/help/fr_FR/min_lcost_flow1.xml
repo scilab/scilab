@@ -101,8 +101,8 @@ while %T then
   [c,phi,flag]=min_lcost_flow1(g1);
   if flag==1 then break; end;
 end;  
-x_message(['Le cout est: '+string(c);
-           'Flots sur les arcs ']);
+messagebox(['Le cout est: '+string(c);
+           'Flots sur les arcs '],"modal");
 ii=find(phi<>0); edgecolor=phi; edgecolor(ii)=11*ones(ii);
 g1('edge_color')=edgecolor;
 edgefontsize=8*ones(1,ma); edgefontsize(ii)=18*ones(ii);

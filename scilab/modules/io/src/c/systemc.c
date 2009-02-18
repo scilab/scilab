@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -15,10 +15,13 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack-def.h"
 #include "MALLOC.h" /* MALLOC */
 #include "PATH_MAX.h"
 #include "systemc.h"
 #include "tmpdir.h"
+#include "charEncoding.h"
+#include "stack-def.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include "FileExist.h"
@@ -30,7 +33,8 @@ int C2F(systemc)(char *command, int *stat)
 #ifdef _MSC_VER
 	{
 		BOOL Status=FALSE;
-		Status=CallWindowsShell(command,FALSE);
+		char szLocale[bsiz];
+		Status=CallWindowsShell(UTFToLocale(command, szLocale),FALSE);
 		if (Status)
 		{
 			*stat=(int) 0;
@@ -43,7 +47,8 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		status=system(command);
+		char szLocale[bsiz];
+		status=system(UTFToLocale(command, szLocale));
 		*stat=(int) status;
 	}
 #endif
@@ -58,26 +63,26 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 	char shellCmd[PATH_MAX];
 	char *CmdLine=NULL;
 
-	PROCESS_INFORMATION piProcInfo; 
+	PROCESS_INFORMATION piProcInfo;
 	STARTUPINFO siStartInfo;
-	SECURITY_ATTRIBUTES saAttr; 
+	SECURITY_ATTRIBUTES saAttr;
 
 	DWORD ExitCode;
 
 	char *TMPDir=NULL;
 	char FileTMPDir[PATH_MAX];
 
-	saAttr.nLength = sizeof(SECURITY_ATTRIBUTES); 
-	saAttr.bInheritHandle = TRUE; 
-	saAttr.lpSecurityDescriptor = NULL; 
+	saAttr.nLength = sizeof(SECURITY_ATTRIBUTES);
+	saAttr.bInheritHandle = TRUE;
+	saAttr.lpSecurityDescriptor = NULL;
 
 	ZeroMemory( &piProcInfo, sizeof(PROCESS_INFORMATION) );
 
 	ZeroMemory( &siStartInfo, sizeof(STARTUPINFO) );
-	siStartInfo.cb = sizeof(STARTUPINFO); 
+	siStartInfo.cb = sizeof(STARTUPINFO);
 	siStartInfo.dwFlags      = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
 	siStartInfo.wShowWindow  = SW_HIDE;
-	
+
 	if (WaitInput)
 	{
 		siStartInfo.hStdInput=GetStdHandle(STD_INPUT_HANDLE);
@@ -93,14 +98,14 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 	GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
 	TMPDir=getTMPDIR();
 	sprintf(FileTMPDir,"%s\\DOS.OK",TMPDir);
-	if (TMPDir) 
+	if (TMPDir)
 	{
 		FREE(TMPDir);
 		TMPDir=NULL;
 	}
 
-	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c %s && echo DOS>%s")+1)*sizeof(char) );
-	sprintf(CmdLine,"%s /a /c %s && echo DOS>%s",shellCmd,command,FileTMPDir);
+	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c \"%s\" && echo DOS>%s")+1)*sizeof(char) );
+	sprintf(CmdLine,"%s /a /c \"%s\" && echo DOS>%s",shellCmd,command,FileTMPDir);
 	if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
 	if (CreateProcess(NULL, CmdLine, NULL, NULL, TRUE,0, NULL, NULL, &siStartInfo, &piProcInfo))

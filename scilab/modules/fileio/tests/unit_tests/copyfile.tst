@@ -12,12 +12,13 @@
 // Unitary tests for copyfile function
 // =============================================================================
 // TEST 1 : copyfile
+
 cd TMPDIR;
 mkdir test_copyfile_source;
 mkdir test_copyfile_target;
 
 cd('test_copyfile_source');
-mputl('I am a dummy String', 'dummyFile.dummy')
+mputl('I am a dummy String', 'dummyFile.dummy');
 lsResult = ls("dummyFile.dummy");
 if lsResult == [] then pause,end
 
@@ -34,14 +35,14 @@ rmdir(TMPDIR+'/test_copyfile_target');
 // =============================================================================
 
 cd TMPDIR;
-dir1="test dir with space"
-dir2="test dir with space number 2"
-file1='dummyFile.dummy'
-mkdir(dir1)
-mkdir(dir2)
+dir1="test dir with space";
+dir2="test dir with space number 2";
+file1='dummyFile.dummy';
+mkdir(dir1);
+mkdir(dir2);
 
-mputl('I am a dummy String', dir1+'/'+file1)
-copyfile(dir1+'/'+file1,dir2)
+mputl('I am a dummy String', dir1+'/'+file1);
+copyfile(dir1+'/'+file1,dir2);
 
 lsResult = ls(dir2+'/'+file1);
 if lsResult == [] then pause,end

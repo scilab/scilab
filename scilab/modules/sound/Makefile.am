@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 
@@ -12,6 +12,7 @@ libscisound_la_CFLAGS=  -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisound.la
@@ -47,11 +48,5 @@ libscisound_la_sci_gateway_DATA = sci_gateway/sound_gateway.xml
 ####�sound : include files ####
 libscisound_la_includedir=$(pkgincludedir)/sound
 libscisound_la_include_HEADERS = includes/gw_sound.h
-
-
-####�sound : demos files ####
-libscisound_la_demosdir=$(mydatadir)/demos/
-libscisound_la_demos_DATA = demos/chimes.wav \
-demos/sound.dem.sce
 
 include $(top_srcdir)/Makefile.incl.am

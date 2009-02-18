@@ -66,7 +66,13 @@ c
       if(istk(ilk).ne.10) then
          if(first) then
             first=.false.
-            nlc=0
+            if (istk(ilk).eq.13) then 
+c     .        compiled macro
+               nlc=0
+            else
+c     .        uncompiled macro
+               nlc=1
+            endif
          else
             call whatln(lpt(1),lpt(2),lpt(6),nlc,l1,ifin)
          endif

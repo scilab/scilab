@@ -15,28 +15,23 @@
 #include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
-#include "Thread_Wrapper.h"
+
 #include "scilab_main.h"
 #include "scilabmode.h"
 #include "realmain.h"
 #include "sciprint.h"
 #include "sciquit.h"
+#include "LaunchScilabSignal.h"
 /*--------------------------------------------------------------------------*/
 static void interrupt_setup (void);
 static void interrupt (int an_int);
 /*--------------------------------------------------------------------------*/
 jmp_buf env;
 /*--------------------------------------------------------------------------*/
-__declspec(dllexport) __threadSignal		LaunchScilab;
-__declspec(dllexport) __threadSignalLock	LaunchScilabLock;
-/*--------------------------------------------------------------------------*/
 void sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
 {
-
-  __InitSignal(&LaunchScilab);
-  __InitSignalLock(&LaunchScilabLock);
-
-  setbuf (stderr, (char *) NULL);
+	InitializeLaunchScilabSignal();
+	setbuf (stderr, (char *) NULL);
 	if (!setjmp (env))
 	{
 		/* first time */

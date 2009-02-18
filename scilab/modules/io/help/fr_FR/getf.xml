@@ -26,34 +26,50 @@
     <title>Paramètres</title>
     <variablelist>
       <varlistentry>
-        <term>filename  </term>
+        <term>filename</term>
         <listitem>
           <para>chaîne de caractères</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>opt  </term>
+        <term>opt</term>
         <listitem>
-          <para>chaîne de caractères optionnelle. Si
-     opt=="c", les fonctions sont "compilées"
-     pour accélérer leur exécution (par défaut). Si
-     opt=="n", les fonctions ne sont pas
-     "compilées". Si opt=="p",les fonctions
-     sont "compilées" et préparées pour les
-     statistiques d'appel (voir <literal>profile</literal>) </para>
-        </listitem>
-      </varlistentry>
+          <para>chaîne de caractères optionnelle</para>
+              <variablelist>
+                <varlistentry>
+                  <term>"c"</term>
+                  <listitem>
+                    <para>les fonctions sont "compilées"  pour accélérer leur exécution (par défaut).</para>
+                  </listitem>
+                </varlistentry>
+                
+                <varlistentry>
+                  <term>"n"</term>
+                  <listitem>
+                    <para>les fonctions ne sont pas "compilées".</para>
+                  </listitem>
+                </varlistentry>
+                
+                <varlistentry>
+                  <term>"p"</term>
+                  <listitem>
+                    <para>les fonctions sont "compilées" et préparées pour les statistiques d'appel (voir <link linkend="profile">profile</link>).</para>
+                  </listitem>
+                </varlistentry>
+            </variablelist>
+            </listitem>
+          </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
     <para>
-    Charge une ou plusieurs fonctions (voir <literal>functions</literal>)
+    Charge une ou plusieurs fonctions (voir <link linkend="functions">functions</link>)
     définies dans le fichier <literal>'file-name'</literal>.
     La chaîne de caractères <literal>opt='n'</literal>
     signifie que les fonctions ne sont pas compilées
     (pré-interprétées) au chargement. Cela peut être utile
-    en phase de mise au point (voir <literal>comp</literal>). Par défaut
+    en phase de mise au point (voir <link linkend="comp">comp</link>). Par défaut
     les fonctions sont compilées
     (i.e. <literal>opt='c'</literal> est utilisée).
   </para>
@@ -64,7 +80,7 @@
 function [y1,...,yn]=foo(x1,...,xm)
    ]]></programlisting>
     <para>
-      les lignes suivantes contiennent la r une suite d'instructions Scilab.
+      les lignes suivantes contiennent une suite d'instructions Scilab.
     </para>
     <para>
       La "ligne de définition" donne la syntaxe
@@ -78,23 +94,22 @@ function [y1,...,yn]=foo(x1,...,xm)
     <para>
       Il est possible d'écrire plusieurs fonctions dans un
       seul fichier. Une fonction est alors terminée par le
-      mot-clé <literal>endfunction</literal> ou par la ligne de
+      mot-clé <link linkend="function">endfunction</link> ou par la ligne de
       déclaration de la fonction suivante (ancienne convention) ou
       par la fin du fichier.
     </para>
-    <para>L'usage de <literal>getf</literal> ne permet pas gérer
+    <para>L'usage de <link linkend="getf">getf</link> ne permet pas gérer
     correctement les fichiers contenant des fonctions définies a
     l'intérieur d'une fonction. Le chargement de tels fichiers ne
-    eput se faire que par l'intermédiaire de la fonction
-    <literal>exec</literal>. </para>
-    <para><literal>getf</literal> est une fonction obsolete. Le chargement des
+    peut se faire que par l'intermédiaire de la fonction
+    <link linkend="exec">exec</link>. </para>
+    <para><link linkend="getf">getf</link> est une fonction obsolete. Le chargement des
     fonctions doit être réalisé en utilisant la fonction
-    <literal>exec</literal>. A noter que dans ce cas l'usage des mots-clé
-    <literal>endfunction</literal> est impératif. L'usage de
-    <literal>exec</literal> sous entend l'option<literal>opt=='c'</literal>.</para>
+    <link linkend="exec">exec</link>. A noter que dans ce cas l'usage des mots-clé
+    <link linkend="function">endfunction</link> est impératif. L'usage de
+    <link linkend="exec">exec</link> sous entend l'option <literal>opt=='c'</literal>.</para>
    <para>Pour préparer la fonction pour la collecte des
-   statistiques d'appel, il faut désormais utiliser la fonction <link linkend="add_profiling">add_profiling</link>
-  .</para>
+   statistiques d'appel, il faut désormais utiliser la fonction <link linkend="add_profiling">add_profiling</link>.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

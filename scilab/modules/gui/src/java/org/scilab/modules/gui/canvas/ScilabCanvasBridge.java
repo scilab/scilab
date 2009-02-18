@@ -36,10 +36,12 @@ public class ScilabCanvasBridge {
 	/**
 	 * Creates a Scilab Canvas
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas(int figureIndex) {
-		return SwingScilabCanvas.createCanvas(figureIndex);
+	public static SimpleCanvas createCanvas(int figureIndex, int antialiasingQuality) {
+		return SwingScilabCanvas.createCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**
@@ -189,5 +191,14 @@ public class ScilabCanvasBridge {
 	 */
 	public static BufferedImage dumpAsBufferedImage(ScilabCanvas scilabCanvas) {
 		return scilabCanvas.getAsSimpleCanvas().dumpAsBufferedImage();
+	}
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 * @param canvas canvas to modify
+	 */
+	public static void setSingleBuffered(Canvas canvas, boolean useSingleBuffer) {
+		canvas.getAsSimpleCanvas().setSingleBuffered(useSingleBuffer);
 	}
 }

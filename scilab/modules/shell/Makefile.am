@@ -11,12 +11,15 @@ src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
 src/c/GetCommandLine.c \
-src/c/others/mainscic.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
-src/c/TerminateShell.c 
+src/c/TerminateShell.c
+
+if IS_MACOSX
+SHELL_C_SOURCES += src/c/others/initMacOSXEnv.c
+endif
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -61,7 +64,7 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 ## Libraries necessary
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
-libscishell_la_LIBADD =   $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/history_manager/libscihistory_manager.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscishell_la_LIBADD =   $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/history_manager/libscihistory_manager.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 # $(top_builddir)/modules/completion/libscicompletion.la
 modulename=shell
 

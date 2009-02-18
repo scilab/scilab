@@ -14,6 +14,8 @@ package org.scilab.modules.gui.events;
 import java.awt.AWTEvent;
 import java.awt.event.AWTEventListener;
 import java.awt.event.KeyEvent;
+
+import org.scilab.modules.gui.utils.Debug;
  
 /**
  * Global key event watcher.
@@ -33,7 +35,9 @@ public abstract class GlobalKeyEventWatcher implements AWTEventListener {
 	 * @see java.awt.event.AWTEventListener#eventDispatched(java.awt.AWTEvent)
 	 */
 	public void eventDispatched(AWTEvent event) {
-			keyEventFilter((KeyEvent) event);
+		// DEBUG
+		Debug.DEBUG(this.getClass().getSimpleName(),((AWTEvent) event).toString());
+		keyEventFilter((KeyEvent) event);
 	}
 	
 	/**

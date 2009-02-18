@@ -91,7 +91,6 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicacsd_la_etcdir)" \
 	"$(DESTDIR)$(libscicacsd_la_rootdir)" \
 	"$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)" \
-	"$(DESTDIR)$(libscicacsd_la_demosdir)" \
 	"$(DESTDIR)$(libscicacsd_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -236,10 +235,8 @@ DIST_SOURCES = $(libscicacsd_la_SOURCES)
 libscicacsd_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicacsd_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicacsd_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
-nobase_libscicacsd_la_demosDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscicacsd_la_etc_DATA) $(libscicacsd_la_root_DATA) \
-	$(libscicacsd_la_sci_gateway_DATA) \
-	$(nobase_libscicacsd_la_demos_DATA)
+	$(libscicacsd_la_sci_gateway_DATA)
 libscicacsd_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscicacsd_la_include_HEADERS)
 ETAGS = etags
@@ -701,35 +698,6 @@ includes/gw_cacsd1.h \
 includes/gw_cacsd2.h \
 includes/gw_cacsd3.h \
 includes/gw_slicot.h
-
-
-####�cacsd : demos files ####
-libscicacsd_la_demosdir = $(mydatadir)
-nobase_libscicacsd_la_demos_DATA = demos/cacsd.dem.gateway.sce \
-demos/cont.dem \
-demos/flat/car.dem.sce \
-demos/flat/car.sci \
-demos/flat/demo_car_eng.htm \
-demos/flat/demo_car_fr.htm \
-demos/flat/demo_truck_eng_htm \
-demos/flat/demo_truck_fr.htm \
-demos/flat/fcts.sci \
-demos/flat/flat.dem.gateway.sce \
-demos/flat/truck.dem.sce \
-demos/flat/truck.sci \
-demos/lqg/lqg.dem \
-demos/lqg/lqg2.dem \
-demos/lqg/scheme.dem \
-demos/mixed.dem \
-demos/pendulum/graphics.sci \
-demos/pendulum/pendule.dem \
-demos/pendulum/simulation.sci \
-demos/pendulum/yy \
-demos/pid.dem \
-demos/robust/como.dem \
-demos/robust/mu.dem \
-demos/robust/rob.dem \
-demos/tracking/track.dem.sce
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -1632,25 +1600,6 @@ uninstall-libscicacsd_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)/$$f"; \
 	done
-install-nobase_libscicacsd_la_demosDATA: $(nobase_libscicacsd_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscicacsd_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicacsd_la_demosdir)"
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscicacsd_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  $(am__vpath_adj) \
-	  echo " $(nobase_libscicacsd_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicacsd_la_demosdir)/$$f'"; \
-	  $(nobase_libscicacsd_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicacsd_la_demosdir)/$$f"; \
-	done
-
-uninstall-nobase_libscicacsd_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@$(am__vpath_adj_setup) \
-	list='$(nobase_libscicacsd_la_demos_DATA)'; for p in $$list; do \
-	  $(am__vpath_adj) \
-	  echo " rm -f '$(DESTDIR)$(libscicacsd_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscicacsd_la_demosdir)/$$f"; \
-	done
 install-libscicacsd_la_includeHEADERS: $(libscicacsd_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicacsd_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscicacsd_la_includedir)"
@@ -1747,7 +1696,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicacsd_la_etcdir)" "$(DESTDIR)$(libscicacsd_la_rootdir)" "$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libscicacsd_la_demosdir)" "$(DESTDIR)$(libscicacsd_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicacsd_la_etcdir)" "$(DESTDIR)$(libscicacsd_la_rootdir)" "$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)" "$(DESTDIR)$(libscicacsd_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1798,8 +1747,7 @@ info-am:
 install-data-am: install-data-local install-libscicacsd_la_etcDATA \
 	install-libscicacsd_la_includeHEADERS \
 	install-libscicacsd_la_rootDATA \
-	install-libscicacsd_la_sci_gatewayDATA \
-	install-nobase_libscicacsd_la_demosDATA
+	install-libscicacsd_la_sci_gatewayDATA
 
 install-dvi: install-dvi-am
 
@@ -1841,7 +1789,6 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 	uninstall-libscicacsd_la_includeHEADERS \
 	uninstall-libscicacsd_la_rootDATA \
 	uninstall-libscicacsd_la_sci_gatewayDATA \
-	uninstall-nobase_libscicacsd_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -1857,8 +1804,7 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 	install-info-am install-libscicacsd_la_etcDATA \
 	install-libscicacsd_la_includeHEADERS \
 	install-libscicacsd_la_rootDATA \
-	install-libscicacsd_la_sci_gatewayDATA install-man \
-	install-nobase_libscicacsd_la_demosDATA install-pdf \
+	install-libscicacsd_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1868,7 +1814,6 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 	uninstall-libscicacsd_la_includeHEADERS \
 	uninstall-libscicacsd_la_rootDATA \
 	uninstall-libscicacsd_la_sci_gatewayDATA \
-	uninstall-nobase_libscicacsd_la_demosDATA \
 	uninstall-pkglibLTLIBRARIES
 
 

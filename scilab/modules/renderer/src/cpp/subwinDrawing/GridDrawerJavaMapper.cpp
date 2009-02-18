@@ -60,11 +60,6 @@ void GridDrawerJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void GridDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void GridDrawerJavaMapper::drawGrid(const double firstAxisStart[3], const double firstAxisEnd[3],
                                     const double secondAxisStart[3], const double secondAxisEnd[3],
                                     const double thirdAxisStart[3], const double thirdAxisEnd[3],
@@ -79,9 +74,9 @@ void GridDrawerJavaMapper::drawGrid(const double firstAxisStart[3], const double
                           (double *) relativeTicksPositions, nbTicks);
 }
 /*--------------------------------------------------------------------------*/
-void GridDrawerJavaMapper::setGridParameters(int gridColor, float gridThickness)
+void GridDrawerJavaMapper::setGridParameters(int gridColor, float gridThickness, bool drawFront)
 {
-  m_pJavaObject->setGridParameters(gridColor, gridThickness);
+  m_pJavaObject->setGridParameters(gridColor, gridThickness, drawFront);
 }
 /*--------------------------------------------------------------------------*/
 }

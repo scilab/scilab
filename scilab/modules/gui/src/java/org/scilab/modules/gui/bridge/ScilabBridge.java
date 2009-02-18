@@ -98,6 +98,8 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.ScilabTreeBridge;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.waitbar.ScilabWaitBarBridge;
@@ -1286,10 +1288,12 @@ public class ScilabBridge {
 	/**
 	 * Creates a Scilab Canvas
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas(int figureIndex) {
-		return ScilabCanvasBridge.createCanvas(figureIndex);
+	public static SimpleCanvas createCanvas(int figureIndex, int antialiasingQuality) {
+		return ScilabCanvasBridge.createCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**
@@ -1458,6 +1462,15 @@ public class ScilabBridge {
 	 */
 	public static BufferedImage dumpAsBufferedImage(ScilabCanvas scilabCanvas) {
 		return ScilabCanvasBridge.dumpAsBufferedImage(scilabCanvas);
+	}
+	
+	/**
+	 * Set double buffer mode on or Off
+	 * @param useSingleBuffer if true use single buffer if false use double buffering
+	 * @param canvas canvas to modify
+	 */
+	public static void setSingleBuffered(Canvas canvas, boolean useSingleBuffer) {
+		ScilabCanvasBridge.setSingleBuffered(canvas, useSingleBuffer);
 	}
 	
 	/*****************/
@@ -4295,8 +4308,8 @@ public class ScilabBridge {
 	 * @param popupMenu the PopupMenu we want to get the selected index of
 	 * @return the index of the item selected
 	 */
-	public static int getSelectedIndex(PopupMenu popupMenu) {
-		return ScilabPopupMenuBridge.getSelectedIndex(popupMenu);
+	public static int getUserSelectedIndex(PopupMenu popupMenu) {
+		return ScilabPopupMenuBridge.getUserSelectedIndex(popupMenu);
 	}
 	
 	/**
@@ -4404,15 +4417,6 @@ public class ScilabBridge {
 	}
 	
 	/**
-	 * Set the mask for files to choose
-	 * @param fileChooser the file chooser we want to set the mask of
-	 * @param mask the mask to set
-	 */
-	public static void setMask(FileChooser fileChooser, String mask) {
-		ScilabFileChooserBridge.setMask(fileChooser, mask);
-	}
-	
-	/**
 	 * Set the initial directory used for file search
 	 * @param fileChooser the file chooser we want to set the initial directory of
 	 * @param path the default path
@@ -4448,20 +4452,21 @@ public class ScilabBridge {
 	}
 	
 	/**
+	 * Get the names of selected files
+	 * @param fileChooser the file chooser we want to get the selection of 
+	 * @return the names of selected files
+	 */
+	public static String[] getSelectionFileNames(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getSelectionFileNames(fileChooser);
+	}
+	
+	/**
 	 * Set the flag indicating that we want only select directories
 	 * @param fileChooser the file chooser we want to set the flag of 
 	 */
 	public static void setDirectorySelectionOnly(FileChooser fileChooser) {
 		ScilabFileChooserBridge.setDirectorySelectionOnly(fileChooser);
 	}
-
-	/**
-	 * Set the flag indicating that we want only select files
-	 * @param fileChooser the file chooser we want to set the flag of 
-	 */
-	public static void setFileSelectionOnly(FileChooser fileChooser) {
-		ScilabFileChooserBridge.setFileSelectionOnly(fileChooser);
-	}	
 	
 	/**
 	 * We customize the file chooser for the graphic export 
@@ -4470,6 +4475,33 @@ public class ScilabBridge {
 	public static void exportCustomFileChooser() {
 		ScilabFileChooserBridge.createFileChooser();
 	}	
+	
+	/**
+	 * Enable the multiple selection
+	 * @param fileChooser the file chooser we want to get the  muliple selection 
+	 * @param multipleSelection boolean for the multiple selection 
+	 */
+	public static void setMultipleSelection(FileChooser fileChooser, boolean multipleSelection) {
+		ScilabFileChooserBridge.setMultipleSelection(fileChooser, multipleSelection);
+	}
+
+	/**
+	 * Get the path name of selected files
+	 * @param fileChooser the file chooser we want to get the path of selectd files 
+	 * @return the path of selected files
+	 */
+	public static String getSelectionPathName(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getSelectionPathName(fileChooser);
+	}
+	
+	/**
+	 * Get the filter index
+	 * @param fileChooser the file chooser we want to get the filter indexs
+	 * @return the filter index
+	 */
+	public static int getFilterIndex(FileChooser fileChooser) {
+		return ScilabFileChooserBridge.getFilterIndex(fileChooser);
+	}
 
 	/*********************/
 	/* MessageBox Bridge */
@@ -4860,5 +4892,14 @@ public class ScilabBridge {
 	 */
 	public static void displayAndWait(ColorChooser colorChooser) {
 		ScilabColorChooserBridge.displayAndWait(colorChooser);
+	}
+	
+	
+	/******************/
+	/* Tree Bridge    */
+	/******************/
+
+	public static void  showTree(Tree tree) {
+		ScilabTreeBridge.showTree(tree);
 	}
 }

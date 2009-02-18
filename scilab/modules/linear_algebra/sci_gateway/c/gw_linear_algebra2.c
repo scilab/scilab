@@ -32,7 +32,6 @@ static gw_generic_table Tab[]={
 	{C2F(inthess),"hess"},
 	{C2F(intdet),"det"},
 	{C2F(intbalanc),"balanc"},
-	{C2F(invnew),"invnew"},
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_linear_algebra2(void)

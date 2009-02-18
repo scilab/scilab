@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc tonextbreakpoint_bp {{checkbusyflag 1} {stepmode "nostep"}} {
 
     # warn the user about duplicate function names, or unterminated functions
@@ -47,6 +48,7 @@ proc execfile_bp {{stepmode "nostep"}} {
     global tmpdir
     global previousstopfun
     global bptsprops
+    global defaultencoding
 
     if {[isscilabbusy 5]} {return}
     showinfo $waitmessage
@@ -113,6 +115,7 @@ proc execfile_bp {{stepmode "nostep"}} {
         if {[catch {
             set fname [file join $tmpdir "Scipad_execfile_bp_tempfile.sci"]
             set fid [open $fname w]
+            fconfigure $fid -encoding $defaultencoding
             puts $fid $allfuntexts
             close $fid
             ScilabEval_lt "exec(\"$fname\");" "sync" "seq"
@@ -359,6 +362,7 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
     global debugassce
     global callstackfuns callstacklines
     global debugger_fun_ancillaries
+    global pad
 
     set cmd ""
     set nbmacros 0 ; # used to test max number of breakpointed macros
@@ -499,7 +503,7 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
                             [mc "Step-by-step hence cannot be performed."] \
                             [mc "This command will actually run to the next breakpoint."] ]
             set answer [tk_messageBox -message $mes -title $tit \
-                            -icon warning -type okcancel]
+                            -icon warning -type okcancel -parent $pad]
             switch -- $answer {
                 ok     {set cmd "0"}
                 cancel {set cmd "-1"}
@@ -509,7 +513,7 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
             set mes [concat $mes \
                             [mc "Break hence cannot be performed."] ]
             set answer [tk_messageBox -message $mes -title $tit \
-                            -icon warning -type ok]
+                            -icon warning -type ok -parent $pad]
             set cmd "-1"
         }
         set nbmacros [countallbreakpointedmacros]
@@ -527,7 +531,7 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
                             [mc "Step-by-step hence cannot be performed."] \
                             [mc "This command will actually run to the next breakpoint."] ]
             set answer [tk_messageBox -message $mes -title $tit \
-                            -icon warning -type okcancel]
+                            -icon warning -type okcancel -parent $pad]
             switch -- $answer {
                 ok     {set cmd "0"}
                 cancel {set cmd "-1"}
@@ -536,7 +540,7 @@ proc getlogicallinenumbersranges {stepscope messagetype} {
             set mes [concat $mes \
                             [mc "Break hence cannot be performed."] ]
             set answer [tk_messageBox -message $mes -title $tit \
-                            -icon warning -type ok]
+                            -icon warning -type ok -parent $pad]
             set cmd "-1"
         }
         set nbbreakp [countallbreakpointedlines]
@@ -700,6 +704,7 @@ proc buildlistofreturnpoints {} {
     global lastscecodepos
     global funnameargs callstackfuns
     global stoppauselevelatruntoreturnlaunch
+    global pad
 
     # $stoppauselevelatruntoreturnlaunch differs from $prevdbpauselevel in that the latter
     # might change at each stop (including when skipping lines) but the former only receives
@@ -731,7 +736,7 @@ proc buildlistofreturnpoints {} {
         # in Scipad (perhaps the user closed it manually before)
         set mes [mc "This command cannot succeed if the function where the debug just stopped is not opened in Scipad!"]
         set tit [mc "Cannot run to return point"]
-        tk_messageBox -message $mes -icon warning -title $tit
+        tk_messageBox -message $mes -icon warning -title $tit -parent $pad
         return
     }
     set currentfunta [lindex $fntafs 1]
@@ -796,6 +801,7 @@ proc isreturnpoint_bp {} {
     global lastscecodepos
     global displayruntoreturnwarning
     global stoppauselevelatruntoreturnlaunch
+    global pad
 
     set returnpointreached false
 
@@ -842,7 +848,7 @@ proc isreturnpoint_bp {} {
                             [mc "To avoid this unresolvable case, it is recommended to place the return statement alone on its line."] \
                             [mc "Do you want to see this warning again during this Scipad session?"] ]
             set tit [mc "Unresolvable case found while running to return point"]
-            set res [tk_messageBox -message $mes -icon warning -title $tit -type yesno]
+            set res [tk_messageBox -message $mes -icon warning -title $tit -type yesno -parent $pad]
             if {$res == "no"} {
                 set displayruntoreturnwarning false
             }

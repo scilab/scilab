@@ -45,36 +45,28 @@ endfunction
         <term>&lt;rhs_arguments&gt;</term>
         <listitem>
           <para>stands for the input argument list. It may be</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see varargin)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>the sequence <literal>()</literal> or nothing,if the function has no input argument.</para>
+          <itemizedlist>
+            <listitem>
+              <para>a comma separated sequence of variable names enclosed in parenthesis, like  <literal>(x1,...,xm)</literal>. Last variable name can be the key word <literal>varargin</literal> (see varargin)</para>
+            </listitem>
+            <listitem>
+              <para>the sequence <literal>()</literal> or nothing, if the function has no input argument.</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>&lt;lhs_arguments&gt;</term>
         <listitem>
           <para>stands for the output argument list. It may be</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see varargout)</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>-</term>
-        <listitem>
-          <para>the sequence <literal>[]</literal> ,if the function has no input argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal></para>
+          <itemizedlist>
+            <listitem>
+              <para>a comma separated sequence of variable names enclosed in brackets, like  <literal>[y1,...,yn]</literal>. Last variable name can be the key word <literal>varargout</literal> (see varargout)</para>
+            </listitem>
+            <listitem>
+              <para>the sequence <literal>[]</literal> ,if the function has no input argument. In this case the syntax may also be:  <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal></para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>

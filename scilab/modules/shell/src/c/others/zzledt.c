@@ -3,6 +3,7 @@
  * Copyright (C) 2007 - INRIA - Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU (Completion in nw & nwni modes)
  * Copyright (C) 2008 - INRIA - Bruno JOFRET
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -44,6 +45,7 @@
 #include "completion.h"
 #include "x_VTPrsTbl.h"
 #include "freeArrayOfString.h"
+#include "getCommonPart.h"
 
 /*--------------------------------------------------------------------------*/
 #ifdef aix
@@ -80,13 +82,13 @@
 #define TERMCAP
 #endif
 
-#if !defined(linux) && !defined(netbsd) && !defined(freebsd)
+#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__)
 #ifdef  __alpha
 #define B42UNIX
 #endif
 #endif
 
-#ifdef linux
+#if defined(linux) || defined(__APPLE__)
 #define ATTUNIX
 #define TERMCAP
 #endif
@@ -110,9 +112,15 @@ static struct tchars arg1;
 
 #ifdef ATTUNIX
 #define KEYPAD
+#ifdef HAVE_TERMIOS_H
+#include <termios.h>
+static struct termios save_term;
+static struct termios arg;
+#else
 #include <termio.h>
 static struct termio save_term;
 static struct termio arg;
+#endif
 #endif
 
 #define EXCL                  0x0021
@@ -312,7 +320,6 @@ char *TermReadAndProcess(void)
   sendprompt=1;
 
   setSearchedTokenInScilabHistory(NULL);
-
 
   while(1)
     {
@@ -721,38 +728,149 @@ static void displayCompletionDictionary(char **dictionary,int sizedictionary, ch
 		display_string("\r\n");
 	}
 }
-
-static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+/*--------------------------------------------------------------------------*/
+static char **concatenateStrings(int *sizearrayofstring, char *string1,
+				 char *string2, char *string3,
+				 char *string4, char *string5)
 {
-	char *CurrentLine = (char*)wk_buf;
-	char *fileSearchedPattern = getFilePartLevel(CurrentLine);
-	char *SearchedPattern = getPartLevel(CurrentLine);
-	char **completionDictionaryFiles = NULL;
-	int sizecompletionDictionaryFiles = 0;
+	int newsize = 0;
+	char **arrayOfString = NULL;
+	*sizearrayofstring = 0;
 
-	completionDictionaryFiles = completionOnFiles(fileSearchedPattern, &sizecompletionDictionaryFiles);
-	if (completionDictionaryFiles)
+	if (string1) newsize++;
+	if (string2) newsize++;
+	if (string3) newsize++;
+	if (string4) newsize++;
+	if (string5) newsize++;
+
+	if (newsize > 0)
 	{
-		if (sizecompletionDictionaryFiles == 1)
+		arrayOfString = (char**)MALLOC(sizeof(char*) *(newsize));
+		if (arrayOfString)
 		{
-			char *result = completionDictionaryFiles[0];
-			char *partResult = &result[strlen(SearchedPattern)];
-
-			CopyLineAtPrompt(wk_buf, strcat(wk_buf, partResult), cursor, cursor_max);
+			int i = 0;
+			if (string1) {arrayOfString[i] = string1; i++;}
+			if (string2) {arrayOfString[i] = string2; i++;}
+			if (string3) {arrayOfString[i] = string3; i++;}
+			if (string4) {arrayOfString[i] = string4; i++;}
+			if (string5) {arrayOfString[i] = string5; i++;}
+			*sizearrayofstring = i;
 		}
 		else
 		{
-			displayCompletionDictionary(completionDictionaryFiles,sizecompletionDictionaryFiles, (char *)_("File or Directory"));
+			*sizearrayofstring = 0;
+		}
+	}
+	return arrayOfString;
+}
+/*--------------------------------------------------------------------------*/
+char * strrstr(char *string, char *find)
+{
+        size_t stringlen, findlen;
+        char *cp;
+
+        findlen = strlen(find);
+        stringlen = strlen(string);
+        if (findlen > stringlen)
+                return NULL;
+
+        for (cp = string + stringlen - findlen; cp >= string; cp--)
+                if (strncmp(cp, find, findlen) == 0)
+                        return cp;
+
+        return NULL;
+}
+/*--------------------------------------------------------------------------*/
+static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
+				  char *currentline, char *filePattern, char *defaultPattern,
+				  char *wk_buf, int *cursor, int *cursor_max)
+{
+	if (dictionaryFiles)
+	{
+		if (sizedictionaryFiles == 1)
+		{
+			if ( strcmp(defaultPattern,"") )
+			{
+				char *ptr_strrchar1 = NULL;
+
+				ptr_strrchar1 = strstr(dictionaryFiles[0], defaultPattern);
+				if (ptr_strrchar1) 
+				{
+					char *ptr_strrchar2 = NULL;
+					char *new_line = NULL;
+
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
+
+					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(dictionaryFiles[0])));
+
+					if (new_line)
+					{
+						int l = 0;
+						if (ptr_strrchar2) l = strlen(currentline)- strlen(ptr_strrchar2);
+						else l = strlen(currentline);
+						if (l < 0) l = 0 - l;
+
+						strncpy(new_line,currentline, l);
+						new_line[l]='\0';
+
+						/* special case with files begin with a '.' */
+						if (new_line[l-1] == '.') strcat(new_line, &(dictionaryFiles[0][1]));
+						else if (ptr_strrchar1) strcat(new_line, ptr_strrchar1);
+
+						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
+						FREE(new_line);
+						return;
+					}
+				}
+			}
+		}
+		else
+		{
+			char *common = getCommonPart(dictionaryFiles, sizedictionaryFiles);
+
+			displayCompletionDictionary(dictionaryFiles, 
+				sizedictionaryFiles, gettext("File or Directory"));
+
 			display_string("\r\n");
 			displayPrompt(wk_buf);
-			CopyLineAtPrompt(wk_buf, CurrentLine, cursor, cursor_max);
+
+			if (defaultPattern[0] == 0)
+			{
+				CopyLineAtPrompt(wk_buf, currentline, cursor, cursor_max);
+			}
+			else if (common)
+			{
+				char *ptr_strrchar1 = NULL;
+
+				ptr_strrchar1 = strstr(common, defaultPattern);
+				if (ptr_strrchar1) 
+				{
+					char *ptr_strrchar2 = NULL;
+					ptr_strrchar2 = strrstr(currentline, defaultPattern);
+
+					int l = strlen(currentline)- strlen(ptr_strrchar2);
+					if (l < 0) l = 0 - l;
+
+					strncpy(wk_buf,currentline, l);
+					wk_buf[l] = '\0';
+
+					CopyLineAtPrompt(wk_buf, strcat(wk_buf, ptr_strrchar1), cursor, cursor_max);
+				}
+				else
+				{
+					CopyLineAtPrompt(wk_buf, currentline, cursor, cursor_max);
+				}
+				FREE(common);
+				common = NULL;
+			}
 		}
-		FREE(fileSearchedPattern);
-		FREE(SearchedPattern);
-		freeArrayOfString(completionDictionaryFiles,sizecompletionDictionaryFiles);
-		return;
 	}
-	else
+}
+/*--------------------------------------------------------------------------*/
+static void TermCompletionOnAll(char *currentline, char *defaultPattern,
+				  char *wk_buf, int *cursor, int *cursor_max)
+{
+	if ( defaultPattern && strcmp(defaultPattern, "") )
 	{
 		int numberWordFound = 0;
 
@@ -768,46 +886,36 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 		char **completionDictionaryVariables = NULL;
 		int sizecompletionDictionaryVariables = 0;
 
-		char **completionDictionaryFiles = NULL;
-		int sizecompletionDictionaryFiles = 0;
-
 		char **completionDictionaryHandleGraphicsProperties = NULL;
 		int sizecompletionDictionaryHandleGraphicsProperties = 0;
 
-		if ( SearchedPattern && strcmp(SearchedPattern,"") )
-		{
-
-		completionDictionaryFunctions = completionOnFunctions(SearchedPattern, 
+		completionDictionaryFunctions = completionOnFunctions(defaultPattern, 
 			&sizecompletionDictionaryFunctions);
 
-		completionDictionaryCommandWords = completionOnCommandWords(SearchedPattern, 
+		completionDictionaryCommandWords = completionOnCommandWords(defaultPattern, 
 			&sizecompletionDictionaryCommandWords);
 
-		completionDictionaryMacros = completionOnMacros(SearchedPattern, 
+		completionDictionaryMacros = completionOnMacros(defaultPattern, 
 			&sizecompletionDictionaryMacros);
 
-		completionDictionaryVariables = completionOnVariablesWithoutMacros(SearchedPattern, 
+		completionDictionaryVariables = completionOnVariablesWithoutMacros(defaultPattern, 
 			&sizecompletionDictionaryVariables);
 
-		completionDictionaryFiles = completionOnFiles(SearchedPattern, 
-			&sizecompletionDictionaryFiles);
-
-		completionDictionaryHandleGraphicsProperties = completionOnHandleGraphicsProperties(SearchedPattern, 
+		completionDictionaryHandleGraphicsProperties = completionOnHandleGraphicsProperties(defaultPattern, 
 			&sizecompletionDictionaryHandleGraphicsProperties);
-		}
 
 		numberWordFound = sizecompletionDictionaryFunctions + sizecompletionDictionaryCommandWords +
 			sizecompletionDictionaryMacros + sizecompletionDictionaryVariables +
 			sizecompletionDictionaryHandleGraphicsProperties;
 
-		if (numberWordFound)
+		if (numberWordFound > 0)
 		{
 			if (numberWordFound == 1)
 			{
 				char **completionDictionary = NULL;
 				char *result = NULL;
 				char *partResult = NULL;
-
+				
 				if (completionDictionaryFunctions) completionDictionary = completionDictionaryFunctions;
 				if (completionDictionaryCommandWords) completionDictionary = completionDictionaryCommandWords;
 				if (completionDictionaryMacros) completionDictionary = completionDictionaryMacros;
@@ -815,53 +923,103 @@ static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
 				if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
 
 				result = completionDictionary[0];
-				partResult = &result[strlen(SearchedPattern)];
+				partResult = &result[strlen(defaultPattern)];
 
-				CopyLineAtPrompt(wk_buf,strcat(wk_buf, partResult),cursor,cursor_max);
-
+				CopyLineAtPrompt(wk_buf, strcat(wk_buf, partResult), cursor, cursor_max);
 			}
 			else
 			{
-				displayCompletionDictionary(completionDictionaryFunctions,sizecompletionDictionaryFunctions, (char *)_("Scilab Function"));
-				displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords, (char *)_("Scilab Command"));
-				displayCompletionDictionary(completionDictionaryMacros,sizecompletionDictionaryMacros, (char *)_("Scilab Macro"));
-				displayCompletionDictionary(completionDictionaryVariables,sizecompletionDictionaryVariables, (char *)_("Scilab Variable"));
-				displayCompletionDictionary(completionDictionaryHandleGraphicsProperties,sizecompletionDictionaryHandleGraphicsProperties, (char *)_("Graphics handle field"));
+				char *commonFunctions = getCommonPart(completionDictionaryFunctions,sizecompletionDictionaryFunctions);
+				char *commonCommandWords = getCommonPart(completionDictionaryCommandWords,sizecompletionDictionaryCommandWords);
+				char *commonMacros = getCommonPart(completionDictionaryMacros,sizecompletionDictionaryMacros);
+				char *commonVariables = getCommonPart(completionDictionaryVariables,sizecompletionDictionaryVariables);
+				char *commonHandleGraphicsProperties = getCommonPart(completionDictionaryHandleGraphicsProperties,sizecompletionDictionaryHandleGraphicsProperties);
+
+				char *commonAll = NULL;
+
+				int sizecommonsDictionary = 0;
+				char **commonsDictionary = concatenateStrings(&sizecommonsDictionary, commonFunctions,
+					commonMacros, commonCommandWords, commonVariables, commonHandleGraphicsProperties);
+
+				if (sizecommonsDictionary > 0)
+				{
+					if (sizecommonsDictionary == 1)
+					{
+						commonAll = strdup(commonsDictionary[0]);
+					}
+					else
+					{
+						commonAll = getCommonPart(commonsDictionary, sizecommonsDictionary);
+
+					}
+					freeArrayOfString(commonsDictionary, sizecommonsDictionary);
+				}
+
+				displayCompletionDictionary(completionDictionaryFunctions, sizecompletionDictionaryFunctions,(char *)_("Scilab Function"));
+				displayCompletionDictionary(completionDictionaryCommandWords, sizecompletionDictionaryCommandWords,(char *)_("Scilab Command"));
+				displayCompletionDictionary(completionDictionaryMacros, sizecompletionDictionaryMacros,(char *)_("Scilab Macro"));
+				displayCompletionDictionary(completionDictionaryVariables, sizecompletionDictionaryVariables,(char *)_("Scilab Variable"));
+				displayCompletionDictionary(completionDictionaryHandleGraphicsProperties, sizecompletionDictionaryHandleGraphicsProperties,(char *)_("Graphics handle field"));
 
 				display_string("\r\n");
 				displayPrompt(wk_buf);
-				CopyLineAtPrompt(wk_buf, CurrentLine, cursor, cursor_max);
+
+				if (commonAll)
+				{
+					char *result = NULL;
+					char *partResult = NULL;
+
+					result = commonAll;
+					partResult = &result[strlen(defaultPattern)];
+
+					strcpy(wk_buf, currentline);
+					CopyLineAtPrompt(wk_buf, strcat(wk_buf,partResult), cursor, cursor_max);
+
+					FREE(commonAll);
+					commonAll = NULL;
+				}
 			}
+
 			freeArrayOfString(completionDictionaryFunctions,sizecompletionDictionaryFunctions);
 			freeArrayOfString(completionDictionaryCommandWords,sizecompletionDictionaryCommandWords);
 			freeArrayOfString(completionDictionaryMacros,sizecompletionDictionaryMacros);
 			freeArrayOfString(completionDictionaryVariables,sizecompletionDictionaryVariables);
-			freeArrayOfString(completionDictionaryFiles,sizecompletionDictionaryFiles);
 			freeArrayOfString(completionDictionaryHandleGraphicsProperties,sizecompletionDictionaryHandleGraphicsProperties);
-			FREE(fileSearchedPattern);
-			FREE(SearchedPattern);
-		}
-		else
-		{
-			FREE(fileSearchedPattern);
-			FREE(SearchedPattern);
 		}
 	}
+}
+/*--------------------------------------------------------------------------*/
+static void doCompletion(char *wk_buf, int *cursor, int *cursor_max)
+{
+	char *CurrentLine = (char*)wk_buf;
+	char *fileSearchedPattern = getFilePartLevel(CurrentLine);
+	char *SearchedPattern = getPartLevel(CurrentLine);
+	char **completionDictionaryFiles = NULL;
+	int sizecompletionDictionaryFiles = 0;
 
+	completionDictionaryFiles = completionOnFiles(fileSearchedPattern, &sizecompletionDictionaryFiles);
+	if (completionDictionaryFiles)
+	{
+		TermCompletionOnFiles(completionDictionaryFiles, sizecompletionDictionaryFiles,
+					CurrentLine, fileSearchedPattern, SearchedPattern,
+					wk_buf, cursor, cursor_max);
 
+		freeArrayOfString(completionDictionaryFiles, sizecompletionDictionaryFiles);
+	}
+	else
+	{
+		TermCompletionOnAll(CurrentLine, SearchedPattern,
+				    wk_buf, cursor, cursor_max);
+	}
+	if (fileSearchedPattern) FREE(fileSearchedPattern);
+	if (SearchedPattern) FREE(SearchedPattern);
 }
 /***********************************************************************
  * backspace - move cursor n char to the left
  **********************************************************************/
 static void backspace(int n)
 {
-  if(n < 1)
-    return;
-  //  if (getScilabMode() == SCILAB_STD) {
-  //    while(n--)
-  //      putchar('\010');
-  //  }
-  //  else {
+  if(n < 1) return;
     while(n--)
 #ifdef TERMCAP
       if(BC) {                 /* if control-H won-t work */
@@ -873,7 +1031,7 @@ static void backspace(int n)
 #else
     putchar('\010');
 #endif
-    //  }
+
 }
 
 /***********************************************************************
@@ -1014,7 +1172,11 @@ static void set_cbreak()
   arg.c_oflag &= ~OPOST;
   arg.c_cc [VMIN] = 1;
   arg.c_cc [VTIME] = 0;
+#ifdef HAVE_TERMIOS_H
+  (void) tcsetattr (fd, TCSANOW, &arg);
+#else
   ioctl(fd, TCSETAW, &arg);
+#endif
 #endif
   cbreak_crmod = 0;
   return;
@@ -1034,7 +1196,11 @@ static void set_crmod()
   ioctl(fd, TIOCSETC, &arg1);
 #endif
 #ifdef ATTUNIX
+#ifdef HAVE_TERMIOS_H
+  (void) tcsetattr (fd, TCSANOW, &save_term);
+#else
   ioctl(fd, TCSETAW, &save_term);
+#endif
 #endif
   cbreak_crmod = 1;
   return;
@@ -1066,8 +1232,13 @@ static void init_io()
 #endif
 
 #ifdef ATTUNIX
+#ifdef HAVE_TERMIOS_H
+  (void) tcgetattr (fd, &arg);
+  (void) tcgetattr (fd, &save_term);
+#else
   ioctl(fd, TCGETA, &arg);
   ioctl(fd, TCGETA, &save_term);
+#endif
   erase_char = save_term.c_cc [VERASE];
 #endif
 

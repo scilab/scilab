@@ -11,6 +11,7 @@ function chart(attenu,angl,flags)
   titre=_("Amplitude and phase contours of y/(1+y)")
   l10=log(10);
   ratio=%pi/180;
+  defaultAngles = [1:10,20:10:160];
   //
   [lhs,rhs]=argn(0)
   
@@ -20,10 +21,11 @@ function chart(attenu,angl,flags)
     
   case 2 then,
     if type(angl)==15 then
+	  // angl actually stands for flags
       flags=angl
-      angl=-[1:10,20:10:160]*ratio;
+      angl = defaultAngles;
     else
-      angl=-angl*ratio
+      // angl is the phase
       flags=[]
     end
     
@@ -35,13 +37,17 @@ function chart(attenu,angl,flags)
     else
       flags=list()
     end
-    angl=-[1:10,20:10:160]*ratio;
+    angl = defaultAngles;
   else
     flags=list()
     attenu=[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 ,..
 	    0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12];
-    angl=-[1:10,20:10:160]*ratio
+    angl = defaultAngles;
   end
+  
+  // convert angles to radian
+  angl = -angl * ratio;
+  
   c1=color('lightgrey');c2=c1
   select size(flags)
   case 0 then
@@ -105,7 +111,8 @@ function chart(attenu,angl,flags)
 	   m=[m %nan module($:-1:1)]
 	   if att>0 then 
 	     xstring(p($),m($),string(att),0,0),
-	     e=gce();e.clip_state='off';
+	     e=gce();
+	     if ~flags(1) then e.clip_state='off';end
 	     S=[e S]
 	   end
 	 else
@@ -113,7 +120,8 @@ function chart(attenu,angl,flags)
 	   m=[m %nan module]
 	   if att<0 then 
 	     xstring(p($),m($),string(att),0,0),
-	     e=gce();e.clip_state='off';
+	     e=gce();
+	     if ~flags(1) then e.clip_state='off';end
 	     S=[e S]
 	   end
 	 end

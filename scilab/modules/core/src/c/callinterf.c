@@ -48,7 +48,7 @@ static OpTab Interfaces[] = {
 	/* 15  */ {gw_dynamic_metanet},
 	/* 16  */ {gw_polynomials},
 	/* 17  */ {gw_data_structures1},
-	/* 18  */ {gw_signal},
+	/* 18  */ {gw_dynamic_signal_processing},
 	/* 19  */ {gw_dynamic_interpolation},
 	/* 20  */ {gw_cacsd3},
 	/* 21  */ {gw_string},

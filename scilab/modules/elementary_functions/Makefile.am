@@ -53,7 +53,7 @@ src/c/add_vector.c \
 src/c/sub_vector.c
 
 # List of the cpp files
-ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp \
+ELEMENTARIES_FUNCTIONS_CPP_SOURCES = 	src/cpp/sortTemplate.cpp \
 					src/cpp/elem_func.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
@@ -372,11 +372,11 @@ sci_gateway/fortran/sci_f_exp.f
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
 noinst_LTLIBRARIES = libdummy-elementary_functions.la
 
-libdummy_elementary_functions_la_SOURCES = src/fortran/hqror2.f \
+libdummy_elementary_functions_la_SOURCES = src/fortran/eispack/hqror2.f \
 	src/fortran/comqr3.f \
-	src/fortran/pade.f \
+	src/fortran/linpack/pade.f \
 	src/c/unsfdcopy.c \
-	src/fortran/icopy.f
+	src/fortran/linpack/icopy.f
 
 libdummy_elementary_functions_la_FFLAGS = $(FFLAGS:-O%=)
 
@@ -474,6 +474,8 @@ includes/int2db.h \
 includes/rea2b.h \
 includes/rea2db.h \
 includes/scidcopy.h \
-includes/unsfdcopy.h
+includes/unsfdcopy.h \
+includes/finite.h \
+includes/vfinite.h
 
 include $(top_srcdir)/Makefile.incl.am

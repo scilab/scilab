@@ -89,7 +89,6 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
   if ((user_data == -1 ) || (user_data == block_number))
     {
       scoSetWindowID(pScopeMemory,win_id);
-      //** DeleteObjs(win_id);
       
       scoSetScopeActivation(pScopeMemory,1); //Activate It ! Let's Rock !
       //Dont forget this kind of command
@@ -113,7 +112,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
             }
           //Here pTemp2 is the pointer on the current Axes
           pTemp2 = scoGetPointerAxes(pScopeMemory,i);
-          sciInitFontSize(pTemp2, 0);
+          sciInitFontSize(pTemp2, 1); //** axes font size (numbers)
           
           //** sciSetIsBoxed(pTemp2,TRUE); //** obsolete in Scilab 5
           sciSetBoxType(pTemp2,BT_ON);
@@ -126,6 +125,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
           pSUBWIN_FEATURE(pTemp2)->WRect[1] = (double)i/scoGetNumberOfSubwin(pScopeMemory);
           pSUBWIN_FEATURE(pTemp2)->WRect[2] = 1;
           pSUBWIN_FEATURE(pTemp2)->WRect[3] = (double)1/scoGetNumberOfSubwin(pScopeMemory);
+					pSUBWIN_FEATURE(pTemp2)->axes.filled = FALSE;
           switch(dimension)
             {
             case 3:
@@ -167,7 +167,6 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
         }
 
       sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-      
       sciDrawObj(pTemp);
     }
   else
@@ -470,7 +469,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
                   {
                     sciSetUsedWindow(scoGetWindowID(pScopeMemory));
                     sciSetSelectedSubWin(scoGetPointerAxes(pScopeMemory,i));
-                    pPOLYLINE_FEATURE(pShortDraw)->visible = TRUE;
+										sciSetVisibility(pShortDraw, TRUE);
                     pShortDrawTable[ShortDrawTableIndex] = pShortDraw ;
                     ShortDrawTableIndex++;
                   }
@@ -840,7 +839,17 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
 
 void scoDelCoupleOfSegments(ScopeMemory * pScopeMemory)
 {
-  //Not coded yet :p
+	/* destroy all short draw */
+	int j;
+	int i;
+	for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
+  {
+		for(j = 0 ; j < scoGetNumberOfCurvesBySubwin(pScopeMemory,i) ; j++)
+		{
+			sciDelGraphicObj(scoGetPointerShortDraw(pScopeMemory, i, j));
+		}
+	}
+	sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 }
 
 
@@ -932,9 +941,9 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
       sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label,&y_title,1,1);/* 1,1 is nbrow, nbcol */
 
       
-      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 0);
-      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 0);
-      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 0);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_x_label, 1);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_y_label, 1);
+      sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_title, 1);
       forceRedraw(scoGetPointerAxes(pScopeMemory,i));
     }
 
@@ -945,7 +954,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
 
       for(i = 0 ; i < scoGetNumberOfSubwin(pScopeMemory) ; i++)
         {
-          sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 0);
+          sciSetFontSize(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label, 1);
           sciSetText(pSUBWIN_FEATURE(scoGetPointerAxes(pScopeMemory,i))->mon_z_label,&z_title,1,1); /* 1,1 is nbrow, nbcol */
         }
     }

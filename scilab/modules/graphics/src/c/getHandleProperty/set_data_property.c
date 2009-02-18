@@ -23,7 +23,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "returnProperty.h"
@@ -59,7 +59,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
   /* check dim */
   if ( nbCol[0] != 1 || nbCol[1] != 1 )
   {
-    sciprint(_("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
+    Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
     FREE( vx  ) ;
     FREE( vy  ) ;
     FREE( vfx ) ;
@@ -70,7 +70,7 @@ int setchampdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] || nbRow[3] != nbRow[2] || nbCol[3] != nbCol[2] )
   {
-    sciprint(_("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",3,4);
+    Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",3,4);
     FREE( vx  ) ;
     FREE( vy  ) ;
     FREE( vfx ) ;
@@ -126,7 +126,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbCol[0] != 1 || nbCol[1] != 1 )
   {
-    sciprint(_("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
+    Scierror(999, _("%s: Wrong type for argument #%d: Columns vectors expected.\n"),"Tlist",1);
     FREE( pvecx ) ;
     FREE( pvecy ) ;
     FREE( pvecz ) ;
@@ -135,7 +135,7 @@ int setgrayplotdata( sciPointObj * pobj, AssignedList * tlist )
 
   if ( nbRow[2] != nbRow[0] || nbCol[2] != nbRow[1] )
   {
-    sciprint(_("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist","Tlist",3);
+    Scierror(999, _("%s: Wrong size for arguments #%d: Incompatible length.\n"),"Tlist","Tlist",3);
     FREE( pvecx ) ;
     FREE( pvecy ) ;
     FREE( pvecz ) ;
@@ -192,7 +192,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   {
     if ( !(m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3) )
     {
-    sciprint(_("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"),"Tlist",1,2,3);
+			Scierror(999, _("%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"),"Tlist",1,2,3);
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -200,18 +200,17 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   {
     if ( m2 * n2 != n3 )
     {
-    sciprint(_("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",2,3);
+			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",2,3);
       return SET_PROPERTY_ERROR ;
     }
     if ( m1 * n1 != m3 )
     {
-    sciprint(_("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",1,3);
-
+			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"),"Tlist",1,3);
       return SET_PROPERTY_ERROR ;
     }
     if ( m1 * n1 <= 1 || m2 * n2 <= 1 ) 
     {
-    sciprint(_("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"),"Tlist",1,2,2);
+			Scierror(999, _("%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"),"Tlist",1,2,2);
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -237,7 +236,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     }
     else
     {
-      sciprint( _("Wrong size for %s element: A %d-by-%d matrix or a vector of size %d expected.\n"), "color", m3, n3, n3);
+      Scierror(999, _("Wrong size for %s element: A %d-by-%d matrix or a vector of size %d expected.\n"), "color", m3, n3, n3);
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -252,7 +251,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
   { /* case isfac=1;*/
     if( psurf->isfac != 1 )
     {
-      sciprint(_("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_PLOT3D");
+      Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_PLOT3D");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -261,7 +260,7 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     /* case isfac=0;*/
     if(psurf->isfac != 0)
     {
-      sciprint(_("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_FAC3D");
+      Scierror(999, _("Can not change the %s of graphic object: its type is %s.\n"),"typeof3d","SCI_FAC3D");
       return SET_PROPERTY_ERROR ;
     }
   }
@@ -292,8 +291,8 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     int monotony = checkMonotony( pvecx, dimvectx ) ;
     if ( monotony == 0 )
     {
-      sciprint(_("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
-      return 0;
+      Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
+      return SET_PROPERTY_ERROR;
     }
 
     psurf->flag_x = monotony ;
@@ -321,8 +320,8 @@ int set3ddata( sciPointObj * pobj, AssignedList * tlist )
     int monotony = checkMonotony( pvecx, dimvecty ) ;
     if ( monotony == 0 )
     {
-      sciprint(_("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
-      return 0;
+      Scierror(999, _("%s: Wrong value: Vector is not monotonous.\n"),"Objplot3d");
+      return SET_PROPERTY_ERROR;
     }
 
     psurf->flag_y = monotony ;
@@ -563,7 +562,7 @@ int CheckAndUpdate_x_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint(_("%s: No more memory.\n"),"set_data_property") ;
+    Scierror(999, _("%s: No more memory.\n"),"set_data_property") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -592,7 +591,7 @@ int CheckAndUpdate_y_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint(_("%s: No more memory.\n"),"CheckAndUpdate_y_shift") ;
+    Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_y_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -621,7 +620,7 @@ int CheckAndUpdate_z_shift(sciPointObj * pobj, int numrow)
 
   if ( new_bar == NULL )
   {
-    sciprint(_("%s: No more memory.\n"),"CheckAndUpdate_z_shift") ;
+    Scierror(999, _("%s: No more memory.\n"),"CheckAndUpdate_z_shift") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -640,7 +639,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint("Incorrect argument, must be a Tlist!\n") ;
+      Scierror(999, "Incorrect argument, must be a Tlist!\n") ;
       return SET_PROPERTY_ERROR ;
     }
   
@@ -662,7 +661,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint(_("Wrong type for input argument: Tlist expected.\n"));
+      Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
       return SET_PROPERTY_ERROR ;
     }
 
@@ -685,7 +684,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
 
     if( !isParameterTlist( valueType ) )
     {
-      sciprint(_("Wrong type for input argument: Tlist expected.\n"));
+      Scierror(999, _("Wrong type for input argument: Tlist expected.\n"));
       return SET_PROPERTY_ERROR ;
     }
 
@@ -701,7 +700,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
     }
     else
     {
-      sciprint(_("Wrong size for input argument: %d or %d expected.\n"),4,5);
+      Scierror(999, _("Wrong size for input argument: %d or %d expected.\n"),4,5);
       return SET_PROPERTY_ERROR ;
     }
 
@@ -719,7 +718,7 @@ int set_data_property( sciPointObj * pobj, size_t stackPointer, int valueType, i
   {
     if ( !isParameterDoubleMatrix( valueType ) )
     {
-      sciprint(_("Incompatible type for property %s.\n"),"data") ;
+      Scierror(999, _("Incompatible type for property %s.\n"),"data") ;
       return SET_PROPERTY_ERROR ;
     }
 

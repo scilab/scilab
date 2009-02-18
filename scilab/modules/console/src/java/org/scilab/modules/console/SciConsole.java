@@ -242,6 +242,10 @@ public abstract class SciConsole extends JPanel {
             e.printStackTrace();
         }
 		config.getOutputView().reset();
+		/* Bug 4014 */
+		/* We add a space to add a line */
+		/* clc , F2 and menus have same position */
+		config.getOutputView().append(" ");
    }
 
     /**

@@ -20,8 +20,7 @@ Source: modules\{#TCLSCI}\sci_gateway\tclsci_gateway.xml; DestDir: {app}\modules
 Source: modules\{#TCLSCI}\etc\{#TCLSCI}.quit; DestDir: {app}\modules\{#TCLSCI}\etc; Components: {#COMPN_TCLSCI}
 Source: modules\{#TCLSCI}\etc\{#TCLSCI}.start; DestDir: {app}\modules\{#TCLSCI}\etc; Components: {#COMPN_TCLSCI}
 ;
-Source: modules\{#TCLSCI}\demos\sciGUI\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\sciGUI; Components: {#COMPN_TCLSCI}
-Source: modules\{#TCLSCI}\demos\tk\*.*; DestDir: {app}\modules\{#TCLSCI}\demos\tk; Components: {#COMPN_TCLSCI}
+Source: modules\{#TCLSCI}\demos\*.*; DestDir: {app}\modules\{#TCLSCI}\demos; Flags: recursesubdirs; Components: {#COMPN_TCLSCI}
 ;
 Source: modules\{#TCLSCI}\help\addchapter.sce; DestDir: {app}\modules\{#TCLSCI}\help; Flags: recursesubdirs; Components:  {#COMPN_TCLSCI}
 ;

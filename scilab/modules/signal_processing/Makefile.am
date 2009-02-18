@@ -3,9 +3,7 @@
 ### INRIA - Scilab 2006
 ##########
 
-SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c \
-src/c/sci_levinson.c \
-src/c/sci_fftnew.c
+SIGNAL_PROCESSING_C_SOURCES = src/c/corrtable.c
 
 SIGNAL_PROCESSING_FORTRAN_SOURCES = src/fortran/sci_ffir.f \
 src/fortran/degree.f \
@@ -95,13 +93,9 @@ sci_gateway/fortran/bgety.f \
 sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CFLAGS=  	-I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/output_stream/includes \
--I$(top_srcdir)/modules/dynamic_link/includes \
--I$(top_srcdir)/modules/elementary_functions/includes \
--I$(top_srcdir)/modules/operations/includes \
--I$(top_srcdir)/modules/double/includes
-
-
+					-I$(top_srcdir)/modules/output_stream/includes \
+					-I$(top_srcdir)/modules/dynamic_link/includes \
+					-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libscisignal_processing.la
 
@@ -141,25 +135,8 @@ libscisignal_processing_la_etc_DATA = etc/signal_processing.quit etc/signal_proc
 libscisignal_processing_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscisignal_processing_la_sci_gateway_DATA = sci_gateway/signal_processing_gateway.xml
 
-
-
 ####�signal_processing : include files ####
 libscisignal_processing_la_includedir=$(pkgincludedir)/signal_processing
 libscisignal_processing_la_include_HEADERS = includes/gw_signal.h
-
-
-####�signal_processing : demos files ####
-libscisignal_processing_la_demosdir=$(mydatadir)
-nobase_libscisignal_processing_la_demos_DATA = demos/arma/arma1.dem.sce \
-demos/arma/arma2.dem.sce \
-demos/arma/arma3.dem.sce \
-demos/winfilt.dem.sce \
-demos/signal.dem.gateway.sce \
-demos/spect.dem.sce \
-demos/remezfilt.dem.sce \
-demos/iirfilt.dem.sce \
-demos/iir.dem.sce \
-demos/bode.dem.sce \
-demos/wiener.dem.sce
 
 include $(top_srcdir)/Makefile.incl.am

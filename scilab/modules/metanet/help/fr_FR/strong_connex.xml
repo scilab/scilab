@@ -68,7 +68,7 @@ g('node_y')=[76 181 276 278 276 83 174 281 177 86 175 90 290 397 399];
 show_graph(g);
 [nc,ncomp]=strong_connex(g);
 g1=g; g1('node_color')=8+ncomp; g1('node_diam')=10+5*ncomp;
-x_message('Composante fortement connexe du graphe');
+messagebox('Composante fortement connexe du graphe',"modal");
 show_graph(g1);
  ]]></programlisting>
   </refsection>

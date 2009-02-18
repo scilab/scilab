@@ -29,9 +29,9 @@ function elts=pfss(S,rmax,cord)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"),"pfss",1))
   end
   if typeof(S)=='rational' then 
-    S=tf2ss(S),flag=%f
+    S=tf2ss(S),flag=%T
   else
-    flag=%t
+    flag=%F
   end
 
   [f,g,h,dd,dom]=S([2:5,7]);

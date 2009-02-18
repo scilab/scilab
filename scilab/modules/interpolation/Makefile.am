@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 # Localization of the module interpolation
@@ -35,8 +35,8 @@ libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
-				-I$(top_srcdir)/modules/operations/includes \
-                -I$(top_srcdir)/modules/string/includes
+		                -I$(top_srcdir)/modules/string/includes \
+                		-I$(top_srcdir)/modules/operations/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
@@ -73,11 +73,6 @@ libsciinterpolation_la_sci_gateway_DATA = sci_gateway/interpolation_gateway.xml
 
 ####�interpolation : include files ####
 libsciinterpolation_la_includedir=$(pkgincludedir)/interpolation
-libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h 
-
-
-####�interpolation : demos files ####
-libsciinterpolation_la_demosdir=$(mydatadir)/demos/
-libsciinterpolation_la_demos_DATA = demos/interp_demo.sci
+libsciinterpolation_la_include_HEADERS = includes/gw_interpolation.h
 
 include $(top_srcdir)/Makefile.incl.am

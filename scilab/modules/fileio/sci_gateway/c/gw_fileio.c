@@ -50,7 +50,9 @@ static gw_generic_table Tab[]={
 	{C2F(sci_fileext),"fileext"},
 	{C2F(sci_isdir),"isdir"},
 	{C2F(sci_removedir),"removedir"},
-	{C2F(sci_createdir),"createdir"}
+	{C2F(sci_createdir),"createdir"},
+	{C2F(sci_getcwd),"getcwd"},
+	{C2F(sci_chdir),"chdir"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)

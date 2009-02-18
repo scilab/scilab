@@ -14,8 +14,8 @@
 // fprintfMat and fscanfMat cannot cope with directories with accented characters
 
 a = eye(10,10);
-pathdest = TMPDIR + filesep() + 'àaùé_dir';
-filedest = pathdest + filesep() + 'àaùé_file.txt';
+pathdest = TMPDIR + filesep() + 'Ã aÃ¹Ã©_dir';
+filedest = pathdest + filesep() + 'Ã aÃ¹Ã©_file.txt';
 
 mkdir(pathdest);
 fprintfMat(filedest,a);

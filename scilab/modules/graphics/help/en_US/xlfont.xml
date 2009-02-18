@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="windows-1251"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -79,9 +79,10 @@ fonts=xlfont()</synopsis>
           <para>a column vector of font names.</para>
         </listitem>
       </varlistentry>
-      
+
       <varlistentry>
         <term>bold</term>
+
         <listitem>
           <para>a boolean %t if bold</para>
         </listitem>
@@ -89,11 +90,11 @@ fonts=xlfont()</synopsis>
 
       <varlistentry>
         <term>italic</term>
+
         <listitem>
           <para>a boolean %t if italic</para>
         </listitem>
       </varlistentry>
-      
     </variablelist>
   </refsection>
 
@@ -128,14 +129,17 @@ xlfont()
 
 // Caution : this example may not work if your system have not Monospaced font.
 xlfont("Monospaced",10,%t,%t);
-xset("font", 10, 4) // use Monospaced Bold Italic
-plot2d()
+xstring(1,0,'A title');
+figure_entity = gcf();
+axes_entity = figure_entity.children;
+title_entity = axes_entity.children;
+title_entity.font_style = 10;
 
 xlfont()
 
 xlfont(SCI+'/thirdparty/fonts/scilabsymbols.ttf')
-xset("font", 12, 4) // use scilabsymbols.ttf font
-plot2d()
+title_entity.font_style = 11; // use scilabsymbols.ttf font
+title_entity.font_size  = 4; // size scilabsymbols.ttf font
 
 xlfont()
 
@@ -149,8 +153,6 @@ xlfont('reset');
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="xset">xset</link></member>
-
       <member><link linkend="getfont">getfont</link></member>
     </simplelist>
   </refsection>

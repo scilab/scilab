@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>xclip</refname>
-    <refpurpose> set a clipping zone</refpurpose>
+    <refpurpose> (obsolete) set a clipping zone</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -43,9 +43,6 @@ xclip("clipgrf")</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xclip</literal> is obsolete with the new graphic mode, use the
-      <literal>clip_state</literal> and <literal>clip_box</literal> properties of the
-      entities instead.</para>
     <para><literal>xclip</literal> set a clipping zone given by the coordinates, in the current
     graphics scale, of the rectangle <literal>x,y,w,h</literal> 
     (upper-left point, width, height). If only one argument is given, it stands
@@ -53,6 +50,11 @@ xclip("clipgrf")</synopsis>
     <para><literal>xclip("clipgrf")</literal> is used to clip the usual rectangle boundaries.</para>
     <para>
     To unclip a region use the command <literal>xclip()</literal>.</para>
+	<para>
+		Function <literal>xclip</literal> is obsolete and will be permanently removed in Scilab 5.2.
+		To set a clipping zone, please use instead the <literal>clip_state</literal> and <literal>clip_box</literal>
+		properties of graphic entities.
+	</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -82,6 +84,14 @@ xclip("clipgrf")
 e.clip_state='off';
  
   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection>
     <title>Authors</title>

@@ -183,5 +183,5 @@ if size(lambda_qp) <> [4 1] then pause,end
 if size(info) <> [1 1] then pause,end
 if size(iter) <> [1 1] then pause,end
 if info <> 101 then pause,end
-if iter <> 6 then pause,end
+if iter <> 7 then pause,end
 // =============================================================================

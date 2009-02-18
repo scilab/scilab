@@ -160,28 +160,6 @@ libscimetanet_la_sci_gateway_DATA = sci_gateway/metanet_gateway.xml
 libscimetanet_la_includedir=$(pkgincludedir)/metanet
 libscimetanet_la_include_HEADERS = includes/gw_metanet.h
 
-
-#### metanet : demos files ####
-libscimetanet_la_demosdir=$(mydatadir)/demos/
-libscimetanet_la_demos_DATA = demos/foret.graph \
-demos/toto.graph \
-demos/colored.graph \
-demos/icon.graph \
-demos/cross.graph \
-demos/ra8.graph \
-demos/meta.dem \
-demos/ra9.graph \
-demos/mesh1000.graph \
-demos/mesh10.graph \
-demos/paris2.graph \
-demos/ra10.graph \
-demos/metro.sci \
-demos/umin.graph \
-demos/node2station \
-demos/mesh100.graph \
-demos/paris.graph
-
-
 #### metanet : Macros ####
 MACROSDIRSEXT =  macros/editor macros/graph_tools
 

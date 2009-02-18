@@ -103,6 +103,8 @@ public class DrawableFigureGL extends ObjectGL {
 	/** In double buffer mode, it might be needed to emulate single buffer */
 	private boolean isEmultatingSingleBuffer;
 	
+	private boolean requestSingleBufferUse;
+	
 	private GraphicEventManager eventManager;
 	
 	/**
@@ -122,10 +124,11 @@ public class DrawableFigureGL extends ObjectGL {
       	backGroundColorIndex = 0;
       	rubberBox = null;
       	renderRequested = false;
-      	transform = new CoordinateTransformation();
+      	transform = new CoordinateTransformation(this);
       	clipPlaneManager = new ClipPlane3DManager();
       	nbSubwins = 0;
       	isEmultatingSingleBuffer = false;
+      	requestSingleBufferUse = false;
       	eventManager = new GraphicEventManager();
     }
 	
@@ -212,6 +215,11 @@ public class DrawableFigureGL extends ObjectGL {
 		// depending on the pixel mode
 		gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
 		gl.glClearDepth(1.0f);
+		
+		if (requestSingleBufferUse) {
+			useSingleBuffer();
+		}
+		
 	}
 	
 	/**
@@ -685,7 +693,7 @@ public class DrawableFigureGL extends ObjectGL {
 	 * add one.
 	 */
 	public void openGraphicCanvas() {
-		getRendererProperties().openGraphicCanvas(figureId);
+		getRendererProperties().openGraphicCanvas(figureId, getCoordinateTransformation().getAntialiasingQuality());
 	}
 	
 	/**
@@ -699,11 +707,29 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Emulate the use of a single buffer if needed
 	 */
 	public void useSingleBuffer() {
-		if (isDoubleBuffered()) {
+		if (!isEmultatingSingleBuffer && isDoubleBuffered()) {
 			// draw in the front buffer so its like we're having only one buffer
 			getGL().glDrawBuffer(GL.GL_FRONT);
 			isEmultatingSingleBuffer = true;
 		}
+	}
+	
+	/**
+	 * Set the single buffer use on or off
+	 * @param useSingleBuffer if true the figure will use only single buffer
+	 *                        if false it use default mode
+	 */
+	public void setUseSingleBuffer(boolean useSingleBuffer) {
+		this.requestSingleBufferUse = useSingleBuffer;
+		// HACK for Scicos
+		getRendererProperties().setSingleBuffered(useSingleBuffer);
+	}
+	
+	/**
+	 * @return true if the figure request the use of a single buffer
+	 */
+	public boolean isUsingSingleBuffer() {
+		return requestSingleBufferUse;
 	}
 	
 	/**
@@ -713,7 +739,7 @@ public class DrawableFigureGL extends ObjectGL {
 		if (isDoubleBuffered() && isEmultatingSingleBuffer) {
 			// to be sure to fill the buffer
 			getGL().glFlush();
-			  // switch back to default buffer
+			// switch back to default buffer
 			getGL().glDrawBuffer(GL.GL_BACK);
 			isEmultatingSingleBuffer = false;
 		} else {
@@ -728,4 +754,36 @@ public class DrawableFigureGL extends ObjectGL {
 		return getRenderingTarget().getChosenGLCapabilities().getDoubleBuffered();
 	}
 	
+	/**
+	 * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+	 */
+	public int getAntialiasingQuality() {
+		return getCoordinateTransformation().getAntialiasingQuality();
+	}
+	
+	/**
+	 * Modify the quality of antialiasing or disable it.
+	 * If quality if 0, the antialiasing is disables,
+	 * otherwise it might be either 1, 2, 4, 8 or 16 and then
+	 * specify the number of pass for antialiasing.
+	 * @param quality positive integer.
+	 */
+	public void setAntialiasingQuality(int quality) {
+		getCoordinateTransformation().setAntialiasingQuality(quality);
+		getRendererProperties().setAntialiasingQuality(figureId, quality);
+	}
+	
+	/**
+	 * Disable antialiasing until a call to enableAntialiasing
+	 */
+	public void disableAntialiasing() {
+		getCoordinateTransformation().disableAntialiasing();
+	}
+	
+	/**
+	 * Enable antialiasing again after a call to disableAntiAliasing.
+	 */
+	public void enableAntialiasing() {
+		getCoordinateTransformation().enableAntialiasing();
+	}
 }

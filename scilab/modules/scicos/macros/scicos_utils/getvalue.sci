@@ -265,17 +265,17 @@ while %t do
     execstr('%'+string(%kk)+'=%vv')
   end
   if %nok>0 then
-    x_message(['answer given for '+%labels(%nok);
+    messagebox(['answer given for '+%labels(%nok);
              'has invalid dimension: ';
-             'waiting for dimension  '+%ssz])
+             'waiting for dimension  '+%ssz],"modal","error");
     %ini=%str
   elseif %nok<0 then
     if %ierr==0 then
-      x_message(['answer given for '+%labels(-%nok);
-	'has incorrect type :'+ %typ(-2*%nok-1)])
+      messagebox(['answer given for '+%labels(-%nok);
+	'has incorrect type :'+ %typ(-2*%nok-1)],"modal","error");
     else
-      x_message(['answer given for '+%labels(-%nok);
-	'is incorrect:'+lasterror()])
+      messagebox(['answer given for '+%labels(-%nok);
+	'is incorrect:'+lasterror()],"modal","error");
     end
     %ini=%str
   else

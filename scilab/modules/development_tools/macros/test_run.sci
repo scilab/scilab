@@ -30,10 +30,15 @@
 //       This test will not be executed if the option "mode_nwni" is used.
 //     <-- NO TRY CATCH -->
 //     <-- NO CHECK ERROR OUTPUT -->
+//       The error output file is not checked
 //     <-- NO CHECK REF -->
 //       The .dia and the .dia.ref files are not compared.
 //     <-- ENGLISH IMPOSED -->
 //       This test will be executed with the -l en_US option.
+//     <-- FRENCH IMPOSED -->
+//       This test will be executed with the -l fr_FR option.
+//     <-- JVM NOT MANDATORY -->
+//       This test will be executed with the nwni mode by default.
 //
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
@@ -92,6 +97,18 @@ function test_run(varargin)
 	lhs = argn(1);
 	rhs = argn(2);
 	
+	global MACOSX;
+	global LINUX;
+	
+	if ~MSDOS then
+		OSNAME = unix_g('uname');
+		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+	else
+		MACOSX = %F;
+		LINUX  = %F;
+	end
+	
 	global test_list;
 	global test_count;
 	global displayed_txt;
@@ -102,6 +119,8 @@ function test_run(varargin)
 	global check_error_output;
 	global create_ref;
 	global launch_mode;
+	global launch_mode_arg; // TRUE if user specify the launch mode
+	launch_mode_arg = %F;
 	
 	// test type
 	test_types        = ["unit_tests","nonreg_tests"];
@@ -275,11 +294,13 @@ function test_run(varargin)
 		end
 		
 		if grep(option_mat,"mode_nw") <> [] then
-			launch_mode = "-nw";
+			launch_mode     = "-nw";
+			launch_mode_arg = %T;
 		end
 		
 		if grep(option_mat,"mode_nwni") <> [] then
-			launch_mode = "-nwni";
+			launch_mode     = "-nwni";
+			launch_mode_arg = %T;
 		end
 		
 		if grep(option_mat,"list") <> [] then
@@ -464,10 +485,14 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	status_id      = 0 ;
 	status_msg     = "passed" ;
 	status_details = "";
-
+	
+	global MACOSX;
+	global LINUX;
+	
 	global check_ref;
 	global create_ref;
 	global launch_mode;
+	global launch_mode_arg;
 	global check_error_output;
 	
 	// Specific parameters for each tests
@@ -476,6 +501,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	this_use_try_catch      = %T;
 	this_use_graphics       = %F;
 	this_english_imposed    = '';
+	this_launch_mode        = "-nw";
 	
 	// Some definitions
 	
@@ -491,10 +517,22 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	diafile     = pathconvert(fullPath+".dia",%f,%f);
 	reffile     = pathconvert(fullPath+".dia.ref",%f,%f);
 	
+	// Reference file management OS by OS
+	
 	if MSDOS then
-		altreffile = pathconvert(fullPath+".win.dia.ref",%f,%f);
+		altreffile = [ pathconvert(fullPath+".win.dia.ref",%f,%f) ];
+	elseif MACOSX then
+		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".macosx.dia.ref",%f,%f) ];
+	elseif LINUX then
+		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ; pathconvert(fullPath+".linux.dia.ref",%f,%f) ];
 	else
-		altreffile = pathconvert(fullPath+".unix.dia.ref",%f,%f);
+		altreffile = [ pathconvert(fullPath+".unix.dia.ref",%f,%f) ];
+	end
+	
+	for k=1:size(altreffile,'*')
+		if fileinfo(altreffile(k)) <> [] then
+			reffile = altreffile(k);
+		end
 	end
 	
 	tmp_tstfile = pathconvert(TMPDIR+"/"+test+".tst",%f,%f);
@@ -556,6 +594,14 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		end
 	end
 	
+	if ((~launch_mode_arg) & (grep(txt,"<-- JVM NOT MANDATORY -->") <> [])) then
+		this_launch_mode = "-nwni";
+	end
+	
+	if launch_mode_arg then
+		this_launch_mode = launch_mode;
+	end
+	
 	if grep(txt,"<-- NO TRY CATCH -->") <> [] then
 		this_use_try_catch = %F;
 	end
@@ -570,6 +616,10 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	if grep(txt,"<-- ENGLISH IMPOSED -->") <> [] then
 		this_english_imposed = "-l en_US";
+	end
+
+	if grep(txt,"<-- FRENCH IMPOSED -->") <> [] then
+		this_english_imposed = "-l fr_FR";
 	end
 	
 	// Do some modification in tst file
@@ -644,9 +694,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	// Build the command to launch
 	if MSDOS then
-		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+this_launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		test_cmd = "( "+SCI_BIN+"/bin/scilab "+launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		test_cmd = "( "+SCI_BIN+"/bin/scilab "+this_launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec
@@ -711,24 +761,18 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		return;
 	end
 	
-        // Check the reference file only if check_ref (i.e. for the whole 
-        // test sequence) is true and this_check_ref (i.e. for the specific current .tst)
-        // is true.
-
+	// Check the reference file only if check_ref (i.e. for the whole 
+	// test sequence) is true and this_check_ref (i.e. for the specific current .tst)
+	// is true.
+	
 	if ( check_ref & this_check_ref ) then
-		if (fileinfo(reffile) == []) & (fileinfo(altreffile) == []) then
+		if fileinfo(reffile) == [] then
 			status_msg     = "failed  : the ref file doesn''t exist";
 			status_details = "     Add or create the following file"+reffile+" file";
 			status_details = sprintf("     Add or create the following file : \n     - %s",reffile);
 			status_id      = 5;
 			return;
 		end
-		
-		// Gestion du fichier alternatif ( prioritaire s'il existe )
-		if fileinfo(altreffile) <> [] then
-			reffile = altreffile;
-		end
-		
 	end
 	
 	// Comparaison ref <--> dia
@@ -796,7 +840,7 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 		else
 			
 			// write down the resulting dia file
-			mputl(dia,diafile)
+			mputl(dia,diafile);
 			
 			//Check for diff with the .ref file
 			

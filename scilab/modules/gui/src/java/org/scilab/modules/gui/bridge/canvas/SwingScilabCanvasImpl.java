@@ -12,7 +12,6 @@
 
 package org.scilab.modules.gui.bridge.canvas;
 
-import java.awt.AWTEvent;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -29,7 +28,6 @@ import java.awt.event.FocusListener;
 import java.awt.event.HierarchyBoundsListener;
 import java.awt.event.HierarchyListener;
 import java.awt.event.InputMethodListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -39,6 +37,7 @@ import java.awt.image.ImageObserver;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.StringTokenizer;
 
 import javax.accessibility.Accessible;
 import javax.accessibility.AccessibleContext;
@@ -51,8 +50,10 @@ import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 import javax.media.opengl.GLJPanel;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
-
+import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.gui.utils.Debug;
+import org.scilab.modules.localization.Messages;
+import org.scilab.modules.renderer.utils.RenderingCapabilities;
 
 public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, MenuContainer, Accessible, Serializable {
 
@@ -61,177 +62,199 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
 
-    /**
-     * Class used to fix a issue with AWT under Linux.
-     * It is apparently not possible to click on a lightweight (at least)
-     * component which is hidden behind the the canvas.
-     * Consequently to be able to send the mouse events to the axes we need to overide processEvents functions
-     * @author Jean-Baptiste silvy
-     */
-    private class GLEventCanvas extends GLCanvas {
-
-    	/** needed */
-		private static final long serialVersionUID = 1164643863862749375L;
-
-		/**
-    	 * Default constructor
-    	 */
-    	public GLEventCanvas() {
-    		super();
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
-    	}
-
-    	/**
-    	 * @param cap cap to use
-    	 */
-    	public GLEventCanvas(GLCapabilities cap) {
-    		super(cap);
-    		this.enableEvents(AWTEvent.MOUSE_EVENT_MASK | AWTEvent.MOUSE_MOTION_EVENT_MASK | AWTEvent.KEY_EVENT_MASK);
-    	}
-
-    	/**
-    	 * @return parent axes of the canvas
-    	 */
-    	private SwingScilabAxes getParentAxes() {
-    		return ((SwingScilabAxes) getParent());
-    	}
-
-    	/**
-    	 * @param e mouse event to process
-    	 */
-    	protected void processMouseEvent(MouseEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processMouseEvent(e);
-    	}
-
-    	/**
-    	 * @param e mouse event to process
-    	 */
-    	protected void processMouseMotionEvent(MouseEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processMouseMotionEvent(e);
-    	}
-
-    	/**
-    	 * @param e key event to process
-    	 */
-    	protected void processKeyEvent(KeyEvent e) {
-    		e.setSource(getParentAxes());
-    		getParentAxes().processKeyEvent(e);
-    	}
-
-    }
-
     static {
 	long lastTime = Calendar.getInstance().getTimeInMillis();
-	GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
-	Frame tmpFrame = new Frame();
-	tmpFrame.add(tmpCanvas);
-	tmpFrame.setVisible(true);
+	try {
+	    GLCanvas tmpCanvas = new GLCanvas(new GLCapabilities());
+	    Frame tmpFrame = new Frame();
+	    tmpFrame.add(tmpCanvas);
+	    tmpFrame.setVisible(true);
 
-	tmpCanvas.getContext().makeCurrent();
-	GL gl = tmpCanvas.getGL();
-	DEBUG("=======================================");
-	String OS_NAME = System.getProperty("os.name");
-	DEBUG("os.name="+OS_NAME);
-	String OS_ARCH = System.getProperty("os.arch");
-	DEBUG("os.arch="+OS_ARCH);
-	DEBUG("=======================================");
-	String GL_VENDOR = gl.glGetString(GL.GL_VENDOR);
-	DEBUG("GL_VENDOR="+GL_VENDOR);
-	String GL_RENDERER = gl.glGetString(GL.GL_RENDERER);
-	DEBUG("GL_RENDERER="+GL_RENDERER);
-	String GL_VERSION = gl.glGetString(GL.GL_VERSION);
-	DEBUG("GL_VERSION="+GL.GL_VERSION);
-	//DEBUG("GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
-	DEBUG("=======================================");
-	//System.getProperties().list(System.err);
-	tmpCanvas.getContext().release();
-	tmpFrame.remove(tmpCanvas);
-	tmpFrame.setVisible(false);
-	tmpFrame.dispose();
-	DEBUG("Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
+	    tmpCanvas.getContext().makeCurrent();
+	    GL gl = tmpCanvas.getGL();
+	    Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	    String OS_NAME = System.getProperty("os.name");
+	    Debug.DEBUG("SwingScilabCanvasImpl", "os.name="+OS_NAME);
+	    String OS_ARCH = System.getProperty("os.arch");
+	    Debug.DEBUG("SwingScilabCanvasImpl", "os.arch="+OS_ARCH);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	    String GL_VENDOR = gl.glGetString(GL.GL_VENDOR);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "GL_VENDOR="+GL_VENDOR);
+	    String GL_RENDERER = gl.glGetString(GL.GL_RENDERER);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "GL_RENDERER="+GL_RENDERER);
+	    String GL_VERSION = gl.glGetString(GL.GL_VERSION);
+	    Debug.DEBUG("SwingScilabCanvasImpl", "GL_VERSION="+GL_VERSION);
+	    //Debug.DEBUG("SwingScilabCanvasImpl", "GL_EXTENSIONS="+gl.glGetString(GL.GL_EXTENSIONS));
+	    Debug.DEBUG("SwingScilabCanvasImpl", "=======================================");
+	    //System.getProperties().list(System.err);
 
-	// If we are running on a Linux with Intel video card and with DRI activated
-	// GLJPanel will not be supported, so we force switch to GLCanvas.
-	if (OS_NAME.contains("Linux")
-		&& GL_RENDERER.contains("Intel")
-		&& GL_RENDERER.contains("DRI"))
-	{
-	    noGLJPanel = true;
-	}
-	else {
+	    // get maximum axes size
+	    RenderingCapabilities.updateMaxCanvasSize(gl);
+
+	    tmpCanvas.getContext().release();
+	    tmpFrame.remove(tmpCanvas);
+	    tmpFrame.setVisible(false);
+	    tmpFrame.dispose();
+	    Debug.DEBUG("SwingScilabCanvasImpl", "Testing time = "+(Calendar.getInstance().getTimeInMillis() - lastTime)+"ms");
+
 	    noGLJPanel = false;
+
+	    // By default disable GLJPanel on Linux
+	    if (OS_NAME.contains("Linux")) {
+		noGLJPanel = true;
+		// Linux && NVIDIA
+		if (GL_VENDOR.contains("NVIDIA")) {
+		    noGLJPanel = false;
+		}
+		// Linux && ATI
+		if (GL_VENDOR.contains("ATI")) {
+		    StringTokenizer stSpace = new StringTokenizer(GL_VERSION, " ");
+		    StringTokenizer stDot = new StringTokenizer(stSpace.nextToken(), ".");
+		    int majorVersion = Integer.parseInt(stDot.nextToken());
+		    int minorVersion = Integer.parseInt(stDot.nextToken());
+		    int releaseVersion = Integer.parseInt(stDot.nextToken());
+		    // Only OpenGL version newer than 2.1.7873 works
+		    // available through ATI 8.8 installer
+		    // and driver newer than 8.52.3
+		    Debug.DEBUG("SwingScilabCanvasImpl", "majorVersion = "+majorVersion+
+			    " minorVersion = "+minorVersion+
+			    " releaseVersion = "+releaseVersion);
+		    if (majorVersion > 2
+			    || majorVersion == 2 && minorVersion > 1
+			    || majorVersion == 2 && minorVersion == 1 && releaseVersion >= 7873) {
+			noGLJPanel = false;
+		    }
+		}
+	    }
+	    if ( OS_NAME.contains("Windows") && OS_ARCH.equals("amd64") ) {
+		// bug 3919 : JOGL x64 doesn't like x64 remote desktop on Windows
+		// @TODO : bug report to JOGL
+		String REMOTEDESKTOP = System.getenv("SCILAB_MSTS_SESSION");
+		if (REMOTEDESKTOP != null) {
+		    if ( REMOTEDESKTOP.equals("OK") ) {
+			noGLJPanel = true;
+		    }
+		}
+	    }
+
+	    if (noGLJPanel) {
+		/** Inform the users */
+		InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your configuration limitations, "
+			+ "Scilab switched in a mode where mixing uicontrols and graphics is not available. "
+			+ "Type \"\"help usecanvas\"\" for more information.\")"));
+	    }
+	}
+	catch (GLException e) {
+	    noGLJPanel = true;
+	    /** Inform the users */
+	    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Due to your video card drivers limitations, "
+		    + "that are not able to manage OpenGL, Scilab will not be able to draw any graphics. "
+		    + "Please update your driver.\")"));
 	}
     }
 
     GLCanvas realGLCanvas;
     GLJPanel realGLJPanel;
-    boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
+    static boolean enableGLCanvas = forceGLCanvas || noGLJPanel;
 
     /**
      * Change Global property forceGLCanvas
      * if no GLJPanel is available, GLCanvas is forced
      */
     public static boolean switchToGLCanvas(boolean onOrOff) {
-        DEBUG("switchToGLCanvas " + onOrOff);
-	forceGLCanvas = noGLJPanel || onOrOff;
-	return forceGLCanvas;
+	Debug.DEBUG("SwingScilabCanvasImpl", "switchToGLCanvas " + onOrOff);
+	if(!onOrOff && noGLJPanel) {
+	    InterpreterManagement.requestScilabExec(Messages.gettext("disp(\"WARNING: Despite of our previous warning, "
+			+ "you choosed to use Scilab with advanced graphics capabilities. "
+			+ "Type \"\"help usecanvas\"\" for more information.\")"));
+	}
+	enableGLCanvas = onOrOff;
+	return enableGLCanvas;
     }
 
     /**
-     * DEBUG function
+     * Get Global property forceGLCanvas
+     * if no GLJPanel is available, GLCanvas is forced
      */
-    private static void DEBUG(String msg) {
-	 //System.err.println("[DEBUG] SwingScilabCanvasImpl : "+msg);
-    }
-
-    public SwingScilabCanvasImpl() {
-	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas();
-	}
-	else {
-	    DEBUG("Using GLJPanel for OpenGL implementation.");
-	    realGLJPanel= new GLJPanel();
-	}
+    public static boolean isGLCanvasEnabled() {
+	return enableGLCanvas;
     }
 
     public SwingScilabCanvasImpl(GLCapabilities cap) {
 	if (enableGLCanvas) {
-	    DEBUG("Using GLCanvas for OpenGL implementation.");
-	    realGLCanvas = new GLEventCanvas(cap);
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLCanvas for OpenGL implementation.");
+	    realGLCanvas = new GLCanvas(cap);
+	    realGLCanvas.addMouseMotionListener(new MouseMotionListener() {
+		public void mouseDragged(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+		public void mouseMoved(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+	    });
+	    realGLCanvas.addMouseListener(new MouseListener() {
+		public void mouseClicked(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseEntered(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseExited(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+
+		public void mousePressed(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+
+		public void mouseReleased(MouseEvent arg0) {
+		    arg0.setSource(realGLCanvas.getParent());
+		    realGLCanvas.getParent().dispatchEvent(arg0);
+		}
+	    });
 	}
 	else {
-	    DEBUG("Using GLJPanel for OpenGL implementation.");
+	    Debug.DEBUG(this.getClass().getSimpleName(), "Using GLJPanel for OpenGL implementation.");
 	    realGLJPanel = new GLJPanel(cap);
 	}
     }
 
+    /**
+     * @return BLOUNO
+     */
     private GLAutoDrawable getAsGL() {
-	if (enableGLCanvas) {
-	    return realGLCanvas;
-	}
-	else {
-	    return realGLJPanel;
-	}
+    	/* Don't use enableGLCanvas. */
+    	/* It might change but not current type of the canvas.*/
+    	if (realGLCanvas != null) {
+    		return realGLCanvas;
+    	} else {
+    		return realGLJPanel;
+    	}
     }
 
+    /**
+     * @return BLOUNO
+     */
     public Component getAsComponent() {
-	if (enableGLCanvas) {
-	    return realGLCanvas;
-	}
-	else {
-	    return realGLJPanel;
-	}
+    	/* Don't use enableGLCanvas. */
+    	/* It might change but not current type of the canvas.*/
+    	if (realGLCanvas != null) {
+    		return realGLCanvas;
+    	} else {
+    		return realGLJPanel;
+    	}
     }
 
     public void addGLEventListener(GLEventListener arg0) {
 	getAsGL().addGLEventListener(arg0);
-    }
-
-    public void display() {
-	getAsGL().display();
     }
 
     public boolean getAutoSwapBufferMode() {
@@ -243,15 +266,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public GL getGL() {
+	//Debug.DEBUG(this.getClass().getSimpleName(), "getGL");
 	return getAsGL().getGL();
     }
 
     public void removeGLEventListener(GLEventListener arg0) {
 	getAsGL().removeGLEventListener(arg0);
-    }
-
-    public void repaint() {
-	getAsGL().repaint();
     }
 
     public void setAutoSwapBufferMode(boolean arg0) {
@@ -390,7 +410,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public boolean postEvent(Event arg0) {
-	DEBUG("postEvent(Event arg0)");
+	Debug.DEBUG(this.getClass().getSimpleName(), "postEvent(Event arg0)");
 	return getAsComponent().postEvent(arg0);
     }
 
@@ -403,10 +423,12 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void setVisible(boolean arg0) {
+	Debug.DEBUG(this.getClass().getSimpleName(), "setVisible : "+arg0);
 	getAsComponent().setVisible(arg0);
     }
 
     public void doLayout() {
+	Debug.DEBUG(this.getClass().getSimpleName(), "doLayout");
 	getAsComponent().doLayout();
     }
 
@@ -431,6 +453,7 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public void setBackground(Color arg0) {
+    	
 	getAsComponent().setBackground(arg0);
     }
 
@@ -451,38 +474,47 @@ public class SwingScilabCanvasImpl implements GLAutoDrawable, ImageObserver, Men
     }
 
     public boolean isFocusable() {
-    	return getAsComponent().isFocusable();
+	return getAsComponent().isFocusable();
     }
 
 
     public void setEnabled(boolean enable) {
-    	//getAsComponent().setEnabled(enable);
-    	// don't disable the GLCanvas
-		// otherwise mouse events will be lost because
-		// they won't reach the axes under Linux
-    	if (!enableGLCanvas) {
-    	    realGLJPanel.setEnabled(false);
-    	}
+	Debug.DEBUG(this.getClass().getSimpleName(), "setEnable : "+enable);
+	getAsComponent().setEnabled(enable);
     }
 
-    /**
-     * @return true if this object can be scrolled,
-     * false otherwise
-     */
-    public boolean isScrollable() {
-    	return (!enableGLCanvas);
-    }
+    //
+    // PAINT SECTION
+    //
+    // {
+    //
 
     /**
      * Heavyweight component don't draw themselves automatically
      * So we need to call a function to force the redraw.
      * @param g graphics
      */
-    public void forcePaint(Graphics g) {
-    	if (enableGLCanvas) {
-    	    // GLJPanel draw themselves automatically
-    	    realGLCanvas.display();
-    	}
+    public void paint(Graphics g) {
+	//Debug.DEBUG(this.getClass().getSimpleName(), "paint");
+	getAsComponent().paint(g);
     }
 
+    public void display() {
+	//Debug.DEBUG(this.getClass().getSimpleName(), "display");
+	getAsGL().display();
+    }
+
+    public void repaint() {
+	//Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
+	getAsGL().repaint();
+	getAsComponent().repaint();
+    }
+
+    public void update(Graphics g) {
+	//Debug.DEBUG(this.getClass().getSimpleName(), "update");
+	getAsComponent().update(g);
+    }
+    //
+    // }
+    //
 }

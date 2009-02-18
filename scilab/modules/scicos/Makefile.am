@@ -102,10 +102,10 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/string/includes \
-			-I$(top_srcdir)/modules/intersci/src/lib \
+			-I$(top_srcdir)/modules/intersci/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
-			-I$(top_srcdir)/modules/operations/includes \
-			-I$(top_srcdir)/modules/action_binding/includes
+			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/operations/includes
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -113,7 +113,7 @@ libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWA
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 
-libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
+libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 if USE_EMBEDDED_BLAS
 libsciscicos_la_LIBADD +=  $(top_builddir)/libs/blas/libsciblas.la
@@ -160,157 +160,6 @@ macros/scicos_scicos/Sources.cosf \
 macros/scicos_scicos/ThermoHydraulics.cosf \
 macros/scicos_scicos/Threshold.cosf
 
-
-#### scicos : demos files ####
-libsciscicos_la_demosdir=$(mydatadir)
-nobase_libsciscicos_la_demos_DATA = demos/anim_pen.sci \
-demos/basic_controller.dem.sce \
-demos/bounce.cosf \
-demos/bounce.dem.sce \
-demos/Bouncing_ball.cosf \
-demos/bouncing_ball.dem.sce \
-demos/Cont.Disc-Observer.cosf \
-demos/cont_sys_disc_cont.dem.sce \
-demos/control_systems.dem.gateway.sce \
-demos/Controller.cosf \
-demos/data_type.dem.sce \
-demos/demo_Datatype.cosf \
-demos/demo_Datatype.dem.sce \
-demos/demo_flipflop.cosf \
-demos/demo_flipflop.dem.sce \
-demos/demo_watertank.cosf \
-demos/demo_watertank.dem.sce \
-demos/dialogs.sci \
-demos/dialogs_learn.sci \
-demos/dialogs_play.sci \
-demos/Discrete-KalmanFilter.cosf \
-demos/discrete_controller.dem.sce \
-demos/discrete_kalman.dem.sce \
-demos/electrical_systems.dem.gateway.sce \
-demos/fibo.cosf \
-demos/fibo.dem.sce \
-demos/Fibonacci.cosf \
-demos/fibonacci.dem.sce \
-demos/ModelicaBlocks/Finite_state_Buck.cosf \
-demos/ModelicaBlocks/Finite_state_SwingUp.cosf \
-demos/flip_flop_logic.dem.sce \
-demos/go_pend_5.sci \
-demos/goto_demo.cosf \
-demos/goto_demo.dem.sce \
-demos/goto_from.dem.sce \
-demos/ModelicaBlocks/Hydraulics.cosf \
-demos/IF_block.cosf \
-demos/if_scicos_block.dem.sce \
-demos/Ifsub.cosf \
-demos/imppart_Hydraulics.mo \
-demos/inv_pend_anim.dem.sce \
-demos/inverted_pend.dem.sce \
-demos/Inverted_pendulum.cosf \
-demos/inverted_pendulum.dem.sce \
-demos/Kalman.cosf \
-demos/kalman.dem.sce \
-demos/Kalman_1.cosf \
-demos/live.dat \
-demos/live.dem.gateway.sce \
-demos/Lorentz.cosf \
-demos/lorentz.dem.sce \
-demos/mechanical_systems.dem.gateway.sce \
-demos/modelica_demos.dem.gateway.sce \
-demos/old_demos.dem.gateway.sce \
-demos/old_gain_block.dem.sce \
-demos/OldGainTest.cosf \
-demos/PENDULUM_ANIM.sci \
-demos/pendulum_anim5.cosf \
-demos/Plant_DiscreteController.cosf \
-demos/scicos.dem \
-demos/scicos.dem.gateway.sce \
-demos/scicos_learn.sci \
-demos/scicos_play.sci \
-demos/Scilab_Block.cosf \
-demos/scilab_block.dem.sce \
-demos/setw.sci \
-demos/Signal_Builder.cosf \
-demos/signal_builder.dem.sce \
-demos/Simple_Demo.cosf \
-demos/simple_demo.dem.sce \
-demos/Simple_Thermostat.cosf \
-demos/simple_thermostat.dem.sce \
-demos/sound.cosf \
-demos/standard.dem.gateway.sce \
-demos/susp.cosf \
-demos/susp.dem.sce \
-demos/System-Observer.cosf \
-demos/Table_Lookup.cosf \
-demos/table_lookup.dem.sce \
-demos/Temperature_Controller.cosf \
-demos/temp_controller.dem.sce \
-demos/Thermique_bloc.cosf \
-demos/Threshold_ZeroCrossing.cosf \
-demos/tut1 \
-demos/tut1.dem.sce \
-demos/tut2 \
-demos/tut2.dem.sce \
-demos/tut3 \
-demos/tut3.dem.sce \
-demos/tut4 \
-demos/tut4.dem.sce \
-demos/tut5 \
-demos/tut5.dem.sce \
-demos/tut6 \
-demos/tut6.dem.sce \
-demos/zero_crossing.dem.sce
-
-libsciscicos_la_demosCodeGendir=$(mydatadir)
-nobase_libsciscicos_la_demosCodeGen_DATA = demos/CodeGen/controller.cosf \
-demos/CodeGen/data \
-demos/CodeGen/fibo.cosf \
-demos/CodeGen/Fibo_standalone.c \
-demos/CodeGen/Therm.cosf \
-demos/CodeGen/Therm_standalone.c
-
-libsciscicos_la_demosElectricaldir=$(mydatadir)
-nobase_libsciscicos_la_demosElectrical_DATA = demos/Electrical/AND_Gate.cosf \
-demos/Electrical/boost_conv.dem.sce \
-demos/Electrical/Boost_Converter.cosf \
-demos/Electrical/Bridge_Rectifier.cosf \
-demos/Electrical/bridge_rectifier.dem.sce \
-demos/Electrical/buck_conv.dem.sce \
-demos/Electrical/colpitts_osc.dem.sce \
-demos/Electrical/Colpitts_Oscillator.cosf \
-demos/Electrical/DC_DC_Buck_Converter.cosf \
-demos/Electrical/Difference_amplifier.cosf \
-demos/Electrical/differential_amp.dem.sce \
-demos/Electrical/logic_and.dem.sce \
-demos/Electrical/logic_nor.dem.sce \
-demos/Electrical/NOR_Gate.cosf \
-demos/Electrical/op_amplier.dem.sce \
-demos/Electrical/Opamp_Amplifier.cosf \
-demos/Electrical/RLC_circuit.cosf \
-demos/Electrical/rlc_circuit.dem.sce \
-demos/Electrical/switched_cap_filter.dem.sce \
-demos/Electrical/Switched_capacitor_integrator.cosf \
-demos/Electrical/Transformer.cosf \
-demos/Electrical/transformer.dem.sce
-
-
-libsciscicos_la_demosModelicaBlocksdir=$(mydatadir)
-nobase_libsciscicos_la_demosModelicaBlocks_DATA = demos/ModelicaBlocks/Ball_Platform.cosf \
-demos/ModelicaBlocks/BouncingBall_Modelica.cosf \
-demos/ModelicaBlocks/Chaos_Modelica.cosf \
-demos/ModelicaBlocks/modelica_hydraulics.dem.sce \
-demos/ModelicaBlocks/ball_platform.dem.sce \
-demos/ModelicaBlocks/Hydraulics.cosf \
-demos/ModelicaBlocks/modelica_fsm_buck.dem.sce \
-demos/ModelicaBlocks/modelica_fsm_boost.dem.sce \
-demos/ModelicaBlocks/modelica_chaos.dem.sce \
-demos/ModelicaBlocks/modelica_bouncing_ball.dem.sce \
-demos/ModelicaBlocks/Finite_state_Buck.cosf \
-demos/ModelicaBlocks/Finite_state_SwingUp.cosf \
-demos/ModelicaBlocks/modelica_rlc_circuit.dem.sce \
-demos/ModelicaBlocks/Chaos_Modelica.cosf \
-demos/ModelicaBlocks/RLC_Modelica.cosf
-
-
 #### scicos : MACROS ####
 MACROSDIRSEXT= macros/scicos_auto \
 macros/scicos_menus \
@@ -338,10 +187,10 @@ libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 #### scicos : help files scripts ####
 
 libsciscicos_la_help_en_USdir = $(mydatadir)/help/en_US
-libsciscicos_la_help_en_US_DATA = help/en_US/scicos_help.jar
+libsciscicos_la_help_en_US_DATA =
 
 libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
-libsciscicos_la_help_fr_FR_DATA = help/fr_FR/scicos_help.jar
+libsciscicos_la_help_fr_FR_DATA =
 
 #########�Modelica #############
 

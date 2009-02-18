@@ -293,7 +293,7 @@ end
 helptxt=[helptxt;change_activity(doing,'FINISHED')];
 mclose(f);
 if ~isempty(helpdir) then
-  mputl(helptxt,pathconvert(helpdir,%t,%f)+out+'.xml')
+  mputl(helptxt,pathconvert(helpdir,%t,%f)+out+'.xml');
   helptxt=pathconvert(helpdir,%t,%f)+out+'.xml'
 end
 demotxt=[demotxt;'//========= E N D === O F === D E M O =========//'];
