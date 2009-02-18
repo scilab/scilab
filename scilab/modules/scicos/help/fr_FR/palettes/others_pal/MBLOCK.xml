@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MBLOCK">
+  <refnamediv>
+    <refname>MBLOCK</refname>
+    <refpurpose>Bloc Modelica générique</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/MBLOCK_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_MBLOCK">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MBLOCK">Bloc Modelica générique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_MBLOCK">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_MBLOCK">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_MBLOCK">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_MBLOCK">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_MBLOCK">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Auteurs_MBLOCK">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_MBLOCK">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Others_pal">Others - Palette Others</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_MBLOCK">
+    <title>Description</title>
+    <para>
+The block "MBlock" provides an easy way to build a Scicos block whose behavior is specified by a Modelica program.  Using this block, the user will be able to write and compile Modelica programs in Scicos without creating any interfacing function.  The associated Modelica program of this block can be either given in a file or written in the window opened by the block. In order to link this block to other Scicos blocks that may be other Modelica blocks, the types of block ports' as well as their associated variables should be specified.  
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_MBLOCK">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/MBLOCK_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Input variables</emphasis>
+        </para>
+        <para> In this filed, the ports connected to the left hand side of the block are defined. If the port is an explicit port, it will be an input port. In this case, the variable should be declared in the Modelica program as Real. If the port is an implicit port, the variable desinating this port should be a "connector". Remind that for implicit port, the notion of input and output does not exist and specifying an implicit variable in this filed is just placing the port at the left hend side of the block. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Input variables types</emphasis>
+        </para>
+        <para> In this filed, the type of ports are specified, i.e., 'I' for implicit ports and 'E' for explicit ports. The size of the vector of "input variables" and the vector of "input_vector_type" should be equal. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Output variables</emphasis>
+        </para>
+        <para> Similar to the input variables vector, the explicit output variables and implicit variables which are displayed at the right hand side of the block are specified in this filed. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Output variables types</emphasis>
+        </para>
+        <para> The type of variables given in the Output variable vector are specified, i.e., 'I' for implicit ports and 'E' for explicit ports. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters in Modelica</emphasis>
+        </para>
+        <para> The values of parameters declared in the Modelica program can be overloaded. To overload a parameter value, the name of parameters are given in this field and their corresponding values are given in the "parameter values" fields that are displayed in the second dialog box. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters properties</emphasis>
+        </para>
+        <para> The type of the Modelica parameters. For that time being, one can parametrize three types of Modelica variable :</para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">0 :</emphasis> the parameter is set to be a <emphasis role="bold">Modelica parameter</emphasis> variable (scalar or vector).
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">1 :</emphasis> the parameter is set to be an <emphasis role="bold">initial condition of Modelica state</emphasis> variable
+                             (scalar or vector).
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">2 :</emphasis> the parameter is set to be an <emphasis role="bold">initial condition of Modelica state</emphasis> variable
+                             with the property <emphasis role="bold">fixed=true</emphasis> (scalar or vector).
+         
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Function name</emphasis>
+        </para>
+        <para> The Modelica class name is specified in this filed. If the Modelica class name is specified without any path or extension, an interactive window is opened and the user can write or edit the Modelica program. This window is opened each time the user clicks on the block. If the Modelica class name is specified with path and '.mo' extension, the compiler looks for the file and if it is found, the file will be compiled, otherwise a window is opened and the user can write the Modelica program. This Modelica file will be saved with the given filename in the specified path. The next time, only input/output characteristics of the block can be changed, and the Modelica file should be edited with another text editor. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameter values</emphasis>
+        </para>
+        <para> The value of Modelica parameters are given in the "Set parameters values" dialog box.
+
+
+ 
+These values that can be scalar or vector, can also be defined in the
+          Scicos context. In order to access the Scicos context, click on the
+          "Diagram" menu then click on the "Context" submenu.
+          For instance, here is an example of overloading of parameters in a Modelica program.
+ 
+
+ 
+Parameters vector  = ['Speed';'Position';"Length"]
+</para>
+        <para>
+Parameters properties vector  = [0;2;1]
+ 
+Speed value        =  [12.0]
+</para>
+        <para>
+Position value     =  [0.0 ; 0.1 ; POS]
+</para>
+        <para>
+Length value       =  [13.0 ; 12.1]
+</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_MBLOCK">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">entrée régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">sorties régulières:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : taille [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">nom de la fonction de calcul:</emphasis>
+          <emphasis role="italic">generic</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_MBLOCK">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Misc/MBLOCK.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_MBLOCK">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">M. Najafi/A. Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

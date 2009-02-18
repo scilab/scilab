@@ -39,6 +39,7 @@ GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
 vfiniteComplex_
 GetRhsVarMatrixComplex
+vFreeDoubleComplexFromPointer
 ;
 ;core_f
 ;

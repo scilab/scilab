@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Others_pal">
+  <refnamediv>
+    <refname>Others_pal</refname>
+    <refpurpose>Palette Others</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Others_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_Others_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Blocs_Others_pal">
+    <title>Blocs</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="AUTOMAT">AUTOMAT - hybrides (les machines à état fini)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="BACKLASH">BACKLASH - Backlash</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="c_block">c_block - Language C</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CBLOCK">CBLOCK - New C</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CONSTRAINT_f">CONSTRAINT_f - Constraint</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DEADBAND">DEADBAND - Zone morte</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DEBUG_SCICOS">DEBUG_SCICOS - Bloc debug</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="ENDBLK">ENDBLK - Bloc fin de simulation</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="EXPRESSION">EXPRESSION - Expression mathématique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="fortran_block">fortran_block - Fortran</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="generic_block3">generic_block3 - Bloc générique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="HYSTHERESIS">HYSTHERESIS - Hystheresis</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="LOGICAL_OP">LOGICAL_OP - Opération logique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="MBLOCK">MBLOCK - Bloc Modelica générique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PDE">PDE - Bloc PDE 1D</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RATELIMITER">RATELIMITER - Rate limiter</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="RELATIONALOP">RELATIONALOP - Opération relationnelle</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="scifunc_block_m">scifunc_block_m - Bloc Scilab</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SUPER_f">SUPER_f - Super bloc</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">TEXT_f - Texte</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

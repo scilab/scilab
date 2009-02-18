@@ -1334,7 +1334,7 @@ int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealDa
 	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
 }
 
-/* 
+/*
 iAllocComplexMatrixOfDouble --
   Reserve space in stack for a matrix of complex.
 Arguments
@@ -1817,6 +1817,7 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	*_piString			= cadr(iAddrData);
 	return 0;
 }
+
 
 /*
 Create a list in scilab stack

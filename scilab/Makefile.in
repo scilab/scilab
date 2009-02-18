@@ -41,13 +41,13 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab6-bin$(EXEEXT) \
 	$(am__EXEEXT_1)
+@IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_1 = scilab-static-bin
-# doc
+@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_2 = localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
 subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
@@ -87,8 +87,8 @@ CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 	scilab-lib-doc.properties
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
-	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
-	"$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"
+	"$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" \
+	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_scilab_bin_OBJECTS = scilab_bin-mainscic.$(OBJEXT)
@@ -96,7 +96,9 @@ scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/localization/libscilocalization.la
+	$(top_builddir)/modules/completion/libscicompletion.la \
+	$(top_builddir)/modules/localization/libscilocalization.la \
+	$(top_builddir)/modules/io/libsciio.la
 scilab_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(scilab_bin_CFLAGS) \
 	$(CFLAGS) $(scilab_bin_LDFLAGS) $(LDFLAGS) -o $@
@@ -161,12 +163,11 @@ am__vpath_adj = case $$p in \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
+iconsDATA_INSTALL = $(INSTALL_DATA)
 infofilesDATA_INSTALL = $(INSTALL_DATA)
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
-profilingDATA_INSTALL = $(INSTALL_DATA)
 rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(infofiles_DATA) $(pkgconfig_DATA) $(profiling_DATA) \
-	$(root_DATA)
+DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) $(root_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -394,11 +395,12 @@ SUBDIRS = libs \
 	contrib
 
 ACLOCAL_AMFLAGS = -I m4/
-changelogs = CHANGES
+changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab
 scilab_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-scilab_bin_LDFLAGS = 
+scilab_bin_LDFLAGS = $(am__append_1)
 scilab_bin_CFLAGS = 
+# --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
@@ -406,7 +408,9 @@ scilab_bin_CFLAGS =
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/localization/libscilocalization.la
+$(top_builddir)/modules/completion/libscicompletion.la \
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/io/libsciio.la
 
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDFLAGS = -static -static-libgcc --start-group
 @ENABLE_STATIC_TRUE@scilab_static_bin_CFLAGS = -Wl,--start-group `$(CXX) -print-file-name=libstdc++.a`
@@ -433,7 +437,7 @@ $(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 $(top_builddir)/modules/core/libscicore.la
 
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_2)
+TARGETS_ALL = macros $(am__append_3)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -448,16 +452,31 @@ $(top_srcdir)/CHANGES_2.X \
 $(top_srcdir)/CHANGES_3.X \
 $(top_srcdir)/CHANGES_4.X \
 $(top_srcdir)/CHANGES_5.0.X \
+$(top_srcdir)/CHANGES_5.1.X \
+$(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
+$(top_srcdir)/RELEASE_NOTES_5.0.X \
+$(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
-profilingdir = $(pkgdatadir)/tools/profiling/
-profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
+iconsdir = $(pkgdatadir)/icons/
+icons_DATA = $(top_srcdir)/icons/scilab.xpm \
+icons/puffin_128.xpm \
+icons/puffin_256.xpm \
+icons/puffin_32.xpm \
+icons/puffin_48.xpm \
+icons/puffin.png \
+icons/puffin.icns \
+icons/scilab.icns
+
+
+# Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
+@IS_MACOSX_TRUE@MACOSX = 1
 
 # Misc variable for the documentation installation
 
@@ -699,6 +718,23 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool
+install-iconsDATA: $(icons_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(iconsdir)"
+	@list='$(icons_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(iconsDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(iconsdir)/$$f'"; \
+	  $(iconsDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(iconsdir)/$$f"; \
+	done
+
+uninstall-iconsDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(icons_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(iconsdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(iconsdir)/$$f"; \
+	done
 install-infofilesDATA: $(infofiles_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(infofilesdir)" || $(MKDIR_P) "$(DESTDIR)$(infofilesdir)"
@@ -732,23 +768,6 @@ uninstall-pkgconfigDATA:
 	  f=$(am__strip_dir) \
 	  echo " rm -f '$(DESTDIR)$(pkgconfigdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(pkgconfigdir)/$$f"; \
-	done
-install-profilingDATA: $(profiling_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(profilingdir)" || $(MKDIR_P) "$(DESTDIR)$(profilingdir)"
-	@list='$(profiling_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(profilingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(profilingdir)/$$f'"; \
-	  $(profilingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(profilingdir)/$$f"; \
-	done
-
-uninstall-profilingDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(profiling_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(profilingdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(profilingdir)/$$f"; \
 	done
 install-rootDATA: $(root_DATA)
 	@$(NORMAL_INSTALL)
@@ -1053,7 +1072,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(profilingdir)" "$(DESTDIR)$(rootdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -1102,8 +1121,8 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-infofilesDATA \
-	install-pkgconfigDATA install-profilingDATA install-rootDATA
+install-data-am: install-data-local install-iconsDATA \
+	install-infofilesDATA install-pkgconfigDATA install-rootDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1142,8 +1161,8 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
-	uninstall-infofilesDATA uninstall-pkgconfigDATA \
-	uninstall-profilingDATA uninstall-rootDATA
+	uninstall-iconsDATA uninstall-infofilesDATA \
+	uninstall-pkgconfigDATA uninstall-rootDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -1159,17 +1178,17 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install install-am install-binPROGRAMS install-binSCRIPTS \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-info install-info-am \
+	install-html-am install-iconsDATA install-info install-info-am \
 	install-infofilesDATA install-man install-pdf install-pdf-am \
-	install-pkgconfigDATA install-profilingDATA install-ps \
-	install-ps-am install-rootDATA install-strip installcheck \
-	installcheck-am installdirs installdirs-am maintainer-clean \
+	install-pkgconfigDATA install-ps install-ps-am \
+	install-rootDATA install-strip installcheck installcheck-am \
+	installdirs installdirs-am maintainer-clean \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-recursive uninstall uninstall-am \
-	uninstall-binPROGRAMS uninstall-binSCRIPTS \
+	uninstall-binPROGRAMS uninstall-binSCRIPTS uninstall-iconsDATA \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
-	uninstall-profilingDATA uninstall-rootDATA
+	uninstall-rootDATA
 
 
 @NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
@@ -1188,11 +1207,11 @@ doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 @BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
-@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar();exit;\"";\
-@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar([],[],'en_US');exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
-@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"setlanguage('fr'); xmltojar();exit;\""; \
-@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "setlanguage('fr'); xmltojar();exit;"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "xmltojar([],[],'fr_FR');exit;"; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab binary"; \
 @BUILD_HELP_TRUE@	fi
@@ -1223,11 +1242,11 @@ distclean-recursive: clean-recursive
 clean-recursive: clean-doc clean-localization clean-macros
 
 clean-macros:
-	@echo "-- Cleanning macros (*.bin) --"; \
+	@echo "-- Cleaning macros (*.bin) --"; \
 	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning names files (names) --"; \
+	echo "-- Cleaning names files (names) --"; \
 	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning lib files (lib) --"; \
+	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
 
 clean-doc:
@@ -1253,7 +1272,7 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@echo "-- Build localization (.mo from .po) --"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MASK="modules/*/locales/"; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	LC=LC_MESSAGES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@	LC="LC_MESSAGES"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	FILENAME="*.po*"; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	rm modules/*/locales/*/*~ 2> /dev/null; \
@@ -1267,10 +1286,9 @@ clean-localization:
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGCAT) -o $$POFILE $$FILES; \
+@GENERATE_LOCALIZATION_FILES_TRUE@		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	done; \
-@GENERATE_LOCALIZATION_FILES_TRUE@	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
+@GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
 @GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \

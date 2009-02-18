@@ -41,6 +41,15 @@ int C2F(intsvd)(char *fname,unsigned long fname_len);
 int C2F(intlsq)(char *fname,unsigned long fname_len);
 int C2F(intchol)(char *fname,unsigned long fname_len);
 int C2F(inteig) (char *fname,unsigned long fname_len);
+/*--------------------------------------------------------------------------*/
+/* used in 'eig' */
+int sci_dsyev(char *fname, unsigned long fname_len);
+int sci_dgeev(char *fname, unsigned long fname_len);
+int sci_zgeev(char *fname, unsigned long fname_len);
+int sci_zheev(char *fname, unsigned long fname_len);
+int sci_dggev(char *fname, unsigned long fname_len);
+int sci_zggev(char *fname, unsigned long fname_len);
+/*--------------------------------------------------------------------------*/
 int C2F(intbalanc)(char *fname,unsigned long fname_len);
 int C2F(intschur)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/

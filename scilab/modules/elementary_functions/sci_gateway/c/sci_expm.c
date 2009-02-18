@@ -1,15 +1,15 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
@@ -19,10 +19,24 @@
 
 #define _NEW_TONIO_
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+
+/* BUG 3863 */
+/* forces to define C2F(dcoeff) only once */
+
+typedef struct {
+	double c[41];
+	int ndng;
+} DCOEFF_struct;
+
+DCOEFF_struct C2F(dcoeff);
+
+#endif
+
 void vSwitchVal(double *_pdblVal, int _iPos1, int _iPos2);
 
-void vExchangeVal(double *_pdblScale, double *_pdblVal, 
-				  int _iStart1, int _iEnd1, 
+void vExchangeVal(double *_pdblScale, double *_pdblVal,
+				  int _iStart1, int _iEnd1,
 				  int _iStart2, int _iEnd2,
 				  int _iSize, int _iCoord1, int _iCoord2);
 
@@ -32,26 +46,26 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal,
 			 int *_piLow, int *_piHigh, double *_pdblScale);
 
 int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
-			double _dblMax, double *_pdblEigenReal, double *_pdblEigenImg, 
+			double _dblMax, double *_pdblEigenReal, double *_pdblEigenImg,
 			int *_piBlockStruc, double *_pdblRightReduce,
 			double *_pdblInvRightReduce, double *_pdblScale, int _iMode);
 
-int dorthess(	int _iLead, int _iSize, int _iLow, int _iHigh, 
+int dorthess(	int _iLead, int _iSize, int _iLow, int _iHigh,
 				double *_pdblVal, double *_pdblOrt);
 
-int dortrans(	int _iLead, int _iSize, int _iLow, int _iHigh, 
+int dortrans(	int _iLead, int _iSize, int _iLow, int _iHigh,
 				double *_pdblVal, double *_pdblOrt, double *_pdblTrans);
 
-int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh, 
+int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh,
 			 double *_pdblHessUp, double *_pdblEigenReal,
 			 double *_pdblEigenImg, double *_pdblTrans, int _iMode);
-int dpades(double *_pdblVal, int _iLeadDimIn, int _iSize, 
-		   double *_pdblExp, int _iLeadDimOut, double *_pdblAlpha, 
+int dpades(double *_pdblVal, int _iLeadDimIn, int _iSize,
+		   double *_pdblExp, int _iLeadDimOut, double *_pdblAlpha,
 		   double *_pdblWS, int *_piWS);
 
-void ddmmuls(double *_pdblA, int _iLeadDimA, 
+void ddmmuls(double *_pdblA, int _iLeadDimA,
 			 double *_pdblB, int _iLeadDimB,
-			 double *_pdblOut, int _iLeadDimOut, 
+			 double *_pdblOut, int _iLeadDimOut,
 			 int _iRowsA, int _iColsA, int _iColsB);
 
 int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
@@ -59,7 +73,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
 
 int dgivs(double _dblA, double _dblB, double *_pdblSC, double *_pdblSS);
 
-int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, 
+int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos,
 			double *_pdblE1, double *_pdblE2, int _iSizeVal, int _iSizeSplit);
 
 double dblGetMatrixInfiniteNorm(double *_pdblReal, double *_pdblImg, int _iRows, int _iCols);
@@ -257,7 +271,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
 	iiPadeWS		= iBlockStruc + _iSize;
 
 	dblANorm = Max(dblANorm, 1);
-	iErr = dbdiaga(_iLeadDim, _iSize, _pdblVal, 0, dblANorm, 
+	iErr = dbdiaga(_iLeadDim, _iSize, _pdblVal, 0, dblANorm,
 		&pdblWS[iEigenReal], &pdblWS[iEigenImg], &piWS[iBlockStruc],
 		&pdblWS[iRightReduce], &pdblWS[iInvRightReduce], &pdblWS[iScale], 1);
 
@@ -324,7 +338,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
 			}
 			else
 			{
-				_pdblReturn[(iIndex2 - 1) + (iIndex2 - 1) * _iSize] = 
+				_pdblReturn[(iIndex2 - 1) + (iIndex2 - 1) * _iSize] =
 					dexps(_pdblVal[(iIndex2 - 1) + (iIndex2 - 1) * _iSize]);
 			}
 		}
@@ -333,7 +347,7 @@ int dexpms(int _iLeadDim, int _iSize, double *_pdblVal, double *_pdblReturn)
 	//remove the effect of block diagonalization.
 	ddmmuls(&pdblWS[iRightReduce], _iSize, _pdblReturn, _iSize, &pdblWS[idblPadeWS], _iSize, _iSize, _iSize, _iSize);
 	ddmmuls(&pdblWS[idblPadeWS], _iSize, &pdblWS[iInvRightReduce], _iSize, _pdblReturn, _iSize, _iSize, _iSize, _iSize);
-	
+
 	free(piWS);
 	free(pdblWS);
 	return 0;
@@ -402,7 +416,7 @@ purpose
 						true if there is any error in bdiag.
 */
 int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
-			double _dblMax, double *_pdblEigenReal, double *_pdblEigenImg, 
+			double _dblMax, double *_pdblEigenReal, double *_pdblEigenImg,
 			int *_piBlockStruc, double *_pdblRightReduce, double *_pdblInvRightReduce,
 			double *_pdblScale, int _iMode)
 {
@@ -504,7 +518,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
 				iLoop22m1	= iLoop22 - 1;
 
 			}
-			else 
+			else
 			{
 				//compute the average of the eigenvalues in a11
 				dblAvgReal	= 0;
@@ -566,7 +580,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
 
 				inK	= 2;
 			}
-			
+
 			//L240
 			if(iLoop22 <= _iSize)
 			{
@@ -590,7 +604,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
 				//solve -a11*p + p*a22 = a12.
 
 				C2F(shrslv)(&_pdblVal[(iLoop11 - 1) + (iLoop11 - 1) * _iSize], &_pdblVal[(iLoop22 - 1) + (iLoop22 - 1) * _iSize],
-					&_pdblVal[(iLoop11 - 1) + (iLoop22 - 1) * _iSize], &iSize11, &iSize22, 
+					&_pdblVal[(iLoop11 - 1) + (iLoop22 - 1) * _iSize], &iSize11, &iSize22,
 					&_iLeadDim, &_iLeadDim, &_iLeadDim, &dblEps, &_dblEps, &_dblMax, &iErr);
 
 				if(iErr)
@@ -767,7 +781,7 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
 			iLoop11 = iLoop22;
 		}
 	}
-	
+
 
 	return iErr;
 }
@@ -873,9 +887,9 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh
 		}
 		if(bLoop1)
 		{
-			vExchangeVal(	_pdblScale, _pdblVal, 
-							0, iLoop1-1, 
-							iLoop2-1, _iSize, 
+			vExchangeVal(	_pdblScale, _pdblVal,
+							0, iLoop1-1,
+							iLoop2-1, _iSize,
 							_iSize, iTemp, iLoop1-1);
 			if(iLoop1 == 1)
 			{
@@ -908,9 +922,9 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh
 		}
 		if(bLoop2)
 		{
-			vExchangeVal(	_pdblScale, _pdblVal, 
-							0, iLoop1-1, 
-							iLoop2-1, _iSize, 
+			vExchangeVal(	_pdblScale, _pdblVal,
+							0, iLoop1-1,
+							iLoop2-1, _iSize,
 							_iSize, iIndex1, iLoop2-1);
 
 			iLoop2++;
@@ -974,13 +988,13 @@ int dbalancs(int _iRows, int _iSize, double *_pdblVal, int *_piLow, int *_piHigh
 
 	*_piLow		= iLoop2; //Check if this value is use like array index or not ( 0 indexed or 1 indexed )
 	*_piHigh	= iLoop1; //Check if this value is use like array index or not ( 0 indexed or 1 indexed )
-	
+
 	//:::::::::: last card of balanc ::::::::::
 	return 0;
 }
 
-void vExchangeVal(double *_pdblScale, double *_pdblVal, 
-				  int _iStart1, int _iEnd1, 
+void vExchangeVal(double *_pdblScale, double *_pdblVal,
+				  int _iStart1, int _iEnd1,
 				  int _iStart2, int _iEnd2,
 				  int _iSize, int _iCoord1, int _iCoord2)
 {
@@ -995,7 +1009,7 @@ void vExchangeVal(double *_pdblScale, double *_pdblVal,
 						iIndex + _iCoord2 * _iSize);
 
 	for(iIndex = _iStart2 ; iIndex < _iEnd2 ; iIndex++)
-		vSwitchVal(		_pdblVal, 
+		vSwitchVal(		_pdblVal,
 						_iCoord1 + iIndex * _iSize,
 						_iCoord2 + iIndex * _iSize);
 }
@@ -1080,7 +1094,7 @@ int dorthess(int _iLead, int _iSize, int _iLow, int _iHigh, double *_pdblVal, do
 
 		if(dblScale == 0)
 			continue;
-		
+
 		iOffMax = iIndex1 + _iHigh;
 
 		//:::::::::: for i=igh step -1 until m do -- ::::::::::
@@ -1090,7 +1104,7 @@ int dorthess(int _iLead, int _iSize, int _iLow, int _iHigh, double *_pdblVal, do
 			_pdblOrt[iIndex3]	= _pdblVal[iIndex3 + (iIndex1-1) * _iSize] / dblScale;
 			dblH				+= _pdblOrt[iIndex3] * _pdblOrt[iIndex3];
 		}
-		
+
 		dblG				= -dsigns(dsqrts(dblH), _pdblOrt[iIndex1]);
 		dblH				-= _pdblOrt[iIndex1] * dblG;
 		_pdblOrt[iIndex1]	-= dblG;
@@ -1199,7 +1213,7 @@ int dortrans(int _iLead, int _iSize, int _iLow, int _iHigh, double *_pdblVal, do
 
 		_pdblTrans[iIndex1 + iIndex1 * _iSize] = 1;
 	}
-	
+
 	iLoop = _iHigh - _iLow - 1;
 	if(iLoop < 0)
 		return 0;
@@ -1245,14 +1259,14 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
     MODIFICATIONS WRT EISPACK VERSION
     ---------------------------------
-      1. 1x1 and 2x2 diagonal blocks are clearly isolated by 
-         forcing subdiagonal entries to zero 
+      1. 1x1 and 2x2 diagonal blocks are clearly isolated by
+         forcing subdiagonal entries to zero
       2. Merging of hqr/hqr2 driven by a job parameter
 
 cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
-    This subroutine finds the eigenvalues of a real upper 
-    hessenberg matrix by the qr method. In addition, the 
+    This subroutine finds the eigenvalues of a real upper
+    hessenberg matrix by the qr method. In addition, the
     orthogonal transformation leading to the Schur form is
     accumulated
 
@@ -1282,7 +1296,7 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
            if x=2 eigenvalues are computed via schur decomposition
            if y=0 coordinate transformation is not accumulated
            if y=1 coordinate transformation is accumulated
-       
+
 
     on output
 
@@ -1311,8 +1325,8 @@ cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 
     this version dated august 1983.
 */
-int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh, 
-			 double *_pdblHessUp, double *_pdblEigenReal, double *_pdblEigenImg, 
+int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh,
+			 double *_pdblHessUp, double *_pdblEigenReal, double *_pdblEigenImg,
 			 double *_pdblTrans, int _iMode)
 {
 	//some loop ...
@@ -1376,7 +1390,7 @@ int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh,
 	double dblY		= 0;
 	double dblZZ	= 0;
 
-	//I keep old source code, just for fun : 
+	//I keep old source code, just for fun :
 	//jx=job/10
 	//jy=job-10*jx
 	iPow10			= _iMode / 10;
@@ -1488,8 +1502,8 @@ L70:
 		if(iIndex7 == iIndex4)
 			break;
 
-		dblTemp1 =	dabss(dblP) * 
-					(dabss(_pdblHessUp[(iIndex7 - 1) + (iIndex7 - 1) * _iSize]) + dabss(dblZZ)) + 
+		dblTemp1 =	dabss(dblP) *
+					(dabss(_pdblHessUp[(iIndex7 - 1) + (iIndex7 - 1) * _iSize]) + dabss(dblZZ)) +
 					dabss(_pdblHessUp[(iIndex7 + 1) + (iIndex7 + 1) * _iSize]);
 
 		dblTemp2 =	dblTemp1 +
@@ -1546,7 +1560,7 @@ L70:
 			//.......... row modification ..........
 			for(iIndex10 = iIndex9 ; iIndex10 < _iSize ; iIndex10++)
 			{
-				dblP	=	_pdblHessUp[iIndex9 + iIndex10 * _iSize] + 
+				dblP	=	_pdblHessUp[iIndex9 + iIndex10 * _iSize] +
 							dblQ * _pdblHessUp[(iIndex9 + 1) + iIndex10 * _iSize];
 
 				_pdblHessUp[iIndex9 + iIndex10 * _iSize]		-= dblP * dblX;
@@ -1558,8 +1572,8 @@ L70:
 			//.......... column modification ..........
 			for(iIndex11 = 0 ; iIndex11 <= iIndex10 ; iIndex11++)
 			{
-				dblP	=	dblX * _pdblHessUp[iIndex11 + iIndex9 * _iSize] + 
-							dblY * _pdblHessUp[iIndex11 + (iIndex9 + 1) * _iSize]; 
+				dblP	=	dblX * _pdblHessUp[iIndex11 + iIndex9 * _iSize] +
+							dblY * _pdblHessUp[iIndex11 + (iIndex9 + 1) * _iSize];
 
 				_pdblHessUp[iIndex11 + iIndex9 * _iSize]		-= dblP;
 				_pdblHessUp[iIndex11 + (iIndex9 + 1) * _iSize]	-= dblP * dblQ;
@@ -1569,7 +1583,7 @@ L70:
 			{//.......... accumulate transformations ..........
 				for(iIndex12 = iLow ; iIndex12 <= iHigh ; iIndex12++)
 				{
-					dblP	=	dblX * _pdblTrans[iIndex12 + iIndex9 * _iSize] + 
+					dblP	=	dblX * _pdblTrans[iIndex12 + iIndex9 * _iSize] +
 								dblY * _pdblTrans[iIndex12 + (iIndex9 + 1) * _iSize];
 
 					_pdblTrans[iIndex12 + iIndex9 * _iSize]			-= dblP;
@@ -1582,8 +1596,8 @@ L70:
 			//.......... row modification ..........
 			for(iIndex13 = iIndex9 ; iIndex13 < _iSize ; iIndex13++)
 			{
-				dblP	=	_pdblHessUp[iIndex9 + iIndex13 * _iSize] + 
-							dblQ * _pdblHessUp[(iIndex9 + 1) + iIndex13 * _iSize] + 
+				dblP	=	_pdblHessUp[iIndex9 + iIndex13 * _iSize] +
+							dblQ * _pdblHessUp[(iIndex9 + 1) + iIndex13 * _iSize] +
 							dblR * _pdblHessUp[(iIndex9 + 2) + iIndex13 * _iSize];
 
 				_pdblHessUp[iIndex9 + iIndex13 * _iSize]		-= dblP * dblX;
@@ -1606,7 +1620,7 @@ L70:
 				_pdblHessUp[iIndex15 + (iIndex9 + 2) * _iSize]	-= dblP * dblR;
 
 			}
-			
+
 			if(iModulo == 1)
 			{//.......... accumulate transformations ..........
 				for(iIndex16 = iLow ; iIndex16 <= iHigh ; iIndex16++)
@@ -1764,7 +1778,7 @@ L340:
 			dblR		= _pdblHessUp[iIndex24 + iOffset * _iSize];
 			if(iIndex22 <= iCoord1)
 				for(iIndex25 = iIndex22 ; iIndex25 < iCoord1 ; iIndex25++)
-					dblR += _pdblHessUp[iIndex24 + iIndex25 * _iSize] * 
+					dblR += _pdblHessUp[iIndex24 + iIndex25 * _iSize] *
 							_pdblHessUp[iIndex25 + iOffset * _iSize];
 
 			if(_pdblEigenImg[iIndex24] >= 0)
@@ -1819,17 +1833,17 @@ L710:
 			double dblImg	= 0; //z3i
 			double dblCoef	= dblReal * dblReal + dblQ * dblQ; //z3
 
-			_pdblHessUp[iCoord1 + iCoord1 * _iSize]	= 
+			_pdblHessUp[iCoord1 + iCoord1 * _iSize]	=
 				-_pdblHessUp[iCoord1 + iOffset * _iSize] * dblQ / dblCoef;
 			_pdblHessUp[iCoord1 + iOffset * _iSize]	=
 				-_pdblHessUp[iCoord1 + iOffset * _iSize] * dblReal / dblCoef;
 			_pdblHessUp[iOffset + iCoord1 * _iSize]	= 0;
 			_pdblHessUp[iOffset + iOffset * _iSize]	= 1;
 			iCoord2	= iCoord1 - 1;
-			
+
 			if(iCoord2 == 0)
 				continue;
-			
+
 			//:::::::::: for i=en-2 step -1 until 1 do -- ::::::::::
 			for(iIndex25 = 0 ; iIndex25 < iCoord2 ; iIndex25++)
 			{
@@ -1880,7 +1894,7 @@ L710:
 						dblVectImg			=	(_pdblEigenReal[iIndex24] - dblP) * 2 * dblQ;
 
 						if(dblVectReal == 0 && dblVectImg == 0)
-							dblVectReal		=	dblEps * dblNorm * 
+							dblVectReal		=	dblEps * dblNorm *
 												(dabss(dblW) + dabss(dblQ) + dabss(dblX) + dabss(dblY) + dabss(dblZZ));
 
 						dblReal				= dblX * dblR - dblZZ * dblTemp12 + dblQ * dblTemp22;
@@ -1892,9 +1906,9 @@ L710:
 
 						if(dabss(dblX) > dabss(dblZZ) + dabss(dblQ))
 						{
-							_pdblHessUp[iIndex24 + 1 + iCoord1 * _iSize] = 
+							_pdblHessUp[iIndex24 + 1 + iCoord1 * _iSize] =
 								(-dblTemp12 - dblW * _pdblHessUp[iIndex24 + iCoord1 * _iSize] + dblQ * _pdblHessUp[iIndex24 + iOffset * _iSize]) / dblX;
-							_pdblHessUp[iIndex24 + 1 + iOffset * _iSize] = 
+							_pdblHessUp[iIndex24 + 1 + iOffset * _iSize] =
 								(-dblTemp22 - dblW * _pdblHessUp[iIndex24 + iOffset * _iSize] + dblQ * _pdblHessUp[iIndex24 + iCoord1 * _iSize]) / dblX;
 						}
 						else
@@ -2069,26 +2083,26 @@ L115:
         computes the matrix product C = A * B
             C   =   A   *   B
           (l,n)   (l,m) * (m,n)
-       
+
      PARAMETERS
-        input 
+        input
         -----
         A : (double) array (l, m) with leading dim na
-                 
+
         B : (double) array (m, n) with leading dim nb
-    
+
         na, nb, nc, l, m, n : integers
 
-        output 
+        output
         ------
         C : (double) array (l, n) with leading dim nc
 
      NOTE
         (original version substituted by a call to the blas dgemm)
 */
-void ddmmuls(double *_pdblA, int _iLeadDimA, 
+void ddmmuls(double *_pdblA, int _iLeadDimA,
 			 double *_pdblB, int _iLeadDimB,
-			 double *_pdblOut, int _iLeadDimOut, 
+			 double *_pdblOut, int _iLeadDimOut,
 			 int _iRowsA, int _iColsA, int _iColsB)
 {
 	char cN			= 'n';
@@ -2285,16 +2299,16 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
 	}
 
 	iIndex3	= _iPos + 3;
-	dblD	=	_pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim] * 
-				_pdblIn[(iIndex3 - 1) + (iIndex3 - 1) * _iLeadDim] - 
-				_pdblIn[(iIndex2 - 1) + (iIndex3 - 1) * _iLeadDim] * 
+	dblD	=	_pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim] *
+				_pdblIn[(iIndex3 - 1) + (iIndex3 - 1) * _iLeadDim] -
+				_pdblIn[(iIndex2 - 1) + (iIndex3 - 1) * _iLeadDim] *
 				_pdblIn[(iIndex3 - 1) + (iIndex2 - 1) * _iLeadDim];
 
-	dblE	=	_pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim] + 
+	dblE	=	_pdblIn[(iIndex2 - 1) + (iIndex2 - 1) * _iLeadDim] +
 				_pdblIn[(iIndex3 - 1) + (iIndex3 - 1) * _iLeadDim];
 
-	ddmmuls(	&_pdblIn[_iPos + _iPos * _iLeadDim], _iMax, 
-				&_pdblIn[_iPos + _iPos * _iLeadDim], _iMax, 
+	ddmmuls(	&_pdblIn[_iPos + _iPos * _iLeadDim], _iMax,
+				&_pdblIn[_iPos + _iPos * _iLeadDim], _iMax,
 				pdblTemp[0], 3,2,4,4);
 
 	for(iLoop1 = 0 ; iLoop1 < 2 ; iLoop1++)
@@ -2302,7 +2316,7 @@ int dexchs(int _iMax, int _iLeadDim, double *_pdblIn, double *_pdblOut,
 		pdblTemp[iLoop1][iLoop1] += dblD;
 		for(iLoop2 = 0 ; iLoop2 < 4 ; iLoop2++)
 		{
-			pdblTemp[iLoop1][iLoop2] = pdblTemp[iLoop1][iLoop2] - dblE * 
+			pdblTemp[iLoop1][iLoop2] = pdblTemp[iLoop1][iLoop2] - dblE *
 				_pdblIn[(_iPos - 1 + iLoop1) + (_iPos - 1 + iLoop2) * _iLeadDim];
 		}
 	}
@@ -2460,7 +2474,7 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
 
 	dblX	=	_pdblVal[(iIndex - 1) + (iIndex - 1) * _iLeadDimVal];
 	dblY	=	_pdblVal[_iPos + _iPos * _iLeadDimVal];
-	dblW	=	_pdblVal[_iPos + (iIndex - 1) * _iLeadDimVal] * 
+	dblW	=	_pdblVal[_iPos + (iIndex - 1) * _iLeadDimVal] *
 				_pdblVal[(iIndex - 1) + _iPos * _iLeadDimVal];
 	dblP	= (dblY / dblX) / dblTwo;
 	dblQ	= dblP * dblP + dblW;
@@ -2520,9 +2534,9 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
 	for(iLoop1 = _iPos ; iLoop1 < _iSize ; iLoop1++)
 	{
 		dblZ	= _pdblVal[_iPos + iLoop1 * _iLeadDimVal];
-		_pdblVal[_iPos + iLoop1 * _iLeadDimVal]			= dblP * dblZ + 
+		_pdblVal[_iPos + iLoop1 * _iLeadDimVal]			= dblP * dblZ +
 					dblQ * _pdblVal[(iIndex - 1) + iLoop1 * _iLeadDimVal];
-		_pdblVal[(iIndex - 1) + iLoop1 * _iLeadDimVal]	= dblP * 
+		_pdblVal[(iIndex - 1) + iLoop1 * _iLeadDimVal]	= dblP *
 			_pdblVal[(iIndex - 1) + iLoop1 * _iLeadDimVal] - dblQ * dblZ;
 	}
 
@@ -2530,9 +2544,9 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
 	for(iLoop1 = 0 ; iLoop1 < iIndex ; iLoop1++)
 	{
 		dblZ	= _pdblVal[iLoop1 + _iPos * _iLeadDimVal];
-		_pdblVal[iLoop1 + _iPos * _iLeadDimVal]			= dblP * dblZ + 
+		_pdblVal[iLoop1 + _iPos * _iLeadDimVal]			= dblP * dblZ +
 					dblQ * _pdblVal[iLoop1 + (iIndex - 1) * _iLeadDimVal];
-		_pdblVal[iLoop1 + (iIndex - 1) * _iLeadDimVal]	= dblP * 
+		_pdblVal[iLoop1 + (iIndex - 1) * _iLeadDimVal]	= dblP *
 			_pdblVal[iLoop1 + (iIndex - 1) * _iLeadDimVal] - dblQ * dblZ;
 	}
 
@@ -2540,9 +2554,9 @@ int dsplits(double *_pdblVal, double *_pdblSplit, int _iSize, int _iPos, double 
 	for(iLoop1 = 0 ; iLoop1 < _iSize ; iLoop1++)
 	{
 		dblZ	= _pdblSplit[iLoop1 + _iPos * _iLeadDimVal];
-		_pdblSplit[iLoop1 + _iPos * _iLeadDimVal]			= dblP * dblZ + 
+		_pdblSplit[iLoop1 + _iPos * _iLeadDimVal]			= dblP * dblZ +
 				dblQ * _pdblSplit[iLoop1 + (iIndex - 1) * _iLeadDimVal];
-		_pdblSplit[iLoop1 + (iIndex - 1) * _iLeadDimVal]	= dblP * 
+		_pdblSplit[iLoop1 + (iIndex - 1) * _iLeadDimVal]	= dblP *
 				_pdblSplit[iLoop1 + (iIndex - 1) * _iLeadDimVal] - dblQ * dblZ;
 	}
 
@@ -2644,25 +2658,25 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 	if(iComplex)
 	{
 		iRightDivisionComplexMatrixByRealMatrix(
-				_pdblReal,			_pdblImg	,		1, 
-				&dblS2,				0, 
+				_pdblReal,			_pdblImg	,		1,
+				&dblS2,				0,
 				pdblMatrixRealA,	pdblMatrixImgA,	1,	iSquare);
 	}
 	else
 	{
 		iRightDivisionRealMatrixByRealMatrix(
-				_pdblReal,			1, 
-				&dblS2,				0, 
+				_pdblReal,			1,
+				&dblS2,				0,
 				pdblMatrixRealA,	1,	iSquare);
 	}
 
 	// Pade approximation for exp(A)
-	//X = A 
+	//X = A
 	C2F(dcopy)(&iSquare, pdblMatrixRealA, &iOne, pdblMatrixRealX, &iOne );
 	if(iComplex)
 		C2F(dcopy)(&iSquare, pdblMatrixImgA, &iOne, pdblMatrixImgX, &iOne );
 
-	
+
 	deyes(pdblMatrixRealEye, _iLeadDim, _iLeadDim);
 
 
@@ -2675,7 +2689,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 	else
 		iMultiRealScalarByRealMatrix(
 			dblCst,
-			pdblMatrixRealA, _iLeadDim, _iLeadDim, 
+			pdblMatrixRealA, _iLeadDim, _iLeadDim,
 			pdblMatrixRealcA);
 /*
 	C2F(dcopy)(&iSquare, pdblMatrixRealA, &iOne, pdblMatrixRealcA, &iOne);
@@ -2721,7 +2735,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 				pdblMatrixRealTemp, _iLeadDim, _iLeadDim,
 				pdblMatrixRealX);
 		}
-/*		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne, 
+/*		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne,
 			pdblMatrixRealA, &_iLeadDim ,
 			pdblMatrixRealTemp, &_iLeadDim, &dblZero,
 			pdblMatrixRealX ,&_iLeadDim);
@@ -2735,7 +2749,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 		else
 			iMultiRealScalarByRealMatrix(
 				dblCst,
-				pdblMatrixRealX, _iLeadDim, _iLeadDim, 
+				pdblMatrixRealX, _iLeadDim, _iLeadDim,
 				pdblMatrixRealcX);
 /*		C2F(dcopy)(&iSquare, pdblMatrixRealX, &iOne, pdblMatrixRealcX, &iOne);
 		C2F(dscal)(&iSquare, &dblCst, pdblMatrixRealcX, &iOne);
@@ -2839,7 +2853,7 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
 				pdblMatrixRealTemp2,	_iLeadDim, _iLeadDim,
 				_pdblReturnReal);
 /*
-		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne, 
+		C2F(dgemm)("n", "n", &_iLeadDim, &_iLeadDim, &_iLeadDim, &dblOne,
 			pdblMatrixRealTemp,		&_iLeadDim ,
 			pdblMatrixRealTemp2,	&_iLeadDim, &dblZero,
 			_pdblReturnReal ,		&_iLeadDim);

@@ -576,12 +576,12 @@ yacc_present = @yacc_present@
 @PVM_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 @PVM_FALSE@pkgmacrosdir = $(mydatadir)
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 @PVM_TRUE@pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -600,17 +600,29 @@ yacc_present = @yacc_present@
 @PVM_FALSE@MACROBINMASK = *.bin
 # Mask of the Scilab compiled macros
 @PVM_TRUE@MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 @PVM_FALSE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# List of the function of a module
+# List of the standard directory for tests
 @PVM_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+@PVM_FALSE@pkgdemosdir = $(mydatadir)
+# Where the demos should be installed
+@PVM_TRUE@pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+@PVM_FALSE@DEMOS_DIR = demos
+# List of the standard directory for demos
+@PVM_TRUE@DEMOS_DIR = demos
+# List of the standard directory for examples
+@PVM_FALSE@EXAMPLES_DIR = examples
+# List of the standard directory for examples
+@PVM_TRUE@EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 @PVM_FALSE@JARDIR = jar/
-# Where to export JAVA files (.jar)
+# Where to export JAVA archives (.jar)
 @PVM_TRUE@JARDIR = jar/
-# JAR files
+# JAR files mask
 @PVM_FALSE@JARMASK = *.jar
-# JAR files
+# JAR files mask
 @PVM_TRUE@JARMASK = *.jar
 # Chapter file 
 @PVM_FALSE@HELP_CHAPTERDIR = help/
@@ -1249,7 +1261,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -1313,12 +1325,13 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscipvm_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscipvm_la_etcDATA \
 	install-libscipvm_la_includeHEADERS \
 	install-libscipvm_la_rootDATA \
 	install-libscipvm_la_sci_gatewayDATA install-man install-pdf \
@@ -1430,7 +1443,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @PVM_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @PVM_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@PVM_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @PVM_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @PVM_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @PVM_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1440,7 +1453,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@		    fi \
 @PVM_TRUE@		  done; \
 @PVM_TRUE@	  fi; \
-@PVM_TRUE@	done 
+@PVM_TRUE@	done
 # Install the help chapter
 @PVM_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @PVM_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1451,6 +1464,22 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_TRUE@		fi; \
+@PVM_TRUE@	done
+# Install the demos & examples
+@PVM_TRUE@	@echo "-------- Install demos & examples (if any) --------"; \
+@PVM_TRUE@	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+@PVM_TRUE@	  if test -d $(srcdir)/$$dir/; then \
+@PVM_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
+@PVM_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+@PVM_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+@PVM_TRUE@		    else \
+@PVM_TRUE@		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_TRUE@	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_TRUE@		    fi \
+@PVM_TRUE@		  done; \
+@PVM_TRUE@	  fi; \
 @PVM_TRUE@	done
 # Install the macros
 @PVM_TRUE@	@echo "-------- Install macros (if any) --------"; \
@@ -1482,6 +1511,9 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@@PVM_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@@PVM_TRUE@clean-local: clean-macros
+
+@PVM_TRUE@distclean-local:
+@PVM_TRUE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 @PVM_TRUE@.PHONY: macros java swig giws
 
@@ -1581,7 +1613,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @PVM_FALSE@	  if test -d $(srcdir)/$$dir/; then \
 @PVM_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@PVM_FALSE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_FALSE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @PVM_FALSE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @PVM_FALSE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @PVM_FALSE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1591,7 +1623,7 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@		    fi \
 @PVM_FALSE@		  done; \
 @PVM_FALSE@	  fi; \
-@PVM_FALSE@	done 
+@PVM_FALSE@	done
 # Install the help chapter
 @PVM_FALSE@	@echo "-------- Install the help chapter (if any) --------"; \
 @PVM_FALSE@	for lang in $(ALL_LINGUAS); do \
@@ -1602,6 +1634,22 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @PVM_FALSE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @PVM_FALSE@		fi; \
+@PVM_FALSE@	done
+# Install the demos & examples
+@PVM_FALSE@	@echo "-------- Install demos & examples (if any) --------"; \
+@PVM_FALSE@	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+@PVM_FALSE@	  if test -d $(srcdir)/$$dir/; then \
+@PVM_FALSE@	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@PVM_FALSE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@PVM_FALSE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
+@PVM_FALSE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+@PVM_FALSE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+@PVM_FALSE@		    else \
+@PVM_FALSE@		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_FALSE@	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@PVM_FALSE@		    fi \
+@PVM_FALSE@		  done; \
+@PVM_FALSE@	  fi; \
 @PVM_FALSE@	done
 # Install the macros
 @PVM_FALSE@	@echo "-------- Install macros (if any) --------"; \
@@ -1633,6 +1681,9 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@@PVM_FALSE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@@PVM_FALSE@clean-local: clean-macros
+
+@PVM_FALSE@distclean-local:
+@PVM_FALSE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 @PVM_FALSE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

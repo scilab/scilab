@@ -18,8 +18,8 @@ functions_manager \
 elementary_functions \
 string \
 dynamic_link \
-history_manager \
 fileio \
+history_manager \
 spreadsheet \
 tclsci \
 localization \

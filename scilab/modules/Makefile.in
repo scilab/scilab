@@ -134,7 +134,7 @@ ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core operations output_stream action_binding arnoldi \
 	functions_manager elementary_functions string dynamic_link \
-	history_manager fileio spreadsheet tclsci localization \
+	fileio history_manager spreadsheet tclsci localization \
 	renderer shell completion console graphic_export gui jvm \
 	graphics optimization symbolic randlib statistics \
 	special_functions interpolation linear_algebra integer \
@@ -357,7 +357,7 @@ yacc_present = @yacc_present@
 # since it already linked almost the whole world
 SUBDIRS = core operations output_stream action_binding arnoldi \
 	functions_manager elementary_functions string dynamic_link \
-	history_manager fileio spreadsheet tclsci localization \
+	fileio history_manager spreadsheet tclsci localization \
 	renderer shell completion console graphic_export gui jvm \
 	graphics optimization symbolic randlib statistics \
 	special_functions interpolation linear_algebra integer \

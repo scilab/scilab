@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Events_pal">
+  <refnamediv>
+    <refname>Events_pal</refname>
+    <refpurpose>Events palette</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Events_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_Events_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Events_pal">
+    <title>Description</title>
+    <para>
+The events palette is used to handle events in the diagram.
+It contains several activation clocks, synchronous blocks and
+blocks to gather events in a single link.
+
+</para>
+  </refsection>
+  <refsection id="Blocks_Events_pal">
+    <title>Blocks</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ANDBLK">ANDBLK - Activation and</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="ANDLOG_f">ANDLOG_f - Logical and</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLKSOMV_f">CLKSOMV_f - Activation union</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLOCK_c">CLOCK_c - Activation clock</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="ESELECT_f">ESELECT_f - Synchronous block Event-Select</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="EVTDLY_f">EVTDLY_f - Event delay (Old block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="EVTGEN_f">EVTGEN_f - Event generator</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="EVTVARDLY">EVTVARDLY - Event variable delay</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="freq_div">freq_div - Frequency division</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="HALT_f">HALT_f - Halt</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="IFTHEL_f">IFTHEL_f - Synchronous block If-Then-Else</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="M_freq">M_freq - Multiple Frequencies</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SampleCLK">SampleCLK - Sample Time Clock</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -295,23 +295,23 @@ sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_isglobal.f
 
-libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
-						-I$(srcdir)/src/c/ \
-						-I$(top_srcdir)/libs/MALLOC/includes/ \
-						-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
-						-I$(top_srcdir)/libs/doublylinkedlist/includes \
-            			-I$(top_srcdir)/modules/intersci/includes \
-						-I$(top_srcdir)/modules/action_binding/includes \
-						-I$(top_srcdir)/modules/output_stream/includes \
-						-I$(top_srcdir)/modules/localization/includes \
-						-I$(top_srcdir)/modules/tclsci/includes \
-						-I$(top_srcdir)/modules/dynamic_link/includes \
-						-I$(top_srcdir)/modules/pvm/includes \
-						-I$(top_srcdir)/modules/elementary_functions/includes \
-						-I$(top_srcdir)/modules/string/includes \
-						-I$(top_srcdir)/modules/fileio/includes \
-						-I$(top_srcdir)/modules/operations/includes \
-						$(XML_FLAGS)
+libscicore_la_CFLAGS = 	-I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			-I$(top_srcdir)/libs/MALLOC/includes/ \
+			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
+			-I$(top_srcdir)/libs/doublylinkedlist/includes \
+			-I$(top_srcdir)/modules/intersci/includes \
+			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/output_stream/includes \
+			-I$(top_srcdir)/modules/localization/includes \
+			-I$(top_srcdir)/modules/tclsci/includes \
+			-I$(top_srcdir)/modules/dynamic_link/includes \
+			-I$(top_srcdir)/modules/pvm/includes \
+			-I$(top_srcdir)/modules/elementary_functions/includes \
+			-I$(top_srcdir)/modules/string/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/operations/includes \
+			$(XML_FLAGS)
 
 
 

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="uigetfile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>uigetfile</refname>
+    <refpurpose> dialog window to get a file(s) name(s), path and filter index</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[FileName[,PathName[,FilterIndex]]]=uigetfile([file_mask[,dir[,boxTitle[,multipleSelection]]]])
+PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Input parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_mask</term>
+        <listitem>
+          <para>a string matrix which gives the file masks to use for file selection. <literal>file_mask</literal> is written with Unix convention. The default value is '*'.</para>
+		  <para>we can also add descriptions for masks, for example ["*.x*","X files";"*.bin","BIN files"].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>a character string which gives the initial directory used for file search. By default uigetfile uses the previously selected directory.</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>boxTitle</term>
+        <listitem>
+          <para>a character string which gives the title of the uigetfile window. By default uigetfile's title is 'uigetfile'.</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>multipleSelection</term>
+        <listitem>
+          <para>a boolean which allows to load only one file if it is at '%f' (false) or multiple files if it is at '%t" (true). By default uigetfile's multiple file selection is not enable.</para>
+        </listitem>
+      </varlistentry>	  
+	</variablelist>
+  </refsection>
+  <refsection>
+	<title>Output parameters</title>
+	<variablelist>
+	  <varlistentry>
+        <term>FileName</term>
+        <listitem>
+          <para>matrix of string which give the user selected file(s) (path + file(s) name(s)) if user answers "Ok" or the " " string if user answers "Cancel".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>PathName</term>
+        <listitem>
+          <para>is the user selected file(s) path if user answers "Ok" or the " " string if user answers "Cancel".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>FilterIndex</term>
+        <listitem>
+          <para>is the user selected filter index on the list box if user answers "Ok" or '0' string if user answers "Cancel"</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Creates a dialog window for file(s) selection</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+uigetfile(["*.bin";"*.sce";"*.cos*"])
+uigetfile(["*.sci";"*.bin"],"SCI/modules/gui/macros/")
+uigetfile(["*.sc*";"*.bin"],"SCI/modules/gui/macros/")
+uigetfile(["*.x*","X files";"*.bin","BIN files"],"SCI/modules/gui/macros/")
+uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"", %t); 
+uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name"", %f); 
+ 
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="uigetdir">uigetdir</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="getf">getf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

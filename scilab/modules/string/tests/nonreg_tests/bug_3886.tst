@@ -1,0 +1,20 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
+// <-- Non-regression test for bug 3886 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3886
+//
+// Short description:
+// strsubst with regular expression was working only on the first element of the vector.
+//==============================================================
+names = ['foo.sci';'toto.sci';'titi.sci'];  
+names=strsubst(names, "/\.sci$/",'','r');
+if names <> ['foo';'toto';'titi'] then, pause, end

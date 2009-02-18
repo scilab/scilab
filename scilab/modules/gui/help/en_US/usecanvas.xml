@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="usecanvas">
+  <info>
+    <pubdate>$LastChangedDate: 2007-12-07 11:59:53 +0100 (ven, 07 déc 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>usecanvas</refname>
+    <refpurpose>Get/Set the main component used for Scilab graphics.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+       [canvasused] = usecanvas([usecanvasfordisplay]);
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>canvasused</term>
+        <listitem>
+          <para>Boolean:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>%T</literal> if a "GLCanvas" is used for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not available</emphasis>).</para>
+            </listitem>
+            <listitem>
+              <para><literal>%F</literal> if a "GLJPanel" is used for graphics display (Mixing uicontrols and graphics available).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>usecanvasfordisplay</term>
+        <listitem>
+          <para>Boolean:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>%T</literal> to use a "GLCanvas" for graphics display (Mixing uicontrols and graphics <emphasis role="bold">not available</emphasis>).</para>
+            </listitem>
+            <listitem>
+              <para><literal>%F</literal> to use a "GLJPanel" for graphics display (Mixing uicontrols and graphics available).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Scilab uses a "GLJPanel" (a Swing OpenGL component) to display graphics (plot3d, plot, ...). This component uses some high level OpenGL primitives which are not correctly supported on some platforms (depending on the operating system, video cards, drivers ...)</para>
+    <para>"GLCanvas" (AWT + OpenGL) is an alternative component provided by the Java Framework. Scilab can use it to render graphics. <emphasis role="bold">However, using this component disables some capabilities such as mixing plots and uicontrols (see demo GUI/UIcontrol2). That is why it is not the default behavior.</emphasis></para>
+
+    <para>In some particular cases, the use of the "GLCanvas" component is forced when Scilab starts (a warning message is displayed when a graphics function is used for the first time), here is a list of these cases:</para>
+    <informaltable border="2">
+      <tr>
+        <td align="center"><emphasis role="bold">Operating System</emphasis></td>
+        <td align="center"><emphasis role="bold">Video Card</emphasis></td>
+        <td align="center"><emphasis role="bold">Details</emphasis></td>
+      </tr>
+
+      <tr>
+        <td align="center">64-bits Windows</td>
+        <td align="center">All</td>
+        <td align="center">When Scilab is used in a remote session.</td>
+      </tr>
+
+      <tr>
+        <td rowspan="3" valign="middle" align="center">Linux</td>
+        <td align="center">NVIDIA Card</td>
+        <td align="center">With free drivers.</td>
+      </tr>
+      <tr>
+        <td align="center">ATI Card</td>
+        <td align="center">With free drivers or ATI-drivers with version &lt; 8.52.3 (Installer version &lt; 8.8 / OpenGL version &lt; 2.1.7873).</td>
+      </tr>
+      <tr>
+        <td align="center">INTEL Card</td>
+        <td align="center">With Direct Rendering activated.</td>
+      </tr>
+    </informaltable>
+
+    <para>You can also dynamically activate this component through Scilab using <literal>usecanvas</literal>: </para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>usecanvas(%T)</literal> will use "GLCanvas" for plot rendering.</para>
+      </listitem>
+      <listitem>
+        <para><literal>usecanvas(%F)</literal> will use "GLJPanel" for plot rendering. If your configuration is known as a one having problems with "GLJPanel" (See table above), a warning message will be displayed.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>If you believe your configuration is able to use the "GLJPanel" and Scilab automatically forces the use of "GLCanvas", you can test your configuration by swithing to "GLJPanel" (<literal>usecanvas(%F)</literal>) and try to plot something (<literal>plot3d()</literal> for example). If Scilab graphics work, please inform us about it by sending an email to <literal>support@scilab.org</literal> and giving us your Operating System/Video Card/Video Card driver version: this will help use to improve future versions of Scilab.</para>
+  </refsection>
+
+  <!-- This part comes from http://wiki.scilab.org/Graphical_issues_with_Scilab_5.0 -->
+  <refsection>
+    <title>Technical Aspects</title>
+    
+    <para>Since version 5.0, Scilab is doing an advanced use of JOGL (the Java Binding for the OpenGL), which is using the Java2D OpenGL Pipeline. For performance reasons, we use the Java2D OpenGL Pipeline. From a more technical aspect, it uses the internal buffer of the graphic cards called <literal>pbuffer</literal>.</para>
+    
+    <para>Problems may occur when the driver of the graphic card does not support properly this approach. As far as we know, there is no free driver under Linux handling this feature. In the proprietary world, the situation is as follows: </para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>NVIDIA</literal>: Nvidia provides the appropriate proprietary drivers. Scilab's graphics work without any problem with most NVIDIA drivers.</para>
+      </listitem>
+      <listitem>
+        <para><literal>ATI</literal>: From the driver version 8.8, most ATI graphics supports the pbuffer under Linux.</para>
+      </listitem>
+      <listitem>
+        <para><literal>Intel</literal>: This is the big drawback of using the pbuffer. There is currently no support of pbuffer by any official Intel drivers under Linux.</para>
+      </listitem>
+    </itemizedlist>
+    
+    <para>There is a workaround for Linux to tackle this issue, but a solution is to use a software accelerated driver. To do it, in <literal>/etc/X11/xorg.conf</literal>, look for the <emphasis role="italic">Section "Device"</emphasis> and change the option <emphasis role="italic">Driver</emphasis> to <emphasis role="italic">vesa</emphasis>: </para>
+    <programlisting role="example"><![CDATA[
+
+Section "Device"
+        Identifier      "Your Graphic card"
+        Driver  "vesa"
+[...]
+EndSection
+
+  ]]></programlisting>
+    <para>Unfortunately, this solution makes Scilab pretty slow. </para>
+
+    <para>Under Windows, video cards manufacturers update regularly and <literal>pbuffers</literal> are managed. Please download recent drivers at:</para>
+    <itemizedlist>
+      <listitem>
+        <para>For <literal>ATI cards</literal>: <ulink url="http://ati.amd.com/support/driver.html">http://ati.amd.com/support/driver.html</ulink></para>
+      </listitem>
+      <listitem>
+        <para>For <literal>Intel cards</literal>: <ulink url="http://www.intel.com/support/graphics/">http://www.intel.com/support/graphics/</ulink></para>
+      </listitem>
+      <listitem>
+        <para>For <literal>Matrox cards</literal>: <ulink url="http://www.matrox.com/graphics/en/support/drivers/">http://www.matrox.com/graphics/en/support/drivers/</ulink></para>
+      </listitem>
+      <listitem>
+        <para>For <literal>NVIDIA cards</literal>: <ulink url="http://www.nvidia.com/content/drivers/drivers.asp">http://www.nvidia.com/content/drivers/drivers.asp</ulink></para>
+      </listitem>
+      <listitem>
+        <para>For <literal>S3 cards</literal>: <ulink url="http://www.s3graphics.com/en/resources/drivers/index.jsp">http://www.s3graphics.com/en/resources/drivers/index.jsp</ulink></para>
+      </listitem>
+      <listitem>
+        <para>For <literal>SiS cards</literal>: <ulink url="http://www.sis.com/download/">http://www.sis.com/download/</ulink></para>
+      </listitem>
+      <listitem>
+        <para>For <literal>VIA cards</literal>: <ulink url="http://www.viaarena.com/default.aspx?PageID=2">http://www.viaarena.com/default.aspx?PageID=2</ulink></para>
+      </listitem>
+    </itemizedlist>
+    <para>Some troubles can also occur when using Windows 2000 (video drivers are no more updated and no more supported).</para>
+
+    <para>In the cases where pBuffer create a problem, waiting for a working <literal>pbuffer</literal> is not a solution indeed: <ulink url="https://jogl.dev.java.net/issues/show_bug.cgi?id=163"><emphasis role="italic">The OpenGL community is moving away from pbuffers and toward the frame buffer object extension, which is a more portable and higher-performance solution for offscreen rendering than pbuffers.</emphasis></ulink>. The JOGL team is working to fix this issue.</para>
+
+    <para>For more information about this problem, please refer to: </para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>JoGL</literal> bug database: <ulink url="https://jogl.dev.java.net/issues/show_bug.cgi?id=366">Bug #366</ulink></para>
+      </listitem>
+      <listitem>
+        <para><literal>Scilab</literal> bug database: <ulink url="http://bugzilla.scilab.org/show_bug.cgi?id=3525">Bug #3525</ulink></para>
+      </listitem>
+      <listitem>
+        <para><literal>Debian</literal> bug database: <ulink url="http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=501799">Bug #501799</ulink></para>
+      </listitem>
+      <listitem>
+        <para><literal>Freedesktop</literal> bug database: <ulink url="https://bugs.freedesktop.org/show_bug.cgi?id=17603">Bug #17603</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+
+// Example using GLJPanel (Mixing uicontrols and graphics is available)
+usecanvas(%F);
+plot2d();
+uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
+messagebox("You can see the button on the figure.", "Usecanvas example", "info");
+
+// Example using GLCanvas (Mixing uicontrols and graphics is not available, uicontrols are not visible)
+usecanvas(%T);
+plot2d();
+uicontrol("String", "Close the window", "Position", [10 10 100, 25], "Callback", "delete(gcf())");
+messagebox("You can''t see any button on the figure.", "Usecanvas example", "info");
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Vincent COUVERT</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="getscicosvars">
+  <refnamediv>
+    <refname>getscicosvars</refname>
+    <refpurpose>Supervisor utility function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_getscicosvars">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_getscicosvars">
+    <title>Description</title>
+    <para>
+That utility function is used to retrieve working arrays of Scicos simulator and compiler during simulation.  
+</para>
+    <para>
+It can be used inside a Scilab block to get information of all type of blocks. That function is very useful to debug diagrams and to do prototypes of simulations.  
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[
+[myvar]=getscicosvars(str)
+[myvar]=getscicosvars([str1;str2;...])
+]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_getscicosvars">
+    <title>Parameters</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">str,str1,str2,... :</emphasis> That parameter can be a string or a matrix of string. The following entries are allowed :</para>
+        <para> "x" : get the continuous state register.</para>
+        <para> "nx" : get the length of the continuous state register.</para>
+        <para> "xptr" : get the pointers register of the continuous state register.</para>
+        <para> "zcptr" : get the pointers register of the zero-crossing surfaces register.</para>
+        <para> "z" : get the discrete state register.</para>
+        <para> "nz" : get the length of the continuous state register.</para>
+        <para> "zptr" : get the pointers register of the discrete state register.</para>
+        <para> "noz" : get the number of elements of the discrete object state list.</para>
+        <para> "oz" : get the discrete object state list.</para>
+        <para> "ozsz" : get the size of the elements of the discrete object state list.</para>
+        <para> "oztyp" : get the type of the elements of the discrete object state list.</para>
+        <para> "ozptr" : get the pointers register of the discrete object state list.</para>
+        <para> "rpar" : get the real parameter register.</para>
+        <para> "rpptr" : get the pointers register of the real parameter register.</para>
+        <para> "ipar" : get the integer parameter register.</para>
+        <para> "ipptr" : get the pointers register of the integer parameter register.</para>
+        <para> "opar" : get the object parameter list.</para>
+        <para> "oparsz" : get the size of the elements of the object parameter list.</para>
+        <para> "opartyp" : get the type of the elements of the object parameter list.</para>
+        <para> "opptr" : get the pointers register of the object parameter list.</para>
+        <para> "outtb" : get the output register.</para>
+        <para> "inpptr" : get the pointers register of the number of regular input ports.</para>
+        <para> "outptr" : get the pointers register of the number of regular output ports.</para>
+        <para> "inplnk" : get the pointers register of the links connected to regular input ports.</para>
+        <para> "outlnk" : get the pointers register of the links connected to regular output ports.</para>
+        <para> "subs" : not used</para>
+        <para> "tevts" : get the current date register of the agenda.</para>
+        <para> "evtspt" : get the current event register of the agenda.</para>
+        <para> "pointi" : get the next event to be activated.</para>
+        <para> "iord" : get the vector of blocks activated at the start of the simulation.</para>
+        <para> "oord" : get the vector of blocks whose outputs affects computation of continuous state derivatives.</para>
+        <para> "zord" : get the vector of blocks whose outputs affects computation of zero-crossing surfaces.</para>
+        <para> "funtyp" : get the vector of type of computational functions.</para>
+        <para> "ztyp" : get the pointers vector for blocks which use zero-crossing surfaces.</para>
+        <para> "cord" : get the vector of blocks whose outputs evolve continuously.</para>
+        <para> "ordclk" : get the matrix associated to blocks activated by output activation ports.</para>
+        <para> "clkptr" : get the pointers vector for output activation ports.</para>
+        <para> "ordptr" : get the pointers vector to ordclk designating the part of ordclk corresponding to a given activation.</para>
+        <para> "critev" : get the vector of the critical events.</para>
+        <para> "mod" : get the vector pointers of block modes.</para>
+        <para> "nmod" : get the length of the vector pointers of block modes.</para>
+        <para> "iz" : get the register that store pointers of block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "izptr" : get the pointers vector of the register that store C pointers of block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
+        <para> "nblk" : get the number of block.</para>
+        <para> "outtbptr" : get the register that store C pointers of outtb.</para>
+        <para> "outtbpsz" : get the register that store the size of the elements of outtb.</para>
+        <para> "outtbtyp" : get the register that store the type of the elements of outtb.</para>
+        <para> "nlnk" : get the number of output.</para>
+        <para> "ncord" : get the number of blocks whose outputs evolve continuously.</para>
+        <para> "nordptr" : get the number of blocks whose outputs evolve by activation.</para>
+        <para> "iwa" : n.d.</para>
+        <para> "blocks" : get a scilab list that contains all block structures contains in the diagram.</para>
+        <para> "ng" : get length of the zero-crossing surfaces register.</para>
+        <para> "g" : get the zero-crossing surfaces register.</para>
+        <para> "t0" : get the current time of the simulation.</para>
+        <para> "tf" : get the final time of the simulation.</para>
+        <para> "Atol" : get the integrator absolute tolerance for the numerical solver.</para>
+        <para> "rtol" : get the integrator relative tolerance for the numerical solver.</para>
+        <para> "ttol" : get the tolerance on time of the simulator.</para>
+        <para> "deltat" : get the maximum integration time interval.</para>
+        <para> "hmax" : get the maximum step size for the numerical solver.</para>
+        <para> "nelem" : get the number of elements in outtb.</para>
+        <para> "outtb_elem" : get the vector of the number of elements in outtb.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">myvar :</emphasis> That output parameter can be an int32 matrix, a double matrix or a Tlist. This is given by the input parameter.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_getscicosvars">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DEBUG_SCICOS">DEBUG_SCICOS - Debug block (Scicos Block)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_getscicosvars">
+    <title>Authors</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>
