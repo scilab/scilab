@@ -17,6 +17,10 @@ Bug fixes:
 
 * bug 4132 fixed - fullpath crashs
 
+* bug 4134 fixed - In some cases, bad detection of a 64 bit arch was 
+		   causing a seg fault during the "make doc" process
+
+
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
 
