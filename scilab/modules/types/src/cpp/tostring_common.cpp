@@ -112,7 +112,7 @@ void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, b
 
 	if(bPrintOne == true || isEqual(_dblVal, 1) == false)
 	{
-		if(_isnan(_dblVal) == 1)
+		if(ISNAN(_dblVal) == 1)
 		{//NaN
 			*_postr << left << "NaN";
 		}
@@ -203,7 +203,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 
 void Print_Var(ostringstream *_postr,  double _dblVal)
 {
-	if(_isnan(_dblVal) == 1)
+	if(ISNAN(_dblVal) == 1)
 	{//NaN
 		*_postr << left << "NaN";
 	}
