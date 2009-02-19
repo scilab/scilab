@@ -5,24 +5,19 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 4095 -->
+// <-- Non-regression test for bug 3399 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4095
+// http://bugzilla.scilab.org/show_bug.cgi?id=3399
 //
 // <-- Short Description -->
-// Completion delete some characters of the string we are typing (With NW mode).
+// Completion is eating a character.
+
 
 // <-- INTERACTIVE TEST -->
 
-cd SCI/mod<TAB>   // OK
+cd /h<TAB
 
-cd SCI/modules/file<TAB>   // OK
-
-cd SCI/modules/fileio/te<TAB>   // OK
-
-cd SCI/modules/fileio/tests/u<TAB> 
-
-// if not cd SCI/modules/fileio/tests/units this test is fail.
-
+// it should be 
+cd /home
                     
