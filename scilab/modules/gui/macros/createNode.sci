@@ -12,7 +12,7 @@ function myNode = createNode(label, icon, callback)
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
-	if rhs <= 0 & rhs > 3 then
+	if rhs <= 0 | rhs > 3 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "createNode",1,3));
 		return;
 	end
@@ -50,7 +50,6 @@ function myNode = createNode(label, icon, callback)
 		end
 
 	end
-
 
 	// Creation of the node
 	node = struct('label',myLabel,'icon',myIcon,'callback',myCallback) 

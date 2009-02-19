@@ -11,3 +11,4 @@ completionOnFunctions
 getPartLevel
 getFilePartLevel
 getCommonPart
+completeLine

@@ -12,7 +12,7 @@ function dumpTree(tree, b)
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
-	if rhs <= 0 & rhs > 2 then
+	if rhs <= 0 | rhs > 2 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "dumpTree",1,2));
 		return;
 	end
@@ -48,6 +48,16 @@ function dumpTree(tree, b)
 		end
 		mprintf('|_./ ');
 		mprintf(myTree(2).label + '\n');
+		if myB
+			for index = 1:indentation+2
+				mprintf(' ');
+			end
+			mprintf('// ' + myTree(2).icon + '\n');
+			for index = 1:indentation+2
+				mprintf(' ');
+			end
+			mprintf('// ' + myTree(2).callback + '\n');
+		end
 
 		for childIndex = 3:size(myTree)
 			prettyPrint(myTree(childIndex), myB, indentation+2)

@@ -23,7 +23,8 @@ src/c/getmacrosdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
-src/c/getCommonPart.c
+src/c/getCommonPart.c \
+src/c/completeLine.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -75,7 +76,8 @@ libscicompletion_la_includedir=$(pkgincludedir)/completion
 libscicompletion_la_include_HEADERS = includes/gw_completion.h \
 includes/completion.h \
 includes/getCommonPart.h \
-includes/getPartLine.h
+includes/getPartLine.h \
+includes/completeLine.h
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS = src/jni/Completion.i 
