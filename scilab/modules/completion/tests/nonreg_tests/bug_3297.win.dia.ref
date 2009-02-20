@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- Non-regression test for bug 3306 -->
 //
 // <-- Bugzilla URL -->
@@ -12,22 +11,26 @@
 //
 // <-- Short Description -->
 // Wildcards should not be interpreted as such in completion, but as literal text.
-
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
-
-exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
-exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
-
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
+   Compilation of sci_completeline.c
+   Compilation of sci_getpartlevel.c
+   Compilation of sci_getfilepartlevel.c
+   Compilation of sci_getcommonpart.c
+   Building shared library (be patient)
+Shared archive loaded.
+Link done.
+Shared archive loaded.
+Link done.
 // get*<TAB>
 currentline = 'get*';
-
 r = getpartlevel(currentline);
-if r <> '' then pause,end
-
+if r <> '' then bugmes();quit;end
 r = getfilepartlevel(currentline);
-if r <> '' then pause,end
-
+if r <> '' then bugmes();quit;end
 r = completeline(currentline,'',getpartlevel(currentline),getfilepartlevel(currentline),%f);
-if r <> currentline then pause,end;
-
+if r <> currentline then bugmes();quit;end;
