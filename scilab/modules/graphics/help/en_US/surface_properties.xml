@@ -99,7 +99,17 @@
         <literal>"on"</literal>. The value should be an integer in [0 14] which
         stands for: dot, plus, cross, star, filled diamond, diamond, triangle
         up, triangle down, diamond plus, circle, asterisk, square, triangle
-        right, triangle left and pentagram.</para>
+        right, triangle left and pentagram.The figure below shows the aspects of the marks
+          depending on the <literal>mark_style</literal> and the
+          <literal>mark_foreground</literal> and
+          <literal>mark_background</literal> properties.</para>
+	<para>
+	  <inlinemediaobject>
+	    <imageobject>
+	      <imagedata fileref="../images/marks.svg"/>
+	    </imageobject>
+	  </inlinemediaobject>
+	</para>
         </listitem>
       </varlistentry>
       <varlistentry>

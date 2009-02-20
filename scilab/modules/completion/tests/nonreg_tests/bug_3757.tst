@@ -5,26 +5,24 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//
-// <-- Non-regression test for bug 3919 -->
-//
-
+// <-- Non-regression test for bug 3757 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3919
+// http://bugzilla.scilab.org/show_bug.cgi?id=3757
 //
 // <-- Short Description -->
-// scilab x64 doesn't display graphics from a remote desktop
+// Under Scilex, the completion of paths is incorrect
+
 
 // <-- INTERACTIVE TEST -->
 
-// install scilab x64 on windows
-// configure your remote desktop and connect to your pc
-// and launch scilab
+if MSDOS then
 
-if ~MSDOS then pause,end
-if win64() <> %t then pause,end
-if istssession() <> %t then pause,end
+mkdir('d:\Project')
+cd('d:\Project')
+mkdir('d:\Test')                    
+cd ../../
+cd d:\Pro[TAB]
 
-// try to do a plot or plot3d 
-// if you have a display it works
+// it should be 
+// cd d:\Project

@@ -42,7 +42,7 @@ public class ScilabTree implements Tree {
 		// Creating an Iconimage with the image's path 
 		Toolkit toolkit = Toolkit.getDefaultToolkit();
 		if (iconPath.equals("default")) {
-			this.icon = ScilabTreeCellRenderer.iconeDefaut;
+			this.icon = ScilabTreeCellRenderer.iconDefaut;
 		} else if (iconPath.equals("")) {
 			this.icon = null;
 		} else {
