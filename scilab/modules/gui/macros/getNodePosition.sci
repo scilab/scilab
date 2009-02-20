@@ -50,7 +50,6 @@ function position = getNodePosition(tree, node)
 				r = findPos(myTree(index), myNode, r, curpos+"."+string(index-2))
 			else
 				r = findPos(myTree(index), myNode, r, string(index-2))
-				//disp("cest root");
 			end
 		end
 
