@@ -147,8 +147,9 @@ if sciargs()<>'-nouserstartup' then
     if (fileinfo('.scilab') <> []) then
       exec('.scilab',-1);
     else
-    if (fileinfo('scilab.ini') <> []) then
-      exec('scilab.ini',-1);
+      if (fileinfo('scilab.ini') <> []) then
+        exec('scilab.ini',-1);
+      end
     end
   end
 end
