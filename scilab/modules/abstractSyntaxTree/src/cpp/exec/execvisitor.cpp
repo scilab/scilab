@@ -259,8 +259,8 @@ namespace ast
 						{
 							for(int i = 0 ; i < iTotalCombi ; i++)
 							{
-								pRealOut[i] = pRealIn[piIndexSeq[i]];
-								pImgOut[i]	= pImgIn[piIndexSeq[i]];
+								pRealOut[i] = pRealIn[piIndexSeq[i] - 1];
+								pImgOut[i]	= pImgIn[piIndexSeq[i] - 1];
 							}
 						}
 						else

@@ -93,38 +93,49 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 				(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
 		}
 	}
-	else if(bScalar2)
-	{//[] ^ s
-		*_pDoubleOut = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), true);
-
+	else if(bScalar2 && ( _pDouble1->rows_get() == 1 || _pDouble1->cols_get() == 1 ))
+	{//_pDouble1 is a vector and _pDouble is a scalar
+		*_pDoubleOut = new Double(_pDouble1->rows_get(),_pDouble1->cols_get() , true);
+		
 		if(bComplex1 == false && bComplex2 == false)
 		{
+			for(int i = 0 ; i < (*_pDoubleOut)->size_get() ; i++)
+			{
+				iPowerRealScalarByRealScalar(
+					_pDouble1->real_get()[i], 
+					_pDouble2->real_get()[0],
+					&(*_pDoubleOut)->real_get()[i], &(*_pDoubleOut)->img_get()[i], &iComplex);
+			}
 		}
 		else if(bComplex1 == false && bComplex2 == true)
 		{
+			for(int i = 0 ; i < (*_pDoubleOut)->size_get() ; i++)
+			{
+				iPowerRealScalarByComplexScalar(
+					_pDouble1->real_get()[i], 
+					_pDouble2->real_get()[0], _pDouble2->img_get()[0],
+					&(*_pDoubleOut)->real_get()[i], &(*_pDoubleOut)->img_get()[i]);
+			}
 		}
 		else if(bComplex1 == true && bComplex2 == false)
 		{
+			for(int i = 0 ; i < (*_pDoubleOut)->size_get() ; i++)
+			{
+			iPowerComplexScalarByRealScalar(
+				_pDouble1->real_get()[i], _pDouble1->img_get()[i], 
+				_pDouble2->real_get()[0],
+					&(*_pDoubleOut)->real_get()[i], &(*_pDoubleOut)->img_get()[i]);
+			}
 		}
 		else if(bComplex1 == true && bComplex2 == true)
 		{
-		}
-	}
-	else if(_pDouble1->rows_get() == _pDouble2->rows_get() && _pDouble1->cols_get() == _pDouble2->cols_get())
-	{//[] ^ []
-		*_pDoubleOut = new Double(_pDouble1->rows_get(), _pDouble1->cols_get(), true);
-
-		if(bComplex1 == false && bComplex2 == false)
-		{
-		}
-		else if(bComplex1 == false && bComplex2 == true)
-		{
-		}
-		else if(bComplex1 == true && bComplex2 == false)
-		{
-		}
-		else if(bComplex1 == true && bComplex2 == true)
-		{
+			for(int i = 0 ; i < (*_pDoubleOut)->size_get() ; i++)
+			{
+			iPowerComplexScalarByComplexScalar(
+				_pDouble1->real_get()[i], _pDouble1->img_get()[i],
+				_pDouble2->real_get()[0], _pDouble2->img_get()[0],
+					&(*_pDoubleOut)->real_get()[i], &(*_pDoubleOut)->img_get()[i]);
+			}
 		}
 	}
 

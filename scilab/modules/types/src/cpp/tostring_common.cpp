@@ -112,18 +112,7 @@ void Add_Value(ostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, b
 
 	if(bPrintOne == true || isEqual(_dblVal, 1) == false)
 	{
-		if(ISNAN(_dblVal) == 1)
-		{//NaN
-			*_postr << left << "NaN";
-		}
-		else if(finite(_dblVal))
-		{//Normal case
-			*_postr << left << fabs(_dblVal);
-		}
-		else
-		{//Inf
-			*_postr << left << "Inf";
-		}	
+		Print_Var(_postr, _dblVal);
 	}
 }
 
@@ -205,7 +194,8 @@ void Print_Var(ostringstream *_postr,  double _dblVal)
 {
 	if(ISNAN(_dblVal) == 1)
 	{//NaN
-		*_postr << left << "NaN";
+		Config_Stream(_postr, 0, 0, ' ');
+		*_postr << left << "Nan";
 	}
 	else if(finite(_dblVal))
 	{//Normal case
@@ -213,6 +203,7 @@ void Print_Var(ostringstream *_postr,  double _dblVal)
 	}
 	else
 	{//Inf
+		Config_Stream(_postr, 0, 0, ' ');
 		*_postr << left << "Inf";
 	}	
 

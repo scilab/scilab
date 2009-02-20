@@ -225,7 +225,7 @@ int iPowerComplexScalarByRealScalar(
 				}
 			}
 			else
-			{//how can we pass here ?
+			{
 				//FIXME : ieee 
 				//generate +Inf
 				double dblZero	= 0.0;
@@ -278,7 +278,7 @@ int iPowerComplexScalarByRealScalar(
 				*_pdblRealOut		= 1.0/(dblZero);
 				*_pdblImgOut		= 0;
 			}
-			else //how can we pass here ?
+			else
 			{//0 ^ 0
 				*_pdblRealOut		= 1;
 				*_pdblImgOut		= 0;
