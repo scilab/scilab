@@ -54,7 +54,6 @@
 #define RAD2DEG(x) ((x) * _180_OVER_PI )
 #define INFINITEPLUS	1.0/0.0
 #define INFINITEMINUS (-1.0)/0.0
-#define NAN						0.0/0.0
 
 #ifdef round
 #undef round
