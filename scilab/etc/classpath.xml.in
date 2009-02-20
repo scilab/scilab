@@ -59,6 +59,9 @@ The option is "disableUnderMode" and can be:
 <path value="@BATIK@" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
+<path value="@XML_APIS_EXT@" load="onUse">
+	<load on="documentationGeneration"/>
+</path>
 
 <!-- PDF doc generation -->
 <path value="@COMMONS_IO@" load="onUse">
