@@ -64,3 +64,4 @@ printStrMat
 copyStrMatElement
 sciSetVisibility
 sciDelGraphicObj
+clearUserData
