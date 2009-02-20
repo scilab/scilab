@@ -5,24 +5,21 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 4095 -->
+// <-- Non-regression test for bug 3306 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4095
+// http://bugzilla.scilab.org/show_bug.cgi?id=3306
 //
 // <-- Short Description -->
-// Completion delete some characters of the string we are typing (With NW mode).
+// Automatic completion swallows the first completed letter when using double quotes (") around a string, while it gives good 
 
 // <-- INTERACTIVE TEST -->
 
-cd SCI/mod<TAB>   // OK
+unix('touch foofile.ext')
 
-cd SCI/modules/file<TAB>   // OK
+scipad('foof [TAB]
+// it should be scipad('foofile.ext
 
-cd SCI/modules/fileio/te<TAB>   // OK
-
-cd SCI/modules/fileio/tests/u<TAB> 
-
-// if not cd SCI/modules/fileio/tests/units this test is fail.
-
+scipad("foof [TAB]
+// it should be scipad("foofile.ext
                     

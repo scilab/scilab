@@ -220,10 +220,17 @@ void cmat3d(scicos_block * block, int flag)
         /*Free Memory*/
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
-	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	    /*sciSetUsedWindow(scoGetWindowID(pScopeMemory));
 	    pShortDraw = sciGetCurrentFigure();
 	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
+	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;*/
+			/* Check if figure is still opened, otherwise, don't try to destroy it again. */
+			scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
+			if (figure != NULL)
+			{
+				/*pShortDraw = scoGetPointerScopeWindow(pScopeMemory);*/
+				clearUserData(figure);
+			}
 	  }
 	scoFreeScopeMemory(block->work, &pScopeMemory);
 	break;

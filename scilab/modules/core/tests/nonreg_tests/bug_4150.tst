@@ -5,26 +5,28 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//
-// <-- Non-regression test for bug 3919 -->
-//
-
+// <-- Non-regression test for bug 4150 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3919
+// http://bugzilla.scilab.org/show_bug.cgi?id=4150
 //
 // <-- Short Description -->
-// scilab x64 doesn't display graphics from a remote desktop
+// SCIHOME\scilab.ini is executed twice at Scilab startup.
+// with cd(getenv('SCIHOME')) SCIHOME\scilab.ini
 
 // <-- INTERACTIVE TEST -->
 
-// install scilab x64 on windows
-// configure your remote desktop and connect to your pc
+// go to in your SCIHOME directory
+// creates a .scilab or scilab.ini file
+// put in this file 
+
+printf('go to SCILAB working directory\n\n');
+cd(getenv('SCIHOME'));
+
+// saves .scilab
 // and launch scilab
 
-if ~MSDOS then pause,end
-if win64() <> %t then pause,end
-if istssession() <> %t then pause,end
+// Check that you have only ONE 'go to SCILAB working directory'
 
-// try to do a plot or plot3d 
-// if you have a display it works
+
+

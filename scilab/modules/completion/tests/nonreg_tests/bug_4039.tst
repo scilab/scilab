@@ -5,24 +5,20 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 4095 -->
+// <-- Non-regression test for bug 4039 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=4095
+// http://bugzilla.scilab.org/show_bug.cgi?id=4039
 //
 // <-- Short Description -->
-// Completion delete some characters of the string we are typing (With NW mode).
+// Problem of completion with version 5.1:
+// (With NW mode).
 
 // <-- INTERACTIVE TEST -->
-
-cd SCI/mod<TAB>   // OK
-
-cd SCI/modules/file<TAB>   // OK
-
-cd SCI/modules/fileio/te<TAB>   // OK
-
-cd SCI/modules/fileio/tests/u<TAB> 
-
-// if not cd SCI/modules/fileio/tests/units this test is fail.
-
                     
+wavread("/ho[TAB]
+wavread("/home/
+wavread("/home/sy[TAB]
+
+// it should be wavread("/home/sylvestre
+// if sylvestre home exists
