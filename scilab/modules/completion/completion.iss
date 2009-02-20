@@ -11,6 +11,7 @@
 #define COMPLETION "completion"
 ;
 Source: bin\scicompletion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\scicompletion.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMPLETION}\jar\org.scilab.modules.completion.jar;DestDir: {app}\modules\{#COMPLETION}\jar; Components: {#COMPN_SCILAB}
 ;
