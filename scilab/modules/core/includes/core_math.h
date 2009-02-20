@@ -52,8 +52,6 @@
 #define _180_OVER_PI 57.29577951308232087665461840231273527024
 #define DEG2RAD(x) ((x) * PI_OVER_180  )
 #define RAD2DEG(x) ((x) * _180_OVER_PI )
-#define INFINITEPLUS	1.0/0.0
-#define INFINITEMINUS (-1.0)/0.0
 
 #ifdef round
 #undef round
