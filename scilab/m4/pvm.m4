@@ -32,8 +32,6 @@ AC_DEFUN([AC_PVM], [
 		AC_MSG_ERROR([PVM is unable to recognise the architecture])
 	fi
 
-	PVMTARGET=scilex-lib
-	PVMTARGET_DISTCLEAN=distclean
 	PVMROOT="$SCIDIR/pvm3"
 	PVMROOTR='$SCI/pvm3'
 	
