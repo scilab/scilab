@@ -747,7 +747,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @SCICOS_TRUE@libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
 @SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = 
 
-#########�Modelica #############
+######### Modelica #############
 @OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac
 @OCAML_TRUE@@SCICOS_TRUE@modelicac_SOURCES = $(MLS)
 @OCAML_TRUE@@SCICOS_TRUE@OCAMLLIBS = nums.cma
@@ -773,7 +773,16 @@ HELP_CHAPTERFILE = addchapter.sce
 @OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
 @OCAML_TRUE@@SCICOS_TRUE@BASE_PATH = $(srcdir)/src/modelica_compiler
 @OCAML_TRUE@@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH)
-@OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
+@OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.o \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cmo \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cm[aiox] \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/parser.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/lexer.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/parser.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/lexer.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(TARGET)
+
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 all: all-am
 
