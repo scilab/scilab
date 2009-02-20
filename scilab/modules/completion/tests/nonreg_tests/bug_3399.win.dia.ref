@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- Non-regression test for bug 3399 -->
 //
 // <-- Bugzilla URL -->
@@ -12,15 +11,22 @@
 //
 // <-- Short Description -->
 // Completion is eating a character.
-
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
-
-exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
-exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
-
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile: Makelib
+   Running the makefile
+   Compilation of sci_completeline.c
+   Compilation of sci_getpartlevel.c
+   Compilation of sci_getfilepartlevel.c
+   Compilation of sci_getcommonpart.c
+   Building shared library (be patient)
+Shared archive loaded.
+Link done.
+Shared archive loaded.
+Link done.
 //cd /h<TAB>
-
 currentline = 'cd /h';
 newline = completeline(currentline,'home',getfilepartlevel(currentline),getpartlevel(currentline),%t);
-if newline <> 'cd /home' then pause,end
+if newline <> 'cd /home' then bugmes();quit;end

@@ -14,6 +14,9 @@
 #include <string.h>
 #include "completeLine.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static char * strrstr(char *string, char *find)
 {
@@ -72,13 +75,19 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 	}
 	else
 	{
-		char *partResult = &stringToAdd[strlen(defaultPattern)];
-		new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(partResult) + 1));
-
-		if (new_line)
+		if ( (int)strlen(defaultPattern) < (int)strlen(stringToAdd) )
+		{	
+			char *partResult =  &stringToAdd[(int)strlen(defaultPattern)];
+			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(partResult) + 1));
+			if (new_line)
+			{
+				strcpy(new_line, currentline);
+				strcat(new_line, partResult);
+			}
+		}
+		else
 		{
-			strcpy(new_line, currentline);
-			strcat(new_line, partResult);
+			new_line = strdup(currentline);
 		}
 	}
 	return new_line;
