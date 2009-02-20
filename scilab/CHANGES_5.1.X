@@ -22,6 +22,8 @@ Bug fixes:
 
 * bug 4150 fixed - user startup executed twice if you change directory to SCIHOME in this file.
 
+* bug 4159 fixed - coshlt was defined twice on windows
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
