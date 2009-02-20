@@ -39,28 +39,27 @@ function position = getNodePosition(tree, node)
 
 	
 	// Find node(s) position(s)
-	function pos = findPos(myTree, myNode, pos, curpos)
+	function r = findPos(myTree, myNode, r, curpos)
 	
 		if equalsTree(myTree, myNode) then
-			pos($+1) = curpos;
+			r($+1) = curpos;
 		end
-
-		mprintf(curpos + '\n');
-
+		
 		for index = 3:size(myTree)
-			if curpos ~= "" then
-				pos = findPos(myTree(index), myNode, pos, curpos+"."+string(index-2))
+			if curpos ~= "root" then
+				r = findPos(myTree(index), myNode, r, curpos+"."+string(index-2))
 			else
-				pos = findPos(myTree(index), myNode, pos, string(index-2))
+				r = findPos(myTree(index), myNode, r, string(index-2))
+				//disp("cest root");
 			end
 		end
 
 	endfunction
 	
 	// List of matching nodes
-	pos = list();
+	r = list();
 
-	position = findPos(myTree, myNode, pos, "");
+	position = findPos(myTree, myNode, r, "root");
 
 
 endfunction
