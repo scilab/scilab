@@ -8,6 +8,7 @@ if with_texmacs() then
   load('SCI/modules/texmacs/macros/overloading/lib');
 end
 load('SCI/modules/texmacs/macros/lib');
+clear with_texmacs;
 // ====================================================================
 //add help chapter
 add_module_help_chapter('texmacs');
