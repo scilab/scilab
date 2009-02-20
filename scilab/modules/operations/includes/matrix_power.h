@@ -39,9 +39,9 @@ EXTERN_OP int iPowerComplexScalarByComplexScalar(
 EXTERN_OP int iPowerRealScalarByRealMatrix(
 		double _dblReal1,
 		double* _pdblReal2, int _iRows2, int _iCols2,
-		double* _pdblRealOut,	double* _pdblImgOut);
+		double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex);
 
-EXTERN_OP int iPowerImgScalarByRealMatrix(
+EXTERN_OP int iPowerComplexScalarByRealMatrix(
 		double _dblReal1, double _dblImg1,
 		double* _pdblReal2, int _iRows2, int _iCols2,
 		double* _pdblRealOut,	double* _pdblImgOut);

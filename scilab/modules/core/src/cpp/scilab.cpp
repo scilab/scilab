@@ -17,6 +17,11 @@
 
 #include "timer.hxx"
 
+extern "C"
+{
+	#include "prompt.h"
+}
+
 #include "exit_status.hxx"
 #include "parser.hxx"
 #include "context.hxx"
@@ -303,6 +308,7 @@ static int interactiveMain (void)
 {
 	Parser::ParserStatus parseResult;
 	bool exit = false;
+	int pause = 0;
 
 	std::cout << "-*- Yet Another Scilab Project -*-" << std::endl;
 	std::cout << std::endl;
@@ -311,8 +317,12 @@ static int interactiveMain (void)
 	while (!exit)
 	{
 		/* Display prompt */
+/*
 		std::cout << std::endl;
 		std::cout << "YaSp --> ";
+
+*/	
+		C2F(setprlev)(&pause);
 		char *command = TermReadAndProcess();
 
 

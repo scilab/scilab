@@ -131,7 +131,7 @@ namespace ast
 		{
 			std::cout << e.name_get() << " = " << std::endl;
 			std::cout << std::endl;
-			std::cout << pI->toString(16,75) << std::endl;
+			std::cout << pI->toString(10,75) << std::endl;
 		}
 	}
 

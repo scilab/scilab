@@ -158,7 +158,7 @@ void Add_Complex_Value(ostringstream *_postr, double _dblR, double _dblI, int _i
 			Config_Stream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//specail case if I == 1 write only i and not 1i
-				Print_Var(&ostemp, _dblR);
+				Print_Var(&ostemp, _dblI);
 			}
 			ostemp << left << SYMBOL_I;
 			iSignLen = SIGN_LENGTH;

@@ -205,7 +205,7 @@ int iPowerComplexScalarByRealScalar(
 			*_pdblImgOut				= 0;
 		}
 		else if(_dblReal2 < 0)
-		{//C ^ R*-
+		{//C ^ Z*-
 			if(dabss(_dblReal1) + dabss(_dblImg1) != 0) //_dblReal1 != 0 || _dblImg1 != 0 ?
 			{
 				int i = 0;
@@ -219,13 +219,13 @@ int iPowerComplexScalarByRealScalar(
 				dblRealTemp					= *_pdblRealOut;
 				dblImgTemp					= *_pdblImgOut;
 
-				for(i = 1 ; i < dabss(_dblReal2) ; i++)
+				for(i = 2 ; i <= dabss(_dblReal2) ; i++)
 				{
 					C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
 				}
 			}
 			else
-			{
+			{//how can we pass here ?
 				//FIXME : ieee 
 				//generate +Inf
 				double dblZero	= 0.0;
@@ -234,7 +234,7 @@ int iPowerComplexScalarByRealScalar(
 			}
 		}
 		else
-		{//C ^ R+
+		{//C ^ Z*+
 			int i								= 0;
 			double dblRealTemp	= 0;
 			double dblImgTemp		= 0;
@@ -244,16 +244,16 @@ int iPowerComplexScalarByRealScalar(
 			dblRealTemp				= *_pdblRealOut;
 			dblImgTemp				= *_pdblImgOut;
 
-			for(i = 1 ; i < dabss(_dblReal1) ; i++)
+			for(i = 2 ; i <= dabss(_dblReal1) ; i++)
 			{
 				C2F(wmul)(&dblRealTemp, &dblImgTemp, _pdblRealOut, _pdblImgOut, _pdblRealOut, _pdblImgOut);
 			}
 		}
 	}
 	else
-	{//C ^ R
+	{
 		if(dabss(_dblReal1) + dabss(_dblImg1) != 0)
-		{
+		{//C ^ R
 			double dblRealTemp	= 0;
 			double dblImgTemp		= 0;
 
@@ -266,20 +266,20 @@ int iPowerComplexScalarByRealScalar(
 		else
 		{
 			if(_dblReal2 > 0)
-			{//C ^ R*+
+			{//0 ^ R*+
 				*_pdblRealOut		= 0;
 				*_pdblImgOut		= 0;
 			}
 			else if(_dblReal2 < 0)
-			{//C ^ R*-
+			{//0 ^ R*-
 				//FIXME : ieee 
 				//generate +Inf
 				double dblZero	= 0.0;
 				*_pdblRealOut		= 1.0/(dblZero);
 				*_pdblImgOut		= 0;
 			}
-			else
-			{//C ^ 0
+			else //how can we pass here ?
+			{//0 ^ 0
 				*_pdblRealOut		= 1;
 				*_pdblImgOut		= 0;
 			}
@@ -330,17 +330,31 @@ int iPowerComplexScalarByComplexScalar(
 int iPowerRealScalarByRealMatrix(
 		double _dblReal1,
 		double* _pdblReal2, int _iRows2, int _iCols2,
-		double* _pdblRealOut,	double* _pdblImgOut)
+		double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex)
 {
+	int i = 0;
+	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
+	{
+		int iComplex = 0;
+		iPowerRealScalarByRealScalar(
+				_dblReal1, _pdblReal2[i], &_pdblRealOut[i], &_pdblImgOut[i], &iComplex);
+		*_iComplex |= iComplex;
+	}
 	return 0;
 }
 
 
-int iPowerImgScalarByRealMatrix(
+int iPowerComplexScalarByRealMatrix(
 		double _dblReal1, double _dblImg1,
 		double* _pdblReal2, int _iRows2, int _iCols2,
 		double* _pdblRealOut,	double* _pdblImgOut)
 {
+	int i = 0;
+	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
+	{
+		iPowerComplexScalarByRealScalar(
+				_dblReal1, _dblImg1, _pdblReal2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
+	}
 	return 0;
 }
 
@@ -349,6 +363,12 @@ int iPowerRealScalarByComplexMatrix(
 		double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
 		double* _pdblRealOut,	double* _pdblImgOut)
 {
+	int i = 0;
+	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
+	{
+		iPowerRealScalarByComplexScalar(
+				_dblReal1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
+	}
 	return 0;
 }
 
@@ -357,5 +377,11 @@ int iPowerComplexScalarByComplexMatrix(
 		double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
 		double* _pdblRealOut,	double* _pdblImgOut)
 {
+	int i = 0;
+	for(i = 0 ; i < _iRows2 * _iCols2 ; i++)
+	{
+		iPowerComplexScalarByComplexScalar(
+				_dblReal1, _dblImg1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
+	}
 	return 0;
 }
