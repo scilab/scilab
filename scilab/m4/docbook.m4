@@ -56,11 +56,16 @@ AC_ARG_WITH(docbook,
 	COMMONS_IO=$PACKAGE_JAR_FILE
 	AC_SUBST(COMMONS_IO)
 
-	# XML graphics cmmon
+	# XML graphics common
 	AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
 	XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
 	AC_SUBST(XMLGRAPHICS_COMMONS)
-	
+
+	# XML API EXT (conversion of a SVG => PNG)
+	AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+	XML_APIS_EXT=$PACKAGE_JAR_FILE
+	AC_SUBST(XML_APIS_EXT)
+
 
 	# Avalon Framework (PDF)
 	AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
