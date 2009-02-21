@@ -191,7 +191,7 @@ libsciscicos_la_help_en_US_DATA =
 libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
 libsciscicos_la_help_fr_FR_DATA = 
 
-#########�Modelica #############
+######### Modelica #############
 
 if OCAML
 TARGET = modelicac
@@ -258,7 +258,16 @@ $(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(ML
 	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
 
-CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
+CLEANFILES = $(BASE_PATH)/*.cmi \
+	$(BASE_PATH)/*.o \
+	$(BASE_PATH)/*.cmo \
+	$(BASE_PATH)/*.cm[aiox] \
+	$(BASE_PATH)/parser.mli \
+	$(BASE_PATH)/lexer.mli \
+	$(BASE_PATH)/parser.ml \
+	$(BASE_PATH)/lexer.ml \
+	$(TARGET)
+
 endif # OCAML
 
 else

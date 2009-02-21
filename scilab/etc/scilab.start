@@ -131,30 +131,24 @@ end
 // calling user initialization =========================================
 // Home dir startup (if any)
 if sciargs()<>'-nouserstartup' then
-  startup_path = SCIHOME+filesep();
+  startup_path = SCIHOME + filesep();
 
-  [startup,ierr] = mopen(startup_path+'.scilab','r');
-  if ierr == 0 then
-    exec(startup,-1);mclose(startup);
+  if (fileinfo(startup_path+'.scilab') <> []) then
+    exec(startup_path+'.scilab',-1);
   else
-    [startup,ierr] = mopen(startup_path+'scilab.ini','r');
-    if ierr == 0 then
-      exec(startup,-1);mclose(startup);
+    if (fileinfo(startup_path+'scilab.ini') <> []) then
+      exec(startup_path+'scilab.ini',-1);
     end
   end
   clear startup ierr startup_path
 
   // working dir startup (if any)
-  if  home<>PWD then
-    [startup,ierr] = mopen('.scilab','r');
-    if ierr == 0 then
-      exec(startup,-1);
-      mclose(startup);
+  if (SCIHOME <> getcwd()) then
+    if (fileinfo('.scilab') <> []) then
+      exec('.scilab',-1);
     else
-      [startup,ierr] = mopen('scilab.ini','r');
-      if ierr == 0 then
-		    exec(startup,-1);
-		    mclose(startup);
+      if (fileinfo('scilab.ini') <> []) then
+        exec('scilab.ini',-1);
       end
     end
   end
