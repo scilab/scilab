@@ -56,6 +56,7 @@ BOOL setenvc(char *stringIn,char *valueIn)
 			{
 				sprintf(env,"%s=%s",string,value);
 				if ( _putenv(env) ) ret = FALSE;
+				FREE(env);env = NULL;
 			}
 		}
 	}
