@@ -46,6 +46,7 @@ BOOL setenvc(char *stringIn,char *valueIn)
 		the value in both locations, so that other software that looks in
 		one place or the other is guaranteed to see the value.
 		*/
+		#define ENV_FORMAT "%s=%s"
 		if (SetEnvironmentVariableA(string,value) == 0) return FALSE;
 		len_env = (int) (strlen(string) + strlen(value) + strlen(ENV_FORMAT)) + 1;
 		if (len_env < _MAX_ENV)
@@ -53,7 +54,6 @@ BOOL setenvc(char *stringIn,char *valueIn)
 			char *env = (char*) MALLOC(len_env * sizeof(char));
 			if (env)
 			{
-				#define ENV_FORMAT "%s=%s"
 				sprintf(env,"%s=%s",string,value);
 				if ( _putenv(env) ) ret = FALSE;
 			}
