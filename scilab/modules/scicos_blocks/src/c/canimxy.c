@@ -200,7 +200,7 @@ void canimxy(scicos_block * block, int flag)
   /*Declarations*/
   ScopeMemory * pScopeMemory;
   double *u1,*u2;
-  scoGraphicalObject pShortDraw,pLongDraw;
+  scoGraphicalObject pLongDraw;
   int i;
   /* State Machine Control */
   switch(flag)

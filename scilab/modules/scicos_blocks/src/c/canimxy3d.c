@@ -204,7 +204,7 @@ void canimxy3d(scicos_block * block, int flag)
   double *u1,*u2,*u3;
   int i;
   ScopeMemory * pScopeMemory;
-  scoGraphicalObject pShortDraw,pLongDraw;
+  scoGraphicalObject pLongDraw;
   /* State Machine Control */
   switch(flag)
     {
