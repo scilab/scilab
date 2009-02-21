@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <stdio.h>
 #include "gw_io.h"
 #include "MALLOC.h"
 #include "freeArrayOfString.h"
@@ -80,7 +80,11 @@ int C2F(sci_getenv)(char *fname,unsigned long fname_len)
 		return 0;
 	}
 
-	length_env = PATH_MAX;
+	#ifdef _MSC_VER
+	length_env = _MAX_ENV;
+	#else
+	length_env = bsiz;
+	#endif
 	env_value = (char*)MALLOC( (length_env + 1) *sizeof(char) );
 
 	if (env_value)
