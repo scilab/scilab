@@ -710,12 +710,8 @@ AC_CHECK_FUNC([exp10],,[
 				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
 				])
 
-### If isinf exists or not (used to not be the case under Solaris)
-AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
-])
-
-### If isinf exists or not (used to not be the case under Solaris)
+### If isinf exists or not (used to not be the case under Solaris)
+### See bug #4164
 AC_CHECK_FUNC([isinf],,[
 		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
 ])
