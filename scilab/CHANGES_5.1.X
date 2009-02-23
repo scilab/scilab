@@ -11,6 +11,8 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 4067 fixed - bug with completion and some paths
+
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
 * bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C only)
@@ -29,6 +31,7 @@ Bug fixes:
 				   done in the configure.
 
 * bug 4166 fixed - test_run was broken
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
