@@ -24,8 +24,11 @@ Bug fixes:
 
 * bug 4159 fixed - coshlt was defined twice on windows
 
-* bug 4166 fixed - test_run was broken
+* bug 4164 fixed - isinf is now defined in more recent versions of the Sun 
+				   Compiler. Detection and replacement of the function is now
+				   done in the configure.
 
+* bug 4166 fixed - test_run was broken
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
@@ -105,7 +108,6 @@ mclose, deletefile, findfiles, ls, listfiles, getshortpathname,
 getlongpathname, removedir...) now handle file and directory names containing
 UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
 (Unitary tests provided) 
-
 
 Misc:
 =====
