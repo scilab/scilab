@@ -27,7 +27,7 @@ function dumpTree(tree, b)
 			return;
 		end
 		// Check 2nd input : b
-		if rhs >= 2 then
+		if rhs == 2 then
 			if (type(b) == 4) then
 				myB = b;
 			else
@@ -35,7 +35,6 @@ function dumpTree(tree, b)
 				return;				
 			end
 		end
-
 	end
 
 	indentation = 0;

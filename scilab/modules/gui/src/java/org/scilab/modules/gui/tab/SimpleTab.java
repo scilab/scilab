@@ -205,6 +205,13 @@ public interface SimpleTab {
 	 */
 	int addMember(Tree member);
 
+	
+	/**
+	 * We want to be able to remove directly a Tree Overview from a Tab.
+	 * @param member Tree OverView to remove
+	 */
+	void removeMember(Tree member);
+	
 	/**
 	 * Gets the size of an Tab (width and height)
 	 * @return the size of the Tab

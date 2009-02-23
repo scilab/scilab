@@ -1475,6 +1475,7 @@ if test $HELP_ENABLE = yes; then
    echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "Commons I/O ............ = $COMMONS_IO"
    echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
+   echo "XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
 fi
