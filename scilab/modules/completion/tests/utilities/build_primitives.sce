@@ -14,8 +14,9 @@ if MSDOS then
 libs = SCI +'/bin/scicompletion';
 cflags = "-I " + SCI +"/modules/completion/includes";
 else
-libs = "";
-cflags = "";
+// Problem with linux binary version ? ? ?
+libs = SCI +'/modules/completion/.libs/libscicompletion';
+cflags = "-I " + SCI +"/modules/completion/includes -I " + SCI + "/modules/localization/includes";
 end
 
 // name known in scilab , C function called
