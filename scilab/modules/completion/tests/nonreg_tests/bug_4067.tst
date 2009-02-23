@@ -32,7 +32,7 @@ currentline = 'exec bug';
 r = getfilepartlevel(currentline);
 if r <> 'bug' then pause,end
 r = completion(getfilepartlevel(currentline),'files');
-if and(r <> ['bugA.sce';'bugB.sce']) then pause,end
+if and(gsort(r) <> gsort(['bugA.sce';'bugB.sce'])) then pause,end
 
 newline = completeline(currentline,'bugA.sce',getfilepartlevel(currentline),getpartlevel(currentline),%t);
 if newline<>'exec bugA.sce' then pause,end
