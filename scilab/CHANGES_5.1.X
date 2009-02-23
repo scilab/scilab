@@ -495,6 +495,8 @@ Bug fixes:
 
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
                    blank graphic windows. (Windows)
+				   
+* bug 4094 fixed - core/includes/scisparse.h wasn't installed.
 
 * Side effect in the setenvc function.
 
