@@ -15,13 +15,16 @@
 // <-- JVM NOT MANDATORY -->
    Generate a gateway file
    Generate a loader file
-   Generate a Makefile: Makelib
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy sci_completeline.c to TMPDIR
+   ilib_gen_Make: Copy sci_getpartlevel.c to TMPDIR
+   ilib_gen_Make: Copy sci_getfilepartlevel.c to TMPDIR
+   ilib_gen_Make: Copy sci_getcommonpart.c to TMPDIR
+   ilib_gen_Make: Copy libcompletion_c.c to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
-   Compilation of sci_completeline.c
-   Compilation of sci_getpartlevel.c
-   Compilation of sci_getfilepartlevel.c
-   Compilation of sci_getcommonpart.c
-   Building shared library (be patient)
 Shared archive loaded.
 Link done.
 Shared archive loaded.
