@@ -13,11 +13,14 @@
 // <-- Short Description -->
 // Completion is eating a character.
 
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
-// <-- INTERACTIVE TEST -->
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
 
-cd /h<TAB
+//cd /h<TAB>
 
-// it should be 
-cd /home
-                    
+currentline = 'cd /h';
+newline = completeline(currentline,'home',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'cd /home' then pause,end
