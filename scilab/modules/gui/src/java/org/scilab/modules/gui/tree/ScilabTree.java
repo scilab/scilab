@@ -151,151 +151,126 @@ public class ScilabTree implements Tree {
 	return component;
     }
 
-    @Override
     public void destroy() {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public Color getBackground() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public Font getFont() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public Color getForeground() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public String getText() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public boolean isEnabled() {
 	// TODO Auto-generated method stub
 	return false;
     }
 
-    @Override
     public void requestFocus() {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setBackground(Color color) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setEnabled(boolean status) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setFont(Font font) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setForeground(Color color) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setHorizontalAlignment(String alignment) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setRelief(String reliefType) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setText(String text) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void setVerticalAlignment(String alignment) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void addInfoBar(TextBox infoBarToAdd) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void addMenuBar(MenuBar menuBarToAdd) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void addToolBar(ToolBar toolBarToAdd) {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public void draw() {
 	// TODO Auto-generated method stub
 
     }
 
-    @Override
     public Size getDims() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public TextBox getInfoBar() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public MenuBar getMenuBar() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public Position getPosition() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public ToolBar getToolBar() {
 	// TODO Auto-generated method stub
 	return null;
     }
 
-    @Override
     public boolean isVisible() {
 	// TODO Auto-generated method stub
 	return false;
@@ -306,13 +281,11 @@ public class ScilabTree implements Tree {
 	component.setDims(newSize);
     }
 
-    @Override
     public void setPosition(Position newPosition) {
 	updateComponent();
 	component.setPosition(newPosition);
     }
 
-    @Override
     public void setVisible(boolean newVisibleState) {
 	// TODO Auto-generated method stub
 
