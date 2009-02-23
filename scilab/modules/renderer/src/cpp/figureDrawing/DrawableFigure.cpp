@@ -159,7 +159,7 @@ void DrawableFigure::redrawSubwins(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::forceDisplay( void )
 { 
-  if ( !checkAutoRedraw() && !isDisplayingSingleObject() )
+  if ( !checkAutoRedraw() )
   {
     // if a single object is available this override drawlater()/ drawnow()
     return;

@@ -30,3 +30,5 @@ Bug fixes:
 * bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
+
+* bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
