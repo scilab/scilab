@@ -24,6 +24,8 @@ Bug fixes:
 
 * bug 4159 fixed - coshlt was defined twice on windows
 
+* bug 4166 fixed - test_run was broken
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
