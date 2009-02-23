@@ -44,6 +44,6 @@ atanh(1 ./A)
   </refsection>
   <refsection>
     <title>Particular cases</title>
-    <para>In Matlab <emphasis role="bold">y=acoth(x)</emphasis> and Scilab <emphasis role="bold">y=atanh(1 ./x)</emphasis>, for real elements of <emphasis role="bold">x</emphasis> outside the domain <emphasis role="bold">[-1,1]</emphasis>, the complex part of Scilab <emphasis role="bold">y</emphasis> value is the opposite of Matlab <emphasis role="bold">y</emphasis> value. See <emphasis role="bold">atanh</emphasis>/.</para>
+    <para>In Matlab <emphasis role="bold">y=acoth(x)</emphasis> and Scilab <emphasis role="bold">y=atanh(1 ./x)</emphasis>, for real elements of <emphasis role="bold">x</emphasis> outside the domain <emphasis role="bold">[-1,1]</emphasis>, the complex part of Scilab <emphasis role="bold">y</emphasis> value is the opposite of Matlab <emphasis role="bold">y</emphasis> value. See <emphasis role="bold">atanh</emphasis>.</para>
   </refsection>
 </refentry>
