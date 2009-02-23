@@ -376,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\completeLine_wrap_java.c"
+				>
+			</File>
+			<File
 				RelativePath=".\completion.c"
 				>
 			</File>
@@ -434,6 +438,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\completeLine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\completeLine_wrap_java.h"
 				>
 			</File>
 			<File
