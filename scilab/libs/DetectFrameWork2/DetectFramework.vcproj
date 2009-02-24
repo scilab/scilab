@@ -47,7 +47,7 @@
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -64,7 +64,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
@@ -125,7 +124,7 @@
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -142,7 +141,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				OutputFile="..\..\bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				GenerateDebugInformation="true"
@@ -201,7 +199,7 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
@@ -281,7 +279,7 @@
 				Name="VCCLCompilerTool"
 				WholeProgramOptimization="false"
 				PreprocessorDefinitions="EXPORT_DETECTFRAMEWORK_DLL"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"

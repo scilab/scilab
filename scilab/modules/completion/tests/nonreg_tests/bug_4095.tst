@@ -5,17 +5,57 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- Non-regression test for bug 3681 -->
+// <-- Non-regression test for bug 4095 -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id=3681
+// http://bugzilla.scilab.org/show_bug.cgi?id=4095
 //
 // <-- Short Description -->
-// Disable automatic completion if there are only spaces in a line
+// Completion delete some characters of the string we are typing (With NW mode).
 
-// <-- INTERACTIVE TEST -->
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
-// launch scilab GUI
-// type space or nothing
-// type TAB
-// if you have completion box with some functions then test fails
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
+
+
+// cd SCI/mod<TAB>
+currentline = 'cd SCI/mod';
+r = getfilepartlevel(currentline);
+if r <> 'SCI/mod' then pause,end
+r = completion(getfilepartlevel(currentline),'files');
+if r <> 'modules' + filesep() then pause,end
+
+newline = completeline(currentline,r,getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'cd SCI/modules' + filesep() then pause,end
+
+// cd SCI/modules/file<TAB>
+currentline = 'cd SCI/modules/file';
+r = getfilepartlevel(currentline);
+if r <> 'SCI/modules/file' then pause,end
+r = completion(getfilepartlevel(currentline),'files');
+if r <> 'fileio' + filesep() then pause,end
+
+newline = completeline(currentline,r,getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'cd SCI/modules/fileio' + filesep() then pause,end
+
+// cd SCI/modules/fileio/te<TAB>
+currentline = 'cd SCI/modules/fileio/te';
+r = getfilepartlevel(currentline);
+if r <> 'SCI/modules/fileio/te' then pause,end
+r = completion(getfilepartlevel(currentline),'files');
+if r <> 'tests' + filesep() then pause,end
+
+newline = completeline(currentline,r,getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'cd SCI/modules/fileio/tests' + filesep() then pause,end
+
+// cd SCI/modules/fileio/tests/u<TAB> 
+currentline = 'cd SCI/modules/fileio/tests/u';
+r = getfilepartlevel(currentline);
+if r <> 'SCI/modules/fileio/tests/u' then pause,end
+r = completion(getfilepartlevel(currentline),'files');
+if r <> 'unit_tests' + filesep() then pause,end
+
+newline = completeline(currentline,r,getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'cd SCI/modules/fileio/tests/unit_tests' + filesep() then pause,end

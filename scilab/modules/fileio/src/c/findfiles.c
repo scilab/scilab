@@ -1,23 +1,23 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2007 - INRIA - Allan CORNET
-* ...
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA - Allan CORNET
+ * ...
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-#include <Windows.h>
+	#include <Windows.h>
 #else
-#include <sys/types.h>
-#include <dirent.h>
-#include <errno.h>
-#include "localization.h"
+	#include <sys/types.h>
+	#include <dirent.h>
+	#include <errno.h>
+	#include "localization.h"
 #endif
 #include <stdio.h>
 #include <string.h>
@@ -110,14 +110,10 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 		}
 		closedir(folder);
 	}
-		/*
-		 * Commented for now because some functions call it even if the 
-		 * directory does not exist.
-		 * See bug 4079
-		 else
-		 {
-		  sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
-		  } */
+	else
+	{
+		sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+	}
 
 	*sizeListReturned = nbElements;
 	return ListFiles;
@@ -126,13 +122,13 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 /**
-* Check if the file matches the mask
-* '*' for all chars
-* '?' for only one
-* @TODO check if it can be optimized
-* @param filename the filename
-* @param filespec the mask
-*/
+ * Check if the file matches the mask
+ * '*' for all chars
+ * '?' for only one
+ * @TODO check if it can be optimized
+ * @param filename the filename
+ * @param filespec the mask
+ */
 static BOOL find_spec( char *filename ,char *filespec)
 {
 	char *any = NULL;

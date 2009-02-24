@@ -13,6 +13,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <ctype.h>
+#include "stack-def.h"
 #include "TermConsole.h"
 #include "MALLOC.h"
 #include "TermCommand.h"

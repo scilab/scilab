@@ -41,6 +41,9 @@ import com.artenum.rosetta.interfaces.core.CompletionItem;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
 import com.artenum.rosetta.interfaces.ui.CompletionWindow;
 
+import org.scilab.modules.completion.Completion;
+import org.scilab.modules.localization.Messages;
+
 /**
  * Scilab completion window main class
  * @author Vincent COUVERT
@@ -194,6 +197,15 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 	}
 
 	/**
+	 * Get type of the character string selected by the user as a completion
+	 * @return the character string
+	 */
+
+	public String getCompletionResultType() {
+		return ((CompletionItem) listUI.getSelectedValue()).getType();
+	}
+
+	/**
 	 * Get the visibility status of the completion window
 	 * @return true if the window is visible (false else)
 	 */
@@ -285,7 +297,20 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 
 			/* Add text to the input command view */
 			if (listUI.getModel().getSize() != 0) {
-				inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
+				
+				String currentLine = inputParsingManager.getCommandLine();
+				String stringToAdd = ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
+				String stringToAddType = ((CompletionItem) listUI.getSelectedValue()).getType();
+				
+				boolean typeStringIsFile = false;
+				
+				if (stringToAddType.equals(Messages.gettext("File or Directory"))) {
+				typeStringIsFile = true;
+				}
+				String newLine = Completion.completelineforjava(currentLine, stringToAdd, typeStringIsFile);
+				
+				inputParsingManager.reset();
+				inputParsingManager.append(newLine);
 			}
 
 			/* Hide the completion window and give the focus to the console */
@@ -398,7 +423,19 @@ public class SciCompletionWindow implements CompletionWindow, KeyListener, Focus
 
 			if (e.getClickCount() >= 2) { /* Double click = the user validates the item */
 				/* Add text to the input command view */
-				inputParsingManager.writeCompletionPart(((CompletionItem) listUI.getSelectedValue()).getReturnValue());
+				String currentLine = inputParsingManager.getCommandLine();
+				
+				String stringToAdd = ((CompletionItem) listUI.getSelectedValue()).getReturnValue();
+				String stringToAddType = ((CompletionItem) listUI.getSelectedValue()).getType();
+				boolean typeStringIsFile = false;
+				
+				if (stringToAddType.equals(Messages.gettext("File or Directory"))) {
+				typeStringIsFile = true;
+				}
+				String newLine = Completion.completelineforjava(currentLine, stringToAdd, typeStringIsFile);
+				
+				inputParsingManager.reset();
+				inputParsingManager.append(newLine);
 
 				/* Hide the completion window and give the focus to the console */
 				window.setVisible(false);

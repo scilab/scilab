@@ -29,6 +29,15 @@ BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
+	sciPointObj * exportedFigure = NULL;
+	int nbRow;
+	int nbCol;
+	size_t stackPointer;
+	char * fileName = NULL;
+	ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
+	int status;
+	
+	/* Check input and output sizes */
 	CheckLhs(0,1);
 	if (isVectorialExport(fileType))
 	{
@@ -39,104 +48,128 @@ int xs2file(char * fname, ExportFileType fileType )
 		CheckRhs(2,2);
 	}
 
-	if ( (GetType(2) == sci_strings) && IsAScalar(1) )
+	/* Get exported figure */
+	if (IsAScalar(1))
 	{
-		int m1,n1,l1;
-		int figurenum = -1;
-		char * fileName = NULL;
-		int status;
-		ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
-
-		/* get figure number */
-		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		figurenum = *istk(l1);
-
-		/* Check that figure number exists */
-		if (!sciIsExistingFigure(figurenum))
+		/* window is specified by its number */
+		int figureIndex;
+		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&nbRow,&nbCol,&stackPointer);
+		figureIndex = *istk(stackPointer);
+		if (!sciIsExistingFigure(figureIndex))
 		{
-			Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, figurenum);
+			Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, figureIndex);
 			LhsVar(1)=0;
 			return -1;
 		}
-
-		/* get file name */
-		GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-		fileName = cstk(l1);
-
-		/* Get orientation */
-		if (Rhs == 3)
+		exportedFigure = getFigureFromIndex(figureIndex);
+	}
+	else if (GetType(1) == sci_handles)
+	{
+		/* handle given */
+		GetRhsVar(1, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &stackPointer);
+		if (nbRow * nbCol != 1)
 		{
-			int nbCol;
-			int nbRow;
-			int stackPointer;
-			char * sciOrientation;
-			/* vectorial export with orientation specified */
-			if (GetType(3) != sci_strings)
-			{
-				Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
-				return 0;
-			}
-			GetRhsVar(3,STRING_DATATYPE,&nbRow,&nbCol,&stackPointer);
-			sciOrientation = cstk(stackPointer);
-			/* Value should be 'landscape' or 'portrait' but check only the first character */
-			/* for compatibility with Scilab 4*/
-			if (strcmp(sciOrientation, "landscape") == 0 || strcmp(sciOrientation, "l") == 0)
-			{
-				orientation = EXPORT_LANDSCAPE;
-			}
-			else if(strcmp(sciOrientation, "portrait") == 0 || strcmp(sciOrientation, "p") == 0)
-			{
-				orientation = EXPORT_PORTRAIT;
-			}
-			else
-			{
-				Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
-				return 0;
-			}
+			Scierror(999,_("%s: Wrong size for input argument #%d: An Integer or a 'Figure' handle expected.\n"),fname, 1);
+			LhsVar(1)=0;
+			return 0;
 		}
 
-		/* Call the function for exporting file */
-		status = exportToFile(getFigureFromIndex(figurenum), fileName, fileType, orientation);
+		exportedFigure = sciGetPointerFromHandle((long) *hstk(stackPointer));
 
-		/* treat errors */
-		switch(status)
+		if (exportedFigure == NULL)
 		{
-		case EXPORT_UNKNOWN_GLEXCEPTION_ERROR :
-			Scierror(999,_("%s: OpenGL error during export.\n"),fname);
-			break;
-		case EXPORT_IOEXCEPTION_ERROR :
-			Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
-			break;
-		case EXPORT_INVALID_FILE :
-			Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
-			break;
-		case EXPORT_GL2PS_ERROR :
-			Scierror(999,_("%s: GL2PS error during export.\n"),fname);
-			break;
-		case EXPORT_GL2PS_OVERFLOW :
-			Scierror(999,_("%s: Unable to create export file, figure is too complex.\n"),fname);
-			break;
-		case EXPORT_GL2PS_UNINITIALIZED :
-			Scierror(999,_("%s: GL2PS error during export.\n"),fname);
-			break;
-		default :
-			break;
+			Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+      LhsVar(1) = 0;
+      return -1;
 		}
 
+		if (sciGetEntityType(exportedFigure) != SCI_FIGURE)
+		{
+			Scierror(999,_("%s: Wrong type for input argument #%d: An Integer or a 'Figure' handle expected.\n"),fname, 1);
+			LhsVar(1)=0;
+			return 0;
+		}
 	}
 	else
 	{
-		if ( !IsAScalar(1) )
+		Scierror(999,_("%s: Wrong type for input argument #%d: An Integer or a 'Figure' handle expected.\n"),fname, 1);
+		LhsVar(1)=0;
+		return 0;
+	}
+
+	/* Get file name */
+	if (GetType(2) == sci_strings)
+	{
+		GetRhsVar(2,STRING_DATATYPE,&nbCol,&nbRow,&stackPointer);
+		fileName = cstk(stackPointer);
+	}
+	else
+	{
+		Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 2);
+		LhsVar(1)=0;
+		return 0;
+	}
+
+	/* Get orientation if specified */
+	if (Rhs == 3)
+	{
+		char * sciOrientation;
+		/* vectorial export with orientation specified */
+		if (GetType(3) != sci_strings)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: An Integer expected.\n"),fname, 1);
+			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 3);
+			LhsVar(1)=0;
 			return 0;
 		}
-		if ( GetType(2) != sci_strings)
+		GetRhsVar(3,STRING_DATATYPE,&nbRow,&nbCol,&stackPointer);
+		sciOrientation = cstk(stackPointer);
+		/* Value should be 'landscape' or 'portrait' but check only the first character */
+		/* for compatibility with Scilab 4*/
+		if (strcmp(sciOrientation, "landscape") == 0 || strcmp(sciOrientation, "l") == 0)
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Single character string expected.\n"),fname, 2);
+			orientation = EXPORT_LANDSCAPE;
+		}
+		else if(strcmp(sciOrientation, "portrait") == 0 || strcmp(sciOrientation, "p") == 0)
+		{
+			orientation = EXPORT_PORTRAIT;
+		}
+		else
+		{
+			Scierror(999,_("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"),fname, 3, "portrait", "landscape");
+			LhsVar(1)=0;
 			return 0;
 		}
 	}
+
+
+	/* Call the function for exporting file */
+	status = exportToFile(exportedFigure, fileName, fileType, orientation);
+
+	/* treat errors */
+	switch(status)
+	{
+	case EXPORT_UNKNOWN_GLEXCEPTION_ERROR :
+		Scierror(999,_("%s: OpenGL error during export.\n"),fname);
+		break;
+	case EXPORT_IOEXCEPTION_ERROR :
+		Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
+		break;
+	case EXPORT_INVALID_FILE :
+		Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
+		break;
+	case EXPORT_GL2PS_ERROR :
+		Scierror(999,_("%s: GL2PS error during export.\n"),fname);
+		break;
+	case EXPORT_GL2PS_OVERFLOW :
+		Scierror(999,_("%s: Unable to create export file, figure is too complex.\n"),fname);
+		break;
+	case EXPORT_GL2PS_UNINITIALIZED :
+		Scierror(999,_("%s: GL2PS error during export.\n"),fname);
+		break;
+	default :
+		break;
+	}
+
 
 	LhsVar(1)=0;
 	return 0;

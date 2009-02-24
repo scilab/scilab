@@ -15,33 +15,33 @@
 #include "BOOL.h"
 
 /**
-* Set if the output must be in UTF or not (many used by do_xxprintf.c
-* set_xxorintf.c)
-*
-*/
+ * Set if the output must be in UTF or not (many used by do_xxprintf.c
+ * set_xxorintf.c)
+ *
+ */
 void setOutputInUTF(BOOL);
 
 /**
-* Return is the output is in UTF 8 or not
-*
-* @return TRUE is UTF FALSE otherwise
-*/
+ * Return is the output is in UTF 8 or not
+ *
+ * @return TRUE is UTF FALSE otherwise
+ */
 BOOL isOutputInUTF(void);
 
 /**
-* Return the encoding of a specific lang
-*
-* @param lang  the langage
-* @return the encoding
-*/
+ * Return the encoding of a specific lang
+ *
+ * @param lang  the langage
+ * @return the encoding
+ */
 char *getEncoding(char *lang);
 
 /**
-* @TODO add comment
-*
-* @param buffer
-* @return <ReturnValue>
-*/
+ * @TODO add comment
+ *
+ * @param buffer
+ * @return <ReturnValue>
+ */
 char* UTFToLocale(char* _szBufferIn, char *_szBuffOut);
 
 char* localeToUTF(char* _szBufferIn, char *_szBuffOut);
@@ -56,4 +56,3 @@ char* readNextUTFChar(char* utfstream,int* size);
 
 
 #endif /* __CHARENCODING_H__ */
-

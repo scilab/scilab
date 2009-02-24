@@ -22,7 +22,9 @@ libscispreadsheet_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(srcdir)/src/c/ripole \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/io/includes \
+				-I$(top_srcdir)/modules/fileio/includes
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
 

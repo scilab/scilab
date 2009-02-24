@@ -22,7 +22,7 @@
 // configure your remote desktop and connect to your pc
 // and launch scilab
 
-if ~msdos then pause,end
+if ~MSDOS then pause,end
 if win64() <> %t then pause,end
 if istssession() <> %t then pause,end
 

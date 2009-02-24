@@ -48,7 +48,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 #ifdef _MSC_VER
    {
 		char *path=cstk(l2);
-		wsprintf(DriveTemp,"%s",path);
+		sprintf(DriveTemp,"%s",path);
 		if (path)
 		{
 			if ( (path[strlen(path)-1]=='/') || (path[strlen(path)-1]=='\\') )

@@ -50,6 +50,8 @@ int C2F(sci_fileext)(char *fname,unsigned long fname_len);
 int C2F(sci_isdir)(char *fname,unsigned long fname_len);
 int C2F(sci_createdir)(char *fname,unsigned long fname_len);
 int C2F(sci_removedir)(char *fname,unsigned long fname_len);
+int C2F(sci_chdir)(char *fname,unsigned long fname_len);
+int C2F(sci_getcwd)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

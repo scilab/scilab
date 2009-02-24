@@ -131,44 +131,29 @@ end
 // calling user initialization =========================================
 // Home dir startup (if any)
 if sciargs()<>'-nouserstartup' then
-  startup_path = SCIHOME+filesep();
+  startup_path = SCIHOME + filesep();
 
-  [startup,ierr] = mopen(startup_path+'.scilab','r');
-  if ierr == 0 then
-    exec(startup,-1);mclose(startup);
+  if (fileinfo(startup_path+'.scilab') <> []) then
+    exec(startup_path+'.scilab',-1);
   else
-    [startup,ierr] = mopen(startup_path+'scilab.ini','r');
-    if ierr == 0 then
-      exec(startup,-1);mclose(startup);
+    if (fileinfo(startup_path+'scilab.ini') <> []) then
+      exec(startup_path+'scilab.ini',-1);
     end
   end
   clear startup ierr startup_path
 
   // working dir startup (if any)
-  if  home<>PWD then
-    [startup,ierr] = mopen('.scilab','r');
-    if ierr == 0 then
-      exec(startup,-1);
-      mclose(startup);
+  if (SCIHOME <> getcwd()) then
+    if (fileinfo('.scilab') <> []) then
+      exec('.scilab',-1);
     else
-      [startup,ierr] = mopen('scilab.ini','r');
-      if ierr == 0 then
-		    exec(startup,-1);
-		    mclose(startup);
+      if (fileinfo('scilab.ini') <> []) then
+        exec('scilab.ini',-1);
       end
     end
   end
 end
 clear startup ierr
-
-// Detects if the bug 3443  ====================================
-// ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
-// is present or not
-//foo = 8.8353017163510351e-10;
-//if ( ( sqrt(foo) == foo^(0.5) ) == %f & ~MSDOS ) then
-//	disp(gettext("This case should NOT occur. You are faced to the bug #3443. Please report to Scilab''s bugtracker ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 ) with your CPU (cat /proc/cpuinfo), your operating system, your kernel (uname -a) and the result of the Scilab command ''ver''."));
-//end
-//clear foo
 
 // Menus/toolbar can now be enabled ====================================
 if ( getscilabmode() == 'STD') then

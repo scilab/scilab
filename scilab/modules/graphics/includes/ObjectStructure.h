@@ -297,6 +297,7 @@ typedef struct
   int numColors ;
   BOOL autoResizeMode;
 	char * infoMessage; /**< String displayed in the info bar of the graphic window */
+	int antialiasingQuality;
 }
 FigureModelData ;
 

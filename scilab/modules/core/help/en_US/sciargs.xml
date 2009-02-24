@@ -18,7 +18,7 @@
     arguments of the Scilab command line. First <literal>args</literal> entry contains
     the path of the lanched executable file.</para>
     <para>
-    This function correspond to the <literal>getarg</literal> function in C langage</para>
+    This function corresponds to the <literal>getarg</literal> function in C langage</para>
   </refsection>
   <refsection>
     <title>See Also</title>

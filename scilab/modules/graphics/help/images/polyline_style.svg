@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="612px" height="374px" viewBox="0 0 612 374">
+<title>Figure 0</title>
+<desc>
+Creator: GL2PS 1.3.2, (C) 1999-2006 Christophe Geuzaine (geuz@geuz.org)
+For: Scilab
+CreationDate: Thu Feb 19 14:07:28 2009
+</desc>
+<defs>
+</defs>
+<g>
+<polygon fill="#ffffff" points="0,374 612,374 612,0"/>
+<polygon fill="#ffffff" points="0,374 612,0 0,0"/>
+<polygon fill="#ffffff" points="0,374 0,0 0,0"/>
+<polygon fill="#ffffff" points="0,374 612,374 612,374"/>
+<polygon fill="#ffffff" points="0,374 0,0 0,374"/>
+<polygon fill="#ffffff" points="0,374 612,374 0,374"/>
+<polygon fill="#000000" points="82.6201,163.625 235.62,116.875 6.12012,163.625"/>
+<polygon fill="#000000" points="128.52,149.6 235.62,116.875 82.6201,163.625"/>
+<polygon fill="#000000" points="189.72,154.275 235.62,116.875 128.52,149.6"/>
+<polygon fill="#ffffff" points="6.12012,327.25 6.12012,327.25 6.12012,233.75"/>
+<polygon fill="#ffffff" points="6.12012,327.25 6.12012,233.75 6.12012,233.75"/>
+<polygon fill="#ffffff" points="82.6201,327.25 82.6201,327.25 82.6201,233.75"/>
+<polygon fill="#ffffff" points="82.6201,327.25 82.6201,233.75 82.6201,233.75"/>
+<polygon fill="#ffffff" points="128.52,327.25 128.52,327.25 128.52,219.725"/>
+<polygon fill="#ffffff" points="128.52,327.25 128.52,219.725 128.52,219.725"/>
+<polygon fill="#ffffff" points="189.72,327.25 189.72,327.25 189.72,224.4"/>
+<polygon fill="#ffffff" points="189.72,327.25 189.72,224.4 189.72,224.4"/>
+<polygon fill="#ffffff" points="235.62,327.25 235.62,327.25 235.62,187"/>
+<polygon fill="#ffffff" points="235.62,327.25 235.62,187 235.62,187"/>
+<polygon fill="#000000" points="381.591,96.0581 388.62,93.5 381.591,90.9419"/>
+<polygon fill="#000000" points="428.545,83.9756 434.52,79.4751 427.05,79.0825"/>
+<polygon fill="#000000" points="488.517,86.1655 495.72,84.1499 488.906,81.064"/>
+<polygon fill="#000000" points="537.787,53.1733 541.62,46.75 534.555,49.2065"/>
+<polygon fill="#ffffff" points="312.12,327.25 342.72,327.25 342.72,233.75"/>
+<polygon fill="#ffffff" points="312.12,327.25 342.72,233.75 312.12,233.75"/>
+<polygon fill="#ffffff" points="388.62,327.25 419.22,327.25 419.22,233.75"/>
+<polygon fill="#ffffff" points="388.62,327.25 419.22,233.75 388.62,233.75"/>
+<polygon fill="#ffffff" points="434.52,327.25 465.12,327.25 465.12,219.725"/>
+<polygon fill="#ffffff" points="434.52,327.25 465.12,219.725 434.52,219.725"/>
+<polygon fill="#ffffff" points="495.72,327.25 526.32,327.25 526.32,224.4"/>
+<polygon fill="#ffffff" points="495.72,327.25 526.32,224.4 495.72,224.4"/>
+<polygon fill="#ffffff" points="541.62,327.25 572.22,327.25 572.22,187"/>
+<polygon fill="#ffffff" points="541.62,327.25 572.22,187 541.62,187"/>
+<text fill="#000000" x="12" y="73" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=1</text>
+<text fill="#000000" x="12" y="143" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=5</text>
+<text fill="#000000" x="12" y="198" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=3</text>
+<text fill="#000000" x="12" y="212" font-size="10" font-family="SansSerif" font-weigth="bold">line_mode="off"</text>
+<text fill="#000000" x="333" y="73" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=4</text>
+<text fill="#000000" x="333" y="143" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=2</text>
+<text fill="#000000" x="333" y="184" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=6</text>
+<text fill="#000000" x="333" y="198" font-size="10" font-family="SansSerif" font-weigth="bold">line_mode="off"</text>
+<text fill="#000000" x="333" y="212" font-size="10" font-family="SansSerif" font-weigth="bold">bar_width=10</text>
+<polyline fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="11,5" points="0,327.25 612,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="6.12012,93.5 82.6201,93.5 128.52,79.4751 189.72,84.1499 235.62,46.75"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="6.12012,163.625 82.6201,163.625 128.52,149.6 189.72,154.275 235.62,116.875"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="6.12012,327.25 6.12012,327.25 6.12012,233.75 6.12012,233.75 6.12012,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="82.6201,327.25 82.6201,327.25 82.6201,233.75 82.6201,233.75 82.6201,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="128.52,327.25 128.52,327.25 128.52,219.725 128.52,219.725 128.52,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="189.72,327.25 189.72,327.25 189.72,224.4 189.72,224.4 189.72,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="235.62,327.25 235.62,327.25 235.62,187 235.62,187 235.62,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="312.12,93.5 388.62,93.5 434.52,79.4751 495.72,84.1499 541.62,46.75"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="327.42,163.625 403.92,163.625 403.92,163.625 449.82,163.625 449.82,149.6 511.02,149.6 511.02,154.275 556.92,154.275 556.92,116.875"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="312.12,327.25 342.72,327.25 342.72,233.75 312.12,233.75 312.12,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="388.62,327.25 419.22,327.25 419.22,233.75 388.62,233.75 388.62,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="434.52,327.25 465.12,327.25 465.12,219.725 434.52,219.725 434.52,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="495.72,327.25 526.32,327.25 526.32,224.4 495.72,224.4 495.72,327.25"/>
+<polyline fill="none" stroke="#000000" stroke-width="1" points="541.62,327.25 572.22,327.25 572.22,187 541.62,187 541.62,327.25"/>
+</g>
+</svg>

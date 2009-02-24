@@ -58,7 +58,7 @@
 				ExecutionBucket="5"
 				Optimization="0"
 				AdditionalIncludeDirectories="../f2c"
-				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;STRICT;WITH_TK;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				PrecompiledHeaderFile=""
@@ -88,13 +88,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="false"
-				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\LibScilab.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -168,7 +166,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="../f2c"
-				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;STRICT;WITH_TK;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="_;LIBSCILAB_EXPORTS;_DEBUG;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				PrecompiledHeaderFile=""
@@ -194,13 +192,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="false"
-				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\LibScilab.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -274,7 +270,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../f2c"
-				PreprocessorDefinitions="NDEBUG;_;LIBSCILAB_EXPORTS;STRICT;WITH_TK;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="NDEBUG;_;LIBSCILAB_EXPORTS;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -307,12 +303,11 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../f2c"
-				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
@@ -390,7 +385,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="../f2c"
-				PreprocessorDefinitions="NDEBUG;_;LIBSCILAB_EXPORTS;STRICT;WITH_TK;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
+				PreprocessorDefinitions="NDEBUG;_;LIBSCILAB_EXPORTS;USE_F2C;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -419,12 +414,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="comctl32.lib wsock32.lib shell32.lib winspool.lib user32.lib gdi32.lib comdlg32.lib kernel32.lib advapi32.lib shlwapi.lib $(NOINHERIT)"
 				OutputFile="../../bin/LibScilab.dll"
 				LinkIncremental="0"
 				SuppressStartupBanner="true"
 				AdditionalLibraryDirectories="../f2c"
-				IgnoreDefaultLibraryNames="libc.lib;msvcrtd.lib;libcmt.lib"
+				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile="..\LibScilab.def"
 				ProgramDatabaseFile="$(ConfigurationName)/LibScilab.pdb"
 				SubSystem="2"
@@ -489,6 +483,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\ExplicitExportsLibScilab.vcdef"
+			>
+		</File>
 		<File
 			RelativePath="..\..\bin\libf2c.lib"
 			>

@@ -136,7 +136,7 @@ public final class GLTools {
 		manager.pushPlanes(gl, transform);
 		gl.glMatrixMode(GL.GL_PROJECTION);
 		gl.glPushMatrix();
-		gl.glLoadIdentity();
+		transform.loadIdentityWithAntialiasing(gl);
 		
 		double[] viewPort = transform.getViewPort();
 		gl.glOrtho(0.0, viewPort[2], 0.0, viewPort[VIEWPORT_LENGTH - 1],

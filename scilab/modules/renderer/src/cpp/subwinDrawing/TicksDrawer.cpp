@@ -21,6 +21,8 @@ extern "C"
 #include "GetProperty.h"
 };
 
+using std::sprintf;
+
 namespace sciGraphics
 {
 

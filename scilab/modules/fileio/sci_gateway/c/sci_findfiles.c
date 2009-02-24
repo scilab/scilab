@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
+#include "scicurdir.h" /* scigetcwd */
 #include "Scierror.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
