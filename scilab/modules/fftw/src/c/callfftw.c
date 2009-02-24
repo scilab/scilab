@@ -68,6 +68,7 @@ BOOL LoadFFTWLibrary(char *libraryname)
 	{
 		return TRUE;
 	}
+	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL DisposeFFTWLibrary(void)

@@ -694,9 +694,9 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	// Build the command to launch
 	if MSDOS then
-		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+this_launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
+		test_cmd = "( """+SCI_BIN+"\bin\scilex.exe"+""""+" "+this_launch_mode+" "+this_english_imposed+" -nb -f """+tmp_tstfile+""" > """+tmp_resfile+""" ) 2> """+tmp_errfile+"""";
 	else
-		test_cmd = "( "+SCI_BIN+"/bin/scilab "+this_launch_mode+" "+this_english_imposed+" -nb -args -nouserstartup -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
+		test_cmd = "( "+SCI_BIN+"/bin/scilab "+this_launch_mode+" "+this_english_imposed+" -nb -f "+tmp_tstfile+" > "+tmp_resfile+" ) 2> "+tmp_errfile;
 	end
 	
 	// Launch the test exec

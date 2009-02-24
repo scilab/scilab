@@ -15,6 +15,7 @@
 
 %{
 #include "../c/completion_wrap_java.h"
+#include "../c/completeLine_wrap_java.h"
 #include "getCommonPart.h"
 #include "getPartLine.h"
 #include "MALLOC.h"
@@ -171,3 +172,15 @@ char *getFilePartLevel(char *line);
 */
 public";
 char *getCommonPart(char **dictionnary, int sizeDictionnary);
+
+/* JavaDoc */
+%javamethodmodifiers completelineforjava(char *currentLine, char *stringToAdd, BOOL isFile) "
+/**
+* complete line
+* @param[in] current line
+* @param[in] line to add
+* @param[in] type of line to add
+* @return modified line 
+*/
+public";
+char *completelineforjava(char *currentLine,char *stringToAdd,BOOL isFile);

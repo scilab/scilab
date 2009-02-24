@@ -11,11 +11,30 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 4067 fixed - bug with completion and some paths
+
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
 * bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C only)
 
+* bug 4128 fixed - 'win' argument of the event_handler function did not work 
+                   (was always 0 instead of current figure ID).
+
 * bug 4132 fixed - fullpath crashs
+
+* bug 4134 fixed - In some cases, bad detection of a 64 bit arch was 
+                   causing a seg fault during the "make doc" process
+
+* bug 4150 fixed - user startup executed twice if you change directory to SCIHOME in this file.
+
+* bug 4159 fixed - coshlt was defined twice on windows
+
+* bug 4164 fixed - isinf is now defined in more recent versions of the Sun 
+				   Compiler. Detection and replacement of the function is now
+				   done in the configure.
+
+* bug 4166 fixed - test_run was broken
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
@@ -95,7 +114,6 @@ mclose, deletefile, findfiles, ls, listfiles, getshortpathname,
 getlongpathname, removedir...) now handle file and directory names containing
 UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
 (Unitary tests provided) 
-
 
 Misc:
 =====
@@ -477,6 +495,8 @@ Bug fixes:
 
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
                    blank graphic windows. (Windows)
+				   
+* bug 4094 fixed - core/includes/scisparse.h wasn't installed.
 
 * Side effect in the setenvc function.
 

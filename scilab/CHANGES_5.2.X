@@ -7,6 +7,8 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
+* modelicac (scicos) built with Ocaml 3.11.0 on windows
+
 Source reorganisation:
 ======================
 
@@ -28,3 +30,5 @@ Bug fixes:
 * bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
+
+* bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.

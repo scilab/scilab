@@ -40,6 +40,9 @@ c
       double precision urand,sr,si,t1
 
       integer halt
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /coshlt/
+cDEC$ ENDIF      
       common /coshlt/ halt
 c     
       if(flag.eq.1.or.flag.eq.6) then

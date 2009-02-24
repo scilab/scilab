@@ -186,13 +186,24 @@ void cscope(scicos_block * block,int flag)
 	scoRetrieveScopeMemory(block->work, &pScopeMemory);
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
-	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    pShortDraw = sciGetCurrentFigure();
-	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
-			/* restore double buffering */
-			sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
-	    scoDelCoupleOfPolylines(pScopeMemory);
+	  //  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	  //  pShortDraw = sciGetCurrentFigure();
+	  //  pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
+	  //  pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
+			///* restore double buffering */
+			//sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
+	  //  scoDelCoupleOfPolylines(pScopeMemory);
+
+			/* Check if figure is still opened, otherwise, don't try to destroy it again. */
+			scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
+			if (figure != NULL)
+			{
+				clearUserData(figure);
+				/* restore double buffering */
+				sciSetJavaUseSingleBuffer(figure, FALSE);
+				scoDelCoupleOfPolylines(pScopeMemory);
+			}
+
 	  }
 	scoFreeScopeMemory(block->work, &pScopeMemory);
 	break;  

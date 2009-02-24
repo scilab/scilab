@@ -68,6 +68,7 @@ int sci_delete(char *fname,unsigned long fname_len)
       startGraphicDataWriting();
       sciXbasc();
       endGraphicDataWriting();
+			sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
       return 0;
     }
     else

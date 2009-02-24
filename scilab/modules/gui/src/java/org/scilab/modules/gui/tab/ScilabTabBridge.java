@@ -370,7 +370,7 @@ public class ScilabTabBridge {
 	 * @return the position of the Tree in the member list.
 	 */
 	public static int addMember(Tab tab, Tree member) {
-		return (tab.getAsSimpleTab().addMember(member));
+	    return (tab.getAsSimpleTab().addMember(member));
 	}
 
 	/**
@@ -379,7 +379,7 @@ public class ScilabTabBridge {
 	 * @param member the Tree to add
 	 */
 	public static void removeMember(Tab tab, Tree member) {
-		//tab.getAsSimpleTab().removeMember(member);
+	    tab.getAsSimpleTab().removeMember(member);
 	}
 
 	/**
