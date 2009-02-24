@@ -459,6 +459,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_chinesehat.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_clean.c"
 				>
 			</File>

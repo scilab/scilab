@@ -151,6 +151,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_asin.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_atan.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ceil.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_chinesehat.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_clean.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_conj.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_cos.f"/>
