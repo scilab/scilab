@@ -496,7 +496,9 @@ Bug fixes:
 * bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
                    blank graphic windows. (Windows)
 				   
-* bug 4094 fixed - core/includes/scisparse.h wasn't installed.
+* bug 4094 fixed - delete("all") does not refresh the graphic.
+
+* bug 4173 fixed - Graphic export : Style the text fonts is not respected when exporting to SVG.
 
 * Side effect in the setenvc function.
 
