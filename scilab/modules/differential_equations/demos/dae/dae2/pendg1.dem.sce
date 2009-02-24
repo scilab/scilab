@@ -11,7 +11,6 @@
 
 exec(SCI+"/modules/differential_equations/demos/dae/dae2/pendg.sci");
 exec(SCI+"/modules/differential_equations/demos/dae/dae2/pendc1.sci");
-exec(SCI+"/modules/differential_equations/demos/dae/dae2/demo_sliding_pendulum.sci");
 
 g    = 10;
 l    = 1;
