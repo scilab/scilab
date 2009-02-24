@@ -19,7 +19,8 @@ function ilib_gen_Make_unix(names,   ..
 							ldflags, ..
 							cflags,  ..
 							fflags,  ..
-							cc       ..
+							cc,      ..
+							tables   ..
 							)
 
 	if libname == "" then libname = names(1);end
@@ -29,7 +30,29 @@ function ilib_gen_Make_unix(names,   ..
 		libname = l(2);
 		clear l;
 	end
-	
+
+
+	/// Check tables ... the second element should be the file name
+	if typeof(tables)<>'list' then 
+	  tables=list(tables)
+	end
+	L=length(tables); 
+   
+	// for each element in tables
+	for it=1:L 
+	  table = tables(it)
+	  [mt,nt]=size(table);
+	  for i=1:mt ; 
+		// mex files to be added to the build process
+		if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' then
+		disp("add 1")
+		  if find(files==table(i,2)) == [] then // If not already in the array
+			files=[files, table(i,2)] // add it to the file list
+		  end
+		end
+	  end
+	end
+
 	warningmode = warning('query');
 	
 	originPath  = pwd();

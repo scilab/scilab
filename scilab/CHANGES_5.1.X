@@ -11,6 +11,9 @@ Compilation:
 Bug fixes:
 ==========
 
+* bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
+		   variable tables to compile other files
+
 * bug 4067 fixed - bug with completion and some paths
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
