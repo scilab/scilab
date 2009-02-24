@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>find</refname>
-    <refpurpose> find indices of  boolean vector or matrix true elements</refpurpose>
+    <refpurpose> find indices of boolean vector or matrix true elements</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -66,6 +66,13 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
+
+beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
+find(beers=="Leffe") // OK
+find(beers=="1664") // KO
+find(beers=="Foster") // KO
+beers=[beers, "Foster"]
+find(beers=="Foster") // OK
 
 A=rand(1,20);
 w=find(A<0.4)
