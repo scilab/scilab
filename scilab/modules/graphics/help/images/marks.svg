@@ -815,21 +815,21 @@ CreationDate: Thu Feb 19 14:13:08 2009
 <polygon fill="#ffd700" points="577.051,60.9917 574,51.6001 569.062,66.7959"/>
 <polygon fill="#ffd700" points="578.938,66.7959 574,51.6001 570.949,60.9917"/>
 <polygon fill="#ffd700" points="581.989,57.4043 566.011,57.4043 574,63.2085"/>
-<text fill="#000000" x="35" y="20" font-size="10" font-family="SansSerif.plain">0</text>
-<text fill="#000000" x="74" y="20" font-size="10" font-family="SansSerif.plain">1</text>
-<text fill="#000000" x="112" y="20" font-size="10" font-family="SansSerif.plain">2</text>
-<text fill="#000000" x="150" y="20" font-size="10" font-family="SansSerif.plain">3</text>
-<text fill="#000000" x="188" y="20" font-size="10" font-family="SansSerif.plain">4</text>
-<text fill="#000000" x="227" y="20" font-size="10" font-family="SansSerif.plain">5</text>
-<text fill="#000000" x="265" y="20" font-size="10" font-family="SansSerif.plain">6</text>
-<text fill="#000000" x="304" y="20" font-size="10" font-family="SansSerif.plain">7</text>
-<text fill="#000000" x="342" y="20" font-size="10" font-family="SansSerif.plain">8</text>
-<text fill="#000000" x="380" y="20" font-size="10" font-family="SansSerif.plain">9</text>
-<text fill="#000000" x="415" y="20" font-size="10" font-family="SansSerif.plain">10</text>
-<text fill="#000000" x="455" y="20" font-size="10" font-family="SansSerif.plain">11</text>
-<text fill="#000000" x="493" y="20" font-size="10" font-family="SansSerif.plain">12</text>
-<text fill="#000000" x="531" y="20" font-size="10" font-family="SansSerif.plain">13</text>
-<text fill="#000000" x="568" y="20" font-size="10" font-family="SansSerif.plain">14</text>
+<text fill="#000000" x="35" y="20" font-size="10" font-family="SansSerif" font-weight="plain">0</text>
+<text fill="#000000" x="74" y="20" font-size="10" font-family="SansSerif" font-weight="plain">1</text>
+<text fill="#000000" x="112" y="20" font-size="10" font-family="SansSerif" font-weight="plain">2</text>
+<text fill="#000000" x="150" y="20" font-size="10" font-family="SansSerif" font-weight="plain">3</text>
+<text fill="#000000" x="188" y="20" font-size="10" font-family="SansSerif" font-weight="plain">4</text>
+<text fill="#000000" x="227" y="20" font-size="10" font-family="SansSerif" font-weight="plain">5</text>
+<text fill="#000000" x="265" y="20" font-size="10" font-family="SansSerif" font-weight="plain">6</text>
+<text fill="#000000" x="304" y="20" font-size="10" font-family="SansSerif" font-weight="plain">7</text>
+<text fill="#000000" x="342" y="20" font-size="10" font-family="SansSerif" font-weight="plain">8</text>
+<text fill="#000000" x="380" y="20" font-size="10" font-family="SansSerif" font-weight="plain">9</text>
+<text fill="#000000" x="415" y="20" font-size="10" font-family="SansSerif" font-weight="plain">10</text>
+<text fill="#000000" x="455" y="20" font-size="10" font-family="SansSerif" font-weight="plain">11</text>
+<text fill="#000000" x="493" y="20" font-size="10" font-family="SansSerif" font-weight="plain">12</text>
+<text fill="#000000" x="531" y="20" font-size="10" font-family="SansSerif" font-weight="plain">13</text>
+<text fill="#000000" x="568" y="20" font-size="10" font-family="SansSerif" font-weight="plain">14</text>
 <polyline fill="none" stroke="#000000" stroke-width="1" points="69,34 83,34"/>
 <polyline fill="none" stroke="#000000" stroke-width="1" points="76,41 76,27"/>
 <polyline fill="none" stroke="#000000" stroke-width="1" points="108,27 122,41"/>

@@ -44,15 +44,15 @@ CreationDate: Thu Feb 19 14:07:28 2009
 <polygon fill="#ffffff" points="495.72,327.25 526.32,224.4 495.72,224.4"/>
 <polygon fill="#ffffff" points="541.62,327.25 572.22,327.25 572.22,187"/>
 <polygon fill="#ffffff" points="541.62,327.25 572.22,187 541.62,187"/>
-<text fill="#000000" x="12" y="73" font-size="10" font-family="SansSerif.bold">polyline_style=1</text>
-<text fill="#000000" x="12" y="143" font-size="10" font-family="SansSerif.bold">polyline_style=5</text>
-<text fill="#000000" x="12" y="198" font-size="10" font-family="SansSerif.bold">polyline_style=3</text>
-<text fill="#000000" x="12" y="212" font-size="10" font-family="SansSerif.bold">line_mode="off"</text>
-<text fill="#000000" x="333" y="73" font-size="10" font-family="SansSerif.bold">polyline_style=4</text>
-<text fill="#000000" x="333" y="143" font-size="10" font-family="SansSerif.bold">polyline_style=2</text>
-<text fill="#000000" x="333" y="184" font-size="10" font-family="SansSerif.bold">polyline_style=6</text>
-<text fill="#000000" x="333" y="198" font-size="10" font-family="SansSerif.bold">line_mode="off"</text>
-<text fill="#000000" x="333" y="212" font-size="10" font-family="SansSerif.bold">bar_width=10</text>
+<text fill="#000000" x="12" y="73" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=1</text>
+<text fill="#000000" x="12" y="143" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=5</text>
+<text fill="#000000" x="12" y="198" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=3</text>
+<text fill="#000000" x="12" y="212" font-size="10" font-family="SansSerif" font-weigth="bold">line_mode="off"</text>
+<text fill="#000000" x="333" y="73" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=4</text>
+<text fill="#000000" x="333" y="143" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=2</text>
+<text fill="#000000" x="333" y="184" font-size="10" font-family="SansSerif" font-weigth="bold">polyline_style=6</text>
+<text fill="#000000" x="333" y="198" font-size="10" font-family="SansSerif" font-weigth="bold">line_mode="off"</text>
+<text fill="#000000" x="333" y="212" font-size="10" font-family="SansSerif" font-weigth="bold">bar_width=10</text>
 <polyline fill="none" stroke="#000000" stroke-width="1" stroke-dasharray="11,5" points="0,327.25 612,327.25"/>
 <polyline fill="none" stroke="#000000" stroke-width="1" points="6.12012,93.5 82.6201,93.5 128.52,79.4751 189.72,84.1499 235.62,46.75"/>
 <polyline fill="none" stroke="#000000" stroke-width="1" points="6.12012,163.625 82.6201,163.625 128.52,149.6 189.72,154.275 235.62,116.875"/>
