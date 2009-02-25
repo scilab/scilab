@@ -8,6 +8,15 @@ Compilation:
   access when building the documentation (necessary when building the 
   documentation in a chroot)
 
+Help & Tests:
+=============
+
+* Examples and unit tests added for the function find
+
+* Unit tests for the completion (GUI & NW/NWNI modes)
+
+* Minor improvements in the documentation of the ilib_* functions
+
 Bug fixes:
 ==========
 
