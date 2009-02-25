@@ -19,9 +19,16 @@ Input/Output functions:
 
  - Rewrite :
  	+ getenv
+ 	
+Core functions:
+===============
+
+ - Rewrite :
+ 	+ mode
+ 	
 
 Dynamic link:
-=========================
+=============
  - Windows : temporary files (objects) are generated in a intermediate subdirectory (Release or Debug)
    ilib_for_link and ilib_gen_Make (with Visual studio) use a same makefile template.
    (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC)
