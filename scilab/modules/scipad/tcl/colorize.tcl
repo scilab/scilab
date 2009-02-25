@@ -215,6 +215,20 @@ proc colorize {w cpos iend} {
             set initial [string range $kword 0 0]
             foreach itag $scitags {
                 if {[string first $initial $chset(scilab.$itag)]>=0} {
+                    #####
+                    # debug code to understand bug 4053
+                    if {[catch {lsearch -exact $words(scilab.$itag.$initial) $kword}]} {
+                        # bug 4053 triggers
+                        # race condition? save vars NOW by passing them by value as args
+                        # instead of using a global in proc dealwithbug4053
+                        global dynamickeywords_running dynamickeywords_ran_once
+                        dealwithbug4053 $w $itag $initial $scitags $star $stop $kword $amatch $allmatch \
+                                        $dynamickeywords_running $dynamickeywords_ran_once \
+                                        [array get chset] [array get words]
+                    }
+                    # end of debug code to understand bug 4053
+                    # <TODO> remove this section and similar ones throughout the Scipad code once bug 4053 is fixed
+                    #####
                     if {[lsearch -exact $words(scilab.$itag.$initial) \
                             $kword] != -1} {
                         $w tag add $itag $star $stop

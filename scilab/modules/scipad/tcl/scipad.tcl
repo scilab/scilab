@@ -38,6 +38,10 @@ if { [info exists pad] } {
 
 } else {
 
+# Debug for bug 4053 - <TODO> can be removed later
+set dynamickeywords_ran_once false
+set dynamickeywords_running false
+
     set pad .scipad
 
     if {[file exists [file join  "$env(SCIINSTALLPATH)" "modules" "scipad"]]} {
