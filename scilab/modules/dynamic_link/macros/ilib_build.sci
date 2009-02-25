@@ -32,13 +32,13 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   
   // generate the gateway file
   if (warningmode == 'on') then
-    write(%io(2),_("   Generate a gateway file"));
+    mprintf(_("   Generate a gateway file\n"));
   end    
   ilib_gen_gateway(ilib_name,table)
   
   // generate a loader file
   if (warningmode == 'on') then
-    write(%io(2),_("   Generate a loader file"));
+    mprintf(_("   Generate a loader file\n"));
   end
   if ~ismex then
     ilib_gen_loader(ilib_name,table,libs);
@@ -48,11 +48,11 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   
   // generate a Makefile
   if (warningmode == 'on') then
-	if MSDOS
-	  write(%io(2),sprintf(_("   Generate a Makefile: %s"),'Makelib'));
-	else
-  	  write(%io(2),sprintf(_("   Generate a Makefile")));
-	end
+	  if MSDOS
+	    mprintf(_("   Generate a Makefile: %s\n"),'Makelib');
+	  else
+  	  mprintf(_("   Generate a Makefile\n"));
+	  end
   end
   
   if ~MSDOS then // Needs to copy the libfoo.c which contains important stuff
@@ -63,7 +63,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   
   // we call make
   if (warningmode == 'on') then
-    write(%io(2),_("   Running the makefile"));
+    mprintf(_("   Running the makefile\n"));
   end
   ilib_compile(ilib_name,makename,files);
   
