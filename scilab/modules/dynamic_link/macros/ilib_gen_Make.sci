@@ -53,15 +53,15 @@ function Makename=ilib_gen_Make(name,tables,files,libs,makename,with_gateway,ldf
      case 'VC++'   then Makename = makename+'.mak'
       ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
      case 'gcc' then 
-      Makename = makename;
-      ilib_gen_Make_unix(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags,cc)
+      Makename = makename; 
+      ilib_gen_Make_unix(name,files,libs,Makename,with_gateway,ldflags,cflags,fflags,cc,tables)
     else
        Makename = makename;
        ilib_gen_Make_win32(name,tables,files,libs,Makename,with_gateway,ldflags,cflags,fflags)
     end
   else
      Makename = makename;
-     ilib_gen_Make_unix(name,files,libs,name,ldflags,cflags,fflags,cc)
+     ilib_gen_Make_unix(name,files,libs,name,ldflags,cflags,fflags,cc,tables)
   end
   end
 endfunction
