@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="eval">
+  <refnamediv>
+    <refname>eval</refname>
+    <refpurpose>(Matlab function) Execute a string containing an instruction/expression</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+eval
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+evstr
+execstr
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>Expression</term>
+        <listitem>
+          <para>
+When <emphasis role="bold">eval</emphasis> has to execute an expression then Scilab equivalent for <emphasis role="bold">eval</emphasis> is <emphasis role="bold">evstr</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Instruction</term>
+        <listitem>
+          <para>
+When <emphasis role="bold">eval</emphasis> has to execute an instruction with just one output value then Scilab equivalent for <emphasis role="bold">eval</emphasis> is <emphasis role="bold">evstr</emphasis>. If instruction has more than one output value then <emphasis role="bold">execstr</emphasis> has to be used as follows.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+When <emphasis role="bold">eval</emphasis> is used with two inputs then an equivalent can be found in examples below.
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" pgwide="1">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+eval('1+1')
+eval('x=1+1')
+eval('[d1,d2]=size(1)')
+[d1,d2]=eval('size(1)')
+eval('1+1','1+2')
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+evstr('1+1')
+x = evstr('1+1')
+execstr('[d1,d2]=size(1)')
+execstr('[d1,d2]=size(1)')
+if execstr("1+1","errcatch") then execstr("1+2");end
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

@@ -24,7 +24,8 @@ src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
 src/c/getCommonPart.c \
-src/c/completeLine.c
+src/c/completeLine.c \
+src/c/completeLine_wrap_java.c 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \

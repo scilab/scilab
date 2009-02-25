@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isa">
+  <refnamediv>
+    <refname>isa</refname>
+    <refpurpose>(Matlab function) Detect an object of a given type</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+isa
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+There is no equivalent function for Matlab <emphasis role="bold">isa</emphasis> function in Scilab but it can be replaced by equivalent syntaxes as shown is examples.
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" pgwide="1">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+a = isa(x,'logical')
+b = isa(x,'char')
+c = isa(x,'numeric')
+d = isa(x,'int8')
+e = isa(x,'uint8')
+f = isa(x,'int16')
+g = isa(x,'uint16')
+h = isa(x,'int32')
+k = isa(x,'uint32')
+l = isa(x,'single')
+m = isa(x,'double')
+n = isa(x,'cell')
+o = isa(x,'struct')
+p = isa(x,'function_handle')
+q = isa(x,'sparse')
+r = isa(x,'lti')
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+a = type(x)==4;
+b = type(x)==10;
+c = or(type(x)==[1,5,8]);
+d = typeof(x)=="int8";
+e = typeof(x)=="uint8";
+f = typeof(x)=="int16";
+g = typeof(x)=="uint16";
+h = typeof(x)=="int32";
+k = typeof(x)=="uint32";
+l = type(x)==1;
+m = type(x)==1;
+n = typeof(x)=="ce";
+o = typeof(x)=="st";
+p = type(x)==13;
+q = type(x)==5;
+r = typeof(x)=="state-space";
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

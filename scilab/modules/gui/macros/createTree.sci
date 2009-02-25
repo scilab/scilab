@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function myTree = createTree(parentNode, varargin)
@@ -18,14 +18,12 @@ function myTree = createTree(parentNode, varargin)
 	end
 
 
-	if rhs >=1 then 
+	if rhs >=1 then
 		// Check if parentNode is a Tree
 		if (typeof(parentNode) == 'Tree') then
 			myTree = parentNode
 			// Add subTrees into myTree
 			for subTreesIndex = 1:size(varargin)
-				disp(size(varargin));
-				disp(subTreesIndex);
 				if (typeof(varargin(subTreesIndex)) == 'Tree') then
 					myTree(subTreesIndex + 2) = varargin(subTreesIndex)
 				else
@@ -38,5 +36,5 @@ function myTree = createTree(parentNode, varargin)
 			return;
 		end
 	end
-	
+
 endfunction

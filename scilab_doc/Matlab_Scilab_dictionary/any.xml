@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="any">
+  <refnamediv>
+    <refname>any</refname>
+    <refpurpose>(Matlab function) Test to determine if any nonzeros elements</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+any
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+or
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+Matlab <emphasis role="bold">any</emphasis> function can work with complexes, what Scilab <emphasis role="bold">or</emphasis> can not, so a call to <emphasis role="bold">abs</emphasis> function can be necessary when translating from Matlab to Scilab.
+</para>
+    <variablelist>
+      <varlistentry>
+        <term>B=any(A) &lt;--&gt; B=or(A)</term>
+        <listitem>
+          <para>
+If <emphasis role="bold">A</emphasis> is a matrix, <emphasis role="bold">any(A)</emphasis> is equivalent to <emphasis role="bold">any(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="bold">or(A)</emphasis> is a logical OR of all elements of <emphasis role="bold">A</emphasis>. If <emphasis role="bold">A</emphasis> is a multidimensional array then Matlab treats the values along the first non-singleton dimension, but Scilab returns logical OR of all elements of <emphasis role="bold">A</emphasis>.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>B=any(A,dim) &lt;--&gt; B=or(A,dim)</term>
+        <listitem>
+          <para>
+In Scilab <emphasis role="bold">dim=1</emphasis> is equivalent to <emphasis role="bold">dim=''r''</emphasis> and <emphasis role="bold">dim=2</emphasis> is equivalent <emphasis role="bold">dim=''c''</emphasis>. In Matlab, <emphasis role="bold">dim</emphasis> can be greater then the number of dimension of <emphasis role="bold">A</emphasis> (in this case, <emphasis role="bold">B=A</emphasis>), in Scilab you will get an error message.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" pgwide="1">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+y = any([1,1,0;1,0,1])
+y = [1,1,1]
+y = any([1,1,0;1,0,1],1)
+y = [1,1,1]
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+y = or([1,1,0;1,0,1])
+y = %T
+y = or([1,1,0;1,0,1],1)
+y = [%T,%T,%T]
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

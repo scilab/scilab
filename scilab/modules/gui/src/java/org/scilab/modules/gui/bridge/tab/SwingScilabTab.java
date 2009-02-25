@@ -698,10 +698,18 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param member the member to add
      * @return index of member in ArrayList
      */
+    public int addMember(SwingScilabTree member) {
+	return contentPane.addWidget(member.getAsComponent());
+    }
+
+    
+    /**
+     * Add a Tree member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
     public int addTree(SwingScilabTree member) {
-    	JScrollPane scroll = new JScrollPane();
-    	scroll.getViewport().add(member.getAsComponent());
-    	this.setContentPane(scroll);
+    	this.setContentPane(member.getAsComponent());
     	return this.getComponentZOrder(member.getAsComponent());
     }
 

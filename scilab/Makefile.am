@@ -152,27 +152,37 @@ check-local:
 		echo "Cannot find Scilab binary"; \
 	fi
 
-distclean-recursive: clean-recursive
+distclean-recursive: distclean-generated clean-recursive
 
-clean-recursive: clean-doc clean-localization clean-macros
+clean-recursive: clean-doc clean-localization clean-macros clean-generated
 
 clean-macros:
+# Find is necessary because of subdirs...
 	@echo "-- Cleaning macros (*.bin) --"; \
-	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
+	find $(top_builddir) -name "*.bin" | xargs --no-run-if-empty rm 2> /dev/null; \
 	echo "-- Cleaning names files (names) --"; \
-	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
+	find $(top_builddir)/modules/*/macros -name "names" | xargs --no-run-if-empty rm 2> /dev/null; \
 	echo "-- Cleaning lib files (lib) --"; \
-	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
+	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 
 
 clean-doc:
 	@if test -x $(top_builddir)/scilab-bin; then \
+		echo "$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'"; \
 		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
+		echo "$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'"; \
 		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
-	fi
-
+	fi; \
+	echo "rmdir $(top_builddir)/modules/helptools/javaHelp/"; \
+	rmdir $(top_builddir)/modules/helptools/javaHelp/; \
+	echo "rm -rf $(top_builddir)/modules/scicos/help/*/scilab_*_help"; \
+	rm -rf $(top_builddir)/modules/scicos/help/*/scilab_*_help; \
+	echo "rm -f $(top_builddir)/modules/scicos/help/en_US/master_help.xml"; \
+	rm -f $(top_builddir)/modules/scicos/help/en_US/master_help.xml; \
+	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
+	rm -rf $(top_builddir)/modules/scicos/jar/
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-bin; then \
@@ -181,9 +191,14 @@ clean-tests:
 		echo "Cannot find Scilab binary"; \
 	fi
 
-
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
+
+clean-generated:
+	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
+
+distclean-generated: 
+	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
 
 
 if IS_MACOSX

@@ -17,13 +17,15 @@ import java.util.Vector;
 import javax.swing.Icon;
 
 import org.scilab.modules.gui.events.callback.CallBack;
+import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.widget.Widget;
 
 
 /**
  * Interface for tree used in Scilab 
  * @author Sylvestre KOUMAR
  */
-public interface Tree {	
+public interface Tree extends Widget {	
 	
 	/**
 	 * Gets this Bridge component object

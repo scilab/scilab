@@ -14,11 +14,24 @@
 // Problem of completion with version 5.1:
 // (With NW mode).
 
-// <-- INTERACTIVE TEST -->
-                    
-wavread("/ho[TAB]
-wavread("/home/
-wavread("/home/sy[TAB]
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
-// it should be wavread("/home/sylvestre
-// if sylvestre home exists
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
+
+// wavread("/ho[TAB]
+currentline = 'wavread(""/ho';
+r = getfilepartlevel(currentline);
+if r <> '/ho' then pause,end
+
+newline = completeline(currentline,'home',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'wavread(""/home' then pause,end
+
+// wavread("/home/sy[TAB]
+currentline = 'wavread(""/home/sy';
+r = getfilepartlevel(currentline);
+if r <> '/home/sy' then pause,end
+
+newline = completeline(currentline,'sylvestre',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'wavread(""/home/sylvestre' then pause,end
