@@ -21,15 +21,6 @@ if ierr <> 999 then pause,end
 ierr = execstr('mode(%t);','errcatch');
 if ierr <> 999 then pause,end
 
-r = mode();
-ref = 2;
-if r <> ref then pause,end
-
-ref = 500;
-mode(ref);
-r = mode();
-if r <> ref then pause,end
-
 ref = -1;
 r = test_mode_foo(ref);
 if r <> ref then pause,end
@@ -41,4 +32,9 @@ if r <> ref then pause,end
 ref = 500;
 r = test_mode_foo(ref);
 if r <> ref then pause,end
+
+ref = 2;
+mode(ref);
+if ref <> mode() then pause,end
+
 

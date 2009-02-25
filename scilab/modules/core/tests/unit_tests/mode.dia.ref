@@ -16,6 +16,15 @@ ierr = execstr('mode([1 2]);','errcatch');
 if ierr <> 999 then bugmes();quit;end
 ierr = execstr('mode(%t);','errcatch');
 if ierr <> 999 then bugmes();quit;end
-r = mode();
-ref = 2;
+ref = -1;
+r = test_mode_foo(ref);
 if r <> ref then bugmes();quit;end
+ref = 0;
+r = test_mode_foo(ref);
+if r <> ref then bugmes();quit;end
+ref = 500;
+r = test_mode_foo(ref);
+if r <> ref then bugmes();quit;end
+ref = 2;
+mode(ref);
+ 
