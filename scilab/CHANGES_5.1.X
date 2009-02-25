@@ -8,6 +8,9 @@ Compilation:
   access when building the documentation (necessary when building the 
   documentation in a chroot)
 
+* ./configure && make all && make distclean == tarball (ie, make distclean is
+  cleaning all the elements)
+
 Help & Tests:
 =============
 
