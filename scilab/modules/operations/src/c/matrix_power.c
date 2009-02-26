@@ -12,8 +12,10 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include "matrix_power.h"
-#include "matrix_right_division.h"
+#include "matrix_multiplication.h"
+//#include "unsfdcopy.h"
 
 #include "elementary_functions.h"
 #include "elem_common.h"
@@ -383,5 +385,209 @@ int iPowerComplexScalarByComplexMatrix(
 		iPowerComplexScalarByComplexScalar(
 				_dblReal1, _dblImg1, _pdblReal2[i], _pdblImg2[i], &_pdblRealOut[i], &_pdblImgOut[i]);
 	}
+	return 0;
+}
+
+//Square Matrix ^ Scalar 
+int iPowerRealSquareMatrixByRealScalar(
+		double* _pdblReal1, int _iRows1, int _iCols1,
+		double _dblReal2,
+		double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex)
+{
+	int iExpRef = (int)_dblReal2;
+	if((int)_dblReal2 == _dblReal2) //integer exponent
+	{
+		if(iExpRef == 1)
+		{
+			int iSize = _iRows1 * _iCols1;
+			int iOne = 1;
+			C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
+		}
+		else if(iExpRef == 0)
+		{
+			int iSize				= _iRows1 * _iCols1;
+			int iOne				= 1;
+			double dblOne		= 1;
+			double dblZero	= 0;
+			int iRowp1			= _iRows1 + 1;
+
+			if(C2F(dasum)(&iSize, _pdblReal1, &iOne) == 0)
+			{//Invalid exponent
+				return 1;
+			}
+			C2F(dset)(&iSize, &dblZero, _pdblRealOut, &iOne);
+			C2F(dset)(&_iRows1, &dblOne, _pdblRealOut, &iRowp1);
+		}
+		else
+		{
+			int iExp	= 0;
+			int iRow	= 0;
+			int iCol	= 0;
+			int iSize	= _iRows1 * _iCols1;
+			int iOne	= 1;
+
+			/*temporary work space*/
+			double *pWork2 = (double*)malloc(sizeof(double) * iSize);
+			double *pWork3 = (double*)malloc(sizeof(double) * _iRows1);
+
+			if(iExpRef < 0)
+			{
+				//call matrix invetion
+
+				iExpRef = - iExpRef;
+			}
+			
+			C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
+			C2F(dcopy)(&iSize, _pdblReal1, &iOne, pWork2, &iOne);
+			//l1 -> l2
+			for(iExp = 1 ; iExp < iExpRef ; iExp++)
+			{
+				for(iCol = 0 ; iCol < _iCols1 ; iCol++)
+				{
+					double *pPtr = _pdblRealOut + iCol * _iCols1;
+					C2F(dcopy)(&_iRows1, pPtr, &iOne, pWork3, &iOne);
+					//ls -> l3
+					for(iRow = 0 ; iRow < _iRows1 ; iRow++)
+					{
+						int iOffset = iRow + iCol * _iRows1;
+						pPtr = pWork2 + iRow;
+						_pdblRealOut[iOffset] = C2F(ddot)(&_iRows1, pPtr, &_iRows1, pWork3, &iOne);
+					}//for
+				}//for
+			}//for
+			free(pWork2);
+			free(pWork3);
+		}//if(iExpRef != 1 && != 0)
+	}
+	else
+	{//floating point exponent
+	}
+
+	*_iComplex = 0;
+	return 0;
+}
+
+EXTERN_OP int iPowerRealSquareMatrixByComplexScalar(
+		double* _pdblReal1, int _iRows1, int _iCols1,
+		double _dblReal2, double _dblImg2,
+		double* _pdblRealOut,	double* _pdblImgOut)
+{
+	return 0;
+}
+
+EXTERN_OP int iPowerComplexSquareMatrixByRealScalar(
+		double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
+		double _dblReal2,
+		double* _pdblRealOut,	double* _pdblImgOut)
+{
+	int iExpRef = (int)_dblReal2;
+	if((int)_dblReal2 == _dblReal2) //integer exponent
+	{
+		if(iExpRef == 1)
+		{
+			int iSize = _iRows1 * _iCols1;
+			int iOne = 1;
+			C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
+		}
+		else if(iExpRef == 0)
+		{
+			int iSize				= _iRows1 * _iCols1;
+			int iOne				= 1;
+			double dblOne		= 1;
+			double dblZero	= 0;
+			int iRowp1			= _iRows1 + 1;
+
+			if(C2F(dasum)(&iSize, _pdblReal1, &iOne) == 0)
+			{//Invalid exponent
+				return 1;
+			}
+			C2F(dset)(&iSize, &dblZero, _pdblRealOut, &iOne);
+			C2F(dset)(&_iRows1, &dblOne, _pdblRealOut, &iRowp1);
+		}
+		else
+		{
+/*			int iSize	= _iRows1 * _iCols1;
+			int iOne	= 1;
+			int iExp	= 0;
+
+//			C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
+//			C2F(unsfdcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
+			memcpy(_pdblRealOut, _pdblReal1, iSize*sizeof(double));
+
+			for(iExp = 1 ; iExp < iExpRef ; iExp++)
+			{
+				iMultiRealMatrixByRealMatrix(
+					_pdblRealOut, _iRows1, _iCols1,
+					_pdblRealOut, _iRows1, _iCols1,
+					_pdblRealOut);
+			}
+*/
+			int iSize	= _iRows1 * _iCols1;
+			int iExp	= 0;
+			int iRow	= 0;
+			int iCol	= 0;
+			int iOne	= 1;
+
+			//temporary work space
+			double *pWorkReal2	= (double*)malloc(sizeof(double) * iSize);
+			double *pWorkImg2		= (double*)malloc(sizeof(double) * iSize);
+			double *pWorkReal3	= (double*)malloc(sizeof(double) * _iRows1);
+			double *pWorkImg3		= (double*)malloc(sizeof(double) * _iRows1);
+
+			if(iExpRef < 0)
+			{
+				//call matrix invetion
+
+				iExpRef = - iExpRef;
+			}
+
+			//copy In to Out
+			C2F(dcopy)(&iSize, _pdblReal1,	&iOne, _pdblRealOut,	&iOne);
+			C2F(dcopy)(&iSize, _pdblImg1,		&iOne, _pdblImgOut,		&iOne);
+
+			C2F(dcopy)(&iSize, _pdblReal1,	&iOne, pWorkReal2,		&iOne);
+			C2F(dcopy)(&iSize, _pdblImg1,		&iOne, pWorkImg2,			&iOne);
+
+			//l1 -> l2
+			for(iExp = 1 ; iExp < iExpRef ; iExp++)
+			{
+				for(iCol = 0 ; iCol < _iCols1 ; iCol++)
+				{
+					double *pPtrReal = _pdblRealOut + iCol * _iCols1;
+					double *pPtrImg	 = _pdblImgOut + iCol * _iCols1;
+					C2F(dcopy)(&_iRows1, pPtrReal, &iOne, pWorkReal3, &iOne);
+					C2F(dcopy)(&_iRows1, pPtrImg, &iOne, pWorkImg3, &iOne);
+					//ls -> l3
+					for(iRow = 0 ; iRow < _iRows1 ; iRow++)
+					{
+						int iOffset = iRow + iCol * _iRows1;
+						pPtrReal = pWorkReal2 + iRow;
+						pPtrImg = pWorkImg2 + iRow;
+
+						_pdblRealOut[iOffset] = C2F(ddot)(&_iRows1, pPtrReal, &_iRows1, pWorkReal3, &iOne)
+																	- C2F(ddot)(&_iRows1, pPtrImg,	&_iRows1, pWorkImg3,	&iOne);
+						_pdblImgOut[iOffset]	= C2F(ddot)(&_iRows1, pPtrReal, &_iRows1, pWorkImg3, &iOne)
+																	+ C2F(ddot)(&_iRows1, pPtrImg,	&_iRows1, pWorkReal3,	&iOne);
+					}//for
+				}//for
+			}//for
+			free(pWorkReal2);
+			free(pWorkImg2);
+			free(pWorkReal3);
+			free(pWorkImg3);
+		
+		}//if(iExpRef != 1 && != 0)
+	}
+	else
+	{//floating point exponent
+	}
+	return 0;
+}
+
+EXTERN_OP int iPowerComplexSquareMatrixByComplexScalar(
+		double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
+		double _dblReal2, double _dblImg2,
+		double* _pdblRealOut,	double* _pdblImgOut)
+{
 	return 0;
 }

@@ -125,7 +125,7 @@ namespace ast
 
 	void ExecVisitor::visit (const SimpleVar &e)
 	{
-		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
+		InternalType *pI = symbol::Context::getInstance()->get(*e.name_get());
 		result_set(pI);
 		if(pI != NULL && e.is_verbose())
 		{
@@ -175,14 +175,14 @@ namespace ast
 		ExecVisitor *execFunc = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
 
-		e.name_get().accept(*execFunc);
+		e.name_get()->accept(*execFunc);
 		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
 		{//function call
 			Function *pF = execFunc->result_get()->getAsFunction();
 			types::typed_list out;
 
 			types::typed_list in;
-			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+			for (i = e.args_get()->begin (); i != e.args_get()->end (); ++i)
 			{
 				(*i)->accept (*execVar);
 				//std::cout << execVar->result_get()->toString(10,75) << std::endl;
@@ -199,14 +199,14 @@ namespace ast
 		{//a(xxx) with a variable, extraction
 
 			//get symbol of variable
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.name_get());
+			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(e.name_get());
 			if(Var != NULL)
 			{
 				Double *pResult = NULL;
 				ExecVisitor* execMeArg = new ast::ExecVisitor();
 				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
-				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
-				int iArgDim				= e.args_get().size();
+				InternalType *pIT = symbol::Context::getInstance()->get(*Var->name_get());
+				int iArgDim				= e.args_get()->size();
 				bool bSeeAsVector	= iArgDim == 1;
 
 
@@ -227,7 +227,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << (*e.args_get().begin())->location_get().first_line << "," << (*e.args_get().begin())->location_get().first_column << ")" << std::endl;
+						os << " (" << (*e.args_get()->begin())->location_get()->first_line << "," << (*e.args_get()->begin())->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -315,7 +315,7 @@ namespace ast
 		{//result == NULL ,variable doesn't exist :(
 			std::ostringstream os;
 			os << "variable must exist";
-			os << " (" << e.location_get().first_line << "," << e.location_get().first_column << ")" << std::endl;
+			os << " (" << e.location_get()->first_line << "," << e.location_get()->first_column << ")" << std::endl;
 			string szErr(os.str());
 			throw szErr;					
 
@@ -345,16 +345,16 @@ namespace ast
 			bool bTestStatus					= false;
 
 			//condition
-			e.test_get().accept(*execMeTest);
+			e.test_get()->accept(*execMeTest);
 
 			bTestStatus = bConditionState(execMeTest);
 			if(bTestStatus == true)
 			{//condition == true
-				e.then_get().accept(*execMeAction);
+				e.then_get()->accept(*execMeAction);
 			}
 			else
 			{//condition == false
-				e.else_get().accept(*execMeAction);
+				e.else_get()->accept(*execMeAction);
 			}
 		delete execMeAction;
 		delete execMeTest;
@@ -371,11 +371,11 @@ namespace ast
 			bool bTestStatus					= false;
 
 			//condition
-			e.test_get().accept(*execMeTest);
+			e.test_get()->accept(*execMeTest);
 			while(bConditionState(execMeTest))
 			{
-				e.body_get().accept(*execMeAction);
-				e.test_get().accept(*execMeTest);
+				e.body_get()->accept(*execMeAction);
+				e.test_get()->accept(*execMeTest);
 			}
 	}
 
@@ -391,8 +391,8 @@ namespace ast
 			{
 				double dblVal = pVar->extract_value(i);
 				Double *pdbl = new Double(dblVal);
-				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
-				e.body_get().accept(*execMe);
+				symbol::Context::getInstance()->put(*e.vardec_get().name_get(), *(GenericType*)pdbl);
+				e.body_get()->accept(*execMe);
 			}
 		}
 		else
@@ -416,7 +416,7 @@ namespace ast
 		ExecVisitor *execMe = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
 
-		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+		for (i = e.exps_get()->begin (); i != e.exps_get()->end (); ++i)
 		{
 			(*i)->accept (*execMe);
 		}
@@ -441,7 +441,7 @@ namespace ast
 		@ or ~= !
 		*/
 		ExecVisitor* execMe = new ast::ExecVisitor();
-		e.exp_get().accept(*execMe);
+		e.exp_get()->accept(*execMe);
 
 		if(execMe->result_get()->isDouble())
 		{
@@ -484,7 +484,7 @@ namespace ast
 		'
 		*/
 		ExecVisitor* execMe = new ast::ExecVisitor();
-		e.exp_get().accept(*execMe);
+		e.exp_get()->accept(*execMe);
 
 		bool bConjug = e.conjugate_get() == TransposeExp::_Conjugate_;
 
@@ -533,7 +533,7 @@ namespace ast
 		try
 		{
 			/*getting what to assign*/
-			e.init_get().accept(*execMe);
+			e.init_get()->accept(*execMe);
 			result_set(execMe->result_get());
 		}
 		catch(string sz)
@@ -566,7 +566,7 @@ namespace ast
 		ExecVisitor*	execMeEnd		= new ast::ExecVisitor();
 
 
-		e.start_get().accept(*execMeStart);
+		e.start_get()->accept(*execMeStart);
 		/*			if(execMeStart->result_get()->isDouble())
 		{
 		pIL->start_set(((Double*)execMeStart->result_get())->real_get(0,0));
@@ -577,7 +577,7 @@ namespace ast
 		}
 		*/
 
-		e.step_get().accept(*execMeStep);
+		e.step_get()->accept(*execMeStep);
 		/*			if(execMeStep->result_get()->isDouble())
 		{
 		pIL->step_set(((Double*)execMeStep->result_get())->real_get(0,0));
@@ -588,7 +588,7 @@ namespace ast
 		}
 		*/
 
-		e.end_get().accept(*execMeEnd);
+		e.end_get()->accept(*execMeEnd);
 		/*			if(execMeEnd->result_get()->isDouble())
 		{
 		pIL->end_set(((Double*)execMeEnd->result_get())->real_get(0,0));
@@ -719,11 +719,11 @@ void vTransposeComplexMatrix(double *_pdblRealIn, double *_pdblImgIn, int _iRows
 }
 
 
-int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
+int GetIndexList(const std::list<ast::Exp *>* _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize)
 {
 	//Create list of indexes
 	//std::vector<std::vector<int>> IndexList;
-	int iProductElem				= _plstArg.size();
+	int iProductElem				= _plstArg->size();
 	int **piIndexList				= NULL;
 	int iTotalCombi					= 1;
 
@@ -735,7 +735,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 
 	int k = 0;
 	std::list<Exp *>::const_iterator	i;
-	for(i = _plstArg.begin() ; i != _plstArg.end() ; i++,k++)
+	for(i = _plstArg->begin() ; i != _plstArg->end() ; i++,k++)
 	{
 		(*i)->accept(*execMeArg);
 		InternalType *pIn = NULL;

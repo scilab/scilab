@@ -66,14 +66,14 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    const std::list<Var *>&	vars_get() const
+    const std::list<Var *>*	vars_get() const
     {
-      return *_vars;
+      return _vars;
     }
 
-    std::list<Var *>&	vars_get()
+    std::list<Var *>*	vars_get()
     {
-      return *_vars;
+      return _vars;
     }
     /** \} */
 

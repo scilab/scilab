@@ -45,7 +45,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec MatrixExp");
     std::list<MatrixLineExp *>::const_iterator	i;
-    for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
+    for (i = e.lines_get()->begin() ; i != e.lines_get()->end() ; ++i )
       {
 	(*i)->accept (*this);
       }
@@ -57,7 +57,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec MatrixLineExp");
     std::list<Exp *>::const_iterator	i;
-    for (i = e.columns_get().begin() ; i != e.columns_get().end() ; ++i)
+    for (i = e.columns_get()->begin() ; i != e.columns_get()->end() ; ++i)
       {
 	(*i)->accept (*this);
       }
@@ -70,7 +70,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec CellExp");
     std::list<MatrixLineExp *>::const_iterator	i;
-    for (i = e.lines_get().begin() ; i != e.lines_get().end() ; ++i )
+    for (i = e.lines_get()->begin() ; i != e.lines_get()->end() ; ++i )
       {
 	(*i)->accept (*this);
       }
@@ -91,7 +91,7 @@ namespace ast
   void DebugVisitor::visit (const CommentExp &e)
   {
     DEBUG_START_NODE();
-    DEBUG("Exec CommentExp : "+e.comment_get());
+    DEBUG("Exec CommentExp : "+ *e.comment_get());
     DEBUG_END_NODE();
   }
 
@@ -142,7 +142,7 @@ namespace ast
   void DebugVisitor::visit (const SimpleVar &e)
   {
     DEBUG_START_NODE();
-    DEBUG("Exec SimpleVar : "+e.name_get().name_get());
+    DEBUG("Exec SimpleVar : " + e.name_get()->name_get());
     DEBUG_END_NODE();
   }
 
@@ -165,7 +165,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec ArrayListVar");
     std::list<Var *>::const_iterator	i;
-    for (i = e.vars_get().begin() ; i != e.vars_get().end() ; ++i)
+    for (i = e.vars_get()->begin() ; i != e.vars_get()->end() ; ++i)
       {
 	(*i)->accept (*this);
       }
@@ -194,9 +194,9 @@ namespace ast
     DEBUG("Exec OpExp");
     // FIXME
     {
-      e.left_get().accept(*this);
+      e.left_get()->accept(*this);
       //e.oper_get();
-      e.right_get().accept(*this);
+      e.right_get()->accept(*this);
     }
     DEBUG_END_NODE();
   }
@@ -207,8 +207,8 @@ namespace ast
     DEBUG("Exec AssignExp");
     //FIXME
     {
-      e.left_exp_get().accept (*this);
-      e.right_exp_get().accept (*this);
+      e.left_exp_get()->accept (*this);
+      e.right_exp_get()->accept (*this);
     }
     DEBUG_END_NODE();
   }
@@ -217,12 +217,12 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec CallExp");
-    e.name_get().accept (*this);
+    e.name_get()->accept (*this);
     // FIXME
     {
       std::list<Exp *>::const_iterator	i;
 
-      for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
+      for (i = e.args_get()->begin (); i != e.args_get()->end (); ++i)
 	{
 	  (*i)->accept (*this);
 	}
@@ -236,11 +236,11 @@ namespace ast
     DEBUG("Exec IfExp");
     // FIXME
     {
-      e.test_get ().accept(*this);
-      e.then_get ().accept(*this);
+      e.test_get()->accept(*this);
+      e.then_get()->accept(*this);
       if (e.has_else())
 	{
-	  e.else_get ().accept(*this);
+	  e.else_get()->accept(*this);
 	}
     }
     DEBUG_END_NODE();
@@ -252,8 +252,8 @@ namespace ast
     DEBUG("Exec TryCatchExp");
     // FIXME
     {
-      e.try_get ().accept(*this);
-      e.catch_get ().accept(*this);
+      e.try_get()->accept(*this);
+      e.catch_get()->accept(*this);
     }
     DEBUG_END_NODE();
   }
@@ -309,7 +309,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec SeqExp");
     std::list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.exps_get()->begin (); i != e.exps_get()->end (); ++i)
       {
 	if(!(*i)->is_verbose())
 	  {
@@ -325,7 +325,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec ArrayListExp");
     std::list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.exps_get()->begin (); i != e.exps_get()->end (); ++i)
       {
 	(*i)->accept (*this);
       }
@@ -337,7 +337,7 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec AssignListExp");
     std::list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.exps_get()->begin (); i != e.exps_get()->end (); ++i)
       {
 	(*i)->accept (*this);
       }
@@ -351,7 +351,7 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec NotExp");
-    e.exp_get().accept (*this);
+    e.exp_get()->accept (*this);
     DEBUG_END_NODE();
   }
 
@@ -359,7 +359,7 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec TransposeExp");
-    e.exp_get().accept (*this);
+    e.exp_get()->accept (*this);
     DEBUG_END_NODE();
   }
   /** \} */
@@ -395,7 +395,7 @@ namespace ast
     //visit(e.args_get());
 
     // Now debug function body
-    e.body_get().accept(*this);
+    e.body_get()->accept(*this);
 
     DEBUG_END_NODE();
   }
@@ -407,9 +407,9 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec ListExp");
-    e.start_get().accept(*this);
-    e.step_get().accept(*this);
-    e.end_get().accept(*this);
+    e.start_get()->accept(*this);
+    e.step_get()->accept(*this);
+    e.end_get()->accept(*this);
     DEBUG_END_NODE();
   }
   /** \} */

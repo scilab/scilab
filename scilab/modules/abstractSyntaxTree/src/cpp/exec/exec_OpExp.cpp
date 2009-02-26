@@ -31,9 +31,9 @@ namespace ast
 		ExecVisitor execMeR = *new ast::ExecVisitor();
 
 		/*getting what to assign*/
-		e.left_get().accept(execMeL);
+		e.left_get()->accept(execMeL);
 		/*getting what to assign*/
-		e.right_get().accept(execMeR);
+		e.right_get()->accept(execMeR);
 		GenericType::RealType TypeL = execMeL.result_get()->getType();
 		GenericType::RealType TypeR = execMeR.result_get()->getType();
 
@@ -52,7 +52,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -73,7 +73,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -95,7 +95,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -111,7 +111,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -129,7 +129,7 @@ namespace ast
 						{
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
-							os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+							os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 							string szErr(os.str());
 							throw szErr;
 						}
@@ -137,7 +137,7 @@ namespace ast
 						{
 							std::ostringstream os;
 							os << "variables don't have the same formal variable";
-							os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+							os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 							string szErr(os.str());
 							throw szErr;
 						}
@@ -158,7 +158,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -174,7 +174,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -190,7 +190,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -206,7 +206,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -239,7 +239,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -257,7 +257,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -275,7 +275,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -293,7 +293,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -314,7 +314,7 @@ namespace ast
 					{//manage errors
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -330,7 +330,7 @@ namespace ast
 					{//manage errors
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -347,7 +347,7 @@ namespace ast
 					{//manage errors
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -675,7 +675,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -691,7 +691,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
+						os << " (" << e.right_get()->location_get()->first_line << "," << e.right_get()->location_get()->first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}

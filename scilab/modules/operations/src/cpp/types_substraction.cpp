@@ -505,9 +505,9 @@ int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_
 			}
 		}
 
-		delete pRank;
-		delete pRank1;
-		delete pRank2;
+		delete[] pRank;
+		delete[] pRank1;
+		delete[] pRank2;
 	}
 	else if(_pPoly1->size_get() == 1)
 	{//size(p1) == 1
@@ -559,9 +559,9 @@ int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_
 			}
 		}
 
-		delete pRank;
-		delete pRank1;
-		delete pRank2;
+		delete[] pRank;
+		delete[] pRank1;
+		delete[] pRank2;
 	}
 	else if(_pPoly2->size_get() == 1)
 	{//size(p2) == 1
@@ -612,9 +612,9 @@ int SubstractPolyToPoly(MatrixPoly *_pPoly1, MatrixPoly *_pPoly2, MatrixPoly **_
 			}
 		}
 
-		delete pRank;
-		delete pRank1;
-		delete pRank2;
+		delete[] pRank;
+		delete[] pRank1;
+		delete[] pRank2;
 	}
 	else
 	{

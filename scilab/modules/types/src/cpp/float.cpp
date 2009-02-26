@@ -226,7 +226,7 @@ namespace types
 	{
 		if(m_pfReal != NULL)
 		{
-			delete m_pfReal;
+			delete[] m_pfReal;
 			m_pfReal = NULL;
 		}
 	}
@@ -238,7 +238,7 @@ namespace types
 	{
 		if(m_pfImg != NULL)
 		{
-			delete m_pfImg;
+			delete[] m_pfImg;
 			m_pfImg = NULL;
 			m_bComplex = !_bSetReal;
 		}

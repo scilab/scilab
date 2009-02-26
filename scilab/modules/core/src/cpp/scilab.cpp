@@ -10,6 +10,7 @@
 *
 */
 
+#pragma comment(lib,"../../bin/libintl.lib")
 
 #include <cstdio>
 #include <iostream>

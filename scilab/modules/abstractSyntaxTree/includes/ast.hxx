@@ -50,15 +50,15 @@ namespace ast
      **
      ** Return a reference to this.
      */
-    Ast& location_set (const Location& location)
+    Ast location_set (const Location& location)
     {
       _location = location;
       return *this;
     }
     /** \brief Get scanner position informations stored. */
-    const Location& location_get () const
+    const Location* location_get () const
     {
-      return _location;
+      return &_location;
     }
     /** \} */
 

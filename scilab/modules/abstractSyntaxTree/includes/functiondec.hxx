@@ -47,7 +47,7 @@ namespace ast
     ** \param body
     */
     FunctionDec (const Location& location,
-		 symbol::Symbol& name,
+		 symbol::Symbol* name,
 		 ArrayListVar& args,
 		 ArrayListVar& returns,
 		 Exp& body) :
@@ -61,7 +61,7 @@ namespace ast
 
     virtual ~FunctionDec ()
     {
-      delete &_name;
+      delete _name;
       delete _body;
     }
 
@@ -82,36 +82,36 @@ namespace ast
 
     // \name Accessors.
   public:
-    const symbol::Symbol& name_get (void) const
+    const symbol::Symbol* name_get (void) const
     {
       return _name;
     }
 
-    const Exp& body_get (void) const
+    const Exp* body_get (void) const
     {
-      return *_body;
+      return _body;
     }
-    Exp&	body_get (void)
+    Exp*	body_get (void)
     {
-      return *_body;
-    }
-
-    const ArrayListVar&	args_get () const
-    {
-      return *_args;
-    }
-    ArrayListVar&	args_get ()
-    {
-      return *_args;
+      return _body;
     }
 
-    const ArrayListVar&	returns_get () const
+    const ArrayListVar*	args_get () const
     {
-      return *_returns;
+      return _args;
     }
-    ArrayListVar&	returns_get ()
+    ArrayListVar*	args_get ()
     {
-      return *_returns;
+      return _args;
+    }
+
+    const ArrayListVar*	returns_get () const
+    {
+      return _returns;
+    }
+    ArrayListVar*	returns_get ()
+    {
+      return _returns;
     }
 
     void body_set(Exp *body)
@@ -120,7 +120,7 @@ namespace ast
     }
 
   protected:
-    symbol::Symbol&	_name;
+    symbol::Symbol*	_name;
     ArrayListVar*	_args;
     ArrayListVar*	_returns;
     Exp*		_body;

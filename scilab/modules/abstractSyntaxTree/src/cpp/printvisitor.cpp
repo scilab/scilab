@@ -21,10 +21,10 @@ namespace ast {
     std::list<MatrixLineExp *>::const_iterator	i;
     *ostr << SCI_OPEN_MATRIX;
     ++indent;
-    for (i = e.lines_get().begin() ; i != e.lines_get().end() ; )
+    for (i = e.lines_get()->begin() ; i != e.lines_get()->end() ; )
       {
 	(*i)->accept (*this);
-	if (++i != e.lines_get().end())
+	if (++i != e.lines_get()->end())
 	  {
 	    *ostr << SCI_LINE_SEPARATOR << std::endl;
 	    this->apply_indent();
@@ -37,10 +37,10 @@ namespace ast {
   void PrintVisitor::visit (const MatrixLineExp &e)
   {
     std::list<Exp *>::const_iterator	i;
-    for (i = e.columns_get().begin() ; i != e.columns_get().end() ; )
+    for (i = e.columns_get()->begin() ; i != e.columns_get()->end() ; )
       {
 	(*i)->accept (*this);
-	if (++i != e.columns_get().end())
+	if (++i != e.columns_get()->end())
 	  {
 	    *ostr << SCI_COLUMN_SEPARATOR << " ";
 	  }
@@ -55,10 +55,10 @@ namespace ast {
     std::list<MatrixLineExp *>::const_iterator	i;
     *ostr << SCI_OPEN_CELL;
     ++indent;
-    for (i = e.lines_get().begin() ; i != e.lines_get().end() ; )
+    for (i = e.lines_get()->begin() ; i != e.lines_get()->end() ; )
       {
 	(*i)->accept (*this);
-	if (++i != e.lines_get().end())
+	if (++i != e.lines_get()->end())
 	  {
 	    *ostr << SCI_LINE_SEPARATOR << std::endl;
 	    this->apply_indent();
@@ -158,10 +158,10 @@ namespace ast {
   void PrintVisitor::visit (const ArrayListVar &e)
   {
     std::list<Var *>::const_iterator	i;
-    for (i = e.vars_get().begin() ; i != e.vars_get().end() ; )
+    for (i = e.vars_get()->begin() ; i != e.vars_get()->end() ; )
       {
 	(*i)->accept (*this);
-	if (++i != e.vars_get().end())
+	if (++i != e.vars_get()->end())
 	  {
 	    *ostr << ", ";
 	  }
@@ -190,7 +190,7 @@ namespace ast {
 
     // Getting Left Operand
     this->enable_force_parenthesis();
-    e.left_get().accept(*this);
+    e.left_get()->accept(*this);
     this->set_force_parenthesis(old_force_parenthesis);
 
     *ostr << " ";
@@ -251,7 +251,7 @@ namespace ast {
 
     // Now getting right operand
     this->enable_force_parenthesis();
-    e.right_get().accept(*this);
+    e.right_get()->accept(*this);
     this->set_force_parenthesis(old_force_parenthesis);
 
     if (force_parenthesis)
@@ -262,21 +262,21 @@ namespace ast {
 
   void PrintVisitor::visit (const AssignExp  &e)
   {
-    e.left_exp_get ().accept (*this);
+    e.left_exp_get()->accept (*this);
     *ostr << " " << SCI_ASSIGN << " ";
-    e.right_exp_get ().accept (*this);
+    e.right_exp_get ()->accept (*this);
   }
 
   void PrintVisitor::visit(const CallExp &e)
   {
-    e.name_get().accept (*this);
+    e.name_get()->accept (*this);
     *ostr << SCI_OPEN_CALL;
     std::list<Exp *>::const_iterator	i;
 
-    for (i = e.args_get().begin (); i != e.args_get().end ();)
+    for (i = e.args_get()->begin (); i != e.args_get()->end ();)
       {
 	(*i)->accept (*this);
-	if (++i != e.args_get().end ())
+	if (++i != e.args_get()->end ())
 	  *ostr << SCI_COMMA << " ";
       }
     *ostr << SCI_CLOSE_CALL;
@@ -286,17 +286,17 @@ namespace ast {
   {
     *ostr << SCI_IF;
     *ostr << " " << SCI_OPEN_TEST;
-    e.test_get ().accept(*this);
+    e.test_get()->accept(*this);
     *ostr << SCI_CLOSE_TEST << " ";
     *ostr << SCI_THEN << std::endl;
     ++indent;
-    e.then_get ().accept(*this);
+    e.then_get()->accept(*this);
     --indent;
     if (e.has_else()) {
       this->apply_indent();
       *ostr << SCI_ELSE << std::endl;
       ++indent;
-      e.else_get ().accept(*this);
+      e.else_get()->accept(*this);
       --indent;
     }
     this->apply_indent();
@@ -307,12 +307,12 @@ namespace ast {
   {
     *ostr << SCI_TRY << std::endl;
     ++indent;
-    e.try_get ().accept(*this);
+    e.try_get()->accept(*this);
     --indent;
     this->apply_indent();
     *ostr << SCI_CATCH << std::endl;
     ++indent;
-    e.catch_get ().accept(*this);
+    e.catch_get()->accept(*this);
     --indent;
     this->apply_indent();
     *ostr << SCI_ENDTRY;
@@ -322,10 +322,10 @@ namespace ast {
   {
     *ostr << SCI_WHILE;
     *ostr << " " << SCI_OPEN_TEST;
-    e.test_get().accept (*this);
+    e.test_get()->accept (*this);
     *ostr << SCI_CLOSE_TEST << " " << SCI_DO << std::endl;
     ++indent;
-    e.body_get().accept (*this);
+    e.body_get()->accept (*this);
     --indent;
     this->apply_indent();
     *ostr << SCI_ENDWHILE;
@@ -339,7 +339,7 @@ namespace ast {
     *ostr << SCI_CLOSE_TEST << " ";
     *ostr << SCI_DO << std::endl;
     ++indent;
-    e.body_get().accept (*this);
+    e.body_get()->accept (*this);
     --indent;
     this->apply_indent();
     *ostr << SCI_ENDFOR;
@@ -356,14 +356,14 @@ namespace ast {
     if (!e.is_global())
       {
 	*ostr << " " ;
-	e.exp_get().accept(*this);
+	e.exp_get()->accept(*this);
       }
   }
 
   void PrintVisitor::visit (const SeqExp  &e)
   {
     std::list<Exp *>::const_iterator	i;
-    for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
+    for (i = e.exps_get()->begin (); i != e.exps_get()->end (); ++i)
       {
 	this->apply_indent();
 	(*i)->accept (*this);
@@ -375,10 +375,10 @@ namespace ast {
   {
     std::list<Exp *>::const_iterator	i;
     *ostr << SCI_LPAREN;
-    for (i = e.exps_get().begin (); i != e.exps_get().end ();)
+    for (i = e.exps_get()->begin (); i != e.exps_get()->end ();)
       {
 	(*i)->accept (*this);
-	if (++i != e.exps_get().end ())
+	if (++i != e.exps_get()->end ())
 	  {
 	    *ostr << SCI_COMMA << " ";
 	  }
@@ -390,10 +390,10 @@ namespace ast {
   {
     std::list<Exp *>::const_iterator	i;
     *ostr << SCI_LBRACK;
-    for (i = e.exps_get().begin (); i != e.exps_get().end ();)
+    for (i = e.exps_get()->begin (); i != e.exps_get()->end ();)
       {
 	(*i)->accept (*this);
-	if (++i != e.exps_get().end ())
+	if (++i != e.exps_get()->end ())
 	  {
 	    *ostr << SCI_COMMA << " ";
 	  }
@@ -408,14 +408,14 @@ namespace ast {
   {
     *ostr << SCI_NOT;
     *ostr << SCI_LPAREN;
-    e.exp_get().accept (*this);
+    e.exp_get()->accept (*this);
     *ostr << SCI_RPAREN;
   }
 
   void PrintVisitor::visit (const TransposeExp &e)
   {
     *ostr << SCI_LPAREN;
-    e.exp_get().accept (*this);
+    e.exp_get()->accept (*this);
     *ostr << SCI_RPAREN;
     if (e.conjugate_get() == TransposeExp::_Conjugate_)
       {
@@ -435,7 +435,7 @@ namespace ast {
   {
     *ostr << e.name_get();
     *ostr << SCI_ASSIGN;
-    e.init_get ().accept (*this);
+    e.init_get()->accept (*this);
   }
 
   void PrintVisitor::visit (const FunctionDec  &e)
@@ -444,7 +444,7 @@ namespace ast {
 
     // First ask if there are some return values.
     *ostr << SCI_OPEN_RETURNS;
-    visit(e.returns_get());
+    visit(*e.returns_get());
     *ostr << SCI_CLOSE_RETURNS << " ";
     *ostr << SCI_ASSIGN << " ";
 
@@ -453,12 +453,12 @@ namespace ast {
 
     // Then get function args
     *ostr << SCI_OPEN_ARGS;
-    visit(e.args_get());
+    visit(*e.args_get());
     *ostr << SCI_CLOSE_ARGS << std::endl;
 
     // Now print function body
     ++indent;
-    e.body_get().accept(*this);
+    e.body_get()->accept(*this);
     --indent;
     this->apply_indent();
 
@@ -472,11 +472,11 @@ namespace ast {
   void PrintVisitor::visit(const ListExp &e)
   {
     *ostr << SCI_LPAREN;
-    e.start_get().accept(*this);
+    e.start_get()->accept(*this);
     *ostr << SCI_IMPLICIT_LIST;
-    e.step_get().accept(*this);
+    e.step_get()->accept(*this);
     *ostr << SCI_IMPLICIT_LIST;
-    e.end_get().accept(*this);
+    e.end_get()->accept(*this);
     *ostr << SCI_RPAREN;
   }
   /** \} */

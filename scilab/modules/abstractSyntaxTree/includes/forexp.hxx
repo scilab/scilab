@@ -91,14 +91,14 @@ namespace ast
     }
 
     /** \brief Return the body of the loop (read only) */
-    const Exp& body_get () const
+    const Exp* body_get () const
     {
-      return *_body;
+      return _body;
     }
     /** \brief Return the body of the loop (read and write) */
-    Exp& body_get ()
+    Exp* body_get ()
     {
-      return *_body;
+      return _body;
     }
     /** \} */
 

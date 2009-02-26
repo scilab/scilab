@@ -79,36 +79,36 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the expression (read only) */
-    const Exp& start_get () const
+    const Exp* start_get () const
     {
-      return *_start;
+      return _start;
     }
     /** \brief Return the expression (read and write) */
-    Exp& start_get ()
+    Exp* start_get ()
     {
-      return *_start;
+      return _start;
     }
 
     /** \brief Return the expression (read only) */
-    const Exp& step_get () const
+    const Exp* step_get () const
     {
-      return *_step;
+      return _step;
     }
     /** \brief Return the expression (read and write) */
-    Exp& step_get ()
+    Exp* step_get ()
     {
-      return *_step;
+      return _step;
     }
 
     /** \brief Return the expression (read only) */
-    const Exp& end_get () const
+    const Exp* end_get () const
     {
-      return *_end;
+      return _end;
     }
     /** \brief Return the expression (read and write) */
-    Exp& end_get ()
+    Exp* end_get ()
     {
-      return *_end;
+      return _end;
     }
 
     /** \} */

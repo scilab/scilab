@@ -67,14 +67,14 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    const std::list<MatrixLineExp *>&	lines_get() const
+    const std::list<MatrixLineExp *>*	lines_get() const
     {
-      return *_lines;
+      return _lines;
     }
 
-    std::list<MatrixLineExp *>&	lines_get()
+    std::list<MatrixLineExp *>*	lines_get()
     {
-      return *_lines;
+      return _lines;
     }
     /** \} */
 

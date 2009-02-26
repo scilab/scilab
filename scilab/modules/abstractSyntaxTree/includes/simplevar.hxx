@@ -34,7 +34,7 @@ namespace ast
      ** \param name the name of the variable
      */
     SimpleVar (const Location& location,
-	       symbol::Symbol& name):
+	       symbol::Symbol* name):
       Var (location),
       _name (name)
     {
@@ -68,7 +68,7 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the Variable's name. */
-    const symbol::Symbol& name_get () const
+    const symbol::Symbol* name_get () const
     {
       return _name;
     }
@@ -82,7 +82,7 @@ namespace ast
 
   protected:
     /** \brief Variable's name */
-    symbol::Symbol& _name;
+    symbol::Symbol* _name;
   };
 
 } // namespace ast

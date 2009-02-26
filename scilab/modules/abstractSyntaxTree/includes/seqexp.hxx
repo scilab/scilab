@@ -66,14 +66,14 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    const std::list<Exp *>&	exps_get() const
+    const std::list<Exp *>*	exps_get() const
     {
-      return *_l_body;
+      return _l_body;
     }
 
-    std::list<Exp *>&	exps_get()
+    std::list<Exp *>*	exps_get()
     {
-      return *_l_body;
+      return _l_body;
     }
     /** \} */
 

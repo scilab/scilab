@@ -73,14 +73,14 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    const Exp &	exp_get() const
+    const Exp*	exp_get() const
     {
-      return *_exp;
+      return _exp;
     }
 
-    Exp &	exp_get()
+    Exp*	exp_get()
     {
-      return *_exp;
+      return _exp;
     }
 
     const bool is_global() const
