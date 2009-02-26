@@ -18,13 +18,14 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{C2F(sci_getdynlibext),"getdynlibext"},
-	{C2F(sci_addinter),"addinter"},
-	{C2F(sci_fort),"fort"},
-	{C2F(sci_call),"call"},
-	{C2F(sci_link),"link"},
-	{C2F(sci_ulink),"ulink"},
-	{C2F(sci_c_link),"c_link"},
+	{sci_getdynlibext,"getdynlibext"},
+	{sci_addinter,"addinter"},
+	{sci_fort,"fort"},
+	{sci_call,"call"},
+	{sci_link,"link"},
+	{sci_ulink,"ulink"},
+	{sci_c_link,"c_link"},
+	{sci_ilib_verbose,"ilib_verbose"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_link(void)

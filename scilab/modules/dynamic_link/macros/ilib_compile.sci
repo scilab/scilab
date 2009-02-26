@@ -53,13 +53,17 @@ function libn = ilib_compile(lib_name,makename,files, ..
     //** ----------- Windows section  -----------------
     nf = size(files,'*');
     
-    for i=1:nf 
-      mprintf(_("   Compilation of ") + string(files1(i)) +'\n');
+    for i=1:nf
+      if ( ilib_verbose() <> 0 ) then
+        mprintf(_("   Compilation of ") + string(files1(i)) +'\n');
+      end
       unix_s(make_command+makename + ' '+ files(i)); 
     end
     
     // then the shared library 
-    mprintf(_("   Building shared library (be patient)\n"));
+    if ( ilib_verbose() <> 0 ) then
+      mprintf(_("   Building shared library (be patient)\n"));
+    end
     unix_s(make_command + makename + ' '+ lib_name); 
    
   else
@@ -113,20 +117,24 @@ function libn = ilib_compile(lib_name,makename,files, ..
     //**          environment where the Makefile are created from a "./configure"  
 	  [msg, ierr, stderr] = unix_g(cmd) ; 
 	  if ierr <> 0 then
-		mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
-		lines(0)
-	    disp(stderr);
-		mprintf("\n");
-		mprintf(gettext("%s: The command was:\n"),"ilib_compile");
-		mprintf(cmd);
-		mprintf("\n");
-		chdir(oldPath); // Go back to the working dir
+	    if ( ilib_verbose() <> 0 ) then
+	      mprintf(gettext("%s: An error occured during the compilation:\n"),"ilib_compile");
+	      lines(0);
+	      disp(stderr);
+		    mprintf("\n");
+		    mprintf(gettext("%s: The command was:\n"),"ilib_compile");
+		    mprintf(cmd);
+		    mprintf("\n");
+		  end
+		  chdir(oldPath); // Go back to the working dir
 	    return ;
 	  end
 	  if stderr <> "" then
-		msprintf(gettext("%s: Warning: No error code returned by the compilation but the error output is not empty:\n"),"ilib_compile");
-		mprintf(stderr);
-		return ;
+	    if ( ilib_verbose() <> 0 ) then
+	      mprintf(gettext("%s: Warning: No error code returned by the compilation but the error output is not empty:\n"),"ilib_compile");
+	      mprintf(stderr);
+	    end
+	    return ;
 	  end
 
 	  // Copy the produce lib to the working path

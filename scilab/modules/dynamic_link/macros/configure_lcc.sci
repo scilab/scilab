@@ -43,8 +43,10 @@ function bOK = configure_lcc()
       LCCLIB_DIR = SCIHOME+'\lcclib';
       
       if ( (fileinfo(LCCLIB_DIR) == []) | ( findfiles(LCCLIB_DIR,'*.lib') == []) ) then
-        mprintf('\n');
-        mprintf(gettext('%s: Converts libraries to use LCC-Win32.\n'),'configure_lcc')
+        if ( ilib_verbose() <> 0 ) then 
+          mprintf('\n');
+          mprintf(gettext('%s: Converts libraries to use LCC-Win32.\n'),'configure_lcc')
+        end
         bOK =  VCtoLCCLib();
       else
         bOK = %T;

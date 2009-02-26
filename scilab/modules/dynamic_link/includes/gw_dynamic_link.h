@@ -15,20 +15,19 @@
 #ifndef __GW_DYNAMIC_LINK__
 #define __GW_DYNAMIC_LINK__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-/*--------------------------------------------------------------------------*/
 int gw_dynamic_link(void);
 /*--------------------------------------------------------------------------*/
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_getdynlibext)(char *fname,unsigned long fname_len);
-int C2F(sci_addinter)(char *fname,unsigned long fname_len);
-int C2F(sci_fort)(char *fname,unsigned long fname_len);
-int C2F(sci_call)(char *fname,unsigned long fname_len);
-int C2F(sci_link)(char *fname,unsigned long fname_len);
-int C2F(sci_ulink)(char *fname,unsigned long fname_len);
-int C2F(sci_c_link)(char *fname,unsigned long fname_len);
+int sci_getdynlibext(char *fname,unsigned long fname_len);
+int sci_addinter(char *fname,unsigned long fname_len);
+int sci_fort(char *fname,unsigned long fname_len);
+int sci_call(char *fname,unsigned long fname_len);
+int sci_link(char *fname,unsigned long fname_len);
+int sci_ulink(char *fname,unsigned long fname_len);
+int sci_c_link(char *fname,unsigned long fname_len);
+int sci_ilib_verbose(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_DYNAMIC_LINK__ */
 /*--------------------------------------------------------------------------*/ 

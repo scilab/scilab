@@ -5,8 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
+
+ilib_verbose(0);
 
 exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
 exec('SCI/modules/completion/tests/utilities/loader.sce',-1);

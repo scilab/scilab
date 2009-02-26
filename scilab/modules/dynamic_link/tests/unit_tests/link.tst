@@ -9,6 +9,8 @@
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
+ilib_verbose(0);
+
 if MSDOS then
   TMP_OS_DIR = getenv('TMP','err');
   if (TMP_OS_DIR == 'err') then pause,end;
@@ -39,10 +41,6 @@ mputl(f1,TMP_DIR+filesep()+'fooc.c');
 cur_dir = pwd();
 chdir(TMP_DIR);
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 
 //creating the shared library: a Makefile and a loader are 
 //generated, the code is compiled and a shared library built.
@@ -54,9 +52,6 @@ mprintf('%s\n',mgetl('loader.sce'))
 exec loader.sce; 
 
 link('show');
-
-// enable message 
-warning(warning_mode);
 
 // call the new linked entry point
 a=linspace(0,%pi,10);b=5;

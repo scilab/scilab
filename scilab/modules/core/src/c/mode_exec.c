@@ -14,18 +14,18 @@
 #include "stack-def.h"
 #include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-BOOL set_mode_exec(int mode)
+BOOL setExecMode(int _mode)
 {
 	int *Lct = C2F(iop).lct - 1;
-	if ( mode != Lct[4] )
+	if ( _mode != Lct[4] )
 	{
-		Lct[4] = mode;
+		Lct[4] = _mode;
 		return TRUE;
 	}
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/ 
-int get_mode_exec(void)
+int getExecMode(void)
 {
 	int *Lct = C2F(iop).lct - 1;
 	return Lct[4];

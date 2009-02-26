@@ -30,18 +30,11 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3392.c' , TEST_DIR + 
 
 chdir(TEST_DIR);
 
-files=['bug_3392.o'];
+files=['bug_3392.c'];
 ilib_build('libc_fun',['c_sum','c_intsum';'c_sub','c_intsub'],files,[]);
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
-exec loader.sce
-
-// enable message 
-warning(warning_mode);
+exec loader.sce;
 
 chdir(currentpath);
 

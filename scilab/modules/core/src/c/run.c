@@ -34,6 +34,7 @@
 #include "core_math.h"
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
+#include "mode_exec.h"
 
 #undef Lstk
 #undef Infstk
@@ -88,8 +89,8 @@ int C2F(run)(void)
   static int    *Lstk = C2F(vstk).lstk-1;
   static int    *Lin  = C2F(iop).lin-1;
   static int    *Lpt  = C2F(iop).lpt-1;
-  static int    *Lct  = C2F(iop).lct-1;
   static int  *Infstk = C2F(vstk).infstk-1;
+  static int    *Lct = C2F(iop).lct - 1;
 
   static double equiv_4[1];
 #define x (equiv_4)
@@ -763,9 +764,9 @@ int C2F(run)(void)
   Pstk[Pt] = C2F(iop).rio;
   C2F(iop).rio = C2F(iop).rte;
   Fin = 2;
-  if (Lct[4] <= -10) {
+  if (getExecMode() <= -10) {
     Fin = -1;
-    Lct[4] = -Lct[4] - 11;
+	setExecMode(-getExecMode() - 11);
   }
   Ids[1 + Pt * nsiz] = lc;
   Ids[2 + Pt * nsiz] = Top;
@@ -859,7 +860,7 @@ int C2F(run)(void)
     Lpt[2] = Lin[2 + k];
     Lpt[3] = Lin[3 + k];
     Lpt[4] = Lin[4 + k];
-    Lct[4] = Lin[6 + k ];
+	setExecMode(Lin[6 + k ]);
     Lpt[6] = k;
     if (Rstk[Pt] <= 502) {
       if (Pt>1) {
@@ -943,8 +944,8 @@ int C2F(run)(void)
   }
  L107:
 
-  if (Lct[4] / 2 % 2 == 1) {
-    i2 = Lct[4] / 4;
+  if (getExecMode() / 2 % 2 == ECHO_EXEC_MODE) {
+    i2 = getExecMode() / 4;
     C2F(prompt)(&i2, &iesc);
   }
   ++Lct[8];
@@ -1068,7 +1069,7 @@ int C2F(run)(void)
 
  L170:
   /*     print stored variable */
-  if (Lct[4] >= 0 && *istk(1 + lc) != semi && kid != 0) {
+  if (getExecMode() >= 0 && *istk(1 + lc) != semi && kid != 0) {
     C2F(print)(id, &kid, &C2F(iop).wte);
   }
   lc += 2;
@@ -1146,7 +1147,7 @@ int C2F(run)(void)
       goto L253;
     }
     /* fin points on the newly saved variable */
-    if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L253;
+    if (!(getExecMode() >= 0 && ip != semi && Fin != 0)) goto L253;
     ifin=Fin;
   L232:
     C2F(print)(istk(li), &ifin, &C2F(iop).wte);
@@ -1240,7 +1241,7 @@ int C2F(run)(void)
     goto L253;
   }
   /*     fin points on the newly saved variable */
-  if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L252;
+  if (!(getExecMode() >= 0 && ip != semi && Fin != 0)) goto L252;
   ifin=Fin;
  L251:
   C2F(print)(istk(li), &ifin, &C2F(iop).wte);
@@ -1319,7 +1320,7 @@ int C2F(run)(void)
   Ids[3 + Pt * nsiz] = C2F(errgst).err2;
   Ids[4 + Pt * nsiz] = C2F(errgst).err1;
   Ids[5 + Pt * nsiz] = C2F(errgst).errpt;
-  Ids[6 + Pt * nsiz] = (Lct[4]+100)+10000*C2F(com).sym;
+  Ids[6 + Pt * nsiz] = (getExecMode()+100)+10000*C2F(com).sym;
   /* set error recovery mode without message*/
   C2F(errgst).errct = -(900000+1);
   C2F(errgst).errpt = Pt;
@@ -1336,7 +1337,7 @@ int C2F(run)(void)
   C2F(errgst).err1  = Ids[4 + Pt * nsiz];
   C2F(errgst).errpt = Ids[5 + Pt * nsiz];
   C2F(com).sym      = Ids[6 + Pt * nsiz]/10000;
-  Lct[4]            = Ids[6 + Pt * nsiz]-10000*C2F(com).sym-100;
+  setExecMode(Ids[6 + Pt * nsiz]-10000*C2F(com).sym-100);
   if (ok) {
     /* no error occured in the try part*/
     nc = *istk(l0-1);

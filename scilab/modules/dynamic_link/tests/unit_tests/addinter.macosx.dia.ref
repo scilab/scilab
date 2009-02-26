@@ -25,13 +25,10 @@ if ~c_link('libintertest') then
    ilib_gen_Make: Copy libintertest.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
-  // disable message
-  warning_mode = warning('query');
-  warning('off');
   // load the shared library
   exec loader.sce ;
-  // enable message
-  warning(warning_mode);
+Shared archive loaded.
+Link done.  
   //  check addinter add scifun1
   if ( funptr('scifun1') == 0 ) then bugmes();quit;end
   if norm(scifun1(%pi)- sin(%pi+1)/%pi ) > %eps then bugmes();quit;end

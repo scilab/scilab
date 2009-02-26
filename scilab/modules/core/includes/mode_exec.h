@@ -16,17 +16,23 @@
 #include "BOOL.h"
 
 /**
+* by default at Prompt mode == 2
+*/
+#define INITIALIZATION_EXEC_MODE 2
+#define SILENT_EXEC_MODE -1
+#define ECHO_EXEC_MODE 1
+/**
 * set a mode in exec file
 * @param[in] mode
 * @return TRUE if mode is modified
 */
-BOOL set_mode_exec(int mode);
+BOOL setExecMode(int _mode);
 
 /**
 * get mode in exec file
 * @return current mode
 */
-int get_mode_exec(void);
+int getExecMode(void);
 
 #endif /* __MODE_EXEC_H__ */
 /*--------------------------------------------------------------------------*/ 

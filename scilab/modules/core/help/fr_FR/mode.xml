@@ -68,7 +68,8 @@ k=mode()</synopsis>
         <term>k = 2</term>
 
         <listitem>
-          <para>valeur par défaut retourné au prompt</para>
+          <para>valeur par défaut retourné au prompt de scilab.</para>
+          <para>veuillez noter que ce mode ne doit pas etre utilisé au prompt mais seulement via un script ou une fonction.</para>
         </listitem>
       </varlistentry>
 
@@ -113,6 +114,8 @@ k=mode()</synopsis>
     <para>L'affichage est supprimé dans les fonctions compilées
     (voir getf ou comp). Par défaut les fonctions Scilab sont
     éxécutées en mode silencieux ("-1").</para>
+    
+    <para>Les fonctions incluses dans une librairie de fonctions scilab sont executés avec le mode "-1".</para>
   </refsection>
 
   <refsection>
@@ -121,51 +124,23 @@ k=mode()</synopsis>
     <programlisting role="exemple">
 // copier - coller ces lignes dans scilab
 
+function example_mode( level_mode )
+ mode(level_mode)
+ a = 3
+ disp(mode());
+endfunction
+
 mode(2)
 
-function example_mode_0()
-	mode(0)
-	a = 3
-endfunction
-
-example_mode_0()
-
-function example_mode_l1()
-	mode(-1)
-	a = 3
-endfunction
-
-example_mode_l1()
-
-function example_mode_2()
-	mode(2)
-	a = 3
-endfunction
-
-example_mode_2()
-
-function example_mode_1()
-	mode(1)
-	a = 3
-endfunction
-
-example_mode_1()
-
-function example_mode_3()
-	mode(3)
-	a = 3
-endfunction
-
-example_mode_3()
-
-function example_mode_7()
-	mode(7)
-	a = 3
-endfunction
-
-example_mode_7()
+example_mode(0)
+example_mode(-1)
+example_mode(2)
+example_mode(1)
+example_mode(3)
+example_mode(7)
 
 mode(2)
+
 
   </programlisting>
   </refsection>

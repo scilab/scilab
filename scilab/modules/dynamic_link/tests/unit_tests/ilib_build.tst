@@ -58,16 +58,8 @@ chdir(TMP_DIR);
 files=['fun1.o','fun2.o','intfun1.o'];
 ilib_build('foo',['scifun1','intfun1'],files,[]);
 
-
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
 exec loader.sce
-
-// enable message 
-warning(warning_mode);
 
 chdir(cur_dir);
 
