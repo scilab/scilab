@@ -421,7 +421,8 @@ am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_exp.lo \
 	libscielementary_functions_la-sci_maxi.lo \
 	libscielementary_functions_la-sci_gsort.lo \
-	libscielementary_functions_la-sci_isequalbitwise.lo
+	libscielementary_functions_la-sci_isequalbitwise.lo \
+	libscielementary_functions_la-sci_chinesehat.lo
 am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_maxi.lo \
 	libscielementary_functions_la-sci_f_testmatrix.lo \
@@ -463,7 +464,8 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_conj.lo \
 	libscielementary_functions_la-sci_f_int.lo \
 	libscielementary_functions_la-sci_f_imult.lo \
-	libscielementary_functions_la-sci_f_exp.lo
+	libscielementary_functions_la-sci_f_exp.lo \
+	libscielementary_functions_la-sci_f_chinesehat.lo
 am__objects_7 = libscielementary_functions_la-sortTemplate.lo \
 	libscielementary_functions_la-elem_func.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
@@ -1045,7 +1047,8 @@ sci_gateway/c/sci_imult.c \
 sci_gateway/c/sci_exp.c \
 sci_gateway/c/sci_maxi.c \
 sci_gateway/c/sci_gsort.c \
-sci_gateway/c/sci_isequalbitwise.c
+sci_gateway/c/sci_isequalbitwise.c \
+sci_gateway/c/sci_chinesehat.c 
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_isequal.f \
 sci_gateway/fortran/sci_f_maxi.f \
@@ -1088,7 +1091,8 @@ sci_gateway/fortran/sci_f_round.f \
 sci_gateway/fortran/sci_f_conj.f \
 sci_gateway/fortran/sci_f_int.f \
 sci_gateway/fortran/sci_f_imult.f \
-sci_gateway/fortran/sci_f_exp.f
+sci_gateway/fortran/sci_f_exp.f \
+sci_gateway/fortran/sci_f_chinesehat.f
 
 
 # Disable optimisation of the file hqror2.f comqr3.f pade.f
@@ -1350,6 +1354,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_asin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_atan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_ceil.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_conj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
@@ -2100,6 +2105,13 @@ libscielementary_functions_la-sci_isequalbitwise.lo: sci_gateway/c/sci_isequalbi
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_isequalbitwise.c' object='libscielementary_functions_la-sci_isequalbitwise.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_isequalbitwise.lo `test -f 'sci_gateway/c/sci_isequalbitwise.c' || echo '$(srcdir)/'`sci_gateway/c/sci_isequalbitwise.c
+
+libscielementary_functions_la-sci_chinesehat.lo: sci_gateway/c/sci_chinesehat.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_chinesehat.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Tpo -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Tpo $(DEPDIR)/libscielementary_functions_la-sci_chinesehat.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_chinesehat.c' object='libscielementary_functions_la-sci_chinesehat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_chinesehat.lo `test -f 'sci_gateway/c/sci_chinesehat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_chinesehat.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -2921,6 +2933,9 @@ libscielementary_functions_la-sci_f_imult.lo: sci_gateway/fortran/sci_f_imult.f
 
 libscielementary_functions_la-sci_f_exp.lo: sci_gateway/fortran/sci_f_exp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_exp.lo `test -f 'sci_gateway/fortran/sci_f_exp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_exp.f
+
+libscielementary_functions_la-sci_f_chinesehat.lo: sci_gateway/fortran/sci_f_chinesehat.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscielementary_functions_la_FFLAGS) $(FFLAGS) -c -o libscielementary_functions_la-sci_f_chinesehat.lo `test -f 'sci_gateway/fortran/sci_f_chinesehat.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_chinesehat.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

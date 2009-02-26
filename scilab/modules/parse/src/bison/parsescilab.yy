@@ -387,13 +387,13 @@ functionDeclaration				{ $$ = $1; }
 implicitFunctionCall :
 /* FIXME : Add arguments to call */
 implicitFunctionCall implicitCallable		{
-						  $1->args_get().push_back($2);
+						  $1->args_get()->push_back($2);
 						  $$ = $1;
 						}
 | ID implicitCallable				{
 						  ast::exps_t *tmp = new ast::exps_t;
 						  tmp->push_front($2);
-						  $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *tmp);
+						  $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, new symbol::Symbol(*$1)), *tmp);
 						}
 ;
 
@@ -453,8 +453,8 @@ simpleFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 */
 /* To manage %t(a, b) and %f(a, b) */
 specificFunctionCall :
-BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol("%t")), *$3); }
-| BOOLFALSE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol("%f")), *$3); }
+BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, new symbol::Symbol("%t")), *$3); }
+| BOOLFALSE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, new symbol::Symbol("%f")), *$3); }
 ;
 
 /*
@@ -462,7 +462,7 @@ BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::Simp
 */
 /* Usual way to call functions foo(arg1, arg2, arg3) */
 simpleFunctionCall :
-ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(*$1)), *$3); }
+ID LPAREN functionArgs RPAREN				{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, new symbol::Symbol(*$1)), *$3); }
 ;
 
 /*
@@ -526,30 +526,30 @@ variable			{
 functionDeclaration :
 FUNCTION ID ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  ast::vars_t *tmp = new ast::vars_t;
-				  tmp->push_front(new ast::SimpleVar(@2, *new symbol::Symbol(*$2)));
+				  tmp->push_front(new ast::SimpleVar(@2, new symbol::Symbol(*$2)));
 				  $$ = new ast::FunctionDec(@$,
-							    *new symbol::Symbol(*$4),
+							    new symbol::Symbol(*$4),
 							    *new ast::ArrayListVar(@5, *$5),
 							    *new ast::ArrayListVar(@2, *tmp),
 							    *$7);
 				}
 | FUNCTION LBRACK functionDeclarationReturns RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
-							    *new symbol::Symbol(*$6),
+							    new symbol::Symbol(*$6),
 							    *new ast::ArrayListVar(@7, *$7),
 							    *new ast::ArrayListVar(@3 ,*$3),
 							    *$9);
 				}
 | FUNCTION LBRACK RBRACK ASSIGN ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
-							    *new symbol::Symbol(*$5),
+							    new symbol::Symbol(*$5),
 							    *new ast::ArrayListVar(@6, *$6),
 							    *new ast::ArrayListVar(@2, *new ast::vars_t),
 							    *$8);
 				}
 | FUNCTION ID functionDeclarationArguments functionDeclarationBreak functionBody ENDFUNCTION {
 				  $$ = new ast::FunctionDec(@$,
-							    *new symbol::Symbol(*$2),
+							    new symbol::Symbol(*$2),
 							    *new ast::ArrayListVar(@3, *$3),
 							    *new ast::ArrayListVar(@$, *new ast::vars_t),
 							    *$5);
@@ -580,12 +580,12 @@ LPAREN idList RPAREN		{ $$ = $2; }
 /* ID (,ID)* */
 idList:
 idList COMMA ID			{
-				  $1->push_back(new ast::SimpleVar(@3, *new symbol::Symbol(*$3)));
+				  $1->push_back(new ast::SimpleVar(@3, new symbol::Symbol(*$3)));
 				  $$ = $1;
 				}
 | ID				{
 				  $$ = new ast::vars_t;
-				  $$->push_front(new ast::SimpleVar(@$, *new symbol::Symbol(*$1)));
+				  $$->push_front(new ast::SimpleVar(@$, new symbol::Symbol(*$1)));
 				}
 ;
 
@@ -649,8 +649,8 @@ variable	%prec HIGHLEVEL		{ $$ = $1; }
 */
 /* Operations */
 operation :
-variable rightOperand			{ $$ = new ast::OpExp(@$, *$1, $2->oper_get(), $2->right_get()); }
-| functionCall rightOperand		{ $$ = new ast::OpExp(@$, *$1, $2->oper_get(), $2->right_get()); }
+variable rightOperand			{ $$ = new ast::OpExp(@$, *$1, $2->oper_get(), *$2->right_get()); }
+| functionCall rightOperand		{ $$ = new ast::OpExp(@$, *$1, $2->oper_get(), *$2->right_get()); }
 | MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::minus, *$2); }
 | MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::minus, *$2); }
 | PLUS variable				{ $$ = $2; }
@@ -730,16 +730,16 @@ listableBegin COLON variable		{ $$ = new ast::ListExp(@$, *new ast::CommentExp(@
 /* Variables */
 variable :
 NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
-| variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
+| variable DOT ID			%prec UPLEVEL	{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, new symbol::Symbol(*$3))); }
 | variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
-| variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, $2->step_get(), $2->end_get()); }
+| variable listableEnd					{ $$ = new ast::ListExp(@$, *$1, *$2->step_get(), *$2->end_get()); }
 | functionCall listableEnd		%prec UPLEVEL	{ $$ = new ast::ListExp(@$, *$1, *$2->step_get(), *$2->end_get()); }
 | matrix						{ $$ = $1; }
 | cell							{ $$ = $1; }
 | operation						{ $$ = $1; }
-| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
+| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, new symbol::Symbol(*$1)); }
 | VARINT				%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | NUM					%prec LISTABLE	{ $$ = new ast::DoubleExp(@$, $1); }
 | VARFLOAT						{ $$ = new ast::DoubleExp(@$, $1); }
@@ -949,11 +949,11 @@ assignable ASSIGN variable		%prec HIGHLEVEL { $$ = new ast::AssignExp(@$, *$1, *
 */
 /* What we can assign something to. */
 assignable :
-variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, *new symbol::Symbol(*$3))); }
+variable DOT ID			%prec UPLEVEL		{ $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, new symbol::Symbol(*$3))); }
 | variable DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT variable				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
 | functionCall DOT functionCall				{ $$ = new ast::FieldExp(@$, *$1, *$3); }
-| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, *new symbol::Symbol(*$1)); }
+| ID					%prec LISTABLE	{ $$ = new ast::SimpleVar(@$, new symbol::Symbol(*$1)); }
 | multipleResults					{ $$ = $1; }
 ;
 
@@ -1140,8 +1140,8 @@ THEN						{ /* !! Do Nothing !! */ }
 */
 /* For ... End control block */
 forControl :
-FOR ID ASSIGN forIterator forConditionBreak forBody END			{ $$ = new ast::ForExp(@$, *new ast::VarDec(@3, *new symbol::Symbol(*$2), *$4), *$6); }
-| FOR LPAREN ID ASSIGN forIterator RPAREN forConditionBreak forBody END { $$ = new ast::ForExp(@$, *new ast::VarDec(@4, *new symbol::Symbol(*$3), *$5), *$8); }
+FOR ID ASSIGN forIterator forConditionBreak forBody END			{ $$ = new ast::ForExp(@$, *new ast::VarDec(@3, new symbol::Symbol(*$2), *$4), *$6); }
+| FOR LPAREN ID ASSIGN forIterator RPAREN forConditionBreak forBody END { $$ = new ast::ForExp(@$, *new ast::VarDec(@4, new symbol::Symbol(*$3), *$5), *$8); }
 ;
 
 /*
@@ -1234,16 +1234,16 @@ COMMA				{ /* !! Do Nothing !! */ }
 tryControl :
 TRY EOL expressions CATCH EOL expressions END			{ $$ =new ast::TryCatchExp(@$, *$3, *$6); }
 | TRY COMMENT EOL expressions CATCH EOL expressions END		{
-								  $4->exps_get().push_front(new ast::CommentExp(@2, $2));
+								  $4->exps_get()->push_front(new ast::CommentExp(@2, $2));
 								  $$ =new ast::TryCatchExp(@$, *$4, *$7);
 								}
 | TRY EOL expressions CATCH COMMENT EOL expressions END		{
-								  $7->exps_get().push_front(new ast::CommentExp(@5, $5));
+								  $7->exps_get()->push_front(new ast::CommentExp(@5, $5));
 								  $$ =new ast::TryCatchExp(@$, *$3, *$7);
 								}
 | TRY COMMENT EOL expressions CATCH COMMENT EOL expressions END {
-								  $4->exps_get().push_front(new ast::CommentExp(@2, $2));
-								  $8->exps_get().push_front(new ast::CommentExp(@6, $6));
+								  $4->exps_get()->push_front(new ast::CommentExp(@2, $2));
+								  $8->exps_get()->push_front(new ast::CommentExp(@6, $6));
 								  $$ =new ast::TryCatchExp(@$, *$4, *$8);
 								}
 ;

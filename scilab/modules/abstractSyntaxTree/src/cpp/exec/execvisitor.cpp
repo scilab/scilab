@@ -129,7 +129,7 @@ namespace ast
 		result_set(pI);
 		if(pI != NULL && e.is_verbose())
 		{
-			std::cout << e.name_get() << " = " << std::endl;
+			std::cout << *e.name_get() << " = " << std::endl;
 			std::cout << std::endl;
 			std::cout << pI->toString(10,75) << std::endl;
 		}
