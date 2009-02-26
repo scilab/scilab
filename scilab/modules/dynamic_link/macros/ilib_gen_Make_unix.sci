@@ -31,7 +31,7 @@ function ilib_gen_Make_unix(names,   ..
 		clear l;
 	end
 
-
+	if exists('tables' ,'local')==1 then
 	/// Check tables ... the second element should be the file name
 	if typeof(tables)<>'list' then 
 	  tables=list(tables)
@@ -51,6 +51,7 @@ function ilib_gen_Make_unix(names,   ..
 		  end
 		end
 	  end
+	end
 	end
 
 	warningmode = warning('query');
