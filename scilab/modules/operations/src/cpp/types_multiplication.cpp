@@ -182,7 +182,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, MatrixPoly* _pPoly, MatrixPoly** _pPo
 	}
 
 	(*_pPolyOut) = new MatrixPoly(_pPoly->var_get(), iRowResult, iColResult, piRank);
-	delete[] piRank;
+	delete piRank;
 	if(bComplex1 || bComplex2)
 	{
 		(*_pPolyOut)->complex_set(true);
@@ -372,7 +372,7 @@ int MultiplyPolyByDouble(MatrixPoly* _pPoly, Double* _pDouble, MatrixPoly **_pPo
 	}
 
 	(*_pPolyOut) = new MatrixPoly(_pPoly->var_get(), iRowResult, iColResult, piRank);
-	delete[] piRank;
+	delete piRank;
 	if(bComplex1 || bComplex2)
 	{
 		(*_pPolyOut)->complex_set(true);

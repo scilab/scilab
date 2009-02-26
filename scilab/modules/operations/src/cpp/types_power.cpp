@@ -138,30 +138,6 @@ int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleO
 			}
 		}
 	}
-	else if(bScalar2 && ( _pDouble1->rows_get() == _pDouble1->cols_get()))
-	{//power of a square matrix by a scalar exponent.
-		*_pDoubleOut = new Double(_pDouble1->rows_get(),_pDouble1->cols_get() , true);
-		if(bComplex1 == false && bComplex2 == false)
-		{
-			iPowerRealSquareMatrixByRealScalar(
-				_pDouble1->real_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-				_pDouble2->real_get()[0], 
-				(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get(), &iComplex);
-		}
-		else if(bComplex1 == false && bComplex2 == true)
-		{
-		}
-		else if(bComplex1 == true && bComplex2 == false)
-		{
-			iPowerComplexSquareMatrixByRealScalar(
-				_pDouble1->real_get(), _pDouble1->img_get(), _pDouble1->rows_get(), _pDouble1->cols_get(),
-				_pDouble2->real_get()[0], 
-				(*_pDoubleOut)->real_get(), (*_pDoubleOut)->img_get());
-		}
-		else if(bComplex1 == true && bComplex2 == true)
-		{
-		}
-	}
 
 	if(iComplex == 0)
 	{

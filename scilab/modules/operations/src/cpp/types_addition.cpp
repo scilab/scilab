@@ -338,9 +338,9 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 					(*_pPolyOut)->poly_get(i)->coef_get()->real_get(), (*_pPolyOut)->poly_get(i)->coef_get()->img_get(), pRank[i]);
 			}
 		}
-		delete[] pRank;
-		delete[] pRank1;
-		delete[] pRank2;
+		delete pRank;
+		delete pRank1;
+		delete pRank2;
 	}
 	else if(bScalar1)
 	{//size(p1) == 1
@@ -402,9 +402,9 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 			}
 		}
 
-		delete[] pRank;
-		delete[] pRank1;
-		delete[] pRank2;
+		delete pRank;
+		delete pRank1;
+		delete pRank2;
 	}
 	else if(bScalar2)
 	{//size(p2) == 1
@@ -467,9 +467,9 @@ int AddPolyToPoly(MatrixPoly* _pPoly1, MatrixPoly* _pPoly2, MatrixPoly ** _pPoly
 			}
 		}
 
-		delete[] pRank;
-		delete[] pRank1;
-		delete[] pRank2;
+		delete pRank;
+		delete pRank1;
+		delete pRank2;
 	}
 	else
 	{
@@ -506,7 +506,7 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 				memcpy(psz, _pString1->string_get(0,0), iCommonLen * sizeof(char));
 				memcpy(psz + iCommonLen, _pString2->string_get(i, j), iLen * sizeof(char));
 				(*_pStringOut)->string_set(i, j, psz);
-				delete[] psz;
+				delete psz;
 			}
 		}
 	}
@@ -527,7 +527,7 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 				memcpy(psz + iLen, _pString2->string_get(0,0), iCommonLen * sizeof(char));
 
 				(*_pStringOut)->string_set(i, j, psz);
-				delete[] psz;
+				delete psz;
 			}
 		}
 	}
@@ -547,7 +547,7 @@ int AddStringToString(String *_pString1, String *_pString2, String **_pStringOut
 				memcpy(psz + iLenL	, _pString2->string_get(i, j), iLenR * sizeof(char));
 
 				(*_pStringOut)->string_set(i, j, psz);
-				delete[] psz;
+				delete psz;
 			}
 		}
 	}

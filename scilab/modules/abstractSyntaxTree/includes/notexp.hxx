@@ -70,14 +70,14 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the expression of the operation (read only) */
-    const Exp* exp_get () const
+    const Exp& exp_get () const
     {
-      return _exp;
+      return *_exp;
     }
     /** \brief Return the expression of the operation (read and write) */
-    Exp* exp_get ()
+    Exp& exp_get ()
     {
-      return _exp;
+      return *_exp;
     }
 
   protected:

@@ -70,23 +70,23 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    const SeqExp*	try_get() const
+    const SeqExp&	try_get() const
     {
-      return _tryme;
+      return *_tryme;
     }
 
-    SeqExp*	try_get()
+    SeqExp&		try_get()
     {
-      return _tryme;
+      return *_tryme;
     }
-    const SeqExp*	catch_get() const
+    const SeqExp&	catch_get() const
     {
-      return _catchme;
+      return *_catchme;
     }
 
-    SeqExp*	catch_get()
+    SeqExp&		catch_get()
     {
-      return _catchme;
+      return *_catchme;
     }
     /** \} */
 

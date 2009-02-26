@@ -226,7 +226,7 @@ namespace types
 	{
 		if(m_puiReal != NULL)
 		{
-			delete[] m_puiReal;
+			delete m_puiReal;
 			m_puiReal = NULL;
 		}
 	}
@@ -238,7 +238,7 @@ namespace types
 	{
 		if(m_puiImg != NULL)
 		{
-			delete[] m_puiImg;
+			delete m_puiImg;
 			m_puiImg = NULL;
 			m_bComplex = !_bSetReal;
 		}

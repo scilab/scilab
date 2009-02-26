@@ -60,25 +60,25 @@ public:
      ** \{ */
   public:
     /** \brief Return the name of the size (read only). */
-    const Exp* left_exp_get() const
+    const Exp& left_exp_get() const
     {
-      return _left_exp;
+      return *_left_exp;
     }
     /** \brief Return the name of the size */
-    Exp* left_exp_get()
+    Exp& left_exp_get()
     {
-      return _left_exp;
+      return *_left_exp;
     }
 
     /** \brief Return the name of the init (read only). */
-    const Exp* right_exp_get() const
+    const Exp& right_exp_get() const
     {
-      return _right_exp;
+      return *_right_exp;
     }
     /** \brief Return the name of the init */
-    Exp* right_exp_get()
+    Exp& right_exp_get()
     {
-      return _right_exp;
+      return *_right_exp;
     }
     /** \} */
 

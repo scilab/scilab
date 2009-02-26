@@ -58,9 +58,9 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the comment (read only). */
-    std::string* comment_get () const
+    std::string &comment_get () const
     {
-      return _comment;
+      return *_comment;
     }
     /** \} */
   protected:

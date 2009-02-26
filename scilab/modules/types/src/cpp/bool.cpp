@@ -180,7 +180,7 @@ namespace types
 	{
 		if(m_pbData != NULL)
 		{
-			delete[] m_pbData;
+			delete m_pbData;
 			m_pbData = NULL;
 		}
 	}

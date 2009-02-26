@@ -60,7 +60,7 @@ namespace ast
      ** \li "2097" is the initial value of the variable
      */
     VarDec (const Location& location,
-	    symbol::Symbol* name, Exp& init) :
+	    symbol::Symbol& name, Exp& init) :
       Dec (location),
       _name (name),
       _init (&init),
@@ -98,20 +98,20 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the variable name (read only). */
-    const symbol::Symbol* name_get (void) const
+    const symbol::Symbol& name_get (void) const
     {
       return _name;
     }
 
     /** \brief Return the initial expression value (read only). */
-    const Exp* init_get (void) const
+    const Exp& init_get (void) const
     {
-      return _init;
+      return *_init;
     }
     /** \brief Return the initial expression value (read and write). */
-    Exp* init_get (void)
+    Exp& init_get (void)
     {
-      return _init;
+      return *_init;
     }
 
     /** \brief Return the kind of the Variable Declaration. (read only). */
@@ -129,7 +129,7 @@ namespace ast
 
   protected:
     /** \brief Name of the declared variable. */
-    symbol::Symbol* _name;
+    symbol::Symbol& _name;
     /** \brief The initial value (expression) assigned to the variable. */
     Exp* _init;
 

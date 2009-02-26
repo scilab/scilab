@@ -64,24 +64,24 @@ namespace ast
 
     // \brief Accessors.
   public:
-    const Exp*	name_get() const
+    const Exp&	name_get() const
     {
-      return &_name;
+      return _name;
     }
 
-    Exp*	name_get()
+    Exp&	name_get()
     {
-      return &_name;
+      return _name;
     }
 
-    const std::list<Exp *>*	args_get() const
+    const std::list<Exp *>&	args_get() const
     {
-      return _args;
+      return *_args;
     }
 
-    std::list<Exp *>*	args_get()
+    std::list<Exp *>&	args_get()
     {
-      return _args;
+      return *_args;
     }
 
   protected:

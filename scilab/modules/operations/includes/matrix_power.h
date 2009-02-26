@@ -56,23 +56,23 @@ EXTERN_OP int iPowerComplexScalarByComplexMatrix(
 		double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
-//Square Matrix ^ Scalar 
-EXTERN_OP int iPowerRealSquareMatrixByRealScalar(
+//Matrix ^ Scalar 
+EXTERN_OP int iPowerRealMatrixByRealScalar(
 		double* _pdblReal1, int _iRows1, int _iCols1,
 		double _dblReal2,
-		double* _pdblRealOut,	double* _pdblImgOut, int *_iComplex);
+		double* _pdblRealOut,	double* _pdblImgOut);
 
-EXTERN_OP int iPowerRealSquareMatrixByComplexScalar(
+EXTERN_OP int iPowerRealMatrixByComplexScalar(
 		double* _pdblReal1, int _iRows1, int _iCols1,
 		double _dblReal2, double _dblImg2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
-EXTERN_OP int iPowerComplexSquareMatrixByRealScalar(
+EXTERN_OP int iPowerComplexMatrixByRealScalar(
 		double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
 		double _dblReal2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
-EXTERN_OP int iPowerComplexSquareMatrixByComplexScalar(
+EXTERN_OP int iPowerComplexMatrixByComplexScalar(
 		double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
 		double _dblReal2, double _dblImg2,
 		double* _pdblRealOut,	double* _pdblImgOut);

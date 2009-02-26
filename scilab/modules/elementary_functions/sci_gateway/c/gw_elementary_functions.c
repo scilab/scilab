@@ -42,7 +42,7 @@ static gw_generic_table Tab[]=
 	{C2F(sci_exp),"exp"},
 	{C2F(sci_sqrt),"sqrt"},
 	{C2F(sci_log),"log"},
-	{C2F(sci_chinesehat),"^"},
+	{C2F(sci_log),"!!! USELESS : Must be reordered !!!"},
 	{C2F(sci_sign),"sign"},
 	{C2F(sci_clean),"clean"},
 	{C2F(sci_floor),"floor"},

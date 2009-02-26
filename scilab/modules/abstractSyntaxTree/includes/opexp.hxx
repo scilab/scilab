@@ -164,14 +164,14 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the left expression of the operation (read only) */
-    const Exp* left_get () const
+    const Exp& left_get () const
     {
-      return _left;
+      return *_left;
     }
     /** \brief Return the left expression of the operation (read and write) */
-    Exp* left_get ()
+    Exp& left_get ()
     {
-      return _left;
+      return *_left;
     }
 
     /** \brief Return the operator description (read only) */
@@ -181,14 +181,14 @@ namespace ast
     }
 
     /** \brief Return the right expression of the operation (read only) */
-    const Exp* right_get () const
+    const Exp& right_get () const
     {
-      return _right;
+      return *_right;
     }
     /** \brief Return the right expression of the operation (read and write) */
-    Exp* right_get ()
+    Exp& right_get ()
     {
-      return _right;
+      return *_right;
     }
 
     /** \brief Return the kind of the Op Expression (read only) \see Kind. */

@@ -37,17 +37,17 @@ namespace ast
 			std::list<MatrixLineExp *>::const_iterator	row;
 			std::list<Exp *>::const_iterator	col;
 			//store all element after evaluation
-			if(e.lines_get()->size() == 0)
+			if(e.lines_get().size() == 0)
 			{
 				poResult = new Double(0,0);
 			}
 			else
 			{
 				list<list<InternalType*> > MatrixList;
-				for (row = e.lines_get()->begin() ; row != e.lines_get()->end() ; ++row )
+				for (row = e.lines_get().begin() ; row != e.lines_get().end() ; ++row )
 				{
 					list<InternalType*> RowList;
-					for (col = (*row)->columns_get()->begin() ; col != (*row)->columns_get()->end() ; ++col)
+					for (col = (*row)->columns_get().begin() ; col != (*row)->columns_get().end() ; ++col)
 					{
 						ExecVisitor* execMe = new ast::ExecVisitor();
 						(*col)->accept (*execMe);
@@ -79,7 +79,7 @@ namespace ast
 						{
 							std::ostringstream os;
 							os << "inconsistent row/column dimensions";
-							os << " (" << (*row)->location_get()->first_line << "," << (*row)->location_get()->first_column << ")" << std::endl;
+							os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
 							string szErr(os.str());
 							throw szErr;
 						}
@@ -96,7 +96,7 @@ namespace ast
 					{
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << (*row)->location_get()->first_line << "," << (*row)->location_get()->first_column << ")" << std::endl;
+						os << " (" << (*row)->location_get().first_line << "," << (*row)->location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}

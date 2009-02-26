@@ -66,14 +66,14 @@ namespace ast
     /** \name Accessors.
      ** \{ */
   public:
-    const std::list<Exp *>*	columns_get() const
+    const std::list<Exp *>&	columns_get() const
     {
-      return _columns;
+      return *_columns;
     }
 
-    std::list<Exp *>*	columns_get()
+    std::list<Exp *>&	columns_get()
     {
-      return _columns;
+      return *_columns;
     }
     /** \} */
 

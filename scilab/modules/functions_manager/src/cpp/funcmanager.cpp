@@ -115,7 +115,7 @@ bool FuncManager::AppendModules()
 			std::cout << "Error: Could not parse file " << m_szXmlFile << std::endl;
 			if(encoding) 
 			{
-				delete[] encoding;
+				delete encoding;
 				encoding=NULL;
 			}
 			return false;
@@ -180,7 +180,7 @@ bool FuncManager::AppendModules()
 				}
 				if(name)
 				{
-					delete[] name;
+					delete name;
 					name = NULL;
 				}
 				activate = 0;
@@ -201,7 +201,7 @@ bool FuncManager::AppendModules()
 	}
 	if (encoding) 
 	{
-		delete[] encoding;
+		delete encoding;
 		encoding = NULL;
 	}
 	return true;
@@ -254,7 +254,7 @@ char *GetXmlFileEncoding(string _filename)
 		{
 			if(encoding)
 			{
-				delete[] encoding;
+				delete encoding;
 				encoding = NULL;
 			}
 			encoding = strdup((char*)doc->encoding);

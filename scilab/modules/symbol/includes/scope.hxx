@@ -73,14 +73,7 @@ namespace symbol
 				pOld->DecreaseRef();
 				if(pOld->isRef() == false)
 				{
-					if(pOld->getType() == InternalType::RealDouble)
-					{
-						delete pOld->getAsDouble();
-					}
-					else
-					{
-						delete pOld;
-					}
+					delete pOld;
 				}
 			}
 /*

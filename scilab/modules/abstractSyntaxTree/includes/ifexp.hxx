@@ -93,36 +93,36 @@ namespace ast
     // \brief Accessors.
   public:
     // \brief Return the select condition of the loop (read only).
-    const Exp*	test_get() const
+    const Exp&	test_get() const
     {
-      return _test;
+      return *_test;
     }
     // \brief Return the select condition of the loop (read and write).
-    Exp*	test_get()
+    Exp&	test_get()
     {
-      return _test;
+      return *_test;
     }
 
     // \brief Return the intructions if test is true (read only).
-    const Exp*	then_get() const
+    const Exp&	then_get() const
     {
-      return _then;
+      return *_then;
     }
     // \brief Return the instructions if test is true (read and write).
-    Exp* then_get()
+    Exp& then_get()
     {
-      return _then;
+      return *_then;
     }
 
     // \brief Return the instruction if test is false (read only).
-    const Exp*	else_get() const
+    const Exp&	else_get() const
     {
-      return _else;
+      return *_else;
     }
     // \brief Return the instruction if test is false (read and write).
-    Exp*	else_get()
+    Exp&	else_get()
     {
-      return _else;
+      return *_else;
     }
 
     // \brief Return if there is an else body

@@ -27,7 +27,7 @@
 
 using namespace types;
 
-int GetIndexList(const std::list<ast::Exp *>* _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize);
+int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMaxDim, InternalType *_pRefVar, int *_iDimSize);
 void ExpandList(int ** _piList, int *_piListSize, int _iListSizeSize, int *_piResultList);
 int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
 

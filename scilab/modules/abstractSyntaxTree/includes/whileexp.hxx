@@ -79,25 +79,25 @@ namespace ast
      ** \{ */
   public:
     /** \brief Return the exit condition of the loop (read only). */
-    const Exp* test_get() const
+    const Exp& test_get() const
     {
-      return _test;
+      return *_test;
     }
     /** \brief Return the exit condition of the loop (read and write). */
-    Exp* test_get()
+    Exp& test_get()
     {
-      return _test;
+      return *_test;
     }
 
     /** \brief Return the body of the loop (read only). */
-    const Exp* body_get() const
+    const Exp& body_get() const
     {
-      return _body;
+      return *_body;
     }
     /** \brief Return the body of the loop (read and write). */
-    Exp* body_get()
+    Exp& body_get()
     {
-      return _body;
+      return *_body;
     }
     /** \} */
 

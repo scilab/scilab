@@ -29,17 +29,17 @@ namespace ast
 		try
 		{
 			/*getting what to assign*/
-			e.right_exp_get()->accept(*execMeR);
+			e.right_exp_get().accept(*execMeR);
 
 			/*get symbol*/
-			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(e.left_exp_get());
+			const SimpleVar *Var = dynamic_cast<const SimpleVar*>(&e.left_exp_get());
 			if(Var == NULL)
 			{//dynamic_cast failed : left operand is not a SimpleVar ;)
 				bool bNew								= false;
-				CallExp *CallVar				= (CallExp *)e.left_exp_get();
-				int iProductElem				= CallVar->args_get()->size();
-				Var											= (SimpleVar*)CallVar->name_get();
-				InternalType *pIT				= symbol::Context::getInstance()->get(*Var->name_get());
+				CallExp *CallVar				= (CallExp *)(&e.left_exp_get());
+				int iProductElem				= CallVar->args_get().size();
+				Var											= (SimpleVar*)&CallVar->name_get();
+				InternalType *pIT				= symbol::Context::getInstance()->get(Var->name_get());
 				bool bSeeAsVector				= iProductElem == 1;
 
 				if(pIT == NULL)
@@ -147,7 +147,7 @@ namespace ast
 							{
 								std::ostringstream os;
 								os << "inconsistent row/column dimensions";
-								os << " (" << e.right_exp_get()->location_get()->first_line << "," << e.right_exp_get()->location_get()->first_column << ")" << std::endl;
+								os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
 								string szErr(os.str());
 								throw szErr;
 							}
@@ -158,7 +158,7 @@ namespace ast
 							{//bad size
 								std::ostringstream os;
 								os << "inconsistent row/column dimensions";
-								os << " (" << e.right_exp_get()->location_get()->first_line << "," << e.right_exp_get()->location_get()->first_column << ")" << std::endl;
+								os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
 								string szErr(os.str());
 								throw szErr;
 							}
@@ -182,7 +182,7 @@ namespace ast
 								{
 									std::ostringstream os;
 									os << "inconsistent row/column dimensions";
-									os << " (" << e.left_exp_get()->location_get()->first_line << "," << e.left_exp_get()->location_get()->first_column << ")" << std::endl;
+									os << " (" << e.left_exp_get().location_get().first_line << "," << e.left_exp_get().location_get().first_column << ")" << std::endl;
 									string szErr(os.str());
 									throw szErr;
 								}
@@ -303,7 +303,7 @@ namespace ast
 
 						if(bNew)
 						{
-							symbol::Context::getInstance()->put(*Var->name_get(), *((GenericType*)pOut));
+							symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pOut));
 						}
 
 						if(e.is_verbose())
@@ -317,7 +317,7 @@ namespace ast
 					{//manage error
 						std::ostringstream os;
 						os << "inconsistent row/column dimensions";
-						os << " (" << e.right_exp_get()->location_get()->first_line << "," << e.right_exp_get()->location_get()->first_column << ")" << std::endl;
+						os << " (" << e.right_exp_get().location_get().first_line << "," << e.right_exp_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
 					}
@@ -327,7 +327,7 @@ namespace ast
 					getchar();
 				}
 
-				delete[] piMaxDim;
+				delete piMaxDim;
 				delete[] piDimSize;
 			}
 			else
@@ -342,7 +342,7 @@ namespace ast
 					pVar = pTemp;
 				}
 
-				symbol::Context::getInstance()->put(*Var->name_get(), *((GenericType*)pVar));
+				symbol::Context::getInstance()->put(Var->name_get(), *((GenericType*)pVar));
 
 				if(e.is_verbose())
 				{
