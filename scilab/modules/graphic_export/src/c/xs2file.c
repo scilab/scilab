@@ -182,7 +182,6 @@ int xs2file(char * fname, ExportFileType fileType )
 		break;
 	}
 
-
 	LhsVar(1)=0;
 	return 0;
 }
@@ -195,3 +194,4 @@ BOOL isVectorialExport(ExportFileType fileType)
 		  || fileType == SVG_EXPORT;
 }
 /*--------------------------------------------------------------------------*/
+
