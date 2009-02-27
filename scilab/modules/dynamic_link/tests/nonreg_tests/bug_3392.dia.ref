@@ -11,6 +11,7 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=3392
 //
+ilib_verbose(0);
 test_path = get_absolute_file_path('bug_3392.tst');
 currentpath = pwd();
 cd TMPDIR;
@@ -22,16 +23,8 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3392.c' , TEST_DIR + 
 chdir(TEST_DIR);
 files=['bug_3392.c'];
 ilib_build('libc_fun',['c_sum','c_intsum';'c_sub','c_intsub'],files,[]);
-   Generate a gateway file
-   Generate a loader file
-   Generate a Makefile: Makelib
-   Running the makefile
-   Compilation of bug_3392.c
-   Building shared library (be patient)
 // load the shared library
 exec loader.sce;
-Shared archive loaded.
-Link done.
 chdir(currentpath);
 //using the new primitive
 if c_sum(3,8) <> 3+8 then bugmes();quit;end

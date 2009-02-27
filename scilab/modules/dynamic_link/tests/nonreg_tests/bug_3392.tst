@@ -14,6 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3392
 //
 
+ilib_verbose(0);
+
 test_path = get_absolute_file_path('bug_3392.tst');
 
 currentpath = pwd();
