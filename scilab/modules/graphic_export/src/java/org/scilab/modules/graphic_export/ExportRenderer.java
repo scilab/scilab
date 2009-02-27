@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -63,7 +63,16 @@ public abstract class ExportRenderer implements GLEventListener {
 	 * @param fileOrientation orientation of the file
 	 */
 	protected ExportRenderer(String fileName, int fileType, int fileOrientation) {
-		this.fileName = replaceTild(fileName);
+		
+		char tild =  fileName.charAt(0);
+		char slash =  fileName.charAt(1);
+		
+		if (tild == '~' && slash == '/') {
+			this.fileName = replaceTild(fileName);
+		} else {
+				this.fileName = fileName;
+		}
+		
 		this.fileType = fileType;	
 		this.fileOrientation = fileOrientation;
 		removeExtension();
@@ -205,22 +214,18 @@ public abstract class ExportRenderer implements GLEventListener {
 		} else if (System.getProperty("os.name").toLowerCase().indexOf("mac") > -1) {
 			os = "mac";
 		}
-
 		return os;
 	}
 	
 	/**
-	 * For unix os manage the "~" in the path of a file
+	 * For unix os manage the "~/" in the path of a file
 	 * @return file name
 	 */
 	public static String replaceTild(String fileName) {
-		
+
 		if (getOsName().equals("linux") || getOsName().equals("mac")) {
-			char tild =  fileName.charAt(0);
-			if (tild == '~') {
-				fileName = fileName.substring(1, fileName.length());
-				fileName = System.getProperty("user.home") + fileName;
-			}
+			fileName = fileName.substring(1, fileName.length());
+			fileName = System.getProperty("user.home") + fileName;
 		}
 		return fileName;
 	}
