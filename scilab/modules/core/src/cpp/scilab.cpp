@@ -1,4 +1,4 @@
-	/*
+/*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
 *
@@ -384,7 +384,7 @@ int main(int argc, char *argv[])
 
 	/* Scilab Startup */
 	SetScilabEnvironment();
-	Add_All_Variables();
+	//Add_All_Variables();
 	FuncManager *pFM = new FuncManager();
 
 	if (i == INTERACTIVE)
