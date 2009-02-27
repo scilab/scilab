@@ -44,10 +44,8 @@ chdir(TMP_DIR);
 
 //creating the shared library: a Makefile and a loader are 
 //generated, the code is compiled and a shared library built.
-ilib_for_link('fooc','fooc.o',[],"c"); 
+ilib_for_link('fooc','fooc.c',[],"c"); 
 
-// display the loader.sce file which calls link
-mprintf('%s\n',mgetl('loader.sce')) 
 // load the shared library 
 exec loader.sce; 
 
