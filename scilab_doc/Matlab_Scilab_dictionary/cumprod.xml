@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="cumprod">
+  <refnamediv>
+    <refname>cumprod</refname>
+    <refpurpose>(Matlab function) Cumulative product</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+cumprod
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+cumprod
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>C = cumprod(A)</term>
+        <listitem>
+          <para>If <emphasis role="bold">A</emphasis> is a matrix, <emphasis role="bold">cumprod(A)</emphasis> is equivalent to <emphasis role="bold">cumprod(A,1)</emphasis> in Matlab whereas in Scilab <emphasis role="bold">cumprod(A)</emphasis> gives the cumulative product of all the entries of <emphasis role="bold">A</emphasis> taken columnwise. Actually, Matlab works on the first non-singleton dimension and Scilb does not.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>C = cumprod(A,dim)</term>
+        <listitem>
+          <para>Matlab can work with dim greater than number of dimensions of <emphasis role="bold">A</emphasis> but Scilab can not, in this can use <emphasis role="bold">mtlb_cumprod</emphasis> instead.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" pgwide="1">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+B = cumprod([1,2,3;4,5,6])
+B = [1,2,3;4,10,18]
+B = cumprod([1,2,3;4,5,6],1)
+B = [1,2,3;4,10,18]
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+B = cumprod([1,2,3;4,5,6])
+B = [1,8,120;4,40,720]
+B = cumprod([1,2,3;4,5,6],1)
+B = [1,2,3;4,10,18]
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

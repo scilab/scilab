@@ -7,6 +7,8 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
+* modelicac (scicos) built with Ocaml 3.11.0 on windows
+
 Source reorganisation:
 ======================
 
@@ -17,6 +19,21 @@ Input/Output functions:
 
  - Rewrite :
  	+ getenv
+ 	
+Core functions:
+===============
+
+ - Rewrite :
+ 	+ mode
+ 	
+
+Dynamic link:
+=============
+ - Windows : temporary files (objects) are generated in a intermediate subdirectory (Release or Debug)
+   ilib_for_link and ilib_gen_Make (with Visual studio) use a same makefile template.
+   (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC)
+   
+ - ilib_verbose (SEP #17) Set level of display returned by dynamic link functions.
 
 Bug fixes:
 ==========
@@ -28,3 +45,5 @@ Bug fixes:
 * bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
+
+* bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.

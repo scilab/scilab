@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="size">
+  <refnamediv>
+    <refname>size</refname>
+    <refpurpose>(Matlab function) Array dimension</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+size
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+size
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+Due to the fact that strings or not considered in the same way in Matlab and in Scilab, results are not equal for string matrices, convert it using <emphasis role="bold">m2scistr</emphasis> to have the same result.
+</para>
+    <variablelist>
+      <varlistentry>
+        <term>d = size(X,dim)</term>
+        <listitem>
+          <para>
+If <emphasis role="bold">dim</emphasis> is greater than number of dimensions of <emphasis role="bold">X</emphasis>, Matlab returns <emphasis role="bold">d=1</emphasis>, but in Scilab, you get an error message. Scilab <emphasis role="bold">mtlb_size</emphasis> can work with <emphasis role="bold">dim</emphasis> greater than number of dimensions of <emphasis role="bold">X</emphasis>.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>[d1,...dn] = size(X)</term>
+        <listitem>
+          <para>
+If <emphasis role="bold">n</emphasis> is greater than number of dimensions of <emphasis role="bold">X</emphasis>, all "extra" variables are set to <emphasis role="bold">1</emphasis> in Matlab but Scilab returns an error message. Scilab <emphasis role="bold">mtlb_size</emphasis> returns a Matlab like result in these cases. When <emphasis role="bold">n</emphasis> is less than number of dimensions of <emphasis role="bold">X</emphasis>, <emphasis role="bold">dn</emphasis> contains the product of the sizes of the remaining dimensions in Matlab but in Scilab <emphasis role="bold">dn = size(X,n)</emphasis>, use <emphasis role="bold">mtlb_size</emphasis> for such uses.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

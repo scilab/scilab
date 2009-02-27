@@ -36,29 +36,47 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	char szTemp[bsiz];
 	char *locale = NULL;
 	#ifdef _MSC_VER
-	if (GetEnvironmentVariable(UTFToLocale(var, szTemp),buf,(DWORD)*buflen) == 0)
+	DWORD nbCharBufEnv = GetEnvironmentVariable(UTFToLocale(var, szTemp),buf,(DWORD)*buflen);
+	if (nbCharBufEnv == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
 	}
 	else
 	{
-		locale = localeToUTF(buf, szTemp);
-		*buflen = (int)strlen(locale);
-		strncpy(buf,locale,*buflen);
-		*ierr=0;
+		if (nbCharBufEnv > (DWORD)*buflen)
+		{
+			if ( *iflag == 1 ) sciprint(_("environment variable value too long %s.\n"),var);
+			*ierr = 1;
+		}
+		else
+		{
+			locale = localeToUTF(buf, szTemp);
+			*buflen = (int)strlen(locale);
+			strncpy(buf,locale,*buflen);
+			*ierr = 0;
+		}
 	}
 	#else
 	if ( (locale=localeToUTF(getenv(UTFToLocale(var, szTemp)), szTemp) ) == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
-		*ierr=1;
+		*ierr = 1;
 	}
 	else
 	{
-		*buflen = (int)strlen(locale);
-	        strcpy(buf,locale);
-		*ierr=0;
+		
+		if ( strlen(locale) > buflen )
+		{
+			if ( *iflag == 1 ) sciprint(_("environment variable value too long %s.\n"),var);
+			*ierr = 1;
+		}
+		else
+		{
+			*buflen = (int)strlen(locale);
+			strcpy(buf,locale);
+			*ierr = 0;
+		}
 	}
 	#endif
 }

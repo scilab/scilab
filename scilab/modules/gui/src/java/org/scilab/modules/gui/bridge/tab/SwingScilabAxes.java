@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - 2008 Digitei Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -52,7 +52,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	//private static final Integer BACKGROUND_LAYER = 0;
 	private static final Integer CANVAS_LAYER = new Integer(1);
 	private static final Integer WIDGET_LAYER = new Integer(2);
-	
+
 	/** Use to put a component above any other object within its layer */
 	private static final int TOP_POSITION = 0;
 	/** Use to put a component below any other object within its layer */
@@ -100,14 +100,14 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 * @param newSize new size to apply
 	 */
 	public void setSize(Dimension newSize) {
-		
+
 		// get the greatest size we can use
 		int[] maxSize = RenderingCapabilities.getMaxCanvasSize();
-		
+
 		// make sure size is not greater than the max size
 		Dimension finalDim = new Dimension(Math.min(newSize.width, maxSize[0]),
 										   Math.min(newSize.height, maxSize[1]));
-		
+
 		super.setSize(finalDim);
 		super.setPreferredSize(finalDim);
 
@@ -186,7 +186,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	 */
 	public void setEventHandler(String funName) {
 		disableEventHandler();
-		eventHandler = new ScilabEventListener(funName, 0);
+		eventHandler = new ScilabEventListener(funName, getFigureId());
 	}
 
 
@@ -255,15 +255,15 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			// should not happen, no need for localization
 			throw new InvalidParameterException("Only one single canvas can be included in a tab.");
 		}
-		
+
 		// to be sure to have the same size
 		canvas.setSize(getSize());
-		
+
 		// we use a null layout. It's needed for uicontrol so they should resize when the canvas
 		// is resized. However, its imply to set the canvas size by hand.
 		//ScilabSwingUtilities.addToParent(canvas.getAsComponent(), this, CANVAS_LAYER, TOP_POSITION);
 		this.add(canvas.getAsComponent(), CANVAS_LAYER, TOP_POSITION);
-		
+
 		graphicCanvas = canvas;
 
 		return getComponentZOrder(canvas.getAsComponent());
@@ -289,9 +289,9 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 			// should not happen, no need for localization
 			throw new UnsupportedOperationException("Trying to remove an unknown canvas.");
 		}
-		
+
 		ScilabSwingUtilities.removeFromParent(canvas.getAsComponent());
-		
+
 		graphicCanvas = null;
 
 	}
@@ -390,7 +390,7 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	    Debug.DEBUG(this.getClass().getSimpleName(), "repaint");
 	    super.repaint();
 	}
-	
+
 	/**
 	 * Redefine paint children to be sure that AWT components are well painted.
 	 * @param g graphic pipeline

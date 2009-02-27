@@ -53,14 +53,18 @@ function  bOK = ExportAtlasLibrary(libraryname, pathlib)
     return
   end
   
-  mprintf('\nExports from '+libraryname+'.dll\n');
+  if ( ilib_verbose() <> 0 ) then
+    mprintf('\nExports from '+libraryname+'.dll\n');
+  end
   ierr = unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
   if ierr <> 0 then
 	  bOK=%F;	
 	  return;
 	end
 	
-	mprintf('Converting Library');
+	if ( ilib_verbose() <> 0 ) then
+	  mprintf('Converting Library');
+	end
 	
 	fw = mopen(TMPDIR+filesep()+libraryname+'.exp',"wt");
 	fr = mopen(TMPDIR+filesep()+libraryname+'.lcc',"rt");
@@ -82,8 +86,10 @@ function  bOK = ExportAtlasLibrary(libraryname, pathlib)
 	mclose(fw);
 	mclose(fr);
 	
-	mprintf('\n');
-	mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
+	if ( ilib_verbose() <> 0 ) then
+	  mprintf('\n');
+	  mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
+	end
 	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then
@@ -106,15 +112,19 @@ function bOK = Exportalibrary(libraryname, pathlib)
     bOK = %f;
     return
   end
-  
-  mprintf('\nExports from '+libraryname+'.dll\n');
+
+  if ( ilib_verbose() <> 0 ) then  
+    mprintf('\nExports from '+libraryname+'.dll\n');
+  end
   ierr = unix('pedump /exp '+libraryname+'.dll >'+TMPDIR+filesep()+libraryname+'.lcc');
   if ierr <> 0 then
 	  bOK=%F;	
 	  return;
 	end
 	
-	mprintf('Converting Library');
+	if ( ilib_verbose() <> 0 ) then
+	  mprintf('Converting Library');
+	end
 	
 	fw = mopen(TMPDIR+filesep()+libraryname+'.exp',"wt");
 	fr = mopen(TMPDIR+filesep()+libraryname+'.lcc',"rt");
@@ -134,8 +144,10 @@ function bOK = Exportalibrary(libraryname, pathlib)
 	mclose(fw);
 	mclose(fr);
 	
-	mprintf('\n');
-	mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
+	if ( ilib_verbose() <> 0 ) then
+	  mprintf('\n');
+	  mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
+	end
 	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then

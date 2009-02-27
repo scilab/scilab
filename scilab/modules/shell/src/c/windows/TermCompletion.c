@@ -26,6 +26,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "completeLine.h"
 /*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary,int sizedictionary, char *namedictionary);
 static char **concatenateStrings(int *sizearrayofstring, char *string1,
@@ -35,23 +36,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 								  char *currentline, char *filePattern, char *defaultPattern);
 static void TermCompletionOnAll(char *currentline, char *defaultPattern);
 /*--------------------------------------------------------------------------*/
-char * strrstr(char *string, char *find)
-{
-	size_t stringlen, findlen;
-	char *cp;
-
-	findlen = strlen(find);
-	stringlen = strlen(string);
-	if (findlen > stringlen)
-		return NULL;
-
-	for (cp = string + stringlen - findlen; cp >= string; cp--)
-		if (strncmp(cp, find, findlen) == 0)
-			return cp;
-
-	return NULL;
-}
-/*--------------------------------------------------------------------------*/
 static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFiles,
 								  char *currentline, char *filePattern, char *defaultPattern)
 {
@@ -59,34 +43,13 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 	{
 		if (sizedictionaryFiles == 1)
 		{
-			if ( strcmp(defaultPattern,"") )
+			char *newline = completeLine(currentline,dictionaryFiles[0],filePattern,defaultPattern,TRUE);
+			if (newline)
 			{
-				char *ptr_strrchar1 = NULL;
-
-				ptr_strrchar1 = strstr(dictionaryFiles[0], defaultPattern);
-				if (ptr_strrchar1) 
-				{
-					char *ptr_strrchar2 = NULL;
-					char *newline = NULL;
-					ptr_strrchar2 = strrstr(currentline, defaultPattern);
-					newline = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(dictionaryFiles[0])));
-
-					if (newline)
-					{
-						int l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
-						if (l < 0) l = 0 - l;
-
-						strncpy(newline,currentline, l);
-						/* special case with files begin with a '.' */
-						if (newline[l-1] == '.') strcat(newline, &(dictionaryFiles[0][1]));
-						else strcat(newline, ptr_strrchar1);
-
-						clearCurrentLine();
-						copyLine(newline);
-						FREE(newline);
-						return;
-					}
-				}
+				clearCurrentLine();
+				copyLine(newline);
+				FREE(newline);
+				return;
 			}
 		}
 		else
@@ -106,28 +69,13 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 			}
 			else if (common)
 			{
-				char *ptr_strrchar1 = NULL;
-
-				ptr_strrchar1 = strstr(common, defaultPattern);
-				if (ptr_strrchar1) 
+				char *newline = completeLine(currentline,common,filePattern,defaultPattern,TRUE);
+				if (newline)
 				{
-					char *ptr_strrchar2 = NULL;
-					char *newline = NULL;
-					ptr_strrchar2 = strrstr(currentline, defaultPattern);
-					newline = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(ptr_strrchar1)));
-
-					if (newline)
-					{
-						int l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
-						if (l < 0) l = 0 - l;
-
-						strncpy(newline,currentline, l);
-						strcat(newline, ptr_strrchar1);
-
-						clearCurrentLine();
-						copyLine(newline);
-						FREE(newline);
-					}
+					clearCurrentLine();
+					copyLine(newline);
+					FREE(newline);
+					return;
 				}
 				else
 				{
@@ -186,8 +134,6 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern)
 			if (numberWordFound == 1)
 			{
 				char **completionDictionary = NULL;
-				char *result = NULL;
-				char *partResult = NULL;
 				char *newline = NULL;
 
 				if (completionDictionaryFunctions) completionDictionary = completionDictionaryFunctions;
@@ -196,14 +142,9 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern)
 				if (completionDictionaryVariables) completionDictionary = completionDictionaryVariables;
 				if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
 
-				result = completionDictionary[0];
-				partResult = &result[strlen(defaultPattern)];
-				newline = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(partResult)));
-
+				newline = completeLine(currentline, completionDictionary[0],NULL,defaultPattern,FALSE);
 				if (newline)
 				{
-					strcpy(newline, currentline);
-					strcat(newline, partResult);
 					clearCurrentLine();
 					copyLine(newline);
 					FREE(newline);
@@ -247,18 +188,12 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern)
 
 				if (commonAll)
 				{
-					char *result = NULL;
-					char *partResult = NULL;
 					char *newline = NULL;
 
-					result = commonAll;
-					partResult = &result[strlen(defaultPattern)];
-					newline = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(partResult)));
+					newline = completeLine(currentline, commonAll,NULL,defaultPattern,FALSE);
 
 					if (newline)
 					{
-						strcpy(newline, currentline);
-						strcat(newline,partResult);
 						clearCurrentLine();
 						copyLine(newline);
 						FREE(newline);

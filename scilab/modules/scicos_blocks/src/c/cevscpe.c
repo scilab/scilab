@@ -177,29 +177,33 @@ void cevscpe(scicos_block * block, int flag)
     case Ending:
       {
 
-	scoRetrieveScopeMemory(block->work, &pScopeMemory);
-	if(scoGetScopeActivation(pScopeMemory) == 1)
-	  {
-	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    if(scoGetPointerScopeWindow(pScopeMemory) != NULL)
-	      {
-		for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-		  {
-		    //maybe a bug here in the last argument of the following instruction (see tab[i])
-		    pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-		    forceRedraw(pLongDraw);
-		  }
-	      }
+				scoRetrieveScopeMemory(block->work, &pScopeMemory);
+				if(scoGetScopeActivation(pScopeMemory) == 1)
+				{
+					/* sciSetUsedWindow(scoGetWindowID(pScopeMemory)); */
+					/* Check if figure is still opened, otherwise, don't try to destroy it again. */
+					if(scoGetPointerScopeWindow(pScopeMemory) != NULL)
+					{
+						for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+						{
+							/* maybe a bug here in the last argument of the following instruction (see tab[i]) */
+							pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+							forceRedraw(pLongDraw);
+						}
+					
 
-	    pShortDraw = sciGetCurrentFigure();
-	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
-			/* restore double buffering */
-			sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
-	    scoDelCoupleOfSegments(pScopeMemory);
-	  }
-	scoFreeScopeMemory(block->work,&pScopeMemory);
-	break;
-      }
-    }
+						/* pShortDraw = sciGetCurrentFigure(); */
+						pShortDraw = scoGetPointerScopeWindow(pScopeMemory);
+						clearUserData(pShortDraw);
+						/* pFIGURE_FEATURE(pShortDraw)->user_data = NULL; */
+						/* pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0; */
+						/* restore double buffering */
+						sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
+						scoDelCoupleOfSegments(pScopeMemory);
+					}
+				}
+				scoFreeScopeMemory(block->work,&pScopeMemory);
+				break;
+			}
+	}
 }

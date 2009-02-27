@@ -169,7 +169,9 @@ proc findinonefile {fname str cas reg whword} {
 
     # open file
     if {[catch {open $fname r} fid] != 0} {
-        # error on opening the file
+        # error on opening the file, maybe because it was closed
+        # since the file list was built (race condition), or due
+        # to lack of permissions
         lappend openerrorfiles $fname
         return $filematchlist
     }
@@ -185,6 +187,30 @@ proc findinonefile {fname str cas reg whword} {
     set linenumber 0
 
     # loop on file lines and search for matches on each single line
+    # <TODO> Fix the possible race condition here: [gets $fid line] will trigger
+    #        an error if file $fid becomes closed during the search in it
+# error reading "file1802798": no such file or directory
+# error reading "file1802798": no such file or directory
+#     while executing
+# "gets $fid line"
+#     (procedure "findinonefile" line 39)
+#     invoked from within
+# "findinonefile $filename $tosearchfor $cas $reg $whword"
+#     (procedure "findinfiles" line 36)
+#     invoked from within
+# "findinfiles $tosearchfor $caset $regexpcase $wholeword $initdir $fileglobpat $recursesearchindir $searchforfilesonly"
+#     (procedure "multiplefilesfindreplace" line 44)
+#     invoked from within
+# "multiplefilesfindreplace .scipad.find findit"
+#     invoked from within
+# ".scipad.find.f2.button1 invoke"
+#     ("uplevel" body line 1)
+#     invoked from within
+# "uplevel #0 [list $w invoke]"
+#     (procedure "tk::ButtonUp" line 24)
+#     invoked from within
+# "tk::ButtonUp .scipad.find.f2.button1"
+#     (command bound to event)
     while {[gets $fid line] >= 0} {
         $pad.fake insert 1.0 $line
         set listoflinematch [searchforallmatches $pad.fake $str $cas $reg 0 $whword [list ]]

@@ -17,6 +17,9 @@
 // 
 // Define a fortran source code and compile it (fortran compiler required)
 //
+
+ilib_verbose(0);
+
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
 'c (DLL Digital Visual Fortran)'     

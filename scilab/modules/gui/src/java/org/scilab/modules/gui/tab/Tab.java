@@ -26,6 +26,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.Window;
 
@@ -73,6 +74,13 @@ public interface Tab extends Container {
 	 * @return the position of the HelpBrowser in the member list.
 	 */
 	int addMember(HelpBrowser member);
+	
+	/**
+	 * We want to be able to add directly a Tree Overview in a Tab.
+	 * @param member the member to add
+	 * @return the position of the Tree Overview in the member list.
+	 */
+	int addMember(Tree member);
 	
 	/**
 	 * We want to be able to add a Frame in a Tab.

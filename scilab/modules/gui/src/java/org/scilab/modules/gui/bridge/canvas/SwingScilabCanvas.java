@@ -103,7 +103,7 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 			cap.setNumSamples(antialiasingQuality);
 			cap.setAccumRedBits(ACCUM_BUFFER_BITS);
 			cap.setAccumGreenBits(ACCUM_BUFFER_BITS);
-			cap.setAccumAlphaBits(ACCUM_BUFFER_BITS);
+			cap.setAccumBlueBits(ACCUM_BUFFER_BITS);
 		}
 		
 		SwingScilabCanvas newCanvas = new SwingScilabCanvas(cap, figureIndex);

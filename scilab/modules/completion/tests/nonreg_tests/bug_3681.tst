@@ -13,9 +13,5 @@
 // <-- Short Description -->
 // Disable automatic completion if there are only spaces in a line
 
-// <-- INTERACTIVE TEST -->
-
-// launch scilab GUI
-// type space or nothing
-// type TAB
-// if you have completion box with some functions then test fails
+r = completion(' ');
+if r <> [] then pause,end
