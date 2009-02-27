@@ -83,6 +83,7 @@ src/c/comparehandles.c \
 src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
 src/c/getos.c \
+src/c/epsilon.c \
 src/c/mode_exec.c
 
 if USE_DYNAMIC_STACK
