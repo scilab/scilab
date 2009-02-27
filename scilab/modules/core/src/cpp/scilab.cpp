@@ -446,7 +446,7 @@ void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_p
 	types::MatrixPoly *pVar = new types::MatrixPoly(_szPolyVar, 1, 1, &_iRank);
 	Poly *poPoly = pVar->poly_get(0,0);
 	poPoly->coef_set(_pdbl);
-	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVar);
+	Context::getInstance()->put(symbol::Symbol(_szName), *pVar);
 
 	/*	pVal->val_set(0,0,_dblReal,_dblImg);
 	Context::getInstance()->put(*new symbol::Symbol(_szName), *pVal);

@@ -15,11 +15,6 @@
 
 namespace types
 {
-	ImplicitList::~ImplicitList()
-	{
-
-	}
-
 	ImplicitList::ImplicitList()
 	{
 		CreateImplicitList(-1, -1, -1);

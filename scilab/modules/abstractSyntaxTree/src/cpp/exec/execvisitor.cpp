@@ -424,6 +424,11 @@ namespace ast
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
 			(*i)->accept (*execMe);
+			if(execMe->result_get() != NULL)
+			{
+				InternalType *pI = execMe->result_get();
+				delete pI;
+			}
 		}
 
 		delete execMe;
