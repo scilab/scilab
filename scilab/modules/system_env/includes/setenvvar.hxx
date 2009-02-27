@@ -23,7 +23,7 @@
 #endif
 
 /* DIR_SEPARATOR : Under Windows by default is \ */
-#ifdef MSC_VER
+#ifdef _MSC_VER
 	#define DIR_SEPARATOR "\\"
 #else
 	#define DIR_SEPARATOR "/"
