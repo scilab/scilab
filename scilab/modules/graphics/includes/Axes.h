@@ -49,5 +49,10 @@ BOOL checkRedrawing( void ) ;
  */
 sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord);
 
+/**
+ * Convert property name into a sciLegendPlace
+ */
+sciLegendPlace propertyNameToLegendPlace(const char * string);
+
 /*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

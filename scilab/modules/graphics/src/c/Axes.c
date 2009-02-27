@@ -19,9 +19,7 @@
  * Axis drawing for 2d plots
  *--------------------------------------------------------------------------*/
 
-#include <math.h>
 #include <string.h>
-#include <stdio.h>
 #include "math_graphics.h"
 #include "Axes.h"
 #include "DestroyObjects.h"
@@ -43,8 +41,6 @@
 /*--------------------------------------------------------------------------------*/
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
 static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
-
-//static int nbCheckRedraw = 0;
 
 /*--------------------------------------------------------------------------------*/
 /* clear a subwindow from all of its children */
@@ -245,5 +241,56 @@ sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
 
   return res;
 
+}
+/*--------------------------------------------------------------------------------*/
+sciLegendPlace propertyNameToLegendPlace(const char * string)
+{
+	if ( strcmp(string, "in_upper_right" ) == 0 )
+	{
+		return SCI_LEGEND_IN_UPPER_RIGHT;
+	}
+	else if ( strcmp(string, "in_upper_left" ) == 0 )
+	{
+		return SCI_LEGEND_IN_UPPER_LEFT;
+	}
+	else if ( strcmp(string, "in_lower_right" ) == 0 )
+	{
+		return SCI_LEGEND_IN_LOWER_RIGHT;
+	}
+	else if ( strcmp(string, "in_lower_left" ) == 0 )
+	{
+		return SCI_LEGEND_IN_LOWER_LEFT;
+	}
+	else if ( strcmp(string, "out_upper_right" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_UPPER_RIGHT;
+	}
+	else if ( strcmp(string, "out_upper_left" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_UPPER_LEFT;
+	}
+	else if ( strcmp(string, "out_lower_right" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_LOWER_RIGHT;
+	}
+	else if ( strcmp(string, "out_lower_left" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_LOWER_LEFT;
+	}
+	else if ( strcmp(string, "upper_caption" ) == 0 )
+	{
+		return SCI_LEGEND_UPPER_CAPTION;
+	}
+	else if ( strcmp(string, "lower_caption" ) == 0 )
+	{
+		return SCI_LEGEND_LOWER_CAPTION;
+	}
+	else if ( strcmp(string, "by_coordinates" ) == 0 )
+	{
+		return SCI_LEGEND_BY_COORDINATES;
+	}
+	else {
+		return (sciLegendPlace) 0;
+	}
 }
 /*--------------------------------------------------------------------------------*/
