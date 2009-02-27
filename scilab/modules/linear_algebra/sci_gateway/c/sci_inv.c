@@ -15,40 +15,76 @@
 #include <stdio.h>
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
-#include "Scierror.h"
 #include "localization.h"
-/*--------------------------------------------------------------------------*/
-extern int C2F(intdgetri)(char *fname, unsigned long fname_len);
-extern int C2F(intzgetri)(char *fname, unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
+
+#include "stack3.h" /* */
+
+#include "msgs.h" /* for printToBuffer() and Msgs() */
+
+#include "invert_matrix.h"
+
+
 int C2F(intinv)(char *fname,unsigned long fname_len)
-
 {
-	int *header1;
-	int CmplxA;
-	int ret;
-
+  fprintf(stdout,"in inv !\n");
+	int ret = 0;
 	/*   inv(A)  */
 	if (GetType(1)!=sci_matrix) 
 	{
 		OverLoad(1);
 		return 0;
 	}
-	header1 = (int *) GetData(1);
-	CmplxA=header1[3];
+	// from now on, we have an sci_matrix, so we can use iIsComplex
+	CheckRhs(1,1); /* one and only one arg */
+	CheckLhs(1,1); /* one and only one returned value */
+	int iRows, iCols;
+	double* pData;
+	double* pDataReal;
+	double* pDataImg;
+	int complexArg=iIsComplex(1);
+	if(complexArg){
+	  fprintf(stderr,"Matrice complexe !\n");
+	  /* original code in intzgetri uses getrhsvar('c'), NOT getrhscvar ! */
+	  /* on crée une copie en format 'z' de la rhs var */
+	  GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
+	  fprintf(stderr,"%f + %f i, %f + %f i , %f + %f i, %f + %f i !\n"
+		 , *pDataReal, *pDataImg
+		 , *(pDataReal+1), *(pDataImg+1)
+		 , *(pDataReal+2), *(pDataImg+2)
+		 , *(pDataReal+3), *(pDataImg+3)
+		 );
+	  /* c -> z */
+	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
+	}else{
+	  GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
+	}
+	if(iRows != iCols){
+	  Err = 1;
+	  ret=20;
+	}else{
+	  if(iCols != 0){
+	    if( iCols == -1){
+	      *pData = 1./(*pData);
+	      printf("eye\n");
+	    }else{
+	      double dblRcond;
+	      ret = iInvertMatrixM(iRows, iCols, pData, complexArg, &dblRcond);
+	      if(complexArg){
+		/* z -> c */
+		vGetPointerFromDoubleComplex((doublecomplex*)pData, iCols * iRows, pDataReal, pDataImg);
+		vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+	      }
 
-	switch (CmplxA) 
-	{
-		case REAL:
-			ret = C2F(intdgetri)("inv",3L);
-		break;
-		case COMPLEX:
-			ret = C2F(intzgetri)("inv",3L);
-		break;
-		default:
-			Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-			fname,1);
-		break;
+	      if(ret ==-1){// warning   "ill conditionned problem" & ' matrix is close to singular or badly scaled"
+		printToBuffer("%1.4E", dblRcond);
+		Msgs(5, 0);
+	      }
+	    }
+	  }
+	}
+	if(ret >0){ Error(ret) ; }
+	else{
+	  LhsVar(1) = 1;
 	}
 	return 0;
 }
