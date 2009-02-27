@@ -13,6 +13,7 @@
  */
 
 #include <string.h>
+#include <stdio.h>
 
 #include "xs2file.h"
 #include "stack-c.h"
@@ -23,12 +24,26 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
-
+#include "cluni0.h"
+#include "PATH_MAX.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType )
 {
+	sciPointObj * exportedFigure = NULL;
+	int nbRow;
+	int nbCol;
+	size_t stackPointer;
+	char * fileName = NULL;
+	char *real_filename = NULL;
+	ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
+	int status;
+	long int lout;
+	int out_n;
+	
+	/* Check input and output sizes */
 	CheckLhs(0,1);
 	if (isVectorialExport(fileType))
 	{
@@ -137,6 +152,41 @@ int xs2file(char * fname, ExportFileType fileType )
 			return 0;
 		}
 	}
+	/* Replaces SCI, ~, HOME, TMPDIR by the real path */
+	lout = PATH_MAX + FILENAME_MAX;
+	real_filename = (char*)MALLOC(sizeof(char*)*lout);
+				
+	/* Replaces SCI, ~, HOME, TMPDIR by the real path */ 
+	C2F(cluni0)(fileName, real_filename, &out_n, (long)strlen(fileName), lout);
+
+	/* Call the function for exporting file */
+	status = exportToFile(exportedFigure, real_filename, fileType, orientation);
+	if (real_filename){FREE(real_filename);real_filename = NULL;}
+
+	/* treat errors */
+	switch(status)
+	{
+	case EXPORT_UNKNOWN_GLEXCEPTION_ERROR :
+		Scierror(999,_("%s: OpenGL error during export.\n"),fname);
+		break;
+	case EXPORT_IOEXCEPTION_ERROR :
+		Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
+		break;
+	case EXPORT_INVALID_FILE :
+		Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
+		break;
+	case EXPORT_GL2PS_ERROR :
+		Scierror(999,_("%s: GL2PS error during export.\n"),fname);
+		break;
+	case EXPORT_GL2PS_OVERFLOW :
+		Scierror(999,_("%s: Unable to create export file, figure is too complex.\n"),fname);
+		break;
+	case EXPORT_GL2PS_UNINITIALIZED :
+		Scierror(999,_("%s: GL2PS error during export.\n"),fname);
+		break;
+	default :
+		break;
+	}
 
 	LhsVar(1)=0;
 	return 0;
@@ -150,3 +200,4 @@ BOOL isVectorialExport(ExportFileType fileType)
 		  || fileType == SVG_EXPORT;
 }
 /*--------------------------------------------------------------------------*/
+
