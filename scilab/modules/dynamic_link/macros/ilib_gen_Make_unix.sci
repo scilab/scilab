@@ -31,7 +31,8 @@ function ilib_gen_Make_unix(names,   ..
 		clear l;
 	end
 
-
+  if isdef('tables') then 
+  
 	/// Check tables ... the second element should be the file name
 	if typeof(tables)<>'list' then 
 	  tables=list(tables)
@@ -51,6 +52,8 @@ function ilib_gen_Make_unix(names,   ..
 		  end
 	  end
 	end
+	
+	end // isdef('tables')
 
 		
 	originPath  = pwd();
