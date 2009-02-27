@@ -13,6 +13,7 @@
  */
 
 #include <string.h>
+#include <stdio.h>
 
 #include "xs2file.h"
 #include "stack-c.h"
@@ -23,7 +24,9 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
-
+#include "cluni0.h"
+#include "PATH_MAX.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
@@ -34,8 +37,11 @@ int xs2file(char * fname, ExportFileType fileType )
 	int nbCol;
 	size_t stackPointer;
 	char * fileName = NULL;
+	char *real_filename = NULL;
 	ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
 	int status;
+	long int lout;
+	int out_n;
 	
 	/* Check input and output sizes */
 	CheckLhs(0,1);
@@ -140,10 +146,16 @@ int xs2file(char * fname, ExportFileType fileType )
 			return 0;
 		}
 	}
-
+	/* Replaces SCI, ~, HOME, TMPDIR by the real path */
+	lout = PATH_MAX + FILENAME_MAX;
+	real_filename = (char*)MALLOC(sizeof(char*)*lout);
+				
+	/* Replaces SCI, ~, HOME, TMPDIR by the real path */ 
+	C2F(cluni0)(fileName, real_filename, &out_n, (long)strlen(fileName), lout);
 
 	/* Call the function for exporting file */
-	status = exportToFile(exportedFigure, fileName, fileType, orientation);
+	status = exportToFile(exportedFigure, real_filename, fileType, orientation);
+	if (real_filename){FREE(real_filename);real_filename = NULL;}
 
 	/* treat errors */
 	switch(status)
