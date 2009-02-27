@@ -30,7 +30,7 @@ public abstract class ExportRenderer implements GLEventListener {
 	public static final int GL2PS_ERROR = 4;
 	public static final int GL2PS_OVERFLOW = 5;
 	public static final int GL2PS_UNINITIALIZED = 6;
-
+	
 	/** Code-number for each bitmap format */
 	public static final int BMP_EXPORT = 1;
 	public static final int GIF_EXPORT = 2;
@@ -43,7 +43,7 @@ public abstract class ExportRenderer implements GLEventListener {
 	public static final int PDF_EXPORT = 7;
 	public static final int SVG_EXPORT = 8;
 	public static final int PS_EXPORT = 9;
-
+	
 	/** Orientation of the exported figure */
 	public static final int PORTRAIT = 0;
 	public static final int LANDSCAPE = 1;
@@ -52,7 +52,7 @@ public abstract class ExportRenderer implements GLEventListener {
 	private static String fileName;
 	private static int fileType;
 	private static int fileOrientation;
-
+	
 	/** give the type of the error */
 	private static int errorNumber;
 
@@ -63,16 +63,7 @@ public abstract class ExportRenderer implements GLEventListener {
 	 * @param fileOrientation orientation of the file
 	 */
 	protected ExportRenderer(String fileName, int fileType, int fileOrientation) {
-		
-		char tild =  fileName.charAt(0);
-		char slash =  fileName.charAt(1);
-		
-		if (tild == '~' && slash == '/') {
-			this.fileName = replaceTild(fileName);
-		} else {
-				this.fileName = fileName;
-		}
-		
+		this.fileName = fileName;
 		this.fileType = fileType;	
 		this.fileOrientation = fileOrientation;
 		removeExtension();
@@ -87,9 +78,9 @@ public abstract class ExportRenderer implements GLEventListener {
 	 * @return GL2PSRenderer export a postscript screen-shot
 	 */
 	public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType, int fileOrientation) {
-
+		
 		GL2PS gl2ps = new GL2PS();
-
+		
 		/** Select in which type the file will be exported */		
 		switch (fileType) {
 		case BMP_EXPORT:  
@@ -200,34 +191,4 @@ public abstract class ExportRenderer implements GLEventListener {
 	public static void setErrorNumber(int errorNumber) {
 		ExportRenderer.errorNumber = errorNumber;
 	}
-
-	/**
-	 * Get the os name
-	 * @return the os name
-	 */
-	public static String getOsName() {
-		String os = "";
-		if (System.getProperty("os.name").toLowerCase().indexOf("windows") > -1) {
-			os = "windows";
-		} else if (System.getProperty("os.name").toLowerCase().indexOf("linux") > -1) {
-			os = "linux";
-		} else if (System.getProperty("os.name").toLowerCase().indexOf("mac") > -1) {
-			os = "mac";
-		}
-		return os;
-	}
-	
-	/**
-	 * For unix os manage the "~/" in the path of a file
-	 * @return file name
-	 */
-	public static String replaceTild(String fileName) {
-
-		if (getOsName().equals("linux") || getOsName().equals("mac")) {
-			fileName = fileName.substring(1, fileName.length());
-			fileName = System.getProperty("user.home") + fileName;
-		}
-		return fileName;
-	}
-
 }
