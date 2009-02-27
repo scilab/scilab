@@ -50,9 +50,6 @@ Bug fixes:
 
 * bug 4197 fixed - inaccurate floating point results computed by norm with large/small vector matrices.
 
-* bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
-
-* bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
 
 
 
