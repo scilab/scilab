@@ -515,6 +515,8 @@ Bug fixes:
 
 * bug 4106 fixed - bar and barh override drawlater/drawnow mode.
 
+* bug 4108 fixed - Argument location of function caption has no effect.
+
 * bug 4173 fixed - Graphic export : Style the text fonts is not respected when exporting to SVG.
 
 * Side effect in the setenvc function.
