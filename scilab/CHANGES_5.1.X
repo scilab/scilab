@@ -513,6 +513,8 @@ Bug fixes:
 				   
 * bug 4094 fixed - delete("all") does not refresh the graphic.
 
+* bug 4106 fixed - bar and barh override drawlater/drawnow mode.
+
 * bug 4173 fixed - Graphic export : Style the text fonts is not respected when exporting to SVG.
 
 * Side effect in the setenvc function.
