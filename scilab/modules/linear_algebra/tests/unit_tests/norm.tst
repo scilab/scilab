@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// TODO : use relative error criteria instead of absolute error
 eps=100*%eps;
 // inf 
 if norm([1,2,3,-1,-2,-3],0)<>%inf then pause,end 
@@ -65,5 +66,30 @@ if abs(norm(a,%inf) - maxi(sum(abs(a),'c'))) > eps then pause,end
 if abs(norm(a,2) - maxi(svd(a))) > eps then pause,end
 if abs(norm(a,'fro') - norm(matrix(a,1,size(a,'*')),2)) > eps then pause,end
 
-
+//
+// Difficult cases for large/small vectors
+//
+//norm 2
+x = 1.e307 * [1 1];
+if abs(norm(x) - sqrt(2) * 1.e307)/1.e307 > %eps then pause,end
+x = 1.e-307 * [1 1];
+if abs(norm(x) - sqrt(2) * 1.e-307)/1.e-307 > %eps then pause,end
+// norm f
+x = 1.e307 * [1 1];
+if abs(norm(x,"f") - sqrt(2) * 1.e307)/1.e307 > %eps then pause,end
+x = 1.e-307 * [1 1];
+if abs(norm(x,"f") - sqrt(2) * 1.e-307)/1.e-307 > %eps then pause,end
+//
+// Difficult cases for large/small matrices
+//
+// norm f - case 1 : n < m
+x = 1.e307 * ones(10,20);
+if abs(norm(x,"f") - sqrt(200) * 1.e307)/1.e307 > %eps then pause,end
+x = 1.e-307 * ones(10,20);
+if abs(norm(x,"f") - sqrt(200) * 1.e-307)/1.e-307 > %eps then pause,end
+// norm f - case 1 : n > m
+x = 1.e307 * ones(20,10);
+if abs(norm(x,"f") - sqrt(200) * 1.e307)/1.e307 > %eps then pause,end
+x = 1.e-307 * ones(20,10);
+if abs(norm(x,"f") - sqrt(200) * 1.e-307)/1.e-307 > %eps then pause,end
 

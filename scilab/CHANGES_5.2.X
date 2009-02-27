@@ -47,3 +47,9 @@ Bug fixes:
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
+
+* bug 4197 fixed - inaccurate floating point results computed by norm with large/small vector matrices.
+
+
+
+
