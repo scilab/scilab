@@ -16,6 +16,8 @@
 // <-- Short Description -->
 // link does not manage column vector as scilab 4.x
 
+ilib_verbose(0);
+
 if MSDOS then
   warning('off');
   Cfunctions = '';

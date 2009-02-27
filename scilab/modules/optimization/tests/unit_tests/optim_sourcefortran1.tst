@@ -15,6 +15,9 @@
 //   Thus, the "genros" function from Ex-optim.f is not needed anymore.
 //
 // This is the precision measured with experiments.
+
+ilib_verbose(0);
+
 Leps=10^12*%eps;
 n=3;
 xopt=ones(n,1);

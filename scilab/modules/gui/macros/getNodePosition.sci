@@ -9,34 +9,30 @@
 
 function position = getNodePosition(tree, node)
 
-
 	[lhs,rhs]=argn(0);
 
 	//Input arguments checking
-	if rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "getNodePosition",1,2));
+	if rhs <> 2 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "getNodePosition",2));
 		return;
 	end
 
-	// Check 1st input : tree
-	if rhs >= 1 then
+	// Check 1st and 2nd inputs : tree & node
+	if rhs == 2 then
 		if (typeof(tree) == 'Tree') then
 			myTree = tree;
 		else
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getNodePosition",1));
 			return;
 		end
-		// Check 2nd input : node
-		if rhs == 2 then
-			if (typeof(node) == 'Tree') then
-				myNode = node;
-			else
-				error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getNodePosition",2));
-				return;				
-			end
+		
+		if (typeof(node) == 'Tree') then
+			myNode = node;
+		else
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "getNodePosition",2));
+			return;				
 		end
 	end
-
 	
 	// Find node(s) position(s)
 	function r = findPos(myTree, myNode, r, curpos)
@@ -54,11 +50,9 @@ function position = getNodePosition(tree, node)
 		end
 
 	endfunction
-	
+					
 	// List of matching nodes
 	r = list();
-
 	position = findPos(myTree, myNode, r, "root");
-
 
 endfunction

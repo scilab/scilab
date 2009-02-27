@@ -37,15 +37,8 @@ chdir(TEST_DIR);
 files=['bug_2085.o'];
 ilib_build('bug',['ex2c_1','intex2c'],files,[]);
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
 exec loader.sce
-
-// enable message 
-warning(warning_mode);
 
 chdir(currentpath);
 

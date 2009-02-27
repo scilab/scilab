@@ -17,7 +17,6 @@ function myNode = createNode(label, icon, callback)
 		return;
 	end
 
-
 	// Check 1st input : label
 	if rhs >= 1 then
 		if (type(label) == 10) then

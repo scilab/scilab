@@ -17,17 +17,16 @@ function myTree = createTree(parentNode, varargin)
 		return;
 	end
 
-
 	if rhs >=1 then
 		// Check if parentNode is a Tree
 		if (typeof(parentNode) == 'Tree') then
-			myTree = parentNode
+			myTree = tlist('Tree', parentNode(2));
 			// Add subTrees into myTree
 			for subTreesIndex = 1:size(varargin)
 				if (typeof(varargin(subTreesIndex)) == 'Tree') then
 					myTree(subTreesIndex + 2) = varargin(subTreesIndex)
 				else
-					error(msprintf(gettext("%s: Wrong type for input argument #%d: Tree expected.\n"), "createTree",2));
+					error(msprintf(gettext("%s: Wrong type for input arguments from #%d: Tree expected.\n"), "createTree",2));
 					return;
 				end
 			end

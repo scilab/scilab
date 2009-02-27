@@ -13,8 +13,9 @@
 // <-- Short Description -->
 // Automatic completion swallows the first completed letter when using double quotes (") around a string, while it gives good 
 
-// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
+
+ilib_verbose(0);
 
 exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
 exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
