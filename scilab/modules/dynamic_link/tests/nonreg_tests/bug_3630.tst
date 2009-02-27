@@ -15,6 +15,7 @@
 // <-- Short Description -->
 // functions added by addinter are not visible by 'what'
 
+ilib_verbose(0);
 
 test_path = get_absolute_file_path('bug_3630.tst');
 
@@ -32,21 +33,14 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3630.c' , TEST_DIR + 
 
 chdir(TEST_DIR);
 
-files=['bug_3630.o'];
+files=['bug_3630.c'];
 ilib_build('libc_fun',['c_sum','c_intsum';'c_sub','c_intsub'],files,[]);
-
-// disable message
-warning_mode = warning('query');
-warning('off');
 
 [primitives1,commandes] = what();
 nbprimitives1 = size(primitives1,'*');
 
 // load the shared library 
-exec loader.sce
-
-// enable message 
-warning(warning_mode);
+exec loader.sce;
 
 chdir(currentpath);
 

@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_c_link)(char *fname,unsigned long fname_len)
+int sci_c_link(char *fname,unsigned long fname_len)
 {
 	int ilib = 0;
 

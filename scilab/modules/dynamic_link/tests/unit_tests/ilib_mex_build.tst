@@ -9,6 +9,8 @@
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
+ilib_verbose(0);
+
 cd(TMPDIR);
 
 mputl([

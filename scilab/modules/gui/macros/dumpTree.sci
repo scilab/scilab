@@ -39,18 +39,18 @@ function dumpTree(tree, b)
 
 	// Printing the tree
 	function prettyPrint(myTree, myB, indentation)
+		
+		mprintf(indentation);
+			mprintf('|_./ ');
+			mprintf(myTree(2).label + '\n');
 
-	  mprintf(indentation);
-		mprintf('|_./ ');
-		mprintf(myTree(2).label + '\n');
+			indentation = indentation + "| ";
 
-		indentation = indentation + "| ";
-
-		if myB
-	  mprintf(indentation);
-			mprintf('`- ' + myTree(2).icon + '\n');
-	  mprintf(indentation);
-			mprintf('`- ' + myTree(2).callback + '\n');
+		if myB then
+	  		mprintf(indentation);
+				mprintf('`- ' + myTree(2).icon + '\n');
+	  		mprintf(indentation);
+				mprintf('`- ' + myTree(2).callback + '\n');
 		end
 
 		for childIndex = 3:size(myTree)

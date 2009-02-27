@@ -152,7 +152,7 @@ check-local:
 		echo "Cannot find Scilab binary"; \
 	fi
 
-distclean-recursive: clean-recursive
+distclean-recursive: distclean-generated clean-recursive
 
 clean-recursive: clean-doc clean-localization clean-macros clean-generated
 
@@ -195,8 +195,11 @@ clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
 clean-generated:
-	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null; \
+	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
+
+distclean-generated: 
 	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
+
 
 if IS_MACOSX
 # Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
