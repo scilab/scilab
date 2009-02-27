@@ -50,6 +50,8 @@ Bug fixes:
 
 * bug 4166 fixed - test_run was broken
 
+* bug 4197 fixed - inaccurate floating point results computed by norm with 
+				   large/small vector matrices.
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
