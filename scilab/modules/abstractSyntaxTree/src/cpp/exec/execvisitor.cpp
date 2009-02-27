@@ -10,8 +10,10 @@
 *
 */
 
+#include <conio.h>
 #include "execvisitor.hxx"
 #include "timer.hxx"
+
 using std::string;
 
 bool bConditionState(ast::ExecVisitor *exec);
@@ -175,6 +177,9 @@ namespace ast
 		ExecVisitor *execFunc = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
 
+		std::cout << "call exp break" << std::endl;
+		_getch();
+		return;
 		e.name_get().accept(*execFunc);
 		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
 		{//function call
@@ -394,6 +399,7 @@ namespace ast
 				symbol::Context::getInstance()->put(e.vardec_get().name_get(), *(GenericType*)pdbl);
 				e.body_get().accept(*execMe);
 			}
+			delete pVar;
 		}
 		else
 		{//Matrix i = [1,3,2,6] or other type
@@ -623,6 +629,10 @@ namespace ast
 
 	void ExecVisitor::result_set(const InternalType *e)
 	{
+		if(_result != NULL)
+		{
+			delete _result;
+		}
 		_result = (InternalType *)e;
 	}
 

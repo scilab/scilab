@@ -142,7 +142,7 @@ namespace types
 		{
 			string_delete(iIndex);
 		}
-		delete m_pcData;
+		delete[] m_pcData;
 		m_pcData = NULL;
 	}
 

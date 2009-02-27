@@ -76,7 +76,7 @@ void SciEnvForWindows(void)
 	SetScilabEnvironmentVariables(SCIPathName);
 	if(SCIPathName)
 	{
-		delete SCIPathName;
+		delete[] SCIPathName;
 		SCIPathName = NULL;
 	}
 }
@@ -96,7 +96,7 @@ int SciEnvForOthers(void)
 			exit(1);
 		}
 		setYASPpath(buf);
-		delete buf;
+		delete[] buf;
 		buf = NULL;
 	}
 	
@@ -144,7 +144,7 @@ bool Set_YASP_PATH(char *DefaultPath)
 
 		if(CopyOfDefaultPath)
 		{
-			delete CopyOfDefaultPath;
+			delete[] CopyOfDefaultPath;
 			CopyOfDefaultPath = NULL;
 		}
 
@@ -179,7 +179,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 				"HOME has been redefined.");
 			if(CopyOfDefaultPath)
 			{
-				delete CopyOfDefaultPath;
+				delete[] CopyOfDefaultPath;
 				CopyOfDefaultPath = NULL;
 			}
 			CopyOfDefaultPath = new char[strlen(DefaultPath) + 1];
@@ -192,7 +192,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 
 			if(CopyOfDefaultPath)
 			{
-				delete CopyOfDefaultPath;
+				delete[] CopyOfDefaultPath;
 				CopyOfDefaultPath = NULL;
 			}
 
@@ -205,7 +205,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 			sprintf (env, "HOME=%s",CopyOfDefaultPath);
 			if(CopyOfDefaultPath)
 			{
-				delete CopyOfDefaultPath;
+				delete[] CopyOfDefaultPath;
 				CopyOfDefaultPath = NULL;
 			}
 		}
@@ -224,7 +224,7 @@ bool Set_HOME_PATH(char *DefaultPath)
 
 		if(CopyOfDefaultPath)
 		{
-			delete CopyOfDefaultPath;
+			delete[] CopyOfDefaultPath;
 			CopyOfDefaultPath = NULL;
 		}
 	}
@@ -308,7 +308,7 @@ bool Set_Shell(void)
 
 	if(WINDIRPATH)
 	{
-		delete WINDIRPATH;
+		delete[] WINDIRPATH;
 		WINDIRPATH = NULL;
 	}
 	return bOK;
@@ -405,7 +405,7 @@ bool setYASPHOME(void)
 					getenvc(&ierr,"ALLUSERSPROFILE",USERHOMESYSTEM,&buflen,&iflag);
 					if (ierr)
 					{
-						delete SHORTUSERHOMESYSTEM;
+						delete[] SHORTUSERHOMESYSTEM;
 						SHORTUSERHOMESYSTEM = NULL;
 						return false;
 					}
@@ -417,7 +417,7 @@ bool setYASPHOME(void)
 					{
 						if(SHORTUSERHOMESYSTEM)
 						{
-							delete SHORTUSERHOMESYSTEM;
+							delete[] SHORTUSERHOMESYSTEM;
 							SHORTUSERHOMESYSTEM = NULL;
 						}
 						return false;
@@ -428,7 +428,7 @@ bool setYASPHOME(void)
 			{
 				if(SHORTUSERHOMESYSTEM)
 				{
-					delete SHORTUSERHOMESYSTEM;
+					delete[] SHORTUSERHOMESYSTEM;
 					SHORTUSERHOMESYSTEM = NULL;
 				}
 				return false;
@@ -438,7 +438,7 @@ bool setYASPHOME(void)
 			strcpy(USERHOMESYSTEM,SHORTUSERHOMESYSTEM);
 			if(SHORTUSERHOMESYSTEM)
 			{
-				delete SHORTUSERHOMESYSTEM;
+				delete[] SHORTUSERHOMESYSTEM;
 				SHORTUSERHOMESYSTEM = NULL;
 			}
 		}
@@ -632,7 +632,7 @@ bool isdir(const char * path)
 				pathTmp[strlen(pathTmp)-1]='\0';
 			}
 			attr = GetFileAttributes(pathTmp);
-			delete pathTmp;
+			delete[] pathTmp;
 			pathTmp = NULL;
 			if (attr == INVALID_FILE_ATTRIBUTES) return false;
 			return ((attr & FILE_ATTRIBUTE_DIRECTORY) != 0) ? true : false;

@@ -1,4 +1,4 @@
-/*
+	/*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2006-2008 - DIGITEO - Bruno JOFRET
 *
@@ -10,10 +10,12 @@
 *
 */
 
+#pragma comment(lib,"../../bin/libintl.lib")
 
 #include <cstdio>
 #include <iostream>
 #include <string.h>
+#include <conio.h>
 
 #include "timer.hxx"
 
@@ -298,6 +300,7 @@ static int batchMain (void)
 	std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
+	_getch();
 	return WELL_DONE;
 }
 

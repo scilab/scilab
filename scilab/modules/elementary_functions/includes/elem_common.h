@@ -71,5 +71,6 @@ extern int C2F(zgetrf)();
 extern int C2F(zgecon)();
 extern int C2F(zgetrs)();
 extern int C2F(zgelsy1)();
+extern double C2F(ddot)(int *_ipSize, double *_pdblVal1, int *_piInc1, double *_pdblVal2, int *_piInc2);
 
 #endif /* __COMMON_H__ */

@@ -319,7 +319,7 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			delete m_pdblReal;
+			delete[] m_pdblReal;
 			m_pdblReal = NULL;
 		}
 	}
@@ -331,7 +331,7 @@ namespace types
 	{
 		if(m_pdblImg != NULL)
 		{
-			delete m_pdblImg;
+			delete[] m_pdblImg;
 			m_pdblImg = NULL;
 			m_bComplex = !_bSetReal;
 		}

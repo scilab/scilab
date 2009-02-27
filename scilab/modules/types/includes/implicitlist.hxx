@@ -45,6 +45,7 @@ namespace types
 
 	public :
 		ImplicitList();
+		~ImplicitList();
 		ImplicitList(double _dblStart, double _dblStep, double _dblEnd);
 		ImplicitList(double _dblStart, double _dblEnd);
 		ImplicitList(InternalType* _poStart, InternalType* _poStep, InternalType* _poEnd);

@@ -38,8 +38,19 @@ namespace ast
   public:
     ExecVisitor()
     {
-      _result = new Double(0);
+      //_result = new Double(0);
+			_result = NULL;
     }
+
+		~ExecVisitor()
+    {
+			if(_result != NULL)
+			{
+				//delete _result;
+				//_result = NULL;
+			}
+    }
+
 
     /** \name Visit Matrix Expressions nodes.
      ** \{ */
