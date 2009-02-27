@@ -16,6 +16,7 @@
 // <-- Short Description -->
 // C functions having more than 23 characters are not usable with scilab
 
+ilib_verbose(0);
 
 foo=['void verylongfunctionnamewithmore24characters(double *a,double *b,double *c)';
      '{ *c = *a + *b; }'  ];
@@ -27,19 +28,14 @@ if ~c_link('foo') then
   chdir(TMPDIR); 
   mputl(foo,'foo.c');
   
-  ilib_for_link(['verylongfunctionnamewithmore24characters'],'foo.o',[],"c");
+  ilib_for_link(['verylongfunctionnamewithmore24characters'],'foo.c',[],"c");
   
-  // disable message
-  warning_mode = warning('query');
-  warning('off');
   // load the shared library 
   exec loader.sce ;
-  // enable message
-  warning(warning_mode);
-  chdir(curPath) 
+  chdir(curPath) ;
 end	
 
 //5+7 by C function
-v = call('verylongfunctionnamewithmore24characters',5,1,'d',7,2,'d','out',[1,1],3,'d')
+v = call('verylongfunctionnamewithmore24characters',5,1,'d',7,2,'d','out',[1,1],3,'d');
 if v <> 12 then pause,end
 //================================================

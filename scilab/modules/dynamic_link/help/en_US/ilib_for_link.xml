@@ -121,6 +121,7 @@
     <para>
     Many examples are provided in <literal>examples/link-examples-so</literal>
     directory.</para>
+	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
   </refsection>
   <refsection>
     <title>Examples</title>

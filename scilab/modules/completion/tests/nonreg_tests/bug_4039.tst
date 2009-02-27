@@ -14,8 +14,9 @@
 // Problem of completion with version 5.1:
 // (With NW mode).
 
-// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
+
+ilib_verbose(0);
 
 exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
 exec('SCI/modules/completion/tests/utilities/loader.sce',-1);

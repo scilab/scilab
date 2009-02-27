@@ -154,7 +154,10 @@ function  barh(varargin)
 		gca_children_empty=%f
 	end
 	
-	drawlater();
+	//drawlater
+	curFig = gcf();
+    immediate_drawing = curFig.immediate_drawing;
+    curFig.immediate_drawing = "off";
 	
 	if COLORBOOL
 		plot(X,Y,COLOR)
@@ -239,6 +242,7 @@ function  barh(varargin)
 		ei.line_mode='off';
 	end
 	
-	drawnow();
+	//drawnow
+	curFig.immediate_drawing = immediate_drawing;
 
 endfunction

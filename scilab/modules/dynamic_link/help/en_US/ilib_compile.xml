@@ -16,8 +16,7 @@
   </info>
   <refnamediv>
     <refname>ilib_compile</refname>
-    <refpurpose> ilib_build utility: executes the
-    makefile produced by ilib_gen_Make</refpurpose>
+    <refpurpose> ilib_build utility: executes the Makefile produced by ilib_gen_Make</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -48,7 +47,7 @@
       <varlistentry>
         <term>libn</term>
         <listitem>
-          <para>character string. The path of the really generated shared library file.</para>
+          <para>character string. The path of the actual generated shared library file.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -64,11 +63,12 @@
     <para>
     Utility function used by <literal>ilib_build</literal></para>
     <para>
-    This executes the  makefile produced by <literal>ilib_gen_Make</literal>, compiles
+    This executes the Makefile produced by <literal>ilib_gen_Make</literal>, compiles
     the C and fortran files and generates the shared library.</para>
     <para>
     Shared libraries can then be used with the <literal>link</literal> and
-    <literal>addinter</literal> scilab function for incrementaldynamic link.</para>
+    <literal>addinter</literal> Scilab function for incremental/dynamic link.</para>
+	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
   </refsection>
   <refsection>
     <title>See Also</title>

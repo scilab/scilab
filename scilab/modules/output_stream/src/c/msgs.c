@@ -20,11 +20,23 @@
 #include "localization.h"
 #include "cvstr.h"
 #include "error.h"
+#include <stdio.h> /* needed for vsprintf used by printToBuffer() */
 /*--------------------------------------------------------------------------*/
 #ifdef BUF
 #undef BUF
 #endif
 #define BUF C2F(cha1).buf
+
+int printToBuffer(const char* format,...){
+    va_list args;
+    va_start(args, format);
+    int r = vsprintf(C2F(cha1).buf, format, args);
+    va_end(args);
+    return r;
+
+}
+
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(void);
 /*--------------------------------------------------------------------------*/

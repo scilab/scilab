@@ -21,16 +21,18 @@ DWIN=-DWIN32
 !ENDIF
 
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
-LINKER_OPTIMISATION_MODE=/DEBUG -PDB:$(LIBRARY).pdb
-CC__OPTIMISATION_MODE=-Zi -Od 
+DIR_OBJ=Debug
+LINKER_OPTIMISATION_MODE=/DEBUG -PDB:"$(DIR_OBJ)\$(LIBRARY).pdb"
+CC__OPTIMISATION_MODE=-Zi -Od
 !ELSE
+DIR_OBJ=Release
 LINKER_OPTIMISATION_MODE=/RELEASE
 CC__OPTIMISATION_MODE=-Z7 -O2
 !ENDIF
 
 CC_COMMON=-D__MSC__ $(DWIN) -c -DSTRICT -D_CRT_SECURE_NO_DEPRECATE -D__MAKEFILEVC__ -nologo $(INCLUDES)
 LINKER_FLAGS=/NOLOGO $(MACHINE) $(LINKER_OPTIMISATION_MODE)
-CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE)
+CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE) /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/"
 
 # include options 
 INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
@@ -61,7 +63,8 @@ USE_F2C=NO
 # if USE_F2C is set to NO we will use the following Fortran compiler (i.e Intel Fortran 10.x)
 !IF "$(USE_F2C)" == "NO"
 FC=ifort 
-FC_OPTIONS=/debug /nologo /assume:underscore /compile_only /iface:cref /names:lowercase 
+FC_OPTIONS=/debug /nologo /assume:underscore /compile_only /iface:cref /names:lowercase /Fo"$(DIR_OBJ)/" /Fd"$(DIR_OBJ)/" \
+/include:"$(SCIDIR1)/modules/core/includes"
 LINKER_FLAGS=$(LINKER_FLAGS) /force:multiple
 !ENDIF
 #==================================================
@@ -83,14 +86,20 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
+	-mkdir $(DIR_OBJ)
+
 	$(CC) $(CFLAGS) $< 
 
 .cxx.obj	:
 	@echo ------------- Compile file $< --------------
+	-mkdir $(DIR_OBJ)
+
 	@$(CC) $(CFLAGS) /EHsc $*.cxx 
 
 .cpp.obj	:
 	@echo ------------- Compile file $< --------------
+	-mkdir $(DIR_OBJ)
+
 	@$(CC) $(CFLAGS) /EHsc $*.cpp
 
 # default rule for Fortran 77 & 90 Compilation 
@@ -104,6 +113,7 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 !ELSE	
 	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
 !ENDIF
+	-mkdir $(DIR_OBJ)
 
 	@$(CC) $(CFLAGS) $*.c 
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
@@ -116,6 +126,8 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 
 .f.obj	:
 	@echo -----------Compile file $*.f  (using $(FC)) -------------
+	-mkdir $(DIR_OBJ)
+
 	@$(FC) $(FFLAGS) $<
 	
 !ENDIF
@@ -124,11 +136,12 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 
 .f90.obj	:
 	@echo F2C cannot build .f90 file
-	
 !ELSE 
 
 .f90.obj	:
 	@echo -----------Compile file $*.f90  (using $(FC)) -------------
+	-mkdir $(DIR_OBJ)
+
 	@$(FC) $(FFLAGS) $<
 	
 !ENDIF
@@ -139,16 +152,16 @@ RM = del
 #==================================================
 clean::
 	-del *.bak 
-  -del *.obj
+  -del "$(DIR_OBJ)\*.obj"
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
-  -del *.pdb
+  -del "$(DIR_OBJ)\*.pdb"
 !ENDIF
 #==================================================
 distclean::  
   -del *.bak 
-  -del *.obj
+  -del "$(DIR_OBJ)\*.obj"
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
-  -del *.pdb
+  -del "$(DIR_OBJ)\*.pdb"
 !ENDIF
 #==================================================
 

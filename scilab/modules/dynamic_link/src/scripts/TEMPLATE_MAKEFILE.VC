@@ -9,8 +9,12 @@ SCIDIR1 = __SCIDIR1__
 # name of the dll to be built
 LIBRARY = __LIBNAME__
 # ------------------------------------------------------
+# list of files
+FILES_SRC = __FILES_SRC__
+# ------------------------------------------------------
 # list of objects file
 OBJS = __OBJS__
+OBJS_WITH_PATH = __OBJS_WITH_PATH__
 # ------------------------------------------------------
 # added libraries
 OTHERLIBS = __OTHERSLIBS__
@@ -19,9 +23,9 @@ OTHERLIBS = __OTHERSLIBS__
 # ------------------------------------------------------
 CC = __CC__
 # ------------------------------------------------------
-CFLAGS = $(CC_OPTIONS) -DFORDLL __CFLAGS__
+CFLAGS = $(CC_OPTIONS) -DFORDLL __CFLAGS__ __MEXCFLAGS__
 # ------------------------------------------------------
-FFLAGS = $(FC_OPTIONS) -DFORDLL __FFLAGS__
+FFLAGS = $(FC_OPTIONS) -DFORDLL __FFLAGS__ __MEXFFLAGS__
 # ------------------------------------------------------
 EXTRA_LDFLAGS = __LDFLAGS__
 # ------------------------------------------------------

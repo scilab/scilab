@@ -40,4 +40,5 @@
 <PRIMITIVE gatewayId="46" primitiveId="5" primitiveName="link" />
 <PRIMITIVE gatewayId="46" primitiveId="6" primitiveName="ulink" />
 <PRIMITIVE gatewayId="46" primitiveId="7" primitiveName="c_link" />
+<PRIMITIVE gatewayId="46" primitiveId="8" primitiveName="ilib_verbose" />
 </GATEWAY>
