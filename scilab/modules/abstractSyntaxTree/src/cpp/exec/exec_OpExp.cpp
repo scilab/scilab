@@ -27,15 +27,15 @@ namespace ast
 {
 	void ExecVisitor::visit(const OpExp &e)
 	{
-		ExecVisitor execMeL = *new ast::ExecVisitor();
-		ExecVisitor execMeR = *new ast::ExecVisitor();
+		ExecVisitor *execMeL = new ast::ExecVisitor();
+		ExecVisitor *execMeR = new ast::ExecVisitor();
 
 		/*getting what to assign*/
-		e.left_get().accept(execMeL);
+		e.left_get().accept(*execMeL);
 		/*getting what to assign*/
-		e.right_get().accept(execMeR);
-		GenericType::RealType TypeL = execMeL.result_get()->getType();
-		GenericType::RealType TypeR = execMeR.result_get()->getType();
+		e.right_get().accept(*execMeR);
+		GenericType::RealType TypeL = execMeL->result_get()->getType();
+		GenericType::RealType TypeR = execMeR->result_get()->getType();
 
 		InternalType *pResult = NULL;
 		switch(e.oper_get())
@@ -44,8 +44,8 @@ namespace ast
 			{
 				if(TypeR == GenericType::RealDouble && TypeL == GenericType::RealDouble)
 				{
-					Double *pL = execMeL.result_get()->getAsDouble();
-					Double *pR = execMeR.result_get()->getAsDouble();
+					Double *pL = execMeL->result_get()->getAsDouble();
+					Double *pR = execMeR->result_get()->getAsDouble();
 
 					int iResult = AddDoubleToDouble(pL, pR, (Double**)&pResult);
 					if(iResult != 0)
@@ -64,8 +64,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
 				{
-					String *pL = execMeL.result_get()->getAsString();
-					String *pR = execMeR.result_get()->getAsString();
+					String *pL = execMeL->result_get()->getAsString();
+					String *pR = execMeR->result_get()->getAsString();
 
 					int iResult = AddStringToString(pL, pR, (String**)&pResult);
 
@@ -87,8 +87,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
 				{
-					Double *pL				= execMeL.result_get()->getAsDouble();
-					MatrixPoly *pR		= execMeR.result_get()->getAsPoly();
+					Double *pL				= execMeL->result_get()->getAsDouble();
+					MatrixPoly *pR		= execMeR->result_get()->getAsPoly();
 
 					int iResult = AddDoubleToPoly(pR, pL, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -103,8 +103,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
 				{
-					Double *pR				= execMeR.result_get()->getAsDouble();
-					MatrixPoly *pL		= execMeL.result_get()->getAsPoly();
+					Double *pR				= execMeR->result_get()->getAsDouble();
+					MatrixPoly *pL		= execMeL->result_get()->getAsPoly();
 
 					int iResult = AddDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -119,8 +119,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
 				{
-					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
-					MatrixPoly *pR	= execMeR.result_get()->getAsPoly();
+					MatrixPoly *pL	= execMeL->result_get()->getAsPoly();
+					MatrixPoly *pR	= execMeR->result_get()->getAsPoly();
 
 					int iResult = AddPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -150,8 +150,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL = execMeL.result_get()->getAsDouble();
-					Double *pR = execMeR.result_get()->getAsDouble();
+					Double *pL = execMeL->result_get()->getAsDouble();
+					Double *pR = execMeR->result_get()->getAsDouble();
 
 					int iResult = SubstractDoubleToDouble(pL, pR, (Double**)&pResult);
 					if(iResult != 0)
@@ -166,8 +166,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
 				{
-					Double *pL					= execMeL.result_get()->getAsDouble();
-					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
+					Double *pL					= execMeL->result_get()->getAsDouble();
+					MatrixPoly *pR			= execMeR->result_get()->getAsPoly();
 
 					int iResult = SubstractPolyToDouble(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -182,8 +182,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
 				{
-					MatrixPoly *pL			= execMeL.result_get()->getAsPoly();
-					Double *pR					= execMeR.result_get()->getAsDouble();
+					MatrixPoly *pL			= execMeL->result_get()->getAsPoly();
+					Double *pR					= execMeR->result_get()->getAsDouble();
 
 					int iResult = SubstractDoubleToPoly(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -198,8 +198,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
 				{
-					MatrixPoly *pL			= execMeL.result_get()->getAsPoly();
-					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
+					MatrixPoly *pL			= execMeL->result_get()->getAsPoly();
+					MatrixPoly *pR			= execMeR->result_get()->getAsPoly();
 
 					int iResult = SubstractPolyToPoly(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -231,8 +231,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					int iResult = MultiplyDoubleByDouble(pL, pR, (Double**)&pResult);
 					if(iResult)
@@ -248,8 +248,8 @@ namespace ast
 				}
 				else if(TypeL == InternalType::RealDouble && TypeR == InternalType::RealPoly)
 				{
-					Double *pL			    = execMeL.result_get()->getAsDouble();
-					MatrixPoly *pR	    = execMeR.result_get()->getAsPoly();
+					Double *pL			    = execMeL->result_get()->getAsDouble();
+					MatrixPoly *pR	    = execMeR->result_get()->getAsPoly();
 
 					int iResult = MultiplyDoubleByPoly(pL, pR, (MatrixPoly**)&pResult);
 
@@ -266,8 +266,8 @@ namespace ast
 				}
 				else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealDouble)
 				{
-					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
-					Double *pR			    = execMeR.result_get()->getAsDouble();
+					MatrixPoly *pL	    = execMeL->result_get()->getAsPoly();
+					Double *pR			    = execMeR->result_get()->getAsDouble();
 
 					int iResult = MultiplyPolyByDouble(pL, pR, (MatrixPoly**)&pResult);
 
@@ -284,8 +284,8 @@ namespace ast
 				}
 				else if(TypeL == InternalType::RealPoly && TypeR == InternalType::RealPoly)
 				{
-					MatrixPoly *pL	    = execMeL.result_get()->getAsPoly();
-					MatrixPoly *pR			= execMeR.result_get()->getAsPoly();
+					MatrixPoly *pL	    = execMeL->result_get()->getAsPoly();
+					MatrixPoly *pR			= execMeR->result_get()->getAsPoly();
 
 					int iResult = MultiplyPolyByPoly(pL, pR, (MatrixPoly**)&pResult);
 
@@ -306,8 +306,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					int iResult = DivideDoubleByDouble(pL, pR, (Double**)&pResult);
 					if(iResult)
@@ -322,8 +322,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
 				{
-					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					MatrixPoly *pL	= execMeL->result_get()->getAsPoly();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					int iResult = DividePolyByDouble(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult)
@@ -339,8 +339,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					MatrixPoly *pR	= execMeR.result_get()->getAsPoly();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					MatrixPoly *pR	= execMeR->result_get()->getAsPoly();
 
 					int iResult = DivideDoubleByPoly(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult)
@@ -360,8 +360,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -411,8 +411,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -462,8 +462,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -513,8 +513,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -564,8 +564,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -616,8 +616,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					if(pR->size_get() == 1)
 					{
@@ -667,8 +667,8 @@ namespace ast
 			{
 				if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
 				{
-					Double *pL			= execMeL.result_get()->getAsDouble();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					Double *pL			= execMeL->result_get()->getAsDouble();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
 					if(iResult != 0)
@@ -683,8 +683,8 @@ namespace ast
 				}
 				else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
 				{
-					MatrixPoly *pL	= execMeL.result_get()->getAsPoly();
-					Double *pR			= execMeR.result_get()->getAsDouble();
+					MatrixPoly *pL	= execMeL->result_get()->getAsPoly();
+					Double *pR			= execMeR->result_get()->getAsDouble();
 
 					int iResult = PowerPolyByDouble(pL, pR, (MatrixPoly**)&pResult);
 					if(iResult != 0)
@@ -714,6 +714,9 @@ namespace ast
 		{
 			std::cout << pResult->toString(10,75) << std::endl;
 		}
+
+		delete execMeL;
+		delete execMeR;
 	}
 }
 

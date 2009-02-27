@@ -10,7 +10,6 @@
 *
 */
 
-#include <conio.h>
 #include "execvisitor.hxx"
 #include "timer.hxx"
 
@@ -178,7 +177,7 @@ namespace ast
 		std::list<Exp *>::const_iterator	i;
 
 		std::cout << "call exp break" << std::endl;
-		_getch();
+		getchar();
 		return;
 		e.name_get().accept(*execFunc);
 		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
@@ -222,11 +221,11 @@ namespace ast
 				int *piMaxDim			= NULL;
 				int *piDimSize		= new int[iArgDim];
 				int iTotalCombi		= GetIndexList(e.args_get(), &piIndexSeq, &piMaxDim, pIT, piDimSize);
-				
+
 				if(pIT->getType() == InternalType::RealDouble)
 				{
 					Double *pDouble	= pIT->getAsDouble();
-					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector	
+					if(	iArgDim == 1 && piMaxDim[0] > pDouble->size_get() || //SeeAsVector
 							iArgDim == 2 && (piMaxDim[0] > pDouble->rows_get() || piMaxDim[0] > pDouble->cols_get()) || //check dimension to extract
 							iArgDim > 2) //more than 2 dimensions ?
 					{
@@ -236,8 +235,8 @@ namespace ast
 						string szErr(os.str());
 						throw szErr;
 					}
-				
-					
+
+
 					int iRowOut = 0;
 					int iColOut	= 0;
 					if(iArgDim == 1)
@@ -322,7 +321,7 @@ namespace ast
 			os << "variable must exist";
 			os << " (" << e.location_get().first_line << "," << e.location_get().first_column << ")" << std::endl;
 			string szErr(os.str());
-			throw szErr;					
+			throw szErr;
 
 /*
 			//ASTUCE POUR BRUNO

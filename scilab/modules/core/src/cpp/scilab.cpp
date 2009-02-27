@@ -15,7 +15,6 @@
 #include <cstdio>
 #include <iostream>
 #include <string.h>
-#include <conio.h>
 
 #include "timer.hxx"
 
@@ -120,7 +119,7 @@ static int	get_option (const int argc, char *argv[])
 			++i;
 			good = i;
 		}
-		else if (!strncmp ("--", argv[i], 2)) {
+/*		else if (!strncmp ("--", argv[i], 2)) {
 			usage ();
 			exit (SYSTEM_ERROR);
 		}
@@ -128,7 +127,7 @@ static int	get_option (const int argc, char *argv[])
 			usage ();
 			exit (SYSTEM_ERROR);
 		}
-	}
+*/	}
 
 #ifdef DEBUG
 	std::cerr << "File : " << argv[good] << std::endl;
@@ -300,7 +299,6 @@ static int batchMain (void)
 	std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
-	_getch();
 	return WELL_DONE;
 }
 
@@ -324,7 +322,7 @@ static int interactiveMain (void)
 		std::cout << std::endl;
 		std::cout << "YaSp --> ";
 
-*/	
+*/
 		C2F(setprlev)(&pause);
 		char *command = TermReadAndProcess();
 
@@ -378,6 +376,7 @@ static int interactiveMain (void)
 int main(int argc, char *argv[])
 {
 	int	i;
+	int iMainRet = 0;
 	prog_name = argv[0];
 
 	Parser::getInstance()->disableParseTrace();
@@ -391,13 +390,17 @@ int main(int argc, char *argv[])
 	if (i == INTERACTIVE)
 	{
 		file_name = "prompt";
-		return interactiveMain();
+		iMainRet = interactiveMain();
 	}
 	else
 	{
 		file_name = argv[i];
-		return batchMain();
+		iMainRet = batchMain();
 	}
+
+std::cout << "delete pFM" << std::endl;
+	delete pFM;
+	return iMainRet;
 }
 
 
