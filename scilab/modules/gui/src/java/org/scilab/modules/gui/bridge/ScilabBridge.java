@@ -98,7 +98,9 @@ import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ScilabToolBarBridge;
 import org.scilab.modules.gui.toolbar.SimpleToolBar;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.ScilabTree;
 import org.scilab.modules.gui.tree.ScilabTreeBridge;
+import org.scilab.modules.gui.tree.SimpleTree;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -701,6 +703,16 @@ public class ScilabBridge {
 		ScilabTabBridge.addMenuBar(tab, newMenuBar);
 	}
 	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the Tree Overview to
+	 * @param member the Tree Overview to add
+	 * @return the position of the Tree Overview in the member list.
+	 */
+	public static int addMember(Tab tab, Tree member) {
+		return ScilabTabBridge.addMember(tab, member);
+	}
+
 	/**
 	 * Add a member (dockable element) to a tab and returns the index of this member
 	 * @param tab the tab which we want to add the pushbutton to
@@ -4901,5 +4913,9 @@ public class ScilabBridge {
 
 	public static void  showTree(Tree tree) {
 		ScilabTreeBridge.showTree(tree);
+	}
+
+	public static SimpleTree createTree(Tree scilabTree) {
+	    return ScilabTreeBridge.createTree(scilabTree);
 	}
 }

@@ -473,6 +473,9 @@
 #undef inline
 #endif
 
+/* Provide a macro to do isinf */
+#undef isinf
+
 /* Provide a macro to do exp10 */
 #undef log_10_
 

@@ -52,9 +52,6 @@ ilib_build('foo',['scifun1','intfun1'],files,[]);
    Compilation of fun2
    Compilation of intfun1
    Building shared library (be patient)
-// disable message
-warning_mode = warning('query');
-warning('off');
 // load the shared library
 exec loader.sce
  
@@ -71,6 +68,8 @@ list_functions = [             'scifun1';
 ];
  
 addinter(foo_path+'/foo.dll','foo',list_functions);
+Shared archive loaded.
+Link done.
  
 // remove temp. variables on stack
  
@@ -82,8 +81,6 @@ clear get_file_path;
  
 // ------------------------------------------------------
  
-// enable message
-warning(warning_mode);
 chdir(cur_dir);
 //using the new primitive
 if ( norm(scifun1(33) - .0160328) > 1 ) then bugmes();quit;end

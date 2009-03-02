@@ -398,7 +398,6 @@ int main(int argc, char *argv[])
 		iMainRet = batchMain();
 	}
 
-std::cout << "delete pFM" << std::endl;
 	delete pFM;
 	return iMainRet;
 }

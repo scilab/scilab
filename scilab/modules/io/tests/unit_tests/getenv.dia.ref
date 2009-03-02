@@ -26,3 +26,9 @@ if ierr <> 999 then bugmes();quit;end
 ierr = execstr("b = getenv(''FOO'');","errcatch");
 if ierr <> 999 then bugmes();quit;end
 if getenv('FOO','foo')  <> 'foo' then bugmes();quit;end
+A = 1:100000;
+B = strcat(string(A),'');
+ierr = execstr('r = setenv(''TEST_FOO'',B);','errcatch');
+if ierr <> 0 then bugmes();quit;end
+if r <> %F then bugmes();quit;end
+if getenv('TEST_FOO','')<> '' then bugmes();quit;end

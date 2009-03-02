@@ -742,6 +742,12 @@ AC_CHECK_FUNC([exp10],,[
 				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
 				])
 
+### If isinf exists or not (used to not be the case under Solaris)
+### See bug #4164
+AC_CHECK_FUNC([isinf],,[
+		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+])
+
 LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
@@ -1514,6 +1520,7 @@ if test $HELP_ENABLE = yes; then
    echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "Commons I/O ............ = $COMMONS_IO"
    echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
+   echo "XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
 fi

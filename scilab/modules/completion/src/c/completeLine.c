@@ -14,6 +14,9 @@
 #include <string.h>
 #include "completeLine.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static char * strrstr(char *string, char *find)
 {
@@ -39,46 +42,49 @@ char *completeLine(char *currentline,char *stringToAdd,char *filePattern,
 
 	if (stringToAddIsPath)
 	{
-		if ( strcmp(defaultPattern,"") )
+		char *ptr_strrchar1 = NULL;
+
+		ptr_strrchar1 = strstr(stringToAdd, defaultPattern);
+
+		if (ptr_strrchar1) 
 		{
-			char *ptr_strrchar1 = NULL;
+			char *ptr_strrchar2 = strrstr(currentline, defaultPattern);
 
-			ptr_strrchar1 = strstr(stringToAdd, defaultPattern);
+			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(stringToAdd) + 1));
 
-			if (ptr_strrchar1) 
+			if (new_line)
 			{
-				char *ptr_strrchar2 = strrstr(currentline, defaultPattern);
+				int l = 0;
 
-				new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(stringToAdd) + 1));
+				if (ptr_strrchar2) l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
+				else l = (int)strlen(currentline);
 
-				if (new_line)
-				{
-					int l = 0;
+				if (l < 0) l = 0 - l;
 
-					if (ptr_strrchar2) l = (int)(strlen(currentline)- strlen(ptr_strrchar2));
-					else l = (int)strlen(currentline);
+				strncpy(new_line,currentline, l);
+				new_line[l] = '\0';
 
-					if (l < 0) l = 0 - l;
-
-					strncpy(new_line,currentline, l);
-					new_line[l] = '\0';
-
-					/* special case with files begin with a '.' */
-					if (filePattern[0] == '.') strcat(new_line, &(stringToAdd[1]));
-					else strcat(new_line, ptr_strrchar1);
-				}
+				/* special case with files begin with a '.' */
+				if (filePattern[0] == '.') strcat(new_line, &(stringToAdd[1]));
+				else strcat(new_line, ptr_strrchar1);
 			}
 		}
 	}
 	else
 	{
-		char *partResult = &stringToAdd[strlen(defaultPattern)];
-		new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(partResult) + 1));
-
-		if (new_line)
+		if ( (int)strlen(defaultPattern) < (int)strlen(stringToAdd) )
+		{	
+			char *partResult =  &stringToAdd[(int)strlen(defaultPattern)];
+			new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline) + strlen(partResult) + 1));
+			if (new_line)
+			{
+				strcpy(new_line, currentline);
+				strcat(new_line, partResult);
+			}
+		}
+		else
 		{
-			strcpy(new_line, currentline);
-			strcat(new_line, partResult);
+			new_line = strdup(currentline);
 		}
 	}
 	return new_line;

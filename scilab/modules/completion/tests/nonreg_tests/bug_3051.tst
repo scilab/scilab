@@ -13,27 +13,30 @@
 // <-- Short Description -->
 // 
 
-// <-- INTERACTIVE TEST -->
+// <-- JVM NOT MANDATORY -->
 
-gethi<Tab>
+ilib_verbose(0);
 
-it should return :
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
 
-Fonction Scilab:
-gethistory gethistoryfile
--->gethistory
+// gethi<Tab>
+currentline = 'gethi';
 
-geth<Tab>
+ref = ['gethistory';'gethistoryfile'];
+r = completion(currentline);
+if ~and(r == ref) then pause,end
 
-it should return :
-
-Fonction Scilab:
-gethistory gethistoryfile
--->gethistory
-                    
+if getcommonpart(r) <> 'gethistory' then pause,end
                     
 cd SCI/contrib/;
-cd toolbo[TAB]
+//cd toolbo[TAB]
+currentline = 'cd toolbo';
+r = getfilepartlevel(currentline);
+if r <> 'toolbo' then pause,end;
 
-it should return :
-cd toolbox_skeleton/
+r2 = completion(r,'files');
+if r2 <> 'toolbox_skeleton' + filesep() then pause,end
+
+r = completeline(currentline,r2,getpartlevel(currentline),getfilepartlevel(currentline),%t);
+if r <> 'cd toolbox_skeleton' + filesep() then pause,end

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="repmat">
+  <refnamediv>
+    <refname>repmat</refname>
+    <refpurpose>(Matlab function) Replicate and tile an array</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+repmat
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+There is no Scilab equivalent function for Matlab <emphasis role="bold">repmat</emphasis> but it can be replaced by the following expressions (considering <emphasis role="bold">m</emphasis> and <emphasis role="bold">n</emphasis> being real values):
+</para>
+    <variablelist>
+      <varlistentry>
+        <term>repmat(A,m) with m a scalar</term>
+        <listitem>
+          <para>
+can be replaced by <emphasis role="bold">ones(m,m).*.A</emphasis> if <emphasis role="bold">A</emphasis> is of Double type, by <emphasis role="bold">ones(m,m).*.bool2s(A)</emphasis> if <emphasis role="bold">A</emphasis> is of Boolean type and by <emphasis role="bold">asciimat(ones(m,m).*.asciimat(A)</emphasis> if <emphasis role="bold">A</emphasis> is of String type
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>repmat(A,m) with m a vector</term>
+        <listitem>
+          <para>
+can be replaced by <emphasis role="bold">ones(m(1),m(2),...).*.A</emphasis> is of Double type, by <emphasis role="bold">ones(m(1),m(2),...).*.bool2s(A)</emphasis> if <emphasis role="bold">A</emphasis> is of Boolean type and by <emphasis role="bold">asciimat(ones(m(1),m(2),...).*.asciimat(A)</emphasis> if <emphasis role="bold">A</emphasis> is of String type
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>repmat(A,m,n)</term>
+        <listitem>
+          <para>
+can be replaced by <emphasis role="bold">ones(m,n).*.A</emphasis> if <emphasis role="bold">A</emphasis> is of Double type, by <emphasis role="bold">ones(m,n).*.bool2s(A)</emphasis> if <emphasis role="bold">A</emphasis> is of Boolean type and by <emphasis role="bold">asciimat(ones(m,n).*.asciimat(A)</emphasis> if <emphasis role="bold">A</emphasis> is of String type
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

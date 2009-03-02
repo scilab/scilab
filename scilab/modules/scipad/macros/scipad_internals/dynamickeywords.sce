@@ -26,6 +26,10 @@
 
 function dynamickeywords()
 // wrapped as function to have all variables local
+
+// Debug for bug 4053 - <TODO> can be removed later
+TCL_EvalStr("set dynamickeywords_running true","scipad")
+
   function cset=lineform(keywordlist)
      keywordlist=sort(keywordlist)
      initial=gsort(unique(part(keywordlist,1)),"r","i")
@@ -135,6 +139,10 @@ function dynamickeywords()
   end
 
   //TCL_EvalStr("tk_messageBox -message $words(scilab.predef.%)","scipad")
+
+// Debug for bug 4053 - <TODO> can be removed later
+TCL_EvalStr("set dynamickeywords_running false","scipad")
+TCL_EvalStr("set dynamickeywords_ran_once true","scipad")
 
 endfunction
 

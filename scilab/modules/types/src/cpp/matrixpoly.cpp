@@ -40,7 +40,10 @@ namespace types
 
 	MatrixPoly::~MatrixPoly()
 	{
-		delete[] m_poPolyMatrix;
+		if(isDeletable() == true)
+		{
+			delete[] m_poPolyMatrix;
+		}
 	}
 
 	Poly* MatrixPoly::poly_get(int _iRows, int _iCols)

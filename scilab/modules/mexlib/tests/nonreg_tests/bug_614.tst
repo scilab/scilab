@@ -18,6 +18,8 @@
 //
 //    Also occur in other OS's.
 
+ilib_verbose(0);
+
 my_current_directory = pwd();
 cd(TMPDIR);
 mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[''mexfunction16.c''],[],''Makelib'','''','''','''')','builder.sce');

@@ -44,10 +44,17 @@ namespace ast
 
 		~ExecVisitor()
     {
-			if(_result != NULL)
+			if(_result != NULL && _result->isDeletable() == true)
 			{
-				//delete _result;
-				//_result = NULL;
+				if(_result->getType() == InternalType::RealDouble)
+				{
+					delete _result->getAsDouble();
+				}
+				else
+				{
+					delete _result;
+				}
+				_result = NULL;
 			}
     }
 

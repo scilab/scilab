@@ -30,7 +30,10 @@ namespace types
 	/*------------*/
 	Double::~Double()
 	{
-		all_delete();
+		if(isDeletable() == true)
+		{
+			all_delete();
+		}
 	}
 
 	/*--------------------*/
@@ -319,7 +322,7 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			delete[] m_pdblReal;
+			delete m_pdblReal;
 			m_pdblReal = NULL;
 		}
 	}

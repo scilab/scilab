@@ -24,7 +24,7 @@
 static int linkNoRhs(void);
 static int linkOneRhsShow(void);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_link)(char *fname,unsigned long fname_len)
+int sci_link(char *fname,unsigned long fname_len)
 {
 	BOOL fflag = FALSE;
 	int idsharedlibrary = -1;

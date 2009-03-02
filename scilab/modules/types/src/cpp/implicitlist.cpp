@@ -17,6 +17,9 @@ namespace types
 {
 	ImplicitList::~ImplicitList()
 	{
+		if(isDeletable() == true)
+		{
+		}
 	}
 
 	ImplicitList::ImplicitList()

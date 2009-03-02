@@ -89,10 +89,6 @@ files=['c_sub.c','sci_csub.c','c_sum.c','sci_csum.c'];
 ilib_build('foo',['c_sum','sci_csum';'c_sub','sci_csub'],files,[]);
 
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
 exec loader.sce 
 
@@ -104,8 +100,6 @@ chdir(cur_dir);
 // ulink() all libraries
 ulink();
 
-// enable message 
-warning(warning_mode);
 
 //remove TMP_DIR
 rmdir(TMP_DIR,'s');

@@ -24,7 +24,8 @@ src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
 src/c/getCommonPart.c \
-src/c/completeLine.c
+src/c/completeLine.c \
+src/c/completeLine_wrap_java.c
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
@@ -39,6 +40,7 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/fileio/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/operations/includes
+
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)

@@ -19,7 +19,10 @@ namespace types
 	/*--------*/
 	UInt::~UInt()
 	{
-		all_delete();
+		if(isDeletable() == true)
+		{
+			all_delete();
+		}
 	}
 
 	/*--------------------*/

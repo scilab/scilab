@@ -23,4 +23,8 @@ public class ScilabTreeBridge {
 	public static void showTree(Tree tree) {
 		SwingScilabTree.showTree(tree);
 	}
+
+	public static SimpleTree createTree(Tree scilabTree) {
+	    return new SwingScilabTree(scilabTree);
+	}
 }

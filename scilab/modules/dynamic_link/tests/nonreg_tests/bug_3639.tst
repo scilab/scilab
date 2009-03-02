@@ -16,6 +16,7 @@
 // <-- Short Description -->
 // link without parameters can crash
 
+ilib_verbose(0);
 
 test_path = get_absolute_file_path('bug_3639.tst');
 
@@ -33,31 +34,23 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3639.c' , TEST_DIR + 
 
 chdir(TEST_DIR);
 
-files=['bug_3639.o'];
+files=['bug_3639.c'];
 ilib_build('libc_fun1',['c_sum1','c_intsum';'c_sub1','c_intsub'],files,[]);
 copyfile('loader.sce','loader1.sce');
 
 ilib_build('libc_fun2',['c_sum2','c_intsum';'c_sub2','c_intsub'],files,[]);
 
-
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
 info_link = link();
 if info_link <> [] then pause,end
 
-exec loader1.sce
+exec loader1.sce;
 info_link = link();
 if info_link <> 'libc_fun1' then pause,end
 
-exec loader.sce
+exec loader.sce;
 info_link = link();
 if or(info_link <> ['libc_fun2','libc_fun1']) then pause,end
-
-// enable message 
-warning(warning_mode);
 
 chdir(currentpath);
 

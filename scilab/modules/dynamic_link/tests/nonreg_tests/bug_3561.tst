@@ -16,6 +16,8 @@
 // <-- Short Description -->
 // My DLL "C" functions returning character strings do not work with SciLab 5.0.x.
 
+ilib_verbose(0);
+
 if MSDOS then
 
 currentpath = pwd();
