@@ -8,6 +8,8 @@
 
 // <-- ENGLISH IMPOSED -->
 
+ilib_verbose(0);
+
 exec(fullfile(SCI,'modules','scicos','tests','unit_tests','PENDULUM_ANIM.sci'));
 exec(fullfile(SCI,'modules','scicos','tests','unit_tests','anim_pen.sci'));
 load(fullfile(SCI,'modules','scicos','tests','unit_tests','pendulum_anim45.cos'));

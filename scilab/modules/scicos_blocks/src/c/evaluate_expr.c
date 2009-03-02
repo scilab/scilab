@@ -23,14 +23,7 @@
 #if _MSC_VER
 #include <float.h>
 #endif
-
-#if defined(solaris)
-#include <ieeefp.h>
-int isinf(double x) { return !finite(x) && x==x; }
-#endif
-#if defined(__alpha)
-int isinf(double x) { return !finite(x) && x==x; }
-#endif
+#include "machine.h" /* isinf */
 
 #ifndef min
 #define min(a,b) ((a) <= (b) ? (a) : (b))

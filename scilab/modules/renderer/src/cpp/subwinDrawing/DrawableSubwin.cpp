@@ -63,7 +63,7 @@ void DrawableSubwin::hasChanged( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableSubwin::displaySingleObjs(std::list<sciPointObj *>& singleObjs)
 {
-
+	update();
   if (containsSubwin(singleObjs))
   {
     // there is the subwindow inside, just draw it

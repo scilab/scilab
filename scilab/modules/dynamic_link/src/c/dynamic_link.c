@@ -25,6 +25,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "FileExist.h"
+#include "ilib_verbose.h"
 #ifdef _MSC_VER
 #include "getenvc.h"
 #endif
@@ -101,19 +102,25 @@ int scilabLink(int idsharedlibrary,
 				char *pathSearch = searchEnv(filename,"PATH");
 				if ( (pathSearch) && ((int)strlen(pathSearch) > 0) )
 				{
-					sciprint(_("%s: The file %s does not exist.\n" ),"link",filename);
+					if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+					{
+						sciprint(_("%s: The file %s does not exist.\n" ),"link",filename);
+					}
 					FREE(pathSearch);
 				}
 			}
 			#else
-			sciprint(_("Link failed for dynamic library '%s'.\n"),filename);
-			sciprint(_("An error occurred: %s\n"),GetLastDynLibError());
+			if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
+			{
+				sciprint(_("Link failed for dynamic library '%s'.\n"),filename);
+				sciprint(_("An error occurred: %s\n"),GetLastDynLibError());
+			}
 			#endif
 		}
 		*ierr = -1;
 		return IdSharedLib;
 	}
-	if ( (idsharedlibrary == -1) && getWarningMode() ) 
+	if ( (idsharedlibrary == -1) && (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)) 
 	{
 		sciprint(_("Shared archive loaded.\n"));
 		sciprint(_("Link done.\n"));
@@ -279,17 +286,24 @@ static int SearchFandS(char *op, int ilib)
 void ShowDynLinks(void)
 {
 	int i=0,count=0;
-	if (getWarningMode()) sciprint(_("Number of entry points %d.\nShared libraries :\n"),NEpoints);
-	if (getWarningMode())sciprint("[ ");
+	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("Number of entry points %d.\nShared libraries :\n"),NEpoints);
+	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint("[ ");
 	for ( i = 0 ; i < Nshared ; i++) 
 	{
-		if ( hd[i].ok == TRUE) { if (getWarningMode())sciprint("%d ",i);count++;}
+		if ( hd[i].ok == TRUE) 
+		{ 
+			if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+			{
+				sciprint("%d ",i);count++;
+			}
+		}
 	}
-	if (getWarningMode()) sciprint(_("] : %d libraries.\n"),count);
+
+	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("] : %d libraries.\n"),count);
 
 	for ( i = NEpoints-1 ; i >=0 ; i--) 
 	{
-		if (getWarningMode()) sciprint(_("Entry point %s in shared library %d.\n"),EP[i].name,EP[i].Nshared);
+		if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("Entry point %s in shared library %d.\n"),EP[i].name,EP[i].Nshared);
 	}
 }
 /*---------------------------------------------------------------------------*/
@@ -337,7 +351,7 @@ int Sci_dlopen( char *loaded_file)
 
 	if ( Nshared == ENTRYMAX ) 
 	{
-		if (getWarningMode()) sciprint(_("Cannot open shared files max entry %d reached.\n"),ENTRYMAX);
+		if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("Cannot open shared files max entry %d reached.\n"),ENTRYMAX);
 		return(FALSE);
 	}
 	/* Warning x64 windows */
@@ -387,13 +401,13 @@ int Sci_dlsym(char *ename,int ishared,char *strf)
 		EP[NEpoints].epoint = (function) GetDynLibFuncPtr (hd1,enamebuf);
 		if ( EP[NEpoints].epoint == NULL )
 		{
-			if (getWarningMode()) sciprint(_("%s is not an entry point.\n"),enamebuf);
+			if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("%s is not an entry point.\n"),enamebuf);
 			return -5;
 		}
 		else 
 		{
 			/* we don't add the _ in the table */
-			if (debug) sciprint(_("Linking %s.\n"),ename);
+			if (debug) sciprint(_("Linking %s.\n"), ename);
 			strncpy(EP[NEpoints].name,ename,MAXNAME);
 			EP[NEpoints].Nshared = ish;
 			NEpoints++;

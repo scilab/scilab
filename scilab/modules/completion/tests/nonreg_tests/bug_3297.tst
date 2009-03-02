@@ -13,9 +13,22 @@
 // <-- Short Description -->
 // Wildcards should not be interpreted as such in completion, but as literal text.
 
+// <-- JVM NOT MANDATORY -->
 
-// <-- INTERACTIVE TEST -->
+ilib_verbose(0);
 
-get*<tab>
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
 
-// it should be get*
+// get*<TAB>
+currentline = 'get*';
+
+r = getpartlevel(currentline);
+if r <> '' then pause,end
+
+r = getfilepartlevel(currentline);
+if r <> '' then pause,end
+
+r = completeline(currentline,'',getpartlevel(currentline),getfilepartlevel(currentline),%f);
+if r <> currentline then pause,end;
+

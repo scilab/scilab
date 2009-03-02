@@ -13,19 +13,22 @@
 // <-- Short Description -->
 // A bug in the completion:
 // it removes the line. It should add it at the end instead instead.
+// exec le<TAB>
 
-// <-- INTERACTIVE TEST -->
+// <-- JVM NOT MANDATORY -->
 
-exec le<TAB>
+ilib_verbose(0);
 
-// it should be :
--->exec le
-Fonction Scilab:
-legendre length
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
 
-Macro Scilab:
-leastsq legend legends leqe leqr lev levin lex_sort
+currentline = 'exec le';
+r = getpartlevel(currentline);
+if r <> 'le' then pause,end
 
-Champ d'un handle graphique:
-legend_location
-                    
+if size(completion(r),'*') == [] then pause,end
+
+r = completeline(currentline,'',getpartlevel(currentline),getfilepartlevel(currentline),%f);
+if r <> currentline then pause,end
+
+     

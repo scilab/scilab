@@ -21,6 +21,8 @@
 // Copyright INRIA
 // 19/02/2007
 
+ilib_verbose(0);
+
 cur=pwd();
 cd(TMPDIR);
 //first create a function changetype 
@@ -40,7 +42,7 @@ code=['#include ""stack-c.h""'
 '}'];
 mputl(code,'intchangetype.c');
 ilib_build('libtest',['changetype','intchangetype'],'intchangetype',[]);
-exec('loader.sce')
+exec('loader.sce');
 cd(cur);
 
 

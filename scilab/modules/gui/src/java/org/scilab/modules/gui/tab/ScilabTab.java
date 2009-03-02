@@ -32,6 +32,7 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.uielement.UIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -246,6 +247,15 @@ public class ScilabTab extends ScilabContainer implements Tab {
 		return ScilabBridge.addMember(this, member);
 	}
 
+	/**
+	 * We want to be able to add directly a Tree Overview in a Tab.
+	 * @param member the Tree Overview to add
+	 * @return the position of the Tree Overview in the member list.
+	 */
+	public int addMember(Tree member) {
+		return ScilabBridge.addMember(this, member);
+	}
+	
 	/**
 	 * Remove a PushButton from a Tab.
 	 * @param member the pushbutton to remove

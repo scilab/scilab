@@ -20,3 +20,19 @@
  * @return <ReturnValue>
  */
 int C2F(msgs)(int *n, int *ierr);
+/*
+ * print a message
+ * @param n int message number see modules/output_stream/src/c/msgs.c 
+ * for the list of messages 
+ * some message append a buffer to the message (@see printToBuffer)
+ */
+void Msgs(int n,int ierr);
+
+/*
+ * print to the char buffer used to add custom info to some messages
+ * (@see Msgs). Buffer is of size bsize as #defined in stack-def.h (i.e. 4096)
+ *
+ * @param same as sprintf
+ * @return same as sprintf
+ */
+int printToBuffer(const char* format,...);

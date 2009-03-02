@@ -4,7 +4,7 @@
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function dumpTree(tree, b)
@@ -27,49 +27,43 @@ function dumpTree(tree, b)
 			return;
 		end
 		// Check 2nd input : b
-		if rhs >= 2 then
+		if rhs == 2 then
 			if (type(b) == 4) then
 				myB = b;
 			else
 				error(msprintf(gettext("%s: Wrong type for input argument #%d: Boolean expected.\n"), "dumpTree",2));
-				return;				
+				return;
 			end
 		end
-
 	end
 
-	indentation = 0;
-	
 	// Printing the tree
 	function prettyPrint(myTree, myB, indentation)
 		
-		for index = 1:indentation
-			mprintf(' ');
-		end
-		mprintf('|_./ ');
-		mprintf(myTree(2).label + '\n');
-		if myB
-			for index = 1:indentation+2
-				mprintf(' ');
-			end
-			mprintf('// ' + myTree(2).icon + '\n');
-			for index = 1:indentation+2
-				mprintf(' ');
-			end
-			mprintf('// ' + myTree(2).callback + '\n');
+		mprintf(indentation);
+			mprintf('|_./ ');
+			mprintf(myTree(2).label + '\n');
+
+			indentation = indentation + "| ";
+
+		if myB then
+	  		mprintf(indentation);
+				mprintf('`- ' + myTree(2).icon + '\n');
+	  		mprintf(indentation);
+				mprintf('`- ' + myTree(2).callback + '\n');
 		end
 
 		for childIndex = 3:size(myTree)
-			prettyPrint(myTree(childIndex), myB, indentation+2)
+			prettyPrint(myTree(childIndex), myB, indentation);
 		end
 
 	endfunction
 
-	prettyPrint(myTree, myB, indentation);
+	prettyPrint(myTree, myB, "");
 
 endfunction
 
-	
+
 
 
 

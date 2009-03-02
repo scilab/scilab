@@ -82,7 +82,8 @@ src/c/readGateway.c \
 src/c/comparehandles.c \
 src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
-src/c/getos.c
+src/c/getos.c \
+src/c/mode_exec.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -291,7 +292,6 @@ sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
-sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_isglobal.f
 
@@ -430,6 +430,7 @@ includes/xscion.h \
 includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
 includes/LaunchScilabSignal.h \
-includes/getos.h
+includes/getos.h \
+includes/mode_exec.h
 
 include $(top_srcdir)/Makefile.incl.am

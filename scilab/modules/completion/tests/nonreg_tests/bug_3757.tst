@@ -13,16 +13,15 @@
 // <-- Short Description -->
 // Under Scilex, the completion of paths is incorrect
 
+// <-- JVM NOT MANDATORY -->
 
-// <-- INTERACTIVE TEST -->
+ilib_verbose(0);
 
-if MSDOS then
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
 
-mkdir('d:\Project')
-cd('d:\Project')
-mkdir('d:\Test')                    
-cd ../../
-cd d:\Pro[TAB]
 
-// it should be 
-// cd d:\Project
+// cd d:\Pro[TAB]
+currentline = 'cd d:\Pro';
+newline = completeline(currentline,'Projects',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if newline <> 'cd d:\Projects' then pause,end

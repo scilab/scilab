@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="isreal">
+  <refnamediv>
+    <refname>isreal</refname>
+    <refpurpose>(Matlab function) Determine if all array elements are real numbers</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+isreal
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+isreal
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+Scilab <emphasis role="bold">isreal</emphasis> function can take two values as input. The first one is the same as Matlab one and the second allows to give a tolerance on the absolute value of the imaginary part of first input. So to have the same results in Matlab and in Scilab, second input in Scilab function must be set to 0.
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" pgwide="1">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+tf = isreal(1+0i)
+tf = 1
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+tf = isreal(1+0*%i)
+tf = %F
+tf = isreal(1+0*%i,0)
+tf = %T
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

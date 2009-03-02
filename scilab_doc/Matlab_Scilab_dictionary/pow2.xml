@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="pow2">
+  <refnamediv>
+    <refname>pow2</refname>
+    <refpurpose>(Matlab function) Base 2 power and scale floating-point numbers</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+pow2
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>X=pow2(Y)</term>
+        <listitem>
+          <para>
+There is not equivalent function for <emphasis role="bold">pow2</emphasis> in Scilab but, when called with one input argument it can be emulated by: <emphasis role="bold">2^ Y</emphasis>    
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X=pow2(F,E)</term>
+        <listitem>
+          <para>
+In this case, Matlab <emphasis role="bold">pow2()</emphasis> ignores imaginary part of input arguments. An equivalent expression for this use of <emphasis role="bold">pow2</emphasis> is: <emphasis role="bold">F.* 2 .^ E </emphasis>(Note that 2 must be preceeded and followed by a white space).
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

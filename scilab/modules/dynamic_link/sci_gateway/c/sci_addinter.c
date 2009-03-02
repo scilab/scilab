@@ -18,7 +18,7 @@
 #include "dl_genErrorMessage.h"
 #include "Scierror.h"
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_addinter)(char *fname,unsigned long fname_len)
+int sci_addinter(char *fname,unsigned long fname_len)
 {
 	CheckRhs(3,3);
 	CheckLhs(1,1);

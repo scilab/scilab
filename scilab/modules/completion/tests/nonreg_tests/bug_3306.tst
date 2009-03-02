@@ -13,13 +13,40 @@
 // <-- Short Description -->
 // Automatic completion swallows the first completed letter when using double quotes (") around a string, while it gives good 
 
-// <-- INTERACTIVE TEST -->
+// <-- JVM NOT MANDATORY -->
 
-unix('touch foofile.ext')
+ilib_verbose(0);
 
-scipad('foof [TAB]
-// it should be scipad('foofile.ext
+exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
+exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
 
-scipad("foof [TAB]
-// it should be scipad("foofile.ext
+fd = mopen(TMPDIR+'/foofile.ext','wt');
+mclose(fd);
+
+cd TMPDIR;
+
+//scipad('foof[TAB]
+currentline = "scipad(''foof";
+
+r = getfilepartlevel(currentline);
+if r <> 'foof' then pause,end;
+
+r = completion(getfilepartlevel(currentline));
+if r <> 'foofile.ext' then pause,end
+
+r = completeline(currentline,'foofile.ext',getpartlevel(currentline),getfilepartlevel(currentline),%t);
+if r <> 'scipad(''foofile.ext' then pause,end;
+
+//scipad("foof[TAB]
+currentline = "scipad(""foof";
+
+r = getfilepartlevel(currentline);
+if r <> 'foof' then pause,end
+
+r = completion(getfilepartlevel(currentline));
+if r <> 'foofile.ext' then pause,end
+
+r = completeline(currentline,'foofile.ext',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'scipad(""foofile.ext' then pause,end;
+
                     

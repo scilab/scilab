@@ -394,6 +394,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ilib_verbose.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_addinter.c"
 				>
 			</File>
@@ -407,6 +411,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_getdynlibext.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_ilib_verbose.c"
 				>
 			</File>
 			<File
@@ -440,6 +448,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_dynamic_link.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ilib_verbose.h"
 				>
 			</File>
 		</Filter>

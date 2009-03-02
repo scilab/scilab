@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="fgetl">
+  <refnamediv>
+    <refname>fgetl</refname>
+    <refpurpose>(Matlab function) Read line(s) from file, discard newline character </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+fgetl
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+mgetl
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+Matlab <emphasis role="bold">fgetl</emphasis> reads file line per line while Scilab <emphasis role="bold">mgetl</emphasis> allows to read the whole file.
+</para>
+    <para>
+Matlab <emphasis role="bold">fgetl</emphasis> returns <emphasis role="bold">-1</emphasis> if it could not read a line in file but Scilab <emphasis role="bold">mgetl</emphasis> returns an empty string is this case. You can used <emphasis role="bold">meof</emphasis> to check if End Of File has been reached.
+</para>
+  </refsection>
+</refentry>

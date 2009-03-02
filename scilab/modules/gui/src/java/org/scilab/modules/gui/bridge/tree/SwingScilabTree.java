@@ -13,25 +13,31 @@
 package org.scilab.modules.gui.bridge.tree;
 
 import java.awt.Color;
-import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.util.Vector;
 
 import javax.swing.Icon;
+import javax.swing.JComponent;
+import javax.swing.JScrollPane;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
+import org.scilab.modules.gui.tab.ScilabTab;
+import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.tree.SimpleTree;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
+import org.scilab.modules.gui.utils.PositionConverter;
 import org.scilab.modules.gui.utils.Size;
+import org.scilab.modules.gui.window.ScilabWindow;
+import org.scilab.modules.gui.window.Window;
 
 public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTree {
 
@@ -39,8 +45,8 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	
 	private Icon icon;
 	private CallBack callback;
-	
-	
+	private JScrollPane scrollPane = new JScrollPane();
+
 	/**
 	 * Default constructor
 	 * @param tree structure to display
@@ -74,12 +80,12 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		this.callback = callback;
 	}
 	
-	public Component getAsComponent() {
+	public JComponent getAsComponent() {
 		// Tree Model
 		DefaultTreeModel model = new DefaultTreeModel(this);		
 		// Renderer
 		ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
-        // Swing tree component
+		// Swing tree component
 		JTree jtree = new JTree();	
 		// Show Root Handles
 		jtree.setShowsRootHandles(true);
@@ -89,7 +95,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		jtree.setCellRenderer(renderer);
 		
 		jtree.setVisible(true);
-		return jtree;
+		
+		
+		scrollPane.getViewport().add(jtree);
+		return scrollPane;
 	}
 	
 	public static void  showTree(Tree tree) {
@@ -97,10 +106,10 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		// Scilab tree
 		SwingScilabTree swingScilabTree = new SwingScilabTree(tree);
 		
-		SwingScilabWindow window = new SwingScilabWindow();
-		SwingScilabTab tab = new SwingScilabTab("Tree example", 666);
-		tab.addTree(swingScilabTree);
-		window.add(tab);
+		Window window = ScilabWindow.createWindow();
+		Tab tab = ScilabTab.createTab("Tree Overview");
+		((SwingScilabTab) tab.getAsSimpleTab()).addTree(swingScilabTree);
+		window.addTab(tab);
 		tab.setVisible(true);
 		window.setVisible(true);
 	}
@@ -201,8 +210,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	}
 
 	public Size getDims() {
-		// TODO Auto-generated method stub
-		return null;
+	    return new Size(scrollPane.getSize().width, scrollPane.getSize().height);
 	}
 
 	public TextBox getInfoBar() {
@@ -216,8 +224,7 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	}
 
 	public Position getPosition() {
-		// TODO Auto-generated method stub
-		return null;
+	    return PositionConverter.javaToScilab(scrollPane.getLocation(), scrollPane.getSize(), scrollPane.getParent());
 	}
 
 	public ToolBar getToolBar() {
@@ -231,13 +238,12 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 	}
 
 	public void setDims(Size newSize) {
-		// TODO Auto-generated method stub
-		
+	    scrollPane.setSize(new Dimension(newSize.getWidth(), newSize.getHeight()));
 	}
 
 	public void setPosition(Position newPosition) {
-		// TODO Auto-generated method stub
-		
+	    Position javaPosition = PositionConverter.scilabToJava(newPosition, this.getDims(), scrollPane.getParent());
+	    scrollPane.setLocation(javaPosition.getX(), javaPosition.getY());
 	}
 
 	public void setVisible(boolean newVisibleState) {

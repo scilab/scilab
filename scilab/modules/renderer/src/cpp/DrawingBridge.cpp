@@ -12,7 +12,6 @@
  */
 
 #include <list>
-#include <iostream>
 
 #include "DrawingBridge.h"
 #include "getHandleDrawer.h"
@@ -119,7 +118,6 @@ void forceHierarchyRedraw( sciPointObj * pObj )
 /*---------------------------------------------------------------------------------*/
 void forceRedraw(sciPointObj * pObj)
 {
-  //std::cerr << "[DEBUG] forceRedraw" << std::endl;
   sciPointObj * parentFigure = sciGetParentFigure(pObj);
   startFigureDataWriting(parentFigure);
   getHandleDrawer(pObj)->hasChanged();

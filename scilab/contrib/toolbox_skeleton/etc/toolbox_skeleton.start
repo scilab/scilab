@@ -22,11 +22,10 @@ toolbox_skeletonlib = lib(pathmacros);
 // load gateways
 disp('Load gateways');
 
-warning_mode = warning('query');
-warning('off');
+ilib_verbose(0);
 // load gateways
 exec( root_tlbx + '/sci_gateway/loader_gateway.sce' );
-warning(warning_mode);
+
 
 disp('Load help');
 

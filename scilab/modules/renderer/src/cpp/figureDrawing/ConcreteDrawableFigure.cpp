@@ -53,7 +53,7 @@ void ConcreteDrawableFigure::drawSingleObjs(list<sciPointObj *>& singleObjects)
 /*---------------------------------------------------------------------------------*/
 bool ConcreteDrawableFigure::checkAutoRedraw( void )
 {
-  return ( sciGetIsAutoDrawable(m_pDrawed) == TRUE ) ;
+	return ( sciGetIsAutoDrawable(m_pDrawed) == TRUE ) || !m_oSingleObjects.empty() ;
 }
 /*---------------------------------------------------------------------------------*/
 bool ConcreteDrawableFigure::isDisplayingSingleObject(void)
