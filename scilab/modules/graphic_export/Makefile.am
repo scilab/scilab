@@ -43,7 +43,9 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/renderer/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes
+				
 
 
 # All the sources needed by libscigraphic_export.la

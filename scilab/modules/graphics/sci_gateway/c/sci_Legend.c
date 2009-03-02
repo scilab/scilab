@@ -28,7 +28,8 @@
 #include "freeArrayOfString.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DrawObjects.h"
-extern sciLegendPlace string2LegendPlace(char * string);
+
+#define DEF_LEGEND_LOCATION "in_upper_right"
 
 /*--------------------------------------------------------------------------*/
 int sci_Legend( char * fname, unsigned long fname_len )
@@ -40,10 +41,10 @@ int sci_Legend( char * fname, unsigned long fname_len )
   long long *tabofhandles;
   sciPointObj * psubwin = NULL;
   sciPointObj * pFigure = NULL;
-  char def_location[]="in_upper_right";
   sciLegendPlace location;
   sciEntityType type;
   char **Str = NULL;
+	sciPointObj * legend;
 
   CheckRhs(2,3);
   CheckLhs(0,1);
@@ -67,14 +68,14 @@ int sci_Legend( char * fname, unsigned long fname_len )
   GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
   if (Rhs==3) {
     GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
-    location = string2LegendPlace(cstk(l2));
-    if ((int)location==0) {
+    location = propertyNameToLegendPlace(cstk(l2));
+    if (location == SCI_LEGEND_POSITION_UNSPECIFIED) {
       Scierror(999,_("%s: Wrong value for input argument #%d: Incorrect value.\n"),fname,3);
       return 0;
     }
   }
   else {
-    location = string2LegendPlace( def_location);
+    location = propertyNameToLegendPlace(DEF_LEGEND_LOCATION);
   }
 
   tabofhandles = (long long *)MALLOC(n*sizeof(long long));
@@ -93,8 +94,6 @@ int sci_Legend( char * fname, unsigned long fname_len )
   for (i = 0; i < n;i++)
   {
     handelsvalue = (unsigned long) (hstk(l1))[n-1-i];
-	/* Serge Please check this : */
-	/* if (psubwin!=sciGetParentSubwin(handelsvalue)) { */
 
     if (psubwin!=sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) )) {
       Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
@@ -118,13 +117,21 @@ int sci_Legend( char * fname, unsigned long fname_len )
     tabofhandles[i]=handelsvalue;
     
   }
-  sciSetCurrentObj ((sciPointObj *)ConstructLegend (psubwin, Str, tabofhandles, n));
-  startFigureDataReading(pFigure);
-  sciDrawObjIfRequired(sciGetCurrentObj ());
+
+	/* Create the legend */
+	legend = ConstructLegend (psubwin, Str, tabofhandles, n);
+	sciSetLegendLocation(legend, location);
+
+	/* Draw it */
+  sciSetCurrentObj(legend);
+	startFigureDataReading(pFigure);
+  sciDrawObjIfRequired(legend);
   endFigureDataReading(pFigure);
 
   freeArrayOfString(Str,n);
   FREE(tabofhandles);
+
+	/* Return the handle of the newly create dlegend */
   numrow = 1;
   numcol = 1;
   CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
@@ -133,53 +140,3 @@ int sci_Legend( char * fname, unsigned long fname_len )
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-sciLegendPlace string2LegendPlace(char * string)
-{
-  if ( strcmp(string, "in_upper_right" )==0 )
-    {
-      return SCI_LEGEND_IN_UPPER_RIGHT;
-    }
-  else if ( strcmp(string, "in_upper_left" )==0 )
-    {
-      return SCI_LEGEND_IN_UPPER_LEFT;
-    }
-  else if ( strcmp(string, "in_lower_right" )==0 )
-    {
-      return SCI_LEGEND_IN_LOWER_RIGHT;
-    }
-  else if ( strcmp(string, "in_lower_left" )==0 )
-    {
-      return SCI_LEGEND_IN_LOWER_LEFT;
-    }
-  else if ( strcmp(string, "out_upper_right" )==0 )
-    {
-      return SCI_LEGEND_OUT_UPPER_RIGHT;
-    }
-  else if ( strcmp(string, "out_upper_left" )==0 )
-    {
-      return SCI_LEGEND_OUT_UPPER_LEFT;
-    }
-  else if ( strcmp(string, "out_lower_right" )==0 )
-    {
-      return SCI_LEGEND_OUT_LOWER_RIGHT;
-    }
-  else if ( strcmp(string, "out_lower_left" )==0 )
-    {
-      return SCI_LEGEND_OUT_LOWER_LEFT;
-    }
-  else if ( strcmp(string, "upper_caption" )==0 )
-    {
-      return SCI_LEGEND_UPPER_CAPTION;
-    }
-  else if ( strcmp(string, "lower_caption" )==0 )
-    {
-      return SCI_LEGEND_LOWER_CAPTION;
-    }
-  else if ( strcmp(string, "by_coordinates" )==0 )
-    {
-      return SCI_LEGEND_BY_COORDINATES;
-    }
-  else {
-    return (sciLegendPlace) 0;
-  }
-}

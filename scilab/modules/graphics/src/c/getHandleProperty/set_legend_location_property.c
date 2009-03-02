@@ -25,11 +25,12 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "Axes.h"
 
 /*------------------------------------------------------------------------*/
 int set_legend_location_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  
+	sciLegendPlace position;
   if ( !isParameterStringMatrix( valueType ) )
   {
     Scierror(999, _("Incompatible type for property %s.\n"),"legend_location") ;
@@ -42,57 +43,18 @@ int set_legend_location_property( sciPointObj * pobj, size_t stackPointer, int v
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( isStringParamEqual( stackPointer, "in_upper_right" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_IN_UPPER_RIGHT;
-  }
-  else if ( isStringParamEqual( stackPointer, "in_upper_left" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_IN_UPPER_LEFT;
-  }
- else if ( isStringParamEqual( stackPointer, "in_lower_right" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_IN_LOWER_RIGHT;
-  }
-  else if ( isStringParamEqual( stackPointer, "in_lower_left" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_IN_LOWER_LEFT;
-  }
+	position = propertyNameToLegendPlace(getStringFromStack(stackPointer));
 
-  else if ( isStringParamEqual( stackPointer, "out_upper_right" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_OUT_UPPER_RIGHT;
-  }
-  else if ( isStringParamEqual( stackPointer, "out_upper_left" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_OUT_UPPER_LEFT;
-  }
- else if ( isStringParamEqual( stackPointer, "out_lower_right" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_OUT_LOWER_RIGHT;
-  }
-  else if ( isStringParamEqual( stackPointer, "out_lower_left" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_OUT_LOWER_LEFT;
-  }
-  else if ( isStringParamEqual( stackPointer, "upper_caption" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_UPPER_CAPTION;
-  }
-  else if ( isStringParamEqual( stackPointer, "lower_caption" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_LOWER_CAPTION;
-  }
-  else if ( isStringParamEqual( stackPointer, "by_coordinates" ) )
-  {
-    pLEGEND_FEATURE(pobj)->place = SCI_LEGEND_BY_COORDINATES;
-  }
-
-  else  
-  {
-    Scierror(999, _("%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"), "set_legend_location_property",2,"top","bottom","origin") ;
+	if (position == SCI_LEGEND_POSITION_UNSPECIFIED)
+	{
+		Scierror(999, _("Wrong value for property '%s': '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),
+						 "legend_location",
+						 "in_upper_right","in_upper_left","in_lower_right","in_lower_left",
+						 "out_upper_right","out_upper_left","out_lower_right","out_lower_left",
+						 "upper_caption","lower_caption","by_coordinates") ;
     return SET_PROPERTY_ERROR ;
-  }
-  return SET_PROPERTY_SUCCEED ;
+	}
+
+	return sciSetLegendLocation(pobj, position);
 }
 /*------------------------------------------------------------------------*/
