@@ -44,7 +44,7 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 		command = cstk(l2);
 	}
 	/*** first call to get the size **/
-	lout=PATH_MAX;
+	lout = PATH_MAX + FILENAME_MAX;
 	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
 
 	rep = playsound(filename,command);

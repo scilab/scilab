@@ -50,6 +50,11 @@ Bug fixes:
 
 * bug 4166 fixed - test_run was broken
 
+* bug 4197 fixed - inaccurate floating point results computed by norm with 
+				   large/small vector matrices.
+				   
+* bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
@@ -513,7 +518,15 @@ Bug fixes:
 				   
 * bug 4094 fixed - delete("all") does not refresh the graphic.
 
+* bug 4106 fixed - bar and barh override drawlater/drawnow mode.
+
+* bug 4108 fixed - Argument location of function caption has no effect.
+
 * bug 4173 fixed - Graphic export : Style the text fonts is not respected when exporting to SVG.
+
+* bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
+
+* bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
 
 * Side effect in the setenvc function.
 

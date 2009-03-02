@@ -145,7 +145,10 @@ for i=1:size(argstr,"*")
   end
 end
 
-drawlater();
+// drawlater
+curFig = gcf();
+immediate_drawing = curFig.immediate_drawing;
+curFig.immediate_drawing = "off";
 
 if COLORBOOL
   plot(X,Y,COLOR)
@@ -218,6 +221,7 @@ for i=bar_number:-1:1
   ei.line_mode='off';
 end
 
-drawnow();
+// drawnow
+curFig.immediate_drawing = immediate_drawing;
 
 endfunction
