@@ -380,14 +380,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cupro.c"
-				>
-			</File>
-			<File
-				RelativePath=".\cuproi.c"
-				>
-			</File>
-			<File
 				RelativePath=".\cusum.c"
 				>
 			</File>
@@ -480,15 +472,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dmsum.c"
-				>
-			</File>
-			<File
 				RelativePath=".\drdiv.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dsearch.c"
 				>
 			</File>
 			<File
@@ -624,6 +608,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\old_pythag.c"
+				>
+			</File>
+			<File
 				RelativePath=".\orthes.c"
 				>
 			</File>
@@ -708,19 +696,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_cumprod.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_cumsum.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_diag.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_dsearch.c"
 				>
 			</File>
 			<File
@@ -976,10 +952,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wnrm2.c"
-				>
-			</File>
-			<File
 				RelativePath=".\wrscal.c"
 				>
 			</File>
@@ -1116,14 +1088,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\cupro.f"
-				>
-			</File>
-			<File
-				RelativePath=".\cuproi.f"
-				>
-			</File>
-			<File
 				RelativePath=".\cusum.f"
 				>
 			</File>
@@ -1216,15 +1180,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dmsum.f"
-				>
-			</File>
-			<File
 				RelativePath=".\drdiv.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dsearch.f"
 				>
 			</File>
 			<File
@@ -1360,6 +1316,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\old_pythag.f"
+				>
+			</File>
+			<File
 				RelativePath=".\orthes.f"
 				>
 			</File>
@@ -1369,10 +1329,6 @@
 			</File>
 			<File
 				RelativePath=".\psi.f"
-				>
-			</File>
-			<File
-				RelativePath=".\pythag.f"
 				>
 			</File>
 			<File
@@ -1444,19 +1400,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_cumprod.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_cumsum.f"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_diag.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_dsearch.f"
 				>
 			</File>
 			<File
@@ -1569,10 +1517,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_f_sqrt.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_f_sum.f"
 				>
 			</File>
 			<File
@@ -1709,10 +1653,6 @@
 			</File>
 			<File
 				RelativePath=".\wmul.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wnrm2.f"
 				>
 			</File>
 			<File
