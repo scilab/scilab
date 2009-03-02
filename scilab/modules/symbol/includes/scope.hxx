@@ -75,7 +75,8 @@ namespace symbol
 				{
 					if(pOld->getType() == InternalType::RealDouble)
 					{
-						delete pOld->getAsDouble();
+						// WIN64
+						 delete pOld->getAsDouble();
 					}
 					else
 					{

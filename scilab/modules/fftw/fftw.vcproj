@@ -126,7 +126,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;_DEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -300,7 +300,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes"
+				AdditionalIncludeDirectories="includes;src/c;../core/includes;../output_stream/includes;../localization/includes;../../libs/MALLOC/includes;../../libs/intl;../../libs/dynamiclibrary/includes;../operations/includes"
 				PreprocessorDefinitions="FORDLL;NDEBUG;_WINDOWS;_USRDLL;SOUND_EXPORTS;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="2"
