@@ -33,6 +33,8 @@ BOOL isVectorialExport(ExportFileType fileType);
 int xs2file(char * fname, ExportFileType fileType )
 {
 	sciPointObj * exportedFigure = NULL;
+	int nbRow = 0, nbCol = 0;
+	int stackPointer = NULL;
 	char * fileName = NULL;
 	char *real_filename = NULL;
 	ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
