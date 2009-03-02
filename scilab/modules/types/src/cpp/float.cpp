@@ -19,7 +19,10 @@ namespace types
 	/*------------*/
 	Float::~Float()
 	{
-		all_delete();
+		if(isDeletable() == true)
+		{
+			all_delete();
+		}
 	}
 
 	/*--------------------*/

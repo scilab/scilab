@@ -73,6 +73,7 @@ namespace symbol
 				pOld->DecreaseRef();
 				if(pOld->isRef() == false)
 				{
+					pOld->AllowDelete();
 					if(pOld->getType() == InternalType::RealDouble)
 					{
 						// WIN64
@@ -90,6 +91,7 @@ namespace symbol
 				std::cout << "Need copy : " << key.name_get() << std::endl;
 			}
 */
+			value.DenyDelete();
 			(*_scope)[key] = &value;
 			value.IncreaseRef();
 			return NULL;

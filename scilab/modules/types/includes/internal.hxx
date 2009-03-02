@@ -83,13 +83,20 @@ namespace types
 
 		void	IncreaseRef(){m_iRef++;}
 		void	DecreaseRef(){m_iRef--;}
+		void	AllowDelete(){m_bAllowDelete = true;}
+		void	DenyDelete(){m_bAllowDelete = false;}
+		bool	isDeletable(){return m_bAllowDelete;}
 		bool	isRef(int _iRef = 0){return m_iRef > _iRef;}
 
   protected :
-    InternalType() {m_iRef = 0;}
+    InternalType() {
+			m_iRef = 0;
+			m_bAllowDelete = true;
+		}
 
 	private :
 		int m_iRef;
+		bool m_bAllowDelete; //use to know if we can delete this variables or if it's link to a scilab variable.
 	};
 }
 #endif /* !__INTERNAL_HXX__ */

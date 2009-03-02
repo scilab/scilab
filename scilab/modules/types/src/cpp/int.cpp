@@ -19,7 +19,10 @@ namespace types
 	/*--------*/
 	Int::~Int()
 	{
-		all_delete();
+		if(isDeletable() == true)
+		{
+			all_delete();
+		}
 	}
 
 	/*--------------------*/

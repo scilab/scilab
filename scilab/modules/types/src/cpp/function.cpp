@@ -24,6 +24,9 @@ namespace types
 
 	Function::~Function()
 	{
+		if(isDeletable() == true)
+		{
+		}
 	}
 
 	Function* Function::getAsFunction(void)		

@@ -20,7 +20,10 @@ namespace types
 	/*--------*/
 	Bool::~Bool()
 	{
-		all_delete();
+		if(isDeletable() == true)
+		{
+			all_delete();
+		}
 	}
 
 	/*--------------------*/

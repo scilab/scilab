@@ -24,6 +24,13 @@ void Config_Stream(ostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
 
 namespace types
 {
+	String::~String()
+	{
+		if(isDeletable() == true)
+		{
+			all_delete();
+		}
+	}
 
 	String::String(const char *_pcData)
 	{

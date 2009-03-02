@@ -25,6 +25,7 @@ namespace types
   public :
 							String(int _iRows, int _iCols);
 							String(const char *_pcData);
+							~String();
 
     char**		string_get() const;
     char*			string_get(int _iRows, int _iCols) const;

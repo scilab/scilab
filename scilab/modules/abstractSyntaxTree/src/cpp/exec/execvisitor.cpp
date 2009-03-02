@@ -127,6 +127,7 @@ namespace ast
 	void ExecVisitor::visit (const SimpleVar &e)
 	{
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
+		pI->DenyDelete();
 		result_set(pI);
 		if(pI != NULL && e.is_verbose())
 		{
