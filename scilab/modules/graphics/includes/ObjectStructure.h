@@ -401,12 +401,11 @@ sciText;
 
 
 
-/**@name sciLegendPlace
- * Enumeration used to specify the title place 
+/**
+ * Enumeration used to specify the title place relative to parent subwindow
  */
 typedef enum
   {
-    /** */
     /** */
     SCI_LEGEND_IN_UPPER_LEFT = 1,
     /** */
@@ -417,6 +416,8 @@ typedef enum
     SCI_LEGEND_IN_LOWER_RIGHT = 4,
     /** */
     SCI_LEGEND_BY_COORDINATES = 5,
+		/** */
+		SCI_LEGEND_POSITION_UNSPECIFIED = 0,
     /** */
     SCI_LEGEND_OUT_UPPER_LEFT = -1,
     /** */

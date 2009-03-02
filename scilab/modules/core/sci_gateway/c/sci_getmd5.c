@@ -19,6 +19,7 @@
 #include "stricmp.h"
 #include "freeArrayOfString.h"
 #include "cluni0.h"
+#include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 {
@@ -60,10 +61,11 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 				
 				long int lout;
 				int out_n;
-				real_path = (char*)MALLOC(sizeof(char*)*FILENAME_MAX);
-				
+
 				/* Replaces SCI, ~, HOME, TMPDIR by the real path */
-				lout = FILENAME_MAX;
+				lout = PATH_MAX + FILENAME_MAX;
+				real_path = (char*)MALLOC(sizeof(char*)*lout);
+				
 				C2F(cluni0)(Input_Matrix[i], real_path, &out_n, (long)strlen(Input_Matrix[i]), lout);
 				
 				fp = fopen(real_path,"rb");
