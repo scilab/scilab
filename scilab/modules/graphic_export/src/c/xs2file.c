@@ -33,9 +33,6 @@ BOOL isVectorialExport(ExportFileType fileType);
 int xs2file(char * fname, ExportFileType fileType )
 {
 	sciPointObj * exportedFigure = NULL;
-	int nbRow;
-	int nbCol;
-	size_t stackPointer;
 	char * fileName = NULL;
 	char *real_filename = NULL;
 	ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
@@ -154,7 +151,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	}
 	/* Replaces SCI, ~, HOME, TMPDIR by the real path */
 	lout = PATH_MAX + FILENAME_MAX;
-	real_filename = (char*)MALLOC(sizeof(char*)*lout);
+	real_filename = (char*)MALLOC(sizeof(char)*lout);
 				
 	/* Replaces SCI, ~, HOME, TMPDIR by the real path */ 
 	C2F(cluni0)(fileName, real_filename, &out_n, (long)strlen(fileName), lout);
