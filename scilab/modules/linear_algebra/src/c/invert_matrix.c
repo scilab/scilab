@@ -6,6 +6,11 @@
 #include <stdio.h> // debug
 #include <math.h> //sqrt
 
+/*
+  C Abs and Max macros are not ieee nan compliant but neither are the fortran77
+  intrinsics used in the original dlange.f code.
+ */
+
 #define C_LANGE
 
 #ifdef PRINT_DEBUG
