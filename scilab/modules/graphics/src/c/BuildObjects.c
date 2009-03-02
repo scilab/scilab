@@ -836,7 +836,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 		ppLegend->pos.y = 0;
 		ppLegend->width = 0;
 		ppLegend->height = 0;
-		ppLegend->place = SCI_LEGEND_LOWER_CAPTION;
+		ppLegend->place = SCI_LEGEND_LOWER_CAPTION; /* Default position */
 		ppLegend->isselected = TRUE;
 		ppLegend->issurround = FALSE;
 

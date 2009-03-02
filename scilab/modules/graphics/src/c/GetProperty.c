@@ -3879,6 +3879,21 @@ int sciGetAntialiasingQuality(sciPointObj * pObj)
   default:
     printSetGetErrorMessage("anti_aliasing");
 		return FALSE;
+	}
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the position of a legend object relative to its parent subwin
+ */
+sciLegendPlace sciGetLegendLocation(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_LEGEND:
+		return pLEGEND_FEATURE(pObj)->place;
+  default:
+    printSetGetErrorMessage("legend_location");
+		return SCI_LEGEND_POSITION_UNSPECIFIED;
   }
 }
 /*----------------------------------------------------------------------------------*/

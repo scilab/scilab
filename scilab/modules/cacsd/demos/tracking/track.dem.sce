@@ -33,7 +33,7 @@ totrack=flts(uu(instants),dscr(Model,dt));    //Signal
 
 my_handle             = scf(100001);
 clf(my_handle,"reset");
-plot2d(instants',totrack');
+plot2d(instants',totrack',axesflag=1);
 
 halt();
 
@@ -63,5 +63,7 @@ Bigsyst=dscr(syslin('c',BigA,BigB,BigC,BigD,BigX0),dt);
 
 z=flts(uu(instants),Bigsyst);
 plot2d([instants',instants'],..
-       [totrack(1,:)',z(1,:)'],[1 2],leg='Signal to track@Computed signal');
+       [totrack(1,:)',z(1,:)'], axesflag=1);
+curves = gce();
+captions(curves.children,['Signal to track','Computed signal'],"upper_caption");
 xtitle('tracking');
