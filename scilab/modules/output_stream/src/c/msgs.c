@@ -27,12 +27,14 @@
 #endif
 #define BUF C2F(cha1).buf
 
-int printToBuffer(const char* format,...){
-    va_list args;
-    va_start(args, format);
-    int r = vsprintf(C2F(cha1).buf, format, args);
-    va_end(args);
-    return r;
+int printToBuffer(const char* format,...)
+{
+	int r = 0;
+	va_list args;
+	va_start(args, format);
+	r = vsprintf(C2F(cha1).buf, format, args);
+	va_end(args);
+	return r;
 
 }
 

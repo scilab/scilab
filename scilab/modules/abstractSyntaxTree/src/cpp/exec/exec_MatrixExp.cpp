@@ -84,8 +84,17 @@ namespace ast
 							throw szErr;
 						}
 
-						RowList.push_back(execMe->result_get());
+						InternalType *pResult = execMe->result_get();
+						RowList.push_back(pResult);
+						bool bSavedStatus = pResult->isDeletable();
+
+						execMe->result_get()->DenyDelete();
 						delete execMe;
+
+						if(bSavedStatus == true)
+						{
+							pResult->AllowDelete();
+						}
 					}
 
 					if(iCols == -1)
@@ -121,11 +130,34 @@ namespace ast
 						if(poResult == NULL)
 						{
 							poResult = AddElementToVariable(poResult, *it_RL, iRows, iCols, &iAddRow, &iAddCol);
+
+							if((*it_RL)->isDeletable() == true)
+							{
+								if((*it_RL)->getType() == InternalType::RealDouble)
+								{
+									delete (*it_RL)->getAsDouble();
+								}
+								else
+								{
+									delete (*it_RL);
+								}
+							}
 							iCurCol += iAddCol;
 						}
 						else
 						{
 							poResult = AddElementToVariable(poResult, *it_RL, iCurRow, iCurCol, &iAddRow, &iAddCol);
+							if((*it_RL)->isDeletable() == true)
+							{
+								if((*it_RL)->getType() == InternalType::RealDouble)
+								{
+									delete (*it_RL)->getAsDouble();
+								}
+								else
+								{
+									delete (*it_RL);
+								}
+							}
 							iCurCol += iAddCol;
 						}
 					}

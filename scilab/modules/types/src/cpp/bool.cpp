@@ -224,7 +224,7 @@ namespace types
 		return true;	
 	}
 
-	string Bool::toString(int _iLineLen)
+	string Bool::toString(int _iPrecision, int _iLineLen)
 	{
 		std::ostringstream ostr;
 		ostr << std::endl;

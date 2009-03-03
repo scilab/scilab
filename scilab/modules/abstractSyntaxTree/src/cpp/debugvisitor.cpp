@@ -263,10 +263,8 @@ namespace ast
     DEBUG_START_NODE();
     DEBUG("Exec WhileExp");
     // FIMXE
-    /*
       e.test_get().accept (*this);
       e.body_get().accept (*this);
-    */
     DEBUG_END_NODE();
   }
 

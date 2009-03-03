@@ -177,12 +177,12 @@ namespace ast
 		ExecVisitor *execFunc = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
 
-		std::cout << "call exp break" << std::endl;
-		getchar();
-		return;
 		e.name_get().accept(*execFunc);
 		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
 		{//function call
+			std::cout << "call exp break" << std::endl;
+			getchar();
+			return;
 			Function *pF = execFunc->result_get()->getAsFunction();
 			types::typed_list out;
 
@@ -372,16 +372,22 @@ namespace ast
 	void ExecVisitor::visit (const WhileExp  &e)
 	{
 			ExecVisitor *execMeTest		= new ast::ExecVisitor();
-			ExecVisitor *execMeAction = new ast::ExecVisitor();
 			bool bTestStatus					= false;
 
 			//condition
 			e.test_get().accept(*execMeTest);
 			while(bConditionState(execMeTest))
 			{
+				delete execMeTest;
+
+				ExecVisitor *execMeAction = new ast::ExecVisitor();
 				e.body_get().accept(*execMeAction);
+				delete execMeAction;
+
+				execMeTest		= new ast::ExecVisitor();
 				e.test_get().accept(*execMeTest);
 			}
+			delete execMeTest;
 	}
 
 	void ExecVisitor::visit (const ForExp  &e)
@@ -419,20 +425,24 @@ namespace ast
 
 	void ExecVisitor::visit (const SeqExp  &e)
 	{
-		ExecVisitor *execMe = new ast::ExecVisitor();
 		std::list<Exp *>::const_iterator	i;
 
 		for (i = e.exps_get().begin (); i != e.exps_get().end (); ++i)
 		{
+			ExecVisitor *execMe = new ast::ExecVisitor();
 			(*i)->accept (*execMe);
+/*
 			if(execMe->result_get() != NULL)
 			{
 				InternalType *pI = execMe->result_get();
-				delete pI;
+				if(pI->isDeletable() == true)
+				{
+					delete pI;
+				}
 			}
+*/
+			delete execMe;
 		}
-
-		delete execMe;
 	}
 
 	void ExecVisitor::visit (const ArrayListExp  &e)
@@ -462,7 +472,7 @@ namespace ast
 			bool *pB			= pReturn->bool_get();
 			for(int i = 0 ; i < pdbl->size_get() ; i++)
 			{
-				if(pR[i] != 0)
+				if(pR[i] == 0)
 				{
 					pB[i] = true;
 				}
@@ -546,6 +556,7 @@ namespace ast
 			/*getting what to assign*/
 			e.init_get().accept(*execMe);
 			result_set(execMe->result_get());
+			result_get()->DenyDelete();
 		}
 		catch(string sz)
 		{
@@ -578,6 +589,7 @@ namespace ast
 
 
 		e.start_get().accept(*execMeStart);
+		execMeStart->result_get()->DenyDelete();
 		/*			if(execMeStart->result_get()->isDouble())
 		{
 		pIL->start_set(((Double*)execMeStart->result_get())->real_get(0,0));
@@ -589,6 +601,7 @@ namespace ast
 		*/
 
 		e.step_get().accept(*execMeStep);
+		execMeStep->result_get()->DenyDelete();
 		/*			if(execMeStep->result_get()->isDouble())
 		{
 		pIL->step_set(((Double*)execMeStep->result_get())->real_get(0,0));
@@ -600,6 +613,7 @@ namespace ast
 		*/
 
 		e.end_get().accept(*execMeEnd);
+		execMeEnd->result_get()->DenyDelete();
 		/*			if(execMeEnd->result_get()->isDouble())
 		{
 		pIL->end_set(((Double*)execMeEnd->result_get())->real_get(0,0));

@@ -45,7 +45,7 @@ namespace types
 		bool					isComplex();
 
     Bool*					getAsBool(void);
-		string				toString(int _iLineLen = -1);
+		string				toString(int _iPrecision, int _iLineLen);
 
   protected :
 		RealType			getType(void);
