@@ -267,8 +267,11 @@ int sciSetOutsideColors(sciPointObj * pObj, int colors[2]); /* SET */
 int sciInitZBounds(sciPointObj * pObj, double bounds[2]);
 int sciSetZBounds(sciPointObj * pObj, double bounds[2]); /* SET */
 
-BOOL sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
-BOOL sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
+int sciInitGridFront(sciPointObj * pObj, BOOL gridFront);
+int sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
+
+int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location);
+int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location); /* SET */
 
 int sciInitAntialiasingQuality(sciPointObj * pObj, int quality);
 int sciSetAntialiasingQuality(sciPointObj * pObj, int quality); /* SET */

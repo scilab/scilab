@@ -63,7 +63,7 @@ else
 end
 
 if (Rep==[]) then
-  // Check the source file existes
+  // Check the source file exists
   msg=msprintf(gettext("%s: Source file %s does not exist or unable to access.\n"),fname,SourceFile);
   return;
 end

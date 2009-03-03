@@ -3854,7 +3854,7 @@ int sciSetZBounds(sciPointObj * pObj, double bounds[2])
 	return sciInitZBounds(pObj, bounds);
 }
 /*----------------------------------------------------------------------------------*/
-BOOL sciInitGridFront(sciPointObj * pObj, BOOL gridFront)
+int sciInitGridFront(sciPointObj * pObj, BOOL gridFront)
 {
   switch (sciGetEntityType(pObj))
   {
@@ -3870,7 +3870,7 @@ BOOL sciInitGridFront(sciPointObj * pObj, BOOL gridFront)
 /**
  * Modify whether the grid is drawn in background or foreground.
  */
-BOOL sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
+int sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
 {
 	if (sciGetGridFront(pObj) == gridFront)
 	{
@@ -3915,6 +3915,32 @@ int sciSetAntialiasingQuality(sciPointObj * pObj, int quality)
 		return 1;
 	}
 	return sciInitAntialiasingQuality(pObj, quality);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location)
+{
+	switch (sciGetEntityType(pObj))
+  {
+	case SCI_LEGEND:
+		pLEGEND_FEATURE(pObj)->place = location;
+		return 0;
+	default:
+    printSetGetErrorMessage("legend_location");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the legend position relatively to the subwindow
+ */
+int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location)
+{
+	if (sciGetLegendLocation(pObj) == location)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitLegendLocation(pObj, location);
 }
 /*----------------------------------------------------------------------------------*/
 /**
