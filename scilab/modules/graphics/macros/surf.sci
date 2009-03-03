@@ -500,13 +500,13 @@ if or(size(X)==1) & or(size(Y)==1) // X and Y are vector
   Z = Z'; // here a transposition is needed
   C = C'; // here a transposition is needed
   
-  if size(X,'*') ~= size(Z,2) then
+  if size(X,'*') ~= size(Z,1) then
     ResetFigureDDM(current_figure, cur_draw_mode);
     error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'X', size(Z,1)));
     return;
   end
   
-  if size(Y,'*') ~= size(Z,1) then
+  if size(Y,'*') ~= size(Z,2) then
 	ResetFigureDDM(current_figure, cur_draw_mode);
     error(msprintf(gettext("%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"), "surf", 'Y', size(Z,2)));
     return;
