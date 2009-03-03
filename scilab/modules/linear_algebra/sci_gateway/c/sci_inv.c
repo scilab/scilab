@@ -18,9 +18,7 @@
 #include "localization.h"
 
 #include "stack3.h" /* */
-
-#include "msgs.h" /* for printToBuffer() and Msgs() */
-
+#include "Scierror.h"
 #include "invert_matrix.h"
 
 
@@ -68,8 +66,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	      }
 
 	      if(ret ==-1){// warning   "ill conditionned problem" & ' matrix is close to singular or badly scaled"
-		printToBuffer("%1.4E", dblRcond);
-		Msgs(5, 0);
+		Scierror(999, _("%s : matrix is close to singular or badly scaled. rcond = %s\n"), fname, dblRcond);
 	      }
 	    }
 	  }
