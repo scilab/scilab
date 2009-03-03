@@ -9,7 +9,7 @@
 /*
   C Abs and Max macros are not ieee nan compliant but neither are the fortran77
   intrinsics used in the original dlange.f code.
- */
+*/
 
 #define C_LANGE
 
@@ -79,7 +79,7 @@ int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 				       
       if(pdblWork){
 	ret = iInvertMatrix(iRows, iCols, pData, complexArg, pdblRcond, piPivot
-			       , pWork, lWorkSize, pdblWork);
+			    , pWork, lWorkSize, pdblWork);
 	FREE(pdblWork);
       }else{
 	ret = 17;// TODO: this is not a stack allocation pb anymore because we (tried to) use the heap
@@ -98,16 +98,15 @@ int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
 		  , double * pdblRcond, int* piPivot, void* pWork
 		  , unsigned long lWorkSize, double* pdblWork){
-  printf("in iInvertMatrix iRows=%i iCols=%i, *pData=%f, complexArg=%i\n", iRows, iCols, *pData, complexArg);
-
 #ifdef PRINT_DEBUG
+  printf("in iInvertMatrix iRows=%i iCols=%i, *pData=%f, complexArg=%i\n", iRows, iCols, *pData, complexArg);
   dumpMatrix(iRows, iCols, pData);
 #endif
   int ret = 0; // >0 erreur <0 warning
   /* ANORM = dlange( '1', M, N, stk(lA), M, stk(lDWORK) )
      computes  one norm of a matrix (maximum column sum)
      last work area is not used for norm '1' 
-  see http://publib.boulder.ibm.com/infocenter/clresctr/vxrx/topic/com.ibm.cluster.essl44.guideref.doc/am501_llange.html
+     see http://publib.boulder.ibm.com/infocenter/clresctr/vxrx/topic/com.ibm.cluster.essl44.guideref.doc/am501_llange.html
   */
   /* using "1" to pass '1' to Fortran ("by ref"->pointer to char)*/
 #ifdef C_LANGE 
@@ -122,7 +121,7 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
 
 #ifdef PRINT_DEBUG
   fprintf(stderr,"afterdlange\n");
-fprintf(stderr,"dblAnorm=%f\n",dblAnorm);
+  fprintf(stderr,"dblAnorm=%f\n",dblAnorm);
 #endif
   int iInfo;
   if(complexArg){
@@ -143,7 +142,7 @@ fprintf(stderr,"dblAnorm=%f\n",dblAnorm);
       C2F(dgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork
 		  , (int*)pWork, &iInfo);
     }
-  if(*pdblRcond <= sqrt(epsilon())){ ret = -1; }
+    if(*pdblRcond <= sqrt(epsilon())){ ret = -1; }
     if(complexArg){
       C2F(zgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &lWorkSize
 		   , &iInfo);

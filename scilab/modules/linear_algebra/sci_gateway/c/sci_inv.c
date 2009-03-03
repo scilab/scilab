@@ -26,7 +26,6 @@
 
 int C2F(intinv)(char *fname,unsigned long fname_len)
 {
-  fprintf(stdout,"in inv !\n");
 	int ret = 0;
 	/*   inv(A)  */
 	if (GetType(1)!=sci_matrix) 
@@ -37,22 +36,16 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	// from now on, we have an sci_matrix, so we can use iIsComplex
 	CheckRhs(1,1); /* one and only one arg */
 	CheckLhs(1,1); /* one and only one returned value */
+	{
 	int iRows, iCols;
 	double* pData;
 	double* pDataReal;
 	double* pDataImg;
 	int complexArg=iIsComplex(1);
 	if(complexArg){
-	  fprintf(stderr,"Matrice complexe !\n");
 	  /* original code in intzgetri uses getrhsvar('c'), NOT getrhscvar ! */
 	  /* on crée une copie en format 'z' de la rhs var */
 	  GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
-	  fprintf(stderr,"%f + %f i, %f + %f i , %f + %f i, %f + %f i !\n"
-		 , *pDataReal, *pDataImg
-		 , *(pDataReal+1), *(pDataImg+1)
-		 , *(pDataReal+2), *(pDataImg+2)
-		 , *(pDataReal+3), *(pDataImg+3)
-		 );
 	  /* c -> z */
 	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
 	}else{
@@ -65,7 +58,6 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	  if(iCols != 0){
 	    if( iCols == -1){
 	      *pData = 1./(*pData);
-	      printf("eye\n");
 	    }else{
 	      double dblRcond;
 	      ret = iInvertMatrixM(iRows, iCols, pData, complexArg, &dblRcond);
@@ -85,6 +77,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	if(ret >0){ Error(ret) ; }
 	else{
 	  LhsVar(1) = 1;
+	}
 	}
 	return 0;
 }
