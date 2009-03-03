@@ -10,7 +10,8 @@
  *
  */
 
-import javasci.* ; 
+import javasci.Scilab;
+import javasci.SciString;
 
 
 class Example4 {
@@ -29,7 +30,7 @@ class Example4 {
     SciString S3 = new SciString("Sentence2");
     S3.disp();
 
-		Scilab.Finish();
+	Scilab.Finish();
     
   }
 }

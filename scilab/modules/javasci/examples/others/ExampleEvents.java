@@ -23,7 +23,7 @@ class ExampleEvents
   {
     int i=0;
         
-	  Scilab.Exec("plot3d();quit");
+	Scilab.Exec("plot3d();quit");
   	
   	while (Scilab.HaveAGraph()!=false)
   	{
