@@ -56,6 +56,9 @@ Bug fixes:
 
 * bug 4197 fixed - inaccurate floating point results computed by norm with 
 				   large/small vector matrices.
+				   
+* bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
