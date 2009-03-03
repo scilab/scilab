@@ -45,6 +45,7 @@ int SendScilabJob(char *job)
 		/* clear prev. Err , TMP_EXEC_STRING scilab variables */
 		C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
 
+		/* @TODO: potential security issue. check the size */
 		strcpy(command,job);
 		SetLastJob(command);
 
