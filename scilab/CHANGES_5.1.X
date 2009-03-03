@@ -14,6 +14,10 @@ Compilation:
 Help & Tests:
 =============
 
+* Help improved about javasci - Scilab Java API
+
+* Page "Compile and run with Javasci" added
+
 * Examples and unit tests added for the function find
 
 * Unit tests for the completion (GUI & NW/NWNI modes)
