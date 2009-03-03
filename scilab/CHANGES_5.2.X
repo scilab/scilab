@@ -7,7 +7,11 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
-* modelicac (scicos) built with Ocaml 3.11.0 on windows
+* modelicac (scicos) built with Ocaml 3.11.0 on Windows
+
+* blas, lapack , arpack libraries moved as pre-requirements (Windows)
+
+* lapack 3.2 used on Windows
 
 Source reorganisation:
 ======================
