@@ -17,13 +17,13 @@
 static gw_generic_table Tab[]=
 {
 	{C2F(sci_ffir),"ffir"},
-	{C2F(sci_fft),"fft"},
+	{sci_fft,"fft"},
 	{C2F(sci_fiir),"fiir"},
 	{C2F(sci_corr),"corr"},
 	{C2F(sci_rpem),"rpem"},
-	{C2F(sci_amell),"amell"},
+	{sci_amell,"amell"},
 	{C2F(sci_delip),"delip"},
-	{C2F(sci_remez),"remez"},
+	{sci_remez,"remez"},
 	{C2F(sci_syredi),"syredi"}
 };
 /*--------------------------------------------------------------------------*/

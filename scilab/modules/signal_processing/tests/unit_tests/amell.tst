@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-if amell(10,[1:10])<> 0 then pause,end
-if or(size(amell([1:10],[1:10])) <> [1 10]) then pause,end
-if or(amell([1:10],[1:10])<> 0) then pause,end
+a=amell(10,0.1);
+if a > 3.693 then pause,end
+if a < 3.692 then pause,end
+if or(size(amell([1:10], 0.1)) <> [1 10]) then pause,end
+if or(amell([1:10], 1)<> 0) then pause,end
