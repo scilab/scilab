@@ -12,6 +12,9 @@ Compilation:
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
 
+* In the source tree of Scilab, ant target "build-example" added in order to 
+  build only the javasci examples (cd modules/javasci && ant build-example)
+
 Source reorganisation:
 ======================
 

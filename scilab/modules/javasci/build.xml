@@ -59,27 +59,6 @@
 
   </target>
 
-  <target name="run-example" depends="run">
-    <property name="mainclass" value="Example1"/>
-  <antcall target="run" inheritAll="true">
-    <param name="mainclass" value="Example1"/>
-	</antcall>
-  </target>
-
-  <target name="run" depends="build-example">
-   		   <java classname="${mainclass}"
-                      fork="true"
-                      failonerror="true"
-					  >
-                    <jvmarg value="-Djava.library.path=.libs/"/>
-         <classpath>
-           <pathelement location="jar/${library.javasci.name}" />
-           <pathelement path="${examples.classes.dir}" />
-         </classpath>
-
-           </java>
-  </target>
-
   <target name="clean-example" description="clean examples">
   	  <delete dir="${examples.classes.dir}"/>
   </target>
