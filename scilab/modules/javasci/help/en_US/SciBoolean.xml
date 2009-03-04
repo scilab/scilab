@@ -58,6 +58,7 @@
       <member>
         <link linkend="Scilab">Scilab</link>
       </member>
+      <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
       <member>
         <link linkend="SciBooleanArray">SciBooleanArray</link>
       </member>

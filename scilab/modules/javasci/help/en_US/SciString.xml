@@ -16,8 +16,7 @@
   </info>
   <refnamediv>
     <refname>SciString</refname>
-    <refpurpose>Class to use String object in
-  Scilab.</refpurpose>
+    <refpurpose>Map a Java String into a Scilab string.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -55,6 +54,7 @@
       <member>
         <link linkend="Scilab">Scilab</link>
       </member>
+      <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
       <member>
         <link linkend="SciDouble">SciDouble</link>
       </member>
