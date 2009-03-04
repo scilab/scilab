@@ -1,6 +1,7 @@
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
+
 Compilation:
 ============
 
@@ -10,6 +11,9 @@ Compilation:
 
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
+
+* New module added call_scilab: the goal of this module is to highlight the
+  possibility to call Scilab engine from other languages.
 
 Help & Tests:
 =============
@@ -29,6 +33,9 @@ Bug fixes:
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 		   variable tables to compile other files
+
+* bug 4052 fixed - A wrong usage of xmlCleanupParser (libxml2) was causing
+				   a seg fault on startup
 
 * bug 4067 fixed - bug with completion and some paths
 

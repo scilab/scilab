@@ -375,6 +375,7 @@ modulename = javasci
 @JAVASCI_TRUE@			$(TK_INC_PATH) \
 @JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \

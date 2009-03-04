@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -108,10 +107,11 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 			xmlFreeDoc (doc);
-			/*
-			* Cleanup function for the XML library.
-			*/
-			xmlCleanupParser();
+
+			/* xmlCleanupParser is called in
+			 * modules/core/src/c/TerminateCore.c 
+			 * since it needs to be done only once.
+			 */
 
 			if (getenv("SCI_JAVA_ENABLE_HEADLESS")!=NULL) {
 				/* When Scilab is built from a virtual machine, it needs

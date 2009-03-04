@@ -205,11 +205,6 @@ static struct gateway_struct *readGatewayXmlFile(char *filenameXml)
 		if(xpathObj) xmlXPathFreeObject(xpathObj);
 		if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 		xmlFreeDoc (doc);
-
-		/*
-		* Cleanup function for the XML library.
-		*/
-		xmlCleanupParser();
 	}
 	else
 	{
