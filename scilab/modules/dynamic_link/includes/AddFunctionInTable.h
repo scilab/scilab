@@ -32,7 +32,7 @@ typedef struct {
 * @param name  function name
 * @param[OUT] rep  result 0 (OK) or 1 (Problem)
 * @param table functions hashtable
-* @return a pointer on function in functions hashtable
+* @return a pointer on function in functions table
 */
 voidf AddFunctionInTable (char *name, int *rep, FTAB *table);  
 
