@@ -19,7 +19,7 @@ class Example9 {
   	
   	
   	SciComplexArray a = new SciComplexArray("A",row,col);
-		Scilab.Exec("A=[ 1. + 10*%i,2. + 20*%i,3. + 30*%i ,4. + 40*%i;  5. + 50*%i,6. + 60*%i,7. + 70*%i ,8. + 80*%i]");
+	Scilab.Exec("A=[ 1. + 10*%i,2. + 20*%i,3. + 30*%i ,4. + 40*%i;  5. + 50*%i,6. + 60*%i,7. + 70*%i ,8. + 80*%i]");
   	System.out.println("----------------------------------------------------");
   	a.disp();
   	System.out.println("----------------------------------------------------");
