@@ -15,7 +15,7 @@
     <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
   </info>
   <refnamediv>
-    <refname>SciString</refname>
+    <refname>javasci.SciString</refname>
     <refpurpose>Map a Java String into a Scilab string.</refpurpose>
   </refnamediv>
   <refsection>
@@ -52,7 +52,7 @@
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="Scilab">Scilab</link>
+        <link linkend="javasci.Scilab">javasci.Scilab</link>
       </member>
       <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
       <member>

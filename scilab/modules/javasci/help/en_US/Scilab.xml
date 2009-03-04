@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Scilab" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="javasci.Scilab" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -22,7 +22,7 @@
   </info>
 
   <refnamediv>
-    <refname>Scilab</refname>
+    <refname>javasci.Scilab</refname>
 
     <refpurpose>This class provides the basic methods to execute Scilab code
     and scripts.</refpurpose>
