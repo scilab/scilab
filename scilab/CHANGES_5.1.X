@@ -12,6 +12,12 @@ Compilation:
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
 
+* In the source tree of Scilab, ant target "build-example" added in order to 
+  build only the javasci examples (cd modules/javasci && ant build-example)
+
+Source reorganisation:
+======================
+
 * New module added call_scilab: the goal of this module is to highlight the
   possibility to call Scilab engine from other languages.
 
@@ -27,6 +33,12 @@ Help & Tests:
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
 * Minor improvements in the documentation of the ilib_* functions
+
+License:
+========
+
+* Examples in SCI/modules/javasci/examples/ are now released under the public
+  domain
 
 Bug fixes:
 ==========

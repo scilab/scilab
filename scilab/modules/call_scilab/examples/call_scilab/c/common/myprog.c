@@ -1,6 +1,11 @@
-/*------------------------------------------------------------*/
-/* Modified by Allan CORNET INRIA Mars 2005 */
-/*------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) INRIA - 2005 - Allan Cornet
+ * 
+ * This file is released into the public domain
+ *
+ */
 #include <math.h>
 #include <stdio.h> 
 #ifdef WIN32
@@ -8,31 +13,31 @@
 #endif
 
 #include <string.h> 
-
+#include "setgetSCIpath.h"
 #include "stack-c.h"
 #include "CallScilab.h"
 
-/*------------------------------------------------------------*/
+/**
 /* 
- * Initialisation de Scilab 
- * avec execution de la startup 
+ * Initialisation of Scilab 
  */
-/*------------------------------------------------------------*/
-#ifndef SCI 
+/*#ifndef SCI 
 #define SCI "../.."
-#endif 
+#endif */
 /*------------------------------------------------------------*/
 #define TRUE 1
 #define FALSE 0
 /*------------------------------------------------------------*/
 /* See SCI/modules/core/includes/CallScilab.h */
 /*------------------------------------------------------------*/
-static int premier_exemple()
+static int first_example(void)
 {
- static double A[]={1,2,3,4};  int mA=2,nA=2;
-	static double b[]={4,5};  int mb=2,nb=1;
-
-
+	static double A[]={1,2,3,4};  
+	int mA=2,nA=2;
+	static double b[]={4,5};  
+	int mb=2,nb=1;
+	printf("\nExample 1:\n");
+	printf("Some simple computations\n");
 	/* Create Scilab matrices A and b */
 	WriteMatrix("A", &mA, &nA, A);
 	WriteMatrix("b", &mb, &nb, b);
@@ -73,26 +78,30 @@ static int premier_exemple()
   return 0;
 } 
 /*------------------------------------------------------------*/
-static int deuxieme_exemple() 
+static int second_example(void) 
 {
-  SendScilabJob("plot3d();");
+	printf("\nExample 2:\n");
+	printf("Call graphics\n");
+
+	SendScilabJob("plot3d();");
+
 	printf("\nClose Graphical Windows to close this example.\n");
 	while( ScilabHaveAGraph() )
 	{
 		ScilabDoOneEvent();
-		Sleep(1);
+		sleep(1);
 	}
   return 1;
 }
 /*------------------------------------------------------------*/
-int troisieme_exemple() 
+static int third_example(void) 
 {
-  int code=0;
-
+	int code=0;
 	char **JOBS=NULL;
 	const int SizeJOBS=6;
 	int i=0;
-
+	printf("\nExample 3:\n");
+	printf("Send many jobs.\n");
 	JOBS=(char**)malloc(sizeof(char**)*SizeJOBS);
 
 	for (i=0;i<SizeJOBS;i++)
@@ -126,28 +135,28 @@ int troisieme_exemple()
   return 0;
 }
 /*------------------------------------------------------------*/
-#ifndef _MSC_VER
-int MAIN__(void)
-#else
 int main(void)
-#endif 
 {
+	
 #ifdef WIN32
-	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
+	if ( StartScilab(NULL,NULL,NULL) == FALSE ) {
 #else
-    if ( StartScilab(SCI,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
- #endif
+		if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE ) {
+#endif
+			fprintf(stderr,"Error while calling StartScilab\n");
+			return -1;
+		}
 
-	printf("\nexample 1\n");  
-	premier_exemple();
+	first_example();
+
+	second_example() ;
+
+	third_example() ;
   
-	printf("\nexample 2\n");  
-	deuxieme_exemple() ;
-	printf("\nexample 3\n");  
-	troisieme_exemple() ;
-	printf("\n\n");  
-  
-	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
+	if ( TerminateScilab(NULL) == FALSE ) {
+		fprintf(stderr,"Error while calling TerminateScilab\n");
+		return -2;
+	}
 	return 0;
 }
 /*------------------------------------------------------------*/
