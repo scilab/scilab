@@ -9,7 +9,9 @@ Compilation:
 
 * modelicac (scicos) built with Ocaml 3.11.0 on Windows
 
-* blas, lapack , arpack libraries moved as pre-requirements (Windows)
+* blas, lapack, arpack libraries moved as pre-requirements (Windows)
+
+* blas, lapack libraries moved as pre-requirements (Linux/Unix/MacOSX)
 
 * lapack 3.2 used on Windows
 
