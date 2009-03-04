@@ -30,7 +30,7 @@ typedef struct {
 * Add a C or fortran function in functions hashtable
 *
 * @param name  function name
-* @param[OUT] rep  result 1 (OK) or 0 (Problem)
+* @param[OUT] rep  result 0 (OK) or 1 (Problem)
 * @param table functions hashtable
 * @return a pointer on function in functions hashtable
 */
