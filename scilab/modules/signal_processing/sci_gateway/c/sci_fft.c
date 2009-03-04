@@ -18,11 +18,12 @@
 #include "gw_signal.h"
 #include "stack-c.h"
 #include "Scierror.h"
+#include "localization.h"
 
 // switch to either c or fortran gateway...
 int sci_fft(char *fname,unsigned long fname_len)
 {
-  return sci_fftf(fname, fname_len);
+  return sci_fftc(fname, fname_len);
 }
 
 /*--------------------------------------------------------------------------*/
@@ -58,8 +59,11 @@ int sci_fftc(char *fname, unsigned long fname_len)
     *argument;
   int
     inverse = -1, /* -1 for forward transform, 1 for inverse */
-    dimension = 1,
-    increment = 1;
+    dimensions_depth = 0, /* depth of each dimension */
+    increment = 0, /* should hold the sequence (indexed by i) product(dimensions_depth(j),j=1..i-1)*/
+/*     *dimensions_depth = NULL, /\* depth of each dimension *\/ */
+/*     *increment = NULL, /\* should hold the sequence (indexed by i) product(dimensions_depth(j),j=1..i-1)*\/ */
+    dimension_count = 0; /* number of dimensions */
   int signal_rows = 0, signal_cols = 0, rows = 0, cols = 0;
 
   int *buffer_data = NULL;
@@ -75,18 +79,23 @@ int sci_fftc(char *fname, unsigned long fname_len)
   /* intentionally no breaks between cases to collect all arguments */
   switch (Rhs) {
   case 4:
+    /* */
     GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
-    if (rows != 1 || cols != 1) {
-      Error(60);
-      return 1;
-    }
-    increment = argument[0];
+/*     if (rows != 1 || cols != 1) { */
+/*       Error(60); */
+/*       return 1; */
+/*     } */
+    increment = (int)argument[0];
+    printf("arg4 : %d\n", increment);
     GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
-    if (rows != 1 || cols != 1) {
-      Error(60);
-      return 1;
-    }
-    dimension = argument[0];
+/*     if (rows != 1 || cols != 1) { */
+/*       Error(60); */
+/*       return 1; */
+/*     } */
+    dimensions_depth = (int)argument[0];
+    printf("arg3 : %d\n", dimensions_depth);
+    // dimension_count = cols;
+    dimension_count = 3;
   case 2:
     GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
     inverse = argument[0];
@@ -100,7 +109,7 @@ int sci_fftc(char *fname, unsigned long fname_len)
     }
   case 1:
     GetVarDimension(1, &signal_rows, &signal_cols);
-    dimension = Max(dimension, (signal_rows == 1 || signal_cols == 1) ? 1 : 2);
+    dimension_count = Max(dimension_count, (signal_rows == 1 || signal_cols == 1) ? 1 : 2);
     signal_length = signal_rows * signal_cols;    
     if (signal_length <= 1) {
       Error(60);
@@ -125,14 +134,6 @@ int sci_fftc(char *fname, unsigned long fname_len)
     return 1;
   }
 
-  printf("signal : ");
-  print_array(frequencies_real, 10);
-  printf("\nimag part : ");
-  print_array(frequencies_imaginary, 10);
-  printf("\n");
-
-  printf("inverse = %d, dim = %d, incr = %d, signal_length = %d\n", inverse, dimension, increment, signal_length);
-
   /* upper bound on the required workspace for dfft2 */
   buffer_size = 8 * maxfactor(signal_length) + 24;
   buffer_data = (int *)calloc(buffer_size, sizeof(int));
@@ -140,10 +141,9 @@ int sci_fftc(char *fname, unsigned long fname_len)
     printf("mem allocation error !\n");
     return 1;
   }
-  printf("allocated memory for buffer data: %d\n", buffer_size);
 
   /* dimension ? */
-  switch (dimension) {
+  switch (dimension_count) {
   case 1:
     printf("1-dimensional case...\n");
     if (is_pow2(signal_length) && signal_length < pow(2, 15)) {
@@ -200,13 +200,12 @@ int sci_fftc(char *fname, unsigned long fname_len)
     /* pending [ */
     /* TODO: translate code from Fortran */
     {
-      int nspn, nseg;
-    nspn = (int)increment;
-    nseg = signal_length / signal_cols / nspn; /* translated litterally from Fortran... but... wtf ?! */
-    printf("increment = %d, nspn = %d, nseg = %d\n", increment, nspn, nseg);
-    C2F(dfft2)(frequencies_real, frequencies_imaginary, &nseg, &signal_cols, &nspn, &inverse, &error, buffer_data, &buffer_size);
-    print_array(frequencies_real, 10);
-    print_array(frequencies_imaginary, 10);
+      int nspn, nseg, n;
+      n = dimensions_depth;
+      nspn = increment;
+      nseg = signal_length / n / nspn; /* translated litterally from Fortran... but... wtf ?! */
+      printf("nspn = %d, nseg = %d, n= %d\n", nspn, nseg, n);
+      C2F(dfft2)(frequencies_real, frequencies_imaginary, &nseg, &n, &nspn, &inverse, &error, buffer_data, &buffer_size);
     }
     /* ] pending */
     break;
@@ -221,12 +220,11 @@ int sci_fftc(char *fname, unsigned long fname_len)
   buffer_data = NULL;
   printf("leaving my sci_fft\n");
 
-  printf("signal : ");
-  print_array(frequencies_real, 10);
-  printf("\nimag part : ");
-  print_array(frequencies_imaginary, 10);
-  printf("\n");
-
+/*   printf("signal : "); */
+/*   print_array(frequencies_real, 10); */
+/*   printf("\nimag part : "); */
+/*   print_array(frequencies_imaginary, 10); */
+/*   printf("\n"); */
 
   return 0;
 }
@@ -240,7 +238,6 @@ int maxfactor(int n) {
   int nfac[15];
   int m, j, jj, k, kt, max;
 
-  printf("maxfactor start ****************\n");
   m = 0;
   k = abs(n);
   while (k-(k/16)*16 == 0)
@@ -302,9 +299,8 @@ int maxfactor(int n) {
   // find the maximum factor
   max = nfac[0];
   for (j = 0 ; j<m ; j++) {
-    printf("nfac[%d] == %d\n", j, nfac[j]);
+    // printf("nfac[%d] == %d\n", j, nfac[j]);
     max = (nfac[j] > max) ? nfac[j] : max;
   }
-  printf("maxfactor end ****************\n");
   return max;
 }
