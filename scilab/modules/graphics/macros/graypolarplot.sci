@@ -149,7 +149,10 @@ for i=1:(nbRho - 1)
                         rho(i + 1) * sinTheta(j)];
 
     // color is the same for each nbDecomposition facets
-    colors(index) = z(j / nbDecomposition + 1, i);
+	// retrieve the not refined index
+	thetaIndex = (j - 1) / nbDecomposition + 1;
+	// colors is the mean of the 4 vertices of the patch
+    colors(index) = (z(thetaIndex, i) + z(thetaIndex + 1, i) + z(thetaIndex + 1, i + 1) + z(thetaIndex, i + 1)) / 4;
 
     index = index + 1;
   end
