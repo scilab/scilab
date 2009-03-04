@@ -35,13 +35,10 @@ fig = gcf();
 immediate_drawing = fig.immediate_drawing;
 fig.immediate_drawing = "off";
 
-//plot2d(0,0,1,strf,' ',rect)
 axes = gca();
 axes.data_bounds = [rect(1), rect(2); rect(3), rect(4)];
 axes.clip_state = "clipgrf";
-//[rho,k]=sort(rho);z=z(:,k);
 
-//nt=size(theta,'*');theta=matrix(theta,1,-1)*180/%pi
 drawGrayplot(theta,rho,z);
 
 axes.isoview = "on";
@@ -130,7 +127,7 @@ nbQuadFacets = (nbRho - 1) * (nbRefinedTheta - 1);
 // allocate matrices
 xCoords = zeros(4, nbQuadFacets);
 yCoords = zeros(4, nbQuadFacets);
-colors = zeros(1, nbQuadFacets);
+colors = zeros(4, nbQuadFacets);
 
 index = 1;
 
@@ -151,8 +148,12 @@ for i=1:(nbRho - 1)
     // color is the same for each nbDecomposition facets
 	// retrieve the not refined index
 	thetaIndex = (j - 1) / nbDecomposition + 1;
-	// colors is the mean of the 4 vertices of the patch
-    colors(index) = (z(thetaIndex, i) + z(thetaIndex + 1, i) + z(thetaIndex + 1, i + 1) + z(thetaIndex, i + 1)) / 4;
+	// keep the 4 outside colors of the patch
+	// to be able to switch between average or matlab color.
+    colors(:,index) = [z(thetaIndex, i)
+	                   z(thetaIndex + 1, i)
+					   z(thetaIndex + 1, i + 1)
+					   z(thetaIndex, i + 1)];
 
     index = index + 1;
   end
@@ -165,8 +166,9 @@ zCoords = zeros(4, nbQuadFacets);
 // disable line draing and hidden color
 plot3d(xCoords,yCoords,list(zCoords,colors));
 gPlot = gce();
-gPlot.color_mode = -1;
-gPlot.hiddencolor = 0;
+gPlot.color_mode = -1; // no wireframe
+gPlot.hiddencolor = 0; // no hidden color
+gPlot.color_flag = 2; // average color on each facets
 
 // restore 2d view
 axes = gca();
