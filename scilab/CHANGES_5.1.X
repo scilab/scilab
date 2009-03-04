@@ -12,6 +12,9 @@ Compilation:
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
 
+Source reorganisation:
+======================
+
 * New module added call_scilab: the goal of this module is to highlight the
   possibility to call Scilab engine from other languages.
 
