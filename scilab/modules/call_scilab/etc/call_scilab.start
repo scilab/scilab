@@ -13,8 +13,8 @@
 
 // ====================================================================
 //Load  functions libraries
-load('SCI/modules/call_scilab/macros/lib');
+//load('SCI/modules/call_scilab/macros/lib');
 // ====================================================================
 //add help chapter
-add_module_help_chapter('call_scilab');
+//add_module_help_chapter('call_scilab');
 // ====================================================================
