@@ -31,6 +31,12 @@ Help & Tests:
 
 * Minor improvements in the documentation of the ilib_* functions
 
+License:
+========
+
+* Examples in SCI/modules/javasci/examples/ are now released under the public
+  domain
+
 Bug fixes:
 ==========
 
