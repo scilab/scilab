@@ -40,4 +40,48 @@
 	</jar>
   </target>
 
+  <property name="examples.classes.dir" location="${build.dir}/examples/" />
+
+  <target name="build-example" description="Build the examples" depends="jar">
+        <property name="examples.src.dir"  location="examples/others/" />
+        <mkdir dir="${examples.classes.dir}"/>
+
+                <javac
+                        srcdir="${examples.src.dir}"
+                        destdir="${examples.classes.dir}"
+                        classpath="jar/${library.javasci.name}"
+                        deprecation="on"
+                        debug="off"
+                        verbose="off"
+                        listfiles="on"
+                        source="5"
+                        />
+
+  </target>
+
+  <target name="run-example" depends="run">
+    <property name="mainclass" value="Example1"/>
+  <antcall target="run" inheritAll="true">
+    <param name="mainclass" value="Example1"/>
+	</antcall>
+  </target>
+
+  <target name="run" depends="build-example">
+   		   <java classname="${mainclass}"
+                      fork="true"
+                      failonerror="true"
+					  >
+                    <jvmarg value="-Djava.library.path=.libs/"/>
+         <classpath>
+           <pathelement location="jar/${library.javasci.name}" />
+           <pathelement path="${examples.classes.dir}" />
+         </classpath>
+
+           </java>
+  </target>
+
+  <target name="clean-example" description="clean examples">
+  	  <delete dir="${examples.classes.dir}"/>
+  </target>
+
 </project>

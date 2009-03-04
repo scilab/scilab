@@ -98,7 +98,7 @@
     <para>To launch the Java Application, you can either provide them with
     environnement variable</para>
 
-    <itemizedlist>
+     <itemizedlist>
       <listitem>
         <para>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/ java
         -cp modules/javasci/jar/javasci.jar:. BasicExample</para>
@@ -112,6 +112,18 @@
         modules/javasci/jar/javasci.jar:. BasicExample</para>
       </listitem>
     </itemizedlist>
+
+    <para>Note that two environnement variables are taken in account for specific needs: 
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>SCI_DISABLE_TK=1</literal> Disables Tk (Tcl's GUI)</para>
+	  </listitem>
+      <listitem>
+        <para><literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> Launch Java in headless mode (no AWT/Swing)</para>
+      </listitem>
+	  </itemizedlist>
+
   </refsection>
 
   <refsection>
