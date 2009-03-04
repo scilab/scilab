@@ -41,6 +41,8 @@ axes.clip_state = "clipgrf";
 
 drawGrayplot(theta,rho,z);
 
+objectList = gce(); // get all the created objects to glue them at the end.
+
 axes.isoview = "on";
 axes.box = "off";
 axes.axes_visible = ["off","off","off"];
@@ -48,30 +50,35 @@ axes.x_label.text = "";
 axes.y_label.text = "";
 axes.z_label.text = "";
 
-// bug here, we need to draw the axes in order to get correct bounding box.
-draw(axes);
-
-
 step=R/5
 r=step;dr=0.02*r;
 for k=1:4
   xarc(-r,r,2*r,2*r,0,360*64)
+  objectList($ + 1) = gce();
   arc = gce();
   arc.line_style = 3;
   xstring((r+dr)*cos(5*%pi/12),(r+dr)*sin(5*%pi/12),string(round(10*r)/10))
+  objectList($ + 1) = gce();
   r=r+step
 end
 xarc(-r,r,2*r,2*r,0,360*64)
+objectList($ + 1) = gce();
 xstring((r+dr)*cos(5*%pi/12),(r+dr)*sin(5*%pi/12),string(round(10*r)/10))
+objectList($ + 1) = gce();
 
 rect=xstringl(0,0,'360');w=rect(3);h=rect(4);d=sqrt(w^2+h^2)/1.8
 r=R+d
 for k=0:11
   xsegs([0;R*cos(k*(%pi/6))],[0;R*sin(k*(%pi/6))])
+  objectList($ + 1) = gce();
   arc = gce();
   arc.line_style = 3;
   xstring(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
+  objectList($ + 1) = gce();
 end
+
+// glue all the created objects
+glue(objectList);
 
 // drawnow
 fig.immediate_drawing = immediate_drawing;
