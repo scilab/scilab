@@ -12,7 +12,7 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "MALLOC.h"
-#include "../../src/c/fromc.h"
+#include "fromc.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_fromc)(char *fname,unsigned long fname_len)
 {

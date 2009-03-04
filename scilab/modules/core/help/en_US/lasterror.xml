@@ -75,7 +75,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>Each time an error occur, the Scilab error handler records it in
+    <para>Each time an error occurs, the Scilab error handler records it in
     internal tables (only the last one is retained). The
     <literal>lasterror</literal> function allows to get the message, the error
     number, the current function (if any) and the current line of the current
