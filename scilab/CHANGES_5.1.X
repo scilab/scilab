@@ -1,6 +1,7 @@
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
+
 Compilation:
 ============
 
@@ -10,6 +11,9 @@ Compilation:
 
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
+
+* New module added call_scilab: the goal of this module is to highlight the
+  possibility to call Scilab engine from other languages.
 
 Help & Tests:
 =============
