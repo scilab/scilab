@@ -1229,6 +1229,7 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/call_scilab/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
