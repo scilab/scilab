@@ -71,10 +71,10 @@ c     Copyright INRIA
 c     
       integer iadr,sadr,op,r
       integer id(nsiz)
-      integer equal,less,great,blank
+      integer equal,less,great,extract,blank
       logical cresmat,ptover
 
-      data equal/50/,less/59/,great/60/
+      data equal/50/,less/59/,great/60/,extrac/3/
       data blank/40/
 c     
       iadr(l)=l+l-1
