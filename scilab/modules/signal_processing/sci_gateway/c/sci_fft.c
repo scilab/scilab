@@ -11,296 +11,289 @@
  *
  */
 
-#include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <math.h>
+#include "sci_mem_alloc.h"
 #include "gw_signal.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 
-// switch to either c or fortran gateway...
-int sci_fft(char *fname,unsigned long fname_len)
-{
-  return sci_fftc(fname, fname_len);
-}
-
-/*--------------------------------------------------------------------------*/
-extern int C2F(scifft)(char *id,unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
-int sci_fftf(char *fname,unsigned long fname_len)
-{
-	C2F(scifft)(fname,fname_len);
-	return 0;
-}
-/*--------------------------------------------------------------------------*/
 /****************************************************************/
-/* maximum factor of the prime decomposition of n (as bundled into the dfft2 algorithm) */
+extern void C2F(fft842)(int *inverse, int *signal_length,
+			double *signal_real, double *signal_imaginary,
+			int *error);
+extern void C2F(dfft2)(double *signal_real, double *signal_imaginary,
+		       int *nseg, int *n, int *nspn,
+		       int *inverse, int *error,
+		       int *buffer_data, int *buffer_size);
+/****************************************************************/
+int POW2_15 = 32768;
+
+int my_log2(int n);
+int my_pow2(int n);
+int is_pow2(int n);
 int maxfactor(int n);
+int fft_1dim(double *signal_real, double *signal_imaginary, int signal_length,
+	     int inverse, int *buffer_data, int buffer_size);
+int fft_2dim(double *signal_real, double *signal_imaginary,
+	     int signal_rows, int signal_cols,
+	     int inverse, int *buffer_data, int buffer_size);
+int fft_ndim(double *signal_real, double *signal_imaginary, int signal_length,
+	     int dimensions_length, int dimension_stride,
+	     int inverse, int *buffer_data, int buffer_size);
 
-/* is n a power of 2 ? */
-int is_pow2(int n) {
-  return (int)pow(2,(int)log2((double)n)) == n;
-}
-
-void print_array(double *array, int elements_nb) {
-  int i;
-  for (i = 0 ; i < elements_nb ; i++) {
-    printf(" %f ", array[i]);
-  }
-}
-
-int sci_fftc(char *fname, unsigned long fname_len)
+int sci_fft(char *fname, unsigned long fname_len)
 {
   double
     *signal_real, *signal_imaginary, /* input signal */
-    *frequencies_real, *frequencies_imaginary, /* frequency domain output */
+    *frequencies_real, *frequencies_imaginary, /* freq domain output */
     *argument;
   int
     inverse = -1, /* -1 for forward transform, 1 for inverse */
-    dimensions_depth = 0, /* depth of each dimension */
-    increment = 0, /* should hold the sequence (indexed by i) product(dimensions_depth(j),j=1..i-1)*/
-/*     *dimensions_depth = NULL, /\* depth of each dimension *\/ */
-/*     *increment = NULL, /\* should hold the sequence (indexed by i) product(dimensions_depth(j),j=1..i-1)*\/ */
+    /* [4213] should likely hold an array */
+    dimensions_length = 0, /* length of each dimension */
+    /* [4213] should likely hold an array */
+    /* assert: dimension_stride(1) = product(dimensions_length(j),j=1..i-1) */
+    dimension_stride = 0, /* stride for one step along each dimension */
     dimension_count = 0; /* number of dimensions */
   int signal_rows = 0, signal_cols = 0, rows = 0, cols = 0;
 
   int *buffer_data = NULL;
   int signal_length = 0, error = 0, buffer_size = 0;
-  int zero = 0, one = 1, i = 0;
+  int one = 1;
 
-  printf("entering my sci_fft C gateway 2009-02-27\n");
-
-  CheckRhs(1,4); /* but RHS=3 invalid */
+  CheckRhs(1,4); /* but RHS=3 invalid too: checked afterwars */
   CheckLhs(1,1);
 
   /* collecting and checking arguments */
-  /* intentionally no breaks between cases to collect all arguments */
-  switch (Rhs) {
+  switch (Rhs) {   /* no breaks to collect all arguments */
   case 4:
-    /* */
     GetRhsVarMatrixDouble(4, &rows, &cols, &argument);
-/*     if (rows != 1 || cols != 1) { */
-/*       Error(60); */
-/*       return 1; */
-/*     } */
-    increment = (int)argument[0];
-    printf("arg4 : %d\n", increment);
+    dimension_stride = (int)argument[0];
     GetRhsVarMatrixDouble(3, &rows, &cols, &argument);
-/*     if (rows != 1 || cols != 1) { */
-/*       Error(60); */
-/*       return 1; */
-/*     } */
-    dimensions_depth = (int)argument[0];
-    printf("arg3 : %d\n", dimensions_depth);
-    // dimension_count = cols;
-    dimension_count = 3;
+    dimensions_length = (int)argument[0];
+    dimension_count = 3; /* any value > 2 (used as a flag) */
   case 2:
     GetRhsVarMatrixDouble(2, &rows, &cols, &argument);
     inverse = argument[0];
     if (rows != 1 || cols != 1) {
-      Error(60);
+      Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), fname, 2);
       return 1;
     }
     if (inverse != 1 && inverse != -1) {
-      Error(5);
+      Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), fname, 2, "-1 1");
       return 1;
     }
   case 1:
     GetVarDimension(1, &signal_rows, &signal_cols);
-    dimension_count = Max(dimension_count, (signal_rows == 1 || signal_cols == 1) ? 1 : 2);
+    dimension_count = Max(dimension_count,
+			  (signal_rows == 1 || signal_cols == 1) ? 1 : 2);
     signal_length = signal_rows * signal_cols;    
     if (signal_length <= 1) {
-      Error(60);
+      Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
       return 1;
     }
-    iAllocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols, &frequencies_real, &frequencies_imaginary);
+    iAllocComplexMatrixOfDouble(Rhs + 1, signal_rows, signal_cols,
+				&frequencies_real, &frequencies_imaginary);
     if (iIsComplex(1)) {
-      printf("Complex vector\n");
-      GetRhsVarMatrixComplex(1, &signal_rows, &signal_cols, &signal_real, &signal_imaginary);
-      C2F(dcopy)(&signal_length, signal_real, &one, frequencies_real, &one);
-      C2F(dcopy)(&signal_length, signal_imaginary, &one, frequencies_imaginary, &one);
+      GetRhsVarMatrixComplex(1, &signal_rows, &signal_cols,
+			     &signal_real, &signal_imaginary);
+      C2F(dcopy)(&signal_length, signal_real,
+		 &one, frequencies_real, &one);
+      C2F(dcopy)(&signal_length, signal_imaginary,
+		 &one, frequencies_imaginary, &one);
     }
     else {
-      printf("Real vector\n");
+      double zero = 0L;
       GetRhsVarMatrixDouble(1, &signal_rows, &signal_cols, &signal_real);
-      C2F(dcopy)(&signal_length, signal_real, &one, frequencies_real, &one);
+      C2F(dcopy)(&signal_length, signal_real,
+		 &one, frequencies_real, &one);
       C2F(dset)(&signal_length, &zero, frequencies_imaginary, &one);
     }
     break;
   default:
-    Error(39);
+    Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), fname, 1, 4);
     return 1;
   }
 
-  /* upper bound on the required workspace for dfft2 */
+  /* upper bound on the workspace required by dfft2 */
   buffer_size = 8 * maxfactor(signal_length) + 24;
-  buffer_data = (int *)calloc(buffer_size, sizeof(int));
+  buffer_data = (int *)CALLOC(buffer_size, sizeof(int));
   if (buffer_data == NULL) {
-    printf("mem allocation error !\n");
+    Scierror(999, _("%s : Memory allocation error.\n"), fname);
     return 1;
   }
 
-  /* dimension ? */
+  /* how to compute depends on the dimension */
   switch (dimension_count) {
   case 1:
-    printf("1-dimensional case...\n");
-    if (is_pow2(signal_length) && signal_length < pow(2, 15)) {
-      printf("length is a power of 2...\n");
-      C2F(fft842)(&inverse, &signal_length, frequencies_real, frequencies_imaginary, &error);
-    }
-    else {
-      printf("length is NOT a power of 2...\n");
-      C2F(dfft2)(frequencies_real, frequencies_imaginary, &one, &signal_length, &one,
-		 &inverse, &error, buffer_data, &buffer_size);
-    }
+    error = fft_1dim(frequencies_real, frequencies_imaginary,
+		     signal_length, inverse, buffer_data, buffer_size);
     break;
   case 2:
-    printf("2-dimensional case...\n");
-    if (is_pow2(signal_rows) && signal_rows < pow(2, 15)) {
-      printf("signal_rows IS power of 2\n");
-      for (i = 0 ; i < signal_cols ; i++) {
-	C2F(fft842)(&inverse, &signal_rows, &(frequencies_real[signal_rows * i]),
-		    &(frequencies_imaginary[signal_rows * i]), &error);
-      }
-    }
-    else {
-      printf("signal_rows NOT power of 2\n");
-      C2F(dfft2)(frequencies_real, frequencies_imaginary, &signal_cols, &signal_rows, &one,
-		 &inverse, &error, buffer_data, &buffer_size);
-    }
-    if (is_pow2(signal_cols) && signal_cols < pow(2, 15)) {
-      printf("signal_cols IS a power of 2\n");
-      double *temp_real, *temp_imaginary;
-      temp_real = (double *)malloc(signal_cols * sizeof(double));
-      temp_imaginary = (double *)malloc(signal_cols * sizeof(double));
-      if (temp_real == NULL || temp_imaginary == NULL) {
-	Scierror(999, _("%s : Memory allocation error.\n"), fname);
-	return 1;
-      }
-      for (i = 0 ; i < signal_rows ; i++) {
-	C2F(dcopy)(&signal_cols, &(frequencies_real[i]), &signal_rows, temp_real, &one);
-	C2F(dcopy)(&signal_cols, &(frequencies_imaginary[i]), &signal_rows, temp_imaginary, &one);
-	C2F(fft842)(&inverse, &signal_cols, temp_real, temp_imaginary, &error);
-	C2F(dcopy)(&signal_cols, temp_real, &one, &(frequencies_real[i]), &signal_rows);
-	C2F(dcopy)(&signal_cols, temp_imaginary, &one, &(frequencies_imaginary[i]), &signal_rows);
-      }
-      free(temp_imaginary);
-      free(temp_real);
-    }
-    else {
-      printf("signal_cols NOT a power of 2\n");
-      C2F(dfft2)(frequencies_real, frequencies_imaginary, &one, &signal_cols, &signal_rows,
-		 &inverse, &error, buffer_data, &buffer_size);
+    error = fft_2dim(frequencies_real, frequencies_imaginary,
+		     signal_rows, signal_cols, inverse,
+		     buffer_data, buffer_size);
+    if (error == 1) {
+      Scierror(999, _("%s : Memory allocation error.\n"), fname);
     }
     break;
   default:
-    printf("multi-dimensional case...\n");
-    /* pending [ */
-    /* TODO: translate code from Fortran */
-    {
-      int nspn, nseg, n;
-      n = dimensions_depth;
-      nspn = increment;
-      nseg = signal_length / n / nspn; /* translated litterally from Fortran... but... wtf ?! */
-      printf("nspn = %d, nseg = %d, n= %d\n", nspn, nseg, n);
-      C2F(dfft2)(frequencies_real, frequencies_imaginary, &nseg, &n, &nspn, &inverse, &error, buffer_data, &buffer_size);
-    }
-    /* ] pending */
+    error = fft_ndim(frequencies_real, frequencies_imaginary,
+		     signal_length, dimensions_length, dimension_stride,
+		     inverse, buffer_data, buffer_size);
     break;
   }
-
-  printf("errlevel = %d\n", error);
 
   /* preparing the return value */
   LhsVar(1) = Rhs + 1;
   PutLhsVar();
   free(buffer_data);
   buffer_data = NULL;
-  printf("leaving my sci_fft\n");
-
-/*   printf("signal : "); */
-/*   print_array(frequencies_real, 10); */
-/*   printf("\nimag part : "); */
-/*   print_array(frequencies_imaginary, 10); */
-/*   printf("\n"); */
-
   return 0;
 }
 /****************************************************************/
-/* VL 26/01/2009
-   translated extract from dfftbi.f
-   pityfully needed to allocate the appropriate mem
-   translated litterally to make sure the result is the same
+int fft_1dim(double *signal_real, double *signal_imaginary,
+	     int signal_length, int inverse,
+	     int *buffer_data, int buffer_size) {
+  int error = 0, one = 1;
+  if (is_pow2(signal_length) && signal_length < POW2_15) {
+    C2F(fft842)(&inverse, &signal_length,
+		signal_real, signal_imaginary, &error);
+  }
+  else {
+    C2F(dfft2)(signal_real, signal_imaginary,
+	       &one, &signal_length, &one,
+	       &inverse, &error,
+	       buffer_data, &buffer_size);
+  }
+  return error;
+}
+
+int fft_2dim(double *signal_real, double *signal_imaginary,
+		    int signal_rows, int signal_cols,
+		    int inverse,
+		    int *buffer_data, int buffer_size) {
+  int error = 0, i, one = 1;
+  if (is_pow2(signal_rows) && signal_rows < POW2_15) {
+    for (i = 0 ; i < signal_cols ; i++) {
+      C2F(fft842)(&inverse, &signal_rows,
+		  &(signal_real[signal_rows * i]),
+		  &(signal_imaginary[signal_rows * i]), &error);
+    }
+  }
+  else {
+    C2F(dfft2)(signal_real, signal_imaginary,
+	       &signal_cols, &signal_rows, &one,
+	       &inverse, &error, buffer_data, &buffer_size);
+  }
+  if (is_pow2(signal_cols) && signal_cols < POW2_15) {
+    double *temp_real, *temp_imaginary;
+    temp_real = (double *)MALLOC(signal_cols * sizeof(double));
+    temp_imaginary = (double *)MALLOC(signal_cols * sizeof(double));
+    if (temp_real == NULL || temp_imaginary == NULL) {
+      return 1;
+    }
+    for (i = 0 ; i < signal_rows ; i++) {
+      C2F(dcopy)(&signal_cols, &(signal_real[i]),
+		 &signal_rows, temp_real, &one);
+      C2F(dcopy)(&signal_cols, &(signal_imaginary[i]),
+		 &signal_rows, temp_imaginary, &one);
+      C2F(fft842)(&inverse, &signal_cols,
+		  temp_real, temp_imaginary, &error);
+      C2F(dcopy)(&signal_cols, temp_real, &one,
+		 &(signal_real[i]), &signal_rows);
+      C2F(dcopy)(&signal_cols, temp_imaginary, &one,
+		 &(signal_imaginary[i]), &signal_rows);
+    }
+    free(temp_imaginary);
+    temp_imaginary = NULL;
+    free(temp_real);
+    temp_real = NULL;
+  }
+  else { /* erroneous implementation suspected */
+    C2F(dfft2)(signal_real, signal_imaginary,
+	       &one, &signal_cols, &signal_rows,
+	       &inverse, &error, buffer_data, &buffer_size);
+  }
+  return error;
+}
+
+int fft_ndim(double *signal_real, double *signal_imaginary,
+	     int signal_length, int dimensions_length, int dimension_stride,
+	     int inverse, int *buffer_data, int buffer_size) {
+  /* translated litterally from Fortran... but... wtf ?! */
+  int error = 0;
+  int nseg = signal_length / dimensions_length / dimension_stride;
+  C2F(dfft2)(signal_real, signal_imaginary, &nseg,
+	     &dimensions_length, &dimension_stride, &inverse, &error,
+	     buffer_data, &buffer_size);
+  return error;
+}
+
+/* maximum factor of the prime decomposition of n
+   - extracted and translated from dfftbi.f
+   - pityfully needed to allocate the appropriate mem
+   - translated litterally to make sure the result is the same
+   TODO: remove once allocation moved to algorithm
  */
 int maxfactor(int n) {
   int nfac[15];
-  int m, j, jj, k, kt, max;
+  int m = 0, j = 0, jj = 0, k = 0, kt = 0, max = 0;
 
-  m = 0;
-  k = abs(n);
-  while (k-(k/16)*16 == 0)
-    {
-      m++;
-      nfac[m-1] = 4;
-      k = k/16;
-    }
-  j = 3;
-  jj = 9;
-  goto r40;
- r30:
-  m++;
-  nfac[m-1] = j;
-  k = k/jj;
- r40:
-  if (k % jj == 0)
-    goto r30;
-  j += 2;
-  jj = j*j;
-  if (jj <= k)
-    goto r40;
-  if (k > 4)
-    goto r50;
-  kt = m;
-  nfac[m] = k;
-  if (k != 1)
+  for (k = abs(n) ; k % 16 == 0 ; k /= 16) {
     m++;
-  goto r90;
- r50:
-  if (k-(k/4)*4 != 0)
-    goto r60;
-  m++;
-  nfac[m-1] = 2;
-  k /= 4;
-
- r60:
-  kt = m;
-  j = 2;
- r70:
-  if (k%j != 0)
-    goto r80;
-  m++;
-  nfac[m-1] = j;
-  k = k/j;
- r80:
-  j = ((j+1)/2)*2 + 1;
-  if (j <= k)
-    goto r70;
- r90:
-  if (kt == 0) goto r110;
-  j = kt;
-  do {
-    m = m + 1;
-    nfac[m-1] = nfac[j-1];
-    j--;
-  } while (j != 0);
- r110:
-  // find the maximum factor
-  max = nfac[0];
-  for (j = 0 ; j<m ; j++) {
-    // printf("nfac[%d] == %d\n", j, nfac[j]);
+    nfac[m-1] = 4;
+  }
+  for (j = 3, jj = 9 ; jj <= k ; j += 2, jj = j*j) {
+    if (k % jj != 0) continue;
+    m++;
+    nfac[m-1] = j;
+    k /= jj;
+  }
+  if (k <= 4) {
+    kt = m;
+    nfac[m] = k;
+    if (k != 1)
+      m++;
+  }
+  else {
+    if (k % 4 == 0) {
+      m++;
+      nfac[m-1] = 2;
+      k /= 4;
+    }
+    kt = m;
+    for (j = 2 ; j <= k ; j = ((j + 1) / 2) * 2 + 1) {
+      if (k % j != 0)
+	continue;
+      m++;
+      nfac[m-1] = j;
+      k /= j;
+    }
+  }
+  if (kt != 0) {
+    for (j = kt ; j > 0 ; j--) {
+      m++;
+      nfac[m-1] = nfac[j-1];
+    }
+  }
+  /* get nfac maximum */
+  for (j = 0, max = nfac[0]; j < m ; j++) {
     max = (nfac[j] > max) ? nfac[j] : max;
   }
   return max;
+}
+
+/* because log2 is only C99... */
+int my_log2(int n) {
+  return (int)(log(n)/log(2));
+}
+
+int my_pow2(int n) {
+  return 1 << n;
+}
+
+int is_pow2(int n) {
+  return my_pow2(my_log2(n)) == n;
 }

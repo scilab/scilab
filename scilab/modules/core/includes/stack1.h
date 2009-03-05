@@ -23,7 +23,8 @@ extern int C2F(ogettype)(int *lw);
 
 extern  int C2F(cvname)(int *,char *,int *, unsigned long int);
 extern int C2F(icopy)(int *,int *,int *,int *,int *);
-extern int C2F(dcopy)(int *,double *,int *,double *,int *);
+extern int C2F(dset)(int *array_length, double *init_value, double *array, int *array_stride);
+extern int C2F(dcopy)(int *array_length, double *array_in, int *array_in_stride, double *array_out, int *array_out_stride);
 extern int C2F(scidcopy)(int *,double *,int *,double *,int *);
 extern int C2F(unsfdcopy)(int *,double *,int *,double *,int *);
 extern int C2F(rcopy)(int *,float *,int *,float *,int *);

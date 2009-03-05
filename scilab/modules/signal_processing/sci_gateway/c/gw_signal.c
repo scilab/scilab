@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - Digiteo - Vincent LIARD
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,15 +17,15 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{C2F(sci_ffir),"ffir"},
-	{sci_fft,"fft"},
-	{C2F(sci_fiir),"fiir"},
-	{C2F(sci_corr),"corr"},
-	{C2F(sci_rpem),"rpem"},
-	{sci_amell,"amell"},
-	{C2F(sci_delip),"delip"},
-	{sci_remez,"remez"},
-	{C2F(sci_syredi),"syredi"}
+	{C2F(sci_ffir),   "ffir"},
+	{sci_fft,         "fft"},
+	{C2F(sci_fiir),   "fiir"},
+	{C2F(sci_corr),   "corr"},
+	{C2F(sci_rpem),   "rpem"},
+	{sci_amell,       "amell"},
+	{C2F(sci_delip),  "delip"},
+	{sci_remez,       "remez"},
+	{C2F(sci_syredi), "syredi"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_signal_processing(void)
