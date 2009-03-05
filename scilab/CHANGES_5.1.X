@@ -12,6 +12,12 @@ Compilation:
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
 
+* In the source tree of Scilab, ant target "build-example" added in order to 
+  build only the javasci examples (cd modules/javasci && ant build-example)
+
+Source reorganisation:
+======================
+
 * New module added call_scilab: the goal of this module is to highlight the
   possibility to call Scilab engine from other languages.
 
@@ -22,11 +28,19 @@ Help & Tests:
 
 * Page "Compile and run with Javasci" added
 
+* Examples in javasci translated into english
+
 * Examples and unit tests added for the function find
 
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
 * Minor improvements in the documentation of the ilib_* functions
+
+License:
+========
+
+* Examples in SCI/modules/javasci/examples/ are now released under the public
+  domain
 
 Bug fixes:
 ==========
@@ -38,6 +52,8 @@ Bug fixes:
 				   a seg fault on startup
 
 * bug 4067 fixed - bug with completion and some paths
+
+* bug 4073 fixed - mprintf does not display some special characters
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 

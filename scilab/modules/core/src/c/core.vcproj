@@ -996,7 +996,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\..\call_scilab\src\c\fromc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File

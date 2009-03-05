@@ -16,11 +16,12 @@ function y = linspace(d1, d2, n)
   if argn(2) == 2 then 
     n = 100;
   end
-  if n<=1 then
-    error(msprintf(gettext("%s: Unexpected value of n: %d. Expected value is greater than %d.\n"),"linspace",n,1));
+  if n-1<=0 then
+    y = d2;
+  else
+    // Note:
+    // The following works even if n is a real value
+    y=(0:n-1)*(d2-d1)/(n-1)+d1;
   end
-  // Note:
-  // The following works even if n is a real value
-  y=(0:n-1)*(d2-d1)/(n-1)+d1;
 endfunction
 

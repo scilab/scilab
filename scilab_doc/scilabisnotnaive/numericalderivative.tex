@@ -12,12 +12,6 @@ In the third part, we analyse
 why and how floating point numbers must be taken into account when the 
 numerical derivatives are to compute.
 
-A reference for numerical derivates 
-is \cite{AbramowitzStegun1972}, chapter 25. "Numerical Interpolation, 
-Differentiation and Integration" (p. 875).
-The webpage \cite{schimdtnd} and the book \cite{NumericalRecipes} give
-results about the rounding errors.
-
 \subsection{Theory}
 
 The basic result is the Taylor formula with one variable \cite{dixmier}
@@ -307,7 +301,7 @@ a function of one variable is presented in figure \ref{robust-numericalderivativ
 \label{robust-numericalderivative}
 \end{figure}
 
-\subsection{One step further}
+\subsection{One more step}
 
 In this section, we analyse the behaviour of \emph{derivative}
 when the point $x$ is either large $x \rightarrow \infty$, 
@@ -425,4 +419,13 @@ This step is a trade-off because it allows to keep a good accuracy with
 large values of $x$, but produces a slightly sub-optimal step size when 
 $x$ is near 1. The behaviour near zero is the same, i.e. both commands 
 produce wrong results when $x \rightarrow 0$ and $x\neq 0$.
+
+\subsection{References}
+
+A reference for numerical derivates 
+is \cite{AbramowitzStegun1972}, chapter 25. "Numerical Interpolation, 
+Differentiation and Integration" (p. 875).
+The webpage \cite{schimdtnd} and the book \cite{NumericalRecipes} give
+results about the rounding errors.
+
 
