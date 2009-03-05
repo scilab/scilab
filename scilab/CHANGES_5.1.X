@@ -28,6 +28,8 @@ Help & Tests:
 
 * Page "Compile and run with Javasci" added
 
+* Examples in javasci translated into english
+
 * Examples and unit tests added for the function find
 
 * Unit tests for the completion (GUI & NW/NWNI modes)
