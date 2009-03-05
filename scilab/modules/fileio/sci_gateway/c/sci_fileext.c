@@ -20,9 +20,9 @@
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fileext)(char *fname,unsigned long fname_len)
+int sci_fileext(char *fname,unsigned long fname_len)
 {
-	Rhs=Max(Rhs,0);
+	Rhs = Max(Rhs,0);
 
 	CheckRhs(1,1);
 	CheckLhs(1,1);
