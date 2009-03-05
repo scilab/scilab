@@ -555,6 +555,8 @@ Bug fixes:
 
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
 
+* bug 4221 fixed - graypolarplot uses to much memory.
+
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
