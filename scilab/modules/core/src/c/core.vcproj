@@ -46,11 +46,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c"
-<<<<<<< HEAD:scilab/modules/core/src/c/core.vcproj
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
-=======
-				PreprocessorDefinitions="_DEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/src/c/core.vcproj
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -126,11 +122,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c"
-<<<<<<< HEAD:scilab/modules/core/src/c/core.vcproj
 				PreprocessorDefinitions="_DEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
-=======
-				PreprocessorDefinitions="_DEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/src/c/core.vcproj
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
@@ -207,11 +199,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c"
-<<<<<<< HEAD:scilab/modules/core/src/c/core.vcproj
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
-=======
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/src/c/core.vcproj
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -290,11 +278,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories=".;../../includes;../../../../libs/dynamiclibrary/includes;../../../../libs/doublylinkedlist/includes;../../../../libs/MALLOC/includes;../../../mexlib/includes;../../../gui/src/c/wsci;../../../string/includes;../../../dynamic_link/includes;../../../../libs/libxml2;../../../../libs/libxml2/libxml;../../../action_binding/includes;../../../output_stream/includes;../../../fileio/includes;../../../elementary_functions/includes;../../../tclsci/includes;../../../localization/includes;../../../pvm/includes;../../../../libs/intl;../../../tclsci/includes/tcltk;../../../windows_tools/includes;../../../intersci/includes;../../../call_scilab/includes;../../../call_scilab/src/c"
-<<<<<<< HEAD:scilab/modules/core/src/c/core.vcproj
 				PreprocessorDefinitions="NDEBUG;_LIB;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
-=======
-				PreprocessorDefinitions="NDEBUG;_LIB;STRICT;_CRT_SECURE_NO_DEPRECATE;WITH_TK;WITH_ATLAS;__STDC__"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/src/c/core.vcproj
 				StringPooling="true"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -368,13 +352,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\call_scilab\src\c\CallScilab.c"
-<<<<<<< HEAD:scilab/modules/core/src/c/core.vcproj
-=======
-				>
-			</File>
-			<File
-				RelativePath=".\cluni0.c"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/src/c/core.vcproj
 				>
 			</File>
 			<File
@@ -1019,11 +996,7 @@
 				>
 			</File>
 			<File
-<<<<<<< HEAD:scilab/modules/core/src/c/core.vcproj
-				RelativePath=".\fromjava.h"
-=======
 				RelativePath="..\..\..\call_scilab\src\c\fromc.h"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/src/c/core.vcproj
 				>
 			</File>
 			<File
