@@ -34,10 +34,14 @@ if type(A)==1 then
         //
         // Scaling for better floating point accuracy.
         //
-	//y=sqrt(A'*A)
+	//
         s = max(abs(A));
-        sA = A/s;
-        y = s * sqrt(sA'*sA);
+        if s==0.0 then
+          y=sqrt(A'*A);
+        else
+          sA = A/s;
+          y = s * sqrt(sA'*sA);
+        end
       else
 	error("invalid value for flag")
       end
@@ -60,10 +64,13 @@ if type(A)==1 then
         //
         // Scaling for better floating point accuracy.
         //
-	//y=sum(abs(A).^p)^(1/p)
         s = max(abs(A));
-        sA = A/s;
-        y = s * sum(abs(sA).^p)^(1/p);
+        if s==0.0 then
+          y=sum(abs(A).^p)^(1/p);
+        else
+          sA = A/s;
+          y = s * sum(abs(sA).^p)^(1/p);
+        end
       end
     else
       error("invalid value for flag")
@@ -78,14 +85,20 @@ if type(A)==1 then
         // Scaling for better floating point accuracy.
         //
         s = max(abs(A));
-        sA = A/s;
-	if size(A,1)>size(A,2) then
-	  //y=sqrt(sum(diag(A'*A))) 
-          y = s * sqrt(sum(diag(sA'*sA)))
-	else
-	  //y=sqrt(sum(diag(A*A'))) 
-	  y = s * sqrt(sum(diag(sA*sA'))) 
-	end
+        if s==0.0 then
+	  if size(A,1)>size(A,2) then
+	    y=sqrt(sum(diag(A'*A))) 
+	  else
+	    y=sqrt(sum(diag(A*A'))) 
+	  end
+        else
+          sA = A/s;
+	  if size(A,1)>size(A,2) then
+            y = s * sqrt(sum(diag(sA'*sA)))
+	  else
+            y = s * sqrt(sum(diag(sA*sA')))
+          end
+        end
       else
 	error("invalid value for flag")
       end
