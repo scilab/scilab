@@ -409,6 +409,7 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/ \
 @GUI_TRUE@				-I$(top_srcdir)/modules/renderer/includes/ \
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
+@GUI_TRUE@				-I$(top_srcdir)/modules/fileio/includes \
 @GUI_TRUE@				-I$(top_srcdir)/libs/doublylinkedlist/includes
 
 

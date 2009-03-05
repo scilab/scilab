@@ -27,9 +27,9 @@
 /*------------------------------------------------------------*/
 /* See SCI/modules/core/includes/CallScilab.h */
 /*------------------------------------------------------------*/
-static int premier_exemple()
+static int first_example()
 {
- static double A[]={1,2,3,4};  int mA=2,nA=2;
+	static double A[]={1,2,3,4};  int mA=2,nA=2;
 	static double b[]={4,5};  int mb=2,nb=1;
 
 
@@ -73,9 +73,9 @@ static int premier_exemple()
   return 0;
 } 
 /*------------------------------------------------------------*/
-static int deuxieme_exemple() 
+static int second_example() 
 {
-  SendScilabJob("plot3d();");
+	SendScilabJob("plot3d();");
 	printf("\nClose Graphical Windows to close this example.\n");
 	while( ScilabHaveAGraph() )
 	{
@@ -85,7 +85,7 @@ static int deuxieme_exemple()
   return 1;
 }
 /*------------------------------------------------------------*/
-int troisieme_exemple() 
+static int third_example() 
 {
   int code=0;
 
@@ -139,12 +139,12 @@ int main(void)
  #endif
 
 	printf("\nexample 1\n");  
-	premier_exemple();
+	first_example();
   
 	printf("\nexample 2\n");  
-	deuxieme_exemple() ;
+	second_example() ;
 	printf("\nexample 3\n");  
-	troisieme_exemple() ;
+	third_example() ;
 	printf("\n\n");  
   
 	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");

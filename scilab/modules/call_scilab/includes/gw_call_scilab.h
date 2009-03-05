@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2005 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,18 +9,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "fromjava.h"
+#ifndef __GW_CALL_SCILAB__
+#define __GW_CALL_SCILAB__
 /*--------------------------------------------------------------------------*/ 
-static int bFromJava = FALSE;
+#include "machine.h"
 /*--------------------------------------------------------------------------*/ 
-void SetFromJavaToON(void)
-{
-	bFromJava=(int)(TRUE);
-}
+int gw_call_scilab(void);
 /*--------------------------------------------------------------------------*/ 
-BOOL IsFromJava(void)
-{
-	return bFromJava;
-}
+int C2F(sci_fromjava)(char *fname,unsigned long fname_len);
+int C2F(sci_fromc)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
+#endif /*  __GW_CALL_SCILAB__ */
+/*--------------------------------------------------------------------------*/
 
