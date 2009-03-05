@@ -229,12 +229,6 @@ IEEE overflow exception and set the result as \emph{Inf}.
 
 \subsection{Explanations}
 
-The technical report by G. Forsythe \cite{Forsythe1966} is 
-especially interesting on that subject. The paper by Goldberg 
-\cite{WhatEveryComputerScientist} is also a good reference for the 
-quadratic equation. One can also consult the experiments performed by 
-Nievergelt in \cite{Nievergelt2003}.
-
 The following tricks are extracted from the 
 \emph{quad} routine of the \emph{RPOLY} algorithm by
 Jenkins \cite{Jenkins1975}. This algorithm is used by Scilab in the 
@@ -498,7 +492,20 @@ should limit the possible overflows since $|b'/c| < 1$.
 These normalization tricks are similar to the one used by Smith in the 
 algorithm for the division of complex numbers \cite{Smith1962}.
 
+\subsection{References}
 
-
+The 1966 technical report by G. Forsythe \cite{Forsythe1966} 
+presents the floating point system and the possible large error 
+in using mathematical algorithms blindly. An accurate way of solving 
+a quadratic is outlined. A few general remarks are made about 
+computational mathematics. The 1991 paper by Goldberg 
+\cite{WhatEveryComputerScientist} is a general presentation of the floating
+point system and its consequences. It begins with background on floating point 
+representation and rounding errors, continues with a discussion
+of the IEEE floating point standard and concludes with examples of how
+computer system builders can better support floating point. The section
+1.4, "Cancellation" specificaly consider the computation of the roots
+of a quadratic equation.
+One can also consult the experiments performed by Nievergelt in \cite{Nievergelt2003}.
 
 
