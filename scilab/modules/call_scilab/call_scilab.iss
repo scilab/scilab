@@ -15,33 +15,34 @@
 ; call_scilab module
 ;--------------------------------------------------------------------------------------------------------------
 ;
-#define TIME "call_scilab"
+#define CALL_SCILAB "call_scilab"
 ;
-Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+;Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\changelog.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\license.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\readme.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\VERSION.xml; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\changelog.txt; DestDir: {app}\modules\{#CALL_SCILAB}; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#CALL_SCILAB}; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\readme.txt; DestDir: {app}\modules\{#CALL_SCILAB}; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\version.xml; DestDir: {app}\modules\{#CALL_SCILAB}; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\includes\*.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\sci_gateway\call_scilab_gateway.xml; DestDir: {app}\modules\{#TIME}\sci_gateway; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\sci_gateway\call_scilab_gateway.xml; DestDir: {app}\modules\{#CALL_SCILAB}\sci_gateway; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\etc\{#TIME}.quit; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\etc\{#CALL_SCILAB}.quit; DestDir: {app}\modules\{#CALL_SCILAB}\etc; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\etc\{#CALL_SCILAB}.start; DestDir: {app}\modules\{#CALL_SCILAB}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\help\addchapter.sce; DestDir: {app}\modules\{#TIME}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+;Source: modules\{#CALL_SCILAB}\help\addchapter.sce; DestDir: {app}\modules\{#CALL_SCILAB}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\buildmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\*.bin; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\*.sci; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\lib; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\names; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\macros\buildmacros.sce; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\macros\buildmacros.bat; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#CALL_SCILAB}\macros\cleanmacros.bat; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#CALL_SCILAB}\macros\*.bin; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#CALL_SCILAB}\macros\*.sci; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#CALL_SCILAB}\macros\lib; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#CALL_SCILAB}\macros\names; DestDir: {app}\modules\{#CALL_SCILAB}\macros; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TIME}\tests\*.*; DestDir: {app}\modules\{#TIME}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
+;Source: modules\{#CALL_SCILAB}\tests\*.*; DestDir: {app}\modules\{#CALL_SCILAB}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
+
