@@ -84,6 +84,8 @@ Bug fixes:
 
 * bug 4228 fixed - mclearerr with a false file descriptor crashs
 
+* bug 4273 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
