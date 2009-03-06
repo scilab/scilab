@@ -1,10 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * Copyright (C) INRIA - 2005 - Allan Cornet
+ * Copyright (C) DIGITEO - 2009 - Sylvestre LEDRU
  * 
  * This file is released into the public domain
  *
+ * This example shows how to read / write a matrix of boolean from Scilab
+ * engine
  */
 #include <math.h>
 #include <stdio.h> 
