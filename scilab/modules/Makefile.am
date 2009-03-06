@@ -50,6 +50,7 @@ intersci \
 metanet \
 signal_processing \
 core \
+call_scilab \
 interpolation \
 sound \
 time \
@@ -116,6 +117,7 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \

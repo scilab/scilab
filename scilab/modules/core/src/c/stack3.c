@@ -144,14 +144,14 @@ int C2F(creadcmat)(char *namex, int *m, int *n, double *scimat, unsigned long na
     return TRUE;
 }
 
-/*----------------------------------------------------------------
+/**
  * cwritemat writes vector/matrix in scilab's internal stack
  * logic=cwritemat('matrixname'//char(0),m,n,mat)
- * name: character string; name of the scilab variable ( null terMinated)
- * m: number of rows
- * n: number of columns
- * mat: matrix entries stored columnwise in Scilab object
-----------------------------------------------------------------*/
+ * @param name character string; name of the scilab variable ( null terMinated)
+ * @param m number of rows
+ * @param n number of columns
+ * @param mat matrix entries stored columnwise in Scilab object
+ */
 
 int C2F(cwritemat)(char *namex, int *m, int *n,  double *mat, unsigned long name_len)
 {
@@ -176,16 +176,13 @@ int C2F(cwritemat)(char *namex, int *m, int *n,  double *mat, unsigned long name
 }
 
 
-/*--------------------------------------------------------------------------*/
 /**
-* cwritecmat writes vector/matrix in scilab's internal stack
-* name: character string; name of the scilab variable ( null terMinated)
-* m: number of rows
-* n: number of columns
-* mat: matrix entries stored columnwise in Scilab object
-* for complex number
+ * cwritecmat writes vector/matrix in scilab's internal stack
+ * @param name: character string; name of the scilab variable ( null terMinated)
+ * @param m: number of rows
+ * @param n: number of columns
+ * @param mat: matrix entries stored columnwise in Scilab object for complex number
 */
-/*--------------------------------------------------------------------------*/
 int C2F(cwritecmat)(char *namex,int *m, int*n,double *mat,unsigned long name_len)
 {
 	int   ix1 = *m * *n *2; /* real part + imaginary part */
@@ -351,13 +348,13 @@ int C2F(creadchains)(char *namex, int *ir, int *ic, int *itslen, char *chai, uns
     return TRUE;
 }
 
-/*----------------------------------------------------------------
- *     cwritemat writes vector/matrix in scilab's internal stack
- *     logic=cwritemat('matrixname'//char(0),m,n,mat)
- *  name: character string; name of the scilab variable ( null terMinated)
- *  m: number of rows
- *  n: number of columns
- *  mat: matrix entries stored columnwise in Scilab object
+/**
+ *  cwritemat writes vector/matrix in scilab's internal stack
+ *  logic=cwritemat('matrixname'//char(0),m,n,mat)
+ * @param name character string; name of the scilab variable ( null terMinated)
+ * @param m number of rows
+ * @param n number of columns
+ * @param mat matrix entries stored columnwise in Scilab object
  *----------------------------------------------------------------*/
 
 int C2F(cwritechain)(char *namex, int *m, char *chai, unsigned long name_len, unsigned long chai_len)

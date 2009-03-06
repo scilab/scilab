@@ -63,7 +63,7 @@ int sci_beta(char *fname,unsigned long fname_len)
 		}
 	}
 
-	CreateVar(Rhs + 3,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lz); 
+	CreateVar(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE, &mx, &nx, &lz); 
 	z = stk(lz);
 
 	for ( i = 0 ; i < mx*nx ; i++ )
@@ -80,7 +80,7 @@ int sci_beta(char *fname,unsigned long fname_len)
 		}
     }
 
-	LhsVar(1) = Rhs + 3;
+	LhsVar(1) = Rhs + 1;
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

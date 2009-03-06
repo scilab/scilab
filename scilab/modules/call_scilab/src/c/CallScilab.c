@@ -9,11 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "../../../graphics/includes/WindowList.h"
 #include "../../../graphics/includes/GetProperty.h"
 #include "../../../io/includes/setenvc.h"
+#include "../../../fileio/includes/isdir.h"
 #include "setgetSCIpath.h"
 #include "fromc.h"
 #include "sciquit.h" /* ExitScilab */
@@ -30,7 +32,6 @@
 #include "../../../windows_tools/src/c/scilab_windows/getScilabDirectory.h"
 #include "strdup_windows.h"
 #endif
-#include "localization.h"
 #include "LaunchScilabSignal.h"
 
 #ifdef _MSC_VER
@@ -79,25 +80,28 @@ BOOL StartScilab(char *SCIpath,char *ScilabStartup,int *Stacksize)
 
 	InitializeLaunchScilabSignal();
 
-	if (SCIpath == NULL)
+	if (SCIpath == NULL) /* No SCIpath provided... */
 	{
 		#ifdef _MSC_VER
-			SetSciEnv();
-		#else
-		{
+		SetSciEnv(); /* Windows has a way to detect it */
+		#else 
+		/* Other doesn't */
+		fprintf(stderr,"StartScilab: Could not find SCI\n");
+		return FALSE;
+		#endif
+	}
+	else
+	{
+		if (!isdir(SCIpath)){
+			/* Check if the directory actually exists */
+			fprintf(stderr,"StartScilab: Could not find the directory %s\n",SCIpath);
+			return FALSE;
+		}else{
 			char env[2048];
 			setSCIpath(SCIpath);
 			sprintf(env,"SCI=%s",SCIpath);
 			putenv(env);
 		}
-		#endif
-	}
-	else
-	{
-		char env[2048];
-		setSCIpath(SCIpath);
-		sprintf(env,"SCI=%s",SCIpath);
-		putenv(env);
 	}
 
 	if (ScilabStartup == NULL)

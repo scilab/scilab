@@ -79,17 +79,17 @@ int C2F(cmatcptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_le
 int C2F(cmatsptr)  (char *name__, int *m, int *n, int *ix, int *j, int *lp, int *nlr, unsigned long name_len);
 
 /** 
-read a boolean matrix in scilab stack
+Read a boolean matrix in scilab stack
 */
 int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_len);
 
 /**
-write a boolean matrix in scilab stack
+Write a boolean matrix in scilab stack
 */
 int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_len);
 
 /**
-get pointer on a named boolean matrix 
+Get pointer on a named boolean matrix 
 */
 int C2F(cmatbptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len);
 
@@ -160,7 +160,7 @@ int iIsComplexItemElem(int _iVar, int _iItemNumber);
 //Get Item String
 int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
-//Internal fonctions to retrieve varaibles information from Address ( old "il" )
+//Internal fonctions to retrieve variables information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg);
 int iGetPolyFromAddress(int _iAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);
@@ -175,6 +175,7 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 *  @param _pdblReal, _pdblImg the target array (real and imaginary parts)
 */
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
+
 /**
 *  Returns a target doublecomplex array constructed from the source real and imaginary parts.
 *  The real and imaginary parts can be NULL or not NULL :
@@ -205,6 +206,7 @@ void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
 *  @param _pdblRealData pointer to the block of data for real values
 */
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
+
 /**
 *  Returns a pointer on the data of a matrix of double.
 *  @param number index of the Scilab variable

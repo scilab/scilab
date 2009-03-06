@@ -3,14 +3,14 @@
 /*------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h> 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h> 
 #endif
-
-#include <string.h> 
-
-#include "stack-c.h"
-#include "CallScilab.h"
+#include <unistd.h>
+#include <string.h>
+ 
+#include "stack-c.h" /* Provide functions to access to the memory of Scilab */
+#include "CallScilab.h" /* Provide functions to call Scilab engine */
 
 /*------------------------------------------------------------*/
 /* 
@@ -27,11 +27,14 @@
 /*------------------------------------------------------------*/
 /* See SCI/modules/core/includes/CallScilab.h */
 /*------------------------------------------------------------*/
-static int premier_exemple()
+static int first_example()
 {
- static double A[]={1,2,3,4};  int mA=2,nA=2;
-	static double b[]={4,5};  int mb=2,nb=1;
-
+	static double A[]={1,2,3,4};  
+	int mA=2,nA=2;
+	static double b[]={4,5};  
+	int mb=2,nb=1;
+	printf("\nExample 1:\n");
+	printf("Some simple computations\n");
 
 	/* Create Scilab matrices A and b */
 	WriteMatrix("A", &mA, &nA, A);
@@ -73,9 +76,9 @@ static int premier_exemple()
   return 0;
 } 
 /*------------------------------------------------------------*/
-static int deuxieme_exemple() 
+static int second_example() 
 {
-  SendScilabJob("plot3d();");
+	SendScilabJob("plot3d();");
 	printf("\nClose Graphical Windows to close this example.\n");
 	while( ScilabHaveAGraph() )
 	{
@@ -85,7 +88,7 @@ static int deuxieme_exemple()
   return 1;
 }
 /*------------------------------------------------------------*/
-int troisieme_exemple() 
+static int third_example() 
 {
   int code=0;
 
@@ -125,6 +128,7 @@ int troisieme_exemple()
 	}
   return 0;
 }
+
 /*------------------------------------------------------------*/
 #ifndef _MSC_VER
 int MAIN__(void)
@@ -132,19 +136,23 @@ int MAIN__(void)
 int main(void)
 #endif 
 {
-#ifdef WIN32
-	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
+#ifdef _MSC_VER
+	if ( StartScilab(NULL,NULL,NULL) == FALSE )
 #else
-    if ( StartScilab(SCI,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
- #endif
+	if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
+#endif
+		{
+			fprintf(stderr,"Error while calling StartScilab\n");
+			return -1;
+		}
 
 	printf("\nexample 1\n");  
-	premier_exemple();
+	first_example();
   
 	printf("\nexample 2\n");  
-	deuxieme_exemple() ;
+	second_example() ;
 	printf("\nexample 3\n");  
-	troisieme_exemple() ;
+	third_example() ;
 	printf("\n\n");  
   
 	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
