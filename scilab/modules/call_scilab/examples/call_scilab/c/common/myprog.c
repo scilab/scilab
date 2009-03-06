@@ -8,14 +8,14 @@
  */
 #include <math.h>
 #include <stdio.h> 
-#ifdef WIN32
+#ifdef _MSC_VER
   #include <windows.h> 
 #endif
-
-#include <string.h> 
-#include "setgetSCIpath.h"
-#include "stack-c.h"
-#include "CallScilab.h"
+#include <unistd.h>
+#include <string.h>
+ 
+#include "stack-c.h" /* Provide functions to access to the memory of Scilab */
+#include "CallScilab.h" /* Provide functions to call Scilab engine */
 
 /**
 /* 
@@ -38,6 +38,7 @@ static int first_example(void)
 	int mb=2,nb=1;
 	printf("\nExample 1:\n");
 	printf("Some simple computations\n");
+
 	/* Create Scilab matrices A and b */
 	WriteMatrix("A", &mA, &nA, A);
 	WriteMatrix("b", &mb, &nb, b);
@@ -134,15 +135,16 @@ static int third_example(void)
 	}
   return 0;
 }
+
 /*------------------------------------------------------------*/
 int main(void)
 {
-	
-#ifdef WIN32
-	if ( StartScilab(NULL,NULL,NULL) == FALSE ) {
+#ifdef _MSC_VER
+	if ( StartScilab(NULL,NULL,NULL) == FALSE )
 #else
-		if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE ) {
+	if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
 #endif
+		{
 			fprintf(stderr,"Error while calling StartScilab\n");
 			return -1;
 		}
