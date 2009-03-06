@@ -12,8 +12,6 @@
 #include "CallScilab.h"
 #include "javasci_SciStringArray.h"
 /*****************************************************************************/
-#define DefaultMaxlenString 1024
-/*****************************************************************************/
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
 
 /*****************************************************************************/
@@ -24,7 +22,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 {
   const char *cname; 
   int indx, indy, nlr;
-  char *tmpStr=MALLOC(sizeof(char)*DefaultMaxlenString);
+  char *tmpStr=MALLOC(sizeof(char)*bsiz);
   
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
@@ -42,7 +40,7 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
   indx= indrarg;
   indy = indcarg;
 
-  nlr = DefaultMaxlenString;
+  nlr = bsiz;
 
   if (!C2F(creadchains)((char *)cname, &indx, &indy, &nlr, tmpStr, (unsigned long)strlen(cname), (unsigned long)strlen(tmpStr)) )
   {
@@ -64,7 +62,7 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 {
 	const char *cname;
 	const char *cstr;
-	char Job[DefaultMaxlenString];
+	char Job[bsiz];
 	int lencstr=0;
 
 	/* get the class */
