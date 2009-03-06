@@ -68,6 +68,18 @@ int C2F(creadsmat)  (char *name__, int *m, int *n, double *scimat, unsigned long
  * @return if the operation successed (true) or not (false)
  */
 int C2F(cwritemat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
+
+
+/**
+ * cwritemat writes vector/matrix of complex in scilab's internal stack
+ * logic=cwritecmat('matrixname'//char(0),m,n,mat)
+ * @param name__ character string; name of the scilab variable ( null terMinated) 
+ * @param m number of rows 
+ * @param n number of columns 
+ * @param mat complex matrix entries stored columnwise in Scilab object
+ * @param name_len strlen of name__ (Fortran needs it)
+ * @return if the operation successed (true) or not (false)
+ */
 int C2F(cwritecmat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
 int C2F(readchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
 int C2F(creadchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
@@ -80,12 +92,44 @@ int C2F(cmatsptr)  (char *name__, int *m, int *n, int *ix, int *j, int *lp, int 
 
 /** 
 Read a boolean matrix in scilab stack
-*/
+
+/**
+ * Read a boolean matrix in scilab's internal stack 
+ * calling sequence 
+ *     logic=creadbmat('matrixname',m,n,scimat)
+ * @example
+ *    Amat is a real 2 x 3 scilab matrix 
+ *    your subroutine should be as follows: 
+ *    subroutine mysubr(...) 
+ *    ... 
+ * @code
+ *    call creadbmat('Amat',m,n,scimat) 
+ *    => m=3 , n=2, and scimat(1)=Amat(1,1) 
+ *                      scimat(2)=Amat(2,1) 
+ *                      scimat(3)=Amat(3,1) 
+ *                      scimat(4)=Amat(1,2) ... 
+ *                      scimat(5)=Amat(3,2) 
+ *                      scimat(6)=Amat(3,2) 
+ * @endcode
+ * @param name__ character string; name of the scilab variable. 
+ * @param m number of rows
+ * @param n number of columns
+ * @param scimat boolean matrix entries stored columnwise
+ * @param name_len
+ * @return if the operation successed (true) or not (false)
+ */
 int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_len);
 
 /**
-Write a boolean matrix in scilab stack
-*/
+ * cwritemat writes vector/matrix of boolean in scilab's internal stack
+ * logic=cwritebmat('matrixname'//char(0),m,n,mat)
+ * @param name__ character string; name of the scilab variable ( null terMinated) 
+ * @param m number of rows 
+ * @param n number of columns 
+ * @param mat boolean matrix entries stored columnwise in Scilab object
+ * @param name_len strlen of name__ (Fortran needs it)
+ * @return if the operation successed (true) or not (false)
+ */
 int C2F(cwritebmat)(char *namex, int *m, int *n, int *mat, unsigned long name_len);
 
 /**
@@ -186,6 +230,7 @@ void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double 
 *  @param _pdblReal the real part of the source array
 *  @param _pdblImg the imaginary part of the source array
 *  @param _iSize the size of the source array
+*  @return a target doublecomplex array constructed from the source real and imaginary parts.
 */
 doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize);
 /**
@@ -204,6 +249,7 @@ void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex);
 *  @param _iRows number of rows in the matrix
 *  @param _iCols number of columns in the matrix
 *  @param _pdblRealData pointer to the block of data for real values
+*  @return a pointer on the data of a matrix of double
 */
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData);
 
@@ -214,6 +260,7 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 *  @param _iCols number of columns in the matrix
 *  @param _pdblRealData pointer to the block of data for real values
 *  @param _pdblImgData pointer to the block of data for complex values
+*  @return a pointer on the data of a matrix of double.
 */
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
 #endif 

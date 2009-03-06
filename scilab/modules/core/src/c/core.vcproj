@@ -859,10 +859,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SendScilabJobs.c"
-				>
-			</File>
-			<File
 				RelativePath=".\setgetSCIpath.c"
 				>
 			</File>
