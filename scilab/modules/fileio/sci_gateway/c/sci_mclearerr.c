@@ -15,6 +15,8 @@
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "mclearerr.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 #define ALL_FILES_DESCRIPTOR -1
 /*--------------------------------------------------------------------------*/
@@ -27,20 +29,38 @@ int sci_mclearerr(char *fname,unsigned long fname_len)
 	CheckRhs(0,1);
 	CheckLhs(1,1);
 
-	/* @TODO Add check about input type */
-
-	/*  checking variable file */
-	if ( Rhs >= 1)
+	if (Rhs == 0)
 	{
-		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
-		fd = *istk(l1);
+		C2F(mclearerr)(&fd);
+
+		LhsVar(1) = 0;
+		PutLhsVar();
 	}
+	else
+	{
+		if (GetType(1) == sci_matrix)
+		{
+			/*  checking variable file */
+			GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
+			if ( m1*n1 == 1 )
+			{
+				fd = *istk(l1);
 
-	C2F(mclearerr)(&fd);
+				C2F(mclearerr)(&fd);
 
-	LhsVar(1) = 0;
-	PutLhsVar();
-
+				LhsVar(1) = 0;
+				PutLhsVar();
+			}
+			else
+			{
+				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,1);
+			}
+		}
+		else
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,1);
+		}
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

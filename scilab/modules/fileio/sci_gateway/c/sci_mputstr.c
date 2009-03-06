@@ -15,6 +15,8 @@
 #include "stack-c.h"
 #include "gw_fileio.h"
 #include "mputstr.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 #define ALL_FILES_DESCRIPTOR -1
 /*--------------------------------------------------------------------------*/
@@ -31,15 +33,37 @@ int sci_mputstr(char *fname,unsigned long fname_len)
 	CheckRhs(1,2);
 	CheckLhs(1,1);
 
-	/* @TODO Add check about input type */
-
 	/*  checking variable file */
-	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+	if (GetType(1) == sci_strings)
+	{
+		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
+	}
+	else
+	{
+		Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname,1);
+		return 0;
+	}
 
 	if ( Rhs >= 2)
 	{
-		GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
-		fd = *istk(l2);
+		if (GetType(2) == sci_matrix)
+		{
+			GetRhsVar(2,MATRIX_OF_INTEGER_DATATYPE,&m2,&n2,&l2);
+			if (m2*n2 == 1)
+			{
+				fd = *istk(l2);
+			}
+			else
+			{
+				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,2);
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,2);
+			return 0;
+		}
 	}
 
 	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &one,&one, &l3);

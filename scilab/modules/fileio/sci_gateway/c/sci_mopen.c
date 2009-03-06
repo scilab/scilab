@@ -21,6 +21,8 @@
 #include "PATH_MAX.h"
 #include "cluni0.h"
 #include "mopen.h"
+#include "Scierror.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 int sci_mopen(char *fname,unsigned long fname_len)
 {
@@ -38,13 +40,23 @@ int sci_mopen(char *fname,unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,2);
 
-	/* @TODO Add check about input type */
+	if (GetType(1) != sci_strings)
+	{
+		Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname,1);
+		return 0;
+	}
 
 	/*  checking variable file */
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
 	if ( Rhs >= 2)
 	{
+		if (GetType(2) != sci_strings)
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname,2);
+			return 0;
+		}
+
 		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
 		status = cstk(l2);
 	}
@@ -55,12 +67,29 @@ int sci_mopen(char *fname,unsigned long fname_len)
 
 	if ( Rhs >= 3)
 	{
-		GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
-		swap = *istk(l3);
+		if (GetType(3) == sci_matrix)
+		{
+			GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
+			if (m3 * n3 == 1)
+			{
+				swap = *istk(l3);
+			}
+			else
+			{
+				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,3);
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,3);
+			return 0;
+		}
 	}
 
 	CreateVar(Rhs+1, MATRIX_OF_INTEGER_DATATYPE, &one,&one, &l4);
 	CreateVar(Rhs+2, MATRIX_OF_DOUBLE_DATATYPE, &one,&one, &l5);
+
 	lout = PATH_MAX + FILENAME_MAX;
 	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
 
@@ -92,8 +121,8 @@ int sci_mopen(char *fname,unsigned long fname_len)
 		}
 	}
 
-	LhsVar(1) = Rhs+1;
-	LhsVar(2) = Rhs+2;
+	LhsVar(1) = Rhs + 1;
+	LhsVar(2) = Rhs + 2;
 	PutLhsVar();
 
 	return 0;

@@ -31,7 +31,12 @@ Core functions:
 
  - Rewrite :
  	+ mode
- 	
+
+fileio functions:
+=================
+  - Input arguments of functions are checked 
+    (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
+
 
 Dynamic link:
 =============

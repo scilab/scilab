@@ -16,6 +16,8 @@
 #include "gw_fileio.h"
 #include "MALLOC.h"
 #include "mput.h"
+#include "localization.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 #define ALL_FILES_DESCRIPTOR -1
 /*--------------------------------------------------------------------------*/
@@ -32,16 +34,40 @@ int sci_mput(char *fname,unsigned long fname_len)
 	CheckRhs(1,3);
 	CheckLhs(1,1);
 
-	/* @TODO Add check about input type */
-
 	/*  checking variable res */
-	GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+	if (GetType(1) == sci_matrix)
+	{
+		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
+		if (m1*n1 == 1)
+		{
+			n1 = m1*n1;
+		}
+		else
+		{
+			Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,1);
+			return 0;
+		}
+	}
+	else
+	{
+		Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,1);
+		return 0;
+	}
+	
 	n1 = m1*n1;
 
 	if ( Rhs >= 2)
 	{
-		GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
-		type = cstk(l2);
+		if (GetType(2) == sci_strings)
+		{
+			GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
+			type = cstk(l2);
+		}
+		else
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname,2);
+			return 0;
+		}
 	}
 	else
 	{
@@ -50,8 +76,24 @@ int sci_mput(char *fname,unsigned long fname_len)
 
 	if ( Rhs >= 3)
 	{
-		GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
-		fd = *istk(l3);
+		if (GetType(3) == sci_matrix)
+		{
+			GetRhsVar(3,MATRIX_OF_INTEGER_DATATYPE,&m3,&n3,&l3);
+			if (m3*n3 == 1)
+			{
+				fd = *istk(l3);
+			}
+			else
+			{
+				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,2);
+				return 0;
+			}
+		}
+		else
+		{
+			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,2);
+			return 0;
+		}
 	}
 
 	C2F(mput)(&fd,stk(l1),&n1,type,&err);
