@@ -3,8 +3,9 @@
  * Copyright (C) DIGITEO - 2009 - Sylvestre LEDRU
  * 
  * This file is released into the public domain
- * 
- * This example shows how to read / write a matrix from Scilab engine
+ *
+ * This example shows how to read / write a matrix of boolean from Scilab
+ * engine
  */
 #include <math.h>
 #include <stdio.h> 
@@ -32,28 +33,28 @@ int main(void)
  	/******************************** WRITE ****************************/
 
 	/*
-	 * Write a line matrix into Scilab
-	 * A=[ 1 3 3 2 ];
+	 * Write a line matrix of boolean into Scilab
+	 * A=[ T F F T ];
 	 */
-		double A[]={1,3,3,2};   /* Declare the matrix */
+		int A[]={1,0,0,1};   /* Declare the matrix */
+		/* NOTE that it is an array of int and not an array of double */
 		int rowA=1, colA=4; /* Size of the matrix */
 		char variableName[]="A";
 
-		C2F(cwritemat)(variableName, &rowA, &colA, A,strlen(variableName)); /* Write it into Scilab's memory */
+		C2F(cwritebmat)(variableName, &rowA, &colA, A,strlen(variableName)); /* Write it into Scilab's memory */
 
 		printf("Display from Scilab of A:\n");
 		SendScilabJob("disp(A);"); /* Display A */
-
 		/* 
 		 * Write a matrix into Scilab
-		 * B=[1 4 2 3; 
-		 *    3 9 8 2 ]
+		 * B=[F F T F; 
+		 *    F F F T ]
 		 * Note that it is done column by column
 		 */ 
-		double B[]={1,3,4,9,2,8,3,2};   /* Declare the matrix */
+		int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
 		int rowB=2, colB=4; /* Size of the matrix */
 		char variableNameB[] = "B";
-		C2F(cwritemat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+		C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
 		printf("\n");
 		printf("Display from Scilab of B:\n");
 		SendScilabJob("disp(B);"); /* Display A */
@@ -62,53 +63,53 @@ int main(void)
 
 		/* Load the previously set variable A */
 		int rowA_,colA_,lp,i;
-		double *matrixOfDouble=NULL;
+		int *matrixOfBoolean=NULL; /* Int instead of double */
 
 		char variableToBeRetrieved[]="A";
 
 		/* First, retrieve the size of the matrix */
-		C2F(cmatptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
+		C2F(cmatbptr)(variableToBeRetrieved, &rowA_, &colA_, &lp, strlen(variableToBeRetrieved));
 
 		/* Alloc the memory */
-		matrixOfDouble=(double*)malloc((rowA_*colA_)*sizeof(double));
+		matrixOfBoolean=(int*)malloc((rowA_*colA_)*sizeof(int));
 
 		/* Load the matrix */
-		C2F(creadmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfDouble,strlen(variableToBeRetrieved) );
+		C2F(creadbmat)(variableToBeRetrieved,&rowA_,&colA_,matrixOfBoolean,strlen(variableToBeRetrieved) );
 
 		printf("\n");
 		printf("Display from A (size: %d, %d):\n", rowA_, colA_);
 		for(i=0; i < rowA_*colA_; i++)
 		{
-			fprintf(stdout,"A[%d] = %5.2f\n",i,matrixOfDouble[i]);
+			fprintf(stdout,"A[%d] = %d\n",i,matrixOfBoolean[i]);
 		}
 
-		if (matrixOfDouble) 
+		if (matrixOfBoolean) 
 		{
-			free(matrixOfDouble);
-			matrixOfDouble=NULL;
+			free(matrixOfBoolean);
+			matrixOfBoolean=NULL;
 		}
 
 		/* Load the previously set variable B */
 		int rowB_, colB_, lp_, j;
-		double *matrixOfDoubleB=NULL;
+		int *matrixOfBooleanB=NULL; /* Int instead of double */
 
 		char variableToBeRetrievedB[]="B";
 
 		/* First, retrieve the size of the matrix */
-		C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+		C2F(cmatbptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
 		/* Alloc the memory */
-		matrixOfDoubleB=(double*)malloc((rowB_*colB_)*sizeof(double));
+		matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
 
 		/* Load the matrix */
-		C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
+		C2F(creadbmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
 
 		printf("\n");
 		printf("Display from B raw (size: %d, %d):\n",rowB_, colB_);
 		for(i=0; i < rowB_*colB_; i++)
 			{
 				/* Display the raw matrix */
-			fprintf(stdout,"B[%d] = %5.2f\n",i,matrixOfDoubleB[i]);
+			fprintf(stdout,"B[%d] = %d\n",i,matrixOfBooleanB[i]);
 		}
 
 		printf("\n");
@@ -119,15 +120,15 @@ int main(void)
 					{
 						/* Display the formated matrix ... the way the user
 						 * expect */
-						printf("%5.2f ",matrixOfDoubleB[i * rowB_ + j]);
+						printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
 					}
 				printf("\n"); /* New row of the matrix */
 			}
 
-		if (matrixOfDoubleB) 
+		if (matrixOfBooleanB) 
 		{
-			free(matrixOfDoubleB);
-			matrixOfDoubleB=NULL;
+			free(matrixOfBooleanB);
+			matrixOfBooleanB=NULL;
 		}
 
 
