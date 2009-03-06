@@ -42,6 +42,7 @@ libjavasci_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
 			-I$(top_srcdir)/modules/call_scilab/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 libjavasci_la_LIBADD = \
