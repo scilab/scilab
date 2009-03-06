@@ -3,8 +3,3 @@
 
 #include "operation.hxx"
 
-
-int toto(int tutu)
-{
-	return tutu;
-}

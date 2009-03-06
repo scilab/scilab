@@ -21,6 +21,11 @@
 #include "types_divide.hxx"
 #include "types_power.hxx"
 
+extern "C"
+{
+#include "localization.h"
+}
+
 using std::string;
 
 namespace ast
@@ -157,7 +162,7 @@ namespace ast
 					if(iResult != 0)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -173,7 +178,7 @@ namespace ast
 					if(iResult != 0)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -189,7 +194,7 @@ namespace ast
 					if(iResult != 0)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -205,7 +210,7 @@ namespace ast
 					if(iResult != 0)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -238,7 +243,7 @@ namespace ast
 					if(iResult)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -256,7 +261,7 @@ namespace ast
 					if(iResult)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -274,7 +279,7 @@ namespace ast
 					if(iResult)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -292,7 +297,7 @@ namespace ast
 					if(iResult)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -313,7 +318,7 @@ namespace ast
 					if(iResult)
 					{//manage errors
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -329,7 +334,7 @@ namespace ast
 					if(iResult)
 					{//manage errors
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -346,7 +351,7 @@ namespace ast
 					if(iResult)
 					{//manage errors
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -674,7 +679,7 @@ namespace ast
 					if(iResult != 0)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -690,7 +695,7 @@ namespace ast
 					if(iResult != 0)
 					{
 						std::ostringstream os;
-						os << "inconsistent row/column dimensions";
+						os << _("Inconsistent row/column dimensions.\n");
 						os << " (" << e.right_get().location_get().first_line << "," << e.right_get().location_get().first_column << ")" << std::endl;
 						string szErr(os.str());
 						throw szErr;
@@ -700,7 +705,7 @@ namespace ast
 				else
 				{
 					std::ostringstream os;
-					os << "invalid types";
+					os << _("Invalid input");
 					string szErr(os.str());
 					throw szErr;
 				}

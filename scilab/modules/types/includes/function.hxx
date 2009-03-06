@@ -31,7 +31,7 @@ namespace types
 		Function * 	getAsFunction(void);
 		RealType getType(void) { return RealFunction; }
 
-		typedef Function::ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out); 
+		typedef Function::ReturnValue (*GW_FUNC)(typed_list &in, int* _piRetCount, typed_list &out); 
 
     void					whoAmI();
 		Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule);

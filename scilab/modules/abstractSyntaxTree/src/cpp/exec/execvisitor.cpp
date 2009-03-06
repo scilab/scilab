@@ -12,6 +12,7 @@
 
 #include "execvisitor.hxx"
 #include "timer.hxx"
+#include "localization.h"
 
 using std::string;
 
@@ -127,13 +128,32 @@ namespace ast
 	void ExecVisitor::visit (const SimpleVar &e)
 	{
 		InternalType *pI = symbol::Context::getInstance()->get(e.name_get());
-		pI->DenyDelete();
-		result_set(pI);
-		if(pI != NULL && e.is_verbose())
+		if(pI != NULL)
 		{
-			std::cout << e.name_get() << " = " << std::endl;
-			std::cout << std::endl;
-			std::cout << pI->toString(10,75) << std::endl;
+			pI->DenyDelete();
+			result_set(pI);
+			if(pI != NULL && e.is_verbose())
+			{
+				std::cout << e.name_get() << " = " << std::endl;
+				std::cout << std::endl;
+				std::cout << pI->toString(10,75) << std::endl;
+			}
+		}
+		else
+		{
+			std::ostringstream os;
+			char szError[bsiz];
+#ifdef _MSC_VER
+			string toto = e.name_get().name_get();
+			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), toto.c_str());
+#else
+			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get());
+#endif
+			os << szError;
+			string szErr(os.str());
+			throw szErr;
+
+			//Err, SimpleVar doesn't exist in Scilab scopes.
 		}
 	}
 
@@ -180,9 +200,6 @@ namespace ast
 		e.name_get().accept(*execFunc);
 		if(execFunc->result_get() != NULL && execFunc->result_get()->getType() == InternalType::RealFunction)
 		{//function call
-			std::cout << "call exp break" << std::endl;
-			getchar();
-			return;
 			Function *pF = execFunc->result_get()->getAsFunction();
 			types::typed_list out;
 
@@ -194,7 +211,8 @@ namespace ast
 				in.push_back(execVar->result_get());
 			}
 
-			Function::ReturnValue Ret = pF->m_pFunc(in, 0, out);
+			int iRetVal = 0;
+			Function::ReturnValue Ret = pF->m_pFunc(in, &iRetVal, out);
 			if(Ret == Function::AllGood)
 			{
 				result_set(out.front()->getAsDouble());

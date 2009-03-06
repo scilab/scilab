@@ -14,6 +14,7 @@
 #define __ELEM_FUNC_H__
 
 #include "funcmanager.hxx"
+#include "context.hxx"
 
 #ifdef _MSC_VER
 	#if ELEM_FUNC_GW_EXPORTS
@@ -33,5 +34,9 @@ private :
 public :
 	EXTERN_EF_GW static bool Load();
 };
+
+
+Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::typed_list &out);
+Function::ReturnValue sci_sin(types::typed_list &in, int* _piRetCount, types::typed_list &out);
 
 #endif /* __ELEM_FUNC_H__ */

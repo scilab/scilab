@@ -20,7 +20,14 @@
 
 extern "C"
 {
+	#include "SetScilabEnvironment.h"
 	#include "prompt.h"
+	#include "InitializeLocalization.h"
+	#include "MALLOC.h"
+#ifdef _MSC_VER
+	#include "../src/c/scilab_windows/getScilabDirectory.h"
+#else
+#endif
 }
 
 #include "exit_status.hxx"
@@ -31,7 +38,7 @@ extern "C"
 #include "execvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "configvariable.hxx"
-#include "setenvvar.hxx"
+//#include "setenvvar.hxx"
 #include "funcmanager.hxx"
 
 #define INTERACTIVE	-1
@@ -59,6 +66,8 @@ void Add_All_Variables(void);
 void Add_Double_Constant(string _szName, double _dblReal, double _dblImg, bool _bComplex);
 void Add_Poly_Constant(string _szName, string _szPolyVar, int _iRank, Double *_pdblReal);
 
+int InitializeEnvironnement(void);
+
 /*
 ** Usage
 **
@@ -74,6 +83,7 @@ static void usage (void)
 	std::cerr << "--exec : Run the scilab code." << std::endl;
 	std::cerr << "--debug : Print the AST nodes." << std::endl;
 	std::cerr << "-f file : Batch mode on the given file." << std::endl;
+	std::cerr << "-l lang : Change the language of scilab ( default : en_US )" << std::endl;
 	std::cerr << "--help : Display this help." << std::endl;
 }
 
@@ -83,10 +93,9 @@ static void usage (void)
 **
 **
 */
-static int	get_option (const int argc, char *argv[])
+static int	get_option (const int argc, char *argv[], int *_piFileIndex, int *_piLangIndex)
 {
 	int	i = 0;
-	int	good = INTERACTIVE;
 
 #ifdef DEBUG
 	std::cerr << "-*- Getting Options -*-"<< std::endl;
@@ -116,24 +125,20 @@ static int	get_option (const int argc, char *argv[])
 			timed = true;
 		}
 		else if (!strcmp("-f", argv[i])) {
-			++i;
-			good = i;
+			i++;
+			*_piFileIndex = i;
 		}
-/*		else if (!strncmp ("--", argv[i], 2)) {
-			usage ();
-			exit (SYSTEM_ERROR);
+		else if (!strcmp("-l", argv[i])) {
+			i++;
+			*_piLangIndex = i;
 		}
-		else if (!strncmp ("-", argv[i], 1)) {
-			usage ();
-			exit (SYSTEM_ERROR);
-		}
-*/	}
+	}
 
 #ifdef DEBUG
 	std::cerr << "File : " << argv[good] << std::endl;
 #endif
 
-	return good;
+	return 0;
 }
 
 /*
@@ -375,26 +380,28 @@ static int interactiveMain (void)
 */
 int main(int argc, char *argv[])
 {
-	int	i;
+	int	iFileIndex = INTERACTIVE;
+	int iLangIndex = 0;
 	int iMainRet = 0;
 	prog_name = argv[0];
 
 	Parser::getInstance()->disableParseTrace();
-	i = get_option(argc, argv);
+	get_option(argc, argv, &iFileIndex, &iLangIndex);
 
 	/* Scilab Startup */
-	SetScilabEnvironment();
-	Add_All_Variables();
+	InitializeEnvironnement();
+
+	/* set current language of scilab */
 	FuncManager *pFM = new FuncManager();
 
-	if (i == INTERACTIVE)
+	if (iFileIndex == INTERACTIVE)
 	{
 		file_name = "prompt";
 		iMainRet = interactiveMain();
 	}
 	else
 	{
-		file_name = argv[i];
+		file_name = argv[iFileIndex];
 		iMainRet = batchMain();
 	}
 
@@ -402,7 +409,23 @@ int main(int argc, char *argv[])
 	return iMainRet;
 }
 
-
+int InitializeEnvironnement(void)
+{
+#ifdef _MSC_VER
+	char *ScilabDirectory = NULL;
+  ScilabDirectory = getScilabDirectory(FALSE);
+	if(ScilabDirectory)
+	{
+		ConfigVariable::getInstance()->set("SCI", ScilabDirectory);
+		FREE(ScilabDirectory);
+	}
+#else
+#endif
+	SetScilabEnvironment();
+	InitializeLocalization();
+	Add_All_Variables();
+	return 0;
+}
 
 void Add_All_Variables(void)
 {
