@@ -6,7 +6,8 @@
 ### SOURCES ###
 CALLSCILAB_C_SOURCES = src/c/CallScilab.c \
 		src/c/fromc.c \
-		src/c/fromjava.c
+		src/c/fromjava.c \
+		src/c/SendScilabJobs.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_fromjava.c \
 		sci_gateway/c/sci_fromc.c \
