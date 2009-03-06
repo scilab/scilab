@@ -33,6 +33,7 @@
 #include "strdup_windows.h"
 #endif
 #include "LaunchScilabSignal.h"
+#include "localization.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
