@@ -113,6 +113,7 @@ am__objects_1 = intdggbal.lo intzgeqpf4.lo intzgehrd.lo intzgesvd1.lo \
 	intdgetri.lo intdgebal.lo intzschur.lo intzgeqpf3.lo \
 	writebuf.lo
 am__objects_2 = libscilinear_algebra_la-schurtable.lo \
+	libscilinear_algebra_la-invert_matrix.lo \
 	libscilinear_algebra_la-issymmetric.lo
 am__objects_3 = SELECT.lo Ex-schur.lo
 am__objects_4 = libscilinear_algebra_la-sci_backslash.lo \
@@ -373,6 +374,7 @@ target_alias = @target_alias@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
+src/c/invert_matrix.c \
 src/c/issymmetric.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
@@ -628,6 +630,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-invert_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-issymmetric.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-schurtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilinear_algebra_la-sci_backslash.Plo@am__quote@
@@ -679,6 +682,13 @@ libscilinear_algebra_la-schurtable.lo: src/c/schurtable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/schurtable.c' object='libscilinear_algebra_la-schurtable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-schurtable.lo `test -f 'src/c/schurtable.c' || echo '$(srcdir)/'`src/c/schurtable.c
+
+libscilinear_algebra_la-invert_matrix.lo: src/c/invert_matrix.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-invert_matrix.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-invert_matrix.Tpo -c -o libscilinear_algebra_la-invert_matrix.lo `test -f 'src/c/invert_matrix.c' || echo '$(srcdir)/'`src/c/invert_matrix.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscilinear_algebra_la-invert_matrix.Tpo $(DEPDIR)/libscilinear_algebra_la-invert_matrix.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/invert_matrix.c' object='libscilinear_algebra_la-invert_matrix.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -c -o libscilinear_algebra_la-invert_matrix.lo `test -f 'src/c/invert_matrix.c' || echo '$(srcdir)/'`src/c/invert_matrix.c
 
 libscilinear_algebra_la-issymmetric.lo: src/c/issymmetric.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilinear_algebra_la_CFLAGS) $(CFLAGS) -MT libscilinear_algebra_la-issymmetric.lo -MD -MP -MF $(DEPDIR)/libscilinear_algebra_la-issymmetric.Tpo -c -o libscilinear_algebra_la-issymmetric.lo `test -f 'src/c/issymmetric.c' || echo '$(srcdir)/'`src/c/issymmetric.c
