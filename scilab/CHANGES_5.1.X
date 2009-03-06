@@ -82,6 +82,8 @@ Bug fixes:
 				   
 * bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
 
+* bug 4228 fixed - mclearerr with a false file descriptor crashs
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
@@ -554,6 +556,8 @@ Bug fixes:
 * bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
 
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
+
+* bug 4221 fixed - graypolarplot uses to much memory.
 
 * Side effect in the setenvc function.
 
