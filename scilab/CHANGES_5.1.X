@@ -82,6 +82,8 @@ Bug fixes:
 				   
 * bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
 
+* bug 4228 fixed - mclearerr with a false file descriptor crashs
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
