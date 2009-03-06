@@ -6,6 +6,28 @@
 // =============================================================================
 // TODO : use relative error criteria instead of absolute error
 eps=100*%eps;
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed , expected , epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then pause,end
+endfunction
+
 // inf 
 if norm([1,2,3,-1,-2,-3],0)<>%inf then pause,end 
 if ~isnan(norm([1,2,3,-1,-2,-3],%nan)) then pause,end 
@@ -22,7 +44,6 @@ if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then pause,end
 if abs(norm(x,'inf') -maxi(abs(x))) > eps then pause,end
 if abs(norm(x,'inf') -norm(x,%inf)) > eps then pause,end
 if abs(norm(x,'fro') -norm(x,2)) > eps then pause,end
-
 // complex 
 x=x+%i*x;
 if abs(norm(x,1) - sum(abs(x))) > eps then pause,end
@@ -71,25 +92,40 @@ if abs(norm(a,'fro') - norm(matrix(a,1,size(a,'*')),2)) > eps then pause,end
 //
 //norm 2
 x = 1.e307 * [1 1];
-if abs(norm(x) - sqrt(2) * 1.e307)/1.e307 > %eps then pause,end
+assert_close ( norm(x) , sqrt(2) * 1.e307 , %eps );
 x = 1.e-307 * [1 1];
-if abs(norm(x) - sqrt(2) * 1.e-307)/1.e-307 > %eps then pause,end
+assert_close ( norm(x) , sqrt(2) * 1.e-307 , %eps );
 // norm f
 x = 1.e307 * [1 1];
-if abs(norm(x,"f") - sqrt(2) * 1.e307)/1.e307 > %eps then pause,end
+assert_close ( norm(x,"f") , sqrt(2) * 1.e307 , %eps );
 x = 1.e-307 * [1 1];
-if abs(norm(x,"f") - sqrt(2) * 1.e-307)/1.e-307 > %eps then pause,end
+assert_close ( norm(x,"f") , sqrt(2) * 1.e-307 , %eps );
 //
 // Difficult cases for large/small matrices
 //
 // norm f - case 1 : n < m
 x = 1.e307 * ones(10,20);
-if abs(norm(x,"f") - sqrt(200) * 1.e307)/1.e307 > %eps then pause,end
+assert_close ( norm(x,"f") , sqrt(200) * 1.e307 , %eps );
 x = 1.e-307 * ones(10,20);
-if abs(norm(x,"f") - sqrt(200) * 1.e-307)/1.e-307 > %eps then pause,end
-// norm f - case 1 : n > m
+assert_close ( norm(x,"f") , sqrt(200) * 1.e-307 , %eps );
+// norm f - case 2 : n > m
 x = 1.e307 * ones(20,10);
-if abs(norm(x,"f") - sqrt(200) * 1.e307)/1.e307 > %eps then pause,end
+assert_close ( norm(x,"f") , sqrt(200) * 1.e307 , %eps );
 x = 1.e-307 * ones(20,10);
-if abs(norm(x,"f") - sqrt(200) * 1.e-307)/1.e-307 > %eps then pause,end
+assert_close ( norm(x,"f") , sqrt(200) * 1.e-307 , %eps );
+//
+// Special cases for zero vectors
+//
+// 2-norm of a zero vector
+x=[0 0 0];
+assert_close ( norm(x,2) , 0.0 , %eps );
+// f-norm of a zero vector
+x=zeros(4,1);
+assert_close ( norm(x,"f") , 0.0 , %eps );
+// f-norm of a zero matrix, case 1 n>m
+x=zeros(4,2);
+assert_close ( norm(x,"f") , 0.0 , %eps );
+// f-norm of a zero matrix, case 2 m>n
+x=zeros(2,4);
+assert_close ( norm(x,"f") , 0.0 , %eps );
 
