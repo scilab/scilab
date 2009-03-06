@@ -82,14 +82,6 @@ INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
 
 libsciarnoldi_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
 
-if USE_EMBEDDED_LAPACK
-libsciarnoldi_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libsciarnoldi_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
-
 #### Target ######
 modulename=arnoldi
 

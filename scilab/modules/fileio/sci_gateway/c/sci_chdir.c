@@ -10,7 +10,7 @@
  *
  */
 #include <stdio.h>
-#include "gw_core.h"
+#include "gw_fileio.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "scicurdir.h"
@@ -18,7 +18,7 @@
 #include "cluni0.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_chdir)(char *fname,unsigned long fname_len)
+int sci_chdir(char *fname,unsigned long fname_len)
 {
 	Rhs = Max(0, Rhs);
 	CheckRhs(0,1);

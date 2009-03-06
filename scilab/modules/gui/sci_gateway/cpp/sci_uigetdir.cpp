@@ -44,7 +44,7 @@ int sci_uigetdir(char *fname,unsigned long l)
   CheckRhs(0,2);
   CheckLhs(1,1);
 
-  if ((expandedpath = (char*)MALLOC(sizeof(char*)*(PATH_MAX+1))) == NULL)
+  if ((expandedpath = (char*)MALLOC(sizeof(char*)*(PATH_MAX + FILENAME_MAX + 1))) == NULL)
     {
       Scierror(999, _("%s: No more memory.\n"),fname);
       return FALSE;
@@ -65,7 +65,7 @@ int sci_uigetdir(char *fname,unsigned long l)
           initialDirectory = cstk(initialDirectoryAdr);
 
           int out_n = 0;
-          C2F(cluni0)(initialDirectory ,expandedpath, &out_n,(int)strlen(initialDirectory),PATH_MAX);
+          C2F(cluni0)(initialDirectory ,expandedpath, &out_n,(int)strlen(initialDirectory),PATH_MAX + FILENAME_MAX);
 
        }
       else

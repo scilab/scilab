@@ -7,7 +7,13 @@ Compilation:
 
 * Visual studio uses default runtime library /MD (msvcrt.lib) to build all libraries of scilab.
 
-* modelicac (scicos) built with Ocaml 3.11.0 on windows
+* modelicac (scicos) built with Ocaml 3.11.0 on Windows
+
+* blas, lapack, arpack libraries moved as pre-requirements (Windows)
+
+* blas, lapack libraries moved as pre-requirements (Linux/Unix/MacOSX)
+
+* lapack 3.2 used on Windows
 
 Source reorganisation:
 ======================
@@ -25,15 +31,23 @@ Core functions:
 
  - Rewrite :
  	+ mode
- 	
+
+fileio functions:
+=================
+  - Input arguments of functions are checked 
+    (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
+
 
 Dynamic link:
 =============
  - Windows : temporary files (objects) are generated in a intermediate subdirectory (Release or Debug)
    ilib_for_link and ilib_gen_Make (with Visual studio) use a same makefile template.
    (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC)
-   
+
  - ilib_verbose (SEP #17) Set level of display returned by dynamic link functions.
+ 
+ - add a example to call a scilab macro from a C interface
+  (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
 
 Bug fixes:
 ==========
@@ -47,12 +61,3 @@ Bug fixes:
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
-
-* bug 4197 fixed - inaccurate floating point results computed by norm with large/small vector matrices.
-
-
-
-
-
-
-

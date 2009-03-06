@@ -168,10 +168,7 @@ BOOL LoadClasspath(char *xmlfilename)
 
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
-			/*
-			* Cleanup function for the XML library.
-			*/
-			xmlCleanupParser();
+
 		}
 		else
 		{

@@ -16,7 +16,7 @@
 #include "gw_fileio.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int int_objprintf(char *fname,unsigned long fname_len)
+int sci_printf(char *fname,unsigned long fname_len)
 {
 	static int l1, m1, n1, lcount, rval, k ;
 	

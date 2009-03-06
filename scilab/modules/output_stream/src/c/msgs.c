@@ -513,8 +513,8 @@ int C2F(msgs)(int *n, int *ierr)
 			msg_default(n,ierr);
 			break;
 		}
-	}
 	sciprint("\n");
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -1369,7 +1369,6 @@ static int msg_110(int *n, int *ierr)
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-
 static int msg_111(int *n, int *ierr)
 {
   sciprint(_("%s: Number of calls to %s has reached or exceeded %s.\n"),"lsqrsolve","fct","maxfev");
@@ -1382,29 +1381,23 @@ static int msg_112(int *n, int *ierr)
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-
 static int msg_113(int *n, int *ierr)
 {
   sciprint(_("%s: %s is too small. No further reduction in the criterion is possible.\n"),"lsqrsolve","xtol");
   return 0;
 }
 /*--------------------------------------------------------------------------*/
-
 static int msg_114(int *n, int *ierr)
 {
   sciprint(_("%s: %s is too small. %s is orthogonal to the columns of the jacobian to machine precision.\n"),"lsqrsolve","gtol","fvec");
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 static int msg_115(int *n, int *ierr)
 {
 	sciprint(_("poly: variable name must be lesser than 5 characters long.\n"));
   return 0;
 }
-/*--------------------------------------------------------------------------*/
-
-
-
 /*--------------------------------------------------------------------------*/
 static int msg_default(int *n, int *ierr)
 {

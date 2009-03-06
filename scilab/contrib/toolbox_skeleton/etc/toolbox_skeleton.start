@@ -3,8 +3,6 @@
 // Copyright INRIA 2008
 // This file is released into the public domain
 // ====================================================================
-warning_mode = warning('query');
-warning('off');
 
 disp('Start Toolbox skeleton');
 
@@ -25,7 +23,6 @@ disp('Load gateways');
 ilib_verbose(0);
 // load gateways
 exec( root_tlbx + '/sci_gateway/loader_gateway.sce' );
-
 
 disp('Load help');
 

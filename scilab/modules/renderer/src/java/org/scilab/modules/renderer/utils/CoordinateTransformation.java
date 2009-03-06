@@ -587,9 +587,11 @@ public class CoordinateTransformation {
 				if (nbSampleBuffers[0] == antiAliasingQuality) {
 					// every thing ok, we have as many samples as we need
 					useFallBackAntialiasing = false;
+					gl.glEnable(GL.GL_MULTISAMPLE);
 				} else {
 					// we don't have the same, number we need to use accumulation buffers
 					useFallBackAntialiasing = true;
+					gl.glDisable(GL.GL_MULTISAMPLE);
 				}
 			} else {
 				// gl version is lower than 1.3, multi sampling is not available
@@ -608,13 +610,6 @@ public class CoordinateTransformation {
 					antiAliasingQuality = 0;
 				}
 			}
-		}
-		
-		if (!isAntiAliasingEnable() || useFallBackAntialiasing) {
-			// no need for multi sampling
-			gl.glDisable(GL.GL_MULTISAMPLE);
-		} else {
-			gl.glEnable(GL.GL_MULTISAMPLE);
 		}
 		
 		
