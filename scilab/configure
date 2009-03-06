@@ -19507,13 +19507,13 @@ fi
 
 
    if test x$MSGFMT = xno; then
-	  { { echo "$as_me:$LINENO: error: As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&5
-echo "$as_me: error: As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&2;}
+	  { { echo "$as_me:$LINENO: error: The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&5
+echo "$as_me: error: The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&2;}
    { (exit 1); exit 1; }; }
 	  fi
 	if test x$MSGCAT = xno; then
-	  { { echo "$as_me:$LINENO: error: As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&5
-echo "$as_me: error: As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&2;}
+	  { { echo "$as_me:$LINENO: error: The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&5
+echo "$as_me: error: The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&2;}
    { (exit 1); exit 1; }; }
 	fi
 	BUILD_LOCALIZATION_ENABLE=yes
