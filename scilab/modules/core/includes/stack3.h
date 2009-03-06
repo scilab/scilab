@@ -26,7 +26,7 @@
 #define	BY_MTLB			-1
 
 /**
- * Read a matrix in scilab's internal stack 
+ * Read a matrix in scilab's internal memory 
  * calling sequence 
  *     logic=creadmat('matrixname',m,n,scimat)
  * @example
@@ -82,9 +82,35 @@ int C2F(cwritemat)  (char *name__, int *m, int *n, double *mat, unsigned long na
  */
 int C2F(cwritecmat)  (char *name__, int *m, int *n, double *mat, unsigned long name_len);
 int C2F(readchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
+
+
+/**
+ * Read a string in scilab's internal memory 
+ * calling sequence 
+ *     logic=creadchain('matrixname',size,string)
+ * @param name__ character string; name of the scilab variable. 
+ * @param itslen[in] lenght of the string
+ * @param chai[in] the future string
+ * @param name_len strlen of name__ (fortran needs it)
+ * @param chai_len strlen of chai (fortran needs it)
+ * @return if the operation successed (true) or not (false)
+ */
 int C2F(creadchain)  (char *name__, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
+
 int C2F(creadchains)  (char *name__, int *ir, int *ic, int *itslen, char *chai, unsigned long name_len, unsigned long chai_len);
+
+/**
+ * Write a string into the Scilab memory
+ *
+ * @param name__ name of the scilab variable
+ * @param m length of the string itself
+ * @param chai the string itself
+ * @param name_len strlen of name__ (fortran needs it)
+ * @param chai_len strlen of chai (fortran needs it)
+ * @return if the operation successed (true) or not (false)
+ */
 int C2F(cwritechain)  (char *name__, int *m, char *chai, unsigned long name_len, unsigned long chai_len);
+
 int C2F(matptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
 int C2F(cmatptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
 int C2F(cmatcptr)  (char *name__, int *m, int *n, int *lp, unsigned long name_len);
@@ -123,6 +149,14 @@ int C2F(creadbmat)(char *namex, int *m, int *n, int *scimat, unsigned long name_
 /**
  * cwritemat writes vector/matrix of boolean in scilab's internal stack
  * logic=cwritebmat('matrixname'//char(0),m,n,mat)
+ * @code
+ *	int A[]={1,0,0,1};   // Declare the matrix 
+ * // NOTE that it is an array of int and not an array of double 
+ *		int rowA=1, colA=4; // Size of the matrix 
+ *	char variableName[]="A";
+ *
+ *	C2F(cwritebmat)(variableName, &rowA, &colA, A,strlen(variableName)); // Write it into Scilab's memory 
+ * @endcode
  * @param name__ character string; name of the scilab variable ( null terMinated) 
  * @param m number of rows 
  * @param n number of columns 
