@@ -59,7 +59,7 @@ int main(void)
 		C2F(cwritecmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
 		printf("\n");
 		printf("Display from Scilab of B:\n");
-		SendScilabJob("disp(B);"); /* Display A */
+		SendScilabJob("disp(B);"); /* Display B */
 
 
 	/******************************** READ ****************************/
