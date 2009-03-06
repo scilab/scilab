@@ -25,6 +25,7 @@ Bug fixes:
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 		   variable tables to compile other files
+* bug 3945 fixed - Error with the help example of library()
 
 * bug 4067 fixed - bug with completion and some paths
 
