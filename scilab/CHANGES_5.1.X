@@ -41,6 +41,10 @@ License:
 
 * Examples in SCI/modules/javasci/examples/ are now released under the public
   domain
+  
+Internal API:
+=============
+* GetLengthStringMatrixByName function added in stack3.h (return length of strings)
 
 Bug fixes:
 ==========

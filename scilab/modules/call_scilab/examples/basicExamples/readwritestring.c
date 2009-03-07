@@ -55,9 +55,8 @@ int main(void)
 		 * @TODO: fill from a char[][] 
 		 */
 
-		SendScilabJob("B=['My' 'Great'; 'and fantastic string',';)'];"); /* Assign */
+		SendScilabJob("B=['My' 'Great'; 'and fantastic string',';)'; 'strings' , 'matrix'];"); /* Assign */
 		printf("\n");
-
 		printf("Display from Scilab of B:\n");
 		SendScilabJob("disp(B);"); /* Display B */
 		
@@ -81,13 +80,8 @@ int main(void)
 
 		/* Load an element of a the previously set variable B */
 		{
-			char variableToBeRetrievedB[]="B";
+			char variableToBeRetrievedB[] = "B";
 			int nlr;
-
-			/* First, retrieve the size of the matrix
-			* disregard */
-			//		C2F(cmatsptr) (variableToBeRetrievedB, &rowB_, &colB_, &ix, &j, &lp_, &nlr, strlen(variableToBeRetrievedB));
-			/* @TODO: loop on the matrix */
 
 			int indx = 2, indy = 1;
 			char *tmpStr = malloc(sizeof(char)*bsiz);
@@ -98,6 +92,55 @@ int main(void)
 
 			printf("\n");
 			printf("The retrieved string(%d,%d) from B: %s\n",indx, indy, tmpStr);
+		}
+
+		/* Load All elements of B  in a (char**) */
+		{
+			char variableToBeRetrievedB[] = "B";
+			int m = 0, n = 0;
+			int i = 0, j = 0;
+			int x = 0, y = 0;
+			char ** variableBfromScilab = NULL;
+
+			int *lengthOfB = GetLengthStringMatrixByName(variableToBeRetrievedB, &m, &n);
+
+			variableBfromScilab = (char **)malloc(sizeof(char*)* (m*n));
+			for (i = 0; i < m * n; i++)
+			{
+				variableBfromScilab[i] = (char*)malloc(sizeof(char)*(lengthOfB[i]));
+			}
+
+			i = 0;
+			for (x = 1; x <= m; x++)
+			{
+				for (y = 1; y <= n; y++)
+				{
+					int nlr = lengthOfB[i];
+					char *tmpStr = NULL;
+					tmpStr = variableBfromScilab[i];
+					C2F(creadchains)(variableToBeRetrievedB, &x, &y, &nlr, tmpStr, (unsigned long)strlen(variableToBeRetrievedB), (unsigned long)strlen(tmpStr));
+					i++;
+				}
+			}
+
+			printf("\n");
+			printf("Display from B formated (size: %d, %d) as in scilab :\n\n", m, n);
+			for(j = 0 ; j < m ; j++)
+			{
+				for(i = 0 ; i < n ; i++)
+				{
+					/* Display the formated matrix with same scilab indice */
+					printf("[%d,%d] = %s\n",j+1,i+1,variableBfromScilab[j* n + i]);
+				}
+			}
+			printf("\n");
+
+			/* free pointer variableBfromScilab */
+			for (i = 0; i < m * n; i++)
+			{
+				free(variableBfromScilab[i]);
+			}
+			free(variableBfromScilab);
 		}
 		
 	if ( TerminateScilab(NULL) == FALSE ) 
