@@ -15,13 +15,11 @@
  #ifdef WITH_TK
  #include <tcl.h>
  #endif
+ #include "isdir.h"
 #endif
 #include "javasci_globals.h"
 #include "setgetSCIpath.h"
 #include "tmpdir.h"
-#ifndef _MSC_VER
- #include "isdir.h"
-#endif
 #include "PATH_MAX.h"
 #include "getcommandlineargs.h"
 #ifdef _MSC_VER
@@ -130,6 +128,7 @@ void Initialize(void)
 	* As we are sure to use the binary, we know where to find
 	* See: http://bugzilla.scilab.org/show_bug.cgi?id=3605
 	*/
+#ifndef _MSC_VER
 #ifdef WITH_TK
 	#define BASEPATHTOTHIRDPARTY "/../../thirdparty/"
 	#define DIRECTORYOFTCL "tcl"
@@ -155,6 +154,7 @@ void Initialize(void)
 	   putenv(exportTcl);
 	   putenv(exportTk);
    }
+#endif
 #endif
 
   #endif
