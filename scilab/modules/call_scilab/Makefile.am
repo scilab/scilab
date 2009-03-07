@@ -46,12 +46,12 @@ libscicall_scilab_la_root_DATA = changelog.txt license.txt readme.txt version.xm
 
 
 #### call_scilab : init scripts ####
-#libscicall_scilab_la_etcdir = $(mydatadir)/etc
-#libscicall_scilab_la_etc_DATA = etc/call_scilab.quit etc/call_scilab.start
+libscicall_scilab_la_etcdir = $(mydatadir)/etc
+libscicall_scilab_la_etc_DATA = etc/call_scilab.quit etc/call_scilab.start
 
 #### call_scilab : gateway declaration ####
-#libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
+libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 
 #### call_scilab : include files ####
 libscicall_scilab_la_includedir=$(pkgincludedir)/call_scilab
