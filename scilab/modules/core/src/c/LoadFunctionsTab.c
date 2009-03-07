@@ -35,8 +35,10 @@ void LoadFunctionsTab(void)
 	if ( firstentry != 0 ) return;
 
 	Modules = getmodules();
-	/* We are not freeing Modules in order to speed up the next call of getmodule */
-	/* freed in sciquit.c */
+	/**
+	 * We are not freeing Modules in order to speed up the next call of 
+	 * getmodule freed in sciquit.c 
+	 */
 
 	for (j=0;j<Modules->numberofModules;j++)
 	{

@@ -114,10 +114,6 @@ INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
 
 libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
 
-if USE_EMBEDDED_BLAS
-libsciscicos_la_LIBADD +=  $(top_builddir)/libs/blas/libsciblas.la
-endif
-
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
 libsciscicos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
@@ -191,7 +187,7 @@ libsciscicos_la_help_en_US_DATA =
 libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
 libsciscicos_la_help_fr_FR_DATA = 
 
-#########�Modelica #############
+######### Modelica #############
 
 if OCAML
 TARGET = modelicac
@@ -258,7 +254,16 @@ $(TARGET): generate-parser generate-lexer $(MLIS:.mli=.cmi) $(MLS:.ml=.cmo) $(ML
 	$(OCAMLOPT) -o $(TARGET) $(INCLUDE) $(OCAMLLIBS:.cma=.cmxa) $(MLS:.ml=.cmx)
 
 
-CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
+CLEANFILES = $(BASE_PATH)/*.cmi \
+	$(BASE_PATH)/*.o \
+	$(BASE_PATH)/*.cmo \
+	$(BASE_PATH)/*.cm[aiox] \
+	$(BASE_PATH)/parser.mli \
+	$(BASE_PATH)/lexer.mli \
+	$(BASE_PATH)/parser.ml \
+	$(BASE_PATH)/lexer.ml \
+	$(TARGET)
+
 endif # OCAML
 
 else

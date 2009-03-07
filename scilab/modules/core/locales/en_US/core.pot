@@ -14,33 +14,66 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2008-09-24 16:37+0100\n"
+"Revision-Date: 2009-01-27 10:37+0100\n"
 
-# File: macros/powershell.sci, line: 14
-msgid "Error(s) : see help powershell'';''verify your script without scilab."
+# File: etc/scilab.start, line: 56
+msgid "Startup execution:"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 20
-msgid "Only for Microsoft Windows."
+# File: etc/scilab.start, line: 63
+msgid "  loading initial environment"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 27
-msgid "Powershell not found."
+# File: etc/scilab.start, line: 175
+msgid "&File"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 42
-# File: macros/powershell.sci, line: 45
-# File: sci_gateway/c/sci_funptr.c, line: 49
-# File: sci_gateway/c/sci_clearfun.c, line: 65
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 59
-# File: sci_gateway/c/sci_warning.c, line: 99
-# File: sci_gateway/c/sci_chdir.c, line: 59
-# File: sci_gateway/c/sci_getmd5.c, line: 138
-# File: sci_gateway/c/sci_with_module.c, line: 47
-# File: sci_gateway/c/sci_readgateway.c, line: 124
-# File: sci_gateway/c/sci_getversion.c, line: 239
+# File: etc/scilab.start, line: 176
+msgid "&Edit"
+msgstr ""
+#
+# File: etc/scilab.start, line: 177
+msgid "&Preferences"
+msgstr ""
+#
+# File: etc/scilab.start, line: 178
+msgid "&Control"
+msgstr ""
+#
+# File: etc/scilab.start, line: 179
+# File: etc/scilab.start, line: 181
+# File: etc/scilab.start, line: 184
+# File: etc/scilab.start, line: 187
+# File: etc/scilab.start, line: 190
+# File: etc/scilab.start, line: 193
+msgid "&Applications"
+msgstr ""
+#
+# File: etc/scilab.start, line: 195
+msgid "&?"
+msgstr ""
+#
+# File: etc/scilab.start, line: 196
+# File: macros/toolboxes.sci, line: 127
+# File: macros/toolboxes.sci, line: 128
+# File: macros/toolboxes.sci, line: 132
+msgid "&Toolboxes"
+msgstr ""
+#
+# File: includes/stack-c.h, line: 315
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgid " results may be inaccurate. rcond = %s1\n"
+msgstr ""
+#
+# File: macros/add_demo.sci, line: 13
+# File: sci_gateway/c/sci_getmd5.c, line: 82
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
+#
+# File: macros/add_demo.sci, line: 15
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
 #
 # File: macros/check_versions.sci, line: 18
@@ -71,31 +104,6 @@ msgstr ""
 # File: macros/edit.sci, line: 34
 #, c-format
 msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr ""
-#
-# File: macros/whereami.sci, line: 20
-#, c-format
-msgid "%s called at line %s of %s"
-msgstr ""
-#
-# File: macros/whereami.sci, line: 23
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr ""
-#
-# File: macros/whereami.sci, line: 26
-#, c-format
-msgid "%s called under %s"
-msgstr ""
-#
-# File: macros/whereami.sci, line: 29
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr ""
-#
-# File: macros/typeof.sci, line: 12
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
 #
 # File: macros/perl.sci, line: 19
@@ -133,19 +141,64 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 #
+# File: macros/powershell.sci, line: 14
+msgid "Error(s) : see help powershell'';''verify your script without scilab."
+msgstr ""
+#
+# File: macros/powershell.sci, line: 20
+msgid "Only for Microsoft Windows."
+msgstr ""
+#
+# File: macros/powershell.sci, line: 27
+msgid "Powershell not found."
+msgstr ""
+#
+# File: macros/powershell.sci, line: 42
+# File: macros/powershell.sci, line: 45
+# File: sci_gateway/c/sci_chdir.c, line: 59
+# File: sci_gateway/c/sci_clearfun.c, line: 65
+# File: sci_gateway/c/sci_funptr.c, line: 49
+# File: sci_gateway/c/sci_getmd5.c, line: 138
+# File: sci_gateway/c/sci_getvariablesonstack.c, line: 59
+# File: sci_gateway/c/sci_getversion.c, line: 239
+# File: sci_gateway/c/sci_readgateway.c, line: 124
+# File: sci_gateway/c/sci_warning.c, line: 98
+# File: sci_gateway/c/sci_with_module.c, line: 47
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
 # File: macros/sethomedirectory.sci, line: 17
 msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
 msgstr ""
 #
-# File: macros/add_demo.sci, line: 13
-# File: sci_gateway/c/sci_getmd5.c, line: 82
-#, c-format
-msgid "%s: The file %s does not exist.\n"
+# File: macros/toolboxes.sci, line: 120
+msgid " is already compiled.\n"
 msgstr ""
 #
-# File: macros/add_demo.sci, line: 15
+# File: macros/typeof.sci, line: 12
 #, c-format
-msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+#
+# File: macros/whereami.sci, line: 20
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr ""
+#
+# File: macros/whereami.sci, line: 23
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr ""
+#
+# File: macros/whereami.sci, line: 26
+#, c-format
+msgid "%s called under %s"
+msgstr ""
+#
+# File: macros/whereami.sci, line: 29
+#, c-format
+msgid "%s called at line %s of macro %s"
 msgstr ""
 #
 # File: macros/who_user.sci, line: 45
@@ -155,17 +208,6 @@ msgstr ""
 # File: macros/who_user.sci, line: 49
 #, c-format
 msgid "Using %s elements ouf of %s"
-msgstr ""
-#
-# File: macros/toolboxes.sci, line: 120
-msgid " is already compiled.\n"
-msgstr ""
-#
-# File: macros/toolboxes.sci, line: 127
-# File: macros/toolboxes.sci, line: 128
-# File: macros/toolboxes.sci, line: 132
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 196
-msgid "&Toolboxes"
 msgstr ""
 #
 # File: macros/whos.sci, line: 16
@@ -178,9 +220,180 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_error.c, line: 58
+# File: sci_gateway/c/sci_error.c, line: 135
+# File: sci_gateway/c/sci_error.c, line: 198
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_error.c, line: 78
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_error.c, line: 87
+# File: sci_gateway/c/sci_error.c, line: 130
+# File: sci_gateway/c/sci_error.c, line: 164
+# File: sci_gateway/c/sci_error.c, line: 169
+# File: sci_gateway/c/sci_error.c, line: 203
+# File: sci_gateway/c/sci_format.c, line: 152
+# File: sci_gateway/c/sci_format.c, line: 272
+# File: sci_gateway/c/sci_format.c, line: 292
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_error.c, line: 95
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_error.c, line: 209
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 135
+# File: sci_gateway/c/sci_format.c, line: 330
+#, c-format
+msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 161
+# File: sci_gateway/c/sci_format.c, line: 280
+# File: sci_gateway/c/sci_format.c, line: 300
+#, c-format
+msgid "%s: Wrong values for input argument #%d: A int expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 167
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 187
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 215
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 221
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 227
+# File: sci_gateway/c/sci_format.c, line: 312
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 247
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_format.c, line: 335
+#, c-format
+msgid "%s: Wrong type for inputs arguments.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getcwd.c, line: 34
+#, c-format
+msgid "%s: An error occurred.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getmd5.c, line: 95
+# File: sci_gateway/c/sci_libraryinfo.c, line: 92
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getmd5.c, line: 143
+#, c-format
+msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_getmodules.c, line: 29
 #, c-format
 msgid "Warning: Problems with %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getvariablesonstack.c, line: 53
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getversion.c, line: 181
+# File: sci_gateway/c/sci_getversion.c, line: 249
+# File: sci_gateway/c/sci_where.c, line: 29
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getversion.c, line: 221
+#, c-format
+msgid "%s: Wrong file VERSION %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getversion.c, line: 227
+# File: sci_gateway/c/sci_getversion.c, line: 313
+#, c-format
+msgid "%s: Wrong module name %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getversion.c, line: 307
+#, c-format
+msgid "%s: Wrong file VERSION in %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getversion.c, line: 319
+# File: sci_gateway/c/sci_who.c, line: 138
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_getversion.c, line: 325
+#, c-format
+msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 106
+#, c-format
+msgid ""
+"%s: Cannot alloc more memory.\n"
+"Try gstacksize('max').\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 121
+# File: sci_gateway/c/sci_stacksize.c, line: 115
+# File: sci_gateway/c/sci_stacksize.c, line: 121
+#, c-format
+msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 128
+# File: sci_gateway/c/sci_gstacksize.c, line: 223
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_gstacksize.c, line: 230
+#, c-format
+msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 87
+#, c-format
+msgid "%s: Invalid library %s.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_newfun.c, line: 77
@@ -203,36 +416,14 @@ msgstr ""
 msgid "%s: Wrong type for input arguments #%d or #%d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_error.c, line: 58
-# File: sci_gateway/c/sci_error.c, line: 135
-# File: sci_gateway/c/sci_error.c, line: 198
+# File: sci_gateway/c/sci_readgateway.c, line: 114
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Impossible to read %s gateway.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_error.c, line: 78
+# File: sci_gateway/c/sci_readgateway.c, line: 119
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_error.c, line: 87
-# File: sci_gateway/c/sci_error.c, line: 130
-# File: sci_gateway/c/sci_error.c, line: 164
-# File: sci_gateway/c/sci_error.c, line: 169
-# File: sci_gateway/c/sci_error.c, line: 203
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_error.c, line: 95
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_error.c, line: 209
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
+msgid "%s: Invalid module name : %s.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 100
@@ -240,13 +431,6 @@ msgstr ""
 msgid ""
 "%s: Cannot allocate more memory.\n"
 "Try stacksize('max').\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 115
-# File: sci_gateway/c/sci_stacksize.c, line: 121
-# File: sci_gateway/c/sci_gstacksize.c, line: 121
-#, c-format
-msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 127
@@ -261,6 +445,29 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
 msgstr ""
 #
+# File: sci_gateway/c/sci_warning.c, line: 76
+#, c-format
+msgid "WARNING: %s"
+msgstr ""
+#
+# File: sci_gateway/c/sci_warning.c, line: 89
+#, c-format
+msgid "WARNING: %s\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_what.c, line: 87
+msgid "Internal Functions:\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_what.c, line: 104
+msgid "Commands:\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_where.c, line: 23
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr ""
+#
 # File: sci_gateway/c/sci_who.c, line: 106
 #, c-format
 msgid ""
@@ -270,12 +477,6 @@ msgstr ""
 # File: sci_gateway/c/sci_who.c, line: 115
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_who.c, line: 138
-# File: sci_gateway/c/sci_getversion.c, line: 319
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_who.c, line: 175
@@ -308,119 +509,148 @@ msgstr ""
 msgid "Your global variables are:"
 msgstr ""
 #
-# File: sci_gateway/c/sci_getcwd.c, line: 34
-#, c-format
-msgid "%s: An error occurred.\n"
+# File: src/c/CallScilab.c, line: 51
+# File: src/c/tmpdir.c, line: 63
+# File: src/c/tmpdir.c, line: 84
+msgid "Error"
 msgstr ""
 #
-# File: sci_gateway/c/sci_libraryinfo.c, line: 87
-#, c-format
-msgid "%s: Invalid library %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_libraryinfo.c, line: 92
-# File: sci_gateway/c/sci_getmd5.c, line: 95
-#, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_what.c, line: 87
-msgid "Internal Functions:\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_what.c, line: 104
-msgid "Commands:\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_where.c, line: 23
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_where.c, line: 29
-# File: sci_gateway/c/sci_getversion.c, line: 181
-# File: sci_gateway/c/sci_getversion.c, line: 249
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 53
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_warning.c, line: 77
-#, c-format
-msgid "WARNING: %s"
-msgstr ""
-#
-# File: sci_gateway/c/sci_warning.c, line: 90
-#, c-format
-msgid "WARNING: %s\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 106
-#, c-format
-msgid ""
-"%s: Cannot alloc more memory.\n"
-"Try gstacksize('max').\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 128
-# File: sci_gateway/c/sci_gstacksize.c, line: 223
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 230
-#, c-format
-msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getmd5.c, line: 143
-#, c-format
-msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_readgateway.c, line: 114
-#, c-format
-msgid "%s: Impossible to read %s gateway.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_readgateway.c, line: 119
-#, c-format
-msgid "%s: Invalid module name : %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getversion.c, line: 221
-#, c-format
-msgid "%s: Wrong file VERSION %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getversion.c, line: 227
-# File: sci_gateway/c/sci_getversion.c, line: 313
-#, c-format
-msgid "%s: Wrong module name %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getversion.c, line: 307
-#, c-format
-msgid "%s: Wrong file VERSION in %s.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_getversion.c, line: 325
-#, c-format
-msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
-msgstr ""
-#
-# File: includes/stack-c.h, line: 329
-#, c-format
-msgid " results may be inaccurate. rcond = %s1\n"
+# File: src/c/InitializeCore.c, line: 35
+msgid "Fatal Error: Can't create table for scilab functions.\n"
 msgstr ""
 #
 # File: src/c/SetScilabEnvironment.c, line: 37
 #, c-format
 msgid "Error: Impossible to define %s environment variable.\n"
+msgstr ""
+#
+# File: src/c/banier.c, line: 36
+msgid "                 Consortium Scilab (DIGITEO)\n"
+msgstr ""
+#
+# File: src/c/banier.c, line: 38
+msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+msgstr ""
+#
+# File: src/c/banier.c, line: 39
+msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+msgstr ""
+#
+# File: src/c/banier.c, line: 44
+msgid ""
+"Warning: the operational team of the Scilab Consortium\n"
+"doesn't provide and doesn't support this version of Scilab built with\n"
+msgstr ""
+#
+# File: src/c/callDynamicGateway.c, line: 128
+#, c-format
+msgid "Impossible to load %s library: %s\n"
+msgstr ""
+#
+# File: src/c/callDynamicGateway.c, line: 131
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr ""
+#
+# File: src/c/callDynamicGateway.c, line: 134
+#, c-format
+msgid "Impossible to call %s in %s library: %s\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 149
+msgid "SIGSTP: aborting current computation\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 176
+msgid "Trying to stop scilab in the middle of an interface.\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 177
+msgid "Do you really want to abort computation (y or n ?) \n"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 49
+#, c-format
+msgid "Memory in use: %*ld %%"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 59
+msgid "Total Physical Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 69
+msgid "Free Physical Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 79
+msgid "Total Paging File (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 89
+msgid "Free Paging File (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 99
+msgid "Total Virtual Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 109
+msgid "Free Virtual Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 119
+msgid "Free Extended Memory (Kbytes): %*I64d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 128
+msgid "Operating System: "
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 190
+#, c-format
+msgid "Number of processors: %d"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 198
+#, c-format
+msgid "Video card: %s"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 205
+#, c-format
+msgid "Video card driver version: %s"
+msgstr ""
+#
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 300
+# File: src/c/getdynamicDebugInfo_Windows.c, line: 303
+#, c-format
+msgid "Screen size: %d x %d %d bits"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 83
+# File: src/c/getmodules.c, line: 118
+msgid "The SCI environment variable is not set.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 100
+#, c-format
+msgid "Cannot load the module declaration file: %s.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 162
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 213
+#, c-format
+msgid "%s module not found.\n"
+msgstr ""
+#
+# File: src/c/getmodules.c, line: 232
+#, c-format
+msgid ""
+"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
 msgstr ""
 #
 # File: src/c/getstaticDebugInfo_Windows.c, line: 39
@@ -491,131 +721,25 @@ msgstr ""
 msgid "PCRE Version: %d.%d"
 msgstr ""
 #
-# File: src/c/readGateway.c, line: 95
-#, c-format
-msgid "Error: could not parse file %s\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 103
-#, c-format
-msgid "Error: Memory allocation.\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 202
-#, c-format
-msgid ""
-"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
-"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
-msgstr ""
-#
-# File: src/c/readGateway.c, line: 216
-#, c-format
-msgid ""
-"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-#
 # File: src/c/inisci-c.c, line: 82
 # File: src/c/inisci-c.c, line: 84
-#, c-format
 msgid "SCI environment variable not defined.\n"
 msgstr ""
 #
+# File: src/c/inisci-c.c, line: 82
 # File: src/c/inisci-c.c, line: 135
-# File: src/c/inisci-c.c, line: 138
-#, c-format
-msgid "SCIHOME not defined.\n"
-msgstr ""
-#
-# File: src/c/inisci-c.c, line: 135
-# File: src/c/inisci-c.c, line: 166
+# File: src/c/inisci-c.c, line: 165
 msgid "Warning"
 msgstr ""
 #
-# File: src/c/inisci-c.c, line: 166
-# File: src/c/inisci-c.c, line: 168
-#, c-format
+# File: src/c/inisci-c.c, line: 135
+# File: src/c/inisci-c.c, line: 137
+msgid "SCIHOME not defined.\n"
+msgstr ""
+#
+# File: src/c/inisci-c.c, line: 165
+# File: src/c/inisci-c.c, line: 167
 msgid "TMPDIR not defined.\n"
-msgstr ""
-#
-# File: src/c/scimem.c, line: 51
-# File: src/c/scimem.c, line: 82
-# File: src/c/scimem64.c, line: 113
-msgid "No space to allocate Scilab stack.\n"
-msgstr ""
-#
-# File: src/c/tmpdir.c, line: 63
-msgid "Cannot find Windows temporary directory."
-msgstr ""
-#
-# File: src/c/tmpdir.c, line: 63
-# File: src/c/tmpdir.c, line: 84
-# File: src/c/CallScilab.c, line: 50
-msgid "Error"
-msgstr ""
-#
-# File: src/c/tmpdir.c, line: 83
-#, c-format
-msgid "Impossible to create : %s"
-msgstr ""
-#
-# File: src/c/loadversion.c, line: 74
-#, c-format
-msgid "Error: Could not parse file %s\n"
-msgstr ""
-#
-# File: src/c/loadversion.c, line: 130
-#, c-format
-msgid ""
-"Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
-msgstr ""
-#
-# File: src/c/loadversion.c, line: 143
-#, c-format
-msgid ""
-"Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-#
-# File: src/c/callDynamicGateway.c, line: 128
-#, c-format
-msgid "Impossible to load %s library: %s\n"
-msgstr ""
-#
-# File: src/c/callDynamicGateway.c, line: 131
-#, c-format
-msgid "Impossible to load %s function in %s library: %s\n"
-msgstr ""
-#
-# File: src/c/callDynamicGateway.c, line: 134
-#, c-format
-msgid "Impossible to call %s in %s library: %s\n"
-msgstr ""
-#
-# File: src/c/prompt.c, line: 38
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 36
-msgid "                 Consortium Scilab (DIGITEO)\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 38
-msgid "               Copyright (c) 1989-2008 (INRIA)\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 39
-msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-msgstr ""
-#
-# File: src/c/banier.c, line: 44
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
 msgstr ""
 #
 # File: src/c/intmacr2tree.c, line: 89
@@ -743,26 +867,54 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 145
-msgid "SIGSTP: aborting current computation\n"
-msgstr ""
-#
-# File: src/c/callinterf.c, line: 170
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr ""
-#
-# File: src/c/callinterf.c, line: 171
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr ""
-#
-# File: src/c/scicurdir.c, line: 43
-# File: src/c/scicurdir.c, line: 54
+# File: src/c/loadversion.c, line: 74
 #, c-format
-msgid "Can't go to directory %s.\n"
+msgid "Error: Could not parse file %s\n"
 msgstr ""
 #
-# File: src/c/scicurdir.c, line: 69
-msgid "Can't get current directory.\n"
+# File: src/c/loadversion.c, line: 130
+#, c-format
+msgid ""
+"Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+"contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+msgstr ""
+#
+# File: src/c/loadversion.c, line: 143
+#, c-format
+msgid ""
+"Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+#
+# File: src/c/prompt.c, line: 38
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 95
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 103
+#, c-format
+msgid "Error: Memory allocation.\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 202
+#, c-format
+msgid ""
+"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
+"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+msgstr ""
+#
+# File: src/c/readGateway.c, line: 216
+#, c-format
+msgid ""
+"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
 msgstr ""
 #
 # File: src/c/returnPropertyList.c, line: 31
@@ -780,8 +932,37 @@ msgstr ""
 msgid "List full.\n"
 msgstr ""
 #
-# File: src/c/InitializeCore.c, line: 35
-msgid "Fatal Error: Can't create table for scilab functions.\n"
+# File: src/c/run.c, line: 351
+# File: src/c/run.c, line: 359
+msgid "Unexpected opcode, please report into the Scilab bug tracker."
+msgstr ""
+#
+# File: src/c/run.c, line: 510
+msgid "Functions compiled with very old versions are no more handled."
+msgstr ""
+#
+# File: src/c/scicurdir.c, line: 42
+# File: src/c/scicurdir.c, line: 51
+#, c-format
+msgid "Can't go to directory %s.\n"
+msgstr ""
+#
+# File: src/c/scicurdir.c, line: 54
+msgid "Invalid buffer.\n"
+msgstr ""
+#
+# File: src/c/scicurdir.c, line: 57
+msgid "Unknown error.\n"
+msgstr ""
+#
+# File: src/c/scicurdir.c, line: 74
+msgid "Can't get current directory.\n"
+msgstr ""
+#
+# File: src/c/scimem.c, line: 51
+# File: src/c/scimem.c, line: 82
+# File: src/c/scimem64.c, line: 113
+msgid "No space to allocate Scilab stack.\n"
 msgstr ""
 #
 # File: src/c/stack1.c, line: 83
@@ -1039,131 +1220,6 @@ msgstr ""
 # File: src/c/stack1.c, line: 3183
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
-msgstr ""
-#
-# File: src/c/version.c, line: 24
-# File: src/c/version.c, line: 36
-#, c-format
-msgid "Scilab version \"%d.%d.%d.%d\"\n"
-msgstr ""
-#
-# File: src/c/version.c, line: 32
-#, c-format
-msgid ""
-"Scilab version \"%d.%d.%d.%d\"\n"
-"%s\n"
-msgstr ""
-#
-# File: src/c/version.c, line: 33
-msgid "Scilab Version Info."
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 83
-# File: src/c/getmodules.c, line: 118
-msgid "The SCI environment variable is not set.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 100
-#, c-format
-msgid "Cannot load the module declaration file: %s.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 162
-#, c-format
-msgid "Error: Could not parse file %s.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 213
-#, c-format
-msgid "%s module not found.\n"
-msgstr ""
-#
-# File: src/c/getmodules.c, line: 232
-#, c-format
-msgid ""
-"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
-msgstr ""
-#
-# File: src/c/stack3.c, line: 83
-# File: src/c/stack3.c, line: 132
-# File: src/c/stack3.c, line: 271
-# File: src/c/stack3.c, line: 328
-# File: src/c/stack3.c, line: 427
-# File: src/c/stack3.c, line: 479
-# File: src/c/stack3.c, line: 525
-# File: src/c/stack3.c, line: 555
-# File: src/c/stack3.c, line: 592
-# File: src/c/stack3.c, line: 673
-# File: src/c/stack3.c, line: 719
-#, c-format
-msgid "Undefined variable %s.\n"
-msgstr ""
-#
-# File: src/c/stack3.c, line: 281
-#, c-format
-msgid "%s: argument must be a string.\n"
-msgstr ""
-#
-# File: src/c/run.c, line: 354
-# File: src/c/run.c, line: 362
-msgid "Unexpected opcode, please report into the Scilab bug tracker."
-msgstr ""
-#
-# File: src/c/run.c, line: 513
-msgid "Functions compiled with very old versions are no more handled."
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 48
-#, c-format
-msgid "Memory in use: %*ld %%"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 58
-msgid "Total Physical Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 68
-msgid "Free Physical Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 78
-msgid "Total Paging File (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 88
-msgid "Free Paging File (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 98
-msgid "Total Virtual Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 108
-msgid "Free Virtual Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 118
-msgid "Free Extended Memory (Kbytes): %*I64d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 127
-msgid "Operating System: "
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 189
-#, c-format
-msgid "Number of processors: %d"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 197
-#, c-format
-msgid "Video card: %s"
-msgstr ""
-#
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 296
-# File: src/c/getdynamicDebugInfo_Windows.c, line: 299
-#, c-format
-msgid "%s: %d x %d %d bits"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 80
@@ -1460,39 +1516,48 @@ msgstr ""
 msgid "%s: Variable %s not found.\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 56
-msgid "Startup execution:"
+# File: src/c/stack3.c, line: 85
+# File: src/c/stack3.c, line: 134
+# File: src/c/stack3.c, line: 273
+# File: src/c/stack3.c, line: 330
+# File: src/c/stack3.c, line: 429
+# File: src/c/stack3.c, line: 481
+# File: src/c/stack3.c, line: 527
+# File: src/c/stack3.c, line: 557
+# File: src/c/stack3.c, line: 594
+# File: src/c/stack3.c, line: 675
+# File: src/c/stack3.c, line: 721
+#, c-format
+msgid "Undefined variable %s.\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 63
-msgid "  loading initial environment"
+# File: src/c/stack3.c, line: 283
+#, c-format
+msgid "%s: argument must be a string.\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 175
-msgid "&File"
+# File: src/c/tmpdir.c, line: 63
+msgid "Cannot find Windows temporary directory."
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 176
-msgid "&Edit"
+# File: src/c/tmpdir.c, line: 83
+#, c-format
+msgid "Impossible to create : %s"
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 177
-msgid "&Preferences"
+# File: src/c/version.c, line: 24
+# File: src/c/version.c, line: 36
+#, c-format
+msgid "Scilab version \"%d.%d.%d.%d\"\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 178
-msgid "&Control"
+# File: src/c/version.c, line: 32
+#, c-format
+msgid ""
+"Scilab version \"%d.%d.%d.%d\"\n"
+"%s\n"
 msgstr ""
 #
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 179
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 181
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 184
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 187
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 190
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 193
-msgid "&Applications"
-msgstr ""
-#
-# File: /home/sylvestre/dev/scilab5/etc/scilab.start, line: 195
-msgid "&?"
+# File: src/c/version.c, line: 33
+msgid "Scilab Version Info."
 msgstr ""

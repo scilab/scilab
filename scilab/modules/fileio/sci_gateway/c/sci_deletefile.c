@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_deletefile)(char *fname,unsigned long fname_len)
+int sci_deletefile(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(1,1);
@@ -28,10 +28,11 @@ int C2F(sci_deletefile)(char *fname,unsigned long fname_len)
 	{
 		int m1,n1,l1;
 		char *VarName=NULL;
+		char szTemp[bsiz];
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
-		VarName = UTFToLocale(cstk(l1));
+		VarName = UTFToLocale(cstk(l1), szTemp);
 
 		n1=1;
 		if ( deleteafile(VarName) )

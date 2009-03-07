@@ -29,7 +29,6 @@
 
 int sci_demo( char * fname, char * code, BOOL flagx )
 {
-	char name[] = "execstr" ;
 
 	/* Include the code inside a function */
 	/* The code will then be launched inside a scope */

@@ -2,21 +2,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-#include <stdlib.h> 
+#include <stdlib.h>
 #include <string.h> /* strlen */
 #ifdef _MSC_VER
 	#include <Windows.h> /* GetEnvironmentVariable */
 	#include "strdup_windows.h"
 #endif
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "getenvc.h"
 #include "localization.h"
@@ -32,38 +33,56 @@ static void searchenv_others(const char *filename, const char *varname,
 /*--------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
+	char szTemp[bsiz];
+	char *locale = NULL;
 	#ifdef _MSC_VER
-	if (GetEnvironmentVariable(UTFToLocale(var),buf,(DWORD)*buflen) == 0)
+	DWORD nbCharBufEnv = GetEnvironmentVariable(UTFToLocale(var, szTemp),buf,(DWORD)*buflen);
+	if (nbCharBufEnv == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
 	}
 	else
 	{
-
-	    char *local=localeToUTF(buf);
-		*buflen = (int)strlen(local);
-	    strncpy(buf,local,*buflen);
-		*ierr=0;
+		if (nbCharBufEnv > (DWORD)*buflen)
+		{
+			if ( *iflag == 1 ) sciprint(_("environment variable value too long %s.\n"),var);
+			*ierr = 1;
+		}
+		else
+		{
+			locale = localeToUTF(buf, szTemp);
+			*buflen = (int)strlen(locale);
+			strncpy(buf,locale,*buflen);
+			*ierr = 0;
+		}
 	}
 	#else
-	char *local;
-	if ( (local=localeToUTF(getenv(UTFToLocale(var))) ) == 0)
+	if ( (locale=localeToUTF(getenv(UTFToLocale(var, szTemp)), szTemp) ) == 0)
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
-		*ierr=1;
+		*ierr = 1;
 	}
 	else
 	{
-		*buflen = (int)strlen(local);
-	        strcpy(buf,local);
-		*ierr=0;
+		
+		if ( strlen(locale) > buflen )
+		{
+			if ( *iflag == 1 ) sciprint(_("environment variable value too long %s.\n"),var);
+			*ierr = 1;
+		}
+		else
+		{
+			*buflen = (int)strlen(locale);
+			strcpy(buf,locale);
+			*ierr = 0;
+		}
 	}
 	#endif
 }
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
-static void searchenv_others(const char *filename, 
+static void searchenv_others(const char *filename,
 			    const char *varname,
 			    char *pathname)
 {
@@ -76,7 +95,7 @@ static void searchenv_others(const char *filename,
 		strcpy(pathname, filename);
 		return;
 	}
-	
+
 	cp = getenv(varname);
 	if(cp == NULL)
 	{
@@ -102,14 +121,14 @@ static void searchenv_others(const char *filename,
 			cp++;
 			concat++;
 		}
-		
+
 		if ( concat == pathname )
 		{
 			/* filename not found */
 			*pathname = '\0';
 			return;
 		}
-		
+
 		if( *(concat-1) != DIR_SEPARATOR[0] )
 		{
 			/* add directory separator */
@@ -137,16 +156,20 @@ char *searchEnv(const char *name,const char *env_var)
 {
 	char *buffer = NULL;
 	char fullpath[PATH_MAX];
+	char szLocale[bsiz];
 
 	strcpy(fullpath,"");
 
-	#if _MSC_VER 
-		_searchenv((const char*)UTFToLocale((char*)name),(const char*)env_var,fullpath);
+	#if _MSC_VER
+		_searchenv((const char*)UTFToLocale((char*)name, szLocale),(const char*)env_var,fullpath);
 	#else
-		searchenv_others(UTFToLocale(name),env_var,fullpath);
+		searchenv_others(UTFToLocale(name, szLocale),env_var,fullpath);
 	#endif
 
-	if (strlen(fullpath) > 0) buffer = strdup(localeToUTF(fullpath));
+	if (strlen(fullpath) > 0)
+	{
+		buffer = strdup(localeToUTF(fullpath, szLocale));
+	}
 	return buffer;
 }
 /*--------------------------------------------------------------------------*/

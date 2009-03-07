@@ -185,6 +185,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 
 
 #include "../c/completion_wrap_java.h"
+#include "../c/completeLine_wrap_java.h"
 #include "getCommonPart.h"
 #include "getPartLine.h"
 #include "MALLOC.h"
@@ -573,6 +574,44 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_getC
     FREE(arg1[i]);
     FREE(arg1);
   }
+  return jresult;
+}
+
+
+SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_completelineforjava(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2, jboolean jarg3) {
+  jstring jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  BOOL arg3 ;
+  char *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  {
+    if (jarg3 == JNI_TRUE) arg3 = TRUE;
+    else arg3 = FALSE;
+  }
+  result = (char *)completelineforjava(arg1,arg2,arg3);
+  {
+    if (result != NULL)
+    {
+      jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+      FREE(result);
+      result = NULL;
+    }       
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
   return jresult;
 }
 

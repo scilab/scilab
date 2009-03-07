@@ -14,6 +14,7 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GLException;
 
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -126,6 +127,12 @@ public abstract class DrawableObjectGL extends ObjectGL {
 
 		// draw the recorded display list
 		displayDL();
+		
+		// GL_OUT_OF_MEMORY may occur during the display of the DL
+		if (getGL().glGetError() != GL.GL_NO_ERROR) {
+			// probably no more memory.
+			throw new GLException("Out of memory");
+		}
 	}
 	
 	/**

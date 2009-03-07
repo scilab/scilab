@@ -50,16 +50,8 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
-@USE_EMBEDDED_LAPACK_FALSE@am__append_3 = $(LAPACK_LIBS)
-@USE_EMBEDDED_BLAS_FALSE@am__append_4 = $(BLAS_LIBS)
-@ENABLE_STATIC_TRUE@am__append_5 = $(ALL_LIBS)
-@SCICOS_TRUE@am__append_6 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
-
-# Use the blas provided into the Scilab tarball
-@USE_EMBEDDED_BLAS_TRUE@am__append_7 = $(top_builddir)/libs/blas/libsciblas.la
-
-# Use the lapack provided into the Scilab tarball
-@USE_EMBEDDED_LAPACK_TRUE@am__append_8 = $(top_builddir)/libs/lapack/libscilapack.la
+@ENABLE_STATIC_TRUE@am__append_3 = $(ALL_LIBS)
+@SCICOS_TRUE@am__append_4 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -89,17 +81,16 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscilab_la_DEPENDENCIES = $(ALL_LIBS) $(am__append_5) \
+libscilab_la_DEPENDENCIES = $(ALL_LIBS) $(am__append_3) \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_6) \
+	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_4) \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/libst/libscilibst.la $(am__append_7) \
-	$(am__append_8)
+	$(top_builddir)/libs/libst/libscilibst.la
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -129,15 +120,15 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
 ETAGS = etags
 CTAGS = ctags
 DIST_SUBDIRS = core output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet tclsci localization renderer shell \
+	elementary_functions string dynamic_link fileio \
+	history_manager spreadsheet tclsci localization renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
-	intersci metanet signal_processing sound time sparse \
-	windows_tools functions overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
+	intersci metanet signal_processing call_scilab sound time \
+	sparse windows_tools functions overloading maple2scilab m2sci \
+	texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio \
 	scicos_blocks scicos . javasci
@@ -274,6 +265,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -338,18 +330,19 @@ top_srcdir = @top_srcdir@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 SUBDIRS = core output_stream action_binding arnoldi \
-	elementary_functions string dynamic_link history_manager \
-	fileio spreadsheet tclsci localization renderer shell \
+	elementary_functions string dynamic_link fileio \
+	history_manager spreadsheet tclsci localization renderer shell \
 	completion console graphic_export gui jvm graphics \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
-	intersci metanet signal_processing core interpolation sound \
-	time randlib sparse windows_tools functions overloading \
-	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio $(am__append_1) scicos . $(am__append_2)
+	intersci metanet signal_processing core call_scilab \
+	interpolation sound time randlib sparse windows_tools \
+	functions overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools fftw umfpack demo_tools genetic_algorithms \
+	simulated_annealing parameters matio $(am__append_1) scicos . \
+	$(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -357,12 +350,13 @@ libscilab_la_rootdir = $(mydatadir)
 #
 pkglib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES = 
-libscilab_la_LDFLAGS = $(am__append_3) $(am__append_4)
+libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
 ALL_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \
@@ -414,17 +408,16 @@ $(top_builddir)/modules/mexlib/libmex.la \
 #if MPI
 #libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
 #endif
-libscilab_la_LIBADD = $(ALL_LIBS) $(am__append_5) \
+libscilab_la_LIBADD = $(ALL_LIBS) $(am__append_3) \
 	$(top_builddir)/modules/string/libscistring.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_6) \
+	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_4) \
 	$(top_builddir)/libs/hashtable/libscihashtable.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/libst/libscilibst.la $(am__append_7) \
-	$(am__append_8)
+	$(top_builddir)/libs/libst/libscilibst.la
 all: all-recursive
 
 .SUFFIXES:

@@ -1,0 +1,18 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 4027 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4027
+//
+// <-- Short Description -->
+// Impossible to create hypermatrices under Linux x64 (actually a bug with int32 values).
+hmz = zeros(1,1,1);
+a = int32([1 2 3]);
+if a(1) <> int32(1) then bugmes();quit;end
+if a(2) <> int32(2) then bugmes();quit;end
+if a(3) <> int32(3) then bugmes();quit;end

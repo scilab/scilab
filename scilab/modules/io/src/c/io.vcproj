@@ -374,6 +374,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GetenvB.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getenvc.c"
 				>
 			</File>
@@ -531,6 +535,10 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\GetenvB.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\getenvc.h"
 				>
 			</File>
@@ -559,11 +567,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\setenvc.h"
+				RelativePath=".\setenvc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\setenvc.h"
+				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
 			<File

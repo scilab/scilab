@@ -46,7 +46,7 @@
 #include "x_VTPrsTbl.h"
 #include "freeArrayOfString.h"
 #include "getCommonPart.h"
-
+#include "completeLine.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 #define ATTUNIX
@@ -82,13 +82,13 @@
 #define TERMCAP
 #endif
 
-#if !defined(linux) && !defined(netbsd) && !defined(freebsd)
+#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__)
 #ifdef  __alpha
 #define B42UNIX
 #endif
 #endif
 
-#ifdef linux
+#if defined(linux) || defined(__APPLE__)
 #define ATTUNIX
 #define TERMCAP
 #endif
@@ -112,9 +112,15 @@ static struct tchars arg1;
 
 #ifdef ATTUNIX
 #define KEYPAD
+#ifdef HAVE_TERMIOS_H
+#include <termios.h>
+static struct termios save_term;
+static struct termios arg;
+#else
 #include <termio.h>
 static struct termio save_term;
 static struct termio arg;
+#endif
 #endif
 
 #define EXCL                  0x0021
@@ -314,7 +320,6 @@ char *TermReadAndProcess(void)
   sendprompt=1;
 
   setSearchedTokenInScilabHistory(NULL);
-
 
   while(1)
     {
@@ -767,35 +772,15 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 	{
 		if (sizedictionaryFiles == 1)
 		{
-			if ( strcmp(defaultPattern,"") )
+			char *new_line = completeLine(currentline,dictionaryFiles[0],filePattern,defaultPattern,TRUE);
+			if (new_line)
 			{
-				char *ptr_strrchar1 = NULL;
+				char buflinetmp[WK_BUF_SIZE + 1];
+				strcpy(buflinetmp,new_line);
+				FREE(new_line);
 
-				ptr_strrchar1 = strrchr(dictionaryFiles[0], defaultPattern[0]);
-				if (ptr_strrchar1) 
-				{
-					char *ptr_strrchar2 = NULL;
-					char *new_line = NULL;
-					ptr_strrchar2 = strrchr(currentline, defaultPattern[0]);
-					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(dictionaryFiles[0])));
-
-					if (new_line)
-					{
-						int l = strlen(currentline)- strlen(ptr_strrchar2);
-						if (l < 0) l = 0 - l;
-
-						strncpy(new_line,currentline, l);
-						new_line[l]='\0';
-
-						/* special case with files begin with a '.' */
-						if (new_line[l-1] == '.') strcat(new_line, &(dictionaryFiles[0][1]));
-						else strcat(new_line, ptr_strrchar1);
-
-						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
-						FREE(new_line);
-						return;
-					}
-				}
+				CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
+				return;
 			}
 		}
 		else
@@ -814,29 +799,14 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
 			}
 			else if (common)
 			{
-				char *ptr_strrchar1 = NULL;
-
-				ptr_strrchar1 = strrchr(common, defaultPattern[0]);
-				if (ptr_strrchar1) 
+				char *new_line = completeLine(currentline,common,filePattern,defaultPattern,TRUE);
+				if (new_line)
 				{
-					char *ptr_strrchar2 = NULL;
-					char *new_line = NULL;
-					ptr_strrchar2 = strrchr(currentline, defaultPattern[0]);
-					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(ptr_strrchar1)));
+					char buflinetmp[WK_BUF_SIZE + 1];
+					strcpy(buflinetmp,new_line);
+					FREE(new_line);
 
-					if (new_line)
-					{
-						int l = strlen(currentline)- strlen(ptr_strrchar2);
-						if (l < 0) l = 0 - l;
-
-						strncpy(new_line,currentline, l);
-						new_line[l] = '\0';
-						strcat(new_line, ptr_strrchar1);
-
-						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
-
-						FREE(new_line);
-					}
+					CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
 				}
 				else
 				{
@@ -895,8 +865,7 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern,
 			if (numberWordFound == 1)
 			{
 				char **completionDictionary = NULL;
-				char *result = NULL;
-				char *partResult = NULL;
+				char *new_line = NULL;
 				
 				if (completionDictionaryFunctions) completionDictionary = completionDictionaryFunctions;
 				if (completionDictionaryCommandWords) completionDictionary = completionDictionaryCommandWords;
@@ -904,10 +873,16 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern,
 				if (completionDictionaryVariables) completionDictionary = completionDictionaryVariables;
 				if (completionDictionaryHandleGraphicsProperties) completionDictionary = completionDictionaryHandleGraphicsProperties;
 
-				result = completionDictionary[0];
-				partResult = &result[strlen(defaultPattern)];
+				new_line = completeLine(currentline, completionDictionary[0],NULL,defaultPattern,FALSE);
+				if (new_line)
+				{
+					char buflinetmp[WK_BUF_SIZE + 1];
+					strcpy(buflinetmp,new_line);
+					FREE(new_line);
 
-				CopyLineAtPrompt(wk_buf, strcat(wk_buf, partResult), cursor, cursor_max);
+					CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
+
+				}
 			}
 			else
 			{
@@ -948,21 +923,18 @@ static void TermCompletionOnAll(char *currentline, char *defaultPattern,
 
 				if (commonAll)
 				{
-					char *result = NULL;
-					char *partResult = NULL;
 					char *new_line = NULL;
 
-					result = commonAll;
-					partResult = &result[strlen(defaultPattern)];
-					new_line = (char*)MALLOC(sizeof(char)*(strlen(currentline)+ strlen(partResult)));
-
+					new_line = completeLine(currentline, commonAll,NULL,defaultPattern,FALSE);
 					if (new_line)
 					{
-						strcpy(new_line, currentline);
-						strcat(new_line,partResult);
-						CopyLineAtPrompt(wk_buf, new_line, cursor, cursor_max);
+						char buflinetmp[WK_BUF_SIZE + 1];
+						strcpy(buflinetmp,new_line);
 						FREE(new_line);
+
+						CopyLineAtPrompt(wk_buf, buflinetmp, cursor, cursor_max);
 					}
+
 					FREE(commonAll);
 					commonAll = NULL;
 				}
@@ -1160,7 +1132,11 @@ static void set_cbreak()
   arg.c_oflag &= ~OPOST;
   arg.c_cc [VMIN] = 1;
   arg.c_cc [VTIME] = 0;
+#ifdef HAVE_TERMIOS_H
+  (void) tcsetattr (fd, TCSANOW, &arg);
+#else
   ioctl(fd, TCSETAW, &arg);
+#endif
 #endif
   cbreak_crmod = 0;
   return;
@@ -1180,7 +1156,11 @@ static void set_crmod()
   ioctl(fd, TIOCSETC, &arg1);
 #endif
 #ifdef ATTUNIX
+#ifdef HAVE_TERMIOS_H
+  (void) tcsetattr (fd, TCSANOW, &save_term);
+#else
   ioctl(fd, TCSETAW, &save_term);
+#endif
 #endif
   cbreak_crmod = 1;
   return;
@@ -1212,8 +1192,13 @@ static void init_io()
 #endif
 
 #ifdef ATTUNIX
+#ifdef HAVE_TERMIOS_H
+  (void) tcgetattr (fd, &arg);
+  (void) tcgetattr (fd, &save_term);
+#else
   ioctl(fd, TCGETA, &arg);
   ioctl(fd, TCGETA, &save_term);
+#endif
   erase_char = save_term.c_cc [VERASE];
 #endif
 

@@ -16,7 +16,6 @@ import java.awt.image.BufferedImage;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
@@ -37,10 +36,12 @@ public class ScilabCanvasBridge {
 	/**
 	 * Creates a Scilab Canvas
 	 * @param figureIndex index of the displayed figure
+	 * @param antialiasingQuality Specify the number of pass to use for antialiasing.
+     *                            If its value is 0, then antialiasing is disable.
 	 * @return the created canvas
 	 */
-	public static SimpleCanvas createCanvas(int figureIndex) {
-		return SwingScilabCanvas.createCanvas(figureIndex);
+	public static SimpleCanvas createCanvas(int figureIndex, int antialiasingQuality) {
+		return SwingScilabCanvas.createCanvas(figureIndex, antialiasingQuality);
 	}
 
 	/**

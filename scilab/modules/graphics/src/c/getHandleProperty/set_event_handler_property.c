@@ -40,7 +40,7 @@ int set_event_handler_property( sciPointObj * pobj, size_t stackPointer, int val
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetEventHandler( pobj, getStringFromStack( stackPointer ) ) ;
+  return sciSetNoRedrawStatus((SetPropertyStatus) sciSetEventHandler( pobj, getStringFromStack( stackPointer ) )) ;
 
 }
 /*------------------------------------------------------------------------*/

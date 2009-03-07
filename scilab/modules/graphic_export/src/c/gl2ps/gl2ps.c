@@ -5034,6 +5034,59 @@ static void gl2psPrintSVGPixmap(float x, float y, GL2PSimage *pixmap)
 #endif
 }
 
+static BOOL gl2psIsPSFontContainingOption(const char * fontName, const char * requestedOption)
+{
+	/* Return true if the font described by its */
+	/* Postscript name has the specified option. */
+	/* A Postscript font is made as following */
+	/* <fontFamily>-<option1><option2> */
+	/* <fontFamily> name of the font family */
+	/* <optionI> Bold, Italic or Oblique */
+	/* So the requested option must be either "Bold", "Italic" or "Oblique" */
+
+	/* Search for the beginning of options */
+	char * optionString = strchr(fontName, '-');
+	if (optionString != NULL)
+	{
+		/* Some options are defined. */
+		/* Check if the one we are looking for is there .*/
+		return (strstr(optionString, requestedOption) != NULL);
+	}
+	return FALSE;
+}
+
+static BOOL gl2psIsBoldPSFont(const char * fontName)
+{
+	return gl2psIsPSFontContainingOption(fontName, "Bold");
+}
+
+static BOOL gl2psIsItalicPSFont(const char * fontName)
+{
+	return gl2psIsPSFontContainingOption(fontName, "Italic");
+}
+
+static BOOL gl2psIsObliquePSFont(const char * fontName)
+{
+	return gl2psIsPSFontContainingOption(fontName, "Oblique");
+}
+
+
+static int gl2psGetPSFontFamilyNameLength(const char * fontName)
+{
+	return (int) strcspn(fontName, "-");
+}
+
+static int gl2psGetPSFontFamilyName(const char * fontName, char * familyName)
+{
+	/* Extract the family name of a font from its PS name */
+	int familyNameLength = gl2psGetPSFontFamilyNameLength(fontName);
+	strncpy(familyName, fontName, familyNameLength);
+	/* strncpy doesn't add the null terminating character */
+	familyName[familyNameLength] = 0;
+	return familyNameLength;
+}
+
+
 static void gl2psPrintSVGPrimitive(void *data)
 {
   GL2PSprimitive *prim;
@@ -5104,13 +5157,31 @@ static void gl2psPrintSVGPrimitive(void *data)
     gl2psPrintSVGPixmap(xyz[0][0], xyz[0][1], prim->data.image);
     break;
   case GL2PS_TEXT :
-    gl2psSVGGetColorString(prim->verts[0].rgba, col);
-    gl2psPrintf("<text fill=\"%s\" x=\"%g\" y=\"%g\" "
-                "font-size=\"%d\" font-family=\"%s\">%s</text>\n",
-                col, xyz[0][0], xyz[0][1],
-                prim->data.text->fontsize,
-                prim->data.text->fontname,
-                prim->data.text->str);
+		{
+			char * fontName = prim->data.text->fontname; /* Postscript font name */
+			char * fontFamily = NULL; /* Family of the font */
+			
+			/* Get font options */
+			BOOL isItalicFont = gl2psIsItalicPSFont(fontName);
+			BOOL isObliqueFont = gl2psIsObliquePSFont(fontName);
+			BOOL isBoldFont = gl2psIsBoldPSFont(fontName);
+
+			/* Get font family */
+			fontFamily = gl2psMalloc((gl2psGetPSFontFamilyNameLength(fontName) + 1) * sizeof(char));
+			gl2psGetPSFontFamilyName(fontName, fontFamily);
+			
+			gl2psSVGGetColorString(prim->verts[0].rgba, col);
+			gl2psPrintf("<text fill=\"%s\" x=\"%g\" y=\"%g\" "
+					        "font-size=\"%d\" font-family=\"%s\" "
+				          "font-style=\"%s\" font-weight=\"%s\">%s</text>\n",
+						      col, xyz[0][0], xyz[0][1],
+							    prim->data.text->fontsize,
+								  fontName,
+									(isItalicFont ? "italic" : (isObliqueFont ? "oblique" : "normal")),
+									(isBoldFont ? "bold" : "normal"),
+									prim->data.text->str);
+			gl2psFree(fontFamily);
+		}
     break;
   case GL2PS_SPECIAL :
     /* alignment contains the format for which the special output text

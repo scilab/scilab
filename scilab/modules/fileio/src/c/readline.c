@@ -2,21 +2,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * ...
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
-/* LineRead procedure reads lines in ascii files coming from Unix Dos or Mac 
+/* LineRead procedure reads lines in ascii files coming from Unix Dos or Mac
  * End of line may be \Cr\lf (Dos) \Lf (Unix) \Cr (Mac)
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "readline.h"
 #include "filesmanagement.h"
 #include "charEncoding.h"
@@ -25,53 +26,54 @@
 #define SEEK_SET 0
 #define SEEK_CUR 1
 #define SEEK_END 2
-#endif 
+#endif
 /*--------------------------------------------------------------------------*/
 #define CR 13
 #define LF 10
 /*--------------------------------------------------------------------------*/
 /**
-* @params cnt : number of charaters returned in buf 
-* @params nr : number of characters read 
+* @params cnt : number of charaters returned in buf
+* @params nr : number of characters read
 */
 int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
 {
   int c,count,info;
   long int offset;
-  char *tmpChar;
+  char *tmpChar = NULL;
+	char szTemp[bsiz];
   count=0;
   *nr=0;
-  
-  while (1) 
+
+  while (1)
   {
     c=fgetc(fd);
     *nr=*nr+1;
-    if (c==LF) 
-	{ 
+    if (c==LF)
+	{
 		/* LF reached first: unix file */
 		buf[count++]=(char)0;
 		info=1; /* EOL reached */
 		break;
 	}
-    else if (c==CR) 
+    else if (c==CR)
 	{
 		/* CR reached first: Dos or Mac file */
 		c=fgetc(fd);
 		*nr=*nr+1;
-		if (c==EOF) 
+		if (c==EOF)
 		{
 			buf[count++]=(char)0;
 			info=0;/* EOF reached after an EOL */
 			break;
 		}
-		else if (c==LF) 
-		{ 
+		else if (c==LF)
+		{
 			/* LF after CR : Dos file */
 			buf[count++]=(char)0;
 			info=1; /* EOL reached */
 			break;
 		}
-		else if (c!=LF) 
+		else if (c!=LF)
 		{
 			/* Mac file */
 			offset=-1;
@@ -82,20 +84,20 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
 			break;
 		}
     }
-    else if (c==EOF) 
+    else if (c==EOF)
 	{
 		/* EOF reached before any EOL*/
 		buf[count++]=(char)0;
-		if (count==1) 
+		if (count==1)
 			info=-1; /* EOF reached */
 		else
 			info=3;
 		break;
     }
-    else 
+    else
 	{
       buf[count++]=(char)c;
-      if (count==n-1) 
+      if (count==n-1)
 	  {
 		buf[count++]=(char)0;
 		info=2; /* buffer full */
@@ -105,12 +107,16 @@ int LineRead(FILE *fd,char buf[],int n,int *cnt,int *nr)
   }
   *cnt=count;
   /** Convert from system locale encoding to UTF encoding */
-  tmpChar = localeToUTF(buf);
+  //tmpChar = localeToUTFOrig(buf);
+/*
+  tmpChar = localeToUTF(buf, szTemp);
   *cnt = (int)strlen(tmpChar)+1;
   strcpy(buf,tmpChar);
+*/
+  *cnt = (int)strlen(buf)+1;
   return(info);
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 void C2F(readnextline)(int *fd,char buf[],int *n,int *count,int *nr,int *ierr)
 {
 	FILE *fa= GetFileOpenedInScilab(*fd);

@@ -297,6 +297,7 @@ typedef struct
   int numColors ;
   BOOL autoResizeMode;
 	char * infoMessage; /**< String displayed in the info bar of the graphic window */
+	int antialiasingQuality;
 }
 FigureModelData ;
 
@@ -400,12 +401,11 @@ sciText;
 
 
 
-/**@name sciLegendPlace
- * Enumeration used to specify the title place 
+/**
+ * Enumeration used to specify the title place relative to parent subwindow
  */
 typedef enum
   {
-    /** */
     /** */
     SCI_LEGEND_IN_UPPER_LEFT = 1,
     /** */
@@ -416,6 +416,8 @@ typedef enum
     SCI_LEGEND_IN_LOWER_RIGHT = 4,
     /** */
     SCI_LEGEND_BY_COORDINATES = 5,
+		/** */
+		SCI_LEGEND_POSITION_UNSPECIFIED = 0,
     /** */
     SCI_LEGEND_OUT_UPPER_LEFT = -1,
     /** */
@@ -691,7 +693,9 @@ typedef struct
   double ZRect[6]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
 
   char logflags[3]; /* Z has a logflag now F.Leray 03.11.04 */
-  int grid[3];
+  int grid[3]; /* Specify color of grid for each axis. If -1, no grid is drawn */
+	BOOL gridFront; /* If TRUE grid is drawn in front, if FALSE it is drawn behind other objects */
+
   /*   BOOL isaxes; */
 
   BOOL is3d;

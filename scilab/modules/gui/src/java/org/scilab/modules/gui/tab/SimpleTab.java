@@ -29,6 +29,7 @@ import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -195,7 +196,22 @@ public interface SimpleTab {
 	 * @param member canvas to remove
 	 */
 	void removeMember(Canvas member);
+	
+	
+	/**
+	 * We want to be able to add directly a PopupMenu in a Tab.
+	 * @param member the PopupMenu to add
+	 * @return the position of the PopupMenu in the member list.
+	 */
+	int addMember(Tree member);
 
+	
+	/**
+	 * We want to be able to remove directly a Tree Overview from a Tab.
+	 * @param member Tree OverView to remove
+	 */
+	void removeMember(Tree member);
+	
 	/**
 	 * Gets the size of an Tab (width and height)
 	 * @return the size of the Tab

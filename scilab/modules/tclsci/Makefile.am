@@ -37,6 +37,14 @@ sci_gateway/c/sci_TCL_GetVar.c \
 sci_gateway/c/sci_TCL_ExistArray.c \
 sci_gateway/c/sci_TCL_UpVar.c
 
+else
+
+TCLSCI_C_SOURCES = src/notclsci/notclsci.c
+
+GATEWAY_C_SOURCES =
+
+endif
+
 pkglib_LTLIBRARIES = libscitclsci.la
 
 libscitclsci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
@@ -49,6 +57,7 @@ libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
 			$(TK_INC_PATH) \
 			-I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes
 
@@ -251,5 +260,4 @@ includes/GlobalTclInterp.h \
 includes/withtk.h
 
 include $(top_srcdir)/Makefile.incl.am
-endif
 

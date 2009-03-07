@@ -78,8 +78,7 @@
 
         <listitem>
           <para>This field is the character string vector which contains the
-          legends catenated in a single string with "<literal>@</literal>" as
-          legend separator.</para>
+          legends for each annotated objects.</para>
         </listitem>
       </varlistentry>
 
@@ -118,12 +117,12 @@
         <term>fractional_font:</term>
 
         <listitem>
-          <para>This property specify whether text might be displayed using
+          <para>This property specify whether text is displayed using
           fractional font sizes. Its value must be either
-          <literal>"on"</literal> or <literal>"off"</literal>. If
-          <literal>"on"</literal> the floating point value of
-          <literal>font_size</literal> is used for display. If
-          <literal>"off"</literal> only the integer part is used.</para>
+          <literal>"on"</literal> or <literal>"off"</literal>. If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
+		  is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
+		  and the font is not smoothed.
+		  </para>
         </listitem>
       </varlistentry>
 
@@ -330,13 +329,13 @@ x=[0:0.1:2*%pi]';
 plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
   [1,2,3],leg="L1@L2@L3")
 a=get("current_axes");
-l=a.children.children(1)
+l=a.children(2);
 l.links
-l.text="sin(x)@sin(2*x)@sin(3*x)";
+l.text=["sin(x)";"sin(2*x)";"sin(3*x)"];
 l.visible="off"; // invisible
 l.font_size = 2;
 l.font_style = 5;
-l.visible='off';
+l.visible='on';
 
     
 

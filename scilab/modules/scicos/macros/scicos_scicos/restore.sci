@@ -56,7 +56,7 @@ function %zoom = restore(gh_curwin)
     //** Bruno/Simone 
     //** the Devil is hidden in the follwing line
     //** "haltscicos" is just a Scilab dummy function that does
-    //** strictly nothing ;) 
+    //** almost nothing ;) 
     addmenu(curwin,'Stop',list(2,'haltscicos')); 
     //** 
     unsetmenu(curwin,'Stop')

@@ -55,12 +55,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libscipolynomials_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/polynomials
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -99,8 +97,7 @@ libscipolynomials_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1) $(am__append_2)
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
 	recbez.lo sfact1.lo dmptld.lo dpodiv.lo dmptra.lo dmpins.lo \
@@ -305,6 +302,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -475,14 +473,7 @@ libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
-libscipolynomials_la_LIBADD =  \
-	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1) $(am__append_2)
+libscipolynomials_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 #### Target ######
 modulename = polynomials
@@ -514,7 +505,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1225,7 +1216,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -1290,12 +1281,13 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscipolynomials_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscipolynomials_la_etcDATA \
 	install-libscipolynomials_la_includeHEADERS \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA install-man \
@@ -1476,6 +1468,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

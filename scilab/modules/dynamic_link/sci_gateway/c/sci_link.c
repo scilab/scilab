@@ -24,7 +24,7 @@
 static int linkNoRhs(void);
 static int linkOneRhsShow(void);
 /*-----------------------------------------------------------------------------------*/
-int C2F(sci_link)(char *fname,unsigned long fname_len)
+int sci_link(char *fname,unsigned long fname_len)
 {
 	BOOL fflag = FALSE;
 	int idsharedlibrary = -1;
@@ -172,7 +172,6 @@ static int linkNoRhs(void)
 
 	if ( (FunctionsList) && (sizeFunctionsList > 0) )
 	{
-		int i = 0;
 		m1 = sizeFunctionsList;
 		n1 = 1;
 		CreateVarFromPtr(Rhs+1, MATRIX_OF_STRING_DATATYPE, &n1, &m1, FunctionsList);

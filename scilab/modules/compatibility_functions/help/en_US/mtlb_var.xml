@@ -75,7 +75,7 @@
     <title>Description</title>
     <para>This function computes  the  variance  of  the values of  a  vector or matrix x.
 It provides the same service as Octave and Matlab.
-It differs from Scilab's variance primitive 
+It differs from Scilab's variance primitive: </para>
           <itemizedlist>
             <listitem>
           <para>mtlb_var returns a real (i.e. with a zero imaginary part) variance, 
@@ -91,7 +91,6 @@ It differs from Scilab's variance primitive
 	  on all dimension at once.</para>
             </listitem>
           </itemizedlist>
- </para>
   </refsection>
   <refsection>
     <title>Examples</title>

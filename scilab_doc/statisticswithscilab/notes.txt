@@ -1,0 +1,286 @@
+* Faire le lien entre erf et cdfnor
+
+Voici l'intégralité des fonctionnalités à présenter
+
+XLV. Special Functions
+
+    beta : beta function (modules\special_functions\sci_gateway\c\sci_beta.c : switch to dgammacody by W. J. Cody and L. Stoltz and to betaln from DCDFLIB)
+    calerf : computes error functions (modules\elementary_functions\src/fortran from Takuya OOURA)
+    erf : The error function (modules\elementary_functions\macros\erf.sci with call to calerf)
+    erfc : The complementary error function (modules\elementary_functions\macros\erfc.sci with call to calerf)
+    erfcx : scaled complementary error function (modules\elementary_functions\macros\erfcx.sci with call to calerf)
+    erfinv : The inverse of the error function (modules\special_functions\macros\erfinv.sci)
+    gamma : The gamma function (modules\special_functions\sci_gateway\fortran\sci_f_gamma.f based on dgammacody by W. J. Cody and L. Stoltz)
+    gammaln : The logarithm of gamma function (modules\elementary_functions\src\fortran\dlgama.f by W. J. Cody and L. Stoltz)
+XLVII. Statistics
+
+    cdfbet ? cumulative distribution function Beta distribution
+    cdfbin ? cumulative distribution function Binomial distribution
+    cdfchi ? cumulative distribution function chi-square distribution
+    cdfchn ? cumulative distribution function non-central chi-square distribution
+    cdff ? cumulative distribution function F distribution
+    cdffnc ? cumulative distribution function non-central f-distribution
+    cdfgam ? cumulative distribution function gamma distribution
+    cdfnbn ? cumulative distribution function negative binomial distribution
+    cdfnor ? cumulative distribution function normal distribution
+    cdfpoi ? cumulative distribution function poisson distribution
+    cdft ? cumulative distribution function Student's T distribution
+    center ? center
+    wcenter ? center and weight
+    cmoment ? central moments of all orders
+    correl ? correlation of two variables
+    covar ? covariance of two variables
+    ftest ? Fischer ratio
+    ftuneq ? Fischer ratio for samples of unequal size.
+    geomean ? geometric mean
+    harmean ? harmonic mean
+    iqr ? interquartile range
+    labostat ? Statistical toolbox for Scilab
+    mad ? mean absolute deviation
+    mean ? mean (row mean, column mean) of vector/matrix entries
+    meanf ? weighted mean of a vector or a matrix
+    median ? median (row median, column median,...) of vector/matrix/array entries
+    moment ? non central moments of all orders
+    msd ? mean squared deviation
+    mvvacov ? computes variance-covariance matrix
+    nancumsum ? Thos function returns the cumulative sum of the values of a matrix
+    nand2mean ? difference of the means of two independent samples
+    nanmax ? max (ignoring Nan's)
+    nanmean ? mean (ignoring Nan's)
+    nanmeanf ? mean (ignoring Nan's) with a given frequency.
+    nanmedian ? median of the values of a numerical vector or matrix
+    nanmin ? min (ignoring Nan's)
+    nanstdev ? standard deviation (ignoring the NANs).
+    nansum ? Sum of values ignoring NAN's
+    nfreq ? frequence of the values in a vector or matrix
+    pca ? Computes principal components analysis with standardized variables
+    perctl ? computation of percentils
+    princomp ? Principal components analysis
+    quart ? computation of quartiles
+    regress ? regression coefficients of two variables
+    sample ? Sampling with replacement
+    samplef ? sample with replacement from a population and frequences of his values.
+    samwr ? Sampling without replacement
+    show_pca ? Visualization of principal components analysis results
+    st_deviation ? standard deviation (row or column-wise) of vector/matrix entries ? standard deviation (row or column-wise) of vector/matrix entries
+    stdevf ? standard deviation
+    strange ? range
+    tabul ? frequency of values of a matrix or vector
+    thrownan ? eliminates nan values
+    trimmean ? trimmed mean of a vector or a matrix
+    variance ? variance of the values of a vector or matrix
+    variancef ? standard deviation of the values of a vector or matrix
+
+Miscelanous
+
+    grand ? Random number generator(s) (modules\randlib\sci_gateway\c\sci_grand.c based on several random number generators)
+    prbs_a ? pseudo random binary sequences generation (modules\cacsd\macros\prbs_a.sci based on rand)
+    rand ? random number generator (modules\elementary_functions\src\fortran\urand.f BY MICHAEL A. MALCOLM and CLEVE B. MOLER)
+    sprand ? sparse random matrix
+    randpencil ? random pencil
+
+***************************************************
+
+C   http://www.kurims.kyoto-u.ac.jp/~ooura/index.html
+C   Takuya OOURA, Research Institute for Mathematical Sciences 
+C   Kyoto University, Kyoto 606-01 Japan
+C   e-mail : ooura@kurims.kyoto-u.ac.jp
+
+Directory : scilab\modules\elementary_functions\src\fortran
+Language : Fortran
+Download : http://www.kurims.kyoto-u.ac.jp/~ooura/index.html
+Author : Takuya OOURA
+
+***************************************************
+DCDFLIB
+Language : Fortran
+Directory : scilab\modules\statistics\src\dcdflib
+Download : http://www.netlib.org/random/
+Author : Barry Brown, James Lovato, Kathy Russell
+
+Barry Brown, James Lovato, Kathy Russell,
+Department of Biomathematics,
+University of Texas,
+Houston, Texas. 
+
+                                    DCDFLIB
+
+            Library of Fortran Routines for Cumulative Distribution
+                 Functions, Inverses, and Other Parameters
+
+                                (February, 1994)
+
+                          SUMMARY OF DCDFLIB
+
+This  library  contains routines  to compute  cumulative  distribution
+functions, inverses, and    parameters  of the  distribution  for  the
+following set of statistical distributions:
+
+    (1) Beta
+    (2) Binomial
+    (3) Chi-square
+    (4) Noncentral Chi-square
+    (5) F
+    (6) Noncentral F
+    (7) Gamma
+    (8) Negative Binomial
+    (9) Normal
+    (10) Poisson
+    (11) Student's t
+
+Given values of all but one parameter of a distribution, the other is
+computed.  These calculations are done with  FORTRAN Double Precision 
+variables.
+
+
+***************************************************
+
+randlib-1.3
+	
+C library routines for Random Number Generation
+Description: 	Randlib is a large library for random variate generation from many univariate and multivariate distributions. The bottom level routines provide 32 virtual random number generators. Each generator can provide 1,048,576 blocks of numbers, and each block is of length 1,073,741,824. Any generator can be set to the beginning or end of the current block or to its starting value.
+
+
+Directory : D:\Baudin\ProjetScilab\git\scilab\scilab\modules\randlib\src\fortran
+Language : Fortran
+Download : ftp://odin.mda.uth.tmc.edu/pub/source/ (unavailable at the time of the writing of this report)
+Author: 	Barry Brown, James Lovato, Kathy Russell, John Venier
+
+****************************************************
+Directory : D:\Baudin\ProjetScilab\git\scilab\scilab\modules\randlib\src\c
+Language : C
+Download : "My offer of RNG's for C was an invitation to dance"
+http://groups.google.com/group/sci.crypt/msg/eb4ddde782b17051?pli=1
+Author : G. Marsaglia
+
+Kiss
+
+ *      the kiss generator of G. Marsaglia
+ *      generate random integers (uint) in [0, 2^32 - 1]
+ *      the state is given by 4 integers (z, w, jsr, jcong)
+ *
+ *   NOTES
+ *      The code was given by G. Marsaglia at the end of  a
+ *      thread  concerning  RNG  in C in several newsgroups
+ *      (whom sci.math.num-analysis) "My offer of RNG's for
+ *      C  was an invitation to dance..."
+ *
+ *      Slight modifications by Bruno Pincon for inclusion in
+ *      Scilab (added set/get state routines)
+ *
+ *      kiss is made of combinaison of severals  others but  
+ *      they  are not interfaced at the scilab level.
+ *
+ *      Need that it is assumed that the 
+ *         unsigned long arithmetic is the classic 32 bits 
+ *         unsigned arithmetic modulo 2^32 (ie all is exact
+ *         modulo 2^32) 
+****************************************************
+clcg2
+Directory : D:\Baudin\ProjetScilab\git\scilab\scilab\modules\randlib\src\c
+Language : C
+Download : ?
+Author : Luc Devroye
+
+ *  PURPOSE
+ *     uniform random number generator developed by Pierre 
+ *     Lecuyer based on a clever and tested combination of 
+ *     two linear congruential sequences
+ *
+ *        s1 <- a1*s1 mod m1 ,  a1 = 40014, m1 = 2147483563
+ *        s2 <- a2*s2 mod m2 ,  a2 = 40692, m2 = 2147483399
+ *
+ *        output <-  s1-s2 mod (m1 - 1)  
+ *
+ *        so output is in [0, 2147483561], period about 2.3 10^18
+ *
+ *        The state is given by (s1, s2). In case of a user
+ *        modification of the state we must have :
+ * 
+ *              s1 in [1, m1-1]
+ *              s2 in [1, m2-1]
+ *
+ *  ORIGIN
+ *     The basic code is provided at the Luc Devroye 's home page.
+ *     Modifications by Bruno Pincon (in particular added routines 
+ *     to set and get the state, and modify the generator to get 
+ *     exactly  s1-s2 mod (m1 - 1) for "coherence" with the others 
+ *     generators : provides numbers in [0, MaxRngInt(generator)] 
+ *     (see NOTE some lines after)
+
+@article{Ecuyer1988,
+ author = {L'Ecuyer,, P.},
+ title = {Efficient and portable combined random number generators},
+ journal = {Commun. ACM},
+ volume = {31},
+ number = {6},
+ year = {1988},
+ issn = {0001-0782},
+ pages = {742--751},
+ doi = {http://doi.acm.org/10.1145/62959.62969},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ }
+
+****************************************************
+clcg4
+Directory : D:\Baudin\ProjetScilab\git\scilab\scilab\modules\randlib\src\c
+Language : C
+Download : http://www.iro.umontreal.ca/~lecuyer/myftp/papers/
+Author : L'Ecuyer and Andres
+
+ *     clcg4 generator stuff
+ *
+ *  AUTHORS
+ *     The following code is from L'Ecuyer and Andres "A Randow Number based
+ *     on the combinaison of Four LCG" (distributed at the Pierre L'Ecuyer
+ *     home page with a corresponding paper).
+****************************************************
+FSULTRA
+Directory : D:\Baudin\ProjetScilab\git\scilab\scilab\modules\randlib\src\c
+Download : http://archives.math.utk.edu/software/msdos/miscellaneous/fsultra1/
+Language : C
+Authors : Arif Zaman and George Marsaglia
+
+FSU - ULTRA	The greatest random number generator that ever was
+		or ever will be.  Way beyond Super-Duper.
+		(Just kidding, but we think its a good one.)
+
+Authors:	Arif Zaman (arif@stat.fsu.edu) and
+		George Marsaglia (geo@stat.fsu.edu).
+
+Date:		27 May 1992
+
+Version:	1.05
+
+Copyright:	To obtain permission to incorporate this program into
+		any commercial product, please contact the authors at
+		the e-mail address given above or at
+
+		Department of Statistics and
+		Supercomputer Computations Research Institute
+		Florida State University
+		Tallahassee, FL 32306.
+
+See Also:	README		for a brief description
+		ULTRA.DOC	for a detailed description
+
+
+   File: ULTRA.C
+
+   This is the ULTRA random number generator written entirely in C.
+
+   This may serve as a model for an assembler version of this routine.
+   The programmer should avoid simply duplicating and instead use the
+   usual assembler features to increase the speed of this routine.
+
+   Especially the subroutine SWB should be replaced by the one
+   machine instruction (usually called subtract-with-borrow) that
+   is available in almost every hardware.
+
+   For people not familiar with 8086 assembler, it may help to
+   consult this when reading the assembler code. This program should
+   be a dropin replacement for the assembler versions, but is about
+   half as fast.
+
+

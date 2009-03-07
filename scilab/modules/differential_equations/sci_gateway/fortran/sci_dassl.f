@@ -129,12 +129,15 @@ c
       else
          isres=gettype(kjac)
          if(isres.eq.15) then
-c     .     info or jac ? get list size to decide
+c     .     info or jac ? get list first element type to decide
             il6=iadr(lstk(kjac))
             if (istk(il6).lt.0)  il6=istk(il6+1)
-            if (istk(il6+1).eq.2) then
+            nelt=istk(il6+1)
+            l61=sadr(il6+3+nelt)
+            if (abs(istk(iadr(l61))).eq.11.or.
+     $           abs(istk(iadr(l61))).eq.13) then
 c     .        jac
-               isres=13
+               isres=istk(iadr(l61))
             endif
          endif
             

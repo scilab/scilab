@@ -222,10 +222,7 @@ static BOOL AppendModules(char *xmlfilename)
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 			xmlFreeDoc (doc);
-			/*
-			* Cleanup function for the XML library.
-			*/
-			xmlCleanupParser();
+
 		}
 		else
 		{

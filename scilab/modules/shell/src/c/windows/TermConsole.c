@@ -13,6 +13,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <ctype.h>
+#include "stack-def.h"
 #include "TermConsole.h"
 #include "MALLOC.h"
 #include "TermCommand.h"
@@ -450,9 +451,10 @@ char *TerminalGetString(char *prompt)
 			}
 			else
 			{
+				char szTempUTF[bsiz];
 				char *line = getCurrentLine();
 				TerminalPutc('\n');
-				appendLineToScilabHistory(localeToUTF(line));
+				appendLineToScilabHistory(localeToUTF(line, szTempUTF));
 				return line;
 			}
 		}

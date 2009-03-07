@@ -11,12 +11,15 @@ src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
 src/c/GetCommandLine.c \
-src/c/others/mainscic.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
 src/c/TerminateShell.c 
+
+if IS_MACOSX
+SHELL_C_SOURCES += src/c/others/initMacOSXEnv.c
+endif
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \

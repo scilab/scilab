@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- ENGLISH IMPOSED -->
 //
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
@@ -16,6 +17,7 @@
 //
 // Define a fortran source code and compile it (fortran compiler required)
 //
+ilib_verbose(0);
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 'C     -------------------------------------------'
 'c (DLL Digital Visual Fortran)'
@@ -72,16 +74,8 @@ fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
 mputl(fortransource,TMPDIR+'/rosenf.f');
 // compile the C code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
-   Generate a loader file
-   Generate a Makefile
-   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy rosenf.o to TMPDIR
-   ilib_gen_Make: Modification of the Makefile in TMPDIR.
-   Running the Makefile
 // incremental linking
 linkid=link(libpath,'rosenf','f');
-Shared archive loaded.
-Link done.
 //
 // Define some constants
 //

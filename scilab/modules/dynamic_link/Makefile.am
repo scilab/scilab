@@ -6,7 +6,8 @@
 DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
 src/c/dynamic_link.c \
 src/c/dl_genErrorMessage.c \
-src/c/AddFunctionInTable.c
+src/c/AddFunctionInTable.c \
+src/c/ilib_verbose.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \
 sci_gateway/c/sci_getdynlibext.c \
@@ -14,13 +15,15 @@ sci_gateway/c/sci_addinter.c \
 sci_gateway/c/sci_call.c \
 sci_gateway/c/sci_link.c \
 sci_gateway/c/sci_ulink.c \
-sci_gateway/c/sci_c_link.c
+sci_gateway/c/sci_c_link.c \
+sci_gateway/c/sci_ilib_verbose.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f 
 
 libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/modules/output_stream/includes \
 -I$(top_srcdir)/modules/fileio/includes \
+-I$(top_srcdir)/modules/io/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
 -I$(srcdir)/src/c/ \
 -I$(srcdir)/includes/
@@ -57,7 +60,8 @@ libscidynamic_link_la_includedir=$(pkgincludedir)/dynamic_link
 libscidynamic_link_la_include_HEADERS = includes/AddFunctionInTable.h \
 includes/addinter.h \
 includes/dynamic_link.h \
-includes/gw_dynamic_link.h
+includes/gw_dynamic_link.h \
+includes/ilib_verbose.h 
 
 #### dynamic_link : compilation scripts #### 
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/

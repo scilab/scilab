@@ -44,4 +44,5 @@ public class CompletionJNI {
   public final static native String getPartLevel(String jarg1);
   public final static native String getFilePartLevel(String jarg1);
   public final static native String getCommonPart(String[] jarg1, int jarg2);
+  public final static native String completelineforjava(String jarg1, String jarg2, boolean jarg3);
 }

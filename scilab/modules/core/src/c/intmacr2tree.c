@@ -20,6 +20,7 @@
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 
 /* Table to store variable names */
 static char varnames[isizt][nlgh+1];
@@ -188,12 +189,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 	  Scierror(17,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), "macr2tree");
 
     /* Free memory */
-    FREE(name[0]);
-    name[0]=NULL;
-    FREE(name);
-    name=NULL;
-    FREE(data);
-
+	freeArrayOfString(name,1);
     return 0;
   }
 
@@ -211,10 +207,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 	  if (Err>0 || C2F(errgst).err1>0)
 	    {
 	      /* Free memory */
-	      FREE(name[0]);
-	      name[0]=NULL;
-	      FREE(name);
-	      name=NULL;
+		  freeArrayOfString(name,1);
 	      FREE(data);
 
 	      return 0;
@@ -240,10 +233,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 		  Scierror(999,_("%s: Out of code.\n"),"macr2tree");
 
 	      /* Free memory */
-	      FREE(name[0]);
-	      name[0]=NULL;
-	      FREE(name);
-	      name=NULL;
+		  freeArrayOfString(name,1);
 	      FREE(data);
 
 	      return 0;
@@ -256,10 +246,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
 
 
 	/* Free memory */
-	FREE(name[0]);
-	name[0]=NULL;
-	FREE(name);
-	name=NULL;
+	freeArrayOfString(name,1);
 	FREE(data);
 
 	return 0;
@@ -280,10 +267,7 @@ int C2F(macr2tree) (char *fname,unsigned long fname_len)
   C2F(mktlist)(&n_pgrm_tlist);
 
   /* Free memory */
-  FREE(name[0]);
-  name[0]=NULL;
-  FREE(name);
-  name=NULL;
+  freeArrayOfString(name,1);
   FREE(data);
 
   return 0;
@@ -347,7 +331,7 @@ static int CreateEOLList(void)
   /* Free memory */
   FREE(eol[0]);
   eol[0]=NULL;
-  FREE(eol);
+  //FREE(eol);
   eol=NULL;
 
   return 0;
@@ -600,7 +584,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
   /* Free memory */
   FREE(name[0]);
   name[0]=NULL;
-  FREE(name);
+  //FREE(name);
   name=NULL;
 
   return 0;
@@ -1386,9 +1370,9 @@ static int CreateFuncallTList(char *fromwhat,int *data,int *index2)
   VCopyObj("CreateFuncallTList",&orig,&dest,18L);
 
   /* Free memory */
-  FREE(funname[0]);
+ // FREE(funname[0]);
   funname[0]=NULL;
-  FREE(funname);
+//  FREE(funname);
   funname=NULL;
 
   return 0;
@@ -1708,17 +1692,17 @@ static int CreateEqualTList(char *fromwhat,int *data,int *index2)
     }
 
   /* Free memory */
-  FREE(name[0]);
+//  FREE(name[0]);
   name[0]=NULL;
-  FREE(name);
+//  FREE(name);
   name=NULL;
-  FREE(operator[0]);
+//  FREE(operator[0]);
   operator[0]=NULL;
-  FREE(operator);
+//  FREE(operator);
   operator=NULL;
-  FREE(endsymbol[0]);
+//  FREE(endsymbol[0]);
   endsymbol[0]=NULL;
-  FREE(endsymbol);
+//  FREE(endsymbol);
   endsymbol=0;
 
   return 0;
@@ -1757,7 +1741,7 @@ static int CreateCommentTList(int *data,int *index2)
   str2sci(&text,one,one);
   *index2 = *index2 + strlgth-1;
   /* Free memory */
-  FREE(text);
+//  FREE(text);
   text=NULL;
 
   C2F(mktlist)(&n_fun_tlist);

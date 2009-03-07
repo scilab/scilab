@@ -14,6 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3191
 //
 
+ilib_verbose(0);
+
 test_path = get_absolute_file_path('bug_3191.tst');
 
 currentpath = pwd();
@@ -33,15 +35,8 @@ chdir(TEST_DIR);
 files=['bug_3191.o'];
 ilib_build('libc_fun',['c_fun','c_intfun'],files,[]);
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
-exec loader.sce
-
-// enable message 
-warning(warning_mode);
+exec loader.sce;
 
 chdir(currentpath);
 

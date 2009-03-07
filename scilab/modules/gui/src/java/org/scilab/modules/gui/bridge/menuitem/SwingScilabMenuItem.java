@@ -220,6 +220,7 @@ public class SwingScilabMenuItem extends JMenuItem implements SimpleMenuItem {
 		/* (Des)Activate the callback */ 
 		if (callback != null) {
 			if (status) {
+				removeActionListener(callback); /* To be sure the callback is not added two times */
 				addActionListener(callback);
 			} else {
 				removeActionListener(callback);

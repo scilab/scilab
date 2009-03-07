@@ -27,7 +27,7 @@
 #define _fullpath(a,r,l)        realpath(r,a)
 #endif
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
+int sci_fullpath(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(1,1) ;
@@ -36,12 +36,13 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 	if (GetType(1) == sci_strings)
 	{
 		static int l1,n1,m1;
-		char *relPath=NULL;
+		char *relPath = NULL;
+		char szTemp[bsiz];
 		char fullpath[PATH_MAX*4];
 		
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
-		relPath = UTFToLocale(cstk(l1));
+		relPath = UTFToLocale(cstk(l1), szTemp);
 
 		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
 		{

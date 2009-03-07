@@ -1,85 +1,164 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mode">
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mode" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>mode</refname>
-    <refpurpose> choisit le mode d'exécution des scripts
-    et des fonctions  </refpurpose>
+
+    <refpurpose>choisit le mode d'exÃ©cution des scripts et des
+    fonctions</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>mode(k)
 k=mode()</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Description</title>
-    <para>
-      Utilisé <literal>uniquement</literal> dans un script ou une fonction,
-      <literal>mode(k)</literal> permet de choisir le mode d'affichage utilisé
-      pendant l'exécution, suivant la valeur de <literal>k</literal> : 
-    </para>
+
+    <para>UtilisÃ© <literal><emphasis
+    role="bold">uniquement</emphasis></literal> dans un script ou une
+    fonction, <literal>mode(k)</literal> permet de choisir le mode d'affichage
+    utilisÃ© pendant l'exÃ©cution, suivant la valeur de
+    <literal>k</literal> :</para>
+
     <variablelist>
       <varlistentry>
-        <term>k=0</term>
+        <term>k = 0</term>
+
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées (voir
-	  <link linkend="semicolon">semicolon</link> ou <link linkend="comma">comma</link>). 
-	</para>
+          <para>les nouvelles valeurs des variables sont affichÃ©es (voir
+          <link linkend="semicolon">semicolon</link> ou <link
+          linkend="comma">comma</link>).</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>k=-1</term>
+        <term>k = -1</term>
+
         <listitem>
-          <para>l'exécution est silencieuse (rien n'est affiché : mode
-	  par défaut pour les fonctions) 
-	</para>
+          <para>l'exÃ©cution est silencieuse (rien n'est affichÃ© :
+          mode par dÃ©faut pour les fonctions)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>k=1 ou k=3</term>
+        <term>k = 2</term>
+
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées, chaque ligne de
-	  commande est affichée et précédée de l'invite de commande (mode
-	  par défaut pour les scripts lancés par "exec") 
-	</para>
+          <para>valeur par dÃ©faut retournÃ© au prompt de scilab.</para>
+          <para>veuillez noter que ce mode ne doit pas etre utilisÃ© au prompt mais seulement via un script ou une fonction.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>k=7</term>
+        <term>k = 1 ou k = 3</term>
+
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées, chaque ligne de
-	  commande est affichée et précédée de l'invite de
-	  commande. L'exécution est interrompue après chaque ligne et
-	  reprend après un appui sur la touche entrée/return.</para>
-          <para>Si la touche
-	  entrée/return et précédée du caractère "p", l'éxecution est suspendue
-	  (voir <link linkend="pause">pause</link>).	</para>
+          <para>les nouvelles valeurs des variables sont affichÃ©es,
+          chaque ligne de commande est affichÃ©e et
+          prÃ©cÃ©dÃ©e de l'invite de commande (mode par
+          dÃ©faut pour les scripts lancÃ©s par "exec")</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k = 4 ou k = 7</term>
+
+        <listitem>
+          <para>les nouvelles valeurs des variables sont affichÃ©es,
+          chaque ligne de commande est affichÃ©e et
+          prÃ©cÃ©dÃ©e de l'invite de commande. L'exÃ©cution
+          est interrompue aprÃ¨s chaque ligne et reprend aprÃ¨s un
+          appui sur la touche entrÃ©e/return.</para>
+
+          <para>Si la touche entrÃ©e/return et prÃ©cÃ©dÃ©e du
+          caractÃ¨re "p", l'Ã©xecution est suspendue (voir <link
+          linkend="pause">pause</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k > 7</term>
+
+        <listitem>
+          <para>mode dÃ©fini par l'utilisateur. Si vous dÃ©finissez
+          votre propre mode, il est recommandÃ© d'utiliser des valeurs
+          > 100.</para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para>
-      L'affichage est supprimé dans les fonctions compilées (voir getf ou
-      comp). Par défaut les fonctions Scilab sont éxécutées en mode silencieux ("-1"). 
 
-    </para>
+    <para>L'affichage est supprimÃ© dans les fonctions compilÃ©es
+    (voir getf ou comp). Par dÃ©faut les fonctions Scilab sont
+    Ã©xÃ©cutÃ©es en mode silencieux ("-1").</para>
+    
+    <para>Les fonctions incluses dans une librairie de fonctions scilab sont executÃ©s avec le mode "-1".</para>
   </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="exemple">
+// copier - coller ces lignes dans scilab
+
+function example_mode( level_mode )
+ mode(level_mode)
+ a = 3
+ disp(mode());
+endfunction
+
+mode(2)
+
+example_mode(0)
+example_mode(-1)
+example_mode(2)
+example_mode(1)
+example_mode(3)
+example_mode(7)
+
+mode(2)
+
+
+  </programlisting>
+  </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="exec">exec</link>
-      </member>
-      <member>
-        <link linkend="getf">getf</link>
-      </member>
-      <member>
-        <link linkend="semicolon">semicolon</link>
-      </member>
-      <member>
-        <link linkend="comma">comma</link>
-      </member>
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="execstr">execstr</link></member>
+
+      <member><link linkend="getf">getf</link></member>
+
+      <member><link linkend="semicolon">semicolon</link></member>
+
+      <member><link linkend="comma">comma</link></member>
     </simplelist>
   </refsection>
 </refentry>
+

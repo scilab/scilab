@@ -146,6 +146,8 @@ public class SwingScilabEditBox extends JTextField implements SimpleEditBox {
 		/* (Des)Activate the callback */ 
 		if (callback != null) {
 			if (status) {
+				removeFocusListener(focusListener); /* To be sure the callback is not added two times */
+				removeActionListener(actionListener); /* To be sure the callback is not added two times */
 				addFocusListener(focusListener);
 				addActionListener(actionListener);
 			} else {

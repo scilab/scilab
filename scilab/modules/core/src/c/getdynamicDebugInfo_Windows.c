@@ -14,6 +14,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
@@ -37,6 +38,8 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	char *str_info = NULL;
 	char **outputDynamicList=NULL;
 	char *fromGetenv = NULL;
+	char szTemp[bsiz];
+
 
 	MEMORYSTATUSEX statex;
 	statex.dwLength = sizeof (statex);
@@ -211,7 +214,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetNumberMonitors());
 	
 	#define PATH_var "Path"
-	fromGetenv = localeToUTF(getenv(PATH_var));
+	fromGetenv = localeToUTF(getenv(PATH_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) +1) );
@@ -220,7 +223,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 		
 	#define COMSPEC_var "ComSpec"
-	fromGetenv = localeToUTF(getenv(COMSPEC_var));
+	fromGetenv = localeToUTF(getenv(COMSPEC_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
@@ -229,7 +232,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 	
 	#define TMP_var "TMP"
-	fromGetenv = localeToUTF(getenv(TMP_var));
+	fromGetenv = localeToUTF(getenv(TMP_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TMP_var) + 1) );
@@ -238,7 +241,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 
 	#define TEMP_var "TEMP"
-	fromGetenv = localeToUTF(getenv(TEMP_var));
+	fromGetenv = localeToUTF(getenv(TEMP_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
@@ -247,7 +250,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	}
 
 	#define SCIHOME_var "SCIHOME"
-	fromGetenv = localeToUTF(getenv(SCIHOME_var));
+	fromGetenv = localeToUTF(getenv(SCIHOME_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );

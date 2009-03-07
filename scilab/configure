@@ -876,6 +876,8 @@ CXXDEPMODE
 am__fastdepCXX_TRUE
 am__fastdepCXX_FALSE
 cxx_present
+IS_MACOSX_TRUE
+IS_MACOSX_FALSE
 IS_HPUX_TRUE
 IS_HPUX_FALSE
 IS_SPARC_TRUE
@@ -960,11 +962,7 @@ GENERATE_LOCALIZATION_FILES_TRUE
 GENERATE_LOCALIZATION_FILES_FALSE
 FLIBS
 BLAS_LIBS
-USE_EMBEDDED_BLAS_TRUE
-USE_EMBEDDED_BLAS_FALSE
 LAPACK_LIBS
-USE_EMBEDDED_LAPACK_TRUE
-USE_EMBEDDED_LAPACK_FALSE
 UMFPACK_LIB
 UMFPACK_ENABLE
 UMFPACK_TRUE
@@ -994,6 +992,7 @@ FOP
 JEUCLID_CORE
 COMMONS_IO
 XMLGRAPHICS_COMMONS
+XML_APIS_EXT
 AVALON_FRAMEWORK
 DOCBOOK_ROOT
 BUILD_HELP_TRUE
@@ -1665,10 +1664,10 @@ Optional Packages:
   --with-ant=DIR          Use ant from DIR
   --without-scicos        Compile without Scicos
   --without-ocaml         Do not compile ocaml modules (modelica)
-  --with-fftw             Compile with the FFTW 3 library
+  --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
-  --with-pvm              Compile with PVM library
+  --without-pvm           Disable the interface to the PVM library
   --with-pvm-include=DIR  Set the path to the PVM headers
   --with-pvm-library=DIR  Set the path to the PVM library
   --with-libxml2=PREFIX   Set the path to your libxml2 installation
@@ -1676,7 +1675,7 @@ Optional Packages:
                           library
   --with-lapack-library=DIR
                           set the path to the LAPACK library
-  --with-umfpack          Compile with the UMFPACK library
+  --without-umfpack       Disable the interface to the UMFPACK library
   --with-umfpack-library=DIR
                           Set the path to the UMFPACK libraries
   --with-umfpack-include=DIR
@@ -2158,7 +2157,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:0:0
+SCILAB_LIBRARY_VERSION=5:1:0
 
 
 #shared library versioning
@@ -10485,7 +10484,18 @@ case "$host" in
 	 *-*-solaris*)
 	 SOLARIS=1
 	 ;;
+	*darwin*)
+	  MACOSX=1
+	;;
 esac
+
+ if test -n "$MACOSX"; then
+  IS_MACOSX_TRUE=
+  IS_MACOSX_FALSE='#'
+else
+  IS_MACOSX_TRUE='#'
+  IS_MACOSX_FALSE=
+fi
 
  if test -n "$HPUX"; then
   IS_HPUX_TRUE=
@@ -10537,11 +10547,11 @@ case "$CXX" in
 	 g++-* | g++ | ccache*g++ | ccache*g++-* )
    ## With GNU C++ Compiler
    if test "$enable_debug_CXX" = yes; then
-	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++ -Werror=format-security"
+	  CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -Wold-style-cast -g3 -Weffc++"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option"
+                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
 	  esac
    else
@@ -10551,18 +10561,25 @@ case "$CXX" in
    ;;
 esac
 
+#### 64 bits detection
+IS_64_BITS_CPU=false
+case "$host" in
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+                IS_64_BITS_CPU=true
+	;;
+esac
+
 ##########"
 # not useful under Linux (and was only defined here with scilab 4)
 #AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
 
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
-IS_64_BITS_CPU=false
 case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
    if test "$enable_debug_C" = yes; then
-	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3 -Werror=format-security"
+	  CFLAGS="$CFLAGS -pipe -Wformat -Wshadow -Wfloat-equal -Wpointer-arith -Wcast-align -Wmissing-prototypes -Wmissing-declarations  -Wstrict-prototypes  -Wmissing-noreturn -Wendif-labels -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wwrite-strings -Winline -Wredundant-decls -Wall -Wchar-subscripts -Wextra  -Wuninitialized -Wno-format-y2k -Wmissing-format-attribute -Wno-missing-field-initializers -Wno-strict-aliasing  -Wold-style-definition -g3"
 	  # used to be -O
 	  # -D_FORTIFY_SOURCE=2
 	  case "$host" in
@@ -10571,7 +10588,7 @@ case "$CC" in
 		if test "$enable_debugLinker" = yes; then
 	  	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
 		fi
-		  CFLAGS="$CFLAGS -fdiagnostics-show-option"
+		  CFLAGS="$CFLAGS -fdiagnostics-show-option -Werror=format-security"
 		  ;;
 		  esac
    else
@@ -10586,19 +10603,16 @@ case "$CC" in
 	;;
 	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
-		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
 		CFLAGS="$CFLAGS  -DNARROWPROTO"
 	;;
 	 ia64-*-linux-gnu )
 		CFLAGS="$CFLAGS -DNARROWPROTO"
-		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
 		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
-		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
@@ -10619,12 +10633,9 @@ case "$CC" in
 
 	;;
   *-*-darwin*)
-     if test "$enable_debug_C" = yes; then
-	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
-	 else
-	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
-	 fi
-     LDFLAGS="$LDFLAGS -L/sw/lib"
+	 CFLAGS=" $CFLAGS -I/sw/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
+	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -10681,7 +10692,7 @@ CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MA
 CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
-if test $IS_64_BITS_CPU = true; then
+if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
       { { echo "$as_me:$LINENO: error: 64 bits support needs a fortran 90 compiler (try --with-gfortran)." >&5
 echo "$as_me: error: 64 bits support needs a fortran 90 compiler (try --with-gfortran)." >&2;}
@@ -10689,12 +10700,12 @@ echo "$as_me: error: 64 bits support needs a fortran 90 compiler (try --with-gfo
    fi
 
 cat >>confdefs.h <<\_ACEOF
-#define IS_64_BITS_CPU
+#define USE_DYNAMIC_STACK
 _ACEOF
 
 fi
 
- if test "$IS_64_BITS_CPU" = true; then
+ if test $IS_64_BITS_CPU = true; then
   IS_64_BITS_CPU_TRUE=
   IS_64_BITS_CPU_FALSE='#'
 else
@@ -10702,7 +10713,7 @@ else
   IS_64_BITS_CPU_FALSE=
 fi
 
- if test "$IS_64_BITS_CPU" = true; then
+ if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
   USE_DYNAMIC_STACK_TRUE=
   USE_DYNAMIC_STACK_FALSE='#'
 else
@@ -11161,7 +11172,7 @@ echo "${ECHO_T}$ac_java_classpath" >&6; }
 echo $ECHO_N "checking to see if the java compiler works... $ECHO_C" >&6; }
 
     cat << \EOF > conftest.java
-// #line 11164 "configure"
+// #line 11175 "configure"
 
 
 public class conftest {
@@ -11211,7 +11222,7 @@ echo $ECHO_N "checking type of jvm... $ECHO_C" >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11214 "configure"
+// #line 11225 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -11259,7 +11270,7 @@ echo $ECHO_N "checking java API version... $ECHO_C" >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 11262 "configure"
+// #line 11273 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -11286,7 +11297,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 11289 "configure"
+// #line 11300 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -12565,7 +12576,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12568 "configure"
+// #line 12579 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12638,7 +12649,7 @@ echo $ECHO_N "checking looks... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12641 "configure"
+// #line 12652 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -12711,7 +12722,7 @@ echo $ECHO_N "checking looks2... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12714 "configure"
+// #line 12725 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -12787,7 +12798,7 @@ echo $ECHO_N "checking skinlf... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12790 "configure"
+// #line 12801 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -12860,7 +12871,7 @@ echo $ECHO_N "checking jogl... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12863 "configure"
+// #line 12874 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -12933,7 +12944,7 @@ echo $ECHO_N "checking jhall... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12936 "configure"
+// #line 12947 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13006,7 +13017,7 @@ echo $ECHO_N "checking javahelp2... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13009 "configure"
+// #line 13020 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13080,7 +13091,7 @@ echo $ECHO_N "checking gluegen-rt... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13083 "configure"
+// #line 13094 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13153,7 +13164,7 @@ echo $ECHO_N "checking jrosetta-API... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13156 "configure"
+// #line 13167 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13226,7 +13237,7 @@ echo $ECHO_N "checking jrosetta-engine... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13229 "configure"
+// #line 13240 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13299,7 +13310,7 @@ echo $ECHO_N "checking commons-logging... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13302 "configure"
+// #line 13313 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -15192,6 +15203,102 @@ _ACEOF
 fi
 
 
+### If isinf exists or not (used to not be the case under Solaris)
+### See bug #4164
+{ echo "$as_me:$LINENO: checking for isinf" >&5
+echo $ECHO_N "checking for isinf... $ECHO_C" >&6; }
+if test "${ac_cv_func_isinf+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+/* Define isinf to an innocuous variant, in case <limits.h> declares isinf.
+   For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+#define isinf innocuous_isinf
+
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char isinf (); below.
+    Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+    <limits.h> exists even on freestanding compilers.  */
+
+#ifdef __STDC__
+# include <limits.h>
+#else
+# include <assert.h>
+#endif
+
+#undef isinf
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char isinf ();
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined __stub_isinf || defined __stub___isinf
+choke me
+#endif
+
+int
+main ()
+{
+return isinf ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_func_isinf=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_func_isinf=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_func_isinf" >&5
+echo "${ECHO_T}$ac_cv_func_isinf" >&6; }
+if test $ac_cv_func_isinf = yes; then
+  :
+else
+
+
+cat >>confdefs.h <<\_ACEOF
+#define isinf(x) return !finite(x) && x==x;
+_ACEOF
+
+
+fi
+
+
 LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
@@ -16254,7 +16361,8 @@ done
 
 
 
-for ac_header in fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h
+
+for ac_header in fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h
 do
 as_ac_Header=`echo "ac_cv_header_$ac_header" | $as_tr_sh`
 if { as_var=$as_ac_Header; eval "test \"\${$as_var+set}\" = set"; }; then
@@ -17469,6 +17577,7 @@ _ACEOF
 
 
    save_LIBS="$LIBS"
+
    { echo "$as_me:$LINENO: checking for clock_gettime in -lrt" >&5
 echo $ECHO_N "checking for clock_gettime in -lrt... $ECHO_C" >&6; }
 if test "${ac_cv_lib_rt_clock_gettime+set}" = set; then
@@ -17531,11 +17640,15 @@ fi
 { echo "$as_me:$LINENO: result: $ac_cv_lib_rt_clock_gettime" >&5
 echo "${ECHO_T}$ac_cv_lib_rt_clock_gettime" >&6; }
 if test $ac_cv_lib_rt_clock_gettime = yes; then
-  RT_LIB="-lrt"
+  RT_LIB="-lrt";
+
+cat >>confdefs.h <<\_ACEOF
+#define HAVE_CLOCK_GETTIME 1
+_ACEOF
+
 else
-  { { echo "$as_me:$LINENO: error: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&5
-echo "$as_me: error: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&2;}
-   { (exit 1); exit 1; }; }
+  { echo "$as_me:$LINENO: WARNING: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&5
+echo "$as_me: WARNING: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&2;}
 
 fi
 
@@ -17821,7 +17934,7 @@ fi
 
 
 FFTW_ENABLE=no
-if test "$with_fftw" = yes; then
+if test "$with_fftw" != no; then
 
 
 
@@ -18292,7 +18405,7 @@ _ACEOF
 fi
 
 
- if test "$with_fftw" = yes; then
+ if test "$with_fftw" != no; then
   FFTW_TRUE=
   FFTW_FALSE='#'
 else
@@ -18327,7 +18440,7 @@ fi
 
 
 PVM_ENABLE=no
-if test "$with_pvm" = yes; then
+if test "$with_pvm" != no; then
 
 
    { echo "$as_me:$LINENO: checking for PVM" >&5
@@ -18403,8 +18516,6 @@ echo "$as_me: error: PVM is unable to recognise the architecture" >&2;}
    { (exit 1); exit 1; }; }
 	fi
 
-	PVMTARGET=scilex-lib
-	PVMTARGET_DISTCLEAN=distclean
 	PVMROOT="$SCIDIR/pvm3"
 	PVMROOTR='$SCI/pvm3'
 
@@ -18950,7 +19061,7 @@ fi
 fi
 
 
- if test "$with_pvm" = yes; then
+ if test "$with_pvm" != no; then
   PVM_TRUE=
   PVM_FALSE='#'
 else
@@ -19173,6 +19284,100 @@ if test "$enable_build_localization" != no; then
 
 
 
+for ac_func in bind_textdomain_codeset
+do
+as_ac_var=`echo "ac_cv_func_$ac_func" | $as_tr_sh`
+{ echo "$as_me:$LINENO: checking for $ac_func" >&5
+echo $ECHO_N "checking for $ac_func... $ECHO_C" >&6; }
+if { as_var=$as_ac_var; eval "test \"\${$as_var+set}\" = set"; }; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+/* Define $ac_func to an innocuous variant, in case <limits.h> declares $ac_func.
+   For example, HP-UX 11i <limits.h> declares gettimeofday.  */
+#define $ac_func innocuous_$ac_func
+
+/* System header to define __stub macros and hopefully few prototypes,
+    which can conflict with char $ac_func (); below.
+    Prefer <limits.h> to <assert.h> if __STDC__ is defined, since
+    <limits.h> exists even on freestanding compilers.  */
+
+#ifdef __STDC__
+# include <limits.h>
+#else
+# include <assert.h>
+#endif
+
+#undef $ac_func
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char $ac_func ();
+/* The GNU C library defines this for functions which it implements
+    to always fail with ENOSYS.  Some functions are actually named
+    something starting with __ and the normal name is an alias.  */
+#if defined __stub_$ac_func || defined __stub___$ac_func
+choke me
+#endif
+
+int
+main ()
+{
+return $ac_func ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  eval "$as_ac_var=yes"
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	eval "$as_ac_var=no"
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+fi
+ac_res=`eval echo '${'$as_ac_var'}'`
+	       { echo "$as_me:$LINENO: result: $ac_res" >&5
+echo "${ECHO_T}$ac_res" >&6; }
+if test `eval echo '${'$as_ac_var'}'` = yes; then
+  cat >>confdefs.h <<_ACEOF
+#define `echo "HAVE_$ac_func" | $as_tr_cpp` 1
+_ACEOF
+
+fi
+done
+
+
    # Extract the first word of "msgcat", so it can be a program name with args.
 set dummy msgcat; ac_word=$2
 { echo "$as_me:$LINENO: checking for $ac_word" >&5
@@ -19298,13 +19503,13 @@ fi
 
 
    if test x$MSGFMT = xno; then
-	  { { echo "$as_me:$LINENO: error: As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&5
-echo "$as_me: error: As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&2;}
+	  { { echo "$as_me:$LINENO: error: The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&5
+echo "$as_me: error: The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&2;}
    { (exit 1); exit 1; }; }
 	  fi
 	if test x$MSGCAT = xno; then
-	  { { echo "$as_me:$LINENO: error: As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&5
-echo "$as_me: error: As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&2;}
+	  { { echo "$as_me:$LINENO: error: The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&5
+echo "$as_me: error: The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&2;}
    { (exit 1); exit 1; }; }
 	fi
 	BUILD_LOCALIZATION_ENABLE=yes
@@ -19324,7 +19529,6 @@ fi
 { echo "$as_me:$LINENO: checking if BLAS, ATLAS or MKL is available" >&5
 echo $ECHO_N "checking if BLAS, ATLAS or MKL is available... $ECHO_C" >&6; }
 echo ""
-EMBEDDED_BLAS=0
 
 ac_ext=f
 ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
@@ -21540,26 +21744,16 @@ echo "${ECHO_T}$BLAS_TYPE found" >&6; }
         :
 else
         acx_blas_ok=no
-        { echo "$as_me:$LINENO: WARNING: Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded" >&5
-echo "$as_me: WARNING: Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded" >&2;}
-		EMBEDDED_BLAS=1
+        { { echo "$as_me:$LINENO: error: Impossible to find a BLAS compatible library (see BLAS or ATLAS)." >&5
+echo "$as_me: error: Impossible to find a BLAS compatible library (see BLAS or ATLAS)." >&2;}
+   { (exit 1); exit 1; }; }
 
 fi
-
- if test $EMBEDDED_BLAS = 1; then
-  USE_EMBEDDED_BLAS_TRUE=
-  USE_EMBEDDED_BLAS_FALSE='#'
-else
-  USE_EMBEDDED_BLAS_TRUE='#'
-  USE_EMBEDDED_BLAS_FALSE=
-fi
-
 
 
 { echo "$as_me:$LINENO: checking if LAPACK is available" >&5
 echo $ECHO_N "checking if LAPACK is available... $ECHO_C" >&6; }
 echo ""
-EMBEDDED_LAPACK=0
 
 
 acx_lapack_ok=no
@@ -21869,21 +22063,11 @@ echo "${ECHO_T}$LAPACK_TYPE found" >&6; }
         :
 else
         acx_lapack_ok=no
-        { echo "$as_me:$LINENO: WARNING: Impossible to find the LAPACK library. Use the version of lapack embedded" >&5
-echo "$as_me: WARNING: Impossible to find the LAPACK library. Use the version of lapack embedded" >&2;}
-		EMBEDDED_LAPACK=1
+        { { echo "$as_me:$LINENO: error: Impossible to find the LAPACK library." >&5
+echo "$as_me: error: Impossible to find the LAPACK library." >&2;}
+   { (exit 1); exit 1; }; }
 
 fi
-
- if test $EMBEDDED_LAPACK = 1; then
-  USE_EMBEDDED_LAPACK_TRUE=
-  USE_EMBEDDED_LAPACK_FALSE='#'
-else
-  USE_EMBEDDED_LAPACK_TRUE='#'
-  USE_EMBEDDED_LAPACK_FALSE=
-fi
-
-
 
 
 #################
@@ -21898,7 +22082,7 @@ fi
 
 
 UMFPACK_ENABLE=no
-if test "$with_umfpack" = yes; then
+if test "$with_umfpack" != no; then
 
 
 BLAS_LIBS="$BLAS_LIBS"
@@ -22848,7 +23032,7 @@ _ACEOF
 fi
 
 
- if test "$with_umfpack" = yes; then
+ if test "$with_umfpack" != no; then
   UMFPACK_TRUE=
   UMFPACK_FALSE='#'
 else
@@ -24902,7 +25086,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 echo $ECHO_N "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... $ECHO_C" >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24905 "configure"
+#line 25089 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -25436,7 +25620,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 echo $ECHO_N "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... $ECHO_C" >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 25439 "configure"
+#line 25623 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -26261,7 +26445,7 @@ echo $ECHO_N "checking batik-all... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26264 "configure"
+// #line 26448 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -26334,7 +26518,7 @@ echo $ECHO_N "checking batik... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26337 "configure"
+// #line 26521 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -26409,7 +26593,7 @@ echo $ECHO_N "checking saxon... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26412 "configure"
+// #line 26596 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -26482,7 +26666,7 @@ echo $ECHO_N "checking fop... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26485 "configure"
+// #line 26669 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -26555,7 +26739,7 @@ echo $ECHO_N "checking jeuclid-core... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26558 "configure"
+// #line 26742 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -26628,7 +26812,7 @@ echo $ECHO_N "checking commons-io... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26631 "configure"
+// #line 26815 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -26682,7 +26866,7 @@ echo "$as_me: error: Could not find or use the Java package/jar commons-io used 
 	COMMONS_IO=$PACKAGE_JAR_FILE
 
 
-	# XML graphics cmmon
+	# XML graphics common
 
 	{ echo "$as_me:$LINENO: checking xmlgraphics-commons" >&5
 echo $ECHO_N "checking xmlgraphics-commons... $ECHO_C" >&6; }
@@ -26701,7 +26885,7 @@ echo $ECHO_N "checking xmlgraphics-commons... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26704 "configure"
+// #line 26888 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -26755,6 +26939,79 @@ echo "$as_me: error: Could not find or use the Java package/jar xmlgraphics-comm
 	XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
 
 
+	# XML API EXT (conversion of a SVG => PNG)
+
+	{ echo "$as_me:$LINENO: checking xml-apis-ext" >&5
+echo $ECHO_N "checking xml-apis-ext... $ECHO_C" >&6; }
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/xml-apis-ext.jar" "$jardir/libxml-apis-ext.jar" "$jardir/libxml-apis-ext-java.jar" "$jardir/xml-apis-ext*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jar_resolved=`ls $jar 2>/dev/null`
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 26961 "configure"
+import org.w3c.dom.svg.SVGDocument;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >&5 2>&5) ; then
+        echo "yes" >&5
+
+            { echo "$as_me:$LINENO: result: $jar_resolved" >&5
+echo "${ECHO_T}$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+      done
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { echo "$as_me:$LINENO: result: no" >&5
+echo "${ECHO_T}no" >&6; }
+	  if test "" == "yes"; then
+ 		{ echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
+echo "$as_me: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
+	  else
+		  { { echo "$as_me:$LINENO: error: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
+echo "$as_me: error: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
+   { (exit 1); exit 1; }; }
+	  fi
+    fi
+
+	XML_APIS_EXT=$PACKAGE_JAR_FILE
+
+
 
 	# Avalon Framework (PDF)
 
@@ -26775,7 +27032,7 @@ echo $ECHO_N "checking avalon-framework... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 26778 "configure"
+// #line 27035 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -27421,7 +27678,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 27424 "configure"' > conftest.$ac_ext
+  echo '#line 27681 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -29169,11 +29426,11 @@ echo "${ECHO_T}$lt_cv_ld_exported_symbols_list" >&6; }
       # target defaults to 10.4. Don't you love it?
       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
    10.0,*86*-darwin8*|10.0,*-darwin[91]*)
-     _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+     _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}dynamic_lookup' ;;
    10.[012]*)
      _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
    10.*)
-     _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+     _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}dynamic_lookup' ;;
       esac
     ;;
   esac
@@ -29291,11 +29548,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29294: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29551: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:29298: \$? = $ac_status" >&5
+   echo "$as_me:29555: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29581,11 +29838,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29584: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29841: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:29588: \$? = $ac_status" >&5
+   echo "$as_me:29845: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -29685,11 +29942,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:29688: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:29945: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:29692: \$? = $ac_status" >&5
+   echo "$as_me:29949: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -32134,7 +32391,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 32137 "configure"
+#line 32394 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -32234,7 +32491,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 32237 "configure"
+#line 32494 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -34655,11 +34912,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34658: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:34915: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:34662: \$? = $ac_status" >&5
+   echo "$as_me:34919: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -34759,11 +35016,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:34762: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:35019: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:34766: \$? = $ac_status" >&5
+   echo "$as_me:35023: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -36357,11 +36614,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36360: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36617: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:36364: \$? = $ac_status" >&5
+   echo "$as_me:36621: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -36461,11 +36718,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36464: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36721: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:36468: \$? = $ac_status" >&5
+   echo "$as_me:36725: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -38685,11 +38942,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38688: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38945: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38692: \$? = $ac_status" >&5
+   echo "$as_me:38949: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -38975,11 +39232,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:38978: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:39235: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:38982: \$? = $ac_status" >&5
+   echo "$as_me:39239: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -39079,11 +39336,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:39082: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:39339: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:39086: \$? = $ac_status" >&5
+   echo "$as_me:39343: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -42035,7 +42292,7 @@ if test "$enable_stop_on_warning" = yes; then
    CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/lapack/Makefile libs/blas/Makefile libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml modules/jvm/etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/metanet/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/call_scilab/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/scipad/Makefile modules/scilab2fortran/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml modules/jvm/etc/jvm_options.xml scilab-lib.properties scilab-lib-doc.properties"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -42062,7 +42319,7 @@ fi
 #fi
 
 # Generate stack.h
-if test $IS_64_BITS_CPU = true; then
+if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
    stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
 else
    stack_h_cpp_flags=
@@ -42202,6 +42459,13 @@ echo "$as_me: error: conditional \"am__fastdepCXX\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
+if test -z "${IS_MACOSX_TRUE}" && test -z "${IS_MACOSX_FALSE}"; then
+  { { echo "$as_me:$LINENO: error: conditional \"IS_MACOSX\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+echo "$as_me: error: conditional \"IS_MACOSX\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
 if test -z "${IS_HPUX_TRUE}" && test -z "${IS_HPUX_FALSE}"; then
   { { echo "$as_me:$LINENO: error: conditional \"IS_HPUX\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
@@ -42311,20 +42575,6 @@ if test -z "${GENERATE_LOCALIZATION_FILES_TRUE}" && test -z "${GENERATE_LOCALIZA
   { { echo "$as_me:$LINENO: error: conditional \"GENERATE_LOCALIZATION_FILES\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
 echo "$as_me: error: conditional \"GENERATE_LOCALIZATION_FILES\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${USE_EMBEDDED_BLAS_TRUE}" && test -z "${USE_EMBEDDED_BLAS_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"USE_EMBEDDED_BLAS\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"USE_EMBEDDED_BLAS\" was never defined.
-Usually this means the macro was only invoked conditionally." >&2;}
-   { (exit 1); exit 1; }; }
-fi
-if test -z "${USE_EMBEDDED_LAPACK_TRUE}" && test -z "${USE_EMBEDDED_LAPACK_FALSE}"; then
-  { { echo "$as_me:$LINENO: error: conditional \"USE_EMBEDDED_LAPACK\" was never defined.
-Usually this means the macro was only invoked conditionally." >&5
-echo "$as_me: error: conditional \"USE_EMBEDDED_LAPACK\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
@@ -42843,8 +43093,6 @@ do
   case $ac_config_target in
     "modules/core/includes/machine.h") CONFIG_HEADERS="$CONFIG_HEADERS modules/core/includes/machine.h" ;;
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
-    "libs/lapack/Makefile") CONFIG_FILES="$CONFIG_FILES libs/lapack/Makefile" ;;
-    "libs/blas/Makefile") CONFIG_FILES="$CONFIG_FILES libs/blas/Makefile" ;;
     "libs/MALLOC/Makefile") CONFIG_FILES="$CONFIG_FILES libs/MALLOC/Makefile" ;;
     "libs/dynamiclibrary/Makefile") CONFIG_FILES="$CONFIG_FILES libs/dynamiclibrary/Makefile" ;;
     "libs/doublylinkedlist/Makefile") CONFIG_FILES="$CONFIG_FILES libs/doublylinkedlist/Makefile" ;;
@@ -42894,6 +43142,7 @@ do
     "modules/tclsci/Makefile") CONFIG_FILES="$CONFIG_FILES modules/tclsci/Makefile" ;;
     "modules/windows_tools/Makefile") CONFIG_FILES="$CONFIG_FILES modules/windows_tools/Makefile" ;;
     "modules/core/Makefile") CONFIG_FILES="$CONFIG_FILES modules/core/Makefile" ;;
+    "modules/call_scilab/Makefile") CONFIG_FILES="$CONFIG_FILES modules/call_scilab/Makefile" ;;
     "modules/fftw/Makefile") CONFIG_FILES="$CONFIG_FILES modules/fftw/Makefile" ;;
     "modules/umfpack/Makefile") CONFIG_FILES="$CONFIG_FILES modules/umfpack/Makefile" ;;
     "modules/scicos/Makefile") CONFIG_FILES="$CONFIG_FILES modules/scicos/Makefile" ;;
@@ -43137,6 +43386,8 @@ CXXDEPMODE!$CXXDEPMODE$ac_delim
 am__fastdepCXX_TRUE!$am__fastdepCXX_TRUE$ac_delim
 am__fastdepCXX_FALSE!$am__fastdepCXX_FALSE$ac_delim
 cxx_present!$cxx_present$ac_delim
+IS_MACOSX_TRUE!$IS_MACOSX_TRUE$ac_delim
+IS_MACOSX_FALSE!$IS_MACOSX_FALSE$ac_delim
 IS_HPUX_TRUE!$IS_HPUX_TRUE$ac_delim
 IS_HPUX_FALSE!$IS_HPUX_FALSE$ac_delim
 IS_SPARC_TRUE!$IS_SPARC_TRUE$ac_delim
@@ -43221,8 +43472,6 @@ GENERATE_LOCALIZATION_FILES_TRUE!$GENERATE_LOCALIZATION_FILES_TRUE$ac_delim
 GENERATE_LOCALIZATION_FILES_FALSE!$GENERATE_LOCALIZATION_FILES_FALSE$ac_delim
 FLIBS!$FLIBS$ac_delim
 BLAS_LIBS!$BLAS_LIBS$ac_delim
-USE_EMBEDDED_BLAS_TRUE!$USE_EMBEDDED_BLAS_TRUE$ac_delim
-USE_EMBEDDED_BLAS_FALSE!$USE_EMBEDDED_BLAS_FALSE$ac_delim
 LAPACK_LIBS!$LAPACK_LIBS$ac_delim
 _ACEOF
 
@@ -43265,8 +43514,6 @@ _ACEOF
 ac_delim='%!_!# '
 for ac_last_try in false false false false false :; do
   cat >conf$$subs.sed <<_ACEOF
-USE_EMBEDDED_LAPACK_TRUE!$USE_EMBEDDED_LAPACK_TRUE$ac_delim
-USE_EMBEDDED_LAPACK_FALSE!$USE_EMBEDDED_LAPACK_FALSE$ac_delim
 UMFPACK_LIB!$UMFPACK_LIB$ac_delim
 UMFPACK_ENABLE!$UMFPACK_ENABLE$ac_delim
 UMFPACK_TRUE!$UMFPACK_TRUE$ac_delim
@@ -43296,6 +43543,7 @@ FOP!$FOP$ac_delim
 JEUCLID_CORE!$JEUCLID_CORE$ac_delim
 COMMONS_IO!$COMMONS_IO$ac_delim
 XMLGRAPHICS_COMMONS!$XMLGRAPHICS_COMMONS$ac_delim
+XML_APIS_EXT!$XML_APIS_EXT$ac_delim
 AVALON_FRAMEWORK!$AVALON_FRAMEWORK$ac_delim
 DOCBOOK_ROOT!$DOCBOOK_ROOT$ac_delim
 BUILD_HELP_TRUE!$BUILD_HELP_TRUE$ac_delim
@@ -43315,7 +43563,7 @@ ENABLE_STATIC_FALSE!$ENABLE_STATIC_FALSE$ac_delim
 LTLIBOBJS!$LTLIBOBJS$ac_delim
 _ACEOF
 
-  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 48; then
+  if test `sed -n "s/.*$ac_delim\$/X/p" conf$$subs.sed | grep -c X` = 47; then
     break
   elif $ac_last_try; then
     { { echo "$as_me:$LINENO: error: could not make $CONFIG_STATUS" >&5
@@ -44043,19 +44291,10 @@ fi
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
-if test $EMBEDDED_BLAS = 0; then
-   echo "BLAS LIBS ............. = $BLAS_LIBS"
-   echo "BLAS TYPE ............. = $BLAS_TYPE"
-else
-   echo "BLAS LIBS ............. = Use the generic version of BLAS embedded"
-fi
-
-if test $EMBEDDED_LAPACK = 0; then
-   echo "LAPACK LIBS ........... = $LAPACK_LIBS"
-   echo "LAPACK TYPE ........... = $LAPACK_TYPE"
-else
-   echo "LAPACK LIBS ........... = Use the LAPACK embedded"
-fi
+echo "BLAS LIBS ............. = $BLAS_LIBS"
+echo "BLAS TYPE ............. = $BLAS_TYPE"
+echo "LAPACK LIBS ........... = $LAPACK_LIBS"
+echo "LAPACK TYPE ........... = $LAPACK_TYPE"
 
 echo ""
 
@@ -44098,6 +44337,7 @@ if test $HELP_ENABLE = yes; then
    echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "Commons I/O ............ = $COMMONS_IO"
    echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
+   echo "XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
 fi
