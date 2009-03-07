@@ -859,7 +859,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SendScilabJobs.c"
+				RelativePath="..\..\..\call_scilab\src\c\SendScilabJobs.c"
 				>
 			</File>
 			<File
@@ -1012,19 +1012,19 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromc.h"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\call_scilab\src\c\fromc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath=".\fromc.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\fromjava.h"
+				>
+			</File>
+			<File
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
