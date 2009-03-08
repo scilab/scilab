@@ -9,8 +9,8 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //------------------------------------
 if (isdef('genlib') == %f) then
-  exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
+   exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
-//------------------------------------
-genlib('atomslib','SCI/modules/atoms/macros');
+
+genlib('atomslib','SCI/modules/atoms/macros',%f,%t); 
 //------------------------------------
