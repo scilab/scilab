@@ -42,7 +42,7 @@
 #include "SetProperty.h"
 #include "CloneObjects.h"
 #include "StringMatrix.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
@@ -77,8 +77,6 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   sciPointObj * pfiguremdl = getFigureModel() ;
   sciFigure   * ppFigure = NULL ;
   sciFigure   * ppModel  = pFIGURE_FEATURE(pfiguremdl) ;
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
 
   /* memory allocation for the new Figure   affectation du type allocation de la structure */
 
@@ -92,6 +90,10 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
+
+	/* Create the default relationShip */
+	createDefaultRelationShip(pobj);
+
   /* add a number in the HandelTable  reallocation de la table + 1 puis affectation de l'indice    */
 
   ppFigure = pFIGURE_FEATURE(pobj) ;
@@ -100,18 +102,12 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   /* until we add it to the lists */
 
   /* Don't call standard build operation since it add the figure to the handle list */
-  sciInitSelectedSons( pobj ) ;
-
-  sciGetRelationship(pobj)->psons        = NULL ;
-  sciGetRelationship(pobj)->plastsons    = NULL ;
-  sciGetRelationship(pobj)->pSelectedSon = NULL ;
-  sciGetRelationship(pobj)->pparent = NULL ;
 
   sciInitVisibility( pobj, TRUE ) ;
 
-  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
+	/* Clone user data from parent */
+  initUserData(pobj);
+	cloneUserData(pfiguremdl, pobj);
 
 
   pobj->pObservers = DoublyLinkedList_new() ;
@@ -151,7 +147,7 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
     /* Set default figure index */
     sciInitNum(pobj, getUnusedFigureIndex());
   }
-  
+
   sciInitName(pobj, sciGetName(pfiguremdl));
   sciInitResize(pobj,sciGetResize(pfiguremdl));
 
@@ -179,7 +175,11 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   }
 
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
-  sciInitScreenPosition( pobj, x[0], x[1] );
+	if (x[0] != -1 || x[1] != -1)
+	{
+		/* If default position is [-1,-1], then let the OS choose the window position. */
+		sciInitScreenPosition( pobj, x[0], x[1] );
+	}
 
 	sciInitInfoMessage( pobj, ppModel->pModelData->infoMessage ) ;
 
@@ -223,317 +223,327 @@ sciPointObj *
 ConstructSubWin(sciPointObj * pparentfigure)
 {
 
-  char logFlags[3];
-  int i;
-  char dir;
-  BOOL autoTicks[3];
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciSubWindow * ppsubwin = NULL;
-  sciPointObj * paxesmdl = getAxesModel() ;
-  sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
+	char logFlags[3];
+	int i;
+	char dir;
+	BOOL autoTicks[3];
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciSubWindow * ppsubwin = NULL;
+	sciPointObj * paxesmdl = getAxesModel() ;
+	sciSubWindow * ppaxesmdl = pSUBWIN_FEATURE (paxesmdl);
 
-  if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
-    {
-
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return NULL;
-      sciSetEntityType (pobj, SCI_SUBWIN);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
+	if (sciGetEntityType (pparentfigure) == SCI_FIGURE)
 	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+			return NULL;
+		sciSetEntityType (pobj, SCI_SUBWIN);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciSubWindow)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		startFigureDataWriting(pparentfigure);
+
+		if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			endFigureDataWriting(pparentfigure);
+			return NULL ;
+		}
+
+		ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
+
+
+		ppsubwin->callback = (char *)NULL;
+		ppsubwin->callbacklen = 0;
+		ppsubwin->callbackevent = 100;
+
+		if (sciInitGraphicContext (pobj) == -1)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+		if (sciInitGraphicMode (pobj) == -1)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		/* F.Leray 08.04.04 */
+		if (sciInitFontContext (pobj) == -1)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		/* update colors so they will fit the colormap of parent figure and not model one*/
+		sciRecursiveUpdateBaW(pobj, sciGetNumColors(getFigureModel()), sciGetNumColors(sciGetParentFigure(pobj)));
+
+		sciGetLogFlags(paxesmdl, logFlags);
+		sciInitLogFlags(pobj, logFlags);
+
+		ppsubwin->axes.ticscolor  = ppaxesmdl->axes.ticscolor;
+		ppsubwin->axes.subint[0]  = ppaxesmdl->axes.subint[0];
+		ppsubwin->axes.subint[1]  = ppaxesmdl->axes.subint[1];
+		ppsubwin->axes.subint[2]  = ppaxesmdl->axes.subint[2];
+
+		dir= ppaxesmdl->axes.xdir;
+		ppsubwin->axes.xdir = dir;
+		dir= ppaxesmdl->axes.ydir;
+		ppsubwin->axes.ydir = dir;
+
+		ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
+		sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
+		for (i=0 ; i<7 ; i++)
+		{
+			ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
+		}
+
+		for (i=0 ; i<3 ; i++)
+		{
+			ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
+		}
+
+		ppsubwin->gridFront = ppaxesmdl->gridFront;
+
+		ppsubwin->alpha  = ppaxesmdl->alpha;
+		ppsubwin->theta  = ppaxesmdl->theta;
+		ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;
+		ppsubwin->theta_kp  = ppaxesmdl->theta_kp;
+		ppsubwin->is3d  = ppaxesmdl->is3d;
+
+		/* F.Leray 22.09.04 */
+
+		ppsubwin->axes.u_xlabels = (char **) NULL; /* init. ci-apres */
+		ppsubwin->axes.u_ylabels = (char **) NULL; /* init. ci-apres */
+		ppsubwin->axes.u_zlabels = (char **) NULL; /* init. ci-apres */
+		ppsubwin->axes.u_xgrads  = (double *)NULL;
+		ppsubwin->axes.u_ygrads  = (double *)NULL;
+		ppsubwin->axes.u_zgrads  = (double *)NULL;
+
+
+		(ppsubwin->axes).axes_visible[0] = ppaxesmdl->axes.axes_visible[0];
+		(ppsubwin->axes).axes_visible[1] = ppaxesmdl->axes.axes_visible[1];
+		(ppsubwin->axes).axes_visible[2] = ppaxesmdl->axes.axes_visible[2];
+		(ppsubwin->axes).reverse[0] = ppaxesmdl->axes.reverse[0];
+		(ppsubwin->axes).reverse[1] = ppaxesmdl->axes.reverse[1];
+		(ppsubwin->axes).reverse[2] = ppaxesmdl->axes.reverse[2];
+		ppsubwin->flagNax = ppaxesmdl->flagNax;
+
+		/* do not forget the nbsubtics ! */
+		(ppsubwin->axes).nbsubtics[0] = ppaxesmdl->axes.nbsubtics[0];
+		(ppsubwin->axes).nbsubtics[1] = ppaxesmdl->axes.nbsubtics[1];
+		(ppsubwin->axes).nbsubtics[2] = ppaxesmdl->axes.nbsubtics[2];
+
+		(ppsubwin->axes).nxgrads = ppaxesmdl->axes.nxgrads;
+		(ppsubwin->axes).nygrads = ppaxesmdl->axes.nygrads;
+		(ppsubwin->axes).nzgrads = ppaxesmdl->axes.nzgrads;
+
+		for(i=0;i<(ppsubwin->axes).nxgrads;i++) ppsubwin->axes.xgrads[i] = ppaxesmdl->axes.xgrads[i];
+		for(i=0;i<(ppsubwin->axes).nygrads;i++) ppsubwin->axes.ygrads[i] = ppaxesmdl->axes.ygrads[i];
+		for(i=0;i<(ppsubwin->axes).nzgrads;i++) ppsubwin->axes.zgrads[i] = ppaxesmdl->axes.zgrads[i];
+
+		(ppsubwin->axes).u_nxgrads = ppaxesmdl->axes.u_nxgrads;
+		(ppsubwin->axes).u_nygrads = ppaxesmdl->axes.u_nygrads;
+		(ppsubwin->axes).u_nzgrads = ppaxesmdl->axes.u_nzgrads;
+		(ppsubwin->axes).u_xgrads  = AllocUserGrads(ppsubwin->axes.u_xgrads,ppaxesmdl->axes.u_nxgrads);
+		CopyUserGrads(ppaxesmdl->axes.u_xgrads,
+			ppsubwin->axes.u_xgrads,
+			ppsubwin->axes.u_nxgrads);
+		(ppsubwin->axes).u_ygrads  = AllocUserGrads(ppsubwin->axes.u_ygrads,ppaxesmdl->axes.u_nygrads);
+		CopyUserGrads(ppaxesmdl->axes.u_ygrads,
+			ppsubwin->axes.u_ygrads,
+			ppsubwin->axes.u_nygrads);
+		(ppsubwin->axes).u_zgrads  = AllocUserGrads(ppsubwin->axes.u_zgrads,ppaxesmdl->axes.u_nzgrads);
+		CopyUserGrads(ppaxesmdl->axes.u_zgrads,
+			ppsubwin->axes.u_zgrads,
+			ppsubwin->axes.u_nzgrads);
+		(ppsubwin->axes).u_xlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_xlabels,
+			ppaxesmdl->axes.u_xlabels,
+			ppsubwin->axes.u_nxgrads);
+
+		(ppsubwin->axes).u_ylabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_ylabels,
+			ppaxesmdl->axes.u_ylabels,
+			ppsubwin->axes.u_nygrads);
+
+		(ppsubwin->axes).u_zlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_zlabels,
+			ppaxesmdl->axes.u_zlabels,
+			ppsubwin->axes.u_nzgrads);
+
+		sciGetAutoTicks(paxesmdl, autoTicks);
+		sciInitAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
+		/* end 22.09.04 */
+
+		ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
+		ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
+		ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];
+		sciInitHiddenAxisColor(pobj, sciGetHiddenAxisColor(paxesmdl));
+		ppsubwin->project[0]= ppaxesmdl->project[0];
+		ppsubwin->project[1]= ppaxesmdl->project[1];
+		ppsubwin->project[2]= ppaxesmdl->project[2];
+		sciInitHiddenColor(pobj, sciGetHiddenColor(paxesmdl));
+		ppsubwin->isoview= ppaxesmdl->isoview;
+		ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
+		ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
+		ppsubwin->WRect[2]   = ppaxesmdl->WRect[2];
+		ppsubwin->WRect[3]   = ppaxesmdl->WRect[3];
+
+		ppsubwin->ARect[0]   = ppaxesmdl->ARect[0];
+		ppsubwin->ARect[1]   = ppaxesmdl->ARect[1];
+		ppsubwin->ARect[2]   = ppaxesmdl->ARect[2];
+		ppsubwin->ARect[3]   = ppaxesmdl->ARect[3];
+
+		ppsubwin->FRect[0]   = ppaxesmdl->FRect[0];
+		ppsubwin->FRect[1]   = ppaxesmdl->FRect[1] ;
+		ppsubwin->FRect[2]   = ppaxesmdl->FRect[2];
+		ppsubwin->FRect[3]   = ppaxesmdl->FRect[3];
+		ppsubwin->FRect[4]   = ppaxesmdl->FRect[4] ;
+		ppsubwin->FRect[5]   = ppaxesmdl->FRect[5];
+
+		ppsubwin->visible = ppaxesmdl->visible;
+
+		ppsubwin->clip_region_set = 0 ;
+		sciInitIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
+		sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
+
+		ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
+
+		ppsubwin->SRect[0]  =  ppaxesmdl->SRect[0];
+		ppsubwin->SRect[1]  =  ppaxesmdl->SRect[1];
+		ppsubwin->SRect[2]  =  ppaxesmdl->SRect[2];
+		ppsubwin->SRect[3]  =  ppaxesmdl->SRect[3];
+		ppsubwin->SRect[4]  =  ppaxesmdl->SRect[4];
+		ppsubwin->SRect[5]  =  ppaxesmdl->SRect[5];
+
+		ppsubwin->tight_limits = ppaxesmdl->tight_limits;
+		ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
+
+		sciInitUseNurbs(pobj, sciGetUseNurbs(paxesmdl));
+
+		/* clone user data from model */
+		cloneUserData(paxesmdl, pobj);
+
+		if (sciInitSelectedSubWin(pobj) < 0 )
+		{
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *)NULL ;
+		}
+
+		/* Construction des labels: x,y,z et Title */
+
+		if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
+			sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		sciSetStrings( ppsubwin->mon_title,
+			sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_title) ) ;
+
+
+		/*------------------------------------*/
+		if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
+			DestroyLabel(ppsubwin->mon_title);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+
+		sciSetStrings( ppsubwin->mon_x_label,
+			sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_x_label) ) ;
+
+
+		/*------------------------------------*/
+		if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
+			DestroyLabel(ppsubwin->mon_title);
+			DestroyLabel(ppsubwin->mon_x_label);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+		sciSetStrings( ppsubwin->mon_y_label,
+			sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_y_label) ) ;
+
+		/*------------------------------------*/
+		if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
+			DestroyLabel(ppsubwin->mon_title);
+			DestroyLabel(ppsubwin->mon_x_label);
+			DestroyLabel(ppsubwin->mon_y_label);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			endFigureDataWriting(pparentfigure);
+			return (sciPointObj *) NULL;
+		}
+		sciSetStrings( ppsubwin->mon_z_label,
+			sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)  ) ;
+
+		/* labels auto_position modes */
+		pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_position;
+
+		pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_position;
+
+		pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_position;
+
+		pLABEL_FEATURE(ppsubwin->mon_title)->auto_position =
+			pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_position;
+
+		/* labels auto_rotation modes */
+		pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_rotation;
+
+		pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_rotation;
+
+		pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_rotation;
+
+		pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation =
+			pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
+
+		cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label ) ;
+		cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label ) ;
+		cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
+		cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
+
+		endFigureDataWriting(pparentfigure);
+
+		return (sciPointObj *)pobj;
+
 	}
-
-      startFigureDataWriting(pparentfigure);
-
-      if ( sciStandardBuildOperations( pobj, pparentfigure ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        endFigureDataWriting(pparentfigure);
-        return NULL ;
-      }
-
-      ppsubwin =  pSUBWIN_FEATURE (pobj); /* debug */
-
-
-      ppsubwin->callback = (char *)NULL;
-      ppsubwin->callbacklen = 0;
-      ppsubwin->callbackevent = 100;
-
-      if (sciInitGraphicContext (pobj) == -1)
+	else
 	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-          endFigureDataWriting(pparentfigure);
-	  return (sciPointObj *) NULL;
+		Scierror(999, _("The parent has to be a FIGURE\n"));
+		return NULL;
 	}
-      if (sciInitGraphicMode (pobj) == -1)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-          endFigureDataWriting(pparentfigure);
-	  return (sciPointObj *) NULL;
-	}
-
-      /* F.Leray 08.04.04 */
-      if (sciInitFontContext (pobj) == -1)
-	{
-          sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-          endFigureDataWriting(pparentfigure);
-	  return (sciPointObj *) NULL;
-	}
-
-      /* update colors so they will fit the colormap of parent figure and not model one*/
-      sciRecursiveUpdateBaW(pobj, sciGetNumColors(getFigureModel()), sciGetNumColors(sciGetParentFigure(pobj)));
-
-      sciGetLogFlags(paxesmdl, logFlags);
-      sciInitLogFlags(pobj, logFlags);
-
-      ppsubwin->axes.ticscolor  = ppaxesmdl->axes.ticscolor;
-      ppsubwin->axes.subint[0]  = ppaxesmdl->axes.subint[0];
-      ppsubwin->axes.subint[1]  = ppaxesmdl->axes.subint[1];
-      ppsubwin->axes.subint[2]  = ppaxesmdl->axes.subint[2];
-
-      dir= ppaxesmdl->axes.xdir;
-      ppsubwin->axes.xdir = dir;
-      dir= ppaxesmdl->axes.ydir;
-      ppsubwin->axes.ydir = dir;
-
-      ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
-      sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
-      for (i=0 ; i<7 ; i++)
-	ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
-
-      for (i=0 ; i<3 ; i++)
-	ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
-      ppsubwin->alpha  = ppaxesmdl->alpha;
-      ppsubwin->theta  = ppaxesmdl->theta;
-      ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;
-      ppsubwin->theta_kp  = ppaxesmdl->theta_kp;
-      ppsubwin->is3d  = ppaxesmdl->is3d;
-
-      /* F.Leray 22.09.04 */
-
-      ppsubwin->axes.u_xlabels = (char **) NULL; /* init. ci-apres */
-      ppsubwin->axes.u_ylabels = (char **) NULL; /* init. ci-apres */
-      ppsubwin->axes.u_zlabels = (char **) NULL; /* init. ci-apres */
-      ppsubwin->axes.u_xgrads  = (double *)NULL;
-      ppsubwin->axes.u_ygrads  = (double *)NULL;
-      ppsubwin->axes.u_zgrads  = (double *)NULL;
-
-
-      (ppsubwin->axes).axes_visible[0] = ppaxesmdl->axes.axes_visible[0];
-      (ppsubwin->axes).axes_visible[1] = ppaxesmdl->axes.axes_visible[1];
-      (ppsubwin->axes).axes_visible[2] = ppaxesmdl->axes.axes_visible[2];
-      (ppsubwin->axes).reverse[0] = ppaxesmdl->axes.reverse[0];
-      (ppsubwin->axes).reverse[1] = ppaxesmdl->axes.reverse[1];
-      (ppsubwin->axes).reverse[2] = ppaxesmdl->axes.reverse[2];
-      ppsubwin->flagNax = ppaxesmdl->flagNax;
-
-      /* do not forget the nbsubtics ! */
-      (ppsubwin->axes).nbsubtics[0] = ppaxesmdl->axes.nbsubtics[0];
-      (ppsubwin->axes).nbsubtics[1] = ppaxesmdl->axes.nbsubtics[1];
-      (ppsubwin->axes).nbsubtics[2] = ppaxesmdl->axes.nbsubtics[2];
-
-      (ppsubwin->axes).nxgrads = ppaxesmdl->axes.nxgrads;
-      (ppsubwin->axes).nygrads = ppaxesmdl->axes.nygrads;
-      (ppsubwin->axes).nzgrads = ppaxesmdl->axes.nzgrads;
-
-      for(i=0;i<(ppsubwin->axes).nxgrads;i++) ppsubwin->axes.xgrads[i] = ppaxesmdl->axes.xgrads[i];
-      for(i=0;i<(ppsubwin->axes).nygrads;i++) ppsubwin->axes.ygrads[i] = ppaxesmdl->axes.ygrads[i];
-      for(i=0;i<(ppsubwin->axes).nzgrads;i++) ppsubwin->axes.zgrads[i] = ppaxesmdl->axes.zgrads[i];
-
-      (ppsubwin->axes).u_nxgrads = ppaxesmdl->axes.u_nxgrads;
-      (ppsubwin->axes).u_nygrads = ppaxesmdl->axes.u_nygrads;
-      (ppsubwin->axes).u_nzgrads = ppaxesmdl->axes.u_nzgrads;
-      (ppsubwin->axes).u_xgrads  = AllocUserGrads(ppsubwin->axes.u_xgrads,ppaxesmdl->axes.u_nxgrads);
-      CopyUserGrads(ppaxesmdl->axes.u_xgrads,
-		    ppsubwin->axes.u_xgrads,
-		    ppsubwin->axes.u_nxgrads);
-      (ppsubwin->axes).u_ygrads  = AllocUserGrads(ppsubwin->axes.u_ygrads,ppaxesmdl->axes.u_nygrads);
-      CopyUserGrads(ppaxesmdl->axes.u_ygrads,
-		    ppsubwin->axes.u_ygrads,
-		    ppsubwin->axes.u_nygrads);
-      (ppsubwin->axes).u_zgrads  = AllocUserGrads(ppsubwin->axes.u_zgrads,ppaxesmdl->axes.u_nzgrads);
-      CopyUserGrads(ppaxesmdl->axes.u_zgrads,
-		    ppsubwin->axes.u_zgrads,
-		    ppsubwin->axes.u_nzgrads);
-      (ppsubwin->axes).u_xlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_xlabels,
-								ppaxesmdl->axes.u_xlabels,
-								ppsubwin->axes.u_nxgrads);
-
-      (ppsubwin->axes).u_ylabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_ylabels,
-								ppaxesmdl->axes.u_ylabels,
-								ppsubwin->axes.u_nygrads);
-
-      (ppsubwin->axes).u_zlabels = AllocAndSetUserLabelsFromMdl(ppsubwin->axes.u_zlabels,
-								ppaxesmdl->axes.u_zlabels,
-								ppsubwin->axes.u_nzgrads);
-
-      sciGetAutoTicks(paxesmdl, autoTicks);
-      sciInitAutoTicks(pobj, autoTicks[0], autoTicks[1], autoTicks[2]);
-      /* end 22.09.04 */
-
-      ppsubwin->axes.flag[0]= ppaxesmdl->axes.flag[0];
-      ppsubwin->axes.flag[1]= ppaxesmdl->axes.flag[1];
-      ppsubwin->axes.flag[2]= ppaxesmdl->axes.flag[2];
-      sciInitHiddenAxisColor(pobj, sciGetHiddenAxisColor(paxesmdl));
-      ppsubwin->project[0]= ppaxesmdl->project[0];
-      ppsubwin->project[1]= ppaxesmdl->project[1];
-      ppsubwin->project[2]= ppaxesmdl->project[2];
-      sciInitHiddenColor(pobj, sciGetHiddenColor(paxesmdl));
-      ppsubwin->isoview= ppaxesmdl->isoview;
-      ppsubwin->WRect[0]   = ppaxesmdl->WRect[0];
-      ppsubwin->WRect[1]   = ppaxesmdl->WRect[1];
-      ppsubwin->WRect[2]   = ppaxesmdl->WRect[2];
-      ppsubwin->WRect[3]   = ppaxesmdl->WRect[3];
-
-      ppsubwin->ARect[0]   = ppaxesmdl->ARect[0];
-      ppsubwin->ARect[1]   = ppaxesmdl->ARect[1];
-      ppsubwin->ARect[2]   = ppaxesmdl->ARect[2];
-      ppsubwin->ARect[3]   = ppaxesmdl->ARect[3];
-
-      ppsubwin->FRect[0]   = ppaxesmdl->FRect[0];
-      ppsubwin->FRect[1]   = ppaxesmdl->FRect[1] ;
-      ppsubwin->FRect[2]   = ppaxesmdl->FRect[2];
-      ppsubwin->FRect[3]   = ppaxesmdl->FRect[3];
-      ppsubwin->FRect[4]   = ppaxesmdl->FRect[4] ;
-      ppsubwin->FRect[5]   = ppaxesmdl->FRect[5];
-
-      ppsubwin->visible = ppaxesmdl->visible;
-
-      ppsubwin->clip_region_set = 0 ;
-      sciInitIsClipping( pobj, sciGetIsClipping(paxesmdl) ) ;
-      sciSetClipping(   pobj, sciGetClipping(  paxesmdl) ) ;
-
-      ppsubwin->cube_scaling = ppaxesmdl->cube_scaling;
-
-      ppsubwin->SRect[0]  =  ppaxesmdl->SRect[0];
-      ppsubwin->SRect[1]  =  ppaxesmdl->SRect[1];
-      ppsubwin->SRect[2]  =  ppaxesmdl->SRect[2];
-      ppsubwin->SRect[3]  =  ppaxesmdl->SRect[3];
-      ppsubwin->SRect[4]  =  ppaxesmdl->SRect[4];
-      ppsubwin->SRect[5]  =  ppaxesmdl->SRect[5];
-
-      ppsubwin->tight_limits = ppaxesmdl->tight_limits;
-      ppsubwin->FirstPlot = ppaxesmdl->FirstPlot;
-
-      sciInitUseNurbs(pobj, sciGetUseNurbs(paxesmdl));
-
-      if (sciInitSelectedSubWin(pobj) < 0 )
-      {
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *)NULL ;
-      }
-
-      /* Construction des labels: x,y,z et Title */
-
-      if ((ppsubwin->mon_title =  ConstructLabel (pobj, "",1)) == NULL){
-	sciDelThisToItsParent (pobj, sciGetParent (pobj)); /* pobj type = scisubwindow*/
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-
-      sciSetStrings( ppsubwin->mon_title,
-                     sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_title) ) ;
-
-
-      /*------------------------------------*/
-      if ((ppsubwin->mon_x_label =  ConstructLabel (pobj, "",2)) == NULL){
-	DestroyLabel(ppsubwin->mon_title);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-
-      sciSetStrings( ppsubwin->mon_x_label,
-                     sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_x_label) ) ;
-
-
-      /*------------------------------------*/
-      if ((ppsubwin->mon_y_label =  ConstructLabel (pobj, "",3)) == NULL){
-	DestroyLabel(ppsubwin->mon_title);
-	DestroyLabel(ppsubwin->mon_x_label);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-      sciSetStrings( ppsubwin->mon_y_label,
-                     sciGetText( pSUBWIN_FEATURE(paxesmdl)->mon_y_label) ) ;
-
-      /*------------------------------------*/
-      if ((ppsubwin->mon_z_label =  ConstructLabel (pobj, "",4)) == NULL){
-	DestroyLabel(ppsubwin->mon_title);
-	DestroyLabel(ppsubwin->mon_x_label);
-	DestroyLabel(ppsubwin->mon_y_label);
-	sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	sciDelHandle (pobj);
-	FREE(pobj->pfeatures);
-	FREE(pobj);
-        endFigureDataWriting(pparentfigure);
-	return (sciPointObj *) NULL;
-      }
-      sciSetStrings( ppsubwin->mon_z_label,
-                     sciGetText(pSUBWIN_FEATURE(paxesmdl)->mon_z_label)  ) ;
-
-      /* labels auto_position modes */
-      pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_position;
-
-      pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_position;
-
-      pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_position;
-
-      pLABEL_FEATURE(ppsubwin->mon_title)->auto_position =
-	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_position;
-
-      /* labels auto_rotation modes */
-      pLABEL_FEATURE(ppsubwin->mon_x_label)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_x_label)->auto_rotation;
-
-      pLABEL_FEATURE(ppsubwin->mon_y_label)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_y_label)->auto_rotation;
-
-      pLABEL_FEATURE(ppsubwin->mon_z_label)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_z_label)->auto_rotation;
-
-      pLABEL_FEATURE(ppsubwin->mon_title)->auto_rotation =
-	pLABEL_FEATURE(ppaxesmdl->mon_title)->auto_rotation;
-
-      cloneGraphicContext( ppaxesmdl->mon_x_label, ppsubwin->mon_x_label ) ;
-      cloneGraphicContext( ppaxesmdl->mon_y_label, ppsubwin->mon_y_label ) ;
-      cloneGraphicContext( ppaxesmdl->mon_z_label, ppsubwin->mon_z_label ) ;
-      cloneGraphicContext( ppaxesmdl->mon_title  , ppsubwin->mon_title   ) ;
-
-      endFigureDataWriting(pparentfigure);
-
-      return (sciPointObj *)pobj;
-
-    }
-  else
-    {
-      sciprint(_("The parent has to be a FIGURE\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 
 
@@ -575,13 +585,13 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
     return NULL;
   }
 
+	/* Create the default relationShip */
+	createDefaultRelationShip(pObj);
+
   ppText = pTEXT_FEATURE( pObj ) ;
 
-  ppText->user_data = (int *) NULL;
-  ppText->size_of_user_data = 0;
-  sciInitSelectedSons( pObj ) ;
-  ppText->relationship.psons = NULL;
-  ppText->relationship.plastsons = NULL;
+  initUserData(pObj);
+
 
   /* it must be specified for some functions */
   sciSetParent( pObj, pparentsubwin ) ;
@@ -610,7 +620,7 @@ sciPointObj * allocateText( sciPointObj       * pparentsubwin,
   ppText->y = y;
   ppText->z = 0.0; /**DJ.Abdemouche 2003**/
 
-  // initialize to a not too weird value
+  /* initialize to a not too weird value */
   for (i = 0; i < 4; i++)
   {
     ppText->corners[i][0] = ppText->x;
@@ -718,7 +728,7 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 
   }
 
-  sciprint(_("The parent has to be a SUBWIN\n"));
+  Scierror(999, _("The parent has to be a SUBWIN\n"));
   return NULL;
 }
 
@@ -729,130 +739,142 @@ ConstructText (sciPointObj * pparentsubwin, char ** text, int nbRow, int nbCol, 
 sciPointObj *
 ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandles[], int nblegends)
 {
-  sciPointObj * pobj = (sciPointObj *) NULL;
-  sciLegend   * ppLegend ;
+	sciPointObj * pobj = (sciPointObj *) NULL;
+	sciLegend   * ppLegend ;
 
-  /*
-   * verifier qu'il n'y a pas d'objet existant !!!!
-   * si oui alors le detruire puis le reconstruire.
-   * car il ne peut y avoir qu'une legende
-   */
-  sciSons *psonstmp;
-  int i=0;
+	/*
+	* verifier qu'il n'y a pas d'objet existant !!!!
+	* si oui alors le detruire puis le reconstruire.
+	* car il ne peut y avoir qu'une legende
+	*/
+	sciSons *psonstmp;
+	int i=0;
 
-  psonstmp = sciGetSons (pparentsubwin);
-  /* init */
-  if (psonstmp != (sciSons *) NULL)	/* on peut commencer sur le next */
-    /* tant que le fils n'est pas une legende */
-    while ((psonstmp->pnext != (sciSons *) NULL)
-	   && sciGetEntityType (psonstmp->pointobj) != SCI_LEGEND)
-      psonstmp = psonstmp->pnext;
-
-  if (sciGetEntityType (psonstmp->pointobj) == SCI_LEGEND)
-    DestroyLegend (psonstmp->pointobj);
-
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_LEGEND);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciLegend)))) == NULL)
-	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      /* get the pointer on the features */
-      ppLegend = pLEGEND_FEATURE( pobj );
-
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
-
-      ppLegend->text.relationship.psons = (sciSons *) NULL;
-      ppLegend->text.relationship.plastsons = (sciSons *) NULL;
-      ppLegend->text.callback = (char *)NULL;
-      ppLegend->text.callbacklen = 0;
-      ppLegend->text.callbackevent = 100;
-      ppLegend->text.isboxed = FALSE ;
-
-      ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj));
-
-      ppLegend->text.pStrings = newFullStringMatrix( text,nblegends,1 ) ;
-
-      /* Allocation de la structure sciText */
-      if ( ppLegend->text.pStrings == NULL)
-      {
-        sciprint(_("No more place to allocates text string, try a shorter string.\n"));
-        sciDelThisToItsParent (pobj, sciGetParent (pobj));
-        sciDelHandle (pobj);
-        FREE(ppLegend);
-        FREE(pobj);
-        return (sciPointObj *) NULL;
-      }
-      /* on copie le texte du titre dans le champs specifique de l'objet */
-      ppLegend->nblegends = nblegends;
-
-      if ((ppLegend->tabofhandles =
-	   MALLOC(nblegends*sizeof(long long))) == NULL)
-	{
-	  sciprint(_("%s: No more memory.\n"),"ConstructLegend");
-	  deleteMatrix( ppLegend->text.pStrings ) ;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+	psonstmp = sciGetSons (pparentsubwin);
+	/* init */
+	if (psonstmp != NULL)
+	{/* on peut commencer sur le next */
+		/* tant que le fils n'est pas une legende */
+		while ((psonstmp->pnext != NULL) && sciGetEntityType (psonstmp->pointobj) != SCI_LEGEND)
+		{
+			psonstmp = psonstmp->pnext;
+		}
 	}
 
-
-      for (i=0; i < nblegends; i++)
+	if (sciGetEntityType (psonstmp->pointobj) == SCI_LEGEND)
 	{
-	  ppLegend->tabofhandles[i] = tabofhandles[i];
+		DestroyLegend (psonstmp->pointobj);
 	}
 
-      ppLegend->text.fontcontext.textorientation = 0.0;
-      ppLegend->pos.x = 0;
-      ppLegend->pos.y = 0;
-      ppLegend->width = 0;
-      ppLegend->height = 0;
-      ppLegend->place = SCI_LEGEND_LOWER_CAPTION;
-      ppLegend->isselected = TRUE;
-      ppLegend->issurround = FALSE;
-
-      ppLegend->clip_region_set = -1; /* no clipping by default */
-      sciSetClipping(pobj, sciGetClipping(pparentsubwin));
-
-      if (sciInitGraphicContext (pobj) == -1) /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
+	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
 	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pobj->pfeatures);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+		{
+			return NULL;
+		}
+		sciSetEntityType (pobj, SCI_LEGEND);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciLegend)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/* get the pointer on the features */
+		ppLegend = pLEGEND_FEATURE( pobj );
 
-      if (sciInitFontContext (pobj) == -1)
+
+		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			return NULL ;
+		}
+
+		ppLegend->text.callback = (char *)NULL;
+		ppLegend->text.callbacklen = 0;
+		ppLegend->text.callbackevent = 100;
+		ppLegend->text.isboxed = FALSE ;
+
+		ppLegend->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+		ppLegend->text.pStrings = newFullStringMatrix( text,nblegends,1 ) ;
+
+		/* Allocation de la structure sciText */
+		if ( ppLegend->text.pStrings == NULL)
+		{
+			Scierror(999, _("No more place to allocates text string, try a shorter string.\n"));
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppLegend);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/* on copie le texte du titre dans le champs specifique de l'objet */
+		ppLegend->nblegends = nblegends;
+
+		if ((ppLegend->tabofhandles =
+			MALLOC(nblegends*sizeof(long long))) == NULL)
+		{
+			Scierror(999, _("%s: No more memory.\n"),"ConstructLegend");
+			deleteMatrix( ppLegend->text.pStrings ) ;
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppLegend);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+
+		for (i=0; i < nblegends; i++)
+		{
+			ppLegend->tabofhandles[i] = tabofhandles[i];
+		}
+
+		ppLegend->text.fontcontext.textorientation = 0.0;
+		ppLegend->pos.x = 0;
+		ppLegend->pos.y = 0;
+		ppLegend->width = 0;
+		ppLegend->height = 0;
+		ppLegend->place = SCI_LEGEND_LOWER_CAPTION; /* Default position */
+		ppLegend->isselected = TRUE;
+		ppLegend->issurround = FALSE;
+
+		/* no clipping by default */
+		ppLegend->clip_region_set = 0 ;
+		sciInitIsClipping( pobj, -1 ) ;
+		sciSetClipping( pobj, sciGetClipping(pparentsubwin) );
+
+		if (sciInitGraphicContext (pobj) == -1) /* NEW :  used to draw the line and marks of the curve F.Leray 21.01.05 */
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pobj->pfeatures);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		/* With legends, force drawing of background */
+		/* Otherwise underlying lines can be seen */
+		sciSetIsFilled(pobj, TRUE);
+
+		if (sciInitFontContext (pobj) == -1)
+		{
+			Scierror(999, _("Problem with sciInitFontContext\n"));
+			FREE(ppLegend->tabofhandles);
+			deleteMatrix( ppLegend->text.pStrings ) ;
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppLegend);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+
+		return pobj;
+	}
+	else
 	{
-	  sciprint(_("Problem with sciInitFontContext\n"));
-	  FREE(ppLegend->tabofhandles);
-	  deleteMatrix( ppLegend->text.pStrings ) ;
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppLegend);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
+		Scierror(999, _("The parent has to be a SUBWIN\n"));
+		return (sciPointObj *) NULL;
 	}
-
-      return pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 /*---------------------------------------------------------------------------------*/
 /**
@@ -865,13 +887,10 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 {
   sciPointObj * pobj = NULL;
   sciPolyline * ppPoly = NULL;
-
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
   int i = 0;
   if (sciGetEntityType (pparentsubwin) != SCI_SUBWIN)
   {
-    sciprint(_("The parent has to be a SUBWIN\n"));
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 
@@ -885,6 +904,9 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
     FREE(pobj);
     return (sciPointObj *) NULL;
   }
+
+	/* Create the default relationShip */
+	createDefaultRelationShip(pobj);
 
   sciSetParent( pobj, pparentsubwin ) ;
 
@@ -1000,16 +1022,21 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   ppPoly->scvector = (int *) NULL;
 
   if(background != NULL){
-    if(isinterpshaded == TRUE){ /* 3 or 4 values to store */
+    if(isinterpshaded == TRUE)
+		{ /* 3 or 4 values to store */
 
       sciSetInterpVector(pobj,n1,background);
     }
     else
+		{
       sciInitBackground(pobj,(*background));
+		}
   }
 
   if(mark_style != NULL)
+	{
     sciInitMarkStyle(pobj,(*mark_style));
+	}
 
   if(mark_foreground != NULL)
   {
@@ -1030,9 +1057,7 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
 
   sciInitVisibility( pobj, TRUE ) ;
 
-  sciGetPointerToUserData( pobj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
+  initUserData(pobj);
 
   pobj->pObservers = NULL;
 
@@ -1135,7 +1160,6 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
 	  sciDelHandle (pobj);
 	  FREE(ppArc);
 	  FREE(pobj);
-	  sciprint(_("No context"));
 	  return (sciPointObj *) NULL;
 	}
 
@@ -1157,7 +1181,7 @@ ConstructArc (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1190,6 +1214,8 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
+
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         FREE( pobj->pfeatures ) ;
@@ -1237,7 +1263,7 @@ ConstructRectangle (sciPointObj * pparentsubwin, double x, double y,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1299,6 +1325,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
       /*debug F.Leray*/
       psurf = pSURFACE_FEATURE (pobj);
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
@@ -1528,7 +1555,7 @@ ConstructSurface (sciPointObj * pparentsubwin, sciTypeOf3D typeof3d,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1555,6 +1582,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
 	  FREE(pobj);
 	  return (sciPointObj *) NULL;
 	}
+
       if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
       {
         FREE( pobj->pfeatures ) ;
@@ -1635,7 +1663,7 @@ ConstructGrayplot (sciPointObj * pparentsubwin, double *pvecx, double *pvecy,
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -1669,6 +1697,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
 	    FREE(pobj);
 	    return (sciPointObj *) NULL;
 	  }
+
     if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
     {
       FREE( pobj->pfeatures ) ;
@@ -1729,7 +1758,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
     if(str != (char **) NULL)
 	  {
 	    if(pAXES_FEATURE (pobj)->nb_tics_labels == -1){
-	      sciprint(_("Impossible case when building axis\n"));
+	      Scierror(999, _("Impossible case when building axis\n"));
 	      return (sciPointObj *) NULL;
 	    }
 
@@ -1792,7 +1821,7 @@ ConstructAxes (sciPointObj * pparentsubwin, char dir, char tics, double *vx,
   }
   else
   {
-    sciprint(_("The parent has to be a SUBWIN\n"));
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 }
@@ -1810,116 +1839,119 @@ ConstructFec (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, double 
 	      double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax,
 	      int *colout, BOOL with_mesh)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciFec *pfec = (sciFec *) NULL;
-  int i = 0;
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciFec *pfec = (sciFec *) NULL;
+	int i = 0;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_FEC);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciFec)))) == NULL)
+	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
 	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+			return (sciPointObj *) NULL;
+		sciSetEntityType (pobj, SCI_FEC);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciFec)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
 
-      pFEC_FEATURE (pobj)->callback = (char *)NULL;
-      pFEC_FEATURE (pobj)->callbacklen = 0;
-      pFEC_FEATURE (pobj)->callbackevent = 100;
+		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			return NULL ;
+		}
 
-      pFEC_FEATURE (pobj)->isselected = TRUE;
-      pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+		pFEC_FEATURE (pobj)->callback = (char *)NULL;
+		pFEC_FEATURE (pobj)->callbacklen = 0;
+		pFEC_FEATURE (pobj)->callbackevent = 100;
 
-      sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
-      sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+		pFEC_FEATURE (pobj)->isselected = TRUE;
+		pFEC_FEATURE (pobj)->visible = sciGetVisibility(sciGetParentSubwin(pobj));
 
-      pfec = pFEC_FEATURE (pobj);
+		sciInitIsClipping( pobj, sciGetIsClipping(pparentsubwin) ) ;
+		sciSetClipping(pobj, sciGetClipping(pparentsubwin)) ;
+
+		pfec = pFEC_FEATURE (pobj);
 
 
-      if ((pfec->pvecx = MALLOC (Nnode * sizeof (double))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((pfec->pvecy = MALLOC (Nnode * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((pfec->pnoeud = MALLOC ((5*Ntr) * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((pfec->pfun = MALLOC (Nnode * sizeof (double))) == NULL)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+		if ((pfec->pvecx = MALLOC (Nnode * sizeof (double))) == NULL)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((pfec->pvecy = MALLOC (Nnode * sizeof (double))) == NULL)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((pfec->pnoeud = MALLOC ((5*Ntr) * sizeof (double))) == NULL)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			FREE(pFEC_FEATURE (pobj)->pvecy);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((pfec->pfun = MALLOC (Nnode * sizeof (double))) == NULL)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			FREE(pFEC_FEATURE (pobj)->pvecy);
+			FREE(pFEC_FEATURE (pobj)->pnoeud);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
 
-      for (i = 0; i < Nnode; i++)
-	{
-	  pfec->pvecx[i] = pvecx[i];
-	  pfec->pvecy[i] = pvecy[i];
-	  pfec->pfun[i] = pfun[i];
+		for (i = 0; i < Nnode; i++)
+		{
+			pfec->pvecx[i] = pvecx[i];
+			pfec->pvecy[i] = pvecy[i];
+			pfec->pfun[i] = pfun[i];
+		}
+		for (i = 0; i < (5*Ntr); i++)
+		{
+			pfec->pnoeud[i] = pnoeud[i];
+		}
+		for (i = 0; i < 2; i++)
+		{
+			pfec->zminmax[i] = zminmax[i];
+			pfec->colminmax[i] = colminmax[i];
+			pfec->colout[i] = colout[i];
+		}
+		pfec->Nnode = Nnode;
+		pfec->Ntr = Ntr;
+		if (sciInitGraphicContext (pobj) == -1)
+		{
+			FREE(pFEC_FEATURE (pobj)->pvecx);
+			FREE(pFEC_FEATURE (pobj)->pvecy);
+			FREE(pFEC_FEATURE (pobj)->pnoeud);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(pFEC_FEATURE(pobj));
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		/* sline mdoe is set using with_mesh */
+		sciInitIsLine(pobj, with_mesh);
+
+		return pobj;
 	}
-      for (i = 0; i < (5*Ntr); i++)
+	else
 	{
-	  pfec->pnoeud[i] = pnoeud[i];
+		Scierror(999, _("The parent has to be a SUBWIN\n"));
+		return (sciPointObj *) NULL;
 	}
-      for (i = 0; i < 2; i++)
-	{
-	  pfec->zminmax[i] = zminmax[i];
-	  pfec->colminmax[i] = colminmax[i];
-	  pfec->colout[i] = colout[i];
-	}
-      pfec->with_mesh = with_mesh;
-      pfec->Nnode = Nnode;
-      pfec->Ntr = Ntr;
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(pFEC_FEATURE (pobj)->pvecx);
-	  FREE(pFEC_FEATURE (pobj)->pvecy);
-	  FREE(pFEC_FEATURE (pobj)->pnoeud);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(pFEC_FEATURE(pobj));
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      return pobj;
-    }
-  else
-    {
-      sciprint(_("The parent has to be a SUBWIN\n"));
-      return (sciPointObj *) NULL;
-    }
 }
 
 
@@ -1935,171 +1967,172 @@ ConstructSegs (sciPointObj * pparentsubwin, int type,double *vx, double *vy,
                int Nbr1,int Nbr2, double *vfx, double *vfy, int flag,
 	       int *style, double arsize, int colored, double arfact, int typeofchamp)
 {
-  sciPointObj *pobj = (sciPointObj *) NULL;
-  sciSegs * ppSegs = (sciSegs *) NULL;
-  int i;
+	sciPointObj *pobj = (sciPointObj *) NULL;
+	sciSegs * ppSegs = (sciSegs *) NULL;
+	int i;
 
-  if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
-    {
-      if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
-	return (sciPointObj *) NULL;
-      sciSetEntityType (pobj, SCI_SEGS);
-      if ((pobj->pfeatures = MALLOC ((sizeof (sciSegs)))) == NULL)
+	if (sciGetEntityType (pparentsubwin) == SCI_SUBWIN)
 	{
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
-      {
-        FREE( pobj->pfeatures ) ;
-        FREE( pobj ) ;
-        return NULL ;
-      }
+		if ((pobj = MALLOC ((sizeof (sciPointObj)))) == NULL)
+			return (sciPointObj *) NULL;
+		sciSetEntityType (pobj, SCI_SEGS);
+		if ((pobj->pfeatures = MALLOC ((sizeof (sciSegs)))) == NULL)
+		{
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
 
-      ppSegs = pSEGS_FEATURE(pobj) ;
+		if ( sciStandardBuildOperations( pobj, pparentsubwin ) == NULL )
+		{
+			FREE( pobj->pfeatures ) ;
+			FREE( pobj ) ;
+			return NULL ;
+		}
 
-      ppSegs->callback = (char *)NULL;
-      ppSegs->callbacklen = 0;
-      ppSegs->callbackevent = 100;
+		ppSegs = pSEGS_FEATURE(pobj) ;
 
-      ppSegs->isselected = TRUE;
-      ppSegs->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+		ppSegs->callback = (char *)NULL;
+		ppSegs->callbacklen = 0;
+		ppSegs->callbackevent = 100;
 
-      /* this must be done prior to the call of sciSetClipping to know */
-      /* if the clip_state has been set */
-      ppSegs->clip_region_set = 0;
-      sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
-      sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
+		ppSegs->isselected = TRUE;
+		ppSegs->visible = sciGetVisibility(sciGetParentSubwin(pobj));
+
+		/* this must be done prior to the call of sciSetClipping to know */
+		/* if the clip_state has been set */
+		ppSegs->clip_region_set = 0;
+		sciInitIsClipping( pobj, sciGetIsClipping(sciGetParentSubwin(pobj) ));
+		sciSetClipping(pobj,sciGetClipping(sciGetParentSubwin(pobj)));
 
 
-      ppSegs = pSEGS_FEATURE (pobj);
-      ppSegs->ptype = type;
+		ppSegs = pSEGS_FEATURE (pobj);
+		ppSegs->ptype = type;
 
-      ppSegs->pstyle = NULL ;
+		ppSegs->pstyle = NULL ;
 
-      if ((ppSegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
-	{
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppSegs);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
-      if ((ppSegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
-	{
-	  FREE(ppSegs->vx);
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppSegs);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+		if ((ppSegs->vx = MALLOC (Nbr1 * sizeof (double))) == NULL)
+		{
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppSegs);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
+		if ((ppSegs->vy = MALLOC (Nbr2 * sizeof (double))) == NULL)
+		{
+			FREE(ppSegs->vx);
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppSegs);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
 
-      for (i = 0; i < Nbr1; i++)
-	{
-	  ppSegs->vx[i] = vx[i];
-	}
-      for (i = 0; i < Nbr2; i++)
-	{
-	  ppSegs->vy[i] = vy[i];
-	}
-      pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
-      ppSegs->ptype = type;
+		for (i = 0; i < Nbr1; i++)
+		{
+			ppSegs->vx[i] = vx[i];
+		}
+		for (i = 0; i < Nbr2; i++)
+		{
+			ppSegs->vy[i] = vy[i];
+		}
+		pSEGS_FEATURE (pobj)->vz=(double *) NULL; /**DJ.Abdemouche 2003**/
+		ppSegs->ptype = type;
 
-      /* F.Leray Test imprortant sur type ici*/
-      if (type == 0) /* attention ici type = 0 donc...*/
-	{
-	  ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
-	  ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
-	  if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (int) )) == NULL)
-	    {
-	      FREE(ppSegs->vx);
-	      FREE(ppSegs->vy);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(ppSegs);
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
-	  if (flag == 1)
-	    {
-	      for (i = 0; i < Nbr1; i++)
-              {
-		ppSegs->pstyle[i] = style[i];
-              }
-	    }
-	  else
-          {
-	    for (i = 0; i < Nbr1; i++)
-            {
-	      ppSegs->pstyle[i] = style[0];
-            }
-	  }
+		/* F.Leray Test imprortant sur type ici*/
+		if (type == 0) /* attention ici type = 0 donc...*/
+		{
+			ppSegs->typeofchamp = -1; /* useless property in the case type == 0 */
+			ppSegs->arrowsize = arsize /** 100*/;       /* A revoir: F.Leray 06.04.04 */
+			if ((ppSegs->pstyle = MALLOC (Nbr1 * sizeof (int) )) == NULL)
+			{
+				FREE(ppSegs->vx);
+				FREE(ppSegs->vy);
+				sciDelThisToItsParent (pobj, sciGetParent (pobj));
+				sciDelHandle (pobj);
+				FREE(ppSegs);
+				FREE(pobj);
+				return (sciPointObj *) NULL;
+			}
+			if (flag == 1)
+			{
+				for (i = 0; i < Nbr1; i++)
+				{
+					ppSegs->pstyle[i] = style[i];
+				}
+			}
+			else
+			{
+				for (i = 0; i < Nbr1; i++)
+				{
+					ppSegs->pstyle[i] = style[0];
+				}
+			}
 
-	  ppSegs->iflag = flag;
-	  ppSegs->Nbr1 = Nbr1;
-	}
-      else /* Warning here type = 1 so... building comes from champg */
-	{
-	  /* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
-	  ppSegs->arrowsize = arsize /* * 100 */;
-	  ppSegs->Nbr1 = Nbr1;
-	  ppSegs->Nbr2 = Nbr2;
-	  sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
-	  ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
-	  if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
-	    {
-	      FREE(ppSegs->vx);
-	      FREE(ppSegs->vy);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(ppSegs);
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
-	  if ((ppSegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
-	    {
-	      FREE(ppSegs->vx);
-	      FREE(ppSegs->vy);
-	      FREE(ppSegs->vfx);
-	      sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	      sciDelHandle (pobj);
-	      FREE(ppSegs);
-	      FREE(pobj);
-	      return (sciPointObj *) NULL;
-	    }
+			ppSegs->iflag = flag;
+			ppSegs->Nbr1 = Nbr1;
+		}
+		else /* Warning here type = 1 so... building comes from champg */
+		{
+			/* Rajout de psegs->arrowsize = arsize; F.Leray 18.02.04*/
+			ppSegs->arrowsize = arsize /* * 100 */;
+			ppSegs->Nbr1 = Nbr1;
+			ppSegs->Nbr2 = Nbr2;
+			sciInitForeground(pobj,sciGetForeground(sciGetCurrentSubWin())); /* set sciGetForeground(psubwin) as the current foreground */
+			ppSegs->typeofchamp = typeofchamp; /* to know if it is a champ or champ1 */
+			if ((ppSegs->vfx = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+			{
+				FREE(ppSegs->vx);
+				FREE(ppSegs->vy);
+				sciDelThisToItsParent (pobj, sciGetParent (pobj));
+				sciDelHandle (pobj);
+				FREE(ppSegs);
+				FREE(pobj);
+				return (sciPointObj *) NULL;
+			}
+			if ((ppSegs->vfy = MALLOC ((Nbr1*Nbr2) * sizeof (double))) == NULL)
+			{
+				FREE(ppSegs->vx);
+				FREE(ppSegs->vy);
+				FREE(ppSegs->vfx);
+				sciDelThisToItsParent (pobj, sciGetParent (pobj));
+				sciDelHandle (pobj);
+				FREE(ppSegs);
+				FREE(pobj);
+				return (sciPointObj *) NULL;
+			}
 
-	  for (i = 0; i < (Nbr1*Nbr2); i++)
-	    {
-	      ppSegs->vfx[i] = vfx[i];
-	      ppSegs->vfy[i] = vfy[i];
-	    }
-	  pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
-	}
-      if (sciInitGraphicContext (pobj) == -1)
-	{
-	  FREE(ppSegs->vx);
-	  FREE(ppSegs->vy);
-          if (type ==0)
-            {
-	      FREE(ppSegs->pstyle);
-            }
-          else
-	    {
-	      FREE(ppSegs->vfx);
-	      FREE(ppSegs->vfy);
-            }
-	  sciDelThisToItsParent (pobj, sciGetParent (pobj));
-	  sciDelHandle (pobj);
-	  FREE(ppSegs);
-	  FREE(pobj);
-	  return (sciPointObj *) NULL;
-	}
+			for (i = 0; i < (Nbr1*Nbr2); i++)
+			{
+				ppSegs->vfx[i] = vfx[i];
+				ppSegs->vfy[i] = vfy[i];
+			}
+			pSEGS_FEATURE (pobj)->vfz=(double *) NULL; /**DJ.Abdemouche 2003**/
+		}
+		if (sciInitGraphicContext (pobj) == -1)
+		{
+			FREE(ppSegs->vx);
+			FREE(ppSegs->vy);
+			if (type ==0)
+			{
+				FREE(ppSegs->pstyle);
+			}
+			else
+			{
+				FREE(ppSegs->vfx);
+				FREE(ppSegs->vfy);
+			}
+			sciDelThisToItsParent (pobj, sciGetParent (pobj));
+			sciDelHandle (pobj);
+			FREE(ppSegs);
+			FREE(pobj);
+			return (sciPointObj *) NULL;
+		}
       return pobj;
     }
   else
     {
-      sciprint(_("The parent has to be a SUBWIN\n"));
+      Scierror(999, _("The parent has to be a SUBWIN\n"));
       return (sciPointObj *) NULL;
     }
 }
@@ -2203,13 +2236,6 @@ ConstructCompoundSeq (int number)
 
   ppagr = pAGREG_FEATURE(pobj) ;
 
-  if (sciAddNewHandle (pobj) == -1)
-  {
-    sciprint(_("No handle to allocate\n"));
-    FREE(pobj->pfeatures);FREE(pobj);
-    return (sciPointObj *) NULL;
-  }
-
   if ( sciStandardBuildOperations( pobj, psubwin ) == NULL )
   {
     FREE( pobj->pfeatures ) ;
@@ -2233,8 +2259,7 @@ ConstructCompoundSeq (int number)
   sciInitSelectedSons(pobj);
 
   /* set Compound properties*/
-  ppagr->user_data = (int *) NULL; /* add missing init. 29.06.05 */
-  ppagr->size_of_user_data = 0;
+  initUserData(pobj);
   ppagr->callback = (char *)NULL;
   ppagr->callbacklen = 0;
   ppagr->visible = sciGetVisibility (sciGetParentFigure(pobj));
@@ -2276,11 +2301,14 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
       return (sciPointObj *) NULL;
     }
 
-    ppLabel =  pLABEL_FEATURE( pobj ) ;
+    ppLabel = pLABEL_FEATURE( pobj ) ;
 
     ppLabel->text = allocateText( pparentsubwin, &emptyString, 1, 1,
                                   0.0, 0.0, TRUE, NULL, FALSE, &defaultColor, &defaultColor,
                                   FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+
+		/* RelationShip is actually stored in the text object */
+		pobj->relationShip = ppLabel->text->relationShip;
 
     sciStandardBuildOperations(pobj, pparentsubwin);
 
@@ -2308,7 +2336,7 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
   }
   else
   {
-    sciprint(_("The parent has to be a SUBWIN\n"));
+    Scierror(999, _("The parent has to be a SUBWIN\n"));
     return (sciPointObj *) NULL;
   }
 }
@@ -2321,14 +2349,16 @@ ConstructLabel (sciPointObj * pparentsubwin, char *text, int type)
  */
 sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * parent )
 {
-  int ** userData = NULL ;
-  int *  udSize   = NULL ;
+
+	/* Allocate relationShip */
+	createDefaultRelationShip(pObj);
 
   /* add the handle in the handle list */
   if ( sciAddNewHandle(pObj) == -1 )
   {
     return NULL ;
   }
+
 
   /* connect the object under its parent in the hierarchy */
   if ( !sciAddThisToItsParent( pObj, parent) )
@@ -2337,19 +2367,9 @@ sciPointObj * sciStandardBuildOperations( sciPointObj * pObj, sciPointObj * pare
     return NULL ;
   }
 
-  /* no sons for now */
-  sciInitSelectedSons( pObj ) ;
-
-  sciGetRelationship(pObj)->psons        = NULL ;
-  sciGetRelationship(pObj)->plastsons    = NULL ;
-  sciGetRelationship(pObj)->pSelectedSon = NULL ;
-
   sciInitVisibility( pObj, TRUE ) ;
 
-  sciGetPointerToUserData( pObj, &userData, &udSize ) ;
-  *userData = NULL ;
-  *udSize   = 0    ;
-
+  initUserData(pObj);
 
   pObj->pObservers = DoublyLinkedList_new() ;
   createDrawingObserver( pObj ) ;
@@ -2453,5 +2473,38 @@ sciPointObj * createFirstSubwin(sciPointObj * pFigure)
 	}
 }
 /*----------------------------------------------------------------------------*/
+void createDefaultRelationShip(sciPointObj * pObj)
+{
+	/* Create a new relationship structure */
+	sciRelationShip * relationShip = MALLOC(sizeof(sciRelationShip));
+	if (relationShip == NULL || sciGetEntityType(pObj) == SCI_LABEL)
+	{
+		/* labels have their relationShip stored in their text objects */
+		return;
+	}
 
+	/* Set default values */
+	relationShip->handleIndex = 0;
+	relationShip->plastsons = NULL;
+	relationShip->psons = NULL;
+	relationShip->pparent = NULL;
+	relationShip->pSelectedSon = DoublyLinkedList_new();
 
+	/* Add it to the object */
+	pObj->relationShip = relationShip;
+
+}
+/*----------------------------------------------------------------------------*/
+/**
+ * Initialize the user data of a graphic obj
+ */
+void initUserData(sciPointObj * pObj)
+{
+	int ** userData = NULL ;
+  int *  udSize   = NULL ;
+
+	sciGetPointerToUserData( pObj, &userData, &udSize ) ;
+  *userData = NULL ;
+  *udSize   = 0    ;
+}
+/*----------------------------------------------------------------------------*/

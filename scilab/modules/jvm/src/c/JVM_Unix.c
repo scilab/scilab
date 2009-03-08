@@ -27,6 +27,19 @@ but it has the downside of taking around 10% longer to start up, and it uses mor
 /*--------------------------------------------------------------------------*/ 
 static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH);
 static JavaVM *SearchCreatedJavaVMPath(void);
+
+#ifdef __APPLE__
+/* I guess Apple likes to make my life harder ... 
+ * They are renaming the name of the dynamic lib especially for jni lib...
+ * Therefor, I must change the name only for mac os X from dynlib
+ */
+#undef SHARED_LIB_EXT
+#define SHARED_LIB_EXT ".jnilib"
+#define LIBJAVANAME "libjava"
+#else
+#define LIBJAVANAME "libjvm"
+#endif
+
 /*--------------------------------------------------------------------------*/ 
 static BOOL EMBEDDED_JRE=FALSE;
 /*--------------------------------------------------------------------------*/ 
@@ -47,10 +60,9 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	{
 		  /* 2. search in LD_LIBRARY_PATH */
 			if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
-			JVMLibFullName=(char*)MALLOC( (strlen("libjvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			sprintf(JVMLibFullName,"%s%s","libjvm",SHARED_LIB_EXT);
-			//			JVMLibFullName=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
-			//			sprintf(JVMLibFullName,"%s%s","libjava",SHARED_LIB_EXT);
+
+                        JVMLibFullName=(char*)MALLOC( (strlen(LIBJAVANAME)+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
+                        sprintf(JVMLibFullName,"%s%s",LIBJAVANAME,SHARED_LIB_EXT);
 			if (LoadFuntionsJVM(JVMLibFullName)) bOK=TRUE;
 	}
 	else 

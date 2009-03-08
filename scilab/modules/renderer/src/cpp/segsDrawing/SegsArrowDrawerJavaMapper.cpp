@@ -57,11 +57,6 @@ void SegsArrowDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex); 
 }
-/*--------------------------------------------------------------------------*/
-void SegsArrowDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void SegsArrowDrawerJavaMapper::setArrowSize(double size)
 {

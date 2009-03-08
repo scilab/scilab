@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+// <-- ENGLISH IMPOSED -->
 
 a=[1,7;
    2,8
@@ -35,3 +35,4 @@ endfunction
 [abc,v]=lsqrsolve([10;10;10],f2,size(X,1));
 if size(abc,'*') <> 3 then pause,end
 if norm(v) < %eps then pause,end
+

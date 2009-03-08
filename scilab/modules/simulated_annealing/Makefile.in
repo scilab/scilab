@@ -88,16 +88,10 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(libsimulated_annealing_la_etcdir)" \
-	"$(DESTDIR)$(libsimulated_annealing_la_examplesdir)" \
-	"$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)" \
 	"$(DESTDIR)$(libsimulated_annealing_la_rootdir)"
 libsimulated_annealing_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libsimulated_annealing_la_examplesDATA_INSTALL = $(INSTALL_DATA)
-libsimulated_annealing_la_examplesisingDATA_INSTALL = $(INSTALL_DATA)
 libsimulated_annealing_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsimulated_annealing_la_etc_DATA) \
-	$(libsimulated_annealing_la_examples_DATA) \
-	$(libsimulated_annealing_la_examplesising_DATA) \
 	$(libsimulated_annealing_la_root_DATA)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
@@ -232,6 +226,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -304,24 +299,6 @@ libsimulated_annealing_la_root_DATA = changelog.txt license.txt readme.txt versi
 libsimulated_annealing_la_etcdir = $(mydatadir)/etc
 libsimulated_annealing_la_etc_DATA = etc/simulated_annealing.quit etc/simulated_annealing.start
 
-#### simulated_annealing : examples files ####
-libsimulated_annealing_la_examplesdir = $(mydatadir)/examples
-libsimulated_annealing_la_examples_DATA = \
-examples/neigh_func_ising2d.sci \
-examples/SAdemo.sce \
-examples/SAIsing2ddemo.sce
-
-
-#### simulated_annealing : examples/Ising files ####
-libsimulated_annealing_la_examplesisingdir = $(mydatadir)/examples/Ising
-libsimulated_annealing_la_examplesising_DATA = \
-examples/Ising/init_ising2d.sci \
-examples/Ising/init_potts2d.sci \
-examples/Ising/ising2d.sci \
-examples/Ising/plot_ising2d.sci \
-examples/Ising/plot_potts2d.sci
-
-
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -354,7 +331,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -365,11 +342,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -430,40 +413,6 @@ uninstall-libsimulated_annealing_la_etcDATA:
 	  echo " rm -f '$(DESTDIR)$(libsimulated_annealing_la_etcdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libsimulated_annealing_la_etcdir)/$$f"; \
 	done
-install-libsimulated_annealing_la_examplesDATA: $(libsimulated_annealing_la_examples_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsimulated_annealing_la_examplesdir)" || $(MKDIR_P) "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)"
-	@list='$(libsimulated_annealing_la_examples_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsimulated_annealing_la_examplesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsimulated_annealing_la_examplesdir)/$$f'"; \
-	  $(libsimulated_annealing_la_examplesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)/$$f"; \
-	done
-
-uninstall-libsimulated_annealing_la_examplesDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsimulated_annealing_la_examples_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsimulated_annealing_la_examplesdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)/$$f"; \
-	done
-install-libsimulated_annealing_la_examplesisingDATA: $(libsimulated_annealing_la_examplesising_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libsimulated_annealing_la_examplesisingdir)" || $(MKDIR_P) "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)"
-	@list='$(libsimulated_annealing_la_examplesising_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libsimulated_annealing_la_examplesisingDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f'"; \
-	  $(libsimulated_annealing_la_examplesisingDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f"; \
-	done
-
-uninstall-libsimulated_annealing_la_examplesisingDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libsimulated_annealing_la_examplesising_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)/$$f"; \
-	done
 install-libsimulated_annealing_la_rootDATA: $(libsimulated_annealing_la_root_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libsimulated_annealing_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libsimulated_annealing_la_rootdir)"
@@ -519,7 +468,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libsimulated_annealing_la_etcdir)" "$(DESTDIR)$(libsimulated_annealing_la_examplesdir)" "$(DESTDIR)$(libsimulated_annealing_la_examplesisingdir)" "$(DESTDIR)$(libsimulated_annealing_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(libsimulated_annealing_la_etcdir)" "$(DESTDIR)$(libsimulated_annealing_la_rootdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -552,7 +501,7 @@ clean-am: clean-generic clean-libtool clean-local mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic
+distclean-am: clean-am distclean-generic distclean-local
 
 dvi: dvi-am
 
@@ -566,8 +515,6 @@ info-am:
 
 install-data-am: install-data-local \
 	install-libsimulated_annealing_la_etcDATA \
-	install-libsimulated_annealing_la_examplesDATA \
-	install-libsimulated_annealing_la_examplesisingDATA \
 	install-libsimulated_annealing_la_rootDATA
 
 install-dvi: install-dvi-am
@@ -605,22 +552,18 @@ ps: ps-am
 ps-am:
 
 uninstall-am: uninstall-libsimulated_annealing_la_etcDATA \
-	uninstall-libsimulated_annealing_la_examplesDATA \
-	uninstall-libsimulated_annealing_la_examplesisingDATA \
 	uninstall-libsimulated_annealing_la_rootDATA
 
 .MAKE: install-am install-strip
 
 .PHONY: all all-am all-local check check-am check-local clean \
 	clean-generic clean-libtool clean-local distclean \
-	distclean-generic distclean-libtool distdir dvi dvi-am html \
-	html-am info info-am install install-am install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsimulated_annealing_la_etcDATA \
-	install-libsimulated_annealing_la_examplesDATA \
-	install-libsimulated_annealing_la_examplesisingDATA \
+	distclean-generic distclean-libtool distclean-local distdir \
+	dvi dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsimulated_annealing_la_etcDATA \
 	install-libsimulated_annealing_la_rootDATA install-man \
 	install-pdf install-pdf-am install-ps install-ps-am \
 	install-strip installcheck installcheck-am installdirs \
@@ -628,8 +571,6 @@ uninstall-am: uninstall-libsimulated_annealing_la_etcDATA \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	uninstall uninstall-am \
 	uninstall-libsimulated_annealing_la_etcDATA \
-	uninstall-libsimulated_annealing_la_examplesDATA \
-	uninstall-libsimulated_annealing_la_examplesisingDATA \
 	uninstall-libsimulated_annealing_la_rootDATA
 
 
@@ -729,7 +670,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -739,7 +680,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -750,6 +691,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \
@@ -781,6 +738,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

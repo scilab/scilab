@@ -18,6 +18,7 @@ import java.awt.geom.Rectangle2D;
 
 import javax.media.opengl.GL;
 
+import java.lang.reflect.Field;
 import com.sun.opengl.util.j2d.TextRenderer;
 
 /**
@@ -26,8 +27,10 @@ import com.sun.opengl.util.j2d.TextRenderer;
  */
 public class SciTextRenderer {
 
-	private static final float EPSILON = 1.0e-4f; 
-
+	private static boolean areMipmapsAvailable;
+	
+	private static boolean areMMsAvailableUpToDate;
+	
 	/** Size of the font to use */
 	private float fontSize;
 	
@@ -55,12 +58,7 @@ public class SciTextRenderer {
 	 * Update the scale factor to use
 	 */
 	private void updateScaleFactor() {
-		//if (useFractionalMetrics) {
-			this.scaleFactor = fontSize / renderer.getFont().getSize2D();
-//			
-//		} else {
-//			this.scaleFactor = 1.0f;
-//		}
+		this.scaleFactor = fontSize / renderer.getFont().getSize2D();
 	}
 	
 	
@@ -76,24 +74,14 @@ public class SciTextRenderer {
 	 * @param angle angle of the text to draw
 	 */
 	public void draw3D(GL gl, String str, double x, double y, double z, double angle) {
-		// move position
-		//gl.glPushMatrix();
-		//gl.glTranslated(x, y, z);
-//		gl.glScalef(fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
-//					fontSize / TextRendererManager.DEFAULT_FONT_SIZE,
-//					fontSize / TextRendererManager.DEFAULT_FONT_SIZE);
 		// with OpenGL strings, angle is already set
 		if (useFractionalMetrics) {
 			renderer.draw3D(str, (float) x, (float) y, (float) z, scaleFactor);
 		} else {
 			// we need to add a little offset othrwise texture interpolation
 			// sometimes (especially for title) leads to jaggy text.
-			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f + EPSILON);
+			renderer.draw3D(str, (float) x, (float) y, (float) z, 1.0f);
 		}
-		
-		// flush since we moved rendering position
-		//renderer.flush();
-		//gl.glPopMatrix();
 	}
 	
 	/**
@@ -113,15 +101,26 @@ public class SciTextRenderer {
 	
 	/**
 	 * Begin a rendering process
+	 * @param gl OpenGL pipeline
 	 */
-	public void begin3DRendering() {
+	public void begin3DRendering(GL gl) {
+		
 		renderer.begin3DRendering();
+		
+		// HACK HACK HACK for Intel drivers
+		// When text is rendered using normal texture mapping (no mipmap)
+		// the result is sometime totally fuzzy or the text is simply not displayed.
+		// Apparently setting mipmap use solves the problem on this cards.
+		// Normally it should not break display on other GC, so let use it.
+		fuzzyTextHack(gl);
+		// END OF HACK
 	}
 	
 	/**
-	 * Terminatr a drawing sequence
+	 * Terminate a drawing sequence
+	 * @param gl OpenGL pipeline
 	 */
-	public void end3DRendering() {
+	public void end3DRendering(GL gl) {
 		renderer.end3DRendering();
 	}
 	
@@ -131,6 +130,17 @@ public class SciTextRenderer {
 	public Font getFont() {
 		// renderer font is from the same family but does not have the same size.
 		return renderer.getFont().deriveFont(fontSize);
+	}
+	
+	/**
+	 * @return real size of text produced by the renderer
+	 */
+	public double getDisplayedFontSize() {
+		if (useFractionalMetrics) {
+			return fontSize;
+		} else {
+			return renderer.getFont().getSize2D();
+		}
 	}
 	
 	/**
@@ -174,6 +184,58 @@ public class SciTextRenderer {
 					res.getWidth() * scaleFactor,
 					res.getHeight() * scaleFactor);
 		return res;
+	}
+	
+	/**
+	 * @return true if mipmaps are enabled for the text renderer.
+	 */
+	private boolean getMipmapAvailability() {
+		// The result of the function is actually the mipmap field
+		// of the text renderer.
+		// The result is the same for each renderers
+		// So we just need to compute it once
+		
+		// The problem here is that the mipmap field is private
+		// This following lines retrieve the field even if it is private.
+		// This technique is inspired from the TextRenderHack:
+		// http://www.javagaming.org/index.php/topic,19239.0.html
+		if (!areMMsAvailableUpToDate) {
+			// search for the mipmap field inside the renderer object
+			Field mipmapField = null;
+			try {
+				mipmapField = renderer.getClass().getDeclaredField("mipmap");
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (NoSuchFieldException e) {
+				e.printStackTrace();
+			}
+			
+			// the field is private, we need to enable it
+			mipmapField.setAccessible(true);
+			
+			// get the field value
+			try {
+				areMipmapsAvailable = mipmapField.getBoolean(renderer);
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+			areMMsAvailableUpToDate = true;
+		}
+		return areMipmapsAvailable;
+	}
+	
+	/**
+	 * HACK function for buggy drivers on Intel graphics.
+	 * Always try to enable mipmaps since they seems less buggy than normal mode
+	 * @param gl current GL pipeline
+	 */
+	private void fuzzyTextHack(GL gl) {
+		// try to use mimaps if possible
+		if (!useFractionalMetrics && getMipmapAvailability()) {
+			gl.glTexParameteri(GL.GL_TEXTURE_2D, GL.GL_TEXTURE_MIN_FILTER, GL.GL_NEAREST_MIPMAP_NEAREST);
+		}
 	}
 	
 

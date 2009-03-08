@@ -36,14 +36,11 @@ int C2F(sci_createdir)(char *fname,unsigned long l)
 		int m1 = 0, n1 = 0, l1 = 0;
 		char expandedpath[PATH_MAX+1];
 		int out_n = 0;
-		char *VarName = NULL;
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
-		/* Bug 3089 */
-		VarName = UTFToLocale(cstk(l1));
 
-		C2F(cluni0)(VarName,expandedpath, &out_n,(int)strlen(VarName),PATH_MAX);
+		C2F(cluni0)(cstk(l1),expandedpath, &out_n,(int)strlen(cstk(l1)),PATH_MAX);
 
 		if (!isdir(expandedpath))
 		{

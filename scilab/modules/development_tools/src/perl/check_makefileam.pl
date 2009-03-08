@@ -42,13 +42,8 @@ foreach my $module (sort keys %modules)
 	my %list_makefile_headers  = get_makefileam_list($module,'HEADERS');
 	my %list_real_headers      = get_real_list($module,'HEADERS');
 	
-	my %list_makefile_demos    = get_makefileam_list($module,'DEMOS');
-	my %list_real_demos        = get_real_list($module,'DEMOS');
-	
 	my $nb_makefile_headers    = 0;
 	my $nb_real_headers        = 0;
-	my $nb_makefile_demos      = 0;
-	my $nb_real_demos          = 0;
 	
 	my $error_list             = '';
 	
@@ -75,28 +70,6 @@ foreach my $module (sort keys %modules)
 		}
 	}
 	
-	foreach my $file (sort keys %list_makefile_demos)
-	{
-		$nb_makefile_demos++;
-		
-		if( ! -e $sci_modules_dir.'/'.$module.'/'.$file )
-		{
-			$nb_pb++;
-			$error_list .= sprintf("\t".'% 3d - %s doesn\'t exist'."\n",$nb_pb,$file);
-		}
-	}
-	
-	foreach my $file (sort keys %list_real_demos)
-	{
-		$nb_real_demos++;
-		
-		if( ! exists( $list_makefile_demos{$file} ) )
-		{
-			$nb_pb++;
-			$error_list .= sprintf("\t".'% 3d - %s is not listed in the Makefile.am file'."\n",$nb_pb,$file);
-		}
-	}
-	
 	if( $nb_pb == 0 )
 	{
 		for( my $i = length($module) ; $i <= 30 ; $i++ )
@@ -104,7 +77,7 @@ foreach my $module (sort keys %modules)
 			print ' ';
 		}
 		print 'OK';
-		printf(' [ % 4d include file(s) - % 4d demo file(s) ]'."\n",$nb_makefile_headers,$nb_makefile_demos);
+		printf(' [ % 4d include file(s) ]'."\n",$nb_makefile_headers);
 	}
 	else
 	{
@@ -119,7 +92,6 @@ foreach my $module (sort keys %modules)
 sub get_makefileam_list()
 {
 	my $module            = $_[0];
-	my $type              = $_[1];
 	
 	my $list_start        = 0;
 	my @file_list_string;
@@ -153,14 +125,7 @@ sub get_makefileam_list()
 		
 		# Début de la list
 		
-		if( ($type eq 'HEADERS') && ($_ =~ m/lib(.*)include_HEADERS/ ) )
-		{
-			$nb_blocs++;
-			$file_list_string[$nb_blocs] = '';
-			$list_start = 1;
-		}
-		
-		if( ($type eq 'DEMOS') && ($_ =~ m/lib(.*)demos(.*)_DATA/ ) )
+		if($_ =~ m/lib(.*)include_HEADERS/ )
 		{
 			$nb_blocs++;
 			$file_list_string[$nb_blocs] = '';
@@ -221,7 +186,6 @@ sub get_makefileam_list()
 sub get_real_list()
 {
 	my $module = $_[0];
-	my $type   = $_[1];
 	
 	my $list_start        = 0;
 	my $file_list_string  = '';
@@ -234,40 +198,14 @@ sub get_real_list()
 		exit;
 	}
 	
-	if( $type eq 'HEADERS' )
+	my @files = <includes/*>;
+	
+	foreach my $file (@files)
 	{
-		my @files = <includes/*>;
-		
-		foreach my $file (@files)
-		{
-			$list{$file} = 1;
-		}
-		
-		return %list;
+		$list{$file} = 1;
 	}
 	
-	elsif( $type eq 'DEMOS' )
-	{
-		if( ! -e $sci_modules_dir.'/'.$module.'/demos' )
-		{
-			return %list;
-		}
-		
-		my $list_of_file; # Memory file
-		
-		open(LIST,'>',\$list_of_file);
-		search($sci_modules_dir.'/'.$module.'/demos',$module);
-		close(LIST);
-		
-		my @files = split(/[[:blank:]]+/,$list_of_file);
-		
-		foreach my $file (@files)
-		{
-			$list{$file} = 1;
-		}
-		
-		return %list;
-	}
+	return %list;
 }
 
 # ==============================================================================

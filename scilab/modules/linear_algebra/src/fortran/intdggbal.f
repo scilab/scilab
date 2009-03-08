@@ -11,9 +11,8 @@ c$
 c     [Ab,Bb,X,Y]=balanc(A,B)
 
       include 'stack.h'
-      logical getrhsvar,createvar,createcvar
+      logical getrhsvar,createvar
       logical checklhs,checkrhs
-      integer vfinite
 
       character fname*(*)
       character JOB

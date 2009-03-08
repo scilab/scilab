@@ -111,6 +111,11 @@
 #       true: file gets colorized
 #       false: no colorization for this file
 #
+#     listoffile("$ta",encoding)
+#       name of the encoding in which the file is stored,
+#       e.g. utf-8 or euc-jp or cp1252 or a lot of other possibilities
+#       See SEP#12 for a complete description of the encodings support in Scipad
+#
 #   The windows menu entries are radionbuttons, with the following
 #   properties:
 #     -value is $winopened
@@ -135,6 +140,7 @@
 proc filesetasnew {} {
     global winopened listoffile
     global listoftextarea pad
+    global defaultencoding
 
     # ensure that the cursor is changed to the default cursor
     event generate [gettextareacur] <Leave>
@@ -151,6 +157,7 @@ proc filesetasnew {} {
     set listoffile("$pad.new$winopened",undostackdepth) 0
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
+    set listoffile("$pad.new$winopened",encoding) $defaultencoding
     lappend listoftextarea $pad.new$winopened
 
     addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
@@ -248,7 +255,7 @@ proc closefile {textarea {quittype yesno} {forceexit opennewemptyfile}} {
         set answer [tk_messageBox -message [ concat [mc "The contents of"] \
            $listoffile("$textarea",fullname) \
            [mc "may have changed, do you wish to save your changes?"] ] \
-             -title [mc "Save Confirm?"] -type $quittype -icon question]
+             -title [mc "Save Confirm?"] -type $quittype -icon question -parent $pad]
         switch -- $answer {
             yes {
                 filetosave $textarea
@@ -341,6 +348,7 @@ proc byebye {textarea forceexit} {
         unset listoffile("$textarea",undostackdepth)
         unset listoffile("$textarea",redostackdepth)
         unset listoffile("$textarea",progressbar_id)
+        unset listoffile("$textarea",encoding)
 
         # the rest of this proc is similar to proc hidetext,
         # but not identical
@@ -452,6 +460,7 @@ proc opensourceof {} {
 # wants to open
     global pad menuFont textFont
     global opensoflb opensofbOK
+    global Tk85
 
     if {[isscilabbusy 0]} {return}
 
@@ -483,16 +492,20 @@ proc opensourceof {} {
 
     set opensofbOK $opensof.f3.buttonOK
     frame $opensof.f3
-    set bestwidth [mcmaxra "OK" \
-                           "Cancel"]
     button $opensofbOK -text "OK" \
             -command "OKopensourceof $opensof" \
-            -width $bestwidth -font $menuFont
+            -font $menuFont
     button $opensof.f3.buttonCancel -text [mc "Cancel"] \
             -command "destroy $opensof" \
-            -width $bestwidth -font $menuFont
-    pack $opensofbOK $opensof.f3.buttonCancel -side left -padx 10
-    pack $opensof.f3 -pady 4 -after $opensof.f2
+            -font $menuFont
+    grid $opensofbOK              -row 0 -column 0 -sticky we -padx 10
+    grid $opensof.f3.buttonCancel -row 0 -column 1 -sticky we -padx 10
+    grid columnconfigure $opensof.f3 0 -uniform 1
+    grid columnconfigure $opensof.f3 1 -uniform 1
+    if {$Tk85} {
+        grid anchor $opensof.f3 center
+    }
+    pack $opensof.f3 -pady 4 -after $opensof.f2 -expand 1 -fill x
 
     # arrange for the buttons to disappear last
     # when the window size is reduced
@@ -619,7 +632,7 @@ proc doopenfunsource {keywtype nametoopen} {
             # but unfortunately this does not work when used from the debugger
             # call stack area (the shell goes deeper one level and execution is
             # delayed), therefore a more complicated solution here
-            set fullcomm "TCL_EvalStr(\"openfile \"\"\"+strsubst(get_function_path(\"$nametoopen\"),\"\\\",\"/\")+\"\"\"\",\"scipad\");"
+            set fullcomm "TCL_EvalStr(\"openfile \"\"\"+strsubst(get_function_path(\"$nametoopen\"),\"\\\",\"/\")+\"\"\" currenttile iso8859-1\",\"scipad\");"
             ScilabEval_lt $fullcomm "seq"
         }
         "scicos" {
@@ -632,7 +645,7 @@ proc doopenfunsource {keywtype nametoopen} {
             # <TODO>: the line below does not need the ScilabEval(TCL_EvalStr...) construct
             #         because there is no Scilab instruction inside
             #         openfile $filetoopen      should be just enough - to be checked
-            ScilabEval_lt "TCL_EvalStr(\"openfile \"\"$filetoopen\"\"\",\"scipad\");" "seq"
+            ScilabEval_lt "TCL_EvalStr(\"openfile \"\"$filetoopen\"\" currenttile iso8859-1\",\"scipad\");" "seq"
         }
         "userfun" {
             set nameinitial [string range $nametoopen 0 0]
@@ -747,7 +760,7 @@ proc openfileifexists {file} {
              return [openfile $file]
         } else {
              set answer \
-                [tk_messageBox -type yesno -icon question \
+                [tk_messageBox -type yesno -icon question -parent $pad \
                  -title [mc "File not found"] -message "[mc "The file"]\
                   $file [mc "does not exist anymore. Do you want to create an\
                   empty file with the same name?"]"]
@@ -759,19 +772,20 @@ proc openfileifexists {file} {
     }
 }
 
-proc openfile {file {tiledisplay "currenttile"}} {
+proc openfile {file {tiledisplay "currenttile"} {encodingtouse ""}} {
 # try to open a file with filename $file (no file selection through a dialog)
-# if file is not already open, open it
+# if file is not already open, open it using encoding $encodingtouse
 # otherwise just switch buffers to show it
 # return value:
 #    0 if file could not be open
 #    1 if file could be open or displayed (switched buffers)
     global pad winopened listoftextarea listoffile
     global closeinitialbufferallowed startdir
+    global currentencoding
 
-#hack for bringing up the chooser, if $file is a directory
-# on windows this has to precede the check for readable,
-#  because a directory is "unreadable"
+    # hack for bringing up the chooser, if $file is a directory
+    # on windows this has to precede the check for readable,
+    #  because a directory is "unreadable"
     if {[file isdirectory $file]} {
         set startdir $file
         showopenwin currenttile; 
@@ -792,7 +806,14 @@ proc openfile {file {tiledisplay "currenttile"}} {
             if {[file exists $file]} {
                 set listoffile("$pad.new$winopened",thetime) [file mtime $file]
                 set listoffile("$pad.new$winopened",new) 0
-                shownewbuffer $file $tiledisplay
+                # unless otherwise specified, use the encoding selected in the options/encoding menu
+                if {$encodingtouse eq ""} {
+                    set encodingtouse $currentencoding
+                }
+                shownewbuffer $file $tiledisplay $encodingtouse
+                # update the options menu and encoding property in listoffile
+                set currentencoding $encodingtouse
+                setencoding
             } else {
                 set listoffile("$pad.new$winopened",thetime) 0
                 set listoffile("$pad.new$winopened",new) 1
@@ -838,6 +859,8 @@ proc notopenedfile {file} {
 # $file is not opened - this sets the $listoffile area values for that file
 # and adds an entry in the windows menu
     global winopened pad listoffile
+    global currentencoding autodetectencodinginxmlfiles
+
     incr winopened
     dupWidgetOption [gettextareacur] $pad.new$winopened
     set listoffile("$pad.new$winopened",fullname) [file normalize $file]
@@ -855,13 +878,24 @@ proc notopenedfile {file} {
     set listoffile("$pad.new$winopened",redostackdepth) 0
     set listoffile("$pad.new$winopened",progressbar_id) ""
 
+    if {$autodetectencodinginxmlfiles} {
+        # automatic detection of encoding (for xml files)
+        set detenc [detectencoding $file]
+        set listoffile("$pad.new$winopened",encoding) $detenc
+        set currentencoding $detenc
+        setencoding
+    } else {
+        # no auto-detection of encoding, just use the current encoding
+        # selected in the options/encoding menu
+        set listoffile("$pad.new$winopened",encoding) $currentencoding
+    }
     addwindowsmenuentry $winopened $listoffile("$pad.new$winopened",displayedname)
 }
 
-proc shownewbuffer {file tiledisplay} {
+proc shownewbuffer {file tiledisplay encodingtouse} {
     global pad winopened closeinitialbufferallowed
     if {[fileunreadable $file]} {return}
-    openfileondisk $pad.new$winopened $file $tiledisplay
+    openfileondisk $pad.new$winopened $file $tiledisplay $encodingtouse
     resetmodified $pad.new$winopened "clearundoredostacks"
     # colorization must be launched before showing the textarea
     # so that foreground colorization while stepping into
@@ -889,12 +923,13 @@ proc newfilebind {} {
 
 proc fileisopen {file} {
 # file is already opened
+    global pad
     tk_messageBox -type ok -title [concat [mc "Open file"] $file] -message [concat \
       [mc "The file"] $file [mc "is already opened! Save the current opened\
-      file to another name and reopen it from disk!"] ]
+      file to another name and reopen it from disk!"] ] -parent $pad
 }
 
-proc openfileondisk {textarea thefile tiledisplay} {
+proc openfileondisk {textarea thefile tiledisplay encodingtouse} {
 # really open/read a file from disk
 # all readability tests have normally been done before
     global listoftextarea pad closeinitialbufferallowed
@@ -906,9 +941,8 @@ proc openfileondisk {textarea thefile tiledisplay} {
         closefile $pad.new1
     }
     set newnamefile [open $thefile r]
-    while {![eof $newnamefile]} {
-        $textarea insert end [read -nonewline $newnamefile ]
-    }
+    fconfigure $newnamefile -encoding $encodingtouse
+    $textarea insert end [read -nonewline $newnamefile]
     close $newnamefile
 }
 
@@ -944,7 +978,7 @@ proc filetosave {textarea} {
 # Scipad performs this check each time it gets focus - it is kept
 # to deal with the perverse case where some external process modifies
 # the file while Scipad keeps focus
-    global listoffile
+    global listoffile pad
     if {[fileexistsondisk $textarea]} {
         if {[filetimeondiskisdifferent $textarea]} {
             set msgChanged [concat [mc "The contents of "] \
@@ -952,7 +986,7 @@ proc filetosave {textarea} {
                                    [mc "has changed on disk, save it anyway?"] ]
             set msgTitle [mc "File has changed!"]
             set answer [tk_messageBox -message $msgChanged -title $msgTitle \
-                            -type yesnocancel -icon question]
+                            -type yesnocancel -icon question -parent $pad]
             switch -- $answer {
                 yes {
                       if {![writesave $textarea $listoffile("$textarea",fullname)]} {
@@ -1095,7 +1129,7 @@ proc writesave {textarea nametosave} {
 # return value:
 #    1  file was successfully written
 #    0  otherwise
-    global listoffile
+    global listoffile pad
     # if the file exists, check if the file is writable 
     # if it doesn't, check if the directory is writable
     # (case of Save as...) (non existent files return 0 to writable)
@@ -1122,12 +1156,12 @@ proc writesave {textarea nametosave} {
             return 1
         } else {
             set msgWait [concat $nametosave [mc "cannot be written!"]]
-            tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
+            tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"] -parent $pad
             return 0
         }
     } else {
         set msgWait [concat $nametosave [mc "cannot be written!"]]
-        tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"]
+        tk_messageBox -message $msgWait -icon error -type ok -title [mc "Save As"] -parent $pad
         return 0
     }
 }
@@ -1136,7 +1170,7 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
 # really write the file onto the disk
 # all writability tests have normally been done before
     global filebackupdepth tcl_platform
-    global pad
+    global pad listoffile
 
     if {$nobackupskip} {
         backupfile $nametosave $filebackupdepth
@@ -1185,6 +1219,7 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
     }
 
     set FileNameToSave [open $nametosave w]
+    fconfigure $FileNameToSave -encoding $listoffile("$textarea",encoding)
     puts -nonewline $FileNameToSave [$pad.temptextwidget get 1.0 end]
     close $FileNameToSave
 
@@ -1197,9 +1232,14 @@ proc writefileondisk {textarea nametosave {nobackupskip 1}} {
 
 proc savepreferences {} {
   global env listofpref listofpref_list
+  global defaultencoding
   set preffilename [file join $env(SCIHOME) .SciPadPreferences.tcl]
   catch {
     set preffile [open $preffilename w]
+    # the preferences file is always saved with the default platform system encoding
+    # this avoids to source it later in an encoding different than the platform
+    # native encoding, which is a feature available only from Tcl 8.5 onwards
+    fconfigure $preffile -encoding $defaultencoding
     foreach opt $listofpref {
         global $opt
         puts $preffile [concat "set $opt" \{[set $opt]\}]
@@ -1253,7 +1293,7 @@ proc backupfile { fname { levels 10 } } {
 # revert to saved version of current buffer
 ##################################################
 proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
-    global listoffile
+    global listoffile pad
     set thefile $listoffile("$textarea",fullname) 
     if [file exists $thefile] {
         # check for the perverse case that someone changed the file to unreadable
@@ -1262,17 +1302,20 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
         if {$ConfirmFlag == "ConfirmNeeded"} {
             set answer [tk_messageBox \
                 -message [concat [mc "Revert"] $thefile [mc "to saved?"] ] \
-                -type yesno -icon question -title [mc "Revert Confirm?"] ]
+                -type yesno -icon question -title [mc "Revert Confirm?"] \
+                -parent $pad ]
         } else {
             set answer "yes"
         }
         if {$answer == yes} {
             set oldfile [open $thefile r]
+            fconfigure $oldfile -encoding $listoffile("$textarea",encoding)
             $textarea delete 1.0 end 
             while {![eof $oldfile]} {
                 $textarea insert end [read -nonewline $oldfile ] 
             }
             close $oldfile
+            set listoffile("$textarea",readonly) [fileunwritable $thefile]
             resetmodified $textarea "clearundoredostacks"
             foreach ta [getfullpeerset $textarea] {
                 set listoffile("$ta",thetime) [file mtime $thefile]
@@ -1287,22 +1330,24 @@ proc revertsaved {textarea {ConfirmFlag "ConfirmNeeded"}} {
 proc checkiffilechangedondisk {textarea} {
 # check if file on disk has changed (i.e. did another application modify
 # the file on disk?) since last loading in Scipad
-    global listoffile
-    set msgChanged [concat [mc "The contents of "] \
+    global listoffile pad
+    set msgChanged [concat [mc "The contents and/or properties of "] \
                            $listoffile("$textarea",fullname) \
                            [mc "has been modified outside of Scipad. Do you want to reload it?"] ]
     set msgTitle [mc "File has changed!"]
     if {[filehaschangedondisk $textarea]} {
-        # note: if thetime is not updated first, we may enter a recursion:
+        # note: if thetime and the readonly flags would not be updated first,
+        # we would enter a recursion:
         # if revertsaved pops up the "unreadable file" warning, there is once
         # more a change of focus, which triggers this proc recursively.
         # An a posteriori rationale: the decision whether to keep the version
         # on disk or the one in memory is itself the most recent editing action.
         foreach ta [getfullpeerset $textarea] {
             set listoffile("$ta",thetime) [file mtime $listoffile("$textarea",fullname)]
+            set listoffile("$ta",readonly) [fileunwritable $listoffile("$textarea",fullname)]
         }
         set answer [tk_messageBox -message $msgChanged \
-                        -title $msgTitle -type yesno -icon question]
+                        -title $msgTitle -type yesno -icon question -parent $pad]
         switch -- $answer {
             yes {revertsaved $textarea NoConfirm}
             no  {}
@@ -1323,6 +1368,107 @@ proc checkifanythingchangedondisk {w} {
     }
     foreach ta [filteroutpeers $listoftextarea] {
         checkiffilechangedondisk $ta
+    }
+}
+
+##################################################
+# file encoding procs
+##################################################
+proc setencoding {} {
+# set the encoding property of the current buffer to be the encoding
+# currently selected in the encoding options menu
+# this proc is called when selecting any option of this menu
+    global currentencoding listoffile
+
+    set textarea [gettextareacur]
+    foreach ta [getfullpeerset $textarea] {
+        set listoffile("$ta",encoding) $currentencoding
+        modifiedtitle $ta
+    }
+
+    # encoding system MUST NOT be modified because the system encoding
+    # for the platform on which Scipad is running does not change
+    # Saying encoding system $currentencoding here would result in a
+    # number of issues such as encoding eating $env:
+    # can't read "env(SCIHOME)": no such variable
+    # This would happen in a number of situations and can be trimmed down to:
+    #    % encoding system
+    #    cp1252
+    #    % puts $env(TEMP)
+    #    C:\DOCUME~1\FRANOI~1\LOCALS~1\Temp
+    #    % encoding system gb2312-raw
+    #    % puts $env(TEMP)
+    #    can't read "env(TEMP)": no such variable
+    #    % parray env
+    #    missing close-brace 
+    # see also: http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/fef4676cee655d97
+
+    # add in the MRU list of encodings
+    AddRecentEncoding $currentencoding
+}
+
+proc detectencoding {filename} {
+# detect encoding of $filename if it is an xml file
+# this is done by looking for the encoding name in the prolog
+# of the file
+# if detection fails for any reason, the current encoding name is returned
+# if detection succeeds, then the returned string it is an encoding name
+# among the list of known encodings
+
+    global xml_prologstart_RE_rep currentencoding
+
+    # check that the filename extension is xml
+    if {[extenstolang $filename] ne "xml"} {
+        return $currentencoding
+    }
+    # extension is xml, read the file using the current encoding
+    # if anything fails then return $currentencoding
+    if {[catch { \
+                set fileid [open $filename r]; \
+                fconfigure $fileid -encoding $currentencoding; \
+                set allthetext [read -nonewline $fileid]; \
+                close $fileid \
+               } \
+         ]} {
+        return $currentencoding
+    }
+
+    # regexp match the encoding name in the prolog
+    set encodingwasfound [regexp -nocase $xml_prologstart_RE_rep $allthetext -> detectedencoding]
+    if {$encodingwasfound} {
+        # encoding name found, now contained in $detectedencoding
+        # the list of encoding is apparently returned in lower case by [encoding names]
+        # therefore the detected encoding name really is the lowercase conversion
+        # of what was found in the xml prolog
+        set detectedencoding [string tolower $detectedencoding]
+        if {[lsearch -exact [encoding names] $detectedencoding] != -1} {
+            # detected encoding name is known by Scipad
+            return $detectedencoding
+        } else {
+            # Scipad (in fact Tcl) is not aware of the detected encoding
+            # try to remove the dash after iso and check again since
+            # iso8859-1 is part of [encoding system] while iso-8859-1 is mentioned
+            # in Scilab xml help files
+            set detectedencoding2 [string map {iso- iso} $detectedencoding]
+            if {[lsearch -exact [encoding names] $detectedencoding2] != -1} {
+                # detected encoding name is now known by Scipad
+                return $detectedencoding2
+            } else {
+                # try to add a dash after utf and check again since
+                # utf-8 is part of [encoding system] while utf8 might be used
+                # in some xml help files although this is incorrect
+                set detectedencoding2 [string map {utf utf-} $detectedencoding]
+                if {[lsearch -exact [encoding names] $detectedencoding2] != -1} {
+                    # detected encoding name is now known by Scipad
+                    return $detectedencoding2
+                } else {
+                    return $currentencoding
+                }
+            }
+        }
+    } else {
+        # no match in the xml prolog
+        return $currentencoding
     }
 }
 
@@ -1437,6 +1583,8 @@ proc fileunreadable {file} {
 # (but there would be such races anyway with file readable) but is
 # believed to be better than to wait for the above bugs be possibly fixed
 
+    global pad
+
     if {![file exists $file]}  {
         return 0
     } else {
@@ -1449,7 +1597,7 @@ proc fileunreadable {file} {
             tk_messageBox -title [mc "Unreadable file"] \
                 -message [concat [mc "The file"] $file \
                          [mc "exists but is not readable!"]] \
-                -icon warning -type ok
+                -icon warning -type ok -parent $pad
             return 1
         }
     }
@@ -1510,15 +1658,20 @@ proc fileunwritable {file} {
 
 proc filehaschangedondisk {ta} {
 # return value:
-#   1  the file opened in $ta exists on disk, is not a new file, and its last
-#      saving time is different from the modify date retrieved from the file
-#      on disk
+#   1  the file opened in $ta exists on disk, is not a new file, and:
+#        its last saving time is different from the modify date retrieved
+#        from the file on disk
+#      or
+#        its readonly flag changed
 #   0  otherwise
     global listoffile
     if {[fileexistsondisk $ta]} {
         if {[filetimeondiskisdifferent $ta]} {
             return 1
         }
+        if {$listoffile("$ta",readonly) != [fileunwritable $listoffile("$ta",fullname)]} {
+            return 1
+        } 
     }
     return 0
 }
@@ -1604,6 +1757,8 @@ proc fileiswindowsshortcut {filename} {
 #   0  otherwise (includes the case when $filename does not exist, as well
 #      as anything else)
 
+    global pad
+
     # catched to allow to call this proc even if $filename does not exist
     # for instance
     if {[catch {iswindowsshortcut $filename} isashortcut] != 0} {
@@ -1614,7 +1769,7 @@ proc fileiswindowsshortcut {filename} {
         tk_messageBox -title [mc "Windows shortcut file"] \
             -message [concat [mc "The file"] $filename \
                      [mc "is a Windows shortcut and will not be opened!"]] \
-            -icon warning -type ok
+            -icon warning -type ok -parent $pad
         return 1
     } else {
         return 0
@@ -1866,134 +2021,5 @@ proc CreateUnambiguousPrunedNames {talist} {
             set newname [file join $newname $tojoin]
         }
         set listoffile("$ta",displayedname) $newname
-    }
-}
-
-##################################################
-# procedures dealing with the recent files list
-# displayed in the file menu
-##################################################
-proc AddRecentFile {filename} {
-# add a new recent file item to the file menu
-# if there is already the max number of entries, then shift them
-# one line down and insert $filename at the top
-    global pad listofrecent maxrecentfiles nbrecentfiles
-    if {$maxrecentfiles == 0} {return}
-    # first check if the new entry is already present
-    set present "false"
-    for {set i 0} {$i<$nbrecentfiles} {incr i} {
-        if {[lindex $listofrecent $i] == $filename} {
-            set present "true"
-            set pospresent $i
-        }
-    }
-    set rec1ind [GetFirstRecentInd]
-    if {$present == "false"} {
-        # add the new entry
-        if {$nbrecentfiles == 0} {
-            incr rec1ind
-            $pad.filemenu.files insert $rec1ind separator
-        }
-        # update the file menu
-        if {$nbrecentfiles < $maxrecentfiles} {
-            incr nbrecentfiles
-            # insert new entry
-            set listofrecent [linsert $listofrecent 0 $filename]
-            # [list [lindex $listofrecent $i]] automatically escapes special characters
-            $pad.filemenu.files insert $rec1ind command \
-                       -label [file tail [lindex $listofrecent 0] ] \
-                       -command "openfileifexists [list [lindex $listofrecent 0]]"
-            # update menu entries (required to update the numbers)
-            UpdateRecentLabels $rec1ind
-        } else {
-            # forget last entry of the list and insert new entry
-            set listofrecent [lreplace $listofrecent end end]
-            set listofrecent [linsert $listofrecent 0 $filename]
-            # update menu entries
-            UpdateRecentLabels $rec1ind
-        }
-    } else {
-        # move the existing entry to the top of the list
-        set listofrecent [lreplace $listofrecent $pospresent $pospresent]
-        set listofrecent [linsert $listofrecent 0 $filename]
-        UpdateRecentLabels $rec1ind
-    }
-}
-
-proc GetFirstRecentInd {} {
-# get index of first recent file item in the file menu
-    global FirstMRUFileNameInFileMenu nbrecentfiles
-    if {$nbrecentfiles == 0} {
-        return [expr {$FirstMRUFileNameInFileMenu - 1}]
-    } else {
-        return $FirstMRUFileNameInFileMenu
-    }
-}
-
-proc UpdateRecentLabels {rec1ind} {
-# update labels of recent files entries with file tail preceded by a number
-    global pad listofrecent nbrecentfiles
-    for {set i 0} {$i<$nbrecentfiles} {incr i} {
-        if {$i<9} {
-            set lab [concat [expr {$i + 1}] [file tail [lindex $listofrecent $i] ] ]
-        } else {
-            set lab [file tail [lindex $listofrecent $i] ]
-        }
-        set ind [expr {$rec1ind + $i}]
-        # [list [lindex $listofrecent $i]] automatically escapes special characters
-        $pad.filemenu.files entryconfigure $ind \
-                   -label $lab \
-                   -command "openfileifexists [list [lindex $listofrecent $i]]"
-        if {$i<9} {
-            $pad.filemenu.files entryconfigure $ind -underline 0
-        } else {
-            $pad.filemenu.files entryconfigure $ind -underline -1
-        }
-    }
-}
-
-proc BuildInitialRecentFilesList {} {
-    global pad listofrecent nbrecentfiles
-    set nbrecentfiles [llength $listofrecent]
-    for {set i 0} {$i<$nbrecentfiles} {incr i} {
-        if {$i<9} {
-            set lab [concat [expr {$i + 1}] [file tail [lindex $listofrecent $i] ] ]
-        } else {
-            set lab [file tail [lindex $listofrecent $i] ]
-        }
-        # [list [lindex $listofrecent $i]] automatically escapes special characters
-        $pad.filemenu.files add command \
-                   -label $lab \
-                   -command "openfileifexists [list [lindex $listofrecent $i]]"
-        if {$i<9} {
-            set ind [$pad.filemenu.files index end]
-            $pad.filemenu.files entryconfigure $ind \
-                   -underline 0
-        }
-    }
-    if {$nbrecentfiles > 0} {
-        $pad.filemenu.files add separator
-    }
-}
-
-proc UpdateRecentFilesList {} {
-    global pad listofrecent maxrecentfiles nbrecentfiles
-    if {$maxrecentfiles >= [llength $listofrecent]} {
-        # nothing to do, maxrecentfiles was just increased
-        # this is handled by AddRecentFile
-        return
-    } else {
-        # maxrecentfiles was decreased
-        # forget the entries in listofrecent, and update the file menu
-        set rec1ind [GetFirstRecentInd]
-        set firstind [expr {$rec1ind + $maxrecentfiles}]
-        set lastind  [expr {$rec1ind + [llength $listofrecent] - 1}]
-        $pad.filemenu.files delete $firstind $lastind
-        set listofrecent [lreplace $listofrecent $maxrecentfiles end]
-        incr nbrecentfiles [expr {- ($lastind - $firstind + 1)}]
-        if {$maxrecentfiles == 0} {
-            # remove the separator
-            $pad.filemenu.files delete $firstind
-        }
     }
 }

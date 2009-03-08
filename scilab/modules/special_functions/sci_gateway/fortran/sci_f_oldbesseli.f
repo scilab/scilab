@@ -13,11 +13,9 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer topk,rhsk,topl
       logical checkrhs,checklhs,getmat,getscalar,cremat
       double precision infinity
-      double precision alpha,EXPARG
-      data EXPARG/709.0D0/
+      double precision alpha
 c
       rhs = max(0,rhs)
 c     

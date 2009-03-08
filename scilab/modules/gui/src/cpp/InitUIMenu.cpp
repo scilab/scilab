@@ -23,7 +23,7 @@ extern "C"{
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
-#include "sciprint.h"
+#include "Scierror.h"
 
 }
 
@@ -96,7 +96,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
         } 
       else
         {
-          sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+          Scierror(999, _("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
           return SET_PROPERTY_ERROR;
         }
     }
@@ -109,7 +109,7 @@ int setMenuParent(sciPointObj* sciObj, size_t stackPointer, int valueType, int n
     } 
   else
     {
-      sciprint(_("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
+      Scierror(999, _("%s: Wrong type for parent: Figure or uimenu expected.\n"),"SetMenuParent");
       return SET_PROPERTY_ERROR;
     }
   

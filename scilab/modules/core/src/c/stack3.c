@@ -19,13 +19,15 @@
  *------------------------------------------------------*/
 
 #include <string.h>
-#include "stack3.h"
 #include "stack-c.h"
+
 #include "cvstr.h"
 #include "localization.h"
-#include "Scierror.h" 
+#include "Scierror.h"
 #include "code2str.h"
-extern int C2F(dmcopy)(double *a, int *na, double *b, int *nb, int *m, int *n);
+#include "elementary_functions.h"
+#include "MALLOC.h"
+
 extern int C2F(stackp)(int *id, int *macmod);
 
 /*------------------------------------------------------*/
@@ -142,14 +144,14 @@ int C2F(creadcmat)(char *namex, int *m, int *n, double *scimat, unsigned long na
     return TRUE;
 }
 
-/*----------------------------------------------------------------
+/**
  * cwritemat writes vector/matrix in scilab's internal stack
  * logic=cwritemat('matrixname'//char(0),m,n,mat)
- * name: character string; name of the scilab variable ( null terMinated)
- * m: number of rows
- * n: number of columns
- * mat: matrix entries stored columnwise in Scilab object
-----------------------------------------------------------------*/
+ * @param name character string; name of the scilab variable ( null terMinated)
+ * @param m number of rows
+ * @param n number of columns
+ * @param mat matrix entries stored columnwise in Scilab object
+ */
 
 int C2F(cwritemat)(char *namex, int *m, int *n,  double *mat, unsigned long name_len)
 {
@@ -174,16 +176,13 @@ int C2F(cwritemat)(char *namex, int *m, int *n,  double *mat, unsigned long name
 }
 
 
-/*--------------------------------------------------------------------------*/
 /**
-* cwritecmat writes vector/matrix in scilab's internal stack
-* name: character string; name of the scilab variable ( null terMinated)
-* m: number of rows
-* n: number of columns
-* mat: matrix entries stored columnwise in Scilab object
-* for complex number
+ * cwritecmat writes vector/matrix in scilab's internal stack
+ * @param name: character string; name of the scilab variable ( null terMinated)
+ * @param m: number of rows
+ * @param n: number of columns
+ * @param mat: matrix entries stored columnwise in Scilab object for complex number
 */
-/*--------------------------------------------------------------------------*/
 int C2F(cwritecmat)(char *namex,int *m, int*n,double *mat,unsigned long name_len)
 {
 	int   ix1 = *m * *n *2; /* real part + imaginary part */
@@ -349,13 +348,13 @@ int C2F(creadchains)(char *namex, int *ir, int *ic, int *itslen, char *chai, uns
     return TRUE;
 }
 
-/*----------------------------------------------------------------
- *     cwritemat writes vector/matrix in scilab's internal stack
- *     logic=cwritemat('matrixname'//char(0),m,n,mat)
- *  name: character string; name of the scilab variable ( null terMinated)
- *  m: number of rows
- *  n: number of columns
- *  mat: matrix entries stored columnwise in Scilab object
+/**
+ *  cwritemat writes vector/matrix in scilab's internal stack
+ *  logic=cwritemat('matrixname'//char(0),m,n,mat)
+ * @param name character string; name of the scilab variable ( null terMinated)
+ * @param m number of rows
+ * @param n number of columns
+ * @param mat matrix entries stored columnwise in Scilab object
  *----------------------------------------------------------------*/
 
 int C2F(cwritechain)(char *namex, int *m, char *chai, unsigned long name_len, unsigned long chai_len)
@@ -846,7 +845,6 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
 	int iValType		= *istk(iAddrBase);
 	int iAddrOffset		= 0;
-	int iIndex			= 0;
 
 	if(iValType < 0)
 	{
@@ -1199,8 +1197,6 @@ int iGetOrient(int _iVal)
 	int iCols			= 0;
 	int iRealData		= 0;
 	char **szRealData	= 0;
-	double dblSel = 0;
-	double *pdblRealData = 0;
 
 	if(GetType(2) == sci_matrix)
 	{
@@ -1246,20 +1242,25 @@ int iGetOrient(int _iVal)
 	return iMode;
 }
 
-/*Reserve space in stack for a matrix of double*/
-int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
-{
-	if(_iPos + 1 > Bot) 
-		return 10;//Too many names
-
-	return iAllocComplexMatrixOfDouble(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
-}
-
-/*Reserve space in stack for a matrix of complex*/
-int	iAllocComplexMatrixOfDouble(int _iPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+/* 
+_iAllocMatrixDoubleOrComplex --
+  Reserve space in stack for a matrix of real or complex.
+Arguments
+  _iPos : index of the Scilab variable
+  _iComplex : type data in the matrix. If  is 0, the 
+     _iComplex = 0 > real data
+     _iComplex = 1 > complex data
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+  _pdblImgData : pointer to the block of data for complex values
+Note
+  This is a private, support routine for iAllocMatrixOfDouble and iAllocComplexMatrixOfDouble.
+  It should not be used outside.
+*/
+int	_iAllocMatrixDoubleOrComplex(int _iPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	int iNewPos			= Top - Rhs + _iPos;
-	//int iNewPos			= Top + _iPos;
 	int iSize			= _iRows * _iCols * (_iComplex + 1);
 	int iAddr			= iadr(*Lstk(iNewPos));
 	int iAddrData		= iAddr + 4;
@@ -1285,6 +1286,38 @@ int	iAllocComplexMatrixOfDouble(int _iPos, int _iComplex, int _iRows, int _iCols
 
 	*Lstk(iNewPos + 1) = sadr(iAddrData) + _iRows * _iCols * (_iComplex + 1);
 	return 0;
+}
+
+/* 
+iAllocMatrixOfDouble --
+  Reserve space in stack for a matrix of double.
+Arguments
+  _iPos : index of the Scilab variable
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+*/
+int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData)
+{
+	if(_iPos + 1 > Bot) 
+		return 10;//Too many names
+
+	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
+}
+
+/* 
+iAllocMatrixOfDoubleComplex --
+  Reserve space in stack for a matrix of complex.
+Arguments
+  _iPos : index of the Scilab variable
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+  _pdblImgData : pointer to the block of data for complex values
+*/
+int	iAllocMatrixOfDoubleComplex(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+{
+	return _iAllocMatrixDoubleOrComplex(_iPos, 1, _iRows,  _iCols, _pdblRealData, _pdblImgData);
 }
 
 /*Reserve space in stack for a matrix of polynom*/
@@ -1478,10 +1511,6 @@ int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType)
 	int iAddrOffset		= iAddrBase + 2;
 	int iAddrItem		= 0;
 
-	int *pTest1		= 0;
-	int *pTest2		= 0;
-	int *pTest3		= 0;
-
 	int iIndex			= 0;
 	if(iValType < 0)
 	{
@@ -1590,7 +1619,6 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg)
 {
-	int iIndex			= 0;
 	int iAddrOffset		= 0;
 	*_piRows			= *istk(_iAddr + 1);
 	*_piCols			= *istk(_iAddr + 2);
@@ -1728,4 +1756,143 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	*_piString			= cadr(iAddrData);
 	pTest3			= cstk(*_piString);
 	return 0;
+}
+void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
+{
+	int iIndex = 0;
+
+	int iTwo	= 2;
+	int iOne	= 1;
+	double *pReal = &_poComplex[0].r;
+	double *pImg = &_poComplex[0].i;
+
+	if(_pdblReal != NULL && _pdblImg != NULL)
+	{
+		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+	}
+	else if(_pdblReal != NULL && _pdblImg == NULL)
+	{
+		C2F(dcopy)(&_iSize, pReal, &iTwo, _pdblReal, &iOne);
+	}
+	else if(_pdblReal == NULL && _pdblImg != NULL)
+	{
+		C2F(dcopy)(&_iSize, pImg, &iTwo, _pdblImg, &iOne);
+	}
+}
+doublecomplex* oGetDoubleComplexFromPointer(double *_pdblReal, double *_pdblImg, int _iSize)
+{
+	int iIndex = 0;
+	doublecomplex *poComplex = (doublecomplex*)MALLOC(sizeof(doublecomplex) * _iSize);
+	int iTwo	= 2;
+	int iOne	= 1;
+	double *pReal = &poComplex[0].r;
+	double *pImg = &poComplex[0].i;
+
+	if(_pdblReal != NULL && _pdblImg != NULL)
+	{
+
+		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
+		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
+	}
+	else if(_pdblReal != NULL && _pdblImg == NULL)
+	{
+		double ZERO = 0.;
+		C2F(dcopy)(&_iSize, _pdblReal, &iOne, pReal, &iTwo);
+		C2F(dset)(&_iSize, &ZERO, pImg, &iTwo);
+	}
+	else if(_pdblReal == NULL && _pdblImg != NULL)
+	{
+		double ZERO = 0.;
+		C2F(dset)(&_iSize, &ZERO, pReal, &iTwo);
+		C2F(dcopy)(&_iSize, _pdblImg, &iOne, pImg, &iTwo);
+	}
+	else
+	{
+		FREE(poComplex);
+		return NULL;
+	}
+	return poComplex;
+}
+void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
+{
+	if(_poComplex != NULL)
+		FREE(_poComplex);
+}
+
+int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData)
+{
+	unsigned long type_len;
+	int lr;
+	char typex;
+	type_len = 1L;
+	typex = MATRIX_OF_DOUBLE_DATATYPE[0];
+	C2F(getrhsvar)(&number, &typex, _iRows, _iCols, &lr, type_len);
+	*_pdblRealData = stk(lr);
+	return 0;
+}
+int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData)
+{
+	unsigned long type_len;
+	int lr;
+	int lc;
+	char typex;
+	int it;
+	it = 1;
+	type_len = 1L;
+	typex = MATRIX_OF_DOUBLE_DATATYPE[0];
+	C2F(getrhscvar)(&number, &typex, &it, _iRows, _iCols, &lr, &lc, type_len);
+	*_pdblRealData = stk(lr);
+	*_pdblImgData = stk(lc);
+	return 0;
+}
+
+int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
+{
+	int *lenghtMatrix = NULL;
+	unsigned long name_len= (unsigned long)strlen(name_);
+	int x = 0;
+	int y = 0;
+	int mn = 0;
+	int lp = 0;
+	int j = 0;
+	
+	int iposx = 0, iposy = 0;
+	int lengthAtiposxiposy = 0;
+
+	if ( ! C2F(cmatsptr)  (name_, m,n, &iposx, &iposy, &lp, &lengthAtiposxiposy, name_len) )
+	{
+		*m = -1;
+		*n = -1;
+		return NULL;
+	}
+
+	mn = *m * *n;
+	lenghtMatrix = (int*)MALLOC(mn * sizeof(int));
+	if (!lenghtMatrix)
+	{
+		*m = -1;
+		*n = -1;
+		return NULL;
+	}
+
+	j = 0;
+	for (x = 1; x <= *m;x++)
+	{
+		for (y = 1; y <= *n;y++) 
+		{
+			if ( !C2F(cmatsptr)  (name_, m,n, &x, &y, &lp, &lengthAtiposxiposy, name_len) )
+			{
+				FREE(lenghtMatrix);
+				*m = -1;
+				*n = -1;
+				return NULL;
+			}
+			/* scilab string not finished by '\0' */
+			/* we add to the length */
+			lenghtMatrix[j] = lengthAtiposxiposy + 1;
+			j++;
+		}
+	}
+	return lenghtMatrix;
 }

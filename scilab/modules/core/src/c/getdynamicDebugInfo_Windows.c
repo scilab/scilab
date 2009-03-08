@@ -1,26 +1,29 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <windows.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "stack-def.h"
 #include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
 #include "../../../../libs/GetWindowsVersion/GetWindowsVersion.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyCPUIdentifier(void);
 static char * GetRegKeyVideoCard(void);
+static char * GetRegKeyVideoCardVersion(void);
 static char * GetScreenResolution(void);
 static char * GetNumberMonitors(void);
 static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str);
@@ -35,12 +38,14 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 	char *str_info = NULL;
 	char **outputDynamicList=NULL;
 	char *fromGetenv = NULL;
+	char szTemp[bsiz];
+
 
 	MEMORYSTATUSEX statex;
 	statex.dwLength = sizeof (statex);
 	GlobalMemoryStatusEx (&statex);
 
-	
+
 	str_info = (char*)MALLOC(sizeof(char)*BUFFER_LEN);
 	if (str_info)
 	{
@@ -129,52 +134,52 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		{
 		case OS_ERROR : default :
 			strcat(str_info ,"Windows Unknown");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_NT_3_51 :
 			strcat(str_info ,"Windows NT 3.51");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_NT_4_0 :
 			strcat(str_info ,"Windows NT 4.0");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_95 :
 			strcat(str_info ,"Windows 95");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_98 :
 			strcat(str_info ,"Windows 98");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_Me :
 			strcat(str_info ,"Windows ME");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_2000 :
 			strcat(str_info ,"Windows 2000");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_XP :
 			strcat(str_info ,"Windows XP");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_XP_64 :
 			strcat(str_info ,"Windows XP x64");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_SERVER_2003 :
 			strcat(str_info ,"Windows Server 2003");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_SERVER_2003_R2 :
 			strcat(str_info ,"Windows Server 2003 R2");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_SERVER_2003_64 :
 			strcat(str_info ,"Windows Server 2003 x64");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_VISTA :
 			strcat(str_info ,"Windows Vista");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_VISTA_64 :
 			strcat(str_info ,"Windows Vista x64");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_SERVER_2008 :
 			strcat(str_info ,"Windows Server 2008");
-		break;
+			break;
 		case OS_WIN32_WINDOWS_SERVER_2008_64 :
 			strcat(str_info ,"Windows Server 2008 x64");
-		break;
+			break;
 		}
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
@@ -198,29 +203,36 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
+	str_info = (char*)MALLOC( sizeof(char)*BUFFER_LEN );
+	if (str_info)
+	{
+		sprintf(str_info,_("Video card driver version: %s"),  GetRegKeyVideoCardVersion());
+		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+	}
+
 	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetScreenResolution());
 	outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,GetNumberMonitors());
-	
-	#define PATH_var "Path"
-	fromGetenv = getenv(PATH_var);
+
+#define PATH_var "Path"
+	fromGetenv = localeToUTF(getenv(PATH_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(PATH_var) +1) );
 		sprintf(str_info,"%s: %s", PATH_var, fromGetenv);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
-		
-	#define COMSPEC_var "ComSpec"
-	fromGetenv = getenv(COMSPEC_var);
+
+#define COMSPEC_var "ComSpec"
+	fromGetenv = localeToUTF(getenv(COMSPEC_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(COMSPEC_var) + 1) );
 		sprintf(str_info,"%s: %s", COMSPEC_var,fromGetenv);
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
-	
-	#define TMP_var "TMP"
-	fromGetenv = getenv(TMP_var);
+
+#define TMP_var "TMP"
+	fromGetenv = localeToUTF(getenv(TMP_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TMP_var) + 1) );
@@ -228,8 +240,8 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
-	#define TEMP_var "TEMP"
-	fromGetenv = getenv(TEMP_var);
+#define TEMP_var "TEMP"
+	fromGetenv = localeToUTF(getenv(TEMP_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(TEMP_var) + 1) );
@@ -237,8 +249,8 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 		outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
 	}
 
-	#define SCIHOME_var "SCIHOME"
-	fromGetenv = getenv(SCIHOME_var);
+#define SCIHOME_var "SCIHOME"
+	fromGetenv = localeToUTF(getenv(SCIHOME_var), szTemp);
 	if (fromGetenv)
 	{
 		str_info = (char*)MALLOC( sizeof(char)*(strlen(fromGetenv) + strlen("%s : %s") + strlen(SCIHOME_var) + 1) );
@@ -281,24 +293,20 @@ static char * GetRegKeyCPUIdentifier(void)
 /*--------------------------------------------------------------------------*/
 static char * GetScreenResolution(void)
 {
-	#define RESOLUTION_SCREEN "Resolution"
-	
 	HDC hdc=GetDC(NULL);
 	int BitsByPixel = GetDeviceCaps(hdc, BITSPIXEL);
 	int ResX = GetSystemMetrics(SM_CXSCREEN);
 	int ResY = GetSystemMetrics(SM_CYSCREEN) ;
 	char *Resolution = NULL;
-	
+
 	ReleaseDC (NULL, hdc);
 
-
-	Resolution = (char*)MALLOC( sizeof(char)*( strlen(_(RESOLUTION_SCREEN)) + 
-		                                       strlen(_("%s: %d x %d %d bits")) + 32));
+	Resolution = (char*)MALLOC( sizeof(char)*( strlen(_("Screen size: %d x %d %d bits")) + 32));
 	if (Resolution)
 	{
-		sprintf(Resolution,_("%s: %d x %d %d bits"),_(RESOLUTION_SCREEN),ResX ,ResY,BitsByPixel);
+		sprintf(Resolution,_("Screen size: %d x %d %d bits"),ResX ,ResY,BitsByPixel);
 	}
-	
+
 	return Resolution;
 }
 /*--------------------------------------------------------------------------*/
@@ -322,7 +330,7 @@ static char ** appendStringDebugInfo(char **listInfo,int *sizeListInfo,char *str
 /*--------------------------------------------------------------------------*/
 static char * GetNumberMonitors(void)
 {
-	#define NBMONITORS "Number of Monitors: %d"
+#define NBMONITORS "Number of Monitors: %d"
 	char *returnedStr = NULL;
 	int nbMonitors = GetSystemMetrics(SM_CMONITORS) ;
 
@@ -337,8 +345,8 @@ static char * GetNumberMonitors(void)
 /*--------------------------------------------------------------------------*/
 static char * GetRegKeyVideoCard(void)
 {
-	#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
-	#define LenLine 255
+#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+#define LenLine 255
 
 	HKEY key;
 	DWORD result;
@@ -350,6 +358,35 @@ static char * GetRegKeyVideoCard(void)
 	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
 
 	if ( RegQueryValueEx(key, "DriverDesc", 0, &Type, (LPBYTE)LineIdentifier, &length) !=  ERROR_SUCCESS )
+	{
+		wsprintf(LineIdentifier,"ERROR");
+	}
+
+	if( Type != REG_SZ )
+	{
+		wsprintf(LineIdentifier,"ERROR");
+	}
+
+	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
+
+	return (char *)LineIdentifier;
+}
+/*--------------------------------------------------------------------------*/
+static char * GetRegKeyVideoCardVersion(void)
+{
+#define KeyDisplayIdentifer "SYSTEM\\ControlSet001\\Control\\Class\\{4D36E968-E325-11CE-BFC1-08002BE10318}\\0000"
+#define LenLine 255
+
+	HKEY key;
+	DWORD result;
+	char *LineIdentifier;
+	ULONG length = LenLine,Type;
+
+	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyDisplayIdentifer, 0, KEY_QUERY_VALUE , &key);
+
+	LineIdentifier=(char*)MALLOC(sizeof(char)*length);
+
+	if ( RegQueryValueEx(key, "DriverVersion", 0, &Type, (LPBYTE)LineIdentifier, &length) !=  ERROR_SUCCESS )
 	{
 		wsprintf(LineIdentifier,"ERROR");
 	}

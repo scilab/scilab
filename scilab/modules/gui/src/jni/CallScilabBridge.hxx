@@ -161,15 +161,6 @@ jmethodID jbooleanisFrameEnablejintID; // cache method id
 jmethodID voidremoveRootMenujstringID; // cache method id
 jmethodID voidremoveFigureMenujintjstringID; // cache method id
 jmethodID jstringdisplayAndWaitContextMenujintID; // cache method id
-jmethodID jintnewFileChooserID; // cache method id
-jmethodID voidsetFileChooserTitlejintjstringID; // cache method id
-jmethodID voidsetFileChooserInitialDirectoryjintjstringID; // cache method id
-jmethodID voidsetFileChooserMaskjintjstringID; // cache method id
-jmethodID voidfileChooserDisplayAndWaitjintID; // cache method id
-jmethodID jintgetFileChooserSelectionSizejintID; // cache method id
-jmethodID jobjectArraygetFileChooserSelectionjintID; // cache method id
-jmethodID voidsetFileChooserDirectorySelectionOnlyjintID; // cache method id
-jmethodID voidsetFileChooserFileSelectionOnlyjintID; // cache method id
 jmethodID jintnewMessageBoxID; // cache method id
 jmethodID voidsetMessageBoxTitlejintjstringID; // cache method id
 jmethodID voidsetMessageBoxMessagejintjstringID; // cache method id
@@ -239,6 +230,7 @@ jmethodID voidrequestWidgetFocusjintID; // cache method id
 jmethodID voidrequestFrameFocusjintID; // cache method id
 jmethodID voidraiseWindowjintID; // cache method id
 jmethodID voiduseCanvasForDisplayjbooleanID; // cache method id
+jmethodID jbooleanuseCanvasForDisplayID; // cache method id
 
 
 /**
@@ -496,24 +488,6 @@ static void removeFigureMenu(JavaVM * jvm_, int figureID, char * menuName);
 
 static char * displayAndWaitContextMenu(JavaVM * jvm_, int ID);
 
-static int newFileChooser(JavaVM * jvm_);
-
-static void setFileChooserTitle(JavaVM * jvm_, int id, char * title);
-
-static void setFileChooserInitialDirectory(JavaVM * jvm_, int id, char * path);
-
-static void setFileChooserMask(JavaVM * jvm_, int id, char * mask);
-
-static void fileChooserDisplayAndWait(JavaVM * jvm_, int id);
-
-static int getFileChooserSelectionSize(JavaVM * jvm_, int id);
-
-static char ** getFileChooserSelection(JavaVM * jvm_, int id);
-
-static void setFileChooserDirectorySelectionOnly(JavaVM * jvm_, int id);
-
-static void setFileChooserFileSelectionOnly(JavaVM * jvm_, int id);
-
 static int newMessageBox(JavaVM * jvm_);
 
 static void setMessageBoxTitle(JavaVM * jvm_, int id, char * title);
@@ -651,6 +625,8 @@ static void requestFrameFocus(JavaVM * jvm_, int objID);
 static void raiseWindow(JavaVM * jvm_, int objID);
 
 static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
+
+static bool useCanvasForDisplay(JavaVM * jvm_);
 
 
                         /**

@@ -13,8 +13,7 @@ c
       character*(*) fname
       include 'stack.h'
 c     
-      integer topk,rhsk,topl
-      logical checkrhs,checklhs,getmat,getscalar,cremat
+      logical checkrhs,checklhs,getmat
       double precision dgammacody
 c
       rhs = max(0,rhs)
@@ -43,7 +42,7 @@ c$$$         return
 c$$$      endif
       
       do 10 i=0,n1*m1-1
-         stk(lr1+i)=dgammacody(stk(lr1+i))
+         stk(lr1+i) = dgammacody(stk(lr1+i))
  10   continue
 ***end bruno 's modif
 c     

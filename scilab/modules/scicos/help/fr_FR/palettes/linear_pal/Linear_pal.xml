@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Linear_pal">
+  <refnamediv>
+    <refname>Linear_pal</refname>
+    <refpurpose>Palette Lineaire</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Linear_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_Linear_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Linear_pal">
+    <title>Description</title>
+    <para>
+Cette palette contient des opérateurs basiques et des sous-systèmes
+linéaires.
+
+</para>
+  </refsection>
+  <refsection id="Blocs_Linear_pal">
+    <title>Blocs</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CLINDUMMY_f">CLINDUMMY_f - Dummy</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLR">CLR - Fonction de transfert continue</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLSS">CLSS - Système d'équations d'état continu</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DERIV">DERIV - Dérivée</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DLR">DLR - Fonction de transfert discrète</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DLSS">DLSS - Système d'équations d'état discrètes</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="DOLLAR_m">DOLLAR_m - Opérateur retard</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="GAINBLK">GAINBLK - Gain</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_m">INTEGRAL_m - Integration</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PID">PID - Regulateur PID</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="REGISTER">REGISTER - Registre à décalage</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SAMPHOLD_m">SAMPHOLD_m - Echantillonneur bloqueur</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SUM_f">SUM_f - Addition</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SUMMATION">SUMMATION - Somme</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TCLSS">TCLSS - Système linéaire continu avec saut</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TIME_DELAY">TIME_DELAY - Retard temporel</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="VARIABLE_DELAY">VARIABLE_DELAY - Retard variable</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

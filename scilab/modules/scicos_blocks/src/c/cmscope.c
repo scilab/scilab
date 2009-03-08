@@ -33,6 +33,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
+#include "SetJavaProperty.h"
 
 /** \fn cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
@@ -141,6 +142,9 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scicos_free(ymax);
   scicos_free(xmin);
   scicos_free(xmax);
+
+	/* use only single buffering to be sure to draw on the screen */
+	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
 
 /** \fn void cmscope(scicos_block * block, int flag)
@@ -224,11 +228,25 @@ void cmscope(scicos_block * block, int flag)
 	scoRetrieveScopeMemory(block->work, &pScopeMemory);
 	if(scoGetScopeActivation(pScopeMemory) == 1)
 	  {
-	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    pShortDraw = sciGetCurrentFigure();
-	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
-	    scoDelCoupleOfPolylines(pScopeMemory);
+	  //  sciSetUsedWindow(scoGetWindowID(pScopeMemory));
+	  //  pShortDraw = sciGetCurrentFigure();
+	  //  pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
+	  //  pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
+			///* restore double buffering */
+			//sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
+	  //  scoDelCoupleOfPolylines(pScopeMemory);
+
+
+			/* Check if figure is still opened, otherwise, don't try to destroy it again. */
+			scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
+			if (figure != NULL)
+			{
+				/*pShortDraw = scoGetPointerScopeWindow(pScopeMemory);*/
+				clearUserData(figure);
+
+				sciSetJavaUseSingleBuffer(figure, FALSE);
+			  scoDelCoupleOfPolylines(pScopeMemory);
+			}
 
 	  }
 

@@ -33,14 +33,13 @@ int GetUicontrolFontUnits(sciPointObj* sciObj)
         case PIXELS_UNITS:
           return sciReturnString("pixels");
         default:
-          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
-          sciReturnString(""); /* return an empty string */
+          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
           return FALSE;
         }
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "FontUnits");
+      Scierror(999, _("No '%s' property for this object.\n"), "FontUnits");
       return FALSE;
     }
 }

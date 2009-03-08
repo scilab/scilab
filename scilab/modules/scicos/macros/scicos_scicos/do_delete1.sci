@@ -264,10 +264,15 @@ while K<>[] do
 end //** ... end of while ()
 //**---------------------------------- end of main while() loop ---------------------------
 
+//** Show the results if the "gr" flag is TRUE: go in drawlater() mode 
+  if gr==%t then
+    drawlater(); 
+  end
+
 //** Scan all the deleted elements and update the graphics datastrucure 
   for k = DEL
-    scs_m.objs(k) = mlist('Deleted')
-    if gr==%t then
+    scs_m.objs(k) = mlist('Deleted'); //** mark the object as "Deleted" 
+    if gr==%t then //** .... and the graphics 
       gr_k = get_gri(k,o_size(1)) ;
       gh_object_invisible = gh_axes.children(gr_k);
       gh_object_invisible.visible = "off";
@@ -276,9 +281,7 @@ end //** ... end of while ()
 
 //** Show the results if the "gr" flag is TRUE 
   if gr==%t then
-    //** draw(gh_curwin.children);
     drawnow(); 
-    //** show_pixmap() ; //** not useful on Scilab 5
   end
   
 endfunction

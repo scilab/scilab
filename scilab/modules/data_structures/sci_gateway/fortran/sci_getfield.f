@@ -9,7 +9,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine intgetfield()
       include 'stack.h'
-      integer top0,tops,vol,vol2,vol1
+      integer vol2,vol1
       integer strpos
       external strpos
       integer iadr,sadr

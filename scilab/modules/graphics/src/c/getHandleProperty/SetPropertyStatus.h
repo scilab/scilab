@@ -37,4 +37,10 @@ typedef enum
  */
 SetPropertyStatus sciSetFinalStatus( SetPropertyStatus status1, SetPropertyStatus status2 ) ;
 
+/**
+ * Some operation might not need a redraw. Use this function to transform
+ * all success status into unchanged status.
+ */
+SetPropertyStatus sciSetNoRedrawStatus(SetPropertyStatus status);
+
 #endif /* _SET_PROPERTY_STATUS_ */

@@ -29,30 +29,24 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
   if (valueType == sci_strings)
     {
       if (nbCol != 1) {
-        sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
+        Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
         return SET_PROPERTY_ERROR;
       }
       
-      if (nbRow == 0) {
-        // This case should never happen because if nbRow==0 then nbCol is also 0
-        sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
-        return SET_PROPERTY_ERROR;
-      }
-
       cbString = getStringFromStack(stackPointer);
     }
   else if (valueType == sci_list)
     {
       if (nbRow * nbCol != 2)
         {
-          sciprint(_("Wrong size for '%s' property: a 2-item list expected.\n"), "Callback");
+          Scierror(999, _("Wrong size for '%s' property: a 2-item list expected.\n"), "Callback");
           return SET_PROPERTY_ERROR;
         }
 
       GetListRhsVar((int)stackPointer, 1, MATRIX_OF_DOUBLE_DATATYPE, &typeNbRow, &typeNbCol, &typeStackPointer);
       if (typeNbRow * typeNbCol !=1)
         {
-          sciprint(_("Wrong size for '%s' property: A real expected.\n"), "CallbackType");
+          Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "CallbackType");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -63,7 +57,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
       GetListRhsVar((int)stackPointer, 2, STRING_DATATYPE, &strNbRow, &strNbCol, &stringStackPointer);
       if (strNbCol !=1)
         {
-          sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Callback");
+          Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
           return SET_PROPERTY_ERROR;
         }
       else
@@ -137,7 +131,7 @@ int SetUiobjectCallback(sciPointObj* sciObj, size_t stackPointer, int valueType,
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Callback");
+      Scierror(999, _("No '%s' property for this object.\n"), "Callback");
       return SET_PROPERTY_ERROR;
     }
 }

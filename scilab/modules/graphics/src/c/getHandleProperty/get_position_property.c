@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -62,7 +62,7 @@ int get_position_property( sciPointObj * pobj )
       sciGetLegendPos( pobj, position ) ;
       return sciReturnRowVector( position, 2 ) ;
     }
-  sciprint(_("%s property does not exist for this handle.\n"), "position") ;
+  Scierror(999, _("%s property does not exist for this handle.\n"), "position") ;
   return -1;
 }
 /*------------------------------------------------------------------------*/ 

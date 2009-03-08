@@ -80,9 +80,5 @@ includes/basout.h \
 includes/msgs.h \
 includes/sciprint_full.h
 
-#### output_stream : demos files ####
-libscioutput_stream_la_demosintrodir=$(mydatadir)/demos/intro/
-libscioutput_stream_la_demosintro_DATA =
-
 include $(top_srcdir)/Makefile.incl.am
 

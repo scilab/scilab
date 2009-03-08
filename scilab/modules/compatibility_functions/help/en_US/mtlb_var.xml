@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2004-2007 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="mtlb_var">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mtlb_var</refname>
+    <refpurpose>Matlab var emulation function</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>a real or a complex vector or matrix.</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>a real scalar or real vector.</para>
+          <itemizedlist>
+            <listitem>
+          <para>If x is a vector, s is the variance of x.</para>
+            </listitem>
+            <listitem>
+          <para>If x is a matrix, s is a row vector containing the variance of each column of x.</para>
+            </listitem>
+          </itemizedlist>
+
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>w</term>
+        <listitem>
+          <para>type of normalization to use. Valid values are, depending on the number of columns m of x :</para>
+          <itemizedlist>
+            <listitem>
+          <para>w = 0 : normalizes with m-1, provides the best unbiased estimator of the variance (this is the default).</para>
+            </listitem>
+            <listitem>
+          <para>w = 1: normalizes with m, this provides the second moment around the mean. </para>
+            </listitem>
+          </itemizedlist>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>the dimension along which the variance is computed (default is 1, i.e. column by column). 
+	  If dim is 2, the variance is computed row by row.</para>
+        </listitem>
+      </varlistentry>
+      
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This function computes  the  variance  of  the values of  a  vector or matrix x.
+It provides the same service as Octave and Matlab.
+It differs from Scilab's variance primitive: </para>
+          <itemizedlist>
+            <listitem>
+          <para>mtlb_var returns a real (i.e. with a zero imaginary part) variance, 
+	  even if x is a complex vector or matrix. The Scilab variance
+	  primitive returns a complex value if the input vector x is complex and 
+	  if no option additionnal is used.
+	  </para>
+            </listitem>
+            <listitem>
+          <para>Whatever the type of the input data x (i.e. vector or matrix), 
+	  mtlb_var computes the variance either on dimension 1 or on dimension 2 while,
+	  if no option is passed to the Scilab's variance primitive, the variance is computed
+	  on all dimension at once.</para>
+            </listitem>
+          </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+<para>The following 3 examples illustrates the use of the mtlb_var function.
+In the first case, a column vector is passed to the function, which returns the value 750.
+In the second case, a matrix is passed to the function, which returns the row vector 
+[0.16 0.09].
+In the third case, a complex column vector is passed to the function, which 
+returns a value close to 2.</para>
+<programlisting role="example"><![CDATA[
+
+x = [10; 20; 30; 40; 50; 60; 70; 80; 90];
+computed = mtlb_var(x);
+
+x = [0.9    0.7  
+    0.1    0.1  
+    0.5    0.4];
+computed = mtlb_var(x);
+
+N=1000;
+x = grand(N,1,'nor',0,1) + %i*grand(N,1,'nor',0,1);
+computed = mtlb_var(x);
+
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="variance">variance</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Michael Baudin</member>
+    </simplelist>
+  </refsection>
+</refentry>

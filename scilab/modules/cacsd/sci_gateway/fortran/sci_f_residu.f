@@ -16,9 +16,8 @@ c     ----------------------------
       include 'stack.h'
       integer iadr,sadr
 c
-      integer vol1,vol2,vol3,var(4)
-      double precision v,eps,errl2,phi,gnrm
-      logical all
+      integer vol1,vol2,vol3
+      double precision v,eps,gnrm
       common/no2f/gnrm
       common/arl2c/info,ierr
 c

@@ -68,6 +68,9 @@ f.pixmap='on';
 
 k1=[]; //default
 
+// to be sure that it is shown before the loop
+show_pixmap();
+
 while %t
   select done
   case 0 then //click somehere

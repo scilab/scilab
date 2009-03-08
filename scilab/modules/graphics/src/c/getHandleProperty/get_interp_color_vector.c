@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int get_interp_color_vector_property( sciPointObj * pobj )
   int * interpVector = NULL ;
   if( sciGetEntityType(pobj) != SCI_POLYLINE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"interp_color_vector") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"interp_color_vector") ;
     return -1 ;
   }
   interpVector = sciGetInterpVector( pobj ) ;

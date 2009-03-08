@@ -11,9 +11,9 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3089
 //
 // <-- Short Description -->
-// chdir seems to have problems with directory names containing nordic characters like æ ø and å.
+// chdir seems to have problems with directory names containing nordic characters like Ã¦ Ã¸ and Ã¥.
 
-newdir = TMPDIR + filesep() +'æøå_dir';
+newdir = TMPDIR + filesep() +'Ã¦Ã¸Ã¥_dir';
 r = removedir(newdir);
 if r <> %f then pause,end
 

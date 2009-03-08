@@ -135,9 +135,9 @@ DIST_SUBDIRS = core output_stream action_binding arnoldi \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
-	intersci metanet signal_processing sound time sparse \
-	windows_tools functions overloading maple2scilab m2sci texmacs \
-	scipad scilab2fortran development_tools \
+	intersci metanet signal_processing call_scilab sound time \
+	sparse windows_tools functions overloading maple2scilab m2sci \
+	texmacs scipad scilab2fortran development_tools \
 	compatibility_functions helptools fftw umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	scicos_blocks scicos . javasci
@@ -274,6 +274,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -344,13 +345,13 @@ SUBDIRS = core output_stream action_binding arnoldi \
 	optimization symbolic randlib statistics special_functions \
 	interpolation linear_algebra integer data_structures mexlib \
 	differential_equations cacsd polynomials boolean double pvm io \
-	intersci metanet signal_processing core interpolation sound \
-	time randlib sparse windows_tools functions overloading \
-	maple2scilab m2sci texmacs scipad scilab2fortran \
-	development_tools compatibility_functions helptools fftw \
-	umfpack demo_tools genetic_algorithms simulated_annealing \
-	parameters matio atoms $(am__append_1) scicos . \
-	$(am__append_2)
+	intersci metanet signal_processing core call_scilab \
+	interpolation sound time randlib sparse windows_tools \
+	functions overloading maple2scilab m2sci texmacs scipad \
+	scilab2fortran development_tools compatibility_functions \
+	helptools fftw umfpack demo_tools genetic_algorithms \
+	simulated_annealing parameters matio atoms $(am__append_1) \
+	scicos . $(am__append_2)
 
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
@@ -364,6 +365,7 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/call_scilab/libscicall_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
 	$(top_builddir)/modules/double/libscidouble.la \

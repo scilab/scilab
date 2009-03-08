@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int get_log_flags_property( sciPointObj * pobj )
   char logFlagsString[4];
   if ( sciGetEntityType (pobj) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"log_flag") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"log_flag") ;
     return -1 ;
   }
 

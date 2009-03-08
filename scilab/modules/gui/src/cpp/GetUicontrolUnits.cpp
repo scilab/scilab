@@ -33,13 +33,13 @@ int GetUicontrolUnits(sciPointObj* sciObj)
         case PIXELS_UNITS:
           return sciReturnString("pixels");
         default:
-          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
+          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "Units", "points", "normalized", "inches", "centimeters", "pixels");
           return FALSE;
         }
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Units");
+      Scierror(999, _("No '%s' property for this object.\n"), "Units");
       return FALSE;
     }
 }

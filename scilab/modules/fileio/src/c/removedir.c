@@ -45,16 +45,17 @@ BOOL removedir(char *path)
 #ifdef _MSC_VER
 static int DeleteDirectory(char *refcstrRootDirectory)
 {
-	BOOL bDeleteSubdirectories=TRUE;
+	#define DEFAULT_PATTERN "%s\\*.*"
+	BOOL bDeleteSubdirectories = TRUE;
 	BOOL bSubdirectory = FALSE;
 	HANDLE hFile;
-	char *strFilePath=NULL;
-	char *strPattern=NULL;
+	char *strFilePath = NULL;
+	char *strPattern = NULL;
 	WIN32_FIND_DATA FileInformation;
 	DWORD dwError;
 
-	strPattern = MALLOC(sizeof(char)*(strlen(refcstrRootDirectory)+5));
-	sprintf(strPattern,"%s\\*.*",refcstrRootDirectory);
+	strPattern = (char*)MALLOC(sizeof(char)*((int)strlen(refcstrRootDirectory) + (int)strlen(DEFAULT_PATTERN) + 1));
+	sprintf(strPattern, DEFAULT_PATTERN, refcstrRootDirectory);
 
 	hFile = FindFirstFile(strPattern, &FileInformation);
 	if (strPattern) { FREE(strPattern);strPattern=NULL;}

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9.00"
+	Version="9,00"
 	Name="completion"
 	ProjectGUID="{CCCE1EAD-8E62-4DC0-AB17-972C06EF0C89}"
 	RootNamespace="completion"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -217,7 +218,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMPLETION_EXPORTS;STATIC_LINKED"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -371,6 +372,14 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\completeLine.c"
+				>
+			</File>
+			<File
+				RelativePath=".\completeLine_wrap_java.c"
+				>
+			</File>
+			<File
 				RelativePath=".\completion.c"
 				>
 			</File>
@@ -391,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getCommonPart.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getfilesdictionary.c"
 				>
 			</File>
@@ -400,6 +413,10 @@
 			</File>
 			<File
 				RelativePath=".\getmacrosdictionary.c"
+				>
+			</File>
+			<File
+				RelativePath=".\getPartLine.c"
 				>
 			</File>
 			<File
@@ -420,6 +437,14 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
+				RelativePath="..\..\includes\completeLine.h"
+				>
+			</File>
+			<File
+				RelativePath=".\completeLine_wrap_java.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\completion.h"
 				>
 			</File>
@@ -432,6 +457,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\getCommonPart.h"
+				>
+			</File>
+			<File
 				RelativePath=".\getfilesdictionary.h"
 				>
 			</File>
@@ -441,6 +470,10 @@
 			</File>
 			<File
 				RelativePath=".\getmacrosdictionary.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\getPartLine.h"
 				>
 			</File>
 			<File

@@ -22,7 +22,7 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "MALLOC.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
@@ -44,8 +44,8 @@ int get_children_property( sciPointObj * pobj )
     children = MALLOC( nbChildren * sizeof(long) ) ;
     if ( children == NULL )
     {
-		sciprint(_("%s: No more memory.\n"),"get_children_property");
-		return -1 ;
+			Scierror(999, _("%s: No more memory.\n"),"get_children_property");
+			return -1 ;
     }
 
     curSon = sciGetFirstAccessibleSon( pobj ) ;

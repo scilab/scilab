@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
@@ -33,15 +33,31 @@ int set_parent_property( sciPointObj * pobj, size_t stackPointer, int valueType,
 {
   if(sciGetEntityType( pobj ) == SCI_UIMENU)
     {
-      return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
+      if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix)) /* sci_matrix used for adding menus in console menu */
+        {
+          Scierror(999,_("%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"),"set_parent_property","Parent","Figure", "Uimenu");
+          return SET_PROPERTY_ERROR ;
+        }
+      else
+        {
+          return setMenuParent(pobj, stackPointer, valueType, nbRow, nbCol);
+        }
     }
   else if(sciGetEntityType(pobj) == SCI_UICONTROL)
     {
-      return SetUicontrolParent(pobj, stackPointer, valueType, nbRow, nbCol);
+      if ((pobj == NULL) || (valueType!=sci_handles && valueType!=sci_matrix)) 
+        {
+          Scierror(999,_("%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"),"set_parent_property","Parent","Figure", "Frame uicontrol");
+          return SET_PROPERTY_ERROR ;
+        }
+      else
+        {
+          return SetUicontrolParent(pobj, stackPointer, valueType, nbRow, nbCol);
+        }
     }
   else
     {
-		sciprint(_("Parent property can not be modified directly.\n"));
+      Scierror(999, _("Parent property can not be modified directly.\n"));
       return SET_PROPERTY_ERROR ;
     }
 }

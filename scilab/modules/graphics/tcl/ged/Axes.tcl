@@ -406,7 +406,7 @@ combobox $w.frame.style \
     -textvariable Xlabelfontstyle \
     -editable false \
     -command [list SelectXFontStyle ]  -font $gedFont
-eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+eval $w.frame.style list insert end [list "Monospaced" "Symbol" "Serif" "Serif Italic" "Serif Bold" "Serif Bold Italic"  "SansSerif"  "SansSerif Italic" "SansSerif Bold" "SansSerif Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0 -padx $mediumPad
@@ -677,7 +677,7 @@ combobox $w.frame.style \
     -textvariable Ylabelfontstyle \
     -editable false \
     -command [list SelectYFontStyle ] -font $gedFont
-eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+eval $w.frame.style list insert end [list "Monospaced" "Symbol" "Serif" "Serif Italic" "Serif Bold" "Serif Bold Italic"  "SansSerif"  "SansSerif Italic" "SansSerif Bold" "SansSerif Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0 -padx $mediumPad
@@ -946,7 +946,7 @@ combobox $w.frame.style \
     -textvariable Zlabelfontstyle \
     -editable false \
     -command [list SelectZFontStyle ] -font $gedFont
-eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+eval $w.frame.style list insert end [list "Monospaced" "Symbol" "Serif" "Serif Italic" "Serif Bold" "Serif Bold Italic"  "SansSerif"  "SansSerif Italic" "SansSerif Bold" "SansSerif Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0 -padx $mediumPad
@@ -1216,7 +1216,7 @@ combobox $w.frame.style \
     -textvariable TITLEfontstyle \
     -editable false \
     -command [list SelectTitleFontStyle] -font $gedFont
-eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+eval $w.frame.style list insert end [list "Monospaced" "Symbol" "Serif" "Serif Italic" "Serif Bold" "Serif Bold Italic"  "SansSerif"  "SansSerif Italic" "SansSerif Bold" "SansSerif Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst  -expand 1 -fill x -pady 0 -padx $mediumPad
@@ -1275,7 +1275,7 @@ combobox $w.frame.style \
     -textvariable fontstyle \
     -editable false \
     -command [list SelectFontStyle] -font $gedFont
-eval $w.frame.style list insert end [list "Courier" "Symbol" "Times" "Times Italic" "Times Bold" "Times Bold Italic"  "Helvetica"  "Helvetica Italic" "Helvetica Bold" "Helvetica Bold Italic"]
+eval $w.frame.style list insert end [list "Monospaced" "Symbol" "Serif" "Serif Italic" "Serif Bold" "Serif Bold Italic"  "SansSerif"  "SansSerif Italic" "SansSerif Bold" "SansSerif Bold Italic"]
 
 pack $w.frame.stylelabel -in $w.frame.fontsst   -side left
 pack $w.frame.style -in $w.frame.fontsst   -expand 1 -fill x -pady 0 -padx $mediumPad

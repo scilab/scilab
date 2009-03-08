@@ -85,8 +85,9 @@
 scf(0);
 plot2d();
 // Postcript export
-filename='foo.ps';
-xs2ps(0,filename);</programlisting>
+filename=foo.ps;
+xs2ps(0,filename);
+    </programlisting>
   </refsection>
 
   <refsection>
@@ -98,8 +99,6 @@ xs2ps(0,filename);</programlisting>
       <member><link linkend="toprint">toprint</link></member>
 
       <member><link linkend="printfigure">printfigure</link></member>
-
-      <member><link linkend="xbasimp">xbasimp</link></member>
 
       <member><link linkend="xs2bmp">xs2bmp</link></member>
 

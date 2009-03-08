@@ -974,19 +974,14 @@ int GradLog( double   _min   ,
 
 
   size = log_max - log_min +1;
-  /*  tab=(int *)MALLOC(size*sizeof(int); */
-
-  /*   for(i=0;i<size;i++) tab[i]=log_min+i; */
 
   *n_grads = 0 ;
 
   if(size <= MAX_LOG_TICKS)    {
     for(i=0;i<size;i++)
     {
-      /*    _grads[i] = exp10(tab[i]); */
       _grads[i] = log_min+i;
       *n_grads = (*n_grads) + 1;
-      /* 	  sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
     }
   }
   else
@@ -1024,7 +1019,6 @@ int GradLog( double   _min   ,
           _grads[i] = log_min+(i*pas);
 
           *n_grads = (*n_grads) + 1;
-          /* 	    sciprint("Juste en sortie, _grads[%d] = %lf\n",i, _grads[i]); */
         }
       }
   }
@@ -1063,7 +1057,7 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 
 
 	if(sciGetEntityType(pobj) != SCI_AXES){
-		sciprint(_("Error: ComputeFormat must be used with SCI_AXES objects\n"));
+		Scierror(999, _("Error: ComputeFormat must be used with SCI_AXES objects\n"));
 		return -1;
 	}
 
@@ -1072,22 +1066,22 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 	/* Allocating space before re-copying values to not polluate the good values 
 	that will be used inside Axes.c */
 	if((x=MALLOC((pAXES_FEATURE (pobj)->nx)*sizeof(double)))==NULL){
-		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
 	if((y=MALLOC((pAXES_FEATURE (pobj)->ny)*sizeof(double)))==NULL){
-		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
 	if((nx=MALLOC(sizeof(int)))==NULL){
-		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}  
 
 	if((ny=MALLOC(sizeof(int)))==NULL){
-		sciprint(_("%s: No more memory.\n"),"ComputeC_format");
+		Scierror(999, _("%s: No more memory.\n"),"ComputeC_format");
 		return -1;
 	}
 
@@ -1174,7 +1168,12 @@ int ComputeC_format(sciPointObj * pobj, char * c_format)
 		}
 		break;
 	default: 
-		sciprint(_("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
+		Scierror(999, _("%s: Wrong type argument %s.\n"),"Sci_Axis","xy_type");
+		FREE(x); x = NULL;
+		FREE(y); y = NULL;
+		FREE(nx); nx = NULL;
+		FREE(ny); ny = NULL;
+		return -1;
 	}
 
 	switch (pos) 
@@ -1259,7 +1258,7 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
     *N = n = nval;
 
     if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeXIntervals");
+			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1277,14 +1276,14 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
         sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
 
       if(nval < 3){
-        sciprint(_("Error: %s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
+        Scierror(999, _("%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","r","tics_coord",3);
         *vector = (double *) NULL;
         return -1;
       }
     }
 
     if((*vector = (double *) MALLOC(n*sizeof(double ))) == NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeXIntervals");
+			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1307,14 +1306,14 @@ int ComputeXIntervals( sciPointObj * pobj, char xy_type, double ** vector, int *
         sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
 
       if(nval < 4){
-        sciprint(_("Error: %s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
+        Scierror(999, _("%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"),"tics_coord","xy_type","i","tics_coord",4);
         *vector = (double *) NULL;
         return -1;
       }
     }
 
     if((*vector =(double *)  MALLOC(n*sizeof(double ))) == NULL){
-	  sciprint(_("%s: No more memory.\n"),"ComputeXIntervals");
+			Scierror(999, _("%s: No more memory.\n"),"ComputeXIntervals");
       return -1;
     }
 
@@ -1362,7 +1361,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
   /* vector is allocated here */
   if( ComputeXIntervals( pobj, pAXES_FEATURE (pobj)->tics, &vector, &nbTics, 1 ) != 0 )
   {
-    Scierror(999,_("Error: Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
+    Scierror(999,_("Bad size in %s: you must first increase the size of the %s.\n"),"tics_coord","tics_coord");
     return 0;
   }
 
@@ -1371,7 +1370,7 @@ StringMatrix * computeDefaultTicsLabels( sciPointObj * pobj )
 
   if ( curLabelBuffer == NULL )
   {
-	  sciprint(_("%s: No more memory.\n"),"computeDefaultTicsLabels");
+	  Scierror(999, _("%s: No more memory.\n"),"computeDefaultTicsLabels");
 	  return NULL ;
   }
 
@@ -1424,7 +1423,6 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   if ( buffer == NULL )
   {
-	  sciprint(_("%s: No more memory.\n"),"copyFormatedValue");
 	  return NULL ;
   }
 
@@ -1436,7 +1434,6 @@ char * copyFormatedValue( double value, const char format[5], int bufferSize )
 
   if ( res == NULL )
   {
-	  sciprint(_("%s: No more memory.\n"),"copyFormatedValue");
 	  FREE( buffer ) ;
 	  return NULL ;
   }
@@ -1455,7 +1452,6 @@ char ** copyFormatedArray( const double values[], int nbStrings, const char form
 
   if ( res == NULL )
   {
-	  sciprint(_("%s: No more memory.\n"),"copyFormatedArray");
 	  return NULL ;
   }
 

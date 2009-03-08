@@ -14,16 +14,16 @@ function ge_do_information(GraphList)
   r=x_choices('Information can be displayed or sent to file',..
 	      list(list('',1,['Display','Send to text file','Send to TeX file'])))
   if r==1 then
-    x_message_modeless(ge_make_text_info());
+    messagebox(ge_make_text_info());
   elseif r==2 then
     path=tk_savefile()
     if path<>'' then
-      mputl(ge_make_text_info(),path)
+      mputl(ge_make_text_info(),path);
     end
   elseif r==3 then
     path=tk_savefile('*.tex')
     if path<>'' then
-      mputl(ge_make_tex_info(),path)
+      mputl(ge_make_tex_info(),path);
     end
   end
 endfunction

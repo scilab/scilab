@@ -67,7 +67,7 @@ for i=1:lim(2)
  if dif(ta1(i),he1(i))==1 then edgecolor(i)=11; end;
 end;
 g1('edge_color')=edgecolor;
-x_message('Fermeture transitive du graphe');
+messagebox('Fermeture transitive du graphe',"modal");
 show_graph(g1);
  ]]></programlisting>
   </refsection>

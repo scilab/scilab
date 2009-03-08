@@ -25,6 +25,11 @@ $SCILAB : scilab path (SCI in Scilab)
 <!-- Set Java Heap space to 256mb -->
 <option value="-Xmx256m"/>
 
+<!--
+Commented because Mac OS X has a bug here. See bug #4074 for more information
+<option value="-Dapple.laf.useScreenMenuBar=true" os="macosx" />
+-->
+
 <!-- DISABLE Just In Time java compiler -->
 <!--
 <option value="-Djava.compiler=NONE"/>

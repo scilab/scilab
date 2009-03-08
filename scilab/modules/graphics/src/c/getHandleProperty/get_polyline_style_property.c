@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -33,7 +33,7 @@ int get_polyline_style_property( sciPointObj * pobj )
   }
   else
   {
-    sciprint(_("%s property does not exist for this handle.\n"), "polyline_style") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"), "polyline_style") ;
     return -1 ;
   }
 }

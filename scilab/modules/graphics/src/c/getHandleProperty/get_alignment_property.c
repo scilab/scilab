@@ -19,7 +19,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -39,11 +39,11 @@ int get_alignment_property( sciPointObj * pobj )
       return sciReturnString("center");
       break ;
     default:
-      sciprint(_("Error accessing alignment property.\n"));
+      Scierror(999,_("Error accessing alignment property.\n"));
       return -1 ;
     }
   }
-  sciprint(_("%s property does not exist for this handle.\n"),"alignment");
+  Scierror(999,_("%s property does not exist for this handle.\n"),"alignment");
   return -1 ;
 
 }

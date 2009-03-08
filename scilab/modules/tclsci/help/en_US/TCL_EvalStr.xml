@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="ISO-8859-1"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="TCL_EvalStr">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>TCL_EvalStr</refname>
+    <refpurpose>Evaluate a string whithin the Tcl/Tk interpreter</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv><title>Calling Sequence</title><synopsis>TCL_EvalStr(str [,interp])
+res = TCL_EvalStr(str [,interp])</synopsis></refsynopsisdiv>
+
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>string or matrix of strings, contains a Tcl/Tk script in each
+          element.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>interp</term>
+
+        <listitem>
+          <para>optional character string parameter. Name of the slave Tcl
+          interpreter in which the operation has to be performed. If not
+          provided, it defaults to the main Tcl interpreter created by
+          Scilab.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>result of the evaluation, if it is successful. This is a
+          character string matrix giving the evaluation result for each
+          element of the input argument str</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection><title>Description</title>
+    <para>This routine allows to evaluate Tcl/Tk instructions with the Tcl/Tk
+    interpreter launched with Scilab (when the <literal>interp</literal> parameter
+    is not given), or in a slave interpreter.</para>
+
+    <para>When Tcl/Tk support is enabled in Scilab, you can evaluate Tcl/Tk
+    expression from Scilab interpreter. In fact, Scilab launches a main Tcl/Tk
+    interpreter. The Scilab instruction <literal>TCL_EvalStr</literal> can be used
+    to evaluate expressions without having to write Tcl/Tk instructions in a
+    separated file (this capability is provided by
+    <literal>TCL_EvalFile</literal>).</para>
+  </refsection>
+
+  <refsection><title>Examples</title><programlisting role="example"><![CDATA[
+//with one call
+TCL_EvalStr(["toplevel .foo1"
+   "label .foo1.l -text ""TK married Scilab !!!"""
+   "pack .foo1.l"
+   "button .foo1.b -text close -command {destroy .foo1}"
+   "pack .foo1.b"])
+
+//step by step (debugging)
+TCL_EvalStr("toplevel .foo2");
+// creates a toplevel TK window. 
+TCL_EvalStr("label .foo2.l -text ""TK married Scilab !!!""");
+// create a static label
+TCL_EvalStr("pack .foo2.l");
+// pack the label widget. It appears on the screen.
+text="button .foo2.b -text close -command {destroy .foo2}";
+TCL_EvalStr(text);
+TCL_EvalStr("pack .foo2.b");
+
+//kill the windows by program
+TCL_EvalStr("destroy .foo1");
+TCL_EvalStr("destroy .foo2");
+ 
+//with one call, and in a slave interpreter
+TCL_CreateSlave('TCLSlave');
+TCL_EvalStr('set test ""in Slave TCL Interp""','TCLSlave');
+TCL_GetVar('test','TCLSlave')
+
+TCL_DeleteInterp('TCLSlave')
+
+// return a result
+res = TCL_EvalStr("expr 1+1")
+res = TCL_EvalStr("tk_messageBox -message Hello -type okcancel")
+res = TCL_EvalStr(["expr 4+5" "lsearch -all {a b c a b c} c" ; "list [list a b c] [list d e f] [list g h i]" "llength  {a b c d e}"])
+]]></programlisting></refsection>
+
+  <refsection><title>See Also</title><simplelist type="inline">
+    <member>
+      <link linkend="ScilabEval">ScilabEval</link>
+    </member>
+
+    <member>
+      <link linkend="TCL_EvalFile">TCL_EvalFile</link>
+    </member>
+
+    <member>
+      <link linkend="TCL_GetVar">TCL_GetVar</link>
+    </member>
+
+    <member>
+      <link linkend="TCL_SetVar">TCL_SetVar</link>
+    </member>
+
+    <member>
+      <link linkend="TCL_ExistVar">TCL_ExistVar</link>
+    </member>
+
+    <member>
+      <link linkend="TCL_UnsetVar">TCL_UnsetVar</link>
+    </member>
+
+    <member>
+      <link linkend="TCL_UpVar">TCL_UpVar</link>
+    </member>
+  </simplelist></refsection>
+
+  <refsection><title>Authors</title><para>Allan CORNET</para></refsection>
+</refentry>

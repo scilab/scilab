@@ -13,7 +13,7 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
-SCILAB_LIBRARY_VERSION=5:0:0
+SCILAB_LIBRARY_VERSION=5:1:0
 AC_SUBST(SCILAB_LIBRARY_VERSION)
 
 #shared library versioning
@@ -349,8 +349,12 @@ case "$host" in
 	 *-*-solaris*)
 	 SOLARIS=1
 	 ;;
+	*darwin*)
+	  MACOSX=1
+	;;
 esac
 
+AM_CONDITIONAL(IS_MACOSX, test -n "$MACOSX")
 AM_CONDITIONAL(IS_HPUX, test -n "$HPUX")
 AM_CONDITIONAL(IS_SPARC, test -n "$SPARC")
 AM_CONDITIONAL(IS_SOLARIS, test -n "$SOLARIS")
@@ -375,7 +379,7 @@ case "$CXX" in
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option"
+                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
 	  esac
    else
@@ -385,13 +389,20 @@ case "$CXX" in
    ;;
 esac
 
+#### 64 bits detection
+IS_64_BITS_CPU=false
+case "$host" in
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+                IS_64_BITS_CPU=true
+	;;
+esac
+
 ##########"
 # not useful under Linux (and was only defined here with scilab 4)
 #AC_CHECK_LIB(ieee,main,[LIEEE="-lieee"])
 
 #LDFLAGS="$LIEEE $LDFLAGS"
 #F77_LDFLAGS="$F77_LDFLAGS $LIEEE"
-IS_64_BITS_CPU=false
 case "$CC" in
 	 gcc-* | gcc | ccache*gcc | ccache*gcc-* )
    ## With GNU Compiler
@@ -405,7 +416,7 @@ case "$CC" in
 		if test "$enable_debugLinker" = yes; then
 	  	  LDFLAGS="$LDFLAGS -Wl,--warn-common,-x"
 		fi
-		  CFLAGS="$CFLAGS -fdiagnostics-show-option"
+		  CFLAGS="$CFLAGS -fdiagnostics-show-option -Werror=format-security"
 		  ;;
 		  esac
    else
@@ -420,19 +431,16 @@ case "$CC" in
 	;;
 	 x86_64-*-linux-gnu | x86_64-linux-gnu)
 		CFLAGS="$CFLAGS -DNARROWPROTO -m64"
-		IS_64_BITS_CPU=true
     ;;
 	 i*86-*-linux-gnu | *-pc-linux-gnu | i*86-*-linux )
 		CFLAGS="$CFLAGS  -DNARROWPROTO"
 	;;		
 	 ia64-*-linux-gnu )
 		CFLAGS="$CFLAGS -DNARROWPROTO"
-		IS_64_BITS_CPU=true
     ;;
 	 alpha-*-linux-gnu)
 		CFLAGS="$CFLAGS  -mieee-with-inexact -fwritable-strings"
 		LDFLAGS="$LDFLAGS -mieee-with-inexact"
-		IS_64_BITS_CPU=true
 	;;
 	 powerpc-*-linux-gnu)
 		CFLAGS="$CFLAGS -D_GNU_SOURCE -fwritable-strings"
@@ -453,12 +461,9 @@ case "$CC" in
 
 	;;
   *-*-darwin*)
-     if test "$enable_debug_C" = yes; then
-	      CFLAGS=" $CFLAGS -I/sw/include -L/sw/lib"
-	 else
-	      CFLAGS=" -O2 -DNDEBUG -no-cpp-precomp -I/sw/include -L/sw/lib"
-	 fi
-     LDFLAGS="$LDFLAGS -L/sw/lib"
+	 CFLAGS=" $CFLAGS -I/sw/include "
+	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
+	 LDFLAGS=" $LDFLAGS -L/sw/lib/ "
 	;;
 esac
 ;; # end of the gcc case on the $CC
@@ -515,15 +520,15 @@ CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MA
 CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
-if test $IS_64_BITS_CPU = true; then
+if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
    if test $f90compatible = false; then
       AC_MSG_ERROR([64 bits support needs a fortran 90 compiler (try --with-gfortran).])
    fi
-   AC_DEFINE([IS_64_BITS_CPU], [], [If we are building a 64 bits version])
+   AC_DEFINE([USE_DYNAMIC_STACK], [], [If we are building a 64 bits version])
 fi
 
-AM_CONDITIONAL(IS_64_BITS_CPU, test "$IS_64_BITS_CPU" = true)
-AM_CONDITIONAL(USE_DYNAMIC_STACK, test "$IS_64_BITS_CPU" = true)
+AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
+AM_CONDITIONAL(USE_DYNAMIC_STACK, test $IS_64_BITS_CPU = true -o "$MACOSX" = "1")
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
@@ -534,7 +539,7 @@ AC_CHECK_UNDERSCORE_FORTRAN()
 ## test for JAVA compiler
 ###########################
 
-if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes; then
+if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
    # See if --with-jdk command line argument is given
      # Try to detect the installed JVM, this could be controlled
 	 # by the above --with options
@@ -563,8 +568,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 				AC_SUBST(FLEXDOCK)
 
 				# Swing look&feel implementations
-				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+				AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel],"yes")
 				LOOKS=$PACKAGE_JAR_FILE
+
+				# Named differently under Opensuse
+				if test -z "$LOOKS"; then
+				    AC_JAVA_CHECK_PACKAGE([looks2],[com.jgoodies.looks.common.RenderingUtils],[Scilab Gui - Look and feel])
+					LOOKS=$PACKAGE_JAR_FILE
+				fi
+				AC_SUBST(LOOKS)
+
 				AC_SUBST(LOOKS)
 
 				#  Skin Look and Feel 
@@ -578,8 +591,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 				AC_SUBST(JOGL)
 
 				# Jhall
-				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser])
+				AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
 				JHALL=$PACKAGE_JAR_FILE
+
+				# Named differently under Mandriva
+				if test -z "$JHALL"; then
+					AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
+					JHALL=$PACKAGE_JAR_FILE
+				fi
 				AC_SUBST(JHALL)
 
 				# JoGL Native <=> Java connector
@@ -631,7 +650,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes
 	fi
 fi
 
-AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" = yes)
+AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
@@ -691,6 +710,12 @@ AC_CHECK_FUNC([exp10],,[
 				AC_DEFINE([exp10(x)],[exp( (log_10_) * (x) )],[Provide a macro to do exp10])
 				])
 
+### If isinf exists or not (used to not be the case under Solaris)
+### See bug #4164
+AC_CHECK_FUNC([isinf],,[
+		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+])
+
 LDFLAGS="$save_LDFLAGS"
 
 # Provided by regex.h
@@ -720,7 +745,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -790,9 +815,11 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
    save_LIBS="$LIBS"
+
    AC_CHECK_LIB([rt], [clock_gettime],
-		      [RT_LIB="-lrt"],
-        [AC_MSG_ERROR([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
+		      [RT_LIB="-lrt";
+		      AC_DEFINE([HAVE_CLOCK_GETTIME], [1],[Whether clock_gettime is available]) ],
+        [AC_MSG_WARN([librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct])]
    )
    LIBS="$save_LIBS"
    AC_SUBST(RT_LIB)
@@ -817,16 +844,16 @@ AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 #################
 
 AC_ARG_WITH(fftw,
-    AC_HELP_STRING([--with-fftw],[Compile with the FFTW 3 library]))
+    AC_HELP_STRING([--without-fftw],[Disable the interface to the FFTW 3 library]))
 
 FFTW_ENABLE=no
-if test "$with_fftw" = yes; then
+if test "$with_fftw" != no; then
    AC_FFTW()
    FFTW_ENABLE=yes
 fi
 
 AC_SUBST(FFTW_ENABLE)
-AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
+AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
 #################
 ## MPI
@@ -847,16 +874,16 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" = yes)
 #################
 
 AC_ARG_WITH(pvm,
-    AC_HELP_STRING([--with-pvm],[Compile with PVM library]))
+    AC_HELP_STRING([--without-pvm],[Disable the interface to the PVM library]))
 
 PVM_ENABLE=no
-if test "$with_pvm" = yes; then
+if test "$with_pvm" != no; then
    AC_PVM()	
    PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
 
-AM_CONDITIONAL(PVM, test "$with_pvm" = yes)
+AM_CONDITIONAL(PVM, test "$with_pvm" != no)
 
 #######################
 ## Test for libxml
@@ -871,28 +898,28 @@ AC_LIBXML2()
 ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
 
 AC_ARG_ENABLE(build-localization,
-		AC_HELP_STRING([--enable-build-localization],[Enable the localization build]),
-		[with_localization=yes],
-		[with_localization='no']
+		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
 		)
+BUILD_LOCALIZATION_ENABLE=no
 
-if test $with_localization != no; then
+if test "$enable_build_localization" != no; then
 
    AC_SUBST(ALL_LINGUAS)
+   AC_CHECK_FUNCS([bind_textdomain_codeset])
 
    AC_PATH_PROG(MSGCAT, msgcat, no)
    AC_PATH_PROG(MSGFMT, msgfmt, no)
    AC_PATH_PROG(XGETTEXT, xgettext, no)
 
    if test x$MSGFMT = xno; then
-	  AC_ERROR([As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
+	  AC_ERROR([The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
 	  fi
 	if test x$MSGCAT = xno; then
-	  AC_ERROR([As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
+	  AC_ERROR([The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
 	fi
-
+	BUILD_LOCALIZATION_ENABLE=yes
 fi
-AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$with_localization" != no)
+AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$BUILD_LOCALIZATION_ENABLE" = yes)
 
 #######################
 ## Test for blas/Atlas and lapack
@@ -926,16 +953,16 @@ AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
 #################
 
 AC_ARG_WITH(umfpack,
-    AC_HELP_STRING([--with-umfpack],[Compile with the UMFPACK library]))
+    AC_HELP_STRING([--without-umfpack],[Disable the interface to the UMFPACK library]))
 
 UMFPACK_ENABLE=no
-if test "$with_umfpack" = yes; then
+if test "$with_umfpack" != no; then
    AC_UMFPACK([$BLAS_LIBS])
    UMFPACK_ENABLE=yes
 fi
 
 AC_SUBST(UMFPACK_ENABLE)
-AM_CONDITIONAL(UMFPACK, test "$with_umfpack" = yes)
+AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 
 #######################
 ## Test for PCRE
@@ -1057,10 +1084,11 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 #############################
 
 AC_ARG_ENABLE(build-help,
-		AC_HELP_STRING([--enable-build-help],[Enable the help build])
+		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
 HELP_ENABLE=no
-if test "$enable_build_help" != no -a "$enable_build_help" != ""; then
+
+if test "$enable_build_help" != no; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 
@@ -1082,8 +1110,10 @@ AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 ## libtool
 #########################
 
-AC_PROG_LIBTOOL([shared static dlopen])
+AM_DISABLE_STATIC
+AC_PROG_LIBTOOL([shared dlopen])
 AM_PROG_LIBTOOL
+
 
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
@@ -1126,11 +1156,6 @@ AH_BOTTOM([
 	   #undef DIR_SEPARATOR
 #endif
 #define DIR_SEPARATOR "/"
-
-/* Force usage of dynamically located stack on 64 bits */
-#ifdef IS_64_BITS_CPU
-#define USE_DYNAMIC_STACK
-#endif
 
 #endif /* MACHINE_H  */
 ])
@@ -1204,6 +1229,7 @@ modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
 modules/core/Makefile
+modules/call_scilab/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
@@ -1263,7 +1289,7 @@ AC_CONFIG_COMMANDS_POST([chmod +x $SCI_SRCDIR_FULL/modules/scicos_blocks/src/scr
 #fi
 
 # Generate stack.h
-if test $IS_64_BITS_CPU = true; then
+if test "$IS_64_BITS_CPU" = true -o "$MACOSX" = "1"; then
    stack_h_cpp_flags=-DUSE_DYNAMIC_STACK
 else
    stack_h_cpp_flags=
@@ -1438,7 +1464,7 @@ echo ""
 #fi
 
 echo ""
-if test $with_localization != no; then
+if test $BUILD_LOCALIZATION_ENABLE != no; then
    echo "Gettext/localization configuration:"
    echo "xgettext ............... = $XGETTEXT"
    echo "msgfmt  ................ = $MSGFMT"
@@ -1457,6 +1483,7 @@ if test $HELP_ENABLE = yes; then
    echo "Jeuclid (MathML) ....... = $JEUCLID_CORE"
    echo "Commons I/O ............ = $COMMONS_IO"
    echo "XML graphics commons ... = $XMLGRAPHICS_COMMONS"
+   echo "XML commons external ... = $XML_APIS_EXT"
 else
    echo "No documentation generated"
 fi

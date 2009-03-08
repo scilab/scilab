@@ -20,7 +20,7 @@
 
 #include "getHandleProperty.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
 #include "Format.h"
@@ -34,7 +34,7 @@ int get_z_ticks_property( sciPointObj * pobj )
 
   if ( sciGetEntityType( pobj ) != SCI_SUBWIN )
   {
-    sciprint(_("%s property does not exist for this label.\n"),"x_ticks") ;
+    Scierror(999, _("%s property does not exist for this label.\n"),"x_ticks") ;
     return -1 ;
   }
 

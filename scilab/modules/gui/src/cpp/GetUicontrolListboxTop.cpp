@@ -30,7 +30,7 @@ int GetUicontrolListboxTop(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "ListboxTop");
+      Scierror(999, _("No '%s' property for this object.\n"), "ListboxTop");
       return FALSE;
     }
 }

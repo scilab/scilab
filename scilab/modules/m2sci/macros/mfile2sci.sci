@@ -158,7 +158,7 @@ m2sci_info(gettext("Syntax modification: Done"),-1);
 if helppart<>[] then
   catfil=res_path+fnam+".cat"
   whsfil=res_path+"whatis"
-  mputl(helppart,catfil)
+  mputl(helppart,catfil);
   if exists("whsfil_unit")==1 then
     write(whsfil_unit,stripblanks(helppart(1))+" |"+fnam,"(a)")
   end
@@ -301,12 +301,12 @@ if txt~=[] then
   // Write sci-file
   ext=".sci"
   scifil=res_path+fnam+ext
-  mputl(res,scifil)
+  mputl(res,scifil);
 
   // Write sci_<mname>.sci translation file
   if trad<>[] then
     sci_fil=res_path+"sci_"+mname+".sci"
-    mputl(trad,sci_fil)
+    mputl(trad,sci_fil);
     res=1
   else
     res=0

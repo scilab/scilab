@@ -68,7 +68,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN32\libpvm3.lib $(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN32\libpvm3.lib&quot; &quot;$(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib&quot;"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="LIBCMT.lib"
@@ -152,7 +152,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN64\libpvm3.lib $(ProjectDir)pvm3\lib\WIN64\libgpvm3.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN64\libpvm3.lib&quot; &quot;$(ProjectDir)pvm3\lib\WIN64\libgpvm3.lib&quot;"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="LIBCMT.lib"
@@ -218,7 +218,7 @@
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;WITH_TK;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PVM_EXPORTS;WIN32;__STDC__"
 				StringPooling="true"
 				RuntimeLibrary="0"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -237,7 +237,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN32\libpvm3.lib $(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN32\libpvm3.lib&quot; &quot;$(ProjectDir)pvm3\lib\WIN32\libgpvm3.lib&quot;"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="pvm.def"
@@ -326,7 +326,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="LibScilab.lib wsock32.lib $(ProjectDir)pvm3\lib\WIN64\libpvm3.lib $(ProjectDir)pvm3\lib\WIN64\libgpvm3.lib"
+				AdditionalDependencies="LibScilab.lib wsock32.lib &quot;$(ProjectDir)pvm3\lib\WIN64\libpvm3.lib&quot; &quot;$(ProjectDir)pvm3\lib\WIN64\libgpvm3.lib&quot;"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="pvm.def"

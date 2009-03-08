@@ -308,7 +308,7 @@ plot2d(tt, yy, style = 2)
 legend(["measure points", "fitted curve"]);
 xtitle("a simple fit with leastsq")
 
-// 3- how to get some informations (we use imp=1)
+// 3- how to get some information (we use imp=1)
 [f,xopt, gropt] = leastsq(1,list(myfun,tm,ym,wm),mydfun,x0)
 
 // 4- using the conjugate gradient (instead of quasi Newton)
@@ -429,7 +429,7 @@ link(clibname,names,"c")
         <link linkend="external">external</link>
       </member>
       <member>
-        <link linkend="quapro">quapro</link>
+        <link linkend="qpsolve">qpsolve</link>
       </member>
       <member>
         <link linkend="linpro">linpro</link>

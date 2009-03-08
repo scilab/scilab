@@ -79,8 +79,8 @@ if rhs<=0 then,
   
   if flag==1 then
     if forder-2*int(forder/2)==0 then
-      x_message([gettext('Even length high pass and stop band filters not allowed');
-	 gettext('---Filter order is being incremented by 1')])
+      messagebox([gettext('Even length high pass and stop band filters not allowed');
+	    gettext('---Filter order is being incremented by 1')],"modal","error");
       forder=forder+1;
     end
   end
@@ -114,7 +114,7 @@ if rhs<=0 then,
     elseif part(name,1:2)=='df' then
       fpar=[-1,value]
     else
-      x_message(gettext('Incorrect parameter name entered'))
+      messagebox(gettext('Incorrect parameter name entered'),"modal","error");
       return
     end
   case 3 then

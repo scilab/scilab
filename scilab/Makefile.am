@@ -13,7 +13,7 @@ SUBDIRS= libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 
-changelogs = CHANGES
+changelogs = CHANGES CHANGES_5.1.X
 
 bin_PROGRAMS		= scilab-bin
 
@@ -21,8 +21,13 @@ bin_SCRIPTS			= bin/scilab
 
 scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
-scilab_bin_LDFLAGS 		=
-scilab_bin_CFLAGS 		= 
+scilab_bin_LDFLAGS 		= 
+if IS_MACOSX
+scilab_bin_LDFLAGS 		+= -framework Cocoa
+endif
+
+scilab_bin_CFLAGS 		=
+# --no-undefined --relax
 
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -31,7 +36,9 @@ scilab_bin_CFLAGS 		=
 scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
 $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/modules/localization/libscilocalization.la
+$(top_builddir)/modules/completion/libscicompletion.la \
+$(top_builddir)/modules/localization/libscilocalization.la \
+$(top_builddir)/modules/io/libsciio.la
 
 if NEED_JAVA
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
@@ -55,11 +62,9 @@ scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 endif
 
-
 LANG_DOMAIN=scilab
 
 TARGETS_ALL=macros
-# doc
 
 #  The user wants to compile the localization files
 if GENERATE_LOCALIZATION_FILES
@@ -83,18 +88,26 @@ $(top_srcdir)/CHANGES_2.X \
 $(top_srcdir)/CHANGES_3.X \
 $(top_srcdir)/CHANGES_4.X \
 $(top_srcdir)/CHANGES_5.0.X \
+$(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-FR \
 $(top_srcdir)/README_Unix \
 $(top_srcdir)/RELEASE_NOTES \
+$(top_srcdir)/RELEASE_NOTES_5.0.X \
+$(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/Readme_Visual.txt \
 $(top_srcdir)/README_Windows.txt
 
-
-profilingdir=$(pkgdatadir)/tools/profiling/
-profiling_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
-
+iconsdir=$(pkgdatadir)/icons/
+icons_DATA = $(top_srcdir)/icons/scilab.xpm \
+icons/puffin_128.xpm \
+icons/puffin_256.xpm \
+icons/puffin_32.xpm \
+icons/puffin_48.xpm \
+icons/puffin.png \
+icons/puffin.icns \
+icons/scilab.icns
 
 macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
 	-@( cd $(top_builddir) ; \
@@ -106,11 +119,11 @@ if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e \"xmltojar();exit;\"";\
-		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar();exit;";\
+		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'en_US');exit;\"";\
+		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar([],[],'en_US');exit;";\
 		echo "-- Building documentation (French) --"; \
-		echo "$(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e \"xmltojar();exit;\""; \
-		DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l fr_FR -nouserstartup -nw -e "xmltojar();exit;"; \
+		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'fr_FR');exit;\""; \
+		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "xmltojar([],[],'fr_FR');exit;"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -138,27 +151,37 @@ check-local:
 		echo "Cannot find Scilab binary"; \
 	fi
 
-distclean-recursive: clean-recursive
+distclean-recursive: distclean-generated clean-recursive
 
-clean-recursive: clean-doc clean-localization clean-macros
+clean-recursive: clean-doc clean-localization clean-macros clean-generated
 
 clean-macros:
-	@echo "-- Cleanning macros (*.bin) --"; \
-	find $(top_builddir) -name "*.bin" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning names files (names) --"; \
-	find $(top_builddir)/modules/*/macros -name "names" | xargs rm 2> /dev/null; \
-	echo "-- Cleanning lib files (lib) --"; \
-	find $(top_builddir)/modules/*/macros -name "lib" | xargs rm 2> /dev/null
+# Find is necessary because of subdirs...
+	@echo "-- Cleaning macros (*.bin) --"; \
+	find $(top_builddir) -name "*.bin" | xargs --no-run-if-empty rm 2> /dev/null; \
+	echo "-- Cleaning names files (names) --"; \
+	find $(top_builddir)/modules/*/macros -name "names" | xargs --no-run-if-empty rm 2> /dev/null; \
+	echo "-- Cleaning lib files (lib) --"; \
+	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 
 
 clean-doc:
 	@if test -x $(top_builddir)/scilab-bin; then \
+		echo "$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'"; \
 		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
+		echo "$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'"; \
 		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
-	fi
-
+	fi; \
+	echo "rmdir $(top_builddir)/modules/helptools/javaHelp/"; \
+	rmdir $(top_builddir)/modules/helptools/javaHelp/; \
+	echo "rm -rf $(top_builddir)/modules/scicos/help/*/scilab_*_help"; \
+	rm -rf $(top_builddir)/modules/scicos/help/*/scilab_*_help; \
+	echo "rm -f $(top_builddir)/modules/scicos/help/en_US/master_help.xml"; \
+	rm -f $(top_builddir)/modules/scicos/help/en_US/master_help.xml; \
+	echo "rm -f $(top_builddir)/modules/scicos/jar/"; \
+	rm -rf $(top_builddir)/modules/scicos/jar/
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-bin; then \
@@ -167,10 +190,20 @@ clean-tests:
 		echo "Cannot find Scilab binary"; \
 	fi
 
-
 clean-localization:
 	rm -rf $(top_srcdir)/locale/
 
+clean-generated:
+	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
+
+distclean-generated: 
+	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
+
+
+if IS_MACOSX
+# Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
+MACOSX=1
+endif
 
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
@@ -178,7 +211,7 @@ if GENERATE_LOCALIZATION_FILES
 localization:
 	@echo "-- Build localization (.mo from .po) --"; \
 	MASK="modules/*/locales/"; \
-	LC=LC_MESSAGES; \
+	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
 	FILENAME="*.po*"; \
 	rm modules/*/locales/*/*~ 2> /dev/null; \
@@ -192,10 +225,9 @@ localization:
 		fi; \
 		POFILE=$$PATHTO/$(LANG_DOMAIN).po; \
 		$(MSGCAT) -o $$POFILE $$FILES; \
+		if test "$(MACOSX)" = "1"; then sed -i -e '/charset=UTF-8/d' $$POFILE; fi; \
 		$(MSGFMT) $(MSGFMT_OPTS) --statistics -o $$PATHTO/$(LANG_DOMAIN).mo $$POFILE; \
-		$(MSGFMT) $(MSGFMT_OPTS) --statistics --locale $$LOCALE -r org.scilab.modules.localization.Messages --java2 -d $(top_builddir)/modules/localization/build/classes/ $$POFILE; \
-	done; \
-	(cd $(top_srcdir)/modules/localization/; $(ANT) jar);
+	done;
 endif
 
 # Misc variable for the documentation installation

@@ -33,6 +33,7 @@
 #include "Axes.h"
 #include "BasicAlgos.h"
 #include "sciprint.h"
+#include "Scierror.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -211,15 +212,15 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
   /*---- Drawing the curves and the legends ----*/
   if ( *n1 != 0 ) {
 	  if ((hdltab = MALLOC ((*n1+1) * sizeof (long))) == NULL) {
-		  sciprint(_("%s: No more memory.\n"),"plot2d");
-		  return 0;
+		  Scierror(999, _("%s: No more memory.\n"),"plot2d");
+		  return -1;
     }
     if (with_leg) {
       /* tabofhandles allocated for legends */
       if ((tabofhandles = MALLOC((*n1)*sizeof(long long))) == NULL) {
-        sciprint(_("%s: No more memory.\n"),"plot2d");
+        Scierror(999, _("%s: No more memory.\n"),"plot2d");
         FREE(hdltab);
-        return 0;
+        return -1;
       }
     }
 
@@ -246,7 +247,7 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       if (pobj == NULL)
       {
         // skip
-        sciprint(_("%s: No more memory.\n"), "plot2d");
+        Scierror(999, _("%s: No more memory.\n"), "plot2d");
       }
       else
       {
@@ -278,18 +279,10 @@ int plot2dn(int ptype,char *logflags,double *x,double *y,int *n1,int *n2,int *st
       if (scitokenize(legend, &Str, &nleg)) {
 	FREE(tabofhandles);
 	FREE(hdltab);
-	sciprint(_("%s: No more memory.\n"),"plot2d");
+	Scierror(999, _("%s: No more memory.\n"),"plot2d");
         endFigureDataWriting(curFigure);
 	return 0;
       }
-
-      /* if (nleg < cmpt) {
-	FREE(tabofhandles);
-        for (jj = 0; jj < nleg; jj++) { FREE(Str[jj]); }
-	FREE(Str);
-	sciprint(_("%s: Invalid legend ignored.\n"),"plot2d");
-      }
-      else {*/
       Leg = ConstructLegend(sciGetCurrentSubWin(),Str,tabofhandles,Min(nleg,cmpt));
 	if (Leg != NULL)
 	  {
@@ -443,6 +436,14 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
 {
   BOOL haschanged = FALSE;
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (psubwin);
+	BOOL axesVisiblePrev[3] = {ppsubwin->axes.axes_visible[0],
+	                           ppsubwin->axes.axes_visible[1],
+	                           ppsubwin->axes.axes_visible[2]};
+	EAxesBoxType boxPrev = ppsubwin->axes.rect;
+	char xLocPrev = ppsubwin->axes.xdir;
+	char yLocPrev = ppsubwin->axes.ydir;
+	BOOL tightLimitsPrev = ppsubwin->tight_limits;
+	BOOL isoviewPrev = ppsubwin->isoview;
 
   /* F.Leray 07.05.04 */
   /* strflag[1] Isoview & tight_limits flags management*/
@@ -451,25 +452,13 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
     /* no changes */
     break;
   case '1' : case '2' : case '7' : case '8' :
-    if(ppsubwin->tight_limits != TRUE){
-      ppsubwin->tight_limits = TRUE;
-      haschanged = TRUE;
-    }
-    /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE; */
+    ppsubwin->tight_limits = TRUE;
     break;
   case '3' : case '4' :
-    /*pSUBWIN_FEATURE (psubwin)->tight_limits = TRUE;*/
-    if(ppsubwin->isoview != TRUE){
-      ppsubwin->isoview = TRUE;
-      haschanged = TRUE;
-    }
+    ppsubwin->isoview = TRUE;
     break;
   case '5' : case '6' :
-    if(ppsubwin->tight_limits != FALSE){
-      ppsubwin->tight_limits = FALSE; /* pretty axes */
-      haschanged = TRUE;
-    }
-    /*pSUBWIN_FEATURE (psubwin)->isoview      = FALSE;*/
+    ppsubwin->tight_limits = FALSE; /* pretty axes */
     break;
   }
       
@@ -478,94 +467,73 @@ BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag)
   switch (strflag[2])  {
   case '0': 
     if(ppsubwin->FirstPlot == TRUE){
-      /*       ppsubwin->isaxes = FALSE; */
       ppsubwin->axes.axes_visible[0] = FALSE;
       ppsubwin->axes.axes_visible[1] = FALSE;
       ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
       ppsubwin->axes.rect = BT_OFF;
-      haschanged = TRUE;
     }
     /*else no changes : the isaxes properties is driven by the previous plot */
     break;
   case '1' : 
- /*    ppsubwin->isaxes = TRUE; */
-    if(ppsubwin->axes.axes_visible[0] != TRUE ||
-       ppsubwin->axes.axes_visible[1] != TRUE ||
-       ppsubwin->axes.axes_visible[2] != TRUE ||
-       ppsubwin->axes.ydir != 'l'){
-      ppsubwin->axes.axes_visible[0] = TRUE;
-      ppsubwin->axes.axes_visible[1] = TRUE;
-      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.ydir ='l';
-      ppsubwin->axes.rect = BT_ON;
-      haschanged = TRUE;
-    }
+    ppsubwin->axes.axes_visible[0] = TRUE;
+    ppsubwin->axes.axes_visible[1] = TRUE;
+    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+    ppsubwin->axes.ydir ='l';
+    ppsubwin->axes.rect = BT_ON;
     break;
   case '2' : 
-  /*   ppsubwin->isaxes = TRUE; */
-    if(ppsubwin->axes.axes_visible[0] != TRUE ||
-       ppsubwin->axes.axes_visible[1] != TRUE ||
-       ppsubwin->axes.axes_visible[2] != TRUE){
-      ppsubwin->axes.axes_visible[0] = FALSE;
-      ppsubwin->axes.axes_visible[1] = FALSE;
-      ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
-      ppsubwin->axes.rect = BT_ON;
-      haschanged = TRUE;
-    }
+    ppsubwin->axes.axes_visible[0] = FALSE;
+    ppsubwin->axes.axes_visible[1] = FALSE;
+    ppsubwin->axes.axes_visible[2] = FALSE; /* also trigger z axis */
+    ppsubwin->axes.rect = BT_ON;
     break;
   case '3' : 
-    /*    ppsubwin->isaxes = TRUE; */
-    if(ppsubwin->axes.axes_visible[0] != TRUE ||
-       ppsubwin->axes.axes_visible[1] != TRUE ||
-       ppsubwin->axes.axes_visible[2] != TRUE ||
-       ppsubwin->axes.ydir != 'r'){
-      ppsubwin->axes.axes_visible[0] = TRUE;
-      ppsubwin->axes.axes_visible[1] = TRUE;
-      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.ydir ='r';
-      haschanged = TRUE;
-    }
+    ppsubwin->axes.axes_visible[0] = TRUE;
+    ppsubwin->axes.axes_visible[1] = TRUE;
+    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+		ppsubwin->axes.rect = BT_OFF;
+    ppsubwin->axes.ydir ='r';
     break;
   case '4' :
-    /*     ppsubwin->isaxes = TRUE; */
-    if(ppsubwin->axes.axes_visible[0] != TRUE ||
-       ppsubwin->axes.axes_visible[1] != TRUE ||
-       ppsubwin->axes.axes_visible[2] != TRUE){
-      ppsubwin->axes.axes_visible[0] = TRUE;
-      ppsubwin->axes.axes_visible[1] = TRUE;
-      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.rect = BT_ON;
-      /* Case not implemented yet : axes are drawn centred in the middle of the frame box. */
-      haschanged = TRUE;
-    }
+    ppsubwin->axes.axes_visible[0] = TRUE;
+    ppsubwin->axes.axes_visible[1] = TRUE;
+    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+		ppsubwin->axes.xdir ='c';
+    ppsubwin->axes.ydir ='c';
+		ppsubwin->axes.rect = BT_OFF;
     break;
   case '5' :
- /*    ppsubwin->isaxes = TRUE; */
-    if(ppsubwin->axes.axes_visible[0] != TRUE ||
-       ppsubwin->axes.axes_visible[1] != TRUE ||
-       ppsubwin->axes.axes_visible[2] != TRUE ||
-       ppsubwin->axes.xdir != 'c' ||
-       ppsubwin->axes.ydir != 'c'){
-      ppsubwin->axes.axes_visible[0] = TRUE;
-      ppsubwin->axes.axes_visible[1] = TRUE;
-      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      ppsubwin->axes.xdir ='c';
-      ppsubwin->axes.ydir ='c';
-      ppsubwin->axes.rect = BT_ON;
-      haschanged = TRUE;
-    }
+    ppsubwin->axes.axes_visible[0] = TRUE;
+    ppsubwin->axes.axes_visible[1] = TRUE;
+    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
+    ppsubwin->axes.xdir ='c';
+    ppsubwin->axes.ydir ='c';
+    ppsubwin->axes.rect = BT_ON;
     break;
   case '9' :
-    /*     ppsubwin->isaxes = TRUE; */
-    if(ppsubwin->axes.axes_visible[0] != TRUE ||
-       ppsubwin->axes.axes_visible[1] != TRUE ||
-       ppsubwin->axes.axes_visible[2] != TRUE){
-      ppsubwin->axes.axes_visible[0] = TRUE;
-      ppsubwin->axes.axes_visible[1] = TRUE;
-      ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
-      haschanged = TRUE;
-    }
+    ppsubwin->axes.axes_visible[0] = TRUE;
+    ppsubwin->axes.axes_visible[1] = TRUE;
+    ppsubwin->axes.axes_visible[2] = TRUE; /* also trigger z axis */
   }
+
+	/* Find if something has changed */
+	if (   ppsubwin->axes.axes_visible[0] != axesVisiblePrev[0]
+	    || ppsubwin->axes.axes_visible[1] != axesVisiblePrev[1]
+			|| ppsubwin->axes.axes_visible[2] != axesVisiblePrev[2]
+			|| ppsubwin->axes.rect != boxPrev
+			|| ppsubwin->axes.xdir != xLocPrev
+			|| ppsubwin->axes.ydir != yLocPrev
+			|| ppsubwin->tight_limits != tightLimitsPrev
+			|| ppsubwin->isoview != isoviewPrev)
+	{
+		haschanged = TRUE;
+	}
+	else
+	{
+		haschanged = FALSE;
+	}
+
+
   return haschanged;
 }
 

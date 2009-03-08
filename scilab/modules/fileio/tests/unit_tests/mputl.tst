@@ -26,7 +26,8 @@ TXT = [ 'I am a dummy String'; ..
         ' mputl is okay'; ..
         ' on linux and windows ... '];
 
-mputl(TXT, 'dummyFile.dummy')
+r = mputl(TXT, 'dummyFile.dummy');
+if r <> %T then pause,end
 TXT2 = mgetl('dummyFile.dummy');
 
 if TXT2 <> TXT then pause,end

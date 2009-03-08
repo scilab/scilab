@@ -490,7 +490,7 @@ static int create_index_vector(int pos, int pos_ind, int *mn,
             }
           else /* ipas < 0 (the case ipas==0 is treated before) */
             {
-              *ind_max = ifin; ind_min = ifin  + (*mn-1)*ipas;
+              *ind_max = ideb; ind_min = ideb  + (*mn-1)*ipas; /* Bug 4015 fix: flip left to right for hypermatrices */
             }
 	  if ( ind_min <= 0 )
             return 0;    /* at least one index is <= 0 => error */

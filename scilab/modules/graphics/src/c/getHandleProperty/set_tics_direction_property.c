@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,13 +32,13 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"tics_direction") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"tics_direction") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint("tics_direction property does not exist for this handle.\n" ) ;
+    Scierror(999, "tics_direction property does not exist for this handle.\n" ) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -54,7 +54,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
     }
     else
     {
-      sciprint(_("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_tics_direction_property",2,"top","bottom") ;
+      Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_tics_direction_property",2,"top","bottom") ;
       return SET_PROPERTY_ERROR ;
     }
     return SET_PROPERTY_SUCCEED ;
@@ -71,7 +71,7 @@ int set_tics_direction_property( sciPointObj * pobj, size_t stackPointer, int va
     }
     else
     {
-      sciprint(_("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_tics_direction_property",2,"right","left") ;
+      Scierror(999, _("%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"), "set_tics_direction_property",2,"right","left") ;
       return -1 ;
     }
     return SET_PROPERTY_SUCCEED ;

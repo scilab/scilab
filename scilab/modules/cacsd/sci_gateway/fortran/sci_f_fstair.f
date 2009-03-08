@@ -16,7 +16,7 @@ c     --------------------------
       INCLUDE 'stack.h'
 c     
       character*(*) fname
-      double precision t,eps
+      double precision eps
       integer iadr,sadr,tops
 
      

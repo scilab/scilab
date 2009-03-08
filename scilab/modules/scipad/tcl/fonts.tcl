@@ -23,6 +23,7 @@
 #
 # See the file scipad/license.txt
 #
+
 proc choosefonts {} {
 # pop up the font chooser dialog
     global pad textFont menuFont
@@ -124,21 +125,18 @@ proc choosefonts {} {
     $fch.f0.f2.fsize set $textfontsize
 
     frame $fch.f0.f3
-    set bestwidth [mcmaxra "OK" \
-                           "Cance&l" \
-                           "&Defaults"]
     eval "button $fch.f0.f3.button1 [bl "OK"] \
         -command \"updatefont;destroy $fch\" \
-        -width $bestwidth -font \[list $menuFont\] "
+        -font \[list $menuFont\] "
     eval "button $fch.f0.f3.button2 [bl "Cance&l"] \
         -command \"destroy $fch\" \
-        -width $bestwidth -font \[list $menuFont\] \
-         -takefocus 0 "
+        -font \[list $menuFont\] -takefocus 0 "
     eval "button $fch.f0.f3.button3 [bl "&Defaults"] \
         -command \"revertfont\" \
-        -width $bestwidth -font \[list $menuFont\] \
-         -takefocus 0 "
-    pack $fch.f0.f3.button1 $fch.f0.f3.button2 $fch.f0.f3.button3 -expand 0 -fill none -padx 10 -pady 5
+        -font \[list $menuFont\] -takefocus 0 "
+    grid $fch.f0.f3.button1 -row 0 -column 0 -sticky we -padx 10 -pady 5
+    grid $fch.f0.f3.button2 -row 1 -column 0 -sticky we -padx 10 -pady 5
+    grid $fch.f0.f3.button3 -row 2 -column 0 -sticky we -padx 10 -pady 5
 
     labelframe $fch.f0.f3.lf3 -text [mc "Use as..."] -font $menuFont
     eval "radiobutton $fch.f0.f3.lf3.tf [bl "&Text font"] \
@@ -148,10 +146,11 @@ proc choosefonts {} {
         -variable usefontfor -value \"menufont\" \
         -command \"\" -font \[list $menuFont\] -takefocus 0 "
     pack $fch.f0.f3.lf3.tf $fch.f0.f3.lf3.mf -anchor w
-    pack $fch.f0.f3.lf3 -pady 10
+    grid $fch.f0.f3.lf3 -row 3 -column 0 -sticky we -padx 10 -pady 10
     $fch.f0.f3.lf3.tf select
 
-    pack $fch.f0.lf1 $fch.f0.f2 $fch.f0.f3 -pady 2 -padx 5 -side left -expand 0 -fill both
+    pack $fch.f0.f2 $fch.f0.lf1 $fch.f0.f3 -pady 2 -padx 5 -side left -expand 0 -fill both
+    pack configure $pad.fch.f0.lf1 -expand 1
 
     labelframe $fch.lf4 -text [mc "Sample"] -font $menuFont
     entry $fch.lf4.text -background [$fch.lf4 cget -background] \
@@ -286,9 +285,9 @@ proc updatefont {{fontsource "newfont"}} {
         $textarea tag configure activebreakpoint -font $actbptextFont
         if {[isdisplayed $textarea]} {
             set tapwfr [getpaneframename $textarea]
-            $tapwfr.panetitle configure -font $menuFont
-            $tapwfr.clbutton  configure -font $menuFont
-            $tapwfr.hibutton  configure -font $menuFont
+            $tapwfr.panetitle         configure -font $menuFont
+            $tapwfr.topbar.f.clbutton configure -font $menuFont
+            $tapwfr.topbar.f.hibutton configure -font $menuFont
             if {$linenumbersmargins != "hide"} {
                 $tapwfr.margin configure -font $textFont
             }
@@ -370,7 +369,7 @@ proc setdefaultfonts {} {
 proc settabsize {} {
 # update the tab size in all the existing text widgets
     global textfontsize tabsizeinchars listoftextarea
-    set tabsizeinpix [expr {$textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars}]
+    set tabsizeinpix [expr {round( $textfontsize / [tk scaling] / [tk scaling] * $tabsizeinchars )}]
     # this must be done for all textareas, including peers
     foreach textarea $listoftextarea {
         $textarea configure -tabs $tabsizeinpix

@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "pixel_mode.h"
 #include "SetPropertyStatus.h"
@@ -34,20 +34,20 @@ int set_pixel_drawing_mode_property( sciPointObj * pobj, size_t stackPointer, in
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"pixel_drawing_mode") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"pixel_drawing_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType (pobj) != SCI_FIGURE )
   {
-	  sciprint(_("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
+	  Scierror(999, _("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
 	  return SET_PROPERTY_ERROR ;
   }
   v = getPixelModeIndex( getStringFromStack( stackPointer ) ) ;
 
   if ( v < 0 )
   {
-	  sciprint(_("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
+	  Scierror(999, _("%s property does not exist for this handle.\n"),"pixel_drawing_mode");
 	  return SET_PROPERTY_ERROR ;
   }
 

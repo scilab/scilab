@@ -22,6 +22,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
 #include "InitObjects.h"
@@ -37,13 +38,13 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"axes_size") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"axes_size") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
-    sciprint(_("%s undefined for this object.\n"), "axes_size") ;
+    Scierror(999, _("%s undefined for this object.\n"), "axes_size") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -55,7 +56,7 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   switch(status)
   {
   case RESIZE_SIZE_TOO_LARGE:
-    sciprint(_("Wrong value for property '%s': smaller values expected.\n"), "axes_size") ;
+    Scierror(999, _("Wrong value for property '%s': smaller values expected.\n"), "axes_size") ;
     return SET_PROPERTY_ERROR ;
   case RESIZE_MULTIPLE_DOCKED_TAB:
     sciprint(_("WARNING: '%s' property can not be modified if the %s is docked with other elements.\n"), "axes_size", "Figure") ;
@@ -63,7 +64,7 @@ int set_axes_size_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   case RESIZE_UNCHANGED:
     return SET_PROPERTY_UNCHANGED;
   default:
-    return SET_PROPERTY_SUCCEED;
+    return SET_PROPERTY_UNCHANGED;
   };
 }
 /*------------------------------------------------------------------------*/

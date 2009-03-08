@@ -11,22 +11,22 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/loadsavelanguage.c \
 src/c/charEncoding.c
+
+if NEED_JAVA
+LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
 sci_gateway/c/sci_setlanguage.c \
 sci_gateway/c/sci_getdefaultlanguage.c \
-sci_gateway/c/sci_getlanguage.c
-
-#sci_gateway/c/sci_getlanguagealias.c \
-#sci_gateway/c/sci_getlanguagestable.c \
-#sci_gateway/c/sci_addtext.c \
-#sci_gateway/c/sci_removetext.c
+sci_gateway/c/sci_getlanguage.c \
+sci_gateway/c/sci_setdefaultlanguage.c
 
 libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+				-I/sw/include \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -37,6 +37,10 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 pkglib_LTLIBRARIES = libscilocalization.la
 
 libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS)
+
+if IS_MACOSX
+libscilocalization_la_LDFLAGS += -lintl
+endif
 
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 
@@ -70,10 +74,18 @@ includes/gw_localization.h \
 includes/InitializeLocalization.h \
 includes/setgetlanguage.h \
 includes/TerminateLocalization.h \
-includes/localetoutf.h
+includes/charEncoding.h
 
 if GUI
 USEANT=1
 endif
+
+#### SWIG Declaration ####
+SWIG_WRAPPERS = src/jni/Messages.i 
+
+if SWIG
+BUILT_SOURCES=swig
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007 - INRIA - Allab CORNET 
+// Copyright (C) 2009 - DIGITEO
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,11 +8,6 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// ====================================================================
-// help m2sci module
-// Add chapter
-// ====================================================================
-path = SCI+'/modules/m2sci/help/'+getlanguage();
+path = SCI+"/modules/m2sci/help/fr_FR";
 add_help_chapter("Aide à la conversion Matlab vers Scilab",path,%T);
 clear path add_help_chapter;
-// ====================================================================

@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>ilib_gen_Make</refname>
-    <refpurpose> utility for  ilib_build: produces a makefile for building shared libraries</refpurpose>
+    <refpurpose> utility for ilib_build: produces a Makefile for building shared libraries</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -96,7 +96,7 @@
     <para>
     Utility function used by <literal>ilib_build</literal></para>
     <para>
-    This function generates a makefile adapted to the Operating System for
+    This function generates a Makefile adapted to the Operating System for
     building shared libraries to be loaded in Scilab. Proper options and
     paths are set.</para>
     <para>
@@ -107,9 +107,9 @@
     stored in a directory and if required from a set of external
     libraries.</para>
     <para>
-    Files are not required to exist, when makefile is generated, but of
-    course are required for executing the makefile.</para>
-	 <emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis>
+    Files are not required to exist, when Makefile is generated, but of
+    course are required for executing the Makefile.</para>
+	 <para><emphasis role="bold">Only use this function is you know what you are doing (it is a semi-private function).</emphasis></para>
   </refsection>
   <refsection>
     <title>See Also</title>

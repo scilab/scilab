@@ -151,7 +151,9 @@ else //** single / multiple object(s) switch
       gh_blk = gh_axes.children(gh_k);
       
       Select = [k,%win]
-      selecthilite(Select, 'on') ; //** immediate screen update 
+      drawlater(); 
+        selecthilite(Select, "on") ; //** immediate screen update
+      drawnow();  
     else
       //** popup in the void 
       state_var = 2; //** magic number by Ramine
@@ -169,9 +171,10 @@ else //** single / multiple object(s) switch
       gh_k   = get_gri(k,o_size(1))
       gh_blk = gh_axes.children(gh_k);
       Select = [k,%win];
-      selecthilite(Select, 'on') ; // update the image
-      state_var = 3 ; //** Magic number by Ramine
-                      //** read only operation 
+      drawlater()
+        selecthilite(Select, "on") ; // update the image
+      drawnow();
+      state_var = 3 ; //** Magic number by Ramine: read only operation 
     else
       //** in the void 
       Cmenu==[]; %pt=[]; %ppt=[]; Select=[];
@@ -204,7 +207,9 @@ end //** ... of single / multiple selection switch
   if Cmenu==[] then
        %pt  = [];
        %ppt = [];
-       selecthilite(Select, "off") ; //** update the screen 
+       drawlater();
+         selecthilite(Select, "off") ; //** update the screen
+       drawnow();  
        Select = [];
   end
   

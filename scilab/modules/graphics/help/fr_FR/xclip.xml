@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>xclip</refname>
-    <refpurpose> définit une zone de "clipping"  </refpurpose>
+    <refpurpose> (obsolète) définit une zone de "clipping"  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -43,7 +43,11 @@ xclip("clipgrf")</synopsis>
   </para>
     <para>
     Pour supprimer l'effet d'une commande xclip précédente, utiliser <literal>xclip()</literal>.
-  </para>
+	</para><para>
+		La fonction <literal>xclip</literal> est obsolète et sera supprimée définitivement de Scilab 5.2.
+		Pour définir une zone de "clipping", les propriétés <literal>clip_state</literal> et <literal>clip_box</literal>
+		des entités graphiques peuvent être utilisées.
+	</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -73,6 +77,14 @@ xclip("clipgrf")
 e.clip_state='off';
  
   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Voir Aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection>
     <title>Auteurs</title>

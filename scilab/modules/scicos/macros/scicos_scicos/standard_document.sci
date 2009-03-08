@@ -280,7 +280,7 @@ function texte = standard_document(objet, k)
 	if type(funname)==10 then 
 	  ierr=execstr('docfun='+funname,'errcatch')
 	  if ierr<>0 then
-	    x_message('function '+funname+' not found')
+	    messagebox('function '+funname+' not found',"modal","error");
 	    return
 	  end
 	else

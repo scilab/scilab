@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="console" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>console</refname>
+
+    <refpurpose>Keyboard Shortcuts in the Console Window</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <informaltable border="1">
+        <tr>
+          <td>UP or Ctrl+P</td>
+
+          <td>recall previous line.</td>
+        </tr>
+
+        <tr>
+          <td>DOWN or Ctrl+N</td>
+
+          <td>recall next line.</td>
+        </tr>
+
+        <tr>
+          <td>F1</td>
+
+          <td>call help.</td>
+        </tr>
+
+        <tr>
+          <td>F2</td>
+
+          <td>clear console.</td>
+        </tr>
+
+        <tr>
+          <td>F12</td>
+
+          <td>open console box only on Windows.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl+space or TAB</td>
+
+          <td>completion : scilab displays a list of all names that start with
+          somes characters.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + A or HOME</td>
+
+          <td>move to beginning of current line.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + B or LEFT</td>
+
+          <td>moves the cursor one character to the left.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + C</td>
+
+          <td>interrupts Scilab if nothing selected in the console, else text
+          selected is sent to clipboard.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + D or DELETE</td>
+
+          <td>deletes the current character.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + E or END</td>
+
+          <td>moves the cursor to the end of command line.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + F or RIGHT</td>
+
+          <td>moves the cursor one character to the right.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + H or BACKSPACE</td>
+
+          <td>deletes the previous character.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + K</td>
+
+          <td>kills command line from cursor to the end.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + S</td>
+
+          <td>select all.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + U</td>
+
+          <td>delete the whole command line.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + V</td>
+
+          <td>do a paste from clipboard.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + W</td>
+
+          <td>delete the last word of the command line.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + X</td>
+
+          <td>Interrupt Scilab</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + LEFT</td>
+
+          <td>move left one word.</td>
+        </tr>
+
+        <tr>
+          <td>Ctrl + RIGHT</td>
+
+          <td>move right one word.</td>
+        </tr>
+
+        <tr>
+          <td>Shift + HOME</td>
+
+          <td>select from cursor to beginning of statement.</td>
+        </tr>
+
+        <tr>
+          <td>Shift + END</td>
+
+          <td>select from cursor to end of statement.</td>
+        </tr>
+
+        <tr>
+          <td>Double-click</td>
+
+          <td>select current word.</td>
+        </tr>
+      </informaltable>
+  </refsection>
+</refentry>

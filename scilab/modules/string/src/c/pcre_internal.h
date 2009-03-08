@@ -243,40 +243,6 @@ option on the command line. */
 #define memcpy(d,s,n)    _memcpy(d,s,n)
 #define memmove(d,s,n)   _memmove(d,s,n)
 #define memset(s,c,n)    _memset(s,c,n)
-#else  /* VPCOMPAT */
-
-/* To cope with SunOS4 and other systems that lack memmove() but have bcopy(),
-define a macro for memmove() if HAVE_MEMMOVE is false, provided that HAVE_BCOPY
-is set. Otherwise, include an emulating function for those systems that have
-neither (there some non-Unix environments where this is the case). */
-
-#ifndef HAVE_MEMMOVE
-#undef  memmove        /* some systems may have a macro */
-#ifdef HAVE_BCOPY
-#define memmove(a, b, c) bcopy(b, a, c)
-#else  /* HAVE_BCOPY */
-static void *
-pcre_memmove(void *d, const void *s, size_t n)
-{
-size_t i;
-unsigned char *dest = (unsigned char *)d;
-const unsigned char *src = (const unsigned char *)s;
-if (dest > src)
-  {
-  dest += n;
-  src += n;
-  for (i = 0; i < n; ++i) *(--dest) = *(--src);
-  return (void *)dest;
-  }
-else
-  {
-  for (i = 0; i < n; ++i) *dest++ = *src++;
-  return (void *)(dest - n);
-  }
-}
-#define memmove(a, b, c) pcre_memmove(a, b, c)
-#endif   /* not HAVE_BCOPY */
-#endif   /* not HAVE_MEMMOVE */
 #endif   /* not VPCOMPAT */
 
 

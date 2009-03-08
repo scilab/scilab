@@ -1,16 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
@@ -25,7 +25,8 @@
 #include "strdup_windows.h"
 #endif
 #include "strsubst.h"
-/*--------------------------------------------------------------------------*/ 
+#include "getos.h"
+/*--------------------------------------------------------------------------*/
 JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_JavaVMOption)
 {
 	if ( FileExist(filename_xml_conf) )
@@ -44,9 +45,10 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			char *jvm_option_string = NULL;
 
 			int indice = 0;
+
 			doc = xmlParseFile (filename_xml_conf);
 
-			if (doc == NULL) 
+			if (doc == NULL)
 			{
 				fprintf(stderr,_("Error: Could not parse file %s.\n"), filename_xml_conf);
 				if (encoding) {FREE(encoding);encoding=NULL;}
@@ -55,9 +57,9 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			}
 
 			xpathCtxt = xmlXPathNewContext(doc);
-			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option", xpathCtxt);
+			xpathObj = xmlXPathEval((const xmlChar*)"//jvm_options/option | //jvm_options/option[@os='OSNAME']", xpathCtxt);
 
-			if(xpathObj && xpathObj->nodesetval->nodeMax) 
+			if(xpathObj && xpathObj->nodesetval->nodeMax)
 			{
 				/* the Xpath has been understood and there are node */
 				int	i;
@@ -70,7 +72,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 					{
 						/* loop until when have read all the attributes */
 						if (xmlStrEqual (attrib->name, (const xmlChar*) "value"))
-						{ 
+						{
 							/* we found the tag name */
 							const char *str=(const char*)attrib->children->content;
 							jvm_option_string = strdup(str);
@@ -88,7 +90,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 						{
 							FREE(jvm_option_string);
 						}
-						
+
 						option_string_sci_path = strsub(option_string_path_separator,"$SCILAB",SCI_PATH);
 						if (option_string_sci_path)
 						{
@@ -105,10 +107,25 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			if(xpathObj) xmlXPathFreeObject(xpathObj);
 			if(xpathCtxt) xmlXPathFreeContext(xpathCtxt);
 			xmlFreeDoc (doc);
-			/*
-			* Cleanup function for the XML library.
-			*/
-			xmlCleanupParser();
+
+			/* xmlCleanupParser is called in
+			 * modules/core/src/c/TerminateCore.c 
+			 * since it needs to be done only once.
+			 */
+
+			if (getenv("SCI_JAVA_ENABLE_HEADLESS")!=NULL) {
+				/* When Scilab is built from a virtual machine, it needs
+				 * an X11 server / input
+				 * This is only called by "make doc" by the SCI/Makefile.am
+				 */
+				#define HEADLESS "-Djava.awt.headless=true"
+				jvm_options = (JavaVMOption *)REALLOC(jvm_options,sizeof(JavaVMOption)*(indice+1));
+				jvm_options[indice].optionString = MALLOC((strlen(HEADLESS)+1)*sizeof(char));
+				strcpy(jvm_options[indice].optionString,HEADLESS);
+				indice++;
+				#undef HEADLESS
+			}
+
 
 			*size_JavaVMOption = indice;
 			return jvm_options;
@@ -121,4 +138,4 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 	}
 	return NULL;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

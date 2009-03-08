@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // poly_roots.tst --
 //   Check the computation of the roots of a polynomial
 //   with different kinds of polynomials and different 

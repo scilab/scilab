@@ -22,7 +22,7 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int set_hidden_color_property( sciPointObj * pobj, size_t stackPointer, int valu
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"hidden_color") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"hidden_color") ;
     return SET_PROPERTY_ERROR ;
   }
 

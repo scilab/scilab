@@ -57,7 +57,7 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>alfa</term>
+        <term>alpha</term>
         <listitem>
           <para>real or complex vector (loc. of closed loop poles)</para>
         </listitem>
@@ -136,8 +136,8 @@ Sys12=syslin('c',A,B2,C1,D12);
 C=[C1;rand(ny,nx)];D2=[D12;rand(ny,size(D12,2))];
 Sys=syslin('c',A,B2,C,D2);
 [A,B2,C1,D12]=abcd(Sys12);  //The matrices of Sys12.
-alfa=-1;beta=-2;flag='ge';
-[X,dims,F,U,k,Z]=abinv(Sys12,alfa,beta,flag);
+my_alpha=-1;my_beta=-2;flag='ge';
+[X,dims,F,U,k,Z]=abinv(Sys12,my_alpha,my_beta,flag);
 clean(X'*(A+B2*F)*X)
 clean(X'*B2*U)
 clean((C1+D12*F)*X)
@@ -148,7 +148,7 @@ B1=-B2*G1;
 D11=-D12*G1;
 D1=[D11;rand(ny,size(B1,2))];
 
-[Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',alfa,beta);
+[Closed,F,G]=ddp(Sys,1:nz,B1,D1,'st',my_alpha,my_beta);
 closed=syslin('c',A+B2*F,B1+B2*G,C1+D12*F,D11+D12*G);
 ss2tf(closed)
  

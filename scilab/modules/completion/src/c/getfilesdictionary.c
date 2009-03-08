@@ -11,16 +11,28 @@
  */
 #include <string.h> /* strcmp */
 #include <stdio.h> /* sprintf */
+#include <stdlib.h> /* qsort */
 #include "getfilesdictionary.h"
 #include "PATH_MAX.h"
 #include "../../../core/src/c/scicurdir.h" /* scigetcwd */
 #include "findfiles.h" /* findfiles */
 #include "MALLOC.h"
 #include "cluni0.h"
+#include "machine.h"
+#include "isdir.h"
+#include "charEncoding.h"
+#include "stack-def.h"
 /*--------------------------------------------------------------------------*/ 
 static void splitpath(char *composite,  char *path,  char *fname);
+static char **addPath(char **dictionary, int sizearray, char *path);
+static char **addDirSeparator(char **dictionary, int sizearray, char *path);
 /*--------------------------------------------------------------------------*/ 
-char **getfilesdictionary(char *somechars,int *sizearray)
+static int cmpfiles( const void *a ,const void *b)
+{
+	return strcmp(*(const char **)a, *(const char **)b );
+}
+/*--------------------------------------------------------------------------*/ 
+char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath)
 {
 	char **dictionary = NULL;
 
@@ -30,6 +42,7 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 		char path[PATH_MAX];
 		
 		char filespec[PATH_MAX];
+		char szLocale[bsiz];
 
 		char pathname[PATH_MAX];
 		char filename[PATH_MAX];
@@ -47,7 +60,11 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 			char *currentpath = NULL;
 
 			scigetcwd(&currentpath,&lpath,&ierr);
-			if (currentpath) {strcpy(path,currentpath);}
+			if (currentpath) 
+			{
+				strcpy(path, currentpath);
+				strcat(path, DIR_SEPARATOR);
+			}
 		}
 		else
 		{
@@ -67,7 +84,14 @@ char **getfilesdictionary(char *somechars,int *sizearray)
 		}
 
 		C2F(cluni0)(path,pathextended,&out_n,(long)strlen(path),PATH_MAX);
-		dictionary = findfiles(pathextended,filespec,&sizeListReturned);
+		dictionary = findfiles(pathextended, UTFToLocale(filespec, szLocale), &sizeListReturned);
+		if (fullpath)
+		{
+			dictionary = addPath(dictionary, sizeListReturned, path);
+		}
+
+		dictionary = addDirSeparator(dictionary, sizeListReturned, path);
+
 		*sizearray = sizeListReturned;
 
         /* Add a NULL element at the end (to get number of items from JNI) */
@@ -75,6 +99,7 @@ char **getfilesdictionary(char *somechars,int *sizearray)
         {
 			dictionary = (char**)REALLOC(dictionary,sizeof(char*)*(sizeListReturned+1));
 			dictionary[sizeListReturned] = NULL;
+			qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmpfiles);
 		}
 	}
 	else
@@ -116,5 +141,48 @@ static void splitpath(char *composite,  char *path,  char *fname)
 			strcpy(fname, composite);
 		}
 	}
+}
+/*--------------------------------------------------------------------------*/
+static char **addPath(char **dictionary, int sizearray, char *path)
+{
+	int i = 0;
+	for (i = 0;i < sizearray;i++)
+	{
+		char *newPath = NULL;
+		int newlength = (int)(strlen(dictionary[i]) + strlen(path) + 1);
+		newPath = (char *)MALLOC(sizeof(char)*(newlength));
+		sprintf(newPath,"%s%s",path,dictionary[i]);
+		FREE(dictionary[i]);
+		dictionary[i] = newPath;
+	}
+	return dictionary;
+}
+/*--------------------------------------------------------------------------*/
+static char **addDirSeparator(char **dictionary, int sizearray, char *path)
+{
+	int i = 0;
+	for (i = 0;i < sizearray;i++)
+	{
+		int out_n = 0;
+
+		char pathextended[PATH_MAX];
+		char fullpath[PATH_MAX * 2];
+
+		C2F(cluni0)(path, pathextended, &out_n,( long)strlen(path), PATH_MAX);
+
+		strcpy(fullpath, pathextended);
+		strcat(fullpath, dictionary[i]);
+
+		if ( isdir(fullpath) && (dictionary[i][strlen(dictionary[i])-1] != DIR_SEPARATOR[0]) )
+		{
+			char *newPath = NULL;
+			int newlength = (int)(strlen(dictionary[i]) + strlen(DIR_SEPARATOR) + 1);
+			newPath = (char *)MALLOC(sizeof(char)*(newlength));
+			sprintf(newPath,"%s%s",dictionary[i],DIR_SEPARATOR);
+			FREE(dictionary[i]);
+			dictionary[i] = newPath;
+		}
+	}
+	return dictionary;
 }
 /*--------------------------------------------------------------------------*/

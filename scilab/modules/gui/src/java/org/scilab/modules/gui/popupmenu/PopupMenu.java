@@ -38,7 +38,7 @@ public interface PopupMenu extends Widget {
 	 * Get the selected index of the PopupMenu
 	 * @return the index of the item selected
 	 */
-	int getSelectedIndex();
+	int getUserSelectedIndex();
 	
 	/**
 	 * Get the text of all the PopupMenu items

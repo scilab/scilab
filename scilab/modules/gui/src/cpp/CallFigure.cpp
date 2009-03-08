@@ -24,3 +24,7 @@ void setFigureEventHandlerEnabled(int ID, BOOL status)
    CallScilabBridge::setEventHandlerEnabled(getScilabJavaVM(), ID, BOOLtobool(status));
 }
 
+int newFigure(int ID)
+{
+	return CallScilabBridge::newWindow(getScilabJavaVM(), ID);
+}

@@ -32,7 +32,7 @@ function selecthilite(Select, flag)
   gh_curwin = scf(win); //** select current window 
   gh_axes = gca(); 
 
-  drawlater();  // for palettes, diagrams are already in this mode
+  //** drawlater(); 
 
   for i=1:size(Select,1)
 
@@ -56,8 +56,7 @@ function selecthilite(Select, flag)
 
   end  
 
-  //** draw(gh_curwin.children);
-  drawnow();    //** 
+  //** drawnow();    //** 
 
   scf(gh_winback); //** restore the previous active window
 

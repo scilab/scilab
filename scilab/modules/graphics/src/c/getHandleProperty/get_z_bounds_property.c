@@ -22,20 +22,22 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_z_bounds_property( sciPointObj * pobj )
 {
-  sciFec * ppFec = NULL;
+  double zBounds[2];
   if (sciGetEntityType (pobj) != SCI_FEC)
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"z_bounds") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"z_bounds") ;
     return -1 ;
   }
-  ppFec = pFEC_FEATURE(pobj);
-  return sciReturnRowVector( ppFec->zminmax, 2 ) ;
+
+	sciGetZBounds(pobj, zBounds);
+
+  return sciReturnRowVector( zBounds, 2 ) ;
 
 }
 /*------------------------------------------------------------------------*/

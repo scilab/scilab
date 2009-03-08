@@ -19,11 +19,11 @@ int SetUiobjectTag(sciPointObj* sciObj, size_t stackPointer, int valueType, int 
 {
   // Label must be only one character string
   if (valueType != sci_strings) {
-    sciprint(_("Wrong value for '%s' property: A string expected.\n"), "Tag");
+    Scierror(999, _("Wrong value for '%s' property: A string expected.\n"), "Tag");
     return SET_PROPERTY_ERROR;
   }
   if (nbCol != 1) {
-    sciprint(_("Wrong size for '%s' property: A string expected.\n"), "Tag");
+    Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Tag");
     return SET_PROPERTY_ERROR;
   }
 
@@ -70,11 +70,12 @@ int SetUiobjectTag(sciPointObj* sciObj, size_t stackPointer, int valueType, int 
       pFIGURE_FEATURE(sciObj)->tag = new char[strlen(getStringFromStack(stackPointer)) + 1];
       strcpy(pFIGURE_FEATURE(sciObj)->tag, getStringFromStack(stackPointer));
       
-      return SET_PROPERTY_SUCCEED;
+			/* to avoid redraw */
+      return SET_PROPERTY_UNCHANGED;
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "Tag");
+      Scierror(999, _("No '%s' property for this object.\n"), "Tag");
       return SET_PROPERTY_ERROR;
     }
 }
@@ -105,7 +106,7 @@ void destroyUiobjectTag(sciPointObj * pobj) {
 		}
 		break;
 	default:
-		sciprint(_("No '%s' property for this object.\n"), "Tag");
+		Scierror(999, _("No '%s' property for this object.\n"), "Tag");
 		break;
 	}
 

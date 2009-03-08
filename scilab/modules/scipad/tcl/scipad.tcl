@@ -29,7 +29,9 @@
 exec `which wish` "$0" "$@"
 
 if { [info exists pad] } { 
-
+    # when scipad(...); is invoked from Scilab when Scipad is already
+    # open, just show its window - file opening is handled in scipad.sci
+    # see also bug 4038 about why it's needed to keep this part
     wm deiconify $pad
     raise $pad
     update
@@ -39,19 +41,19 @@ if { [info exists pad] } {
     set pad .scipad
 
     if {[file exists [file join  "$env(SCIINSTALLPATH)" "modules" "scipad"]]} {
-  ## paths for scilab5
-      set moduledir [file join "$env(SCIINSTALLPATH)" "modules" "scipad"]
-      set sourcedir [file join "$moduledir" "tcl"]
-      set intmacdir [file join "$moduledir" "macros" "scipad_internals"]
-      set scicosdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos"]
-      set blocksdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos_blocks"]
+        # paths for scilab5
+        set moduledir [file join "$env(SCIINSTALLPATH)" "modules" "scipad"]
+        set sourcedir [file join "$moduledir" "tcl"]
+        set intmacdir [file join "$moduledir" "macros" "scipad_internals"]
+        set scicosdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos"]
+        set blocksdir [file join "$env(SCIINSTALLPATH)" "modules" "scicos" "macros" "scicos_blocks"]
     } else { 
-  ##paths for scilab4
-      set moduledir [file join "$env(SCIINSTALLPATH)" "tcl" "scipadsources"]
-      set sourcedir [file join "$moduledir"]
-      set intmacdir [file join "$sourcedir"]
-      set scicosdir [file join "$env(SCIINSTALLPATH)" "macros" "scicos"]
-      set blocksdir [file join "$env(SCIINSTALLPATH)" "macros" "scicos_blocks"]
+        # paths for scilab4
+        set moduledir [file join "$env(SCIINSTALLPATH)" "tcl" "scipadsources"]
+        set sourcedir [file join "$moduledir"]
+        set intmacdir [file join "$sourcedir"]
+        set scicosdir [file join "$env(SCIINSTALLPATH)" "macros" "scicos"]
+        set blocksdir [file join "$env(SCIINSTALLPATH)" "macros" "scicos_blocks"]
     }    
 
     set msgsdir   [file join "$sourcedir" "msg_files"]
@@ -90,6 +92,7 @@ if { [info exists pad] } {
     source [file join $sourcedir tooltips.tcl]
     source [file join $sourcedir progressbar.tcl]
     source [file join $sourcedir scrollableframe.tcl]
+    source [file join $sourcedir MRUlist.tcl]
 
     # now all the pure main level code
     source [file join $sourcedir defaults.tcl]

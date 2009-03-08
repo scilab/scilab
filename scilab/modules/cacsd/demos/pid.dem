@@ -21,8 +21,8 @@ xtitle('PLANT   and   CONTROLLER')
 mode(2);
 
 s=poly(0,'s');z=poly(0,'z');
-x_message(['Example of PID Design '
-	   'file: '+SCI+'/modules/cacsd/demos/pid.dem']);	
+messagebox(['Example of PID Design '
+	   'file: '+SCI+'/modules/cacsd/demos/pid.dem'],"modal");
 
 n=x_choose(['Continuous time';'Discrete time'],'Select time domain');
 select n
@@ -76,9 +76,9 @@ while %t
 
   disp(spec(Winv(2)),'closed loop eigenvalues');//Check internal stability
   if maxi(real(spec(Winv(2)))) > 0 then 
-    x_message('You loose: closed-loop is UNSTABLE!!!');
+    messagebox('You loose: closed-loop is UNSTABLE!!!',"modal");
   else
-    x_message('Congratulations: closed-loop is STABLE !!!');
+    messagebox('Congratulations: closed-loop is STABLE !!!',"modal");
     break;
   end
   mode(-1)

@@ -103,6 +103,8 @@ public class DrawableFigureGL extends ObjectGL {
 	/** In double buffer mode, it might be needed to emulate single buffer */
 	private boolean isEmultatingSingleBuffer;
 	
+	private boolean requestSingleBufferUse;
+	
 	private GraphicEventManager eventManager;
 	
 	/**
@@ -126,6 +128,7 @@ public class DrawableFigureGL extends ObjectGL {
       	clipPlaneManager = new ClipPlane3DManager();
       	nbSubwins = 0;
       	isEmultatingSingleBuffer = false;
+      	requestSingleBufferUse = false;
       	eventManager = new GraphicEventManager();
     }
 	
@@ -212,6 +215,11 @@ public class DrawableFigureGL extends ObjectGL {
 		// depending on the pixel mode
 		gl.glClear(GL.GL_DEPTH_BUFFER_BIT);
 		gl.glClearDepth(1.0f);
+		
+		if (requestSingleBufferUse) {
+			useSingleBuffer();
+		}
+		
 	}
 	
 	/**
@@ -699,11 +707,29 @@ public class DrawableFigureGL extends ObjectGL {
 	 * Emulate the use of a single buffer if needed
 	 */
 	public void useSingleBuffer() {
-		if (isDoubleBuffered()) {
+		if (!isEmultatingSingleBuffer && isDoubleBuffered()) {
 			// draw in the front buffer so its like we're having only one buffer
 			getGL().glDrawBuffer(GL.GL_FRONT);
 			isEmultatingSingleBuffer = true;
 		}
+	}
+	
+	/**
+	 * Set the single buffer use on or off
+	 * @param useSingleBuffer if true the figure will use only single buffer
+	 *                        if false it use default mode
+	 */
+	public void setUseSingleBuffer(boolean useSingleBuffer) {
+		this.requestSingleBufferUse = useSingleBuffer;
+		// HACK for Scicos
+		getRendererProperties().setSingleBuffered(useSingleBuffer);
+	}
+	
+	/**
+	 * @return true if the figure request the use of a single buffer
+	 */
+	public boolean isUsingSingleBuffer() {
+		return requestSingleBufferUse;
 	}
 	
 	/**
@@ -713,7 +739,7 @@ public class DrawableFigureGL extends ObjectGL {
 		if (isDoubleBuffered() && isEmultatingSingleBuffer) {
 			// to be sure to fill the buffer
 			getGL().glFlush();
-			  // switch back to default buffer
+			// switch back to default buffer
 			getGL().glDrawBuffer(GL.GL_BACK);
 			isEmultatingSingleBuffer = false;
 		} else {

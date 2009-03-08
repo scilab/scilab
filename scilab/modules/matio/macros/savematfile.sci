@@ -260,7 +260,9 @@ if bin then
   elseif version==6 then
     // Open file for writing
     mtlb_fd=matfile_open(mtlb_thefile, "w");
-
+    if mtlb_fd == -1 then
+      error(msprintf(gettext("%s: Could not open file ''%s''.\n"),"savematfile",mtlb_thefile))
+    end
     // Clear variable wich are no more used to avoid name conflicts
     for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then
@@ -285,7 +287,9 @@ if bin then
   elseif version==7
     // Open file for writing
     mtlb_fd=matfile_open(mtlb_thefile, "w");
-
+    if mtlb_fd == -1 then
+      error(msprintf(gettext("%s: Could not open file ''%s''.\n"),"savematfile",mtlb_thefile))
+    end
     // Clear variable wich are no more used to avoid name conflicts
     for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
       if or(mtlb_names==k) then

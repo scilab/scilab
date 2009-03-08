@@ -33,13 +33,10 @@
 #include "localization.h"
 #include "core_math.h"
 #include "scilabmode.h"
+#include "stack-def.h" /* C2F(basbrk) */
 
 #undef Lstk
 #undef Infstk
-
-IMPORT struct {
-  int iflag, interruptible;
-} C2F(basbrk);
 
 
 /* Table of constant values */
@@ -191,7 +188,6 @@ int C2F(run)(void)
   if (lc - l0 == nc) { /* is current opcodes block (if, for, .. structure) finished ?*/
     /* yes */
     r = Rstk[Pt] - 610;
-
     switch (r) {
     case 1:  goto L46;
     case 2:  goto L47;
@@ -304,7 +300,8 @@ int C2F(run)(void)
   if (C2F(com).fun != -2) {
     C2F(putid)(&Ids[1 +(Pt + 1) * nsiz ], istk(1 + lc));
     if (C2F(com).fun == 0) {
-      --Top;
+      /* the search variable is neither a regular variable nor a library one */
+      /*     Top--; why ???*/
       SciError(4);
       if (Err > 0||C2F(errgst).err1 > 0) {
 	lc += 9;

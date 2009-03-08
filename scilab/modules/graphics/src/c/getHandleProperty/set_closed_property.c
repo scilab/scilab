@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -32,13 +32,13 @@ int set_closed_property( sciPointObj * pobj, size_t stackPointer, int valueType,
 
   if ( !isParameterStringMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"closed") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"closed") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if(sciGetEntityType(pobj) != SCI_POLYLINE)
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"closed") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"closed") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -52,7 +52,7 @@ int set_closed_property( sciPointObj * pobj, size_t stackPointer, int valueType,
   }
   else
   {
-    sciprint(_("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
+    Scierror(999, _("Wrong value for argument: '%s' or '%s' expected.\n"),"on","off");
     return SET_PROPERTY_ERROR ;
   }
   return SET_PROPERTY_SUCCEED ;

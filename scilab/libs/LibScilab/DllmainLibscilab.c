@@ -20,12 +20,6 @@
 	#pragma comment(lib,"libirc.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
-#ifdef WITH_PVM
-#pragma comment(lib,"../../pvm3/lib/WIN32/libpvm3.lib")
-#pragma comment(lib,"../../pvm3/lib/WIN32/libgpvm3.lib")
-#pragma comment(lib,"../../libs/pvm_f.lib")
-#endif
-/*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/libxml2.lib")
 #pragma comment(lib,"../../bin/libintl.lib")
 /*-----------------------------------------------------------------------------------*/ 

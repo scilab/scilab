@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -29,7 +29,7 @@ int get_y_location_property( sciPointObj * pobj )
 {
   if (sciGetEntityType (pobj) != SCI_SUBWIN)
   {
-    sciprint(_("%s property undefined for this handle.\n"), "y_location") ;
+    Scierror(999, _("%s property undefined for this handle.\n"), "y_location") ;
     return -1 ;
   }
 
@@ -45,7 +45,7 @@ int get_y_location_property( sciPointObj * pobj )
     return sciReturnString( "origin" ) ;
     break;
   default : 
-    sciprint(_("%s is not correctly defined.\n"), "y_location") ;
+    Scierror(999, _("%s is not correctly defined.\n"), "y_location") ;
     break;
   }
   return -1 ;

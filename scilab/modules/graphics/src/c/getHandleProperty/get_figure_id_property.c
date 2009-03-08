@@ -23,12 +23,18 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_id_property( sciPointObj * pobj )
 {
+	if ( sciGetEntityType(pobj) != SCI_FIGURE )
+  {
+    Scierror(999, _("%s undefined for this object.\n"), "figure_id") ;
+    return -1;
+  }
+
   return sciReturnInt( sciGetNum( pobj ) ) ;
 }
 /*------------------------------------------------------------------------*/

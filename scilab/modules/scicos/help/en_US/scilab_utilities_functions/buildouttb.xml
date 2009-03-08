@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="buildouttb">
+  <refnamediv>
+    <refname>buildouttb</refname>
+    <refpurpose>Build of the sublist %cpr.state.outtb</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[outtb]=buildouttb(lnksz,lnktyp)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_buildouttb">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_buildouttb">
+    <title>Description</title>
+    <para>
+Build an initialized outtb list.
+
+</para>
+    <programlisting role="example"><![CDATA[
+[outtb]=buildouttb(lnksz,lnktyp)
+]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_buildouttb">
+    <title>Parameters</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">outtb :</emphasis> a list of size n.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">lnksz :</emphasis> That parameter gives the size of Scilab object in outtb.</para>
+        <para> This matrix of integer or real numbers can have a n,2 or 2,n size.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">lnktyp :</emphasis> That parameters gives the type of Scilab object in outtb :</para>
+        <para> 1 : double</para>
+        <para> 2 : complex</para>
+        <para> 3 : int32</para>
+        <para> 4 : int16</para>
+        <para> 5 : int8</para>
+        <para> 6 : uint32</para>
+        <para> 7 : uint16</para>
+        <para> 8 : uint8</para>
+        <para> else : double</para>
+        <para> This matrix of integer or real numbers can have a n,1 or 1,n size.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_buildouttb">
+    <title>Authors</title>
+    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

@@ -23,6 +23,7 @@ extern "C"
 #include "localization.h"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
+#include "Scierror.h"
 #include "sciprint.h"
 #include "UicontrolStyleToString.h"
 }

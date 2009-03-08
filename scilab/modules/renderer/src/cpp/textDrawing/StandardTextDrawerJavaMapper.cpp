@@ -58,11 +58,6 @@ void StandardTextDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void StandardTextDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void StandardTextDrawerJavaMapper::setTextParameters(int textAlignment, int color, int fontStyle,
                                                      double fontSize, double rotationAngle, bool useFractionalMetrics)
 {

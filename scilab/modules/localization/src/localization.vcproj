@@ -46,7 +46,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -139,7 +139,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="FORDLL;_DLL;STRICT;_DEBUG;_CRT_SECURE_NO_DEPRECATE;EXPORT_LOCALIZATION_DLL"
 				BasicRuntimeChecks="0"
 				RuntimeLibrary="1"
@@ -233,12 +233,12 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				PrecompiledHeaderFile=""
 				AssemblerListingLocation="$(ConfigurationName)/"
@@ -326,7 +326,7 @@
 				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32"
+				AdditionalIncludeDirectories="../src/c;../includes;../../core/includes;../../output_stream/includes;../../windows_tools/includes;../../fileio/includes;../../string/src/c;../../string/includes;../../../libs/intl;../../../libs/hashtable;../../../libs/MALLOC/includes;../../../libs/libxml2;../../../libs/libxml2/libxml;../../../java/jdk/include;../../../java/jdk/include/win32;../../../libs/GetWindowsVersion"
 				PreprocessorDefinitions="FORDLL;EXPORT_LOCALIZATION_DLL;STRICT;NDEBUG;_CRT_SECURE_NO_DEPRECATE"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -411,19 +411,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\hashtable_localization.h"
-				>
-			</File>
-			<File
 				RelativePath="..\includes\InitializeLocalization.h"
 				>
 			</File>
 			<File
-				RelativePath=".\c\LanguagePref.h"
-				>
-			</File>
-			<File
-				RelativePath=".\c\loadLanguagePref.h"
+				RelativePath=".\c\LanguagePreferences_Windows.h"
 				>
 			</File>
 			<File
@@ -431,19 +423,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\sci_gateway\c\sci_getlanguage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\sci_gateway\c\sci_setlanguage.h"
-				>
-			</File>
-			<File
-				RelativePath="..\includes\setgetlanguage.h"
-				>
-			</File>
-			<File
-				RelativePath=".\c\tableslanguages.h"
+				RelativePath="..\includes\localizationJava.h"
 				>
 			</File>
 		</Filter>
@@ -500,11 +480,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\c\LanguagePref.c"
+				RelativePath=".\c\LanguagePreferences_Windows.c"
 				>
 			</File>
 			<File
-				RelativePath=".\c\loadLanguagePref.c"
+				RelativePath=".\jni\Messages_wrap.c"
 				>
 			</File>
 			<File
@@ -521,6 +501,10 @@
 			</File>
 			<File
 				RelativePath="..\sci_gateway\c\sci_gettext.c"
+				>
+			</File>
+			<File
+				RelativePath="..\sci_gateway\c\sci_setdefaultlanguage.c"
 				>
 			</File>
 			<File

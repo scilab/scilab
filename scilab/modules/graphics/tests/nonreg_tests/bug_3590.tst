@@ -18,6 +18,6 @@
 
 userdata = struct("dd",2);
 h=figure();
-set(h,"userdata",userdata);
-if execstr("disp(h)","errcatch")<>0 then pause; end
+set(h,"user_data",userdata);
+if execstr("disp(h.user_data)","errcatch")<>0 then pause; end
     

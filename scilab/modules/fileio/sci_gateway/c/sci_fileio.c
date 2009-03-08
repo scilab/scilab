@@ -32,7 +32,6 @@
 #include "Scierror.h"
 #include "stack-c.h"
 #include "PATH_MAX.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static char filename[PATH_MAX];
 static int out_n;
@@ -68,8 +67,7 @@ int intsmopen(char *fname,unsigned long fname_len)
 	CreateVar(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &un,&un, &l4);
 	CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &un,&un, &l5);
 	lout=PATH_MAX;
-	/* BUG 3714 */
-	C2F(cluni0)(UTFToLocale(cstk(l1)), filename, &out_n,m1*n1,lout);
+	C2F(cluni0)(cstk(l1), filename, &out_n,m1*n1,lout);
 
 	C2F(mopen)(istk(l4),filename,status,&swap,stk(l5),&err);
 	if (err >  0)

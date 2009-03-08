@@ -106,7 +106,7 @@ function plotprofile(fun)
   withpad=with_scipad()
   if withpad then
     profpath=TMPDIR+"/profiled.sci"
-    mputl(txt,profpath)
+    mputl(txt,profpath);
     openinscipad(profpath)
     scipad_hiliteline(1)
   else //ouput text in a graphic window
@@ -236,7 +236,7 @@ function [h,M]=dispfuntxt(txt,k,h,M)
       delmenu(curwin,gettext("File"))
       delmenu(curwin,gettext("Insert"))
     else
-      hidetoolbar(curwin)
+      toolbar(curwin,"off");
       	// English
       	delmenu(curwin,gettext("&File"))
       	delmenu(curwin,gettext("&Edit"))

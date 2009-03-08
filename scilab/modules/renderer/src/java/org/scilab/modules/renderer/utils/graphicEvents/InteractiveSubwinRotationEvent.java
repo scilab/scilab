@@ -20,7 +20,6 @@ import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
  */
 public class InteractiveSubwinRotationEvent extends InteractiveRotationEvent {
 
-	private long subwinHandle;
 	
 	/**
 	 * @param trackedCanvas figure on which the rotation will apply
@@ -28,7 +27,7 @@ public class InteractiveSubwinRotationEvent extends InteractiveRotationEvent {
 	 */
 	public InteractiveSubwinRotationEvent(DrawableFigureGL trackedCanvas, long subwinHandle) {
 		super(trackedCanvas);
-		this.subwinHandle = subwinHandle;
+		setRotatedSubwinHandle(subwinHandle);
 	}
 	
 	/**

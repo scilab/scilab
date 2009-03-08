@@ -86,7 +86,6 @@ am__vpath_adj = case $$p in \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
-	"$(DESTDIR)$(libscigui_la_demosdir)" \
 	"$(DESTDIR)$(libscigui_la_etcdir)" \
 	"$(DESTDIR)$(libscigui_la_rootdir)" \
 	"$(DESTDIR)$(libscigui_la_sci_gatewaydir)" \
@@ -109,10 +108,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	sci_gateway/c/gw_gui.c sci_gateway/c/sci_x_mdialog.c \
 	sci_gateway/c/sci_x_dialog.c sci_gateway/c/sci_x_choose.c \
 	sci_gateway/c/sci_x_choose_modeless.c \
-	sci_gateway/c/sci_xgetfile.c sci_gateway/c/sci_unsetmenu.c \
-	sci_gateway/c/sci_delmenu.c sci_gateway/c/sci_setmenu.c \
-	sci_gateway/c/sci_ClipBoard.c sci_gateway/c/sci_toolbar.c \
-	sci_gateway/c/sci_uigetdir.c sci_gateway/c/sci_uicontrol.c \
+	sci_gateway/c/sci_unsetmenu.c sci_gateway/c/sci_delmenu.c \
+	sci_gateway/c/sci_setmenu.c sci_gateway/c/sci_ClipBoard.c \
+	sci_gateway/c/sci_toolbar.c sci_gateway/c/sci_uicontrol.c \
 	sci_gateway/c/sci_uicontextmenu.c sci_gateway/c/sci_uimenu.c \
 	sci_gateway/c/sci_uiwait.c sci_gateway/c/sci_mpopup.c \
 	sci_gateway/c/sci_messagebox.c sci_gateway/c/sci_waitbar.c \
@@ -126,24 +124,25 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	sci_gateway/cpp/sci_printfigure.cpp \
 	sci_gateway/cpp/sci_setlookandfeel.cpp \
 	sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
-	sci_gateway/cpp/sci_getlookandfeel.cpp src/cpp/InitUIMenu.cpp \
+	sci_gateway/cpp/sci_getlookandfeel.cpp \
+	sci_gateway/cpp/sci_uigetdir.cpp \
+	sci_gateway/cpp/sci_uigetfile.cpp src/cpp/InitUIMenu.cpp \
 	src/jni/CallScilabBridge.cpp src/jni/Jxclick.cpp \
 	src/cpp/DestroyUimenu.cpp src/cpp/DestroyUicontrol.cpp \
 	src/cpp/DestroyJavaUiobject.cpp src/cpp/DestroyWaitBar.cpp \
 	src/cpp/CallJxclick.cpp src/jni/Jxgetmouse.cpp \
 	src/cpp/CallJxgetmouse.cpp src/cpp/CallColorChooser.cpp \
-	src/cpp/CallFileChooser.cpp src/cpp/CallFontChooser.cpp \
-	src/cpp/CallFigure.cpp src/cpp/CallMessageBox.cpp \
-	src/cpp/CallMainWindow.cpp src/cpp/CallWaitBar.cpp \
-	src/cpp/CallHelpBrowser.cpp src/cpp/PushButton.cpp \
-	src/cpp/EditBox.cpp src/cpp/Label.cpp src/cpp/CheckBox.cpp \
-	src/cpp/RadioButton.cpp src/cpp/Slider.cpp \
-	src/cpp/PopupMenu.cpp src/cpp/ContextMenu.cpp \
-	src/cpp/ListBox.cpp src/cpp/Frame.cpp src/cpp/Toolbar.cpp \
-	src/cpp/Widget.cpp src/cpp/SetUimenuLabel.cpp \
-	src/cpp/GetUimenuLabel.cpp src/cpp/GetUicontrolStyle.cpp \
-	src/cpp/SetUicontrolString.cpp src/cpp/GetUicontrolString.cpp \
-	src/cpp/SetUicontrolParent.cpp \
+	src/cpp/CallFontChooser.cpp src/cpp/CallFigure.cpp \
+	src/cpp/CallMessageBox.cpp src/cpp/CallMainWindow.cpp \
+	src/cpp/CallWaitBar.cpp src/cpp/CallHelpBrowser.cpp \
+	src/cpp/PushButton.cpp src/cpp/EditBox.cpp src/cpp/Label.cpp \
+	src/cpp/CheckBox.cpp src/cpp/RadioButton.cpp \
+	src/cpp/Slider.cpp src/cpp/PopupMenu.cpp \
+	src/cpp/ContextMenu.cpp src/cpp/ListBox.cpp src/cpp/Frame.cpp \
+	src/cpp/Toolbar.cpp src/cpp/Widget.cpp \
+	src/cpp/SetUimenuLabel.cpp src/cpp/GetUimenuLabel.cpp \
+	src/cpp/GetUicontrolStyle.cpp src/cpp/SetUicontrolString.cpp \
+	src/cpp/GetUicontrolString.cpp src/cpp/SetUicontrolParent.cpp \
 	src/cpp/SetUicontrolBackgroundColor.cpp \
 	src/cpp/GetUicontrolBackgroundColor.cpp \
 	src/cpp/SetUiobjectForegroundColor.cpp \
@@ -182,7 +181,8 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 	src/cpp/CallClipboard.cpp src/cpp/exportUserInterface.cpp \
 	src/jni/LookAndFeelManager.cpp \
 	sci_gateway/cpp/sci_raise_window.cpp \
-	sci_gateway/cpp/sci_usecanvas.cpp src/jni/GiwsException.cpp
+	sci_gateway/cpp/sci_usecanvas.cpp src/jni/GiwsException.cpp \
+	src/jni/Juigetfile.cpp src/cpp/CallJuigetfile.cpp
 @GUI_FALSE@am__objects_1 = libscigui_la-nogui.lo
 @GUI_TRUE@am__objects_1 = libscigui_la-TerminateGui.lo \
 @GUI_TRUE@	libscigui_la-buildMainWindowTitle.lo \
@@ -202,13 +202,11 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-sci_x_dialog.lo \
 @GUI_TRUE@	libscigui_la-sci_x_choose.lo \
 @GUI_TRUE@	libscigui_la-sci_x_choose_modeless.lo \
-@GUI_TRUE@	libscigui_la-sci_xgetfile.lo \
 @GUI_TRUE@	libscigui_la-sci_unsetmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_delmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_setmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_ClipBoard.lo \
 @GUI_TRUE@	libscigui_la-sci_toolbar.lo \
-@GUI_TRUE@	libscigui_la-sci_uigetdir.lo \
 @GUI_TRUE@	libscigui_la-sci_uicontrol.lo \
 @GUI_TRUE@	libscigui_la-sci_uicontextmenu.lo \
 @GUI_TRUE@	libscigui_la-sci_uimenu.lo \
@@ -227,7 +225,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-sci_printfigure.lo \
 @GUI_TRUE@	libscigui_la-sci_setlookandfeel.lo \
 @GUI_TRUE@	libscigui_la-sci_getinstalledlookandfeels.lo \
-@GUI_TRUE@	libscigui_la-sci_getlookandfeel.lo
+@GUI_TRUE@	libscigui_la-sci_getlookandfeel.lo \
+@GUI_TRUE@	libscigui_la-sci_uigetdir.lo \
+@GUI_TRUE@	libscigui_la-sci_uigetfile.lo
 @GUI_TRUE@am__objects_4 = libscigui_la-InitUIMenu.lo \
 @GUI_TRUE@	libscigui_la-CallScilabBridge.lo \
 @GUI_TRUE@	libscigui_la-Jxclick.lo \
@@ -239,7 +239,6 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-Jxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallJxgetmouse.lo \
 @GUI_TRUE@	libscigui_la-CallColorChooser.lo \
-@GUI_TRUE@	libscigui_la-CallFileChooser.lo \
 @GUI_TRUE@	libscigui_la-CallFontChooser.lo \
 @GUI_TRUE@	libscigui_la-CallFigure.lo \
 @GUI_TRUE@	libscigui_la-CallMessageBox.lo \
@@ -308,7 +307,9 @@ am__libscigui_la_SOURCES_DIST = src/nogui/nogui.c src/c/TerminateGui.c \
 @GUI_TRUE@	libscigui_la-LookAndFeelManager.lo \
 @GUI_TRUE@	libscigui_la-sci_raise_window.lo \
 @GUI_TRUE@	libscigui_la-sci_usecanvas.lo \
-@GUI_TRUE@	libscigui_la-GiwsException.lo
+@GUI_TRUE@	libscigui_la-GiwsException.lo \
+@GUI_TRUE@	libscigui_la-Juigetfile.lo \
+@GUI_TRUE@	libscigui_la-CallJuigetfile.lo
 am_libscigui_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -338,13 +339,12 @@ CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscigui_la_SOURCES)
 DIST_SOURCES = $(am__libscigui_la_SOURCES_DIST)
-libscigui_la_demosDATA_INSTALL = $(INSTALL_DATA)
 libscigui_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigui_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigui_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
 nobase_libscigui_la_iconsDATA_INSTALL = $(install_sh_DATA)
-DATA = $(libscigui_la_demos_DATA) $(libscigui_la_etc_DATA) \
-	$(libscigui_la_root_DATA) $(libscigui_la_sci_gateway_DATA) \
+DATA = $(libscigui_la_etc_DATA) $(libscigui_la_root_DATA) \
+	$(libscigui_la_sci_gateway_DATA) \
 	$(nobase_libscigui_la_icons_DATA)
 libscigui_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscigui_la_include_HEADERS)
@@ -483,6 +483,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -576,7 +577,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -587,11 +588,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -610,7 +617,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@src/c/InitProgressionBar.c \
 @GUI_TRUE@src/c/CreateUIContextMenu.c \
 @GUI_TRUE@src/c/UicontrolStyleToString.c \
-@GUI_TRUE@src/c/messageboxoptions.c
+@GUI_TRUE@src/c/messageboxoptions.c 
 
 @GUI_TRUE@GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
 @GUI_TRUE@src/jni/CallScilabBridge.cpp \
@@ -623,7 +630,6 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@src/jni/Jxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallJxgetmouse.cpp \
 @GUI_TRUE@src/cpp/CallColorChooser.cpp \
-@GUI_TRUE@src/cpp/CallFileChooser.cpp \
 @GUI_TRUE@src/cpp/CallFontChooser.cpp \
 @GUI_TRUE@src/cpp/CallFigure.cpp \
 @GUI_TRUE@src/cpp/CallMessageBox.cpp \
@@ -697,16 +703,18 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@src/jni/LookAndFeelManager.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_raise_window.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_usecanvas.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp
+@GUI_TRUE@src/jni/GiwsException.cpp \
+@GUI_TRUE@src/jni/Juigetfile.cpp \
+@GUI_TRUE@src/cpp/CallJuigetfile.cpp
 
 @GUI_TRUE@GIWS_WRAPPERS = \
 @GUI_TRUE@src/jni/CallScilabBridge.giws.xml \
-@GUI_TRUE@src/jni/FileChooser.giws.xml \
 @GUI_TRUE@src/jni/Jxclick.giws.xml \
 @GUI_TRUE@src/jni/Jxgetmouse.giws.xml \
 @GUI_TRUE@src/jni/SwingScilabMenu.giws.xml \
 @GUI_TRUE@src/jni/LookAndFeelManager.giws.xml \
-@GUI_TRUE@src/jni/UIElementMapper.giws.xml
+@GUI_TRUE@src/jni/UIElementMapper.giws.xml \
+@GUI_TRUE@src/jni/Juigetfile.giws.xml
 
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 @GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_x_choice.c \
@@ -715,13 +723,11 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@sci_gateway/c/sci_x_dialog.c \
 @GUI_TRUE@sci_gateway/c/sci_x_choose.c \
 @GUI_TRUE@sci_gateway/c/sci_x_choose_modeless.c \
-@GUI_TRUE@sci_gateway/c/sci_xgetfile.c \
 @GUI_TRUE@sci_gateway/c/sci_unsetmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_delmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_setmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_ClipBoard.c \
 @GUI_TRUE@sci_gateway/c/sci_toolbar.c \
-@GUI_TRUE@sci_gateway/c/sci_uigetdir.c \
 @GUI_TRUE@sci_gateway/c/sci_uicontrol.c \
 @GUI_TRUE@sci_gateway/c/sci_uicontextmenu.c \
 @GUI_TRUE@sci_gateway/c/sci_uimenu.c \
@@ -742,7 +748,9 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@sci_gateway/cpp/sci_printfigure.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_setlookandfeel.cpp \
 @GUI_TRUE@sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
-@GUI_TRUE@sci_gateway/cpp/sci_getlookandfeel.cpp
+@GUI_TRUE@sci_gateway/cpp/sci_getlookandfeel.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_uigetdir.cpp \
+@GUI_TRUE@sci_gateway/cpp/sci_uigetfile.cpp
 
 @GUI_FALSE@libscigui_la_CFLAGS = -Iincludes/ \
 @GUI_FALSE@			-I$(top_srcdir)/modules/output_stream/includes
@@ -826,7 +834,6 @@ includes/sci_raise_window.h \
 includes/GraphicWindow.h \
 includes/InitializeGUI.h \
 includes/CallColorChooser.h \
-includes/CallFileChooser.h \
 includes/CallFontChooser.h \
 includes/CallFigure.h \
 includes/CallJxclick.h \
@@ -910,20 +917,11 @@ includes/DestroyUimenu.h \
 includes/CallClipboard.h \
 includes/Widget.h \
 includes/sci_exportUI.h \
-includes/exportUserInterface.hxx
-
-
-#### gui : demos files ####
-libscigui_la_demosdir = $(mydatadir)/demos/
-libscigui_la_demos_DATA = demos/cb_uicontrol_plot3d.dem.sci \
-demos/dialog.dem.sce \
-demos/gui.dem.gateway.sce \
-demos/uicontrol.dem.sce \
-demos/uicontrol_plot3d.dem.sce \
-demos/background.png \
-demos/test.png \
-demos/uicontrol.test.dem.sce \
-demos/uicontrol_plot3d.dem.html
+includes/exportUserInterface.hxx \
+includes/CallJuigetfile.hxx \
+src/jni/Juigetfile.hxx \
+includes/sci_uigetfile.h \
+includes/CallJuigetfile.h
 
 
 #### gui : icons files ####
@@ -1024,9 +1022,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallClipboard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallColorChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFigure.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFileChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallFontChooser.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallHelpBrowser.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJuigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallJxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-CallMainWindow.Plo@am__quote@
@@ -1074,6 +1072,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitUIMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitWaitBar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-InitializeGUI.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Juigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxclick.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Jxgetmouse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Label.Plo@am__quote@
@@ -1140,6 +1139,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uicontrol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetcolor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetdir.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfont.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
@@ -1151,7 +1151,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_choose_modeless.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_dialog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_x_mdialog.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_xgetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-setMainWindowTitle.Plo@am__quote@
 
 .c.o:
@@ -1315,13 +1314,6 @@ libscigui_la-sci_x_choose_modeless.lo: sci_gateway/c/sci_x_choose_modeless.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_x_choose_modeless.lo `test -f 'sci_gateway/c/sci_x_choose_modeless.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choose_modeless.c
 
-libscigui_la-sci_xgetfile.lo: sci_gateway/c/sci_xgetfile.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_xgetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_xgetfile.Tpo -c -o libscigui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_xgetfile.Tpo $(DEPDIR)/libscigui_la-sci_xgetfile.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_xgetfile.c' object='libscigui_la-sci_xgetfile.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_xgetfile.lo `test -f 'sci_gateway/c/sci_xgetfile.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xgetfile.c
-
 libscigui_la-sci_unsetmenu.lo: sci_gateway/c/sci_unsetmenu.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_unsetmenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_unsetmenu.Tpo -c -o libscigui_la-sci_unsetmenu.lo `test -f 'sci_gateway/c/sci_unsetmenu.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unsetmenu.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_unsetmenu.Tpo $(DEPDIR)/libscigui_la-sci_unsetmenu.Plo
@@ -1356,13 +1348,6 @@ libscigui_la-sci_toolbar.lo: sci_gateway/c/sci_toolbar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_toolbar.c' object='libscigui_la-sci_toolbar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_toolbar.lo `test -f 'sci_gateway/c/sci_toolbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_toolbar.c
-
-libscigui_la-sci_uigetdir.lo: sci_gateway/c/sci_uigetdir.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uigetdir.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uigetdir.Tpo -c -o libscigui_la-sci_uigetdir.lo `test -f 'sci_gateway/c/sci_uigetdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uigetdir.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uigetdir.Tpo $(DEPDIR)/libscigui_la-sci_uigetdir.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_uigetdir.c' object='libscigui_la-sci_uigetdir.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_uigetdir.lo `test -f 'sci_gateway/c/sci_uigetdir.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uigetdir.c
 
 libscigui_la-sci_uicontrol.lo: sci_gateway/c/sci_uicontrol.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uicontrol.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uicontrol.Tpo -c -o libscigui_la-sci_uicontrol.lo `test -f 'sci_gateway/c/sci_uicontrol.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uicontrol.c
@@ -1518,6 +1503,20 @@ libscigui_la-sci_getlookandfeel.lo: sci_gateway/cpp/sci_getlookandfeel.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_getlookandfeel.lo `test -f 'sci_gateway/cpp/sci_getlookandfeel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getlookandfeel.cpp
 
+libscigui_la-sci_uigetdir.lo: sci_gateway/cpp/sci_uigetdir.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uigetdir.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uigetdir.Tpo -c -o libscigui_la-sci_uigetdir.lo `test -f 'sci_gateway/cpp/sci_uigetdir.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetdir.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uigetdir.Tpo $(DEPDIR)/libscigui_la-sci_uigetdir.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uigetdir.cpp' object='libscigui_la-sci_uigetdir.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uigetdir.lo `test -f 'sci_gateway/cpp/sci_uigetdir.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetdir.cpp
+
+libscigui_la-sci_uigetfile.lo: sci_gateway/cpp/sci_uigetfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uigetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uigetfile.Tpo -c -o libscigui_la-sci_uigetfile.lo `test -f 'sci_gateway/cpp/sci_uigetfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetfile.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uigetfile.Tpo $(DEPDIR)/libscigui_la-sci_uigetfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uigetfile.cpp' object='libscigui_la-sci_uigetfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uigetfile.lo `test -f 'sci_gateway/cpp/sci_uigetfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetfile.cpp
+
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-InitUIMenu.Tpo $(DEPDIR)/libscigui_la-InitUIMenu.Plo
@@ -1594,13 +1593,6 @@ libscigui_la-CallColorChooser.lo: src/cpp/CallColorChooser.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallColorChooser.cpp' object='libscigui_la-CallColorChooser.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallColorChooser.lo `test -f 'src/cpp/CallColorChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallColorChooser.cpp
-
-libscigui_la-CallFileChooser.lo: src/cpp/CallFileChooser.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallFileChooser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallFileChooser.Tpo -c -o libscigui_la-CallFileChooser.lo `test -f 'src/cpp/CallFileChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFileChooser.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallFileChooser.Tpo $(DEPDIR)/libscigui_la-CallFileChooser.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallFileChooser.cpp' object='libscigui_la-CallFileChooser.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallFileChooser.lo `test -f 'src/cpp/CallFileChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFileChooser.cpp
 
 libscigui_la-CallFontChooser.lo: src/cpp/CallFontChooser.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallFontChooser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallFontChooser.Tpo -c -o libscigui_la-CallFontChooser.lo `test -f 'src/cpp/CallFontChooser.cpp' || echo '$(srcdir)/'`src/cpp/CallFontChooser.cpp
@@ -2120,28 +2112,25 @@ libscigui_la-GiwsException.lo: src/jni/GiwsException.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
 
+libscigui_la-Juigetfile.lo: src/jni/Juigetfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-Juigetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-Juigetfile.Tpo -c -o libscigui_la-Juigetfile.lo `test -f 'src/jni/Juigetfile.cpp' || echo '$(srcdir)/'`src/jni/Juigetfile.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-Juigetfile.Tpo $(DEPDIR)/libscigui_la-Juigetfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Juigetfile.cpp' object='libscigui_la-Juigetfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-Juigetfile.lo `test -f 'src/jni/Juigetfile.cpp' || echo '$(srcdir)/'`src/jni/Juigetfile.cpp
+
+libscigui_la-CallJuigetfile.lo: src/cpp/CallJuigetfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-CallJuigetfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-CallJuigetfile.Tpo -c -o libscigui_la-CallJuigetfile.lo `test -f 'src/cpp/CallJuigetfile.cpp' || echo '$(srcdir)/'`src/cpp/CallJuigetfile.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-CallJuigetfile.Tpo $(DEPDIR)/libscigui_la-CallJuigetfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/CallJuigetfile.cpp' object='libscigui_la-CallJuigetfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallJuigetfile.lo `test -f 'src/cpp/CallJuigetfile.cpp' || echo '$(srcdir)/'`src/cpp/CallJuigetfile.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscigui_la_demosDATA: $(libscigui_la_demos_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscigui_la_demosdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_demosdir)"
-	@list='$(libscigui_la_demos_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscigui_la_demosDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscigui_la_demosdir)/$$f'"; \
-	  $(libscigui_la_demosDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscigui_la_demosdir)/$$f"; \
-	done
-
-uninstall-libscigui_la_demosDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscigui_la_demos_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscigui_la_demosdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscigui_la_demosdir)/$$f"; \
-	done
 install-libscigui_la_etcDATA: $(libscigui_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscigui_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscigui_la_etcdir)"
@@ -2309,7 +2298,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_demosdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscigui_la_etcdir)" "$(DESTDIR)$(libscigui_la_rootdir)" "$(DESTDIR)$(libscigui_la_sci_gatewaydir)" "$(DESTDIR)$(libscigui_la_iconsdir)" "$(DESTDIR)$(libscigui_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -2347,7 +2336,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -2359,8 +2348,7 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscigui_la_demosDATA \
-	install-libscigui_la_etcDATA \
+install-data-am: install-data-local install-libscigui_la_etcDATA \
 	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
 	install-libscigui_la_sci_gatewayDATA \
@@ -2402,8 +2390,7 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscigui_la_demosDATA \
-	uninstall-libscigui_la_etcDATA \
+uninstall-am: uninstall-libscigui_la_etcDATA \
 	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
@@ -2415,12 +2402,12 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscigui_la_demosDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
 	install-libscigui_la_etcDATA \
 	install-libscigui_la_includeHEADERS \
 	install-libscigui_la_rootDATA \
@@ -2431,8 +2418,7 @@ uninstall-am: uninstall-libscigui_la_demosDATA \
 	installdirs maintainer-clean maintainer-clean-generic \
 	mostlyclean mostlyclean-compile mostlyclean-generic \
 	mostlyclean-libtool pdf pdf-am ps ps-am tags uninstall \
-	uninstall-am uninstall-libscigui_la_demosDATA \
-	uninstall-libscigui_la_etcDATA \
+	uninstall-am uninstall-libscigui_la_etcDATA \
 	uninstall-libscigui_la_includeHEADERS \
 	uninstall-libscigui_la_rootDATA \
 	uninstall-libscigui_la_sci_gatewayDATA \
@@ -2536,7 +2522,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -2546,7 +2532,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -2557,6 +2543,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \
@@ -2588,6 +2590,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

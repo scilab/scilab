@@ -45,7 +45,9 @@ public class PressReleaseRubberBox extends ScilabRubberBox {
 	 * @param event event when the action occured
 	 */
 	public void mousePressed(MouseEvent event) {
-		beginDragging(event.getX(), event.getY(), event.getX(), event.getY());
+		if (!isDragging()) {
+			beginDragging(event.getX(), event.getY(), event.getX(), event.getY());
+		}
 	}
 
 	/**

@@ -57,11 +57,6 @@ void PolylineLineDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineLineDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void PolylineLineDrawerJavaMapper::setLineParameters(int lineColor, float thickness, int lineStyle)
 {
   m_pJavaObject->setLineParameters(lineColor, thickness, lineStyle);

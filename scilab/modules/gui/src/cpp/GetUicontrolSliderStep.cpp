@@ -33,7 +33,7 @@ int GetUicontrolSliderStep(sciPointObj* sciObj)
     }
   else
     {
-      sciprint(_("No '%s' property for this object.\n"), "SliderStep");
+      Scierror(999, _("No '%s' property for this object.\n"), "SliderStep");
       return FALSE;
     }
 }

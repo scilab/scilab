@@ -13,8 +13,8 @@ c     =============================================================
       include 'stack.h'
 c     
       integer iadr,op,rhs1,r
-      integer equal,less,great,insert,extrac
-      data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
+      integer insert,extrac
+      data insert/2/,extrac/3/
 c     
       iadr(l)=l+l-1
 c     
@@ -71,10 +71,10 @@ c     Copyright INRIA
 c     
       integer iadr,sadr,op,r
       integer id(nsiz)
-      integer equal,less,great,insert,extrac,blank
+      integer equal,less,great,extract,blank
       logical cresmat,ptover
 
-      data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
+      data equal/50/,less/59/,great/60/,extrac/3/
       data blank/40/
 c     
       iadr(l)=l+l-1
@@ -257,9 +257,9 @@ c     *call* macro
 c     Copyright INRIA
       include 'stack.h'
 c     
-      integer iadr,sadr,op,rhs1
-      integer equal,less,great,insert,extrac
-      data equal/50/,less/59/,great/60/,insert/2/,extrac/3/
+      integer iadr,sadr,op
+      integer equal,less,great
+      data equal/50/,less/59/,great/60/
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

@@ -50,8 +50,14 @@ c
             if(first) then
                buf='at line '
                m=11
-               nlc=0
-               call linestore(lct(8))
+               if (istk(ilk).eq.13) then 
+c     .           compiled macro
+                  nlc=0
+               else
+c     .           uncompiled macro
+                  nlc=1
+               endif
+               call linestore(lct(8)-nlc)
             else
                buf='line '
                m=6
@@ -102,6 +108,25 @@ c
                      first=.false.
                   endif
                endif
+            endif
+         endif
+      else
+c     .  no trace, just memorize the error line, and function
+         if(istk(ilk).ne.10) then
+            if(first) then
+               if (istk(ilk).eq.13) then 
+c     .           compiled macro
+                  nlc=0
+               else
+c     .           uncompiled macro
+                  nlc=1
+               endif
+               call linestore(lct(8)-nlc)
+            endif
+            if (km.le.isiz.and.first) then
+               call cvnamel(idstk(1,km),buf(1:nlgh),1,leng)
+               call funnamestore(buf(1:nlgh),leng)
+               first=.false.
             endif
          endif
       endif

@@ -66,19 +66,42 @@ public final class RenderingCapabilities {
 	}
 	
 	/**
+	 * Try to find the display mode used by a screen
+	 * @param screen screen to check
+	 * @return associated display mode or null if none can be found
+	 */
+	private static DisplayMode getDisplayMode(GraphicsDevice screen) {
+		DisplayMode dm = screen.getDisplayMode();
+		if (dm == null && screen.getDisplayModes() != null && screen.getDisplayModes().length > 0) {
+			// workaround for bug 3547 and 4185
+			dm = screen.getDisplayModes()[0];
+		}
+		return dm;
+	}
+	
+	/**
 	 * Get the maximum size that a window can have.
+	 * This code does not provides accurate values and should be improved.
 	 * @return maximulm size that can be asigned to a window.
 	 */
 	public static int[] getMaxWindowSize() {
 		GraphicsDevice[] screens = GraphicsEnvironment.getLocalGraphicsEnvironment().getScreenDevices();
-		
 		int[] res = {0, 0};
 		// take the sum of each screen width and screen height.
 		// It might be a bit large, but it's better than using a too small value.
 		for (int i = 0; i < screens.length; i++) {
-			DisplayMode dm = screens[i].getDisplayMode();
-			res[0] += dm.getWidth();
-			res[1] += dm.getHeight();
+			DisplayMode dm = getDisplayMode(screens[i]);
+			if (dm != null) {
+				res[0] += dm.getWidth();
+				res[1] += dm.getHeight();
+			}
+		}
+		
+		// Unable to find the max window size
+		if (res[0] == 0 || res[1] == 0) {
+			// dont set limits
+			res[0] = Integer.MAX_VALUE;
+			res[1] = Integer.MAX_VALUE;
 		}
 		
 		return res;
@@ -97,7 +120,9 @@ public final class RenderingCapabilities {
 			int[] res = {maxCanvasSize[0], maxCanvasSize[1]};
 			return res;
 		} else {
-			return getMaxWindowSize();
+			// canvas not already created, don't set limits
+			int[] res = {Integer.MAX_VALUE, Integer.MAX_VALUE};
+			return res;
 		}
 	}
 	

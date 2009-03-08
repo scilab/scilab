@@ -22,7 +22,7 @@ function [y,R]=kpure(sl,eps)
   if sl.dt<>'c' then 
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Continuous time system expected.\n"),"kpure",1))
   end
-  if size(sl.D,'*')<>1 then
+  if size(sl.num,'*')<>1 then
     error(msprintf(gettext("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"kpure",1))
   end
 

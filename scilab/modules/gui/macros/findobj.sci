@@ -9,134 +9,71 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 function h =  findobj(propertyName, propertyValue)
 
-currentFig = gcf();
+rhs = argn(2);
+if rhs<>2 then
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "findobj", 2));
+  return
+end
 
 // Return value
 h = []
 
-propertyName = convstr(propertyName,"l");
-
 // Get all opened figures
 figureIds = winsid();
+if isempty(figureIds) then
+  return
+end
+
+currentFig = gcf();
+
+propertyName = convstr(propertyName,"l");
 
 // Iterate over all figures
 for figureindex = 1:size(figureIds,2)
   
   // Does the figure match the propertyName/propertyValue set ?
   f=scf(figureIds(figureindex));
-  // TODO: create a function which lists figure properties to avoid error messages
+
   %ierr = execstr("%bool = isequal(get(f, propertyName), propertyValue);", "errcatch");
   if %ierr==0 & %bool then
     h = f;
     return
   end
   
-  // Iterate over childrens
-  children = f.children
-  for childIndex = 1:size(children,1)
-    
-    if children(childIndex).type == "uimenu" then
-      answ = findUimenuWithproperty(children(childIndex), propertyName, propertyValue);
-      if ~isempty(answ) then
-	h = answ;
-	scf(currentFig);
-	return
-      end      
-    elseif children(childIndex).type == "uicontrol" then
-      answ = findUicontWithproperty(children(childIndex), propertyName, propertyValue);
-      if ~isempty(answ) then
-	h = answ;
-	scf(currentFig);
-	return
-      end      
-    end
-  end
+  answ = findMatchingChild(f.children, propertyName, propertyValue);
+  if ~isempty(answ) then
+    h = answ;
+    scf(currentFig);
+    return
+  end      
 end
 scf(currentFig);
 endfunction
 //-----------------------------------------------------------------------------
-function res = isAnUimenuProperty(propertyName)
-// Copyright INRIA 2008
-// Vincent COUVERT
-uimenuProperties = ["callback",
-    "enable",
-    "foregroundcolor",
-    "label",
-    "tag",
-    "visible"];
-res = or(propertyName==uimenuProperties);
-endfunction
-//-----------------------------------------------------------------------------
-function res = isAnUicontrolProperty(propertyName)
-// Copyright INRIA 2008
-// Vincent COUVERT
-uicontrolProperties = ["backgroundcolor",
-    "callback",
-    "enable",
-    "fontangle",
-    "fontsize",
-    "fontunits",
-    "fontweight",
-    "fontname",
-    "foregroundcolor",
-    "horizontalalignment",
-    "listboxtop",
-    "max",
-    "min",
-    "parent",
-    "position",
-    "relief",
-    "sliderstep",
-    "string",
-    "style",
-    "tag",
-    "units",
-    "userdata",
-    "value",
-    "verticalalignment",
-    "visible"];
-res = or(propertyName==uicontrolProperties);
-endfunction
-//-----------------------------------------------------------------------------
-function hFound = findUimenuWithproperty(uimenuHandle, propertyName, propertyValue)
+function hFound = findMatchingChild(children, propertyName, propertyValue)
 // Copyright DIGITEO 2008
 // Vincent COUVERT
-hFound = [];
-if isAnUimenuProperty(propertyName) then
-  if isequal(get(uimenuHandle, propertyName), propertyValue) then
-    hFound = uimenuHandle;
-    return
-  end
-end
-// Loop over submenus
-submenus = get(uimenuHandle, "children");
-for submenuIndex = 1:size(submenus,1)
-  answ = findUimenuWithproperty(submenus(submenuIndex), propertyName, propertyValue);
-  if ~isempty(answ) then
-    hFound = answ;
-    return
-  end
-end
-endfunction
-//-----------------------------------------------------------------------------
-function hFound = findUicontWithproperty(uicontrolHandle, propertyName, propertyValue)
-// Copyright DIGITEO 2008
-// Vincent COUVERT
-hFound = [];
-if isAnUicontrolProperty(propertyName) then
-  if isequal(get(uicontrolHandle, propertyName), propertyValue) then
-    hFound = uicontrolHandle;
-    return
-  end
-end
-// Loop over children
-children = get(uicontrolHandle, "children");
+
+hFound = []
+
 for childIndex = 1:size(children,1)
-  answ = findUicontWithproperty(children(childIndex), propertyName, propertyValue);
-  if ~isempty(answ) then
-    hFound = answ;
+  
+  %ierr = execstr("%bool = isequal(get(children(childIndex), propertyName), propertyValue);", "errcatch");
+  if %ierr==0 & %bool then
+    hFound = children(childIndex);
     return
   end
+  
+  %ierr = execstr("get(children(childIndex), ""children"");", "errcatch"); // Does the child have a children property
+  
+  if %ierr==0 then // Yes the child can have children
+    answ = findMatchingChild(children(childIndex).children, propertyName, propertyValue);
+    if ~isempty(answ) then
+      hFound = answ;
+      return
+    end
+  end
 end
+
 endfunction
 //-----------------------------------------------------------------------------

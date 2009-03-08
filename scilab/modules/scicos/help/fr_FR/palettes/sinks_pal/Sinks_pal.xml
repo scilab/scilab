@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Sinks_pal">
+  <refnamediv>
+    <refname>Sinks_pal</refname>
+    <refpurpose>Palette Affichage</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Sinks_pal_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Module_Sinks_pal">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Sinks_pal">
+    <title>Description</title>
+    <para>
+Dans la palette Sinks, vous pouvez trouver une variété de
+blocs utilisés pour afficher (Scope) et écrire les données
+dans des fichiers pendant la simulation ainsi que des ports
+de sortie utilisés dans les superblocs.
+</para>
+    <para>
+Les blocs de cette palette ne possèdent pas de ports réguliers
+de sortie.
+
+</para>
+  </refsection>
+  <refsection id="Blocs_Sinks_pal">
+    <title>Blocs</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="AFFICH_m">AFFICH_m - Affichage</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CANIMXY">CANIMXY - Scope animé y=f(x)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CANIMXY3D">CANIMXY3D - Scope animé z=f(x,y)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CEVENTSCOPE">CEVENTSCOPE - Scope pour événements</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CFSCOPE">CFSCOPE - Scope flottant</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CLKOUTV_f">CLKOUTV_f - Port de sortie d'activation</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CMAT3D">CMAT3D - Scope matriciel 3D</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CMATVIEW">CMATVIEW - Scope matriciel coloré</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CMSCOPE">CMSCOPE - Scope à affichage multiple</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CSCOPE">CSCOPE - Scope</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CSCOPXY">CSCOPXY - Scope y=f(x)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="CSCOPXY3D">CSCOPXY3D - Scope z=f(x,y)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="OUT_f">OUT_f - Port de sortie régulier</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="OUTIMPL_f">OUTIMPL_f - Port implicite de sortie</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TOWS_c">TOWS_c - Données vers l'environnement Scilab</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="WFILE_f">WFILE_f - Ecriture dans un fichier</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="WRITEAU_f">WRITEAU_f - Ecrite de fichier son AU</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="WRITEC_f">WRITEC_f - Ecriture de donnée binaire</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

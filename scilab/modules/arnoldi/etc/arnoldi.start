@@ -11,7 +11,7 @@
 // ====================================================================
 // arnoldi module initialisation file
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 //load('SCI/modules/arnoldi/macros/lib');
 // ====================================================================
 //add help chapter

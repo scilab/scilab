@@ -29,7 +29,12 @@ sciPointObj *InitWaitBar(void)
       return (sciPointObj *) NULL;
     }
 
+	/* Allocate relationShip */
+	createDefaultRelationShip(pObj);
+
   pWAITBAR_FEATURE(pObj)->hashMapIndex = 0;
+  pObj->pObservers = NULL;
+  pObj->pDrawer = NULL ;
   sciAddNewHandle(pObj);
   return (sciPointObj *) pObj;
 }

@@ -2,11 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * This file is released into the public domain
  *
  */
 
@@ -23,7 +19,7 @@ class ExampleEvents
   {
     int i=0;
         
-	  Scilab.Exec("plot3d();");
+	Scilab.Exec("plot3d();quit");
   	
   	while (Scilab.HaveAGraph()!=false)
   	{
@@ -36,9 +32,10 @@ class ExampleEvents
    		{
    		}
    		
-   		System.out.println("Boucle Java sans fin "+i);
+   		System.out.println("Java loop "+i);
 		  i++;
   	}
+  	System.out.println("Graphics window closed");
   	Scilab.Finish();
   	
   }

@@ -15,7 +15,7 @@ c
 c     Copyright INRIA
       include 'stack.h'
 c     
-      double precision e1,e2,e3,st,e1r
+      double precision e1,e2,st,e1r
       double precision dlamch
       integer iadr,sadr
 c     

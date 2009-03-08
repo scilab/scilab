@@ -102,6 +102,14 @@
             using the color given indexed by the grid value.</para>
               </listitem>
             </varlistentry>
+			<varlistentry>
+              <term>grid_position: </term>
+              <listitem>
+                <para>This character string specifies the grid position compared with other graphic entities.
+				Its value can be either <literal>"foreground"</literal>
+				to draw the grid ahead other graphic entities or <literal>"background"</literal> to draw the grid behind.</para>
+              </listitem>
+            </varlistentry>
             <varlistentry>
               <term>x_location: </term>
               <listitem>
@@ -291,20 +299,21 @@
             <varlistentry>
               <term>font_style: </term>
               <listitem>
-                <para>Specify the font used for displaying tics labels. Seven
-            differents fonts are available : "Courrier", "Symbol", "Times",
-            "Times Italic", "Times Bold", "User defined". The
-            <literal>font_style</literal> property is an index in [0 6] which is
-            associated to the previous font names.</para>
+                <para>Specifies the font used for displaying tics labels. This is a positive integer referecing one of the loaded fonts.
+				Its value must be between 0, referecing the first font,
+				and the number of loaded fonts minus one, referencing the last font.
+				For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
+				</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>font_size: </term>
               <listitem>
-                <para>An real value specifying the font size used to draw the tics
-			labels.
+                <para>
+				It is a scalar specifying the character size of tics labels.
 			If <literal>fractional_font</literal> property is <literal>"off"</literal>
 		 	only the integer part of the value is used.
+			For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
 		</para>	
               </listitem>
             </varlistentry>
@@ -318,10 +327,11 @@
               <term>fractional_font: </term>
               <listitem>
 	        <para>
-		  This property specify whether ticks might be displayed using fractional font sizes.
+		  This property specify whether ticks labels are displayed using fractional font sizes.
 		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
 		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
-		  is used for display. If <literal>"off"</literal> only the integer part is used.
+		  is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
+		  and the font is not smoothed.
 		</para>
               </listitem>
             </varlistentry>
@@ -733,6 +743,7 @@
    delete(a.children(2)); 
    delete(); // delete current object
    
+   a = gca();
    a.labels_font_size=1;
    a.auto_clear= "on";
    x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
@@ -786,7 +797,6 @@
    x=(0:0.1:2*%pi)';
    plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
    sda() // back to default axes model
-
  ]]></programlisting>
   </refsection>
   <refsection>

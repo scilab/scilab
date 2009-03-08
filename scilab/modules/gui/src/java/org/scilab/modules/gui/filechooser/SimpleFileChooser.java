@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2008 - DIGITEO - Sylvestre KOUMAR
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,32 +16,15 @@ package org.scilab.modules.gui.filechooser;
 /**
  * Interface for SimpleFileChooser the object associated to Scilab File Choosers
  * @author Vincent COUVERT
+ * @author Sylvestre KOUMAR
  */
 public interface SimpleFileChooser {
-
-	/**
-	 * Set the element id for this file chooser
-	 * @param id the id of the corresponding file chooser object
-	 */
-	void setElementId(int id);
-	
-	/**
-	 * Get the element id for this chooser
-	 * @return id the id of the corresponding chooser object
-	 */
-	int getElementId();
 	
 	/**
 	 * Set the title of the file chooser
 	 * @param title the title to set
 	 */
 	void setTitle(String title);
-	
-	/**
-	 * Set the mask for files to choose
-	 * @param mask the mask to set
-	 */
-	void setMask(String mask);
 	
 	/**
 	 * Set the initial directory used for file search
@@ -71,8 +55,27 @@ public interface SimpleFileChooser {
 	void setDirectorySelectionOnly();
 
 	/**
-	 * Set the flag indicating that we want only select files
+	 * Set the flag indicating that we can select multiple files
+	 * @param multipleSelection enable multiple selection
 	 */
-	void setFileSelectionOnly();
+	void setMultipleSelection(boolean multipleSelection);
+	
+	/**
+	 * Get the path of selected files
+	 * @return the path of selected files
+	 */
+	String getSelectionPathName();
+
+	/**
+	 * Get the names of selected files
+	 * @return the names of selected files
+	 */
+	String[] getSelectionFileNames();
+
+	/**
+	 * Get the filter index
+	 * @return the filter index
+	 */
+	int getFilterIndex();
 	
 }

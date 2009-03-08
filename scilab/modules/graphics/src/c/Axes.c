@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998-2000 - ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -16,12 +16,10 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 /*------------------------------------------------------------------------
- * Axis drawing for 2d plots 
+ * Axis drawing for 2d plots
  *--------------------------------------------------------------------------*/
 
-#include <math.h>
 #include <string.h>
-#include <stdio.h>
 #include "math_graphics.h"
 #include "Axes.h"
 #include "DestroyObjects.h"
@@ -43,12 +41,13 @@
 /*--------------------------------------------------------------------------------*/
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
 static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
+
 /*--------------------------------------------------------------------------------*/
 /* clear a subwindow from all of its children */
 void clearSubWin( sciPointObj * pSubWin )
 {
   sciSons * curSon = sciGetSons (pSubWin);
-  
+
   while ( curSon != NULL && curSon->pointobj != NULL )
   {
     if ( curSon->pointobj->entitytype != SCI_LABEL )
@@ -60,7 +59,7 @@ void clearSubWin( sciPointObj * pSubWin )
     {
       curSon = curSon->pnext ;
     }
-    
+
   }
 }
 /*--------------------------------------------------------------------------------*/
@@ -68,19 +67,19 @@ void clearSubWin( sciPointObj * pSubWin )
 void reinitSubWin( sciPointObj * pSubWin )
 {
   sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin) ;
-  
+
   clearSubWin( pSubWin ) ;
- 
+
   initSubWinBounds( pSubWin ) ;
   ppSubWin->axes.xdir = 'd' ;
   ppSubWin->axes.ydir = 'l' ;
-  
+
   ppSubWin->visible = TRUE;
-  
+
   initSubWinAngles( pSubWin ) ;
-  
+
   ppSubWin->FirstPlot = TRUE;
-  
+
 
 }
 /*--------------------------------------------------------------------------------*/
@@ -133,7 +132,8 @@ void initSubWinBounds( sciPointObj * pSubWin )
 /* return TRUE if the window has been redrawn */
 BOOL checkRedrawing( void )
 {
-  
+  //  nbCheckRedraw++;
+  //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
   sciPointObj * pSubWin = sciGetCurrentSubWin() ;
   if ( !sciGetAddPlot( pSubWin ) )
   {
@@ -178,7 +178,7 @@ static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord)
   sciGetViewingArea(pSubwin, &xPos, &yPos, &width, &height);
 
   return (   xCoord > xPos && xCoord < xPos + width
-          && yCoord > yPos && yCoord < yPos + height); 
+          && yCoord > yPos && yCoord < yPos + height);
 }
 /*--------------------------------------------------------------------------------*/
 sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
@@ -205,7 +205,7 @@ sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
   }
 
   /* all the subwindows that are under the clicked pixel has been found */
-  
+
   nbItem = List_nb_item(foundSubwins);
   if (nbItem == 0)
   {
@@ -241,5 +241,56 @@ sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord, int yCoord)
 
   return res;
 
+}
+/*--------------------------------------------------------------------------------*/
+sciLegendPlace propertyNameToLegendPlace(const char * string)
+{
+	if ( strcmp(string, "in_upper_right" ) == 0 )
+	{
+		return SCI_LEGEND_IN_UPPER_RIGHT;
+	}
+	else if ( strcmp(string, "in_upper_left" ) == 0 )
+	{
+		return SCI_LEGEND_IN_UPPER_LEFT;
+	}
+	else if ( strcmp(string, "in_lower_right" ) == 0 )
+	{
+		return SCI_LEGEND_IN_LOWER_RIGHT;
+	}
+	else if ( strcmp(string, "in_lower_left" ) == 0 )
+	{
+		return SCI_LEGEND_IN_LOWER_LEFT;
+	}
+	else if ( strcmp(string, "out_upper_right" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_UPPER_RIGHT;
+	}
+	else if ( strcmp(string, "out_upper_left" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_UPPER_LEFT;
+	}
+	else if ( strcmp(string, "out_lower_right" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_LOWER_RIGHT;
+	}
+	else if ( strcmp(string, "out_lower_left" ) == 0 )
+	{
+		return SCI_LEGEND_OUT_LOWER_LEFT;
+	}
+	else if ( strcmp(string, "upper_caption" ) == 0 )
+	{
+		return SCI_LEGEND_UPPER_CAPTION;
+	}
+	else if ( strcmp(string, "lower_caption" ) == 0 )
+	{
+		return SCI_LEGEND_LOWER_CAPTION;
+	}
+	else if ( strcmp(string, "by_coordinates" ) == 0 )
+	{
+		return SCI_LEGEND_BY_COORDINATES;
+	}
+	else {
+		return (sciLegendPlace) 0;
+	}
 }
 /*--------------------------------------------------------------------------------*/

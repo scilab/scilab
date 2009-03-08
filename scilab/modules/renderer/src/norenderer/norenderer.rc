@@ -49,8 +49,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 5,0,0,0
- PRODUCTVERSION 5,0,0,0
+ FILEVERSION 5,1,0,0
+ PRODUCTVERSION 5,1,0,0
  FILEFLAGSMASK 0x17L
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -65,13 +65,13 @@ BEGIN
     BEGIN
         BLOCK "040c04b0"
         BEGIN
-            VALUE "FileDescription", "nomodule_skeleton module"
-            VALUE "FileVersion", "5, 0, 0, 0"
-            VALUE "InternalName", "nomodule_skeleton module"
-            VALUE "LegalCopyright", "Copyright (C) 2008"
-            VALUE "OriginalFilename", "nomodule_skeleton.dll"
-            VALUE "ProductName", " nomodule_skeleton"
-            VALUE "ProductVersion", "5, 0, 0, 0"
+            VALUE "FileDescription", "norender"
+            VALUE "FileVersion", "5, 1, 0, 0"
+            VALUE "InternalName", "norenderer"
+            VALUE "LegalCopyright", "Copyright (C) 2009"
+            VALUE "OriginalFilename", "noscirenderer.dll"
+            VALUE "ProductName", " norenderer"
+            VALUE "ProductVersion", "5, 1, 0, 0"
         END
     END
     BLOCK "VarFileInfo"

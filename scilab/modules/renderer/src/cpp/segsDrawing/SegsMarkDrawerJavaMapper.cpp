@@ -57,11 +57,6 @@ void SegsMarkDrawerJavaMapper::destroy(int parentFigureIndex)
 {
   m_pJavaObject->destroy(parentFigureIndex); 
 }
-/*--------------------------------------------------------------------------*/
-void SegsMarkDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
 /*---------------------------------------------------------------------------------*/
 void SegsMarkDrawerJavaMapper::setMarkParameters(int background, int foreground, int markSizeUnit,
                                                       int markSize, int markStyleIndex)

@@ -69,22 +69,22 @@ public class FecFacetDrawerGL extends AutoDrawableObjectGL {
 		}
 		
 		if (colOutLow <= -1) {
-			// when outside of colormap use the lowest value in the colormap
-			this.colOutLow = this.colMin;
-		} else if (colOutLow == 0) {
 			// don't display polygon
 			this.colOutLow = -1;
+		} else if (colOutLow == 0) {
+			// default use the lowest value in the colormap
+			this.colOutLow = this.colMin;
 		} else {
 			// colOutLow is a valid colormap index
 			this.colOutLow = getColorMap().convertScilabToColorMapIndex(colOutLow);
 		}
 		
 		if (colOutUp <= -1) {
-			// when outside of colormap use the highest value in the colormap
-			this.colOutUp = this.colMax;
-		} else if (colOutUp == 0) {
 			// don't display polygon
 			this.colOutUp = -1;
+		} else if (colOutUp == 0) {
+			// default use the highest value in the colormap
+			this.colOutUp = this.colMax;
 		} else {
 			// colOutLow is a valid colormap index
 			this.colOutUp = getColorMap().convertScilabToColorMapIndex(colOutUp);

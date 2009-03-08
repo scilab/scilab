@@ -8,41 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-23 11:10+0100\n"
-"PO-Revision-Date: 2008-09-28 08:23+0000\n"
+"PO-Revision-Date: 2009-02-11 09:29+0000\n"
 "Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2008-10-28 14:53+0000\n"
+"X-Launchpad-Export-Date: 2009-02-11 13:08+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
-"est attendue.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Plus de mémoire disponible.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Une erreur s'est produite: %s\n"
-
-msgid "FFTW can't read wisdom."
-msgstr "FFTW ne peut pas lire la transformation pré-calculée (wisdom)."
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr ""
-"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Drapeaux FFTW "
-"attendus.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
 
 #, c-format
 msgid "FFTW Library %s not found.\n"
@@ -77,9 +50,10 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Mauvaise dimension pour l'argument d'entrée n° %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: integer matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: matrice d'entier attendue.\n"
+"%s: Mauvais type pour l'argument d'entrée n° %d: matrice d'entiers "
+"attendue.\n"
 
 #, c-format
 msgid ""
@@ -89,11 +63,38 @@ msgstr ""
 "attendues.\n"
 
 #, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Plus de mémoire disponible.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 "%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Un entier non-négatif "
 "attendu.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: Mauvaise valeurs pour l'argument d'entrée n° %d: Drapeaux FFTW "
+"attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Une erreur s'est produite: %s\n"
+
+msgid "FFTW can't read wisdom."
+msgstr "FFTW ne peut pas lire la transformation pré-calculée (wisdom)."
 
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Module scilab FFTW non installé.\n"

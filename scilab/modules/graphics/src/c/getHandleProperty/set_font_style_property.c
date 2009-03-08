@@ -22,24 +22,30 @@
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "RendererFontManager.h"
 
 /*------------------------------------------------------------------------*/
 int set_font_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int value = (int) getDoubleFromStack( stackPointer ) ;
+  int value;
+	/* number of fonts available */
+	int nbInstalledFonts = getNbInstalledFonts();
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"font_style") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"font_style") ;
     return SET_PROPERTY_ERROR ;
   }
 
-  if ( value > 10 || value < 0 )
+	value = (int) getDoubleFromStack( stackPointer ) ;
+
+	/* Check that the wanted value is a correct font */
+  if ( value >= nbInstalledFonts || value < 0 )
   {
-    sciprint(_("Wrong value: In [%d %d] expected.\n"),0,10) ;
+    Scierror(999, _("Wrong value for property %s: An Integer between %d and %d expected.\n"), "font_style", 0, nbInstalledFonts - 1) ;
     return SET_PROPERTY_ERROR ;
   }
   

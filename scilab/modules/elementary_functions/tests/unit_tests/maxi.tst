@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 Ntest=1
 // test maxi(A) : A matrix
 // maxi is compared with sort

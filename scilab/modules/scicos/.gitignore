@@ -13,3 +13,10 @@ src/c/noscicos/noscicos.def
 src/c/scicos.def
 src/fortran/scicos_f.def
 src/scicos_sundials/scicos_sundials.def
+#
+#generated help files
+#
+help/en_US/master_help.xml
+help/en_US/scilab_en_US_help/
+help/en_US/scilab_fr_FR_help/
+help/fr_FR/scilab_fr_FR_help/

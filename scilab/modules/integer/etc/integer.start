@@ -12,7 +12,7 @@
 
 
 // ====================================================================
-//Load  functions librarie
+//Load  functions libraries
 load('SCI/modules/integer/macros/lib');
 // ====================================================================
 //add help chapter

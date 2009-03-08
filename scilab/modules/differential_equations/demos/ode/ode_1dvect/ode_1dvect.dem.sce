@@ -13,7 +13,7 @@ text = ["Examples of ODE''s in 1 dimension"; ..
         "You can start over by clicking on the LEFT button again"; ..
         "  or stop everything by clicking on the RIGHT button." ];
 
-x_message(text);
+messagebox(text,"modal");
 
 function yprim=f(t,y),yprim=y^2-t;endfunction
 function z=g(t,y),z=[y-ymin;y+ymax];endfunction

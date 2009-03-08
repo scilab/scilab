@@ -1,0 +1,1322 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 17:45+0100\n"
+"PO-Revision-Date: 2009-01-27 16:55+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "Colormap"
+msgstr "Цветовая карта"
+
+msgid "Jet"
+msgstr "Насыщенно-чёрный"
+
+msgid "HSV"
+msgstr "HSV"
+
+msgid "Hot"
+msgstr ""
+
+msgid "Gray"
+msgstr "Серый"
+
+msgid "Winter"
+msgstr "Зима"
+
+msgid "Spring"
+msgstr "Весна"
+
+msgid "Summer"
+msgstr "Лето"
+
+msgid "Autumn"
+msgstr "Осень"
+
+msgid "Bone"
+msgstr "Кость"
+
+msgid "Copper"
+msgstr "Медь"
+
+msgid "Pink"
+msgstr "Розовый"
+
+msgid "Rainbow"
+msgstr "Радуга"
+
+msgid "Ocean"
+msgstr "Океан"
+
+msgid "White"
+msgstr "Белый"
+
+msgid "Misc"
+msgstr "Прочее"
+
+msgid "Graphics"
+msgstr "Графика"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: Легенда не подходит в текущий контекст. Пропущена\n"
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: дескриптор более недопустим и проигнорирован.\n"
+
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s : Неправильная сущность %s\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидалось целое число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента #%d: Ожидалось целое число большее "
+"или равное  %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgstr ""
+"%s: Неверное значение входного аргумента #%d: Ожидалось ''clear'' или "
+"''reset''."
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался вектор дескриптора "
+"«Figure»."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидалось вещественное число.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Инструменты"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&?"
+msgstr "&Справка"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Cancel"
+msgstr "Отмена"
+
+msgid "Color number"
+msgstr "Номер цвета"
+
+msgid "Name"
+msgstr "Имя"
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function ''%s''."
+msgstr "%s: Ошибка : не удалось вычислить входную функцию ''%s''."
+
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr "Ошибка %d в строке %d функции: ''%s''"
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function."
+msgstr "%s: Ошибка : не удалось вычислить входную функцию."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента %d: Ожидался дескриптор «Axes».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента %d: Ожидался дескриптор «Axes».\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+
+msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
+msgstr "Графический модуль Scilab выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Неверный размер входных аргументов #%d и #%d: Несовместимые длины.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
+msgstr "%s: Неверное значение входного аргумента #%d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Objects must have the same axes.\n"
+msgstr "%s: Объекты должны иметь одинаковые оси.\n"
+
+#, c-format
+msgid "%s: The handle is no more valid.\n"
+msgstr "%s: Дескриптор более недопустимым.\n"
+
+#, c-format
+msgid "%s: The %d th handle is not a polyline handle.\n"
+msgstr "%s: Дескриптор %d не является дескриптором ломанной линии.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался действительный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидался действительный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался дескриптор «Text».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидался дескриптор «Text».\n"
+
+#, c-format
+msgid "%s: The handle is not valid.\n"
+msgstr "%s: Дескриптор недопустим.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: Ожидалось %d или от %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался двумерный массив строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался скаляр или строка.\n"
+
+#, c-format
+msgid "%s: The handle is not or no more valid.\n"
+msgstr "%s: Дескриптор (более) недопустим.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
+
+#, c-format
+msgid "%s: Misplaced optional argument: #%d must be at position %d\n"
+msgstr ""
+"%s: Неправильно расположен необязательный аргумент: #%d должен быть в "
+"позиции %d\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: Неверный тип входного аргумента #%d: Ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: Неверное значение входного аргумента #%d: Ожидалось '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался '%s' или дескриптор.\n"
+
+#, c-format
+msgid "Demo of %s().\n"
+msgstr "Демонстрация %s().\n"
+
+msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
+msgstr "%: Неверное значение %s '%c': Ожидалось '%s', '%s' и '%s'.\n"
+
+#, c-format
+msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
+msgstr ""
+"%s: Неправильно расположен необязательный аргумент: #%d должен быть в "
+"позиции %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgstr ""
+"%s: Неверное количество столбцов входного аргумента #%d: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Could not read property '%s' for root object.\n"
+msgstr "%s: Не удалось прочитать свойство '%s' для корневого объекта.\n"
+
+#, c-format
+msgid "%s: Each handle should not appear twice.\n"
+msgstr "%s: Любой дескриптор не должен появляться дважды.\n"
+
+#, c-format
+msgid "%s: Objects must have the same parent.\n"
+msgstr "%s: У объектов должен быть один и тот же родительский объект.\n"
+
+#, c-format
+msgid "%s: Handle %d cannot be glued (invalid parent).\n"
+msgstr ""
+"%s: Дескриптор %d не может быть связан (недопустимый родительский объект).\n"
+
+#, c-format
+msgid "%s: Handle %d cannot be glued (invalid type).\n"
+msgstr "%s: Дескриптор %d не может быть связан (недопустимый тип).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалась матрица дескриптора.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался вектор %s или %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидался список размером %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидался %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: Неверный размер входных аргументов #%d и #%d.\n"
+
+#, c-format
+msgid "%s: Impossible status min > max in x or y rect data.\n"
+msgstr ""
+"%s: Невозможный статус min > max по x или y в данных прямоугольника.\n"
+
+#, c-format
+msgid ""
+"%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
+msgstr ""
+"%s: Границы по оси x должны быть строго положительны при использовании "
+"логарифмического режима.\n"
+
+#, c-format
+msgid ""
+"%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
+msgstr ""
+"%s: Границы по оси y должны быть строго положительны при использовании "
+"логарифмического режима.\n"
+
+#, c-format
+msgid ""
+"%s: At least one x data must be strictly positive to compute the bounds and "
+"use logarithmic mode.\n"
+msgstr ""
+"%s: Как минимум одно значение должно быть строго положительно по x для "
+"вычисления границ и использования логарифмического режима.\n"
+
+#, c-format
+msgid ""
+"%s: At least one y data must be strictly positive to compute the bounds and "
+"use logarithmic mode\n"
+msgstr ""
+"%s: Как минимум одно значение должно быть строго положительно по y для "
+"вычисления границ и использования логарифмического режима.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидался %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Неверное значение входных аргументов #%d, #%d и #%d: Несовместимая "
+"длина.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgstr ""
+"%s: Неверное значение входных аргументов #%d и #%d: Несовместимая длина.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
+msgstr "%s: Неверный размер входных аргументов #%d и #%d: Ожидался %s.\n"
+
+#, c-format
+msgid "%s: Handles must be relocated under a single parent.\n"
+msgstr ""
+"%s: Дескрипторы должны быть настроены под один родительский объект.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single Figure or Axes handle "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался одиночный дескриптор "
+"«Figure» или «Axes».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидался вектор размером %d или "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A boolean expected\n"
+"."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real row vector or a boolean "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалась строка или дескриптор.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидался дескриптор '%s' или "
+"действительный скаляр.\n"
+
+#, c-format
+msgid "%s: Handle does not or no longer exists.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A '%s' handle or a real scalar "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался дескриптор '%s' или "
+"действительный скаляр.\n"
+
+#, c-format
+msgid "%s: Unable to create requested figure: No more memory.\n"
+msgstr ""
+"%s: Не могу создать заданное графическое окно: Недостаточно памяти.\n"
+
+#, c-format
+msgid "%s: '%s' handle does not or no longer exists.\n"
+msgstr "%s: Дескриптор '%s' более не существует.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: '%s' handle expected.\n"
+msgstr "%s: Неверный тип входного аргумента: Ожидался дескриптор '%s'.\n"
+
+#, c-format
+msgid "%s: Routine can only swap two single handles.\n"
+msgstr ""
+"%s: Операция может поменять местами только два одиночных дескриптора.\n"
+
+#, c-format
+msgid "%s: Object must be a Compound.\n"
+msgstr "%s: Объект должен быть Compound.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Vector of Axes and Figure handles "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента: Ожидался вектор дескрипторов «Axes» и "
+"«Figure».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидался %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d and #%d.\n"
+msgstr "%s: Неверный размер аргументов #%d и #%d.\n"
+
+#, c-format
+msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
+msgstr ""
+"%s: Интерполяционное затенение работает только для многоугольников размером "
+"%d или %d\n"
+
+#, c-format
+msgid "%s: Unrecognized input argument: '%s'.\n"
+msgstr "%s: Неопознанный входной аргумент: '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Single double or boolean vector "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось число двойной точности "
+"или вектор логических значений.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single double expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось число двойной точности.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидался вектор логических "
+"значений.\n"
+
+#, c-format
+msgid ""
+"%s: Using xgetmouse with a flag to avoid the event queue to be cleared is "
+"obsolete.\n"
+"This functionnality will be permanently removed in Scilab 5.1.\n"
+msgstr ""
+"%s: Использование xgetmouse с флагом для того, чтобы избежать очистку "
+"очереди событий, устарело.\n"
+"Эта функциональность будет полностью удалена в Scilab 5.1.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
+msgstr ""
+"%s: Неверной значение входного аргумента #%d: Ожидалось допустимое имя "
+"шрифта.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Non-negative int expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента #%d: Ожидалось неотрицательное "
+"целое число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось неотрицательное целое "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента #%d: Ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
+msgstr "%s: Несовместимая длина входных аргументов #%d и #%d.\n"
+
+#, c-format
+msgid "%s : '%s' must be set\n"
+msgstr "%s : '%s' должно быть установлено\n"
+
+#, c-format
+msgid ""
+"%s: Old graphic mode is no longer available. Please refer to the set help "
+"page.\n"
+msgstr ""
+"%s: Старый графический режим более не доступен. Смотрите справку по команде "
+"set.\n"
+
+#, c-format
+msgid "%s: Unrecognized input argument '%s'.\n"
+msgstr "%s: Неопознанный входной аргумент '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента: Ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector of size %d expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидался вектор размера %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single handle expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента №%d: Ожидался одиночный указатель.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался указатель на графическое "
+"окно или оси.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: Границы указаны неправильно.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался указатель или вектор чисел "
+"двойной точности.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments: Handle or vector of double expected.\n"
+msgstr ""
+"%s: Неверный тип входных аргументов: Ожидался указатель или вектор чисел "
+"двойной точности.\n"
+
+#, c-format
+msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
+msgstr "%s: Ошибка во входном аргументе №%d: Границы указаны неправильно.\n"
+
+msgid "The parent has to be a FIGURE\n"
+msgstr "Родительский объект должен быть «FIGURE»\n"
+
+msgid "The parent has to be a SUBWIN\n"
+msgstr "Родительский объект должен быть «SUBWIN»\n"
+
+msgid "No more place to allocates text string, try a shorter string.\n"
+msgstr ""
+"Недостаточно места для размещения строковой переменной, попробуйте уменьшить "
+"её длину.\n"
+
+msgid "Problem with sciInitFontContext\n"
+msgstr "Проблема с sciInitFontContext\n"
+
+msgid "Width and height must be positive.\n"
+msgstr "Ширина и высота должны быть положительными.\n"
+
+msgid "Impossible case when building axis\n"
+msgstr "Не удалось построить оси\n"
+
+msgid "This object cannot be cloned.\n"
+msgstr "Этот объект не может быть клонирован.\n"
+
+msgid ""
+"Color matrix is NULL: Can not build color scaled linearly into the current "
+"colormap"
+msgstr ""
+
+#, c-format
+msgid "%s is only made to compute level curves and not display them.\n"
+msgstr ""
+
+#, c-format
+msgid "Entity with type %d cannot be destroyed.\n"
+msgstr "Объект типа %d не может быть уничтожен.\n"
+
+msgid "This object cannot be deleted.\n"
+msgstr "Этот объект не может быть удалён.\n"
+
+msgid "Warning: Can't use Log on X-axis xmin is negative.\n"
+msgstr ""
+"Внимание: Не удалось использовать логарифмический режим для оси абсцисс из-"
+"за отрицательного xmin.\n"
+
+msgid "Warning: Can't use Log on Y-axis ymin is negative.\n"
+msgstr ""
+
+msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
+msgstr ""
+
+msgid "Warning: Nax does not work with logarithmic scaling.\n"
+msgstr "Предупреждение: Nax не работает с логарифмическим скейлингом.\n"
+
+msgid "Internal Error: Loop in graduate1\n"
+msgstr "Внутренняя ошибка: Цикл в «graduate1»\n"
+
+msgid "Please send a Bug report to dev@lists.scilab.org\n"
+msgstr ""
+"Пожалуйста, отправляйте отчёты об ошибках на адрес dev@lists.scilab.org\n"
+
+msgid "Error: ComputeFormat must be used with SCI_AXES objects\n"
+msgstr ""
+"Ошибка: «ComputeFormat» должен использоваться с объектами «SCI_AXES»\n"
+
+#, c-format
+msgid "%s: Wrong type argument %s.\n"
+msgstr "%s: Неверный тип аргумента %s.\n"
+
+#, c-format
+msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
+msgstr ""
+"Внимание: %s должен быть изменён, %s является '%s' и размерность %s не равна "
+"%d.\n"
+
+#, c-format
+msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
+msgstr ""
+
+#, c-format
+msgid "Bad size in %s: you must first increase the size of the %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d < %d expected.\n"
+msgstr "%s: Неверный размер входного аргумента #%d: Ожидалось %d < %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String of %d characters expected.\n"
+msgstr ""
+"%s: Неверный размер входного аргумента #%d: Ожидалась строка из %d "
+"символов.\n"
+
+msgid "You are not using a legend object.\n"
+msgstr "Вы не используете легенду.\n"
+
+msgid "Coordinates modifications are only applicable on axes objects.\n"
+msgstr ""
+
+msgid "Only axes handles have a viewing area."
+msgstr ""
+
+msgid "Unable to compute data bounds for this kind of object."
+msgstr ""
+
+msgid "Unable to compute x_location for this kind of object."
+msgstr ""
+
+msgid "Unable to compute y_location for this kind of object."
+msgstr ""
+
+#, c-format
+msgid "This object has no %s property.\n"
+msgstr "У этого объекта нет свойства %s.\n"
+
+msgid "Warning: Nax does not work with logarithmic scaling\n"
+msgstr "Внимание: Nax не работает с логарифмическим скейлингом\n"
+
+msgid "Warning : Nax does not work with logarithmic scaling\n"
+msgstr "Внимание: Nax не работает с логарифмическим скейлингом\n"
+
+msgid "The parent handle is not or no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "Handle number %d is not or no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "Handle number %d is not compatible with the parent handle.\n"
+msgstr ""
+
+#, c-format
+msgid "Error relocating handle %d."
+msgstr ""
+
+#, c-format
+msgid "Handle #%d is not compatible with its new parent.\n"
+msgstr ""
+
+#, c-format
+msgid "Object #%d is not correctly placed in the hierarchy.\n"
+msgstr "Объект #%d некорректно расположен в иерархии.\n"
+
+#, c-format
+msgid "Handle #%d is not or no more valid.\n"
+msgstr ""
+
+msgid "Default figure cannot be create.\n"
+msgstr "Рисунок по умолчанию не может быть создан.\n"
+
+msgid "Default axes cannot be create.\n"
+msgstr "Оси по умолчанию не могут быть созданы.\n"
+
+#, c-format
+msgid "Graphic window number %d"
+msgstr "Графическое окно номер %d"
+
+msgid "This object has not any graphic mode\n"
+msgstr ""
+
+msgid "No Callback is associated with this Entity.\n"
+msgstr ""
+
+msgid "This object can not be moved.\n"
+msgstr "Этот объект не может быть перемещён.\n"
+
+msgid "Warning : Nax does not work with logarithmic scaling.\n"
+msgstr "Внимание: «Nax» не работает в логарифмическом режиме.\n"
+
+#, c-format
+msgid "%s: Number of columns must be %d.\n"
+msgstr "%s: Число столбцов должно быть %d.\n"
+
+#, c-format
+msgid "%s: Object must be a %s.\n"
+msgstr "%s: Объект должен быть %s.\n"
+
+#, c-format
+msgid "Line width must be greater than %d.\n"
+msgstr "Ширина линии должна быть больше чем %d.\n"
+
+#, c-format
+msgid "The line style must be greater than %d.\n"
+msgstr "Стиль линии должен быть больше чем %d.\n"
+
+#, c-format
+msgid "Wrong value for %s property: Must be in the interval [%s, %s].\n"
+msgstr ""
+"Неверное значение для %s свойства: Длжно быть в интервале [%s, %s].\n"
+
+#, c-format
+msgid "The mark size must be greater or equal than %d.\n"
+msgstr "Размер маркера должен быть больше или равен %d.\n"
+
+#, c-format
+msgid "The mark size unit must be greater than %d.\n"
+msgstr "Размер блока маркера должен быть больше чем %d.\n"
+
+#, c-format
+msgid "The font size must be greater than %d.\n"
+msgstr "Размер шрифта должен быть больше чем %d.\n"
+
+msgid "Unable to load default values.\n"
+msgstr "Невозможно загрузить значения по умолчанию.\n"
+
+#, c-format
+msgid "Figure name may not contains any %% character, except a single %%d.\n"
+msgstr ""
+"Название рисунка не может содержать любых %% символов, исключая одиночные "
+"%%d.\n"
+
+msgid "Handle is not a SubWindow.\n"
+msgstr ""
+
+#, c-format
+msgid "Number of columns must be %d (%d if %s coordinate).\n"
+msgstr "Столбцов должно быть %d (%d если %s координата).\n"
+
+#, c-format
+msgid "Number of elements must be %d (%d if %s coordinate).\n"
+msgstr "Элементов должно быть %d (%d если %s координата).\n"
+
+#, c-format
+msgid "Number of elements must be %d (%d if z coordinate )\n"
+msgstr "Элементов должно быть %d (%d если z координата).\n"
+
+msgid "Unhandled data field\n"
+msgstr ""
+
+#, c-format
+msgid "Number of columns must be %d.\n"
+msgstr "Элементов должно быть %d.\n"
+
+#, c-format
+msgid "%s: please use %s instead.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can't enable a void event handler.\n"
+msgstr ""
+
+#, c-format
+msgid "%s should be a vector of double.\n"
+msgstr ""
+
+msgid "Ticks location and label vectors must have the same size.\n"
+msgstr ""
+
+#, c-format
+msgid "%s should be a string vector.\n"
+msgstr "%s должен быть вектором-строкой.\n"
+
+#, c-format
+msgid "Unknown property: %s.\n"
+msgstr "Неизвестное свойство: %s.\n"
+
+msgid "Error accessing alignment property.\n"
+msgstr ""
+
+#, c-format
+msgid "%s property does not exist for this handle.\n"
+msgstr "свойство %s не существует у этого идентификатора.\n"
+
+#, c-format
+msgid "%s undefined for this object.\n"
+msgstr "%s неопределено для этого объекта.\n"
+
+#, c-format
+msgid "%s property only exists for %s surfaces.\n"
+msgstr "свойство %s существует только для %s поверхностей.\n"
+
+#, c-format
+msgid "%s: No more memory."
+msgstr "%s: Недостаточно памяти."
+
+#, c-format
+msgid "%s property undefined for this object.\n"
+msgstr "свойство %s не определено для этого объекта.\n"
+
+#, c-format
+msgid "%s does not exist for this handle.\n"
+msgstr "%s не существует для этого идентификатора.\n"
+
+#, c-format
+msgid "%s is not correctly defined.\n"
+msgstr "%s некорректно определено.\n"
+
+#, c-format
+msgid ""
+"Warning: %s use is deprecated and no more taken into account, use %s "
+"property to edit Axes color.\n"
+msgstr ""
+"Предупреждение: использование %s является устаревшим и больше не "
+"принименятся, используйте свойство %s для изменения цвета осей.\n"
+
+#, c-format
+msgid "%s property undefined for this handle.\n"
+msgstr "свойство %s неопределено для этого идентификатора.\n"
+
+#, c-format
+msgid "%s property does not exist for this label.\n"
+msgstr "свойство %s не существует у этой метки.\n"
+
+#, c-format
+msgid "Incompatible type for property %s.\n"
+msgstr "Несовместимый тип свойства %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s','%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидались '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"Incompatible type for property %s: Single character string expected.\n"
+msgstr "Несовместимый тип свойства %s: Ожидалась односимвольная строка.\n"
+
+#, c-format
+msgid "Wrong value for property %s: value must be '%s' or '%s'.\n"
+msgstr "Неверное значение свойства %s: значение должно быть '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input argument: '%s' or '%s' expected.\n"
+msgstr "%s: Неверный входной аргумент: Ожидался '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong value: '%s' or '%s' expected.\n"
+msgstr "Неверное значение: Ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Неверный входной аргумент #%d: Ожидался '%s' или '%s'.\n"
+
+#, c-format
+msgid "Wrong value for input argument #%d: Between %d to %d expected.\n"
+msgstr "Неверное значение входного аргумента #%d: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "Wrong size for argument #%d: %d elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected."
+msgstr ""
+
+#, c-format
+msgid "Wrong value for property '%s': smaller values expected.\n"
+msgstr "Неверное значение свойства '%s': ожидалось меньшее значение.\n"
+
+#, c-format
+msgid ""
+"WARNING: '%s' property can not be modified if the %s is docked with other "
+"elements.\n"
+msgstr ""
+
+#, c-format
+msgid "%s must be set to '%s' or '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Incompatible value for property %s: Must be %d, %d, %d or %d.\n"
+msgstr "Несовместимое значение свойчтва %s: Должно быть %d, %d, %d или %d.\n"
+
+#, c-format
+msgid "Wrong value for argument: '%s' or '%s' expected.\n"
+msgstr "Неверное значение аргумента: Ожидалось '%s' или '%s'.\n"
+
+msgid "Children property can not be modified directly.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument must be a vector of size %d.\n"
+msgstr "Аргумент должен быть вектором размером %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: Неверный тип входного аргумента #%d: Ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %d or %d expected.\n"
+msgstr "%s: Неверный тип входного аргумента #%d: ожидался %d или %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %d, %d, %d, %d or %d expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: ожидался %d, %d, %d, %d или %d.\n"
+
+#, c-format
+msgid "%s: No more memory\n"
+msgstr "%s: Недостаточно памяти\n"
+
+#, c-format
+msgid "Warning: %s property is only used in 3D mode.\n"
+msgstr "Предупреждение: Свойство %s используется только в 3D режиме.\n"
+
+#, c-format
+msgid ""
+"Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"
+msgstr ""
+"Неверный размер входного аргумента #%d: Ожидалось вещественное число или "
+"идентификатор 'Figure'.\n"
+
+#, c-format
+msgid "'%s' handle does not or no longer exists.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong type for input argument #%d: A real or a '%s' handle expected.\n"
+msgstr ""
+"Неверный тип входного аргумента #%d: Ожидалось вещественное число или "
+"идентификатор '%s'.\n"
+
+msgid "Unable to create requested figure: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"
+msgstr ""
+"Неверный размер аргумента #%d: Ожидался %s, %s, %s, %s, %s или матрица %s.\n"
+
+#, c-format
+msgid "Argument #%d must have %d elements.\n"
+msgstr "У аргумента #%d должно быть %d элементов.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d and #%d: Incompatible length.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d, #%d and #%d: Incompatible length.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for arguments #%d and #%d: Should be >= %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Wrong size for %s element: A %d-by-%d matrix or a vector of size %d "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Can not change the %s of graphic object: its type is %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value: Vector is not monotonous.\n"
+msgstr ""
+
+msgid "Wrong type for input argument: Tlist expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for input argument: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Value must be %d to set default values.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for %s property: Vector of size %d expected.\n"
+msgstr "Неверный размер свойства %s: Ожидался вектор размером %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+msgid ""
+"Old graphic mode is no longer available. Please refer to the set help page.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for property %s: An Integer between %d and %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for argument: %s or %s expected.\n"
+msgstr "Неверный размер аргумента: Ожидалось %s или %s.\n"
+
+#, c-format
+msgid "Wrong value for argument: %d (no grid) or number of color expected.\n"
+msgstr ""
+"Неверное значение аргумента: Ожидалось %d (не сеть) или число цветов.\n"
+
+msgid "Color outside of color map boundaries.\n"
+msgstr ""
+
+#, c-format
+msgid "%s can only be set on %s objects.\n"
+msgstr "%s может быть задано только на %s объектах.\n"
+
+#, c-format
+msgid "You must first specify an %s for this object.\n"
+msgstr "Вначале вы должны указать %s для этого объекта.\n"
+
+#, c-format
+msgid ""
+"Under interpolated color mode the column dimension of the color vector must "
+"match the number of points defining the line (which must be %d or %d).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента #%d: Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"%s Invalid dimension of the assigned handle, expected dimension is %d.\n"
+msgstr ""
+"%s Неверное измерение заданного идентификатора, ожидаемое измерение - %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument: %d or %d expected.\n"
+msgstr "%s: Неверное значение аргумента: Ожидалось %d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument: '%s' or '%s' expected.\n"
+msgstr "%s: Неверное значение аргумента: Ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid ""
+"Error: data_bounds on %s axis must be strictly positive to switch to "
+"logarithmic mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"
+msgstr ""
+
+msgid "Parent property can not be modified directly.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for %s property: Must be between %d and %d.\n"
+msgstr "Неверное значение свойства %s: Должно быть между %d и %d.\n"
+
+#, c-format
+msgid "Value must have %d elements (%d if in 3D).\n"
+msgstr "У значения должно быть %d элементов (%d если в 3D).\n"
+
+#, c-format
+msgid "%s cannot be set in this case.\n"
+msgstr "%s не может быть задано в этом случае.\n"
+
+#, c-format
+msgid "Wrong value for input argument: '%s' or '%s' expected.\n"
+msgstr "Неверное значение входного аргумента: ожидалось '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента: Ожидалось '%s', '%s' или '%s'.\n"
+
+#, c-format
+msgid "%s must be a 2D vector.\n"
+msgstr "%s должно быть 2D вектром.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Row vector expected.\n"
+msgstr "%s: Неверный тип входного аргумента #%d: Ожидался вектор-строка.\n"
+
+#, c-format
+msgid "Value must have at least %d elements.\n"
+msgstr "Значение должно быть минимум из %d элементов.\n"
+
+#, c-format
+msgid "Wrong value for argument: %s or %s expected.\n"
+msgstr "Неверное значение аргумента: Ожидалось %s или %s.\n"
+
+#, c-format
+msgid "Wrong value for %s: '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Error: Bad size in %s ; you must first increase the size of the %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning: %s has been set by user ; you must first increase the size of the "
+"%s string vector before switching to the new %s mode.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected."
+msgstr ""
+
+msgid "Can not set directly a label object.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument #%d must have %d columns.\n"
+msgstr ""
+
+#, c-format
+msgid "This handle has no %s property.\n"
+msgstr ""
+
+#, c-format
+msgid "Bad input, %s should be a row or column vector.\n"
+msgstr ""
+
+msgid "Wrong size for input vector.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный тип входного аргумента #%d: Ожидался вектор.\n"
+
+#, c-format
+msgid "Wrong size for property %s: A vector of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument must be a vector of size %d (or %d in 2d).\n"
+msgstr "Аргумент должен быть вектором размером %d (или %d в 2d).\n"
+
+#, c-format
+msgid ""
+"WARNING: Wrong value for property %s: indices oustside the colormap will be "
+"clamped.\n"
+msgstr ""
+
+#, c-format
+msgid "Impossible: %s must be freed before re-allocating"
+msgstr "Ошибка: %s должен быть освобожден прежде перераспределения"
+
+#, c-format
+msgid "%s: x vector is not monotonous.\n"
+msgstr "%s: x - немонотонный вектор.\n"
+
+msgid "Scilab Graphics module not installed.\n"
+msgstr "Графический модуль Scilab не установлен.\n"

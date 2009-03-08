@@ -13,13 +13,16 @@
 #ifndef __GETFILESDICTIONARY_H__
 #define __GETFILESDICTIONARY_H__
 
+#include "BOOL.h"
+
 /**
 * get files dictionary
 * @param[in] some chars
 * @param[out] size of returned array
+* @param[in] returns with the full path name
 * @return array of strings
 */
-char **getfilesdictionary(char *somechars,int *sizearray);
+char **getfilesdictionary(char *somechars,int *sizearray,BOOL fullpath);
 
 #endif /* __GETFILESDICTIONARY_H__ */
 /*--------------------------------------------------------------------------*/ 

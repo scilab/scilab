@@ -270,6 +270,7 @@ public class SwingScilabMenu extends JMenu implements SimpleMenu {
 		/* (Des)Activate the callback */ 
 		if (callback != null) {
 			if (status) {
+				removeMouseListener(customedMouseListener); /* To be sure the callback is not added two times */
 				addMouseListener(customedMouseListener);
 			} else {
 				removeMouseListener(customedMouseListener);

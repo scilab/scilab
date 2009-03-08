@@ -178,13 +178,13 @@ set colorpref "$bgcolors $fgcolors"
 # those are the preferences which are going to be saved
 set listofpref "$colorpref wordWrap \
        WMGEOMETRY WMSTATE printCommand indentspaces tabsizeinchars \
-       usekeywordindent \
-       filenamesdisplaytype maxrecentfiles scilabSingleQuotedStrings \
-       tabinserts lang completionbinding showContinuedLines \
-       filebackupdepth bindstyle doubleclickscheme colorizeenable \
-       windowsmenusorting linenumbersmargins ScilabErrorMessageBox \
-       colorizeuserfuns showclosureXcross exitwhenlastclosed"
-set listofpref_list { listofrecent textFont menuFont }
+       usekeywordindent filenamesdisplaytype maxrecentfiles maxrecentencodings \
+       scilabSingleQuotedStrings tabinserts lang completionbinding \
+       showContinuedLines filebackupdepth bindstyle doubleclickscheme \
+       colorizeenable windowsmenusorting linenumbersmargins \
+       ScilabErrorMessageBox colorizeuserfuns showclosureXcross \
+       exitwhenlastclosed autodetectencodinginxmlfiles"
+set listofpref_list { listofrecentfiles listofrecentencodings textFont menuFont }
 
 # default options which can be overriden
 set wordWrap "none"
@@ -220,7 +220,9 @@ set tabsizeinchars 4
 set usekeywordindent 1  ; # use smart keyword indentation: 0 (no) or 1 (yes)
 set filenamesdisplaytype "pruned"  ;# "pruned" or "full" or "fullifambig"
 set maxrecentfiles 15
-set listofrecent [list]    ;# always full filenames here
+set maxrecentencodings 5
+set listofrecentfiles [list]    ;# always full filenames here
+set listofrecentencodings [list]
 set scilabSingleQuotedStrings "yes"
 set tabinserts "spaces"    ;# "spaces" or "tabs"
 set completionbinding "Control-Tab"
@@ -235,6 +237,7 @@ set ScilabErrorMessageBox true
 set colorizeuserfuns "yes"
 set showclosureXcross true
 set exitwhenlastclosed false
+set autodetectencodinginxmlfiles true
 
 # End of saved preferences
 #############
@@ -296,6 +299,10 @@ set dndinitiated "false"
 # frame pathname in which $textarea is packed, or "none" if it is not packed
 array unset pwframe
 
+# default encoding is the system native encoding
+set defaultencoding [encoding system]
+set currentencoding $defaultencoding
+
 #############
 # source the user preferences file if any
 # this must happen after the locale selection from Scilab's getlanguage() above
@@ -327,6 +334,13 @@ if {[lsearch $menuFont "-size"] != -1} {
 #############
 # Additional packages
 
+# add path for finding the additional packages in Scilab binary versions
+# (bug 3806) - the paths organization is not the same in binary versions
+# and in the development tree
+# for tkdnd:   $env(SCIINSTALLPATH)/modules/tclsci/tcl
+# for msgcat:  currently no longer distributed with Scilab (bug 3805) <TODO> fix this!
+lappend ::auto_path $env(SCIINSTALLPATH)/modules/tclsci/tcl
+
 # message files and localization to avoid ifs on $lang
 if {[catch {package require msgcat}] == 0} {
     # package is present and loaded
@@ -337,7 +351,14 @@ if {[catch {package require msgcat}] == 0} {
 # the common definition can anyway be overridden by a definition in the
 # $msgsdir/$lang.msg file
     source [file join "$msgsdir" "localenames.tcl"]
-    ::msgcat::mcload $msgsdir
+    if {[::msgcat::mcload $msgsdir] == 0} {
+        # no msg file found for the current locale (bug 3781)
+        set lang "en_us"
+        ::msgcat::mclocale "$lang"
+        ::msgcat::mcload $msgsdir
+    } else {
+        # nothing to do, mcload succeeded at the first place
+    }
 } else {
     # package is not present, define default fallbacks
     namespace eval msgcat {
@@ -590,6 +611,14 @@ append smstRE_rep {\[} $sblRE {(?:} $sstrRE $sblRE {[,;]?} $sblRE {)+} {\]}
 # Scilab matrix of strings or string (all with no continuation dots nor comments)
 set ssmsRE {}
 append ssmsRE {(?:} $smstRE_rep {)|(?:} $sstrRE {)}
+
+###
+
+# regular expression matching the start of an XML prolog and reporting
+# an encoding name in that prolog
+# see the XML specification http://www.w3.org/TR/xml
+# see also use of this RE in proc detectencoding
+set xml_prologstart_RE_rep {<\?xml[[:blank:]]+version[[:blank:]]*=[[:blank:]]*["']1.[[:digit:]]+["'][[:blank:]]+encoding[[:blank:]]*=[[:blank:]]*["']([[:alpha:]][\w.-]+)["']}
 
 ###
 

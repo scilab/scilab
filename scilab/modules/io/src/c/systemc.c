@@ -19,6 +19,8 @@
 #include "PATH_MAX.h"
 #include "systemc.h"
 #include "tmpdir.h"
+#include "charEncoding.h"
+#include "stack-def.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include "FileExist.h"
@@ -30,7 +32,8 @@ int C2F(systemc)(char *command, int *stat)
 #ifdef _MSC_VER
 	{
 		BOOL Status=FALSE;
-		Status=CallWindowsShell(command,FALSE);
+		char szLocale[bsiz];
+		Status=CallWindowsShell(UTFToLocale(command, szLocale),FALSE);
 		if (Status)
 		{
 			*stat=(int) 0;
@@ -43,7 +46,8 @@ int C2F(systemc)(char *command, int *stat)
 #else
 	{
 		int status;
-		status=system(command);
+		char szLocale[bsiz];
+		status=system(UTFToLocale(command, szLocale));
 		*stat=(int) status;
 	}
 #endif
@@ -99,8 +103,8 @@ BOOL CallWindowsShell(char *command,BOOL WaitInput)
 		TMPDir=NULL;
 	}
 
-	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c %s && echo DOS>%s")+1)*sizeof(char) );
-	sprintf(CmdLine,"%s /a /c %s && echo DOS>%s",shellCmd,command,FileTMPDir);
+	CmdLine=(char*)MALLOC( (strlen(shellCmd)+strlen(command)+strlen(FileTMPDir)+strlen("%s /a /c \"%s\" && echo DOS>%s")+1)*sizeof(char) );
+	sprintf(CmdLine,"%s /a /c \"%s\" && echo DOS>%s",shellCmd,command,FileTMPDir);
 	if (FileExist(FileTMPDir)) DeleteFile(FileTMPDir);
 
 	if (CreateProcess(NULL, CmdLine, NULL, NULL, TRUE,0, NULL, NULL, &siStartInfo, &piProcInfo))

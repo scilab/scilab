@@ -13,11 +13,19 @@
 package org.scilab.modules.gui.utils;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
+import javax.media.opengl.GLContext;
 import javax.media.opengl.GLEventListener;
+import javax.media.opengl.GLException;
 
+import org.scilab.modules.graphic_export.ExportRenderer;
+
+import com.sun.opengl.impl.GLContextImpl;
+import com.sun.opengl.util.ImageUtil;
 import com.sun.opengl.util.Screenshot;
 
 /**
@@ -72,6 +80,9 @@ public class ImageExportRenderer implements GLEventListener {
 		// Copy buffer into exported image
 		exportedImage = Screenshot.readToBufferedImage(canvas.getWidth(), canvas.getHeight());
 		
+		//flip the screen-shot if the dump is mirrored
+		dumpFlip();
+		
 		// back to default value
 		canvas.getContext().release();
 		
@@ -103,6 +114,26 @@ public class ImageExportRenderer implements GLEventListener {
 	 */
 	public void reshape(GLAutoDrawable canvas, int x, int y, int width, int height) {
 		// nothing to do
+	}
+	
+	/**
+	 * flip the screen-shot if it's mirrored
+	 * @return result of dumpFlip (success or fail)
+	 */
+	public void dumpFlip() {
+		// check if it was the case
+		boolean needFlip;
+		try {
+			// raises an exception if hardware acceleration is on
+			needFlip = !((GLContextImpl)GLContext.getCurrent()).offscreenImageNeedsVerticalFlip();
+		} catch (GLException e) {
+			// hardware acceleration is on
+			needFlip = false;
+		}
+		if (needFlip) {
+			// flip it back
+			ImageUtil.flipImageVertically(exportedImage);
+		}
 	}
 
 }

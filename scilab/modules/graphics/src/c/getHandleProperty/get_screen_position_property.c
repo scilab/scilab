@@ -21,15 +21,11 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_screen_position_property( sciPointObj * pobj )
 {
-
-  int pos[2] ;
-  sciGetScreenPosition( pobj, &pos[0], &pos[1] ) ;
-  return sciReturnRowVectorFromInt( pos, 2 ) ;
+	return get_figure_position_property(pobj);
 }
 /*------------------------------------------------------------------------*/

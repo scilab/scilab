@@ -21,6 +21,8 @@ import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.util.StringConstants;
 
+import org.scilab.modules.completion.Completion;
+
 /**
  * @author Vincent COUVERT
  *
@@ -95,21 +97,15 @@ public class SciInputParsingManager implements InputParsingManager {
 	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
 	 */
 	public String getPartLevel(int level) {
+		String returnLine = null;
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
 
 		String lineToParse = wholeLine.substring(0, caretPos);
-
-		/* Code to emulate Scilab Parser */
-		char[] symbs = {'+', '-', '*', '/', '\\', '(', '[', ' ', '^', ',', ';', '=', '{',
-				'.', '&', '|', '\'', ']', ')', '}', ':', '"'};
-		int index = -1;
-
-		for (int i = 0; i < symbs.length; i++) {
-			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
+		if ( lineToParse.length() > 0 ) {
+			returnLine = Completion.getPartLevel(lineToParse);
 		}
-
-		return lineToParse.substring(index + 1);
+		return returnLine;
 	}
 
 	/**
@@ -119,67 +115,15 @@ public class SciInputParsingManager implements InputParsingManager {
 	 * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getPartLevel(int)
 	 */
 	public String getFilePartLevel(int level) {
+		String returnLine = null;
 		String wholeLine = getCommandLine();
 		int caretPos = getCaretPosition();
-
+		
 		String lineToParse = wholeLine.substring(0, caretPos);
-
-		/* Code to emulate Scilab Parser */
-		char[] symbs = {';', ','};
-		int index = -1;
-
-		for (int i = 0; i < symbs.length; i++) {
-			index = Math.max(index, lineToParse.lastIndexOf(symbs[i]));
+		if ( lineToParse.length() > 0 ) {
+			returnLine = Completion.getFilePartLevel(lineToParse);
 		}
-		index++;
-		if (index != 0) {
-			/* Skip all blanks following , or ; and preceeding the function name */
-			while (lineToParse.charAt(index) == ' ') {
-				index++;
-				if (index >= lineToParse.length()) {
-					return null;
-				}
-			}
-		}
-		/* Search the beginning of the path or file name */
-		/* cd toto */
-		/* cd("toto */
-		lineToParse = lineToParse.substring(index);
-		index = lineToParse.length();
-
-		/* Searching for the beginning of a white space */
-		int indexspace = lineToParse.indexOf(' ');
-		if (indexspace != -1) {
-			/* In case of more than 1 blanks, have to skip all but the last one */
-			while (lineToParse.charAt(indexspace) == ' ') {
-				indexspace++;
-				if (indexspace >= lineToParse.length()) {
-					return null;
-				}
-			}
-			/* Descrease index because last value read was not a ' ' */
-			indexspace--;
-			index = Math.min(index, indexspace);
-		}
-		/* Searching for the beginning of a character string */
-		int indexquote = lineToParse.indexOf('\'');
-		if (indexquote != -1) {
-			index = Math.min(index, indexquote);
-		}
-		/* Searching for the beginning of a character string */
-		int indexdquote = lineToParse.indexOf('\"');
-		if (indexdquote != -1) {
-			index = Math.min(index, indexdquote);
-		}
-		/* If index found in not the end of the line, add 1 to get substring beginning at the next char */
-		if (index < lineToParse.length()) {
-			index++;
-		}
-		if (index <= 0 | lineToParse.substring(index).equals("")) {
-			return null;
-		} else {
-			return lineToParse.substring(index);
-		}
+		return returnLine;
 	}
 
 	/**

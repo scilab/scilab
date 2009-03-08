@@ -37,6 +37,7 @@ proc showbptgui_bp {} {
     global bptconditiontypes bpthitconditions
     global bptsguigeom
     global currentlyopeningbptsgui
+    global Tk85
 
     # currentlyopeningbptsgui is used to prevent from a Tcl error to happen
     # when Ctrl-F9 is pressed continuously: the opening of a new bptsgui window
@@ -69,6 +70,21 @@ proc showbptgui_bp {} {
 
     # column widths in characters - arrange for a min size, and such that
     # the labels are always entirely visible
+    # <TODO> note wrt bug 3882: here mcmaxra is still used - can't see any
+    #        better solution. The width of the columns handling spinboxes must
+    #        have the size of it's longest translated label. If somebody
+    #        complains someday that chinese (or other language) labels get
+    #        truncated in the breakpoints gui dialog, I'll have to find a
+    #        solution here. For the time being, this dialog is not even
+    #        translated and the debugger is broken (bug 2789), so let's wait.
+    #        Once this is done, proc mcmaxra should be erased since no longer used
+    #        A possible solution would be to save the currently selected item in
+    #        each spinbox, search for the longest item of the spinbox, select it,
+    #        grid the spinbox, select back the item initially selected.Searching
+    #        for the longest item is more precisely gridding the item that has
+    #        max{ [font measure $item $textFont] }
+    #        See also the end of the discussion here:
+    #        http://groups.google.fr/group/comp.lang.tcl/browse_thread/thread/dfb592a3c9335b38
     set funcolwidth [mcmaxra "Function"]
     if {$funcolwidth < $maxcharinascilabname} {set funcolwidth $maxcharinascilabname}
     set lincolwidth [mcmaxra "Line"]
@@ -116,7 +132,7 @@ proc showbptgui_bp {} {
     wm withdraw $bptsgui
     wm protocol $bptsgui WM_DELETE_WINDOW {closebptsgui}
 
-    # a frame for the breakpoints list plus the vertical scrollbar
+    # a frame for the breakpoints table plus the vertical scrollbar
     frame $bptsgui.f1 ;# -bg lightblue ; $bptsgui conf -bg black
 
     # a frame for the column titles and the breakpoints properties
@@ -228,20 +244,23 @@ proc showbptgui_bp {} {
     pack $bptsgui.f1.fr -expand 0 -fill y -side right
     pack $bptsguibptlist -expand 1 -fill both 
 
-    frame $bptsgui.fb ; # contains the button at the bottom
+    frame $bptsgui.fb ; # contains the buttons at the bottom
 
-    set bestwidth [mcmaxra "&Help" "&Close"]
     set buttonHelp $bptsgui.fb.buttonHelp
     eval "button $buttonHelp [bl "&Help"] \
-            -command \"helpbptsgui\" \
-            -font \[list $menuFont\] -width $bestwidth"
+            -command \"helpbptsgui\"  -font \[list $menuFont\]"
     set buttonClose $bptsgui.fb.buttonClose
     eval "button $buttonClose [bl "&Close"] \
-            -command \"closebptsgui\" \
-            -font \[list $menuFont\] -width $bestwidth"
-    pack $buttonHelp $buttonClose -padx 40 -side left
+            -command \"closebptsgui\" -font \[list $menuFont\]"
+    grid $buttonHelp  -row 0 -column 0 -sticky we -padx 20
+    grid $buttonClose -row 0 -column 1 -sticky we -padx 20
+    grid columnconfigure $bptsgui.fb 0 -uniform 1
+    grid columnconfigure $bptsgui.fb 1 -uniform 1
+    if {$Tk85} {
+        grid anchor $bptsgui.fb center
+    }
 
-    pack $bptsgui.fb -expand 0 -fill none -pady 5 -side bottom
+    pack $bptsgui.fb -expand 1 -fill x -pady 5 -side bottom
     pack $bptsgui.f1 -expand 1 -fill both
 
     bind $bptsgui <Alt-[fb $buttonHelp]> "$buttonHelp invoke"

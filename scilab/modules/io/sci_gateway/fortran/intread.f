@@ -13,9 +13,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 c     
       integer top2
       integer ftyp,fmttyp,mode(2)
-      logical opened,eptover
+      logical opened
       integer iadr,sadr
-      character bu1*(bsiz),bu2*(bsiz)
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1

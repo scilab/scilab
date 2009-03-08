@@ -22,7 +22,14 @@ s1=qld(Q,p,C,b,ci,cs,me);
 if norm(s1-[7.89465359259093979;4.45660600662314366])>1d-10 then pause,end
 
 
-
+//
+// Min   1/2 x^T [0.5 -1] x 
+//               [-1   3]
+//
+// with [1 1] x = 1
+//      0 <= x1 <= +8
+//      0 <= x2 <= +8
+//
 Q = [0.5 -1; -1 3]; //positive-defined
 p = [0; 0];
 C = [1 1];
@@ -33,5 +40,6 @@ me = 1;
 x0 = [0.5; 0.5];
 tol = 1e-8;
 
-[x_qld,lagr_qld,info] = qld(Q,p,C,b,ci,cs,me,tol);
-if norm(x_qld-[8;3]/11)>1d-10 then pause,end
+[xcomputed,lagr_qld,info] = qld(Q,p,C,b,ci,cs,me,tol);
+xexpected = [8;3]/11;
+if norm(xcomputed-xexpected)>1d-10 then pause,end

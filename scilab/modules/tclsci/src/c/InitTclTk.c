@@ -11,6 +11,7 @@
 *
 */
 
+
 #include <string.h>
 #ifndef _MSC_VER
 #include <dirent.h>
@@ -30,7 +31,6 @@
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
 #include "PATH_MAX.h"
-#include "fromjava.h"
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 
@@ -51,8 +51,8 @@ static void *DaemonOpenTCLsci(void* in)
 {
 	char *SciPath=NULL;
 	char TkScriptpath[PATH_MAX];
-	char MyCommand[2048];
-	BOOL tkStarted=TRUE;
+	char MyCommand[2048]; /* @TODO: Check for buffer overflow */
+	BOOL tkStarted=FALSE;
 
 #ifndef _MSC_VER
 	DIR *tmpdir=NULL;
@@ -128,24 +128,30 @@ static void *DaemonOpenTCLsci(void* in)
 		if ( Tcl_Init(getTclInterp()) == TCL_ERROR)
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"),Tcl_GetStringResult(getTclInterp()));
 		}
 		releaseTclInterp();
-
-		if ( Tk_Init(getTclInterp()) == TCL_ERROR)
-		{
-			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),getTclInterp()->result);
-			tkStarted=FALSE;
+		if (getenv("SCI_DISABLE_TK")==NULL) { 
+			/* When SCI_DISABLE_TK is set in the env disable the TK init 
+			 * process. It is causing issues when Scilab is 
+			 * used through ssh.  */
+		  if ( Tk_Init(getTclInterp()) == TCL_ERROR)
+		    {
+		      releaseTclInterp();
+		      Scierror(999,_("Tcl Error: Error during the TK initialization (Tk_Init): %s\n"),Tcl_GetStringResult(getTclInterp()));
+		    }else{
+				tkStarted=TRUE;
+			}
+		  releaseTclInterp();
 		}
 
-		releaseTclInterp();
+
 		sprintf(MyCommand, "set SciPath \"%s\";",SciPath);
 
 		if ( Tcl_Eval(getTclInterp(),MyCommand) == TCL_ERROR  )
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: %s\n"),Tcl_GetStringResult(getTclInterp()));
 		}
 
 		releaseTclInterp();
@@ -161,7 +167,7 @@ static void *DaemonOpenTCLsci(void* in)
 		if ( Tcl_EvalFile(getTclInterp(),TkScriptpath) == TCL_ERROR  )
 		{
 			releaseTclInterp();
-			Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath, getTclInterp()->result);
+			Scierror(999,_("Tcl Error: Error during the Scilab/TK init process. Error while loading %s: %s\n"),TkScriptpath,Tcl_GetStringResult(getTclInterp()));
 		}
 		releaseTclInterp();
 	}

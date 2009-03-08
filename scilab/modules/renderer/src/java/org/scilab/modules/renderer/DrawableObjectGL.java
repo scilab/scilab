@@ -14,6 +14,7 @@
 package org.scilab.modules.renderer;
 
 import javax.media.opengl.GL;
+import javax.media.opengl.GLException;
 
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
@@ -47,7 +48,6 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	public void clean(int parentFigureIndex) {
 		super.clean(parentFigureIndex);
-		setFigureIndex(parentFigureIndex);
 		updateGLContext();
 		clearDisplayList();
 	}
@@ -127,6 +127,12 @@ public abstract class DrawableObjectGL extends ObjectGL {
 
 		// draw the recorded display list
 		displayDL();
+		
+		// GL_OUT_OF_MEMORY may occur during the display of the DL
+		if (getGL().glGetError() != GL.GL_NO_ERROR) {
+			// probably no more memory.
+			throw new GLException("Out of memory");
+		}
 	}
 	
 	/**
@@ -148,6 +154,17 @@ public abstract class DrawableObjectGL extends ObjectGL {
 	 */
 	protected int getDlIndex() {
 		return dlIndex;
+	}
+	
+	/**
+	 * This function is used to know if the object is using
+	 * some OpenGL ressources that need to be released when the object is destroyed
+	 * This function will be called from outside the OpenGL thread so should not contain any
+	 * OpenGL call.
+	 * @return true if the object contains such ressources, for DrawableObject it is a display list
+	 */
+	public boolean isUsingOGLResources() {
+		return (dlIndex != GLTools.UNINIT_DL_INDEX);
 	}
 	
 }

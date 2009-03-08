@@ -89,7 +89,7 @@ function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
       // Ask for filename
       format_mask = '*.' + exp_format // for example: '*.png' or '*.eps'
       dialog_title = 'Save ' + exp_format + ' file as...'
-      fname = xgetfile(format_mask, title = dialog_title)
+      fname = getfile(format_mask, title = dialog_title)
       
       // Exit if user cancelled
       if fname == "" then return; end

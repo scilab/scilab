@@ -89,28 +89,35 @@
       <varlistentry>
         <term>font_style: </term>
         <listitem>
-          <para>Seven differents fonts are available : "Courrier", "Symbol",
-        "Times", "Times Italic", "Times Bold", "User defined". The font_size
-        property is an index in [0 6] which is associated to the previous font
-        names.</para>
+          <para>
+		    Specifies the font used to display the label.
+		    This is a positive integer referecing one of the loaded fonts.
+			Its value must be between 0, referecing the first font,
+			and the number of loaded fonts minus one, referencing the last font.
+			For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
+		  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>font_size: </term>
         <listitem>
-          <para>The <literal>font_size</literal> property is a real used to select the of
-          size of the text. If <literal>fractional_font</literal> property is <literal>"off"</literal>
-          only the integer part of the value is used.</para>
+          <para>
+		    It is a scalar specifying the displayed characters size.
+			If <literal>fractional_font</literal> property is <literal>"off"</literal>
+		 	only the integer part of the value is used.
+			For more information see <link linkend="graphics_fonts">graphics_fonts</link>.
+			</para>
         </listitem>
       </varlistentry>
       <varlistentry>
               <term>fractional_font: </term>
               <listitem>
 	        <para>
-		  This property specify whether text might be displayed using fractional font sizes.
+		  This property specify whether text is displayed using fractional font sizes.
 		  Its value must be either <literal>"on"</literal> or <literal>"off"</literal>.
 		  If <literal>"on"</literal> the floating point value of <literal>font_size</literal>
-		  is used for display. If <literal>"off"</literal> only the integer part is used.
+		  is used for display and the font is anti-aliased. If <literal>"off"</literal> only the integer part is used
+		  and the font is not smoothed.
 		</para>
               </listitem>
       </varlistentry>

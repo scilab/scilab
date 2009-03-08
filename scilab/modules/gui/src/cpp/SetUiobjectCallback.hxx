@@ -21,7 +21,7 @@ extern "C"{
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "SetUiobjectCallback.h"
 #include "UicontrolStyleToString.h"
 }

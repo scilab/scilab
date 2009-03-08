@@ -11,11 +11,16 @@
  *
  */
 
+#include <exception>
+
 #include "DrawableObjectJoGL.h"
 #include "DrawableObject.h"
+
 extern "C"
 {
 #include "GetProperty.h"
+#include "sciprint.h"
+#include "localization.h"
 }
 
 namespace sciGraphics
@@ -34,13 +39,19 @@ DrawableObjectJoGL::~DrawableObjectJoGL( void )
 /*---------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::initializeDrawing( void )
 {
-  getJavaMapper()->setFigureIndex(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())));
   getJavaMapper()->initializeDrawing(sciGetNum(sciGetParentFigure(getDrawer()->getDrawedObject())) );
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::endDrawing( void )
 {
-  getJavaMapper()->endDrawing();
+	try
+	{
+		getJavaMapper()->endDrawing();
+	}
+	catch (const std::exception & e)
+	{
+		sciprint(_("%s: No more memory.\n"),"DrawableObjectJoGL::endDrawing");
+	}
 }
 /*---------------------------------------------------------------------------------*/
 void DrawableObjectJoGL::translate(const double translation[3])

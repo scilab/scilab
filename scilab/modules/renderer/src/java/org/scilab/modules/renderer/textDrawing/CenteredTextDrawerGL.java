@@ -87,9 +87,9 @@ public class CenteredTextDrawerGL extends FixedFontTextDrawerGL {
 		double halfBoxHeight = (bbox[0].getY() - bbox[1].getY()) / 2.0;
 		
 		GL gl = getGL();
-		gl.glTranslated(textCenterPix.getX(), textCenterPix.getY(), textCenterPix.getZ());
+		gl.glTranslated(Math.round(textCenterPix.getX()), Math.round(textCenterPix.getY()), textCenterPix.getZ());
 		gl.glRotated(Math.toDegrees(rotationAngle), 0.0, 0.0, 1.0);
-		gl.glTranslated(halfCenteredBoxWidth - halfBoxWidth, halfCenteredBoxHeight - halfBoxHeight, 0.0);
+		gl.glTranslated(Math.round(halfCenteredBoxWidth - halfBoxWidth), Math.round(halfCenteredBoxHeight - halfBoxHeight), 0.0);
 		return stringPositions;
 	}
 

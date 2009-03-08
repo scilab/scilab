@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -30,7 +30,7 @@ int get_surface_color_property( sciPointObj * pobj )
   sciSurface * ppSurface = NULL ;
   if ( sciGetEntityType (pobj) != SCI_SURFACE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"surface_color") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"surface_color") ;
     return -1 ;
   }
 

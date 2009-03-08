@@ -40,14 +40,14 @@ function scicos_pal=update_scicos_pal(path,name,fname)
 	instr='\rm -f '+TMPDIR+'/'+name+'.pal'
       end
       if execstr('unix_s(instr)','errcatch')<>0 then
-	x_message(['I was not able to delete '+name+'.pal';
-		   'in '+TMPDIR+'. You must do it now!'])
+	messagebox(['I was not able to delete '+name+'.pal';
+		   'in '+TMPDIR+'. You must do it now!'],"modal","error");
       end
     end
   else
     scicos_pal=[scicos_pal;[name,fname]]
   end
   if execstr('save(''.scicos_pal'',scicos_pal)','errcatch')<>0 then
-    x_message(['I was not able to write in .scicos_pal:';lasterror()])
+    messagebox(['I was not able to write in .scicos_pal:';lasterror()],"modal","error");
   end
 endfunction

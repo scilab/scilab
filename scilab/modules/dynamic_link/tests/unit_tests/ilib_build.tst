@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
 TMP_OS_DIR=TMPDIR;
 
@@ -23,7 +25,7 @@ f1=['extern double fun2();'
     'void fun1(double *x, double *y)'
     '{*y=fun2(*x)/(*x);}'];
 
-mputl(f1,TMP_DIR+filesep()+'fun1.c')
+mputl(f1,TMP_DIR+filesep()+'fun1.c');
 
 f2=['#include <math.h>'
     'double fun2(double x)'
@@ -45,7 +47,7 @@ i=['#include ""stack-c.h""'
    '  LhsVar(1) = 1;'
    '  return 0;'
    '}'];
-mputl(i,TMP_DIR+filesep()+'intfun1.c')
+mputl(i,TMP_DIR+filesep()+'intfun1.c');
 
 
 //creating the shared library (a gateway, a Makefile and a loader are 

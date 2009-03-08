@@ -26,7 +26,7 @@ int SetUicontrolFontUnits(sciPointObj* sciObj, size_t stackPointer, int valueTyp
       if(nbCol != 1 || nbRow == 0)
         {
           /* Wrong string size */
-          sciprint(_("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
+          Scierror(999, _("Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
       
@@ -55,7 +55,7 @@ int SetUicontrolFontUnits(sciPointObj* sciObj, size_t stackPointer, int valueTyp
       else
         {
           /* Wrong string format */
-          sciprint(_("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
+          Scierror(999, _("Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
           return SET_PROPERTY_ERROR;
         }
 
@@ -64,8 +64,7 @@ int SetUicontrolFontUnits(sciPointObj* sciObj, size_t stackPointer, int valueTyp
   else
     {
       /* Wrong datatype */
-      sciprint(_("Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
-
+      Scierror(999, _("Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"), "FontUnits", "points", "normalized", "inches", "centimeters", "pixels");
       return SET_PROPERTY_ERROR;
     }
 

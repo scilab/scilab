@@ -4,7 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-function r=Err(x),r=norm(x,1),endfunction
+function r=Err(x)
+  r=norm(x,1)
+endfunction
 rand('normal')
 
 //==========================================================================
@@ -32,7 +34,8 @@ if execstr('svd([%i %i;%nan 3])','errcatch')==0 then pause,end
 
 //Small dimension
 //---------------
-A=rand(3,5);Ac=A+%i*rand(A);
+A=rand(3,5);
+Ac=A+%i*rand(A);
 
 //Real Case
 [U,S,V]=svd(A);
@@ -70,7 +73,8 @@ if Err(U*S*V'-Ac)>200*%eps then pause,end
 
 //Large dimension
 //---------------
-A=rand(150,60);Ac=A+rand(A)*%i;
+A=rand(150,60);
+Ac=A+rand(A)*%i;
 //Real Case
 [U,S,V]=svd(A);
 if Err(U*S*V'-A)>10000*%eps then pause,end
@@ -111,7 +115,7 @@ if Err(U*S*V'-Ac)>10000*%eps then pause,end
 if svd([])<>[] then pause,end
 if svd([],"e")<>[] then pause,end
 
-[U,S]=svd([])
+[U,S]=svd([]);
 if U<>[]|S<>[]  then pause,end
 [U,S,V]=svd([]);
 if U<>[]|S<>[]|V<>[]  then pause,end
@@ -369,7 +373,4 @@ if Err(U-U1)>5000*%eps  then pause,end
 if Err(V-V1) >5000*%eps  then pause,end
 if rk<>30 then pause,end
 
-function c=cond(A)
-  if A==[] then c=1,else S=svd(A);c=S($)/S(1),end
-endfunction
 

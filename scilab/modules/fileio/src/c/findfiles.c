@@ -1,43 +1,51 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
-/*--------------------------------------------------------------------------*/ 
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2007 - INRIA - Allan CORNET
+* ...
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-	#include <Windows.h>
+#include <Windows.h>
 #else
-	#include <sys/types.h>
-	#include <dirent.h>
+#include <sys/types.h>
+#include <dirent.h>
+#include <errno.h>
+#include "localization.h"
 #endif
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "findfiles.h"
 #include "MALLOC.h"
 #include "BOOL.h"
-/*--------------------------------------------------------------------------*/ 
+#include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename ,char *filespec);
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-char **findfiles(char *path,char *filespec,int *sizeListReturned)
+char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
-	char **ListFiles=NULL;
-	char *strPattern=NULL;
+	char **ListFiles = NULL;
+	char *strPattern = NULL;
 	HANDLE hFile;
 	WIN32_FIND_DATA FileInformation;
 	int nbElements=0;
 
-	strPattern=(char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
-	sprintf(strPattern,"%s/%s",path,filespec);
+
+	strPattern = (char*)MALLOC(sizeof(char)*(strlen(path)+strlen(filespec)+8));
+	sprintf(strPattern,"%s/%s", path, filespec);
 
 	hFile = FindFirstFile(strPattern, &FileInformation);
 	if (strPattern) {FREE(strPattern);strPattern=NULL;}
@@ -45,33 +53,34 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 	{
 		do
 		{
-			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )	
+			if ( strcmp(FileInformation.cFileName,".") && strcmp(FileInformation.cFileName,"..") )
 			{
+				char szTemp[bsiz];
+				char *utfFileName = NULL;
 				nbElements++;
-				if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-				else ListFiles=(char**)MALLOC(sizeof(char*)*(nbElements));
-				ListFiles[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(FileInformation.cFileName)+1));
-				strcpy(ListFiles[nbElements-1],FileInformation.cFileName);
+				if (ListFiles) ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+				else ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
+				utfFileName = localeToUTF(FileInformation.cFileName, szTemp);
+				ListFiles[nbElements-1] = strdup(utfFileName);
 			}
 
 		} while(FindNextFile(hFile, &FileInformation) == TRUE);
 	}
 	FindClose(hFile);
 
-	
-	*sizeListReturned=nbElements;
+	*sizeListReturned = nbElements;
 	return ListFiles;
 }
 #else
-/*--------------------------------------------------------------------------*/ 
-char **findfiles(char *path,char *filespec,int *sizeListReturned)
+/*--------------------------------------------------------------------------*/
+char **findfiles(char *path, char *filespec, int *sizeListReturned)
 {
-	char **ListFiles=NULL;
-	int nbElements=0;
-	DIR *folder=NULL;
-	struct dirent *read=NULL;
+	char **ListFiles = NULL;
+	int nbElements = 0;
+	DIR *folder = NULL;
+	struct dirent *read = NULL;
 
-	*sizeListReturned=0;
+	*sizeListReturned = 0;
 
 	folder = opendir(path);
 	if (folder)
@@ -82,24 +91,48 @@ char **findfiles(char *path,char *filespec,int *sizeListReturned)
 			{
 				if ( find_spec(read->d_name ,filespec) )
 				{
+					char *utfFileName = NULL;
+					char szTemp[bsiz];
 					nbElements++;
-					if (ListFiles) ListFiles=(char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
-					else ListFiles=(char**)MALLOC(sizeof(char*)*(nbElements));
+					if (ListFiles)
+					{
+						ListFiles = (char**)REALLOC(ListFiles,sizeof(char*)*(nbElements));
+					}
+					else
+					{
+						ListFiles = (char**)MALLOC(sizeof(char*)*(nbElements));
+					}
 
-					ListFiles[nbElements-1]=(char*)MALLOC(sizeof(char)*(strlen(read->d_name)+1));
-					strcpy(ListFiles[nbElements-1],read->d_name);
+					utfFileName = localeToUTF(read->d_name, szTemp);
+					ListFiles[nbElements-1] = strdup(utfFileName);
 				}
 			}
 		}
 		closedir(folder);
 	}
+		/*
+		 * Commented for now because some functions call it even if the 
+		 * directory does not exist.
+		 * See bug 4079
+		 else
+		 {
+		  sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+		  } */
 
-	*sizeListReturned=nbElements;
+	*sizeListReturned = nbElements;
 	return ListFiles;
 }
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
+/**
+* Check if the file matches the mask
+* '*' for all chars
+* '?' for only one
+* @TODO check if it can be optimized
+* @param filename the filename
+* @param filespec the mask
+*/
 static BOOL find_spec( char *filename ,char *filespec)
 {
 	char *any = NULL;
@@ -137,4 +170,4 @@ static BOOL find_spec( char *filename ,char *filespec)
 	return TRUE;
 }
 #endif
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

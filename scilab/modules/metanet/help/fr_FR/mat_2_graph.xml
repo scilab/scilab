@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,90 +10,122 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mat_2_graph">
+<refentry version="5.0-subset Scilab" xml:id="mat_2_graph" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>mat_2_graph</refname>
-    <refpurpose> graphe à partir de matrice d'incidence sommets-arcs ou sommets-sommets  </refpurpose>
+
+    <refpurpose>graphe Ã  partir de matrice d'incidence sommets-arcs ou
+    sommets-sommets</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>g = mat_2_graph(a,oriented,[mat])</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>a  </term>
+        <term>a</term>
+
         <listitem>
-          <para>matrice creuse d'incidence sommets-arcs ou  sommets-sommets
-</para>
+          <para>matrice creuse d'incidence sommets-arcs ou
+          sommets-sommets</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>orienté  </term>
+        <term>orientÃ©</term>
+
         <listitem>
-          <para>entier, 0 (graphe non-orienté ) ou 1 (graphe orienté)
-</para>
+          <para>entier, 0 (graphe non-orientÃ© ) ou 1 (graphe orientÃ©)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>mat  </term>
+        <term>mat</term>
+
         <listitem>
-          <para>chaîne optionnelle, 'node-arc' ou 'node-node'
-</para>
+          <para>chaÃ®ne optionnelle, <literal>'node-arc'</literal> ou<literal>
+          'node-node' </literal></para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>g  </term>
+        <term>g</term>
+
         <listitem>
-          <para>graphe (liste)
-</para>
+          <para>graphe (liste)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>mat_2_graph</literal> calcule le graphe <literal>g</literal> correspondant à la matrice creuse d'incidence sommets-arcs ou 
-    sommets-sommets <literal>a</literal>.
-    Vérification est faite que <literal>a</literal> est une matrice d'incidence sommets-arcs ou 
-    sommets-sommets d'un graphe orienté (<literal>orienté = 1</literal>) ou non-orienté 
-    (<literal>non-orienté = 0</literal>).
-    Si l'argument optionnel <literal>mat</literal> est omis ou est la chaîne de caractères 
-    <literal>'node-arc'</literal>, a doit être une matrice sommets-arcs. Si <literal>mat</literal> est la chaîne de caractères
-    <literal>'node-node'</literal>, a doit être une matrice sommets-sommets.
-  </para>
+
+    <para><literal>mat_2_graph</literal> calcule le graphe
+    <literal>g</literal> correspondant Ã  la matrice creuse d'incidence
+    sommets-arcs ou sommets-sommets <literal>a</literal>. VÃ©rification est
+    faite que <literal>a</literal> est une matrice d'incidence sommets-arcs ou
+    sommets-sommets d'un graphe orientÃ© (<literal>orientÃ© = 1</literal>) ou
+    non-orientÃ© (<literal>non-orientÃ© = 0</literal>). Si l'argument optionnel
+    <literal>mat</literal> est omis ou est la chaÃ®ne de caractÃ¨res
+    <literal>'node-arc'</literal>, a doit Ãªtre une matrice sommets-arcs. Si
+    <literal>mat</literal> est la chaÃ®ne de caractÃ¨res
+    <literal>'node-node'</literal>, a doit Ãªtre une matrice
+    sommets-sommets.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
-g=load_graph(SCI+'/demos/metanet/colored');
-show_graph(g);
+
+    <programlisting role="example">
+
+// creation d'un graphe orientÃ© avec 13 noeuds et 14 arcs.
+ta=[1  1 2 7 8 9 10 10 10 11 12 13 13];
+he=[2 10 7 8 9 7  7 11 13 12 13  9 10];
+g=make_graph('foo',1,13,ta,he);
+g.nodes.graphics.x=[40,33,29,63,146,233,75,42,114,156,237,260,159]
+g.nodes.graphics.y=[7,61,103,142,145,143,43,120,145,18,36,107,107]
+show_graph(g)
+
 a=graph_2_mat(g);
 g1=mat_2_graph(a,1);
-g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+g1.nodes.graphics.x=g.nodes.graphics.x; g1.nodes.graphics.y=g.nodes.graphics.y;
 show_graph(g1,'new');
+
 a=graph_2_mat(g,'node-node');
 g1=mat_2_graph(a,1,'node-node');
-g1('node_x')=g('node_x'); g1('node_y')=g('node_y');
+g1.nodes.graphics.x=g.nodes.graphics.x; g1.nodes.graphics.y=g.nodes.graphics.y;
 show_graph(g1,'new');
- ]]></programlisting>
+
+
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="adj_lists">adj_lists</link>
-      </member>
-      <member>
-        <link linkend="chain_struct">chain_struct</link>
-      </member>
-      <member>
-        <link linkend="graph_2_mat">graph_2_mat</link>
-      </member>
+      <member><link linkend="adj_lists">adj_lists</link></member>
+
+      <member><link linkend="chain_struct">chain_struct</link></member>
+
+      <member><link linkend="graph_2_mat">graph_2_mat</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -23,9 +23,18 @@ extern "C" {
 #include "strdup_windows.h"
 #endif
 }
-/*--------------------------------------------------------------------------*/
+
 using namespace org_scilab_modules_renderer_utils_textRendering;
 
+/*--------------------------------------------------------------------------*/
+int getNbInstalledFonts(void)
+{
+	XlFontManager * fntmgr = new XlFontManager(getScilabJavaVM());
+	int res = fntmgr->getSizeInstalledFontsName();
+	delete fntmgr;
+	return res;
+}
+/*--------------------------------------------------------------------------*/
 char **getInstalledFontsName(int *sizeArray) 
 {
 	char **returnedinstalledfontsname = NULL;

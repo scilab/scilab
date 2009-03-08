@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lincos">
+  <refnamediv>
+    <refname>lincos</refname>
+    <refpurpose>Construit par linéarisation un modèle linéaire d'équations d'état à partir d'un système dynamique décrit par un diagramme scicos</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_lincos">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_manual">Scicos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_lincos">
+    <title>Description</title>
+    <para>
+Construct a linear state-space system by linearizing a model given as a Scicos diagram.  
+</para>
+    <para>
+The output is a Scilab data structure of type continuous-time state-space linear system.  
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[
+sys= lincos(scs_m [,x0,u0 [,param] ])
+]]></programlisting>
+  </refsection>
+  <refsection id="Paramètres_lincos">
+    <title>Paramètres</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">scs_m :</emphasis> une structure de donnée scicos.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">x0 :</emphasis> un vecteur colonne. La valeur de l'état continu autour de laquelle la linéarisation est effectuée (par défaut 0).</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">u0 :</emphasis> un vecteur colonne. La valeur de l'entrée autour de laquelle la linéarisation est effectuée (par défaut 0).</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">param :</emphasis> param: une liste avec deux éléments (par defaut list(1.d-6,0)) param(1): un scalaire. Définit un niveau de perturbation pour la linéarisation; la variation suivante est utilisée : del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): un scalaire. Un temps t.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">sys :</emphasis> un système définit dans un espace d'état en temporel.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Contenudufichier_lincos">
+    <title>Contenu du fichier</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_auto/lincos.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Voiraussi_lincos">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="steadycos">steadycos - Trouve un régime établi d'un système dynamique décrit par un diagramme scicos (Fonction Scilab)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="scicos_simulate">scicos_simulate - Fonction pour éxécuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Auteurs_lincos">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

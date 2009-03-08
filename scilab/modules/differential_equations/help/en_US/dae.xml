@@ -28,7 +28,6 @@
 
     <refpurpose>Differential algebraic equations solver</refpurpose>
 
-    <para />
   </refnamediv>
 
   <refsynopsisdiv>
@@ -403,7 +402,7 @@
 
         <listitem>
           <para>real matrix . If <literal><link
-          linkend="???">%DAEOPTIONS</link>(2)=1</literal>, each column is the
+          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>, each column is the
           vector <literal>[t;x(t);xdot(t)]</literal> where
           <literal>t</literal> is time index for which the solution had been
           computed. Else <literal>y</literal> is the vector
@@ -432,7 +431,7 @@
     <para>if <literal>xdot0</literal> is given in the<literal>
     initial</literal> argumente it may be either a compatible derivative
     satisfying g(t,x0,xdot0)=0 or an approximate value . In the latter case
-    <literal><link linkend="daeoption">%DAEOPTIONS</link>(7) must be set to
+    <literal><link linkend="daeoptions">%DAEOPTIONS</link>(7) must be set to
     1.</literal></para>
 
     <para>Detailed examples using Scilab and C coded externals are given in

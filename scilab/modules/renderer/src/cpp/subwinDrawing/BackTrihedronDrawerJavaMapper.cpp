@@ -58,11 +58,6 @@ void BackTrihedronDrawerJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void BackTrihedronDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void BackTrihedronDrawerJavaMapper::setBoxParameters(int hiddenAxisColor, float thickness)
 {
   m_pJavaObject->setBoxParameters(hiddenAxisColor, thickness);

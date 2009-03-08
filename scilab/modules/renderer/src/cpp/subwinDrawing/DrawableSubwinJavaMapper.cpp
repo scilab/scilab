@@ -58,11 +58,6 @@ void DrawableSubwinJavaMapper::destroy(int parentFigureIndex)
   m_pJavaObject->destroy(parentFigureIndex);
 }
 /*--------------------------------------------------------------------------*/
-void DrawableSubwinJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*--------------------------------------------------------------------------*/
 void DrawableSubwinJavaMapper::setSubwinParameters(int subwinIndex, bool is2d)
 {
   m_pJavaObject->setSubwinParameters(subwinIndex, is2d);

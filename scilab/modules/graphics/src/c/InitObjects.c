@@ -112,8 +112,6 @@ BOOL isAxesModel(sciPointObj * pObj)
 /* DJ.A 08/01/04 */
 int C2F(graphicsmodels) (void)
 {
-  sciHandleTab * newhd1 ;
-  sciHandleTab * newhd2 ;
   sciSubWindow * ppaxesmdl = NULL ;
 
   if ((pfiguremdl = MALLOC ((sizeof (sciPointObj)))) == NULL)
@@ -129,17 +127,13 @@ int C2F(graphicsmodels) (void)
       return 0;
     }
 
-  if ((newhd1 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
-    {
-      FREE(pfiguremdl->pfeatures);
-      FREE(pfiguremdl);
-      strcpy(error_message,_("Default figure cannot be create.\n"));
-      return 0;
-    }
-  newhd1->pnext = (sciHandleTab *) NULL;
-  newhd1->pprev = (sciHandleTab *) NULL;
-  newhd1->index = (long)pfiguremdl;
-  (sciGetRelationship (pfiguremdl))->phandle = newhd1;
+	createDefaultRelationShip(pfiguremdl);
+
+	/* add the handle in the handle list */
+  if ( sciAddNewHandle(pfiguremdl) == -1 )
+  {
+    return NULL ;
+  }
 
   if (!(sciAddThisToItsParent(pfiguremdl, (sciPointObj *)NULL)))
     {
@@ -151,9 +145,6 @@ int C2F(graphicsmodels) (void)
     }
 
   sciInitSelectedSons( pfiguremdl ) ;
-
-  pFIGURE_FEATURE (pfiguremdl)->relationship.psons = (sciSons *) NULL;
-  pFIGURE_FEATURE (pfiguremdl)->relationship.plastsons = (sciSons *) NULL;
 
   /* set default properties */
   if ( InitFigureModel() < 0 )
@@ -181,17 +172,13 @@ int C2F(graphicsmodels) (void)
       strcpy(error_message,_("Default axes cannot be create.\n"));
       return 0;
     }
-  if ((newhd2 = MALLOC ((sizeof (sciHandleTab)))) == NULL)
-    {
-      FREE(paxesmdl->pfeatures);
-      FREE(paxesmdl);
-      strcpy(error_message,_("Default axes cannot be create.\n"));
-      return 0;
-    }
-  newhd2->pnext = (sciHandleTab *) NULL;
-  newhd2->pprev = (sciHandleTab *) NULL;
-  newhd2->index = (long)paxesmdl;
-  (sciGetRelationship (paxesmdl))->phandle = newhd2;
+	createDefaultRelationShip(paxesmdl);
+
+	/* add the handle in the handle list */
+  if ( sciAddNewHandle(paxesmdl) == -1 )
+  {
+    return NULL ;
+  }
 
   if (!(sciAddThisToItsParent (paxesmdl, pfiguremdl)))
     {
@@ -204,9 +191,9 @@ int C2F(graphicsmodels) (void)
 
   ppaxesmdl =  pSUBWIN_FEATURE (paxesmdl);
 
-  sciInitSelectedSons( paxesmdl ) ;
+  /*sciInitSelectedSons( paxesmdl ) ;
   ppaxesmdl->relationship.psons = (sciSons *) NULL;
-  ppaxesmdl->relationship.plastsons = (sciSons *) NULL;
+  ppaxesmdl->relationship.plastsons = (sciSons *) NULL;*/
 
   if ( InitAxesModel() < 0 )
   {
@@ -575,6 +562,8 @@ int InitAxesModel()
     ppaxesmdl->grid[i]  = -1;
   }
 
+	ppaxesmdl->gridFront = FALSE; /* draw in background */
+
   ppaxesmdl->alpha  = 0.0;
   ppaxesmdl->theta  = 270.0;
   ppaxesmdl->alpha_kp  = 45.0;
@@ -867,12 +856,16 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     return NULL ;
   }
 
+
   ppLabel = pLABEL_FEATURE( newLabel ) ;
 
   /* we must first construct the text object inside the label */
   ppLabel->text = allocateText( pParentObj, &emptyString, 1, 1,
                                 0.0, 0.0, TRUE, NULL, FALSE, NULL, NULL,
                                 FALSE, FALSE, FALSE, ALIGN_LEFT ) ;
+
+	/* RelationShip is actually stored in the text object */
+	newLabel->relationShip = ppLabel->text->relationShip;
 
   if ( ppLabel->text == NULL )
   {
@@ -896,8 +889,6 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
     FREE( newLabel  );
     return NULL ;
   }
-
-  sciInitSelectedSons( newLabel ) ;
 
   ppLabel->auto_position = TRUE;
   ppLabel->auto_rotation = TRUE;
@@ -931,7 +922,7 @@ sciPointObj * initLabel( sciPointObj * pParentObj )
 /*---------------------------------------------------------------------------------*/
 void destroyDefaultObjects( void )
 {
-  // will destroy the figure and its children (so the axes).
+  /* will destroy the figure and its children (so the axes). */
   destroyGraphicHierarchy( pfiguremdl ) ;
   pfiguremdl = NULL ;
   paxesmdl = NULL;
@@ -950,7 +941,7 @@ FigureModelData * newFigureModelData( void )
   modelData->figureHeight = 460 ;
   modelData->windowWidth  = 620 ;
   modelData->windowHeight = 590 ;
-  modelData->windowPosition[0] = 200 ;
+  modelData->windowPosition[0] = 200 ; /* Set [-1,-1] to let the os use the position */
   modelData->windowPosition[1] = 200 ;
   modelData->colorMap = NULL ;
   modelData->numColors = 0 ;
@@ -1006,4 +997,16 @@ void sciSetDefaultColorMap(sciPointObj * pFigure)
   FREE(colorMap);
 }
 /*---------------------------------------------------------------------------------*/
-
+/**
+ * @return TRUE if pObj is one of the model objects, FALSE otherwise
+ */
+BOOL isModelObject(sciPointObj * pObj)
+{
+	return pObj == pfiguremdl
+		|| pObj == paxesmdl
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_title
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_x_label
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_y_label
+		|| pObj == pSUBWIN_FEATURE(paxesmdl)->mon_z_label;
+}
+/*---------------------------------------------------------------------------------*/

@@ -21,7 +21,7 @@
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -32,13 +32,13 @@ int set_dimension_property( sciPointObj * pobj, size_t stackPointer, int valueTy
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"figure_position") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"figure_position") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow * nbCol != 2 )
   {
-    sciprint(_("Wrong size for %s property: Vector of size %d expected.\n"),"dimension",2) ;
+    Scierror(999, _("Wrong size for %s property: Vector of size %d expected.\n"),"dimension",2) ;
     return SET_PROPERTY_ERROR ;
   }
 

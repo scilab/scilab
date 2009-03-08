@@ -105,16 +105,14 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	// ============================================
 	
 	if DomReal(2) > DomReal(1) then
-		xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
-	end
-	
-	if DomReal(2) > DomReal(1) then
+		//xstring(0.1,-0.15," In yellow : the real "+StrFunc+" function")
 		xx = linspace(DomReal(1),DomReal(2),40)';
 		yy = zeros(xx);
 		zz = evstr(StrFunc+"(xx)");
 		param3d1(xx,yy,list(zz,32),theta,alpha,flag=[0,0]);
 		yellow_line = get('hdl');
 		yellow_line.thickness = 3;
+		captions(yellow_line, "the real "+StrFunc+" function", "out_lower_left");
 	end
 	
 	// Title
@@ -125,7 +123,7 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	// make axes transparent
 	my_title_axes.filled = "off";
 	
-	my_title_axes.margins = [ 0 0 0 0 ]
+	my_title_axes.margins = [ 0.08 0.08 0.08 0.08 ]
 	
 	Rs = string(R);
 	
@@ -146,7 +144,6 @@ function []=PlotCmplxFunc(R,e,TypeDomain,TypeCut,n,StrFunc,theta,alpha,DomReal)
 	my_title_axes.title.text       = the_title;
 	my_title_axes.title.font_size  = 3;
 	my_title_axes.title.font_style = 2;
-	my_title_axes.title.position   = [0.5 0.97];
 	
 	drawnow();
 	

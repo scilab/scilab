@@ -15,28 +15,7 @@
 //
 userdata = struct("dd",2);
 h=figure();
-set(h,"userdata",userdata);
-if execstr("disp(h)","errcatch")<>0 then bugmes();quit;end
+set(h,"user_data",userdata);
+if execstr("disp(h.user_data)","errcatch")<>0 then bugmes();quit;end
  
-Handle of type "Figure" with properties:
-========================================
-children: "Axes"
-figure_position = [200,200]
-figure_size = [622,594]
-axes_size = [618,471]
-auto_resize = "on"
-viewport = [0,0]
-figure_name = "Figure n°%d"
-figure_id = 0
-info_message = ""
-color_map= matrix 33x3
-pixmap = "off"
-pixel_drawing_mode = "copy"
-immediate_drawing = "on"
-background =  33
-visible = "on"
-rotation_style = "unary"
-event_handler = ""
-event_handler_enable = "off"
-user_data = struct with fields: dd
-tag = ""
+   dd: 2

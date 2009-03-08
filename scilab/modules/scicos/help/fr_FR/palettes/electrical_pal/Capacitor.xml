@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Capacitor">
+  <refnamediv>
+    <refname>Capacitor</refname>
+    <refpurpose>Condensateur électrique</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Capacitor_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contenu_Capacitor">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Capacitor">Condensateur électrique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_Capacitor">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_Capacitor">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Boîtededialogue_Capacitor">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Propriétéspardéfaut_Capacitor">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Fonctiondinterface_Capacitor">Fonction d'interface</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Capacitor">Modèle Modelica</link>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_Capacitor">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_Capacitor">
+    <title>Description</title>
+    <para>
+Un condensateur est un composant électrique ou électronique dont
+l'intérêt de base est d'avoir une capacité électrique. Son
+comportement électrique idéal est:</para>
+    <para>
+</para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Capacitor_img2_fr.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+où:
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est le courant qui traverse le composant.</para>
+      </listitem>
+      <listitem>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img4_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la tension aux bornes du composant.</para>
+      </listitem>
+      <listitem>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la capacité électrique du condensateur.</para>
+      </listitem>
+      <listitem>
+        <para><inlinemediaobject><imageobject><imagedata fileref="../../../images/Capacitor_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> est la variation de tension avec le temps.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+Le condensateur peut être utilisé pour distinguer les signaux
+haute-fréquences et basse-fréquence. Cette faculté est très utile
+dans la conception des filtres.
+
+</para>
+  </refsection>
+  <refsection id="Boîtededialogue_Capacitor">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/Capacitor_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">C (F)</emphasis>
+        </para>
+        <para> Capacitance</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Initial Voltage</emphasis>
+        </para>
+        <para> Voltage Initial</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Propriétéspardéfaut_Capacitor">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Entrées :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'p'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Sorties :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom de la variable Modelica :</emphasis> 'n'
+</para>
+            <para><emphasis role="bold">Variable</emphasis> implicite.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Paramètres :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'C'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.01
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'v'
+</para>
+            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Variable d'état :</emphasis> oui.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Nom du fichier model :</emphasis> Capacitor</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Fonctiondinterface_Capacitor">
+    <title>Fonction d'interface</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Capacitor.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="ModèleModelica_Capacitor">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/Capacitor.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

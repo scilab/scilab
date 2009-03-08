@@ -26,7 +26,6 @@
 #include "DefaultCommandArg.h"
 #include "Champ.h"
 #include "GetProperty.h"
-#include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
@@ -61,13 +60,11 @@ int sci_champ_G(char *fname,
   if (Rhs <= 0) {
     if (strcmp(fname,"champ")==0) 
     {
-      int zero=0;
-      sci_demo(fname,"champ(1:10,1:10,rand(10,10),rand(10,10),1.0);",&zero);
+      sci_demo(fname,"champ(1:10,1:10,rand(10,10),rand(10,10),1.0);", FALSE);
     }
     else if (strcmp(fname,"champ1")==0)
     {
-      int zero=0;
-      sci_demo(fname,"champ1(1:10,1:10,rand(10,10),rand(10,10),1.0);",&zero);
+      sci_demo(fname,"champ1(1:10,1:10,rand(10,10),rand(10,10),1.0);", FALSE);
     }
     return 0;
   } 
@@ -79,10 +76,9 @@ int sci_champ_G(char *fname,
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 5 )
   {
-    sciprint(_("%s: Misplaced optional argument: #%d must be at position %d\n"),
+    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d\n"),
       fname,1, 5);
-    Error(999); 
-    return(0);
+    return -1;
   }
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);

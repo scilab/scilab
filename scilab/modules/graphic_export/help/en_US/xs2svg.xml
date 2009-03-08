@@ -79,8 +79,8 @@
     scf(0)
     plot2d()
     //SVG export
-    filename='foo'; // ! no extension
-    xs2svg(0,filename)
+    filename='foo.svg'
+    xs2svg(0,filename);
   </programlisting>
   </refsection>
 
@@ -93,8 +93,6 @@
       <member><link linkend="toprint">toprint</link></member>
 
       <member><link linkend="printfigure">printfigure</link></member>
-
-      <member><link linkend="xbasimp">xbasimp</link></member>
 
       <member><link linkend="xs2bmp">xs2bmp</link></member>
 

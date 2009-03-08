@@ -284,6 +284,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -374,6 +375,8 @@ modulename = javasci
 @JAVASCI_TRUE@			$(TK_INC_PATH) \
 @JAVASCI_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes \
 @JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes
 
 @JAVASCI_TRUE@libjavasci_la_LIBADD = \
@@ -478,7 +481,7 @@ modulename = javasci
 @JAVASCI_TRUE@DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 @JAVASCI_TRUE@pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -489,11 +492,17 @@ modulename = javasci
 @JAVASCI_TRUE@MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 @JAVASCI_TRUE@MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 @JAVASCI_TRUE@TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+@JAVASCI_TRUE@pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+@JAVASCI_TRUE@DEMOS_DIR = demos
+# List of the standard directory for examples
+@JAVASCI_TRUE@EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 @JAVASCI_TRUE@JARDIR = jar/
-# JAR files
+# JAR files mask
 @JAVASCI_TRUE@JARMASK = *.jar
 # Chapter file 
 @JAVASCI_TRUE@HELP_CHAPTERDIR = help/
@@ -859,6 +868,7 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
+@JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-data-local:
 @JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@clean-local:
@@ -871,7 +881,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -937,12 +947,13 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libjavasci_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libjavasci_la_etcDATA \
 	install-libjavasci_la_includeHEADERS \
 	install-libjavasci_la_rootDATA \
 	install-libsciscipad_la_imagesDATA \
@@ -1056,7 +1067,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 @JAVASCI_TRUE@	  if test -d $(srcdir)/$$dir/; then \
 @JAVASCI_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-@JAVASCI_TRUE@		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@JAVASCI_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 @JAVASCI_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
 @JAVASCI_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 @JAVASCI_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1066,7 +1077,7 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@		    fi \
 @JAVASCI_TRUE@		  done; \
 @JAVASCI_TRUE@	  fi; \
-@JAVASCI_TRUE@	done 
+@JAVASCI_TRUE@	done
 # Install the help chapter
 @JAVASCI_TRUE@	@echo "-------- Install the help chapter (if any) --------"; \
 @JAVASCI_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1077,6 +1088,22 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 @JAVASCI_TRUE@			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 @JAVASCI_TRUE@		fi; \
+@JAVASCI_TRUE@	done
+# Install the demos & examples
+@JAVASCI_TRUE@	@echo "-------- Install demos & examples (if any) --------"; \
+@JAVASCI_TRUE@	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+@JAVASCI_TRUE@	  if test -d $(srcdir)/$$dir/; then \
+@JAVASCI_TRUE@	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+@JAVASCI_TRUE@		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+@JAVASCI_TRUE@		    if test -d "$(srcdir)/$$dir/$$file"; then \
+@JAVASCI_TRUE@			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+@JAVASCI_TRUE@			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+@JAVASCI_TRUE@		    else \
+@JAVASCI_TRUE@		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@JAVASCI_TRUE@	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+@JAVASCI_TRUE@		    fi \
+@JAVASCI_TRUE@		  done; \
+@JAVASCI_TRUE@	  fi; \
 @JAVASCI_TRUE@	done
 # Install the macros
 @JAVASCI_TRUE@	@echo "-------- Install macros (if any) --------"; \
@@ -1108,6 +1135,9 @@ uninstall-am: uninstall-libjavasci_la_etcDATA \
 # Clean macros and help (generated automatically by Scilab)
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @JAVASCI_TRUE@@NEED_JAVA_FALSE@clean-local: clean-macros
+
+@JAVASCI_TRUE@distclean-local:
+@JAVASCI_TRUE@	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 @JAVASCI_TRUE@.PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

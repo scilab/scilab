@@ -189,6 +189,19 @@ double2z(double *ptr, double *ptr77z, int size, int lda)
 } 
 
 
+//
+// z2double --
+//   Converts a memory space which stores a Fortran-like data
+//   in alternate order into the Scilab internal representation
+//   which is block-ordered.
+//   
+// Note:
+//   Fortran representation is based on alternation of real
+//   and imaginary parts, that is R1, I1, R2, I2, etc...
+//   where R is the real part and I the imaginary part.
+//   The Scilab internal representation is block-ordered, that is
+//   R1, ..., Rn, I1, ..., In.
+//
 void 
 z2double(double *ptrz, double *ptrsci, int size, int lda)
 {
@@ -199,12 +212,13 @@ z2double(double *ptrz, double *ptrsci, int size, int lda)
     Scierror(999,_("%s: No more memory.\n"),"z2double");
     return;
   }
-  
+  // Put the real parts in place and stores the imaginary parts
+  // in the array tab.
   for (i = 0; i < size; ++i) {
-    tab[i] = ptrz[2*i+1];
-    ptrsci[i] = ptrz[2*i];
+    tab[i] = ptrz[2*i+1]; // imaginary part
+    ptrsci[i] = ptrz[2*i]; // real part
   }
-
+  // Puts the imaginary parts in the imaginary block.
   memcpy(ptrsci + lda, tab, size * sizeof(double));
 
   FREE(tab);

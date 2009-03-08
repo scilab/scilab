@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "Interaction.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
@@ -32,7 +32,7 @@ int set_callbackmevent_property( sciPointObj * pobj, size_t stackPointer, int va
 {
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"callbackmevent") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"callbackmevent") ;
     return SET_PROPERTY_ERROR ;
   }
 

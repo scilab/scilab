@@ -29,7 +29,7 @@ a=gca(); a.title.font_size=3;
 drawnow();
 
 //xclick();
-x_message('click to continue');
+messagebox('click to continue',"modal");
 
 //delete(curFig);
 //curFig = scf();
@@ -40,7 +40,7 @@ xtitle("display a fem solution");
 a=gca(); a.title.font_size=3;
 drawnow();
 //xclick();
-x_message('click to continue');
+messagebox('click to continue',"modal");
 
 
 xbasc();

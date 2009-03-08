@@ -128,13 +128,13 @@ typedef enum
 /**Struct of Entity type*/
 sciEntityType;	
 
-
+struct _sciRelationShip;
 
 /**@name sciPointObj
  * Used to determine the feature and the type of the entity
  */
 typedef struct
-{/** */
+{ /** Type of the object (such as SCI_FIGURE, SCI_UICONTROL,...) */
   sciEntityType entitytype;
   /**  points to the characteristic of the structure (figure, axes...) */
   void * pfeatures;
@@ -142,29 +142,14 @@ typedef struct
   DoublyLinkedList * pObservers ;
   /** Drawing object used to actually draw the graphic handle */
   void * pDrawer ;
-}/** */
-sciPointObj;  
-
-
-/**@name sciHandleTab
- * Used to determine handles associated with the entity
- */
-typedef struct tagHandleTab
-{/** point to the structure that uses this handle */
-  sciPointObj *pointobj;	
-  /** */
-  long index;
-  /** */
-  struct tagHandleTab *pprev;
-  /** */
-  struct tagHandleTab *pnext;
-}/** */
-sciHandleTab; 
-
+	/** reference the object in the hierachy */
+	struct _sciRelationShip * relationShip;
+}
+sciPointObj;
 
 /**@name Sons
  * Used to determine the hierarchy
- sciPointObj *pointobj;
+ sciPointObj *pointobj;sciRelationShip
  sciSons     *pnext;
 */
 typedef struct tagSons
@@ -179,14 +164,13 @@ typedef struct tagSons
 /** */
 sciSons;  
 
-
 /**@name RelationShip
  * Used to determine the hierarchy
  */
-typedef struct
+typedef struct _sciRelationShip
 {
   /** is the scilab handle of THIS */
-  sciHandleTab * phandle;       
+  long handleIndex;       
   /** points to the parent structures */
   sciPointObj * pparent;	       
   /** points to the sons structures */
@@ -196,8 +180,7 @@ typedef struct
   /** the set of selected sons. List of lists for each type. Not to be used directly.*/
   DoublyLinkedList * pSelectedSon ;
 }/** */
-sciRelationShip;  
-
+sciRelationShip;
 
 
 /**@name GraphicContext
@@ -322,7 +305,6 @@ FigureModelData ;
  */
 typedef struct
 {	
-  sciRelationShip relationship;
   scigMode gmode;
   sciGraphicContext graphiccontext; /* the only property used here is background */
   sciPointObj * originalsubwin0011;
@@ -368,8 +350,6 @@ typedef enum { ALIGN_NONE = 0, ALIGN_LEFT = 1, ALIGN_CENTER = 2, ALIGN_RIGHT = 3
  */
 typedef struct
 {
-  /** */
-  sciRelationShip relationship;
   /** */
   sciFont fontcontext;
   sciGraphicContext graphiccontext; /* the only properties used by Text are foreground and background */
@@ -420,12 +400,11 @@ sciText;
 
 
 
-/**@name sciLegendPlace
- * Enumeration used to specify the title place 
+/**
+ * Enumeration used to specify the title place relative to parent subwindow
  */
 typedef enum
   {
-    /** */
     /** */
     SCI_LEGEND_IN_UPPER_LEFT = 1,
     /** */
@@ -436,6 +415,8 @@ typedef enum
     SCI_LEGEND_IN_LOWER_RIGHT = 4,
     /** */
     SCI_LEGEND_BY_COORDINATES = 5,
+		/** */
+		SCI_LEGEND_POSITION_UNSPECIFIED = 0,
     /** */
     SCI_LEGEND_OUT_UPPER_LEFT = -1,
     /** */
@@ -515,7 +496,6 @@ sciLabel ;
 
 typedef struct
 {
-  sciRelationShip relationship;
 
   /* Color property */
   double *foregroundcolor;
@@ -544,28 +524,24 @@ sciUimenu;
 
 typedef struct
 {
-  sciRelationShip relationship;
   int hashMapIndex;
 }/** */
 sciUicontextmenu;
 
 typedef struct
 {
-  sciRelationShip relationship;
   int hashMapIndex;
 }/** */
 sciWaitbar;
 
 typedef struct
 {
-  sciRelationShip relationship;
   int hashMapIndex;
 }/** */
 sciProgressionbar;
 
 typedef struct
 {
-  sciRelationShip relationship;
 
   /* Specifies if this object is visible in its parent children */
   BOOL handle_visible;
@@ -702,8 +678,6 @@ typedef struct
 {
   AXES axes;
   /** */
-  sciRelationShip relationship;
-  /** */
   scigMode gmode;
   /** */
   sciGraphicContext graphiccontext;
@@ -718,7 +692,9 @@ typedef struct
   double ZRect[6]; /* reversed for zoom only to avoid using FRect as zoom box AND computed box */ /* F.Leray 09.12.04 */
 
   char logflags[3]; /* Z has a logflag now F.Leray 03.11.04 */
-  int grid[3];
+  int grid[3]; /* Specify color of grid for each axis. If -1, no grid is drawn */
+	BOOL gridFront; /* If TRUE grid is drawn in front, if FALSE it is drawn behind other objects */
+
   /*   BOOL isaxes; */
 
   BOOL is3d;
@@ -775,8 +751,6 @@ sciSubWindow;
 typedef struct
 {
   /** */
-  sciRelationShip relationship;
-  /** */
   sciGraphicContext graphiccontext;
   /** */
   double x;
@@ -823,7 +797,6 @@ sciArc;
  */
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   double *pvx;			/* vecteur des points x doublon avec pvector je les garde pour compatiblite*/
   double *pvy;			/* vecteur des points y doublon avec pvector*/
@@ -862,7 +835,6 @@ sciPolyline;  /** */
  */
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   double x;			   /** original */
   double y;			   /** original */
@@ -901,7 +873,6 @@ sciTypeOf3D;
  */
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   double * pvecx; /* x data */
   double * pvecy; /* y data */
@@ -977,7 +948,6 @@ sciSurface;  /** */
  
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext;
   sciFont fontcontext;
   char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/  
@@ -1020,7 +990,6 @@ sciAxes;
   
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
   double *vx;  /** vx vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr1 ? No depending on the type ptype*/
   double *vy;  /** vy vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr2 ? No depending on the type ptype*/
@@ -1064,7 +1033,6 @@ sciSegs;
  
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
   
   double *pvecx;  /** vx vector of size nx **/
@@ -1102,7 +1070,6 @@ sciGrayplot;
  
 typedef struct
 {
-  sciRelationShip relationship;
   sciGraphicContext graphiccontext; 
   
   double *pvecx; /* X coordinates of nodes */
@@ -1112,9 +1079,8 @@ typedef struct
   int Nnode; /* number of nodes */
   int Ntr;   /* number of triangles */
   double zminmax[2]; /* Array of size 2 containing zmin and zmax */
-  int colminmax[2]; /*  */
-  int colout[2]; /* */
-  BOOL with_mesh;
+  int colminmax[2]; /* subset of the colormap to use */
+  int colout[2]; /* color to use when outside zmin/zmax */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
   int callbacklen; /** the length of the callback code */ 
@@ -1138,7 +1104,6 @@ sciFec;  /** */
  */
 typedef struct
 {
-  sciRelationShip relationship;
   double xmin;			   /** original xmin */
   double ymin;			   /** original ymin */
   double xmax;

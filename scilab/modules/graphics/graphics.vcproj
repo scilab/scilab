@@ -216,7 +216,7 @@
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="true"
-				EnableEnhancedInstructionSet="1"
+				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -555,6 +555,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_color_range_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_colored_property.c"
 				>
 			</File>
@@ -671,6 +675,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\get_grid_position_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\get_grid_property.c"
 				>
 			</File>
@@ -768,6 +776,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_outside_colors_property.c"
 				>
 			</File>
 			<File
@@ -1139,10 +1151,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_set_posfig_dim.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_show_pixmap.c"
 				>
 			</File>
@@ -1188,10 +1196,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xchange.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xclear.c"
 				>
 			</File>
 			<File
@@ -1287,10 +1291,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xtape.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xtitle.c"
 				>
 			</File>
@@ -1300,6 +1300,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\sciCall.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\SciHandleTab.c"
 				>
 			</File>
 			<File
@@ -1431,6 +1435,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_color_range_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_colored_property.c"
 				>
 			</File>
@@ -1539,6 +1547,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getHandleProperty\set_grid_position_property.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getHandleProperty\set_grid_property.c"
 				>
 			</File>
@@ -1636,6 +1648,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_old_style_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_outside_colors_property.c"
 				>
 			</File>
 			<File
@@ -2121,10 +2137,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_set_posfig_dim.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_show_pixmap.h"
 				>
 			</File>
@@ -2170,10 +2182,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xchange.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xclear.h"
 				>
 			</File>
 			<File
@@ -2269,10 +2277,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_xtape.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_xtitle.h"
 				>
 			</File>
@@ -2282,6 +2286,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\sciCall.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\SciHandleTab.h"
 				>
 			</File>
 			<File

@@ -204,7 +204,7 @@ void canimxy3d(scicos_block * block, int flag)
   double *u1,*u2,*u3;
   int i;
   ScopeMemory * pScopeMemory;
-  scoGraphicalObject pShortDraw,pLongDraw;
+  scoGraphicalObject pLongDraw;
   /* State Machine Control */
   switch(flag)
     {
@@ -239,36 +239,40 @@ void canimxy3d(scicos_block * block, int flag)
       //This case is activated when the simulation is done or when we close scicos
     case Ending:
       {
-	scoRetrieveScopeMemory(block->work, &pScopeMemory);
-	if(scoGetScopeActivation(pScopeMemory) == 1)
-	  {
-	    sciSetUsedWindow(scoGetWindowID(pScopeMemory));
-	    if (scoGetPointerScopeWindow(pScopeMemory) != NULL)
-	      {
-		if(scoGetLongDrawSize(pScopeMemory,0) == 0)
-		  {
-		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-		      {
-			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-			forceRedraw(pLongDraw);
-		      }
-		  }
-		else
-		  {
-		    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
-		      {
-			pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-			forceRedraw(pLongDraw);
-		      }
-		  }
-	      }
+				scoRetrieveScopeMemory(block->work, &pScopeMemory);
+				if(scoGetScopeActivation(pScopeMemory) == 1)
+				{
+					/* sciSetUsedWindow(scoGetWindowID(pScopeMemory)); */
+					/* Check if figure is still opened, otherwise, don't try to destroy it again. */
+					scoGraphicalObject figure = scoGetPointerScopeWindow(pScopeMemory);
+					if (figure != NULL)
+					{
+						if(scoGetLongDrawSize(pScopeMemory,0) == 0)
+						{
+							for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+							{
+								pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+								forceRedraw(pLongDraw);
+							}
+						}
+						else
+						{
+							for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0)/2 ; i++)
+							{
+								pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+								forceRedraw(pLongDraw);
+							}
+						}
 
-	    pShortDraw = sciGetCurrentFigure();
-	    pFIGURE_FEATURE(pShortDraw)->user_data = NULL;
-	    pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;
-	  }
-	scoFreeScopeMemory(block->work, &pScopeMemory);
-	break; //Break of the switch
+						/* pShortDraw = sciGetCurrentFigure(); */
+						/*pShortDraw = scoGetPointerScopeWindow(pScopeMemory);*/
+						/*pFIGURE_FEATURE(pShortDraw)->user_data = NULL;*/
+						/*pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0;*/
+						clearUserData(figure);
+					}
+				}
+				scoFreeScopeMemory(block->work, &pScopeMemory);
+				break; //Break of the switch
       }
       //free the memory which is allocated at each turn by some variables
  

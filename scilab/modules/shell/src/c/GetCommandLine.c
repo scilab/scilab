@@ -20,7 +20,12 @@
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
 #include "charEncoding.h"
-
+#include "zzledt.h"
+#include "GetCommandLine.h"
+#if _MSC_VER
+#include "TermReadAndProcess.h"
+#endif
+#include "stack-def.h"
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -84,12 +89,19 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      __CommandLine = localeToUTF(TermReadAndProcess());
-      #ifdef _MSC_VER
-       appendLineToScilabHistory(__CommandLine);
-     #endif
-
+		char szTempUTF[bsiz];
+      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
     }
+}
+
+/***********************************************************************/
+/*
+** used by mscanf to get a line from the Scilab console
+*/
+char *getConsoleInputLine(void)
+{
+  getCommandLine();
+  return strdup(__CommandLine);
 }
 
 /***********************************************************************/
@@ -142,8 +154,9 @@ static void *watchGetCommandLine(void *in) {
 
 /***********************************************************************/
 /*
-** Old zzledt... Called by Fortran...
-** @TODO rename that function !!!
+ * Old zzledt... Called by Fortran...
+ * @TODO rename that function !!!
+ * @TODO remove unused arg buf_size, menusflag, modex & dummy1
 */
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)

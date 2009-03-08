@@ -58,11 +58,6 @@ void PolylineFillDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void PolylineFillDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void PolylineFillDrawerJavaMapper::setBackColor(int color)
 {
   m_pJavaObject->setBackColor(color);

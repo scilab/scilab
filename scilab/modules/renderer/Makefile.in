@@ -164,9 +164,8 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 	src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 	src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 	src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-	src/jni/ScilabGraphicWindow.cpp src/jni/DrawableFigureGL.cpp \
-	src/jni/DrawableSubwinGL.cpp src/jni/DrawablePolylineGL.cpp \
-	src/jni/DrawableRectangleGL.cpp \
+	src/jni/DrawableFigureGL.cpp src/jni/DrawableSubwinGL.cpp \
+	src/jni/DrawablePolylineGL.cpp src/jni/DrawableRectangleGL.cpp \
 	src/jni/RectangleFillDrawerGL.cpp \
 	src/jni/RectangleLineDrawerGL.cpp \
 	src/jni/RectangleMarkDrawerGL.cpp \
@@ -406,7 +405,6 @@ am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
 @GUI_TRUE@	libscirenderer_la-RectangleFillDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleLineDrawerJavaMapper.lo \
 @GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-ScilabGraphicWindow.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableFigureGL.lo \
 @GUI_TRUE@	libscirenderer_la-DrawableSubwinGL.lo \
 @GUI_TRUE@	libscirenderer_la-DrawablePolylineGL.lo \
@@ -758,6 +756,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -895,7 +894,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
 @GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-@GUI_TRUE@src/jni/ScilabGraphicWindow.cpp \
 @GUI_TRUE@src/jni/DrawableFigureGL.cpp \
 @GUI_TRUE@src/jni/DrawableSubwinGL.cpp \
 @GUI_TRUE@src/jni/DrawablePolylineGL.cpp \
@@ -1092,7 +1090,8 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@				-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/elementary_functions/includes/
+@GUI_TRUE@				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+@GUI_TRUE@				-I$(top_srcdir)/modules/gui/includes/
 
 @GUI_TRUE@libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
@@ -1142,7 +1141,6 @@ top_srcdir = @top_srcdir@
 @GUI_TRUE@src/jni/RectangleFillDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/RectangleLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/RectangleMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/ScilabGraphicWindow.giws.xml \
 @GUI_TRUE@src/jni/SegsArrowDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SegsLineDrawerGL.giws.xml \
 @GUI_TRUE@src/jni/SegsMarkDrawerGL.giws.xml \
@@ -1227,7 +1225,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -1238,11 +1236,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -1517,7 +1521,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RendererFontManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RenderingChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-RightYAxisPositioner.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-SegsArrowDrawerJoGL.Plo@am__quote@
@@ -2154,13 +2157,6 @@ libscirenderer_la-RectangleMarkDrawerJavaMapper.lo: src/cpp/rectangleDrawing/Rec
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp' object='libscirenderer_la-RectangleMarkDrawerJavaMapper.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-RectangleMarkDrawerJavaMapper.lo `test -f 'src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp' || echo '$(srcdir)/'`src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp
-
-libscirenderer_la-ScilabGraphicWindow.lo: src/jni/ScilabGraphicWindow.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-ScilabGraphicWindow.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Tpo -c -o libscirenderer_la-ScilabGraphicWindow.lo `test -f 'src/jni/ScilabGraphicWindow.cpp' || echo '$(srcdir)/'`src/jni/ScilabGraphicWindow.cpp
-@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Tpo $(DEPDIR)/libscirenderer_la-ScilabGraphicWindow.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ScilabGraphicWindow.cpp' object='libscirenderer_la-ScilabGraphicWindow.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscirenderer_la-ScilabGraphicWindow.lo `test -f 'src/jni/ScilabGraphicWindow.cpp' || echo '$(srcdir)/'`src/jni/ScilabGraphicWindow.cpp
 
 libscirenderer_la-DrawableFigureGL.lo: src/jni/DrawableFigureGL.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscirenderer_la-DrawableFigureGL.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-DrawableFigureGL.Tpo -c -o libscirenderer_la-DrawableFigureGL.lo `test -f 'src/jni/DrawableFigureGL.cpp' || echo '$(srcdir)/'`src/jni/DrawableFigureGL.cpp
@@ -3582,7 +3578,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -3644,12 +3640,13 @@ uninstall-am: uninstall-libscirenderer_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscirenderer_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscirenderer_la_etcDATA \
 	install-libscirenderer_la_includeHEADERS \
 	install-libscirenderer_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -3759,7 +3756,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -3769,7 +3766,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -3780,6 +3777,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \
@@ -3811,6 +3824,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

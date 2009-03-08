@@ -26,7 +26,7 @@
 #include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "Format.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "ObjectSelection.h"
 #include "msgs.h"
 #include "localization.h"
@@ -42,8 +42,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( Rhs <= 0 )
   {
-    int zero = 0 ;
-    sci_demo(fname,"xsetm();",&zero);
+    sci_demo(fname,"xsetm();",FALSE);
     return 0;
   }
 
@@ -64,11 +63,9 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( !keyFound )
   {
-    sciprint(_("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
-    x2=0;
-    CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&x2,&x2,&l3);
-    LhsVar(1)=Rhs+1;
-    return 0;
+    Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+    LhsVar(1)= 0;
+    return -1;
   }
 
   if (Rhs == 2) {
@@ -289,7 +286,9 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else
     {
-      sciprint(_("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+      Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+			LhsVar(1)= 0;
+			return -1;
     }
     if (x2 > 0) {
       CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&one,&x2,&l3);

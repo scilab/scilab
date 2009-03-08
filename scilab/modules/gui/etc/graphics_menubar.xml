@@ -9,7 +9,7 @@
         <submenu label="&amp;Load...">
             <callback
             instruction='
-              %fileToLoad = xgetfile("*.scg", getcwd(), gettext("Select a file to load"));
+              %fileToLoad = uigetfile("*.scg", getcwd(), gettext("Select a file to load"));
               if ~isempty(%fileToLoad) then
                 xload(%fileToLoad,[SCILAB_FIGURE_ID]);
                 disp(msprintf(gettext("Figure loaded.\n")));
@@ -20,7 +20,7 @@
         <submenu label="&amp;Save...">
              <callback
             instruction='
-              %fileToSave = xgetfile("*.scg", getcwd(), gettext("Select a file to write"));
+              %fileToSave = uigetfile("*.scg", getcwd(), gettext("Select a file to write"));
               if ~isempty(%fileToSave) then
                 if isempty(fileparts(%fileToSave, "extension")) then
                   %fileToSave = %fileToSave + ".scg";
@@ -38,7 +38,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.bmp", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.bmp", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2bmp([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -49,7 +49,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.gif", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.gif", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2gif([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -60,7 +60,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.jpg", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.jpg", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2jpg([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -71,7 +71,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.png", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.png", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2png([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -82,7 +82,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.ppm", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.ppm", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2ppm([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -95,7 +95,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.emf", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.emf", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2emf([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -106,7 +106,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.eps", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.eps", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2eps([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -117,7 +117,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.fig", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.fig", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2fig([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -128,7 +128,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.pdf", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.pdf", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2pdf([SCILAB_FIGURE_ID], %fileToWrite);
 				end
@@ -139,7 +139,7 @@
 				<callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.exportCustomFileChooser' type="3"/>
 				<callback
 				instruction='
-				%fileToWrite = xgetfile("*.svg", getcwd(), gettext("Select a file name"));
+				%fileToWrite = uigetfile("*.svg", getcwd(), gettext("Select a file name"));
 				if ~isempty(%fileToWrite) then
 					xs2svg([SCILAB_FIGURE_ID], %fileToWrite);
 				end

@@ -12,7 +12,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       INCLUDE 'stack.h'
 c     
       integer mode(2),fd
-      logical opened,eptover
+      logical opened
       integer iadr,sadr
 c
 

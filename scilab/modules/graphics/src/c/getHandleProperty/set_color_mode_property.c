@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "ColorMapManagement.h"
 #include "MALLOC.h"
@@ -37,13 +37,13 @@ int set_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"color_mode") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"color_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SURFACE )
   {
-    sciprint(_("%s property does not exist for this handle.\n"),"color_mode") ;
+    Scierror(999, _("%s property does not exist for this handle.\n"),"color_mode") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -74,7 +74,7 @@ int set_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
       if ((psurf->zcol = MALLOC ( nc * sizeof (double))) == NULL)
       {
-        sciprint(_("%s: No more memory.\n"),"set_color_mode_property");
+        Scierror(999, _("%s: No more memory.\n"),"set_color_mode_property");
         return SET_PROPERTY_ERROR ;
       }
 
@@ -106,8 +106,8 @@ int set_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueT
           {
             if ((psurf->color = MALLOC (nc_ * sizeof (double))) == NULL)
             {
-				sciprint(_("%s: No more memory\n"),"set_color_mode_property");
-				return SET_PROPERTY_ERROR ;
+							Scierror(999, _("%s: No more memory\n"),"set_color_mode_property");
+							return SET_PROPERTY_ERROR ;
             }
             doubleArrayCopy( psurf->color, psurf->zcol, nc_ ) ;
           }

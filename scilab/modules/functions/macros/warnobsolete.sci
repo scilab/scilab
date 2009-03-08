@@ -14,13 +14,7 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
   // should block execution or only print
   // on the standard outstream
   global %modalWarning
-  if %modalWarning then
-    warnUser = x_message
-  else
-    warnUser = warning
-  end
-  clear %modalWarning
-
+  
   //Retrieve Calling function
   [lineCall, stackCall]=where()
   
@@ -32,7 +26,15 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
   if argn(2) >= 2 then
     warnMessage = [warnMessage, msprintf(_("This function will be permanently removed in Scilab %s"), scilabRemovedVersion)]
   end
-
+  
   // Now show the warning
-  warnUser(warnMessage);
+  
+  if %modalWarning then
+    x_message(warnMessage,"modal");
+  else
+    warning(warnMessage);
+  end
+  
+  clear %modalWarning
+  
 endfunction

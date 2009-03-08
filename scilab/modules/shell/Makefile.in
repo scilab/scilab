@@ -57,9 +57,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@IS_MACOSX_TRUE@am__append_1 = src/c/others/initMacOSXEnv.c
 DIST_COMMON = $(libscishell_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/shell
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -97,18 +98,27 @@ libscishell_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciactio
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
+am__libscishell_la_SOURCES_DIST = src/c/clc.c src/c/tohome.c \
+	src/c/more.c src/c/scilines.c src/c/GetCommandLine.c \
+	src/c/others/zzledt.c src/c/others/gotoxy_nw.c \
+	src/c/others/clrscr_nw.c src/c/InitializeShell.c \
+	src/c/TerminateShell.c src/c/others/initMacOSXEnv.c \
+	sci_gateway/c/gw_shell.c sci_gateway/c/sci_clc.c \
+	sci_gateway/c/sci_tohome.c sci_gateway/c/sci_lines.c \
+	sci_gateway/c/sci_prompt.c \
+	sci_gateway/c/sci_iswaitingforinput.c
+@IS_MACOSX_TRUE@am__objects_1 = libscishell_la-initMacOSXEnv.lo
+am__objects_2 = libscishell_la-clc.lo libscishell_la-tohome.lo \
 	libscishell_la-more.lo libscishell_la-scilines.lo \
-	libscishell_la-GetCommandLine.lo libscishell_la-mainscic.lo \
-	libscishell_la-zzledt.lo libscishell_la-gotoxy_nw.lo \
-	libscishell_la-clrscr_nw.lo libscishell_la-InitializeShell.lo \
-	libscishell_la-TerminateShell.lo \
-	libscishell_la-preparsecompletion_nw.lo
-am__objects_2 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
+	libscishell_la-GetCommandLine.lo libscishell_la-zzledt.lo \
+	libscishell_la-gotoxy_nw.lo libscishell_la-clrscr_nw.lo \
+	libscishell_la-InitializeShell.lo \
+	libscishell_la-TerminateShell.lo $(am__objects_1)
+am__objects_3 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo \
 	libscishell_la-sci_prompt.lo \
 	libscishell_la-sci_iswaitingforinput.lo
-am_libscishell_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscishell_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscishell_la_OBJECTS = $(am_libscishell_la_OBJECTS)
 libscishell_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscishell_la_CFLAGS) \
@@ -126,7 +136,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscishell_la_SOURCES)
-DIST_SOURCES = $(libscishell_la_SOURCES)
+DIST_SOURCES = $(am__libscishell_la_SOURCES_DIST)
 libscishell_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscishell_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscishell_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -269,6 +279,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -331,19 +342,10 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the c files
-SHELL_C_SOURCES = src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/mainscic.c \
-src/c/others/zzledt.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/InitializeShell.c \
-src/c/TerminateShell.c \
-src/c/preparsecompletion_nw.c
-
+SHELL_C_SOURCES = src/c/clc.c src/c/tohome.c src/c/more.c \
+	src/c/scilines.c src/c/GetCommandLine.c src/c/others/zzledt.c \
+	src/c/others/gotoxy_nw.c src/c/others/clrscr_nw.c \
+	src/c/InitializeShell.c src/c/TerminateShell.c $(am__append_1)
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -428,7 +430,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -449,7 +451,7 @@ pkgdocdir = $(mydatadir)
 DOCMASKXML = *.xml
 
 ########### INSTALL DATA ###################
-# Install macros
+# Install macros, help & demos
 # Where it should be installed
 pkgmacrosdir = $(mydatadir)
 # Which directory we process
@@ -460,11 +462,17 @@ MACROMASK = *.sci
 MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
-# List of the function of a module
+# List of the standard directory for tests
 TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
-# Where to export JAVA files (.jar)
+# Where the demos should be installed
+pkgdemosdir = $(mydatadir)
+# List of the standard directory for demos
+DEMOS_DIR = demos
+# List of the standard directory for examples
+EXAMPLES_DIR = examples
+# Where to export JAVA archives (.jar)
 JARDIR = jar/
-# JAR files
+# JAR files mask
 JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
@@ -545,9 +553,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clrscr_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gotoxy_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-mainscic.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-initMacOSXEnv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-preparsecompletion_nw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_iswaitingforinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_lines.Plo@am__quote@
@@ -613,13 +620,6 @@ libscishell_la-GetCommandLine.lo: src/c/GetCommandLine.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
 
-libscishell_la-mainscic.lo: src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-mainscic.lo -MD -MP -MF $(DEPDIR)/libscishell_la-mainscic.Tpo -c -o libscishell_la-mainscic.lo `test -f 'src/c/others/mainscic.c' || echo '$(srcdir)/'`src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-mainscic.Tpo $(DEPDIR)/libscishell_la-mainscic.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/mainscic.c' object='libscishell_la-mainscic.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-mainscic.lo `test -f 'src/c/others/mainscic.c' || echo '$(srcdir)/'`src/c/others/mainscic.c
-
 libscishell_la-zzledt.lo: src/c/others/zzledt.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libscishell_la-zzledt.Tpo -c -o libscishell_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-zzledt.Tpo $(DEPDIR)/libscishell_la-zzledt.Plo
@@ -655,12 +655,12 @@ libscishell_la-TerminateShell.lo: src/c/TerminateShell.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
 
-libscishell_la-preparsecompletion_nw.lo: src/c/preparsecompletion_nw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-preparsecompletion_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_la-preparsecompletion_nw.Tpo -c -o libscishell_la-preparsecompletion_nw.lo `test -f 'src/c/preparsecompletion_nw.c' || echo '$(srcdir)/'`src/c/preparsecompletion_nw.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-preparsecompletion_nw.Tpo $(DEPDIR)/libscishell_la-preparsecompletion_nw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/preparsecompletion_nw.c' object='libscishell_la-preparsecompletion_nw.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_la-initMacOSXEnv.lo: src/c/others/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-initMacOSXEnv.lo -MD -MP -MF $(DEPDIR)/libscishell_la-initMacOSXEnv.Tpo -c -o libscishell_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscishell_la-initMacOSXEnv.Tpo $(DEPDIR)/libscishell_la-initMacOSXEnv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/initMacOSXEnv.c' object='libscishell_la-initMacOSXEnv.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-preparsecompletion_nw.lo `test -f 'src/c/preparsecompletion_nw.c' || echo '$(srcdir)/'`src/c/preparsecompletion_nw.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-initMacOSXEnv.lo `test -f 'src/c/others/initMacOSXEnv.c' || echo '$(srcdir)/'`src/c/others/initMacOSXEnv.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c
@@ -892,7 +892,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -956,12 +956,13 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscishell_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscishell_la_etcDATA \
 	install-libscishell_la_includeHEADERS \
 	install-libscishell_la_rootDATA \
 	install-libscishell_la_sci_gatewayDATA install-man install-pdf \
@@ -1073,7 +1074,7 @@ install-data-local:
 	for dir in $(TESTS_DIR) $(TESTS_DIREXT) ; do \
 	  if test -d $(srcdir)/$$dir/; then \
 	    $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir && \
-		  for file in `find $(srcdir)/$$dir | grep -v '\.svn' | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
 		    if test -d "$(srcdir)/$$dir/$$file"; then \
 			  echo $(mkinstalldirs) $(DESTDIR)$(pkgmacrosdir)/$$dir/$$file; \
 			  $(mkinstalldirs) "$(DESTDIR)$(pkgmacrosdir)/$$dir/$$file"; \
@@ -1083,7 +1084,7 @@ install-data-local:
 		    fi \
 		  done; \
 	  fi; \
-	done 
+	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
 	for lang in $(ALL_LINGUAS); do \
@@ -1094,6 +1095,22 @@ install-data-local:
 			echo $(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 			$(INSTALL_DATA) $$HELPFILE $(DESTDIR)$(pkgdocdir)/$$HELPFILE; \
 		fi; \
+	done
+# Install the demos & examples
+	@echo "-------- Install demos & examples (if any) --------"; \
+	for dir in $(DEMOS_DIR) $(DEMOS_DIREXT) $(EXAMPLES_DIR) $(EXAMPLES_DIREXT) ; do \
+	  if test -d $(srcdir)/$$dir/; then \
+	    $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir && \
+		  for file in `find $(srcdir)/$$dir | sed "s|^$(srcdir)/$$dir||" 2>/dev/null`; do \
+		    if test -d "$(srcdir)/$$dir/$$file"; then \
+			  echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$$dir/$$file; \
+			  $(mkinstalldirs) "$(DESTDIR)$(pkgdocdir)/$$dir/$$file"; \
+		    else \
+		      echo "$(INSTALL_DATA) $(srcdir)/$$dir/$$file $(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+	    	  $(INSTALL_DATA) "$(srcdir)/$$dir/$$file" "$(DESTDIR)$(pkgdocdir)/`dirname $$dir/$$file`" ; \
+		    fi \
+		  done; \
+	  fi; \
 	done
 # Install the macros
 	@echo "-------- Install macros (if any) --------"; \
@@ -1125,6 +1142,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 

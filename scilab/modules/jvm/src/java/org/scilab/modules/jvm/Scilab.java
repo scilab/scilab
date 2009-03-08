@@ -72,10 +72,13 @@ public class Scilab {
 		// they must be set before creating GUI
 		setJOGLFlags();
 		
-		/* if not API mode 
-		bug 3673 by default in API mode we dont modify look n feel
-		*/
-		if (mode != 1) { 
+		/*
+		 * if not API mode
+		 * bug 3673 by default in API mode we dont modify look n feel
+		 * If SCI_JAVA_ENABLE_HEADLESS is set, do not set the look and feel.
+		 * (needed when building the documentation under *ux)
+		 */
+		if (mode != 1 && System.getenv("SCI_JAVA_ENABLE_HEADLESS") == null ) {
 		/* http://java.sun.com/docs/books/tutorial/uiswing/lookandfeel/plaf.html */
 		
 		try {
@@ -117,6 +120,10 @@ public class Scilab {
 				System.err.println("Cannot create Scilab Window.\n"
 						+ "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
 				System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
+				System.exit(-1);
+			} 
+			catch (java.awt.HeadlessException exception){
+				System.err.println("Error during the initialization of the window: "  + exception.getLocalizedMessage());
 				System.exit(-1);
 			}
 			

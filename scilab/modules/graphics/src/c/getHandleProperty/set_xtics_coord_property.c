@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 #include "BasicAlgos.h"
 #include "Format.h"
@@ -39,31 +39,31 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"xtics_coord") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"xtics_coord") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_AXES )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "xtics_coord") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "xtics_coord") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( nbRow != 1 )
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_xtics_coord_property",2) ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Row vector expected.\n"), "set_xtics_coord_property",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( pAXES_FEATURE(pobj)->nx == 1 && nbCol != 1 )
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_xtics_coord_property",2) ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Scalar expected.\n"), "set_xtics_coord_property",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
   if (  pAXES_FEATURE(pobj)->nx != 1 && nbCol == 1 )
   {
-    sciprint(_("%s: Wrong type for input argument #%d: Vector expected.\n"), "set_xtics_coord_property",2) ;
+    Scierror(999, _("%s: Wrong type for input argument #%d: Vector expected.\n"), "set_xtics_coord_property",2) ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -76,8 +76,19 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
   pAXES_FEATURE(pobj)->vx = createCopyDoubleVectorFromStack( stackPointer, nbCol ) ;
 
 
-  ComputeXIntervals( pobj, pAXES_FEATURE(pobj)->tics, &vector, &N, 0 ) ;
-  ComputeC_format( pobj, c_format ) ;
+  if (ComputeXIntervals( pobj, pAXES_FEATURE(pobj)->tics, &vector, &N, 0 ) != 0)
+	{
+		/* Somthing wrong happened */
+		FREE( vector ) ;
+		return -1;
+	}
+
+  if (ComputeC_format( pobj, c_format ) != 0)
+	{
+		/* Somthing wrong happened */
+		FREE( vector ) ;
+		return -1;
+	}
 
   if( pAXES_FEATURE(pobj)->str != NULL )
   {
@@ -92,7 +103,7 @@ int set_xtics_coord_property( sciPointObj * pobj, size_t stackPointer, int value
 
   if ( pAXES_FEATURE(pobj)->str == NULL )
   {
-    sciprint( "error allocating vector.\n");
+    /* Somthign wrong occured */
     return SET_PROPERTY_ERROR ;
   }
 

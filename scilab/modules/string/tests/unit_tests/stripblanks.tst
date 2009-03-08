@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //===============================
 ierr = execstr('r = stripblanks(1);','errcatch');
 if ierr <> 999 then pause,end

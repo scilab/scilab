@@ -29,6 +29,6 @@
 
 
 plot2d();
-mprintf("In the graphic window's menu: Copy to Clipboard\n");
+mprintf("In the graphic window''s menu: Copy to Clipboard\n");
 mprintf("Paste the clipboard into an arbitrary application: Scilab\n");
 mprintf("crashes in the background, nothing is pasted\n");

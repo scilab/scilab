@@ -30,7 +30,6 @@
 #include "InitObjects.h"
 #include "XsetXgetParameters.h"
 #include "CurrentObjectsManagement.h"
-#include "sciprint.h"
 #include "Format.h"
 #include "ObjectSelection.h"
 #include "msgs.h"
@@ -48,7 +47,11 @@ int sci_xset( char *fname, unsigned long fname_len )
   sciPointObj *subwin = NULL; 
   BOOL keyFound = FALSE ;
 
-  if (Rhs <= 0) {int zero=0; sci_demo(fname,"xsetm();",&zero); return 0; }
+  if (Rhs <= 0)
+	{
+		sci_demo(fname,"xsetm();",FALSE);
+		return 0;
+	}
 
   CheckRhs(1,6);
   CheckLhs(0,1);
@@ -66,9 +69,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   if ( !keyFound )
   {
-    i = 105;v=m1*n1;
-    strncpy(C2F(cha1).buf,cstk(l1),v);
-    C2F(msgs)(&i,&v);
+    Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
     LhsVar(1)=0;
     return 0;
   }
@@ -77,7 +78,7 @@ int sci_xset( char *fname, unsigned long fname_len )
   /* Bloque la commande xset('window') sans numero de fenetre */
   if (Rhs == 1 && (strcmp(cstk(l1),"window") == 0) )
   {
-    sciprint(_("%s : '%s' must be set\n"),fname, "window-number");
+    Scierror(999, _("%s : '%s' must be set\n"),fname, "window-number");
     LhsVar(1)=0; return 0;
   }
 
@@ -162,11 +163,15 @@ int sci_xset( char *fname, unsigned long fname_len )
   {
     if (*stk(lr) == 1)
     {
-      sciprint(_("%s: Old graphic mode is no longer available. Please refer to the set help page.\n"),"xset");
+      Scierror(999, _("%s: Old graphic mode is no longer available. Please refer to the set help page.\n"),"xset");
+			LhsVar(1)=0;
+			return -1;
     }
-    else
+    else if (*stk(lr) != 0)
     {
       Scierror(999,"%s: Wrong value for input argument: %d or %d expected.\n",fname,0, 1);
+			LhsVar(1)=0;
+			return -1;
     }
   }/* NG end */
   else if( strcmp(cstk(l1),"default") == 0 )
@@ -348,7 +353,9 @@ int sci_xset( char *fname, unsigned long fname_len )
     }
     else
     {
-      sciprint(_("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+      Scierror(999, _("%s: Unrecognized input argument: '%s'.\n"), fname, cstk(l1));
+			LhsVar(1)=0;
+			return 0;
     }
 
     if(strcmp(cstk(l1),"window") != 0 && strcmp(cstk(l1),"wshow") != 0)
@@ -386,7 +393,8 @@ int C2F(xsetg)(char * str,char * str1,int lx0,int lx1)
   }
   else 
   {
-    sciprint(_("%s: Unrecognized input argument '%s'.\n"),"xset(arg,<string>)",str);
+    Scierror(999, _("%s: Unrecognized input argument '%s'.\n"),"xset(arg,<string>)",str);
+		return -1;
   }
   return 0;
 }

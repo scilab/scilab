@@ -499,12 +499,6 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>xbasimp</term>
-        <listitem>
-          <para>envoie des graphiques à une imprimante Postscript ou un fichier</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>xs2fig</term>
         <listitem>
           <para>envoie des graphiques dans un fichier au format XFig</para>
@@ -567,12 +561,6 @@
         <term>xselect</term>
         <listitem>
           <para>met une fenêtre graphique au premier plan</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>xclip</term>
-        <listitem>
-          <para> définit une zone de clipping </para>
         </listitem>
       </varlistentry>
       <varlistentry>

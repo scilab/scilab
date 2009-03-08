@@ -17,8 +17,6 @@ c
       integer vol1,vol2,vol3,volv
       integer top3,top2,top1
 
-      integer strpos
-      external strpos
       logical ptover
       integer iadr,sadr
 c

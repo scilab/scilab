@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
@@ -33,13 +33,13 @@ int set_segs_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
-    sciprint(_("Incompatible type for property %s.\n"),"segs_color") ;
+    Scierror(999, _("Incompatible type for property %s.\n"),"segs_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
   if ( sciGetEntityType(pobj) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
   {
-    sciprint(_("%s does not exist for this handle.\n"), "segs_color_property") ;
+    Scierror(999, _("%s does not exist for this handle.\n"), "segs_color") ;
     return SET_PROPERTY_ERROR ;
   }
 
@@ -62,7 +62,7 @@ int set_segs_color_property( sciPointObj * pobj, size_t stackPointer, int valueT
   }
   else
   { 
-    sciprint("%s color has a wrong size (%d), expecting %d or (%d)", "segs", nbRow * nbCol , 1, nbSegs );
+    Scierror(999, "%s color has a wrong size (%d), expecting %d or (%d)", "segs", nbRow * nbCol , 1, nbSegs );
     return SET_PROPERTY_ERROR ;
   }
 

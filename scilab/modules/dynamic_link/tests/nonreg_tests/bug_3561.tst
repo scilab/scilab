@@ -6,6 +6,7 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
 
 // <-- Non-regression test for bug 3561 -->
 //
@@ -19,11 +20,9 @@ if MSDOS then
 
 currentpath = pwd();
 cd TMPDIR;
-cd ../;
-OS_TMP_DIR = pwd();
 
-mkdir(OS_TMP_DIR,'bug_3561');
-TEST_DIR = OS_TMP_DIR + filesep() + 'bug_3561';
+mkdir(TMPDIR,'bug_3561');
+TEST_DIR = TMPDIR + filesep() + 'bug_3561';
 
 copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug3561Dll.h' , TEST_DIR + filesep() + 'bug3561Dll.h');
 copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug3561Dll.cpp' , TEST_DIR + filesep() + 'bug3561Dll.cpp');

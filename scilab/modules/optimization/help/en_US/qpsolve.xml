@@ -137,8 +137,8 @@
     </programlisting>
 
     <para>This function requires <literal>Q</literal> to be symmetric positive
-    definite. If that hypothesis is not satisfied, one may use the <link
-    linkend="quapro">quapro</link> function, which is provided in the Scilab
+    definite. If that hypothesis is not satisfied, one may use the quapro
+    function, which is provided in the Scilab
     quapro toolbox.</para>
 
     <para>The qpsolve solver is implemented as a Scilab script, which calls

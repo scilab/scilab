@@ -26,7 +26,7 @@
 #define spINSIDE_SPARSE
 #include "../../sparse/includes/spConfig.h"
 
-double Mini(double *vect, int n)
+double Mini(const double vect[], int n)
 {
   int i;
   double vmin;
@@ -38,7 +38,7 @@ double Mini(double *vect, int n)
   return(vmin);
 }
 
-double Maxi(double *vect,int n)
+double Maxi(const double vect[], int n)
 {
   int i;
   double maxi;

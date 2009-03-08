@@ -8,8 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine inttype
       include 'stack.h'
-      integer cmode,topk
-      logical checkrhs,checklhs,getscalar,cremat
+      logical checkrhs,checklhs,cremat
       integer iadr
 c    
       iadr(l)=l+l-1

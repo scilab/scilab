@@ -20,9 +20,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>s=variance(x)
+    <synopsis>s=variance(x[,orien[,w]])
 s=variance(x,'r') or m=variance(x,1)
-s=variance(x,'c') or m=variance(x,2)</synopsis>
+s=variance(x,'c') or m=variance(x,2)
+</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -31,6 +32,26 @@ s=variance(x,'c') or m=variance(x,2)</synopsis>
         <term>x</term>
         <listitem>
           <para>real or complex vector or matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orien</term>
+        <listitem>
+          <para>the orientation of the computation. Valid values or the orien parameter
+	  are 1, "r", 2 and "c".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w</term>
+        <listitem>
+          <para>w : type of normalization to use. Valid values are 0 and 1. 
+	  This depends on the number of columns of x (if orien = 1 is chosen),
+	  the number of rows (if orien = 2 is chosen).
+If w = 0, normalizes with m-1, provides the best unbiased estimator of the variance (this is the default).
+If w = 1, normalizes with m, this provides the second moment around the mean.
+If no orien option is given, the normalization is done with n * m - 1, where n * m is the total 
+number of elements in the matrix.
+</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -46,11 +67,15 @@ s=variance(x,'c') or m=variance(x,2)</synopsis>
     <literal>x</literal>.</para>
     <para><literal>s=variance(x,'r')</literal> (or,  equivalently, <literal>s=variance(x,1)</literal>)
     is the rowwise variance. It returns in each entry of the
-    row vector s the variance of each column of <literal>x</literal>.</para>
+    row vector s the variance of each column of <literal>x</literal>.
+    The generalized formulae is used, which manages complex values.
+    </para>
     <para><literal>s=variance(x,'c')</literal> (or, equivalently,  <literal>s=variance(x,2)</literal>)
     is the columnwise  standard  deviation.  It returns   in
     each entry of the column vector  <literal>s</literal> the variance of
-    each row of <literal>x</literal>.</para>
+    each row of <literal>x</literal>.
+    The generalized formulae is used, which manages complex values.
+    </para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -64,6 +89,14 @@ s=variance(x,'c')
 
  
   ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mtlb_var">mtlb_var</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection>
     <title>Authors</title>

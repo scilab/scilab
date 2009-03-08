@@ -13,6 +13,11 @@
 
 #include "YAxisPositioner.hxx"
 
+extern "C"
+{
+#include "GetProperty.h"
+}
+
 namespace sciGraphics
 {
 /*------------------------------------------------------------------------------------------*/
@@ -43,8 +48,17 @@ void YAxisPositioner::getGridEdges(double startBound1[3], double startBound2[3],
   startBound2[1] = m_dYmax;
   startBound2[2] = zCoordinate;
 
-  // middle points, invert Y bounds
-  xCoordinate = findOtherXBound(xCoordinate);
+  // middle points.
+	if (sciGetGridFront(m_pSubwin->getDrawedObject()))
+	{
+		// invert Z coordinate
+		zCoordinate = findOtherZBound(zCoordinate);
+	}
+	else
+	{
+		// invert X coordinate
+		xCoordinate = findOtherXBound(xCoordinate);
+	}
   middleBound1[0] = xCoordinate;
   middleBound1[1] = m_dYmin;
   middleBound1[2] = zCoordinate;
@@ -53,8 +67,17 @@ void YAxisPositioner::getGridEdges(double startBound1[3], double startBound2[3],
   middleBound2[1] = m_dYmax;
   middleBound2[2] = zCoordinate;
 
-  // end points, invert Z bounds
-  zCoordinate = findOtherZBound(zCoordinate);
+  // end points, invert the other coordinate
+  if (sciGetGridFront(m_pSubwin->getDrawedObject()))
+	{
+		// invert X coordinate
+		xCoordinate = findOtherXBound(xCoordinate);
+	}
+	else
+	{
+		// invert Z coordinate
+		zCoordinate = findOtherZBound(zCoordinate);
+	}
   endBound1[0] = xCoordinate;
   endBound1[1] = m_dYmin;
   endBound1[2] = zCoordinate;

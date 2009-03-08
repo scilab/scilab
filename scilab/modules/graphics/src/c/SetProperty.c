@@ -46,7 +46,7 @@
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "math_graphics.h" /* GET_NB_DIGITS */
-#include "sciprint.h"
+#include "Scierror.h"
 #include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
@@ -54,6 +54,7 @@
 #include "WindowList.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -223,9 +224,8 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
   if((sciGetEntityType(pobj) != SCI_TEXT)        &&
      (sciGetEntityType(pobj) != SCI_LEGEND)      &&
      (sciGetEntityType(pobj) != SCI_AXES)        &&
-     (sciGetEntityType(pobj) != SCI_UICONTROL)   &&
-     (sciGetEntityType(pobj) != SCI_LABEL)      &&
-     (sciGetEntityType(pobj) != SCI_UIMENU) )
+     (sciGetEntityType(pobj) != SCI_LABEL)       &&
+		 !sciIsAutomaticallyRedrawn(pobj))
     {
       if(old_m +1 == sciGetForeground(pobj)) {   /* 0 => deals with Foreground */
 	sciSetNumColors (pobj,m);
@@ -524,7 +524,10 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 
     if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
     {
+			/* disable protection since this function will call Java */
+		  disableFigureSynchronization(pobj);
       sciSetJavaBackground(pobj, newIndex);
+			enableFigureSynchronization(pobj);
     }
 
     return 0;
@@ -602,7 +605,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
 
   if (linewidth < 0)
     {
-      sciprint(_("Line width must be greater than %d.\n"),0);
+      Scierror(999, _("Line width must be greater than %d.\n"),0);
       return -1;
     }
   else
@@ -614,7 +617,7 @@ sciInitLineWidth (sciPointObj * pobj, int linewidth)
       return 0;
     }
   }
-  printSetGetErrorMessage("line_width");
+  printSetGetErrorMessage("thickness");
   return -1;
 }
 
@@ -638,7 +641,7 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
 
   if (linestyle < 0)
     {
-      sciprint(_("The line style must be greater than %d.\n"),0);
+      Scierror(999, _("The line style must be greater than %d.\n"),0);
       return -1;
     }
   else
@@ -760,7 +763,7 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 {
   if (markstyle < 0 || markstyle > MAX_MARK_STYLE )
   {
-    sciprint(_("Wrong value for %s property: Must be in the interval [%s, %s].\n"),"mark_style","0",MAX_MARK_STYLE_S);
+    Scierror(999, _("Wrong value for %s property: Must be in the interval [%s, %s].\n"),"mark_style","0",MAX_MARK_STYLE_S);
     return -1;
   }
   else
@@ -796,7 +799,7 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 {
   if (marksize < 0)
   {
-    sciprint(_("The mark size must be greater or equal than %d.\n"),0);
+    Scierror(999, _("The mark size must be greater or equal than %d.\n"),0);
     return -1;
   }
   else
@@ -832,7 +835,7 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 {
   if (marksizeunit < 0)
   {
-    sciprint(_("The mark size unit must be greater than %d.\n"),0);
+    Scierror(999, _("The mark size unit must be greater than %d.\n"),0);
     return -1;
   }
   else
@@ -929,7 +932,7 @@ int sciInitFontSize( sciPointObj * pobj, double fontSize )
 {
   if (fontSize < 0)
   {
-    sciprint(_("The font size must be greater than %d.\n"),0);
+    Scierror(999, _("The font size must be greater than %d.\n"),0);
     return -1;
   }
   else
@@ -1281,7 +1284,7 @@ int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
     return sciInitLegendPos (pobj, position );
   }
 
-  sciprint(_("You are not using a legend object.\n"));
+  Scierror(999, _("You are not using a legend object.\n"));
   return -1;
 }
 
@@ -1327,7 +1330,7 @@ int sciInitLegendPos( sciPointObj * pobj, double position[] )
     case SCI_LABEL:
     case SCI_UIMENU:
     default:
-      sciprint(_("You are not using a legend object.\n"));
+      Scierror(999, _("You are not using a legend object.\n"));
       return -1;
       break;
     }
@@ -1397,6 +1400,9 @@ int sciInitIsClipping( sciPointObj * pobj, int value )
       if(value>0) pGRAYPLOT_FEATURE (pobj)->clip_region_set=1;
       break;
     case SCI_LEGEND:
+			pLEGEND_FEATURE(pobj)->isclip = value;
+			if(value>0) { pLEGEND_FEATURE (pobj)->clip_region_set=1;}
+      break;
     case SCI_AGREG:
     case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1510,7 +1516,7 @@ int sciInitAddPlot( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("addplot");
+      printSetGetErrorMessage("auto_clear");
       return -1 ;
       break;
     }
@@ -1561,7 +1567,7 @@ int sciInitAutoScale( sciPointObj * pobj, BOOL value )
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("autoscale");
+      printSetGetErrorMessage("autos_cale");
       return -1 ;
       break;
     }
@@ -1647,7 +1653,7 @@ sciSetDefaultValues (void)
       (sciInitGraphicMode (sciGetCurrentFigure()) == -1) ||
       (sciInitFontContext (sciGetCurrentFigure()) == -1)) /* Adding F.Leray 13.04.04 to have the completed init.*/
   {
-    sciprint(_("Unable to load default values.\n"));
+    Scierror(999, _("Unable to load default values.\n"));
     return -1 ;
   }
   return 0;
@@ -1845,7 +1851,6 @@ int sciInitName(sciPointObj * pobj, char * newName)
     case SCI_FIGURE:
     {
       int newNameLength;
-      int percentStatus = 0 ;
 
 			/* first case newName is NULL */
 			if (newName == NULL)
@@ -1887,7 +1892,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
           char * realTitle = MALLOC( (realTitleLength + 1) * sizeof(char) ) ;
           if ( realTitle == NULL )
           {
-            sciprint(_("%s: No more memory.\n"),"sciSetName");
+            Scierror(999, _("%s: No more memory.\n"),"sciSetName");
             return -1 ;
           }
           sprintf( realTitle, newName, figureNumber ) ;
@@ -1927,7 +1932,7 @@ sciSetName(sciPointObj * pobj, char * newName)
 	/* Check that the string contains at most one %d character */
 	if (checkPercent(newName) < 0)
   {
-  	sciprint(_("Figure name may not contains any %% character, except a single %%d.\n")) ;
+  	Scierror(999, _("Figure name may not contains any %% character, except a single %%d.\n")) ;
   	return -1 ;
   }
 	
@@ -2149,7 +2154,7 @@ sciSetSelectedSubWin (sciPointObj * psubwinobj)
   /* on verifie que l'entite passee en argument est bien une sous fenetre */
   if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
   {
-    sciprint(_("Handle is not a SubWindow.\n"));
+    Scierror(999, _("Handle is not a SubWindow.\n"));
     return -1;
   }
 
@@ -2206,7 +2211,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       n1=pPOLYLINE_FEATURE (pthis)->n1;
       if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
 	{
-	  sciprint(_("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
+	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
 	}
       if (*numrow != n1) /* SS 30/1/02 */
@@ -2286,7 +2291,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
       int size = *numrow * *numcol ;
       if ( size != 5 && size != 4 )
       {
-        sciprint(_("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
+        Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
         return -1;
       }
 
@@ -2314,7 +2319,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_ARC:
       if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
 	{
-	  sciprint(_("Number of elements must be %d (%d if z coordinate )\n"),6,7);
+	  Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
 	  return -1;
 	}
 
@@ -2340,7 +2345,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_TEXT:
       if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
 	{
-	  sciprint(_("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
+	  Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
 	}
       pTEXT_FEATURE (pthis)->x = tab[0];
@@ -2352,7 +2357,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_SEGS:
       if (pSEGS_FEATURE (pthis)->ptype <= 0) {
 	if ((*numcol != 3)&&(*numcol != 2)) {
-	  sciprint(_("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
+	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
 	}
 	n1=pSEGS_FEATURE (pthis)->Nbr1;
@@ -2508,7 +2513,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 
 
     case SCI_SURFACE:/* DJ.A 2003 */
-      sciprint(_("Unhandled data field\n"));
+      Scierror(999, _("Unhandled data field\n"));
       return -1;
       break;
     case SCI_GRAYPLOT:
@@ -2519,15 +2524,15 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	ny=*numcol-1;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
 	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
 	    FREE(pvecx);FREE(pvecy);
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
@@ -2551,7 +2556,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	ny=*numcol;
 	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
 	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
 	}
@@ -2566,20 +2571,20 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 	double *pvecx,*pvecy,*pfun;
 	int Nnode;
 	if (*numcol != 3) {
-	  sciprint(_("Number of columns must be %d.\n"),2);
+	  Scierror(999, _("Number of columns must be %d.\n"),2);
 	  return -1;}
 
 	Nnode = *numrow;
 	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
 	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    return -1;}
 	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    FREE(pvecx);
 	    return -1;}
 	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    sciprint(_("%s: No more memory.\n"), "sciSetPoint") ;
+	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
 	    FREE(pvecx);FREE(pvecy);
 	    return -1;}
 	  FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
@@ -2601,7 +2606,7 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
-      printSetGetErrorMessage("points");
+      printSetGetErrorMessage("data");
       return -1;
       break;
     }
@@ -2772,7 +2777,7 @@ int sciInitIsBoxed( sciPointObj * pobj, BOOL isboxed )
       return 0;
       break;
     case SCI_SUBWIN:
-      sciprint(_("%s: please use %s instead.\n"),"sciSetIsBoxed","sciSetBoxType");
+      Scierror(999, _("%s: please use %s instead.\n"),"sciSetIsBoxed","sciSetBoxType");
       if ( isboxed )
       {
         pSUBWIN_FEATURE(pobj)->axes.rect = BT_ON ;
@@ -2828,7 +2833,7 @@ sciSetInterpVector(sciPointObj * pobj, int size, int * value)
   FREE(pPOLYLINE_FEATURE(pobj)->scvector);
 
   if((pPOLYLINE_FEATURE(pobj)->scvector = MALLOC(size*sizeof(int)))==NULL){
-    sciprint(_("%s: No more memory.\n"), "sciSetInterpVector") ;
+    Scierror(999, _("%s: No more memory.\n"), "sciSetInterpVector") ;
     return -1;
   }
 
@@ -3065,11 +3070,8 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
      {
        pSUBWIN_FEATURE (pObj)->is3d = TRUE ;
        Obj_RedrawNewAngle( pObj,
-                           pSUBWIN_FEATURE (pObj)->theta_kp,
-                           pSUBWIN_FEATURE (pObj)->alpha_kp ) ;
-       setInfoMessageWithRotationAngles(sciGetParentFigure(pObj),
-                                        pSUBWIN_FEATURE (pObj)->alpha_kp,
-                                        pSUBWIN_FEATURE (pObj)->theta_kp ) ;
+                           pSUBWIN_FEATURE (pObj)->alpha_kp,
+                           pSUBWIN_FEATURE (pObj)->theta_kp ) ;
      }
      else
      {
@@ -3079,11 +3081,11 @@ int sciInitIs3d(  sciPointObj * pObj, BOOL is3d )
          pSUBWIN_FEATURE (pObj)->is3d = FALSE;
          pSUBWIN_FEATURE (pObj)->project[2]= 0;
        }
-       pSUBWIN_FEATURE (pObj)->theta_kp=pSUBWIN_FEATURE (pObj)->theta;
-       pSUBWIN_FEATURE (pObj)->alpha_kp=pSUBWIN_FEATURE (pObj)->alpha;
-       pSUBWIN_FEATURE (pObj)->alpha  = 0.0;
-       pSUBWIN_FEATURE (pObj)->theta  = 270.0;
-       pSUBWIN_FEATURE(pObj)->is3d = FALSE; /*...and here */
+       pSUBWIN_FEATURE (pObj)->theta_kp = pSUBWIN_FEATURE (pObj)->theta;
+       pSUBWIN_FEATURE (pObj)->alpha_kp = pSUBWIN_FEATURE (pObj)->alpha;
+       pSUBWIN_FEATURE (pObj)->alpha = 0.0;
+       pSUBWIN_FEATURE (pObj)->theta = 270.0;
+       pSUBWIN_FEATURE(pObj)->is3d = FALSE;
        return 0 ;
      }
      return 0 ;
@@ -3301,7 +3303,7 @@ int sciInitEventHandler( sciPointObj * pObj, char * name )
 
       if ( ppFigure == NULL )
 	{
-	  sciprint(_("%s: No more memory.\n"), "sciInitEventHandler") ;
+	  Scierror(999, _("%s: No more memory.\n"), "sciInitEventHandler") ;
 	  return -1 ;
 	}
 
@@ -3367,7 +3369,7 @@ int sciInitIsEventHandlerEnable( sciPointObj * pObj, BOOL enable )
 	}
       else
 	{
-	  sciprint(_("%s: Can't enable a void event handler.\n"), "sciInitEventHandler") ;
+	  Scierror(999, _("%s: Can't enable a void event handler.\n"), "sciInitEventHandler") ;
 	}
       return 0 ;
     }
@@ -3757,6 +3759,151 @@ int sciSetIsUsingFractionalMetrics(sciPointObj * pObj, BOOL useFractionalMetrics
     return 1;
   }
   return sciInitIsUsingFractionalMetrics(pObj, useFractionalMetrics);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitColorRange(sciPointObj * pObj, int subset[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		pFEC_FEATURE(pObj)->colminmax[0] = subset[0];
+		pFEC_FEATURE(pObj)->colminmax[1] = subset[1];
+		return 0;
+  default:
+    printSetGetErrorMessage("color_range");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the subset of colormap bounds used by a particular object (colminmax).
+ */
+int sciSetColorRange(sciPointObj * pObj, int subset[2])
+{
+
+	int curColorRange[2];
+	sciGetColorRange(pObj, curColorRange);
+	if (curColorRange[0] == subset[0] && curColorRange[1] == subset[1])
+	{
+		/* nothing to do */
+		return 1;
+	}
+
+	return sciInitColorRange(pObj, subset);
+
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitOutsideColors(sciPointObj * pObj, int colors[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		pFEC_FEATURE(pObj)->colout[0] = colors[0];
+		pFEC_FEATURE(pObj)->colout[1] = colors[1];
+		return 0;
+  default:
+    printSetGetErrorMessage("outside_color");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the color to use for an objects when it uses index outside of the colormap (colout).
+ */
+int sciSetOutsideColors(sciPointObj * pObj, int colors[2])
+{
+
+	int curColors[2];
+	sciGetOutsideColor(pObj, curColors);
+	if (curColors[0] == colors[0] && curColors[1] == colors[1])
+	{
+		/* nothing to do */
+		return 1;
+	}
+
+  return sciInitOutsideColors(pObj, colors);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitZBounds(sciPointObj * pObj, double bounds[2])
+{
+  switch (sciGetEntityType(pObj))
+  {
+  case SCI_FEC:
+		pFEC_FEATURE(pObj)->zminmax[0] = bounds[0];
+		pFEC_FEATURE(pObj)->zminmax[1] = bounds[1];
+		return 0;
+  default:
+    printSetGetErrorMessage("z_bounds");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the Z range used by a fec object (zminmax).
+ */
+int sciSetZBounds(sciPointObj * pObj, double bounds[2])
+{
+  double curBounds[2];
+	sciGetZBounds(pObj, curBounds);
+	if (curBounds[0] == bounds[0] && curBounds[1] == bounds[1])
+	{
+		/* nothing to do */
+		return 1;
+	}
+
+	return sciInitZBounds(pObj, bounds);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitGridFront(sciPointObj * pObj, BOOL gridFront)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_SUBWIN:
+		pSUBWIN_FEATURE(pObj)->gridFront = gridFront;
+		return 0;
+	default:
+    printSetGetErrorMessage("grid_position");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify whether the grid is drawn in background or foreground.
+ */
+int sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
+{
+	if (sciGetGridFront(pObj) == gridFront)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitGridFront(pObj, gridFront);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location)
+{
+	switch (sciGetEntityType(pObj))
+  {
+	case SCI_LEGEND:
+		pLEGEND_FEATURE(pObj)->place = location;
+		return 0;
+	default:
+    printSetGetErrorMessage("legend_location");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the legend position relatively to the subwindow
+ */
+int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location)
+{
+	if (sciGetLegendLocation(pObj) == location)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitLegendLocation(pObj, location);
 }
 /*----------------------------------------------------------------------------------*/
 /**

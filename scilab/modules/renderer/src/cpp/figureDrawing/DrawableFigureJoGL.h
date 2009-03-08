@@ -187,6 +187,11 @@ public:
 	 */
 	virtual void closeGraphicCanvas(void);
 
+	/**
+	 * Force the window to be be single buffered
+	 */
+	virtual void setUseSingleBuffer(bool useSingleBuffer);
+
   /**
    * Check wether we the environemebnt allows us to create a new window.
    */

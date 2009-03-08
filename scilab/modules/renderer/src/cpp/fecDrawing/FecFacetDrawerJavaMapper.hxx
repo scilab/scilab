@@ -39,8 +39,6 @@ public:
   virtual void show(int figureIndex);
 
   virtual void destroy(int figureIndex);
-
-  virtual void setFigureIndex(int figureIndex);
   /*----------------------------------------------------------------------*/
   // specific for fec facet line drawer
   virtual void setFacetParameters(double zMin, double zMax, int colMin,

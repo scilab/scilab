@@ -11,7 +11,7 @@
 
 function varargout = x_message_modeless(msg, buttons)
 
-//warnobsolete("messagebox", "5.1");
+warnobsolete("messagebox", "5.21");
 
 rhs = argn(2);
 

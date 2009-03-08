@@ -7,8 +7,9 @@
 // test bug 2208
 fd = mopen(TMPDIR+'/bug_2208.txt','wt');
 if mtell(fd) <> 0 then bugmes();quit;end
-m = rand(10,10);
-mputl(string(m),fd);
+m = rand(10,1);
+t = mputl(string(m),fd);
+if t <> %t then bugmes();quit;end
 r = mtell(fd);
 mclose(fd);
 INFO = fileinfo(TMPDIR+'/bug_2208.txt');

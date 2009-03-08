@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="PerteDP">
+  <refnamediv>
+    <refname>PerteDP</refname>
+    <refpurpose>Thermal-hydraulic pipe</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/PerteDP_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_PerteDP">
+    <title>Contents</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PerteDP">Thermal-hydraulic pipe</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_PerteDP">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_PerteDP">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_PerteDP">Dialog box</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_PerteDP">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_PerteDP">Interfacing function</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="PerteDP">Modelica model</link>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_PerteDP">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - Thermal-Hydraulics toolbox</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_PerteDP">
+    <title>Description</title>
+    <para>
+A <emphasis role="bold">PertDP</emphasis> block represents a hydraulic pipe with linear
+resistance losses. This component represents a hydraulic resistance
+and pressure loss is directly proportional to the flow rate.
+Conventionally, the flow direction is the positive when fluid flows
+from the black port to the white port.  The pressure loss is obtained</para>
+    <para>
+with </para>
+    <para>
+</para>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/PerteDP_img2_eng.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>.  The key parameters of this
+block are the pipes' length, the pipe's diameter, inlet and outlet
+altitudes, and some other thermal-hydraulic coefficients.
+
+</para>
+  </refsection>
+  <refsection id="Dialogbox_PerteDP">
+    <title>Dialog box</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/PerteDP_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Longueur du tube : L (m)</emphasis>
+        </para>
+        <para> Length of pipe</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Diamètre interne du tube : D (m)</emphasis>
+        </para>
+        <para> Pipe diameter</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Coefficient de perte de charge-frottement(S.U) : lambda</emphasis>
+        </para>
+        <para> Coefficient of thermohydraluc resistance</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude entrée tuyauterie : z1 (m)</emphasis>
+        </para>
+        <para> Altitude of the first port (z1)</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Altitude sortie tuyauterie : z2 (m)</emphasis>
+        </para>
+        <para> Altitude of the second port (z2)</para>
+        <para> Properties : Type 'vec' of size -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Si 0, masse volumique imposée fu fluide : p_rho (kg/m3)</emphasis>
+        </para>
+        <para> Fluid density</para>
+        <para> Properties : Type 'vec' of size -1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_PerteDP">
+    <title>Default properties</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'C1'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'C2'
+</para>
+            <para>
+Implicit <emphasis role="bold">variable.</emphasis>
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'L'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 10
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'D'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.2
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'lambda'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0.03
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'z1'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'z2'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'p_rho'
+</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0
+</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.
+
+
+</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> PerteDP</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_PerteDP">
+    <title>Interfacing function</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/PerteDP.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_PerteDP">
+    <title>Modelica model</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Hydraulics/PerteDP.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

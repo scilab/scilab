@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Comments about PCRE 7.6 see changelog PCRE
 //7.  Patterns such as (?(1)a|b) (a pattern that contains fewer subpatterns
 //  than the number used in the conditional) now cause a compile-time error.

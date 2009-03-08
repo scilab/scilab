@@ -16,7 +16,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "GetProperty.h"
-#include "sciprint.h"
+#include "Scierror.h"
 #include "getHandleProperty/SetPropertyStatus.h"
 #include "MALLOC.h"
 #include "localization.h"
@@ -38,12 +38,12 @@ int LinearScaling2Colormap( sciPointObj * pobj )
 
 
   if(psurf->zcol == NULL){
-    sciprint(_("Color matrix is NULL: Can not build color scaled linearly into the current colormap"));
+    Scierror(999, _("Color matrix is NULL: Can not build color scaled linearly into the current colormap"));
     return SET_PROPERTY_ERROR ;
   }
 
   if (((psurf->color = MALLOC (nc * sizeof (double))) == NULL)){
-	  sciprint(_("%s: No more memory.\n"),"LinearScaling2Colormap");
+	  Scierror(999, _("%s: No more memory.\n"),"LinearScaling2Colormap");
 	  return SET_PROPERTY_ERROR ;
   }
 

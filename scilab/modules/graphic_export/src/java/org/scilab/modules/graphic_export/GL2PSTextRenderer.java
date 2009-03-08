@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * Copyright (C) 2009 - Digiteo - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,6 +12,8 @@
  */
  
  package org.scilab.modules.graphic_export;
+
+import java.awt.Font;
 
 import javax.media.opengl.GL;
 import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
@@ -50,9 +53,38 @@ public class GL2PSTextRenderer extends SciTextRenderer {
 		
 		GL2PS gl2ps = new GL2PS();
 		gl.glRasterPos3d(x, y, z);
-		gl2ps.gl2psTextOpt(str, getFont().getPSName(),
-				           (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL, (float) Math.toDegrees(angle));
-	}	
+		gl2ps.gl2psTextOpt(str, getFontPSName(getFont()),
+				           (short) getFont().getSize(), GL2PS.GL2PS_TEXT_BL,
+				           (float) Math.toDegrees(angle));
+	}
+	
+	/**
+	 * Get the postscript name of a Java font.
+	 * This method should be used instead of the getPSName
+	 * of class Font. THe one provided by Java does not
+	 * work with GL2PS.
+	 * @param font AWT Font
+	 * @return postscript name of the font.
+	 */
+	protected String getFontPSName(Font font) {
+		
+		/* A Postscript font is made as following */
+		/* <fontFamily>-<option1><option2> */
+		/* <fontFamily> name of the font family */
+		/* <optionI> Bold, Italic or Oblique */
+		
+		String res = font.getFamily();
+		/* add options at the end */
+		if (font.isBold() && font.isItalic()) {
+			res += "-BoldItalic";
+		} else if (font.isBold()) {
+			res += "-Bold";
+		} else if (font.isItalic()) {
+			res += "-Italic";
+		}
+		
+		return res;
+	}
 
 
 }

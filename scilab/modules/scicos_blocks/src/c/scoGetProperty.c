@@ -44,6 +44,8 @@
 //** -------------------- LINUX VERSION ------------------------------------------------------------------
 #ifndef _MSC_VER
 
+#ifdef HAVE_CLOCK_GETTIME
+
    #include <time.h>
    #include <sched.h>
 
@@ -62,14 +64,27 @@
    double scoGetRealTime(void) 
          {
            struct timespec t_crt      ; //** the current real time as "timespec" (32+32 bit) data structure  
-           double d_current_real_time ; //** the current real time in seconds as double (52 bit resolution)  
- 
+
            clock_gettime(0, &t_crt); /* get current time */
-           d_current_real_time = (double) t_crt.tv_sec + (double)1.0E-9 * (double) t_crt.tv_nsec;
-           return d_current_real_time ; 
-
+	   return (double) t_crt.tv_sec + (double)1.0E-9 * (double) t_crt.tv_nsec; //** the current real time in seconds as double (52 bit resolution) 
          }
-
+#else
+/* not clock gettime on the system√ ... Macosx case? */
+#ifdef __APPLE__
+/**
+ * @TODO add the mac os case here
+ * maybe http://www.wand.net.nz/~smr26/wordpress/2009/01/19/monotonic-time-in-mac-os-x/ 
+ * could help
+ */
+double scoGetRealTime(void) 
+{
+  /* @TODO Fill the blank */
+  return 0;
+}
+#else
+#error "Could not find clock_gettime equivalent on this platform, please submit a bug report on http://bugzilla.scilab.org/"
+#endif
+#endif /* have clock_gettime */
 #else
 //** -------------------- WINDOWS VERSION ------------------------------------------------------------------ 
 #include <windows.h>

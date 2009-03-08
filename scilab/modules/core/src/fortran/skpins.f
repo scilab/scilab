@@ -24,11 +24,11 @@ c
       integer for(nsiz),while(nsiz),iff(nsiz),else(nsiz),ennd(nsiz)
       integer cas(nsiz),sel(nsiz),elsif(nsiz),try(nsiz),catchkey(nsiz)
       integer clcnt,strcnt,qcount,bcount
-      integer rparen,left,right,quote,percen,dot
+      integer rparen,left,right,quote,dot
       integer eol,blank,name,num,cmt,psym,pchar
       logical eqid
 c
-      data rparen/42/,left/54/,right/55/,quote/53/,percen/56/,dot/51/
+      data rparen/42/,left/54/,right/55/,quote/53/,dot/51/
       data eol/99/,blank/40/
       data num/0/,name/1/,cmt/2/
       data else/236721422,nz1*673720360/

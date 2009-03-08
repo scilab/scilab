@@ -57,11 +57,6 @@ void SurfaceFacetDrawerJavaMapper::destroy(int figureIndex)
   m_pJavaObject->destroy(figureIndex);
 }
 /*---------------------------------------------------------------------------------*/
-void SurfaceFacetDrawerJavaMapper::setFigureIndex(int figureIndex)
-{
-  m_pJavaObject->setFigureIndex(figureIndex);
-}
-/*---------------------------------------------------------------------------------*/
 void SurfaceFacetDrawerJavaMapper::setDefaultColors(int defaultColor, int hiddenColor)
 {
   m_pJavaObject->setDefaultColors(defaultColor, hiddenColor);

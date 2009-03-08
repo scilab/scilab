@@ -10,7 +10,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine dbasin(ierr,lunit,fmt,v,iv,n)
 c ====================================================================
 c
-c     gestion de la standard input
+c     Management of the standard input
 c
 
       include 'stack.h'

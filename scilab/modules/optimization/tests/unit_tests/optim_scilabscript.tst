@@ -22,8 +22,6 @@ function [f,g,ind]=rose(x,ind)
   g(1)=-400.*x(1)*a
   g(2)=200.*a -2.*b
 endfunction
-// Compile the function for faster computation
-comp(rose);
 [f,x,g,tr]=optim(rose,x0,'qn','ar',50);
 if abs(f+norm(x-xopt)) > Leps then pause,end
 [f,x,g]=optim(rose,x0,tr,'ar',50);

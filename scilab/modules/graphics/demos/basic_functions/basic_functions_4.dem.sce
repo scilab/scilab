@@ -23,18 +23,18 @@ t.font_size = 3;
 
 plot3d();
 
-x_message(["[IV] General functions"]);
+messagebox(["[IV] General functions"],"modal");
 
 // Demo IV.1
 expr=["scf()"
 "plot2d()";
 "a=gca(); t=a.title;"
-"t.text=""window proporties""; t.font_size=3;"];
-x_message(["[IV.1] Creating a new window";expr]);
+"t.text=""window properties""; t.font_size=3;"];
+messagebox(["[IV.1] Creating a new window";expr],"modal");
 execstr(expr);
 
 // Demo IV.2
-expr=["xset(''window'',0);";
+expr=["scf(0); fec();";
 "xselect();";]
-
+messagebox(["[IV.2] Creating window number 0";expr],"modal");
 execstr(expr);
