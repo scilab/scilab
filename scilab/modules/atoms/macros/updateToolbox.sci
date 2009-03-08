@@ -10,8 +10,11 @@
 // update of a toolbox
 
 function result = updateToolbox(name, checkVersionScilab)
+  rhs = argn(2)
+
+  if (rhs == 2 | rhs == 1) then
   // We check if the second argument exists
-  if argn(2) == 1
+  if rhs == 1 then
     checkVersionScilab = %t
   end
   // We remove special characters
@@ -110,4 +113,9 @@ function result = updateToolbox(name, checkVersionScilab)
   end
   result = %t
   return result
+
+  else
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"updateToolbox",1,2))
+  end
+
 endfunction

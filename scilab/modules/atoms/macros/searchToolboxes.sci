@@ -10,8 +10,12 @@
 // Research of a toolbox
 
 function result = searchToolboxes(keyword, typeSearch)
+  rhs = argn(2)
+
+  if (rhs == 2 | rhs == 1) then
+
   // If there is no type
-  if argn(2) == 1
+  if rhs == 1
     typeSearch = "all"
   end
   result = %f
@@ -118,12 +122,17 @@ function result = searchToolboxes(keyword, typeSearch)
     end
   end
   return result
+  else
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"searchToolboxes",1,2))
+  end
+
+
 endfunction
 
 // We split the sentences on a words array
 function var = splitWord(var)
   // We cross everything in small letter
   var = convstr(var,"l")
-  // We split (error if the last caracter is a " ")
+  // We split (error if the last character is a " ")
   var = atomsSplitValue(var, " ")
 endfunction

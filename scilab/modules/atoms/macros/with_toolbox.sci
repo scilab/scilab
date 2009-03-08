@@ -10,6 +10,7 @@
 // If a toolbox is registered, return %t and its path ; %f else
 
 function [reg,path] = with_toolbox(name)
+  if argn(2) == 1 then
   reg = %f
   path = ""
   
@@ -21,4 +22,8 @@ function [reg,path] = with_toolbox(name)
 	  return
 	end
   end	
+  else
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"with_toolbox",1))
+  end
+
 endfunction

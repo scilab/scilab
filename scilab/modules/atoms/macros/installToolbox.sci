@@ -9,20 +9,22 @@
 
 // Installation of a toolbox
 
-function result = installToolbox(nom, checkVersionScilab, version)
+function result = installToolbox(name, checkVersionScilab, version)
   global conflictingList
   global conflictLocal
   global nomconflictLocal
   global conflictVersion
+  rhs = argn(2)
+  if (rhs == 2 | rhs == 1 | rhs == 3) then
   // We check if the arguments exist
-  if argn(2) == 1
+  if rhs == 1
     checkVersionScilab = %t
   end
-  if argn(2) <= 2
+  if rhs <= 2
     version = ""
   end
-  // We remove the special caracters
-  nom = atomsSubstituteString(nom)
+  // We remove the special characters
+  name = atomsSubstituteString(name)
   // We go to the dedicated directory
   rep = atomsToolboxDirectory()
   cd (rep)
@@ -32,7 +34,7 @@ function result = installToolbox(nom, checkVersionScilab, version)
   clearglobal nomconflictLocal
   clearglobal conflictVersion
   // Retrieve of the list of toolboxes to install
-  listTool = atomsCheckConflict(nom, version, checkVersionScilab)
+  listTool = atomsCheckConflict(name, version, checkVersionScilab)
   // If there is an empty line, it is because a dependencie is missing
   if find(listTool == "") <> []
     if conflictLocal == 1
@@ -53,13 +55,13 @@ function result = installToolbox(nom, checkVersionScilab, version)
   // Treatment of the toolboxes to install
   [m, n] = size(listTool)
   for i=1:m
-    [nom, version] = atomsSeparateVersionDep(listTool(i))
+    [name, version] = atomsSeparateVersionDep(listTool(i))
     // If it is locally present, we pass to the following one
-    if find(listLocal == nom) <> []
+    if find(listLocal == name) <> []
       continue
     else
-      atomsDisplayMessage(_("Is going to be install: ") + nom)
-      if ~atomsDlInstall(nom, version)
+      atomsDisplayMessage(_("Is going to be install: ") + name)
+      if ~atomsDlInstall(name, version)
         disp(_("Error during the installation"))
         result = %f
         return result
@@ -68,4 +70,9 @@ function result = installToolbox(nom, checkVersionScilab, version)
   end
   result = %t
   return result
+
+  else
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"installToolbox",1,3))
+  end
+
 endfunction

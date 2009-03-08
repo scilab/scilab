@@ -10,7 +10,10 @@
 // Installation of a toolbox sub-category  
 
 function result = installToolboxCategory(cat, sscat, checkVersionScilab)
-  if argn(2) == 2
+  rhs = argn(2)
+
+  if (rhs == 2 | rhs == 1 | rhs == 3) then
+  if rhs == 2
     checkVersionScilab = %t
   end
   result = %f
@@ -33,4 +36,7 @@ function result = installToolboxCategory(cat, sscat, checkVersionScilab)
     atomsDisplayMessage(_("None of the toolboxes match in this category/sub-category for your version"))
   end
   return result
+  else
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"installToolboxCategory",1,3))
+  end
 endfunction

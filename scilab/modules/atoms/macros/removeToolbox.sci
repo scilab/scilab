@@ -10,6 +10,9 @@
 // Remove of a toolbox
 
 function result = removeToolbox(name)
+  rhs=argn(2);
+
+  if rhs == 1 then
   rep = atomsToolboxDirectory()
   // If name = "all" we delete all the Toolboxes
   if name == "all"  
@@ -48,6 +51,10 @@ function result = removeToolbox(name)
     result = %t
     return result
   end
+  else
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"removeToolbox",1));
+  end
+
 endfunction
 
 function result = atomsButtonYesNo(message)

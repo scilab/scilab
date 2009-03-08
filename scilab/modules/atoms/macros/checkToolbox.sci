@@ -9,15 +9,18 @@
 
 // Verification that the toolbox is built correctly
 
-function result = checkToolbox(nom)
-  // We remove the special caracters
-  nom = atomsSubstituteString(nom)
+function result = checkToolbox(name)
+  rhs=argn(2);
+
+  if rhs == 1 then
+  // We remove the special characters
+  name = atomsSubstituteString(name)
   // We go in the repectory with toolboxes
   rep = atomsToolboxDirectory()
-  d = rep + nom
+  d = rep + name
   // If the repertory doesn't exist
   if ~(isdir(d))
-    atomsDisplayMessage(sprintf(_("The toolbox directory %s doesn''t exist or the name is false"),nom))
+    atomsDisplayMessage(sprintf(_("The toolbox directory %s doesn''t exist or the name is false."),name))
     result = %f
     return result
   end
@@ -54,6 +57,9 @@ function result = checkToolbox(nom)
   end
   result = %t
   return result
+  else
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"checkToolbox",1));
+  end
 endfunction
 
 function result = checkDescription()
@@ -85,7 +91,7 @@ function result = checkDescription()
       end
     end
     // Check if the name correspond
-    if desc("Toolbox") <> nom
+    if desc("Toolbox") <> name
       atomsDisplayMessage(_("The toolbox name present in the DESCRIPTION file is false"))
       result = %f
       return result
