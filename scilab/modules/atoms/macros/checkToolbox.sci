@@ -20,7 +20,7 @@ function result = checkToolbox(name)
   d = rep + name
   // If the repertory doesn't exist
   if ~(isdir(d))
-    atomsDisplayMessage(sprintf(_("The toolbox directory %s doesn''t exist or the name is false."),name))
+    atomsDisplayMessage(sprintf(_("The toolbox directory ''%s'' doesn''t exist or the name is wrong.\n"),name))
     result = %f
     return result
   end
