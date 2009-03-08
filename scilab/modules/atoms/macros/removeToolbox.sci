@@ -16,7 +16,7 @@ function result = removeToolbox(name)
     rmdir(rep, "s")
     mkdir(rep)
   else
-    // we verify the existence of the toolbox
+    // we check the existence of the toolbox
     d = rep + name
     if ~isdir(d)
       atomsDisplayMessage(sprintf(_("The toolbox %s is not installed.\n"),name))
@@ -35,7 +35,7 @@ function result = removeToolbox(name)
         for j=1:n
           [depend, version] = atomsSeparateVersionDep(depends(j))
           if find(depend == name) <> []
-            repQuestion = atomsButtonYesNo("The Toolbox " + name + " is a dependancie of " + listLocal(i) + ". Continue?")
+            repQuestion = atomsButtonYesNo("The Toolbox " + name + " is a dependency of " + listLocal(i) + ". Continue?")
             if (repQuestion == "2")
               result = %f
               return result

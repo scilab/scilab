@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Verification that the toolbox is build correctly
+// Verification that the toolbox is built correctly
 
 function result = checkToolbox(nom)
   // We remove the special caracters

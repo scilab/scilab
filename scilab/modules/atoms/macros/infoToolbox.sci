@@ -21,7 +21,7 @@ function infoToolbox(nom)
   else // linux and mac
     directory = d + "/DESCRIPTION"
   end
-  // If we find the repertory in local and the DESCRIPTION file is present
+  // If we find the directory in local and the DESCRIPTION file is present
   if (isdir(d) & ls(directory) <> [])
     desc = atomsReadDesc(nom)
     functionTool = desc("Function")

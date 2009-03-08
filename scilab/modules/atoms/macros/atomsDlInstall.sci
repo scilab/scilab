@@ -36,7 +36,7 @@ function result = atomsDlInstall(nom, version)
   end
 endfunction
 
-// Recup the archive in the web
+// Retrieve the archive from the web
 function result = dlArchive(listWeb, position, name)
   [rep,stat,err] = unix_g("wget " + listWeb(position) + "/" + name)
   // If the file is not present
@@ -44,7 +44,7 @@ function result = dlArchive(listWeb, position, name)
     [n, m] = size(listWeb)
     // If we exceed the list size
     if (position + 1) > m
-      atomsDisplayMessage("Check the validity of the repository")
+      atomsDisplayMessage(gettext("Check the validity of the repository"))
       result = %f
       return result
     else

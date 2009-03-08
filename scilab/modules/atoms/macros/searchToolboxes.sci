@@ -23,9 +23,9 @@ function result = searchToolboxes(keyword, typeSearch)
   global numberFunction
   listDesc = atomsReadDesc("")
   [n, m] = size(listDesc("Toolbox"))
-  // We check Toolboxes one to one
+  // We check all toolboxes one by one
   for i=1:n
-    // Differents value case of typeSearch
+    // Different value case of typeSearch
     if typeSearch == "all"
       // Research in Description + Title + Toolbox + Category + Author
       titleTool = convstr(listDesc("Title")(i),"l")

@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Separation of the dependancie and the version
+// Separation of the dependencies and the version
 
 function [depend, version] = atomsSeparateVersionDep(depend)
   version = ""

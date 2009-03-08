@@ -18,7 +18,7 @@ function atomsRegisterToolbox(name,path)
 	end
 	
 	loaded_toolboxes = [ loaded_toolboxes ; name path ];
-	
+
 	save(TMPDIR+"/loaded_toolboxes",loaded_toolboxes);
 	
 endfunction

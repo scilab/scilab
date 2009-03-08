@@ -31,7 +31,7 @@ function result = installToolbox(nom, checkVersionScilab, version)
   clearglobal conflictLocal
   clearglobal nomconflictLocal
   clearglobal conflictVersion
-  // Recuperation of the list of toolboxes to install
+  // Retrieve of the list of toolboxes to install
   listTool = atomsCheckConflict(nom, version, checkVersionScilab)
   // If there is an empty line, it is because a dependencie is missing
   if find(listTool == "") <> []
@@ -47,7 +47,7 @@ function result = installToolbox(nom, checkVersionScilab, version)
     result =  %f
     return result
   end
-  // Recuperation of the toolboxes list which are already in local
+  // Retrieve of the toolboxes list which are already in local
   cd (rep)
   listLocal = ls()
   // Treatment of the toolboxes to install

@@ -22,7 +22,7 @@ function descFunct = atomsReadDescFunctions(nom)
   // If we find the local directory and the DESCRIPTION-FUNCTIONS file is present
   if (isdir(d) & ls(directory) <> [])
     cd (d)
-    // Reading of thedescription file which we stock in a array
+    // Reading of thedescription file which we store in a array
     tab = atomsReadFile("DESCRIPTION-FUNCTIONS")
     // Creation of a liste
     [n, m] = size(tab)

@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Building of the dependancies list 
+// Building of the dependencies list 
 
 function listeDep = atomsCheckConflict(nom, version, checkVersionScilab)
   global conflictLocal
@@ -26,7 +26,7 @@ function listeDep = atomsCheckConflict(nom, version, checkVersionScilab)
     [nom1, version1] = atomsSeparateVersionDep(listeDep(i))
     [nom2, version2] = atomsSeparateVersionDep(listeDep(i+1))
     if nom1 == nom2
-      // If there are 2 versions possible, there is necessary a dependancies <=
+      // If there are 2 possible versions, there is necessary a dependencies <=
       // If there is, this maximum version must match with the authers dep
       // We install in local, and if the conflictLocal tag is 1, there is a version conflict, else is ok
       v1 = atomsDecoupVersion(version1)
@@ -82,21 +82,21 @@ function listeDep = checkDependencies(nom, version)
   listeDep = desc("Toolbox")(position) + " (" + desc("Version")(position) + ")"
   [a, b] = size(conflictingList)
   conflictingList(a+1) = desc("Toolbox")(position) + " (" + desc("Version")(position) + ")"
-  // Recuperation of the dependancies
+  // Recuperation of the dependencies
   depends = atomsExtractValue("Depends", desc, position)
-  // If there is no dependancies
+  // If there is no dependencies
   if depends == " " | depends == ""
   	return listeDep
   end
-  // If there is many dependancies, we split it in many string
+  // If there is many dependencies, we split it in many string
   depends = atomsSplitValue(depends, ',')
   // Addition in the toolboxes list to install
   [n, m] = size(depends)
   for i=1:n
 	[nb, x] = size(listeDep)
-	// Separation of the version and the dependancie
+	// Separation of the version and the dependencies
 	[depend, version] = atomsSeparateVersionDep(depends(i))
-	// Research of dependancies
+	// Research of dependencies
 	deps = checkDependencies(depend, version)
 	[o, p] = size(deps)
 	for i=1:o

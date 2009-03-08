@@ -7,8 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// april 2008 by Delphine
-
 function atomsDisplayMessage(mess)
 	// If Scilab is running in GUI mode
 	if (getscilabmode() == "STD")

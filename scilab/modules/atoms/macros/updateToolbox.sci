@@ -10,11 +10,11 @@
 // update of a toolbox
 
 function result = updateToolbox(name, checkVersionScilab)
-  // We check if the second argument exist 
+  // We check if the second argument exists
   if argn(2) == 1
     checkVersionScilab = %t
   end
-  // We remove special caracters
+  // We remove special characters
   name = atomsSubstituteString(name)
   // if name = "all" we update all the Toolboxes
   if name == "all"
@@ -28,7 +28,7 @@ function result = updateToolbox(name, checkVersionScilab)
       end
     end
   else
-    // We check if the Toolboxe locally exist
+    // We check if the Toolbox locally exist
     rep = atomsToolboxDirectory()
     d = rep + name
     if ~isdir(d)
@@ -54,7 +54,7 @@ function result = updateToolbox(name, checkVersionScilab)
     versionNew = atomsDecoupVersion(versionNew)
     // We check if it is an update of the local
     if atomsCompareVersion(versionNew, versionActuelle) == 1
-      // We check if it was a max dependancie for other toolboxes
+      // We check if it was a max dependency for other toolboxes
       listLocal = ls()
       [n, m] = size(listLocal)
       for i=1:n
@@ -81,7 +81,7 @@ function result = updateToolbox(name, checkVersionScilab)
         end
       end
     end
-    // We verify if it is necessary to update the dependancies
+    // We verify if it is necessary to update the dependencies
     dependsNew = atomsExtractValue("Depends", listDesc, position)
     dependsNew = atomsSplitValue(dependsNew, ",")
     [n, m] = size(dependsNew)

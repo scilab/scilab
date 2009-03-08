@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Recuperation of the Mirror list
+// Retrieve of the Mirror list
 
 function listMirror = atomsToolboxMirror()
   if getos() == "Windows"
