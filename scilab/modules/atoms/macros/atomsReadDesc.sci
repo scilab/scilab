@@ -70,12 +70,14 @@ function desc = atomsReadDesc(nom)
   return result
 endfunction
 
-// Recuperation of the file in the web
+// Retrieve of the file in the web
 function result = dlFile(web, fileWeb)
-	[rep,stat,err] = unix_g("wget " + web + "/TOOLBOXES" + " -O " + fileWeb)
+	URL=web + "/TOOLBOXES";
+	[rep,stat,err] = unix_g("wget "+URL + " -O " + fileWeb)
 	// If the file is not present
 	if stat <> 0
-	  atomsDisplayMessage(_("Please check the validity of the repository."))
+	  atomsDisplayMessage(_("Please check the validity of the repository:"))
+	  atomsDisplayMessage(sprintf(_("Download of ''%s'' failed"),URL))
 	  if ~removeFile(fileWeb)
 	    disp(sprintf(_("Please delete the file %s in your current repertory."),fileWeb))
 	  end
