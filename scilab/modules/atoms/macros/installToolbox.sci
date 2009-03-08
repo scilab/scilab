@@ -35,7 +35,7 @@ function result = installToolbox(name, checkVersionScilab, version)
   clearglobal conflictVersion
   // Retrieve of the list of toolboxes to install
   listTool = atomsCheckConflict(name, version, checkVersionScilab)
-  // If there is an empty line, it is because a dependencie is missing
+  // If there is an empty line, it is because a dependency is missing
   if find(listTool == "") <> []
     if conflictLocal == 1
       atomsDisplayMessage(sprintf(_("The Toolbox version %s locally present doesn''t match. Update it.\n"),nomconflictLocal))
