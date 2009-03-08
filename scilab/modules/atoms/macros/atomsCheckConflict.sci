@@ -9,7 +9,7 @@
 
 // Building of the dependencies list 
 
-function listeDep = atomsCheckConflict(nom, version, checkVersionScilab)
+function listeDep = atomsCheckConflict(name, version, checkVersionScilab)
   global conflictLocal
   global conflictingList
   global nomconflictLocal
@@ -19,38 +19,38 @@ function listeDep = atomsCheckConflict(nom, version, checkVersionScilab)
     version = ""
   end
   clearglobal conflictingList
-  listeDep = checkDependencies(nom, version)
+  listeDep = checkDependencies(name, version)
   [n, m] = size(listeDep)
   for i=1:n-1
     // We compare name
-    [nom1, version1] = atomsSeparateVersionDep(listeDep(i))
-    [nom2, version2] = atomsSeparateVersionDep(listeDep(i+1))
-    if nom1 == nom2
+    [name1, version1] = atomsSeparateVersionDep(listeDep(i))
+    [name2, version2] = atomsSeparateVersionDep(listeDep(i+1))
+    if name1 == name2
       // If there are 2 possible versions, there is necessary a dependencies <=
       // If there is, this maximum version must match with the authers dep
       // We install in local, and if the conflictLocal tag is 1, there is a version conflict, else is ok
       v1 = atomsDecoupVersion(version1)
       v2 = atomsDecoupVersion(version2)
       if atomsCompareVersion(v1, v2) == 1 | atomsCompareVersion(v1, v2) == 0
-        atomsDlInstall(nom1, version2)
+        atomsDlInstall(name1, version2)
       else
-        atomsDlInstall(nom1, version1)
+        atomsDlInstall(name1, version1)
       end
       clearglobal conflictLocal
       clearglobal conflictingList
       clearglobal nomconflictLocal
       clearglobal conflictVersion
-      listeDep2 = checkDependencies(nom, version)
+      listeDep2 = checkDependencies(name, version)
       if conflictLocal == 1
         conflictVersion = 1
         rep = atomsToolboxDirectory()
-        rmdir(rep + nom1, "s")
+        rmdir(rep + name1, "s")
       end
     end
   end
 endfunction
 
-function listeDep = checkDependencies(nom, version)
+function listeDep = checkDependencies(name, version)
   // To avoid redundancies and loops
   global conflictingList
   global conflictLocal
@@ -61,17 +61,17 @@ function listeDep = checkDependencies(nom, version)
     version = ""
   end
   // Reading of the description file
-  desc = atomsReadDesc(nom)
+  desc = atomsReadDesc(name)
   // Selection of the position toolbox in the disponible list toolboxes.
-  position = atomsSelectPosition(desc, nom, version, checkVersionScilab)
+  position = atomsSelectPosition(desc, name, version, checkVersionScilab)
   // Case where the the toolbox is not present
   if position == 0
-    atomsDisplayMessage("Toolbox " + nom + " not find")
+    atomsDisplayMessage(sprintf(_("Toolbox %s not found."),name))
     listeDep = ""
     return listeDep
   elseif position == 0.1
     conflictLocal = 1
-    nomconflictLocal = nom
+    nomconflictLocal = name
     listeDep = ""
     return listeDep
   end
