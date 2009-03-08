@@ -34,7 +34,7 @@ function infoToolbox(nameToolbox)
     disp(functionTool)
   // Else we search in the net
   else
-    disp(_("Toolbox versions available in the web"))
+    disp(_("Search for toolbox versions available on the web"))
     listDesc = atomsReadDesc("")
     versions = ""
     [n, m] = size(listDesc("Toolbox"))
