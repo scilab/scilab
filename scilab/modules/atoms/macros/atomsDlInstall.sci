@@ -44,7 +44,7 @@ function result = dlArchive(listWeb, position, name)
     [n, m] = size(listWeb)
     // If we exceed the list size
     if (position + 1) > m
-      atomsDisplayMessage(gettext("Check the validity of the repository"))
+      atomsDisplayMessage(gettext("Please check the validity of the repository"))
       result = %f
       return result
     else
