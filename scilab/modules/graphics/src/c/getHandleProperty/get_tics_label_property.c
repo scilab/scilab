@@ -24,7 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "Format.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int get_tics_labels_property( sciPointObj * pobj )
 {

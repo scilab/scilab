@@ -43,6 +43,7 @@
 #include "BasicAlgos.h"
 #include "localization.h"
 #include "Axes.h"
+#include "stack-c.h"
 
 #include "MALLOC.h" /* MALLOC */
 

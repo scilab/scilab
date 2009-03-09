@@ -26,7 +26,7 @@
 #include "WindowList.h"
 #include "InitObjects.h"
 #include "Interaction.h"
-
+#include "MALLOC.h"
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
 /* singleton, there is only one screen */
