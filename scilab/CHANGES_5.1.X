@@ -21,6 +21,8 @@ Source reorganisation:
 * New module added call_scilab: the goal of this module is to highlight the
   possibility to call Scilab engine from other languages.
 
+* "SCI/modules/output_stream/includes/error.h" renamed to "do_error_number.h"
+
 Help & Tests:
 =============
 
@@ -91,7 +93,11 @@ Bug fixes:
 
 * bug 4228 fixed - mclearerr with a false file descriptor crashs
 
-* bug 4273 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
+* bug 4231 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
+
+* bug 4235 fixed - error.h renamed
+
+
 
 
                Changes between version 5.0.X and 5.1 of Scilab
