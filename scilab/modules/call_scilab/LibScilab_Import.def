@@ -1,0 +1,24 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+setScilabMode
+scirun_
+inisci_
+settmpdir_
+checkrhs_
+checklhs_
+com_
+intersci_
+putlhsvar_
+createvarfromptr_
+callFunctionFromGateway
+freeArrayOfString
+cwritechain_
+cmatptr_
+creadmat_
+getScilabMode
+ExitScilab
+TerminateCorePart2
+InitializeLaunchScilabSignal
+setSCIpath

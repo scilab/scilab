@@ -17,8 +17,8 @@
 ;
 #define MODULE_CALL_SCILAB "call_scilab"
 ;
-;Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\changelog.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
