@@ -13,7 +13,9 @@
 #ifndef __EXPORT_SYMBOL_H__
 #define __EXPORT_SYMBOL_H__
 
+#ifdef _MSC_VER
 #pragma warning(disable : 4251) //It's not beautifull but that works !
+#endif
 
 #ifdef _MSC_VER
 	#if SYMBOL_EXPORTS

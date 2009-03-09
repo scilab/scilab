@@ -54,7 +54,9 @@ src/c/sub_vector.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = 	src/cpp/sortTemplate.cpp \
-					src/cpp/elem_func.cpp
+					src/cpp/elem_func.cpp \
+					sci_gateway/cpp/sci_cos2.cpp \
+					sci_gateway/cpp/sci_sin2.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -293,9 +295,9 @@ sci_gateway/c/sci_tan.c \
 sci_gateway/c/sci_atan.c \
 sci_gateway/c/sci_triu.c \
 sci_gateway/c/sci_frexp.c \
-sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_rand.c \
 sci_gateway/c/sci_acos.c \
+sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \

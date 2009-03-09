@@ -390,9 +390,9 @@ am__objects_5 = libscielementary_functions_la-sci_isequal.lo \
 	libscielementary_functions_la-sci_atan.lo \
 	libscielementary_functions_la-sci_triu.lo \
 	libscielementary_functions_la-sci_frexp.lo \
-	libscielementary_functions_la-sci_cos.lo \
 	libscielementary_functions_la-sci_rand.lo \
 	libscielementary_functions_la-sci_acos.lo \
+	libscielementary_functions_la-sci_cos.lo \
 	libscielementary_functions_la-sci_sin.lo \
 	libscielementary_functions_la-sci_sqrt.lo \
 	libscielementary_functions_la-sci_asin.lo \
@@ -467,7 +467,9 @@ am__objects_6 = libscielementary_functions_la-sci_f_isequal.lo \
 	libscielementary_functions_la-sci_f_chinesehat.lo \
 	libscielementary_functions_la-sci_f_exp.lo
 am__objects_7 = libscielementary_functions_la-sortTemplate.lo \
-	libscielementary_functions_la-elem_func.lo
+	libscielementary_functions_la-elem_func.lo \
+	libscielementary_functions_la-sci_cos2.lo \
+	libscielementary_functions_la-sci_sin2.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6) $(am__objects_7)
@@ -778,7 +780,9 @@ src/c/sub_vector.c
 
 # List of the cpp files
 ELEMENTARIES_FUNCTIONS_CPP_SOURCES = src/cpp/sortTemplate.cpp \
-					src/cpp/elem_func.cpp
+					src/cpp/elem_func.cpp \
+					sci_gateway/cpp/sci_cos2.cpp \
+					sci_gateway/cpp/sci_sin2.cpp
 
 SLATEC_SOURCES = src/fortran/slatec/zwrsk.f \
 src/fortran/slatec/d9b0mp.f \
@@ -1017,9 +1021,9 @@ sci_gateway/c/sci_tan.c \
 sci_gateway/c/sci_atan.c \
 sci_gateway/c/sci_triu.c \
 sci_gateway/c/sci_frexp.c \
-sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_rand.c \
 sci_gateway/c/sci_acos.c \
+sci_gateway/c/sci_cos.c \
 sci_gateway/c/sci_sin.c \
 sci_gateway/c/sci_sqrt.c \
 sci_gateway/c/sci_asin.c \
@@ -1359,6 +1363,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_conj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cos2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cumprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_cumsum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_diag.Plo@am__quote@
@@ -1389,6 +1394,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_round.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sin2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_spones.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
@@ -1883,13 +1889,6 @@ libscielementary_functions_la-sci_frexp.lo: sci_gateway/c/sci_frexp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_frexp.lo `test -f 'sci_gateway/c/sci_frexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_frexp.c
 
-libscielementary_functions_la-sci_cos.lo: sci_gateway/c/sci_cos.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_cos.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_cos.Tpo -c -o libscielementary_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_cos.Tpo $(DEPDIR)/libscielementary_functions_la-sci_cos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_cos.c' object='libscielementary_functions_la-sci_cos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
-
 libscielementary_functions_la-sci_rand.lo: sci_gateway/c/sci_rand.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_rand.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_rand.Tpo -c -o libscielementary_functions_la-sci_rand.lo `test -f 'sci_gateway/c/sci_rand.c' || echo '$(srcdir)/'`sci_gateway/c/sci_rand.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_rand.Tpo $(DEPDIR)/libscielementary_functions_la-sci_rand.Plo
@@ -1903,6 +1902,13 @@ libscielementary_functions_la-sci_acos.lo: sci_gateway/c/sci_acos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_acos.c' object='libscielementary_functions_la-sci_acos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_acos.lo `test -f 'sci_gateway/c/sci_acos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_acos.c
+
+libscielementary_functions_la-sci_cos.lo: sci_gateway/c/sci_cos.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_cos.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_cos.Tpo -c -o libscielementary_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_cos.Tpo $(DEPDIR)/libscielementary_functions_la-sci_cos.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_cos.c' object='libscielementary_functions_la-sci_cos.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -c -o libscielementary_functions_la-sci_cos.lo `test -f 'sci_gateway/c/sci_cos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_cos.c
 
 libscielementary_functions_la-sci_sin.lo: sci_gateway/c/sci_sin.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(libscielementary_functions_la_CFLAGS) $(CFLAGS) -MT libscielementary_functions_la-sci_sin.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sin.Tpo -c -o libscielementary_functions_la-sci_sin.lo `test -f 'sci_gateway/c/sci_sin.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sin.c
@@ -2148,6 +2154,20 @@ libscielementary_functions_la-elem_func.lo: src/cpp/elem_func.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/elem_func.cpp' object='libscielementary_functions_la-elem_func.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-elem_func.lo `test -f 'src/cpp/elem_func.cpp' || echo '$(srcdir)/'`src/cpp/elem_func.cpp
+
+libscielementary_functions_la-sci_cos2.lo: sci_gateway/cpp/sci_cos2.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_cos2.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_cos2.Tpo -c -o libscielementary_functions_la-sci_cos2.lo `test -f 'sci_gateway/cpp/sci_cos2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cos2.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_cos2.Tpo $(DEPDIR)/libscielementary_functions_la-sci_cos2.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_cos2.cpp' object='libscielementary_functions_la-sci_cos2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_cos2.lo `test -f 'sci_gateway/cpp/sci_cos2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cos2.cpp
+
+libscielementary_functions_la-sci_sin2.lo: sci_gateway/cpp/sci_sin2.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscielementary_functions_la-sci_sin2.lo -MD -MP -MF $(DEPDIR)/libscielementary_functions_la-sci_sin2.Tpo -c -o libscielementary_functions_la-sci_sin2.lo `test -f 'sci_gateway/cpp/sci_sin2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sin2.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscielementary_functions_la-sci_sin2.Tpo $(DEPDIR)/libscielementary_functions_la-sci_sin2.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_sin2.cpp' object='libscielementary_functions_la-sci_sin2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscielementary_functions_la-sci_sin2.lo `test -f 'sci_gateway/cpp/sci_sin2.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sin2.cpp
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
