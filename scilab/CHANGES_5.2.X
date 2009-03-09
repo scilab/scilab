@@ -9,7 +9,9 @@ Compilation:
 
 * modelicac (scicos) built with Ocaml 3.11.0 on Windows
 
-* blas, lapack , arpack libraries moved as pre-requirements (Windows)
+* blas, lapack, arpack libraries moved as pre-requirements (Windows)
+
+* blas, lapack libraries moved as pre-requirements (Linux/Unix/MacOSX)
 
 * lapack 3.2 used on Windows
 
@@ -29,7 +31,12 @@ Core functions:
 
  - Rewrite :
  	+ mode
- 	
+
+fileio functions:
+=================
+  - Input arguments of functions are checked 
+    (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
+
 
 Dynamic link:
 =============

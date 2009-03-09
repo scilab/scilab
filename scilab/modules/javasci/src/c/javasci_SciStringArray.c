@@ -1,5 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC
+ * Copyright (C) INRIA
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * 
  * This file must be used under the terms of the CeCILL.
@@ -12,8 +14,6 @@
 #include "CallScilab.h"
 #include "javasci_SciStringArray.h"
 /*****************************************************************************/
-#define DefaultMaxlenString 1024
-/*****************************************************************************/
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg);
 
 /*****************************************************************************/
@@ -22,35 +22,27 @@ JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , j
 JNIEXPORT jstring JNICALL Java_javasci_SciStringArray_GetElement(JNIEnv *env , jobject obj_this,jint indrarg, jint indcarg)
 /*****************************************************************************/
 {
-  int cm,cn;
   const char *cname; 
   int indx, indy, nlr;
-  char *tmpStr=MALLOC(sizeof(char)*DefaultMaxlenString);
+  char *tmpStr=MALLOC(sizeof(char)*bsiz);
   
   /* get the class */
   jclass class_Mine = (*env)->GetObjectClass(env, obj_this);
   
   /* get the fields i.e x,m,n,name  */
   jfieldID id_name =  (*env)->GetFieldID(env, class_Mine, "name","Ljava/lang/String;");
-  jfieldID id_m = (*env)->GetFieldID(env, class_Mine, "m", "I");
-  jfieldID id_n = (*env)->GetFieldID(env, class_Mine, "n", "I");
   
    /* get the field value */
   jstring jname = (jstring) (*env)->GetObjectField(env, obj_this, id_name);
-  jint jm = (*env)->GetIntField(env, obj_this, id_m);
-  jint jn2 = (*env)->GetIntField(env, obj_this, id_n);
 
   jstring StrReturn;
   
   cname = (*env)->GetStringUTFChars(env, jname, NULL);
 
-  cm=jm;
-  cn=jn2;
-  
   indx= indrarg;
   indy = indcarg;
 
-  nlr = DefaultMaxlenString;
+  nlr = bsiz;
 
   if (!C2F(creadchains)((char *)cname, &indx, &indy, &nlr, tmpStr, (unsigned long)strlen(cname), (unsigned long)strlen(tmpStr)) )
   {
@@ -72,7 +64,7 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 {
 	const char *cname;
 	const char *cstr;
-	char Job[DefaultMaxlenString];
+	char Job[bsiz];
 	int lencstr=0;
 
 	/* get the class */
@@ -89,7 +81,7 @@ JNIEXPORT void JNICALL Java_javasci_SciStringArray_SendString(JNIEnv *env , jobj
 
 	lencstr=(int)strlen(cstr);
 
-	if (!C2F(cwritechain)("TMP_SendString",&lencstr,(char*)cstr,(int)strlen("TMP_SendString"),(int)strlen(cstr)) )
+	if (!C2F(cwritechain)("TMP_SendString",&lencstr,(char*)cstr,(int)strlen("TMP_SendString"),lencstr) )
 	{
 		fprintf(stderr,"Error in Java_javasci_SciStringArray_SendString routine (1).\n");
 	}

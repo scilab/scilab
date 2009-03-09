@@ -55,11 +55,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libscimetanet_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/metanet
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -98,8 +97,7 @@ libscimetanet_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1)
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscimetanet_la-paths.lo libscimetanet_la-dmtree.lo \
 	libscimetanet_la-files.lo \
 	libscimetanet_la-hashtable_metanet.lo \
@@ -484,14 +482,7 @@ libscimetanet_la_SOURCES = $(METANET_C_SOURCES) $(METANET_FORTRAN_SOURCES) $(GAT
 # For the code check (splint)
 CHECK_SRC = $(METANET_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscimetanet_la_CFLAGS)
-libscimetanet_la_LIBADD =  \
-	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1)
+libscimetanet_la_LIBADD = $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = metanet
@@ -526,7 +517,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro

@@ -37,10 +37,6 @@ libsciboolean_la_LIBADD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
-if USE_EMBEDDED_BLAS
-libsciboolean_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
-
 modulename=boolean
 
 #### boolean : Conf files ####

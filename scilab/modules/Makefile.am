@@ -102,15 +102,7 @@ libscilab_la_rootdir = $(mydatadir)
 pkglib_LTLIBRARIES = libscilab.la
 libscilab_la_SOURCES =
 
-libscilab_la_LDFLAGS =
-
-if ! USE_EMBEDDED_LAPACK
-libscilab_la_LDFLAGS += $(LAPACK_LIBS)
-endif
-
-if ! USE_EMBEDDED_BLAS
-libscilab_la_LDFLAGS += $(BLAS_LIBS)
-endif
+libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ALL_LIBS=	$(top_builddir)/modules/fileio/libscifileio.la \
 $(top_builddir)/modules/mexlib/libmex.la \
@@ -192,13 +184,3 @@ $(top_builddir)/libs/hashtable/libscihashtable.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la  \
 $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
 $(top_builddir)/libs/libst/libscilibst.la
-
-if USE_EMBEDDED_BLAS
-# Use the blas provided into the Scilab tarball
-libscilab_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
-
-if USE_EMBEDDED_LAPACK
-# Use the lapack provided into the Scilab tarball
-libscilab_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif

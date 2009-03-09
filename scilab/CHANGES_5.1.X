@@ -21,6 +21,8 @@ Source reorganisation:
 * New module added call_scilab: the goal of this module is to highlight the
   possibility to call Scilab engine from other languages.
 
+* "SCI/modules/output_stream/includes/error.h" renamed to "do_error_number.h"
+
 Help & Tests:
 =============
 
@@ -32,6 +34,8 @@ Help & Tests:
 
 * Examples and unit tests added for the function find
 
+* Examples provided in the help of the function argn
+
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
 * Minor improvements in the documentation of the ilib_* functions
@@ -41,17 +45,24 @@ License:
 
 * Examples in SCI/modules/javasci/examples/ are now released under the public
   domain
+  
+Internal API:
+=============
+* GetLengthStringMatrixByName function added in stack3.h (return length of strings)
 
 Bug fixes:
 ==========
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 		   variable tables to compile other files
+* bug 3945 fixed - Error with the help example of library()
 
 * bug 4052 fixed - A wrong usage of xmlCleanupParser (libxml2) was causing
 				   a seg fault on startup
 
 * bug 4067 fixed - bug with completion and some paths
+
+* bug 4073 fixed - mprintf does not display some special characters
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
@@ -79,6 +90,14 @@ Bug fixes:
 				   large/small vector matrices.
 				   
 * bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
+
+* bug 4228 fixed - mclearerr with a false file descriptor crashs
+
+* bug 4231 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
+
+* bug 4235 fixed - error.h renamed
+
+
 
 
                Changes between version 5.0.X and 5.1 of Scilab
@@ -552,6 +571,8 @@ Bug fixes:
 * bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
 
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
+
+* bug 4221 fixed - graypolarplot uses to much memory.
 
 * Side effect in the setenvc function.
 

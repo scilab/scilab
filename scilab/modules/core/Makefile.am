@@ -32,7 +32,6 @@ src/c/Funtab.c \
 src/c/csignal.c \
 src/c/prompt.c \
 src/c/callinterf.c \
-src/c/SendScilabJobs.c \
 src/c/scimem.c \
 src/c/banier.c \
 src/c/isanan.c \

@@ -16,6 +16,8 @@
 #include <stdio.h>
 #include "BOOL.h"
 
+/* ID returned if File is not defined */
+#define FILE_ID_NOT_DEFINED -100
 
 /**
 * Default max of files opened in scilab
@@ -150,6 +152,13 @@ BOOL ExtendScilabFilesList(int NewSize);
 * @return TRUE or FALSE
 */
 BOOL IsAlreadyOpenedInScilab(char *filename);
+
+/**
+* Get ID of a filename opened in scilab
+* @param[in] filen name
+* @return file ID or FILE_ID_NOT_DEFINED
+*/
+int GetIdFromFilename(char *filename);
 #endif /* __FILESMANAGEMENT_H__ */
 /*--------------------------------------------------------------------------*/
 

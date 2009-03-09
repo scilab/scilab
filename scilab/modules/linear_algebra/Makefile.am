@@ -108,14 +108,6 @@ INCLUDE_FLAGS = $(libscilinear_algebra_la_CFLAGS)
 
 libscilinear_algebra_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
-if USE_EMBEDDED_LAPACK
-libscilinear_algebra_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscilinear_algebra_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 
-endif
-
 #### Target ######
 modulename=linear_algebra
 

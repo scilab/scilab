@@ -90,6 +90,16 @@ function [x,y] = polar2Cart(rho, theta)
   y = rho * sin(theta);
 endfunction
 
+function [nbDecomp] = computeNeededDecompos(theta)
+  // Compute the needed decomposition for each patch
+  
+  // minimal decompostion for each ring
+  nbFactesPerRingMin = 512;
+  
+  nbDecomp = ceil(nbFactesPerRingMin / size(theta, '*'));
+  
+endfunction
+
 
 function drawGrayplot(theta, rh, z)
 // draw only the colored part of the grayplot
@@ -104,7 +114,7 @@ function drawGrayplot(theta, rh, z)
 nbRho = size(rho,'*');
 nbTheta = size(theta,'*');
 
-nbDecomposition = 32; // number of approximation facets
+nbDecomposition = computeNeededDecompos(theta); // number of approximation facets
 
 nbRefinedTheta = (nbTheta - 1) * nbDecomposition + 1;
 

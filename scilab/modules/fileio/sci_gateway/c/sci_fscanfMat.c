@@ -27,7 +27,7 @@ static char *Info= NULL;
 /*--------------------------------------------------------------------------*/
 static int ReadLine(FILE *fd,int *mem);
 /*--------------------------------------------------------------------------*/
-int int_objfscanfMat(char *fname,unsigned long fname_len)
+int sci_fscanfMat(char *fname,unsigned long fname_len)
 {
 	char **Str = NULL;
 	int mem = 0;
