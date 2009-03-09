@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>argn</refname>
-    <refpurpose> number of arguments in a function call</refpurpose>
+    <refpurpose> Returns the number of input/output arguments in a function call</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -17,11 +17,27 @@ rhs=argn(2)</synopsis>
     <title>Description</title>
     <para>
     This function is used inside a function definition.
-    It gives the number of actual inputs <literal>rhs</literal>
-    and output <literal>lhs</literal> parameters passed to the function when the function is 
+    It gives the number of actual inputs arguments (<literal>rhs</literal>)
+    and output arguments (<literal>lhs</literal>) passed to the function when the function is 
     called. It is usually used in function definitions to deal with 
     optional arguments.</para>
   </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+function concat=myOwnFunction(name,optional)
+  [lhs,rhs]=argn(0) 
+  if rhs <= 1 then
+  	 optional="my Optional value"
+  end
+  if rhs == 0 then
+  	 error("Except at least one argument")
+  end
+  concat=name+" "+optional
+endfunction
+  ]]></programlisting>
+  </refsection>
+
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
