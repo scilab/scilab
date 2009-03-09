@@ -32,6 +32,8 @@ Help & Tests:
 
 * Examples and unit tests added for the function find
 
+* Examples provided in the help of the function argn
+
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
 * Minor improvements in the documentation of the ilib_* functions
@@ -41,6 +43,10 @@ License:
 
 * Examples in SCI/modules/javasci/examples/ are now released under the public
   domain
+  
+Internal API:
+=============
+* GetLengthStringMatrixByName function added in stack3.h (return length of strings)
 
 Bug fixes:
 ==========
