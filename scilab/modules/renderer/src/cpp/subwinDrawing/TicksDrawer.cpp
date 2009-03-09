@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include "GetProperty.h"
 };
 
