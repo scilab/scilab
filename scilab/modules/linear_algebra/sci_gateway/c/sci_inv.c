@@ -31,9 +31,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 		OverLoad(1);
 		return 0;
 	}
-	fprintf(stdout, "rhs 1:@%u 2:@%u 3:@%u\n",GetData(1), GetData(2), GetData(3));
-
-	// from now on, we have an sci_matrix, so we can use iIsComplex
+	/* from now on, we have an sci_matrix, so we can use iIsComplex */
 	CheckRhs(1,1); /* one and only one arg */
 	CheckLhs(1,1); /* one and only one returned value */
 	{
