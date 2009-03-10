@@ -1,7 +1,7 @@
 
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) ????-2009 - INRIA
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -74,7 +74,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	if(ret >0){ Error(ret) ; }
 	else{
 	  LhsVar(1) = 1;
-	  // TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_
+	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ */
 	}
 	}
 	return 0;
