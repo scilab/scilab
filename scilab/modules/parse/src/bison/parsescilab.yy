@@ -1,7 +1,7 @@
 %{ // -*- C++ -*-
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2008-2008 - INRIA - Bruno JOFRET
+ *  Copyright (C) 2008-2009 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -881,9 +881,12 @@ SEMI							{ /* !! Do Nothing !! */ }
 */
 /* Some matrix/cell columns with a special matrix/cell line break at the end */
 matrixOrCellLine :
-matrixOrCellColumns matrixOrCellLineBreak		{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixOrCellColumns COMMENT EOL			{ $$ = new ast::MatrixLineExp(@$, *$1); }
-| matrixOrCellColumns SEMI COMMENT EOL			{ $$ = new ast::MatrixLineExp(@$, *$1); }
+matrixOrCellColumns matrixOrCellLineBreak				{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns COMMENT EOL					{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns SEMI COMMENT EOL					{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns matrixOrCellColumnsBreak matrixOrCellLineBreak	{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns matrixOrCellColumnsBreak COMMENT EOL		{ $$ = new ast::MatrixLineExp(@$, *$1); }
+| matrixOrCellColumns matrixOrCellColumnsBreak SEMI COMMENT EOL		{ $$ = new ast::MatrixLineExp(@$, *$1); }
 ;
 
 /*
