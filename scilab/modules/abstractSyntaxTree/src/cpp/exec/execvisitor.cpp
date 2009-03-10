@@ -141,13 +141,13 @@ namespace ast
 		}
 		else
 		{
-			std::ostringstream os;
+		  std::ostringstream os;
 			char szError[bsiz];
 #ifdef _MSC_VER
 			string toto = e.name_get().name_get();
 			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), toto.c_str());
 #else
-			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get());
+			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #endif
 			os << szError;
 			string szErr(os.str());
