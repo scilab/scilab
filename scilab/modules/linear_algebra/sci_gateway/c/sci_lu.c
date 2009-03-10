@@ -29,6 +29,8 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
   double* pData;
   double* pDataReal;
   double* pDataImg;
+
+  ret= 0;
   
   /*   lu(A)  */
   if ( (Rhs >=1 ) && GetType(1)!=sci_matrix) 
@@ -44,119 +46,190 @@ int C2F(intlu)(char *fname,unsigned long fname_len)
       GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
       /* c -> z */
       pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
+      if(!pData)
+	{
+	  Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+	  ret = 1;
+	}
     }
-	else
-	  {
-	    GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
-	  }
-	if( (iCols == 0) || (iRows == 0))
-	  {
-	    double* pdblL= NULL;
-	    LhsVar(1)= 1;
-	    ret = iAllocMatrixOfDouble(2, 0, 0, &pdblL);
-	    /* check pbdlL or ret */
-	    LhsVar(2)= 2;
-	    if(Lhs == 3)
-	      {
-		double* pdblE= NULL;
-		ret = iAllocMatrixOfDouble(2, 0, 0, &pdblE);
-		/* check pbdlE or ret */
-		LhsVar(3)= 3;
-	      }
-	  }
-	else
-	  {
-	    if( (iCols == -1) && (iRows == -1)) /* Rhs(1)=k*eye() => Lhs(1)=eye() Lhs(2)=k*eye(), Lhs(3)=eye() */
-	      {
-		LhsVar(1)= 1;
-		if(complexArg)
-		  {
-		    double* pdblLReal;
-		    double* pdblLImg;
-		    iAllocComplexMatrixOfDouble(2, -1, -1, &pdblLReal, &pdblLImg);
-		    *pdblLReal= *pDataReal;
-		    *pdblLImg= *pDataImg;
-		    *pDataReal= 1.;
-		    *pDataImg= 0.;
-		  }
-		else
-		  {
-		    double* pdblLData;
-		    iAllocMatrixOfDouble(2, -1, -1, &pdblLData);
-		    *pdblLData= *pData;
-		    *pData= 1.;
+  else
+    {
+      GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
+    }
+  if( (iCols == 0) || (iRows == 0))
+    {
+      double* pdblL= NULL;
+      LhsVar(1)= 1;
+      if((ret = iAllocMatrixOfDouble(2, 0, 0, &pdblL)))
+	{
+	  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+	}
+      else
+	{
+	  LhsVar(2)= 2;
+	}
+      if(Lhs == 3)
+	{
+	  double* pdblE= NULL;
+	  if((ret = iAllocMatrixOfDouble(2, 0, 0, &pdblE)))
+	    {
+	      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+	    }
+	  else
+	    {
+	      LhsVar(3)= 3;
+	    }
+	}
+    }
+  else
+    {
+      if( (iCols == -1) && (iRows == -1)) /* Rhs(1)=k*eye() => Lhs(1)=eye() Lhs(2)=k*eye(), Lhs(3)=eye() */
+	{
+	  LhsVar(1)= 1;
+	  if(complexArg)
+	    {
+	      double* pdblLReal;
+	      double* pdblLImg;
+	      if((ret = iAllocComplexMatrixOfDouble(2, -1, -1, &pdblLReal, &pdblLImg)))
+		{
+		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
 		}
-		LhsVar(2)= 2;
-		if(Lhs == 3)
-		  {
-		    if(complexArg)
-		      {
-			double* pdblEReal;
-			double* pdblEImg;
-			iAllocComplexMatrixOfDouble(3, -1, -1, &pdblEReal, &pdblEImg);
-			*pdblEReal= 1.;
-			*pdblEImg= 0.;
-		      }
-		    else
-		      {
-			double* pdblEData;
-			iAllocMatrixOfDouble(3, -1, -1, &pdblEData);
-			*pdblEData= 1.;
-		      }
-		    LhsVar(3)= 3;
-		  }
-	      }
-	    else
-	      {
-		double *pdblLData;
-		double *pdblLReal;
-		double *pdblLImg;
-		double *pdblUData;
-		double *pdblUReal;
-		double *pdblUImg;
-		double *pdblEData;
-		int iMinRowsCols;
-
-		pdblEData= NULL;
-		iMinRowsCols= Min(iRows, iCols);
-
-		if(complexArg)
-		  {
-		    iAllocComplexMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLReal, &pdblLImg);
-		    iAllocComplexMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUReal, &pdblUImg);
-		    /*
-		      we can allocate matrix of 'z' instead of calling oGetDoubleComplexFromPointer because the freshly allocated
-		      complex matrix does not contain any useful data.
-		     */
-		    pdblLData = (double*)MALLOC(iRows * iMinRowsCols * sizeof(doublecomplex) );
-		    pdblUData = (double*)MALLOC(iMinRowsCols * iCols * sizeof(doublecomplex) );
-		  }
-		else
-		  {
-		    iAllocMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLData);
-		    iAllocMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUData);
-		  }
-		if(Lhs == 3)
-		  {
-		    iAllocMatrixOfDouble(4, iRows, iRows, &pdblEData);
-		  }
-		ret =iLuM(pData, iRows, iCols, complexArg, pdblLData, pdblUData, pdblEData );
-		if(complexArg)
-		  {
-		    vGetPointerFromDoubleComplex((doublecomplex*)pdblLData, iRows * iMinRowsCols, pdblLReal, pdblLImg);
-		    FREE(pdblLData);
-		    vGetPointerFromDoubleComplex((doublecomplex*)pdblUData, iMinRowsCols * iCols, pdblUReal, pdblUImg);
-		    FREE(pdblUData);
-		  }
-		LhsVar(1)= 2;
-		LhsVar(2)= 3;
-		if(Lhs == 3)
-		  {
-		    LhsVar(3)= 4;
-		  }
-	      }
-	  }
-	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ */
-	return 0;
+	      else
+		{
+		  *pdblLReal= *pDataReal;
+		  *pdblLImg= *pDataImg;
+		  *pDataReal= 1.;
+		  *pDataImg= 0.;
+		}
+	    }
+	  else
+	    {
+	      double* pdblLData;
+	      if((ret = iAllocMatrixOfDouble(2, -1, -1, &pdblLData)))
+		{
+		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		}
+	      else
+		{
+		  *pdblLData= *pData;
+		  *pData= 1.;
+		}
+	    }
+	  LhsVar(2)= 2;
+	  if(Lhs == 3)
+	    {
+	      if(complexArg)
+		{
+		  double* pdblEReal;
+		  double* pdblEImg;
+		  if((ret= iAllocComplexMatrixOfDouble(3, -1, -1, &pdblEReal, &pdblEImg)))
+		    {
+		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		    }
+		  else
+		    {
+		      *pdblEReal= 1.;
+		      *pdblEImg= 0.;
+		    }
+		}
+	      else
+		{
+		  double* pdblEData;
+		  if((ret=  iAllocMatrixOfDouble(3, -1, -1, &pdblEData)))
+		    {
+		      Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		    }
+		  else
+		    {
+		      *pdblEData= 1.;
+		    }
+		}
+	    }
+	  LhsVar(3)= 3;
+	}
+      else
+	{
+	  double *pdblLData;
+	  double *pdblLReal;
+	  double *pdblLImg;
+	  double *pdblUData;
+	  double *pdblUReal;
+	  double *pdblUImg;
+	  double *pdblEData;
+	  int iMinRowsCols;
+	      
+	  pdblEData= NULL;
+	  iMinRowsCols= Min(iRows, iCols);
+	  
+	  if(complexArg)
+	    {
+	      if(iAllocComplexMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLReal, &pdblLImg)
+		 || iAllocComplexMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUReal, &pdblUImg))
+		{
+		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		  ret= 1;
+		}
+	      /*
+		we can allocate matrix of 'z' instead of calling oGetDoubleComplexFromPointer because the freshly allocated
+		complex matrix does not contain any useful data.
+	      */
+	      pdblLData = (double*)MALLOC(iRows * iMinRowsCols * sizeof(doublecomplex) );
+	      if(!pdblLData)
+		{
+		  Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+		  ret = 1;
+		}
+	      else
+		{
+		  pdblUData = (double*)MALLOC(iMinRowsCols * iCols * sizeof(doublecomplex) );
+		  if(!pdblUData)
+		    {
+		      Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+		      ret=1;
+		    }
+		}
+	    }
+	  else
+	    {
+	      if(iAllocMatrixOfDouble(2, iRows, iMinRowsCols, &pdblLData)
+		 ||iAllocMatrixOfDouble(3, iMinRowsCols, iCols, &pdblUData))
+		{
+		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		  ret= 1;
+		}
+	    }
+	  if(Lhs == 3)
+	    {
+	      if(iAllocMatrixOfDouble(4, iRows, iRows, &pdblEData))
+		{
+		  Scierror(999,_("%s: stack size exceeded (Use stacksize function to increase it).\n"), fname);
+		  ret=1;
+		}
+	    }
+	  /* using ?: short circuit to avoid calling function if an alloc went wrong */
+	  ret = ret ? ret : iLuM(pData, iRows, iCols, complexArg, pdblLData, pdblUData, pdblEData );
+	  if(complexArg)
+	    {
+	      if(pdblLData)
+		{
+		  vGetPointerFromDoubleComplex((doublecomplex*)pdblLData, iRows * iMinRowsCols, pdblLReal, pdblLImg);
+		  FREE(pdblLData);
+		}
+	      if(pdblUData)
+		{
+		  vGetPointerFromDoubleComplex((doublecomplex*)pdblUData, iMinRowsCols * iCols, pdblUReal, pdblUImg);
+		  FREE(pdblUData);
+		}
+	    }
+	  LhsVar(1)= 2;
+	  LhsVar(2)= 3;
+	  if(Lhs == 3)
+	    {
+	      LhsVar(3)= 4;
+	    }
+	}
+    }
+  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ */
+  return 0;
 }
 /*--------------------------------------------------------------------------*/
