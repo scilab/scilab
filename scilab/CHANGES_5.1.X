@@ -26,6 +26,8 @@ Source reorganisation:
 Help & Tests:
 =============
 
+* Some equations in the documentation converted to the MathML format (bug 4180)
+
 * Help improved about javasci - Scilab Java API
 
 * Page "Compile and run with Javasci" added
