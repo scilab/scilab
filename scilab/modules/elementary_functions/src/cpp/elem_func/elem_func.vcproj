@@ -574,7 +574,7 @@
 			>
 		</Filter>
 		<File
-			RelativePath=".\ReadMe.txt"
+			RelativePath="..\..\..\..\..\bin\lapack.lib"
 			>
 		</File>
 	</Files>
