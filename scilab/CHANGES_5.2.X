@@ -31,6 +31,7 @@ Core functions:
 
  - Rewrite :
  	+ mode
+ 	+ predef
 
 fileio functions:
 =================
@@ -53,6 +54,10 @@ Bug fixes:
 ==========
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for timer()
+
+* bug 3772 fixed - input argument of 'predef' was not correctly checked.
+
+* bug 3773 fixed - 'ans' was protected with predef('all').
 
 * bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
 

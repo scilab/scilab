@@ -20,20 +20,15 @@
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Matlab <literal>eig</literal> and Scilab <literal>spec</literal> behave differently in some particular cases:</para>
-    <itemizedlist>
-      <listitem>
-        <para>
-	With one input (A) and two outputs (V,D), Matlab and Scilab returned eigen values have opposite signs.
-         </para>
-      </listitem>
-    </itemizedlist>
-    <para>
-    The function <literal>[V,D] = mtlb_eig(A)</literal> is used by
-    <literal>mfile2sci</literal> to replace <literal>&gt;[V,D] = eig(A)</literal>.
-    This function will determine the correct semantic at run time. There is no replacement possibility for it.
-    </para>
-    <para>Caution: <literal>mtlb_eig</literal> has not to be used for hand coded functions.</para>
+    <para>WARNING: This function is obsolete and will be removed in version 5.1.2, please use <link linkend="spec">spec</link> instead.</para>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection>
     <title>Authors</title>

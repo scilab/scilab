@@ -19,11 +19,36 @@
 #include <dirent.h>
 #else
 #include <Windows.h>
+#include <wchar.h>
 #endif
 #include "createdirectory.h"
 #include "isdir.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 #define DIRMODE 0777
+/*--------------------------------------------------------------------------*/
+/* convert UTF-8 to Multi-byte character set (Default on Windows) */
+/* Example to show how to do on Windows */
+/* We need to use "Multi-byte" C function compatible */
+#ifdef _MSC_VER
+static WCHAR *to_wide_string(LPCSTR pStr)
+{
+	int nwide = 0;
+	WCHAR *buf = NULL;
+
+	if(pStr == NULL) return NULL;
+	nwide = MultiByteToWideChar(CP_UTF8, 0, pStr, -1, NULL, 0);
+	if(nwide == 0) return NULL;
+	buf = MALLOC(nwide * sizeof(WCHAR));
+	if(buf == NULL) return NULL;
+	if(MultiByteToWideChar(CP_UTF8, 0, pStr, -1, buf, nwide) == 0) 
+	{
+		FREE(buf);
+		return NULL;
+	}
+	return buf;
+}
+#endif
 /*--------------------------------------------------------------------------*/
 BOOL createdirectory(const char *path)
 {
@@ -34,7 +59,11 @@ BOOL createdirectory(const char *path)
 		if (mkdir(path, DIRMODE) == 0) bOK=TRUE;
 	}
 #else
-	if (CreateDirectory(path,NULL)) bOK=TRUE;
+	WCHAR *wpath = NULL;
+	wpath = to_wide_string(path);
+	/* we replace mkdir by _wmkdir (Multi byte) */
+	if ( _wmkdir(wpath) == 0) bOK = TRUE;
+	FREE(wpath);
 #endif
 	return bOK;
 }

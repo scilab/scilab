@@ -26,6 +26,8 @@ Source reorganisation:
 Help & Tests:
 =============
 
+* Some equations in the documentation converted to the MathML format (bug 4180)
+
 * Help improved about javasci - Scilab Java API
 
 * Page "Compile and run with Javasci" added
@@ -52,6 +54,9 @@ Internal API:
 
 Bug fixes:
 ==========
+
+* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
+                   (mtlb_eig is now obsolete).
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 		   variable tables to compile other files
