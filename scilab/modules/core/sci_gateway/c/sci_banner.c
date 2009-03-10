@@ -12,8 +12,7 @@
 #include <string.h>
 #include "gw_core.h"
 #include "stack-c.h"
-/*--------------------------------------------------------------------------*/
-extern void banner(void);
+#include "banier.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_banner)(char *fname,unsigned long fname_len)
 {
