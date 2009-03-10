@@ -17,6 +17,7 @@
 #include <stdio.h> // debug
 #include <math.h> //sqrt
 
+extern double F2C(dlamch)(char* , unsigned long int);
 /*
   C Abs and Max macros are not ieee nan compliant but neither are the fortran77
   intrinsics used in the original dlange.f code.
