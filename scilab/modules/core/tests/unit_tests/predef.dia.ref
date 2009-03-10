@@ -5,24 +5,17 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 //predef
-
 N = predef();
 a = 1;
 predef("all");
-
 ierr = execstr('clear a','errcatch');
-if ierr <> 13 then pause,end
-
+if ierr <> 13 then bugmes();quit;end
 ierr = execstr('predef(''clear'')','errcatch');
-if ierr <> 0 then pause,end
-
+if ierr <> 0 then bugmes();quit;end
 ierr = execstr('clear','errcatch');
-if ierr <> 0 then pause,end
-
+if ierr <> 0 then bugmes();quit;end
 ierr = execstr('predef(N)','errcatch');
-if ierr <> 0 then pause,end
+if ierr <> 0 then bugmes();quit;end
 	
-if predef() <> N then pause,end
-  
+if predef() <> N then bugmes();quit;end
