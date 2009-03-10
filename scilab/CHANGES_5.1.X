@@ -55,6 +55,9 @@ Internal API:
 Bug fixes:
 ==========
 
+* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
+                   (mtlb_eig is now obsolete).
+
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 		   variable tables to compile other files
 * bug 3945 fixed - Error with the help example of library()
