@@ -47,7 +47,6 @@ FuncManager::FuncManager(void)
 	string szPath = ConfigVariable::getInstance()->get("SCI");
 	szPath += "/";
 	szPath += BASENAMEMODULESFILE;
-	cout << szPath << endl;
 
 	CreateModuleList();
 
@@ -110,10 +109,10 @@ bool FuncManager::AppendModules()
 
 		doc = xmlParseFile (m_szXmlFile.c_str());
 
-		if(doc == NULL) 
+		if(doc == NULL)
 		{
 			std::cout << "Error: Could not parse file " << m_szXmlFile << std::endl;
-			if(encoding) 
+			if(encoding)
 			{
 				delete[] encoding;
 				encoding=NULL;
@@ -124,7 +123,7 @@ bool FuncManager::AppendModules()
 		xpathCtxt = xmlXPathNewContext(doc);
 		xpathObj = xmlXPathEval((const xmlChar*)"//modules/module", xpathCtxt);
 
-		if(xpathObj && xpathObj->nodesetval->nodeMax) 
+		if(xpathObj && xpathObj->nodesetval->nodeMax)
 		{
 			/* the Xpath has been understood and there are node */
 			for(int	i = 0 ; i < xpathObj->nodesetval->nodeNr ; i++)
@@ -136,13 +135,13 @@ bool FuncManager::AppendModules()
 				{
 					/* loop until when have read all the attributes */
 					if(xmlStrEqual (attrib->name, (const xmlChar*)"name"))
-					{ 
+					{
 						/* we found the tag name */
 						const char *str = (const char*)attrib->children->content;
 						name = strdup(str);
 					}
 					else if(xmlStrEqual(attrib->name, (const xmlChar*)"activate"))
-					{ 
+					{
 						/* we found the tag activate */
 						const char *str = (const char*)attrib->children->content;
 						if(stricmp(str,"yes") == 0 || strcmp(str,"1") == 0)
@@ -161,9 +160,9 @@ bool FuncManager::AppendModules()
 /*
 						if (indice==0)
 						{
-							ScilabModules->ModuleList = new char*[indice+1]; 
+							ScilabModules->ModuleList = new char*[indice+1];
 						}
-						else 
+						else
 						{
 							ScilabModules->ModuleList=(char**)REALLOC(ScilabModules->ModuleList,sizeof(char*)*(indice+1));
 						}
@@ -199,7 +198,7 @@ bool FuncManager::AppendModules()
 	{
 		std::cout << "Error: Not a valid module file " << m_szXmlFile << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
 	}
-	if (encoding) 
+	if (encoding)
 	{
 		delete[] encoding;
 		encoding = NULL;
@@ -248,7 +247,7 @@ char *GetXmlFileEncoding(string _filename)
 	encoding = strdup(DEFAULT_ENCODING);
 
 	doc = xmlParseFile(_filename.c_str());
-	if (doc) 
+	if (doc)
 	{
 		if (doc->encoding)
 		{
