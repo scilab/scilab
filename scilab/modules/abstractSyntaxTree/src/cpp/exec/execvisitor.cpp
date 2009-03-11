@@ -214,7 +214,7 @@ namespace ast
 			Function::ReturnValue Ret = pF->m_pFunc(in, &iRetVal, out);
 			if(Ret == Function::AllGood)
 			{
-				result_set(in.front());
+				result_set(out.front());
 			}
 		}
 		else if(execFunc->result_get() != NULL)
