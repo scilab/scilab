@@ -272,11 +272,8 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec ForExp");
-    // FIXME
-    /*
-      e.vardec_get().accept(*this);
-      e.body_get().accept (*this);
-    */
+    e.vardec_get().accept(*this);
+    e.body_get().accept (*this);
     DEBUG_END_NODE();
   }
 
@@ -369,11 +366,12 @@ namespace ast
   {
     DEBUG_START_NODE();
     DEBUG("Exec VarDec");
-    // FIXME
-    /*
-      e.name_get();
-      e.init_get ().accept (*this);
-    */
+    {
+      DEBUG_START_NODE();
+      DEBUG("Exec Symbol : "+e.name_get().name_get());
+      DEBUG_END_NODE();
+    }
+    e.init_get().accept(*this);
     DEBUG_END_NODE();
   }
 
