@@ -44,6 +44,9 @@ void Parser::parseFile(const std::string& fileName, const std::string& progName)
       std::cerr << "*** Error -> cannot open `" << fileName << "`" << std::endl;
       exit (SYSTEM_ERROR);
     }
+
+  Parser::getInstance()->disableStrictMode();
+  //  Parser::getInstance()->enableStrictMode();
   Parser::getInstance()->setFileName(fileName);
   Parser::getInstance()->setProgName(progName);
 
@@ -70,6 +73,7 @@ void Parser::parse(char *command)
   yyin = fmemopen(command, strlen(command), "r");
 #endif
 
+  Parser::getInstance()->disableStrictMode();
   Parser::getInstance()->setFileName(*new std::string("prompt"));
   Parser::getInstance()->setExitStatus(Succeded);
 
@@ -86,13 +90,17 @@ void Parser::parse(char *command)
 char *Parser::getCodeLine(int line, char **codeLine) {
 #ifndef _MSC_VER
    size_t len = 0;
+   int i = 0;
 
    rewind(yyin);
    /*
    ** WARNING : *codeLine will be allocated by getline
    ** so it must be manually freed !
    */
-   getline(codeLine, &len, yyin);
+   for (i = 1 ; i <= line ; ++i)
+     {
+       getline(codeLine, &len, yyin);
+     }
 #endif
    return *codeLine;
 }
