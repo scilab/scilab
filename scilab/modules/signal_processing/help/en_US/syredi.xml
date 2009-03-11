@@ -40,8 +40,9 @@
         <term>iappro</term>
 
         <listitem>
-          <para>integer, the design type: 1 stands for butterworth, 2 for
-          elliptic, 3 for Chebytchev1, 4 for Chebytchev2.</para>
+          <para>integer, the design approximation type: 1 stands for
+          butterworth, 2 for elliptic, 3 for Chebytchev1, 4 for
+          Chebytchev2.</para>
         </listitem>
       </varlistentry>
 
@@ -53,7 +54,7 @@
           <literal>om=[om1,om2,om3,om4]</literal>, <literal></literal></para>
 
           <para><literal>0 &lt;= om1 &lt;= om2 &lt;= om3 &lt;= om4 &lt;=
-          pi</literal>. </para>
+          pi</literal>.</para>
 
           <para>When <literal>ftype</literal>='lp' or <literal>'hp'</literal>,
           <literal>om3</literal> and <literal>om4</literal> are not used and
