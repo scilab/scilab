@@ -1307,7 +1307,7 @@ EOL
 
 %%
 void yyerror(std::string msg) {
-  if(Parser::getInstance()->isStrictMode()
+  if(!Parser::getInstance()->isStrictMode()
      || Parser::getInstance()->getExitStatus() == Parser::Succeded)
     {
       Parser::PrintError(msg);
