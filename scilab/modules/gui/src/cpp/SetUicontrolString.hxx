@@ -15,6 +15,7 @@
 #include "CallScilabBridge.hxx"
 
 extern "C"{
+#include "stack-c.h"
 #include "getScilabJavaVM.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"

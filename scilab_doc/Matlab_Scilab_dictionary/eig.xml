@@ -47,27 +47,15 @@ bdiag
     <title>Particular cases</title>
     <variablelist>
       <varlistentry>
-        <term>eig(A)</term>
-        <listitem>
-          <para>
-Scilab equivalent for <emphasis role="bold">eig(A)</emphasis> is <emphasis role="bold">spec(A)</emphasis>. Scilab eigen vector matrix can differ from Matlab one...
-</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
         <term>eig(A,'nobalance')</term>
         <listitem>
-          <para>
-There is no Scilab equivalent for <emphasis role="bold">'nobalance'</emphasis> option. See examples...
-</para>
+          <para>There is no Scilab equivalent for <emphasis role="bold">'nobalance'</emphasis> option. See examples...</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>eig(A,B,flag)</term>
         <listitem>
-          <para>
-There is no Scilab equivalent for <emphasis role="bold">flag</emphasis>.
-</para>
+          <para>There is no Scilab equivalent for <emphasis role="bold">flag</emphasis>.</para>
         </listitem>
       </varlistentry>
     </variablelist>

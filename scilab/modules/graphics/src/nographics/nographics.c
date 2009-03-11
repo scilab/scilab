@@ -13,10 +13,12 @@
 
 
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "nographics.h"
 #include "WindowList.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int gw_graphics(void)
 {

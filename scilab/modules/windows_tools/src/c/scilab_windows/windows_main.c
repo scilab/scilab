@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <Windows.h>
 #include "windows_main.h"
+#include "core_math.h"
 #include "getcommandlineargs.h"
 #include "scilabmode.h"
 #include "forbiddenToUseScilab.h"
