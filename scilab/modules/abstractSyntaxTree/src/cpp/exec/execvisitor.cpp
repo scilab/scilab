@@ -144,8 +144,7 @@ namespace ast
 		  std::ostringstream os;
 			char szError[bsiz];
 #ifdef _MSC_VER
-			string toto = e.name_get().name_get();
-			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), toto.c_str());
+			sprintf_s(szError, bsiz, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #else
 			sprintf(szError, _("Undefined variable: %s\n"), e.name_get().name_get().c_str());
 #endif
@@ -202,20 +201,20 @@ namespace ast
 		{//function call
 			Function *pF = execFunc->result_get()->getAsFunction();
 			types::typed_list out;
-
 			types::typed_list in;
+
 			for (i = e.args_get().begin (); i != e.args_get().end (); ++i)
 			{
 				(*i)->accept (*execVar);
-				//std::cout << execVar->result_get()->toString(10,75) << std::endl;
 				in.push_back(execVar->result_get());
 			}
 
 			int iRetVal = 0;
+			//out->push_back(execVar->result_get());
 			Function::ReturnValue Ret = pF->m_pFunc(in, &iRetVal, out);
 			if(Ret == Function::AllGood)
 			{
-				result_set(out.front()->getAsDouble());
+				result_set(in.front());
 			}
 		}
 		else if(execFunc->result_get() != NULL)
@@ -229,7 +228,7 @@ namespace ast
 				ExecVisitor* execMeArg = new ast::ExecVisitor();
 				//Var = dynamic_cast<const SimpleVar*>(&CallVar->name_get());
 				InternalType *pIT = symbol::Context::getInstance()->get(Var->name_get());
-				int iArgDim				= e.args_get().size();
+				int iArgDim				= (int)e.args_get().size();
 				bool bSeeAsVector	= iArgDim == 1;
 
 
@@ -770,7 +769,7 @@ int GetIndexList(std::list<ast::Exp *> _plstArg, int** _piIndexSeq, int** _piMax
 {
 	//Create list of indexes
 	//std::vector<std::vector<int>> IndexList;
-	int iProductElem				= _plstArg.size();
+	int iProductElem				= (int)_plstArg.size();
 	int **piIndexList				= NULL;
 	int iTotalCombi					= 1;
 

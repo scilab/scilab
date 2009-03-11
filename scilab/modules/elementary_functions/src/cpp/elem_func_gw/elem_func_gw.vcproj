@@ -337,11 +337,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_cos.cpp"
+				RelativePath="..\..\..\sci_gateway\cpp\sci_cos2.cpp"
 				>
 			</File>
 			<File
-				RelativePath=".\sci_sin.cpp"
+				RelativePath="..\..\..\sci_gateway\cpp\sci_sin2.cpp"
 				>
 			</File>
 		</Filter>
