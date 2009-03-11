@@ -24,7 +24,7 @@ extern "C"
 
 using namespace types;
 
-Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::typed_list &out)
+Function::ReturnValue sci_cos(types::typed_list *in, int* _piRetCount, types::typed_list *out)
 {
 	double *pDataInR	= NULL;
 	double *pDataInI	= NULL;
@@ -32,18 +32,18 @@ Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::ty
 	double *pDataOutI = NULL;
 	Double *pRetVal		= NULL;
 
-	if(in.size() != 1)
+	if(in->size() != 1)
 	{
 		return Function::WrongParamNumber;
 	}
 
-	if(in[0]->getType() != types::InternalType::RealDouble)
+	if((*in)[0]->getType() != types::InternalType::RealDouble)
 	{
 		return Function::WrongParamType;
 	}
 
 
-	Double *pIn				= in[0]->getAsDouble();
+	Double *pIn				= (*in)[0]->getAsDouble();
 	if(pIn->isComplex())
 	{
 		pDataInR	=	pIn->real_get();
@@ -66,7 +66,7 @@ Function::ReturnValue sci_cos(types::typed_list &in, int* _piRetCount, types::ty
 		}
 	}
 
-	out.push_back(pRetVal);
+	out->push_back((InternalType*)pRetVal);
 	*_piRetCount = 1;
 	return Function::AllGood;
 }
