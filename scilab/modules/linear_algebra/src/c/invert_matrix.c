@@ -17,7 +17,8 @@
 #include <stdio.h> // debug
 #include <math.h> //sqrt
 
-extern double F2C(dlamch)(char* , unsigned long int);
+:extern double C2F(pythag)(double *a, double *b);
+extern double C2F(dlamch)(char* , unsigned long int);
 /*
   C Abs and Max macros are not ieee nan compliant but neither are the fortran77
   intrinsics used in the original dlange.f code.
@@ -53,13 +54,10 @@ static double dlange_1(int n_row, int n_col, double* data){
 static double zlange_1(int n_row, int n_col, double* data){
   int i,j;
   double res=0.;
-  for(i=0; i != n_col; ++i){
+  for(i=0; i != n_col; ++i, data+= 2){
     double sum=0.;
     for(j=0; j!= n_row; ++j){
-      const double tmp=*data * *data;
-      ++data;
-      sum += sqrt(tmp + (*data * *data));
-      ++data;
+      sum += C2F(pythag)(data, data+1);
     }
     res = Max(res, sum); /* should be C99 fmax */
   }
@@ -156,7 +154,7 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
       C2F(dgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork
 		  , (int*)pWork, &iInfo);
     }
-    if(*pdblRcond <= sqrt(F2C(dlamch)("e",1L))){ ret = -1; }
+    if(*pdblRcond <= sqrt(C2F(dlamch)("e",1L))){ ret = -1; }
     if(complexArg){
       C2F(zgetri)( &iCols, pData, &iCols, piPivot, pdblWork, &lWorkSize
 		   , &iInfo);
