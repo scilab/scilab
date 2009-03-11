@@ -24,6 +24,8 @@ extern "C"
 	#include "prompt.h"
 	#include "InitializeLocalization.h"
 	#include "MALLOC.h"
+	#include "setgetSCIpath.h"
+	#include "inisci-c.h"
 #ifdef _MSC_VER
 	#include "../src/c/scilab_windows/getScilabDirectory.h"
 #else
@@ -205,7 +207,10 @@ static void dumpAstTask(void)
 	if (timed) { _timer.start(); }
 	{
 		ast::DebugVisitor debugMe = *new ast::DebugVisitor();
-		Parser::getInstance()->getTree()->accept(debugMe);
+		if (Parser::getInstance()->getTree())
+		  {
+		    Parser::getInstance()->getTree()->accept(debugMe);
+		  }
 	}
 	if (timed) { _timer.check("AST Dump"); }
 }
@@ -275,15 +280,15 @@ static int batchMain (void)
 	*/
 	Parser::ParserStatus parseResult = parseFileTask();
 
-	if (parseResult != Parser::Succeded)
-	{
-		return PARSE_ERROR;
-	}
-
 	/*
 	** -*- DUMPING TREE -*-
 	*/
 	if (dumpAst == true) { dumpAstTask(); }
+
+	if (parseResult != Parser::Succeded)
+	{
+		return PARSE_ERROR;
+	}
 
 	/*
 	** -*- PRETTY PRINT TREE -*-
@@ -345,13 +350,13 @@ static int interactiveMain (void)
 			*/
 			parseResult = parseCommandTask(command);
 
+			/*
+			** -*- DUMPING TREE -*-
+			*/
+			if (dumpAst == true) { dumpAstTask(); }
+
 			if (parseResult == Parser::Succeded)
 			{
-				/*
-				** -*- DUMPING TREE -*-
-				*/
-				if (dumpAst == true) { dumpAstTask(); }
-
 				/*
 				** -*- PRETTY PRINT TREE -*-
 				*/
@@ -411,16 +416,18 @@ int main(int argc, char *argv[])
 
 int InitializeEnvironnement(void)
 {
-#ifdef _MSC_VER
 	char *ScilabDirectory = NULL;
-  ScilabDirectory = getScilabDirectory(FALSE);
+#ifdef _MSC_VER
+	ScilabDirectory = getScilabDirectory(FALSE);
+#else
+	SetSci();
+	ScilabDirectory = getSCIpath();
+#endif
 	if(ScilabDirectory)
 	{
 		ConfigVariable::getInstance()->set("SCI", ScilabDirectory);
 		FREE(ScilabDirectory);
 	}
-#else
-#endif
 	SetScilabEnvironment();
 	InitializeLocalization();
 	Add_All_Variables();
