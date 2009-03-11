@@ -19,6 +19,7 @@
 * See the file ./license.txt
 */
 #include <math.h>
+#include "machine.h" /* C2F */
 #include "math_graphics.h" 
 #include "PloEch.h"
 

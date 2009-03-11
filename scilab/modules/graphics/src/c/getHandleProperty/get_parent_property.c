@@ -21,7 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int get_parent_property( sciPointObj * pobj )
 {

@@ -24,7 +24,7 @@
 #include "CurrentObjectsManagement.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int get_current_axes_property( sciPointObj * pobj )
 {

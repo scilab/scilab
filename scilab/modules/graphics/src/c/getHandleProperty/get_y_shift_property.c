@@ -23,7 +23,7 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int get_y_shift_property( sciPointObj * pobj )
 {
