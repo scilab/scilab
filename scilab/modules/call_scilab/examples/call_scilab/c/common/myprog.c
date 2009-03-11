@@ -1,6 +1,11 @@
-/*------------------------------------------------------------*/
-/* Modified by Allan CORNET INRIA Mars 2005 */
-/*------------------------------------------------------------*/
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) INRIA - 2005 - Allan Cornet
+ * 
+ * This file is released into the public domain
+ *
+ */
 #include <math.h>
 #include <stdio.h> 
 #ifdef _MSC_VER
@@ -12,22 +17,20 @@
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
 #include "CallScilab.h" /* Provide functions to call Scilab engine */
 
-/*------------------------------------------------------------*/
+/**
 /* 
- * Initialisation de Scilab 
- * avec execution de la startup 
+ * Initialisation of Scilab 
  */
-/*------------------------------------------------------------*/
-#ifndef SCI 
+/*#ifndef SCI 
 #define SCI "../.."
-#endif 
+#endif */
 /*------------------------------------------------------------*/
 #define TRUE 1
 #define FALSE 0
 /*------------------------------------------------------------*/
 /* See SCI/modules/core/includes/CallScilab.h */
 /*------------------------------------------------------------*/
-static int first_example()
+static int first_example(void)
 {
 	static double A[]={1,2,3,4};  
 	int mA=2,nA=2;
@@ -76,26 +79,30 @@ static int first_example()
   return 0;
 } 
 /*------------------------------------------------------------*/
-static int second_example() 
+static int second_example(void) 
 {
+	printf("\nExample 2:\n");
+	printf("Call graphics\n");
+
 	SendScilabJob("plot3d();");
+
 	printf("\nClose Graphical Windows to close this example.\n");
 	while( ScilabHaveAGraph() )
 	{
 		ScilabDoOneEvent();
-		Sleep(1);
+		sleep(1);
 	}
   return 1;
 }
 /*------------------------------------------------------------*/
-static int third_example() 
+static int third_example(void) 
 {
-  int code=0;
-
+	int code=0;
 	char **JOBS=NULL;
 	const int SizeJOBS=6;
 	int i=0;
-
+	printf("\nExample 3:\n");
+	printf("Send many jobs.\n");
 	JOBS=(char**)malloc(sizeof(char**)*SizeJOBS);
 
 	for (i=0;i<SizeJOBS;i++)
@@ -130,11 +137,7 @@ static int third_example()
 }
 
 /*------------------------------------------------------------*/
-#ifndef _MSC_VER
-int MAIN__(void)
-#else
 int main(void)
-#endif 
 {
 #ifdef _MSC_VER
 	if ( StartScilab(NULL,NULL,NULL) == FALSE )
@@ -146,16 +149,16 @@ int main(void)
 			return -1;
 		}
 
-	printf("\nexample 1\n");  
 	first_example();
-  
-	printf("\nexample 2\n");  
+
 	second_example() ;
-	printf("\nexample 3\n");  
+
 	third_example() ;
-	printf("\n\n");  
   
-	if ( TerminateScilab(NULL) == FALSE ) printf("Error : TerminateScilab\n");
+	if ( TerminateScilab(NULL) == FALSE ) {
+		fprintf(stderr,"Error while calling TerminateScilab\n");
+		return -2;
+	}
 	return 0;
 }
 /*------------------------------------------------------------*/
