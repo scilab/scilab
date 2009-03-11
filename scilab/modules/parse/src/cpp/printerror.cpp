@@ -24,6 +24,17 @@ void Parser::PrintError(std::string msg) {
 
  /** First print where in the script the error is located */
  std::cerr << "[" <<*(Parser::getInstance()->getProgName()) << "] ";
+
+ /*
+ ** If the error is a the very beginning of a line
+ */
+ if (yylloc.first_line == yylloc.last_line
+     && yylloc.first_column == 1
+     && yylloc.last_column == 1)
+ {
+   --yylloc.first_line;
+ }
+
  std::cerr << Parser::getInstance()->getCodeLine(yylloc.first_line, &codeLine) << std::endl;
  free(codeLine);
 
@@ -49,4 +60,9 @@ void Parser::PrintError(std::string msg) {
    " - " <<
    yylloc.last_line << "." << yylloc.last_column <<
    " : "<< msg << std::endl;
+
+
+ //yylloc.first_line -= yylloc.last_line;
+ //yylloc.last_line = yylloc.first_line;
+ //yylloc.last_column = yylloc.first_column;
 }
