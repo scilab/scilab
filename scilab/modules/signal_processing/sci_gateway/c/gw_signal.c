@@ -17,15 +17,15 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{C2F(sci_ffir),   "ffir"},
-	{sci_fft,         "fft"},
-	{C2F(sci_fiir),   "fiir"},
-	{C2F(sci_corr),   "corr"},
-	{C2F(sci_rpem),   "rpem"},
-	{sci_amell,       "amell"},
-	{C2F(sci_delip),  "delip"},
-	{sci_remez,       "remez"},
-	{C2F(sci_syredi), "syredi"}
+	{sci_ffir,   "ffir"},
+	{sci_fft,    "fft"},
+	{sci_fiir,   "fiir"},
+	{sci_corr,   "corr"},
+	{sci_rpem,   "rpem"},
+	{sci_amell,  "amell"},
+	{sci_delip,  "delip"},
+	{sci_remez,  "remez"},
+	{sci_syredi, "syredi"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_signal_processing(void)
