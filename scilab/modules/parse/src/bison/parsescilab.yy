@@ -31,6 +31,15 @@
 #include "parser.hxx"
 #include "location.hxx"
 
+#define StopOnError()					\
+  {							\
+    if(Parser::getInstance()->stopOnFirstError())	\
+      {							\
+	return Parser::getInstance()->getExitStatus();	\
+      }							\
+ }
+
+
 %}
 
 //%pure-parser
@@ -278,7 +287,7 @@
 /* Root of the Abstract Syntax Tree */
 program:
 expressions					{ Parser::getInstance()->setTree($1); }
-| EOL expressions				{ Parser::getInstance()->setTree($2); }
+| EOL expressions 				{ Parser::getInstance()->setTree($2); }
 ;
 
 /*
@@ -377,6 +386,10 @@ functionDeclaration				{ $$ = $1; }
 | BREAK						{ $$ = new ast::BreakExp(@$); }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
+| error						{
+  $$ = new ast::CommentExp(@$, new std::string("@@ ERROR RECOVERY @@"));
+  StopOnError();
+  }
 ;
 
 /*
@@ -406,7 +419,7 @@ implicitFunctionCall implicitCallable		{
 */
 implicitCallable :
 ID						{ $$ = new ast::StringExp(@$, *$1); }
-| VARINT						{
+| VARINT					{
 						  std::stringstream tmp;
 						  tmp << $1;
 						  $$ = new ast::StringExp(@$, tmp.str());
@@ -1294,6 +1307,10 @@ EOL
 
 %%
 void yyerror(std::string msg) {
-  Parser::PrintError(msg);
-  Parser::getInstance()->setExitStatus(Parser::Failed);
+  if(Parser::getInstance()->isStrictMode()
+     || Parser::getInstance()->getExitStatus() == Parser::Succeded)
+    {
+      Parser::PrintError(msg);
+      Parser::getInstance()->setExitStatus(Parser::Failed);
+    }
 }
