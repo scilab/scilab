@@ -17,15 +17,15 @@
 /*--------------------------------------------------------------------------*/
 int gw_signal(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ffir)(char *fname,unsigned long fname_len);
+int sci_ffir(char *fname,unsigned long fname_len);
 int sci_fft(char *fname,unsigned long fname_len);
-int C2F(sci_corr)(char *fname,unsigned long fname_len);
-int C2F(sci_fiir)(char *fname,unsigned long fname_len);
-int C2F(sci_rpem)(char *fname,unsigned long fname_len);
+int sci_corr(char *fname,unsigned long fname_len);
+int sci_fiir(char *fname,unsigned long fname_len);
+int sci_rpem(char *fname,unsigned long fname_len);
 int sci_amell(char *fname,unsigned long fname_len);
-int C2F(sci_delip)(char *fname,unsigned long fname_len);
+int sci_delip(char *fname,unsigned long fname_len);
 int sci_remez(char *fname,unsigned long fname_len);
-int C2F(sci_syredi)(char *fname,unsigned long fname_len);
+int sci_syredi(char *fname,unsigned long fname_len);
 
 /* commented out by VL 04/03/2009 : should'nt be used outside of the module [ */
 

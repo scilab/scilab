@@ -12,8 +12,9 @@
  */
 
 #include <math.h>
-#include "sci_mem_alloc.h"
+
 #include "gw_signal.h"
+#include "sci_mem_alloc.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
