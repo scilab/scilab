@@ -174,7 +174,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_isglobal.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_macrovar.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_mtlb_mode.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_predef.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_resume.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_setbpt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_type.f"/>

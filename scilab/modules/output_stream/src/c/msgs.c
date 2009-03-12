@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,24 +19,13 @@
 #include "msgs.h"
 #include "localization.h"
 #include "cvstr.h"
-#include "error.h"
-#include <stdio.h> /* needed for vsprintf used by printToBuffer() */
+#include "do_error_number.h"
+#include <stdio.h>
 /*--------------------------------------------------------------------------*/
 #ifdef BUF
 #undef BUF
 #endif
 #define BUF C2F(cha1).buf
-
-int printToBuffer(const char* format,...){
-    va_list args;
-    va_start(args, format);
-    int r = vsprintf(C2F(cha1).buf, format, args);
-    va_end(args);
-    return r;
-
-}
-
-
 /*--------------------------------------------------------------------------*/
 extern int C2F(showstack)(void);
 /*--------------------------------------------------------------------------*/
@@ -783,11 +772,11 @@ static int msg_32(int *n, int *ierr)
 
 	strncpy(localbuf1,&BUF[nlgh+1],5);
 	localbuf1[5]='\0';
-	do 
+	do
 	{
 		--l;
 	} while(BUF[l-1]==' ');
-	
+
 	strncpy(localbuf2,BUF,l);
 	localbuf2[l]='\0';
 	sciprint(_("Stop after row %s in function %s.\n"),localbuf1,localbuf2);
@@ -887,16 +876,16 @@ static int msg_42(int *n, int *ierr)
 
 	C2F(cvname)(&C2F(recu).ids[(C2F(recu).pt + 1) * nsiz - nsiz], line, &one, (long int)nlgh);
 	line[nlgh]='\0';
-	
+
 	sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"),line);
-	sciprint("\n"); 
+	sciprint("\n");
 
 	p = C2F(recu).pt + 1;
 
 L42_1:
 	--p;
 	if (p == 0) goto end_msg_42;
-	
+
 	/* @TODO what is 502 */
 	if (C2F(recu).rstk[p - 1] != 502) goto L42_1;
 	/* @TODO what is 19 */
@@ -907,7 +896,7 @@ L42_1:
 	lk = C2F(iop).lin[k + 5] / 2 + 1;
 	if (lk <= C2F(vstk).lstk[Top]) goto end_msg_42;
 	/* @TODO what is 4 */
-	km = C2F(iop).lin[k + 4] - 1; 
+	km = C2F(iop).lin[k + 4] - 1;
 L42_2:
 	++km;
 	if (km > C2F(vstk).isiz) goto end_msg_42;

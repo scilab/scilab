@@ -10,12 +10,13 @@
  *
  */
 
+#include <stdio.h> // debug
+#include <math.h> //sqrt
 #include "invert_matrix.h"
 #include "MALLOC.h"
 #include "core_math.h" // Max
 #include "machine.h" // C2F
-#include <stdio.h> // debug
-#include <math.h> //sqrt
+
 
 extern double C2F(pythag)(double *a, double *b);
 extern double C2F(dlamch)(char* , unsigned long int);
@@ -70,13 +71,6 @@ static double zlange_1(int n_row, int n_col, double* data){
    TODO replace ugly constant 17 with properly #define d (enum ed ? ) constant
    for malloc error.
 */
-int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
-		   , double* pdblRcond);
-
-int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg
-		  , double * pdblRcond, int* piPivot, void* pWork
-		  , unsigned long lWorkSize, double* pdblWork);
-
 int iInvertMatrixM(int iRows, int iCols, double* pData, int complexArg
 		   , double* pdblRcond){
   int ret=0;

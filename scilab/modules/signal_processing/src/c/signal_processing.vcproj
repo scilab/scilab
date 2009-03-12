@@ -472,6 +472,10 @@
 			</Filter>
 		</Filter>
 		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\Makefile.am"
 			>
 		</File>

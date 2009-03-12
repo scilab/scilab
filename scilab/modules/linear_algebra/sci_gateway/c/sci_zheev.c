@@ -11,7 +11,7 @@
  */
 #include "stack-c.h" 
 #include "elementary_functions.h" 
-#include "error.h"
+#include "do_error_number.h"
 #include "MALLOC.h"
 #include "vfinite.h"
 #include "assembleEigenvectors.h"

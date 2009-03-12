@@ -19,6 +19,8 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
+			-I$(top_srcdir)/modules/fileio/includes \
+			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/core/src/c/
 
 pkglib_LTLIBRARIES = libscicall_scilab.la
@@ -46,12 +48,12 @@ libscicall_scilab_la_root_DATA = changelog.txt license.txt readme.txt version.xm
 
 
 #### call_scilab : init scripts ####
-#libscicall_scilab_la_etcdir = $(mydatadir)/etc
-#libscicall_scilab_la_etc_DATA = etc/call_scilab.quit etc/call_scilab.start
+libscicall_scilab_la_etcdir = $(mydatadir)/etc
+libscicall_scilab_la_etc_DATA = etc/call_scilab.quit etc/call_scilab.start
 
 #### call_scilab : gateway declaration ####
-#libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
+libscicall_scilab_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscicall_scilab_la_sci_gateway_DATA = sci_gateway/call_scilab_gateway.xml
 
 #### call_scilab : include files ####
 libscicall_scilab_la_includedir=$(pkgincludedir)/call_scilab

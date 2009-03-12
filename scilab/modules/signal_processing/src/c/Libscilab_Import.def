@@ -2,7 +2,41 @@ LIBRARY    Libscilab.dll
 
 
 EXPORTS
-; --------------------------------------- 
+; ---------------------------------------
 ; Libscilab
-; --------------------------------------- 
+; ---------------------------------------
 callFunctionFromGateway
+
+; ---------------------------------------
+; core
+; ---------------------------------------
+putlhsvar_
+iAllocMatrixOfDouble
+Scierror
+; cstk
+stack_
+; CheckRhs is a define, real symbol is
+checkrhs_
+; CheckLhs is a define, real symbol is
+checklhs_
+; GetRhsVar is a define, real symbol is
+getrhsvar_
+iIsComplex
+GetVarDimension
+GetRhsVarMatrixDouble
+GetRhsVarMatrixComplex
+iAllocMatrixOfDouble
+iAllocComplexMatrixOfDouble
+;GetType is a define, real symbol is
+gettype_
+unsfdcopy_
+intersci_
+com_
+vstk_
+
+; ---------------------------------------
+; elementary functions
+; ---------------------------------------
+entier_
+simple_
+dset_

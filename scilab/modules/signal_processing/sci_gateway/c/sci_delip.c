@@ -12,7 +12,7 @@
 
 #include "gw_signal.h"
 #include "stack-c.h"
-#include "sci_mem_alloc.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 

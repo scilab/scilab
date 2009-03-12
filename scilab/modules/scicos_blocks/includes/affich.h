@@ -14,6 +14,8 @@
 #ifndef _AFFICH_H_
 #define _AFFICH_H_
 
+#include "machine.h" /* C2F */
+
 /**
  * Initializattion routine of the text object for Affich block.
  */

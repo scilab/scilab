@@ -386,31 +386,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_dgeev.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_dggev.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_dsyev.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_zgeev.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_zggev.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_zheev.c"
+				RelativePath=".\invert_matrix.c"
 				>
 			</File>
 			<File
 				RelativePath=".\issymmetric.c"
+				>
+			</File>
+			<File
+				RelativePath=".\lu.c"
 				>
 			</File>
 			<File
@@ -435,6 +419,18 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_det.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_dgeev.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_dggev.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_dsyev.c"
 				>
 			</File>
 			<File
@@ -475,6 +471,18 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_svd.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_zgeev.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_zggev.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_zheev.c"
 				>
 			</File>
 		</Filter>

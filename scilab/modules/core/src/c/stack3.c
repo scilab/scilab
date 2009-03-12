@@ -1846,3 +1846,53 @@ int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblR
 	*_pdblImgData = stk(lc);
 	return 0;
 }
+
+int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
+{
+	int *lenghtMatrix = NULL;
+	unsigned long name_len= (unsigned long)strlen(name_);
+	int x = 0;
+	int y = 0;
+	int mn = 0;
+	int lp = 0;
+	int j = 0;
+	
+	int iposx = 0, iposy = 0;
+	int lengthAtiposxiposy = 0;
+
+	if ( ! C2F(cmatsptr)  (name_, m,n, &iposx, &iposy, &lp, &lengthAtiposxiposy, name_len) )
+	{
+		*m = -1;
+		*n = -1;
+		return NULL;
+	}
+
+	mn = *m * *n;
+	lenghtMatrix = (int*)MALLOC(mn * sizeof(int));
+	if (!lenghtMatrix)
+	{
+		*m = -1;
+		*n = -1;
+		return NULL;
+	}
+
+	j = 0;
+	for (x = 1; x <= *m;x++)
+	{
+		for (y = 1; y <= *n;y++) 
+		{
+			if ( !C2F(cmatsptr)  (name_, m,n, &x, &y, &lp, &lengthAtiposxiposy, name_len) )
+			{
+				FREE(lenghtMatrix);
+				*m = -1;
+				*n = -1;
+				return NULL;
+			}
+			/* scilab string not finished by '\0' */
+			/* we add to the length */
+			lenghtMatrix[j] = lengthAtiposxiposy + 1;
+			j++;
+		}
+	}
+	return lenghtMatrix;
+}

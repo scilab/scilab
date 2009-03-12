@@ -21,8 +21,12 @@ Source reorganisation:
 * New module added call_scilab: the goal of this module is to highlight the
   possibility to call Scilab engine from other languages.
 
+* "SCI/modules/output_stream/includes/error.h" renamed to "do_error_number.h"
+
 Help & Tests:
 =============
+
+* Some equations in the documentation converted to the MathML format (bug 4180)
 
 * Help improved about javasci - Scilab Java API
 
@@ -31,6 +35,8 @@ Help & Tests:
 * Examples in javasci translated into english
 
 * Examples and unit tests added for the function find
+
+* Examples provided in the help of the function argn
 
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
@@ -41,9 +47,16 @@ License:
 
 * Examples in SCI/modules/javasci/examples/ are now released under the public
   domain
+  
+Internal API:
+=============
+* GetLengthStringMatrixByName function added in stack3.h (return length of strings)
 
 Bug fixes:
 ==========
+
+* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
+                   (mtlb_eig is now obsolete).
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 		   variable tables to compile other files
@@ -85,7 +98,11 @@ Bug fixes:
 
 * bug 4228 fixed - mclearerr with a false file descriptor crashs
 
-* bug 4273 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
+* bug 4231 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
+
+* bug 4235 fixed - error.h renamed
+
+
 
 
                Changes between version 5.0.X and 5.1 of Scilab
