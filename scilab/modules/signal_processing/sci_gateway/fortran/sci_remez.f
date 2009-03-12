@@ -17,7 +17,7 @@ c
       
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
-      
+C     argument #4: wt  
       il1=iadr(lstk(top))
       itv1=istk(il1)
       m1=istk(il1+1)
@@ -26,6 +26,7 @@ c
       it1=istk(il1+3)
       l1=sadr(il1+4)
       call simple(ngrid,stk(l1),stk(l1))
+C     argument #3:grid
       il2=iadr(lstk(top-1))
       itv2=istk(il2)
       m2=istk(il2+1)
@@ -33,6 +34,7 @@ c
       it2=istk(il2+3)
       l2=sadr(il2+4)
       call simple(ngrid,stk(l2),stk(l2))
+C     argument #2:des
       il3=iadr(lstk(top-2))
       itv3=istk(il3)
       m3=istk(il3+1)
@@ -40,6 +42,8 @@ c
       it3=istk(il3+3)
       l3=sadr(il3+4)
       call simple(ngrid,stk(l3),stk(l3))
+
+C     argument #1:iext
       il4=iadr(lstk(top-3))
       itv4=istk(il4)
       m4=istk(il4+1)
@@ -49,6 +53,7 @@ c
       l4=sadr(il4+4)
       ir4=il4+4
       call entier(nc+2,stk(l4),stk(l4))
+
       lw=lstk(top+1)
       err=lw+7*(nc+2)-lstk(bot)
       if(err.gt.0)then
