@@ -11,7 +11,6 @@
 ##
 
 FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp \
-				src/cpp/scilabFunction.cpp \
 				$(top_builddir)/modules/core/src/cpp/configvariable.cpp
 
 
