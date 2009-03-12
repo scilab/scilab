@@ -18,6 +18,20 @@ c         working vectors   ad,x,y,a,p,q:   nfc+2
 c         input vectors     des,grid,wt:    ngr
 c         input vector      iext:           nfc+2
 c         output vector     alpha:          nfc+2
+c!authors
+C         JAMES H. MCCLELLAN
+C         DEPARTMENT OF ELECTRICAL ENGINEERING AND COMPUTER SCIENCE
+C         MASSACHUSETTS INSTITUTE OF TECHNOLOGY
+C         CAMBRIDGE, MASS. 02139
+C
+C         THOMAS W. PARKS
+C         DEPARTMENT OF ELECTRICAL ENGINEERING
+C         RICE UNIVERSITY
+C         HOUSTON, TEXAS 77001
+C
+C         LAWRENCE R. RABINER
+C         BELL LABORATORIES
+C         MURRAY HILL, NEW JERSEY 07974
 c!
       dimension iext(*),ad(*),alpha(*),x(*),y(*)
       dimension des(*),grid(*),wt(*)
