@@ -31,7 +31,6 @@
 #include "GlobalTclInterp.h"
 #include "BOOL.h"
 #include "PATH_MAX.h"
-#include "fromjava.h"
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 

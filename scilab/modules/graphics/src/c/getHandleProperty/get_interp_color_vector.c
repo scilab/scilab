@@ -23,7 +23,7 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int get_interp_color_vector_property( sciPointObj * pobj )
 {

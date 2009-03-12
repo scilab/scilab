@@ -38,7 +38,7 @@ typedef struct {
 static scilabfile *ScilabFileList = NULL;
 static int CurFile = -1;
 static int PreviousFile = -1;
-static int CurrentMaxFiles=DEFAULT_MAX_FILES;
+static int CurrentMaxFiles = DEFAULT_MAX_FILES;
 /*--------------------------------------------------------------------------*/
 FILE *GetFileOpenedInScilab(int Id)
 {
@@ -252,5 +252,29 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		}
 	}
 	return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+int GetIdFromFilename(char *filename)
+{
+	if (ScilabFileList)
+	{
+		char fullpath[PATH_MAX*4];
+		int i=0;
+
+		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+		{
+			/* if we are a problem */
+			strcpy(fullpath,filename);
+		}
+
+		for (i = 0; i < CurrentMaxFiles; i++)
+		{
+			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
+			{
+				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return i;
+			}
+		}
+	}
+	return FILE_ID_NOT_DEFINED;
 }
 /*--------------------------------------------------------------------------*/

@@ -125,7 +125,7 @@
     <para>To launch the Java Application, you can either provide them with
     environnement variable</para>
 
-    <itemizedlist>
+     <itemizedlist>
       <listitem>
         <para>Linux/Unix/MacOSX:</para>
 
@@ -164,6 +164,19 @@
 
     <para>(With these arguments , you launch javasci with same initial options
     that standard scilab).</para>
+
+    <para>Note that two environnement variables are taken in account for specific needs: 
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>SCI_DISABLE_TK=1</literal> Disables Tk (Tcl's GUI)</para>
+	  </listitem>
+      <listitem>
+        <para><literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> Launch Java in headless mode (no AWT/Swing)</para>
+      </listitem>
+	  </itemizedlist>
+
+
   </refsection>
 
   <refsection>

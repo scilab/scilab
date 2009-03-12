@@ -22,7 +22,7 @@
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "localization.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int get_user_data_property( sciPointObj * pobj )
 {

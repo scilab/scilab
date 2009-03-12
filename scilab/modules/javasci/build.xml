@@ -40,4 +40,27 @@
 	</jar>
   </target>
 
+  <property name="examples.classes.dir" location="${build.dir}/examples/" />
+
+  <target name="build-example" description="Build the examples" depends="jar">
+        <property name="examples.src.dir"  location="examples/others/" />
+        <mkdir dir="${examples.classes.dir}"/>
+
+                <javac
+                        srcdir="${examples.src.dir}"
+                        destdir="${examples.classes.dir}"
+                        classpath="jar/${library.javasci.name}"
+                        deprecation="on"
+                        debug="off"
+                        verbose="off"
+                        listfiles="on"
+                        source="5"
+                        />
+
+  </target>
+
+  <target name="clean-example" description="clean examples">
+  	  <delete dir="${examples.classes.dir}"/>
+  </target>
+
 </project>

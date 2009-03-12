@@ -129,7 +129,7 @@
 	</target>
 	
 	<!-- Clean sources -->
-	<target name="clean" description="clean sources">
+	<target name="clean" description="Clean built files">
 		<delete dir="${build.dir}"/>
 		<delete dir="${build.jar.dir}"/>
 		<delete file="${build.jar.dir}/${library.name}"/>

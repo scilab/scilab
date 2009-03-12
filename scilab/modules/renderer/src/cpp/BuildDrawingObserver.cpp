@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include <string.h>
 #include "BuildDrawingObserver.h"
 #include "HandleDrawingObserver.h"
 #include "HandleObserverManagement.h"

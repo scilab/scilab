@@ -13,12 +13,13 @@
 
 #include "javasci_Scilab2.h"
 #include "CallScilab.h"
+static jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
+static jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
+static jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol);
 /*****************************************************************************/
 /**
 * Add on  : Javasci for Pro-Active 
 */
-/*****************************************************************************/
-#define MAX_String 1024
 /*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_initialize(JNIEnv *env, jclass cl)
 {
@@ -242,13 +243,12 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveComplexMatrix (JNIEnv *env, jc
 /*****************************************************************************/
 JNIEXPORT void JNICALL Java_javasci_Scilab_sendStringMatrix (JNIEnv *env, jclass cl, jobject objMatrix)
 {
-#define MAX_String 1024
 	const char *cname;
 	int nbRow, nbCol;
 	int i, j;
 	jstring jelement;
 	const char *element;
-	char job[MAX_String*4];
+	char job[bsiz];
 
 	jclass clMatrix = (*env)->GetObjectClass(env, objMatrix);
 
@@ -295,7 +295,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 {
 	const char *cname;
 	int nbRow, nbCol;
-	int i, j,  r, c, l, max=MAX_String;
+	int i, j,  r, c, l, max=bsiz;
 	char *element = (char *) MALLOC(sizeof(char) * max);
 
 	jclass clMatrix = (*env)->GetObjectClass(env, objMatrix);
@@ -342,7 +342,7 @@ JNIEXPORT void JNICALL Java_javasci_Scilab_receiveStringMatrix (JNIEnv *env, jcl
 	(*env)->ReleaseStringUTFChars(env, jname , cname);
 }
 /*****************************************************************************/
-jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
+static jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
 {
 	jclass clMatrix = (*env)->FindClass(env, "javasci/SciDoubleMatrix");
 	jmethodID consID = (*env)->GetMethodID(env, clMatrix, "<init>", "(Ljava/lang/String;II)V"); 
@@ -352,7 +352,7 @@ jobject getDoubleMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint 
 	return objMatrix;
 }
 /*****************************************************************************/
-jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
+static jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
 {
 	jclass clMatrix = (*env)->FindClass(env, "javasci/SciComplexMatrix");
 	jmethodID consID = (*env)->GetMethodID(env, clMatrix, "<init>", "(Ljava/lang/String;II)V"); 
@@ -362,7 +362,7 @@ jobject getComplexMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint
 	return objMatrix;
 }
 /*****************************************************************************/
-jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
+static jobject getStringMatrix(JNIEnv *env,  jclass cl, jstring name, jint nbRow, jint nbCol)
 {
 	jclass clMatrix = (*env)->FindClass(env, "javasci/SciStringMatrix");
 	jmethodID consID = (*env)->GetMethodID(env, clMatrix, "<init>", "(Ljava/lang/String;II)V"); 
