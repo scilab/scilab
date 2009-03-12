@@ -17,7 +17,7 @@
 #include <stdio.h> // debug
 #include <math.h> //sqrt
 
-:extern double C2F(pythag)(double *a, double *b);
+extern double C2F(pythag)(double *a, double *b);
 extern double C2F(dlamch)(char* , unsigned long int);
 /*
   C Abs and Max macros are not ieee nan compliant but neither are the fortran77
