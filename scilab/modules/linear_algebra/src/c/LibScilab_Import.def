@@ -35,6 +35,7 @@ vfiniteComplex_
 oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
 vFreeDoubleComplexFromPointer
+iIsComplex
 ;
 ;core_f
 ;
