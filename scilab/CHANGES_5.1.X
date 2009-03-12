@@ -102,7 +102,7 @@ Bug fixes:
 
 * bug 4235 fixed - error.h renamed
 
-
+* bug 4250 fixed - The online help of intx function was badly located
 
 
                Changes between version 5.0.X and 5.1 of Scilab
