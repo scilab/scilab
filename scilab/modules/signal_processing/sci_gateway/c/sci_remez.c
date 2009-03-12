@@ -11,7 +11,7 @@
  *
  */
 
-#include "sci_mem_alloc.h"
+#include "MALLOC.h"
 #include "gw_signal.h"
 #include "stack-c.h"
 #include "Scierror.h"
@@ -26,7 +26,7 @@ extern void C2F(remez)(int *ngrid, int *nc, int *iext,
 /* allocates required buffers and calls remez */
 int remez_buffered(int ngrid, int nc, int *iext,
 		   float *des, float *grid, float *wt, double *output);
-
+/****************************************************************/
 int sci_remez(char *fname, unsigned long fname_len)
 {
   /************************************************
