@@ -10,53 +10,74 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="gamma">
+<refentry version="5.0-subset Scilab" xml:id="gamma" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>gamma</refname>
-    <refpurpose>  The gamma function.  </refpurpose>
+
+    <refpurpose>The gamma function.</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>y = gamma(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>real vector or matrix</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>y</term>
+
         <listitem>
           <para>real vector or matrix with same size than x.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>gamma(x)</literal> evaluates the gamma function at all the elements of <literal>x</literal>.
-    The gamma function is defined by :</para>
-    <programlisting><![CDATA[
 
-                     /+oo
-                     |   x-1  -t
-         gamma(x) =  |  t    e    dt
-                     /0
-     
-    ]]></programlisting>
-    <para>
-     and generalizes the factorial function for real numbers (<literal>gamma(n+1) = n!</literal>).</para>
+    <para><literal>gamma(x)</literal> evaluates the gamma function at all the
+    elements of <literal>x</literal>. The gamma function is defined by
+    :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../mml/gamma_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>and generalizes the factorial function for real numbers
+    (<literal>gamma(n+1) = n!</literal>).</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example">
 
 // simple examples
 gamma(0.5)
@@ -74,21 +95,22 @@ xset("color",c)
 xtitle("The gamma function on ["+string(a)+","+string(b)+"]")
 xselect()
  
-  ]]></programlisting>
+  </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="gammaln">gammaln</link>
-      </member>
-      <member>
-        <link linkend="dlgamma">dlgamma</link>
-      </member>
+      <member><link linkend="gammaln">gammaln</link></member>
+
+      <member><link linkend="dlgamma">dlgamma</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Authors</title>
+
     <para>W. J. Cody and L. Stoltz (code from Netlib (specfun))</para>
   </refsection>
 </refentry>

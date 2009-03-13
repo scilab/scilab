@@ -133,6 +133,14 @@ int C2F(creadchains)  (char *name__, int *indiceRow, int *indiceCol, int *itslen
  */
 int C2F(cwritechain)  (char *name__, int *m, char *chai, unsigned long name_len, unsigned long chai_len);
 
+/**
+* Get length of strings by name
+* @param[in] name_ name of the scilab variable
+* @param[out] m number of rows of the matrix 
+* @param[out] n number of columns of the matrix 
+* @return array of length or NULL
+*/
+int *GetLengthStringMatrixByName(char *name_, int *m, int *n);
 
 /**
  * Get pointer on a named matrix 

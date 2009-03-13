@@ -8,9 +8,7 @@
  */
 #include <math.h>
 #include <stdio.h> 
-#ifdef _MSC_VER
-  #include <windows.h> 
-#endif
+#include <stdlib.h>
 
 #include <string.h> 
 #include "stack-c.h" /* Provide functions to access to the memory of Scilab */
@@ -19,15 +17,15 @@
 /*------------------------------------------------------------*/
 int main(void)
 {
-#ifdef _MSC_VER
+	#ifdef _MSC_VER
 	if ( StartScilab(NULL,NULL,NULL) == FALSE )
-#else
+	#else
 	if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
-#endif
-		{
-			fprintf(stderr,"Error while calling StartScilab\n");
-			return -1;
-		}
+	#endif
+	{
+		fprintf(stderr,"Error while calling StartScilab\n");
+		return -1;
+	}
 
  	/******************************** WRITE ****************************/
 
@@ -35,14 +33,16 @@ int main(void)
 	 * Write a line matrix into Scilab
 	 * A=[ 1 3 3 2 ];
 	 */
-		double A[]={1,3,3,2};   /* Declare the matrix */
-		int rowA=1, colA=4; /* Size of the matrix */
-		char variableName[]="A";
+	{
+		double A[] = {1,3,3,2};   /* Declare the matrix */
+		int rowA = 1, colA = 4; /* Size of the matrix */
+		char variableName[] = "A";
 
 		C2F(cwritemat)(variableName, &rowA, &colA, A,strlen(variableName)); /* Write it into Scilab's memory */
 
 		printf("Display from Scilab of A:\n");
 		SendScilabJob("disp(A);"); /* Display A */
+	}
 
 		/* 
 		 * Write a matrix into Scilab
@@ -50,19 +50,25 @@ int main(void)
 		 *    3 9 8 2 ]
 		 * Note that it is done column by column
 		 */ 
-		double B[]={1,3,4,9,2,8,3,2};   /* Declare the matrix */
-		int rowB=2, colB=4; /* Size of the matrix */
+	{
+		double B[] = {1,3,4,9,2,8,3,2};   /* Declare the matrix */
+		int rowB = 2, colB = 4; /* Size of the matrix */
 		char variableNameB[] = "B";
+
 		C2F(cwritemat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+
 		printf("\n");
 		printf("Display from Scilab of B:\n");
 		SendScilabJob("disp(B);"); /* Display A */
-		
+	}	
+
 	/******************************** READ ****************************/
 
 		/* Load the previously set variable A */
-		int rowA_,colA_,lp,i;
-		double *matrixOfDouble=NULL;
+	{
+		int rowA_ = 0,colA_ = 0,lp = 0;
+		int i = 0, j = 0;
+		double *matrixOfDouble = NULL;
 
 		char variableToBeRetrieved[]="A";
 
@@ -87,18 +93,22 @@ int main(void)
 			free(matrixOfDouble);
 			matrixOfDouble=NULL;
 		}
+	}
+
 
 		/* Load the previously set variable B */
-		int rowB_, colB_, lp_, j;
-		double *matrixOfDoubleB=NULL;
+	{
+		int rowB_ = 0, colB_ = 0, lp_ = 0;
+		double *matrixOfDoubleB = NULL;
+		int i = 0, j = 0;
 
-		char variableToBeRetrievedB[]="B";
+		char variableToBeRetrievedB[] = "B";
 
 		/* First, retrieve the size of the matrix */
 		C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
 
 		/* Alloc the memory */
-		matrixOfDoubleB=(double*)malloc((rowB_*colB_)*sizeof(double));
+		matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 		/* Load the matrix */
 		C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
@@ -129,10 +139,11 @@ int main(void)
 			free(matrixOfDoubleB);
 			matrixOfDoubleB=NULL;
 		}
+	}
 
 
-		if ( TerminateScilab(NULL) == FALSE ) {
-			fprintf(stderr,"Error while calling TerminateScilab\n");
-			return -2;
-		}		
+	if ( TerminateScilab(NULL) == FALSE ) {
+		fprintf(stderr,"Error while calling TerminateScilab\n");
+		return -2;
+	}		
 }

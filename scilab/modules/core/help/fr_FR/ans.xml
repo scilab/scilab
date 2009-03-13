@@ -13,7 +13,16 @@
     La variable <literal>ans</literal> est créée automatiquement quand des expressions 
     ne sont pas affectées à une variable. <literal>ans</literal> contient la dernière expression non affectée.
   </para>
+  <para>La variable <literal>ans</literal> n'est pas protégée par <literal>predef</literal>.</para>
     <para>
   </para>
   </refsection>
+<refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="predef">predef</link>
+      </member>
+    </simplelist>
+  </refsection>  
 </refentry>

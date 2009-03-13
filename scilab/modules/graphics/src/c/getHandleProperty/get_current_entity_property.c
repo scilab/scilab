@@ -25,7 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "BuildObjects.h"
-
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int get_current_entity_property( sciPointObj * pobj )
 {

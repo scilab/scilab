@@ -22,7 +22,7 @@
 #include "Interaction.h"
 #include "returnProperty.h"
 #include "GetProperty.h"
-
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int get_callback_property( sciPointObj * pobj )
 {
