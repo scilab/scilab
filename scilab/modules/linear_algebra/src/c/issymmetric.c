@@ -17,11 +17,11 @@
 ** issymmetric.c
 **
 ** Started on  Thu Jul 19 12:12:28 2007 bruno
-** Last update Thu Sep 13 09:48:48 2007 bruno
+** Last update Fri Mar 13 15:48:48 2009 Bernard Hugueney -> use iIsComplex from stack3.h 
 */
 
 #include "issymmetric.h"
-
+#include "stack3.h"
 /*
 ** Check wether or not a Matrix is Symmetric.
 */
@@ -62,7 +62,7 @@ int C2F(issymmetric)(int *stackPosition) {
     return(NOT_SYMMETRIC);
   }
 
-  if (isComplex(intAddress)) {
+  if (!iIsComplex(intAddress)) {
     /*
     ** REAL Case.
     */
