@@ -90,13 +90,6 @@ static int optimalWorkSizes(int complexArg, int iRows, int iCols, int iRowsToCom
       C2F(dgeqp3)(&iRows, &iCols, NULL, &iRows, NULL, NULL, &optGeqp3, &query, &info);
       C2F(dorgqr)(&iRows, &iRowsToCompute, &minRowsCols, NULL, &iRows, NULL, &optGqr, &query, &info);
     }
-  if(complexArg)
-    {
-      optGeqrf*= 2;
-      optGeqp3*= 2;
-      optGqr*= 2;
-    }
-
   /* sort sizes in decreasing order */
   *opt1= Max(optGeqrf, optGeqp3);
   *opt2= Min(optGeqrf, optGeqp3);
