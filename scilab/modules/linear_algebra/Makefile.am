@@ -6,6 +6,8 @@
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
 src/c/invert_matrix.c \
 src/c/lu.c \
+src/c/qr.c \
+src/c/hess.c \
 src/c/issymmetric.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
