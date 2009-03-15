@@ -551,6 +551,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\predef.c"
+				>
+			</File>
+			<File
 				RelativePath=".\prompt.c"
 				>
 			</File>
@@ -1137,6 +1141,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\PATH_MAX.h"
+				>
+			</File>
+			<File
+				RelativePath=".\predef.h"
 				>
 			</File>
 			<File
