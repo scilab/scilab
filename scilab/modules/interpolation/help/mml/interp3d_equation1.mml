@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mtable>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">zp</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">yp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">dzpdx</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mfrac>
+        <math:mi math:fontstyle="italic">ds</math:mi>
+        <math:mi math:fontstyle="italic">dx</math:mi>
+       </math:mfrac>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">yp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">zp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">dzpdy</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mfrac>
+        <math:mi math:fontstyle="italic">ds</math:mi>
+        <math:mi math:fontstyle="italic">dy</math:mi>
+       </math:mfrac>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">yp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">zp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">dzpdz</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mfrac>
+        <math:mi math:fontstyle="italic">ds</math:mi>
+        <math:mi math:fontstyle="italic">dz</math:mi>
+       </math:mfrac>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">yp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mi>,</math:mi>
+        <math:mi math:fontstyle="italic">zp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+   </math:mtable>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">alignl stack {
+zp(i) = s(xp(i),yp(i)) #
+dzpdx(i) = {{ds} over {dx}}(xp(i),yp(i),zp(i)) #
+dzpdy(i) = {{ds} over {dy}}(xp(i),yp(i),zp(i)) #
+dzpdz(i) = {{ds} over {dz}}(xp(i),yp(i),zp(i))
+
+}</math:annotation>
+ </math:semantics>
+</math:math>
