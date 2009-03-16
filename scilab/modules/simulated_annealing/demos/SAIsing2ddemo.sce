@@ -3,10 +3,13 @@ lines(0);
 // example of use of the simulated annealing method
 
 // Loading the test problem
-getd('Ising');
+
+path = get_absolute_file_path('SAIsing2ddemo.sce');
+
+getd(path + '/Ising');
 
 // Loading the neighborhood function for the ising problem
-getd('.');
+getd(path + '/.');
 
 Proba_start = 0.8;
 It_intern = 1000;
