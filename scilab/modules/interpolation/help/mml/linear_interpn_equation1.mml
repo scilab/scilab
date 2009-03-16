@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mi>v</math:mi>
+   <math:mrow>
+    <math:mrow>
+     <math:mo math:stretchy="false">(</math:mo>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">i1</math:mi>
+      <math:mi>,</math:mi>
+      <math:mi math:fontstyle="italic">i2</math:mi>
+      <math:mi>,</math:mi>
+      <math:mo math:stretchy="false">⋯</math:mo>
+      <math:mi>,</math:mi>
+      <math:mi>i</math:mi>
+      <math:mi>n</math:mi>
+     </math:mrow>
+     <math:mo math:stretchy="false">)</math:mo>
+    </math:mrow>
+    <math:mo math:stretchy="false">=</math:mo>
+    <math:mi>f</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mrow>
+     <math:mi math:fontstyle="italic">x1</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi math:fontstyle="italic">i1</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mi>,</math:mi>
+     <math:mi math:fontstyle="italic">x2</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi math:fontstyle="italic">i2</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mi>,</math:mi>
+     <math:mo math:stretchy="false">⋯</math:mo>
+     <math:mi>,</math:mi>
+     <math:mi math:fontstyle="italic">xn</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi>i</math:mi>
+       <math:mi>n</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">v(i1,i2, dotsaxis,i{n}) = f(x1(i1),x2(i2),dotsaxis,xn(i{n}))</math:annotation>
+ </math:semantics>
+</math:math>
