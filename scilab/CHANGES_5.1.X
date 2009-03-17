@@ -175,6 +175,10 @@ Enhancement:
 * Update of the example in the dynamic_link modules and in the toolbox skeleton
   (use the actual filename instead of the .o)
 
+* The demos of the simulated_annealing module have been integrated into the demos menu
+
+* The demos of the genetic_algorithms module have been integrated into the demos menu
+
 Tests:
 ======
 
