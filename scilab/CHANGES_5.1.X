@@ -109,6 +109,8 @@ Bug fixes:
 
 * bug 4250 fixed - The online help of intx function was badly located
 
+* bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing 
+		   problems with netbsd)
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
