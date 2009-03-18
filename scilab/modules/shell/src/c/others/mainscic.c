@@ -36,7 +36,7 @@
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
-int  sci_show_banner=1;
+int sci_show_banner=1;
 /*--------------------------------------------------------------------------*/
 
 int main(int argc, char **argv)
@@ -56,12 +56,6 @@ int main(int argc, char **argv)
 
   InitializeLaunchScilabSignal();
 
-  #if (defined __GNUC__  )
-		putenv ("COMPILER=gcc");
-	#else
-		putenv ("COMPILER=cc or another");
-	#endif
-
 #if defined(netbsd) || defined(freebsd)
 /* floating point exceptions */
 fpsetmask(0);
@@ -74,7 +68,6 @@ fpsetmask(0);
 #endif
 
   setCommandLineArgs(argv, argc);
-
 
   /* scanning options */
   for ( i=0 ; i < argc ; i++)
