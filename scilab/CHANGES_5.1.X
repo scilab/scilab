@@ -92,6 +92,8 @@ Bug fixes:
 
 * bug 4166 fixed - test_run was broken
 
+* bug 4179 fixed - The dec2hex "see also" part was missing in the help page.
+
 * bug 4192 fixed - When doing a getd in a directory where there are no .sci files,
                    getd displayed a error message not clear at all.
 
