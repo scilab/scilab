@@ -47,15 +47,14 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
-	scilab-adv-cli-bin$(EXEEXT) $(am__EXEEXT_1)
+	$(am__EXEEXT_1)
 @IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
-@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_3 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_4 = localization
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
 subdir = .
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
@@ -97,12 +96,6 @@ am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
-am_scilab_adv_cli_bin_OBJECTS = mainscic.$(OBJEXT)
-scilab_adv_cli_bin_OBJECTS = $(am_scilab_adv_cli_bin_OBJECTS)
-scilab_adv_cli_bin_DEPENDENCIES = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
-scilab_adv_cli_bin_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(scilab_adv_cli_bin_LDFLAGS) $(LDFLAGS) -o $@
 am_scilab_bin_OBJECTS = scilab_bin-mainscic.$(OBJEXT)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 scilab_bin_DEPENDENCIES = $(COMMON_LIBS) $(SCILAB_LIB)
@@ -140,10 +133,9 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(scilab_adv_cli_bin_SOURCES) $(scilab_bin_SOURCES) \
-	$(scilab_cli_bin_SOURCES) $(scilab_static_bin_SOURCES)
-DIST_SOURCES = $(scilab_adv_cli_bin_SOURCES) $(scilab_bin_SOURCES) \
-	$(scilab_cli_bin_SOURCES) \
+SOURCES = $(scilab_bin_SOURCES) $(scilab_cli_bin_SOURCES) \
+	$(scilab_static_bin_SOURCES)
+DIST_SOURCES = $(scilab_bin_SOURCES) $(scilab_cli_bin_SOURCES) \
 	$(am__scilab_static_bin_SOURCES_DIST)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
@@ -381,7 +373,6 @@ ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X
 bin_SCRIPTS = bin/scilab
 scilab_bin_LDFLAGS = $(am__append_1)
-scilab_adv_cli_bin_LDFLAGS = $(am__append_2)
 scilab_bin_CFLAGS = 
 # --no-undefined --relax
 
@@ -399,10 +390,6 @@ SCILAB_CLI_LIB = $(top_builddir)/modules/libscilab-cli.la
 scilab_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
 
-# Match scilab -nw (ie command line + java graphics)
-scilab_adv_cli_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-scilab_adv_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
-
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES = $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 scilab_cli_bin_CFLAGS = -DWITHOUT_GUI
@@ -412,7 +399,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_4)
+TARGETS_ALL = macros $(am__append_3)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -562,9 +549,6 @@ clean-binPROGRAMS:
 	  echo " rm -f $$p $$f"; \
 	  rm -f $$p $$f ; \
 	done
-scilab-adv-cli-bin$(EXEEXT): $(scilab_adv_cli_bin_OBJECTS) $(scilab_adv_cli_bin_DEPENDENCIES) 
-	@rm -f scilab-adv-cli-bin$(EXEEXT)
-	$(scilab_adv_cli_bin_LINK) $(scilab_adv_cli_bin_OBJECTS) $(scilab_adv_cli_bin_LDADD) $(LIBS)
 scilab-bin$(EXEEXT): $(scilab_bin_OBJECTS) $(scilab_bin_DEPENDENCIES) 
 	@rm -f scilab-bin$(EXEEXT)
 	$(scilab_bin_LINK) $(scilab_bin_OBJECTS) $(scilab_bin_LDADD) $(LIBS)
@@ -600,7 +584,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mainscic.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_bin-mainscic.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_cli_bin-mainscic.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/scilab_static_bin-mainscic.Po@am__quote@
@@ -625,20 +608,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-mainscic.o: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mainscic.o -MD -MP -MF $(DEPDIR)/mainscic.Tpo -c -o mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/mainscic.Tpo $(DEPDIR)/mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='mainscic.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
-
-mainscic.obj: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mainscic.obj -MD -MP -MF $(DEPDIR)/mainscic.Tpo -c -o mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/mainscic.Tpo $(DEPDIR)/mainscic.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$(top_srcdir)/modules/shell/src/c/others/mainscic.c' object='mainscic.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mainscic.obj `if test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; then $(CYGPATH_W) '$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; else $(CYGPATH_W) '$(srcdir)/$(top_srcdir)/modules/shell/src/c/others/mainscic.c'; fi`
 
 scilab_bin-mainscic.o: $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(scilab_bin_CFLAGS) $(CFLAGS) -MT scilab_bin-mainscic.o -MD -MP -MF $(DEPDIR)/scilab_bin-mainscic.Tpo -c -o scilab_bin-mainscic.o `test -f '$(top_srcdir)/modules/shell/src/c/others/mainscic.c' || echo '$(srcdir)/'`$(top_srcdir)/modules/shell/src/c/others/mainscic.c
@@ -1166,38 +1135,37 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 # Don't do it for scilab_cli_bin. We want to be able to call it without 
 # the java libs
 @NEED_JAVA_TRUE@	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
-@NEED_JAVA_TRUE@	scilab_cli_nw_bin_LDADD += $(JAVA_JNI_LIBS)
 
 # The binary itself needs this dep
 @IS_SOLARIS_TRUE@	scilab_bin_LDADD += $(BLAS_LIBS)
 
 all-local: $(TARGETS_ALL)
 
-macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
+macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
-	echo "$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
+	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
+	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
+doc:$(top_builddir)/scilab-adv $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (English) --"; \
-@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'en_US');exit;\"";\
-@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar([],[],'en_US');exit;";\
+@BUILD_HELP_TRUE@		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
+@BUILD_HELP_TRUE@		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
 @BUILD_HELP_TRUE@		echo "-- Building documentation (French) --"; \
-@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'fr_FR');exit;\""; \
-@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "xmltojar([],[],'fr_FR');exit;"; \
+@BUILD_HELP_TRUE@		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
+@BUILD_HELP_TRUE@		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
 @BUILD_HELP_TRUE@	else \
-@BUILD_HELP_TRUE@		echo "Cannot find Scilab binary"; \
+@BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
 @BUILD_HELP_TRUE@	fi
 @BUILD_HELP_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 
-check-help:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
-	@if test -x $(top_builddir)/scilab-bin; then \
+check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		echo "-- Checking documentation (English) --"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;';\
+		$(top_builddir)/bin/scilab-cli -nb -l en -e 'check_help();exit;';\
 		echo "-- Checking documentation (French) --"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;';\
+		$(top_builddir)/bin/scilab-cli  -nb -l fr -e 'check_help();exit;';\
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -1207,7 +1175,7 @@ check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
 		COMMAND="test_run();quit";\
 		export LANG=C;\
-		$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"; \
+		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -1226,11 +1194,11 @@ clean-macros:
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 
 clean-doc:
-	@if test -x $(top_builddir)/scilab-bin; then \
-		echo "$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
-		echo "$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		echo "$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'"; \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'; \
+		echo "$(top_builddir)/bin/scilab-cli  -nb -l en -e 'clean_help();exit;'"; \
+		$(top_builddir)/bin/scilab-cli -nb -l en -e 'clean_help();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi; \
@@ -1244,8 +1212,8 @@ clean-doc:
 	rm -rf $(top_builddir)/modules/scicos/jar/
 
 clean-tests:
-	@if test -x $(top_builddir)/scilab-bin; then \
-		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'test_clean();exit;'; \
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'test_clean();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
