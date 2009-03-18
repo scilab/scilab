@@ -1,7 +1,14 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 ## Process this file with automake to produce Makefile.in (which will be changed by the ./configure)
 
@@ -15,33 +22,54 @@ ACLOCAL_AMFLAGS = -I m4/
 
 changelogs = CHANGES CHANGES_5.1.X
 
-bin_PROGRAMS		= scilab-bin
+bin_PROGRAMS		= scilab-bin scilab-cli-bin scilab-adv-cli-bin
 
 bin_SCRIPTS			= bin/scilab
 
-scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
 scilab_bin_LDFLAGS 		= 
+scilab_adv_cli_bin_LDFLAGS 		= 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
+scilab_adv_cli_bin_LDFLAGS	+= -framework Cocoa
 endif
 
 scilab_bin_CFLAGS 		=
 # --no-undefined --relax
 
-
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/shell/libscishell.la \
+COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/io/libsciio.la
 
+SCILAB_LIB=$(top_builddir)/modules/libscilab.la
+SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
+
+
+scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+
+# Match scilab -nw (ie command line + java graphics)
+scilab_adv_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+scilab_adv_cli_bin_LDADD 	= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+
+# Match scilab -nwni (ie command line without graphics)
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+
+
 if NEED_JAVA
+# Don't do it for scilab_cli_bin. We want to be able to call it without 
+# the java libs
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
+	scilab_cli_nw_bin_LDADD += $(JAVA_JNI_LIBS)
 endif
 
 
