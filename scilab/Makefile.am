@@ -133,7 +133,7 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
 	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-doc:$(top_builddir)/scilab-adv $(top_builddir)/bin/scilab-adv-cli
+doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
