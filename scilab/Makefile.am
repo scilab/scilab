@@ -24,7 +24,7 @@ changelogs = CHANGES CHANGES_5.1.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
 scilab_bin_LDFLAGS 		= 
 if IS_MACOSX
