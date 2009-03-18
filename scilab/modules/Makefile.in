@@ -14,10 +14,17 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # The order DOES matter !!!
 
@@ -50,8 +57,8 @@ host_triplet = @host@
 # javasci should be compile at the end because it needs libscilab.la
 # Don't forget that the order in subdirs does matter !!!
 @JAVASCI_TRUE@am__append_2 = javasci
-@ENABLE_STATIC_TRUE@am__append_3 = $(ALL_LIBS)
-@SCICOS_TRUE@am__append_4 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
+@SCICOS_TRUE@am__append_3 = $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la
+@ENABLE_STATIC_TRUE@am__append_4 = $(ALL_LIBS)
 subdir = modules
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -81,16 +88,16 @@ am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
 am__installdirs = "$(DESTDIR)$(pkglibdir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscilab_la_DEPENDENCIES = $(ALL_LIBS) $(am__append_3) \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/umfpack/libsciumfpack.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_4) \
-	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/libst/libscilibst.la
+libscilab_cli_la_DEPENDENCIES = $(ENGINE_LIBS) $(NO_GUI_LIBS) \
+	$(OTHER_LIBS) $(EXTERNAL_LIBS)
+am_libscilab_cli_la_OBJECTS =
+libscilab_cli_la_OBJECTS = $(am_libscilab_cli_la_OBJECTS)
+libscilab_cli_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(libscilab_cli_la_LDFLAGS) $(LDFLAGS) -o $@
+am__DEPENDENCIES_1 =
+libscilab_la_DEPENDENCIES = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(am__DEPENDENCIES_1)
 am_libscilab_la_OBJECTS =
 libscilab_la_OBJECTS = $(am_libscilab_la_OBJECTS)
 libscilab_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -106,8 +113,8 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscilab_la_SOURCES)
-DIST_SOURCES = $(libscilab_la_SOURCES)
+SOURCES = $(libscilab_cli_la_SOURCES) $(libscilab_la_SOURCES)
+DIST_SOURCES = $(libscilab_cli_la_SOURCES) $(libscilab_la_SOURCES)
 RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	html-recursive info-recursive install-data-recursive \
 	install-dvi-recursive install-exec-recursive \
@@ -347,12 +354,34 @@ SUBDIRS = core output_stream action_binding arnoldi \
 #### Basic files ####
 libscilab_la_rootdir = $(mydatadir)
 
-#
-pkglib_LTLIBRARIES = libscilab.la
+# libscilab is the full library with the GUI
+# libscilab-cli is for scilab-cli (without GUI)
+pkglib_LTLIBRARIES = libscilab.la libscilab-cli.la
 libscilab_la_SOURCES = 
+libscilab_cli_la_SOURCES = 
 libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
-ALL_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
-$(top_builddir)/modules/mexlib/libmex.la \
+libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS)
+EXTERNAL_LIBS = $(top_builddir)/libs/hashtable/libscihashtable.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la  \
+$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la  \
+$(top_builddir)/libs/libst/libscilibst.la
+
+GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
+	$(top_builddir)/modules/renderer/libscirenderer.la \
+	$(top_builddir)/modules/graphics/libscigraphics.la \
+	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
+	$(top_builddir)/modules/console/libsciconsole.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
+
+NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
+	$(top_builddir)/modules/renderer/libscirenderer-disable.la \
+	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
+	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
+	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/jvm/libscijvm-disable.la
+
+ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
+	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -362,10 +391,6 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/graphics/libscigraphics.la \
-	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
-	$(top_builddir)/modules/renderer/libscirenderer.la \
-	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
 	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
@@ -379,7 +404,6 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
-	$(top_builddir)/modules/console/libsciconsole.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
@@ -396,28 +420,21 @@ $(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
-	$(top_builddir)/modules/interpolation/libsciinterpolation.la
+	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
+	$(top_builddir)/modules/string/libscistring.la
 
+OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/umfpack/libsciumfpack.la \
+	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_3)
 
 # Dev in progress
 
 # Core modules
+libscilab_la_LIBADD = $(ENGINE_LIBS) $(GUI_LIBS) $(OTHER_LIBS) \
+	$(EXTERNAL_LIBS) $(am__append_4)
 
-# Temp stuff
-
-#if MPI
-#libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
-#endif
-libscilab_la_LIBADD = $(ALL_LIBS) $(am__append_3) \
-	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
-	$(top_builddir)/modules/umfpack/libsciumfpack.la \
-	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/scicos/libsciscicos.la $(am__append_4) \
-	$(top_builddir)/libs/hashtable/libscihashtable.la \
-	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-	$(top_builddir)/libs/libst/libscilibst.la
+# Core modules
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
 all: all-recursive
 
 .SUFFIXES:
@@ -477,6 +494,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscilab-cli.la: $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_DEPENDENCIES) 
+	$(libscilab_cli_la_LINK) -rpath $(pkglibdir) $(libscilab_cli_la_OBJECTS) $(libscilab_cli_la_LIBADD) $(LIBS)
 libscilab.la: $(libscilab_la_OBJECTS) $(libscilab_la_DEPENDENCIES) 
 	$(libscilab_la_LINK) -rpath $(pkglibdir) $(libscilab_la_OBJECTS) $(libscilab_la_LIBADD) $(LIBS)
 
@@ -773,6 +792,10 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 	tags tags-recursive uninstall uninstall-am \
 	uninstall-pkglibLTLIBRARIES
 
+
+#if MPI
+#libscilab_la_LIBADD += $(top_builddir)/modules/mpi/libscimpi.la
+#endif
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
 .NOEXPORT:
