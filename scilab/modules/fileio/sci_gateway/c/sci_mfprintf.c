@@ -17,7 +17,7 @@
 #include "filesmanagement.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int int_objfprintf(char *fname,unsigned long fname_len)
+int sci_fprintf(char *fname,unsigned long fname_len)
 {
 	FILE *f;
 	int fileMode = 0;

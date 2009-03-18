@@ -61,12 +61,10 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @UMFPACK_TRUE@am__append_1 = $(UMFPACK_LIB)
-@UMFPACK_TRUE@@USE_EMBEDDED_LAPACK_TRUE@am__append_2 = $(top_builddir)/libs/lapack/libscilapack.la
-@UMFPACK_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_3 = $(top_builddir)/libs/blas/libsciblas.la 
 DIST_COMMON = $(am__libsciumfpack_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_4 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -105,8 +103,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @UMFPACK_TRUE@	$(top_builddir)/modules/sparse/libscisparse.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@UMFPACK_TRUE@	$(am__append_2) $(am__append_3)
+@UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libsciumfpack_la_SOURCES_DIST = src/noumfpack/noumfpack.c \
 	src/c/taucs_scilab.c src/c/common_umfpack.c \
 	src/c/with_umfpack.c sci_gateway/c/gw_umfpack.c \
@@ -301,6 +298,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -408,14 +406,13 @@ libsciumfpack_la_etc_DATA = etc/umfpack.quit etc/umfpack.start
 # For the code check (splint)
 @UMFPACK_TRUE@CHECK_SRC = $(libsciumfpack_la_SOURCES)
 @UMFPACK_TRUE@INCLUDE_FLAGS = $(libsciumfpack_la_CFLAGS)
-@UMFPACK_TRUE@libsciumfpack_la_LIBADD =  \
-@UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/sparse/libscisparse.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@UMFPACK_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@UMFPACK_TRUE@	$(am__append_2) $(am__append_3)
+@UMFPACK_TRUE@libsciumfpack_la_LIBADD = $(top_builddir)/modules/mexlib/libmx.la \
+@UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmat.la \
+@UMFPACK_TRUE@$(top_builddir)/modules/sparse/libscisparse.la \
+@UMFPACK_TRUE@$(top_builddir)/modules/mexlib/libmex.la \
+@UMFPACK_TRUE@$(top_builddir)/modules/core/libscicore.la \
+@UMFPACK_TRUE@$(top_builddir)/modules/output_stream/libscioutput_stream.la
+
 @UMFPACK_FALSE@libsciumfpack_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 @UMFPACK_TRUE@libsciumfpack_la_CFLAGS = -I$(srcdir)/includes/ \
 @UMFPACK_TRUE@			-I$(srcdir)/src/c/ \
@@ -441,7 +438,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -903,7 +900,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -967,12 +964,13 @@ uninstall-am: uninstall-libsciumfpack_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libsciumfpack_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libsciumfpack_la_etcDATA \
 	install-libsciumfpack_la_includeHEADERS \
 	install-libsciumfpack_la_rootDATA \
 	install-libsciumfpack_la_sci_gatewayDATA install-man \
@@ -1152,6 +1150,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

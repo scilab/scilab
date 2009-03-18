@@ -42,14 +42,6 @@ INCLUDE_FLAGS = $(libscidouble_la_CFLAGS)
 libscidouble_la_LIBADD =  $(top_builddir)/modules/boolean/libsciboolean.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 
-if USE_EMBEDDED_LAPACK
-libscidouble_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscidouble_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 
-endif
-
 #### Target ######
 modulename=double
 

@@ -33,7 +33,7 @@ list_item = ["rouge"  "vert"  "tomate"  "chevre" "Truc"];
   
   m=uimenu(f,"label", "Menu");
   // create an item on the menu bar
-  m1=uimenu(m,"label", "Launch plot3d1", "callback", "plot3d1()");
+  m1=uimenu(m,"label", "Launch plot3d1", "callback", "scf();plot3d1();");
   m2=uimenu(m,"label", "Exit figure", "callback", "fin=%t;");
   m3=uimenu(m,"label", "Quit scilab", "callback", "exit");
 

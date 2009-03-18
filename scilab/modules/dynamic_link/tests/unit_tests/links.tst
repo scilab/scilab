@@ -9,6 +9,8 @@
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
+ilib_verbose(0);
+
 curPath = getcwd(); 
 pref='ext';
 suf='f';
@@ -17,15 +19,9 @@ copyfile(SCI+filesep()+'modules'+filesep()+'dynamic_link'+filesep()+'tests'+file
 chdir(TMPDIR);
 ilib_for_link(routines,'externals.o',[],"f");
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
 exec loader.sce ;
 
-// enable message
-warning(warning_mode);
 //===========================================================
 //(very) simple example 1
 //===========================================================

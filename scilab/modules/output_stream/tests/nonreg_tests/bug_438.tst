@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 438 -->
 //
 // <-- Bugzilla URL -->
@@ -31,5 +33,5 @@ dummy3 =sprintf('%e', 10000);
 if MSDOS then
   if dummy3 <> "1.000000e+004" then pause, end
 else
-  if dummy2 <> "1.000000e+04" then pause, end
+  if dummy3 <> "1.000000e+04" then pause, end
 end  

@@ -54,6 +54,7 @@
 #include "WindowList.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
+#include "GraphicSynchronizerInterface.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
@@ -523,7 +524,10 @@ int sciInitBackground( sciPointObj * pobj, int colorindex )
 
     if (sciGetEntityType(pobj) == SCI_FIGURE && !isFigureModel(pobj))
     {
+			/* disable protection since this function will call Java */
+		  disableFigureSynchronization(pobj);
       sciSetJavaBackground(pobj, newIndex);
+			enableFigureSynchronization(pobj);
     }
 
     return 0;
@@ -1847,7 +1851,6 @@ int sciInitName(sciPointObj * pobj, char * newName)
     case SCI_FIGURE:
     {
       int newNameLength;
-      int percentStatus = 0 ;
 
 			/* first case newName is NULL */
 			if (newName == NULL)
@@ -3849,6 +3852,95 @@ int sciSetZBounds(sciPointObj * pObj, double bounds[2])
 	}
 
 	return sciInitZBounds(pObj, bounds);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitGridFront(sciPointObj * pObj, BOOL gridFront)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_SUBWIN:
+		pSUBWIN_FEATURE(pObj)->gridFront = gridFront;
+		return 0;
+	default:
+    printSetGetErrorMessage("grid_position");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify whether the grid is drawn in background or foreground.
+ */
+int sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
+{
+	if (sciGetGridFront(pObj) == gridFront)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitGridFront(pObj, gridFront);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitAntialiasingQuality(sciPointObj * pObj, int quality)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_FIGURE:
+		if (isFigureModel(pObj))
+		{
+			pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality = quality;
+		}
+		else
+		{
+			sciSetJavaAntialiasingQuality(pObj, quality);
+		}
+		return 0;
+  default:
+    printSetGetErrorMessage("anti_aliasing");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the quality of antialiasing or disable it.
+ * If quality if 0, the antialiasing is disabled,
+ * otherwise it might be either 1, 2, 4, 8 or 16 and then
+ * specifies the number of pass for antialiasing.
+ * @param quality positive integer.
+ */
+int sciSetAntialiasingQuality(sciPointObj * pObj, int quality)
+{
+  if (sciGetAntialiasingQuality(pObj) == quality)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitAntialiasingQuality(pObj, quality);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location)
+{
+	switch (sciGetEntityType(pObj))
+  {
+	case SCI_LEGEND:
+		pLEGEND_FEATURE(pObj)->place = location;
+		return 0;
+	default:
+    printSetGetErrorMessage("legend_location");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the legend position relatively to the subwindow
+ */
+int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location)
+{
+	if (sciGetLegendLocation(pObj) == location)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitLegendLocation(pObj, location);
 }
 /*----------------------------------------------------------------------------------*/
 /**

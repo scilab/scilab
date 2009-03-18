@@ -15,7 +15,7 @@
 /* file: sci_matplot1.c                                                   */
 /* desc : interface for matplot1 routine                                  */
 /*------------------------------------------------------------------------*/
-
+#include "stack-c.h"
 #include "sci_matplot.h"
 #include "GetProperty.h"
 #include "sci_demo.h"

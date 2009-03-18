@@ -66,9 +66,8 @@ DIST_COMMON = $(am__libsciscicos_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@SCICOS_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 @OCAML_TRUE@@SCICOS_TRUE@bin_PROGRAMS = $(am__EXEEXT_1)
-@OCAML_TRUE@@SCICOS_TRUE@am__append_3 = .ml .mli .mll .mly .cmo .cmi .cmx
+@OCAML_TRUE@@SCICOS_TRUE@am__append_2 = .ml .mli .mll .mly .cmo .cmi .cmx
 subdir = modules/scicos
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -119,8 +118,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@SCICOS_TRUE@	$(am__append_2)
+@SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/tree.c src/c/sciblk2i.c src/c/scicos_malloc.c \
 	src/c/import.c src/c/slider.c src/c/scicos.c \
@@ -436,6 +434,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -518,7 +517,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci $(am__append_3)
+SUFFIXES = .sci $(am__append_2)
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -654,23 +653,7 @@ HELP_CHAPTERFILE = addchapter.sce
 # For the code check (splint)
 @SCICOS_TRUE@CHECK_SRC = $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 @SCICOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
-@SCICOS_TRUE@libsciscicos_la_LIBADD =  \
-@SCICOS_TRUE@	$(top_builddir)/modules/string/libscistring.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/intersci/libsciintersci.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/graphics/libscigraphics.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/time/libscitime.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/scicos/libscisundials.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/mexlib/libmex.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@SCICOS_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-@SCICOS_TRUE@	$(am__append_2)
+@SCICOS_TRUE@libsciscicos_la_LIBADD = $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
 
 #### scicos : Conf files ####
 @SCICOS_TRUE@libsciscicos_la_rootdir = $(mydatadir)
@@ -747,7 +730,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @SCICOS_TRUE@libsciscicos_la_help_fr_FRdir = $(mydatadir)/help/fr_FR
 @SCICOS_TRUE@libsciscicos_la_help_fr_FR_DATA = 
 
-#########�Modelica #############
+######### Modelica #############
 @OCAML_TRUE@@SCICOS_TRUE@TARGET = modelicac
 @OCAML_TRUE@@SCICOS_TRUE@modelicac_SOURCES = $(MLS)
 @OCAML_TRUE@@SCICOS_TRUE@OCAMLLIBS = nums.cma
@@ -773,7 +756,16 @@ HELP_CHAPTERFILE = addchapter.sce
 @OCAML_TRUE@@SCICOS_TRUE@LEXER_SRC = $(srcdir)/src/modelica_compiler/lexer.mll
 @OCAML_TRUE@@SCICOS_TRUE@BASE_PATH = $(srcdir)/src/modelica_compiler
 @OCAML_TRUE@@SCICOS_TRUE@INCLUDE = -I $(BASE_PATH)
-@OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi $(BASE_PATH)/*.o $(BASE_PATH)/*.cmo $(BASE_PATH)/*.cm[aiox] $(TARGET) $(BASE_PATH)/parser.mli $(BASE_PATH)/lexer.mli $(BASE_PATH)/parser.ml $(BASE_PATH)/lexer.ml
+@OCAML_TRUE@@SCICOS_TRUE@CLEANFILES = $(BASE_PATH)/*.cmi \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.o \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cmo \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/*.cm[aiox] \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/parser.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/lexer.mli \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/parser.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(BASE_PATH)/lexer.ml \
+@OCAML_TRUE@@SCICOS_TRUE@	$(TARGET)
+
 @SCICOS_FALSE@NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 all: all-am
 
@@ -1636,7 +1628,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -1707,12 +1699,12 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libsciscicos_la_etcDATA \
 	clean clean-binPROGRAMS clean-generic clean-libtool \
 	clean-local clean-pkglibLTLIBRARIES ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-binPROGRAMS install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciscicos_la_etcDATA \
+	distclean-local distclean-tags distdir dvi dvi-am html html-am \
+	info info-am install install-am install-binPROGRAMS \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciscicos_la_etcDATA \
 	install-libsciscicos_la_help_en_USDATA \
 	install-libsciscicos_la_help_fr_FRDATA \
 	install-libsciscicos_la_includeHEADERS \
@@ -1899,6 +1891,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 

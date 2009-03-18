@@ -55,7 +55,7 @@ int swapHandles( unsigned long firstHdl, unsigned long secondHdl ) ;
  */
 BOOL isHandleValid(long handle);
 
-sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int index);
+sciPointObj * sciGetIndexedSon(sciPointObj * pobj, int lindex);
 
 /**
  * Generate a new handle index for an object.

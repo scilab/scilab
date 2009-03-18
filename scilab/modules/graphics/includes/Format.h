@@ -19,6 +19,7 @@
 #ifndef _FORMAT_H_
 #define _FORMAT_H_
 
+#include "machine.h" /* C2F */
 #include "ObjectStructure.h"
 #include "StringMatrix.h"
 

@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getshortpathname)(char *fname,unsigned long l)
+int sci_getshortpathname(char *fname,unsigned long l)
 {
 	static int l1,n1,m1;
 	int bOK=FALSE;

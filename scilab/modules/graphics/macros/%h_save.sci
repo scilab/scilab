@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-  version=[5 1 0 0]
+  version=[5 2 0 0]
   mput(version,'uc',fd)
   
   // There are issues when saving characters with 'c' format
@@ -63,6 +63,8 @@ function save_graphichandle(h,fd)
     mput(bool2s(h.pixmap=='on'),characterFormat,fd) ; // pix_map
     mput(length(h.pixel_drawing_mode),characterFormat,fd); // pixel_drawing_mode
     mput(ascii(h.pixel_drawing_mode),characterFormat,fd);
+	mput(length(h.anti_aliasing),characterFormat,fd); // anti_aliasing
+    mput(ascii(h.anti_aliasing),characterFormat,fd);
     mput(bool2s(h.immediate_drawing=='on'),characterFormat,fd) // immediate_drawing
     mput(h.background,'il',fd) // background
     mput(length(h.rotation_style),characterFormat,fd); // rotation style
@@ -93,6 +95,8 @@ function save_graphichandle(h,fd)
     mput(size(h.axes_reverse,'*'),characterFormat,fd); // axes_reverse
     mput(bool2s(h.axes_reverse=='on'),characterFormat,fd) ;
     mput(size(h.grid,'*'),characterFormat,fd); mput(h.grid,'il',fd); // grid
+	mput(length(h.grid_position),characterFormat,fd); // grid_position
+    mput(ascii(h.grid_position),characterFormat,fd);
     mput(length(h.x_location),characterFormat,fd); // x_location
     mput(ascii(h.x_location),characterFormat,fd);
     mput(length(h.y_location),characterFormat,fd); // y_location

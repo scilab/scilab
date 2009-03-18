@@ -58,6 +58,7 @@ if test -n "$SCI"; then
 	fi
 fi
 
+DISABLE_JAVA_DETECTION=0
 
 # Electric fence is a tool to check problem of memory
 start_electric_fence() {
@@ -125,9 +126,26 @@ find_docbook_path() {
 	fi
 }
 
+detect_type_of_scilab(){
+	progname="$0"
+	SCILAB_MODE="gui"
+	SCILABBIN="scilab-bin"
+	if echo "$progname"|grep "scilab-adv-cli$" 2>/dev/null; then
+		SCILAB_MODE="nw"
+		SCILABBIN="scilab-adv-cli-bin"
+	fi
+		
+	if echo "$progname"|grep "scilab-cli$" 2>/dev/null; then
+		SCILAB_MODE="nwni"
+		SCILABBIN="scilab-cli-bin"
+		DISABLE_JAVA_DETECTION=1
+	fi
+#	exit
+}
+
+detect_type_of_scilab
 
 detect_scilab_path() {
-	SCILABBIN="scilab-bin"
 
 	OLDPWD=`pwd`
 
@@ -253,17 +271,17 @@ detect_java_vm() {
         case $OS in
             *darwin* | *Darwin*)
                     # Seems to be always that under Mac OS X. Don't hesitate to submit a bug report if it is not the case.
-				JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
-                LD_LIBRARY_PATH="/System/Library/Frameworks/JavaVM.framework/Libraries:$LD_LIBRARY_PATH"
-				if test $SCIVERBOSE -ne 0; then
-					echo "Using default Mac OS X vm: $JAVA_HOME"
-					echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-				fi
-				;;
-            *)
-				;;
-		esac
-	fi
+		    JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home/"
+                    LD_LIBRARY_PATH="$JAVA_HOME/../Libraries:$LD_LIBRARY_PATH"
+		    if test $SCIVERBOSE -ne 0; then
+			echo "Using default Mac OS X vm: $JAVA_HOME"
+			echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+		    fi
+		    ;;
+                *)
+					;;
+			esac
+fi
 
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
@@ -382,13 +400,15 @@ detect_java_vm() {
 				JAVA_SHLIB="jvm.dll"
 				;;
 			*darwin* | *Darwin*) # MacOS X
-	# For Mac OS X, Since path are different from the JVM normal tree, don't need to detect 
-	# the CPU
+        # For Mac OS X, Since path are different from the JVM normal tree, 
+		# don't need to detect the CPU
+				JAVA_SHLIB="libjava.jnilib"
 				;;
 			*)
-				echo "Could not find the Java configuration for the OS <${OS}>. Please contact us."
-				;;
+                echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+                ;;
 		esac
+		
 
 # Check if the lib exists or not (we should manage system where .so is not the
 # ext for library
@@ -416,7 +436,10 @@ detect_scilab_path
 
 PATH="$SCI:$SCI/bin:$PATH"
 
-detect_java_vm
+# If we are calling scilab-cli, no need to detect java.
+if test DISABLE_JAVA_DETECTION -ne 1; then
+	detect_java_vm
+fi
 
 # See http://bugzilla.scilab.org/show_bug.cgi?id=3486
 # Some Java stuff raises spurious SIGSEGV. The problem is that when bug-buddy
@@ -430,7 +453,6 @@ export GTK_MODULES
 if test $SCIVERBOSE -ne 0; then
 	echo "SCI : $SCI"
 	echo "SCIBIN : $SCIBIN"
-	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
 	echo "PATH : $PATH"
 fi
 
@@ -452,10 +474,27 @@ cd "$OLDPWD"
 #fi
 #export PVM_ARCH
 
-LD_LIBRARY_PATH=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
+LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+
+case $OS in
+    *darwin* | *Darwin*) # MacOS X
+        # When using some packaging tools like fink which are storing the info in /sw/lib
+        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
+	# Export the path to the Scilab lib when Scilab has been install ...
+	# to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
+        DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
+	export DYLD_LIBRARY_PATH
+        ;;
+    *)
+esac
+
 
 if test $SCIVERBOSE -ne 0; then
 	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+	if test ! -z "$DYLD_LIBRARY_PATH"; then
+	    echo "DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+	fi
 fi
 export LD_LIBRARY_PATH
 export PATH
@@ -535,9 +574,20 @@ do_lib()
 	exit 0
 }
 
+NB_ARGS=$#
+
+# Scilab is launch with the script scilab-adv-cli. Add the arg nw
+if test "$SCILAB_MODE" = "nw"; then
+	sciarg="$sciarg -nw"
+	NB_ARGS=$(($NB_ARGS + 1))
+fi
+echo "SCILAB $SCILAB_MODE"
+echo "NB_ARGS $NB_ARGS"
+echo "sciarg : $sciarg"
+
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
-case $# in
+case $NB_ARGS in
     0) # No arg, run Scilab
 		do_scilex
         ;;
@@ -573,7 +623,7 @@ esac
 # really calling Scilab with arguments
 
 if test "$rest" = "yes"; then
-
+	
   debug=
   debug_kdbg=
   profiling=
@@ -592,6 +642,10 @@ if test "$rest" = "yes"; then
     case $sciarg in
       -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
 	      ;;
+      -psn_*)
+	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx 
+	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
+	    ;;
       -display|-f|-l|-e|-d|-args|-mem)
 	      prevarg=1
 	      ;;

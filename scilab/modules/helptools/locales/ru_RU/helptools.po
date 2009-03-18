@@ -1,0 +1,302 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-01-12 23:02+0000\n"
+"Last-Translator: Nkolay Parukhin <nik@sevpinro.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr "%s: Каталог %s не существует или отсутствуют права на чтение."
+
+msgid "-- Deleting help files --\n"
+msgstr "-- Удаление файлов справки --\n"
+
+#, c-format
+msgid "Processing %s to %s"
+msgstr "Обработка от %s до %s"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: Обозреватель помощи отключён в режиме %s.\n"
+
+#, c-format
+msgid "%s: help module is not installed.\n"
+msgstr "%s: Справочный модуль не установлен.\n"
+
+msgid "Scilab 5.0 or more is required."
+msgstr ""
+
+msgid "...demodir must be a directory."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: Данная функция поддерживается толька на Windows платформах.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось не более %d.\n"
+
+msgid "Help chapter"
+msgstr "Справочная глава"
+
+#, c-format
+msgid "%s: The %s files are up-to-date."
+msgstr "%s: %s файлов новейшие."
+
+msgid ""
+"\n"
+"Copying missing help files copied from the default language\n"
+msgstr ""
+"\n"
+"Копируются недостающие файлы справки из языка по умолчанию\n"
+
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+msgid ""
+"\n"
+"Copying missing files copied from\n"
+msgstr ""
+"\n"
+"Копирование недостающих файлов из\n"
+
+#, c-format
+msgid ""
+"\n"
+"Copying missing from %s\n"
+msgstr ""
+"\n"
+"Копирование недостающего из %s\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+"\n"
+"Собирается заглавного документа Руководства Scilab для %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the master document: %s\n"
+msgstr ""
+"\n"
+"Собирается заглавный документ: %s\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the master document for %s.\n"
+msgstr ""
+"\n"
+"Собирается заглавный документ для %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the master document in %s\n"
+msgstr ""
+"\n"
+"Собирается заглавный документ в %s\n"
+
+msgid ""
+"\n"
+"Building the scilab manual file ["
+msgstr ""
+"\n"
+"Собирается файл Руководства Scilab ["
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s не был сформирован."
+
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: %s файл не может быть перемещён в каталог %s."
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s. (Please wait building ... this can take "
+"a while)\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s]. (Please wait building ... this can take a "
+"while)\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from\n"
+msgstr ""
+"\n"
+"Удаление файлов, скопированных из\n"
+
+#, c-format
+msgid ""
+"\n"
+"Deleting files copied from %s\n"
+msgstr ""
+"\n"
+"Удаление файлов, скопированных из %s\n"
+
+msgid "Scilab manual"
+msgstr "Руководство Scilab"
+
+msgid "About Scicos"
+msgstr ""
+
+msgid "Scicos Manual"
+msgstr ""
+
+msgid "Batch functions"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
+
+msgid "Sources Palette"
+msgstr ""
+
+msgid "Linear Palette"
+msgstr ""
+
+msgid "Non-linear Palette"
+msgstr ""
+
+msgid "Branching Palette"
+msgstr ""
+
+msgid "Others Palettes"
+msgstr ""
+
+msgid "Threshold Palette"
+msgstr ""
+
+msgid "Sinks Palette"
+msgstr ""
+
+msgid "Events Palette"
+msgstr ""
+
+msgid "Electrical Palette"
+msgstr ""
+
+msgid "Thermohydraulics Palette"
+msgstr ""
+
+msgid "Matrix Palette"
+msgstr ""
+
+msgid "Integer Palette"
+msgstr ""
+
+msgid "Demoblocks Palette"
+msgstr ""
+
+msgid "ABCD Blocks"
+msgstr ""
+
+msgid "C Computational Functions"
+msgstr ""
+
+msgid "Scilab Computational Functions"
+msgstr ""
+
+msgid "Utilities Functions"
+msgstr ""
+
+msgid "Programming Scicos Blocks"
+msgstr ""
+
+msgid "Scilab Utilities Functions"
+msgstr ""
+
+msgid "Diagram"
+msgstr ""
+
+msgid "Blocks"
+msgstr ""
+
+msgid "Links"
+msgstr ""
+
+msgid "Compilation/Simulation"
+msgstr ""
+
+msgid "Scilab Data Structures"
+msgstr ""
+
+msgid "Palettes"
+msgstr ""
+
+msgid "Old Blocks Palette"
+msgstr ""
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tОбработка файла %s.xml\n"
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Внимание: %s не соответсввует dtd"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+msgstr "Модуль Scilab '%s' отключён в режимах  -nogui и -nwni."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr "%s: Неверно для типа аргумента #%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: Не удалось найти или создать рабочий каталог %s.\n"
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: Ошибка при формировании документации: %s.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль Scilab '%s' не установлен.\n"

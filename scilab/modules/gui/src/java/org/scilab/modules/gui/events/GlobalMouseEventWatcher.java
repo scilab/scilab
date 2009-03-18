@@ -61,7 +61,9 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
     public void eventDispatched(AWTEvent mouseEvent) {
 	// DEBUG
 	Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
-	Debug.DEBUG(this.getClass().getSimpleName(),((MouseEvent) mouseEvent).toString());
+	if (this.axes != null) {
+		Debug.DEBUG("axes number " + this.axes.getFigureId());
+	}
 	/*
 	 * Managing Canvas
 	 * PRESSED
@@ -123,7 +125,15 @@ public abstract class GlobalMouseEventWatcher implements AWTEventListener {
 		break;
 	    case MouseEvent.MOUSE_DRAGGED :
 		if (this.inCanvas) {
-		    mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
+                    if (lastMouse.getID() == MouseEvent.MOUSE_PRESSED) {
+                        clickTranslator.setClickAction(SciTranslator.PRESSED);
+                        synchronized (clickTranslator) {
+                            // To unlock javaClick2Scilab done in launchfilter
+                            clickTranslator.notify();
+                        }
+                    } else {
+                        mouseEventFilter(lastMouse, axes, SciTranslator.MOVED, this.isControlDown);
+                    }
 		}
 		break;
 		/* EXITED */

@@ -109,6 +109,11 @@ function [y,Fs,bits] = wavread(wavfile,ext)
 	      end
       end
 
+     // bug 4037
+     case 'bext' then
+       error(msprintf(gettext("%s: An error occurred: %s is not supported.\n"),'wavread','Broadcast Wave Format'));       
+       return
+     
      case 'fmt' then
       found_fmt = 1;
       [wFormatTag,nChannels,nSamplesPerSec,nAvgBytesPerSec,nBlockAlign,nBitsPerSample,cbSize] = read_wavefmt(fid,Size);

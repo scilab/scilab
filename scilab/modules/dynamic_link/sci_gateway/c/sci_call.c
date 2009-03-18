@@ -13,15 +13,16 @@
 /*--------------------------------------------------------------------------*/ 
 #include "gw_dynamic_link.h"
 #include "stack-c.h"
+#include "machine.h" /* C2F */
 /*--------------------------------------------------------------------------*/
 extern int C2F(intfort)(char *fname,unsigned long fname_len); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fort)(char *fname,unsigned long fname_len)
+int sci_fort(char *fname,unsigned long fname_len)
 {
-	return C2F(sci_call)(fname,fname_len);
+	return sci_call(fname, fname_len);
 }
 /*--------------------------------------------------------------------------*/
-int C2F(sci_call)(char *fname,unsigned long fname_len)
+int sci_call(char *fname,unsigned long fname_len)
 {
 	if (Rhs == 0)
 	{

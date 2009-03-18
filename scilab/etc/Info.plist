@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- 
+ * This file declares the Scilab application for Mac OS X
+ * See: http://wiki.scilab.org/Compiling_Scilab_5.x_under_MacOSX  
+ * Packaging (Mac OS X style)
+-->
+<plist version="1.0">
+<dict>
+	<key>CFBundleExecutable</key>
+	<string>bin/scilab</string>
+	<key>CFBundleGetInfoString</key>
+	<string>Scilab 5.1.0, © 1998-2009 DIGITEO</string>
+	<key>CFBundleIconFile</key>
+	<string>puffin</string>
+	<key>CFBundleIdentifier</key>
+	<string>org.scilab.modules.jvm.Scilab</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>Scilab</string>
+</dict>
+</plist>

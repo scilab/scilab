@@ -10,7 +10,7 @@
  *
  */
 
-#include "error.h"
+#include "do_error_number.h"
 #include "MALLOC.h" /* NULL*/
 #include "error_internal.h"
 /*--------------------------------------------------------------------------*/ 

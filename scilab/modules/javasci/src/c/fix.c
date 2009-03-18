@@ -24,6 +24,3 @@ fp __fini_array_end[]={fini+1};
 
 fp __preinit_array_start[]={preinit};
 fp __preinit_array_end[]={preinit+1};
-
-
-

@@ -35,13 +35,14 @@ function  H=build_sliding_pendulum ()
 	f.pixmap      = "on";
 	a             = gca();
 	drawlater();
-	f.figure_size = [610,676] //mode isoview does not work
+	f.axes_size = [610,676] ;
 	
 	xmin = -1.5;
 	xmax =  1.5;
 	ymin = -1.1;
 	ymax =  2.25;
 	a.data_bounds=[xmin ymin;xmax ymax]
+	a.isoview = "on";
 	
 	//the framework
 	xrect(xmin,ymax,xmax-xmin,ymax-ymin)

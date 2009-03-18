@@ -11,12 +11,15 @@ src/c/tohome.c \
 src/c/more.c \
 src/c/scilines.c \
 src/c/GetCommandLine.c \
-src/c/others/mainscic.c \
 src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
 src/c/TerminateShell.c 
+
+if IS_MACOSX
+SHELL_C_SOURCES += src/c/others/initMacOSXEnv.c
+endif
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/gw_shell.c \
@@ -49,7 +52,7 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
 
-libscishell_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TERMCAP_LIB)
+libscishell_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
 
 # All the sources needed by libscishell.la
 libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)

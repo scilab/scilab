@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mrow>
+    <math:munderover>
+     <math:mo math:stretchy="false">∑</math:mo>
+     <math:mrow>
+      <math:mi>k</math:mi>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mn>1</math:mn>
+     </math:mrow>
+     <math:mi>m</math:mi>
+    </math:munderover>
+    <math:mi math:fontstyle="italic">wd</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mi>k</math:mi>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+   <math:mover math:accent="true">
+    <math:msup>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi>s</math:mi>
+       <math:mrow>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi math:fontstyle="italic">xd</math:mi>
+          <math:mrow>
+           <math:mo math:stretchy="false">(</math:mo>
+           <math:mi>k</math:mi>
+           <math:mo math:stretchy="false">)</math:mo>
+          </math:mrow>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mo math:stretchy="false">−</math:mo>
+        <math:mi math:fontstyle="italic">yd</math:mi>
+       </math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>k</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mn>2</math:mn>
+    </math:msup>
+    <math:mo math:stretchy="false">˙</math:mo>
+   </math:mover>
+   <math:mo math:stretchy="false">←</math:mo>
+   <math:mrow>
+    <math:munderover>
+     <math:mo math:stretchy="false">∑</math:mo>
+     <math:mrow>
+      <math:mi>k</math:mi>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mn>1</math:mn>
+     </math:mrow>
+     <math:mi>m</math:mi>
+    </math:munderover>
+    <math:mi math:fontstyle="italic">wd</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mi>k</math:mi>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+   <math:mover math:accent="true">
+    <math:msup>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mrow>
+       <math:mi>f</math:mi>
+       <math:mrow>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi math:fontstyle="italic">xd</math:mi>
+          <math:mrow>
+           <math:mo math:stretchy="false">(</math:mo>
+           <math:mi>k</math:mi>
+           <math:mo math:stretchy="false">)</math:mo>
+          </math:mrow>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mo math:stretchy="false">−</math:mo>
+        <math:mi math:fontstyle="italic">yd</math:mi>
+       </math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>k</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mn>2</math:mn>
+    </math:msup>
+    <math:mo math:stretchy="false">˙</math:mo>
+   </math:mover>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">sum from {k=1} to m wd(k) dot (s(xd(k)) - yd(k))^2 leftarrow sum from {k=1} to m wd(k) dot (f(xd(k)) - yd(k))^2</math:annotation>
+ </math:semantics>
+</math:math>

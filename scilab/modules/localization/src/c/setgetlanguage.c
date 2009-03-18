@@ -18,6 +18,9 @@
 #include "machine.h" /*  HAVE_LIBINTL_H &  HAVE_LOCALE_H */
 
 #ifndef _MSC_VER
+#ifdef __APPLE__
+#include <locale.h>
+#else
  #ifdef HAVE_LIBINTL_H
   #include <libintl.h>
   #ifdef HAVE_LOCALE_H
@@ -26,6 +29,7 @@
    #error "Cannot find locale.h despite that libintl.h is available"
   #endif
  #endif
+#endif
 #else
 	#include <locale.h>
 	#include <libintl.h>

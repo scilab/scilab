@@ -56,7 +56,8 @@ public class LibraryPath {
 	 */
 	public static void addPath(final String p) throws IOException {
 	if (!pathAlreadyExists(System.getProperty(JAVALIBRARYPATH), p)) {
-		String newLibPath = p + File.pathSeparator + System.getProperty(JAVALIBRARYPATH);
+		/* The order matter here... see bug #4022 */
+		String newLibPath = System.getProperty(JAVALIBRARYPATH) + File.pathSeparator + p;
 		System.setProperty(JAVALIBRARYPATH, newLibPath);
 		try {
 			Field fieldSysPath = ClassLoader.class.getDeclaredField("sys_paths");

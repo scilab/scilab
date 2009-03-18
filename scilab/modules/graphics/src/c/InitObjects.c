@@ -562,6 +562,8 @@ int InitAxesModel()
     ppaxesmdl->grid[i]  = -1;
   }
 
+	ppaxesmdl->gridFront = FALSE; /* draw in background */
+
   ppaxesmdl->alpha  = 0.0;
   ppaxesmdl->theta  = 270.0;
   ppaxesmdl->alpha_kp  = 45.0;
@@ -939,7 +941,7 @@ FigureModelData * newFigureModelData( void )
   modelData->figureHeight = 460 ;
   modelData->windowWidth  = 620 ;
   modelData->windowHeight = 590 ;
-  modelData->windowPosition[0] = 200 ;
+  modelData->windowPosition[0] = 200 ; /* Set [-1,-1] to let the os use the position */
   modelData->windowPosition[1] = 200 ;
   modelData->colorMap = NULL ;
   modelData->numColors = 0 ;
@@ -949,6 +951,7 @@ FigureModelData * newFigureModelData( void )
   modelData->viewport[2] = 610;
   modelData->viewport[3] = 461;
 	modelData->infoMessage = NULL;
+	modelData->antialiasingQuality = 0;
 
   return modelData ;
 }

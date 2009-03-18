@@ -14,6 +14,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include "Format.h"
 #include "DrawObjects.h"
 }

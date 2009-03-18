@@ -122,4 +122,16 @@ public static String getCommonPart(String[] dictionnary, int sizeDictionnary) {
     return CompletionJNI.getCommonPart(dictionnary, sizeDictionnary);
   }
 
+  
+/**
+* complete line
+* @param[in] current line
+* @param[in] line to add
+* @param[in] type of line to add
+* @return modified line 
+*/
+public static String completelineforjava(String currentLine, String stringToAdd, boolean isFile) {
+    return CompletionJNI.completelineforjava(currentLine, stringToAdd, isFile);
+  }
+
 }

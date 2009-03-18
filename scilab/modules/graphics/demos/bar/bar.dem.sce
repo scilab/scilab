@@ -39,8 +39,10 @@ year2007ColorId = color(64,155,59);
 
 // Histogramm drawing
 
-bar(x,y);
 drawlater();
+bar(x,y);
+histo = gce();
+
 
 // Adjustements
 histogramme = gcf();
@@ -102,11 +104,8 @@ year2007.bar_width = 0.25;
 
 // Legend drawing
 
-legends(['Year 2005';'Year 2006';'Year 2007'],[year2005ColorId;year2006ColorId;year2007ColorId],[9.5;19500]);
-legend_axes = histogramme.children(1);
-
-legend_axes.children.children(2).thickness = 4;
-legend_axes.children.children(4).thickness = 4;
-legend_axes.children.children(6).thickness = 4;
+captions(histo.children($:-1:1), ['Year 2005';'Year 2006';'Year 2007']);
+legs = gce();
+legs.legend_location = "in_upper_left";
 
 drawnow();

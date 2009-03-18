@@ -261,6 +261,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -344,8 +345,8 @@ libsciintersci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 intersci_SOURCES = $(INTERSCI_EXE_C_SOURCES)
 libsciintersci_la_SOURCES = $(INTERSCI_LIB_C_SOURCES)
 libsciintersci_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(srcdir)/includes \
 				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(srcdir)/includes \
                 -I$(top_srcdir)/modules/string/includes	
 
 
@@ -884,7 +885,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -946,12 +947,12 @@ uninstall-am: uninstall-binPROGRAMS \
 	clean clean-binPROGRAMS clean-generic clean-libtool \
 	clean-local clean-pkglibLTLIBRARIES ctags distclean \
 	distclean-compile distclean-generic distclean-libtool \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-binPROGRAMS install-data \
-	install-data-am install-data-local install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciintersci_la_etcDATA \
+	distclean-local distclean-tags distdir dvi dvi-am html html-am \
+	info info-am install install-am install-binPROGRAMS \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciintersci_la_etcDATA \
 	install-libsciintersci_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1128,6 +1129,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

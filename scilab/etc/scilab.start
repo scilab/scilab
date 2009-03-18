@@ -10,6 +10,7 @@
 
 // Main Scilab initialisation file
 
+
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
@@ -120,6 +121,15 @@ clear  pathconvert //remove the local variable
 // Protect variable previously defined  ================================
 predef('all')
 
+// At startup, no interactive vertical paging is authorized.===========
+// Note :
+// This may happen when the .scilab startup configuration file is loaded.
+// This may freeze a unit test, for which the .scilab file is so long 
+// that an interactive action is required ; but that interactive
+// action cannot occur, since it is during a unit test.
+_DEFAULT_LN_ = lines();
+lines(0);
+
 // load contrib menu if present ========================================
 if fileinfo(SCI+'/contrib/loader.sce') <> [] then
   global %toolboxes
@@ -131,30 +141,25 @@ end
 // calling user initialization =========================================
 // Home dir startup (if any)
 if sciargs()<>'-nouserstartup' then
-  startup_path = SCIHOME+filesep();
+  startup_path = SCIHOME + filesep();
 
-  [startup,ierr] = mopen(startup_path+'.scilab','r');
-  if ierr == 0 then
-    exec(startup,-1);mclose(startup);
+  if (fileinfo(startup_path+'.scilab') <> []) then
+  lines(0);
+    exec(startup_path+'.scilab',-1);
   else
-    [startup,ierr] = mopen(startup_path+'scilab.ini','r');
-    if ierr == 0 then
-      exec(startup,-1);mclose(startup);
+    if (fileinfo(startup_path+'scilab.ini') <> []) then
+      exec(startup_path+'scilab.ini',-1);
     end
   end
   clear startup ierr startup_path
 
   // working dir startup (if any)
-  if  home<>PWD then
-    [startup,ierr] = mopen('.scilab','r');
-    if ierr == 0 then
-      exec(startup,-1);
-      mclose(startup);
+  if (SCIHOME <> getcwd()) then
+    if (fileinfo('.scilab') <> []) then
+      exec('.scilab',-1);
     else
-      [startup,ierr] = mopen('scilab.ini','r');
-      if ierr == 0 then
-		    exec(startup,-1);
-		    mclose(startup);
+      if (fileinfo('scilab.ini') <> []) then
+        exec('scilab.ini',-1);
       end
     end
   end
@@ -169,25 +174,23 @@ if ( getscilabmode() == 'STD') then
         setmenu(gettext("&Control"));
         setmenu(gettext("&Applications"));
         if ~with_module("scipad") then // Desactivate Editor menu
-          unsetmenu(gettext("&Applications"),2);
+          unsetmenu(gettext("&Applications"),1);
         end
         if ~with_module("scicos") then // Desactivate Scicos menu
-          unsetmenu(gettext("&Applications"),4);
-        end
-        if ~with_module("metanet") then // Desactivate EditGraph menu
-          unsetmenu(gettext("&Applications"),6);
+          unsetmenu(gettext("&Applications"),3);
         end
         if ~with_module("m2sci") then // Desactivate mfile2sci menu
-          unsetmenu(gettext("&Applications"),8);
-        end
-        if ~with_module("tclsci") then // Desactivate Browsevar menu
-          unsetmenu(gettext("&Applications"),10);
+          unsetmenu(gettext("&Applications"),5);
         end
         setmenu(gettext("&?"));
         setmenu(gettext("&Toolboxes"));
         toolbar(-1, "on");
 end
 // =====================================================================
+// Restore initial lines mode
+lines(_DEFAULT_LN_(1),_DEFAULT_LN_(2));
+clear _DEFAULT_LN_;
+// =====================================================================
+// =====================================================================
 
 clear ans
-// =====================================================================

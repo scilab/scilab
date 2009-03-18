@@ -175,13 +175,19 @@ sciPointObj * ConstructFigure(sciPointObj * pparent, int * figureIndex)
   }
 
   sciGetScreenPosition(pfiguremdl, &x[0], &x[1]) ;
-  sciInitScreenPosition( pobj, x[0], x[1] );
+	if (x[0] != -1 || x[1] != -1)
+	{
+		/* If default position is [-1,-1], then let the OS choose the window position. */
+		sciInitScreenPosition( pobj, x[0], x[1] );
+	}
 
 	sciInitInfoMessage( pobj, ppModel->pModelData->infoMessage ) ;
 
   ppFigure->tag = NULL;
 
   sciInitPixmapMode(pobj, sciGetPixmapMode(pfiguremdl));
+
+	sciInitAntialiasingQuality(pobj, sciGetAntialiasingQuality(pfiguremdl));
 
   /* Colormap */
   sciInitNumColors(pobj, 0);
@@ -306,10 +312,17 @@ ConstructSubWin(sciPointObj * pparentfigure)
 		ppsubwin->axes.rect  = ppaxesmdl->axes.rect;
 		sciInitIsFilled(pobj, sciGetIsFilled(paxesmdl));
 		for (i=0 ; i<7 ; i++)
+		{
 			ppsubwin->axes.limits[i]  = ppaxesmdl->axes.limits[i] ;
+		}
 
 		for (i=0 ; i<3 ; i++)
+		{
 			ppsubwin->grid[i]  = ppaxesmdl->grid[i] ;
+		}
+
+		ppsubwin->gridFront = ppaxesmdl->gridFront;
+
 		ppsubwin->alpha  = ppaxesmdl->alpha;
 		ppsubwin->theta  = ppaxesmdl->theta;
 		ppsubwin->alpha_kp  = ppaxesmdl->alpha_kp;
@@ -823,7 +836,7 @@ ConstructLegend (sciPointObj * pparentsubwin, char **text, long long tabofhandle
 		ppLegend->pos.y = 0;
 		ppLegend->width = 0;
 		ppLegend->height = 0;
-		ppLegend->place = SCI_LEGEND_LOWER_CAPTION;
+		ppLegend->place = SCI_LEGEND_LOWER_CAPTION; /* Default position */
 		ppLegend->isselected = TRUE;
 		ppLegend->issurround = FALSE;
 
@@ -1011,16 +1024,21 @@ sciPointObj * allocatePolyline(sciPointObj * pparentsubwin, double *pvecx, doubl
   ppPoly->scvector = (int *) NULL;
 
   if(background != NULL){
-    if(isinterpshaded == TRUE){ /* 3 or 4 values to store */
+    if(isinterpshaded == TRUE)
+		{ /* 3 or 4 values to store */
 
       sciSetInterpVector(pobj,n1,background);
     }
     else
+		{
       sciInitBackground(pobj,(*background));
+		}
   }
 
   if(mark_style != NULL)
+	{
     sciInitMarkStyle(pobj,(*mark_style));
+	}
 
   if(mark_foreground != NULL)
   {

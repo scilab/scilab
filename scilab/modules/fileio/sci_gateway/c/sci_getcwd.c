@@ -16,7 +16,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getcwd)(char *fname,unsigned long fname_len)
+int sci_getcwd(char *fname,unsigned long fname_len)
 {
 	int ierr = 0;
 	int lpath = 0;

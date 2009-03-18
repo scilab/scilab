@@ -14,7 +14,6 @@
 
 package org.scilab.modules.renderer.figureDrawing;
 
-
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLAutoDrawable;
 import javax.media.opengl.GL;
@@ -22,6 +21,7 @@ import javax.media.opengl.GL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 
 /**
@@ -78,7 +78,6 @@ implements GLEventListener {
 		} else {
 			// the requested display has been done, next one won't change display unless
 			// it is also requested
-			curFigure.setRenderingRequested(false);
 			if (curFigure.isRubberBoxModeOn()) {
 				// draw the rubber box above the lastly displayed canvas
 				curFigure.useSingleBuffer();
@@ -89,18 +88,18 @@ implements GLEventListener {
 				curFigure.swapBuffers();
 
 			} else {
-
-				// to enable anti_aliasing
-				//gl.glEnable(GL.GL_MULTISAMPLE);
 				
 				// draw the hierarchy
-				FigureScilabCall.displayFigure(renderedFigure);
+				
+				while (curFigure.getCoordinateTransformation().nextAntialiasingPass(gl)) {
+					FigureScilabCall.displayFigure(renderedFigure);
+				}
 
 				// end by swapping buffer
 				curFigure.swapBuffers();
-				//gl.glDisable(GL.GL_MULTISAMPLE);
 			}
-		}     
+			curFigure.setRenderingRequested(false);
+		}
 
 	}
 
@@ -141,8 +140,13 @@ implements GLEventListener {
 		gl.glEnable(GL.GL_DEPTH_TEST);							// Enables Depth Testing
 		gl.glDepthFunc(GL.GL_LEQUAL);								// The Type Of Depth Testing To Do
 		gl.glHint(GL.GL_PERSPECTIVE_CORRECTION_HINT, GL.GL_NICEST);	// Really fast
-		gl.glHint(GL.GL_TEXTURE_COMPRESSION_HINT, GL.GL_NICEST);
 		gl.glDisable(GL.GL_LINE_SMOOTH); // we prefer thin line
+		
+		// set up anti-aliasing
+		curFigure.getCoordinateTransformation().initalizeAntialiasing(gl);
+		
+		// HACK for text under Intel/Linux
+		SciTextRenderer.forceMipMapRecomputationAvailabilty();
 
 		// Color of texture will not be 
 		// mixed with the color of the polygon

@@ -20,7 +20,7 @@
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int int_objfprintfMat(char *fname,unsigned long fname_len)
+int sci_fprintfMat(char *fname,unsigned long fname_len)
 {
 	int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0,m3 = 0,n3 = 0,l3 = 0,i = 0,j = 0,mS = 0,nS = 0;
 	FILE  *f;
@@ -33,7 +33,6 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		char *filename2 = NULL;
 		char szTemp[bsiz];
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 

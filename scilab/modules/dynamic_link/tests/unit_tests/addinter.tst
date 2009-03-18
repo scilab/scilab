@@ -19,14 +19,8 @@ if ~c_link('libintertest') then
   files=['addinter.o'];
   ilib_build('libintertest',['scifun1','intfun1'],files,[]);
   
-  // disable message
-  warning_mode = warning('query');
-  warning('off');
   // load the shared library 
   exec loader.sce ;
-  
-  // enable message
-  warning(warning_mode);
   
   //  check addinter add scifun1
   if ( funptr('scifun1') == 0 ) then pause;end 

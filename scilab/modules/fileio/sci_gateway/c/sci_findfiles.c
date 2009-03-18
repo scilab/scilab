@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
+int sci_findfiles(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, n1 = 0, m1 = 0;
 	char pathextented[PATH_MAX];

@@ -1,0 +1,90 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 18:03+0100\n"
+"PO-Revision-Date: 2009-01-17 23:23+0000\n"
+"Last-Translator: Nkolay Parukhin <nik@sevpinro.ru>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2009-02-09 12:57+0000\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid "mexPutFull failed\n"
+msgstr "сбой mexPutFull\n"
+
+msgid "No more memory available: increase stacksize"
+msgstr "Недостаточно памяти: увеличьте stacksize"
+
+msgid "Routine mxIsSingle not implemented.\n"
+msgstr "Процедура mxIsSingle не реализована.\n"
+
+msgid "Variable is not logical."
+msgstr "Переменная не является логической."
+
+msgid "No more memory available: increase stacksize."
+msgstr "Недостаточно памяти: увеличьте stacksize."
+
+msgid "Warning: "
+msgstr "Предупреждение: "
+
+msgid "mexCallSCILAB: invalid pointer passed to called function."
+msgstr ""
+"mexCallSCILAB: недействительный указатель передается вызываемой функции."
+
+msgid "mexCallSCILAB: evaluation failed. "
+msgstr "mexCallSCILAB: сбой вычисления. "
+
+msgid "GetElementSize error."
+msgstr "Ошибка GetElementSize."
+
+msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
+msgstr "Функция mexPutArray устарела, используйте mexPutVariable!\n"
+
+msgid "Routine mxSetName not implemented !\n"
+msgstr "Процедура mxSetName не реализована!\n"
+
+msgid "Routine mxSetData not implemented.\n"
+msgstr "Процедура mxSetData не реализована!\n"
+
+msgid "Last warning"
+msgstr "Последнее предупреждение"
+
+msgid "Warning"
+msgstr "Предупреждение"
+
+#, c-format
+msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
+msgstr "%s: mxSetPr перезаписывает назначение %i байтами.\n"
+
+#, c-format
+msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
+msgstr "%s: mxSetPi перезаписывает назначение %i байтами.\n"
+
+msgid "Routine mxGetName not implemented.\n"
+msgstr "Процедура mxGetName не реализована.\n"
+
+msgid "Routine mxSetDimensions not implemented.\n"
+msgstr "Процедура mxSetDimensions не реализована.\n"
+
+msgid "Invalid string matrix (at most one column!)"
+msgstr "Недействительная строковая матрица (не более одного столбца!)"
+
+msgid "Column length of string matrix must agree!"
+msgstr "Длина столбца строковой матрицы должна соответствовать!"
+
+msgid "Use mtlb_sparse(sparse( ))!"
+msgstr "Используйте mtlb_sparse(sparse( ))!"
+
+msgid "Invalid input"
+msgstr "Неверный ввод"
+
+msgid "No more memory"
+msgstr "Недостаточно памяти"

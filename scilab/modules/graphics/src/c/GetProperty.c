@@ -43,6 +43,7 @@
 #include "BasicAlgos.h"
 #include "localization.h"
 #include "Axes.h"
+#include "stack-c.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -1853,7 +1854,7 @@ sciIsExistingSubWin (double WRect[4])
   sciSons *psonstmp;
 
   double WRectTmp[4];
-  int stop = 0,i;
+  int i;
 
 
   /* Initialisation de WRectTmp a 0*/
@@ -3842,6 +3843,58 @@ void sciGetZBounds(sciPointObj * pObj, double bounds[2])
 		bounds[0] = 0;
 		bounds[1] = 0;
 		break;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get whether the grid is drawn in background or foreground.
+ */
+BOOL sciGetGridFront(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_SUBWIN:
+		return pSUBWIN_FEATURE(pObj)->gridFront;
+  default:
+    printSetGetErrorMessage("grid_position");
+		return FALSE;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+ */
+int sciGetAntialiasingQuality(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_FIGURE:
+		if (isFigureModel(pObj))
+		{
+			return pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality;
+		}
+		else
+		{
+			return sciGetJavaAntialiasingQuality(pObj);
+		}
+  default:
+    printSetGetErrorMessage("anti_aliasing");
+		return FALSE;
+	}
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Get the position of a legend object relative to its parent subwin
+ */
+sciLegendPlace sciGetLegendLocation(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_LEGEND:
+		return pLEGEND_FEATURE(pObj)->place;
+  default:
+    printSetGetErrorMessage("legend_location");
+		return SCI_LEGEND_POSITION_UNSPECIFIED;
   }
 }
 /*----------------------------------------------------------------------------------*/

@@ -99,11 +99,13 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		// Replace beginning of the path if is an environment variable
 		String newPath = path;
 		StringTokenizer tok = new StringTokenizer(path, File.separator);
-		String firstToken = tok.nextToken();
-		if (firstToken != null && System.getenv(firstToken) != null)  {
+		if (tok.hasMoreTokens()) { /* It is possible that we don't have any more token here when
+					      Scilab is started from / for example */
+		    String firstToken = tok.nextToken();
+		    if (firstToken != null && System.getenv(firstToken) != null)  {
 			newPath = newPath.replaceFirst(firstToken, System.getenv(firstToken));
-		}		
-		
+		    }		
+		}
 		super.setCurrentDirectory(new File(newPath));
 	}
 	

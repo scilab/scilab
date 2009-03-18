@@ -18,7 +18,7 @@
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 
-int int_objsprintf(char *fname,unsigned long fname_len)
+int sci_sprintf(char *fname,unsigned long fname_len)
 {
 	char **lstr=NULL;
 	static int l1, m1, n1,n2,lcount,rval,blk=200;

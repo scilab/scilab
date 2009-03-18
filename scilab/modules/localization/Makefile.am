@@ -11,8 +11,11 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
-src/c/charEncoding.c \
-src/jni/Messages_wrap.c
+src/c/charEncoding.c
+
+if NEED_JAVA
+LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
+endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
@@ -23,6 +26,7 @@ sci_gateway/c/sci_getlanguage.c \
 sci_gateway/c/sci_setdefaultlanguage.c
 
 libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
+				-I/sw/include \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -32,7 +36,15 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
-libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS)
+libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
+if IS_MACOSX
+libscilocalization_la_LDFLAGS += -lintl
+endif
+
+if IS_MACOSX
+libscilocalization_la_LDFLAGS += -lintl
+endif
 
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 

@@ -370,7 +370,7 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\assembleEigenvectors.c"
+				RelativePath="..\..\sci_gateway\c\assembleEigenvectors.c"
 				>
 			</File>
 			<File
@@ -386,27 +386,27 @@
 				>
 			</File>
 			<File
-				RelativePath=".\intdgeev.c"
+				RelativePath="..\..\sci_gateway\c\sci_dgeev.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intdggev.c"
+				RelativePath="..\..\sci_gateway\c\sci_dggev.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intdsyev.c"
+				RelativePath="..\..\sci_gateway\c\sci_dsyev.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intzgeev.c"
+				RelativePath="..\..\sci_gateway\c\sci_zgeev.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intzggev.c"
+				RelativePath="..\..\sci_gateway\c\sci_zggev.c"
 				>
 			</File>
 			<File
-				RelativePath=".\intzheev.c"
+				RelativePath="..\..\sci_gateway\c\sci_zheev.c"
 				>
 			</File>
 			<File
@@ -483,7 +483,7 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath=".\assembleEigenvectors.h"
+				RelativePath="..\..\sci_gateway\c\assembleEigenvectors.h"
 				>
 			</File>
 			<File

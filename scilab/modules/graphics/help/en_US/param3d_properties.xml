@@ -84,7 +84,18 @@
         value. The <literal>mark_style</literal> selects the type of mark to be
         displayed. Its value should be an integer in [0 9] which stands for:
         dot, plus, cross, star, filled diamond, diamond, triangle up, triangle
-        down, trefle and circle.</para>
+        down, trefle and circle. The figure below shows the aspects of the marks
+          depending on the <literal>mark_style</literal> and the
+          <literal>mark_foreground</literal> and
+          <literal>mark_background</literal> properties.</para>
+	<para>
+	  <mediaobject>
+	    <imageobject>
+	      <imagedata fileref="../images/marks.svg"/>
+	    </imageobject>
+	  </mediaobject>
+	</para>
+
         </listitem>
       </varlistentry>
       <varlistentry>

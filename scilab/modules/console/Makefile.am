@@ -4,8 +4,6 @@
 ### INRIA - Scilab 2007
 ##########
 
-if GUI
-
 # List of the cpp files
 CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
 src/jni/GiwsException.cpp
@@ -41,12 +39,10 @@ BUILT_SOURCES+=swig
 endif
 
 
-else
-
 # List of the c files
-CONSOLE_C_SOURCES = src/noconsole/noconsole.c
+libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
+libsciconsole_disable_la_CFLAGS = -Iincludes/
 
-endif
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
@@ -59,7 +55,7 @@ libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole.la
+pkglib_LTLIBRARIES = libsciconsole.la libsciconsole-disable.la
 
 libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 

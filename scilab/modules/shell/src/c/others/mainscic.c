@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CONRET
+ * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2008 - INRIA - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
@@ -20,39 +20,41 @@
 #include "getcommandlineargs.h"
 #include "texmacs.h"
 #include "x_main.h"
+#include "Thread_Wrapper.h"
+#include "core_math.h"
+#include "setgetlanguage.h"
 #include "LaunchScilabSignal.h"
+
+#ifdef __APPLE__
+#include "initMacOSXEnv.h"
+#endif
 
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
 #endif
 
 /*--------------------------------------------------------------------------*/
-#define MIN_STACKSIZE 180000
+#define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
-int  sci_show_banner=1;
-/*--------------------------------------------------------------------------*/
+int sci_show_banner=1;
 /*--------------------------------------------------------------------------*/
 
 int main(int argc, char **argv)
 {
   int i;
-  int  no_startup_flag=0;
-  int  memory = MIN_STACKSIZE;
+  int no_startup_flag=0;
+  int memory = MIN_STACKSIZE;
 
   char * initial_script = NULL;
   InitScriptType initial_script_type = SCILAB_SCRIPT;
-  /* This bug only occurs under Linux 32 bits */
+  /* This bug only occurs under Linux 32 bits
+   * See: http://wiki.scilab.org/Scilab_precision
+   */
 #if defined(linux) && defined(__i386__)
   setFPUToDouble();
 #endif
 
   InitializeLaunchScilabSignal();
-
-  #if (defined __GNUC__  )
-		putenv ("COMPILER=gcc");
-	#else
-		putenv ("COMPILER=cc or another");
-	#endif
 
 #if defined(netbsd) || defined(freebsd)
 /* floating point exceptions */
@@ -67,9 +69,8 @@ fpsetmask(0);
 
   setCommandLineArgs(argv, argc);
 
-
   /* scanning options */
-  for ( i=0 ; i < argc ; i++)
+  for ( i=1 ; i < argc ; i++)
   {
       if ( strcmp(argv[i],"-nw") == 0)
       {
@@ -95,7 +96,7 @@ fpsetmask(0);
 		  /* Export the locale. This is going to be used by setlanguage("") in
 			 modules/localization/src/c/InitializeLocalization.c */
 		  if (strcmp(argLang,"en")==0) {/* backward compatiblity en => en_US */
-			  setenvc("LANG","en_US"); 
+			  setenvc("LANG","en_US");
 		  }else{
 			  if (strcmp(argLang,"fr")==0) { /* backward compatiblity fr => fr_FR */
 				  setenvc("LANG","fr_FR");
@@ -133,6 +134,11 @@ fpsetmask(0);
   }
 #endif
 
+#ifndef __APPLE__
   return realmain(no_startup_flag,initial_script,initial_script_type,memory);
+#else
+  /* Mac OS X doesn't work the same way as Microsoft Windows or GNU/Linux */
+  return initMacOSXEnv(no_startup_flag,initial_script,initial_script_type,memory);
+#endif
 }
 /*--------------------------------------------------------------------------*/

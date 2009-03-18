@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent Couvert
+ * Copyright (C) 2009 - DIGITEO - Sylvestre Koumar
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,11 +13,10 @@
 
 package org.scilab.modules.gui.tab;
 
-import org.scilab.modules.gui.checkbox.CheckBox;
-import org.scilab.modules.gui.console.Console;
-import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
+import org.scilab.modules.gui.checkbox.CheckBox;
+import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.frame.Frame;
@@ -28,6 +28,7 @@ import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.slider.Slider;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -360,6 +361,25 @@ public class ScilabTabBridge {
 	 */
 	public static void removeMember(Tab tab, Canvas member) {
 		tab.getAsSimpleTab().removeMember(member);
+	}
+	
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the Tree to
+	 * @param member the Tree to add
+	 * @return the position of the Tree in the member list.
+	 */
+	public static int addMember(Tab tab, Tree member) {
+	    return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Remove a Tree member from a tab
+	 * @param tab the tab which we want to remove the Tree from
+	 * @param member the Tree to add
+	 */
+	public static void removeMember(Tab tab, Tree member) {
+	    tab.getAsSimpleTab().removeMember(member);
 	}
 
 	/**

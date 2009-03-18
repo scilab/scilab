@@ -55,6 +55,8 @@
 
 	#define __Terminate(threadId)					TerminateThread(threadId, 0)
 
+        #define __StaticInitLock                                        NULL
+
 #else
 	#include <pthread.h>
 
@@ -85,6 +87,8 @@ typedef pthread_cond_t __threadSignal;
 #define __WaitThreadDie(threadId)		pthread_join(threadId, NULL)
 
 #define __Terminate(threadId)			pthread_cancel(threadId)
+
+#define __StaticInitLock                        PTHREAD_MUTEX_INITIALIZER
 
 #endif //_MSC_VER
 

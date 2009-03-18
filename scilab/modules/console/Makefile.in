@@ -56,8 +56,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GIWS_TRUE@@GUI_TRUE@am__append_1 = giws
-@GUI_TRUE@@SWIG_TRUE@am__append_2 = swig
+@GIWS_TRUE@am__append_1 = giws
+@SWIG_TRUE@am__append_2 = swig
 DIST_COMMON = $(libsciconsole_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -93,36 +93,35 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciconsole_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libsciconsole_disable_la_LIBADD =
+am_libsciconsole_disable_la_OBJECTS =  \
+	libsciconsole_disable_la-noconsole.lo
+libsciconsole_disable_la_OBJECTS =  \
+	$(am_libsciconsole_disable_la_OBJECTS)
+libsciconsole_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libsciconsole_disable_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
 libsciconsole_la_DEPENDENCIES = $(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la
-am__libsciconsole_la_SOURCES_DIST = src/jni/GuiManagement_wrap.c \
-	src/jni/DropFiles_wrap.c src/noconsole/noconsole.c \
-	src/c/InitializeConsole.c src/c/GuiManagement.c \
-	src/c/dropFiles.c src/jni/CallScilabBridge.cpp \
-	src/jni/GiwsException.cpp src/cpp/ClearConsole.cpp \
-	src/cpp/ClearConsolePart.cpp src/cpp/ConsolePrintf.cpp \
-	src/cpp/ConsoleRead.cpp src/cpp/ConsoleIsWaitingForInput.cpp \
-	src/cpp/GetCharWithoutOutput.cpp src/cpp/PromptToHome.cpp \
-	src/cpp/ScilabLinesUpdate.cpp src/cpp/SetConsolePrompt.cpp
-@GUI_TRUE@am__objects_1 = libsciconsole_la-GuiManagement_wrap.lo \
-@GUI_TRUE@	libsciconsole_la-DropFiles_wrap.lo
-@GUI_FALSE@am__objects_2 = libsciconsole_la-noconsole.lo
-@GUI_TRUE@am__objects_2 = libsciconsole_la-InitializeConsole.lo \
-@GUI_TRUE@	libsciconsole_la-GuiManagement.lo \
-@GUI_TRUE@	libsciconsole_la-dropFiles.lo
-@GUI_TRUE@am__objects_3 = libsciconsole_la-CallScilabBridge.lo \
-@GUI_TRUE@	libsciconsole_la-GiwsException.lo
-@GUI_TRUE@am__objects_4 = libsciconsole_la-ClearConsole.lo \
-@GUI_TRUE@	libsciconsole_la-ClearConsolePart.lo \
-@GUI_TRUE@	libsciconsole_la-ConsolePrintf.lo \
-@GUI_TRUE@	libsciconsole_la-ConsoleRead.lo \
-@GUI_TRUE@	libsciconsole_la-ConsoleIsWaitingForInput.lo \
-@GUI_TRUE@	libsciconsole_la-GetCharWithoutOutput.lo \
-@GUI_TRUE@	libsciconsole_la-PromptToHome.lo \
-@GUI_TRUE@	libsciconsole_la-ScilabLinesUpdate.lo \
-@GUI_TRUE@	libsciconsole_la-SetConsolePrompt.lo
+am__objects_1 = libsciconsole_la-GuiManagement_wrap.lo \
+	libsciconsole_la-DropFiles_wrap.lo
+am__objects_2 = libsciconsole_la-InitializeConsole.lo \
+	libsciconsole_la-GuiManagement.lo \
+	libsciconsole_la-dropFiles.lo
+am__objects_3 = libsciconsole_la-CallScilabBridge.lo \
+	libsciconsole_la-GiwsException.lo
+am__objects_4 = libsciconsole_la-ClearConsole.lo \
+	libsciconsole_la-ClearConsolePart.lo \
+	libsciconsole_la-ConsolePrintf.lo \
+	libsciconsole_la-ConsoleRead.lo \
+	libsciconsole_la-ConsoleIsWaitingForInput.lo \
+	libsciconsole_la-GetCharWithoutOutput.lo \
+	libsciconsole_la-PromptToHome.lo \
+	libsciconsole_la-ScilabLinesUpdate.lo \
+	libsciconsole_la-SetConsolePrompt.lo
 am_libsciconsole_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libsciconsole_la_OBJECTS = $(am_libsciconsole_la_OBJECTS)
@@ -150,8 +149,10 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciconsole_la_SOURCES)
-DIST_SOURCES = $(am__libsciconsole_la_SOURCES_DIST)
+SOURCES = $(libsciconsole_disable_la_SOURCES) \
+	$(libsciconsole_la_SOURCES)
+DIST_SOURCES = $(libsciconsole_disable_la_SOURCES) \
+	$(libsciconsole_la_SOURCES)
 libsciconsole_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libsciconsole_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libsciconsole_la_etc_DATA) $(libsciconsole_la_root_DATA)
@@ -292,6 +293,7 @@ WITH_OCAML = @WITH_OCAML@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
+XML_APIS_EXT = @XML_APIS_EXT@
 XML_CONFIG = @XML_CONFIG@
 XML_FLAGS = @XML_FLAGS@
 XML_LIBS = @XML_LIBS@
@@ -354,33 +356,34 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the cpp files
-@GUI_TRUE@CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp \
+src/jni/GiwsException.cpp
 
-@GUI_TRUE@CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
-@GUI_TRUE@src/cpp/ClearConsolePart.cpp \
-@GUI_TRUE@src/cpp/ConsolePrintf.cpp \
-@GUI_TRUE@src/cpp/ConsoleRead.cpp \
-@GUI_TRUE@src/cpp/ConsoleIsWaitingForInput.cpp \
-@GUI_TRUE@src/cpp/GetCharWithoutOutput.cpp \
-@GUI_TRUE@src/cpp/PromptToHome.cpp \
-@GUI_TRUE@src/cpp/ScilabLinesUpdate.cpp \
-@GUI_TRUE@src/cpp/SetConsolePrompt.cpp
-
-
-# List of the c files
-@GUI_TRUE@CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
-@GUI_TRUE@src/jni/DropFiles_wrap.c
+CONSOLE_CPP_SOURCES = src/cpp/ClearConsole.cpp \
+src/cpp/ClearConsolePart.cpp \
+src/cpp/ConsolePrintf.cpp \
+src/cpp/ConsoleRead.cpp \
+src/cpp/ConsoleIsWaitingForInput.cpp \
+src/cpp/GetCharWithoutOutput.cpp \
+src/cpp/PromptToHome.cpp \
+src/cpp/ScilabLinesUpdate.cpp \
+src/cpp/SetConsolePrompt.cpp
 
 
 # List of the c files
-@GUI_FALSE@CONSOLE_C_SOURCES = src/noconsole/noconsole.c
-@GUI_TRUE@CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
-@GUI_TRUE@src/c/GuiManagement.c \
-@GUI_TRUE@src/c/dropFiles.c
+CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
+src/jni/DropFiles_wrap.c
 
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
-@GUI_TRUE@BUILT_SOURCES = $(am__append_1) $(am__append_2)
+CONSOLE_C_SOURCES = src/c/InitializeConsole.c \
+src/c/GuiManagement.c \
+src/c/dropFiles.c
+
+GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
+BUILT_SOURCES = $(am__append_1) $(am__append_2)
+
+# List of the c files
+libsciconsole_disable_la_SOURCES = src/noconsole/noconsole.c
+libsciconsole_disable_la_CFLAGS = -Iincludes/
 
 # Includes need for the compilation
 libsciconsole_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(srcdir)/src/jni/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/jvm/includes/ -I$(top_srcdir)/modules/action_binding/includes
@@ -394,7 +397,7 @@ libsciconsole_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole.la
+pkglib_LTLIBRARIES = libsciconsole.la libsciconsole-disable.la
 libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
@@ -565,6 +568,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libsciconsole-disable.la: $(libsciconsole_disable_la_OBJECTS) $(libsciconsole_disable_la_DEPENDENCIES) 
+	$(libsciconsole_disable_la_LINK) -rpath $(pkglibdir) $(libsciconsole_disable_la_OBJECTS) $(libsciconsole_disable_la_LIBADD) $(LIBS)
 libsciconsole.la: $(libsciconsole_la_OBJECTS) $(libsciconsole_la_DEPENDENCIES) 
 	$(libsciconsole_la_LINK) -rpath $(pkglibdir) $(libsciconsole_la_OBJECTS) $(libsciconsole_la_LIBADD) $(LIBS)
 
@@ -574,6 +579,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_disable_la-noconsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-CallScilabBridge.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsole.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ClearConsolePart.Plo@am__quote@
@@ -590,7 +596,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-ScilabLinesUpdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-SetConsolePrompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciconsole_la-noconsole.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -613,6 +618,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
+libsciconsole_disable_la-noconsole.lo: src/noconsole/noconsole.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -MT libsciconsole_disable_la-noconsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_disable_la-noconsole.Tpo -c -o libsciconsole_disable_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_disable_la-noconsole.Tpo $(DEPDIR)/libsciconsole_disable_la-noconsole.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noconsole/noconsole.c' object='libsciconsole_disable_la-noconsole.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_disable_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_disable_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
+
 libsciconsole_la-GuiManagement_wrap.lo: src/jni/GuiManagement_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-GuiManagement_wrap.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo -c -o libsciconsole_la-GuiManagement_wrap.lo `test -f 'src/jni/GuiManagement_wrap.c' || echo '$(srcdir)/'`src/jni/GuiManagement_wrap.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Tpo $(DEPDIR)/libsciconsole_la-GuiManagement_wrap.Plo
@@ -626,13 +638,6 @@ libsciconsole_la-DropFiles_wrap.lo: src/jni/DropFiles_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/DropFiles_wrap.c' object='libsciconsole_la-DropFiles_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-DropFiles_wrap.lo `test -f 'src/jni/DropFiles_wrap.c' || echo '$(srcdir)/'`src/jni/DropFiles_wrap.c
-
-libsciconsole_la-noconsole.lo: src/noconsole/noconsole.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-noconsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-noconsole.Tpo -c -o libsciconsole_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciconsole_la-noconsole.Tpo $(DEPDIR)/libsciconsole_la-noconsole.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/noconsole/noconsole.c' object='libsciconsole_la-noconsole.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -c -o libsciconsole_la-noconsole.lo `test -f 'src/noconsole/noconsole.c' || echo '$(srcdir)/'`src/noconsole/noconsole.c
 
 libsciconsole_la-InitializeConsole.lo: src/c/InitializeConsole.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_la_CPPFLAGS) $(CPPFLAGS) $(libsciconsole_la_CFLAGS) $(CFLAGS) -MT libsciconsole_la-InitializeConsole.lo -MD -MP -MF $(DEPDIR)/libsciconsole_la-InitializeConsole.Tpo -c -o libsciconsole_la-InitializeConsole.lo `test -f 'src/c/InitializeConsole.c' || echo '$(srcdir)/'`src/c/InitializeConsole.c
@@ -927,7 +932,7 @@ distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
-	distclean-tags
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -989,12 +994,13 @@ uninstall-am: uninstall-libsciconsole_la_etcDATA \
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libsciconsole_la_etcDATA \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libsciconsole_la_etcDATA \
 	install-libsciconsole_la_includeHEADERS \
 	install-libsciconsole_la_rootDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
@@ -1172,6 +1178,9 @@ install-data-local:
 # Clean macros and help (generated automatically by Scilab)
 @NEED_JAVA_TRUE@clean-local: clean-java clean-macros
 @NEED_JAVA_FALSE@clean-local: clean-macros
+
+distclean-local:
+	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

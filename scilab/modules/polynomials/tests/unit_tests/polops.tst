@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 mode(5)
 lines(0)
 s=poly(0,'s');
