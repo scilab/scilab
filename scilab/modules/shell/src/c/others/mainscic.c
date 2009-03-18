@@ -70,7 +70,7 @@ fpsetmask(0);
   setCommandLineArgs(argv, argc);
 
   /* scanning options */
-  for ( i=0 ; i < argc ; i++)
+  for ( i=1 ; i < argc ; i++)
   {
       if ( strcmp(argv[i],"-nw") == 0)
       {
