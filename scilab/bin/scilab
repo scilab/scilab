@@ -581,9 +581,6 @@ if test "$SCILAB_MODE" = "nw"; then
 	sciarg="$sciarg -nw"
 	NB_ARGS=$(($NB_ARGS + 1))
 fi
-echo "SCILAB $SCILAB_MODE"
-echo "NB_ARGS $NB_ARGS"
-echo "sciarg : $sciarg"
 
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
