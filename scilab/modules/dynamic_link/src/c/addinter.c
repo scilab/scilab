@@ -21,7 +21,7 @@
 #include "../../../string/includes/men_Sutils.h"
 #include "addinter.h" 
 
-#include "error.h"
+#include "do_error_number.h"
 #include "stack-c.h"
 #include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"

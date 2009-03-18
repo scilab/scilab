@@ -19,6 +19,7 @@
 #include <time.h>
 #include <stdio.h>
 
+#include "stack-c.h"
 #include "sci_move.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"

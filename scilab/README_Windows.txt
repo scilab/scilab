@@ -74,7 +74,6 @@ V - SOME IMPORTANT FILES AND DIRECTORIES
               you can also have your own startup file "scilab.ini" 
               in your SCIHOME directory.
  
- Makefile.incl.mak: file included by all Makefile's.
  
  Scilab.sln : Visual Studio 2008 Scilab Solution with Intel Fortran.
  

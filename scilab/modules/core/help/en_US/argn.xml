@@ -31,7 +31,7 @@ function concat=myOwnFunction(name,optional)
   	 optional="my Optional value"
   end
   if rhs == 0 then
-  	 error("Except at least one argument")
+  	 error("Expect at least one argument")
   end
   concat=name+" "+optional
 endfunction

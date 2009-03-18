@@ -926,27 +926,18 @@ AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$BUILD_LOCALIZATION_ENABLE" = 
 #######################
 AC_MSG_CHECKING([if BLAS, ATLAS or MKL is available])
 echo ""
-EMBEDDED_BLAS=0
 ACX_BLAS(
 		[AC_MSG_RESULT([$BLAS_TYPE found])]
 		,
-		AC_MSG_WARN([Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded])
-		EMBEDDED_BLAS=1
+		AC_MSG_ERROR([Impossible to find a BLAS compatible library (see BLAS or ATLAS).])
 		)
-AM_CONDITIONAL(USE_EMBEDDED_BLAS, test $EMBEDDED_BLAS = 1)
-
 
 AC_MSG_CHECKING([if LAPACK is available])
 echo ""
-EMBEDDED_LAPACK=0
 ACX_LAPACK(
 		[AC_MSG_RESULT([$LAPACK_TYPE found])],
-		AC_MSG_WARN([Impossible to find the LAPACK library. Use the version of lapack embedded])
-		EMBEDDED_LAPACK=1
+		AC_MSG_ERROR([Impossible to find the LAPACK library.])
 		)
-AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
-
-
 
 #################
 ## UMFPACK
@@ -1178,8 +1169,6 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 AC_CONFIG_FILES([
-libs/lapack/Makefile
-libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/dynamiclibrary/Makefile
 libs/doublylinkedlist/Makefile
@@ -1428,19 +1417,10 @@ fi
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
-if test $EMBEDDED_BLAS = 0; then
-   echo "BLAS LIBS ............. = $BLAS_LIBS"
-   echo "BLAS TYPE ............. = $BLAS_TYPE"
-else
-   echo "BLAS LIBS ............. = Use the generic version of BLAS embedded"
-fi
-
-if test $EMBEDDED_LAPACK = 0; then
-   echo "LAPACK LIBS ........... = $LAPACK_LIBS"
-   echo "LAPACK TYPE ........... = $LAPACK_TYPE"
-else
-   echo "LAPACK LIBS ........... = Use the LAPACK embedded"
-fi
+echo "BLAS LIBS ............. = $BLAS_LIBS"
+echo "BLAS TYPE ............. = $BLAS_TYPE"
+echo "LAPACK LIBS ........... = $LAPACK_LIBS"
+echo "LAPACK TYPE ........... = $LAPACK_TYPE"
 
 echo ""
 

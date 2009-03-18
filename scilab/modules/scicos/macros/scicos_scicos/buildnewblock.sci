@@ -530,7 +530,7 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
      ascii(9)+"@$(DUMPEXTS) -o ""$(LIBRARY).def"" ""$*"" $(OBJS)"
      ascii(9)+"@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) $(OTHERLIBS) "+ ..
               " $(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) " + ..
-              " $(XLIBSBIN) $(TERMCAPLIB) $*.def -o "+ ..
+              " $(SCILAB_LIBS) $*.def -o "+ ..
               " $(LIBRARY).dll"
      ".c.obj:"
      ascii(9)+"@echo ------------- Compile file $< --------------"
@@ -714,31 +714,31 @@ function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
      "# ------------------------------------------------------"
      "SCIDIR       = "+SCI
      "SCIDIR1      = "+WSCI
-     "DUMPEXTS     = """+WSCI+"\bin\dumpexts"""
-     "SCIIMPLIB    = """+WSCI+"\bin\LibScilab.lib"""
-     "SCILIBS      = """+WSCI+"\bin\LibScilab.lib"""
-     "SCICOSCLIB      = """+WSCI+"\bin\scicos.lib"""
-     "SCICOSFLIB      = """+WSCI+"\bin\scicos_f.lib"""
-     "SCICOS_BLOCKSCLIB      = """+WSCI+"\bin\scicos_blocks.lib"""
-     "SCICOS_BLOCKSFLIB      = """+WSCI+"\bin\scicos_blocks_f.lib"""
+     "DUMPEXTS     = """+WSCI+"/bin/dumpexts"""
+     "SCIIMPLIB    = """+WSCI+"/bin/LibScilab.lib"""
+     "SCILIBS      = """+WSCI+"/bin/LibScilab.lib"""
+     "SCICOSCLIB      = """+WSCI+"/bin/scicos.lib"""
+     "SCICOSFLIB      = """+WSCI+"/bin/scicos_f.lib"""
+     "SCICOS_BLOCKSCLIB      = """+WSCI+"/bin/scicos_blocks.lib"""
+     "SCICOS_BLOCKSFLIB      = """+WSCI+"/bin/scicos_blocks_f.lib"""
      "LIBRARY      = lib"+blknam
      "CC           = cl"
      "LINKER       = link"
      "OTHERLIBS    = "+libs
      "LINKER_FLAGS = "+LINKER_FLAGS_MACHINE
-     "INCLUDES     = -I"""+WSCI+"\libs\f2c"""
+     "INCLUDES     = -I"""+WSCI+"/libs/f2c"""
      "CC_COMMON    = "+CC_COMMON
      "CC_OPTIONS   = "+CC_OPTIONS
-     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + .. 
-                     "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + ..
-                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + cflags
+     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"/modules/core/includes"" " + .. 
+                     "-I"""+WSCI+"/modules/scicos/includes"" " + ..
+                     "-I"""+WSCI+"/modules/scicos_blocks/includes"" " + ..
+                     "-I"""+WSCI+"/modules/dynamic_link/includes"" " + cflags
                      
                      
-     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" "
+     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"/modules/core/includes"" " + ..
+                     "-I"""+WSCI+"/modules/scicos/includes"" " + ..
+                     "-I"""+WSCI+"/modules/dynamic_link/includes"" " + ..
+                     "-I"""+WSCI+"/modules/scicos_blocks/includes"" "
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
 
@@ -757,14 +757,14 @@ function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
      ascii(9)+"@$(DUMPEXTS) -o ""$*.def"" ""$*.dll"" $**"
      ascii(9)+"@$(LINKER) $(LINKER_FLAGS) $(OBJS) $(SCIIMPLIB) " + .. 
               "$(SCICOSCLIB) $(SCICOSFLIB) $(SCICOS_BLOCKSCLIB) $(SCICOS_BLOCKSFLIB) $(OTHERLIBS) "+ ..
-              "$(XLIBSBIN) $(TERMCAPLIB) /nologo /dll /out:""$*.dll"""+...
+              "$(SCILAB_LIBS) /nologo /dll /out:""$*.dll"""+...
               " /implib:""$*.lib"" /def:""$*.def"""
      ".c.obj:"
      ascii(9)+"@echo ------------- Compile file $< --------------"
      ascii(9)+"$(CC) $(CFLAGS) $< "
      ".f.obj:"
      ascii(9)+"@echo ----------- Compile file $*.f (using f2c) -------------"
-     ascii(9)+"@"""+WSCI+"\bin\f2c.exe"" $(FFLAGS) $*.f "
+     ascii(9)+"@"""+WSCI+"/bin/f2c.exe"" $(FFLAGS) $*.f "
      ascii(9)+"@$(CC) $(CFLAGS) $*.c "
      ascii(9)+"@del $*.c "
      "clean::"

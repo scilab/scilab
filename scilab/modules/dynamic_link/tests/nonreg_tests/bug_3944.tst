@@ -16,6 +16,9 @@
 // <-- Short Description -->
 // ilib_mex_build() wasn't using the content of the 
 // variable tables to compile other files
+
+ilib_verbose(0);
+
 cd(TMPDIR);
 mputl('ilib_mex_build(''libmex'',[''mexf16'',''mexfunction16'',''cmex''],[],[],''Makelib'','''','''','''')','builder.sce');
 

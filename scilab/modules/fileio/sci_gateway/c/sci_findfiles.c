@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "localization.h"
-#include "../../../core/src/c/scicurdir.h" /* scigetcwd */
+#include "scicurdir.h" /* scigetcwd */
 #include "Scierror.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
@@ -29,7 +29,7 @@
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_FILESPEC "*.*"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_findfiles)(char *fname,unsigned long fname_len)
+int sci_findfiles(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, n1 = 0, m1 = 0;
 	char pathextented[PATH_MAX];

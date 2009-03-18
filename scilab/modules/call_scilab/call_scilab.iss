@@ -17,8 +17,8 @@
 ;
 #define MODULE_CALL_SCILAB "call_scilab"
 ;
-;Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\call_scilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\call_scilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\changelog.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
@@ -32,7 +32,7 @@ Source: modules\{#MODULE_CALL_SCILAB}\sci_gateway\call_scilab_gateway.xml; DestD
 Source: modules\{#MODULE_CALL_SCILAB}\etc\{#MODULE_CALL_SCILAB}.quit; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\etc\{#MODULE_CALL_SCILAB}.start; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MODULE_CALL_SCILAB}\examples; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\examples; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
+Source: modules\{#MODULE_CALL_SCILAB}\examples\*.*; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\examples; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;
 ;Source: modules\{#MODULE_CALL_SCILAB}\help\addchapter.sce; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\help; Flags: recursesubdirs; Components:  {#COMPN_SCILAB}
 ;

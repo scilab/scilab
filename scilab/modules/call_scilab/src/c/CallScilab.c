@@ -12,28 +12,28 @@
 #include <stdio.h>
 #include "CallScilab.h"
 #include "MALLOC.h"
-#include "../../../graphics/includes/WindowList.h"
-#include "../../../graphics/includes/GetProperty.h"
-#include "../../../io/includes/setenvc.h"
-#include "../../../fileio/includes/isdir.h"
+#include "scilabmode.h"
+#include "fromc.h"
+#include "LaunchScilabSignal.h"
+#include "localization.h"
+#include "isdir.h"
+#include "isdir.h"
 #include "setgetSCIpath.h"
-#include "fromc.h"
-#include "sciquit.h" /* ExitScilab */
+#include "scilabDefaults.h"
 #include "tmpdir.h"
-#include "fromc.h"
 #include "inisci-c.h"
 #include "scirun.h"
 #include "scilabmode.h"
+#include "sciquit.h"
 #include "dynamic_menus.h"
-#include "scilabDefaults.h"
-#include "TerminateCore.h"
+#include "WindowList.h"
+#include "../../core/src/c/TerminateCore.h"
+
 #ifdef _MSC_VER
-#include "../../../windows_tools/src/c/scilab_windows/SetScilabEnvironmentVariables.h"
-#include "../../../windows_tools/src/c/scilab_windows/getScilabDirectory.h"
+#include "SetScilabEnvironmentVariables.h"
+#include "getScilabDirectory.h"
 #include "strdup_windows.h"
 #endif
-#include "LaunchScilabSignal.h"
-#include "localization.h"
 
 #ifdef _MSC_VER
 #define putenv _putenv
@@ -50,7 +50,7 @@ static void SetSciEnv(void)
 
   if (ScilabDirectory == NULL)
   {
-	MessageBox (NULL, "getScilabDirectory()", gettext("Error") , MB_ICONSTOP | MB_OK);
+	MessageBox (NULL, "getScilabDirectory()", "Error" , MB_ICONSTOP | MB_OK);
 	exit(1);
   }
   SetScilabEnvironmentVariables(ScilabDirectory);

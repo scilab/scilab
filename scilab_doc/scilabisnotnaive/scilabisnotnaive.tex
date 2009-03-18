@@ -1,0 +1,145 @@
+%
+% scilabisnotnaive.tex --
+%   Some notes about floating point issues in Scilab.
+%
+% Copyright 2008 Michael Baudin
+%
+\documentclass[12pt]{article}
+
+%% Good fonts for PDF
+\usepackage[cyr]{aeguill}
+
+%% Package for page headers
+\usepackage{fancyhdr}
+
+%% Package to include graphics
+%% Comment for DVI
+\usepackage[pdftex]{graphicx}
+
+%% Figures formats: jpeg or pdf
+%% Comment for DVI
+\DeclareGraphicsExtensions{.jpg,.pdf}
+
+%% Package to create Hyperdocuments
+%% Comment for DVI
+\usepackage[pdftex,colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+
+%% Package to control printed area size
+\usepackage{anysize}
+%% ...by defining margins {left}{right}{top}{bottom}
+\marginsize{22mm}{14mm}{12mm}{25mm}
+
+%% Package used to include a bibliography
+\usepackage{natbib}
+
+%% R for real numbers
+\usepackage{amssymb}
+
+%% User defined commands
+
+%% Figure reference
+\newcommand{\figref}[1]{figure~\ref{#1}}
+
+%% Equation reference
+\newcommand{\Ref}[1]{(\ref{#1})}
+
+%% Emphasize a word or a group of words
+\newcommand{\empha}[1]{\textit{\textbf{#1}}}
+
+%% Derivation operators
+\newcommand{\D}{\partial}
+\newcommand{\Dt}{\partial_t}
+\newcommand{\Dx}{\partial_x}
+\newcommand{\Dy}{\partial_y}
+
+\usepackage{url}
+
+% Scilab macros
+\newcommand{\scimacro}[1]{\textit{#1}}
+\newcommand{\scicommand}[1]{\textit{#1}}
+
+% To highlight source code
+\usepackage{listings}
+\usepackage{algorithmic}
+
+% Define theorem environments 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\newenvironment{proof}[1][Proof]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{definition}[1][Definition]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{example}[1][Example]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+\newenvironment{remark}[1][Remark]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+
+\newcommand{\qed}{\nobreak \ifvmode \relax \else
+      \ifdim\lastskip<1.5em \hskip-\lastskip
+      \hskip1.5em plus0em minus0.5em \fi \nobreak
+      \vrule height0.75em width0.5em depth0.25em\fi}
+
+% Maths shortcuts 
+\newcommand{\RR}{\mathbb{R}}
+
+% Algorithms
+\usepackage{algorithm2e}
+%%\usepackage{algorithmic}
+
+\begin{document}
+\author{Michael Baudin}
+\date{February 2009}
+\title{Scilab is not naïve}
+\maketitle
+\begin{abstract}
+Most of the time, the mathematical formula is 
+directly used in the Scilab source code. 
+But, in many algorithms, some additionnal work is 
+performed, which takes into account the fact that 
+the computer do not process mathematical real values,
+but performs computations with their floating 
+point representation.
+The goal of this article is to show that, in many
+situations, Scilab is not naïve and use algorithms
+which have been specifically tailored for floating point 
+computers. We analyse in this article the 
+particular case of the quadratic equation, the 
+complex division and the numerical derivatives, 
+and show that one these examples, the naïve algorithm 
+is not sufficiently accurate. 
+\end{abstract}
+
+\tableofcontents
+
+\include{introduction}
+
+\include{quadratic}
+
+\include{numericalderivative}
+
+\include{complexdivision}
+
+
+\include{conclusion}
+
+\clearpage
+
+\appendix
+
+\include{simpleexperiments}
+
+%\include{pythagoreansum}
+
+%% Bibliography
+
+
+\addcontentsline{toc}{section}{Bibliography}
+\bibliographystyle{plain}
+\bibliography{scilabisnotnaive}
+
+
+\end{document}
+

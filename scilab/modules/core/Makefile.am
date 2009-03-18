@@ -22,11 +22,9 @@ src/c/IsAScalar.c \
 src/c/texmacs.c \
 src/c/sciquit.c \
 src/c/stack1.c \
-src/c/scicurdir.c \
 src/c/realmain.c \
 src/c/stack3.c \
 src/c/str2sci.c \
-src/c/cluni0.c \
 src/c/getmodules.c \
 src/c/setgetSCIpath.c \
 src/c/getmemory.c \
@@ -59,7 +57,6 @@ src/c/returnProperty.c \
 src/c/returnPropertyList.c \
 src/c/scilabmode.c \
 src/c/GetXmlFileEncoding.c \
-src/c/GetenvB.c \
 src/c/islittleendian.c \
 src/c/terme.c \
 src/c/ifexpr.c \
@@ -81,7 +78,9 @@ src/c/readGateway.c \
 src/c/comparehandles.c \
 src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
-src/c/getos.c
+src/c/getos.c \
+src/c/mode_exec.c \
+src/c/predef.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -234,7 +233,6 @@ sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clear.c \
-sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
@@ -243,7 +241,6 @@ sci_gateway/c/sci_what.c \
 sci_gateway/c/sci_predef.c \
 sci_gateway/c/sci_clearglobal.c \
 sci_gateway/c/sci_arg.c \
-sci_gateway/c/sci_getcwd.c \
 sci_gateway/c/sci_type.c \
 sci_gateway/c/sci_typename.c \
 sci_gateway/c/sci_mode.c \
@@ -283,14 +280,12 @@ sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_predef.f \
 sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
-sci_gateway/fortran/sci_mode.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_isglobal.f
 
@@ -360,7 +355,6 @@ includes/BOOL.h \
 includes/callFunctionFromGateway.h \
 includes/callinter.h \
 includes/callinterf.h \
-includes/cluni0.h \
 includes/commandwords.h \
 includes/core_math.h \
 includes/doublecomplex.h \
@@ -369,7 +363,6 @@ includes/existfunction.h \
 includes/freeArrayOfString.h \
 includes/Funtab.h \
 includes/getcommandlineargs.h \
-includes/GetenvB.h \
 includes/GetExceptionCode.h \
 includes/getfunctionslist.h \
 includes/getmemory.h \
@@ -430,6 +423,7 @@ includes/xscion.h \
 includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
 includes/LaunchScilabSignal.h \
-includes/getos.h
+includes/getos.h \
+includes/mode_exec.h
 
 include $(top_srcdir)/Makefile.incl.am

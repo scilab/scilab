@@ -48,7 +48,7 @@
 				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
@@ -67,12 +67,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
-				AdditionalDependencies="msvcrt.lib"
 				OutputFile="../../../../../bin/WScilex.exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
-				IgnoreDefaultLibraryNames="libcmtd.lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(IntDir)\WScilex.pdb"
 				SubSystem="2"
@@ -133,7 +131,7 @@
 				PreprocessorDefinitions="_DEBUG;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
-				RuntimeLibrary="1"
+				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
@@ -152,7 +150,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="msvcrt.lib"
 				OutputFile="../../../../../bin/WScilex.exe"
 				LinkIncremental="1"
@@ -215,7 +212,7 @@
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;&quot;$(SolutionDir)modules\windows_tools\src\c\scilab_windows&quot;"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
@@ -235,11 +232,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib"
 				OutputFile="../../../../../bin/WScilex.exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
-				IgnoreDefaultLibraryNames="libcmt.lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -300,7 +296,7 @@
 				FavorSizeOrSpeed="1"
 				AdditionalIncludeDirectories="&quot;$(SolutionDir)libs\DetectFramework2&quot;;&quot;$(SolutionDir)libs\GetWindowsVersion&quot;;&quot;$(SolutionDir)modules\core\includes&quot;;&quot;$(SolutionDir)libs\MALLOC\includes&quot;;&quot;$(SolutionDir)modules\windows_tools\src\c\scilab_windows&quot;"
 				PreprocessorDefinitions="NDEBUG;_CRT_SECURE_NO_DEPRECATE"
-				RuntimeLibrary="0"
+				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				ObjectFile="$(ConfigurationName)/"
@@ -320,11 +316,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib"
 				OutputFile="../../../../../bin/WScilex.exe"
 				LinkIncremental="1"
 				IgnoreAllDefaultLibraries="false"
-				IgnoreDefaultLibraryNames="libcmt.lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"

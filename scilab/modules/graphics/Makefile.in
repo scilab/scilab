@@ -67,13 +67,11 @@ host_triplet = @host@
 @GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
 @GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/
 
-@GUI_TRUE@@USE_EMBEDDED_LAPACK_TRUE@am__append_2 = $(top_builddir)/libs/lapack/libscilapack.la
-@GUI_TRUE@@USE_EMBEDDED_BLAS_TRUE@am__append_3 = $(top_builddir)/libs/blas/libsciblas.la
-@GUI_FALSE@am__append_4 = -I$(top_srcdir)/modules/output_stream/includes
+@GUI_FALSE@am__append_2 = -I$(top_srcdir)/modules/output_stream/includes
 DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_5 = java
+@NEED_JAVA_TRUE@am__append_3 = java
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -118,8 +116,7 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
 @GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@GUI_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@GUI_TRUE@	$(am__append_2) $(am__append_3)
+@GUI_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la
 am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/GetCommandArg.c src/c/WindowList.c \
 	src/c/getHandleProperty/get_figure_position_property.c \
@@ -255,6 +252,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/get_color_range_property.c \
 	src/c/getHandleProperty/get_outside_colors_property.c \
 	src/c/getHandleProperty/get_grid_position_property.c \
+	src/c/getHandleProperty/get_anti_aliasing_property.c \
 	src/c/getHandleProperty/GetHashTable.c \
 	src/c/graphicModuleLoad.c \
 	src/c/getHandleProperty/set_old_style_property.c \
@@ -391,6 +389,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 	src/c/getHandleProperty/set_color_range_property.c \
 	src/c/getHandleProperty/set_outside_colors_property.c \
 	src/c/getHandleProperty/set_grid_position_property.c \
+	src/c/getHandleProperty/set_anti_aliasing_property.c \
 	src/c/DefaultCommandArg.c src/c/Axes.c src/c/sciMatrix.c \
 	src/c/DrawObjects.c src/c/GetProperty.c src/c/Contour.c \
 	src/c/SetProperty.c src/c/BasicAlgos.c src/c/BuildObjects.c \
@@ -574,6 +573,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-get_color_range_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_outside_colors_property.lo \
 @GUI_TRUE@	libscigraphics_la-get_grid_position_property.lo \
+@GUI_TRUE@	libscigraphics_la-get_anti_aliasing_property.lo \
 @GUI_TRUE@	libscigraphics_la-GetHashTable.lo \
 @GUI_TRUE@	libscigraphics_la-graphicModuleLoad.lo \
 @GUI_TRUE@	libscigraphics_la-set_old_style_property.lo \
@@ -710,6 +710,7 @@ am__libscigraphics_la_SOURCES_DIST = src/nographics/nographics.c \
 @GUI_TRUE@	libscigraphics_la-set_color_range_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_outside_colors_property.lo \
 @GUI_TRUE@	libscigraphics_la-set_grid_position_property.lo \
+@GUI_TRUE@	libscigraphics_la-set_anti_aliasing_property.lo \
 @GUI_TRUE@	libscigraphics_la-DefaultCommandArg.lo \
 @GUI_TRUE@	libscigraphics_la-Axes.lo \
 @GUI_TRUE@	libscigraphics_la-sciMatrix.lo \
@@ -1097,7 +1098,7 @@ libscigraphics_la_CFLAGS =  \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ $(am__append_1) \
-	$(am__append_4)
+	$(am__append_2)
 @GUI_FALSE@GRAPHICS_C_SOURCES = src/nographics/nographics.c
 @GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 @GUI_TRUE@src/c/WindowList.c \
@@ -1234,6 +1235,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/get_color_range_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_outside_colors_property.c \
 @GUI_TRUE@src/c/getHandleProperty/get_grid_position_property.c \
+@GUI_TRUE@src/c/getHandleProperty/get_anti_aliasing_property.c \
 @GUI_TRUE@src/c/getHandleProperty/GetHashTable.c \
 @GUI_TRUE@src/c/graphicModuleLoad.c \
 @GUI_TRUE@src/c/getHandleProperty/set_old_style_property.c \
@@ -1370,6 +1372,7 @@ libscigraphics_la_CFLAGS =  \
 @GUI_TRUE@src/c/getHandleProperty/set_color_range_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_outside_colors_property.c \
 @GUI_TRUE@src/c/getHandleProperty/set_grid_position_property.c \
+@GUI_TRUE@src/c/getHandleProperty/set_anti_aliasing_property.c \
 @GUI_TRUE@src/c/DefaultCommandArg.c \
 @GUI_TRUE@src/c/Axes.c \
 @GUI_TRUE@src/c/sciMatrix.c \
@@ -1483,19 +1486,7 @@ libscigraphics_la_CFLAGS =  \
 # For the code check (splint)
 @GUI_TRUE@CHECK_SRC = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 @GUI_TRUE@INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
-@GUI_TRUE@libscigraphics_la_LIBADD =  \
-@GUI_TRUE@	$(top_builddir)/libs/hashtable/libscihashtable.la \
-@GUI_TRUE@	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-@GUI_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@GUI_TRUE@	$(top_builddir)/modules/renderer/libscirenderer.la \
-@GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
-@GUI_TRUE@	$(top_builddir)/modules/gui/libscigui.la \
-@GUI_TRUE@	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-@GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@GUI_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la \
-@GUI_TRUE@	$(am__append_2) $(am__append_3)
+@GUI_TRUE@libscigraphics_la_LIBADD = $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 
 #### graphics : Conf files ####
 @GUI_TRUE@libscigraphics_la_rootdir = $(mydatadir)
@@ -1670,7 +1661,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1821,6 +1812,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-axesScale.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-getPropertyAssignedValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_alignment_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arc_drawing_method_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arrow_size_factor_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-get_arrow_size_property.Plo@am__quote@
@@ -2030,6 +2022,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-scitokenize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-setGetHashTable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_alignment_property.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_arc_drawing_method_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_arrow_size_factor_property.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphics_la-set_arrow_size_property.Plo@am__quote@
@@ -3132,6 +3125,13 @@ libscigraphics_la-get_grid_position_property.lo: src/c/getHandleProperty/get_gri
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_grid_position_property.lo `test -f 'src/c/getHandleProperty/get_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_grid_position_property.c
 
+libscigraphics_la-get_anti_aliasing_property.lo: src/c/getHandleProperty/get_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-get_anti_aliasing_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Tpo -c -o libscigraphics_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Tpo $(DEPDIR)/libscigraphics_la-get_anti_aliasing_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/get_anti_aliasing_property.c' object='libscigraphics_la-get_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-get_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/get_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/get_anti_aliasing_property.c
+
 libscigraphics_la-GetHashTable.lo: src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-GetHashTable.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo -c -o libscigraphics_la-GetHashTable.lo `test -f 'src/c/getHandleProperty/GetHashTable.c' || echo '$(srcdir)/'`src/c/getHandleProperty/GetHashTable.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-GetHashTable.Tpo $(DEPDIR)/libscigraphics_la-GetHashTable.Plo
@@ -4083,6 +4083,13 @@ libscigraphics_la-set_grid_position_property.lo: src/c/getHandleProperty/set_gri
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_grid_position_property.c' object='libscigraphics_la-set_grid_position_property.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_grid_position_property.lo `test -f 'src/c/getHandleProperty/set_grid_position_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_grid_position_property.c
+
+libscigraphics_la-set_anti_aliasing_property.lo: src/c/getHandleProperty/set_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-set_anti_aliasing_property.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Tpo -c -o libscigraphics_la-set_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/set_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_anti_aliasing_property.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Tpo $(DEPDIR)/libscigraphics_la-set_anti_aliasing_property.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getHandleProperty/set_anti_aliasing_property.c' object='libscigraphics_la-set_anti_aliasing_property.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -c -o libscigraphics_la-set_anti_aliasing_property.lo `test -f 'src/c/getHandleProperty/set_anti_aliasing_property.c' || echo '$(srcdir)/'`src/c/getHandleProperty/set_anti_aliasing_property.c
 
 libscigraphics_la-DefaultCommandArg.lo: src/c/DefaultCommandArg.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscigraphics_la_CFLAGS) $(CFLAGS) -MT libscigraphics_la-DefaultCommandArg.lo -MD -MP -MF $(DEPDIR)/libscigraphics_la-DefaultCommandArg.Tpo -c -o libscigraphics_la-DefaultCommandArg.lo `test -f 'src/c/DefaultCommandArg.c' || echo '$(srcdir)/'`src/c/DefaultCommandArg.c

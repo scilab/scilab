@@ -14,21 +14,39 @@ function M=%hm_rand(varargin)
 nv=size(varargin)
 if nv==1 then
 M=varargin(1)
-  if type(M)==1 then
+if type(M)==1 then
     dims=M
   else
     dims=M('dims')
   end
   M=hypermat(dims,rand(prod(double(dims)),1))
 else
-  dims=ones(1,nv)
+ 
   if type(varargin($))==10 then 
-    opt=varargin($),
-    for k=1:nv-1,dims(k)=int(varargin(k)),end
-    M=hypermat(dims,rand(prod(dims),1,opt))
-  else 
+    opt=varargin($),nv=nv-1;
+    dims=ones(1,nv)
     for k=1:nv,dims(k)=int(varargin(k)),end
-    M=hypermat(dims,rand(prod(dims),1))
+    //remove highest singleton dimensions
+    ks=find(dims==1);
+    ns=size(ks,'*');
+    while ns>0&nv>2&ks(ns)==nv then ns=ns-1,nv=nv-1,end
+    if nv==2 then
+      M=rand(varargin(1:nv),opt)
+    else
+      M=hypermat(dims(1:nv),rand(prod(dims(1:nv)),1,opt))
+    end    
+  else 
+    dims=ones(1,nv)
+    for k=1:nv,dims(k)=int(varargin(k)),end
+    //remove highest singleton dimensions
+    ks=find(dims==1);
+    ns=size(ks,'*');
+    while ns>0&nv>2&ks(ns)==nv then ns=ns-1,nv=nv-1,end
+    if nv==2 then
+      M=rand(varargin(1:nv))
+    else
+      M=hypermat(dims(1:nv),rand(prod(dims(1:nv)),1))
+    end    
   end
 end
 endfunction

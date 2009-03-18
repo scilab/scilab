@@ -10,6 +10,7 @@
 
 // Main Scilab initialisation file
 
+
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
@@ -120,6 +121,15 @@ clear  pathconvert //remove the local variable
 // Protect variable previously defined  ================================
 predef('all')
 
+// At startup, no interactive vertical paging is authorized.===========
+// Note :
+// This may happen when the .scilab startup configuration file is loaded.
+// This may freeze a unit test, for which the .scilab file is so long 
+// that an interactive action is required ; but that interactive
+// action cannot occur, since it is during a unit test.
+_DEFAULT_LN_ = lines();
+lines(0);
+
 // load contrib menu if present ========================================
 if fileinfo(SCI+'/contrib/loader.sce') <> [] then
   global %toolboxes
@@ -134,6 +144,7 @@ if sciargs()<>'-nouserstartup' then
   startup_path = SCIHOME + filesep();
 
   if (fileinfo(startup_path+'.scilab') <> []) then
+  lines(0);
     exec(startup_path+'.scilab',-1);
   else
     if (fileinfo(startup_path+'scilab.ini') <> []) then
@@ -154,15 +165,6 @@ if sciargs()<>'-nouserstartup' then
   end
 end
 clear startup ierr
-
-// Detects if the bug 3443  ====================================
-// ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 )
-// is present or not
-//foo = 8.8353017163510351e-10;
-//if ( ( sqrt(foo) == foo^(0.5) ) == %f & ~MSDOS ) then
-//	disp(gettext("This case should NOT occur. You are faced to the bug #3443. Please report to Scilab''s bugtracker ( http://bugzilla.scilab.org/show_bug.cgi?id=3443 ) with your CPU (cat /proc/cpuinfo), your operating system, your kernel (uname -a) and the result of the Scilab command ''ver''."));
-//end
-//clear foo
 
 // Menus/toolbar can now be enabled ====================================
 if ( getscilabmode() == 'STD') then
@@ -185,6 +187,10 @@ if ( getscilabmode() == 'STD') then
         toolbar(-1, "on");
 end
 // =====================================================================
+// Restore initial lines mode
+lines(_DEFAULT_LN_(1),_DEFAULT_LN_(2));
+clear _DEFAULT_LN_;
+// =====================================================================
+// =====================================================================
 
 clear ans
-// =====================================================================

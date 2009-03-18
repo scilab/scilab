@@ -7,7 +7,8 @@
  * you should have received as part of this distribution.  The terms
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
+ */
+/*
  * @file stack3.h
  * What is stack3 ?
  * This file contains most of the function to interface Scilab from
@@ -295,7 +296,7 @@ int iGetOrient(int _iVal);
 /* Reserve space in stack for a matrix of double. */
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
 /* Reserve space in stack for a matrix of complex. */
-int	iAllocMatrixOfDoubleComplex(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);

@@ -171,6 +171,7 @@ libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/modules/tclsci/includes/ \
 			-I$(top_srcdir)/modules/jvm/includes/ \
 			-I$(top_srcdir)/modules/shell/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			$(TCL_INC_PATH) \
 			$(Tk_INC_PATH) \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -191,6 +192,7 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/jni/ \
 	 		-I$(top_srcdir)/modules/jvm/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/jni/ \
 			-I$(top_srcdir)/modules/renderer/includes/ \
 			-I$(top_srcdir)/modules/renderer/src/cpp/ \

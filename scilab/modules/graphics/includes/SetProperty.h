@@ -273,6 +273,9 @@ int sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
 int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location);
 int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location); /* SET */
 
+int sciInitAntialiasingQuality(sciPointObj * pObj, int quality);
+int sciSetAntialiasingQuality(sciPointObj * pObj, int quality); /* SET */
+
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 
 /*---------------------------------------------------------------------------*/

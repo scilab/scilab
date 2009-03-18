@@ -764,6 +764,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@	-I$(top_srcdir)/modules/tclsci/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes/ \
 @GUI_TRUE@	-I$(top_srcdir)/modules/shell/includes/ \
+@GUI_TRUE@	-I$(top_srcdir)/modules/fileio/includes/ \
 @GUI_TRUE@	$(TCL_INC_PATH) $(Tk_INC_PATH) \
 @GUI_TRUE@	-I$(top_srcdir)/libs/doublylinkedlist/includes \
 @GUI_TRUE@	-I$(top_srcdir)/libs/hashtable \
@@ -781,6 +782,7 @@ HELP_CHAPTERFILE = addchapter.sce
 @GUI_TRUE@			-I$(srcdir)/src/c/ \
 @GUI_TRUE@			-I$(srcdir)/src/jni/ \
 @GUI_TRUE@	 		-I$(top_srcdir)/modules/jvm/includes/ \
+@GUI_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/jni/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/includes/ \
 @GUI_TRUE@			-I$(top_srcdir)/modules/renderer/src/cpp/ \

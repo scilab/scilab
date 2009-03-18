@@ -9,7 +9,7 @@ SCIIMPLIB=$(SCIDIR)/bin/LibScilab.lib
 CFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 CPPFLAGS= $(CC_OPTIONS) -DFORDLL -I"$(SCIDIR)/routines"
 
-!include $(SCIDIR)/Makefile.incl.mak 
+!include $(SCIDIR)/modules/dynamic_link/src/scripts/Makefile.incl.mak 
 
 
 OBJSC= myprog.obj
@@ -30,5 +30,5 @@ RESOURCES= $(SCIDIR)/routines/wsci/Rscilab.res
 $(SCIDIR)/bin/prog.exe : $(OBJSC)
 	@echo "Linking" 
 	$(LINKER) $(LINKER_FLAGS) -OUT:"$*.exe" \
-	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(XLIBSBIN) 
+	$(OBJSC) $(SCIDIR)/bin/LibScilab.lib $(SCILAB_LIBS) 
 	@echo "done " $(SCIDIR)/bin/prog.exe 

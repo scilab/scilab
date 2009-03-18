@@ -16,6 +16,7 @@
 #include "ConsolePrintf.hxx"
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
+#include "stack-def.h"
 extern "C" {
 #include "getScilabJavaVM.h"
 #include "charEncoding.h"

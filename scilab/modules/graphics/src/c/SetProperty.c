@@ -3880,6 +3880,43 @@ int sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
 	return sciInitGridFront(pObj, gridFront);
 }
 /*----------------------------------------------------------------------------------*/
+int sciInitAntialiasingQuality(sciPointObj * pObj, int quality)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_FIGURE:
+		if (isFigureModel(pObj))
+		{
+			pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality = quality;
+		}
+		else
+		{
+			sciSetJavaAntialiasingQuality(pObj, quality);
+		}
+		return 0;
+  default:
+    printSetGetErrorMessage("anti_aliasing");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the quality of antialiasing or disable it.
+ * If quality if 0, the antialiasing is disabled,
+ * otherwise it might be either 1, 2, 4, 8 or 16 and then
+ * specifies the number of pass for antialiasing.
+ * @param quality positive integer.
+ */
+int sciSetAntialiasingQuality(sciPointObj * pObj, int quality)
+{
+  if (sciGetAntialiasingQuality(pObj) == quality)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitAntialiasingQuality(pObj, quality);
+}
+/*----------------------------------------------------------------------------------*/
 int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location)
 {
 	switch (sciGetEntityType(pObj))

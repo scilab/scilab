@@ -24,13 +24,14 @@
   <refnamediv>
     <refname>xs2jpg</refname>
 
-    <refpurpose>send graphics to a file in JPG syntax</refpurpose>
+    <refpurpose>send graphics to a JPG file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2jpg(win_num,filen)</synopsis>
+    <synopsis>xs2jpg(win_num, file_name)
+xs2jpg(fig, file_name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar.</para>
+          <para>integer, id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>file_name</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,19 +67,17 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2jpg</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in JPG
-    format. </para>
+    <para><literal>xs2jpg</literal> exports the display of a graphic window into a JPG file.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example">
 scf(0);
 plot2d();
 //JPG export
 xs2jpg(0,'foo.jpg');
+xs2jpg(gcf(),'foo.jpg');
   </programlisting>
   </refsection>
 

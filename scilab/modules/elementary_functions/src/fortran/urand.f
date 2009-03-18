@@ -4,6 +4,14 @@ C/MEMBR ADD NAME=URAND,SSI=0
       save
 c!purpose
 c
+c
+c  URAND, A UNIVERSAL RANDOM NUMBER GENERATOR 
+c  BY, MICHAEL A. MALCOLM, CLEVE B. MOLER, 
+c  STAN-CS-73-334, JANUARY 1973, 
+c  COMPUTER SCIENCE  DEPARTMENT, 
+c  School of Humanities and Sciences, STANFORD UNIVERSITY, 
+c  ftp://reports.stanford.edu/pub/cstr/reports/cs/tr/73/334/CS-TR-73-334.pdf
+c
 c      urand is a uniform random number generator based  on  theory  and
 c  suggestions  given  in  d.e. knuth (1969),  vol  2.   the integer  iy
 c  should be initialized to an arbitrary integer prior to the first call

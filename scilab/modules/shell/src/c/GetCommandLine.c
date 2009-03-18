@@ -10,6 +10,7 @@
  *
  */
 #include <string.h>
+#include "stack-def.h"
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
 #include "ConsoleRead.h"
@@ -25,7 +26,6 @@
 #if _MSC_VER
 #include "TermReadAndProcess.h"
 #endif
-#include "stack-def.h"
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -60,8 +60,6 @@ static __threadId WatchGetCmdLineThread;
 
 static BOOL initialized = FALSE;
 
-char *TermReadAndProcess(void);
-
 /***********************************************************************
  * line editor
  **********************************************************************/
@@ -89,7 +87,7 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-		char szTempUTF[bsiz];
+			char szTempUTF[bsiz];
       __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
     }
 }

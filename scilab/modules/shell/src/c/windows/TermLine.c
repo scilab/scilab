@@ -15,6 +15,7 @@
 #include <wincon.h>
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "TermLine.h"
 #include "HistoryManager.h"
 #include "TermConsole.h"

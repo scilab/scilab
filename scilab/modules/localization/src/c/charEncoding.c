@@ -34,7 +34,8 @@ static iconv_t UTFToLocaleConvert = (iconv_t)-1; /* initialize to -1,  */
 
 BOOL unicodeSubset = TRUE; /* if charset is subset of unicode, no need to convert */
 /*--------------------------------------------------------------------------*/
-#define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
+
+//#define ENCODE_BUF_SIZE  bsiz /* bsiz size of internal chain buf */
 //static char ENCODE_BUF1[ENCODE_BUF_SIZE]; // the first buffer to store the converted string
 //static char ENCODE_BUF2[ENCODE_BUF_SIZE]; // the second buffer  to store the converted string
 //static char* ENCODE_BUF=ENCODE_BUF1; // pointer to the next buffer for the converted string
@@ -91,7 +92,7 @@ char *getEncoding(char *lang)
 }
 
 
-char* localeToUTF(char* _szBufferIn, char* _szBufferOut) 
+char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 {
 	size_t inbytesleft = 0;
 	size_t outbytesleft = bsiz;
@@ -114,7 +115,7 @@ char* localeToUTF(char* _szBufferIn, char* _szBufferOut)
 	inbytesleft = strlen(_szBufferIn);
 
 
-	if (iconv (localeToUTFConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1))
+	if (iconv (localeToUTFConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1) && errno != 0)
 	{
 		fprintf(stderr, "Error during call to localeToUTF: %s\n", strerror(errno));
 		fprintf(stderr, "String Input: %s\n", inPtr);
@@ -148,7 +149,7 @@ char* UTFToLocale(char* _szBufferIn, char* _szBufferOut)
 		return NULL;
 	}
 
-	if (iconv (UTFToLocaleConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1))
+	if (iconv (UTFToLocaleConvert, (const char**)&inPtr,&inbytesleft, &outPtr, &outbytesleft) == (size_t)(-1) && errno != 0)
 	{
 		fprintf(stderr, "Error during call to UTFToLocale: %s\n", strerror(errno));
 		fprintf(stderr, "String Input: %s\n", inPtr);
@@ -180,12 +181,12 @@ void openCharEncodingConverter(char *encoding)
 	if(!unicodeSubset)
 	{
 		/* need locale to utf convert */
-		if(localeToUTFConvert !=(iconv_t)-1) 
+		if(localeToUTFConvert !=(iconv_t)-1)
 		{
 			iconv_close(localeToUTFConvert); /* close iconv localeToUTF server */
 		}
 
-		if(UTFToLocaleConvert !=(iconv_t)-1) 
+		if(UTFToLocaleConvert !=(iconv_t)-1)
 		{
 			iconv_close(UTFToLocaleConvert); /* close iconv UTFToLocale server */
 		}
@@ -199,12 +200,12 @@ void openCharEncodingConverter(char *encoding)
 		}
 
 		UTFToLocaleConvert = iconv_open(encoding,"UTF-8");     /* open iconv server :from UTF8  to locale */
-		if (UTFToLocaleConvert==(iconv_t) -1) 
+		if (UTFToLocaleConvert==(iconv_t) -1)
 		{
 			fprintf(stderr, "Error during call to iconv_open for UTF to locale converter: %s\nCharset encoding %s\n", strerror(errno),encoding);
 		}
 	}
-	else 
+	else
 	{
 		closeCharEncodingConverter();
 	}
@@ -212,13 +213,13 @@ void openCharEncodingConverter(char *encoding)
 
 void closeCharEncodingConverter(void)
 {
-	if (localeToUTFConvert != (iconv_t)-1) 
+	if (localeToUTFConvert != (iconv_t)-1)
 	{
 		iconv_close(localeToUTFConvert); /* close any exist iconv server */
 	}
 
 	localeToUTFConvert=(iconv_t)-1;
-	if (UTFToLocaleConvert != (iconv_t)-1) 
+	if (UTFToLocaleConvert != (iconv_t)-1)
 	{
 		iconv_close(UTFToLocaleConvert); /* close any exist iconv server */
 	}
@@ -236,10 +237,10 @@ void closeCharEncodingConverter(void)
 
 char * UTFToConsole(char* _szLineIn, char* _szLineOut)
 {
-	if (getScilabMode() == SCILAB_STD) 
+	if (getScilabMode() == SCILAB_STD)
 	{
 		return _szLineIn; // String in Java console mode already in UTF
-	} 
+	}
 	else
 	{
 		return UTFToLocale(_szLineIn, _szLineOut); // Terminal mode
@@ -258,7 +259,7 @@ char* readNextUTFChar(char* utfstream,int* size)
 		UTFChar[2]='\0';
 		*size=2;
 	}
-	else if(charcode > 223 && charcode <= 239 ) 
+	else if(charcode > 223 && charcode <= 239 )
 	{/* three bytes UTF-8*/
 		UTFChar[0]=*utfstream;
 		UTFChar[1]=*(utfstream+1);
@@ -266,7 +267,7 @@ char* readNextUTFChar(char* utfstream,int* size)
 		UTFChar[3]='\0';
 		*size=3;
 	}
-	else if(charcode > 239 && charcode < 245 ) 
+	else if(charcode > 239 && charcode < 245 )
 	{/* four bytes UTF-8*/
 		UTFChar[0]=*utfstream;
 		UTFChar[1]=*(utfstream+1);
@@ -275,7 +276,7 @@ char* readNextUTFChar(char* utfstream,int* size)
 		UTFChar[4]='\0';
 		*size=4;
 	}
-	else 
+	else
 	{
 		UTFChar[0]=*utfstream;
 		UTFChar[1]='\0';
@@ -289,12 +290,12 @@ char* readNextUTFChar(char* utfstream,int* size)
 static BOOL outputInUTFEncoding = TRUE;
 /* Only used inside do_xxprintf.c set_xxorintf.c*/
 
-void setOutputInUTF(BOOL isUTF) 
+void setOutputInUTF(BOOL isUTF)
 {
 	outputInUTFEncoding=isUTF;
 }
 
-BOOL isOutputInUTF() 
+BOOL isOutputInUTF()
 {
 	return outputInUTFEncoding;
 }

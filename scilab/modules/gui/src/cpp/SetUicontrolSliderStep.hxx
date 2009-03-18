@@ -16,6 +16,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
+#include "stack-c.h"
 #include "SetUicontrolSliderStep.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"

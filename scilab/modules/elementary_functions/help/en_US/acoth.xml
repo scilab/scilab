@@ -46,9 +46,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-    x=-30:0.1:30;
-    x(abs(x)<=1)=%nan;
-    plot(x,acoth(x))
+        acoth(1)
     ]]></programlisting>
   </refsection>
   <refsection>

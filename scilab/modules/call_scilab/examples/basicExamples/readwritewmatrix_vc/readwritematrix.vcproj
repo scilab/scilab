@@ -67,7 +67,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib"
+				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritematrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -150,7 +150,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib"
+				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritematrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libcmt.lib"
@@ -231,7 +231,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib"
+				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritematrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -315,7 +315,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib"
+				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritematrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""

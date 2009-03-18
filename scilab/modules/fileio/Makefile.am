@@ -40,12 +40,13 @@ src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
 src/c/removedir.c \
-src/c/set_xxprintf.c 
+src/c/set_xxprintf.c \
+src/c/cluni0.c \
+src/c/scicurdir.c
 
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
-sci_gateway/c/sci_fileio.c \
 sci_gateway/c/sci_mfprintf.c \
 sci_gateway/c/sci_mprintf.c \
 sci_gateway/c/sci_msprintf.c \
@@ -67,13 +68,28 @@ sci_gateway/c/sci_getlongpathname.c \
 sci_gateway/c/sci_fileext.c \
 sci_gateway/c/sci_isdir.c \
 sci_gateway/c/sci_removedir.c \
-sci_gateway/c/sci_createdir.c
+sci_gateway/c/sci_createdir.c \
+sci_gateway/c/sci_chdir.c \
+sci_gateway/c/sci_getcwd.c \
+sci_gateway/c/sci_mclearerr.c \
+sci_gateway/c/sci_mclose.c \
+sci_gateway/c/sci_merror.c \
+sci_gateway/c/sci_mget.c \
+sci_gateway/c/sci_mgetstr.c \
+sci_gateway/c/sci_moef.c \
+sci_gateway/c/sci_mopen.c \
+sci_gateway/c/sci_mput.c \
+sci_gateway/c/sci_mputstr.c \
+sci_gateway/c/sci_mseek.c \
+sci_gateway/c/sci_mtell.c
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
-                -I$(top_srcdir)/modules/string/includes
+				-I$(top_srcdir)/modules/io/includes \
+                		-I$(top_srcdir)/modules/string/includes \
+                		-I$(top_srcdir)/modules/localization/includes
 
 pkglib_LTLIBRARIES = libscifileio.la
 
@@ -128,6 +144,8 @@ includes/mget.h \
 includes/mput.h \
 includes/mseek.h \
 includes/deleteafile.h \
-includes/readline.h
+includes/readline.h \
+includes/cluni0.h \
+includes/scicurdir.h 
 
 include $(top_srcdir)/Makefile.incl.am

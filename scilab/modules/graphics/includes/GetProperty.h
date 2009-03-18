@@ -269,6 +269,8 @@ void sciGetZBounds(sciPointObj * pObj, double bounds[2]); /* GET */
 
 BOOL sciGetGridFront(sciPointObj * pObj); /* GET */
 
+int sciGetAntialiasingQuality(sciPointObj * pObj); /* GET */
+
 sciLegendPlace sciGetLegendLocation(sciPointObj * pObj); /* GET */
 
 void printSetGetErrorMessage(const char * propertyName);

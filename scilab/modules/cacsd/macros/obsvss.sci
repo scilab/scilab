@@ -20,7 +20,7 @@ function [a,b,c]=obsvss(a,b,c,tol)
       tol = 100*%eps
     case 4 then ,
     else 
-      error(msprintf(gettext("%s Wrong number of input arguments: %d or %d expected.\n"),"obsvss",3,4))
+      error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"),"obsvss",3,4))
     end;
   case 'state-space' then
     if lhs<>1 then 

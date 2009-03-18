@@ -43,6 +43,7 @@
 #include "BasicAlgos.h"
 #include "localization.h"
 #include "Axes.h"
+#include "stack-c.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -3858,6 +3859,28 @@ BOOL sciGetGridFront(sciPointObj * pObj)
     printSetGetErrorMessage("grid_position");
 		return FALSE;
   }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+ */
+int sciGetAntialiasingQuality(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_FIGURE:
+		if (isFigureModel(pObj))
+		{
+			return pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality;
+		}
+		else
+		{
+			return sciGetJavaAntialiasingQuality(pObj);
+		}
+  default:
+    printSetGetErrorMessage("anti_aliasing");
+		return FALSE;
+	}
 }
 /*----------------------------------------------------------------------------------*/
 /**

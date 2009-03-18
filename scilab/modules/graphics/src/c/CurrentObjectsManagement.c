@@ -26,7 +26,7 @@
 #include "WindowList.h"
 #include "InitObjects.h"
 #include "Interaction.h"
-
+#include "MALLOC.h"
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
 /* singleton, there is only one screen */
@@ -86,6 +86,11 @@ sciPointObj * sciGetCurrentObj( void )
 void sciSetCurrentObj( sciPointObj * pobj )
 {
   sciCurrentObject = pobj ;
+}
+/*----------------------------------------------------------------------------------*/
+BOOL sciIsCurrentObject(sciPointObj * pobj)
+{
+	return (pobj == sciGetCurrentObj());
 }
 /*----------------------------------------------------------------------------------*/
 long sciGetCurrentHandle( void )

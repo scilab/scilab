@@ -41,7 +41,7 @@ endif
 
 
 # Includes need for the compilation
-libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/
+libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/output_stream/includes/ -I$(top_srcdir)/modules/fileio/includes/
 
 # Includes need for the compilation
 libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
@@ -50,7 +50,8 @@ libscihistory_manager_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/console/includes/ \
 -I$(top_srcdir)/modules/history_manager/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/fileio/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -66,7 +67,7 @@ CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CFLAGS)
 
 ## Libraries necessary
-libscihistory_manager_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscihistory_manager_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 modulename=history_manager
 
 #### history_manager : Conf files ####

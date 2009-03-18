@@ -161,7 +161,7 @@ void Initialize(void)
   /* set TMPDIR */
   C2F(settmpdir)();
 
-  /* For the initiliazation of the Scilab primivite : fromjava() */
+  /* For the initialization of the Scilab primivite : fromjava() */
   SetFromJavaToON();
 
   InitializeLaunchScilabSignal();

@@ -40,15 +40,8 @@ chdir(TMP_DIR);
 
 ilib_for_link('ext1c','fun1.o',[],"c") 
 
-// disable message
-warning_mode = warning('query');
-warning('off');
-
 // load the shared library 
 exec loader.sce 
-
-// enable message 
-warning(warning_mode);
 
 chdir(cur_dir);
 

@@ -191,6 +191,20 @@ public:
 	 */
 	void setUseSingleBuffer(bool useSingleBuffer);
 
+	/**
+	 * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+	 */
+	int getAntialiasingQuality(void);
+	
+	/**
+	 * Modify the quality of antialiasing or disable it.
+	 * If quality if 0, the antialiasing is disables,
+	 * otherwise it might be either 1, 2, 4, 8 or 16 and then
+	 * specify the number of pass for antialiasing.
+	 * @param quality positive integer.
+	 */
+	void setAntialiasingQuality(int quality);
+
   /**
    * Check wether we the environemebnt allows us to create a new window.
    */

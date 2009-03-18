@@ -26,6 +26,7 @@
 #include "msgs.h"
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
+#include "mode_exec.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -125,7 +126,7 @@ int C2F(parse)(void)
   static int *Lstk    = C2F(vstk).lstk-1;
   static int *Lin     = C2F(iop).lin-1;
   static int *Lpt     = C2F(iop).lpt-1;
-  static int *Lct     = C2F(iop).lct-1;
+  static int *Lct     = C2F(iop).lct - 1;
 
   /* System generated locals */
   int i__2, i__3;
@@ -191,7 +192,7 @@ int C2F(parse)(void)
   C2F(recu).icall = 0;
   C2F(iop).rio = C2F(iop).rte;
   Lct[3] = 0;
-  Lct[4] = 2;
+  setExecMode(INITIALIZATION_EXEC_MODE);
   Lpt[1] = 1;
   if (job == -1) {
     goto L13;
@@ -211,11 +212,11 @@ int C2F(parse)(void)
   /*     get a new line */
   /* ------------------- */
  L12:
-  if (Lct[4] <= -10) {
-    Lct[4] = -Lct[4] - 11;
+  if (getExecMode() <= -10) {
+	setExecMode( -getExecMode() - 11 );
   } else {
-    if (Lct[4] / 2 % 2 == 1) {
-      i__2 = Lct[4] / 4;
+    if (getExecMode() / 2 % 2 == ECHO_EXEC_MODE) {
+      i__2 = getExecMode() / 4;
       /* Manage space between two prompts */
       if (!returnFromCallbackExec)
         {
@@ -312,9 +313,9 @@ int C2F(parse)(void)
   Rstk[Pt] = 701;
   C2F(basbrk).iflag = FALSE;
   Fin = 2;
-  if (Lct[4] <= -10) {
+  if (getExecMode() <= -10) {
     Fin = -1;
-    Lct[4] = -Lct[4] - 11;
+	setExecMode(-getExecMode() - 11);
   }
   /*     *call* macro */
   goto L88;
@@ -900,7 +901,7 @@ int C2F(parse)(void)
  L73:
   /*     print if required */
   /* ---------------------- */
-  if (Lct[4] < 0 || Fin == 0) {
+  if (getExecMode() < 0 || Fin == 0) {
     goto L76;
   }
   if (! ((C2F(com).sym != semi && Lct[3] == 0) || (C2F(com).sym == semi &&

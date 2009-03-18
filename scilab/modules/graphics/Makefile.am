@@ -150,6 +150,7 @@ src/c/getHandleProperty/get_filled_property.c \
 src/c/getHandleProperty/get_color_range_property.c \
 src/c/getHandleProperty/get_outside_colors_property.c \
 src/c/getHandleProperty/get_grid_position_property.c \
+src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -286,6 +287,7 @@ src/c/getHandleProperty/set_filled_property.c \
 src/c/getHandleProperty/set_color_range_property.c \
 src/c/getHandleProperty/set_outside_colors_property.c \
 src/c/getHandleProperty/set_grid_position_property.c \
+src/c/getHandleProperty/set_anti_aliasing_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -414,13 +416,6 @@ INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
 libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 
 
-if USE_EMBEDDED_LAPACK
-libscigraphics_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscigraphics_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)

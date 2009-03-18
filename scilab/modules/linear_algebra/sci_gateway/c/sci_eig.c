@@ -21,15 +21,6 @@
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(complexify)(int *num);
-
-extern int intdsyev(char *fname, unsigned long fname_len);
-extern int intdgeev(char *fname, unsigned long fname_len);
-extern int intzgeev(char *fname, unsigned long fname_len);
-extern int intzheev(char *fname, unsigned long fname_len);
-extern int intdggev(char *fname, unsigned long fname_len);
-extern int intzggev(char *fname, unsigned long fname_len);
-
-
 /*--------------------------------------------------------------------------*/
 int C2F(inteig)(char *fname,unsigned long fname_len)
 {
@@ -57,10 +48,10 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				switch (Symmetric) 
 				{
 					case NO :
-						ret = intdgeev("spec",4L);
+						ret = sci_dgeev("spec",4L);
 					break;
 					case YES :
-						ret = intdsyev("spec",4L);
+						ret = sci_dsyev("spec",4L);
 					break;
 				}
 			break;
@@ -69,10 +60,10 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				switch (Symmetric) 
 				{
 					case NO :
-						ret = intzgeev("spec",4L);
+						ret = sci_zgeev("spec",4L);
 					break;
 					case YES:
-						ret = intzheev("spec",4L);
+						ret = sci_zheev("spec",4L);
 					break;
 				}
 			break;
@@ -106,13 +97,13 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 				{
 					case REAL :
 					/* A real, Breal */
-						ret = intdggev("gspec",5L);
+						ret = sci_dggev("gspec",5L);
 					break;
 					case COMPLEX :
 					/* A real, B complex : complexify A */
 						X=1;
 						C2F(complexify)(&X);
-						ret = intzggev("gspec",5L);
+						ret = sci_zggev("gspec",5L);
 					break;
 					default:
 						Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
@@ -127,11 +118,11 @@ int C2F(inteig)(char *fname,unsigned long fname_len)
 					/* A complex, B real : complexify B */
 						X=2;
 						C2F(complexify)(&X);
-						ret = intzggev("gspec",5L);
+						ret = sci_zggev("gspec",5L);
 					break;
 					case COMPLEX :
 					/* A complex, B complex */
-						ret = intzggev("gspec",5L);
+						ret = sci_zggev("gspec",5L);
 					break;
 					default:
 							Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),

@@ -68,7 +68,7 @@ set DebugScipadWithRamDebugger no
 
 catch {
     if {$DebugScipadWithRamDebugger && $tcl_platform(platform) == "windows"} {
-        lappend ::auto_path K:/Francois/Developpement/RamDebugger5.5/addons
+        lappend ::auto_path K:/Francois/Developpement/RamDebugger6.1.1/addons
         lappend ::auto_path D:/Scilab/Tools/RamDebugger5.5/addons
         package require commR
         comm::register Scipad 1
@@ -225,6 +225,122 @@ if {0} {
 }
 
 # End of useful binding triggering a command
+#############
+
+
+#############
+# Miscellaneous helper procs
+
+if {1} {
+
+    proc arrayval {array {pattern *}} {
+    # return the content of an array as a string
+    # this is pretty much the same as parray but the result is returned in a string
+    # instead of just printed in the console
+    # this code originates from  http://wiki.tcl.tk/9788
+    # see also  http://wiki.tcl.tk/13816  for a proc TK_editArray allowing
+    # to edit any array in a convenient gui
+    upvar $array a
+    if { ![array exists a] } { error "\"$array\" isn't an array" }
+    set lines [list]
+    set max 0
+    foreach name [array names a $pattern] {
+        set len [string length $name]
+        if { $len > $max } { set max $len }
+    }
+    set max [expr {$max + [string length $array] + 2}]
+    foreach name [array names a $pattern] {
+        set line [format %s(%s) $array $name]
+        lappend lines [format "%-*s = %s" $max $line $a($name)]
+    }
+    return [join [lsort $lines] \n]
+    }
+    # examples
+    # set parrayenv [arrayval ::env]
+    # set dumpchset [arrayval chset]
+    # then, from Scilab, it's possible to:  TCL_EvalStr("arrayval chset","scipad")
+
+
+    proc stacktrace {} {
+    # return the calling stack in a string
+    # this code originates from  http://wiki.tcl.tk/16183
+    # and was augmented to retrieve line numbers in addition
+    global Tcl85
+    set stack "Stack trace:\n"
+    for {set i 1} {$i < [info level]} {incr i} {
+        append stack "Level -$i: "
+        if {$Tcl85} {
+            set framedict [info frame -$i]
+            # next line catched for easy handling of the cases where the dict
+            # does not contain the "line" entry
+            catch {append stack "line [dict get $framedict line] in file containing "}
+        }
+        set lvl [info level -$i]
+        set pname [lindex $lvl 0]
+        append stack "$pname\n\t\t"
+        foreach value [lrange $lvl 1 end] arg [info args $pname] {
+            if {$value eq ""} {
+                info default $pname $arg value
+            }
+            append stack "$arg='$value'\n\t\t"
+        }
+        append stack \n
+    }
+    return $stack
+    }
+
+    proc dealwithbug4053 {w itag initial scitags star stop kword amatch allmatch dyn_run dyn_ran chsetar wordsar} {
+    # output debug information helping in finding the cause for
+    # bug 4053 (colorisation fails during opening of a file)
+        global env listoffile
+
+        array set chseta $chsetar
+        array set wordsa $wordsar
+
+        set fileid4053 [open [file join $env(SCIHOME) SciPadDebug_Bug4053.log] a]
+
+        puts $fileid4053 "BUG 4053 HIT!"
+        puts $fileid4053 [clock format [clock seconds] -format "%Y-%m-%d %H:%M:%S"]
+
+        puts $fileid4053 [stacktrace]
+
+        puts $fileid4053 $listoffile("$w",language)
+        puts $fileid4053 $listoffile("$w",colorize)
+
+        puts $fileid4053 $scitags ; # here, without the userfun tag
+        regsub -all "scilab." [array names chseta -glob scilab\.*] "" scitags
+        puts $fileid4053 $scitags
+
+        puts $fileid4053 "chset(scilab.$itag) contains: $chseta(scilab.$itag)"
+        puts $fileid4053 "info exists words(scilab.$itag.$initial) returns: [info exists wordsa(scilab.$itag.$initial)]"
+
+        puts $fileid4053 "dynamickeywords_running is: $dyn_run"
+        puts $fileid4053 "dynamickeywords_ran_once is: $dyn_ran"
+
+        puts $fileid4053 $star
+        puts $fileid4053 $stop
+        puts $fileid4053 $kword
+        puts $fileid4053 $amatch
+        puts $fileid4053 $allmatch
+
+        puts $fileid4053 "--- Now full content of the chset array:"
+        puts $fileid4053 [arrayval chseta]
+        puts $fileid4053 "--- Now full content of the words array:"
+        puts $fileid4053 [arrayval wordsa]
+
+        puts $fileid4053 "--- Now full content of the textarea:"
+        puts $fileid4053 [$w get 1.0 end]
+
+        puts $fileid4053 "----------------------------------\n"
+
+        close $fileid4053
+
+        tk_messageBox -message ">>>> BUG 4053 HIT <<<<\n\n\nPLEASE report to    http://bugzilla.scilab.org/show_bug.cgi?id=4053 \n\nand attach the log file named     SciPadDebug_Bug4053.log \n\nthat you can find in  SCIHOME, i.e. in \n\n$env(SCIHOME)"
+    }
+
+}
+
+# End of miscellaneous helper procs
 #############
 
 
