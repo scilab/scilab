@@ -47,9 +47,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
-
 dec2hex([2748 10;11 3])
- 
   ]]></programlisting>
   </refsection>
   <refsection>
