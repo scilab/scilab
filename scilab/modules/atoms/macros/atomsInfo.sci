@@ -13,65 +13,82 @@
 
 // Display of the toolbox information
 
-function atomsInfo(nameToolbox)
+function atomsInfo(name)
 
-  rhs=argn(2);
-
-  if rhs == 1 then
-  // we remove the special characters
-  nameToolbox = atomsSubstituteString(nameToolbox)
-  // We go on the toolboxes repertory
-  rep = atomsToolboxDirectory()
-  d = rep + nameToolbox
-  // Gestion of the different OS
-  if getos() == "Windows"
-    directory = d + "\DESCRIPTION"
-  else // linux and mac
-    directory = d + "/DESCRIPTION"
-  end
-  // If we find the directory in local and the DESCRIPTION file is present
-  if (isdir(d) & ls(directory) <> [])
-    desc = atomsReadDesc(nameToolbox)
-    functionTool = desc("Function")
-    disp(_("This toolbox is present locally."))
-    disp(desc)
-    disp(functionTool)
-  // Else we search in the net
-  else
-    disp(_("Search for toolbox versions available on the web"))
-    listDesc = atomsReadDesc("")
-    versions = ""
-    [n, m] = size(listDesc("Toolbox"))
-    for i=1:n
-      if listDesc("Toolbox")(i) == nameToolbox
-        // To avoid version redundancy
-        [a, b] = size(versions)
-        if find(versions == listDesc("Version")(i))
-          continue
-        else
-          versions(a+1) = listDesc("Version")(i)
-          desc = atomsListDescription()
-          [listeObl, listeOpt] = constant()
-          [o, p] = size(listeOpt)
-          [n, m] = size(listeObl)
-          for j=1:m
-            desc(listeObl(j)) = listDesc(listeObl(j))(i)
-          end
-          for j=1:p
-            desc(listeOpt(j)) = listDesc(listeOpt(j))(i)
-          end
-          disp(desc)
-        end
-      end
-    end
-    // if no version was found
-    [a, b] = size(versions)
-    if a == 1
-     disp("none")
-    end
-  end
-  else
-    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsInfo",1));
-  end
+	rhs=argn(2);
+	
+	if rhs <> 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsInfo",1));
+	end
+	
+	// we remove the special characters
+	normalized_name = atomsSubstituteString(name)
+	
+	// We try to find the information locally
+	// =========================================================================
+	atoms_directories        = atomsToolboxDirectory();
+	this_toolbox_directory   = "";
+	this_toolbox_DESCRIPTION = "";
+	
+	for k=1:size(atoms_directories,"*")
+		check_directory = pathconvert(atoms_directories(k)+"/"+normalized_name);
+		check_file      = check_directory+"DESCRIPTION";
+		if fileinfo(check_file) <> [] then
+			this_toolbox_directory   = check_directory;
+			this_toolbox_DESCRIPTION = check_file;
+			break;
+		end
+	end
+	
+	if this_toolbox_DESCRIPTION <> "" then
+		desc = atomsReadDesc(nameToolbox);
+		disp(gettext("This toolbox is present locally."));
+		disp(desc);
+		disp(functionTool);
+		
+		// Ok, we have done the job : return
+		return;
+	end
+	
+	// We try to find the information on the net
+	// =========================================================================
+	
+	disp(_("Search for toolbox versions available on the web"))
+	
+	listDesc = atomsReadDesc("");
+	versions = "";
+	[n, m]   = size(listDesc("Toolbox"));
+	
+	for i=1:n
+		if listDesc("Toolbox")(i) == nameToolbox
+			// To avoid version redundancy
+			[a, b] = size(versions)
+			
+			if find(versions == listDesc("Version")(i))
+				continue;
+			end
+			
+			versions(a+1)        = listDesc("Version")(i)
+			desc                 = atomsListDescription()
+			[listeObl, listeOpt] = constant()
+			[o, p]               = size(listeOpt)
+			[n, m]               = size(listeObl)
+			for j=1:m
+				desc(listeObl(j)) = listDesc(listeObl(j))(i)
+			end
+			for j=1:p
+				desc(listeOpt(j)) = listDesc(listeOpt(j))(i)
+			end
+			
+			disp(desc);
+		end
+	end
+	
+	// if no version was found
+	// =========================================================================
+	[a, b] = size(versions)
+	if a == 1 then
+		disp("none")
+	end
 
 endfunction

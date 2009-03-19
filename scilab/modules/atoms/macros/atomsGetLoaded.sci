@@ -14,9 +14,20 @@
 // List of registered toolboxes
 
 function loaded_toolboxes = atomsGetLoaded()
-  if listfiles(TMPDIR + "/loaded_toolboxes") <> [] then
-    load(TMPDIR + "/loaded_toolboxes", "loaded_toolboxes")
-  else
-    loaded_toolboxes = []
-  end
+	
+	rhs = argn(2)
+	
+	// Check input parameters
+	if rhs > 0 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsGetInstalled",0));
+	end
+	
+	loaded_toolboxes = [];
+	
+	if fileinfo(TMPDIR+"/loaded_toolboxes") <> [] then
+		load(TMPDIR +"/loaded_toolboxes","loaded_toolboxes")
+	end
+	
+	return loaded_toolboxes;
+	
 endfunction

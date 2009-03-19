@@ -14,15 +14,31 @@
 // List of installed toolboxes
 
 function tboxes = atomsGetInstalled()
-  reps = atomsToolboxDirectory()
-  tboxes = []
-  for i=1:size(reps, 1)
-	files = listfiles(reps(i))
-	for j=1:size(files, 1)
-	  tbox = reps(i) + "/" + files(j)
-	  if fileinfo(tbox + "/loader.sce") <> [] then
-	    tboxes($+1) = tbox
-	  end
+	
+	rhs = argn(2)
+	
+	// Check input parameters
+	if rhs > 0 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsGetInstalled",0));
 	end
-  end
+	
+	atoms_directories = atomsToolboxDirectory();
+	tboxes            = [];
+	
+	for i=1:size(atoms_directories,"*")
+		files = listfiles(atoms_directories(i));
+		for j=1:size(files, 1)
+			
+
+			tbox = atoms_directories(i) + "/" + files(j)
+			if (  ( fileinfo(tbox + "/loader.sce") <> [] ) ..
+				& ( fileinfo(tbox + "/DESCRIPTION") <> [] ) ..
+				& ( fileinfo(tbox + "/DESCRIPTION-FUNCTIONS") <> [] ) ) then
+				tboxes = [tboxes;tbox];
+			end
+		end
+	end
+	
+	return tboxes;
+	
 endfunction

@@ -14,5 +14,5 @@
 // Recuparation of the repertory with the toolboxes
 
 function rep = atomsToolboxDirectory()
-  rep = pathconvert([SCIHOME+"/atoms"; "SCI/contrib"]);
+	rep = pathconvert( [SCIHOME+"/atoms"; SCI+"/contrib"],%f);
 endfunction
