@@ -10,29 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="searchToolboxes">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsInstallCategory">
   <info>
     <pubdate>$LastChangedDate: 2008-06-10 11:00:00 +0200 (Tue, 10 Jun 2008) $</pubdate>
   </info>
   <refnamediv>
-    <refname>searchToolboxes</refname>
-    <refpurpose>Search a toolbox</refpurpose>
+    <refname>atomsInstallCategory</refname>
+    <refpurpose>Download and install all the toolboxes of a category</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>searchToolboxes(keyWord, typeSearch)</synopsis>
+    <synopsis>atomsInstallCategory(cat, sscat)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>keyWord</term>
+        <term>cat</term>
         <listitem>
           <para>A character string.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>typeSearch</term>
+        <term>sscat</term>
         <listitem>
           <para>A character string.</para>
         </listitem>
@@ -41,16 +41,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function search toolboxes which have keyword in their description.</para>
+    <para>This function downloads and installs toolboxes from a specified category.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-searchToolboxes("toto", "author")
-searchToolboxes("inria", "entity")
-searchToolboxes("modelisation 3D", "function")
-searchToolboxes("toto inria modelisation")
+atomsInstallCategory("biology", "genetic")
 
   ]]></programlisting>
   </refsection>
@@ -58,10 +55,13 @@ searchToolboxes("toto inria modelisation")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="installToolbox">installToolbox</link>
+        <link linkend="atomsInfo">atomsInfo</link>
       </member>
       <member>
-        <link linkend="infoToolbox">infoToolbox</link>
+        <link linkend="atomsRemovees">atomsRemovees</link>
+      </member>
+      <member>
+        <link linkend="atomsInstall">atomsInstall</link>
       </member>
     </simplelist>
   </refsection>

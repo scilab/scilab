@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,12 +9,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Retrieve of the Mirror list
+// Internal function
 
-function listMirror = atomsToolboxMirror()
-  if getos() == "Windows"
-    listMirror = ["http://128.93.23.238/scilab/bin/windows/contrib"]
-  else // linux and mac
-    listMirror = ["http://128.93.23.238/scilab/src/contrib"]
-  end
+// Recuparation of the repertory with the toolboxes
+
+function rep = atomsToolboxDirectory()
+  rep = pathconvert([SCIHOME+"/atoms"; "SCI/contrib"]);
 endfunction

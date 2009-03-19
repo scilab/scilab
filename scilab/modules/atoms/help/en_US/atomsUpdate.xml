@@ -10,27 +10,39 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="listToolboxes">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsUpdate">
   <info>
     <pubdate>$LastChangedDate: 2008-06-10 11:00:00 +0200 (Tue, 10 Jun 2008) $</pubdate>
   </info>
   <refnamediv>
-    <refname>listToolboxes</refname>
-    <refpurpose>Give all the installed toolboxes</refpurpose>
+    <refname>atomsUpdate</refname>
+    <refpurpose>Update a toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>listToolboxes()</synopsis>
+    <synopsis>atomsUpdate(name)</synopsis>
   </refsynopsisdiv>
   <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>A character string.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
     <title>Description</title>
-    <para>This function gives all the installed toolboxes</para>
+    <para>This function updates a toolbox</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-listToolboxes()
+atomsUpdate("maToolbox")
+atomsUpdate("all")
 
   ]]></programlisting>
   </refsection>
@@ -38,10 +50,10 @@ listToolboxes()
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="infoToolbox">infoToolbox</link>
+        <link linkend="atomsInstall">atomsInstall</link>
       </member>
       <member>
-        <link linkend="installToolbox">installToolbox</link>
+        <link linkend="atomsInfo">atomsInfo</link>
       </member>
     </simplelist>
   </refsection>

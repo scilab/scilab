@@ -10,23 +10,29 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="installToolbox">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsSearch">
   <info>
     <pubdate>$LastChangedDate: 2008-06-10 11:00:00 +0200 (Tue, 10 Jun 2008) $</pubdate>
   </info>
   <refnamediv>
-    <refname>installToolbox</refname>
-    <refpurpose>Download & install the toolbox</refpurpose>
+    <refname>atomsSearch</refname>
+    <refpurpose>Search a toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>installToolbox(name)</synopsis>
+    <synopsis>atomsSearch(keyWord, typeSearch)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>name</term>
+        <term>keyWord</term>
+        <listitem>
+          <para>A character string.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>typeSearch</term>
         <listitem>
           <para>A character string.</para>
         </listitem>
@@ -35,13 +41,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function downloads the toolbox with the dependencies.</para>
+    <para>This function search toolboxes which have keyword in their description.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-installToolbox("maToolbox")
+atomsSearch("toto", "author")
+atomsSearch("inria", "entity")
+atomsSearch("modelisation 3D", "function")
+atomsSearch("toto inria modelisation")
 
   ]]></programlisting>
   </refsection>
@@ -49,13 +58,10 @@ installToolbox("maToolbox")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="infoToolbox">infoToolbox</link>
+        <link linkend="atomsInstall">atomsInstall</link>
       </member>
       <member>
-        <link linkend="removeToolboxes">removeToolboxes</link>
-      </member>
-      <member>
-        <link linkend="installToolboxCategory">installToolboxCategory</link>
+        <link linkend="atomsInfo">atomsInfo</link>
       </member>
     </simplelist>
   </refsection>

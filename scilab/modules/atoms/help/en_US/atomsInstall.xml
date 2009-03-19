@@ -10,29 +10,23 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="installToolboxCategory">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsInstall">
   <info>
     <pubdate>$LastChangedDate: 2008-06-10 11:00:00 +0200 (Tue, 10 Jun 2008) $</pubdate>
   </info>
   <refnamediv>
-    <refname>installToolboxCategory</refname>
-    <refpurpose>Download and install all the toolboxes of a category</refpurpose>
+    <refname>atomsInstall</refname>
+    <refpurpose>Download & install the toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>installToolboxCategory(cat, sscat)</synopsis>
+    <synopsis>atomsInstall(name)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>cat</term>
-        <listitem>
-          <para>A character string.</para>
-        </listitem>
-      </varlistentry>
-      <varlistentry>
-        <term>sscat</term>
+        <term>name</term>
         <listitem>
           <para>A character string.</para>
         </listitem>
@@ -41,13 +35,13 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>This function downloads and installs toolboxes from a specified category.</para>
+    <para>This function downloads the toolbox with the dependencies.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-installToolboxCategory("biology", "genetic")
+atomsInstall("maToolbox")
 
   ]]></programlisting>
   </refsection>
@@ -55,13 +49,13 @@ installToolboxCategory("biology", "genetic")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="infoToolbox">infoToolbox</link>
+        <link linkend="atomsInfo">atomsInfo</link>
       </member>
       <member>
-        <link linkend="removeToolboxes">removeToolboxes</link>
+        <link linkend="atomsRemovees">atomsRemovees</link>
       </member>
       <member>
-        <link linkend="installToolbox">installToolbox</link>
+        <link linkend="atomsInstallCategory">atomsInstallCategory</link>
       </member>
     </simplelist>
   </refsection>

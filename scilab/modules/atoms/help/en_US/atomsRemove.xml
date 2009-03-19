@@ -10,17 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="removeToolbox">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atomsRemove">
   <info>
     <pubdate>$LastChangedDate: 2008-06-10 11:00:00 +0200 (Tue, 10 Jun 2008) $</pubdate>
   </info>
   <refnamediv>
-    <refname>removeToolbox</refname>
+    <refname>atomsRemove</refname>
     <refpurpose>Delete the installed toolbox</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>removeToolbox(name)</synopsis>
+    <synopsis>atomsRemove(name)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -41,8 +41,8 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
 
-removeToolbox("maToolbox")
-removeToolbox("all")
+atomsRemove("maToolbox")
+atomsRemove("all")
 
   ]]></programlisting>
   </refsection>
@@ -50,7 +50,7 @@ removeToolbox("all")
     <title>See Also</title>
     <simplelist type="inline">
       <member>
-        <link linkend="installToolbox">installToolbox</link>
+        <link linkend="atomsInstall">atomsInstall</link>
       </member>
     </simplelist>
   </refsection>

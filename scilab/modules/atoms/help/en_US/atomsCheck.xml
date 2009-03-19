@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="checkToolbox" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="atomsCheck" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -23,7 +23,7 @@
   </info>
 
   <refnamediv>
-    <refname>checkToolbox</refname>
+    <refname>atomsCheck</refname>
 
     <refpurpose>Check a Scilab toolbox</refpurpose>
   </refnamediv>
@@ -31,7 +31,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>checkToolbox(name)</synopsis>
+    <synopsis>atomsCheck(name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -59,7 +59,7 @@
 
     <programlisting role="example">
 
-checkToolbox("maToolbox")
+atomsCheck("maToolbox")
 
   </programlisting>
   </refsection>
@@ -68,7 +68,7 @@ checkToolbox("maToolbox")
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="installToolbox">installToolbox</link></member>
+      <member><link linkend="atomsInstall">atomsInstall</link></member>
     </simplelist>
   </refsection>
 </refentry>
