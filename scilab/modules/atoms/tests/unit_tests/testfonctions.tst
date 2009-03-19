@@ -70,35 +70,35 @@ function listMirror = atomsToolboxMirror()
 endfunction
 
 // installation avec la dernière dependance non présente sur le web ni en local
-if installToolbox("testA") <> %f then pause, end;
+if atomsInstall("testA") <> %f then pause, end;
 // installation avec conflit versions
-if installToolbox("conflitA") <> %f then pause, end;
+if atomsInstall("conflitA") <> %f then pause, end;
 // installation avec la dépendance locale ne vérifiant pas la condition
-if installToolbox("local1") <> %f then pause, end;
+if atomsInstall("local1") <> %f then pause, end;
 
 // supression de toolbox non présente
-if removeToolbox("non") <> %f then pause, end;
+if atomsRemove("non") <> %f then pause, end;
 
 // update d'une toolbox non présente
-if updateToolbox("non") <> %f then pause, end;
+if atomsUpdate("non") <> %f then pause, end;
 // update d'une toolbox non présente sur le net
-if updateToolbox("truc") <> %f then pause, end;
+if atomsUpdate("truc") <> %f then pause, end;
 // update d'une toolbox dependance d'une autre
 function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib"];
 endfunction
-if installToolbox("updateA") <> %t then pause, end;
+if atomsInstall("updateA") <> %t then pause, end;
 function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/macosX/contrib"];
 endfunction
 // Mauvaise version
-if updateToolbox("updateB") <> %f then pause, end;
+if atomsUpdate("updateB") <> %f then pause, end;
 function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/windows/contrib"];
 endfunction
 // Bonne version
-if updateToolbox("updateB") <> %t then pause, end;
+if atomsUpdate("updateB") <> %t then pause, end;
 // Suppression des toolboxes
-if removeToolbox("updateA") <> %t then pause, end;
-if removeToolbox("updateB") <> %t then pause, end;
+if atomsRemove("updateA") <> %t then pause, end;
+if atomsRemove("updateB") <> %t then pause, end;
 

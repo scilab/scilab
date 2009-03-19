@@ -66,36 +66,36 @@ function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/windows/contrib"];
 endfunction
 // installation avec la dernière dependance non présente sur le web ni en local
-if installToolbox("testA") <> %f then bugmes();quit;end;
+if atomsInstall("testA") <> %f then bugmes();quit;end;
  
  Toolbox testH not find   
  
  The Toolbox version testC locally present doesn't match. Update it.   
 // installation avec conflit versions
-if installToolbox("conflitA") <> %f then bugmes();quit;end;
+if atomsInstall("conflitA") <> %f then bugmes();quit;end;
  
  The Toolbox version conflitB locally present doesn't match. Update it. 
 // installation avec la dépendance locale ne vérifiant pas la condition
-if installToolbox("local1") <> %f then bugmes();quit;end;
+if atomsInstall("local1") <> %f then bugmes();quit;end;
  
  The Toolbox version local1 locally present doesn't match. Update it.   
 // supression de toolbox non présente
-if removeToolbox("non") <> %f then bugmes();quit;end;
+if atomsRemove("non") <> %f then bugmes();quit;end;
  
  The toolbox non is not installed   
 // update d'une toolbox non présente
-if updateToolbox("non") <> %f then bugmes();quit;end;
+if atomsUpdate("non") <> %f then bugmes();quit;end;
  
  The toolbox non is not installed   
 // update d'une toolbox non présente sur le net
-if updateToolbox("truc") <> %f then bugmes();quit;end;
+if atomsUpdate("truc") <> %f then bugmes();quit;end;
  
  Toolbox not available on the net   
 // update d'une toolbox dependance d'une autre
 function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib"];
 endfunction
-if installToolbox("updateA") <> %t then bugmes();quit;end;
+if atomsInstall("updateA") <> %t then bugmes();quit;end;
  
  Is going to be install : updateA   
  
@@ -104,22 +104,22 @@ function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/macosX/contrib"];
 endfunction
 // Mauvaise version
-if updateToolbox("updateB") <> %f then bugmes();quit;end;
+if atomsUpdate("updateB") <> %f then bugmes();quit;end;
  
  Dependancie problem   
 function listMirror = atomsToolboxMirror()
   listMirror = ["http://128.93.23.238/scilab/src/contrib", "http://128.93.23.238/scilab/bin/windows/contrib"];
 endfunction
 // Bonne version
-if updateToolbox("updateB") <> %t then bugmes();quit;end;
+if atomsUpdate("updateB") <> %t then bugmes();quit;end;
  
  The toolbox updateB is going to be update in version 1.2.2   
  
  Is going to be install : updateB   
 // Suppression des toolboxes
-if removeToolbox("updateA") <> %t then bugmes();quit;end;
+if atomsRemove("updateA") <> %t then bugmes();quit;end;
  
  updateA delete   
-if removeToolbox("updateB") <> %t then bugmes();quit;end;
+if atomsRemove("updateB") <> %t then bugmes();quit;end;
  
  updateB delete   

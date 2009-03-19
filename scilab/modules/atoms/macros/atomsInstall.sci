@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +9,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Installation of a toolbox
 
-function result = installToolbox(name, checkVersionScilab, version)
+function result = atomsInstall(name, checkVersionScilab, version)
   global conflictingList
   global conflictLocal
   global nomconflictLocal
@@ -72,7 +76,7 @@ function result = installToolbox(name, checkVersionScilab, version)
   return result
 
   else
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"installToolbox",1,3))
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsInstall",1,3))
   end
 
 endfunction

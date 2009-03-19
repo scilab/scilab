@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +9,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Display of the toolbox information
 
-function infoToolbox(nameToolbox)
+function atomsInfo(nameToolbox)
 
   rhs=argn(2);
 
@@ -67,7 +71,7 @@ function infoToolbox(nameToolbox)
     end
   end
   else
-    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"infoToolbox",1));
+    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsInfo",1));
   end
 
 endfunction

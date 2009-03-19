@@ -11,6 +11,7 @@
 // ====================================================================
 //Load  functions librarie
 load('SCI/modules/atoms/macros/lib');
+load('SCI/modules/scipad/macros/scipad_internals/lib');
 // ====================================================================
 //add help chapter
 add_module_help_chapter('atoms');

@@ -1,6 +1,7 @@
 //------------------------------------
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Delphine Gasc (2008)
+// Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -12,5 +13,6 @@ if (isdef('genlib') == %f) then
    exec(SCI+'/modules/functions/scripts/buildmacros/loadgenlib.sce');
 end
 
-genlib('atomslib','SCI/modules/atoms/macros',%f,%t); 
+genlib('atomslib','SCI/modules/atoms/macros',%f,%t);
+genlib('atomsinternalslib','SCI/modules/atoms/macros/atoms_internals',%f,%t);
 //------------------------------------

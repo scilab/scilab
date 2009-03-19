@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +9,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // Research of a toolbox
 
-function result = searchToolboxes(keyword, typeSearch)
+function result = atomsSearch(keyword, typeSearch)
   rhs = argn(2)
 
   if (rhs == 2 | rhs == 1) then
@@ -123,7 +127,7 @@ function result = searchToolboxes(keyword, typeSearch)
   end
   return result
   else
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"searchToolboxes",1,2))
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsSearch",1,2))
   end
 
 

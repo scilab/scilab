@@ -1,5 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
+// Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,9 +9,11 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// End user function
+
 // update of a toolbox
 
-function result = updateToolbox(name, checkVersionScilab)
+function result = atomsUpdate(name, checkVersionScilab)
   rhs = argn(2)
 
   if (rhs == 2 | rhs == 1) then
@@ -25,7 +29,7 @@ function result = updateToolbox(name, checkVersionScilab)
     [n, m] = size(listLocal)
     for k=1:n
       if listLocal(i) <> ".svn"
-        if ~updateToolbox(listLocal(k))
+        if ~atomsUpdate(listLocal(k))
           break
         end
       end
@@ -99,7 +103,7 @@ function result = updateToolbox(name, checkVersionScilab)
           [signeNew, versionNew] = atomsSeparateSignVersion(versionNew)
           versionNew = atomsDecoupVersion(versionNew)
           if ((versionNew == "<=" | versionNew == "=")  & atomsCompareVersion(v1, versionNew) == -1) | ((versionNew == ">=" | versionNew == "=") & atomsCompareVersion(v1, versionNew) == 1) 
-            updateToolbox(dependsNew);
+            atomsUpdate(dependsNew);
           end
         end
       end
@@ -109,13 +113,13 @@ function result = updateToolbox(name, checkVersionScilab)
     atomsDisplayMessage(sprintf(_("The toolbox %s is going to be updated to version %s.\n"),name,versionNew))
     // We install the new version
     rmdir(rep + name, "s")
-    installToolbox(name);
+    atomsInstall(name);
   end
   result = %t
   return result
 
   else
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"updateToolbox",1,2))
+    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsUpdate",1,2))
   end
 
 endfunction
