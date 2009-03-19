@@ -14,7 +14,12 @@ libsciatoms_la_rootdir = $(mydatadir)
 libsciatoms_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 
 #### atoms : init scripts ####
+
 libsciatoms_la_etcdir = $(mydatadir)/etc
 libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start
+
+#### atoms : internal functions ####
+
+MACROSDIRSEXT = macros/atoms_internals
 
 include $(top_srcdir)/Makefile.incl.am

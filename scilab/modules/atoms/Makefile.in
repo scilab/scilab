@@ -296,6 +296,9 @@ libsciatoms_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libsciatoms_la_etcdir = $(mydatadir)/etc
 libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start
 
+#### atoms : internal functions ####
+MACROSDIRSEXT = macros/atoms_internals
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
