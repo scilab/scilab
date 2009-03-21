@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:msub>
+    <math:mi>f</math:mi>
+    <math:mi>i</math:mi>
+   </math:msub>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mrow>
+     <math:mi>x</math:mi>
+     <math:mi>,</math:mi>
+     <math:mi>z</math:mi>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi>u</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+    </math:mrow>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">f_i(x,z(u))</math:annotation>
+ </math:semantics>
+</math:math>
