@@ -3,10 +3,13 @@ lines(0);
 // example of use of the genetic algorithm on a 2D Ising model
 
 // Loading test problems
-getd('Ising');
+
+path = get_absolute_file_path('GAIsing2ddemo.sce');
+
+getd(path + '/Ising');
 
 // Load the crossover and mutation operators for the Ising 2D problem
-getd('.');
+getd(path + '/.');
 
 J       = 1.1;
 H       = 0.7;

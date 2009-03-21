@@ -1178,11 +1178,6 @@ static void init_io()
   int i;
   /* check standard for interactive */
   fd=fileno(stdin);
-  tty = isatty(fileno(stdin));
-  if (tty == 0) {
-    fprintf(stderr, "Scilab doesn't work if standard input is not a terminal.\n");
-    exit(1);
-  }
 
 #ifdef B42UNIX
   ioctl(fd,TIOCGETP,&arg);
