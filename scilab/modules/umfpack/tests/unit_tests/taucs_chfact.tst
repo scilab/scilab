@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
+// <-- JVM NOT MANDATORY -->
 
 // Example #1 : a small linear test system 
 // whom solution must be [1;2;3;4;5]
