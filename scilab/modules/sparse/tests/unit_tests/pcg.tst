@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Test with 2 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
