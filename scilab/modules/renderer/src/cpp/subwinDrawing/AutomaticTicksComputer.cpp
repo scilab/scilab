@@ -11,11 +11,13 @@
  *
  */
 
-#include <stdio.h>
+
 #include "AutomaticTicksComputer.hxx"
 
 extern "C"
 {
+#include <stdio.h>
+#include <string.h>
 #include "Format.h"
 #include "DrawObjects.h"
 }

@@ -30,16 +30,12 @@ oldnew=predef('clear')</synopsis>
     the old and new value of protected variables number.</para>
   </refsection>
   <refsection>
-    <title>Remark</title>
+    <title>Remarks:</title>
+    <para>Variable <literal>ans</literal> created automatically when expressions are not assigned is never protected by <literal>predef('all')</literal>.</para>
     <para>
 			A number of protected variables are set in the start-up file <literal>SCI/etc/scilab.start</literal>.
 			User may in particular set its own predefined variables in user's startup files 
 			<literal>SCIHOME/.scilab</literal> and <literal>SCIHOME/scilab.ini</literal>
-		</para>
-    <para>
-			SCIHOME definition :
-			On Windows : C:/Documents and Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt;
-			On Linux/Unix : /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;
 		</para>
   </refsection>
   <refsection>
@@ -50,6 +46,12 @@ oldnew=predef('clear')</synopsis>
       </member>
       <member>
         <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="ans">ans</link>
+      </member>
+      <member>
+        <link linkend="startup">startup</link>
       </member>
     </simplelist>
   </refsection>

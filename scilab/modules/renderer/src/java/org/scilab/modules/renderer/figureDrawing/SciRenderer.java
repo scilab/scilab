@@ -21,6 +21,7 @@ import javax.media.opengl.GL;
 import org.scilab.modules.renderer.FigureMapper;
 import org.scilab.modules.renderer.jni.FigureScilabCall;
 import org.scilab.modules.renderer.utils.RenderingCapabilities;
+import org.scilab.modules.renderer.utils.textRendering.SciTextRenderer;
 
 
 /**
@@ -143,6 +144,9 @@ implements GLEventListener {
 		
 		// set up anti-aliasing
 		curFigure.getCoordinateTransformation().initalizeAntialiasing(gl);
+		
+		// HACK for text under Intel/Linux
+		SciTextRenderer.forceMipMapRecomputationAvailabilty();
 
 		// Color of texture will not be 
 		// mixed with the color of the polygon

@@ -25,12 +25,12 @@ AC_DEFUN([SWIG_PROG],[
 		AC_MSG_RESULT([$swig_version])
 		if test -n "$swig_version" ; then
 			# Calculate the required version number
-			[swig_tmp=( `echo $1 | sed 's/[^0-9]\+/ /g'` )]
-			[swig_required_version=$(( 1000000 * ${swig_tmp[0]:-0} + 1000 * ${swig_tmp[1]:-0} + ${swig_tmp[2]:-0} ))]
+                        [swig_tmp=`echo $1 | sed 's/[^0-9]\+/ /g'`]
+                        [swig_required_version=`echo $swig_tmp | awk '{print  1000000 * $1 +  1000 * $2 + $3}'`]
 
 			# Calculate the available version number
-			[swig_tmp=( `echo $swig_version | sed 's/[^0-9]\+/ /g'` )]
-			[swig_tmp=$(( 1000000 * ${swig_tmp[0]:-0} + 1000 * ${swig_tmp[1]:-0} + ${swig_tmp[2]:-0} ))]
+                        [swig_tmp=`echo $swig_version | sed 's/[^0-9]\+/ /g'`]
+                        [swig_tmp=`echo $swig_tmp | awk '{print  1000000 * $1 +  1000 * $2 + $3}'`]
 
 			if test $swig_required_version -gt $swig_tmp ; then
 				AC_MSG_WARN([SWIG version $1 is required, you have $swig_version])

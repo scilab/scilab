@@ -8,7 +8,7 @@ NB_CHARS = 43;
 REF_NB_CHARS = 1478;
 textfile = 'SCI/modules/fileio/tests/unit_tests/text.txt';
 ierr = execstr('mgetstr(NB_CHARS,textfile)','errcatch');
-if ierr <> 246 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end
 ierr = execstr('mgetstr()','errcatch');
 if ierr <> 77 then bugmes();quit;end
 ierr = execstr('mgetstr(NB_CHARS,textfile,1)','errcatch');

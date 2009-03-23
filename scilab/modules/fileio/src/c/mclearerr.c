@@ -18,6 +18,6 @@
 void C2F(mclearerr) (int *fd)
 {       
 	FILE *fa= GetFileOpenedInScilab(*fd);
-	clearerr(fa);
+	if (fa) clearerr(fa);
 }
 /*--------------------------------------------------------------------------*/

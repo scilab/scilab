@@ -13,10 +13,7 @@
 #ifndef __SCIQUIT__
 #define __SCIQUIT__
 
-#include <stdio.h>
-#include <string.h>
-#include "stack-c.h"
-#include "version.h"
+#include "machine.h"
 
 /**
  * 

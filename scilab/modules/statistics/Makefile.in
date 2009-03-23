@@ -55,11 +55,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
 DIST_COMMON = $(libscistatistics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/statistics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -94,8 +93,7 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscistatistics_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1)
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscistatistics_la-CdfBase.lo \
 	libscistatistics_la-ipmpar1.lo
 am__objects_2 = psi.lo alngam.lo erfc1.lo cdff.lo spmpar.lo cumnor.lo \
@@ -443,10 +441,7 @@ libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURC
 # For the code check (splint)
 CHECK_SRC = $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
-libscistatistics_la_LIBADD =  \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1)
+libscistatistics_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 #### Target ######
 modulename = statistics
@@ -478,7 +473,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro

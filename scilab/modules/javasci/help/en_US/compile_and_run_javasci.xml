@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="compile_and_run_javasci" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="compile_and_run_javasci"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns5="http://www.w3.org/1999/xhtml"
@@ -36,7 +36,14 @@
     <para>For example, with the code defined in the example of this page, the
     command would be:</para>
 
+    <para>on Linux/Unix/MacOSX:</para>
+
     <para><literal>$ javac -cp $SCI/modules/javasci/jar/javasci.jar
+    BasicExample.java</literal></para>
+
+    <para>on Windows:</para>
+
+    <para><literal>D:\&gt; javac -cp %SCI%\modules\javasci\jar\javasci.jar
     BasicExample.java</literal></para>
 
     <para>To run Scilab, there are a few other things to set up.</para>
@@ -66,13 +73,21 @@
 
           <listitem>
             <para>Windows</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>path of scilab root directory:</para>
+
+                <para>set SCI=C:\program files\scilab-5.1</para>
+              </listitem>
+            </itemizedlist>
           </listitem>
         </itemizedlist>
       </listitem>
 
       <listitem>
         <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
-        .dll, .jnilib...)</para>
+        .jnilib...)</para>
 
         <itemizedlist>
           <listitem>
@@ -91,6 +106,18 @@
               </listitem>
             </itemizedlist>
           </listitem>
+
+          <listitem>
+            <para>Windows: Path to libscilab.dll and javasci.dll</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>equivalent to LD_LIBRARY_PATH on Windows is PATH</para>
+
+                <para>set PATH="%SCI%\bin";%PATH%</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -98,36 +125,74 @@
     <para>To launch the Java Application, you can either provide them with
     environnement variable</para>
 
-    <itemizedlist>
+     <itemizedlist>
       <listitem>
-        <para>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/ java
-        -cp modules/javasci/jar/javasci.jar:. BasicExample</para>
+        <para>Linux/Unix/MacOSX:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/
+            java -cp modules/javasci/jar/javasci.jar:. BasicExample</para>
+          </listitem>
+        </itemizedlist>
+
+        <itemizedlist>
+          <listitem>
+            <para>SCI=/path/to/scilab/ java
+            -Djava.library.path=/path/to/libjavasci/ -cp
+            modules/javasci/jar/javasci.jar:. BasicExample</para>
+          </listitem>
+        </itemizedlist>
 
         <para>or with the arguments</para>
       </listitem>
 
       <listitem>
-        <para>SCI=/path/to/scilab/ java
-        -Djava.library.path=/path/to/libjavasci/ -cp
-        modules/javasci/jar/javasci.jar:. BasicExample</para>
+        <para>Windows:</para>
+
+        <para>set SCI=c:\program files\scilab-5.1</para>
+
+        <para>set PATH="%SCI%\bin";%PATH%</para>
+
+        <para>D:\java -cp "%SCI%\modules\javasci\jar\javasci.jar";.
+        BasicExample</para>
       </listitem>
     </itemizedlist>
+
+    <para>optional options to launch java : -Djava.compiler=JIT
+    -Xmx256m</para>
+
+    <para>(With these arguments , you launch javasci with same initial options
+    that standard scilab).</para>
+
+    <para>Note that two environnement variables are taken in account for specific needs: 
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>SCI_DISABLE_TK=1</literal> Disables Tk (Tcl's GUI)</para>
+	  </listitem>
+      <listitem>
+        <para><literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> Launch Java in headless mode (no AWT/Swing)</para>
+      </listitem>
+	  </itemizedlist>
+
+
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[// A simple Java example 
+    <programlisting role="example">// A simple Java example 
 // Filename: BasicExample.java
 
 import javasci.Scilab;
 
 public class BasicExample {
-public static void main(String []args){
-Scilab.Exec("disp((%pi^2)/6);");
+	public static void main(String []args){
+	Scilab.Exec("disp((%pi^2)/6);");
+	}
 }
-}
-]]>
+
 </programlisting>
   </refsection>
 

@@ -35,14 +35,13 @@ fig = gcf();
 immediate_drawing = fig.immediate_drawing;
 fig.immediate_drawing = "off";
 
-//plot2d(0,0,1,strf,' ',rect)
 axes = gca();
 axes.data_bounds = [rect(1), rect(2); rect(3), rect(4)];
 axes.clip_state = "clipgrf";
-//[rho,k]=sort(rho);z=z(:,k);
 
-//nt=size(theta,'*');theta=matrix(theta,1,-1)*180/%pi
 drawGrayplot(theta,rho,z);
+
+objectList = gce(); // get all the created objects to glue them at the end.
 
 axes.isoview = "on";
 axes.box = "off";
@@ -51,30 +50,35 @@ axes.x_label.text = "";
 axes.y_label.text = "";
 axes.z_label.text = "";
 
-// bug here, we need to draw the axes in order to get correct bounding box.
-draw(axes);
-
-
 step=R/5
 r=step;dr=0.02*r;
 for k=1:4
   xarc(-r,r,2*r,2*r,0,360*64)
+  objectList($ + 1) = gce();
   arc = gce();
   arc.line_style = 3;
   xstring((r+dr)*cos(5*%pi/12),(r+dr)*sin(5*%pi/12),string(round(10*r)/10))
+  objectList($ + 1) = gce();
   r=r+step
 end
 xarc(-r,r,2*r,2*r,0,360*64)
+objectList($ + 1) = gce();
 xstring((r+dr)*cos(5*%pi/12),(r+dr)*sin(5*%pi/12),string(round(10*r)/10))
+objectList($ + 1) = gce();
 
 rect=xstringl(0,0,'360');w=rect(3);h=rect(4);d=sqrt(w^2+h^2)/1.8
 r=R+d
 for k=0:11
   xsegs([0;R*cos(k*(%pi/6))],[0;R*sin(k*(%pi/6))])
+  objectList($ + 1) = gce();
   arc = gce();
   arc.line_style = 3;
   xstring(r*cos(k*(%pi/6))-w/2,r*sin(k*(%pi/6))-h/2,string(k*30))
+  objectList($ + 1) = gce();
 end
+
+// glue all the created objects
+glue(objectList);
 
 // drawnow
 fig.immediate_drawing = immediate_drawing;
@@ -84,6 +88,16 @@ endfunction
 function [x,y] = polar2Cart(rho, theta)
   x = rho * cos(theta);
   y = rho * sin(theta);
+endfunction
+
+function [nbDecomp] = computeNeededDecompos(theta)
+  // Compute the needed decomposition for each patch
+  
+  // minimal decompostion for each ring
+  nbFactesPerRingMin = 512;
+  
+  nbDecomp = ceil(nbFactesPerRingMin / size(theta, '*'));
+  
 endfunction
 
 
@@ -100,7 +114,7 @@ function drawGrayplot(theta, rh, z)
 nbRho = size(rho,'*');
 nbTheta = size(theta,'*');
 
-nbDecomposition = 32; // number of approximation facets
+nbDecomposition = computeNeededDecompos(theta); // number of approximation facets
 
 nbRefinedTheta = (nbTheta - 1) * nbDecomposition + 1;
 
@@ -130,7 +144,7 @@ nbQuadFacets = (nbRho - 1) * (nbRefinedTheta - 1);
 // allocate matrices
 xCoords = zeros(4, nbQuadFacets);
 yCoords = zeros(4, nbQuadFacets);
-colors = zeros(1, nbQuadFacets);
+colors = zeros(4, nbQuadFacets);
 
 index = 1;
 
@@ -149,7 +163,14 @@ for i=1:(nbRho - 1)
                         rho(i + 1) * sinTheta(j)];
 
     // color is the same for each nbDecomposition facets
-    colors(index) = z(j / nbDecomposition + 1, i);
+	// retrieve the not refined index
+	thetaIndex = (j - 1) / nbDecomposition + 1;
+	// keep the 4 outside colors of the patch
+	// to be able to switch between average or matlab color.
+    colors(:,index) = [z(thetaIndex, i)
+	                   z(thetaIndex + 1, i)
+					   z(thetaIndex + 1, i + 1)
+					   z(thetaIndex, i + 1)];
 
     index = index + 1;
   end
@@ -162,8 +183,9 @@ zCoords = zeros(4, nbQuadFacets);
 // disable line draing and hidden color
 plot3d(xCoords,yCoords,list(zCoords,colors));
 gPlot = gce();
-gPlot.color_mode = -1;
-gPlot.hiddencolor = 0;
+gPlot.color_mode = -1; // no wireframe
+gPlot.hiddencolor = 0; // no hidden color
+gPlot.color_flag = 2; // average color on each facets
 
 // restore 2d view
 axes = gca();

@@ -11,11 +11,10 @@
  *
  */
 #include "stack-c.h"
+#include "gw_fileio.h"
 #include "fileio.h"
 /*--------------------------------------------------------------------------*/ 
-int int_objnumTokens(char *fname,unsigned long fname_len);
-/*--------------------------------------------------------------------------*/ 
-int int_objnumTokens(char *fname,unsigned long fname_len)
+int sci_numTokens(char *fname,unsigned long fname_len)
 {
 	static int l1,m1,n1,l2,un=1;
 	Nbvars = 0;

@@ -226,10 +226,8 @@
               set the nizs, nrzs and ndzs integer parameters of the "nird"
               common.</para>
 
-              <programlisting>
-      
-      common /nird/ nizs,nrzs,ndzs
-      
+              <programlisting>      
+common /nird/ nizs,nrzs,ndzs
     </programlisting>
 
               <para>This allows Scilab to allocate memory inside its internal
@@ -344,10 +342,8 @@
     <para>Non-linear optimization routine for programs without constraints or
     with bound constraints:</para>
 
-    <programlisting>
-      
-      min costf(x) w.r.t x.
-      
+    <programlisting>      
+min costf(x) w.r.t x.
     </programlisting>
 
     <para><literal>costf</literal> is an "external" i.e a Scilab function, a
@@ -363,10 +359,10 @@
 
         <listitem>
           <para>If <literal>costf</literal> is a Scilab function, the calling
-          sequence for <literal>costf</literal> must be: </para>
+          sequence for <literal>costf</literal> must be:</para>
 
-          <programlisting>      
-      [f,g,ind]=costf(x,ind)
+          <programlisting>     
+[f,g,ind]=costf(x,ind)
     </programlisting>
 
           <para>Here, <literal>costf</literal> is a function which returns
@@ -408,16 +404,16 @@
                 <para>The interface of the Fortran subroutine computing the
                 objective must be :</para>
 
-                <programlisting>
-      subroutine costf(ind,n,x,f,g,ti,tr,td)
+                <programlisting> 
+subroutine costf(ind,n,x,f,g,ti,tr,td)
     </programlisting>
 
                 <para>with the following declarations:</para>
 
                 <programlisting>      
-      integer ind,n ti(*)
-      double precision x(n),f,g(n),td(*)
-      real tr(*)
+integer ind,n ti(*)
+double precision x(n),f,g(n),td(*)
+real tr(*)
     </programlisting>
 
                 <para>The argument <literal>ind</literal> is described
@@ -438,10 +434,8 @@
                 <para>The interface of the C function computing the objective
                 must be :</para>
 
-                <programlisting>
-      
-      void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)
-      
+                <programlisting>      
+void costf(int *ind, int *n, double *x, double *f, double *g, int *ti, float *tr, double *td)
     </programlisting>
 
                 <para>The argument <literal>ind</literal> is described
@@ -479,43 +473,51 @@
     issues so that a direct optimization may be to use the value of "ind" to
     compute "f" and "g" only when needed.</para>
 
-    <programlisting role="example">
-    
-    // External function written in Scilab
-    xref=[1;2;3];x0=[1;-1;1]
-    deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
-    // Simplest call
-    [f,xopt]=optim(cost,x0)
-    // By conjugate gradient - you can use 'qn', 'gc' or 'nd'
-    [f,xopt,gopt]=optim(cost,x0,'gc')
-    //Seen as non differentiable
-    [f,xopt,gopt]=optim(cost,x0,'nd')
-    // Upper and lower bounds on x
-    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0)
-    // Upper and lower bounds on x and setting up the algorithm to 'gc'
-    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc')
-    // Bound on the number of call to the objective function
-    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3)
-    // Set max number of call to the objective function (3)
-    // Set max number of iterations (100)
-    // Set stopping threshold on the value of f (1e-6), 
-    // on the value of the norm of the gradient of the objective function (1e-6)
-    // on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
-    [f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3,100,1e-6,1e-6,[1e-3;1e-3;1e-3])
-    // Print information messages while optimizing
-    // Be careful, some messages are printed in a terminal. You must
-    // Scilab from the command line to see these messages.
-    [f,xopt]=optim(cost,x0,imp=3)
-    // Use the 'derivative' function to compute the partial
-    // derivatives of the previous problem
-    deff('y=my_f(x)','y=0.5*norm(x-xref)^2');
-    deff('y=my_df(x)','y=derivative(my_f,x)');
-    deff('[f,g,ind]=cost(x,ind)','f=my_f(x); ...
-                                  g=my_df(x)');
-    // Simplest call
-    xref=[1;2;3];x0=[1;-1;1]
-    [f,xopt]=optim(cost,x0)
-    
+    <programlisting role="example"> 
+// External function written in Scilab
+xref=[1;2;3];x0=[1;-1;1]
+deff('[f,g,ind]=cost(x,ind)','f=0.5*norm(x-xref)^2,g=x-xref');
+
+// Simplest call
+[f,xopt]=optim(cost,x0)
+
+// By conjugate gradient - you can use 'qn', 'gc' or 'nd'
+[f,xopt,gopt]=optim(cost,x0,'gc')
+
+//Seen as non differentiable
+[f,xopt,gopt]=optim(cost,x0,'nd')
+
+// Upper and lower bounds on x
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0)
+
+// Upper and lower bounds on x and setting up the algorithm to 'gc'
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc')
+
+// Bound on the number of call to the objective function
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3)
+
+// Set max number of call to the objective function (3)
+// Set max number of iterations (100)
+// Set stopping threshold on the value of f (1e-6), 
+// on the value of the norm of the gradient of the objective function (1e-6)
+// on the improvement on the parameters x_opt (1e-6;1e-6;1e-6)
+[f,xopt,gopt]=optim(cost,'b',[-1;0;2],[0.5;1;4],x0,'gc','ar',3,100,1e-6,1e-6,[1e-3;1e-3;1e-3])
+
+// Print information messages while optimizing
+// Be careful, some messages are printed in a terminal. You must
+// Scilab from the command line to see these messages.
+[f,xopt]=optim(cost,x0,imp=3)
+
+// Use the 'derivative' function to compute the partial
+// derivatives of the previous problem
+deff('y=my_f(x)','y=0.5*norm(x-xref)^2');
+deff('y=my_df(x)','y=derivative(my_f,x)');
+deff('[f,g,ind]=cost(x,ind)','f=my_f(x); ...
+                              g=my_df(x)');
+
+// Simplest call
+xref=[1;2;3];x0=[1;-1;1]
+[f,xopt]=optim(cost,x0)
   </programlisting>
   </refsection>
 
@@ -533,40 +535,42 @@
     arrays ti and td are the same that the content of the Scilab variable, as
     expected.</para>
 
-    <programlisting role="example">
-    // External function written in C (C compiler required)
-    // write down the C code (Rosenbrock problem)
-    C=['#include &lt;math.h&gt;'
-    'double sq(double x)'
-    '{ return x*x;}'
-    'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
-    '                                int *ti, float *tr, double *td)'
-    '{'
-    '  double p;'
-    '  int i;'
-    '  p=td[0];'
-    '  if (*ind==2||*ind==4) {'
-    '    *f=1.0;'
-    '    for (i=1;i&lt;*n;i++)'
-    '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
-    '  }'
-    '  if (*ind==3||*ind==4) {'
-    '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
-    '    for (i=1;i&lt;*n-1;i++)'
-    '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
-    '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
-    '  }'
-    '}'];
-    mputl(C,TMPDIR+'/rosenc.c')
-    // compile the C code
-    l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
-    // incremental linking
-    link(l,'rosenc','c')
-    //solve the problem
-    x0=[40;10;50];
-    p=100;
-    [f,xo,go]=optim('rosenc',x0,'td',p)
-    
+    <programlisting role="example"> 
+// External function written in C (C compiler required)
+// write down the C code (Rosenbrock problem)
+C=['#include &lt;math.h&gt;'
+   'double sq(double x)'
+   '{ return x*x;}'
+   'void rosenc(int *ind, int *n, double *x, double *f, double *g, '
+   '                                int *ti, float *tr, double *td)'
+   '{'
+   '  double p;'
+   '  int i;'
+   '  p=td[0];'
+   '  if (*ind==2||*ind==4) {'
+   '    *f=1.0;'
+   '    for (i=1;i&lt;*n;i++)'
+   '      *f+=p*sq(x[i]-sq(x[i-1]))+sq(1.0-x[i]);'
+   '  }'
+   '  if (*ind==3||*ind==4) {'
+   '    g[0]=-4.0*p*(x[1]-sq(x[0]))*x[0];'
+   '    for (i=1;i&lt;*n-1;i++)'
+   '      g[i]=2.0*p*(x[i]-sq(x[i-1]))-4.0*p*(x[i+1]-sq(x[i]))*x[i]-2.0*(1.0-x[i]);'
+   '    g[*n-1]=2.0*p*(x[*n-1]-sq(x[*n-2]))-2.0*(1.0-x[*n-1]);'
+   '  }'
+   '}'];
+mputl(C,TMPDIR+'/rosenc.c')
+
+// compile the C code
+l=ilib_for_link('rosenc','rosenc.o',[],'c',TMPDIR+'/Makefile');
+
+// incremental linking
+link(l,'rosenc','c')
+
+//solve the problem
+x0=[40;10;50];
+p=100;
+[f,xo,go]=optim('rosenc',x0,'td',p)
   </programlisting>
   </refsection>
 
@@ -575,46 +579,47 @@
 
     <para>The following is an example with a Fortran function.</para>
 
-    <programlisting role="example">
-    
-    // External function written in Fortran (Fortran compiler required)
-    // write down the Fortran  code (Rosenbrock problem)
- F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
-     '      integer ind,n,ti(*)'
-     '      double precision x(n),f,g(n),td(*)'
-     '      real tr(*)'
-     'c'
-     '      double precision y,p'
-     '      p=td(1)'
-     '      if (ind.eq.2.or.ind.eq.4) then'
-     '        f=1.0d0'
-     '        do i=2,n'
-     '          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'
-     '        enddo'
-     '      endif'
-     '      if (ind.eq.3.or.ind.eq.4) then'
-     '        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'
-     '        if(n.gt.2) then'
-     '          do i=2,n-1'
-     '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
-     '     &amp;           -2.0d0*(1.0d0-x(i))'
-     '          enddo'
-     '        endif'
-     '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
-     '      endif'
-     '      return'
-     '      end'];
+    <programlisting role="example">    
+// External function written in Fortran (Fortran compiler required)
+// write down the Fortran  code (Rosenbrock problem)
+F=[ '      subroutine rosenf(ind, n, x, f, g, ti, tr, td)'
+    '      integer ind,n,ti(*)'
+    '      double precision x(n),f,g(n),td(*)'
+    '      real tr(*)'
+    'c'
+    '      double precision y,p'
+    '      p=td(1)'
+    '      if (ind.eq.2.or.ind.eq.4) then'
+    '        f=1.0d0'
+    '        do i=2,n'
+    '          f=f+p*(x(i)-x(i-1)**2)**2+(1.0d0-x(i))**2'
+    '        enddo'
+    '      endif'
+    '      if (ind.eq.3.or.ind.eq.4) then'
+    '        g(1)=-4.0d0*p*(x(2)-x(1)**2)*x(1)'
+    '        if(n.gt.2) then'
+    '          do i=2,n-1'
+    '            g(i)=2.0d0*p*(x(i)-x(i-1)**2)-4.0d0*p*(x(i+1)-x(i)**2)*x(i)'
+    '     &amp;           -2.0d0*(1.0d0-x(i))'
+    '          enddo'
+    '        endif'
+    '        g(n)=2.0d0*p*(x(n)-x(n-1)**2)-2.0d0*(1.0d0-x(n))'
+    '      endif'
+    '      return'
+    '      end'];
 
-    mputl(F,TMPDIR+'/rosenf.f')
-    // compile the Fortran code
-    l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
-    // incremental linking
-    link(l,'rosenf','f')
-    //solve the problem
-    x0=[40;10;50];
-    p=100;
-    [f,xo,go]=optim('rosenf',x0,'td',p)
-    
+mputl(F,TMPDIR+'/rosenf.f')
+
+// compile the Fortran code
+l=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+
+// incremental linking
+link(l,'rosenf','f')
+
+//solve the problem
+x0=[40;10;50];
+p=100;
+[f,xo,go]=optim('rosenf',x0,'td',p)
   </programlisting>
   </refsection>
 
@@ -641,69 +646,70 @@
     Whenever the objective function is called, the izs, rzs and dzs arrays
     have the values that have been previously initialized.</para>
 
-    <programlisting role="example">
-    
+    <programlisting role="example"> 
 // 
 // Define a fortran source code and compile it (fortran compiler required)
 //
 fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-'C     -------------------------------------------'
-'c     Example of cost function given by a subroutine'
-'c     if n&lt;=2 returns ind=0'
-'c     f.bonnans, oct 86'
-'      implicit double precision (a-h,o-z)'
-'      real rzs(1)'
-'      double precision dzs(*)'
-'      dimension x(n),g(n),izs(*)'
-'      common/nird/nizs,nrzs,ndzs'
-'      if (n.lt.3) then'
-'        ind=0'
-'        return'
-'      endif'
-'      if(ind.eq.10) then'
-'         nizs=2'
-'         nrzs=1'
-'         ndzs=2'
-'         return'
-'      endif'
-'      if(ind.eq.11) then'
-'         izs(1)=5'
-'         izs(2)=10'
-'         dzs(2)=100.0d+0'
-'         return'
-'      endif'
-'      if(ind.eq.2)go to 5'
-'      if(ind.eq.3)go to 20'
-'      if(ind.eq.4)go to 5'
-'      ind=-1'
-'      return'
-'5     f=1.0d+0'
-'      do 10 i=2,n'
-'        im1=i-1'
-'10      f=f + dzs(2)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
-'      if(ind.eq.2)return'
-'20    g(1)=-4.0d+0*dzs(2)*(x(2)-x(1)**2)*x(1)'
-'      nm1=n-1'
-'      do 30 i=2,nm1'
-'        im1=i-1'
-'        ip1=i+1'
-'        g(i)=2.0d+0*dzs(2)*(x(i)-x(im1)**2)'
-'30      g(i)=g(i) -4.0d+0*dzs(2)*(x(ip1)-x(i)**2)*x(i) - '
-'     &amp;        2.0d+0*(1.0d+0-x(i))'
-'      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
-'      return'
-'      end'];
+               'C     -------------------------------------------'
+               'c     Example of cost function given by a subroutine'
+               'c     if n&lt;=2 returns ind=0'
+               'c     f.bonnans, oct 86'
+               '      implicit double precision (a-h,o-z)'
+               '      real rzs(1)'
+               '      double precision dzs(*)'
+               '      dimension x(n),g(n),izs(*)'
+               '      common/nird/nizs,nrzs,ndzs'
+               '      if (n.lt.3) then'
+               '        ind=0'
+               '        return'
+               '      endif'
+               '      if(ind.eq.10) then'
+               '         nizs=2'
+               '         nrzs=1'
+               '         ndzs=2'
+               '         return'
+               '      endif'
+               '      if(ind.eq.11) then'
+               '         izs(1)=5'
+               '         izs(2)=10'
+               '         dzs(2)=100.0d+0'
+               '         return'
+               '      endif'
+               '      if(ind.eq.2)go to 5'
+               '      if(ind.eq.3)go to 20'
+               '      if(ind.eq.4)go to 5'
+               '      ind=-1'
+               '      return'
+               '5     f=1.0d+0'
+               '      do 10 i=2,n'
+               '        im1=i-1'
+               '10      f=f + dzs(2)*(x(i)-x(im1)**2)**2 + (1.0d+0-x(i))**2'
+               '      if(ind.eq.2)return'
+               '20    g(1)=-4.0d+0*dzs(2)*(x(2)-x(1)**2)*x(1)'
+               '      nm1=n-1'
+               '      do 30 i=2,nm1'
+               '        im1=i-1'
+               '        ip1=i+1'
+               '        g(i)=2.0d+0*dzs(2)*(x(i)-x(im1)**2)'
+               '30      g(i)=g(i) -4.0d+0*dzs(2)*(x(ip1)-x(i)**2)*x(i) - '
+               '     &amp;        2.0d+0*(1.0d+0-x(i))'
+               '      g(n)=2.0d+0*dzs(2)*(x(n)-x(nm1)**2) - 2.0d+0*(1.0d+0-x(n))'
+               '      return'
+               '      end'];
 mputl(fortransource,TMPDIR+'/rosenf.f')
+
 // compile the C code
 libpath=ilib_for_link('rosenf','rosenf.o',[],'f',TMPDIR+'/Makefile');
+
 // incremental linking
 linkid=link(libpath,'rosenf','f');
+
 x0=1.2*ones(1,5);
 //
 // Solve the problem
 //
 [f,x,g]=optim('rosenf',x0,'in');
-    
   </programlisting>
   </refsection>
 
@@ -725,20 +731,17 @@ x0=1.2*ones(1,5);
     instructions, which allows the compiler to import the "nird"
     symbol.</para>
 
-    <programlisting role="example">
-    
-fortransource=['      subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
-'cDEC$ IF DEFINED (FORDLL)'
-'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
-'cDEC$ ENDIF'
-'C     -------------------------------------------'
-'c     Example of cost function given by a subroutine'
-'c     if n&lt;=2 returns ind=0'
-'c     f.bonnans, oct 86'
-'      implicit double precision (a-h,o-z)'
+    <programlisting role="example">    
+fortransource=['subroutine rosenf(ind,n,x,f,g,izs,rzs,dzs)'
+               'cDEC$ IF DEFINED (FORDLL)'
+               'cDEC$ ATTRIBUTES DLLIMPORT:: /nird/'
+               'cDEC$ ENDIF'
+               'C     -------------------------------------------'
+               'c     Example of cost function given by a subroutine'
+               'c     if n&lt;=2 returns ind=0'
+               'c     f.bonnans, oct 86'
+               '      implicit double precision (a-h,o-z)'
 [etc...]
-
-    
   </programlisting>
   </refsection>
 

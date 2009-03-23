@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Numerical tests
 // Case where A is sparse
 A=[ 94  0   0   0    0   28  0   0   32  0

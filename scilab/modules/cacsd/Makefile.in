@@ -55,11 +55,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libscicacsd_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/cacsd
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -100,8 +98,7 @@ libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1) $(am__append_2)
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscicacsd_la-jacl2.lo libscicacsd_la-onface.lo \
 	libscicacsd_la-hhdml.lo libscicacsd_la-tild.lo \
 	libscicacsd_la-degl2.lo libscicacsd_la-dqrdc.lo \
@@ -650,16 +647,7 @@ CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CFLAGS)
 
 # cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscicacsd_la_LIBADD = $(top_builddir)/modules/mexlib/libmx.la \
-	$(top_builddir)/modules/mexlib/libmat.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/mexlib/libmex.la \
-	$(top_builddir)/modules/core/libscicore.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-	$(am__append_1) $(am__append_2)
+libscicacsd_la_LIBADD = $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/mexlib/libmat.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 #### Target ######
 modulename = cacsd
@@ -696,7 +684,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro

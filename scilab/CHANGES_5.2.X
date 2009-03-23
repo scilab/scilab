@@ -9,7 +9,9 @@ Compilation:
 
 * modelicac (scicos) built with Ocaml 3.11.0 on Windows
 
-* blas, lapack , arpack libraries moved as pre-requirements (Windows)
+* blas, lapack, arpack libraries moved as pre-requirements (Windows)
+
+* blas, lapack libraries moved as pre-requirements (Linux/Unix/MacOSX)
 
 * lapack 3.2 used on Windows
 
@@ -29,7 +31,13 @@ Core functions:
 
  - Rewrite :
  	+ mode
- 	
+ 	+ predef
+
+fileio functions:
+=================
+  - Input arguments of functions are checked 
+    (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
+
 
 Dynamic link:
 =============
@@ -47,6 +55,10 @@ Bug fixes:
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for timer()
 
+* bug 3772 fixed - input argument of 'predef' was not correctly checked.
+
+* bug 3773 fixed - 'ans' was protected with predef('all').
+
 * bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
 
 * bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
@@ -55,5 +67,5 @@ Bug fixes:
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
-* bug 4197 fixed - inaccurate floating point results computed by norm with large/small vector matrices.
-
+* bug 4267 fixed - A non initilization of a lock under Netbsd was 
+		   causing an error on startup

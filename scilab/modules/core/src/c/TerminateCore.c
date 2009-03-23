@@ -9,6 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <libxml/parser.h>
+
 #include "TerminateCore.h"
 /*--------------------------------------------------------------------------*/ 
 #include "realmain.h" /* Get_no_startup_flag */
@@ -53,6 +55,11 @@ BOOL TerminateCorePart2(void)
 
 	/* Close all scilab's files */
 	TerminateScilabFilesList();
+
+	/*
+	 * Cleanup function for the XML library.
+	 */
+	xmlCleanupParser();
 
 	/** clean tmpfiles **/
 	C2F(tmpdirc)();

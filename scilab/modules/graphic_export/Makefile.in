@@ -92,49 +92,38 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscigraphic_export_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@GUI_TRUE@libscigraphic_export_la_DEPENDENCIES =  \
-@GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__libscigraphic_export_la_SOURCES_DIST =  \
-	src/nographic_export/nographic_export.c src/c/xs2file.c \
-	src/jni/GL2PSConstant_wrap.c src/jni/GL2PSWrapping_wrap.c \
-	src/c/gl2ps/gl2ps.c sci_gateway/c/gw_graphic_export.c \
-	sci_gateway/c/sci_xs2bmp.c sci_gateway/c/sci_xs2gif.c \
-	sci_gateway/c/sci_xs2ppm.c sci_gateway/c/sci_xs2ps.c \
-	sci_gateway/c/sci_xs2svg.c sci_gateway/c/sci_xs2jpg.c \
-	sci_gateway/c/sci_xs2png.c sci_gateway/c/sci_xs2eps.c \
-	sci_gateway/c/sci_xs2pdf.c src/cpp/exportToFile.cpp \
-	src/jni/FileExporter.cpp src/cpp/GL2PSConstant.cpp \
-	src/cpp/GL2PSWrapping.cpp src/cpp/JoGLInterface.cpp \
-	src/jni/GL2PSToJOGL.cpp src/jni/JOGLConstant.cpp \
-	src/jni/GiwsException.cpp
-@GUI_TRUE@am__objects_1 = libscigraphic_export_la-xs2file.lo \
-@GUI_TRUE@	libscigraphic_export_la-GL2PSConstant_wrap.lo \
-@GUI_TRUE@	libscigraphic_export_la-GL2PSWrapping_wrap.lo \
-@GUI_TRUE@	libscigraphic_export_la-gl2ps.lo
-@GUI_TRUE@am__objects_2 =  \
-@GUI_TRUE@	libscigraphic_export_la-gw_graphic_export.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2bmp.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2gif.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2ppm.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2ps.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2svg.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2jpg.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2png.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2eps.lo \
-@GUI_TRUE@	libscigraphic_export_la-sci_xs2pdf.lo
-@GUI_TRUE@am__objects_3 = libscigraphic_export_la-exportToFile.lo \
-@GUI_TRUE@	libscigraphic_export_la-FileExporter.lo \
-@GUI_TRUE@	libscigraphic_export_la-GL2PSConstant.lo \
-@GUI_TRUE@	libscigraphic_export_la-GL2PSWrapping.lo \
-@GUI_TRUE@	libscigraphic_export_la-JoGLInterface.lo \
-@GUI_TRUE@	libscigraphic_export_la-GL2PSToJOGL.lo \
-@GUI_TRUE@	libscigraphic_export_la-JOGLConstant.lo \
-@GUI_TRUE@	libscigraphic_export_la-GiwsException.lo
-@GUI_FALSE@am_libscigraphic_export_la_OBJECTS =  \
-@GUI_FALSE@	libscigraphic_export_la-nographic_export.lo
-@GUI_TRUE@am_libscigraphic_export_la_OBJECTS = $(am__objects_1) \
-@GUI_TRUE@	$(am__objects_2) $(am__objects_3)
+libscigraphic_export_disable_la_LIBADD =
+am_libscigraphic_export_disable_la_OBJECTS =  \
+	libscigraphic_export_disable_la-nographic_export.lo
+libscigraphic_export_disable_la_OBJECTS =  \
+	$(am_libscigraphic_export_disable_la_OBJECTS)
+libscigraphic_export_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+am__objects_1 = libscigraphic_export_la-xs2file.lo \
+	libscigraphic_export_la-GL2PSConstant_wrap.lo \
+	libscigraphic_export_la-GL2PSWrapping_wrap.lo \
+	libscigraphic_export_la-gl2ps.lo
+am__objects_2 = libscigraphic_export_la-gw_graphic_export.lo \
+	libscigraphic_export_la-sci_xs2bmp.lo \
+	libscigraphic_export_la-sci_xs2gif.lo \
+	libscigraphic_export_la-sci_xs2ppm.lo \
+	libscigraphic_export_la-sci_xs2ps.lo \
+	libscigraphic_export_la-sci_xs2svg.lo \
+	libscigraphic_export_la-sci_xs2jpg.lo \
+	libscigraphic_export_la-sci_xs2png.lo \
+	libscigraphic_export_la-sci_xs2eps.lo \
+	libscigraphic_export_la-sci_xs2pdf.lo
+am__objects_3 = libscigraphic_export_la-exportToFile.lo \
+	libscigraphic_export_la-FileExporter.lo \
+	libscigraphic_export_la-GL2PSConstant.lo \
+	libscigraphic_export_la-GL2PSWrapping.lo \
+	libscigraphic_export_la-JoGLInterface.lo \
+	libscigraphic_export_la-GL2PSToJOGL.lo \
+	libscigraphic_export_la-JOGLConstant.lo \
+	libscigraphic_export_la-GiwsException.lo
+am_libscigraphic_export_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3)
 libscigraphic_export_la_OBJECTS =  \
 	$(am_libscigraphic_export_la_OBJECTS)
 libscigraphic_export_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -162,8 +151,10 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscigraphic_export_la_SOURCES)
-DIST_SOURCES = $(am__libscigraphic_export_la_SOURCES_DIST)
+SOURCES = $(libscigraphic_export_disable_la_SOURCES) \
+	$(libscigraphic_export_la_SOURCES)
+DIST_SOURCES = $(libscigraphic_export_disable_la_SOURCES) \
+	$(libscigraphic_export_la_SOURCES)
 libscigraphic_export_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigraphic_export_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphic_export_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -370,72 +361,72 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the c files
-@GUI_TRUE@GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
-@GUI_TRUE@src/jni/FileExporter.cpp \
-@GUI_TRUE@src/cpp/GL2PSConstant.cpp \
-@GUI_TRUE@src/cpp/GL2PSWrapping.cpp \
-@GUI_TRUE@src/cpp/JoGLInterface.cpp  \
-@GUI_TRUE@src/jni/GL2PSToJOGL.cpp \
-@GUI_TRUE@src/jni/JOGLConstant.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp
+GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
+src/jni/FileExporter.cpp \
+src/cpp/GL2PSConstant.cpp \
+src/cpp/GL2PSWrapping.cpp \
+src/cpp/JoGLInterface.cpp  \
+src/jni/GL2PSToJOGL.cpp \
+src/jni/JOGLConstant.cpp \
+src/jni/GiwsException.cpp
 
-@GUI_TRUE@GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
-@GUI_TRUE@src/jni/GL2PSConstant_wrap.c \
-@GUI_TRUE@src/jni/GL2PSWrapping_wrap.c \
-@GUI_TRUE@src/c/gl2ps/gl2ps.c
+GRAPHIC_EXPORT_C_SOURCES = src/c/xs2file.c \
+src/jni/GL2PSConstant_wrap.c \
+src/jni/GL2PSWrapping_wrap.c \
+src/c/gl2ps/gl2ps.c
 
 
 # List of the gateway c files
-@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2bmp.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2gif.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2ppm.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2ps.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2svg.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2jpg.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2png.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2eps.c \
-@GUI_TRUE@sci_gateway/c/sci_xs2pdf.c
+GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_export.c \
+sci_gateway/c/sci_xs2bmp.c \
+sci_gateway/c/sci_xs2gif.c \
+sci_gateway/c/sci_xs2ppm.c \
+sci_gateway/c/sci_xs2ps.c \
+sci_gateway/c/sci_xs2svg.c \
+sci_gateway/c/sci_xs2jpg.c \
+sci_gateway/c/sci_xs2png.c \
+sci_gateway/c/sci_xs2eps.c \
+sci_gateway/c/sci_xs2pdf.c
 
-@GUI_FALSE@libscigraphic_export_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 
 # Includes need for the compilation
-@GUI_TRUE@libscigraphic_export_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-@GUI_TRUE@				-I$(srcdir)/includes/ \
-@GUI_TRUE@				-I$(srcdir)/src/cpp/ \
-@GUI_TRUE@				-I$(srcdir)/src/jni/ \
-@GUI_TRUE@				-I$(srcdir)/src/c/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/jvm/includes \
-@GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/renderer/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
-@GUI_TRUE@				-I$(top_srcdir)/modules/fileio/includes \
-@GUI_TRUE@				-I$(top_srcdir)/libs/doublylinkedlist/includes
+libscigraphic_export_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/graphics/includes/ \
+				-I$(top_srcdir)/modules/renderer/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/fileio/includes \
+				-I$(top_srcdir)/libs/doublylinkedlist/includes
 
 
 # All the sources needed by libscigraphic_export.la
-@GUI_FALSE@libscigraphic_export_la_SOURCES = src/nographic_export/nographic_export.c
-
-# All the sources needed by libscigraphic_export.la
-@GUI_TRUE@libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
+libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
 
 # For the code check (splint)
-@GUI_TRUE@CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
-@GUI_TRUE@INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
-@GUI_TRUE@libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
-@GUI_TRUE@src/jni/GL2PSToJOGL.giws.xml \
-@GUI_TRUE@src/jni/JOGLConstant.giws.xml
+CHECK_SRC = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
+libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+GIWS_WRAPPERS = src/jni/FileExporter.giws.xml \
+src/jni/GL2PSToJOGL.giws.xml \
+src/jni/JOGLConstant.giws.xml
 
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
-@GUI_TRUE@USEANT = 1
-@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
+USEANT = 1
+@GIWS_TRUE@BUILT_SOURCES = giws
+
+# All the sources needed by libscigraphic_export.la
+libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
+libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export.la
+pkglib_LTLIBRARIES = libscigraphic_export.la libscigraphic_export-disable.la
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Name of the module and the path ######
@@ -587,6 +578,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscigraphic_export-disable.la: $(libscigraphic_export_disable_la_OBJECTS) $(libscigraphic_export_disable_la_DEPENDENCIES) 
+	$(LINK) -rpath $(pkglibdir) $(libscigraphic_export_disable_la_OBJECTS) $(libscigraphic_export_disable_la_LIBADD) $(LIBS)
 libscigraphic_export.la: $(libscigraphic_export_la_OBJECTS) $(libscigraphic_export_la_DEPENDENCIES) 
 	$(libscigraphic_export_la_LINK) -rpath $(pkglibdir) $(libscigraphic_export_la_OBJECTS) $(libscigraphic_export_la_LIBADD) $(LIBS)
 
@@ -596,6 +589,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-FileExporter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-GL2PSConstant.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-GL2PSConstant_wrap.Plo@am__quote@
@@ -608,7 +602,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-exportToFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-gl2ps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-nographic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_xs2bmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_xs2eps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_export_la-sci_xs2gif.Plo@am__quote@
@@ -641,12 +634,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscigraphic_export_la-nographic_export.lo: src/nographic_export/nographic_export.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_la-nographic_export.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_la-nographic_export.Tpo -c -o libscigraphic_export_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphic_export_la-nographic_export.Tpo $(DEPDIR)/libscigraphic_export_la-nographic_export.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nographic_export/nographic_export.c' object='libscigraphic_export_la-nographic_export.lo' libtool=yes @AMDEPBACKSLASH@
+libscigraphic_export_disable_la-nographic_export.lo: src/nographic_export/nographic_export.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_disable_la-nographic_export.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Tpo -c -o libscigraphic_export_disable_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Tpo $(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nographic_export/nographic_export.c' object='libscigraphic_export_disable_la-nographic_export.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscigraphic_export_disable_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
 
 libscigraphic_export_la-xs2file.lo: src/c/xs2file.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscigraphic_export_la-xs2file.lo -MD -MP -MF $(DEPDIR)/libscigraphic_export_la-xs2file.Tpo -c -o libscigraphic_export_la-xs2file.lo `test -f 'src/c/xs2file.c' || echo '$(srcdir)/'`src/c/xs2file.c

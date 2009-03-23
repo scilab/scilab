@@ -13,8 +13,6 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/
 
-if GUI
-
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
 src/c/getHandleProperty/get_figure_position_property.c \
@@ -416,13 +414,6 @@ INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
 libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 
 
-if USE_EMBEDDED_LAPACK
-libscigraphics_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscigraphics_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
@@ -584,19 +575,17 @@ tcl/ged/images/text.gif
 
 USEANT=1
 
-else
+libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 
-GRAPHICS_C_SOURCES = src/nographics/nographics.c
+libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
-libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
+libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
-endif
+pkglib_LTLIBRARIES = libscigraphics.la libscigraphics-disable.la
 
-pkglib_LTLIBRARIES = libscigraphics.la
-
-libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
+libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 
 modulename=graphics
 
 include $(top_srcdir)/Makefile.incl.am
+ 

@@ -48,6 +48,7 @@ NbGen       = 5;
 NbCouples   = 110;
 Log         = %T;
 nb_disp     = 10; // Nb point to display from the optimal population
+pressure    = 0.1;
 
 ga_params = init_param();
 // Parameters to adapt to the shape of the optimization problem

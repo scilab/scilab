@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mrow>
+    <math:mrow>
+     <math:mrow>
+      <math:mrow>
+       <math:msup>
+        <math:mi>x</math:mi>
+        <math:mn>2</math:mn>
+       </math:msup>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mfrac>
+        <math:mrow>
+         <math:msup>
+          <math:mi>d</math:mi>
+          <math:mn>2</math:mn>
+         </math:msup>
+         <math:mi>y</math:mi>
+        </math:mrow>
+        <math:msup>
+         <math:mi math:fontstyle="italic">dx</math:mi>
+         <math:mn>2</math:mn>
+        </math:msup>
+       </math:mfrac>
+      </math:mrow>
+      <math:mo math:stretchy="false">+</math:mo>
+      <math:mrow>
+       <math:mi>x</math:mi>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mfrac>
+        <math:mi math:fontstyle="italic">dy</math:mi>
+        <math:mi math:fontstyle="italic">dx</math:mi>
+       </math:mfrac>
+      </math:mrow>
+     </math:mrow>
+     <math:mo math:stretchy="false">+</math:mo>
+     <math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:msup>
+         <math:mi>x</math:mi>
+         <math:mn>2</math:mn>
+        </math:msup>
+        <math:mo math:stretchy="false">−</math:mo>
+        <math:msup>
+         <math:mo math:stretchy="false">α</math:mo>
+         <math:mn>2</math:mn>
+        </math:msup>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mo math:stretchy="false">⋅</math:mo>
+      <math:mi>y</math:mi>
+     </math:mrow>
+    </math:mrow>
+    <math:mo math:stretchy="false">=</math:mo>
+    <math:mn>0,</math:mn>
+   </math:mrow>
+   <math:mrow>
+    <math:mo math:stretchy="false">α</math:mo>
+    <math:mo math:stretchy="false">≥</math:mo>
+    <math:mn>0</math:mn>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">x^2 cdot {{d^2 y} over {dx^2}} + x cdot {{dy} over {dx}} + (x^2 - %alpha^2) cdot y = 0, %alpha&gt;=0</math:annotation>
+ </math:semantics>
+</math:math>
