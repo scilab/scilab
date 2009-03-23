@@ -13442,12 +13442,12 @@ echo $ECHO_N "checking for SWIG version... $ECHO_C" >&6; }
 echo "${ECHO_T}$swig_version" >&6; }
 		if test -n "$swig_version" ; then
 			# Calculate the required version number
-			swig_tmp=( `echo  | sed 's/[^0-9]\+/ /g'` )
-			swig_required_version=$(( 1000000 * ${swig_tmp[0]:-0} + 1000 * ${swig_tmp[1]:-0} + ${swig_tmp[2]:-0} ))
+                        swig_tmp=`echo  | sed 's/[^0-9]\+/ /g'`
+                        swig_required_version=`echo $swig_tmp | awk '{print  1000000 *  +  1000 *  + }'`
 
 			# Calculate the available version number
-			swig_tmp=( `echo $swig_version | sed 's/[^0-9]\+/ /g'` )
-			swig_tmp=$(( 1000000 * ${swig_tmp[0]:-0} + 1000 * ${swig_tmp[1]:-0} + ${swig_tmp[2]:-0} ))
+                        swig_tmp=`echo $swig_version | sed 's/[^0-9]\+/ /g'`
+                        swig_tmp=`echo $swig_tmp | awk '{print  1000000 *  +  1000 *  + }'`
 
 			if test $swig_required_version -gt $swig_tmp ; then
 				{ echo "$as_me:$LINENO: WARNING: SWIG version  is required, you have $swig_version" >&5
@@ -19507,13 +19507,13 @@ fi
 
 
    if test x$MSGFMT = xno; then
-	  { { echo "$as_me:$LINENO: error: As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&5
-echo "$as_me: error: As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&2;}
+	  { { echo "$as_me:$LINENO: error: The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&5
+echo "$as_me: error: The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&2;}
    { (exit 1); exit 1; }; }
 	  fi
 	if test x$MSGCAT = xno; then
-	  { { echo "$as_me:$LINENO: error: As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&5
-echo "$as_me: error: As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue." >&2;}
+	  { { echo "$as_me:$LINENO: error: The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&5
+echo "$as_me: error: The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization " >&2;}
    { (exit 1); exit 1; }; }
 	fi
 	BUILD_LOCALIZATION_ENABLE=yes

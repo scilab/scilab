@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // test bug 2208
 
 fd = mopen(TMPDIR+'/bug_2208.txt','wt');

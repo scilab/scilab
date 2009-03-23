@@ -11,7 +11,7 @@
 function [resultat,status] = powershell(varargin)
   Chainecmd = '';
   Chainecmdbegin = 'powershell.exe -nologo -inputformat text -outputformat text -Noninteractive ';
-	resultat = [gettext("Error(s) : see help powershell'';''verify your script without scilab.")];
+	resultat = [gettext("Error(s) : see help powershell");gettext("Verify your script without Scilab.")];
 	status = %f;
 
 	[lhs,rhs]=argn(0);

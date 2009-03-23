@@ -28,7 +28,8 @@
 #include "freeArrayOfString.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DrawObjects.h"
-
+#include "Axes.h" /* propertyNameToLegendPlace */
+#include "SetProperty.h" /* sciSetLegendLocation */
 #define DEF_LEGEND_LOCATION "in_upper_right"
 
 /*--------------------------------------------------------------------------*/

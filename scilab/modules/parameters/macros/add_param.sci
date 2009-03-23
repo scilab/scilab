@@ -16,9 +16,8 @@ if typeof(list_name)=='plist' then
 else
   if nargout==2 then
     err = %T; 
-  else
-    warning(sprintf(gettext("%s: not a plist"),"add_param"));
   end
+  warning(sprintf(gettext("%s: not a plist"),"add_param"));
 end
 ga_list = list_name;
 endfunction

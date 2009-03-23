@@ -5,6 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
+// <-- Non-regression test for bug 2792 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=2792
+//
+// <-- Short Description -->
+// A bug which has appeared with Scilab 5
+// Erroneous display of a woarning:
+
 warning("off")
 
 m = 100;
@@ -15,5 +26,5 @@ A = [];
 for i=1:n,  A = [A t.^(i-1)]; end
 b = exp(sin(4*t));
 b = b/2006.7874531048527;
-ierr = execstr('x1=A\b;','errcatch');
+ierr = execstr("x1=A\b;","errcatch");
 if ierr <> 0 then pause,end

@@ -11,7 +11,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<project name="javasci" default="jar">
+<project name="javasci" default="build-examples">
   <import file="../../build.incl.xml"/>
   <property name="library.name" value="${library.javasci.name}" />
 
@@ -42,7 +42,7 @@
 
   <property name="examples.classes.dir" location="${build.dir}/examples/" />
 
-  <target name="build-example" description="Build the examples" depends="jar">
+  <target name="build-examples" description="Build the examples" depends="jar">
         <property name="examples.src.dir"  location="examples/others/" />
         <mkdir dir="${examples.classes.dir}"/>
 
@@ -59,7 +59,7 @@
 
   </target>
 
-  <target name="clean-example" description="clean examples">
+  <target name="clean-examples" description="clean examples">
   	  <delete dir="${examples.classes.dir}"/>
   </target>
 
