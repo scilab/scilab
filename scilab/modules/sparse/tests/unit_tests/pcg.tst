@@ -5,8 +5,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 
-<<<<<<< HEAD:scilab/modules/sparse/tests/unit_tests/pcg.tst
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -43,9 +43,6 @@ function flag = assert_equal ( computed , expected )
   end
   if flag <> 1 then pause,end
 endfunction
-=======
-// <-- JVM NOT MANDATORY -->
->>>>>>> 1fd523020e4af82f74c4c80203584324910da8eb:scilab/modules/sparse/tests/unit_tests/pcg.tst
 
 // Test with 2 input arguments and all output arguments
 A=[10,1;1,10];
