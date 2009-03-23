@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 m = 200;
 n = 400;
 mi = 30;

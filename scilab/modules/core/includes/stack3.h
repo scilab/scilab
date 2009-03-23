@@ -7,7 +7,8 @@
  * you should have received as part of this distribution.  The terms
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
+ */
+/*
  * @file stack3.h
  * What is stack3 ?
  * This file contains most of the function to interface Scilab from

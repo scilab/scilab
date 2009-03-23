@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mtable>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">nx</math:mi>
+      <math:mi>,</math:mi>
+      <math:mi math:fontstyle="italic">ny</math:mi>
+      <math:mi>,</math:mi>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">nz</math:mi>
+       <math:mo math:stretchy="false">≥</math:mo>
+       <math:mn>3</math:mn>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mn>2</math:mn>
+       <math:mo math:stretchy="false">≤</math:mo>
+       <math:mi math:fontstyle="italic">kx</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">&lt;</math:mo>
+      <math:mi math:fontstyle="italic">nx</math:mi>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mn>2</math:mn>
+       <math:mo math:stretchy="false">≤</math:mo>
+       <math:mi math:fontstyle="italic">ky</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">&lt;</math:mo>
+      <math:mi math:fontstyle="italic">ny</math:mi>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mn>2</math:mn>
+       <math:mo math:stretchy="false">≤</math:mo>
+       <math:mi math:fontstyle="italic">kz</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">&lt;</math:mo>
+      <math:mi math:fontstyle="italic">nz</math:mi>
+     </math:mrow>
+    </math:mtr>
+   </math:mtable>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">alignl stack {
+nx,ny,nz &gt;= 3 #
+2 &lt;= kx &lt; nx #
+2 &lt;= ky &lt; ny #
+2 &lt;= kz &lt; nz
+}</math:annotation>
+ </math:semantics>
+</math:math>

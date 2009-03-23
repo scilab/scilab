@@ -1,7 +1,14 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 ## Process this file with automake to produce Makefile.in (which will be changed by the ./configure)
 
@@ -15,11 +22,9 @@ ACLOCAL_AMFLAGS = -I m4/
 
 changelogs = CHANGES CHANGES_5.1.X
 
-bin_PROGRAMS		= scilab-bin
+bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
-bin_SCRIPTS			= bin/scilab
-
-scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
 scilab_bin_LDFLAGS 		= 
 if IS_MACOSX
@@ -29,22 +34,35 @@ endif
 scilab_bin_CFLAGS 		=
 # --no-undefined --relax
 
-
 # libshell is mandatory here since main_linux.c depends on it.
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-scilab_bin_LDADD = $(top_builddir)/modules/libscilab.la \
-$(top_builddir)/modules/shell/libscishell.la \
+COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
 $(top_builddir)/modules/io/libsciio.la
 
+SCILAB_LIB=$(top_builddir)/modules/libscilab.la
+SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
+
+
+scilab_bin_SOURCES		= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+
+scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
+
+# Match scilab -nwni (ie command line without graphics)
+scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
+
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI
+scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
+
+
 if NEED_JAVA
+# Don't do it for scilab_cli_bin. We want to be able to call it without 
+# the java libs
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
 endif
-
-
 
 if IS_SOLARIS
 # The binary itself needs this dep
@@ -110,34 +128,34 @@ icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
 
-macros:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
+macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
-	echo "$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab -ns -nwni -f modules/functions/scripts/buildmacros/buildmacros.sce)
+	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
+	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
 
-doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
+doc:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		echo "-- Building documentation (English) --"; \
-		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'en_US');exit;\"";\
-		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -l en_US -nouserstartup -nw -e "xmltojar([],[],'en_US');exit;";\
+		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
+		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
 		echo "-- Building documentation (French) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e \"xmltojar([],[],'fr_FR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab -nb -nouserstartup -nw -e "xmltojar([],[],'fr_FR');exit;"; \
+		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
+		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
 	else \
-		echo "Cannot find Scilab binary"; \
+		echo "Cannot find Scilab-adv-cli binary"; \
 	fi
 else
 	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 endif
 
-check-help:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab
-	@if test -x $(top_builddir)/scilab-bin; then \
+check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		echo "-- Checking documentation (English) --"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'check_help();exit;';\
+		$(top_builddir)/bin/scilab-cli -nb -l en -e 'check_help();exit;';\
 		echo "-- Checking documentation (French) --"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'check_help();exit;';\
+		$(top_builddir)/bin/scilab-cli  -nb -l fr -e 'check_help();exit;';\
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -147,7 +165,7 @@ check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
 		COMMAND="test_run();quit";\
 		export LANG=C;\
-		$(top_builddir)/bin/scilab -nw -nb -e "$$COMMAND"; \
+		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -167,11 +185,11 @@ clean-macros:
 
 
 clean-doc:
-	@if test -x $(top_builddir)/scilab-bin; then \
-		echo "$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'clean_help();exit;'; \
-		echo "$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab -nwni -nb -l en -e 'clean_help();exit;'; \
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		echo "$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'"; \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'; \
+		echo "$(top_builddir)/bin/scilab-cli  -nb -l en -e 'clean_help();exit;'"; \
+		$(top_builddir)/bin/scilab-cli -nb -l en -e 'clean_help();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi; \
@@ -185,8 +203,8 @@ clean-doc:
 	rm -rf $(top_builddir)/modules/scicos/jar/
 
 clean-tests:
-	@if test -x $(top_builddir)/scilab-bin; then \
-		$(top_builddir)/bin/scilab -nwni -nb -l fr -e 'test_clean();exit;'; \
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'test_clean();exit;'; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
