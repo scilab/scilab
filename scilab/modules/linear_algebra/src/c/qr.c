@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <string.h> /* for bzero */
+#include <string.h> /* for memset */
 #include "machine.h"
 #include "core_math.h"
 #include "MALLOC.h"
@@ -185,7 +185,7 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
   int info;
 
   int* header=((int*)pdblE)-4;
-  bzero(pdblR, iRowsToCompute * iCols * (complexArg ? sizeof(doublecomplex) : sizeof(double)));
+  memset(pdblR, 0, iRowsToCompute * iCols * (complexArg ? sizeof(doublecomplex) : sizeof(double)));
   if(lhs == 2)
     {
       if(complexArg)
@@ -306,8 +306,8 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
 	    double zero= 0.;
 	    C2F(dlaset)("F", &iCols, &iCols, Rows, &zero, &zero, pdblE, iCols);
 	  */
-	  /* /!\ changed the previous lines to bzero*/
-	  bzero(pdblE, iCols * iCols * sizeof(double));
+	  /* /!\ changed the previous lines to memset*/
+	  memset(pdblE, 0, iCols * iCols * sizeof(double));
 	  { 
 	    int i, j;
 	    for(j= 0; j != iCols; ++j)

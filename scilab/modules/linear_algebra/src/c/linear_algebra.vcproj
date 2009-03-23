@@ -386,6 +386,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\hess.c"
+				>
+			</File>
+			<File
 				RelativePath=".\invert_matrix.c"
 				>
 			</File>
@@ -395,6 +399,10 @@
 			</File>
 			<File
 				RelativePath=".\lu.c"
+				>
+			</File>
+			<File
+				RelativePath=".\qr.c"
 				>
 			</File>
 			<File
