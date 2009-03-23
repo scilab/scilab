@@ -20,5 +20,4 @@ com_
 callFunctionFromGateway
 GetXmlFileEncoding
 getScilabMode
-IsFromJava
 ;

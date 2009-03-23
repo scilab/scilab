@@ -17,6 +17,7 @@
 #include "UnitsConversion.hxx"
 extern "C"
 {
+#include "stack-c.h"
 #include "SetUicontrolPosition.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"

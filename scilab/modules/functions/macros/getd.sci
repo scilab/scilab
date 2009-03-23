@@ -23,24 +23,21 @@ function getd(path,option)
   path = pathconvert(path,%t,%t);
   
   // list the sci files
-  lst = listfiles(path+'*.sci',%f);
-  
-  if MSDOS then
+  lst          = listfiles(path+"*.sci",%f);
+  lst_filtered = [];
+
   // remove wrong files extension
-	// bug 2289
-	  ext = fileext(lst);
-	  if ~and( (ext == '.sci') ) then
-	    tmp_lst = [];
-	    for i = 1:size(lst,'*');
-	      if ext(i) == '.sci' then
-	        tmp_lst = [tmp_lst;lst(i)];
-	      end
-	    end
-	    lst = tmp_lst;
-	    clear tmp_lst;
-	  end
-	end
-  
+  // bug 2289
+
+  for i=1:size(lst,"*")
+    if( regexp(lst(i),"/.sci$/") <> [] ) then
+      lst_filtered = [lst_filtered;lst(i)];
+    end
+  end
+
+  lst = lst_filtered;
+  clear lst_filtered;
+
   if lst==[] | lst== "" then
     error(msprintf(gettext("%s: I cannot find any files with extension %s in %s\n"),"getd",".sci",path));
     return ;
@@ -52,7 +49,7 @@ function getd(path,option)
   for k=1:size(lst,'*'); 
     if fileparts(lst(k),"extension")==".sci" then
       if execstr("exec(lst(k));","errcatch")<>0 then
-		warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k)))
+        warning(msprintf(gettext("%s: Incorrect function in file %s.\n"),"getd",lst(k)))
       end
     end
   end

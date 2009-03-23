@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mtable>
+    <math:mtr>
+     <math:mrow>
+      <math:mi>s</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>x</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:msub>
+        <math:mi>p</math:mi>
+        <math:mn>1</math:mn>
+       </math:msub>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>x</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mtext> for </math:mtext>
+      <math:mrow>
+       <math:mi>x</math:mi>
+       <math:mo math:stretchy="false">&lt;</math:mo>
+       <math:msub>
+        <math:mi>x</math:mi>
+        <math:mn>1</math:mn>
+       </math:msub>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi>s</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>x</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:msub>
+        <math:mi>p</math:mi>
+        <math:mrow>
+         <math:mi>n</math:mi>
+         <math:mo math:stretchy="false">−</math:mo>
+         <math:mn>1</math:mn>
+        </math:mrow>
+       </math:msub>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>x</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mtext> for </math:mtext>
+      <math:mrow>
+       <math:mi>x</math:mi>
+       <math:mo math:stretchy="false">&gt;</math:mo>
+       <math:msub>
+        <math:mi>x</math:mi>
+        <math:mi>n</math:mi>
+       </math:msub>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+   </math:mtable>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">alignl stack {
+s(x) = p_1(x) &quot; for &quot; x &lt; x_1 #
+s(x) = p_{n-1}(x) &quot; for &quot; x &gt; x_n
+}</math:annotation>
+ </math:semantics>
+</math:math>

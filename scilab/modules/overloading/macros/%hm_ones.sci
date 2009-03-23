@@ -21,6 +21,14 @@ if nv==1 then
 else
   dims=ones(1,nv)
   for k=1:nv,dims(k)=int(varargin(k)),end
-  M=hypermat(dims,ones(prod(dims),1))
+  //remove highest singleton dimensions
+  ks=find(dims==1);
+  ns=size(ks,'*');
+  while ns>0&nv>2&ks(ns)==nv then ns=ns-1,nv=nv-1,end
+  if nv==2 then
+    M=ones(varargin(1:nv))
+  else
+    M=hypermat(dims(1:nv),ones(prod(dims(1:nv)),1))
+  end
 end
 endfunction

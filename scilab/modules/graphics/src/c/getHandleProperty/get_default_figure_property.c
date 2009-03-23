@@ -24,7 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int get_default_figure_property( sciPointObj * pobj )
 {

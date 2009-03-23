@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //=================================
 //simple vector direct transform
 a = rand(50,1)+%i*rand(50,1);

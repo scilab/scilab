@@ -7,6 +7,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //
 // Script to thest file name, path name of Scilab command
 // set specialName with system encoding characters > 127

@@ -31,6 +31,7 @@ Core functions:
 
  - Rewrite :
  	+ mode
+ 	+ predef
 
 fileio functions:
 =================
@@ -54,6 +55,10 @@ Bug fixes:
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for timer()
 
+* bug 3772 fixed - input argument of 'predef' was not correctly checked.
+
+* bug 3773 fixed - 'ans' was protected with predef('all').
+
 * bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
 
 * bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
@@ -61,3 +66,6 @@ Bug fixes:
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
+
+* bug 4267 fixed - A non initilization of a lock under Netbsd was 
+		   causing an error on startup

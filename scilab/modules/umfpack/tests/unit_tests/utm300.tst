@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Check value provided here:
 // http://math.nist.gov/MatrixMarket/data/SPARSKIT/tokamak/utm300.html
 warning("off");

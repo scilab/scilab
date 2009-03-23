@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // Numerical tests
 //Well conditionned problem
 A=[ 94  0   0   0    0   28  0   0   32  0

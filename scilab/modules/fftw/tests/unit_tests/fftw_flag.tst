@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //=============================================
 ff = fftw_flags();
 if ff <> 64 then pause,end;

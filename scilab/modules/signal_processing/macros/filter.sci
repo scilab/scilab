@@ -41,34 +41,37 @@ function [y,z] = filter(b,a,x,z)
   a = a/a(1);
   
   n=max(size(b,'*'),size(a,'*'))-1;
-  
-  if argn(2)<4 then
-    z=zeros(n,1);
+  if n > 0 then
+    if argn(2)<4 then
+      z=zeros(n,1);
+    else
+      z=matrix(z,n,1);
+    end
+    
+    //pad the numerator and denominator if necessary
+    a($+1:(n+1)) = 0;
+    b($+1:(n+1)) = 0;
+    
+    //the algorithm below can also be used but is slower if x is long
+    //may be good to write it in C
+    //  for i = 1:size(x,'*')
+    //    y(i) = z(1) + b(1)*x(i);
+    //    z(1:(n-1)) = z(2:n) - a(2:n)*y(i) + b(2:n)*x(i);
+    //    z(n) = b($)*x(i) - a($) * y(i);
+    //  end
+    
+    //form state space representation
+    A     = [-a(2:$),[eye(n-1,n-1);zeros(1,n-1)] ];
+    B     = b(2:$)-a(2:$)*b(1);//C=eye(1,n);D=b(1);
+    
+    [z,X] = ltitr(A,B,x,z);
+    y     = X(1,:)+b(1)*x;
+    //y=C*X+D*x
   else
-    z=matrix(z,n,1);
+    y     = b(1)*x;
+    z     = [];
   end
-  
-  //pad the numerator and denominator if necessary
-  a($+1:(n+1)) = 0;
-  b($+1:(n+1)) = 0;
-  
-  //the algorithm below can also be used but is slower if x is long
-  //may be good to write it in C
-  //  for i = 1:size(x,'*')
-  //    y(i) = z(1) + b(1)*x(i);
-  //    z(1:(n-1)) = z(2:n) - a(2:n)*y(i) + b(2:n)*x(i);
-  //    z(n) = b($)*x(i) - a($) * y(i);
-  //  end
-  
-  //form state space representation
-  A     = [-a(2:$),[eye(n-1,n-1);zeros(1,n-1)] ];
-  B     = b(2:$)-a(2:$)*b(1);//C=eye(1,n);D=b(1);
-  
-  [z,X] = ltitr(A,B,x,z);
-  y     = X(1,:)+b(1)*x;
-  //y=C*X+D*x
   //make y orientation similar to the x one
-  
   y=matrix(y,mnx);
   
 endfunction

@@ -1,7 +1,15 @@
+dnl
+dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+dnl Copyright (C) INRIA - 2008 - Sylvestre Ledru
+dnl 
+dnl This file must be used under the terms of the CeCILL.
+dnl This source file is licensed as described in the file COPYING, which
+dnl you should have received as part of this distribution.  The terms
+dnl are also available at    
+dnl http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+dnl
 dnl DOCBOOK detection
 dnl
-dnl Sylvestre Ledru <sylvestre.ledru@inria.fr>
-dnl INRIA - Scilab 2008
 dnl ------------------------------------------------------
 dnl Check if Docbook is usable and working
 dnl
