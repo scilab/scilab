@@ -169,27 +169,27 @@ int sci_syredi(char *fname, unsigned long fname_len)
 
   /* ret2: b2 */
   iAllocMatrixOfDouble(Rhs + 2, 1, deg_count, &b2);
-  C2F(unsfdcopy)(&deg_count, output_buffers[0], &one, b2, &one);
+  C2F(dcopy)(&deg_count, output_buffers[0], &one, b2, &one);
   LhsVar(2) = Rhs + 2;
 
   /* ret3: b1 */
   iAllocMatrixOfDouble(Rhs + 3, 1, deg_count, &b1);
-  C2F(unsfdcopy)(&deg_count, output_buffers[1], &one, b1, &one);
+  C2F(dcopy)(&deg_count, output_buffers[1], &one, b1, &one);
   LhsVar(3) = Rhs + 3;
 
   /* ret4: b0 */
   iAllocMatrixOfDouble(Rhs + 4, 1, deg_count, &b0);
-  C2F(unsfdcopy)(&deg_count, output_buffers[2], &one, b0, &one);
+  C2F(dcopy)(&deg_count, output_buffers[2], &one, b0, &one);
   LhsVar(4) = Rhs + 4;
 
   /* ret5: c1 */
   iAllocMatrixOfDouble(Rhs + 5, 1, deg_count, &c1);
-  C2F(unsfdcopy)(&deg_count, output_buffers[3], &one, c1, &one);
+  C2F(dcopy)(&deg_count, output_buffers[3], &one, c1, &one);
   LhsVar(5) = Rhs + 5;
 
   /* ret6: c0 */
   iAllocMatrixOfDouble(Rhs + 6, 1, deg_count, &c0);
-  C2F(unsfdcopy)(&deg_count, output_buffers[4], &one, c0, &one);
+  C2F(dcopy)(&deg_count, output_buffers[4], &one, c0, &one);
   LhsVar(6) = Rhs + 6;
 
   /* ret7: zeros */
