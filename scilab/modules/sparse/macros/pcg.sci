@@ -1,33 +1,33 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Michael Baudin
-// Copyright (C) 2006 - INRIA - Serge Steer
-// Copyright (C) 2005 - IRISA - Sage Group
+// Copyright (C) XXXX-2008 - INRIA
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x0, verbose)
-// PCG solves the symmetric positive definite linear system %Ax=b 
-// using the Preconditionned Conjugate Gradient.
+
+
+// [x, flag, resNorm, iter, resVec] = gmres( A, b, x, M, restrt, max_it, tol )
 //
-// input   %A       REAL symmetric positive definite matrix or a function 
-//                  y=Ax(x) which computes  y=%A*x for a given x
+// GMRES solves the linear system Ax=b
+// using the Generalized Minimal RESidual ( GMRES ) method with restarts .
+//
+// input   A        REAL nonsymmetric positive definite matrix or function
+//         x        REAL initial guess vector
 //         b        REAL right hand side vector
-//         tol, optional      REAL error tolerance (default: 1e-8)
-//         maxIter, optional  INTEGER maximum number of iterations (default: size(%b))
-//         %M, optional       REAL preconditioner matrix (default: none)
-//         %M2, optional      REAL preconditioner matrix (default: none)
-//         x0, optional       REAL initial guess vector (default: the zero vector)
-//         verbose, optional  INTEGER set to 1 to enable verbose logging (default : 0)
+//         M        REAL preconditioner matrix or function
+//         restrt   INTEGER number of iterations between restarts
+//         max_it   INTEGER maximum number of iterations
+//         tol      REAL error tolerance
 //
 // output  x        REAL solution vector
 //         flag     INTEGER: 0 = solution found to tolerance
-//                           1 = no convergence given maxIter
-//         resNorm  REAL final relative norm of the residual
+//                           1 = no convergence given max_it
+//         resNorm      REAL final residual norm
 //         iter     INTEGER number of iterations performed
-//         resVec   REAL residual vector
+//         resVec      REAL residual vector
+
 //     Details of this algorithm are described in 
 //
 //     "Templates for the Solution of Linear Systems: Building Blocks 
@@ -39,240 +39,276 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
 //     "Iterative Methods for Sparse Linear Systems, Second Edition"
 //     Saad, SIAM Publications, 2003
 //     (ftp ftp.cs.umn.edu; cd dept/users/saad/PS; get all_ps.zip).
-// Sage Group (IRISA, 2004)
+
+function [x, flag, resNorm, iter, resVec] = gmres(A, varargin)
+
 // -----------------------
-// Get value of input arguments
+// Parsing input arguments
 // -----------------------
-  [lhs,rhs] = argn(0);
-  if (rhs < 2),
-	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
+
+[lhs,rhs]=argn(0);
+if ( rhs < 2 ),
+  error(msprintf(gettext("%s: Wrong number of input argument: At least %d expected.\n"),"gmres",2));
+end
+
+// Parsing the matrix A et the right hand side vector b
+select type(A)
+case 1 then
+  matrixType = 1;
+case 5 then
+  matrixType = 1;
+case 13 then
+  matrixType = 0;
+end
+// If A is a matrix (full or sparse)
+if (matrixType == 1),
+  if (size(A,1) ~= size(A,2)),
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Square matrix expected.\n"),"gmres",1));
   end
-  if (rhs > 7),
-	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
-  end
-  if exists('tol','local')==0 then
-     tol = 1e-8
-  end
-  if exists('maxIter','local')==0 then
-     maxIter = size(%b,1)
-  end
-  if exists('%M','local')==0 then
-     %M=[]
-  end
-  if exists('%M2','local')==0 then
-     %M2=[]
-  end
-  if exists('x0','local')==0 then
-     x0=zeros(%b);
-  end
-  if exists('verbose','local')==0 then
-     verbose=0;
-  end
-  if (verbose==1) then
-    printf(gettext("Arguments:\n"));
-    printf("  tol="+string(tol)+"\n");
-    printf("  maxIter="+string(maxIter)+"\n");
-    printf("  M=\n")
-    disp(%M)
-    printf("  M2=\n");
-    disp(%M2)
-    printf("  x0=\n");
-    disp(x0)
-    printf("  verbose="+string(verbose)+"\n");
-  end
-  // Compute matrixType
-  select type(%A)
-  case 1 then
-    matrixType = 1;
-  case 5 then
-    matrixType = 1;
-  case 13 then 
-    matrixType = 0;
-    Aargs=list()
-  case 15 then 
-    Aargs=list(%A(2:$))
-    // Caution : modify the input argument %A !
-    %A=%A(1);
-    matrixType = 0;
-  else
-	error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",1));
-  end
-  // If %A is a matrix (dense or sparse)
-  if (matrixType == 1),
-    if (size(%A,1) ~= size(%A,2)),
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",1));
-    end
-  end
-  // Check right hand side %b
-  if (size(%b,2) ~= 1),
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"pcg",2));
-  end
-  if (matrixType ==1),
-    if (size(%b,1) ~= size(%A,1)),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",2,1));
-    end 
-  end
-  // Check type of the error tolerance tol
-  if or(size(tol) ~= [1 1]) then
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"pcg",3));
-  end
-  // Check the type of maximum number of iterations maxIter
-  if or(size(maxIter) ~= [1 1]) then
-	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"pcg",4));
+end
+b=varargin(1);
+if (size(b,2) ~= 1),
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"gmres",2));
+end
+if (matrixType==1),
+  if (size(b,1) ~= size(A,1)),
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",2,1));
   end 
-  // Compute precondType
-  select type(%M)
+end
+
+// Number of iterations between restarts
+if (rhs >= 3),
+  restrt=varargin(2);
+  if (size(restrt) ~= [1 1]),
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",3));
+  end 
+else
+  restrt=20;
+end
+
+// Error tolerance tol
+if (rhs >= 4),
+  tol=varargin(3);
+  if (size(tol) ~= [1 1]);
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",4));
+  end
+else
+  tol = 1e-6;
+end
+
+// Maximum number of iterations max_it
+if (rhs >= 5),
+  max_it=varargin(4);
+  if (size(max_it) ~= [1 1]),
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Scalar expected.\n"),"gmres",5));
+  end 
+else
+  max_it=size(b,1);
+end
+
+// Parsing of the preconditioner matrix M
+if (rhs >= 6),
+  M = varargin(5);
+  select type(M)
   case 1 then
-    precondType = bool2s(size(%M,'*')>=1);
+    precondType = 1;
   case 5 then
     precondType = 1;
   case 13 then
-    Margs=list()
-    precondType = 2;
-  case 15 then
-    Margs=list(%M(2:$))
-    // Caution : modify the input argument %M !
-    %M=%M(1);
-    precondType = 2;
-  else
-	error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",5));
+    precondType = 0;
   end 
   if (precondType == 1),
-    if (size(%M,1) ~= size(%M,2)),
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",5));
+    if (size(M,1) ~= size(M,2)),
+	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"gmres",4));
+
     end 
-    if ( size(%M,1) ~= size(%b,1) ),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",5,2));
+    if (size(M,1) == 0),
+      precondType = 2; // no preconditionning
+	elseif ( size(M,1) ~= size(b,1) ), 
+	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"gmres",4,2));
     end
   end
-  // Compute precondBis
-  select type(%M2)
-  case 1 then
-    precondBis =bool2s(size(%M2,'*')>=1);
-  case 5 then
-    precondBis = 1;
-  case 13 then
-    M2args=list()
-    precondBis = 2;
-  case 15 then
-    M2args=list(%M2(2:$))
-    // Caution : modify the input argument %M2 !
-    %M2=%M2(1);
-    // Caution : modify precondType again !
-    precondType = 2;
-  else
-    error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"),"pcg",6));
+  if (precondType == 0),
+    M = varargin(3);
   end
-  if (precondBis == 1),
-    if (size(%M2,1) ~= size(%M2,2)),
-	  error(msprintf(gettext("%s: Wrong type for input argument #%d: Square matrix expected.\n"),"pcg",6));
-    end 
-    if ( size(%M2,1) ~= size(%b,1) ),
-	  error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",6,2));
-    end
+else
+  precondType = 2; // no preconditionning
+end
+
+// Parsing of the initial vector x
+if (rhs >= 7),
+  x=varargin(6);
+  if (size(x,2) ~= 1),
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Column vector expected.\n"),"gmres",3));
   end
-  // Check size of the initial vector x0
-  if (size(x0,2) ~= 1),
-	error(msprintf(gettext("%s: Wrong value for input argument #%d: Column vector expected.\n"),"pcg",7));
-  end
-  if (size(x0,1) ~= size(%b,1)),
-	error(msprintf(gettext("%s: Wrong size for input argument #%d: Same size as input argument #%d expected.\n"),"pcg",7,2));
+  if ( size(x,1) ~= size(b,1) ),
+	error(msprintf(gettext("%s: Wrong type for input argument #%d: Same size as the input argument #%d expected.\n"),"gmres",3,2));
   end 
-  // ------------
-  // Computations
-  // ------------
-  // initialization
-  bnrm2 = norm(%b);
-  if (verbose==1) then
-    printf(gettext("Norm of right-hand side : %s\n"), string(bnrm2));
-  end
-  if  (bnrm2 == 0) then
-    if (verbose==1) then
-      printf(gettext("Special processing where the right-hand side is zero.\n"));
-    end
-    // When rhs is 0, there is a trivial solution : x=0
-    x = zeros(%b);
-    resNorm = 0;
-    resVec = resNorm;
-  else
-    x = x0;
-    // r = %b - %A*x;
-    if (matrixType ==1),
-      r = %b - %A*x;
-    else
-      r = %b - %A(x,Aargs(:));
-    end
-    resNorm = norm(r) / bnrm2;
-    resVec = resNorm;
-  end
-  // begin iteration
-  // Distinguish the number of iterations processed from the currentiter index
-  iter = 0
-  for currentiter = 1:maxIter
-    if (resNorm <= tol) then
-      if (verbose==1) then
-        printf(gettext("  New residual = %s < tol = %s => break\n"),string(resNorm),string(tol));
-      end
-      break;
-    end
-    iter = iter + 1
-    if (verbose==1) then
-      printf(gettext("  Iteration #%s/%s residual : %s\n"),string(currentiter),string(maxIter),string(resNorm));
-      printf("  x=\n");
-      disp(x);
-    end
-    // z  = %M \ r;
-    if (precondType == 1),
-      z = %M \ r;
-    elseif (precondType == 2),
-      z = %M(r,Margs(:));
-    else
-      z = r;
-    end
-    // z  = %M2 \ r;
-    if (precondBis == 1) then
-      z = %M2 \ r;
-    elseif (precondBis == 2) then
-      z = %M2(r,M2args(:));
-    else
-      z = r;
-    end
-    rho = (r'*z);
-    if (currentiter > 1) then
-      bet = rho / rho_1;
-      p = z + bet*p;
-    else
-      p = z;
-    end
-    // q = %A*p;
-    if (matrixType ==1),
-      q = %A*p;
-    else
-      q = %A(p);
-    end
-    alp = rho / (p'*q );
-    x = x + alp*p;
-    r = r - alp*q;
-    resNorm = norm(r) / bnrm2;
-    // Caution : transform the scalar resVec into vector resVec !
-    resVec = [resVec;resNorm];
-    rho_1 = rho;
-  end
-  // test for convergence
-  if (resNorm > tol) then
-      if (verbose==1) then
-        printf(gettext("Final residual = %s > tol =%s\n"),string(resNorm),string(tol));
-        printf(gettext("Algorithm fails\n"));
-      end
-    flag = 1; 
-    if (lhs < 2) then 
-      warning(msprintf(gettext("%s: Convergence error.\n"),"pcg"));
-    end
-  else
-    flag = 0;
-    if (verbose==1) then
-      printf(gettext("Algorithm pass\n"));
-    end
-  end
-endfunction
+else
+  x=zeros(b);
+end
+
+if (rhs > 7),
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"gmres",2,7));
+end
+
+// ------------
+// Computations
+// ------------
+
+   j = 0; 
+   flag = 0;
+   it2 = 0;
+ 
+   bnrm2 = norm(b);
+   if (bnrm2 == 0.0), 
+     x = zeros(b);
+     resNorm = 0;
+     iter = 0;
+     resVec = resNorm;
+     flag = 0;
+     return
+   end
+   
+   // r = M \ ( b-A*x );
+   if (matrixType == 1),
+     r = b - A*x;
+   else 
+     r = b - A(x);
+   end
+   if (precondType == 1),
+     r = M \ r;
+   elseif (precondType == 0),
+     r = M(r);
+   end
+   resNorm = norm(r)/bnrm2;
+   resVec = resNorm;
+   if (resNorm < tol), 
+     iter=0; 
+     return; 
+   end
+
+   n = size(b,1);
+   m = restrt;
+   V(1:n,1:m+1) = zeros(n,m+1);
+   H(1:m+1,1:m) = zeros(m+1,m);
+   cs(1:m) = zeros(m,1);
+   sn(1:m) = zeros(m,1);
+   e1    = zeros(n,1);
+   e1(1) = 1.0;
+
+   for j = 1:max_it
+     // r = M \ ( b-A*x );
+     if (matrixType == 1),
+       r = b - A*x;
+     else 
+       r = b - A(x);
+     end
+     if (precondType == 1),
+       r = M \ r;
+     elseif (precondType == 0),
+       r = M(r);
+     end
+     
+     V(:,1) = r / norm( r );
+     s = norm( r )*e1;
+     for i = 1:m      // construct orthonormal
+       it2 = it2 + 1; // basis using Gram-Schmidt
+       // w = M \ (A*V(:,i)); 
+       if (matrixType == 1),
+	 w = A*V(:,i);
+       else 
+	 w = A(V(:,i));
+       end
+       if (precondType == 1),
+	 w = M \ w;
+       elseif (precondType == 0),
+	 w = M(w);
+       end
+       
+       for k = 1:i 
+	 H(k,i)= w'*V(:,k);
+	 w = w - H(k,i)*V(:,k);
+       end
+       H(i+1,i) = norm( w );
+       V(:,i+1) = w / H(i+1,i);
+       for k = 1:i-1 // apply Givens rotation
+	 temp     =  cs(k)*H(k,i) + sn(k)*H(k+1,i);
+	 H(k+1,i) = -sn(k)*H(k,i) + cs(k)*H(k+1,i);
+	 H(k,i)   = temp;
+       end
+        // form i-th rotation matrix
+       [tp1,tp2] = rotmat( H(i,i), H(i+1,i) );
+       cs(i)  = tp1;
+       sn(i)  = tp2;
+       temp   = cs(i)*s(i);      
+       s(i+1) = -sn(i)*s(i);
+       s(i)   = temp;
+       H(i,i) = cs(i)*H(i,i) + sn(i)*H(i+1,i);
+       H(i+1,i) = 0.0;
+       resNorm  = abs(s(i+1)) / bnrm2;
+       resVec = [resVec;resNorm];
+       if ( resNorm <= tol ),
+	 y = H(1:i,1:i) \ s(1:i);
+	 x = x + V(:,1:i)*y;
+	 break;
+       end
+     end
+     if (resNorm <= tol), 
+       iter = j-1+it2;
+       break; 
+     end
+     y = H(1:m,1:m) \ s(1:m);
+     // update approximation
+     x = x + V(:,1:m)*y;
+     // r = M \ ( b-A*x )
+     if (matrixType == 1),
+       r = b - A*x;
+     else 
+       r = b - A(x);
+     end
+     if (precondType == 1),
+       r = M \ r;
+     elseif (precondType == 0),
+       r = M(r);
+     end
+     s(j+1) = norm(r);
+     resNorm = s(j+1) / bnrm2;
+     resVec = [resVec; resNorm];
+     
+     if ( resNorm <= tol ),
+       iter = j+it2;
+       break; 
+     end
+     if ( j== max_it ), 
+       iter=j+it2; 
+     end
+   end
+   if ( resNorm > tol ), 
+     flag = 1; 
+     if (lhs < 2),
+       warning(msprintf(gettext("%s: Did not converge.\n"),"gmres"));
+     end
+   end
+endfunction //GMRES
+ 
+
+//
+// Compute the Givens rotation matrix parameters for a and b.
+//
+function [ c, s ] = rotmat( a, b )
+if ( b == 0.0 ),
+  c = 1.0;
+  s = 0.0;
+elseif ( abs(b) > abs(a) ),
+  temp = a / b;
+  s = 1.0 / sqrt( 1.0 + temp^2 );
+  c = temp * s;
+else
+  temp = b / a;
+  c = 1.0 / sqrt( 1.0 + temp^2 );
+  s = temp * c;
+end
+endfunction //rotmat
+   
 
