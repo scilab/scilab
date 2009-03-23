@@ -63,7 +63,7 @@
               
               <programlisting>
                 
-                function y = A ( x , mymatrix )
+                function y = A ( x )
                 
               </programlisting>
             </listitem>
@@ -92,7 +92,9 @@
         <term>tol</term>
 
         <listitem>
-          <para>error tolerance (default: 1e-8)</para>
+          <para>error relative tolerance (default: 1e-8). 
+          The termination criteria is based on the 2-norm of the
+          residual r=b-Ax, divided by the 2-norm of the right hand side b.</para>
         </listitem>
       </varlistentry>
 
@@ -160,7 +162,7 @@
         <term>err</term>
 
         <listitem>
-          <para>final relative norm of the residual</para>
+          <para>final relative norm of the residual (the 2-norm of the right-hand side b is used)</para>
         </listitem>
       </varlistentry>
 
@@ -176,7 +178,7 @@
         <term>res</term>
 
         <listitem>
-          <para>vector of the residual norms</para>
+          <para>vector of the residual relative norms</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -275,8 +277,18 @@
    [x, fail, err, iter, res]=pcg(Asparse,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-   // Define a function which computes the right-hand side
-   function y=Atimesx(x,A)
+   // Define a function which computes the right-hand side.
+   function y=Atimesx(x)
+     A=[ 94  0   0   0    0   28  0   0   32  0  
+       0   59  13  5    0   0   0   10  0   0  
+       0   13  72  34   2   0   0   0   0   65
+       0   5   34  114  0   0   0   0   0   55
+       0   0   2   0    70  0   28  32  12  0
+       28  0   0   0    0   87  20  0   33  0
+       0   0   0   0    28  20  71  39  0   0
+       0   10  0   0    32  0   39  46  8   0
+       32  0   0   0    12  33  0   8   82  11
+       0   0   65  55   0   0   0   0   11  100];
      y=A*x
    endfunction
 
@@ -284,8 +296,13 @@
    [x, fail, err, iter, res]=pcg(Atimesx,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
+   // Define a function which computes the right-hand side.
+   function y=Atimesxbis(x,A)
+     y=A*x
+   endfunction
+
    // Pass a list to the primitive
-   Alist = list(Atimesx,Asparse);
+   Alist = list(Atimesxbis,Asparse);
    [x, fail, err, iter, res]=pcg(Alist,b,maxIter=30,tol=1d-12);
    mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
  </programlisting>
@@ -329,7 +346,9 @@
   <refsection>
     <title>Authors</title>
 
-    <para>Sage Group (IRISA, 2004)</para>
+    <para>Sage Group, IRISA, 2004</para>
+    <para>Serge Steer, INRIA, 2006</para>
+    <para>Michael Baudin, INRIA, 2008-2009</para>
   </refsection>
 
   <refsection>
