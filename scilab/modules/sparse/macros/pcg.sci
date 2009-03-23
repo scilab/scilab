@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2009 - INRIA - Michael Baudin
 // Copyright (C) 2008 - INRIA - Michael Baudin
 // Copyright (C) 2006 - INRIA - Serge Steer
 // Copyright (C) 2005 - IRISA - Sage Group
@@ -8,9 +9,14 @@
 // you should have received as part of this distribution.  The terms
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x0, verbose)
-// PCG solves the symmetric positive definite linear system %Ax=b 
-// using the Preconditionned Conjugate Gradient.
+
+//
+// pcg --
+//   PCG solves the symmetric positive definite linear system %Ax=b 
+//   using the Preconditionned Conjugate Gradient.
+//   If M is given, it is used as a preconditionning matrix.
+//   If both M and M2 are given, the matrix M * M2 is used as a preconditionning 
+//   matrix.
 //
 // input   %A       REAL symmetric positive definite matrix or a function 
 //                  y=Ax(x) which computes  y=%A*x for a given x
@@ -28,7 +34,8 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
 //         resNorm  REAL final relative norm of the residual
 //         iter     INTEGER number of iterations performed
 //         resVec   REAL residual vector
-//     Details of this algorithm are described in 
+//
+// References
 //
 //     "Templates for the Solution of Linear Systems: Building Blocks 
 //     for Iterative Methods", 
@@ -39,10 +46,17 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
 //     "Iterative Methods for Sparse Linear Systems, Second Edition"
 //     Saad, SIAM Publications, 2003
 //     (ftp ftp.cs.umn.edu; cd dept/users/saad/PS; get all_ps.zip).
-// Sage Group (IRISA, 2004)
-// -----------------------
-// Get value of input arguments
-// -----------------------
+//
+//     Golub and Van Loan, Matrix Computations
+//
+// Notes
+//     This script was originally a matlab > scilab translation of the cg.m
+//     script from http://www.netlib.org/templates/matlab
+//     
+//     The input / output arguments of this command are the same as 
+//     Matlab's pcg command.
+//     
+function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x0, verbose )
   [lhs,rhs] = argn(0);
   if (rhs < 2),
 	error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"pcg",2,7));
@@ -123,6 +137,9 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   // Compute precondType
   select type(%M)
   case 1 then
+    // M is a matrix
+    // precondType = 0 if the M is empty
+    //             = 1 if the M is not empty
     precondType = bool2s(size(%M,'*')>=1);
   case 5 then
     precondType = 1;
@@ -148,6 +165,9 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
   // Compute precondBis
   select type(%M2)
   case 1 then
+    // M2 is a matrix
+    // precondBis = 0 if the M2 is empty
+    //            = 1 if the M2 is not empty
     precondBis =bool2s(size(%M2,'*')>=1);
   case 5 then
     precondBis = 1;
@@ -205,6 +225,10 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     resNorm = norm(r) / bnrm2;
     resVec = resNorm;
   end
+  if (verbose==1) then
+    printf(gettext("  Type of preconditionning #1 : %d\n"),precondType);
+    printf(gettext("  Type of preconditionning #2 : %d\n"),precondBis);
+  end
   // begin iteration
   // Distinguish the number of iterations processed from the currentiter index
   iter = 0
@@ -221,25 +245,32 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
       printf("  x=\n");
       disp(x);
     end
-    // z  = %M \ r;
-    if (precondType == 1),
-      z = %M \ r;
-    elseif (precondType == 2),
-      z = %M(r,Margs(:));
-    else
+    if %M == [] & %M2 == [] then
       z = r;
-    end
-    // z  = %M2 \ r;
-    if (precondBis == 1) then
-      z = %M2 \ r;
-    elseif (precondBis == 2) then
-      z = %M2(r,M2args(:));
+    elseif %M2 == [] then
+      // Compute z so that M z = r
+      if (precondType == 1) then
+        z = %M \ r;
+      elseif (precondType == 2) then
+        z = %M(r,Margs(:));
+      else
+        z = r;
+      end
     else
-      z = r;
+      // Compute z so that M M2 z = r
+      if (precondBis == 1) then
+        z = %M \ r;
+        z = %M2 \ z;
+      elseif (precondBis == 2) then
+        z = %M(r,Margs(:));
+        z = %M2(z,M2args(:));
+      else
+        z = r;
+      end
     end
-    rho = (r'*z);
+    rho = r'*z;
     if (currentiter > 1) then
-      bet = rho / rho_1;
+      bet = rho / rho_old;
       p = z + bet*p;
     else
       p = z;
@@ -256,7 +287,7 @@ function [x, flag, resNorm, iter, resVec] = pcg(%A, %b, tol, maxIter, %M, %M2, x
     resNorm = norm(r) / bnrm2;
     // Caution : transform the scalar resVec into vector resVec !
     resVec = [resVec;resNorm];
-    rho_1 = rho;
+    rho_old = rho;
   end
   // test for convergence
   if (resNorm > tol) then
