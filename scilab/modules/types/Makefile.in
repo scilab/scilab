@@ -33,8 +33,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 check_PROGRAMS = testTypes$(EXEEXT)
 TESTS = testTypes$(EXEEXT)
 subdir = modules/types
@@ -70,7 +68,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitypes_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscitypes_la_DEPENDENCIES = $(am__append_1) $(am__append_2)
+libscitypes_la_LIBADD =
 am__objects_1 = libscitypes_la-types.lo libscitypes_la-int.lo \
 	libscitypes_la-string.lo libscitypes_la-double.lo \
 	libscitypes_la-bool.lo libscitypes_la-float.lo \
@@ -329,7 +327,6 @@ TYPES_CPP_SOURCES = src/cpp/types.cpp \
 
 pkglib_LTLIBRARIES = libscitypes.la
 libscitypes_la_SOURCES = $(TYPES_CPP_SOURCES)
-libscitypes_la_LIBADD = $(am__append_1) $(am__append_2)
 libscitypes_la_CXXFLAGS = -Iincludes/ \
 				-I../elementary_functions/includes \
 				-I../operations/includes \
