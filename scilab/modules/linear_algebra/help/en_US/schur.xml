@@ -48,7 +48,7 @@
       <varlistentry>
         <term>flag</term>
         <listitem>
-          <para>character string (<literal>'c'</literal> or <literal>'d'</literal>)</para>
+          <para>character string (<literal>'comp[lex]'</literal> / <literal>'r[eal]'</literal> for matrix type, or <literal>'d[isc]'</literal> / <literal>'c[ont]'</literal> for either "discrete time" or "continuous time" eigenspace)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -136,13 +136,13 @@
             <varlistentry>
               <term>Ordered Schur forms</term>
               <listitem>
-                <para><literal>[U,dim]=schur(A,'c')</literal> returns an unitary
+                <para><literal>[U,dim]=schur(A,'c[ont]')</literal> returns an unitary
       matrix <literal>U</literal> which transforms <literal>A</literal> into schur
       form.  In addition, the dim first columns of <literal>U</literal> make
       a basis of the eigenspace of <literal>A</literal> associated with
       eigenvalues with negative real parts (stable "continuous
       time" eigenspace).</para>
-                <para><literal>[U,dim]=schur(A,'d')</literal> returns an unitary
+                <para><literal>[U,dim]=schur(A,'d[isc]')</literal> returns an unitary
       matrix <literal>U</literal> which transforms <literal>A</literal> into schur
       form.  In addition, the <literal>dim</literal> first columns of
       <literal>U</literal> span a basis of the eigenspace of <literal>A</literal>
@@ -203,14 +203,14 @@
             <varlistentry>
               <term>Ordered Schur forms:</term>
               <listitem>
-                <para><literal>[As,Es,Z,dim] = schur(A,E,'c')</literal>
+                <para><literal>[As,Es,Z,dim] = schur(A,E,'c[ont]')</literal>
       returns the real generalized
       Schur form of the pencil <literal>s*E-A</literal>. In addition, the dim first columns 
       of <literal>Z</literal> span a basis of the right eigenspace  associated with 
       eigenvalues with negative real parts (stable "continuous
       time" generalized eigenspace).</para>
                 <para>
-                  <literal>[As,Es,Z,dim] = schur(A,E,'d')</literal>
+                  <literal>[As,Es,Z,dim] = schur(A,E,'d[isc]')</literal>
                 </para>
                 <para>
       returns the real generalized
@@ -285,7 +285,7 @@
 A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
 [U,T]=schur(A);T
 
-[U,dim,T]=schur(A,'c');
+[U,dim,T]=schur(A,'cont');
 T(1:dim,1:dim)      //stable cont. eigenvalues
 
 function t=mytest(Ev),t=abs(Ev)<0.95,endfunction
@@ -316,7 +316,7 @@ A=coeff(F,0);E=coeff(F,1);
 Q'*F*Z //It is As+%s*Es
 
 
-[As,Es,Z,dim] = schur(A,E,'c')
+[As,Es,Z,dim] = schur(A,E,'cont')
 function t=mytest(Alpha,Beta),t=real(Alpha)<0,endfunction
 [As,Es,Z,dim] = schur(A,E,mytest)
 

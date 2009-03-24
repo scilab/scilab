@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:msubsup>
+    <math:mi>P</math:mi>
+    <math:mi>n</math:mi>
+    <math:mi>m</math:mi>
+   </math:msubsup>
+   <math:mrow>
+    <math:mrow>
+     <math:mo math:stretchy="false">(</math:mo>
+     <math:mrow>
+      <math:mi>x</math:mi>
+      <math:mi>,</math:mi>
+      <math:mtext>norm</math:mtext>
+     </math:mrow>
+     <math:mo math:stretchy="false">)</math:mo>
+    </math:mrow>
+    <math:mo math:stretchy="false">=</math:mo>
+    <math:mrow>
+     <math:mrow>
+      <math:msqrt>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mfrac>
+          <math:mrow>
+           <math:mn>2n</math:mn>
+           <math:mo math:stretchy="false">+</math:mo>
+           <math:mn>1</math:mn>
+          </math:mrow>
+          <math:mn>2</math:mn>
+         </math:mfrac>
+         <math:mo math:stretchy="false">⋅</math:mo>
+         <math:mfrac>
+          <math:mrow>
+           <math:mrow>
+            <math:mo math:stretchy="false">(</math:mo>
+            <math:mrow>
+             <math:mi>n</math:mi>
+             <math:mo math:stretchy="false">−</math:mo>
+             <math:mi>m</math:mi>
+            </math:mrow>
+            <math:mo math:stretchy="false">)</math:mo>
+           </math:mrow>
+           <math:mi>!</math:mi>
+          </math:mrow>
+          <math:mrow>
+           <math:mrow>
+            <math:mo math:stretchy="false">(</math:mo>
+            <math:mrow>
+             <math:mi>n</math:mi>
+             <math:mo math:stretchy="false">+</math:mo>
+             <math:mi>m</math:mi>
+            </math:mrow>
+            <math:mo math:stretchy="false">)</math:mo>
+           </math:mrow>
+           <math:mi>!</math:mi>
+          </math:mrow>
+         </math:mfrac>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:msqrt>
+      <math:mo math:stretchy="false">⋅</math:mo>
+      <math:msup>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mn>1</math:mn>
+         <math:mo math:stretchy="false">−</math:mo>
+         <math:msup>
+          <math:mi>x</math:mi>
+          <math:mn>2</math:mn>
+         </math:msup>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mrow>
+        <math:mi>m</math:mi>
+        <math:mo math:stretchy="false">/</math:mo>
+        <math:mn>2</math:mn>
+       </math:mrow>
+      </math:msup>
+     </math:mrow>
+     <math:mo math:stretchy="false">⋅</math:mo>
+     <math:mfrac>
+      <math:msup>
+       <math:mi>d</math:mi>
+       <math:mi>m</math:mi>
+      </math:msup>
+      <math:msup>
+       <math:mi math:fontstyle="italic">dx</math:mi>
+       <math:mi>m</math:mi>
+      </math:msup>
+     </math:mfrac>
+    </math:mrow>
+   </math:mrow>
+   <math:msub>
+    <math:mi>P</math:mi>
+    <math:mi>n</math:mi>
+   </math:msub>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mi>x</math:mi>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">P_n^m(x,&quot;norm&quot;) = {sqrt({{2n+1} over {2}} cdot {{(n-m)!} over {(n+m)!}})} cdot (1-x^2)^{m/2} cdot {d^m over dx^m}P_n(x)</math:annotation>
+ </math:semantics>
+</math:math>

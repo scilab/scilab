@@ -612,7 +612,7 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
 				AC_SUBST(LOOKS)
 
-				#  Skin Look and Feel 
+				#  Skin Look and Feel
 				AC_JAVA_CHECK_PACKAGE([skinlf],[com.l2fprod.util.AccessUtils],[Scilab Gui - Skin Look and Feel])
 				SKINLF=$PACKAGE_JAR_FILE
 				AC_SUBST(SKINLF)
@@ -910,7 +910,7 @@ AC_ARG_WITH(pvm,
 
 PVM_ENABLE=no
 if test "$with_pvm" != no; then
-   AC_PVM()	
+   AC_PVM()
    PVM_ENABLE=yes
 fi
 AC_SUBST(PVM_ENABLE)
@@ -944,10 +944,10 @@ if test "$enable_build_localization" != no; then
    AC_PATH_PROG(XGETTEXT, xgettext, no)
 
    if test x$MSGFMT = xno; then
-	  AC_ERROR([As you used to the option --with-build-localization, the msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
+	  AC_ERROR([The msgfmt command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
 	  fi
 	if test x$MSGCAT = xno; then
-	  AC_ERROR([As you used to the option --with-localization-generation, the msgcat command is required to build Scilab. If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue.])
+	  AC_ERROR([The msgcat command is required to build Scilab.  If it is installed on your system, ensure that it is in your path.  If it is not, install GNU gettext to continue or use the option --disable-build-localization ])
 	fi
 	BUILD_LOCALIZATION_ENABLE=yes
 fi
@@ -958,27 +958,18 @@ AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$BUILD_LOCALIZATION_ENABLE" = 
 #######################
 AC_MSG_CHECKING([if BLAS, ATLAS or MKL is available])
 echo ""
-EMBEDDED_BLAS=0
 ACX_BLAS(
 		[AC_MSG_RESULT([$BLAS_TYPE found])]
 		,
-		AC_MSG_WARN([Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded])
-		EMBEDDED_BLAS=1
+		AC_MSG_ERROR([Impossible to find a BLAS compatible library (see BLAS or ATLAS).])
 		)
-AM_CONDITIONAL(USE_EMBEDDED_BLAS, test $EMBEDDED_BLAS = 1)
-
 
 AC_MSG_CHECKING([if LAPACK is available])
 echo ""
-EMBEDDED_LAPACK=0
 ACX_LAPACK(
 		[AC_MSG_RESULT([$LAPACK_TYPE found])],
-		AC_MSG_WARN([Impossible to find the LAPACK library. Use the version of lapack embedded])
-		EMBEDDED_LAPACK=1
+		AC_MSG_ERROR([Impossible to find the LAPACK library.])
 		)
-AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
-
-
 
 #################
 ## UMFPACK
@@ -1124,7 +1115,7 @@ if test "$enable_build_help" != no; then
     AC_DOCBOOK()
 	HELP_ENABLE=yes
 
-fi 
+fi
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###
@@ -1210,8 +1201,6 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 AC_CONFIG_FILES([
-libs/lapack/Makefile
-libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/dynamiclibrary/Makefile
 libs/doublylinkedlist/Makefile
@@ -1267,6 +1256,7 @@ modules/pvm/Makefile
 modules/randlib/Makefile
 modules/tclsci/Makefile
 modules/windows_tools/Makefile
+modules/call_scilab/Makefile
 modules/fftw/Makefile
 modules/umfpack/Makefile
 modules/scicos/Makefile
@@ -1465,19 +1455,10 @@ fi
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
-if test $EMBEDDED_BLAS = 0; then
-   echo "BLAS LIBS ............. = $BLAS_LIBS"
-   echo "BLAS TYPE ............. = $BLAS_TYPE"
-else
-   echo "BLAS LIBS ............. = Use the generic version of BLAS embedded"
-fi
-
-if test $EMBEDDED_LAPACK = 0; then
-   echo "LAPACK LIBS ........... = $LAPACK_LIBS"
-   echo "LAPACK TYPE ........... = $LAPACK_TYPE"
-else
-   echo "LAPACK LIBS ........... = Use the LAPACK embedded"
-fi
+echo "BLAS LIBS ............. = $BLAS_LIBS"
+echo "BLAS TYPE ............. = $BLAS_TYPE"
+echo "LAPACK LIBS ........... = $LAPACK_LIBS"
+echo "LAPACK TYPE ........... = $LAPACK_TYPE"
 
 echo ""
 

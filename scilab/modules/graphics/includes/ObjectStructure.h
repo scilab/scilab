@@ -21,19 +21,9 @@
 #ifndef __SCI_OBJECT_STRUCTURE__
 #define __SCI_OBJECT_STRUCTURE__
 
-
-
-/*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h
-  sauf pour les callback (il faudrait creer une fonction et l'appeler) */
-#include "stack-c.h"
+#include "core_math.h"
 #include "StringMatrix.h"
 #include "DoublyLinkedList.h"
-
-#ifdef _MSC_VER
-#undef Top 
-#include <windows.h>
-#define Top C2F(vstk).top
-#endif
 
 #define NUMCOLORS_SCI 32
 #define SCI_FIGURE_NAME_LENGTH 256
@@ -401,12 +391,11 @@ sciText;
 
 
 
-/**@name sciLegendPlace
- * Enumeration used to specify the title place 
+/**
+ * Enumeration used to specify the title place relative to parent subwindow
  */
 typedef enum
   {
-    /** */
     /** */
     SCI_LEGEND_IN_UPPER_LEFT = 1,
     /** */
@@ -417,6 +406,8 @@ typedef enum
     SCI_LEGEND_IN_LOWER_RIGHT = 4,
     /** */
     SCI_LEGEND_BY_COORDINATES = 5,
+		/** */
+		SCI_LEGEND_POSITION_UNSPECIFIED = 0,
     /** */
     SCI_LEGEND_OUT_UPPER_LEFT = -1,
     /** */

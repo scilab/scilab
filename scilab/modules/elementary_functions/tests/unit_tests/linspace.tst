@@ -28,3 +28,14 @@ computed=linspace(12,14,11);
 expected=[12. 12.2 12.4 12.6 12.8 13. 13.2 13.4 13.6 13.8 14.];
 if norm(computed-expected)>10*%eps then pause, end
 
+// Special cases
+if linspace(0,1,1)<>1 then pause; end
+if linspace(0,1,-1)<>1 then pause; end
+if linspace(0,1,0)<>1 then pause; end
+if linspace(0,10,1)<>10 then pause; end
+if linspace(0,10,-1)<>10 then pause; end
+if linspace(0,10,0)<>10 then pause; end
+if linspace(10,1,1)<>1 then pause; end
+if linspace(10,1,-1)<>1 then pause; end
+if linspace(10,1,0)<>1 then pause; end
+

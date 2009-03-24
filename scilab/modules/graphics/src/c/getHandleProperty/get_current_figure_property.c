@@ -26,7 +26,7 @@
 #include "CurrentObjectsManagement.h"
 #include "Scierror.h"
 #include "localization.h"
-
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int get_current_figure_property( sciPointObj * pobj )
 {

@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int int_objfscanf(char *fname,unsigned long fname_len)
+int sci_fscanf(char *fname,unsigned long fname_len)
 {
 	static int l1, m1, n1,l2,m2,n2,iarg,maxrow,nrow,rowcount,ncol;
 	FILE  *f;

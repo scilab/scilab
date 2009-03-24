@@ -545,10 +545,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_fileio.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_filesep.c"
 				>
 			</File>
@@ -593,6 +589,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_mclearerr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mclose.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_merror.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_mfprintf.c"
 				>
 			</File>
@@ -601,11 +609,39 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_mget.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mgetstr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_moef.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mopen.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_mprintf.c"
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_mput.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mputstr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_mscanf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mseek.c"
 				>
 			</File>
 			<File
@@ -614,6 +650,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_msscanf.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mtell.c"
 				>
 			</File>
 			<File
@@ -731,10 +771,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\intreadxls.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\isdir.h"
 				>
 			</File>
@@ -800,10 +836,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\resource.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_fileio.h"
 				>
 			</File>
 			<File

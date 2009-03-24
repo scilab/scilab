@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scifiir)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_fiir)(char *fname,unsigned long fname_len)
+int sci_fiir(char *fname,unsigned long fname_len)
 {
 	C2F(scifiir)(fname,fname_len);
 	return 0;

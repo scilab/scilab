@@ -17,6 +17,7 @@
 
 #include "WindowList.h"
 #include "GetProperty.h"
+#include "MALLOC.h"
 
 /**
  * list of all graphic windows

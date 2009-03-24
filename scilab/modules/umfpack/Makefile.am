@@ -66,14 +66,6 @@ $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
-if USE_EMBEDDED_LAPACK
-libsciumfpack_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libsciumfpack_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
-
 libsciumfpack_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \

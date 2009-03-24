@@ -5083,6 +5083,7 @@ static int gl2psGetPSFontFamilyName(const char * fontName, char * familyName)
 	strncpy(familyName, fontName, familyNameLength);
 	/* strncpy doesn't add the null terminating character */
 	familyName[familyNameLength] = 0;
+	return familyNameLength;
 }
 
 

@@ -106,16 +106,15 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscicore_la_LIBADD =
 am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
-	src/c/tmpdir.c src/c/intmacr2tree.c src/c/fromjava.c \
-	src/c/run.c src/c/InitScilab.c src/c/getval.c src/c/md5.c \
-	src/c/inisci-c.c src/c/IsAScalar.c src/c/texmacs.c \
-	src/c/sciquit.c src/c/stack1.c src/c/realmain.c src/c/stack3.c \
-	src/c/str2sci.c src/c/getmodules.c src/c/fromc.c \
-	src/c/setgetSCIpath.c src/c/getmemory.c src/c/Funtab.c \
-	src/c/csignal.c src/c/prompt.c src/c/CallScilab.c \
-	src/c/callinterf.c src/c/SendScilabJobs.c src/c/scimem.c \
-	src/c/banier.c src/c/isanan.c src/c/parse.c src/c/timer.c \
-	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
+	src/c/tmpdir.c src/c/intmacr2tree.c src/c/run.c \
+	src/c/InitScilab.c src/c/getval.c src/c/md5.c src/c/inisci-c.c \
+	src/c/IsAScalar.c src/c/texmacs.c src/c/sciquit.c \
+	src/c/stack1.c src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
+	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
+	src/c/Funtab.c src/c/csignal.c src/c/prompt.c \
+	src/c/callinterf.c src/c/scimem.c src/c/banier.c \
+	src/c/isanan.c src/c/parse.c src/c/timer.c src/c/stack2.c \
+	src/c/xscion.c src/c/SetScilabEnvironment.c \
 	src/c/hashtable_core.c src/c/returnanan.c \
 	src/c/LoadFunctionsTab.c src/c/with_module.c \
 	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
@@ -133,12 +132,13 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
 	src/c/comparehandles.c src/c/setPrecisionFPU.c \
 	src/c/LaunchScilabSignal.c src/c/getos.c src/c/mode_exec.c \
-	src/c/scimem64.c src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
-	src/fortran/nextj.f src/fortran/functionsforbasout.f \
-	src/fortran/setgetmode.f src/fortran/showstack.f \
-	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
+	src/c/predef.c src/c/scimem64.c src/fortran/algebre.f \
+	src/fortran/clunit.f src/fortran/getlin.f \
+	src/fortran/allowptr.f src/fortran/dldsp.f src/fortran/isany.f \
+	src/fortran/hmcreate.f src/fortran/nextj.f \
+	src/fortran/functionsforbasout.f src/fortran/setgetmode.f \
+	src/fortran/showstack.f src/fortran/misops.f \
+	src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
 	src/fortran/funnam.f src/fortran/isnum.f src/fortran/cmdstr.f \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
@@ -180,8 +180,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
 	sci_gateway/c/sci_banner.c sci_gateway/c/sci_where.c \
 	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_getos.c \
-	sci_gateway/c/sci_format.c sci_gateway/c/sci_fromjava.c \
-	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_fromc.c \
+	sci_gateway/c/sci_format.c sci_gateway/c/sci_getmemory.c \
 	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
 	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_isdef.c \
 	sci_gateway/c/sci_isglobal.c sci_gateway/c/sci_who.c \
@@ -227,7 +226,6 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/fortran/sci_clear.f sci_gateway/fortran/sci_argn.f \
 	sci_gateway/fortran/sci_comp.f \
 	sci_gateway/fortran/sci_setbpt.f \
-	sci_gateway/fortran/sci_predef.f \
 	sci_gateway/fortran/sci_typnam.f \
 	sci_gateway/fortran/sci_clearglobal.f \
 	sci_gateway/fortran/sci_delbpt.f sci_gateway/fortran/where.f \
@@ -237,18 +235,16 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 = libscicore_la-scimem64.lo
 am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-tmpdir.lo libscicore_la-intmacr2tree.lo \
-	libscicore_la-fromjava.lo libscicore_la-run.lo \
-	libscicore_la-InitScilab.lo libscicore_la-getval.lo \
-	libscicore_la-md5.lo libscicore_la-inisci-c.lo \
-	libscicore_la-IsAScalar.lo libscicore_la-texmacs.lo \
-	libscicore_la-sciquit.lo libscicore_la-stack1.lo \
-	libscicore_la-realmain.lo libscicore_la-stack3.lo \
-	libscicore_la-str2sci.lo libscicore_la-getmodules.lo \
-	libscicore_la-fromc.lo libscicore_la-setgetSCIpath.lo \
+	libscicore_la-run.lo libscicore_la-InitScilab.lo \
+	libscicore_la-getval.lo libscicore_la-md5.lo \
+	libscicore_la-inisci-c.lo libscicore_la-IsAScalar.lo \
+	libscicore_la-texmacs.lo libscicore_la-sciquit.lo \
+	libscicore_la-stack1.lo libscicore_la-realmain.lo \
+	libscicore_la-stack3.lo libscicore_la-str2sci.lo \
+	libscicore_la-getmodules.lo libscicore_la-setgetSCIpath.lo \
 	libscicore_la-getmemory.lo libscicore_la-Funtab.lo \
 	libscicore_la-csignal.lo libscicore_la-prompt.lo \
-	libscicore_la-CallScilab.lo libscicore_la-callinterf.lo \
-	libscicore_la-SendScilabJobs.lo libscicore_la-scimem.lo \
+	libscicore_la-callinterf.lo libscicore_la-scimem.lo \
 	libscicore_la-banier.lo libscicore_la-isanan.lo \
 	libscicore_la-parse.lo libscicore_la-timer.lo \
 	libscicore_la-stack2.lo libscicore_la-xscion.lo \
@@ -279,7 +275,8 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-comparehandles.lo \
 	libscicore_la-setPrecisionFPU.lo \
 	libscicore_la-LaunchScilabSignal.lo libscicore_la-getos.lo \
-	libscicore_la-mode_exec.lo $(am__objects_1)
+	libscicore_la-mode_exec.lo libscicore_la-predef.lo \
+	$(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
 	isany.lo hmcreate.lo nextj.lo functionsforbasout.lo \
@@ -305,8 +302,7 @@ am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
 	libscicore_la-sci_errcatch.lo libscicore_la-sci_getos.lo \
-	libscicore_la-sci_format.lo libscicore_la-sci_fromjava.lo \
-	libscicore_la-sci_getmemory.lo libscicore_la-sci_fromc.lo \
+	libscicore_la-sci_format.lo libscicore_la-sci_getmemory.lo \
 	libscicore_la-sci_havewindow.lo libscicore_la-sci_delbpt.lo \
 	libscicore_la-sci_macr2lst.lo libscicore_la-sci_isdef.lo \
 	libscicore_la-sci_isglobal.lo libscicore_la-sci_who.lo \
@@ -340,9 +336,8 @@ am__objects_6 = sci_errclear.lo sci_funcprot.lo sci_global.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
 	sci_macrovar.lo sci_funptr.lo sci_exists.lo sci_errcatch.lo \
 	sci_clear.lo sci_argn.lo sci_comp.lo sci_setbpt.lo \
-	sci_predef.lo sci_typnam.lo sci_clearglobal.lo sci_delbpt.lo \
-	where.lo sci_iserror.lo sci_type.lo sci_debug.lo \
-	sci_isglobal.lo
+	sci_typnam.lo sci_clearglobal.lo sci_delbpt.lo where.lo \
+	sci_iserror.lo sci_type.lo sci_debug.lo sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -588,14 +583,13 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
-	src/c/intmacr2tree.c src/c/fromjava.c src/c/run.c \
-	src/c/InitScilab.c src/c/getval.c src/c/md5.c src/c/inisci-c.c \
-	src/c/IsAScalar.c src/c/texmacs.c src/c/sciquit.c \
-	src/c/stack1.c src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
-	src/c/getmodules.c src/c/fromc.c src/c/setgetSCIpath.c \
-	src/c/getmemory.c src/c/Funtab.c src/c/csignal.c \
-	src/c/prompt.c src/c/CallScilab.c src/c/callinterf.c \
-	src/c/SendScilabJobs.c src/c/scimem.c src/c/banier.c \
+	src/c/intmacr2tree.c src/c/run.c src/c/InitScilab.c \
+	src/c/getval.c src/c/md5.c src/c/inisci-c.c src/c/IsAScalar.c \
+	src/c/texmacs.c src/c/sciquit.c src/c/stack1.c \
+	src/c/realmain.c src/c/stack3.c src/c/str2sci.c \
+	src/c/getmodules.c src/c/setgetSCIpath.c src/c/getmemory.c \
+	src/c/Funtab.c src/c/csignal.c src/c/prompt.c \
+	src/c/callinterf.c src/c/scimem.c src/c/banier.c \
 	src/c/isanan.c src/c/parse.c src/c/timer.c src/c/stack2.c \
 	src/c/xscion.c src/c/SetScilabEnvironment.c \
 	src/c/hashtable_core.c src/c/returnanan.c \
@@ -615,7 +609,7 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/dynamic_gateways.c src/c/readGateway.c \
 	src/c/comparehandles.c src/c/setPrecisionFPU.c \
 	src/c/LaunchScilabSignal.c src/c/getos.c src/c/mode_exec.c \
-	$(am__append_1)
+	src/c/predef.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
@@ -668,9 +662,7 @@ sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_format.c \
-sci_gateway/c/sci_fromjava.c \
 sci_gateway/c/sci_getmemory.c \
-sci_gateway/c/sci_fromc.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_macr2lst.c \
@@ -740,7 +732,6 @@ sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_predef.f \
 sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
@@ -755,6 +746,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 	-I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-I$(top_srcdir)/modules/intersci/includes \
+	-I$(top_srcdir)/modules/call_scilab/includes \
 	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
@@ -803,13 +795,11 @@ includes/BOOL.h \
 includes/callFunctionFromGateway.h \
 includes/callinter.h \
 includes/callinterf.h \
-includes/CallScilab.h \
 includes/commandwords.h \
 includes/core_math.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \
-includes/fromjava.h \
 includes/Funtab.h \
 includes/getcommandlineargs.h \
 includes/GetExceptionCode.h \
@@ -1003,7 +993,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-CallScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-Funtab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-GetXmlFileEncoding.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-InitScilab.Plo@am__quote@
@@ -1012,7 +1001,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LaunchScilabSignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-LoadFunctionsTab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SCIHOME.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SendScilabJobs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-SetScilabEnvironment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-TerminateCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-banier.Plo@am__quote@
@@ -1027,8 +1015,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-freeArrayOfString.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getdynamicdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
@@ -1054,6 +1040,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-mode_exec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-parse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-readGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-realmain.Plo@am__quote@
@@ -1075,8 +1062,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_exists.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_format.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_fromc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_fromjava.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funcprot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funptr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo@am__quote@
@@ -1190,13 +1175,6 @@ libscicore_la-intmacr2tree.lo: src/c/intmacr2tree.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-intmacr2tree.lo `test -f 'src/c/intmacr2tree.c' || echo '$(srcdir)/'`src/c/intmacr2tree.c
 
-libscicore_la-fromjava.lo: src/c/fromjava.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-fromjava.lo -MD -MP -MF $(DEPDIR)/libscicore_la-fromjava.Tpo -c -o libscicore_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-fromjava.Tpo $(DEPDIR)/libscicore_la-fromjava.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fromjava.c' object='libscicore_la-fromjava.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-fromjava.lo `test -f 'src/c/fromjava.c' || echo '$(srcdir)/'`src/c/fromjava.c
-
 libscicore_la-run.lo: src/c/run.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-run.lo -MD -MP -MF $(DEPDIR)/libscicore_la-run.Tpo -c -o libscicore_la-run.lo `test -f 'src/c/run.c' || echo '$(srcdir)/'`src/c/run.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-run.Tpo $(DEPDIR)/libscicore_la-run.Plo
@@ -1288,13 +1266,6 @@ libscicore_la-getmodules.lo: src/c/getmodules.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-getmodules.lo `test -f 'src/c/getmodules.c' || echo '$(srcdir)/'`src/c/getmodules.c
 
-libscicore_la-fromc.lo: src/c/fromc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-fromc.lo -MD -MP -MF $(DEPDIR)/libscicore_la-fromc.Tpo -c -o libscicore_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-fromc.Tpo $(DEPDIR)/libscicore_la-fromc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fromc.c' object='libscicore_la-fromc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-fromc.lo `test -f 'src/c/fromc.c' || echo '$(srcdir)/'`src/c/fromc.c
-
 libscicore_la-setgetSCIpath.lo: src/c/setgetSCIpath.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-setgetSCIpath.lo -MD -MP -MF $(DEPDIR)/libscicore_la-setgetSCIpath.Tpo -c -o libscicore_la-setgetSCIpath.lo `test -f 'src/c/setgetSCIpath.c' || echo '$(srcdir)/'`src/c/setgetSCIpath.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-setgetSCIpath.Tpo $(DEPDIR)/libscicore_la-setgetSCIpath.Plo
@@ -1330,26 +1301,12 @@ libscicore_la-prompt.lo: src/c/prompt.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
 
-libscicore_la-CallScilab.lo: src/c/CallScilab.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-CallScilab.lo -MD -MP -MF $(DEPDIR)/libscicore_la-CallScilab.Tpo -c -o libscicore_la-CallScilab.lo `test -f 'src/c/CallScilab.c' || echo '$(srcdir)/'`src/c/CallScilab.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-CallScilab.Tpo $(DEPDIR)/libscicore_la-CallScilab.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/CallScilab.c' object='libscicore_la-CallScilab.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-CallScilab.lo `test -f 'src/c/CallScilab.c' || echo '$(srcdir)/'`src/c/CallScilab.c
-
 libscicore_la-callinterf.lo: src/c/callinterf.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-callinterf.lo -MD -MP -MF $(DEPDIR)/libscicore_la-callinterf.Tpo -c -o libscicore_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-callinterf.Tpo $(DEPDIR)/libscicore_la-callinterf.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callinterf.c' object='libscicore_la-callinterf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-callinterf.lo `test -f 'src/c/callinterf.c' || echo '$(srcdir)/'`src/c/callinterf.c
-
-libscicore_la-SendScilabJobs.lo: src/c/SendScilabJobs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-SendScilabJobs.lo -MD -MP -MF $(DEPDIR)/libscicore_la-SendScilabJobs.Tpo -c -o libscicore_la-SendScilabJobs.lo `test -f 'src/c/SendScilabJobs.c' || echo '$(srcdir)/'`src/c/SendScilabJobs.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-SendScilabJobs.Tpo $(DEPDIR)/libscicore_la-SendScilabJobs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SendScilabJobs.c' object='libscicore_la-SendScilabJobs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-SendScilabJobs.lo `test -f 'src/c/SendScilabJobs.c' || echo '$(srcdir)/'`src/c/SendScilabJobs.c
 
 libscicore_la-scimem.lo: src/c/scimem.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem.Tpo -c -o libscicore_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c
@@ -1687,6 +1644,13 @@ libscicore_la-mode_exec.lo: src/c/mode_exec.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-mode_exec.lo `test -f 'src/c/mode_exec.c' || echo '$(srcdir)/'`src/c/mode_exec.c
 
+libscicore_la-predef.lo: src/c/predef.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-predef.lo -MD -MP -MF $(DEPDIR)/libscicore_la-predef.Tpo -c -o libscicore_la-predef.lo `test -f 'src/c/predef.c' || echo '$(srcdir)/'`src/c/predef.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-predef.Tpo $(DEPDIR)/libscicore_la-predef.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/predef.c' object='libscicore_la-predef.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-predef.lo `test -f 'src/c/predef.c' || echo '$(srcdir)/'`src/c/predef.c
+
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-scimem64.Tpo $(DEPDIR)/libscicore_la-scimem64.Plo
@@ -1750,26 +1714,12 @@ libscicore_la-sci_format.lo: sci_gateway/c/sci_format.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_format.lo `test -f 'sci_gateway/c/sci_format.c' || echo '$(srcdir)/'`sci_gateway/c/sci_format.c
 
-libscicore_la-sci_fromjava.lo: sci_gateway/c/sci_fromjava.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_fromjava.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_fromjava.Tpo -c -o libscicore_la-sci_fromjava.lo `test -f 'sci_gateway/c/sci_fromjava.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromjava.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_fromjava.Tpo $(DEPDIR)/libscicore_la-sci_fromjava.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fromjava.c' object='libscicore_la-sci_fromjava.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_fromjava.lo `test -f 'sci_gateway/c/sci_fromjava.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromjava.c
-
 libscicore_la-sci_getmemory.lo: sci_gateway/c/sci_getmemory.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getmemory.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getmemory.Tpo -c -o libscicore_la-sci_getmemory.lo `test -f 'sci_gateway/c/sci_getmemory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getmemory.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_getmemory.Tpo $(DEPDIR)/libscicore_la-sci_getmemory.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getmemory.c' object='libscicore_la-sci_getmemory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_getmemory.lo `test -f 'sci_gateway/c/sci_getmemory.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getmemory.c
-
-libscicore_la-sci_fromc.lo: sci_gateway/c/sci_fromc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_fromc.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_fromc.Tpo -c -o libscicore_la-sci_fromc.lo `test -f 'sci_gateway/c/sci_fromc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromc.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_fromc.Tpo $(DEPDIR)/libscicore_la-sci_fromc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fromc.c' object='libscicore_la-sci_fromc.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_fromc.lo `test -f 'sci_gateway/c/sci_fromc.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fromc.c
 
 libscicore_la-sci_havewindow.lo: sci_gateway/c/sci_havewindow.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_havewindow.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_havewindow.Tpo -c -o libscicore_la-sci_havewindow.lo `test -f 'sci_gateway/c/sci_havewindow.c' || echo '$(srcdir)/'`sci_gateway/c/sci_havewindow.c
@@ -2516,9 +2466,6 @@ sci_comp.lo: sci_gateway/fortran/sci_comp.f
 
 sci_setbpt.lo: sci_gateway/fortran/sci_setbpt.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_setbpt.lo `test -f 'sci_gateway/fortran/sci_setbpt.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_setbpt.f
-
-sci_predef.lo: sci_gateway/fortran/sci_predef.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_predef.lo `test -f 'sci_gateway/fortran/sci_predef.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_predef.f
 
 sci_typnam.lo: sci_gateway/fortran/sci_typnam.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_typnam.lo `test -f 'sci_gateway/fortran/sci_typnam.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_typnam.f

@@ -17,7 +17,7 @@
 /* desc : function to modify in Scilab the user_data field of             */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include "stack-c.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"

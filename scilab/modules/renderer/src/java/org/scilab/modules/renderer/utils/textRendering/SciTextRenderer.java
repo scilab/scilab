@@ -187,6 +187,15 @@ public class SciTextRenderer {
 	}
 	
 	/**
+	 * Force recomputation of mipmap availability.
+	 * To be called when the OpenGL context is reinit since
+	 * mipmap availability may change depending on the GLCapabilities.
+	 */
+	public static void forceMipMapRecomputationAvailabilty() {
+		areMMsAvailableUpToDate = false;
+	}
+	
+	/**
 	 * @return true if mipmaps are enabled for the text renderer.
 	 */
 	private boolean getMipmapAvailability() {

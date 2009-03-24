@@ -13,7 +13,6 @@ src/c/inffic.c \
 src/c/cs2st.c \
 src/c/tmpdir.c \
 src/c/intmacr2tree.c \
-src/c/fromjava.c \
 src/c/run.c \
 src/c/InitScilab.c \
 src/c/getval.c \
@@ -27,15 +26,12 @@ src/c/realmain.c \
 src/c/stack3.c \
 src/c/str2sci.c \
 src/c/getmodules.c \
-src/c/fromc.c \
 src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/Funtab.c \
 src/c/csignal.c \
 src/c/prompt.c \
-src/c/CallScilab.c \
 src/c/callinterf.c \
-src/c/SendScilabJobs.c \
 src/c/scimem.c \
 src/c/banier.c \
 src/c/isanan.c \
@@ -83,7 +79,8 @@ src/c/comparehandles.c \
 src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
 src/c/getos.c \
-src/c/mode_exec.c
+src/c/mode_exec.c \
+src/c/predef.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -213,9 +210,7 @@ sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_getos.c \
 sci_gateway/c/sci_format.c \
-sci_gateway/c/sci_fromjava.c \
 sci_gateway/c/sci_getmemory.c \
-sci_gateway/c/sci_fromc.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_macr2lst.c \
@@ -285,7 +280,6 @@ sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_predef.f \
 sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
@@ -300,8 +294,9 @@ libscicore_la_CFLAGS = 	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
-			-I$(top_srcdir)/modules/intersci/includes \
-			-I$(top_srcdir)/modules/action_binding/includes \
+            -I$(top_srcdir)/modules/intersci/includes \
+            -I$(top_srcdir)/modules/call_scilab/includes \
+            -I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/tclsci/includes \
@@ -361,13 +356,11 @@ includes/BOOL.h \
 includes/callFunctionFromGateway.h \
 includes/callinter.h \
 includes/callinterf.h \
-includes/CallScilab.h \
 includes/commandwords.h \
 includes/core_math.h \
 includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \
-includes/fromjava.h \
 includes/Funtab.h \
 includes/getcommandlineargs.h \
 includes/GetExceptionCode.h \

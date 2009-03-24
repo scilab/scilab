@@ -36,10 +36,6 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-
-# This is first to be sure that it is the first one to be compiled
-@USE_EMBEDDED_BLAS_TRUE@am__append_1 = blas
-@USE_EMBEDDED_LAPACK_TRUE@am__append_2 = lapack
 subdir = libs
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -75,8 +71,7 @@ RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
 CTAGS = ctags
-DIST_SUBDIRS = blas MALLOC hashtable libst dynamiclibrary lapack \
-	doublylinkedlist .
+DIST_SUBDIRS = $(SUBDIRS)
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -286,8 +281,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 
 # The order DOES matter !!!
-SUBDIRS = $(am__append_1) MALLOC hashtable libst dynamiclibrary lapack \
-	doublylinkedlist $(am__append_2) .
+SUBDIRS = MALLOC hashtable libst dynamiclibrary doublylinkedlist .
 all: all-recursive
 
 .SUFFIXES:

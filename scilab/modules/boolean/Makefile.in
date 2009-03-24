@@ -55,11 +55,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libsciboolean_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_2 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/boolean
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -96,8 +95,7 @@ pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciboolean_la_DEPENDENCIES =  \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(am__append_1)
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 am__objects_1 = libsciboolean_la-matboolean.lo \
 	libsciboolean_la-vect_or.lo libsciboolean_la-vect_and.lo
 am__objects_2 = logic.lo find.lo
@@ -376,10 +374,10 @@ libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GAT
 # For the code check (splint)
 CHECK_SRC = $(BOOLEAN_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciboolean_la_CFLAGS)
-libsciboolean_la_LIBADD =  \
+libsciboolean_la_LIBADD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(am__append_1)
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+
 modulename = boolean
 
 #### boolean : Conf files ####
@@ -411,7 +409,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro

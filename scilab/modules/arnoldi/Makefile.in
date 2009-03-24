@@ -55,12 +55,10 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@USE_EMBEDDED_LAPACK_TRUE@am__append_1 = $(top_builddir)/libs/lapack/libscilapack.la
-@USE_EMBEDDED_BLAS_TRUE@am__append_2 = $(top_builddir)/libs/blas/libsciblas.la
 DIST_COMMON = $(libsciarnoldi_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_3 = java
+@NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/arnoldi
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -96,8 +94,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libsciarnoldi_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la $(am__append_1) \
-	$(am__append_2)
+	$(top_builddir)/modules/core/libscicore.la
 am__objects_1 = libsciarnoldi_la-dsconv.lo libsciarnoldi_la-dsortc.lo \
 	libsciarnoldi_la-dsaup2.lo libsciarnoldi_la-dneigh.lo \
 	libsciarnoldi_la-znaupd.lo libsciarnoldi_la-dsesrt.lo \
@@ -443,8 +440,7 @@ libsciarnoldi_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
-libsciarnoldi_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-	$(am__append_1) $(am__append_2)
+libsciarnoldi_la_LIBADD = $(top_builddir)/modules/core/libscicore.la
 
 #### Target ######
 modulename = arnoldi
@@ -476,7 +472,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro

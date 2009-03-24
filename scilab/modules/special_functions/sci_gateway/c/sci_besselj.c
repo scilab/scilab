@@ -15,7 +15,6 @@
 #include "stack-c.h"
 #include "msgs.h"
 /*--------------------------------------------------------------------------*/
-extern void C2F(dset)(int *n, double *a,double *x,int *ix);
 extern void  C2F(dbesjv) (double *x,int* nx, double *alpha, int *na, int *kode,double *r, double *w, int *ierr);
 extern void  C2F(zbesjv) (double *xr,double *xi,int* nx, double *alpha, int *na,int *kode, double *rr,double *ri, double *wr, double *wi, int *ierr);
 /*--------------------------------------------------------------------------*/

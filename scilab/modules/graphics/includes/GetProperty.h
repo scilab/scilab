@@ -271,6 +271,8 @@ BOOL sciGetGridFront(sciPointObj * pObj); /* GET */
 
 int sciGetAntialiasingQuality(sciPointObj * pObj); /* GET */
 
+sciLegendPlace sciGetLegendLocation(sciPointObj * pObj); /* GET */
+
 void printSetGetErrorMessage(const char * propertyName);
 
 #endif /* __SCI_GET_PROPERTY__ */

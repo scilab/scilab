@@ -1,0 +1,36 @@
+               Changes between version 5.1 and SAS of Scilab
+               =================================================
+
+Compilation:
+============
+
+Bug fixes:
+==========
+
+New Features:
+=============
+
+Enhancement:
+============
+
+Tests:
+======
+
+Internationalization:
+=====================
+
+Misc:
+=====
+
+* amell now checks its parameters be real numbers
+* amell now throws an error if the second parameter isn't scalar
+* amell's tests reviewed to reflect
+
+Compilation:
+============
+
+Bug fixes:
+==========
+
+Obsolete functions removed :
+============================

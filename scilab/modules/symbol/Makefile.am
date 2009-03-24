@@ -27,13 +27,6 @@ libscisymbol_la_CXXFLAGS	= -I includes/ \
 
 
 libscisymbol_la_LIBADD =
-if USE_EMBEDDED_LAPACK
-libscisymbol_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscisymbol_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
 
 libscisymbol_la_includedir=$(pkgincludedir)/Symbol
 

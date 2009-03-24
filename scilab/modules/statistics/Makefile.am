@@ -99,11 +99,6 @@ INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
 
 libscistatistics_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
-if USE_EMBEDDED_LAPACK
-libscistatistics_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-
 #### Target ######
 modulename=statistics
 

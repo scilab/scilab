@@ -134,11 +134,6 @@ INCLUDE_FLAGS = $(libscimetanet_la_CFLAGS)
 
 libscimetanet_la_LIBADD = $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
-if USE_EMBEDDED_BLAS
-libscimetanet_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
-
-
 #### Target ######
 modulename=metanet
 
