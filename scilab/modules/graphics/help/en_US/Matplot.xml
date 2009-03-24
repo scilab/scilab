@@ -260,9 +260,11 @@ Matplot(a,&lt;opt_args&gt;)</synopsis>
   <refsection>
     <title>Description</title>
     <para>The entries of matrix <literal>int(a)</literal> are used as colormap entries
-    in the current colormap. The color associated to <literal>a(i,j)</literal> is
-    used do draw a small square of length 1 with center at location
-    <literal>(x=j,y=(n1-i+1))</literal>.</para>
+    in the current colormap.
+	The color associated to <literal>a(i,j)</literal> is
+    used do draw a small square of size 1 with center at location
+    <literal>(x=j,y=(n1-i+1))</literal>.
+	If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.</para>
     <para>Enter the command <literal>Matplot()</literal> to see a demo.</para>
   </refsection>
   <refsection>
