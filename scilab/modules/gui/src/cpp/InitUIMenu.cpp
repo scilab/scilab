@@ -25,7 +25,7 @@ extern "C"{
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
 #include "Scierror.h"
-
+#include "HandleManagement.h"
 }
 
 using namespace org_scilab_modules_gui_bridge;

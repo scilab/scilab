@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mrow>
+    <math:mfenced math:open="∣" math:close="∣">
+     <math:msub>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi>z</math:mi>
+        <math:mrow>
+         <math:mrow>
+          <math:mo math:stretchy="false">(</math:mo>
+          <math:mi>v</math:mi>
+          <math:mo math:stretchy="false">)</math:mo>
+         </math:mrow>
+         <math:mo math:stretchy="false">−</math:mo>
+         <math:mi>z</math:mi>
+        </math:mrow>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>u</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">ltol</math:mi>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>j</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+      </math:mrow>
+     </math:msub>
+    </math:mfenced>
+    <math:mo math:stretchy="false">≤</math:mo>
+    <math:mi math:fontstyle="italic">tol</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mrow>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi>j</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mo math:stretchy="false">⋅</math:mo>
+     <math:mfenced math:open="∣" math:close="∣">
+      <math:msub>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mi>z</math:mi>
+         <math:mrow>
+          <math:mo math:stretchy="false">(</math:mo>
+          <math:mi>u</math:mi>
+          <math:mo math:stretchy="false">)</math:mo>
+         </math:mrow>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">ltol</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>j</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+      </math:msub>
+     </math:mfenced>
+    </math:mrow>
+    <math:mo math:stretchy="false">+</math:mo>
+    <math:mi math:fontstyle="italic">tol</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mi>j</math:mi>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">abs(z(v)-z(u))_{ltol(j)} &lt;= tol(j) cdot abs(z(u))_{ltol(j)} + tol(j)</math:annotation>
+ </math:semantics>
+</math:math>

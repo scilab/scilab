@@ -26,7 +26,6 @@
 #define __SCI_INIT_GRAPHICS__
 
 #include "ObjectStructure.h"
-#include "HandleManagement.h"
 #include "BOOL.h"
 #include "machine.h" /* C2F */
 

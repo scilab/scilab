@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mi>f</math:mi>
+   <math:mrow>
+    <math:mrow>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi>x</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mo math:stretchy="false">=</math:mo>
+     <math:msup>
+      <math:mrow>
+       <math:mo math:stretchy="false">∥</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">fun</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>x</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">∥</math:mo>
+      </math:mrow>
+      <math:mn>2</math:mn>
+     </math:msup>
+    </math:mrow>
+    <math:mo math:stretchy="false">=</math:mo>
+    <math:mrow>
+     <math:munderover>
+      <math:mo math:stretchy="false">∑</math:mo>
+      <math:mrow>
+       <math:mi>i</math:mi>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mn>1</math:mn>
+      </math:mrow>
+      <math:mi>m</math:mi>
+     </math:munderover>
+     <math:msubsup>
+      <math:mi math:fontstyle="italic">fun</math:mi>
+      <math:mi>i</math:mi>
+      <math:mn>2</math:mn>
+     </math:msubsup>
+    </math:mrow>
+   </math:mrow>
+   <math:mrow>
+    <math:mo math:stretchy="false">(</math:mo>
+    <math:mi>x</math:mi>
+    <math:mo math:stretchy="false">)</math:mo>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">f(x) = ldline fun(x) rdline^2 = sum from {i=1} to m fun^2_i(x)</math:annotation>
+ </math:semantics>
+</math:math>

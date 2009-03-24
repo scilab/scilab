@@ -23,7 +23,6 @@
 #include "localization.h"
 #include "HandleManagement.h"
 #include "getPropertyAssignedValue.h"
-#include "returnProperty.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
 

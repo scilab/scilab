@@ -18,7 +18,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "MALLOC.h"
 #include "Scierror.h"

@@ -24,7 +24,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "GetProperty.h"
-#include "InitObjects.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
 

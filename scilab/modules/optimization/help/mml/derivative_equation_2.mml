@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mi>F</math:mi>
+   <math:mrow>
+    <math:mrow>
+     <math:mo math:stretchy="false">(</math:mo>
+     <math:mrow>
+      <math:mi>x</math:mi>
+      <math:mo math:stretchy="false">+</math:mo>
+      <math:mi math:fontstyle="italic">dx</math:mi>
+     </math:mrow>
+     <math:mo math:stretchy="false">)</math:mo>
+    </math:mrow>
+    <math:mo math:stretchy="false">=</math:mo>
+    <math:mi>F</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mrow>
+     <math:mo math:stretchy="false">(</math:mo>
+     <math:mi>x</math:mi>
+     <math:mo math:stretchy="false">)</math:mo>
+    </math:mrow>
+    <math:mo math:stretchy="false">+</math:mo>
+    <math:mi>J</math:mi>
+   </math:mrow>
+   <math:mrow>
+    <math:mrow>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi>x</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mo math:stretchy="false">⋅</math:mo>
+     <math:mi math:fontstyle="italic">dx</math:mi>
+    </math:mrow>
+    <math:mo math:stretchy="false">+</math:mo>
+    <math:mrow>
+     <math:mrow>
+      <math:mfrac>
+       <math:mn>1</math:mn>
+       <math:mn>2</math:mn>
+      </math:mfrac>
+      <math:mo math:stretchy="false">⋅</math:mo>
+      <math:msup>
+       <math:mi math:fontstyle="italic">dx</math:mi>
+       <math:mi>t</math:mi>
+      </math:msup>
+     </math:mrow>
+     <math:mo math:stretchy="false">⋅</math:mo>
+     <math:mi>H</math:mi>
+    </math:mrow>
+   </math:mrow>
+   <math:mrow>
+    <math:mrow>
+     <math:mrow>
+      <math:mo math:stretchy="false">(</math:mo>
+      <math:mi>x</math:mi>
+      <math:mo math:stretchy="false">)</math:mo>
+     </math:mrow>
+     <math:mo math:stretchy="false">⋅</math:mo>
+     <math:mi math:fontstyle="italic">dx</math:mi>
+    </math:mrow>
+    <math:mo math:stretchy="false">+</math:mo>
+    <math:mo math:stretchy="false">⋯</math:mo>
+   </math:mrow>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">F(x+dx) = F(x) + J(x) cdot dx + 1 over 2 cdot dx^t cdot H(x) cdot dx + dotsaxis</math:annotation>
+ </math:semantics>
+</math:math>

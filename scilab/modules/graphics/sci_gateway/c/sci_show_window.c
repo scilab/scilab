@@ -17,13 +17,12 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_show_window.h"
-#include "getHandleProperty/getPropertyAssignedValue.h"
+#include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
 #include "stack-c.h"
 #include "Scierror.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
-#include "InitObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Interaction.h"

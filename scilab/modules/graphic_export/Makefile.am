@@ -4,7 +4,6 @@
 ### INRIA - Scilab 2008
 ##########
 
-if GUI
 # List of the c files
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
@@ -47,7 +46,6 @@ libscigraphic_export_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/libs/doublylinkedlist/includes
 				
 
-
 # All the sources needed by libscigraphic_export.la
 libscigraphic_export_la_SOURCES = $(GRAPHIC_EXPORT_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC_EXPORT_CPP_SOURCES)
 
@@ -72,17 +70,14 @@ if GIWS
 BUILT_SOURCES=giws
 endif
 
-else
-
 # All the sources needed by libscigraphic_export.la
-libscigraphic_export_la_SOURCES = src/nographic_export/nographic_export.c
+libscigraphic_export_disable_la_SOURCES = src/nographic_export/nographic_export.c
 
-libscigraphic_export_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
-endif
+libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export.la
+pkglib_LTLIBRARIES = libscigraphic_export.la libscigraphic_export-disable.la
 
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 

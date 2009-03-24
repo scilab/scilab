@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
+#include "HandleManagement.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"

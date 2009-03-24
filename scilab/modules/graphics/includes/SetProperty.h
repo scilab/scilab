@@ -26,13 +26,10 @@
  --------------------------------------------------------------------------*/
 
 
-#include "ObjectStructure.h"
-#include "HandleManagement.h"
-
-
 #ifndef __SCI_SET_PROPERTY__
 #define __SCI_SET_PROPERTY__
 
+#include "ObjectStructure.h"
 #include "BOOL.h"
 
 void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta); /* SET  */

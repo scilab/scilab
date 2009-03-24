@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 A = sparse( [ 2  3  0  0  0;
               3  0  4  0  6; 
               0 -1 -3  2  0; 

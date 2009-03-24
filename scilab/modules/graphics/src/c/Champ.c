@@ -15,14 +15,11 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 
-#include <stdio.h>
-#include <string.h>
 #include "math_graphics.h"
 #include "PloEch.h"
 
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "DrawObjects.h"
 
 
 #include "BuildObjects.h"
