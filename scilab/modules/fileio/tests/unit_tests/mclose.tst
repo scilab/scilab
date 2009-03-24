@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 fd = mopen(TMPDIR + filesep() + 'mclose_tst','wt');
 mclose(TMPDIR + filesep() + 'mclose_tst');
 
@@ -14,12 +16,3 @@ if ierr <> 999 then pause,end
 
 ierr = execstr('mclose([1,2])','errcatch');
 if ierr <> 999 then pause,end
-
-mclose('all');
-
-// Check that mclose('all') closes all files (except stdin and stdout)
-f1 = mopen(TMPDIR + filesep() + "mclose1.txt","w");
-f2 = mopen(TMPDIR + filesep() + "mclose2.txt","w");
-mclose("all");
-
-if size(file())<>2 then pause; end
