@@ -16,11 +16,12 @@
 /* desc : Graphic subroutines interface                                   */
 /*------------------------------------------------------------------------*/
 
-#include "BOOL.h"
-#include "ObjectStructure.h"
-
 #ifndef _SCI_CALL_H_
 #define _SCI_CALL_H_
+
+
+#include "BOOL.h"
+#include "ObjectStructure.h"
 
 void Objrect ( double * x         ,
                double * y         ,

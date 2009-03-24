@@ -16,7 +16,6 @@
 /* desc : function used to launch a demo of a command                     */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
 #include <stdio.h>
 
 #include "stack-c.h"

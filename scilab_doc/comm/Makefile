@@ -1,9 +1,9 @@
 SHELL = /bin/sh
 
-include ../../Version.incl
+#include ../../Version.incl
 SCIDIR=../..
 SCIDOC=$(SCIDIR)/../$(SCIVERSION)/doc
-include ../../Makefile.incl
+#include ../../Makefile.incl
 
 all:: $(SCIDOC)/Comm.ps
 

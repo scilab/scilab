@@ -24,7 +24,6 @@
  --------------------------------------------------------------------------*/
 
 #include "ObjectStructure.h"
-#include "HandleManagement.h"
 
 
 #ifndef __SCI_BUILD__

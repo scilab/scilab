@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mfenced math:open="[" math:close="]">
+   <math:mrow>
+    <math:mfrac>
+     <math:mrow>
+      <math:mi>d</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">grad</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:msub>
+          <math:mi>F</math:mi>
+          <math:mi>k</math:mi>
+         </math:msub>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+     <math:msub>
+      <math:mi math:fontstyle="italic">dx</math:mi>
+      <math:mn>1</math:mn>
+     </math:msub>
+    </math:mfrac>
+    <math:mi>,</math:mi>
+    <math:mo math:stretchy="false">⋯</math:mo>
+    <math:mi>,</math:mi>
+    <math:mfrac>
+     <math:mrow>
+      <math:mi>d</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">grad</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:msub>
+          <math:mi>F</math:mi>
+          <math:mi>k</math:mi>
+         </math:msub>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+     <math:msub>
+      <math:mi math:fontstyle="italic">dx</math:mi>
+      <math:mi>n</math:mi>
+     </math:msub>
+    </math:mfrac>
+   </math:mrow>
+  </math:mfenced>
+  <math:annotation math:encoding="StarMath 5.0">left [ {{d(grad(F_k))} over {dx_1}},  dotsaxis,  {{d(grad(F_k))} over {dx_n}} right ]</math:annotation>
+ </math:semantics>
+</math:math>

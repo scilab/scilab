@@ -20,23 +20,16 @@
  *--------------------------------------------------------------------------*/
 
 #include <string.h>
-#include "math_graphics.h"
 #include "Axes.h"
 #include "DestroyObjects.h"
-#include "DrawObjects.h"
 #include "InitObjects.h"
 #include "SetProperty.h"
-#include "SetJavaProperty.h"
 #include "axesScale.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
-#include "pixel_mode.h"
-#include "DoublyLinkedList.h"
-
-
-#include "MALLOC.h" /* MALLOC */
 
 #include "GetProperty.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------------*/
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);

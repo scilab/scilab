@@ -22,6 +22,7 @@ extern "C"{
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __LISTBOX_HXX__ */

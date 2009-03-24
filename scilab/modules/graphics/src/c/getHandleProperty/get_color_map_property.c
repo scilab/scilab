@@ -18,7 +18,6 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
-#include "localization.h"
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"

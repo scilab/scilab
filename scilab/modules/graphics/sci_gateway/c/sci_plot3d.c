@@ -23,14 +23,12 @@
 #include "stack-c.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "GetProperty.h"
 #include "GetCommandArg.h"
-#include "DestroyObjects.h"
 #include "MALLOC.h"
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_plot3d( char * fname, unsigned long fname_len )
 {

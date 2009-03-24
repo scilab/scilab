@@ -11,7 +11,9 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <stdlib.h>
+#include <unistd.h> /* isatty */
+#include <stdlib.h> /* stdin */
+#include <stdio.h>
 #include "core_math.h"
 #include "version.h"
 #include "realmain.h" /* realmain */
@@ -35,8 +37,6 @@
 
 /*--------------------------------------------------------------------------*/
 #define MIN_STACKSIZE 8000000
-/*--------------------------------------------------------------------------*/
-int sci_show_banner=1;
 /*--------------------------------------------------------------------------*/
 
 int main(int argc, char **argv)
@@ -67,7 +67,28 @@ fpsetmask(0);
   setScilabMode(SCILAB_STD);
 #endif
 
-  setCommandLineArgs(argv, argc);
+  if(!isatty(fileno(stdin))) { 
+	  /* if not an interactive terminal 
+	   * then, we are disabling the banner 
+	   * Since the banner is disabled in the scilab script checking 
+	   * with the function sciargs is -nb is present, I add this argument
+	   * by hand
+	   */
+	char** pNewArgv = (char**)malloc((argc + 1) * sizeof(char*));
+
+	for(i = 0 ; i < argc ; i++)
+	{
+		pNewArgv[i] = (char*)malloc((strlen(argv[i]) + 1) * sizeof(char));
+		strcpy(pNewArgv[i], argv[i]);
+	}
+	pNewArgv[i] = (char*)malloc((strlen("-nb") + 1) * sizeof(char));
+	strcpy(pNewArgv[i],"-nb");
+	setCommandLineArgs(pNewArgv, argc+1);
+
+  }else{
+	  setCommandLineArgs(argv, argc);
+  }
+
 
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
@@ -89,8 +110,6 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"-l") == 0)
       {
-		  /* @TODO Buffer overflow here */
-		  char lang[128];
 		  char *argLang=strdup(argv[++i]);
 
 		  /* Export the locale. This is going to be used by setlanguage("") in
@@ -105,7 +124,6 @@ fpsetmask(0);
 			  }
 		  }
       }
-      else if ( strcmp(argv[i],"-nb") == 0)  { sci_show_banner = 0; }
       else if ( strcmp(argv[i],"-ns") == 0)  { no_startup_flag = 1;}
       else if ( strcmp(argv[i],"-mem") == 0) { i++; memory = Max(atoi(argv[i]),MIN_STACKSIZE );}
       else if ( strcmp(argv[i],"-f") == 0)   { initial_script = argv[++i];}
@@ -125,6 +143,7 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
     }
+
 
 #ifndef WITH_GUI
   if(getScilabMode() != SCILAB_NWNI)

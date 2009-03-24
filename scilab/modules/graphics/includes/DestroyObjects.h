@@ -27,7 +27,6 @@
 #define __SCI_DESTROY__
 
 #include "ObjectStructure.h"
-#include "HandleManagement.h"
 #include "machine.h" /* C2F */
 
 

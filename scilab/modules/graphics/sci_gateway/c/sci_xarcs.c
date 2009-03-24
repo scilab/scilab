@@ -18,8 +18,6 @@
 #include "stack-c.h"
 #include "sci_xarcs.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "SetProperty.h"
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "CurrentObjectsManagement.h"

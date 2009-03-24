@@ -20,22 +20,11 @@
  *    This file contains all functions used in graphics handle management.
  --------------------------------------------------------------------------*/
 
-#include <stdio.h> 
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
 #include "HandleManagement.h"
-#include "InitObjects.h"
-#include "DrawObjects.h"
-#include "DestroyObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "WindowList.h"
-#include "DoublyLinkedList.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"

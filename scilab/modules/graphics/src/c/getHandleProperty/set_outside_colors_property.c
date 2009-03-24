@@ -23,7 +23,6 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "ColorMapManagement.h"
 #include "sciprint.h"
 
 /*------------------------------------------------------------------------*/

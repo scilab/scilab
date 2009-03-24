@@ -15,14 +15,13 @@
 /* desc : function to be called each time the graphic module is unloaded  */
 /*------------------------------------------------------------------------*/
 
-#include "getHandleProperty/GetHashTable.h"
-#include "getHandleProperty/SetHashTable.h"
+#include "GetHashTable.h"
+#include "SetHashTable.h"
 #include "DestroyObjects.h"
 #include "graphicModuleLoad.h"
 #include "InitObjects.h"
 #include "SciHandleTab.h"
 
-#include "getScilabJavaVM.h"
 
 #include "GraphicSynchronizerInterface.h"
 

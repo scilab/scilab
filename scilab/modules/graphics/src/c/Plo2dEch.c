@@ -18,29 +18,20 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 
-#include <string.h> /* in case of dbmalloc use */
-#include <stdio.h>
-#include <math.h>
 #include "math_graphics.h" 
 #include "PloEch.h"
 
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
-#include "Interaction.h"
-#include "DrawObjects.h"
-#include "PloEch.h"
 #include "axesScale.h"
 #include "Format.h"
-#include "scirun.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
-#include "dynamic_menus.h" /* StoreCommand */
-#include "Axes.h"
 #include "GraphicSynchronizerInterface.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
-#include "localization.h"
 
 /*-------------------------------------------
  * setscale2d 

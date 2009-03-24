@@ -30,8 +30,6 @@ extern void sci_usr1_signal(int n);
 /*--------------------------------------------------------------------------*/
 static int no_startup_flag=0;
 /*--------------------------------------------------------------------------*/
-#define BSIZE 128
-/*--------------------------------------------------------------------------*/
 int realmain(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
 {
   static int initialization=-1;

@@ -24,6 +24,7 @@ extern "C"{
 #include "SetPropertyStatus.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __PUSHBUTTON_HXX__ */
