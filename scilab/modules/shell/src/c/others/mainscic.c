@@ -96,8 +96,6 @@ fpsetmask(0);
       }
       else if ( strcmp(argv[i],"-l") == 0)
       {
-		  /* @TODO Buffer overflow here */
-		  char lang[128];
 		  char *argLang=strdup(argv[++i]);
 
 		  /* Export the locale. This is going to be used by setlanguage("") in
