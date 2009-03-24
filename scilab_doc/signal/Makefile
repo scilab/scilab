@@ -1,9 +1,9 @@
 SHELL = /bin/sh
 
-include ../../Version.incl
+#include ../../Version.incl
 SCIDIR=../..
 SCIDOC=$(SCIDIR)/../$(SCIVERSION)/doc
-include ../../Makefile.incl
+#include ../../Makefile.incl
 
 TEXFILES = bibli.tex chap0.tex chap1.tex chap2.tex chap3.tex chap4.tex \
 	chap5.tex chap6.tex chap7.tex chap8.tex chap9.tex
