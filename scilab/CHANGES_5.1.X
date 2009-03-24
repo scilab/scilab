@@ -597,6 +597,8 @@ Bug fixes:
 
 * bug 4221 fixed - graypolarplot uses to much memory.
 
+* bug 4272 fixed - Preconditionning in pcg was not taken into account.
+
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
