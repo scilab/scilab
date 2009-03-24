@@ -15,6 +15,7 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
+#include "do_error_number.h"
 
 
 /* 
