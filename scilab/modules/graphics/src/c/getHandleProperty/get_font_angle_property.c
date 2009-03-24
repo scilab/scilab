@@ -21,6 +21,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "math_graphics.h"
 
 /*------------------------------------------------------------------------*/
 int get_font_angle_property( sciPointObj * pobj )

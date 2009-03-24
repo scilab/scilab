@@ -27,7 +27,6 @@
  *                : change [xmi,xmax] for pretty graduation 
  *--------------------------------------------------------------------------*/
 
-#include <string.h>
 #include <stdio.h>
 #include "math_graphics.h"
 #include "Format.h"
@@ -36,7 +35,6 @@
 #include "BasicAlgos.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
-#include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
 

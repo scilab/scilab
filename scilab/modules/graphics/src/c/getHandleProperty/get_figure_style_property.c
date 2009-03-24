@@ -19,12 +19,11 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "InitObjects.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_style_property( sciPointObj * pobj )

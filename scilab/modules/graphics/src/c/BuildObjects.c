@@ -24,17 +24,6 @@
  - binding the newly created object tyo the entire existing hierarchy
  --------------------------------------------------------------------------*/
 
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
-#ifdef _MSC_VER
-#include <windows.h>
-#endif
-
 #include "BuildObjects.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
@@ -46,17 +35,13 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BuildDrawingObserver.h"
-#include "DrawingBridge.h"
 #include "WindowList.h"
 #include "localization.h"
 #include "GraphicSynchronizerInterface.h"
 #include "Interaction.h"
-#include "GetJavaProperty.h"
-#include "SetJavaProperty.h"
-#include "Interaction.h"
 #include "ColorMapManagement.h"
-#include "DrawObjects.h"
 #include "get_ticks_utils.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"

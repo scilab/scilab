@@ -12,17 +12,11 @@
 for entities handling
  --------------------------------------------------------------------------*/
 
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
 #include "math_graphics.h" 
 #include "Axes.h"
 
-#include "GetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
-#include "DrawObjects.h"
-#include "MALLOC.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "CurrentObjectsManagement.h"
@@ -31,6 +25,7 @@ for entities handling
 #include "PloEch.h"
 #include "Plot2d.h"
 #include "get_ticks_utils.h"
+#include "HandleManagement.h"
 
 
 /**

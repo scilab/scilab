@@ -15,18 +15,13 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 
-#include <string.h> /* in case of dbmalloc use */
-#include <stdio.h>
-#include <math.h>
 #include "math_graphics.h"
-#include "PloEch.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "MALLOC.h"
 #include "Format.h"
 #include "Contour.h"
 
-#include "GetProperty.h"
 #include "localization.h"
 
 typedef void (level_f)(int ival, double Cont, double xncont,double yncont);

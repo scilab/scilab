@@ -17,8 +17,6 @@
 /*        These hash table are based on the Scilab hashTable              */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-#include <ctype.h> /* tolower */
 #include "stricmp.h"
 
 #include "setGetHashTable.h"

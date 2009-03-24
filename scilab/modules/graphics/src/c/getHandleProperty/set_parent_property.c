@@ -19,7 +19,6 @@
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "setHandleProperty.h"
-#include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"

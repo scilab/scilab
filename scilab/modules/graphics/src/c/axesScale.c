@@ -18,15 +18,12 @@
 /*------------------------------------------------------------------------*/
 
 #include <string.h>
-#include <math.h> /* exp10 */
 
 #include "axesScale.h"
 #include "math_graphics.h"
-#include "MALLOC.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "Scierror.h"
-#include "PloEch.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "SetJavaProperty.h"
@@ -34,8 +31,8 @@
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
 #include "Interaction.h"
-#include "DoublyLinkedList.h"
 #include "JavaInteraction.h"
+#include "HandleManagement.h"
 
 /*------------------------------------------------------------------------------*/
 static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);

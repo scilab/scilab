@@ -18,11 +18,6 @@
 
 #include "sci_drawnow.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "GetProperty.h"
-#include "ObjectStructure.h"
-#include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"

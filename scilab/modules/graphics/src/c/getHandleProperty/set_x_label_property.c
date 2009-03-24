@@ -19,7 +19,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
-#include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
 #include "Scierror.h"

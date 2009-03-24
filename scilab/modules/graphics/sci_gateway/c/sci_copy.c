@@ -19,15 +19,12 @@
 
 #include "sci_copy.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "ObjectStructure.h"
-#include "DrawObjects.h"
 #include "GetProperty.h"
 #include "CloneObjects.h"
 #include "DrawingBridge.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_copy(char *fname,unsigned long fname_len)
 {  

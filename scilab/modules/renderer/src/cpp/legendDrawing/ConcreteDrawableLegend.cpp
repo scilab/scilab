@@ -24,6 +24,7 @@ extern "C"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "math_graphics.h"
+#include "HandleManagement.h"
 }
 
 #define DEPTH_FRONT 0.01
