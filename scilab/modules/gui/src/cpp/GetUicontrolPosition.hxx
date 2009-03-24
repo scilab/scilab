@@ -22,6 +22,7 @@ extern "C"
 #include "UicontrolStyleToString.h"
 #include "GetUicontrolPosition.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __GET_UICONTROL_POSITION_HXX__ */

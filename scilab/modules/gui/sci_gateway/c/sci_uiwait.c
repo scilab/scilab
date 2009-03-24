@@ -29,6 +29,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "ContextMenu.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_uiwait( char *fname,unsigned long fname_len )
 {

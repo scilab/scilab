@@ -1,7 +1,7 @@
 SHELL = /bin/sh
 
 SCIDIR=../../..
-include ../../../Makefile.incl
+#include ../../../Makefile.incl
 
 .SUFFIXES: .code .ps .tex   $(SUFFIXES)
 

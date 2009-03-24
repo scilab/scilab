@@ -19,12 +19,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "InitObjects.h"
 
 /*------------------------------------------------------------------------*/
 int get_figure_size_property( sciPointObj * pobj )

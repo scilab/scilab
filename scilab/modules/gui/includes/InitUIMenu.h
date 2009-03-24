@@ -13,9 +13,12 @@
 #ifndef __INIT_UIMENU_H__
 #define __INIT_UIMENU_H__
 
+#include <stdlib.h>
+
 #include "ObjectStructure.h"
 #include "returnProperty.h"
 #include "BOOL.h"
+
 /**
  * Create a Menu
  *

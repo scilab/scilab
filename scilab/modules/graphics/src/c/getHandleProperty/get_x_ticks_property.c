@@ -22,7 +22,6 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "Format.h"
 #include "get_ticks_utils.h"
 #include "MALLOC.h"
 #include "BasicAlgos.h"

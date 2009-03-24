@@ -2,6 +2,15 @@
                =================================================
 
 
+Improvement:
+============
+
+* Under GNU/Linux, Unix and Mac OS X, it is now possible to call scilab 
+  with a pipe or redirection:
+  $ echo "disp(%pi)"|./bin/scilab -nwni
+  or
+  $ echo "disp(%pi);" > p.sci; ./bin/scilab -nwni < p.sci
+
 Compilation:
 ============
 
@@ -113,6 +122,8 @@ Bug fixes:
 * bug 4249 fixed - filter dos not work with perfect all pass system
 
 * bug 4250 fixed - The online help of intx function was badly located
+
+* bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions equal to 1
 
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing 
                    problems with netbsd)
@@ -594,6 +605,8 @@ Bug fixes:
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
 
 * bug 4221 fixed - graypolarplot uses to much memory.
+
+* bug 4272 fixed - Preconditionning in pcg was not taken into account.
 
 * Side effect in the setenvc function.
 

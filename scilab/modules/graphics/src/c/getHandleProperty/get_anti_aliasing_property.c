@@ -17,12 +17,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "InitObjects.h"
 
 /*------------------------------------------------------------------------*/
 int get_anti_aliasing_property( sciPointObj * pobj )

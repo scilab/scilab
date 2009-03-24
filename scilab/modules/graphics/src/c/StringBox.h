@@ -19,8 +19,6 @@
 #ifndef _STRING_BOX_H_
 #define _STRING_BOX_H_
 
-#include "ObjectStructure.h"
-
 /*----------------------------------------------------------------------------------*/
 /**
  * Compute the position of the 4 corners of a text in 2d view coordinates

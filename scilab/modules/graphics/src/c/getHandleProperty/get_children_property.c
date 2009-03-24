@@ -24,6 +24,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int get_children_property( sciPointObj * pobj )

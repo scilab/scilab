@@ -23,7 +23,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
-#include "Format.h"
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 

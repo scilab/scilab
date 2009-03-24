@@ -19,13 +19,14 @@
 #include "sci_glue.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
+
 /*--------------------------------------------------------------------------*/
 int sci_glue( char * fname, unsigned long fname_len )
 {

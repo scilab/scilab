@@ -23,6 +23,7 @@ extern "C"
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
 #include "CallFigure.h"
+#include "HandleManagement.h"
 }
 
 #include <string.h>

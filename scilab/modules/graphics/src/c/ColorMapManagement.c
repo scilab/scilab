@@ -17,7 +17,7 @@
 
 #include "GetProperty.h"
 #include "Scierror.h"
-#include "getHandleProperty/SetPropertyStatus.h"
+#include "SetPropertyStatus.h"
 #include "MALLOC.h"
 #include "localization.h"
 /*------------------------------------------------------------------------*/

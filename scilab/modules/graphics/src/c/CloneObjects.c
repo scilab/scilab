@@ -20,18 +20,12 @@
  *    This file contains all functions used to CLONE an object, it means make
  *    a copy of an object under the same subwin.
  --------------------------------------------------------------------------*/
-
-#include <stdio.h> 
-#include <string.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
 #include "CloneObjects.h"
 #include "GetProperty.h"
 #include "BuildObjects.h"
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"

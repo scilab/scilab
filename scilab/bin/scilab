@@ -130,17 +130,22 @@ detect_type_of_scilab(){
 	progname="$0"
 	SCILAB_MODE="gui"
 	SCILABBIN="scilab-bin"
-	if echo "$progname"|grep "scilab-adv-cli$" 2>/dev/null; then
+	if echo "$progname"|grep "scilab-adv-cli$" 2>&1 > /dev/null; then
 		SCILAB_MODE="nw"
-		SCILABBIN="scilab-adv-cli-bin"
+		# We are using scilab-bin here because we are going to force the arg -nw
+		SCILABBIN="scilab-bin"
 	fi
 		
-	if echo "$progname"|grep "scilab-cli$" 2>/dev/null; then
+	if echo "$progname"|grep "scilab-cli$" 2>&1 > /dev/null; then
 		SCILAB_MODE="nwni"
 		SCILABBIN="scilab-cli-bin"
 		DISABLE_JAVA_DETECTION=1
 	fi
-#	exit
+	if test $SCIVERBOSE -ne 0; then
+		echo "SCILABBIN : $SCILABBIN"
+		echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
+		echo "SCILAB_MODE : $SCILAB_MODE"
+	fi
 }
 
 detect_type_of_scilab
@@ -437,7 +442,7 @@ detect_scilab_path
 PATH="$SCI:$SCI/bin:$PATH"
 
 # If we are calling scilab-cli, no need to detect java.
-if test DISABLE_JAVA_DETECTION -ne 1; then
+if test $DISABLE_JAVA_DETECTION -ne 1; then
 	detect_java_vm
 fi
 
@@ -574,22 +579,16 @@ do_lib()
 	exit 0
 }
 
-NB_ARGS=$#
-
-# Scilab is launch with the script scilab-adv-cli. Add the arg nw
+MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
-	sciarg="$sciarg -nw"
-	NB_ARGS=$(($NB_ARGS + 1))
+	MORE_OPT="-nw"
 fi
-echo "SCILAB $SCILAB_MODE"
-echo "NB_ARGS $NB_ARGS"
-echo "sciarg : $sciarg"
 
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
-case $NB_ARGS in
+case $# in
     0) # No arg, run Scilab
-		do_scilex
+		do_scilex $MORE_OPT
         ;;
     2) # Only two arg
         case $1 in
@@ -671,21 +670,21 @@ if test "$rest" = "yes"; then
   done
 
   if test -n "$DEBUG"; then
-	  start_debug "$@"
+	  start_debug "$@" $MORE_OPT
   else
   if test -n "$DEBUG_KDBG"; then
-	  start_debug_kdbg "$@"
+	  start_debug_kdbg "$@" $MORE_OPT
   else
 	if test -n "$PROFILING"; then
-		start_profiling "$@"
+		start_profiling "$@" $MORE_OPT
 	else
 		if test -n "$PROFILING_VISU"; then
-			start_profiling_visu "$@"
+			start_profiling_visu "$@" $MORE_OPT
 		else
 			if test -n "$ELECTRIC_FENCE"; then
-				start_electric_fence "$@"
+				start_electric_fence "$@" $MORE_OPT
 			else
-				do_scilex "$@"
+				do_scilex "$@" $MORE_OPT
 			fi # not electric fense
 		fi # not profiling visu
 	fi # not profiling

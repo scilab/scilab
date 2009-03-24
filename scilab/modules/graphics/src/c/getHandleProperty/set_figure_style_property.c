@@ -20,7 +20,6 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
