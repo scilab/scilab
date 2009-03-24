@@ -9,6 +9,7 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
 #include <string.h>
 #include "stack-def.h"
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
@@ -159,6 +160,19 @@ static void *watchGetCommandLine(void *in) {
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
+
+    if(!isatty(fileno(stdin))) { /* if not an interactive terminal */
+      /* read a line into the buffer, but not too
+       * big */
+      *eof = (fgets(buffer, *buf_size, stdin) == NULL);
+      *len_line = strlen(buffer);
+      /* remove newline character if there */
+      if(buffer[*len_line - 1] == '\n') {
+		  (*len_line)--;
+	  }
+      return;
+    }
+
   if(!initialized)
     {
       initAll();
