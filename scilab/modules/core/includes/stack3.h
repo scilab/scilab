@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 /*
@@ -18,8 +18,8 @@
  */
 
 
-#ifndef STACK3_H 
-#define STACK3_H 
+#ifndef STACK3_H
+#define STACK3_H
 #include "machine.h"
 #include "doublecomplex.h"
 
@@ -39,20 +39,20 @@
  * calling sequence 
  *     logic=creadmat('matrixname',m,n,scimat)
  * @example
- *    Amat is a real 2 x 3 scilab matrix 
- *    your subroutine should be as follows: 
- *    subroutine mysubr(...) 
- *    ... 
+ *    Amat is a real 2 x 3 scilab matrix
+ *    your subroutine should be as follows:
+ *    subroutine mysubr(...)
+ *    ...
  * @code
- *    call readmat('Amat',m,n,scimat) 
- *    => m=3 , n=2, and scimat(1)=Amat(1,1) 
- *                      scimat(2)=Amat(2,1) 
- *                      scimat(3)=Amat(3,1) 
- *                      scimat(4)=Amat(1,2) ... 
- *                      scimat(5)=Amat(3,2) 
- *                      scimat(6)=Amat(3,2) 
+ *    call readmat('Amat',m,n,scimat)
+ *    => m=3 , n=2, and scimat(1)=Amat(1,1)
+ *                      scimat(2)=Amat(2,1)
+ *                      scimat(3)=Amat(3,1)
+ *                      scimat(4)=Amat(1,2) ...
+ *                      scimat(5)=Amat(3,2)
+ *                      scimat(6)=Amat(3,2)
  * @endcode
- * @param name__ character string; name of the scilab variable. 
+ * @param name__ character string; name of the scilab variable.
  * @param m number of rows
  * @param n number of columns
  * @param scimat  matrix entries stored columnwise
@@ -69,9 +69,9 @@ int C2F(creadsmat)  (char *name__, int *m, int *n, double *scimat, unsigned long
 /**
  * cwritemat writes vector/matrix in scilab's memory
  * logic=cwritemat('matrixname'//char(0),m,n,mat)
- * @param name__ character string; name of the scilab variable ( null terMinated) 
- * @param m number of rows 
- * @param n number of columns 
+ * @param name__ character string; name of the scilab variable ( null terMinated)
+ * @param m number of rows
+ * @param n number of columns
  * @param mat matrix entries stored columnwise in Scilab object
  * @param name_len strlen of name__ (Fortran needs it)
  * @return if the operation successed (true) or not (false)
@@ -260,7 +260,7 @@ int C2F(putvar) (int *number, char *namex, unsigned long name_len );
  * in C getlengthchain("str") returns 26
  * @param namex
  * @return  -1 if error
-*/ 
+*/
 int getlengthchain(char *namex);
 
 
@@ -296,10 +296,13 @@ int iGetOrient(int _iVal);
 /* Reserve space in stack for a matrix of double. */
 int iAllocMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData);
 /* Reserve space in stack for a matrix of complex. */
-int	iAllocComplexMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+int iAllocComplexMatrixOfDouble(int _iNewVal, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+
+int iAllocComplexMatrixOfDoubleToAddress(int* _piAddr, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
 
 int iAllocMatrixOfPoly(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
 int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
+int iAllocComplexMatrixOfPolyToAddress(int _iAddr, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
 
 int iAllocSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData);
 int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow, double** _pdblRealData, double** _pdblImgData);
@@ -307,7 +310,8 @@ int iAllocComplexSparseMatrix(int _iNewVal,int _iComplex, int _iRows, int _iCols
 int iAllocMatrixOfBoolean(int _iNewVal, int _iRows, int _iCols, int** _piBoolData);
 int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int** _piElemByRow, int** _piColByRow);
 
-int iAllocMatricOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _pszRealData);
+int iAllocMatrixOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _piStringData);
+int iAllocMatrixOfStringToAddress(int _iAddr, int _iRows, int _iCols, int *_piLen, char **_piStringData);
 
 /*Get List Information*/
 //Get Item Count and type of each item
@@ -323,7 +327,63 @@ int iIsComplexItemElem(int _iVar, int _iItemNumber);
 //Get Item String
 int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
-//Internal fonctions to retrieve variables information from Address ( old "il" )
+/*Create List*/
+//Reserved VarNum for List
+int* iAllocList(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for TList
+int* iAllocTList(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for MList
+int* iAllocMList(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for HyperMatrix
+int* iAllocHyperMatrix(int _iVar, int _iItemNumber);
+
+//Reserved VarNum for list
+int* iAllocListCommon(int _iVar, int _iItemNumber, int _iListType);
+
+//Child
+//Add Common List to ParentList ( internal use only )
+int* iListAllocListCommon(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber, int _iListType);
+
+//Add HyperMatrix to ParentList
+int* iListAllocHyperMatrix(int _iVar, int* _piParentList, int _iItemPos, int _iDims);
+
+//Add MList to ParentList
+int* iListAllocMList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
+
+//Add TList to ParentList
+int* iListAllocTList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
+
+//Add List to ParentList
+int* iListAllocList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber);
+
+//Add real matrix in _iVar list
+int iListAllocMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double **_pdblRealData);
+
+//Add complex matrix in _iVar list
+int iListAllocComplexMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData);
+
+//Add real polynomial in _iVar list
+int iListAllocMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData);
+
+//Add complex polynomial in _iVar list
+int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData);
+
+//Add string matrix in _iVar list
+int iListAllocString(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int *_piLen, char** _pszData);
+
+//Internal function automaticly call after the last insertion of data
+void vListClose(int _iVar);
+int* piGetParentNode(int* _piStart, int* _piToFind, int *_piPos);
+int IsKindOfList(int* _piNode);
+void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
+
+
+
+
+//Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg);
 int iGetPolyFromAddress(int _iAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 int iGetSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);
@@ -382,4 +442,4 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 *  @return a pointer on the data of a matrix of double.
 */
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData);
-#endif 
+#endif
