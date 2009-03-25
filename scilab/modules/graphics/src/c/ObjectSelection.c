@@ -18,6 +18,7 @@
 #include "ObjectSelection.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sciAddSelectedSon( sciPointObj * pParent, sciPointObj * pObj )

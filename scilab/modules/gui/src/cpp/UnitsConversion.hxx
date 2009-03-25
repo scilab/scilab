@@ -23,6 +23,7 @@ extern "C"
 #include "sciprint.h"
 #include "ObjectStructure.h"
 #include "GetProperty.h"
+#include "HandleManagement.h"
 }
 
 #define POINT_PER_INCH 72

@@ -20,27 +20,17 @@
  *    window (zoom by pressing button, callbacks...)
  --------------------------------------------------------------------------*/
 
-#include <stdio.h> 
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
 #include "Interaction.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
-#include "DrawObjects.h"
 #include "Scierror.h"
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
-#include "DrawObjects.h"
 #include "DrawingBridge.h"
 #include "JavaInteraction.h"
-#include "Axes.h"
 #include "axesScale.h"
-#include "GetJavaProperty.h"
-#include "GraphicSynchronizerInterface.h"
+#include "math_graphics.h"
+#include "HandleManagement.h"
 
 /*-------------------------------------------------------------------------------------*/
 static int moveObj(sciPointObj * pobj, double displacement[], int displacementSize);

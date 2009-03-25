@@ -20,10 +20,7 @@
 #include "stack-c.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 

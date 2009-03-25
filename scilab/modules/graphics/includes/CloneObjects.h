@@ -22,7 +22,6 @@
  --------------------------------------------------------------------------*/
 
 #include "ObjectStructure.h"
-#include "HandleManagement.h"
 
 #ifndef __SCI_CLONE__
 #define __SCI_CLONE__

@@ -16,6 +16,7 @@
 extern "C"
 {
 #include "GetProperty.h"
+#include "math_graphics.h"
 }
 
 namespace sciGraphics

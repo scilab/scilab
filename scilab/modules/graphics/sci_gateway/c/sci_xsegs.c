@@ -21,8 +21,6 @@
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"

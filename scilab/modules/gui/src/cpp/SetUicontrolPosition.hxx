@@ -27,6 +27,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "UicontrolStyleToString.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __SET_UICONTROL_POSITION_HXX__ */

@@ -15,9 +15,6 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 
-#include <string.h> /* in case of dbmalloc use */
-#include <stdio.h>
-#include <math.h>
 #include "math_graphics.h"
 #include "PloEch.h"
 #include "Plot2d.h"
@@ -26,8 +23,6 @@
 #include "../../sparse/includes/spConfig.h"
 
 #include "SetProperty.h"
-#include "GetProperty.h"
-#include "InitObjects.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
 #include "Axes.h"
@@ -42,7 +37,7 @@
 #include "scitokenize.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
-#include "Format.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------
  *  plot2dn(ptype,Logflags,x,y,n1,n2,style,strflag,legend,brect,aaint,lstr1,lstr2)

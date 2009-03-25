@@ -16,17 +16,12 @@
 /* desc : interface for sci_fec routine                                   */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "sci_fec.h"
 #include "sci_demo.h"
 #include "stack-c.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DestroyObjects.h"
 #include "sciCall.h"
-#include "GetProperty.h"
 #include "DefaultCommandArg.h"
 #include "localization.h"
 #include "Scierror.h"

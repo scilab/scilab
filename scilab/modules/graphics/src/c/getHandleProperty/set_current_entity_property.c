@@ -25,6 +25,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "CurrentObjectsManagement.h"
+#include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
 int set_current_entity_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
