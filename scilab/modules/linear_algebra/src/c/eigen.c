@@ -318,16 +318,16 @@ void expandZToDiagonalOfCMatrix(doublecomplex const* pZVector, int iCols, double
   double* ptrDestR= pRMatrix + iCols * iCols;
   double* ptrDestI= pIMatrix + iCols * iCols;
   double const* ptrSrc= (double const *)(pZVector + iCols);
-  /* we handle the last (in fact first) diagonal element out of the loop because then no bzero is needed */
+  /* we handle the last (in fact first) diagonal element out of the loop because then no memset is needed */
   double const* const end= (double const*const)(pZVector+1);
   while(ptrSrc != end)
     {
       *(--ptrDestI)= *(--ptrSrc);
       *(--ptrDestR)= *(--ptrSrc);
       ptrDestI-= iCols;
-      bzero(ptrDestI, iCols*sizeof(double));
+      memset(ptrDestI, 0, iCols*sizeof(double));
       ptrDestR-= iCols;
-      bzero(ptrDestR, iCols*sizeof(double));
+      memset(ptrDestR, 0, iCols*sizeof(double));
     }
   /* copy first diagonal element */
   *pIMatrix= *(--ptrSrc);
