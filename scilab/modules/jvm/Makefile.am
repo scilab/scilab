@@ -16,7 +16,11 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes/
 
-pkglib_LTLIBRARIES = libscijvm.la libscijvm-disable.la
+pkglib_LTLIBRARIES = libscijvm-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscijvm.la
+endif
 
 libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) -lpthread -ldl $(XML_LIBS)
 

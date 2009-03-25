@@ -55,7 +55,11 @@ libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the library
-pkglib_LTLIBRARIES = libsciconsole.la libsciconsole-disable.la
+pkglib_LTLIBRARIES = libsciconsole-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libsciconsole.la 
+endif
 
 libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 

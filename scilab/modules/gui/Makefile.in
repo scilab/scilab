@@ -60,6 +60,7 @@ host_triplet = @host@
 DIST_COMMON = $(libscigui_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
+@GUI_TRUE@am__append_2 = libscigui.la 
 subdir = modules/gui
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -213,6 +214,7 @@ libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 libscigui_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscigui_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libscigui_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -694,7 +696,7 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
 libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscigui.la libscigui-disable.la
+pkglib_LTLIBRARIES = libscigui-disable.la $(am__append_2)
 libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 
@@ -914,7 +916,7 @@ clean-pkglibLTLIBRARIES:
 libscigui-disable.la: $(libscigui_disable_la_OBJECTS) $(libscigui_disable_la_DEPENDENCIES) 
 	$(libscigui_disable_la_LINK) -rpath $(pkglibdir) $(libscigui_disable_la_OBJECTS) $(libscigui_disable_la_LIBADD) $(LIBS)
 libscigui.la: $(libscigui_la_OBJECTS) $(libscigui_la_DEPENDENCIES) 
-	$(libscigui_la_LINK) -rpath $(pkglibdir) $(libscigui_la_OBJECTS) $(libscigui_la_LIBADD) $(LIBS)
+	$(libscigui_la_LINK) $(am_libscigui_la_rpath) $(libscigui_la_OBJECTS) $(libscigui_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

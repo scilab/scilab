@@ -77,7 +77,11 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export.la libscigraphic_export-disable.la
+pkglib_LTLIBRARIES = libscigraphic_export-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigraphic_export.la 
+endif
 
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
