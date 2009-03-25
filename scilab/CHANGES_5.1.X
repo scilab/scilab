@@ -2,15 +2,6 @@
                =================================================
 
 
-Improvement:
-============
-
-* Under GNU/Linux, Unix and Mac OS X, it is now possible to call scilab 
-  with a pipe or redirection:
-  $ echo "disp(%pi)"|./bin/scilab -nwni
-  or
-  $ echo "disp(%pi);" > p.sci; ./bin/scilab -nwni < p.sci
-
 Compilation:
 ============
 
@@ -141,7 +132,7 @@ Bug fixes:
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing 
                    problems with netbsd)
 
-* bug 4269 fixed - The online help of isfield() was missing.
+* bug 4284 fixed - The online help of isfield() was missing.
 
 
                Changes between version 5.0.X and 5.1 of Scilab
