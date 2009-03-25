@@ -161,6 +161,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
 
+#ifndef _MSC_VER
     if(!isatty(fileno(stdin))) { /* if not an interactive terminal */
       /* read a line into the buffer, but not too
        * big */
@@ -172,6 +173,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 	  }
       return;
     }
+#endif
 
   if(!initialized)
     {
