@@ -17,14 +17,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xarrows.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "sciCall.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 /*--------------------------------------------------------------------------*/

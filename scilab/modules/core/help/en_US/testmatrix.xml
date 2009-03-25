@@ -5,7 +5,7 @@
   </info>
   <refnamediv>
     <refname>testmatrix</refname>
-    <refpurpose> generate some particular matrices</refpurpose>
+    <refpurpose> generate special matrices, such as Hilbert, Franck</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>

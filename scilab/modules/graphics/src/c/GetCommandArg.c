@@ -17,7 +17,6 @@
 /*        graphic routines.                                               */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
 #include "GetCommandArg.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"

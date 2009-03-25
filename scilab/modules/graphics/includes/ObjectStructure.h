@@ -21,7 +21,6 @@
 #ifndef __SCI_OBJECT_STRUCTURE__
 #define __SCI_OBJECT_STRUCTURE__
 
-#include "core_math.h"
 #include "StringMatrix.h"
 #include "DoublyLinkedList.h"
 

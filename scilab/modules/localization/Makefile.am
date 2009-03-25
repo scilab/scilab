@@ -37,7 +37,11 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
-libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS)
+libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
+if IS_MACOSX
+libscilocalization_la_LDFLAGS += -lintl
+endif
 
 if IS_MACOSX
 libscilocalization_la_LDFLAGS += -lintl

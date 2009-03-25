@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 deff('[n,a,b,c,d,e]=Fscanf(str,f)',['fd=mopen(TMPDIR+''/fscanf.rep'',''w'');';
 	'mputstr(str,fd);mclose(fd);';
 	'fd=mopen(TMPDIR+''/fscanf.rep'',''r'');';

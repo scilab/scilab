@@ -20,13 +20,8 @@
 #include "stack-c.h"
 #include "sci_demo.h"
 #include "GetCommandArg.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DestroyObjects.h"
 #include "DefaultCommandArg.h"
-#include "GetProperty.h"
 #include "sciCall.h"
-#include "GraphicSynchronizerInterface.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

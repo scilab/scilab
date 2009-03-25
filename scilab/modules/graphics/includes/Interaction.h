@@ -19,12 +19,10 @@
  *    window (zoom by pressing button, callbacks...)
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
-#include "HandleManagement.h"
-
 #ifndef __SCI_INTERACTION__
 #define __SCI_INTERACTION__
 
+#include "ObjectStructure.h"
 #include "BOOL.h"
 
 /**

@@ -19,8 +19,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
-#include "SetProperty.h"
-#include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"

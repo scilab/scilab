@@ -3,7 +3,6 @@
 ### INRIA - Scilab 2007
 ##########
 
-if GUI
 # List of the c files
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
@@ -349,17 +348,15 @@ if GIWS
 BUILT_SOURCES=giws
 endif
 
-else
-
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = src/norenderer/norenderer.c
+libscirenderer_disable_la_SOURCES = src/norenderer/norenderer.c
 
-libscirenderer_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
-endif
+libscirenderer_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscirenderer.la
+pkglib_LTLIBRARIES = libscirenderer.la libscirenderer-disable.la
 
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 

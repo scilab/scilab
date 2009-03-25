@@ -66,3 +66,6 @@ Bug fixes:
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
+
+* bug 4267 fixed - A non initilization of a lock under Netbsd was 
+		   causing an error on startup

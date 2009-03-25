@@ -26,8 +26,6 @@
 #include "stack-def.h"
 #include "stackTypeVariable.h"
 
-#include "do_error_number.h"
-
 #include "BOOL.h"
 //#include "scisparse.h"  /* define SciSparse type */
 #include "stack1.h"

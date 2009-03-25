@@ -19,9 +19,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
-#include "localization.h"
+#include "GetProperty.h"
 
 /*------------------------------------------------------------------------*/
 int get_hidden_color_property( sciPointObj * pobj )

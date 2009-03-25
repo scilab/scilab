@@ -19,13 +19,9 @@
 #include "sci_drawaxis.h"
 #include "stack-c.h"
 #include "GetProperty.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "sciCall.h"
 #include "Scierror.h"
-#include "PloEch.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/

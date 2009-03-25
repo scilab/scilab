@@ -27,6 +27,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "WindowList.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __SETUICONTROLPARENT_HXX__ */

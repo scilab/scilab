@@ -86,7 +86,11 @@ if nv>=1 then
   else
     W=varargin(1);varargin(1)=null()
     if size(W,1)~=size(W,2) then 
-      error(msprintf(gettext('%s: Weighting matrix must be square.'),'datafit'));
+      if size(W,1)==1 then
+        error(msprintf(gettext('%s: Initial guess must be a column vector.'),'datafit'));
+      else
+        error(msprintf(gettext('%s: Weighting matrix must be square.'),'datafit'));
+      end
     end
   end
 end  

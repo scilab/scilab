@@ -25,7 +25,6 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "InitObjects.h"
 #include "SetPropertyStatus.h"
 #include "Interaction.h"
 #include "GraphicSynchronizerInterface.h"

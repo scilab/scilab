@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mtable>
+   <math:mtr>
+    <math:mrow>
+     <math:mtext>min</math:mtext>
+     <math:mrow>
+      <math:msup>
+       <math:mi>c</math:mi>
+       <math:mi>t</math:mi>
+      </math:msup>
+      <math:mo math:stretchy="false">⋅</math:mo>
+      <math:mi>x</math:mi>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mtext>with</math:mtext>
+     <math:mrow>
+      <math:mrow>
+       <math:mi>a</math:mi>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mi>x</math:mi>
+      </math:mrow>
+      <math:mo math:stretchy="false">=</math:mo>
+      <math:mi>b</math:mi>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+   <math:mtr>
+    <math:mrow>
+     <math:mtext>and</math:mtext>
+     <math:mrow>
+      <math:mi>x</math:mi>
+      <math:mo math:stretchy="false">≥</math:mo>
+      <math:mn>0</math:mn>
+     </math:mrow>
+    </math:mrow>
+   </math:mtr>
+  </math:mtable>
+  <math:annotation math:encoding="StarMath 5.0">stack {
+&quot;min&quot; c^t cdot x #
+&quot;with&quot; a cdot x = b #
+&quot;and&quot; x &gt;= 0
+}</math:annotation>
+ </math:semantics>
+</math:math>

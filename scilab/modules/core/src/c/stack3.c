@@ -2163,7 +2163,7 @@ int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
 	int mn = 0;
 	int lp = 0;
 	int j = 0;
-	
+
 	int iposx = 0, iposy = 0;
 	int lengthAtiposxiposy = 0;
 
@@ -2186,7 +2186,7 @@ int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
 	j = 0;
 	for (x = 1; x <= *m;x++)
 	{
-		for (y = 1; y <= *n;y++) 
+		for (y = 1; y <= *n;y++)
 		{
 			if ( !C2F(cmatsptr)  (name_, m,n, &x, &y, &lp, &lengthAtiposxiposy, name_len) )
 			{

@@ -11,14 +11,15 @@
  *
  */
 
-extern "C"
-{
-#include "GetProperty.h"
-}
-
 #include "DrawableObject.h"
 #include "getHandleDrawer.h"
 #include "DrawableObjectFactory.h"
+
+extern "C"
+{
+#include "GetProperty.h"
+#include "HandleManagement.h"
+}
 
 namespace sciGraphics
 {

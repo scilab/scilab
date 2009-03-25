@@ -18,4 +18,4 @@
 filetoconvert = "SCI/toolboxes/quaternion/help/en_US/rt_plot-quaternion.xml";
 
 ierr = execstr("fpath = fullpath(filetoconvert);","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
