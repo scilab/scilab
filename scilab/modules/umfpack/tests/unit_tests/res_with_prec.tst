@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
 C_ptr = taucs_chfact(A);
 b = rand(size(A,1),1);

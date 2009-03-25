@@ -6,6 +6,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 function [rep]=Fprintf(varargin)
 	fd = mopen(TMPDIR+"/fprintf.rep","w");
 	varargin(0)=fd;

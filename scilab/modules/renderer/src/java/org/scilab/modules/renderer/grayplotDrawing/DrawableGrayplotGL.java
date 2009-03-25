@@ -17,6 +17,7 @@ package org.scilab.modules.renderer.grayplotDrawing;
 import javax.media.opengl.GL;
 
 import org.scilab.modules.renderer.DrawableClippedObjectGL;
+import org.scilab.modules.renderer.utils.ColorMap;
 
 /**
  * Class containing functions called by DrawableGrayplotJoGL.cpp
@@ -55,6 +56,8 @@ public class DrawableGrayplotGL extends DrawableClippedObjectGL {
 		int nbCol = xGrid.length - 1;
 		int nbRow = yGrid.length - 1;
 		
+		ColorMap colMap = getColorMap();
+		
 		// rectangles are used to render each pixel
 		// Using textures would be much faster
 		// hower it would not be compatible with GL2PS, so for now we keep the slow version
@@ -63,12 +66,15 @@ public class DrawableGrayplotGL extends DrawableClippedObjectGL {
 		gl.glBegin(GL.GL_QUADS);
 		for (int j = 0; j < nbRow; j++) {
 			for (int i = 0; i < nbCol; i++) {
-				double[] curColor = getColorMap().getColor(getColorMap().convertScilabToColorMapIndex(colors[i + nbCol * j]));
-				gl.glColor3d(curColor[0], curColor[1], curColor[2]);
-				gl.glVertex3d(xGrid[i], yGrid[j], zCoord);
-				gl.glVertex3d(xGrid[i], yGrid[j + 1], zCoord);
-				gl.glVertex3d(xGrid[i + 1], yGrid[j + 1], zCoord);
-				gl.glVertex3d(xGrid[i + 1], yGrid[j], zCoord);
+				int curColorIndex = colors[i + nbCol * j];
+				if (colMap.isValidScilabIndex(curColorIndex)) {
+					double[] curColor = colMap.getColor(colMap.convertScilabToColorMapIndex(curColorIndex));
+					gl.glColor3d(curColor[0], curColor[1], curColor[2]);
+					gl.glVertex3d(xGrid[i], yGrid[j], zCoord);
+					gl.glVertex3d(xGrid[i], yGrid[j + 1], zCoord);
+					gl.glVertex3d(xGrid[i + 1], yGrid[j + 1], zCoord);
+					gl.glVertex3d(xGrid[i + 1], yGrid[j], zCoord);
+				}
 			}
 		}
 		gl.glEnd();

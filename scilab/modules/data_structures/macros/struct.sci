@@ -22,7 +22,7 @@ if rhs==0 then
 end
 
 if floor(rhs/2)*2<>rhs then
-  error(msprintf(gettext("%s: Wrong number of input argument(s)."),'struct'));
+  error(msprintf(gettext("%s: Wrong number of input argument(s) : an even number is expected."),"struct"));
 end
 
 nbfields=size(varargin)/2
