@@ -2,6 +2,15 @@
                =================================================
 
 
+Improvement:
+============
+
+* Under GNU/Linux, Unix and Mac OS X, it is now possible to call scilab 
+  with a pipe or redirection:
+  $ echo "disp(%pi)"|./bin/scilab -nwni
+  or
+  $ echo "disp(%pi);" > p.sci; ./bin/scilab -nwni < p.sci
+
 Compilation:
 ============
 
