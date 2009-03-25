@@ -42,15 +42,28 @@ Help & Tests:
 
 * Minor improvements in the documentation of the ilib_* functions
 
+* Unitary tests for isfield() function has been added
+
+
+Enhancement:
+============
+
+* isfield() now accepts matrix of strings (fieldnames) as second input argument.
+  Then, it returns a matrix of booleans.
+
+
 License:
 ========
 
 * Examples in SCI/modules/javasci/examples/ are now released under the public
   domain
   
+
 Internal API:
 =============
+
 * GetLengthStringMatrixByName function added in stack3.h (return length of strings)
+
 
 Bug fixes:
 ==========
@@ -118,6 +131,9 @@ Bug fixes:
 
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing 
                    problems with netbsd)
+
+* bug 4269 fixed - The online help of isfield() was missing.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
