@@ -355,7 +355,11 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscirenderer.la libscirenderer-disable.la
+pkglib_LTLIBRARIES =  libscirenderer-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscirenderer.la
+endif
 
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 

@@ -55,10 +55,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@GUI_TRUE@am__append_1 = libscirenderer.la
 DIST_COMMON = $(libscirenderer_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/renderer
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -360,6 +361,7 @@ libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
 libscirenderer_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscirenderer_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libscirenderer_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -932,7 +934,7 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscirenderer.la libscirenderer-disable.la
+pkglib_LTLIBRARIES = libscirenderer-disable.la $(am__append_1)
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Name of the module and the path ######
@@ -974,7 +976,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1085,7 +1087,7 @@ clean-pkglibLTLIBRARIES:
 libscirenderer-disable.la: $(libscirenderer_disable_la_OBJECTS) $(libscirenderer_disable_la_DEPENDENCIES) 
 	$(libscirenderer_disable_la_LINK) -rpath $(pkglibdir) $(libscirenderer_disable_la_OBJECTS) $(libscirenderer_disable_la_LIBADD) $(LIBS)
 libscirenderer.la: $(libscirenderer_la_OBJECTS) $(libscirenderer_la_DEPENDENCIES) 
-	$(libscirenderer_la_LINK) -rpath $(pkglibdir) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
+	$(libscirenderer_la_LINK) $(am_libscirenderer_la_rpath) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
