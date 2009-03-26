@@ -1,7 +1,7 @@
 
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2009 - INRIA
+ * Copyright (C) ????-2009 - INRIA Bernard Hugueney
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,6 +18,7 @@
 #include "localization.h"
 
 #include "stack3.h" /* */
+#include "sciprint.h"
 #include "Scierror.h"
 #include "invert_matrix.h"
 
@@ -65,8 +66,9 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 		vFreeDoubleComplexFromPointer((doublecomplex*)pData);
 	      }
 
-	      if(ret ==-1){// warning   "ill conditionned problem" & ' matrix is close to singular or badly scaled"
-		Scierror(999, _("%s : matrix is close to singular or badly scaled. rcond = %s\n"), fname, dblRcond);
+	      if(ret ==-1){
+		sciprint(_("Warning :\n"));
+		sciprint(_("%s : matrix is close to singular or badly scaled. rcond = %e\n"), fname, dblRcond);
 	      }
 	    }
 	  }
