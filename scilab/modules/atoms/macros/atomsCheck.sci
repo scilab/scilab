@@ -18,7 +18,7 @@ function result = atomsCheck(name)
 
   if rhs == 1 then
   // We remove the special characters
-  name = atomsSubstituteString(name)
+  name = atomsNormalizeName(name)
   // We go in the repectory with toolboxes
   rep = atomsToolboxDirectory()
   d = rep + name

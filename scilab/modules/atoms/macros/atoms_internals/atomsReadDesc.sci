@@ -1,6 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
-// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
@@ -11,167 +9,66 @@
 
 // Internal function
 
-// Parsing of the Description file
+// Parsing of the DESCRIPTION file
 
-function desc = atomsReadDesc(nom)
-  // We go to the directory with the toolboxes
-  rep = atomsToolboxDirectory()
-  d = rep + nom
-  // Support of the different OS 
-  if getos() == "Windows"
-    directory = d + "\DESCRIPTION"
-  else // linux and mac
-    directory = d + "/DESCRIPTION"
-  end
-  // If we find the repertory in local and the DESCRIPTION file is present
-  if (isdir(d) & ls(directory) <> [])
-    cd (d)
-    // Reading of the DESCRIPTION file which we stock in a array
-    tab = atomsReadFile("DESCRIPTION")
-    // Creation of a "hash table"
-    desc = atomsListDescription()
-    // Filling of the hash table
-    desc = hashTable(desc, tab)
-    // Treatment of the file name (special characteres) to insure the validity of the name file and the PATH 
-    desc("Toolbox") = atomsSubstituteString(desc("Toolbox"))
-    // We add the function field
-    clearglobal numberFunction
-    desc("Function") = atomsReadDescFunctions(nom)
-  // Else we search in the net
-  else
-  	cd (rep)
-  	// Creation of a "hash table"
-	desc = atomsListDescription()
-	// Sites list to cross
-	listMirror = atomsToolboxMirror()
-	[n, m] = size(listMirror)
-	clearglobal numberFunction
-	global numberFunction
-	numberFunction = 0
-	for i=1:m
-	  // We recup the file in the net and we put a copy in the directory under the name TOOLBOXES
-  	  if dlFile(listMirror(i), "TOOLBOXES")
-        // Reading of the TOOLBOXES file which we stock in a array
-        tab = atomsReadFile("TOOLBOXES")
-        // We delete the temporary file created
-        if ~removeFile("TOOLBOXES")
-	      disp(_("Please delete the file TOOLBOXES of your current directory"))
-	    end
-        // We fill the array with the different toolboxes
-        desc = hashTable2(desc, tab)
-        // Treatment of the file name (special characteres) to insure the validity of the name file and the PATH 
-        [a, b] = size(desc("Toolbox"))
-        for j=1:a
-          desc("Toolbox")(j) = atomsSubstituteString(desc("Toolbox")(j))
-        end
-      else
-        result = %f
-        return result
-      end
-    end
-  end
-  result = %t
-  return result
-endfunction
+// =============================================================================
+// description_out = atomsReadDesc(file_in,description_in)
+// Parse a DESCRIPTION file
+// 
+// Date : 20/03/2009
+// =============================================================================
 
-// Retrieve of the file in the web
-function result = dlFile(web, fileWeb)
-	URL=web + "/TOOLBOXES";
-	[rep,stat,err] = unix_g("wget "+URL + " -O " + fileWeb)
-	// If the file is not present
-	if stat <> 0
-	  atomsDisplayMessage(_("Please check the validity of the repository:"))
-	  atomsDisplayMessage(sprintf(_("Download of ''%s'' failed"),URL))
-	  if ~removeFile(fileWeb)
-	    disp(sprintf(_("Please delete the file %s in your current repertory."),fileWeb))
-	  end
-	  result = %f
-	  return result
+function description_out = atomsReadDesc(file_in,description_in)
+	
+	description_out = struct();
+	
+	rhs  = argn(2);
+	
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsReadDesc",1,2));
 	end
-	result = %t
-	return result
-endfunction
-
-// Delete function of the file
-function result = removeFile(fileR)
-  result = deletefile(fileR)
-  return result
-endfunction
-
-// Easy filling of the hash table (DESCRIPTION file)
-function listDesc = hashTable(listDesc, tabDesc)
-  [listeObl, listeOpt] = atomsConstant()
-  // We create all the values for all the keys so that even if one optional field is not present in the array, there is no error.
-  [o, p] = size(listeOpt)
-  for i=1:p
-    listDesc(listeOpt(i))= ""
-  end
-  [n, m] = size(tabDesc)
-  for i=1:n
-    ind = strindex(tabDesc(i),':')
-    // If ind = [] we are always in the previous field
-    if ind == []
-      listDesc(temp(1)) = listDesc(temp(1)) + tabDesc(i)
-    else
-      // ind+1 to remove the space before the second field
-      temp = strsplit(tabDesc(i),ind+1)
-      // We remove the ": "
-      temp(1) = strsubst(temp(1), ": ", "")
-      listDesc(temp(1))= temp(2)
-    end
-  end
-endfunction
-
-// Filling of the hash table (TOOLBOX file)
-function listDesc = hashTable2(listDesc, tabDesc)
-  global numberFunction
-  [listeObl, listeOpt] = atomsConstant()
-  [n, m] = size(tabDesc)
-  [nbTool, m] = size(listDesc("Toolbox"))
-  [o, p] = size(listeOpt)
-  inFunct = %f
-  for i=1:n
-    // We create a flag to know if we are in the function part
-    if tabDesc(i) == "--"
-      inFunct = %t
-    elseif tabDesc(i) == "//"
-      inFunct = %f
-    end
-    if tabDesc(i) <> "//" & ~inFunct
-      ind = strindex(tabDesc(i),':')
-      // ind+1 to remove the space before the second field
-      temp = strsplit(tabDesc(i),ind+1)
-      // We remove the ": "
-      temp(1) = strsubst(temp(1), ": ", "")
-      listDesc(temp(1))(nbTool+1)= temp(2)
-    elseif tabDesc(i) == "--"
-      clear tmp
-      nbFunct = 0
-    elseif tabDesc(i) <> "--" & inFunct
-      ind = strindex(tabDesc(i),'-')
-      // If ind = [] we are always in the previous field
-      if ind == []
-        tmp(string(nbFunct)) = tmp(string(nbFunct)) + tabDesc(i)
-      else
-        nbFunct = nbFunct + 1
-        tmp(string(nbFunct)) = tabDesc(i)
-        if numberFunction < nbFunct
-          numberFunction = nbFunct
-        end
-      end
-    elseif tabDesc(i) == "//"
-      // If a toolbox doesn't have functions, to avoid the bug : "Undefined variable: tmp"
-      if isdef("tmp")
-        listDesc("Function")(nbTool+1)= tmp
-      end
-      // We create all the values for all the keys so that even if one optional field is not present in the array, there is no error
-      // But only if the // is followed by other things
-      if i <> n
-        for j=1:p
-          listDesc(listeOpt(j))(nbTool+2) = ""
-        end
-      end
-      nbTool=nbTool+1
-    end
-  end
+	
+	if regexp( file_in,"/DESCRIPTION$/") == [] then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: A string that end with DESCRIPTION expected.\n"),"atomsReadDesc",1));
+	end
+	
+	if rhs==2 & type(description_in)<>17 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: mlist expected.\n"),"atomsReadDesc",2));
+	end
+	
+	if rhs==2 then
+		description_out = description_in;
+	end
+	
+	tabDesc         = mgetl(file_in);
+	current_field   = "";
+	
+	for i=1:size(tabDesc,"*")
+		
+		// First case : new field
+		if regexp(tabDesc(i),"/^[a-zA-Z0-9]*:\s/","o") == 1 then
+			current_field_length    = regexp(tabDesc(i),"/:\s/","o")
+			current_field           = part(tabDesc(i),1:current_field_length-1);
+			current_value           = part(tabDesc(i),current_field_length+2:length(tabDesc(i)));
+			description_out(current_field) = current_value;
+			continue;
+		end
+		
+		// Second case : Current field continuation
+		if regexp(tabDesc(i),"/^\s/","o") == 1 then
+			current_value = part(tabDesc(i),2:length(tabDesc(i)));
+			description_out(current_field) = [ description_out(current_field) ; current_value ];
+			continue;
+		end
+		
+		// Third case : Blank line
+		if length(tabDesc(i)) == 0 then
+			continue;
+		end
+		
+		// Else Error
+		error(msprintf(gettext("%s: The description is not well formated at line %d\n"),"atomsReadDesc",i));
+		
+	end
+	
 endfunction

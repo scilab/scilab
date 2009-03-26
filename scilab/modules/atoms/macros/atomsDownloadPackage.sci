@@ -9,26 +9,28 @@
 
 // End user function
 
-// Installation of a toolbox
+// Download packages and return the path of the downloaded files
 
-function result = atomsInstall(packages,allusers)
+function result = atomsDownloadPackage(package_names,package_versions,allusers)
 	
-	result = %F;
+	result       = "";
 	
 	// Check input parameters
 	// =========================================================================
 	
 	rhs = argn(2);
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsInstall",1,2))
+	if rhs < 2 | rhs > 3 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsInstall",2,3))
 	end
 	
-	if type(packages) <> 10 then
+	if type(package_names) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstall",1));
 	end
 	
-	packages = stripblanks(packages);
+	if type(package_versions) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsInstall",2));
+	end
 	
 	// Install for all users or just for me ?
 	// =========================================================================
@@ -53,53 +55,23 @@ function result = atomsInstall(packages,allusers)
 		end
 	end
 	
-	// We are installing new package, so we have a net connection
-	// => update the package list
+	// Manage download path
 	// =========================================================================
 	
-	atomsGetTOOLBOXES(%T);
+	if allusers then
+		download_path = pathconvert(SCI+"/.atoms");
+	else
+		download_path = pathconvert(SCIHOME+"/atoms");
+	end
+	
+	if ~ chdir(download_path) then
+		error(msprintf(gettext("%s: The directory %s is not accessible\n"),"atomsInstall",download_path));
+	end
 	
 	// Loop on packages
 	// =========================================================================
 	
 	for i=1:size(packages,"*")
-		
-		package = packages(i);
-		
-		if size(regexp(package,"/\s/") ,"*" ) > 1 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: it must contain at most one space.\n"),"atomsInstall",1));
-		end
-		
-		if size(regexp(package,"/\s/") ,"*" ) == 0 then
-			// install the most recent version of the package
-			name    = package;
-			version = "0";
-		else
-			// A version is specified
-			space = regexp(package,"/\s/");
-			name  = part(package,[1:space-1]);
-			version = part(package,[space+1:length(package)]);
-		end
-		
-		package_names(i)    = name;
-		package_versions(i) = version;
-		
-		// Ok, The syntax is correct, Now check if it's a valid package
-		
-		if ~ atomsIsPackage(package_names(i),package_versions(i)) then
-			if package_versions(i) == "0" then
-				package_full_name = package_names(i);
-			else
-				package_full_name = package_names(i)+" - "+package_versions(i);
-			end
-			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstall",1,package_full_name));
-		end
-		
-		// Get the package version is not specified, get the most recent version
-		if package_versions(i) == "0" then
-			package_versions(i) = atomsGetMRVersion(package_names(i));
-		end
-		
 	end
 	
 

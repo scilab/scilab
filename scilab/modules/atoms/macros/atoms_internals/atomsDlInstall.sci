@@ -18,7 +18,7 @@ function result = atomsDlInstall(nom, version)
   arch = nom + "." + version + ".tar.gz"
   // Download of the archive
   cd (rep)
-  listMirror = atomsToolboxMirror()
+  listMirror = atomsOfclRepositories()
   if dlArchive(listMirror, 1, arch)
     // Unzip
     if dezipp(arch)

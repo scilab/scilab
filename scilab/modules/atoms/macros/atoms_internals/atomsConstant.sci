@@ -14,9 +14,9 @@
 // Recup of the basics informations
 
 // Fields present in the DESCRIPTION file
-function [listeObl, listeOpt] = atomsConstant()
+function [mandatory, optional] = atomsConstant()
   // Compulsory field
-  listeObl = ["Toolbox","Version","Title","Author","Maintainer","Description","License","Category","ScilabVersion"]
+  mandatory = ["Toolbox","Version","Title","Author","Maintainer","Description","License","Category","ScilabVersion"]
   // Optionnal field
-  listeOpt = ["Date","Depends","ExternalDepends","URL","Entity"]
+  optional = ["Date","Depends","ExternalDepends","URL","Entity"]
 endfunction

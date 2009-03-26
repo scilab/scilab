@@ -13,16 +13,16 @@
 
 // Display of the toolbox information
 
-function atomsInfo(name)
+function atomsInfo(name,version)
 
-	rhs=argn(2);
+	rhs = argn(2);
 	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsInfo",1));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsInfo",1,2));
 	end
 	
 	// we remove the special characters
-	normalized_name = atomsSubstituteString(name)
+	normalized_name = atomsNormalizeName(name);
 	
 	// We try to find the information locally
 	// =========================================================================

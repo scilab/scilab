@@ -29,7 +29,7 @@ function result = atomsUpdate(name,checkVersionScilab)
 	end
 	
 	// We remove special characters
-	normalized_name = atomsSubstituteString(name)
+	normalized_name = atomsNormalizeName(name)
 	
 	// if name = "all" we update all the Toolboxes
 	// =========================================================================
