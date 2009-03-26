@@ -58,6 +58,9 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 
 	if(iRows == 0)
 	{
+	  /* We have to get the Rhs var even if we do not use it...
+	     otherwise Scilab stack turned upside-down... */
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iReal);
 		LhsVar(1) = 1;
 		return 0;
 	}
