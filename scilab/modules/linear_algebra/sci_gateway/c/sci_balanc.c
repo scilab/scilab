@@ -14,117 +14,104 @@
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
+#include "stack3.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
+#include "doublecomplex.h"
 #include "localization.h"
+
 /*--------------------------------------------------------------------------*/
 extern int C2F(complexify)(int *num);
-extern int C2F(intdgebal)(char *fname, unsigned long fname_len);
-extern int C2F(intzgebal)(char *fname, unsigned long fname_len);
-extern int C2F(intdggbal)(char *fname, unsigned long fname_len);
-extern int C2F(intzggbal)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(intbalanc)(char *fname,unsigned long fname_len)
 {
-	int *header1, *header2;
-	int CmplxA, CmplxB;
-	int ret;int X;
-
-	switch (Rhs) 
+  int ret=0;
+  doublecomplex* pData[2]= {NULL, NULL};
+  double* pDataReal[2]= {NULL, NULL};
+  double* pDataImg[2]= {NULL, NULL};
+  int iCols[2], iRows[2];
+  
+  CheckRhs(1,2);
+  CheckLhs(2*Rhs, 2*Rhs);
+  
+  if (GetType(1)!=sci_matrix) 
+    {
+      OverLoad(1);
+      return 0;
+    }
+  { /* Getting Rhs, either in pDataReal[] or pData[] in 'z' format */
+    int i;
+    int complexArgs= iIsComplex(1);
+    if(Rhs==2)
+      {
+	if (GetType(2)!=sci_matrix) 
+	  {
+	    OverLoad(2);
+	    return 0;
+	  }
+	complexArgs = complexArgs || iIsComplex(2);
+      }
+    for( i =0; i!=Rhs; ++i)
+      {
+	int const iPlus1=i+1;
+	if(complexArgs)
+	  {
+	    C2F(complexify)(&iPlus1);
+	    GetRhsVarMatrixComplex(iPlus1, &iRows[i], &iCols[i], &pDataReal[i], &pDataImg[i]);
+	    if( !(pData[i]= oGetDoubleComplexFromPointer( pDataReal[i], pDataImg[i], iRows[i] * iCols[i])) )
+	      {
+		Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+		ret = 1;
+	      }
+	  }
+	else
+	  {
+	    GetRhsVarMatrixDouble(iPlus1, &iRows[i], &iCols[i], &pDataReal[i]);
+	  }
+	if(iCols[i] != iRows[i])
+	  {
+	    Scierror(999,_("%s: Wrong size for input argument #%d: A square matrix expected.\n"), fname, i+1);
+	    ret=-1;
+	  }
+      }
+    if( (Rhs==2) && (iCols[0] != iCols[1]) )
+      {/* /!\ reusing existing error msg, but it could be more explicit :"%s: arguments %d and %d must have equal dimensions.\n" */
+	Scierror(999,_("%s and %s must have equal dimensions.\n"),"A","B");
+	ret= -1;
+      }
+    if(!ret)
+      {
+	/* Allocating variables for lhs   */
 	{
-		case 1:   /* balanc(A)   */
-		if (GetType(1)!=sci_matrix) 
+	  double* lhsData[2]= {NULL, NULL};
+	  for(i=0; i!=Rhs; ++i)
+	    {
+	      iAllocMatrixOfDouble(Rhs+i+1, iCols[0], iCols[0], &lhsData[i]) ;
+	    }
+	  if(iCols[0] != 0)
+	    {
+	      /* calling function and converting result to 'c' format if needed */
+	      if( complexArgs )
 		{
-		  OverLoad(1);
-		  return 0;
+		  ret= iBalancM((double*)(pData[0]), (double*)(pData[1]), iCols[0], complexArgs, lhsData[0], lhsData[1]);
+		  for(i=0; i!=Rhs; ++i)
+		    {
+		      vGetPointerFromDoubleComplex(pData[i], iCols[0]* iCols[0], pDataReal[i], pDataImg[i]);
+		      vFreeDoubleComplexFromPointer(pData[i]);
+		    }
 		}
-		header1 = (int *) GetData(1);
-		CmplxA=header1[3];
-		switch (CmplxA) 
+	      else
 		{
-			case REAL:
-				ret = C2F(intdgebal)("balanc",6L);
-			break;
-
-			case COMPLEX:
-				ret = C2F(intzgebal)("balanc",6L);
-			break;
-
-			default:
-				Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-						fname,1);
-			break;
-		} /* end switch  (CmplxA) */
-		break; /* end case 1 */
-
-		case 2: /* balanc(A,B) */
-		if (GetType(1)!=sci_matrix) 
-		{
-		  OverLoad(1);
-		  return 0;
+		  iBalancM(pDataReal[0], pDataReal[1], iCols[0], complexArgs, lhsData[0], lhsData[1]) ;
 		}
-		if (GetType(2)!=sci_matrix) 
-		{
-		  OverLoad(2);
-		  return 0;
-		}
-		header1 = (int *) GetData(1);
-		header2 = (int *) GetData(2);
-		CmplxA=header1[3];
-		CmplxB=header2[3];
-		switch (CmplxA) 
-		{
-			case REAL:
-			switch (CmplxB) 
-			{
-				case REAL :
-				/* A real, Breal */
-				ret = C2F(intdggbal)("balanc",6L);
-				break;
-
-				case COMPLEX :
-				/* A real, B complex : complexify A */
-				C2F(complexify)((X=1,&X));
-				ret = C2F(intzggbal)("balanc",6L);
-				break;
-
-				default:
-					Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-					fname,1);
-
-				break;
-			}
-			break;
-
-			case COMPLEX :
-			switch (CmplxB) 
-			{
-				case REAL :
-				/* A complex, B real : complexify B */
-				C2F(complexify)((X=2,&X));
-				ret = C2F(intzggbal)("balanc",6L);
-				break;
-
-				case COMPLEX :
-				/* A complex, B complex */
-				ret = C2F(intzggbal)("balanc",6L);
-				return 0;
-				break;
-
-				default:
-					Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-					fname,2);
-				break;
-			}
-			break;
-
-			default :
-				Scierror(999,_("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"),
-				fname,1);
-			break;
-		} /*end  switch (CmplxA) */
-		break;/* end case 2 */
-	}/* end switch (Rhs) */
-	return 0;
+	    }
+	}
+      }
+    /* putting Lhs back on stack */
+    for(i=1; i <= Lhs; ++i)
+      {
+	LhsVar(i)= i;
+      }
+  }
+  return ret;
 }
-/*--------------------------------------------------------------------------*/

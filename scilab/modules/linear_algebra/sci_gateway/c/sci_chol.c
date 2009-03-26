@@ -30,6 +30,7 @@ extern int C2F(intzpotrf)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 int C2F(intchol)(char *fname,unsigned long fname_len)
 {
+	int iCholProductResult = 0;
 	int iRows	= 0;
 	int iCols	= 0;
 
@@ -41,7 +42,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 	double *pdblReturnReal	= NULL;
 	double *pdblReturnImg	= NULL;
 
-	if (GetType(1) != sci_matrix) 
+	if (GetType(1) != sci_matrix)
 	{
 		OverLoad(1);
 		return 0;
@@ -57,13 +58,23 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 
 	if(iRows == 0)
 	{
+	  /* We have to get the Rhs var even if we do not use it...
+	     otherwise Scilab stack turned upside-down... */
+		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iReal);
 		LhsVar(1) = 1;
 		return 0;
 	}
-	else if(iRows == -1) // What is it ?
+	else if(iRows == -1) // manage eye case
+	  // TODO : eye must not be a particular case with dimensions.
 	{
 		GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &iRows, &iCols, &iReal);
 		pdblReal		= stk(iReal);
+		if (pdblReal[0] <= 0)
+		  {
+		    /* Matrix must be positive definite */
+		    Error(29);
+		    return 0;
+		  }
 		pdblReal[0]		= sqrt(pdblReal[0]);
 		LhsVar(1) = 1;
 		return 0;
@@ -78,7 +89,7 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 		pdblImg			= stk(iImg);
 
 		poData = oGetDoubleComplexFromPointer(pdblReal, pdblImg, iRows * iCols);
-		iComplexCholProduct(poData, iRows);
+		iCholProductResult = iComplexCholProduct(poData, iRows);
 
 		iAllocComplexMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal, &pdblReturnImg);
 
@@ -91,11 +102,18 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 		pdblReal		= stk(iReal);
 
 		iAllocMatrixOfDouble(Rhs + 1, iRows, iCols, &pdblReturnReal);
-		
+
 		memcpy(pdblReturnReal, pdblReal, iRows * iCols * sizeof(double));
 
-		iRealCholProduct(pdblReturnReal, iRows);
+		iCholProductResult = iRealCholProduct(pdblReturnReal, iRows);
 	}
+
+	if (iCholProductResult > 0)
+	  {
+	    /* Matrix must be positive definite */
+	    Error(29);
+	    return 0;
+	  }
 
 	LhsVar(1) = Rhs + 1;
 	return 0;
@@ -108,7 +126,9 @@ int iRealCholProduct(double *_pdblReal, int _iLeadDim)
 
 	C2F(dpotrf)(&cOrient, &_iLeadDim, _pdblReal, &_iLeadDim, &iInfo);
 	if(iInfo > 0)
-		return iInfo;
+	  {
+	    return iInfo;
+	  }
 
 	if(iInfo == 0 && _iLeadDim > 1)
 	{
@@ -131,6 +151,10 @@ int iComplexCholProduct(doublecomplex *_poIn, int _iLeadDim)
 	int iInfo;
 
 	C2F(zpotrf)(&cOrient, &_iLeadDim, _poIn, &_iLeadDim, &iInfo);
+	if(iInfo > 0)
+	  {
+	    return iInfo;
+	  }
 
 	if(iInfo == 0 && _iLeadDim > 1)
 	{
