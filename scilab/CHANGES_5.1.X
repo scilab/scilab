@@ -65,17 +65,21 @@ Internal API:
 * GetLengthStringMatrixByName function added in stack3.h (return length of strings)
 
 
-Bug fixes:
-==========
+Scilab / Scipad synchronisation bugs:
+=====================================
+
+A critical bug present in Scilab 5.0.X and 5.1.0 has been fixed. 
+It has been reported a numerous number of time:
 
 * bug 2578 fixed - Calling input function within Scipad.
 
 * bug 3345 fixed - From SciPad editor ending Scilab with exit is not correct.
 
-* bug 3394 fixed - A malformed script originating from the editor window hangs Scilab
-                   and the editor.
+* bug 3394 fixed - A malformed script originating from the editor window hangs 
+  	  	   		   Scilab and the editor.
 
-* bug 3553 fixed - System crash executing tk_getfile() from within scipad by CTRL+L.
+* bug 3553 fixed - System crash executing tk_getfile() from within scipad by 
+  	  	   		   CTRL+L.
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
                    (mtlb_eig is now obsolete).
@@ -86,6 +90,15 @@ Bug fixes:
 * bug 3778 fixed - Calling TK gui from Scipad.
 
 * bug 3799 fixed - Using xgetmouse from Scipad makes Scilab crash.
+
+* bug 4178 fixed - Scilab crash when using "legend" via Scipad.
+
+* bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load 
+  	  	   		   into Scilab".
+
+
+Bug fixes:
+==========
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -123,14 +136,10 @@ Bug fixes:
 
 * bug 4166 fixed - test_run was broken
 
-* bug 4178 fixed - Scilab crash when using "legend" via Scipad.
-
 * bug 4179 fixed - The dec2hex "see also" part was missing in the help page.
 
 * bug 4192 fixed - When doing a getd in a directory where there are no .sci files,
                    getd displayed a error message not clear at all.
-
-* bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load into Scilab".
 
 * bug 4197 fixed - inaccurate floating point results computed by norm with
                    large/small vector matrices.
