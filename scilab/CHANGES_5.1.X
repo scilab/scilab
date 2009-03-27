@@ -143,6 +143,8 @@ Bug fixes:
 
 * bug 4284 fixed - The online help of isfield() was missing.
 
+* bug 4297 fixed - A spelling mistake was causing in some cases with the 
+		   pfss function
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
