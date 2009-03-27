@@ -68,10 +68,12 @@ Internal API:
 Bug fixes:
 ==========
 
-* bug 2578 fixed - Calling input function within Scilab
+* bug 2578 fixed - Calling input function within Scipad.
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
                    (mtlb_eig is now obsolete).
+
+* bug 3778 fixed - Calling TK gui from Scipad.
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
