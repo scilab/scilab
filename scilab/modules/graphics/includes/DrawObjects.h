@@ -21,17 +21,11 @@
  *    The main functions is sciDrawObj that draws the objects recursively.
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
-#include "HandleManagement.h"
-
-
 #ifndef __SCI_DRAWINGS__
 #define __SCI_DRAWINGS__
 
+#include "ObjectStructure.h"
 #include "BOOL.h"
-#include "PloEch.h"
-#include "StringMatrix.h"
-#include "Format.h"
 
 
 /*******************************************************/

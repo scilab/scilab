@@ -55,10 +55,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@GUI_TRUE@am__append_1 = libscigraphics.la 
 DIST_COMMON = $(libscigraphics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/graphics
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -471,6 +472,7 @@ libscigraphics_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscigraphics_la_CFLAGS) $(CFLAGS) \
 	$(libscigraphics_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libscigraphics_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -1258,7 +1260,7 @@ USEANT = 1
 libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-pkglib_LTLIBRARIES = libscigraphics.la libscigraphics-disable.la
+pkglib_LTLIBRARIES = libscigraphics-disable.la $(am__append_1)
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 modulename = graphics
 
@@ -1273,7 +1275,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1383,7 +1385,7 @@ clean-pkglibLTLIBRARIES:
 libscigraphics-disable.la: $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_DEPENDENCIES) 
 	$(libscigraphics_disable_la_LINK) -rpath $(pkglibdir) $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_LIBADD) $(LIBS)
 libscigraphics.la: $(libscigraphics_la_OBJECTS) $(libscigraphics_la_DEPENDENCIES) 
-	$(libscigraphics_la_LINK) -rpath $(pkglibdir) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
+	$(libscigraphics_la_LINK) $(am_libscigraphics_la_rpath) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

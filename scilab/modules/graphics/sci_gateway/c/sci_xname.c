@@ -18,10 +18,7 @@
 
 #include "sci_xname.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "SetProperty.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/

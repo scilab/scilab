@@ -23,13 +23,7 @@
  - freeing memory
  --------------------------------------------------------------------------*/
 
-#include <stdio.h> 
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
+#include "math_graphics.h"
 #include "DestroyObjects.h"
 #include "DestroyUicontrol.h"
 #include "DestroyUimenu.h"
@@ -39,7 +33,6 @@
 #include "Interaction.h" /* for callback funtions */
 #include "StringMatrix.h"
 #include "WindowList.h"
-#include "PloEch.h"
 #include "sciprint.h"
 #include "InitObjects.h"
 #include "CurrentObjectsManagement.h"
@@ -50,8 +43,9 @@
 #include "SetUiobjectTag.h"
 #include "get_ticks_utils.h"
 #include "BuildObjects.h"
+#include "HandleManagement.h"
 
-#include "../../../tclsci/includes/GedManagement.h"
+//#include "../../../tclsci/includes/GedManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"

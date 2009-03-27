@@ -25,7 +25,7 @@ void C2F(mclose) (int *fd, double *res)
 	
 	switch ( *fd )
 	{
-		case -2 :
+		case ALL_FILES_DESCRIPTOR :
 		/* closing all opened files */
 		for ( fd1=0; fd1< GetMaximumFileOpenedInScilab(); fd1++) 
 		{

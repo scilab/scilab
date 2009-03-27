@@ -581,7 +581,11 @@ libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/include
 
 libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-pkglib_LTLIBRARIES = libscigraphics.la libscigraphics-disable.la
+pkglib_LTLIBRARIES = libscigraphics-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigraphics.la 
+endif
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 

@@ -24,17 +24,11 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
-#include "ObjectStructure.h"
 #include "InitObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DrawObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
-#include "getHandleProperty/SetHashTable.h"
-#include "getHandleProperty/setHandleProperty.h"
-#include "getHandleProperty/SetPropertyStatus.h"
+#include "SetHashTable.h"
+#include "SetPropertyStatus.h"
 
 
 #include "MALLOC.h" /* MALLOC */

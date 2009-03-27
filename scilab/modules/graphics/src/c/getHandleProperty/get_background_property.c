@@ -24,6 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
+
 /*------------------------------------------------------------------------*/
 int get_background_property( sciPointObj * pobj )
 {

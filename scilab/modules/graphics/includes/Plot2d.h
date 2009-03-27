@@ -17,6 +17,8 @@
 #ifndef _PLOT2D_H_
 #define _PLOT2D_H_
 
+#include "ObjectStructure.h"
+
 int re_index_brect(double * brect, double * drect);
 
 BOOL strflag2axes_properties(sciPointObj * psubwin, char * strflag);

@@ -242,6 +242,15 @@ public class ColorMap {
 	}
 	
 	/**
+	 * Check whether Scilab a color index is a valid one
+	 * @param scilabIndex Scilab colormap index
+	 * @return true if the index is valid, false otherwis
+	 */
+	public boolean isValidScilabIndex(int scilabIndex) {
+		return (scilabIndex >= WHITE_INDEX && scilabIndex < colormapSize);
+	}
+	
+	/**
 	 * @return string representation of the class
 	 */
 	public String toString() {

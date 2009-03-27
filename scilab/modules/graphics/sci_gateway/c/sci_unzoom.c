@@ -21,13 +21,11 @@
 #include "stack-c.h"
 #include "GetProperty.h"
 #include "MALLOC.h"
-#include "gw_graphics.h"
-#include "SetProperty.h"
 #include "axesScale.h"
 #include "localization.h"
-#include "CurrentObjectsManagement.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_unzoom(char *fname,unsigned long fname_len)

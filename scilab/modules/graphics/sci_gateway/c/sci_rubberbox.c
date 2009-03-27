@@ -15,7 +15,6 @@
 /* desc : interface for rubberbox routine                                 */
 /*------------------------------------------------------------------------*/
 #include "sci_rubberbox.h"
-#include "returnProperty.h"
 #include "stack-c.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"

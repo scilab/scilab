@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 //===============================
 d=dir('SCI/modules/core/macros/*.sci');
 if d(2) == [] then pause,end

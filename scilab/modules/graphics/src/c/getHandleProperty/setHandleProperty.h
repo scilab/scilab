@@ -25,6 +25,8 @@
 #ifndef _SET_HANDLE_PROPERTY_H_
 #define _SET_HANDLE_PROPERTY_H_
 
+#include <stdlib.h>
+
 #include "ObjectStructure.h"
 
 #include "SetUimenuLabel.h"

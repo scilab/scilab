@@ -31,10 +31,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
 
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
@@ -43,11 +39,9 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
-#include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "math_graphics.h" /* GET_NB_DIGITS */
+#include "math_graphics.h"
 #include "Scierror.h"
-#include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BasicAlgos.h"
@@ -55,10 +49,10 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
-#include "Scierror.h"
 
 #include "CallFigure.h"
 
