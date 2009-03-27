@@ -72,10 +72,10 @@ Bug fixes:
 
 * bug 3345 fixed - From SciPad editor ending Scilab with exit is not correct.
 
-* bug 3353 fixed - System crash executing tk_getfile() from within scipad by CTRL+L.
-
 * bug 3394 fixed - A malformed script originating from the editor window hangs Scilab
                    and the editor.
+
+* bug 3553 fixed - System crash executing tk_getfile() from within scipad by CTRL+L.
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
                    (mtlb_eig is now obsolete).
@@ -149,6 +149,9 @@ Bug fixes:
 
 * bug 4250 fixed - The online help of intx function was badly located
 
+* bug 4258 fixed - Configure script does not contain the correct detection 
+  	  	   		   code for the JNI libraries under Solaris SPARC.
+
 * bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions equal to 1
 
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing
@@ -156,6 +159,8 @@ Bug fixes:
 
 * bug 4284 fixed - The online help of isfield() was missing.
 
+* bug 4297 fixed - A spelling mistake was causing in some cases with the 
+		   pfss function
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
