@@ -68,6 +68,8 @@ Internal API:
 Bug fixes:
 ==========
 
+* bug 2578 fixed - Calling input function within Scilab
+
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
                    (mtlb_eig is now obsolete).
 
