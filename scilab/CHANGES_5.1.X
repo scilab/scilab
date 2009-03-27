@@ -6,13 +6,13 @@ Compilation:
 ============
 
 * Defining the environment variable SCI_JAVA_ENABLE_HEADLESS disables the X11
-  access when building the documentation (necessary when building the 
+  access when building the documentation (necessary when building the
   documentation in a chroot)
 
 * ./configure && make all && make distclean == tarball (ie, make distclean is
   cleaning all the elements)
 
-* In the source tree of Scilab, ant target "build-example" added in order to 
+* In the source tree of Scilab, ant target "build-example" added in order to
   build only the javasci examples (cd modules/javasci && ant build-example)
 
 Source reorganisation:
@@ -57,7 +57,7 @@ License:
 
 * Examples in SCI/modules/javasci/examples/ are now released under the public
   domain
-  
+
 
 Internal API:
 =============
@@ -68,10 +68,10 @@ Internal API:
 Bug fixes:
 ==========
 
-* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
+* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
                    (mtlb_eig is now obsolete).
 
-* bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
+* bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
 
 * bug 3945 fixed - Error with the help example of library()
@@ -87,19 +87,21 @@ Bug fixes:
 
 * bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C only)
 
-* bug 4128 fixed - 'win' argument of the event_handler function did not work 
+* bug 4128 fixed - 'win' argument of the event_handler function did not work
                    (was always 0 instead of current figure ID).
 
 * bug 4132 fixed - fullpath crashs
 
-* bug 4134 fixed - In some cases, bad detection of a 64 bit arch was 
+* bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
+
+* bug 4149 fixed - Calling TCL functions within Scipad
 
 * bug 4150 fixed - user startup executed twice if you change directory to SCIHOME in this file.
 
 * bug 4159 fixed - coshlt was defined twice on windows
 
-* bug 4164 fixed - isinf is now defined in more recent versions of the Sun 
+* bug 4164 fixed - isinf is now defined in more recent versions of the Sun
                    Compiler. Detection and replacement of the function is now
                    done in the configure.
 
@@ -110,9 +112,9 @@ Bug fixes:
 * bug 4192 fixed - When doing a getd in a directory where there are no .sci files,
                    getd displayed a error message not clear at all.
 
-* bug 4197 fixed - inaccurate floating point results computed by norm with 
+* bug 4197 fixed - inaccurate floating point results computed by norm with
                    large/small vector matrices.
-   
+
 * bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
 
 * bug 4201 fixed - Confusing error message in datafit
@@ -129,7 +131,7 @@ Bug fixes:
 
 * bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions equal to 1
 
-* bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing 
+* bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing
                    problems with netbsd)
 
 * bug 4284 fixed - The online help of isfield() was missing.
@@ -151,7 +153,7 @@ New Features:
   See help page of usecanvas function for more details.
 
 * New function dae (for Differential Algebraic Equations) added.
-  This function is providing the same features as dassl with ode 
+  This function is providing the same features as dassl with ode
   (ordinary differential equations) profile.
   For more information, see SEP #2.
 
@@ -182,8 +184,8 @@ Enhancement:
 * Errors occuring when getting or setting graphic/gui handles properties are
   now treated as any other Scilab errors.
 
-* Now catch the exception when JOGL is crashing because native library 
-  gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and 
+* Now catch the exception when JOGL is crashing because native library
+  gluegen-rt is not available in the java.library.path (LD_LIBRARY_PATH) and
   display a nice message
 
 * Better error report in the documentation build process (docbook)
@@ -212,16 +214,16 @@ Tests:
 Internationalization:
 =====================
 
-* Almost all the i/o functions (isdir, mkdir, cd, chdir, mopen, fileinfo, 
-mclose, deletefile, findfiles, ls, listfiles, getshortpathname, 
+* Almost all the i/o functions (isdir, mkdir, cd, chdir, mopen, fileinfo,
+mclose, deletefile, findfiles, ls, listfiles, getshortpathname,
 getlongpathname, removedir...) now handle file and directory names containing
 UTF-8 characters. This is the work of Yung-Jang Lee. Many thanks!
-(Unitary tests provided) 
+(Unitary tests provided)
 
 Misc:
 =====
 
-* Some dead code removed (SCI/scripts/, 
+* Some dead code removed (SCI/scripts/,
                           SCI/bin/{dold,scilink,Blatdoc,Blatdocs,f77-linux,minfopr} )
 
 
@@ -236,18 +238,18 @@ See http://lists.scilab.org/cgi-bin/ezmlm-browse?list=dev&cmd=showmsg&msgnum=684
 * --enable-build-help is now the default behaviour
   (--disable-build-help removes the check of the dependencies)
 
-* --with-fftw, --with-pvm and --with-umfpack are now the default behaviour 
+* --with-fftw, --with-pvm and --with-umfpack are now the default behaviour
   (--without-fftw, --without-pvm and --without-umfpack removes their builds)
 
-* interpolation, signal_processing, statistics modules are loaded dynamically 
+* interpolation, signal_processing, statistics modules are loaded dynamically
   by Scilab.
 
-* cc and cc-* are not longer consider as GNU C compiler when detecting the 
+* cc and cc-* are not longer consider as GNU C compiler when detecting the
   compiler (use gcc & gcc-*) because it was causing some issues under Solaris
 
 * By default, under Linux/Unix/Macosx, static libraries are no longer built.
 
-* Do not init TK when building the doc ("make doc")... in order to be able to 
+* Do not init TK when building the doc ("make doc")... in order to be able to
 build Scilab through ssh
 
 * Giws has lost it .py extension
@@ -258,7 +260,7 @@ build Scilab through ssh
 Bug fixes:
 ==========
 
-* bug 1582 fixed - If parametric 3d curve values are out of given ebox of 3d 
+* bug 1582 fixed - If parametric 3d curve values are out of given ebox of 3d
                    axes, this curve values are netherveless plotted.
 
 * bug 1926 fixed - wavwrite doesn't manage single channel mode.
@@ -273,50 +275,50 @@ Bug fixes:
 
 * bug 2273 fixed - chdir didn't manage UNC path on Windows.
 
-* bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is 
+* bug 2357 fixed - The vertex-order of the plot3d2 and plor3d3 functions is
                    different from the one given in the manual.
-				   
+
 * bug 2453, 3731, 3759, 3784, 3801 & 3802 fixed - Force all the numerical value
                                               to remain to the english notation.
 
-* bug 2647 fixed - Bad display of some numbers in special cases due to a 
+* bug 2647 fixed - Bad display of some numbers in special cases due to a
                    gfortran bug.
 
 * bug 2682 fixed - chart() is inconsistent in the second argument, angle.
                    It might be treated as degrees or radian.
-				   
+
 * bug 2767 fixed - By default graphic windows are opened one above each others
 				   whereas they should be tiled.
-                   
+
 * bug 2814 fixed - Ticks graduation produce some unwanted decimals.
 
 * bug 2959 fixed - functions on F1, F2, F12 keys are not mapped as scilab 4.x
 
 * bug 3070 fixed - Could not use non-simple character like °, µ, ø ....
 
-* bug 3080 fixed - When we click many times on a button of the Graphic window 
+* bug 3080 fixed - When we click many times on a button of the Graphic window
                    the instruction will be done as much times we have clicked.
 
 * bug 3089 fixed - chdir seems to have problems with directory names containing
                    nordic characters like æ ø and å.
 
-* bug 3131 fixed - version 'GLIBC_2.4' not found with the binary version under 
+* bug 3131 fixed - version 'GLIBC_2.4' not found with the binary version under
                    some GNU/Linux distro
 
-* bug 3314 fixed - linspace primitive - rev 27707 - removed use of "ones" and 
+* bug 3314 fixed - linspace primitive - rev 27707 - removed use of "ones" and
                    use colon (i.e. :) operator only
 
 * bug 3322 fixed - trimmean primitive - rev 27627 - Added verbose option, added
                    unit tests, updated doc.
 
-* bug 3326 fixed - ESC key clears the command line in the console. 
+* bug 3326 fixed - ESC key clears the command line in the console.
 
-* bug 3407 fixed - Line number where error is reported changed in Scilab may be 
+* bug 3407 fixed - Line number where error is reported changed in Scilab may be
                    wrong.
 
 * bug 3411 fixed - eye on a sparse is not explicit.
 
-* bug 3462 fixed - The match string returned by regexp is not the right one if 
+* bug 3462 fixed - The match string returned by regexp is not the right one if
                    the subject string contains backslashes.
 
 * bug 3470 fixed - plot2d(), followed by legends produce an unexpected error.
@@ -325,32 +327,32 @@ Bug fixes:
 
 * bug 3512 fixed - regexp could return incorrect results
 
-* bug 3515 fixed - Erroneous submenu numbering for setmenu() and unsetmenu() in 
+* bug 3515 fixed - Erroneous submenu numbering for setmenu() and unsetmenu() in
                    Scilab 5.0.1
 
 * bug 3527 fixed - Graphic windows created by figure are unable to display plots.
 
 * bug 3530 fixed - Check that X11/Xlib.h is available since the Tk header needs it.
 
-* bug 3546 fixed - frmag is broken when called with hn given by a vector of 
+* bug 3546 fixed - frmag is broken when called with hn given by a vector of
                    coefficients instead of a polynomial.
 
-* bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h 
+* bug 3549 fixed - machine.h was including PATH_MAX.h, BOOL.h and PARAMS.h
                    includes have been cleaned up.
 
-* bug 3554 fixed - 'findobj' function does not find figures nor sub-menus and 
+* bug 3554 fixed - 'findobj' function does not find figures nor sub-menus and
                    the help example does not work.
 
 * bug 3556 fixed - derivative was not supporting non compiled functions.
 
-* bug 3559 fixed - paths in examples.bat in SCI/modules/javasci/examples were 
+* bug 3559 fixed - paths in examples.bat in SCI/modules/javasci/examples were
                    wrong.
 
 * bug 3561 fixed - 'call' crashs when we want to return a 'c' variable type.
 
 * bug 3565 fixed - bad detection of the IBM JDK
 
-* bug 3571 fixed - Only one message displayed when log(0) is computed with 
+* bug 3571 fixed - Only one message displayed when log(0) is computed with
                    ieee(1) mode.
 
 * bug 3578 fixed - the definition of NewSparse and FreeSparse have been added.
@@ -358,23 +360,23 @@ Bug fixes:
 * bug 3581 fixed - Legends do not appear correctly when axes are plotted in log
                    scale.
 
-* bug 3590 fixed - Error message when we want to see a figure which has as 
+* bug 3590 fixed - Error message when we want to see a figure which has as
                    userdata a structure (struct).
 
 * bug 3596 fixed - In the graphic export (bitmap) the exported file is stored in
                    vertical mirrored fashion.
 
-* bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was 
-                   caused by a dead lock in the TCL thread (we were trying to 
+* bug 3605 fixed - Better fix of the javasci freeze. A part of this bug was
+                   caused by a dead lock in the TCL thread (we were trying to
                    get access to a TCL interpretor which was locked).
 
-* bug 3608 fixed - Scilab freezes when executing a combination of 
+* bug 3608 fixed - Scilab freezes when executing a combination of
                    "eventhandler", "xchange" and "plot"
 
 * bug 3624 fixed - Nan returned when multiplying large zero vector by its transpose.
 
-* bug 3624, 3640 fixed - Atlas 3.8.0 have a bug causing wrong answer for 
-                         row-major gemm C=A*A' or A'A 
+* bug 3624, 3640 fixed - Atlas 3.8.0 have a bug causing wrong answer for
+                         row-major gemm C=A*A' or A'A
 
 * bug 3626 fixed - lcc-win32 library (.lib) not correctly generated.
 
@@ -384,8 +386,8 @@ Bug fixes:
 
 * bug 3630 fixed - functions added by 'addinter' are not visible by 'what'.
 
-* bug 3635 fixed - popupmenu objects created using uicontrol does not work as 
-                   expected (it is not possible to use the arrow keys on the 
+* bug 3635 fixed - popupmenu objects created using uicontrol does not work as
+                   expected (it is not possible to use the arrow keys on the
                    keyboard to browse through the various options).
 
 * bug 3645 fixed - SCI/contrib/toolbox_skeleton package does not work out of the
@@ -397,32 +399,32 @@ Bug fixes:
 
 * bug 3661 fixed - cotg and coth do not work.
 
-* bug 3664 fixed - an error occurs when a change directory operation implies a 
+* bug 3664 fixed - an error occurs when a change directory operation implies a
                    directory name with french accent letter ('é' for example).
 
-* bug 3667 fixed - Function input() now accepts a \n in the text to be printed 
+* bug 3667 fixed - Function input() now accepts a \n in the text to be printed
                    and colon is no more added.
 
-* bug 3673 fixed - When using Scilab embedded in a Java application through 
-                   javasci, the first call to javasci API reset the look and 
+* bug 3673 fixed - When using Scilab embedded in a Java application through
+                   javasci, the first call to javasci API reset the look and
                    feel of the Java application.
 
 * bug 3681 fixed - Disable automatic completion if there are only spaces in a line.
 
 * bug 3687 fixed - 'format' doesn't check inputs arguments.
 
-* bug 3697 fixed - setdefaultlanguage moved in localization module. (Windows) 
+* bug 3697 fixed - setdefaultlanguage moved in localization module. (Windows)
 
-* bug 3700 fixed - Problem when displaying accents in the help browser using the 
+* bug 3700 fixed - Problem when displaying accents in the help browser using the
                    fr language. (Windows)
 
-* bug 3702 fixed - When I start scilex.exe (Windows) in a windows console, the 
+* bug 3702 fixed - When I start scilex.exe (Windows) in a windows console, the
                    windows lost the focus.
 
-* bug 3714 fixed - fprintfMat and fscanfMat cannot cope with directories with 
+* bug 3714 fixed - fprintfMat and fscanfMat cannot cope with directories with
                    accented characters.
 
-* bug 3745 fixed - "make install" now install all <module>/demos/ 
+* bug 3745 fixed - "make install" now install all <module>/demos/
                    and <module>/examples.
 
 * bug 3749 fixed - Scilab error when building scilab help in HTML.
@@ -437,18 +439,18 @@ Bug fixes:
 
 * bug 3767, 3827 fixed (windows) - Atlas 3.8.2 crashs scilab.
 
-* bug 3769 fixed - Dynamic link doesn't detect intel fortran compiler version 11 
+* bug 3769 fixed - Dynamic link doesn't detect intel fortran compiler version 11
                    on Windows.
 
 * bug 3770 fixed - "qld" returns a error (qld: The constraints are inconsistent).
 
-* bug 3775 fixed - get_absolute_file_path(input_file) returns a error if 
+* bug 3775 fixed - get_absolute_file_path(input_file) returns a error if
                    input_file is not opened in Scilab.
 
 * bug 3800 fixed - After using surf to plot giving a stacksize error, it is no
                    longer possible to plot in the same window.
 
-* bug 3821 fixed - Problems with uicontrol scrolling when parent figure has 
+* bug 3821 fixed - Problems with uicontrol scrolling when parent figure has
                    property auto_resize set to "off".
 
 * bug 3822 fixed - When a figure handle is saved and reloaded the figure_size as
@@ -459,23 +461,23 @@ Bug fixes:
 * bug 3844 fixed - Axes with a very high y-bounds/x-bounds ratio do not appear.
 
 * bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without
-                   heading .3 in the lib name). Thanks to Andrea Florio for 
+                   heading .3 in the lib name). Thanks to Andrea Florio for
                    providing the patch
 
 * bug 3867 fixed - On the branch 5.0 nightly build 64 bits, the libmatio is
                    defined with the GLIBC_2.7 as mandatory. There is no reason
                    for this and it prevents Scilab binary to run under Redhat
                    and Centos.
-                   
+
 * bug 3868 fixed - In the nightly 64 bits build of the branch 5.0, jogl & gluegen
                    dyn lib are 32bits (should be 64 bits).
-                  
+
 * bug 3869 fixed - In the binaries, we have some useless files in thirdparty/tk8.5/demos/
                    which are causing some issues with the LSB.
-                   
+
 * bug 3870 fixed - In the binaries, we incorporate checkstyle in thirdparty/checkstyle/
                    which are causing some issues with the LSB (btw, it is useless in the binary).
-                   
+
 * bug 3873 fixed - While editing ticks'label on Axes, mouse click outside box or
                    double clicks or using Tab key, program terminates.
 
@@ -499,7 +501,7 @@ Bug fixes:
 * bug 3887 fixed - missing installation of scisparse.h and doublecomplex.h.
 
 * bug 3891 fixed - strsubst() replaces wrong characters with the regexp mode and
-                   when the subject contains backslahes. 
+                   when the subject contains backslahes.
 
 * bug 3892 fixed - example about mfprintf added in help.
 
@@ -510,7 +512,7 @@ Bug fixes:
 * bug 3897 fixed - macros perturbs the behavior of mfprintf().
 
 * bug 3898 fixed - There was no way to check if mputl() has done his job.
-					mputl returns %t or %f to check if function has correctly 
+					mputl returns %t or %f to check if function has correctly
 					written on the file.
 
 * bug 3899 fixed - The help for "startup" was incorrect.
@@ -523,7 +525,7 @@ Bug fixes:
 
 * bug 3907 fixed - msprintf with a incorrect format can kill Scilab.
 
-* bug 3912 fixed - strsubst() used with regular expression may return very 
+* bug 3912 fixed - strsubst() used with regular expression may return very
                    stange result.
 
 * bug 3918 fixed - The french documentation fails to build when french locales are not available on the system
@@ -544,14 +546,14 @@ Bug fixes:
 
 * bug 3967 fixed - When called with a tf, pfss should of course return a tf.
 
-* bug 3987 fixed - The relation between the font_size property and the size in 
+* bug 3987 fixed - The relation between the font_size property and the size in
                    point is not clearly given in the help pages.
 
 * bug 3988 fixed - The title help page is not properly formatted.
 
 * bug 3989 fixed - xlfont help updated.
 
-* bug 3991 fixed - It is not possible to set a font_style greater than 10 even 
+* bug 3991 fixed - It is not possible to set a font_style greater than 10 even
                    if one has added a new font using xlfont.
 
 * bug 3993 fixed - Scilab menu is not located in the "Apple menu bar" like other applications
@@ -559,7 +561,7 @@ Bug fixes:
 * bug 3995 fixed - install -D does not work under Mac OS X
                    (used by the make install).
 
-* bug 3996 fixed - tabulation included in a paste string may make scilab crash 
+* bug 3996 fixed - tabulation included in a paste string may make scilab crash
                    in -nw or -nwni mode.
 
 * bug 3999 fixed - xbasc() doesn't clear the current graphics window.
@@ -584,21 +586,21 @@ Bug fixes:
 * bug 4026 fixed - With the "unix" command under Windows, it is not possible to
                    run an external program which has a long path name.
 
-* bug 4027 fixed - Impossible to create hypermatrices under Linux x64 
+* bug 4027 fixed - Impossible to create hypermatrices under Linux x64
                    (actually a bug with int32 values).
 
-* bug 4037 fixed - wavread detects broadcast file format and returns a error 
+* bug 4037 fixed - wavread detects broadcast file format and returns a error
                    (format not yet managed).
 
 * bug 4046 fixed - core/includes/scisparse.h wasn't installed.
 
 * bug 4052 fixed - Due to a bug in the libxml2 provided by Fedora/Redhat,
 				   Scilab was crashing on startup. Scilab binaries under Linux
-				   are now shipping libxml2 as a workaround to this bug. 
+				   are now shipping libxml2 as a workaround to this bug.
 
-* bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a 
+* bug 4055 fixed - From time to time, when I plot a graphic, scilab displays a
                    blank graphic windows. (Windows)
-				   
+
 * bug 4094 fixed - delete("all") does not refresh the graphic.
 
 * bug 4106 fixed - bar and barh override drawlater/drawnow mode.
@@ -621,7 +623,7 @@ Bug fixes:
 
 * Some bashims in the starting script were causing startup issues.
 
-* uimenus and uicontrols callbacks were executed two times when their "enable" 
+* uimenus and uicontrols callbacks were executed two times when their "enable"
   property were set to "on" and they were already enabled.
 
 * Docking bugs fixed (problems with menubar, toolbar, infobar updates).
