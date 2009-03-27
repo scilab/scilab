@@ -91,6 +91,8 @@ It has been reported a numerous number of time:
 
 * bug 3799 fixed - Using xgetmouse from Scipad makes Scilab crash.
 
+* bug 4149 fixed - Calling TCL functions within Scipad
+
 * bug 4178 fixed - Scilab crash when using "legend" via Scipad.
 
 * bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load 
@@ -123,8 +125,6 @@ Bug fixes:
 
 * bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
-
-* bug 4149 fixed - Calling TCL functions within Scipad
 
 * bug 4150 fixed - user startup executed twice if you change directory to SCIHOME in this file.
 
