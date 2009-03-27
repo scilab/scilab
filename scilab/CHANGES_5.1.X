@@ -72,10 +72,10 @@ Bug fixes:
 
 * bug 3345 fixed - From SciPad editor ending Scilab with exit is not correct.
 
-* bug 3353 fixed - System crash executing tk_getfile() from within scipad by CTRL+L.
-
 * bug 3394 fixed - A malformed script originating from the editor window hangs Scilab
                    and the editor.
+
+* bug 3553 fixed - System crash executing tk_getfile() from within scipad by CTRL+L.
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
                    (mtlb_eig is now obsolete).
