@@ -127,6 +127,9 @@ Bug fixes:
 
 * bug 4250 fixed - The online help of intx function was badly located
 
+* bug 4258 fixed - Configure script does not contain the correct detection 
+  	  	   		   code for the JNI libraries under Solaris SPARC.
+
 * bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions equal to 1
 
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing 
