@@ -105,7 +105,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/qp_solve_equation_1.mml" />
+          <imagedata align="center" fileref="../mml/qp_solve_equation_1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
