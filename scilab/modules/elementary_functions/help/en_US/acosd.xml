@@ -58,22 +58,19 @@
   <refsection>
     <title>Description</title>
 
-    <para>The components of vector <literal>t</literal> are cosine
-    inverse, in degree, of the corresponding entries of vector
-    <literal>x</literal> (t=acos(x)*180/%pi).  For real data in
-    <literal> [-1, 1]</literal>. The results are real in <literal>[0
-    180];</literal></para>
+    <para>The components of vector <literal>t</literal> are cosine inverse, in
+    degree, of the corresponding entries of vector <literal>x</literal>
+    (t=acos(x)*180/%pi). For real data in<literal> [-1, 1]</literal>. The
+    results are real in <literal>[0 180].</literal></para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
 acosd(x)
- 
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
