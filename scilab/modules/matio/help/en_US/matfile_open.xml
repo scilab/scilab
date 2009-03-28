@@ -28,7 +28,7 @@
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>String: the path of the file.</para>
+          <para>String: the path of the file. Must contain only ANSI character.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
