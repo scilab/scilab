@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-02-11 09:54+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"PO-Revision-Date: 2009-02-24 21:30+0000\n"
+"Last-Translator: Vincent Couvert <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-11 13:09+0000\n"
+"X-Launchpad-Export-Date: 2009-03-26 10:33+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -246,19 +246,19 @@ msgid "ABCD Blocks"
 msgstr "Blocs ABCD"
 
 msgid "C Computational Functions"
-msgstr ""
+msgstr "Fonctions de Calcul en C"
 
 msgid "Scilab Computational Functions"
-msgstr ""
+msgstr "Fonction de Calcul en Scilab"
 
 msgid "Utilities Functions"
-msgstr ""
+msgstr "Fonctions utilitaires"
 
 msgid "Programming Scicos Blocks"
-msgstr ""
+msgstr "Programmer des Blocks Scicos"
 
 msgid "Scilab Utilities Functions"
-msgstr ""
+msgstr "Fonctions utilitaires Scilab"
 
 msgid "Diagram"
 msgstr "Diagramme"
@@ -314,4 +314,4 @@ msgstr "%s: Erreur pendant la construction de la documentation: %s.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab le module '%s' n'est pas installé.\n"
+msgstr "Le module '%s' de Scilab n'est pas installé.\n"

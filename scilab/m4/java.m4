@@ -396,7 +396,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
 #	NONE
 #
 # VARIABLES SET:
-#	ac_java_jvm_ld_preload : list of libraries to include in LD_PROLOAD
+#	ac_java_jvm_ld_preload : list of libraries to include in LD_PRELOAD
 #	ac_java_jvm_ld_bind_now : if set to 1, then use LD_BIND_NOW=1
 #	ac_java_jvm_jni_lib_flags : library flags that we will pass to the compiler.
 #	    For instance, we might pass -L/usr/jdk/lib -ljava
@@ -417,6 +417,10 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
         i86pc) 
 		# Solaris 10 x86
           machine=i386
+          ;;
+		sun*)
+       # Sun
+          machine=sparc
           ;;
     esac
 
