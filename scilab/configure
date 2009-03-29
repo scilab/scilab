@@ -12709,11 +12709,7 @@ echo $ECHO_N "checking flexdock... $ECHO_C" >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-<<<<<<< HEAD:scilab/configure
-// #line 12712 "configure"
-=======
 // #line 12859 "configure"
->>>>>>> d462cd020829c4394c53d28d51cad2a32f1582aa:scilab/configure
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
