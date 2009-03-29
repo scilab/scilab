@@ -26,8 +26,6 @@
 #include "stack-def.h"
 #include "stackTypeVariable.h"
 
-#include "error.h"
-
 #include "BOOL.h"
 #include "doublecomplex.h" /* define doublecomplex type */
 #include "stack1.h"

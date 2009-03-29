@@ -326,6 +326,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
@@ -382,7 +383,7 @@ libscioutput_stream_la_sci_gateway_DATA =
 libscioutput_stream_la_includedir = $(pkgincludedir)/output_stream
 libscioutput_stream_la_include_HEADERS = includes/cerro.h \
 includes/erro.h \
-includes/error.h \
+includes/do_error_number.h \
 includes/errmds.h \
 includes/sciprint.h \
 includes/sciprint_nd.h \

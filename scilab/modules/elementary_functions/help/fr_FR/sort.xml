@@ -97,7 +97,8 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">[s,p]=sort(rand(1,10));
+    <programlisting role="example"> 
+[s,p]=sort(rand(1,10));
 // p est une permutation aléatoire de 1:10
 A=[1,2,5;3,4,2];
 [A_trie,q]=sort(A);A(q(:))-A_trie(:)

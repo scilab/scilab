@@ -430,11 +430,11 @@ try,catch */
 		{
 			if (Rhs == 0)
 			{
-				displayAndStoreError(_("Function has no input argument...\n"));
+				displayAndStoreError(_("Wrong number of input arguments: This function has no input argument.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("Wrong number of arguments in function call...\n"));
+				displayAndStoreError(_("Wrong number of input arguments:\n"));
 				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
 				C2F(prntid)(istk(C2F(recu).pstk[C2F(recu).pt - 1]), &Rhs, &C2F(iop).wte);
@@ -446,11 +446,11 @@ try,catch */
 		{
 			if (Lhs == 0)
 			{
-				displayAndStoreError(_("Function has no output.\n"));
+				displayAndStoreError(_("Wrong number of output arguments: This function has no output argument.\n"));
 			}
 			else
 			{
-				displayAndStoreError(_("Incorrect # of outputs in the function\n"));
+				displayAndStoreError(_("Wrong number of output arguments\n"));
 				displayAndStoreError(_("Arguments are :\n"));
 				/* print variables name on stack :( */
 				C2F(prntid)(istk(C2F(recu).pstk[C2F(recu).pt - 1]), &Lhs, &C2F(iop).wte);

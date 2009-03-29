@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- JVM NOT MANDATORY -->
+
 cd('SCI/etc');
 f1 = findfiles();
 f2 = findfiles(SCI+'/etc');

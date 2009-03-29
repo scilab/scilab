@@ -20,7 +20,7 @@ function elts=pfss(S,rmax,cord)
   select argn(2)
   case 1 then
     rmax=[];cord=[]
-  case 2 the
+  case 2 then
     if type(rmax)==10 then cord=rmax;end
     if type(rmax)==1 then cord=[];end
   end

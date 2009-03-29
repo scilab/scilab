@@ -102,16 +102,13 @@
   <refsection>
     <title>Description</title>
 
-    <para>Minimize <literal> 0.5*x'*Q*x - p'*x</literal></para>
-
-    <para>under the constraints</para>
-
-    <programlisting>
-
- x' C(:,j) = b(j),  j=1,...,me
- x' C(:,j) &gt;= b(j), j=me+1,...,me+md
-   
-    </programlisting>
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/qp_solve_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
 
     <para>This function requires <literal>Q</literal> to be symmetric positive
     definite. If this hypothesis is not satisfied, one may use the contributed
@@ -121,10 +118,9 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
-//Find x in R^6 such that:
-//x'*C1 = b1 (3 equality constraints i.e me=3)
+    <programlisting role="example"> 
+// Find x in R^6 such that:
+// x'*C1 = b1 (3 equality constraints i.e me=3)
 C1= [ 1,-1, 2;
      -1, 0, 5;
       1,-3, 3;
@@ -133,7 +129,7 @@ C1= [ 1,-1, 2;
       1, 6, 0];
 b1=[1;2;3];
 
-//x'*C2 &gt;= b2 (2 inequality constraints)
+// x'*C2 &gt;= b2 (2 inequality constraints)
 C2= [ 0 ,1;
      -1, 0;
       0,-2;
@@ -142,13 +138,12 @@ C2= [ 0 ,1;
       1, 0];
 b2=[ 1;-2.5];
 
-//and minimize 0.5*x'*Q*x - p'*x with
+// and minimize 0.5*x'*Q*x - p'*x with
 p=[-1;-2;-3;-4;-5;-6]; Q=eye(6,6);
 
 me=3;
 [x,iact,iter,f]=qp_solve(Q,p,[C1 C2],[b1;b2],me)
-//Only linear constraints (1 to 4) are active 
- 
+// Only linear constraints (1 to 4) are active 
   </programlisting>
   </refsection>
 
@@ -170,14 +165,18 @@ me=3;
   <refsection>
     <title>Memory requirements</title>
 
-    <para>Let r be </para>
+    <para>Let r be</para>
 
-    <programlisting>r=min(m,n)</programlisting>
+    <programlisting> 
+r=min(m,n)
+ </programlisting>
 
-    <para>Then the memory required by qp_solve during the computations is
-    </para>
+    <para>Then the memory required by qp_solve during the computations
+    is</para>
 
-    <programlisting>2*n+r*(r+5)/2 + 2*m +1</programlisting>
+    <programlisting> 
+2*n+r*(r+5)/2 + 2*m +1
+ </programlisting>
   </refsection>
 
   <refsection>

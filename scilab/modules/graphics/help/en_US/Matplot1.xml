@@ -43,10 +43,10 @@
   <refsection>
     <title>Description</title>
     <para>The entries of matrix <literal>int(a)</literal> are used as colormap entries
-    in the current colormap. <literal>rect</literal> specify a rectangle in the
+    in the current colormap.  <literal>rect</literal> specify a rectangle in the
     current scale and the matrix is drawn inside this rectangle. Each matrix
     entry will be rendered as a small rectangle filled with its associated
-    color.</para>
+    color. If a matrix entry is outside the colormap, the corresponding rectangle is not displayed.</para>
   </refsection>
   <refsection>
     <title>Examples</title>

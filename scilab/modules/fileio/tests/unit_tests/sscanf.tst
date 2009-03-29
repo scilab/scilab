@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 n = 50;
 nstr = strcat(string(1:n),' ');
 fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');

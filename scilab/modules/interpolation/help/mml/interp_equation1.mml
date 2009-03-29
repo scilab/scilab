@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mtable>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">yp</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mtext> or </math:mtext>
+      <math:mi math:fontstyle="italic">yp</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mi>i</math:mi>
+         <math:mi>,</math:mi>
+         <math:mi>j</math:mi>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi>i</math:mi>
+          <math:mi>,</math:mi>
+          <math:mi>j</math:mi>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">yp1</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mi>&apos;</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mtext> or </math:mtext>
+      <math:mi math:fontstyle="italic">yp1</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mi>i</math:mi>
+         <math:mi>,</math:mi>
+         <math:mi>j</math:mi>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mi>&apos;</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi>i</math:mi>
+          <math:mi>,</math:mi>
+          <math:mi>j</math:mi>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">yp2</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mi>&apos;</math:mi>
+      <math:mi>&apos;</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mtext> or </math:mtext>
+      <math:mi math:fontstyle="italic">yp2</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mi>i</math:mi>
+         <math:mi>,</math:mi>
+         <math:mi>j</math:mi>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mi>&apos;</math:mi>
+      <math:mi>&apos;</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi>i</math:mi>
+          <math:mi>,</math:mi>
+          <math:mi>j</math:mi>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">yp3</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mi>i</math:mi>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mi>&apos;</math:mi>
+      <math:mi>&apos;</math:mi>
+      <math:mi>&apos;</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mi>i</math:mi>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mtext> or </math:mtext>
+      <math:mi math:fontstyle="italic">yp3</math:mi>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mrow>
+         <math:mi>i</math:mi>
+         <math:mi>,</math:mi>
+         <math:mi>j</math:mi>
+        </math:mrow>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>s</math:mi>
+      </math:mrow>
+      <math:mi>&apos;</math:mi>
+      <math:mi>&apos;</math:mi>
+      <math:mi>&apos;</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi math:fontstyle="italic">xp</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi>i</math:mi>
+          <math:mi>,</math:mi>
+          <math:mi>j</math:mi>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+   </math:mtable>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">alignl stack {
+yp(i) = s(xp(i)) &quot; or &quot; yp(i,j) = s(xp(i,j)) #
+yp1(i) = s&apos;(xp(i)) &quot; or &quot; yp1(i,j) = s&apos;(xp(i,j)) #
+yp2(i) = s&apos;&apos;(xp(i)) &quot; or &quot; yp2(i,j) = s&apos;&apos;(xp(i,j)) #
+yp3(i) = s&apos;&apos;&apos;(xp(i)) &quot; or &quot; yp3(i,j) = s&apos;&apos;&apos;(xp(i,j))
+}</math:annotation>
+ </math:semantics>
+</math:math>

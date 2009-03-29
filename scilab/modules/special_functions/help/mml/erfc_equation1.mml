@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:mtable>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mi>y</math:mi>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mfrac>
+        <math:mn>2</math:mn>
+        <math:msqrt>
+         <math:mrow>
+          <math:mo math:stretchy="false">(</math:mo>
+          <math:mo math:stretchy="false">π</math:mo>
+          <math:mo math:stretchy="false">)</math:mo>
+         </math:mrow>
+        </math:msqrt>
+       </math:mfrac>
+      </math:mrow>
+      <math:mrow>
+       <math:mrow>
+        <math:munderover>
+         <math:mo math:stretchy="false">∫</math:mo>
+         <math:mi>x</math:mi>
+         <math:mrow>
+          <math:mo math:stretchy="false">+</math:mo>
+          <math:mo math:stretchy="false">∞</math:mo>
+         </math:mrow>
+        </math:munderover>
+        <math:msup>
+         <math:mi>e</math:mi>
+         <math:mrow>
+          <math:mo math:stretchy="false">−</math:mo>
+          <math:msup>
+           <math:mi>t</math:mi>
+           <math:mn>2</math:mn>
+          </math:msup>
+         </math:mrow>
+        </math:msup>
+       </math:mrow>
+       <math:mo math:stretchy="false">⋅</math:mo>
+       <math:mi math:fontstyle="italic">dt</math:mi>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mi>y</math:mi>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mrow>
+        <math:mn>1</math:mn>
+        <math:mo math:stretchy="false">−</math:mo>
+        <math:mi math:fontstyle="italic">erf</math:mi>
+       </math:mrow>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>x</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+   </math:mtable>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">alignl stack {
+y = {2 over sqrt(%pi)} int from x to {+infty} e^{-t^2} cdot dt #
+y = 1 - erf(x)
+}</math:annotation>
+ </math:semantics>
+</math:math>

@@ -19,7 +19,7 @@
 #include "msgs.h"
 #include "localization.h"
 #include "cvstr.h"
-#include "error.h"
+#include "do_error_number.h"
 /*--------------------------------------------------------------------------*/
 #ifdef BUF
 #undef BUF

@@ -10,6 +10,8 @@
 function [vd,D]=mtlb_eig(A,B)
 // Emulation function for eig() Matlab function
 
+warnobsolete("spec", "5.1.2")
+
 [lhs,rhs]=argn()
 
 if rhs==1 then
@@ -17,9 +19,6 @@ if rhs==1 then
     vd=spec(A)
   else
     [vd,D]=spec(A)
-    if isreal(vd,0) & size(vd,"*")>1 then
-      vd(:,1:2)=-vd(:,1:2)
-    end
   end  
 else
   error(msprintf(gettext("%s: use with %d input argument(s) is not yet implemented.\n"),"mtlb_eig",2));

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE math:math PUBLIC "-//OpenOffice.org//DTD Modified W3C MathML 1.01//EN" "math.dtd">
+<math:math xmlns:math="http://www.w3.org/1998/Math/MathML">
+ <math:semantics>
+  <math:mrow>
+   <math:msub>
+    <math:mi>g</math:mi>
+    <math:mi>j</math:mi>
+   </math:msub>
+   <math:mrow>
+    <math:mrow>
+     <math:mo math:stretchy="false">(</math:mo>
+     <math:mrow>
+      <math:mi math:fontstyle="italic">zeta</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi>j</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+      <math:mi>;</math:mi>
+      <math:mi>z</math:mi>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mrow>
+        <math:mi>u</math:mi>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mrow>
+          <math:mi math:fontstyle="italic">zeta</math:mi>
+          <math:mrow>
+           <math:mo math:stretchy="false">(</math:mo>
+           <math:mi>j</math:mi>
+           <math:mo math:stretchy="false">)</math:mo>
+          </math:mrow>
+         </math:mrow>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+       </math:mrow>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+     <math:mo math:stretchy="false">)</math:mo>
+    </math:mrow>
+    <math:mo math:stretchy="false">=</math:mo>
+    <math:mn>1,</math:mn>
+   </math:mrow>
+   <math:mtext>  </math:mtext>
+   <math:mtable>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mi>j</math:mi>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mn>1,</math:mn>
+      </math:mrow>
+      <math:mo math:stretchy="false">⋯</math:mo>
+      <math:mi>,</math:mi>
+      <math:mi math:fontstyle="italic">mstar</math:mi>
+     </math:mrow>
+    </math:mtr>
+    <math:mtr>
+     <math:mrow>
+      <math:mrow>
+       <math:mi math:fontstyle="italic">mstar</math:mi>
+       <math:mo math:stretchy="false">=</math:mo>
+       <math:mi>m</math:mi>
+      </math:mrow>
+      <math:mrow>
+       <math:mrow>
+        <math:mo math:stretchy="false">(</math:mo>
+        <math:mn>1</math:mn>
+        <math:mo math:stretchy="false">)</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">+</math:mo>
+       <math:mi>m</math:mi>
+      </math:mrow>
+      <math:mrow>
+       <math:mrow>
+        <math:mrow>
+         <math:mo math:stretchy="false">(</math:mo>
+         <math:mn>2</math:mn>
+         <math:mo math:stretchy="false">)</math:mo>
+        </math:mrow>
+        <math:mo math:stretchy="false">+</math:mo>
+        <math:mo math:stretchy="false">⋯</math:mo>
+       </math:mrow>
+       <math:mo math:stretchy="false">+</math:mo>
+       <math:mi>m</math:mi>
+      </math:mrow>
+      <math:mrow>
+       <math:mo math:stretchy="false">(</math:mo>
+       <math:mi math:fontstyle="italic">ncomp</math:mi>
+       <math:mo math:stretchy="false">)</math:mo>
+      </math:mrow>
+     </math:mrow>
+    </math:mtr>
+   </math:mtable>
+  </math:mrow>
+  <math:annotation math:encoding="StarMath 5.0">g_j(zeta(j);z(u(zeta(j)))) = 1, &quot;  &quot; stack {j=1,dotsaxis,mstar # mstar = m(1) + m(2) + dotsaxis+m(ncomp)}</math:annotation>
+ </math:semantics>
+</math:math>

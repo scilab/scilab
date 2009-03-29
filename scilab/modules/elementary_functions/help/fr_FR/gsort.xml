@@ -107,7 +107,8 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">alr=[1,2,2;
+    <programlisting role="example"> 
+alr=[1,2,2;
      1,2,1;
      1,1,2;
      1,1,1];
