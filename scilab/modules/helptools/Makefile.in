@@ -101,8 +101,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscihelptools_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/jvm/libscijvm.la
+@BUILD_HELP_TRUE@libscihelptools_la_DEPENDENCIES =  \
+@BUILD_HELP_TRUE@	$(top_builddir)/modules/jvm/libscijvm.la
 am__libscihelptools_la_SOURCES_DIST = sci_gateway/nogui/nogui.c \
 	sci_gateway/c/gw_helptools.c src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp sci_gateway/cpp/sci_buildDoc.cpp
@@ -302,6 +302,7 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
+WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
@@ -392,7 +393,7 @@ libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
-libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
+@BUILD_HELP_TRUE@libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
 
 #### Target ######
 modulename = helptools

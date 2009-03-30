@@ -53,10 +53,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
+@USE_EMBEDDED_BLAS_TRUE@am__append_1 = $(top_builddir)/libs/blas/libsciblas.la
+DIST_COMMON = README $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
-subdir = modules/texmacs
+@NEED_JAVA_TRUE@am__append_2 = java
+subdir = libs/lapack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
@@ -75,19 +76,91 @@ am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = $(top_builddir)/modules/core/includes/machine.h
 CONFIG_CLEAN_FILES =
-SOURCES =
-DIST_SOURCES =
 am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
 am__vpath_adj = case $$p in \
     $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
     *) f=$$p;; \
   esac;
 am__strip_dir = `echo $$p | sed -e 's|^.*/||'`;
-am__installdirs = "$(DESTDIR)$(libscitexmacs_la_etcdir)" \
-	"$(DESTDIR)$(libscitexmacs_la_rootdir)"
-libscitexmacs_la_etcDATA_INSTALL = $(INSTALL_DATA)
-libscitexmacs_la_rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(libscitexmacs_la_etc_DATA) $(libscitexmacs_la_root_DATA)
+am__installdirs = "$(DESTDIR)$(pkglibdir)"
+pkglibLTLIBRARIES_INSTALL = $(INSTALL)
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libdummy_lapack_la_LIBADD =
+am_libdummy_lapack_la_OBJECTS = libdummy_lapack_la-dlamch.lo \
+	libdummy_lapack_la-slamch.lo
+libdummy_lapack_la_OBJECTS = $(am_libdummy_lapack_la_OBJECTS)
+libdummy_lapack_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
+	$(libdummy_lapack_la_FFLAGS) $(FFLAGS) \
+	$(libdummy_lapack_la_LDFLAGS) $(LDFLAGS) -o $@
+libscilapack_la_DEPENDENCIES = libdummy-lapack.la $(am__append_1)
+am__objects_1 = dlasv2.lo zgeqpf.lo zrot.lo dpotrf.lo zunmr3.lo \
+	zlanhs.lo zgebak.lo zbdsqr.lo zunmrz.lo dgetc2.lo zlaqp2.lo \
+	dsytrd.lo dsytd2.lo zlange.lo dlansp.lo dhgeqz.lo dlasq2.lo \
+	dtrevc.lo dgelsy.lo zladiv.lo dlaswp.lo dormlq.lo dorml2.lo \
+	dlaexc.lo zlahqr.lo zdrot.lo dlabad.lo dlarft.lo zlassq.lo \
+	dlartg.lo zlarf.lo ztrexc.lo zgeev.lo dggbal.lo dtrtrs.lo \
+	zlatdf.lo dgeqr2.lo zlarfg.lo dgetrs.lo dlag2.lo dlaqge.lo \
+	dpotf2.lo zgetrf.lo ztgsy2.lo zgebal.lo dspgst.lo dormqr.lo \
+	drscl.lo dtrti2.lo dlaset.lo dgeesx.lo dpocon.lo dlasyf.lo \
+	dgerq2.lo dlasq3.lo dlansy.lo dgehrd.lo dgehd2.lo dsptrd.lo \
+	dorgtr.lo dormrq.lo dorm2r.lo dormr2.lo zgges.lo zunglq.lo \
+	zlanhe.lo zungl2.lo zhetrd.lo zhetd2.lo dlacon.lo dgesvx.lo \
+	zgetf2.lo ztgevc.lo dsteqr.lo dgelqf.lo zlarzb.lo zlarfx.lo \
+	dsysv.lo zlaqps.lo dtzrqf.lo dsytrf.lo xerbla.lo dtrsyl.lo \
+	dgelss.lo dtgsen.lo zgecon.lo dormbr.lo zlatrz.lo zungqr.lo \
+	dlabrd.lo dlasq4.lo dggev.lo dpptrf.lo zgelq2.lo dgeqpf.lo \
+	dormr3.lo dlanhs.lo dgerfs.lo dlarz.lo zgebrd.lo zgebd2.lo \
+	dgebak.lo dormrz.lo dbdsqr.lo dspev.lo dlaqp2.lo zung2r.lo \
+	dlange.lo zgeqrf.lo dormql.lo zgesvd.lo dladiv.lo dlas2.lo \
+	dgeequ.lo dsytf2.lo dlahqr.lo zlatrs.lo zheev.lo ztgex2.lo \
+	zlaic1.lo ztrsen.lo zlacgv.lo dgees.lo dlassq.lo zlascl.lo \
+	dtrexc.lo dlasq5.lo dormhr.lo zgesc2.lo dlatdf.lo dsycon.lo \
+	dlarfg.lo dorm2l.lo dsptrf.lo zungbr.lo dgesv.lo dgetrf.lo \
+	zhseqr.lo dtgsy2.lo dlaev2.lo dgebal.lo zlarfb.lo zlahrd.lo \
+	dlantr.lo zgghrd.lo dlatzm.lo ztgsyl.lo ztrtri.lo zlatrd.lo \
+	zlacpy.lo zgetri.lo dlasr.lo zgeqp3.lo zungql.lo dlanst.lo \
+	zlarzt.lo dorglq.lo dorgl2.lo dlasq6.lo dlasy2.lo dopgtr.lo \
+	dgeqlf.lo dgetf2.lo dtgevc.lo zunghr.lo dlarzb.lo dlarfx.lo \
+	zung2l.lo zggev.lo dzsum1.lo dlaqps.lo dtrcon.lo dlasrt.lo \
+	dsyev.lo dorgqr.lo dgecon.lo dlatrz.lo zlarz.lo ztgexc.lo \
+	zggbak.lo ztzrzf.lo dpotrs.lo dsytri.lo dgelq2.lo zpotrf.lo \
+	dgebrd.lo dgebd2.lo zgetc2.lo dorgrq.lo dorg2r.lo dorgr2.lo \
+	zhgeqz.lo dgeqrf.lo dlaln2.lo dgesvd.lo ztrevc.lo zgelsy.lo \
+	zgees.lo zlaswp.lo dspgv.lo dlanv2.lo zunmlq.lo dlae2.lo \
+	zunml2.lo dlatrs.lo dtgex2.lo dlaic1.lo dgels.lo dtrsen.lo \
+	zdrscl.lo zlarft.lo dlascl.lo zlartg.lo zggbal.lo dgesc2.lo \
+	dgerqf.lo zgeqr2.lo zgetrs.lo ilaenv.lo dorgbr.lo zpotf2.lo \
+	dhseqr.lo dlarf.lo dgegs.lo dgeev.lo dlarfb.lo zlasr.lo \
+	dlapy2.lo zunmqr.lo ztrti2.lo dlahrd.lo dgghrd.lo zlaset.lo \
+	dtgsyl.lo dtrtri.lo dlatrd.lo dlacpy.lo dgetri.lo zgehrd.lo \
+	zgehd2.lo dgeqp3.lo dorgql.lo zungtr.lo zunm2r.lo dlarzt.lo \
+	dlapmt.lo ieeeck.lo dlasq1.lo dorghr.lo zlacon.lo dgelsx.lo \
+	dsterf.lo zsteqr.lo zgelqf.lo dsytrs.lo dgges.lo dorg2l.lo \
+	dlapy3.lo lsame.lo ztrsyl.lo izmax1.lo ztgsen.lo zunmbr.lo \
+	zlabrd.lo dtgexc.lo dgeql2.lo dlagv2.lo dggbak.lo dtzrzf.lo \
+	zlaqr0.lo dlacn2.lo zlacn2.lo dlazq3.lo zlahr2.lo dlaqr0.lo \
+	iparmq.lo disnan.lo dlaisnan.lo dlahr2.lo zlaqr3.lo zlaqr4.lo \
+	zlaqr5.lo dlazq4.lo dlaqr3.lo dlaqr4.lo dlaqr5.lo zlaqr2.lo \
+	zlaqr1.lo dlaqr2.lo dlaqr1.lo
+am_libscilapack_la_OBJECTS = $(am__objects_1)
+libscilapack_la_OBJECTS = $(am_libscilapack_la_OBJECTS)
+libscilapack_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
+	$(libscilapack_la_LDFLAGS) $(LDFLAGS) -o $@
+DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
+F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+F77LD = $(F77)
+F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+SOURCES = $(libdummy_lapack_la_SOURCES) $(libscilapack_la_SOURCES)
+DIST_SOURCES = $(libdummy_lapack_la_SOURCES) \
+	$(libscilapack_la_SOURCES)
+ETAGS = etags
+CTAGS = ctags
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -281,22 +354,312 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 #### Target ######
-modulename = texmacs
+modulename = lapack
+pkglib_LTLIBRARIES = libscilapack.la
+libscilapack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) 
+noinst_LTLIBRARIES = libdummy-lapack.la
+LAPACK_FORTRAN_SOURCES = dlasv2.f \
+zgeqpf.f \
+zrot.f \
+dpotrf.f \
+zunmr3.f \
+zlanhs.f \
+zgebak.f \
+zbdsqr.f \
+zunmrz.f \
+dgetc2.f \
+zlaqp2.f \
+dsytrd.f \
+dsytd2.f \
+zlange.f \
+dlansp.f \
+dhgeqz.f \
+dlasq2.f \
+dtrevc.f \
+dgelsy.f \
+zladiv.f \
+dlaswp.f \
+dormlq.f \
+dorml2.f \
+dlaexc.f \
+zlahqr.f \
+zdrot.f \
+dlabad.f \
+dlarft.f \
+zlassq.f \
+dlartg.f \
+zlarf.f \
+ztrexc.f \
+zgeev.f \
+dggbal.f \
+dtrtrs.f \
+zlatdf.f \
+dgeqr2.f \
+zlarfg.f \
+dgetrs.f \
+dlag2.f \
+dlaqge.f \
+dpotf2.f \
+zgetrf.f \
+ztgsy2.f \
+zgebal.f \
+dspgst.f \
+dormqr.f \
+drscl.f \
+dtrti2.f \
+dlaset.f \
+dgeesx.f \
+dpocon.f \
+dlasyf.f \
+dgerq2.f \
+dlasq3.f \
+dlansy.f \
+dgehrd.f \
+dgehd2.f \
+dsptrd.f \
+dorgtr.f \
+dormrq.f \
+dorm2r.f \
+dormr2.f \
+zgges.f \
+zunglq.f \
+zlanhe.f \
+zungl2.f \
+zhetrd.f \
+zhetd2.f \
+dlacon.f \
+dgesvx.f \
+zgetf2.f \
+ztgevc.f \
+dsteqr.f \
+dgelqf.f \
+zlarzb.f \
+zlarfx.f \
+dsysv.f \
+zlaqps.f \
+dtzrqf.f \
+dsytrf.f \
+xerbla.f \
+dtrsyl.f \
+dgelss.f \
+dtgsen.f \
+zgecon.f \
+dormbr.f \
+zlatrz.f \
+zungqr.f \
+dlabrd.f \
+dlasq4.f \
+dggev.f \
+dpptrf.f \
+zgelq2.f \
+dgeqpf.f \
+dormr3.f \
+dlanhs.f \
+dgerfs.f \
+dlarz.f \
+zgebrd.f \
+zgebd2.f \
+dgebak.f \
+dormrz.f \
+dbdsqr.f \
+dspev.f \
+dlaqp2.f \
+zung2r.f \
+dlange.f \
+zgeqrf.f \
+dormql.f \
+zgesvd.f \
+dladiv.f \
+dlas2.f \
+dgeequ.f \
+dsytf2.f \
+dlahqr.f \
+zlatrs.f \
+zheev.f \
+ztgex2.f \
+zlaic1.f \
+ztrsen.f \
+zlacgv.f \
+dgees.f \
+dlassq.f \
+zlascl.f \
+dtrexc.f \
+dlasq5.f \
+dormhr.f \
+zgesc2.f \
+dlatdf.f \
+dsycon.f \
+dlarfg.f \
+dorm2l.f \
+dsptrf.f \
+zungbr.f \
+dgesv.f \
+dgetrf.f \
+zhseqr.f \
+dtgsy2.f \
+dlaev2.f \
+dgebal.f \
+zlarfb.f \
+zlahrd.f \
+dlantr.f \
+zgghrd.f \
+dlatzm.f \
+ztgsyl.f \
+ztrtri.f \
+zlatrd.f \
+zlacpy.f \
+zgetri.f \
+dlasr.f \
+zgeqp3.f \
+zungql.f \
+dlanst.f \
+zlarzt.f \
+dorglq.f \
+dorgl2.f \
+dlasq6.f \
+dlasy2.f \
+dopgtr.f \
+dgeqlf.f \
+dgetf2.f \
+dtgevc.f \
+zunghr.f \
+dlarzb.f \
+dlarfx.f \
+zung2l.f \
+zggev.f \
+dzsum1.f \
+dlaqps.f \
+dtrcon.f \
+dlasrt.f \
+dsyev.f \
+dorgqr.f \
+dgecon.f \
+dlatrz.f \
+zlarz.f \
+ztgexc.f \
+zggbak.f \
+ztzrzf.f \
+dpotrs.f \
+dsytri.f \
+dgelq2.f \
+zpotrf.f \
+dgebrd.f \
+dgebd2.f \
+zgetc2.f \
+dorgrq.f \
+dorg2r.f \
+dorgr2.f \
+zhgeqz.f \
+dgeqrf.f \
+dlaln2.f \
+dgesvd.f \
+ztrevc.f \
+zgelsy.f \
+zgees.f \
+zlaswp.f \
+dspgv.f \
+dlanv2.f \
+zunmlq.f \
+dlae2.f \
+zunml2.f \
+dlatrs.f \
+dtgex2.f \
+dlaic1.f \
+dgels.f \
+dtrsen.f \
+zdrscl.f \
+zlarft.f \
+dlascl.f \
+zlartg.f \
+zggbal.f \
+dgesc2.f \
+dgerqf.f \
+zgeqr2.f \
+zgetrs.f \
+ilaenv.f \
+dorgbr.f \
+zpotf2.f \
+dhseqr.f \
+dlarf.f \
+dgegs.f \
+dgeev.f \
+dlarfb.f \
+zlasr.f \
+dlapy2.f \
+zunmqr.f \
+ztrti2.f \
+dlahrd.f \
+dgghrd.f \
+zlaset.f \
+dtgsyl.f \
+dtrtri.f \
+dlatrd.f \
+dlacpy.f \
+dgetri.f \
+zgehrd.f \
+zgehd2.f \
+dgeqp3.f \
+dorgql.f \
+zungtr.f \
+zunm2r.f \
+dlarzt.f \
+dlapmt.f \
+ieeeck.f \
+dlasq1.f \
+dorghr.f \
+zlacon.f \
+dgelsx.f \
+dsterf.f \
+zsteqr.f \
+zgelqf.f \
+dsytrs.f \
+dgges.f \
+dorg2l.f \
+dlapy3.f \
+lsame.f \
+ztrsyl.f \
+izmax1.f \
+ztgsen.f \
+zunmbr.f \
+zlabrd.f \
+dtgexc.f \
+dgeql2.f \
+dlagv2.f \
+dggbak.f \
+dtzrzf.f \
+zlaqr0.f \
+dlacn2.f \
+zlacn2.f \
+dlazq3.f \
+zlahr2.f \
+dlaqr0.f \
+iparmq.f \
+disnan.f \
+dlaisnan.f \
+dlahr2.f \
+zlaqr3.f \
+zlaqr4.f \
+zlaqr5.f \
+dlazq4.f \
+dlaqr3.f \
+dlaqr4.f \
+dlaqr5.f \
+zlaqr2.f \
+zlaqr1.f \
+dlaqr2.f \
+dlaqr1.f
 
-#### texmacs : Conf files ####
-libscitexmacs_la_rootdir = $(mydatadir)
-libscitexmacs_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### texmacs : Macros ####
-MACROSDIRSEXT = macros/overloading
-
-#### texmacs : init scripts #### 
-libscitexmacs_la_etcdir = $(mydatadir)/etc
-libscitexmacs_la_etc_DATA = etc/texmacs.quit etc/texmacs.start
+libscilapack_la_SOURCES = $(LAPACK_FORTRAN_SOURCES)
+libdummy_lapack_la_SOURCES = dlamch.f slamch.f
+libdummy_lapack_la_FFLAGS = `echo "@FFLAGS@"| sed -e 's|-O[0-9+]|-O0|'`
+libscilapack_la_LIBADD = libdummy-lapack.la $(am__append_1)
+@USE_EMBEDDED_BLAS_FALSE@libdummy_lapack_la_LDFLAGS = $(BLAS_LIBS)
+libscilapack_la_PKGCONFIG = lapack.pc
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -309,7 +672,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -359,7 +722,7 @@ HELP_CHAPTERFILE = addchapter.sce
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin
+.SUFFIXES: .sci .bin .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -369,9 +732,9 @@ $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir
 	      exit 1;; \
 	  esac; \
 	done; \
-	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  modules/texmacs/Makefile'; \
+	echo ' cd $(top_srcdir) && $(AUTOMAKE) --foreign  libs/lapack/Makefile'; \
 	cd $(top_srcdir) && \
-	  $(AUTOMAKE) --foreign  modules/texmacs/Makefile
+	  $(AUTOMAKE) --foreign  libs/lapack/Makefile
 .PRECIOUS: Makefile
 Makefile: $(srcdir)/Makefile.in $(top_builddir)/config.status
 	@case '$?' in \
@@ -390,51 +753,113 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
+	@$(NORMAL_INSTALL)
+	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  if test -f $$p; then \
+	    f=$(am__strip_dir) \
+	    echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) '$$p' '$(DESTDIR)$(pkglibdir)/$$f'"; \
+	    $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=install $(pkglibLTLIBRARIES_INSTALL) $(INSTALL_STRIP_FLAG) "$$p" "$(DESTDIR)$(pkglibdir)/$$f"; \
+	  else :; fi; \
+	done
+
+uninstall-pkglibLTLIBRARIES:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  p=$(am__strip_dir) \
+	  echo " $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f '$(DESTDIR)$(pkglibdir)/$$p'"; \
+	  $(LIBTOOL) $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=uninstall rm -f "$(DESTDIR)$(pkglibdir)/$$p"; \
+	done
+
+clean-pkglibLTLIBRARIES:
+	-test -z "$(pkglib_LTLIBRARIES)" || rm -f $(pkglib_LTLIBRARIES)
+	@list='$(pkglib_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
+libdummy-lapack.la: $(libdummy_lapack_la_OBJECTS) $(libdummy_lapack_la_DEPENDENCIES) 
+	$(libdummy_lapack_la_LINK)  $(libdummy_lapack_la_OBJECTS) $(libdummy_lapack_la_LIBADD) $(LIBS)
+libscilapack.la: $(libscilapack_la_OBJECTS) $(libscilapack_la_DEPENDENCIES) 
+	$(libscilapack_la_LINK) -rpath $(pkglibdir) $(libscilapack_la_OBJECTS) $(libscilapack_la_LIBADD) $(LIBS)
+
+mostlyclean-compile:
+	-rm -f *.$(OBJEXT)
+
+distclean-compile:
+	-rm -f *.tab.c
+
+.f.o:
+	$(F77COMPILE) -c -o $@ $<
+
+.f.obj:
+	$(F77COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
+
+.f.lo:
+	$(LTF77COMPILE) -c -o $@ $<
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
-install-libscitexmacs_la_etcDATA: $(libscitexmacs_la_etc_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscitexmacs_la_etcdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitexmacs_la_etcdir)"
-	@list='$(libscitexmacs_la_etc_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscitexmacs_la_etcDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f'"; \
-	  $(libscitexmacs_la_etcDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f"; \
-	done
 
-uninstall-libscitexmacs_la_etcDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscitexmacs_la_etc_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscitexmacs_la_etcdir)/$$f"; \
-	done
-install-libscitexmacs_la_rootDATA: $(libscitexmacs_la_root_DATA)
-	@$(NORMAL_INSTALL)
-	test -z "$(libscitexmacs_la_rootdir)" || $(MKDIR_P) "$(DESTDIR)$(libscitexmacs_la_rootdir)"
-	@list='$(libscitexmacs_la_root_DATA)'; for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  f=$(am__strip_dir) \
-	  echo " $(libscitexmacs_la_rootDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f'"; \
-	  $(libscitexmacs_la_rootDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f"; \
-	done
-
-uninstall-libscitexmacs_la_rootDATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(libscitexmacs_la_root_DATA)'; for p in $$list; do \
-	  f=$(am__strip_dir) \
-	  echo " rm -f '$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f'"; \
-	  rm -f "$(DESTDIR)$(libscitexmacs_la_rootdir)/$$f"; \
-	done
+ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
+	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonemtpy = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	mkid -fID $$unique
 tags: TAGS
-TAGS:
 
+TAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	here=`pwd`; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	if test -z "$(ETAGS_ARGS)$$tags$$unique"; then :; else \
+	  test -n "$$unique" || unique=$$empty_fix; \
+	  $(ETAGS) $(ETAGSFLAGS) $(AM_ETAGSFLAGS) $(ETAGS_ARGS) \
+	    $$tags $$unique; \
+	fi
 ctags: CTAGS
-CTAGS:
+CTAGS:  $(HEADERS) $(SOURCES)  $(TAGS_DEPENDENCIES) \
+		$(TAGS_FILES) $(LISP)
+	tags=; \
+	list='$(SOURCES) $(HEADERS)  $(LISP) $(TAGS_FILES)'; \
+	unique=`for i in $$list; do \
+	    if test -f "$$i"; then echo $$i; else echo $(srcdir)/$$i; fi; \
+	  done | \
+	  $(AWK) '{ files[$$0] = 1; nonempty = 1; } \
+	      END { if (nonempty) { for (i in files) print i; }; }'`; \
+	test -z "$(CTAGS_ARGS)$$tags$$unique" \
+	  || $(CTAGS) $(CTAGSFLAGS) $(AM_CTAGSFLAGS) $(CTAGS_ARGS) \
+	     $$tags $$unique
 
+GTAGS:
+	here=`$(am__cd) $(top_builddir) && pwd` \
+	  && cd $(top_srcdir) \
+	  && gtags -i $(GTAGS_ARGS) $$here
+
+distclean-tags:
+	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -465,9 +890,9 @@ distdir: $(DISTFILES)
 check-am: all-am
 	$(MAKE) $(AM_MAKEFLAGS) check-local
 check: check-am
-all-am: Makefile $(DATA) all-local
+all-am: Makefile $(LTLIBRARIES) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(libscitexmacs_la_etcdir)" "$(DESTDIR)$(libscitexmacs_la_rootdir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -496,11 +921,13 @@ maintainer-clean-generic:
 	@echo "it deletes files that may require special tools to rebuild."
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-local mostlyclean-am
+clean-am: clean-generic clean-libtool clean-local \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -f Makefile
-distclean-am: clean-am distclean-generic distclean-local
+distclean-am: clean-am distclean-compile distclean-generic \
+	distclean-local distclean-tags
 
 dvi: dvi-am
 
@@ -512,12 +939,11 @@ info: info-am
 
 info-am:
 
-install-data-am: install-data-local install-libscitexmacs_la_etcDATA \
-	install-libscitexmacs_la_rootDATA
+install-data-am: install-data-local
 
 install-dvi: install-dvi-am
 
-install-exec-am:
+install-exec-am: install-pkglibLTLIBRARIES
 
 install-html: install-html-am
 
@@ -539,7 +965,8 @@ maintainer-clean-am: distclean-am maintainer-clean-generic
 
 mostlyclean: mostlyclean-am
 
-mostlyclean-am: mostlyclean-generic mostlyclean-libtool
+mostlyclean-am: mostlyclean-compile mostlyclean-generic \
+	mostlyclean-libtool
 
 pdf: pdf-am
 
@@ -549,27 +976,33 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libscitexmacs_la_etcDATA \
-	uninstall-libscitexmacs_la_rootDATA
+uninstall-am: uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
 
-.PHONY: all all-am all-local check check-am check-local clean \
-	clean-generic clean-libtool clean-local distclean \
-	distclean-generic distclean-libtool distclean-local distdir \
-	dvi dvi-am html html-am info info-am install install-am \
+.PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
+	clean clean-generic clean-libtool clean-local \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
 	install-data install-data-am install-data-local install-dvi \
 	install-dvi-am install-exec install-exec-am install-html \
 	install-html-am install-html-local install-info \
-	install-info-am install-libscitexmacs_la_etcDATA \
-	install-libscitexmacs_la_rootDATA install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installdirs maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am uninstall uninstall-am \
-	uninstall-libscitexmacs_la_etcDATA \
-	uninstall-libscitexmacs_la_rootDATA
+	install-info-am install-man install-pdf install-pdf-am \
+	install-pkglibLTLIBRARIES install-ps install-ps-am \
+	install-strip installcheck installcheck-am installdirs \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags uninstall uninstall-am \
+	uninstall-pkglibLTLIBRARIES
 
+
+libdummy_lapack_la-dlamch.lo: dlamch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-dlamch.lo `test -f 'dlamch.f' || echo '$(srcdir)/'`dlamch.f
+
+libdummy_lapack_la-slamch.lo: slamch.f
+	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_lapack_la_FFLAGS) -c -o libdummy_lapack_la-slamch.lo `test -f 'slamch.f' || echo '$(srcdir)/'`slamch.f
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin
