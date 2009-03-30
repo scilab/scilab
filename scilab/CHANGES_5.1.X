@@ -65,15 +65,42 @@ Internal API:
 * GetLengthStringMatrixByName function added in stack3.h (return length of strings)
 
 
-Bug fixes:
-==========
+Scilab / Scipad synchronisation bugs:
+=====================================
+
+A critical bug present in Scilab 5.0.X and 5.1.0 has been fixed. 
+It has been reported a numerous number of time:
 
 * bug 2578 fixed - Calling input function within Scipad.
 
-* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
+* bug 3345 fixed - From SciPad editor ending Scilab with exit is not correct.
+
+* bug 3394 fixed - A malformed script originating from the editor window hangs 
+  	  	   		   Scilab and the editor.
+
+* bug 3553 fixed - System crash executing tk_getfile() from within scipad by 
+  	  	   		   CTRL+L.
+
+* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
                    (mtlb_eig is now obsolete).
 
+* bug 3705 fixed - During execution of any Scipad sequence, entering abort 
+                   after the prompt hang up both Scipad and Console.
+
 * bug 3778 fixed - Calling TK gui from Scipad.
+
+* bug 3799 fixed - Using xgetmouse from Scipad makes Scilab crash.
+
+* bug 4149 fixed - Calling TCL functions within Scipad
+
+* bug 4178 fixed - Scilab crash when using "legend" via Scipad.
+
+* bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load 
+  	  	   		   into Scilab".
+
+
+Bug fixes:
+==========
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -98,8 +125,6 @@ Bug fixes:
 
 * bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
-
-* bug 4149 fixed - Calling TCL functions within Scipad
 
 * bug 4150 fixed - user startup executed twice if you change directory to SCIHOME in this file.
 
@@ -133,6 +158,9 @@ Bug fixes:
 
 * bug 4250 fixed - The online help of intx function was badly located
 
+* bug 4258 fixed - Configure script does not contain the correct detection 
+  	  	   		   code for the JNI libraries under Solaris SPARC.
+
 * bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions equal to 1
 
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing
@@ -140,6 +168,8 @@ Bug fixes:
 
 * bug 4284 fixed - The online help of isfield() was missing.
 
+* bug 4297 fixed - A spelling mistake was causing in some cases with the 
+		   pfss function
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================

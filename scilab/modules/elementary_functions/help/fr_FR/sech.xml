@@ -39,34 +39,38 @@
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>Tableau réel ou complexe.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>y</term>
+
         <listitem>
-          <para>Tableau réel ou complexe de même dimensions que <literal>x</literal>.</para>
+          <para>Tableau réel ou complexe de même dimensions que
+          <literal>x</literal>.</para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
+
     <para>Les éléments de <literal>y</literal> sont les sécantes hyperboliques
     (<literal>1/cosh</literal>) des éléments correspondants de
-    <literal>x</literal>. Pour les éléments réels, les résultats sont
-    réels et dans <literal> [0 1]</literal>.</para>
+    <literal>x</literal>. Pour les éléments réels, les résultats sont réels et
+    dans <literal> [0 1]</literal>.</para>
   </refsection>
 
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-    x=linspace(-10,10,1000)
-    plot(x,sech(x))
+    <programlisting role="example"> 
+x=linspace(-10,10,1000)
+plot(x,sech(x))
   </programlisting>
   </refsection>
 
@@ -77,8 +81,10 @@
       <member><link linkend="asech">asech</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Auteurs</title>
+
     <simplelist type="vert">
       <member>Serge Steer, INRIA</member>
     </simplelist>

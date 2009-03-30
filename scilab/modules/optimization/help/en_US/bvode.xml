@@ -416,7 +416,8 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
           <informalequation>
             <mediaobject>
               <imageobject>
-                <imagedata align="center" fileref="../mml/bvode_equation_1.mml"/>
+                <imagedata align="center"
+                           fileref="../mml/bvode_equation_1.mml" />
               </imageobject>
             </mediaobject>
           </informalequation>
@@ -458,7 +459,8 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
                 <informalequation>
                   <mediaobject>
                     <imageobject>
-                      <imagedata fileref="../mml/bvode_equation_2.mml" />
+                      <imagedata align="center"
+                                 fileref="../mml/bvode_equation_2.mml" />
                     </imageobject>
                   </mediaobject>
                 </informalequation>
@@ -471,7 +473,8 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
                 <informalequation>
                   <mediaobject>
                     <imageobject>
-                      <imagedata fileref="../mml/bvode_equation_3.mml" />
+                      <imagedata align="center"
+                                 fileref="../mml/bvode_equation_3.mml" />
                     </imageobject>
                   </mediaobject>
                 </informalequation>
@@ -496,7 +499,8 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
                 <informalequation>
                   <mediaobject>
                     <imageobject>
-                      <imagedata fileref="../mml/bvode_equation_4.mml" />
+                      <imagedata align="center"
+                                 fileref="../mml/bvode_equation_4.mml" />
                     </imageobject>
                   </mediaobject>
                 </informalequation>
@@ -567,7 +571,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_5.mml" />
+          <imagedata align="center" fileref="../mml/bvode_equation_5.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -575,7 +579,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_6.mml" />
+          <imagedata align="center" fileref="../mml/bvode_equation_6.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -585,7 +589,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_7.mml" />
+          <imagedata align="center" fileref="../mml/bvode_equation_7.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -595,7 +599,8 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_11_en_US.mml" />
+          <imagedata align="center"
+                     fileref="../mml/bvode_equation_11_en_US.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -603,7 +608,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_8.mml" />
+          <imagedata align="center" fileref="../mml/bvode_equation_8.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -611,7 +616,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_9.mml" />
+          <imagedata align="center" fileref="../mml/bvode_equation_9.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -622,7 +627,7 @@ fsub1,dfsub1,gsub1,dgsub1,guess1)</synopsis>
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/bvode_equation_10.mml" />
+          <imagedata align="center" fileref="../mml/bvode_equation_10.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
