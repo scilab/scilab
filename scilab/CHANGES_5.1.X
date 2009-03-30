@@ -168,6 +168,8 @@ Bug fixes:
 
 * bug 4284 fixed - The online help of isfield() was missing.
 
+* bug 4295 fixed - mdelete no more works with "*.extension" as input (wildcard).
+
 * bug 4297 fixed - A spelling mistake was causing in some cases with the 
 		   pfss function
 
