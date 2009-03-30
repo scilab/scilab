@@ -115,8 +115,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
-
+    <programlisting role="example"> 
 [s,p]=sort(rand(1,10));
 //p  is a random permutation of 1:10
 A=[1,2,5;3,4,2];
@@ -126,8 +125,7 @@ sort(v)
 sort(v')
 sort(v,'r')  //Does nothing for row vectors
 sort(v,'c')
- 
-  </programlisting>
+    </programlisting>
   </refsection>
 
   <refsection>
