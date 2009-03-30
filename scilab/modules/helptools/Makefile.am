@@ -4,6 +4,7 @@
 ##########
 
 if GUI
+if BUILD_HELP
 HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 	src/jni/GiwsException.cpp
 
@@ -15,6 +16,10 @@ GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
+endif
+
+else
+GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 endif
 
 else
