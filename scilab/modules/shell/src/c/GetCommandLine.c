@@ -12,7 +12,6 @@
 #ifdef _MSC_VER
 #include <io.h>
 #define isatty	_isatty
-#define fileno	_fileno
 #endif
 #include <stdio.h>
 #include <string.h>
@@ -166,6 +165,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
 
+	//-- TODO : reactivate this under windows.
+	// prevent Scilab to start for now :-S
+#ifndef _MSC_VER
 	if(!isatty(fileno(stdin))) { /* if not an interactive terminal */
 		/* read a line into the buffer, but not too
 		* big */
@@ -177,6 +179,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		}
 		return;
 	}
+#endif
 
   if(!initialized)
     {
