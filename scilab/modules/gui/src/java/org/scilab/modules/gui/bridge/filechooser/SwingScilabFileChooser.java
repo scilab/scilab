@@ -49,7 +49,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 		super();
 		//System.out.println("[Constructor] SwingScilabFileChooser");
 		/** Bug 3231 fixed: do not explore all zip files on desktop under Windows */
-		putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);
+		//putClientProperty("FileChooser.useShellFolder", Boolean.FALSE);
 	}	
 
 	/**

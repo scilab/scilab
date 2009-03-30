@@ -2,6 +2,13 @@
                =================================================
 
 
+Improvement:
+============
+
+* Catalan localization added (Thanks to Oriol Gonzalez and others)
+
+* German localization added (Thanks to Armin Mohring and others)
+
 Compilation:
 ============
 
