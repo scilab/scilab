@@ -173,12 +173,20 @@ Bug fixes:
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing
                    problems with netbsd)
 
+* bug 4270 fixed - The module tclsci wasn't really desactivated when using
+		   the option --without-tk
+
 * bug 4284 fixed - The online help of isfield() was missing.
 
 * bug 4295 fixed - mdelete no more works with "*.extension" as input (wildcard).
 
 * bug 4297 fixed - A spelling mistake was causing in some cases with the 
 		   pfss function
+
+* bug 4301 fixed - Better reporting at the end of the configure
+
+* bug 4302 fixed - Do not build the helptool module when --disable-build-help
+		   is used
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
