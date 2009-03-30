@@ -651,6 +651,8 @@ Bug fixes:
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
 
+* bug 4186 fixed - uigetfile() uses a hardcoded path in SCI\modules\gui\src\java\org\scilab\modules\gui\filechooser\Juigetfile.java
+
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
