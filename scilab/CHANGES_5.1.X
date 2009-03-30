@@ -494,6 +494,8 @@ Bug fixes:
 
 * bug 3844 fixed - Axes with a very high y-bounds/x-bounds ratio do not appear.
 
+* bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
+
 * bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without
                    heading .3 in the lib name). Thanks to Andrea Florio for
                    providing the patch
@@ -643,15 +645,13 @@ Bug fixes:
 
 * bug 4173 fixed - Graphic export : Style the text fonts is not respected when exporting to SVG.
 
-* bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
-
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
+
+* bug 4186 fixed - uigetfile() uses a hardcoded path in SCI\modules\gui\src\java\org\scilab\modules\gui\filechooser\Juigetfile.java
 
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
-
-* bug 4186 fixed - uigetfile() uses a hardcoded path in SCI\modules\gui\src\java\org\scilab\modules\gui\filechooser\Juigetfile.java
 
 * Side effect in the setenvc function.
 
