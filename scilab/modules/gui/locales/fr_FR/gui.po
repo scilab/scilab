@@ -885,7 +885,7 @@ msgid ""
 msgstr ""
 "disp(\"ATTENTION : Malgré notre avertissement précédent, vous avez choisi "
 "d''utiliser Scilab avec des fonctionnalités graphiques avancées. Tapez "
-"\"\"help usecanvas\"\" pour plus d'information.\")"
+"\"\"help usecanvas\"\" pour plus d''information.\")"
 
 msgid "Loading help browser..."
 msgstr "Chargement du navigateur d'aide..."
