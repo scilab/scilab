@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>order sorting</refpurpose>
+    <refpurpose>sorting by bubble sort algorithm</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -34,8 +34,7 @@
     <synopsis>
       [s, [k]]=sort(v)
       [s, [k]]=sort(v,'r')
-      [s, [k]]=sort(v,'c')
-</synopsis>
+      [s, [k]]=sort(v,'c')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -73,8 +72,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>the <literal>sort</literal> function is now obsolete. It can be
-    replaced by the function <link linkend="gsort">gsort</link>.</para>
+    <para>the <literal>sort</literal> implements a "bubble sort algorithm".
+    </para>
 
     <para><literal>s=sort(v)</literal> sorts <literal>v</literal> in
     decreasing order. If <literal>v</literal> is a matrix, sorting is done
@@ -110,6 +109,13 @@
     <para>Limitation : if <literal>v</literal> includes %nan elements, matrix
     will not sort. please uses <link linkend="gsort">gsort</link> in this
     case.</para>
+
+    <para><emphasis role="bold">The bubble sort algorithm is a stable sort :
+    The relative order of records with equal values is maintained in
+    <literal>k</literal>. In other words the values of <literal>k</literal>
+    associated with equal values of <literal>v</literal> are ordered. But
+    bubble sort algorithm is less efficient than the quick sort one <link
+    linkend="gsort">gsort</link> .</emphasis></para>
   </refsection>
 
   <refsection>
