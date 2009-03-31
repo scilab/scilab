@@ -1,4 +1,4 @@
-               Changes between version 5.1.0 and 5.1.1 of Scilab
+﻿               Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
 
@@ -665,6 +665,8 @@ Bug fixes:
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
 
 * bug 4186 fixed - uigetfile() uses a hardcoded path in SCI\modules\gui\src\java\org\scilab\modules\gui\filechooser\Juigetfile.java
+
+* bug 4187 fixed - uigetdir() opens on "Desktop" and not on "Computer" on windows
 
 * bug 4221 fixed - graypolarplot uses to much memory.
 
