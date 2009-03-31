@@ -191,6 +191,9 @@ Bug fixes:
 * bug 4302 fixed - Do not build the helptool module when --disable-build-help
 		   is used
 
+* bug 4311 fixed - rcond(eye()) returns 1 and not eye()
+
+
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
 
