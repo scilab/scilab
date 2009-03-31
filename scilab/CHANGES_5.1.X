@@ -183,10 +183,15 @@ Bug fixes:
 * bug 4297 fixed - A spelling mistake was causing in some cases with the 
 		   pfss function
 
+* bug 4299 fixed - getmemory is reporting bad total memory on system with 
+  	  	   a lot of memory (> 3Go)
+
 * bug 4301 fixed - Better reporting at the end of the configure
 
 * bug 4302 fixed - Do not build the helptool module when --disable-build-help
 		   is used
+
+* bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
