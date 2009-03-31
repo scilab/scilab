@@ -2,6 +2,16 @@
                =================================================
 
 
+Improvements:
+=============
+
+* Localization in Calatan added (Thanks Oriol Gonzalez and others)
+
+* Localization in German added (Thanks Armin Mohring and others)
+
+* Localization in Spanish added (Thanks Federico Vera and others)
+
+
 Compilation:
 ============
 
