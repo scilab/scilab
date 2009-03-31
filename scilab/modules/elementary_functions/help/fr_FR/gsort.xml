@@ -14,7 +14,7 @@
   <refnamediv>
     <refname>gsort</refname>
 
-    <refpurpose>tri par ordre décroissant</refpurpose>
+    <refpurpose>tri par l'algorithme "quick sort"</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -63,10 +63,12 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>gsort</literal> est similaire à <literal>sort</literal>
-    avec des propriétés supplémentaires. Le troisième argument peut être
-    utilisé pour choisir entre tri croissant ou décroissant. Le deuxième
-    argument est utilisé pour l'ordre lexicographique.</para>
+    <para><literal>gsort</literal> est basé sur l'algorithme de tri rapide
+    "quick sort".</para>
+
+    <para> Le troisième argument peut être utilisé pour choisir entre tri
+    croissant ou décroissant. Le deuxième argument est utilisé pour l'ordre
+    lexicographique.</para>
 
     <para><literal>[s,k]=gsort(a,'g')</literal> et
     <literal>[s,k]=gsort(a,'g','d')</literal> produisent le même résultat que
@@ -102,6 +104,11 @@
     <literal>%inf</literal> ceux ci seront placés en debut avec l'argument
     <literal>'i'</literal> ou à la fin avec l'argument
     <literal>'d'</literal>.</para>
+
+    <para><emphasis role="bold">Attention: l'agorithme "quick sort" n'est pas
+    stable: l'ordre relatif des éléments ayant des valeurs égales n'est pas
+    maintenu dans k. En d'autres termes les éléments de k correspondant à des
+    éléments égaux de v ne sont pas ordonnés.</emphasis></para>
   </refsection>
 
   <refsection>
