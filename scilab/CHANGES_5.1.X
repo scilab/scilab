@@ -1,16 +1,15 @@
-               Changes between version 5.1.0 and 5.1.1 of Scilab
+﻿               Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
 
 Improvements:
 =============
 
-* Localization in Calatan added (Thanks Oriol Gonzalez and others)
+* Catalan localization added (Thanks Oriol Gonzalez and others)
 
-* Localization in German added (Thanks Armin Mohring and others)
+* German Localization added (Thanks Armin Mohring and others)
 
-* Localization in Spanish added (Thanks Federico Vera and others)
-
+* Spanish Localization added (Thanks Federico Vera and others)
 
 Compilation:
 ============
@@ -108,6 +107,7 @@ It has been reported a numerous number of time:
 * bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load 
   	  	   		   into Scilab".
 
+* bug 4204 fixed - Strange error message when using usecanvas(%F).
 
 Bug fixes:
 ==========
@@ -156,6 +156,8 @@ Bug fixes:
 
 * bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
 
+* bug 4199 fixed - Missing information in findobj help page + findobj did not find figures.
+
 * bug 4201 fixed - Confusing error message in datafit
 
 * bug 4228 fixed - mclearerr with a false file descriptor crashs
@@ -176,10 +178,28 @@ Bug fixes:
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing
                    problems with netbsd)
 
+* bug 4270 fixed - The module tclsci wasn't really desactivated when using
+		   the option --without-tk
+
 * bug 4284 fixed - The online help of isfield() was missing.
+
+* bug 4295 fixed - mdelete no more works with "*.extension" as input (wildcard).
 
 * bug 4297 fixed - A spelling mistake was causing in some cases with the 
 		   pfss function
+
+* bug 4299 fixed - getmemory is reporting bad total memory on system with 
+  	  	   a lot of memory (> 3Go)
+
+* bug 4301 fixed - Better reporting at the end of the configure
+
+* bug 4302 fixed - Do not build the helptool module when --disable-build-help
+		   is used
+
+* bug 4311 fixed - rcond(eye()) returns 1 and not eye()
+
+* bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
@@ -504,6 +524,8 @@ Bug fixes:
 
 * bug 3844 fixed - Axes with a very high y-bounds/x-bounds ratio do not appear.
 
+* bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
+
 * bug 3860 fixed - Scilab was using the dev name of the fftw library (ie without
                    heading .3 in the lib name). Thanks to Andrea Florio for
                    providing the patch
@@ -653,13 +675,17 @@ Bug fixes:
 
 * bug 4173 fixed - Graphic export : Style the text fonts is not respected when exporting to SVG.
 
-* bug 3858 fixed - when trying to open a file from the GUI (Menu: File -> Open file), Scilab crashes (xgetfile error).
-
 * bug 4174 fixed - the xs2xxx (graphic export) functions don't support paths that start with a tild.
+
+* bug 4186 fixed - uigetfile() uses a hardcoded path in SCI\modules\gui\src\java\org\scilab\modules\gui\filechooser\Juigetfile.java
+
+* bug 4187 fixed - uigetdir() opens on "Desktop" and not on "Computer" on windows
 
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
+
+* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * Side effect in the setenvc function.
 
