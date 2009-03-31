@@ -30,12 +30,10 @@ callFunctionFromGateway
 iAllocComplexMatrixOfDouble
 GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
-vGetPointerFromDoubleComplex
 vfiniteComplex_
-oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
-vFreeDoubleComplexFromPointer
 iIsComplex
+GetVarDimension
 ;
 ;core_f
 ;
