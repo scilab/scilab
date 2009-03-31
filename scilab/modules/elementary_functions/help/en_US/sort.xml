@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>sort</refname>
 
-    <refpurpose>sorting by bubble sort algorithm</refpurpose>
+    <refpurpose>stable sorting by "quick sort" algorithm</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -110,12 +110,12 @@
     will not sort. please uses <link linkend="gsort">gsort</link> in this
     case.</para>
 
-    <para><emphasis role="bold">The bubble sort algorithm is a stable sort :
-    The relative order of records with equal values is maintained in
+    <para><emphasis role="bold">This algorithm implements a stable sort : The
+    relative order of records with equal values is maintained in
     <literal>k</literal>. In other words the values of <literal>k</literal>
-    associated with equal values of <literal>v</literal> are ordered. But
-    bubble sort algorithm is less efficient than the quick sort one <link
-    linkend="gsort">gsort</link> .</emphasis></para>
+    associated with equal values of <literal>v</literal> are ordered. But it
+    is less efficient than <link linkend="gsort">gsort</link>
+    .</emphasis></para>
   </refsection>
 
   <refsection>
