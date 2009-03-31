@@ -154,6 +154,8 @@ Bug fixes:
 
 * bug 4197 fixed - When warning messages are disabled, a blank line is printed out.
 
+* bug 4199 fixed - Missing information in findobj help page + findobj did not find figures.
+
 * bug 4201 fixed - Confusing error message in datafit
 
 * bug 4228 fixed - mclearerr with a false file descriptor crashs
