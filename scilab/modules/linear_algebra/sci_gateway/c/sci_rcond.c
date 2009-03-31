@@ -74,6 +74,10 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
 	  }
 	LhsVar(1)= 2;
       }
+    if(complexArg)
+      {
+	 vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+      }
   }
   return ret;
 }
