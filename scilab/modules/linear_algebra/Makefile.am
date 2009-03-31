@@ -10,6 +10,8 @@ src/c/qr.c \
 src/c/hess.c \
 src/c/eigen.c \
 src/c/balanc.c \
+src/c/chol.c \
+src/c/svd.c \
 src/c/issymmetric.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
