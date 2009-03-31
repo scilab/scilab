@@ -14,6 +14,7 @@
 #include "scirun.h"
 #include "callinterf.h"
 #include "stack-c.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(parse)(void);
 extern int C2F(isbyref)(int *);

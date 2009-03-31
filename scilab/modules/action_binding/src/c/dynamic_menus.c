@@ -55,7 +55,6 @@ IMPORT_SIGNAL __threadSignal LaunchScilab;
 /*--------------------------------------------------------------------------*/
 static CommandRec *commandQueue = NULL;
 static __threadLock commandQueueSingleAccess;
-
 /*--------------------------------------------------------------------------*/
 int StoreCommand (char *command)
 {
@@ -119,14 +118,14 @@ int StoreCommandWithFlag (char *command,int flag)
 
 /*--------------------------------------------------------------------------*/
 /*
- * try to execute a command or add it to the _BEGGINNING_ of command queue
+ * try to execute a command or add it to the _BEGINNING_ of command queue
  * flag = 0 : the command is not shown in scilab window
  * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
 /*--------------------------------------------------------------------------*/
 int StorePrioritaryCommandWithFlag (char *command,int flag)
 {
-  CommandRec *p, *q, *r;
+  CommandRec *p = NULL;
 
 	p = (CommandRec *) MALLOC (sizeof (CommandRec));
 	if (p == (CommandRec *) 0)

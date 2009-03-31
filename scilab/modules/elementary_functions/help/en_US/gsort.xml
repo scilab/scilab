@@ -25,7 +25,7 @@
   <refnamediv>
     <refname>gsort</refname>
 
-    <refpurpose>decreasing order sorting</refpurpose>
+    <refpurpose> sorting by quick sort agorithm</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -73,10 +73,12 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>gsort</literal> is similar to <literal>sort</literal> with
-    additional properties. The third argument can be used to chose between
-    increasing or decreasing order. The second argument can be used for
-    lexical orders.</para>
+    <para><literal>gsort</literal> implements a "quick sort" algorithm for
+    various data types. </para>
+
+    <para>The third argument can be used to chose between increasing or
+    decreasing order. The second argument can be used for lexical
+    orders.</para>
 
     <para><literal>[s,k]=gsort(a,'g')</literal> and
     <literal>[s,k]=gsort(a,'g','d')</literal> are the same as
@@ -111,12 +113,18 @@
     <literal>%inf</literal> as elements. gsort places these at the beginning
     with <literal>'i'</literal> or at the end with <literal>'d'</literal>
     argument.</para>
+
+    <para><emphasis role="bold">Warning, <literal>gsort</literal> is not a
+    stable sort : the relative order of records with equal values is not
+    maintained in <literal>k</literal>. In other words the values of
+    <literal>k </literal>associated with equal values of <literal>v
+    </literal>are not ordered.</emphasis></para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">
+    <programlisting role="example"> 
 alr=[1,2,2;
      1,2,1;
      1,1,2;
@@ -140,8 +148,7 @@ v=['Scilab' '2.6'
 
 gsort(v,'lr','i')
 gsort(v,'lc','i')
-
-  </programlisting>
+   </programlisting>
   </refsection>
 
   <refsection>
