@@ -105,6 +105,7 @@ It has been reported a numerous number of time:
 * bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load 
   	  	   		   into Scilab".
 
+* bug 4204 fixed - Strange error message when using usecanvas(%F).
 
 Bug fixes:
 ==========
