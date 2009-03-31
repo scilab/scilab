@@ -672,6 +672,8 @@ Bug fixes:
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
 
+* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
+
 * Side effect in the setenvc function.
 
 * In the binary, the path to the fortran include directory was wrong.
