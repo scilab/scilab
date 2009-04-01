@@ -422,9 +422,14 @@ function test_add_module(module_mat,test_type)
 			module_test_dir = module_mat+"/tests/unit_tests";
 		end
 		
-		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		test_mat = [];
+		
+		if isdir(module_test_dir) then
+			test_mat = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		end
 		
 		nl = size(test_mat,"*");
+		
 		for i=1:nl
 			test_add_onetest(module_mat,test_mat(i),"unit_tests");
 		end
@@ -441,9 +446,14 @@ function test_add_module(module_mat,test_type)
 			module_test_dir = module_mat+"/tests/nonreg_tests";
 		end
 		
-		test_mat        = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		test_mat = [];
+		
+		if isdir(module_test_dir) then
+			test_mat = gsort(basename(listfiles(module_test_dir+"/*.tst")),"lr","i");
+		end
 		
 		nl = size(test_mat,"*");
+		
 		for i=1:nl
 			test_add_onetest(module_mat,test_mat(i),"nonreg_tests");
 		end
@@ -501,7 +511,12 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	this_use_try_catch      = %T;
 	this_use_graphics       = %F;
 	this_english_imposed    = '';
-	this_launch_mode        = "-nw";
+	
+	if and(getscilabmode() <> ["NW";"STD"]) then
+		this_launch_mode = "-nwni";
+	else
+		this_launch_mode = "-nw";
+	end
 	
 	// Some definitions
 	
