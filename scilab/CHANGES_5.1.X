@@ -200,6 +200,8 @@ Bug fixes:
 
 * bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
 
+* bug 4321 fixed - strcat with 3 input parameters crashs if input type parameters are wrong.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
