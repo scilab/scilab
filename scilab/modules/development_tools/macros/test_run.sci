@@ -129,9 +129,14 @@ function test_run(varargin)
 	check_ref          = %T;
 	check_error_output = %T;
 	create_ref         = %F;
-	launch_mode        = "-nw";
 	just_list_tests    = %F;
 	print_help         = %F;
+	
+	if and(getscilabmode() <> ["NW";"STD"]) then
+		launch_mode = "-nwni";
+	else
+		launch_mode = "-nw";
+	end
 	
 	test_count         = 0;
 	test_passed_count  = 0;
