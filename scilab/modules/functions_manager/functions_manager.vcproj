@@ -285,19 +285,7 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\cpp\cosinus.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\foo.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\funcmanager.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\cpp\scilabfunction.cpp"
 				>
 			</File>
 		</Filter>
@@ -307,23 +295,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath=".\includes\cosinus.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\foo.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\funcmanager.hxx"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\module_declaration.hxx"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\scilabFunction.hxx"
 				>
 			</File>
 		</Filter>

@@ -24,8 +24,6 @@
 #include <libxml/xmlreader.h>
 
 #include "funcmanager.hxx"
-#include "foo.hxx"
-#include "cosinus.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
 

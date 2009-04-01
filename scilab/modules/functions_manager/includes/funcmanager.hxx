@@ -18,7 +18,7 @@
 #include <iostream>
 #include <string>
 #include <alltypes.hxx>
-#include "scilabfunction.hxx"
+//#include "scilabfunction.hxx"
 
 using namespace std;
 
