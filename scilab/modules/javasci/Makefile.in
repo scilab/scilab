@@ -351,6 +351,14 @@ top_srcdir = @top_srcdir@
 #### Target ######
 modulename = javasci
 
+#### javasci : Conf files ####
+libjavasci_la_rootdir = $(mydatadir)
+libjavasci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### javasci : init scripts ####
+libjavasci_la_etcdir = $(mydatadir)/etc
+libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
+
 ### All the compilation process of java is deleguated to ant
 
 #### Javasci : sources ####
@@ -385,14 +393,6 @@ modulename = javasci
 @JAVASCI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @JAVASCI_TRUE@	$(top_builddir)/modules/libscilab.la
 
-
-#### javasci : Conf files ####
-@JAVASCI_TRUE@libjavasci_la_rootdir = $(mydatadir)
-@JAVASCI_TRUE@libjavasci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### javasci : init scripts ####
-@JAVASCI_TRUE@libjavasci_la_etcdir = $(mydatadir)/etc
-@JAVASCI_TRUE@libjavasci_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 #### javasci : include files ####
 @JAVASCI_TRUE@libjavasci_la_includedir = $(pkgincludedir)/javasci
