@@ -33,7 +33,8 @@ Source reorganisation:
 Help & Tests:
 =============
 
-* Some equations in the documentation converted to the MathML format (bug 4180)
+* Some equations in the documentation converted to the MathML format 
+  (bugs #4180 & #4182)
 
 * Help improved about javasci - Scilab Java API
 
@@ -47,7 +48,8 @@ Help & Tests:
 
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
-* Minor improvements in the documentation of the ilib_* functions
+* Minor improvements in the documentation of the ilib_* functions and 
+  fprintf
 
 * Unitary tests for isfield() function has been added
 
