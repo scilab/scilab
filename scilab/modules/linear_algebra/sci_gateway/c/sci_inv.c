@@ -42,8 +42,6 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	double* pDataImg;
 	int complexArg=iIsComplex(1);
 	if(complexArg){
-	  /* original code in intzgetri uses getrhsvar('c'), NOT getrhscvar ! */
-	  /* on crée une copie en format 'z' de la rhs var */
 	  GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
 	  /* c -> z */
 	  pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
