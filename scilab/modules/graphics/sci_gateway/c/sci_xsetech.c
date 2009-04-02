@@ -99,6 +99,7 @@ int sci_xsetech(char* fname,unsigned long fname_len)
   }
   setscale2d(wrect,arect,frect,logflag);
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 
 }
