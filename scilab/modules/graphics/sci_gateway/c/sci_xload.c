@@ -18,7 +18,6 @@
 
 #include "sci_xload.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xload(char *fname,unsigned long fname_len)

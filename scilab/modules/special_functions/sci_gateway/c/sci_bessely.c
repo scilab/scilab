@@ -13,6 +13,7 @@
 #include <string.h>
 #include "gw_special_functions2.h"
 #include "stack-c.h"
+#include "Scierror.h"
 #include "msgs.h"
 /*--------------------------------------------------------------------------*/
 extern void C2F(dset)(int *n, double *a,double *x,int *ix);

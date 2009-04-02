@@ -17,8 +17,6 @@
 /* desc : function to retrieve in Scilab the visible field of a handle    */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "getHandleProperty.h"
 #include "stack-c.h"
 #include "GetProperty.h"

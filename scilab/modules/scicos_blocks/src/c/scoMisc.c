@@ -31,6 +31,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "sciprint.h"
+#include "HandleManagement.h"
 
 void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 {

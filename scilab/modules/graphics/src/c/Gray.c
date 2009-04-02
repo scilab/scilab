@@ -15,10 +15,6 @@
 /*------------------------------------------------------------------------
  *    Graphic library
  --------------------------------------------------------------------------*/
-
-#include <stdio.h>
-#include <math.h>
-#include <string.h>
 #include "math_graphics.h"
 #include "PloEch.h"
 

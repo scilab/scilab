@@ -25,6 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "math_graphics.h"
 
 /*------------------------------------------------------------------------*/
 int set_font_angle_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )

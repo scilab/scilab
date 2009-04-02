@@ -7,17 +7,25 @@
     <refname>findobj</refname>
     <refpurpose> find an object with specified property</refpurpose>
   </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+       h =  findobj(propertyName, propertyValue)
+    </synopsis>
+  </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
     <variablelist>
       <varlistentry>
-        <term>prop</term>
+        <term>propertyName</term>
         <listitem>
           <para>string character Name of the property to test (case unsensitive).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>value</term>
+        <term>propertyValue</term>
         <listitem>
           <para>string character specify the value the tested propoerty should be equal to (case sensitive).</para>
         </listitem>
@@ -35,7 +43,7 @@
     <para>
     This routine is currently used to find objects knowing their 'tag'
     property.  It returns handle of the first found object which property
-    'prop' is equal to 'value'. If such an object does not exist, the
+    <emphasis role="italic">propertyName</emphasis> is equal to <emphasis role="italic">propertyValue</emphasis>. If such an object does not exist, the
     function returns an empty matrix.</para>
   </refsection>
   <refsection>

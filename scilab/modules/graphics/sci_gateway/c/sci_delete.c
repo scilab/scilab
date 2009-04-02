@@ -19,8 +19,6 @@
 
 #include "sci_delete.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -35,6 +33,7 @@
 #include "DestroyUicontrol.h"
 #include "DestroyWaitBar.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {

@@ -21,7 +21,6 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "localization.h"
 
 /*------------------------------------------------------------------------*/
 int get_box_property( sciPointObj * pobj )

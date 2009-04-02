@@ -19,10 +19,8 @@
 
 #include "sci_addcb.h"
 #include "stack-c.h"
-#include "GetProperty.h"
+#include "HandleManagement.h"
 #include "Interaction.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"

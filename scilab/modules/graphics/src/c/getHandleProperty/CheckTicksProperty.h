@@ -19,10 +19,6 @@
 #ifndef _CHECK_TICKS_PROPERTY_C_
 #define _CHECK_TICKS_PROPERTY_C_
 
-
-#include "setHandleProperty.h"
-#include "SetProperty.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 
 /**

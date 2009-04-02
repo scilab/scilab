@@ -19,14 +19,12 @@
 
 #include "CurrentObjectsManagement.h"
 #include "BuildObjects.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
 #include "ObjectSelection.h"
-#include "GraphicSynchronizerInterface.h"
 #include "WindowList.h"
+#include "HandleManagement.h"
 #include "InitObjects.h"
-#include "Interaction.h"
 #include "MALLOC.h"
+
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
 /* singleton, there is only one screen */

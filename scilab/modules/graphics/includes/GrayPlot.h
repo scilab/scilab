@@ -20,6 +20,7 @@
 #define _GRAY_PLOT_H_
 
 #include "BOOL.h"
+#include "machine.h"
 
 /**
  * - z is a (n1,n2) matrix 
