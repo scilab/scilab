@@ -39,7 +39,8 @@ int sci_move( char * fname, unsigned long fname_len )
 
   CheckRhs(1,3);
   /*  set or create a graphic window */
-  if (Rhs ==3) {
+  if (Rhs ==3) 
+  {
     char * option = NULL;
     GetRhsVar(3,STRING_DATATYPE,&m3,&n3,&l3);
     option = getStringFromStack(l3);
@@ -71,7 +72,9 @@ int sci_move( char * fname, unsigned long fname_len )
 
   Objmove(pobj, moveVector, nbDim, alone);
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/
