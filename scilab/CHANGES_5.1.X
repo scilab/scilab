@@ -174,6 +174,9 @@ Bug fixes:
 
 * bug 4235 fixed - error.h renamed
 
+* bug 4245 fixed - The icon of the progressionbar is a java icon.
+                   It should it be a Scilab one instead.
+
 * bug 4249 fixed - filter dos not work with perfect all pass system
 
 * bug 4250 fixed - The online help of intx function was badly located
