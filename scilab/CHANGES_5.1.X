@@ -208,6 +208,8 @@ Bug fixes:
 
 * bug 4325 fixed - set("auto_clear","off") crashes Scilab.
 
+* bug 4326 fixed - move called with an already deleted handle crashes Scilab.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
