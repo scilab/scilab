@@ -235,7 +235,13 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 		// Send back the focus the the input view
 		this.getConfiguration().getInputCommandView().reset();
 		this.getConfiguration().getInputCommandView().requestFocus();
-		((JTextPane) this.getConfiguration().getInputCommandView()).getCaret().setVisible(true);
+
+                final JTextPane cmdView = (JTextPane) this.getConfiguration().getInputCommandView();
+	   	SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        cmdView.getCaret().setVisible(true);
+                    }
+                });
 		
 		return retChar;
 	}
