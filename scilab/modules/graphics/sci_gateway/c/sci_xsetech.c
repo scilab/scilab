@@ -73,7 +73,11 @@ int sci_xsetech(char* fname,unsigned long fname_len)
     CheckRhs(minrhs,maxrhs+nopt) ;
     CheckLhs(minlhs,maxlhs) ;
 
-    if ( get_optionals(fname,opts) == 0) { return 0; }
+    if ( get_optionals(fname,opts) == 0) 
+	{ 
+		C2F(putlhsvar)();
+		return 0; 
+	}
 
     if ( opts[0].position != -1 )
     {
