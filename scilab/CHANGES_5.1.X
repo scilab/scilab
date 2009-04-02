@@ -111,8 +111,10 @@ It has been reported a numerous number of time:
 
 Bug fixes:
 ==========
-* bug 3587 fixed -  gsort is not stable: It does not preserve the relative order of equal values
+* bug 3587 fixed - gsort is not stable: It does not preserve the relative order of equal values
                     creates problem with function unique.
+
+* bug 3852 fixed - Line wrapping problem in help browser
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
