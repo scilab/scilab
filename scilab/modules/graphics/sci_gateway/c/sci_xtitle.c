@@ -53,7 +53,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   /* get the given options from the name in opts */
   if ( !get_optionals(fname,opts) ) 
   {
-	  C2F(putlhsvar)();
+		/* error */
 	  return 0;
   }
 
