@@ -589,7 +589,7 @@ libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
 endif
 
 
-pkglib_LTLIBRARIES = libscigraphics.la
+pkglib_LTLIBRARIES = libscigraphics.la libscigraphics-disable.la
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 
