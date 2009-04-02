@@ -19,12 +19,11 @@
 #include "sci_newaxes.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "GetProperty.h"
 #include "Scierror.h"
 #include "SetProperty.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_newaxes( char * fname,unsigned long fname_len )
@@ -42,10 +41,11 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
     *hstk(outindex) = sciGetHandle(masousfen);
 
-
-    LhsVar(1)=1;
+    LhsVar(1) = 1;
+	C2F(putlhsvar)();
   }
-  else {
+  else 
+  {
     Scierror(999,_("%s: No more memory.\n"),fname);
   }
   return 0;

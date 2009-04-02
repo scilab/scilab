@@ -18,10 +18,7 @@
 
 #include "sci_xname.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "SetProperty.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/
@@ -35,6 +32,7 @@ int sci_xname(char *fname,unsigned long fname_len)
   sciSetName( sciGetCurrentFigure(), cstk(l1) ) ;
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

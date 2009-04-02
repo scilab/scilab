@@ -29,6 +29,7 @@ extern "C"
 {
 #include "GetProperty.h"
 #include "DrawObjects.h"
+#include "HandleManagement.h"
 }
 
 

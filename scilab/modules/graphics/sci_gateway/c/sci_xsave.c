@@ -18,9 +18,6 @@
 
 #include "sci_xsave.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "GetProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xsave( char * fname, unsigned long fname_len )
@@ -30,6 +27,7 @@ int sci_xsave( char * fname, unsigned long fname_len )
  
   /* call a scilab macro */
   C2F(callscifun)("xsave",(unsigned long) 6);
+	C2F(putlhsvar)();
   return 0;
 
 }

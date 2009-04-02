@@ -18,11 +18,6 @@
 
 #include "sci_drawnow.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "GetProperty.h"
-#include "ObjectStructure.h"
-#include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
@@ -31,27 +26,22 @@
 /*--------------------------------------------------------------------------*/
 int sci_drawnow(char *fname,unsigned long fname_len)
 { 
-  sciPointObj *pfigure = NULL;
+	sciPointObj *pfigure = NULL;
+	CheckRhs(0,0);
+	CheckLhs(0,1); 
 
-  
+	if (Rhs <= 0) 
+	{
+		startGraphicDataWriting();
+		pfigure = sciGetCurrentFigure() ;
+		sciSetImmediateDrawingMode(pfigure, TRUE);
+		endGraphicDataWriting();
 
-  CheckRhs(0,0);
-  CheckLhs(0,1); 
+		sciDrawObj(pfigure);
+	}
 
-
-  if (Rhs <= 0) {
-    startGraphicDataWriting();
-    pfigure = sciGetCurrentFigure() ;
-    sciSetImmediateDrawingMode(pfigure, TRUE);
-    endGraphicDataWriting();
-
-    sciDrawObj(pfigure);
-    LhsVar(1) = 0;
-    return 0;
-  }
-
-  LhsVar(1) = 0;
-
-  return 0;
+	LhsVar(1) = 0;
+	C2F(putlhsvar)();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

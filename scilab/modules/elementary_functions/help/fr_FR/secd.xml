@@ -24,7 +24,8 @@
   <refnamediv>
     <refname>secd</refname>
 
-    <refpurpose>sécante  des éléments de l'argument donnés en degrés</refpurpose>
+    <refpurpose>sécante des éléments de l'argument donnés en
+    degrés</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -39,29 +40,33 @@
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>Tableau réel.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>y</term>
+
         <listitem>
-          <para>Tableau réel de même dimension que <literal>x</literal>.</para>
+          <para>Tableau réel de même dimension que
+          <literal>x</literal>.</para>
         </listitem>
       </varlistentry>
-
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
+
     <para>Les éléments de <literal>y</literal> sont les sécantes
     (<literal>1/cos</literal>) des éléments correspondants de
-    <literal>x</literal> supposés donnés en degré. Les résultats sont
-    réels et dans <literal>]-%inf -1] U [1 %inf[</literal>. Pour les
-    éléments qui sont égaux à <literal>n*180</literal> où
-    <literal>n</literal> est entier, le résultat est exactement  <literal>+1</literal> ou  <literal>-1</literal>. Pour les
-    éléments qui sont égaux à <literal>n*90</literal> où
+    <literal>x</literal> supposés donnés en degré. Les résultats sont réels et
+    dans <literal>]-%inf -1] U [1 %inf[</literal>. Pour les éléments qui sont
+    égaux à <literal>n*180</literal> où <literal>n</literal> est entier, le
+    résultat est exactement <literal>+1</literal> ou <literal>-1</literal>.
+    Pour les éléments qui sont égaux à <literal>n*90</literal> où
     <literal>n</literal> est entier et impair, le résultat est infini (ou une
     erreur selon le mode <link linkend="ieee">ieee</link> ).</para>
   </refsection>
@@ -69,10 +74,10 @@
   <refsection>
     <title>Exemples</title>
 
-    <programlisting role="example">
-      secd([180 360])
-      x=-180:180;
-      plot(x,secd(x))
+    <programlisting role="example"> 
+secd([180 360])
+x=-180:180;
+plot(x,secd(x))
   </programlisting>
   </refsection>
 
@@ -81,11 +86,14 @@
 
     <simplelist type="inline">
       <member><link linkend="sec">sec</link></member>
+
       <member><link linkend="cosd">cosd</link></member>
     </simplelist>
   </refsection>
+
   <refsection>
     <title>Auteurs</title>
+
     <simplelist type="vert">
       <member>Serge Steer, INRIA</member>
     </simplelist>

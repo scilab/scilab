@@ -55,10 +55,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@GUI_TRUE@am__append_1 = libscirenderer.la
 DIST_COMMON = $(libscirenderer_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/renderer
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -90,509 +91,277 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscirenderer_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@GUI_TRUE@libscirenderer_la_DEPENDENCIES = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__libscirenderer_la_SOURCES_DIST = src/norenderer/norenderer.c \
-	src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-	src/cpp/subwinDrawing/DrawableSubwin.cpp \
-	src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-	src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
-	src/cpp/figureDrawing/DrawableFigure.cpp \
-	src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-	src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-	src/cpp/figureDrawing/FigureScilabCall.cpp \
-	src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-	src/cpp/compoundDrawing/DrawableCompound.cpp \
-	src/cpp/textDrawing/DrawableTextFactory.cpp \
-	src/cpp/textDrawing/DrawableText.cpp \
-	src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
-	src/cpp/polylineDrawing/DrawablePolyline.cpp \
-	src/cpp/legendDrawing/DrawableLegend.cpp \
-	src/cpp/legendDrawing/DrawableLegendFactory.cpp \
-	src/cpp/segsDrawing/DrawableSegs.cpp \
-	src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
-	src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
-	src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
-	src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-	src/cpp/arcDrawing/DrawableArcFactory.cpp \
-	src/cpp/arcDrawing/DrawableArc.cpp \
-	src/cpp/labelDrawing/DrawableLabel.cpp \
-	src/cpp/labelDrawing/DrawableLabelFactory.cpp \
-	src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
-	src/cpp/surfaceDrawing/DrawableSurface.cpp \
-	src/cpp/fecDrawing/DrawableFec.cpp \
-	src/cpp/fecDrawing/DrawableFecFactory.cpp \
-	src/cpp/axesDrawing/DrawableAxes.cpp \
-	src/cpp/axesDrawing/DrawableAxesFactory.cpp \
-	src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
-	src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
-	src/cpp/getHandleDrawer.cpp \
-	src/cpp/HandleObserverManagement.cpp \
-	src/cpp/DrawableObjectFactory.cpp \
-	src/cpp/DrawableClippedObject.cpp \
-	src/cpp/HandleDrawingObserver.cpp \
-	src/cpp/BuildDrawingObserver.cpp \
-	src/cpp/DrawableObjectJoGL.cpp src/cpp/GetJavaProperty.cpp \
-	src/cpp/SetJavaProperty.cpp src/cpp/JavaInteraction.cpp \
-	src/cpp/DrawableObject.cpp src/cpp/DrawingBridge.cpp \
-	src/cpp/subwinDrawing/CameraJoGL.cpp \
-	src/cpp/subwinDrawing/CameraBridge.cpp \
-	src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
-	src/cpp/subwinDrawing/CameraFactory.cpp \
-	src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-	src/cpp/subwinDrawing/Camera.cpp \
-	src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
-	src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
-	src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
-	src/cpp/DrawableClippedObjectJoGL.cpp \
-	src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
-	src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
-	src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
-	src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
-	src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
-	src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-	src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
-	src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
-	src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-	src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
-	src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
-	src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
-	src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
-	src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
-	src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-	src/jni/DrawableFigureGL.cpp src/jni/DrawableSubwinGL.cpp \
-	src/jni/DrawablePolylineGL.cpp src/jni/DrawableRectangleGL.cpp \
-	src/jni/RectangleFillDrawerGL.cpp \
-	src/jni/RectangleLineDrawerGL.cpp \
-	src/jni/RectangleMarkDrawerGL.cpp \
-	src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp \
-	src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp \
-	src/cpp/arcDrawing/DrawableArcJavaMapper.cpp \
-	src/cpp/arcDrawing/DrawableArcJoGL.cpp \
-	src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp \
-	src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp \
-	src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
-	src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
-	src/jni/ArcLineDrawerGL.cpp src/jni/ArcFillDrawerGL.cpp \
-	src/jni/DrawableArcGL.cpp src/jni/FigureScilabCall_wrap.c \
-	src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
-	src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
-	src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
-	src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp \
-	src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
-	src/jni/PolylineLineDrawerGL.cpp \
-	src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
-	src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
-	src/jni/PolylineFillDrawerGL.cpp \
-	src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp \
-	src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp \
-	src/jni/PolylineMarkDrawerGL.cpp \
-	src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp \
-	src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp \
-	src/jni/PolylineArrowDrawerGL.cpp \
-	src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp \
-	src/cpp/polylineDrawing/BarDecomposition.cpp \
-	src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
-	src/jni/PolylineBarDrawerGL.cpp \
-	src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
-	src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
-	src/jni/PolylineInterpColorDrawerGL.cpp \
-	src/cpp/textDrawing/DrawableTextJoGL.cpp \
-	src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
-	src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
-	src/jni/DrawableTextGL.cpp \
-	src/cpp/textDrawing/ConcreteDrawableText.cpp \
-	src/cpp/textDrawing/StandardTextDrawerJavaMapper.cpp \
-	src/cpp/textDrawing/StandardTextDrawerJoGL.cpp \
-	src/jni/StandardTextDrawerGL.cpp \
-	src/cpp/textDrawing/TextContentDrawerJoGL.cpp \
-	src/cpp/textDrawing/FilledTextDrawerJavaMapper.cpp \
-	src/cpp/textDrawing/FilledTextDrawerJoGL.cpp \
-	src/jni/FilledTextDrawerGL.cpp \
-	src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
-	src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
-	src/jni/CenteredTextDrawerGL.cpp src/jni/IsoViewCameraGL.cpp \
-	src/jni/IsometricCameraGL.cpp \
-	src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
-	src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
-	src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
-	src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
-	src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
-	src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
-	src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
-	src/jni/BackTrihedronDrawerGL.cpp \
-	src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
-	src/jni/FullBoxDrawerGL.cpp src/jni/HalfBoxDrawerGL.cpp \
-	src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
-	src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
-	src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
-	src/cpp/subwinDrawing/TicksDrawer.cpp \
-	src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
-	src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
-	src/cpp/BasicAlgos.cpp \
-	src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
-	src/jni/GraphicSynchronizerJava.cpp \
-	src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
-	src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
-	src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/GridDrawer.cpp \
-	src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-	src/cpp/labelDrawing/LabelPositioner.cpp \
-	src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
-	src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
-	src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
-	src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
-	src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
-	src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
-	src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
-	src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
-	src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
-	src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
-	src/jni/DrawableSurfaceGL.cpp src/jni/SurfaceFacetDrawerGL.cpp \
-	src/jni/SurfaceLineDrawerGL.cpp \
-	src/jni/SurfaceMarkDrawerGL.cpp src/jni/DrawableSegsGL.cpp \
-	src/jni/SegsArrowDrawerGL.cpp src/jni/SegsLineDrawerGL.cpp \
-	src/jni/SegsMarkDrawerGL.cpp \
-	src/cpp/segsDrawing/ChampDecomposer.cpp \
-	src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
-	src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
-	src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
-	src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
-	src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
-	src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
-	src/cpp/segsDrawing/SegsDecomposer.cpp \
-	src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
-	src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
-	src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
-	src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
-	src/jni/DrawableGrayplotGL.cpp \
-	src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp \
-	src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp \
-	src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
-	src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
-	src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
-	src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
-	src/jni/DrawableFecGL.cpp src/jni/FecLineDrawerGL.cpp \
-	src/jni/FecFacetDrawerGL.cpp \
-	src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
-	src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
-	src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
-	src/cpp/fecDrawing/DrawableFecJoGL.cpp \
-	src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
-	src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
-	src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
-	src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
-	src/jni/DrawableAxesGL.cpp \
-	src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
-	src/cpp/axesDrawing/AxesTicksComputer.cpp \
-	src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
-	src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
-	src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
-	src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
-	src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
-	src/cpp/labelDrawing/TitlePositioner.cpp \
-	src/cpp/labelDrawing/XLabelPositioner.cpp \
-	src/cpp/labelDrawing/YLabelPositioner.cpp \
-	src/cpp/labelDrawing/ZLabelPositioner.cpp \
-	src/cpp/axesDrawing/AxesPositioner.cpp \
-	src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
-	src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
-	src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
-	src/cpp/subwinDrawing/XAxisPositioner.cpp \
-	src/cpp/subwinDrawing/YAxisPositioner.cpp \
-	src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
-	src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
-	src/cpp/subwinDrawing/AxisPositioner.cpp \
-	src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
-	src/cpp/subwinDrawing/ZAxisPositioner.cpp \
-	src/cpp/subwinDrawing/RightYAxisPositioner.cpp \
-	src/cpp/subwinDrawing/SubwinAxisPositioner.cpp \
-	src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
-	src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
-	src/jni/TicksDrawerGL.cpp src/jni/GridDrawerGL.cpp \
-	src/jni/RenderingChecker.cpp src/cpp/RendererFontManager.cpp \
-	src/jni/XlFontManager.cpp \
-	src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
-	src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
-	src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
-	src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
-	src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-	src/jni/GiwsException.cpp src/cpp/rendererBasicAlgos.cpp \
-	src/jni/SubwinBackgroundDrawerGL.cpp \
-	src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
-	src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp \
-	sci_gateway/c/gw_renderer.c
-@GUI_TRUE@am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSubwin.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigure.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableFigure.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureFactory.lo \
-@GUI_TRUE@	libscirenderer_la-FigureScilabCall.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableCompoundFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableCompound.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableTextFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableText.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolylineFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolyline.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableLegend.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableLegendFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSegs.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSegsFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleFactory.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangle.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleFillDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleLineDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArcFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArc.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableLabel.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableLabelFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSurfaceFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSurface.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFec.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFecFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableAxes.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableAxesFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableGrayplot.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableGrayplotFactory.lo \
-@GUI_TRUE@	libscirenderer_la-getHandleDrawer.lo \
-@GUI_TRUE@	libscirenderer_la-HandleObserverManagement.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableObjectFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableClippedObject.lo \
-@GUI_TRUE@	libscirenderer_la-HandleDrawingObserver.lo \
-@GUI_TRUE@	libscirenderer_la-BuildDrawingObserver.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableObjectJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-GetJavaProperty.lo \
-@GUI_TRUE@	libscirenderer_la-SetJavaProperty.lo \
-@GUI_TRUE@	libscirenderer_la-JavaInteraction.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableObject.lo \
-@GUI_TRUE@	libscirenderer_la-DrawingBridge.lo \
-@GUI_TRUE@	libscirenderer_la-CameraJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-CameraBridge.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSubwinBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-CameraFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSubwinJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-Camera.lo \
-@GUI_TRUE@	libscirenderer_la-CameraBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolylineBrirdgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolylineJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableClippedObjectJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-GlobalSynchronizer.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerFactory.lo \
-@GUI_TRUE@	libscirenderer_la-LocalSynchronizer.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizer.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerInterface.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableRectangle.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSubwinJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolylineJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleFillDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFigureGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSubwinGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawablePolylineGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableRectangleGL.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleFillDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-RectangleMarkDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-ArcLineDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArcBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArcJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArcJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-ArcFillDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-ArcLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableArc.lo \
-@GUI_TRUE@	libscirenderer_la-ArcFillDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-ArcLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-ArcFillDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableArcGL.lo \
-@GUI_TRUE@	libscirenderer_la-FigureScilabCall_wrap.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-InterpolatedDecomposition.lo \
-@GUI_TRUE@	libscirenderer_la-StairCaseDecomposition.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawablePolyline.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineLineDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineFillDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineFillDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineFillDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineMarkDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineMarkDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineMarkDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineArrowDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineArrowDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineArrowDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineBarDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-BarDecomposition.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineBarDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineBarDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-PolylineInterpColorDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableTextJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableTextBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableTextJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableTextGL.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableText.lo \
-@GUI_TRUE@	libscirenderer_la-StandardTextDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-StandardTextDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-StandardTextDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-TextContentDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-FilledTextDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FilledTextDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-FilledTextDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-CenteredTextDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-CenteredTextDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-IsoViewCameraGL.lo \
-@GUI_TRUE@	libscirenderer_la-IsometricCameraGL.lo \
-@GUI_TRUE@	libscirenderer_la-IsoViewCameraJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-IsometricCameraJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-LinearBoundsComputer.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableSubwin.lo \
-@GUI_TRUE@	libscirenderer_la-LogarithmicBoundsComputer.lo \
-@GUI_TRUE@	libscirenderer_la-VerticalBarDecomposition.lo \
-@GUI_TRUE@	libscirenderer_la-HorizontalBarDecomposition.lo \
-@GUI_TRUE@	libscirenderer_la-BackTrihedronDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-BackTrihedronDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-BackTrihedronDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FullBoxDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-HalfBoxDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-HalfBoxDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-HalfBoxDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-FullBoxDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FullBoxDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-UserDefinedTicksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-TicksDrawer.lo \
-@GUI_TRUE@	libscirenderer_la-TicksDrawerFactory.lo \
-@GUI_TRUE@	libscirenderer_la-TicksDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-BasicAlgos.lo \
-@GUI_TRUE@	libscirenderer_la-AutomaticTicksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-GraphicSynchronizerJava.lo \
-@GUI_TRUE@	libscirenderer_la-UserDefLogTicksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-AutoLogTicksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-GridDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-YGridDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-GridDrawer.lo \
-@GUI_TRUE@	libscirenderer_la-XGridDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-ZGridDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-LabelPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableSurface.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSurfaceJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSurfaceJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSurfaceBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSurfaceGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceFacetDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-SurfaceMarkDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSegsGL.lo \
-@GUI_TRUE@	libscirenderer_la-SegsArrowDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-SegsLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-SegsMarkDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-ChampDecomposer.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableSegs.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSegsBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSegsJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableSegsJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-SegsArrowDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SegsArrowDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-SegsDecomposer.lo \
-@GUI_TRUE@	libscirenderer_la-SegsLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SegsLineDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-SegsMarkDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SegsMarkDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableGrayplotGL.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableGrayplot.lo \
-@GUI_TRUE@	libscirenderer_la-DrawabelGrayplotJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableGrayplotBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableGrayplotJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-GrayplotDecomposer.lo \
-@GUI_TRUE@	libscirenderer_la-MatplotDecomposer.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFecGL.lo \
-@GUI_TRUE@	libscirenderer_la-FecLineDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-FecFacetDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableFec.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFecBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFecJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableFecJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-FecFacetDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FecFacetDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-FecLineDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-FecLineDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableAxesGL.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableLegend.lo \
-@GUI_TRUE@	libscirenderer_la-AxesTicksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-ConcreteDrawableAxes.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableAxesBridgeFactory.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableAxesJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-DrawableAxesJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-DecomposeSegsStrategy.lo \
-@GUI_TRUE@	libscirenderer_la-TitlePositioner.lo \
-@GUI_TRUE@	libscirenderer_la-XLabelPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-YLabelPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-ZLabelPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-AxesPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-AxesTicksDrawerJoGL.lo \
-@GUI_TRUE@	libscirenderer_la-BottomXAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-LeftYAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-XAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-YAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-MiddleXAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-MiddleYAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-AxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-TopXAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-ZAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-RightYAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-SubwinAxisPositioner.lo \
-@GUI_TRUE@	libscirenderer_la-TicksDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-GridDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-TicksDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-GridDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-RenderingChecker.lo \
-@GUI_TRUE@	libscirenderer_la-RendererFontManager.lo \
-@GUI_TRUE@	libscirenderer_la-XlFontManager.lo \
-@GUI_TRUE@	libscirenderer_la-AutoLogSubticksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-AutomaticSubticksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-UserDefLogSubticksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-UserDefinedSubticksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-AxesSubticksComputer.lo \
-@GUI_TRUE@	libscirenderer_la-GiwsException.lo \
-@GUI_TRUE@	libscirenderer_la-rendererBasicAlgos.lo \
-@GUI_TRUE@	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
-@GUI_TRUE@	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
-@GUI_TRUE@	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo
-@GUI_TRUE@am__objects_2 = libscirenderer_la-gw_renderer.lo
-@GUI_FALSE@am_libscirenderer_la_OBJECTS =  \
-@GUI_FALSE@	libscirenderer_la-norenderer.lo
-@GUI_TRUE@am_libscirenderer_la_OBJECTS = $(am__objects_1) \
-@GUI_TRUE@	$(am__objects_2)
+libscirenderer_disable_la_LIBADD =
+am_libscirenderer_disable_la_OBJECTS =  \
+	libscirenderer_disable_la-norenderer.lo
+libscirenderer_disable_la_OBJECTS =  \
+	$(am_libscirenderer_disable_la_OBJECTS)
+libscirenderer_disable_la_LINK = $(LIBTOOL) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(AM_CFLAGS) $(CFLAGS) $(libscirenderer_disable_la_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libscirenderer_la_DEPENDENCIES = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+am__objects_1 = libscirenderer_la-DrawableSubwinFactory.lo \
+	libscirenderer_la-DrawableSubwin.lo \
+	libscirenderer_la-DrawableFigureJoGL.lo \
+	libscirenderer_la-DrawableFigureBridgeFactory.lo \
+	libscirenderer_la-DrawableFigure.lo \
+	libscirenderer_la-ConcreteDrawableFigure.lo \
+	libscirenderer_la-DrawableFigureFactory.lo \
+	libscirenderer_la-FigureScilabCall.lo \
+	libscirenderer_la-DrawableCompoundFactory.lo \
+	libscirenderer_la-DrawableCompound.lo \
+	libscirenderer_la-DrawableTextFactory.lo \
+	libscirenderer_la-DrawableText.lo \
+	libscirenderer_la-DrawablePolylineFactory.lo \
+	libscirenderer_la-DrawablePolyline.lo \
+	libscirenderer_la-DrawableLegend.lo \
+	libscirenderer_la-DrawableLegendFactory.lo \
+	libscirenderer_la-DrawableSegs.lo \
+	libscirenderer_la-DrawableSegsFactory.lo \
+	libscirenderer_la-DrawableRectangleFactory.lo \
+	libscirenderer_la-RectangleMarkDrawerJoGL.lo \
+	libscirenderer_la-DrawableRectangleBridgeFactory.lo \
+	libscirenderer_la-DrawableRectangle.lo \
+	libscirenderer_la-DrawableRectangleJoGL.lo \
+	libscirenderer_la-RectangleFillDrawerJoGL.lo \
+	libscirenderer_la-RectangleLineDrawerJoGL.lo \
+	libscirenderer_la-DrawableArcFactory.lo \
+	libscirenderer_la-DrawableArc.lo \
+	libscirenderer_la-DrawableLabel.lo \
+	libscirenderer_la-DrawableLabelFactory.lo \
+	libscirenderer_la-DrawableSurfaceFactory.lo \
+	libscirenderer_la-DrawableSurface.lo \
+	libscirenderer_la-DrawableFec.lo \
+	libscirenderer_la-DrawableFecFactory.lo \
+	libscirenderer_la-DrawableAxes.lo \
+	libscirenderer_la-DrawableAxesFactory.lo \
+	libscirenderer_la-DrawableGrayplot.lo \
+	libscirenderer_la-DrawableGrayplotFactory.lo \
+	libscirenderer_la-getHandleDrawer.lo \
+	libscirenderer_la-HandleObserverManagement.lo \
+	libscirenderer_la-DrawableObjectFactory.lo \
+	libscirenderer_la-DrawableClippedObject.lo \
+	libscirenderer_la-HandleDrawingObserver.lo \
+	libscirenderer_la-BuildDrawingObserver.lo \
+	libscirenderer_la-DrawableObjectJoGL.lo \
+	libscirenderer_la-GetJavaProperty.lo \
+	libscirenderer_la-SetJavaProperty.lo \
+	libscirenderer_la-JavaInteraction.lo \
+	libscirenderer_la-DrawableObject.lo \
+	libscirenderer_la-DrawingBridge.lo \
+	libscirenderer_la-CameraJoGL.lo \
+	libscirenderer_la-CameraBridge.lo \
+	libscirenderer_la-DrawableSubwinBridgeFactory.lo \
+	libscirenderer_la-CameraFactory.lo \
+	libscirenderer_la-DrawableSubwinJoGL.lo \
+	libscirenderer_la-Camera.lo \
+	libscirenderer_la-CameraBridgeFactory.lo \
+	libscirenderer_la-DrawablePolylineBrirdgeFactory.lo \
+	libscirenderer_la-DrawablePolylineJoGL.lo \
+	libscirenderer_la-DrawableClippedObjectJoGL.lo \
+	libscirenderer_la-GlobalSynchronizer.lo \
+	libscirenderer_la-GraphicSynchronizerBridgeFactory.lo \
+	libscirenderer_la-GraphicSynchronizerFactory.lo \
+	libscirenderer_la-LocalSynchronizer.lo \
+	libscirenderer_la-GraphicSynchronizer.lo \
+	libscirenderer_la-GraphicSynchronizerInterface.lo \
+	libscirenderer_la-GraphicSynchronizerJavaMapper.lo \
+	libscirenderer_la-ConcreteDrawableRectangle.lo \
+	libscirenderer_la-DrawableSubwinJavaMapper.lo \
+	libscirenderer_la-DrawableFigureJavaMapper.lo \
+	libscirenderer_la-DrawablePolylineJavaMapper.lo \
+	libscirenderer_la-DrawableRectangleJavaMapper.lo \
+	libscirenderer_la-RectangleFillDrawerJavaMapper.lo \
+	libscirenderer_la-RectangleLineDrawerJavaMapper.lo \
+	libscirenderer_la-RectangleMarkDrawerJavaMapper.lo \
+	libscirenderer_la-DrawableFigureGL.lo \
+	libscirenderer_la-DrawableSubwinGL.lo \
+	libscirenderer_la-DrawablePolylineGL.lo \
+	libscirenderer_la-DrawableRectangleGL.lo \
+	libscirenderer_la-RectangleFillDrawerGL.lo \
+	libscirenderer_la-RectangleLineDrawerGL.lo \
+	libscirenderer_la-RectangleMarkDrawerGL.lo \
+	libscirenderer_la-ArcLineDrawerJoGL.lo \
+	libscirenderer_la-DrawableArcBridgeFactory.lo \
+	libscirenderer_la-DrawableArcJavaMapper.lo \
+	libscirenderer_la-DrawableArcJoGL.lo \
+	libscirenderer_la-ArcFillDrawerJavaMapper.lo \
+	libscirenderer_la-ArcLineDrawerJavaMapper.lo \
+	libscirenderer_la-ConcreteDrawableArc.lo \
+	libscirenderer_la-ArcFillDrawerJoGL.lo \
+	libscirenderer_la-ArcLineDrawerGL.lo \
+	libscirenderer_la-ArcFillDrawerGL.lo \
+	libscirenderer_la-DrawableArcGL.lo \
+	libscirenderer_la-FigureScilabCall_wrap.lo \
+	libscirenderer_la-PolylineLineDrawerJavaMapper.lo \
+	libscirenderer_la-InterpolatedDecomposition.lo \
+	libscirenderer_la-StairCaseDecomposition.lo \
+	libscirenderer_la-ConcreteDrawablePolyline.lo \
+	libscirenderer_la-PolylineLineDrawerJoGL.lo \
+	libscirenderer_la-PolylineLineDrawerGL.lo \
+	libscirenderer_la-PolylineFillDrawerJavaMapper.lo \
+	libscirenderer_la-PolylineFillDrawerJoGL.lo \
+	libscirenderer_la-PolylineFillDrawerGL.lo \
+	libscirenderer_la-PolylineMarkDrawerJavaMapper.lo \
+	libscirenderer_la-PolylineMarkDrawerJoGL.lo \
+	libscirenderer_la-PolylineMarkDrawerGL.lo \
+	libscirenderer_la-PolylineArrowDrawerJavaMapper.lo \
+	libscirenderer_la-PolylineArrowDrawerJoGL.lo \
+	libscirenderer_la-PolylineArrowDrawerGL.lo \
+	libscirenderer_la-PolylineBarDrawerJoGL.lo \
+	libscirenderer_la-BarDecomposition.lo \
+	libscirenderer_la-PolylineBarDrawerJavaMapper.lo \
+	libscirenderer_la-PolylineBarDrawerGL.lo \
+	libscirenderer_la-PolylineInterpColorDrawerJavaMapper.lo \
+	libscirenderer_la-PolylineInterpColorDrawerJoGL.lo \
+	libscirenderer_la-PolylineInterpColorDrawerGL.lo \
+	libscirenderer_la-DrawableTextJoGL.lo \
+	libscirenderer_la-DrawableTextBridgeFactory.lo \
+	libscirenderer_la-DrawableTextJavaMapper.lo \
+	libscirenderer_la-DrawableTextGL.lo \
+	libscirenderer_la-ConcreteDrawableText.lo \
+	libscirenderer_la-StandardTextDrawerJavaMapper.lo \
+	libscirenderer_la-StandardTextDrawerJoGL.lo \
+	libscirenderer_la-StandardTextDrawerGL.lo \
+	libscirenderer_la-TextContentDrawerJoGL.lo \
+	libscirenderer_la-FilledTextDrawerJavaMapper.lo \
+	libscirenderer_la-FilledTextDrawerJoGL.lo \
+	libscirenderer_la-FilledTextDrawerGL.lo \
+	libscirenderer_la-CenteredTextDrawerJavaMapper.lo \
+	libscirenderer_la-CenteredTextDrawerJoGL.lo \
+	libscirenderer_la-CenteredTextDrawerGL.lo \
+	libscirenderer_la-IsoViewCameraGL.lo \
+	libscirenderer_la-IsometricCameraGL.lo \
+	libscirenderer_la-IsoViewCameraJavaMapper.lo \
+	libscirenderer_la-IsometricCameraJavaMapper.lo \
+	libscirenderer_la-LinearBoundsComputer.lo \
+	libscirenderer_la-ConcreteDrawableSubwin.lo \
+	libscirenderer_la-LogarithmicBoundsComputer.lo \
+	libscirenderer_la-VerticalBarDecomposition.lo \
+	libscirenderer_la-HorizontalBarDecomposition.lo \
+	libscirenderer_la-BackTrihedronDrawerGL.lo \
+	libscirenderer_la-BackTrihedronDrawerJoGL.lo \
+	libscirenderer_la-BackTrihedronDrawerJavaMapper.lo \
+	libscirenderer_la-FullBoxDrawerGL.lo \
+	libscirenderer_la-HalfBoxDrawerGL.lo \
+	libscirenderer_la-HalfBoxDrawerJavaMapper.lo \
+	libscirenderer_la-HalfBoxDrawerJoGL.lo \
+	libscirenderer_la-FullBoxDrawerJavaMapper.lo \
+	libscirenderer_la-FullBoxDrawerJoGL.lo \
+	libscirenderer_la-UserDefinedTicksComputer.lo \
+	libscirenderer_la-TicksDrawer.lo \
+	libscirenderer_la-TicksDrawerFactory.lo \
+	libscirenderer_la-TicksDrawerJoGL.lo \
+	libscirenderer_la-BasicAlgos.lo \
+	libscirenderer_la-AutomaticTicksComputer.lo \
+	libscirenderer_la-GraphicSynchronizerJava.lo \
+	libscirenderer_la-UserDefLogTicksComputer.lo \
+	libscirenderer_la-AutoLogTicksComputer.lo \
+	libscirenderer_la-GridDrawerJoGL.lo \
+	libscirenderer_la-YGridDrawerJoGL.lo \
+	libscirenderer_la-GridDrawer.lo \
+	libscirenderer_la-XGridDrawerJoGL.lo \
+	libscirenderer_la-ZGridDrawerJoGL.lo \
+	libscirenderer_la-LabelPositioner.lo \
+	libscirenderer_la-ConcreteDrawableSurface.lo \
+	libscirenderer_la-DrawableSurfaceJavaMapper.lo \
+	libscirenderer_la-DrawableSurfaceJoGL.lo \
+	libscirenderer_la-SurfaceFacetDrawerJavaMapper.lo \
+	libscirenderer_la-SurfaceFacetDrawerJoGL.lo \
+	libscirenderer_la-SurfaceLineDrawerJavaMapper.lo \
+	libscirenderer_la-SurfaceLineDrawerJoGL.lo \
+	libscirenderer_la-SurfaceMarkDrawerJavaMapper.lo \
+	libscirenderer_la-SurfaceMarkDrawerJoGL.lo \
+	libscirenderer_la-DrawableSurfaceBridgeFactory.lo \
+	libscirenderer_la-DrawableSurfaceGL.lo \
+	libscirenderer_la-SurfaceFacetDrawerGL.lo \
+	libscirenderer_la-SurfaceLineDrawerGL.lo \
+	libscirenderer_la-SurfaceMarkDrawerGL.lo \
+	libscirenderer_la-DrawableSegsGL.lo \
+	libscirenderer_la-SegsArrowDrawerGL.lo \
+	libscirenderer_la-SegsLineDrawerGL.lo \
+	libscirenderer_la-SegsMarkDrawerGL.lo \
+	libscirenderer_la-ChampDecomposer.lo \
+	libscirenderer_la-ConcreteDrawableSegs.lo \
+	libscirenderer_la-DrawableSegsBridgeFactory.lo \
+	libscirenderer_la-DrawableSegsJavaMapper.lo \
+	libscirenderer_la-DrawableSegsJoGL.lo \
+	libscirenderer_la-SegsArrowDrawerJavaMapper.lo \
+	libscirenderer_la-SegsArrowDrawerJoGL.lo \
+	libscirenderer_la-SegsDecomposer.lo \
+	libscirenderer_la-SegsLineDrawerJavaMapper.lo \
+	libscirenderer_la-SegsLineDrawerJoGL.lo \
+	libscirenderer_la-SegsMarkDrawerJavaMapper.lo \
+	libscirenderer_la-SegsMarkDrawerJoGL.lo \
+	libscirenderer_la-DrawableGrayplotGL.lo \
+	libscirenderer_la-ConcreteDrawableGrayplot.lo \
+	libscirenderer_la-DrawabelGrayplotJavaMapper.lo \
+	libscirenderer_la-DrawableGrayplotBridgeFactory.lo \
+	libscirenderer_la-DrawableGrayplotJoGL.lo \
+	libscirenderer_la-GrayplotDecomposer.lo \
+	libscirenderer_la-MatplotDecomposer.lo \
+	libscirenderer_la-DrawableFecGL.lo \
+	libscirenderer_la-FecLineDrawerGL.lo \
+	libscirenderer_la-FecFacetDrawerGL.lo \
+	libscirenderer_la-ConcreteDrawableFec.lo \
+	libscirenderer_la-DrawableFecBridgeFactory.lo \
+	libscirenderer_la-DrawableFecJavaMapper.lo \
+	libscirenderer_la-DrawableFecJoGL.lo \
+	libscirenderer_la-FecFacetDrawerJavaMapper.lo \
+	libscirenderer_la-FecFacetDrawerJoGL.lo \
+	libscirenderer_la-FecLineDrawerJavaMapper.lo \
+	libscirenderer_la-FecLineDrawerJoGL.lo \
+	libscirenderer_la-DrawableAxesGL.lo \
+	libscirenderer_la-ConcreteDrawableLegend.lo \
+	libscirenderer_la-AxesTicksComputer.lo \
+	libscirenderer_la-ConcreteDrawableAxes.lo \
+	libscirenderer_la-DrawableAxesBridgeFactory.lo \
+	libscirenderer_la-DrawableAxesJavaMapper.lo \
+	libscirenderer_la-DrawableAxesJoGL.lo \
+	libscirenderer_la-DecomposeSegsStrategy.lo \
+	libscirenderer_la-TitlePositioner.lo \
+	libscirenderer_la-XLabelPositioner.lo \
+	libscirenderer_la-YLabelPositioner.lo \
+	libscirenderer_la-ZLabelPositioner.lo \
+	libscirenderer_la-AxesPositioner.lo \
+	libscirenderer_la-AxesTicksDrawerJoGL.lo \
+	libscirenderer_la-BottomXAxisPositioner.lo \
+	libscirenderer_la-LeftYAxisPositioner.lo \
+	libscirenderer_la-XAxisPositioner.lo \
+	libscirenderer_la-YAxisPositioner.lo \
+	libscirenderer_la-MiddleXAxisPositioner.lo \
+	libscirenderer_la-MiddleYAxisPositioner.lo \
+	libscirenderer_la-AxisPositioner.lo \
+	libscirenderer_la-TopXAxisPositioner.lo \
+	libscirenderer_la-ZAxisPositioner.lo \
+	libscirenderer_la-RightYAxisPositioner.lo \
+	libscirenderer_la-SubwinAxisPositioner.lo \
+	libscirenderer_la-TicksDrawerJavaMapper.lo \
+	libscirenderer_la-GridDrawerJavaMapper.lo \
+	libscirenderer_la-TicksDrawerGL.lo \
+	libscirenderer_la-GridDrawerGL.lo \
+	libscirenderer_la-RenderingChecker.lo \
+	libscirenderer_la-RendererFontManager.lo \
+	libscirenderer_la-XlFontManager.lo \
+	libscirenderer_la-AutoLogSubticksComputer.lo \
+	libscirenderer_la-AutomaticSubticksComputer.lo \
+	libscirenderer_la-UserDefLogSubticksComputer.lo \
+	libscirenderer_la-UserDefinedSubticksComputer.lo \
+	libscirenderer_la-AxesSubticksComputer.lo \
+	libscirenderer_la-GiwsException.lo \
+	libscirenderer_la-rendererBasicAlgos.lo \
+	libscirenderer_la-SubwinBackgroundDrawerGL.lo \
+	libscirenderer_la-SubwinBackgroundDrawerJavaMapper.lo \
+	libscirenderer_la-SubwinBackgroundDrawerJoGL.lo
+am__objects_2 = libscirenderer_la-gw_renderer.lo
+am_libscirenderer_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscirenderer_la_OBJECTS = $(am_libscirenderer_la_OBJECTS)
 libscirenderer_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscirenderer_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libscirenderer_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -614,8 +383,10 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscirenderer_la_SOURCES)
-DIST_SOURCES = $(am__libscirenderer_la_SOURCES_DIST)
+SOURCES = $(libscirenderer_disable_la_SOURCES) \
+	$(libscirenderer_la_SOURCES)
+DIST_SOURCES = $(libscirenderer_disable_la_SOURCES) \
+	$(libscirenderer_la_SOURCES)
 libscirenderer_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscirenderer_la_rootDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscirenderer_la_etc_DATA) $(libscirenderer_la_root_DATA)
@@ -753,6 +524,7 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
+WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
@@ -815,354 +587,356 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
 # List of the c files
-@GUI_TRUE@RENDERER_CPP_SOURCES = \
-@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwin.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigure.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureFactory.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/FigureScilabCall.cpp \
-@GUI_TRUE@src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
-@GUI_TRUE@src/cpp/compoundDrawing/DrawableCompound.cpp \
-@GUI_TRUE@src/cpp/textDrawing/DrawableTextFactory.cpp \
-@GUI_TRUE@src/cpp/textDrawing/DrawableText.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolyline.cpp \
-@GUI_TRUE@src/cpp/legendDrawing/DrawableLegend.cpp \
-@GUI_TRUE@src/cpp/legendDrawing/DrawableLegendFactory.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/DrawableSegs.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsFactory.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangle.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/DrawableArcFactory.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/DrawableArc.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/DrawableLabel.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/DrawableLabelFactory.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurface.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/DrawableFec.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/DrawableFecFactory.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/DrawableAxes.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesFactory.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
-@GUI_TRUE@src/cpp/getHandleDrawer.cpp \
-@GUI_TRUE@src/cpp/HandleObserverManagement.cpp \
-@GUI_TRUE@src/cpp/DrawableObjectFactory.cpp \
-@GUI_TRUE@src/cpp/DrawableClippedObject.cpp \
-@GUI_TRUE@src/cpp/HandleDrawingObserver.cpp \
-@GUI_TRUE@src/cpp/BuildDrawingObserver.cpp \
-@GUI_TRUE@src/cpp/DrawableObjectJoGL.cpp \
-@GUI_TRUE@src/cpp/GetJavaProperty.cpp \
-@GUI_TRUE@src/cpp/SetJavaProperty.cpp \
-@GUI_TRUE@src/cpp/JavaInteraction.cpp \
-@GUI_TRUE@src/cpp/DrawableObject.cpp \
-@GUI_TRUE@src/cpp/DrawingBridge.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/CameraJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/CameraBridge.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/CameraFactory.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/Camera.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
-@GUI_TRUE@src/cpp/DrawableClippedObjectJoGL.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
-@GUI_TRUE@src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
-@GUI_TRUE@src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
-@GUI_TRUE@src/jni/DrawableFigureGL.cpp \
-@GUI_TRUE@src/jni/DrawableSubwinGL.cpp \
-@GUI_TRUE@src/jni/DrawablePolylineGL.cpp \
-@GUI_TRUE@src/jni/DrawableRectangleGL.cpp \
-@GUI_TRUE@src/jni/RectangleFillDrawerGL.cpp \
-@GUI_TRUE@src/jni/RectangleLineDrawerGL.cpp \
-@GUI_TRUE@src/jni/RectangleMarkDrawerGL.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/DrawableArcJavaMapper.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/DrawableArcJoGL.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
-@GUI_TRUE@src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/ArcLineDrawerGL.cpp \
-@GUI_TRUE@src/jni/ArcFillDrawerGL.cpp \
-@GUI_TRUE@src/jni/DrawableArcGL.cpp \
-@GUI_TRUE@src/jni/FigureScilabCall_wrap.c \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/PolylineLineDrawerGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/PolylineFillDrawerGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/PolylineMarkDrawerGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/PolylineArrowDrawerGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/BarDecomposition.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
-@GUI_TRUE@src/jni/PolylineBarDrawerGL.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/PolylineInterpColorDrawerGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/DrawableTextJoGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
-@GUI_TRUE@src/jni/DrawableTextGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/ConcreteDrawableText.cpp \
-@GUI_TRUE@src/cpp/textDrawing/StandardTextDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/textDrawing/StandardTextDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/StandardTextDrawerGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/TextContentDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/FilledTextDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/textDrawing/FilledTextDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/FilledTextDrawerGL.cpp \
-@GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/CenteredTextDrawerGL.cpp \
-@GUI_TRUE@src/jni/IsoViewCameraGL.cpp \
-@GUI_TRUE@src/jni/IsometricCameraGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
-@GUI_TRUE@src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
-@GUI_TRUE@src/jni/BackTrihedronDrawerGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
-@GUI_TRUE@src/jni/FullBoxDrawerGL.cpp \
-@GUI_TRUE@src/jni/HalfBoxDrawerGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/TicksDrawer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/BasicAlgos.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
-@GUI_TRUE@src/jni/GraphicSynchronizerJava.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/GridDrawer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/LabelPositioner.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
-@GUI_TRUE@src/jni/DrawableSurfaceGL.cpp \
-@GUI_TRUE@src/jni/SurfaceFacetDrawerGL.cpp \
-@GUI_TRUE@src/jni/SurfaceLineDrawerGL.cpp \
-@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.cpp \
-@GUI_TRUE@src/jni/DrawableSegsGL.cpp \
-@GUI_TRUE@src/jni/SegsArrowDrawerGL.cpp \
-@GUI_TRUE@src/jni/SegsLineDrawerGL.cpp \
-@GUI_TRUE@src/jni/SegsMarkDrawerGL.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/ChampDecomposer.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsDecomposer.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/DrawableGrayplotGL.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
-@GUI_TRUE@src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
-@GUI_TRUE@src/jni/DrawableFecGL.cpp \
-@GUI_TRUE@src/jni/FecLineDrawerGL.cpp \
-@GUI_TRUE@src/jni/FecFacetDrawerGL.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/DrawableFecJoGL.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
-@GUI_TRUE@src/jni/DrawableAxesGL.cpp \
-@GUI_TRUE@src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/AxesTicksComputer.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
-@GUI_TRUE@src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/TitlePositioner.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/XLabelPositioner.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/YLabelPositioner.cpp \
-@GUI_TRUE@src/cpp/labelDrawing/ZLabelPositioner.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/AxesPositioner.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/XAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/YAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/AxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/ZAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/RightYAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/SubwinAxisPositioner.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
-@GUI_TRUE@src/jni/TicksDrawerGL.cpp \
-@GUI_TRUE@src/jni/GridDrawerGL.cpp \
-@GUI_TRUE@src/jni/RenderingChecker.cpp \
-@GUI_TRUE@src/cpp/RendererFontManager.cpp \
-@GUI_TRUE@src/jni/XlFontManager.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
-@GUI_TRUE@src/cpp/axesDrawing/AxesSubticksComputer.cpp \
-@GUI_TRUE@src/jni/GiwsException.cpp \
-@GUI_TRUE@src/cpp/rendererBasicAlgos.cpp \
-@GUI_TRUE@src/jni/SubwinBackgroundDrawerGL.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
-@GUI_TRUE@src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
+RENDERER_CPP_SOURCES = \
+src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
+src/cpp/subwinDrawing/DrawableSubwin.cpp \
+src/cpp/figureDrawing/DrawableFigureJoGL.cpp \
+src/cpp/figureDrawing/DrawableFigureBridgeFactory.cpp \
+src/cpp/figureDrawing/DrawableFigure.cpp \
+src/cpp/figureDrawing/ConcreteDrawableFigure.cpp \
+src/cpp/figureDrawing/DrawableFigureFactory.cpp \
+src/cpp/figureDrawing/FigureScilabCall.cpp \
+src/cpp/compoundDrawing/DrawableCompoundFactory.cpp \
+src/cpp/compoundDrawing/DrawableCompound.cpp \
+src/cpp/textDrawing/DrawableTextFactory.cpp \
+src/cpp/textDrawing/DrawableText.cpp \
+src/cpp/polylineDrawing/DrawablePolylineFactory.cpp \
+src/cpp/polylineDrawing/DrawablePolyline.cpp \
+src/cpp/legendDrawing/DrawableLegend.cpp \
+src/cpp/legendDrawing/DrawableLegendFactory.cpp \
+src/cpp/segsDrawing/DrawableSegs.cpp \
+src/cpp/segsDrawing/DrawableSegsFactory.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleFactory.cpp \
+src/cpp/rectangleDrawing/RectangleMarkDrawerJoGL.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleBridgeFactory.cpp \
+src/cpp/rectangleDrawing/DrawableRectangle.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleJoGL.cpp \
+src/cpp/rectangleDrawing/RectangleFillDrawerJoGL.cpp \
+src/cpp/rectangleDrawing/RectangleLineDrawerJoGL.cpp \
+src/cpp/arcDrawing/DrawableArcFactory.cpp \
+src/cpp/arcDrawing/DrawableArc.cpp \
+src/cpp/labelDrawing/DrawableLabel.cpp \
+src/cpp/labelDrawing/DrawableLabelFactory.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceFactory.cpp \
+src/cpp/surfaceDrawing/DrawableSurface.cpp \
+src/cpp/fecDrawing/DrawableFec.cpp \
+src/cpp/fecDrawing/DrawableFecFactory.cpp \
+src/cpp/axesDrawing/DrawableAxes.cpp \
+src/cpp/axesDrawing/DrawableAxesFactory.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplot.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplotFactory.cpp \
+src/cpp/getHandleDrawer.cpp \
+src/cpp/HandleObserverManagement.cpp \
+src/cpp/DrawableObjectFactory.cpp \
+src/cpp/DrawableClippedObject.cpp \
+src/cpp/HandleDrawingObserver.cpp \
+src/cpp/BuildDrawingObserver.cpp \
+src/cpp/DrawableObjectJoGL.cpp \
+src/cpp/GetJavaProperty.cpp \
+src/cpp/SetJavaProperty.cpp \
+src/cpp/JavaInteraction.cpp \
+src/cpp/DrawableObject.cpp \
+src/cpp/DrawingBridge.cpp \
+src/cpp/subwinDrawing/CameraJoGL.cpp \
+src/cpp/subwinDrawing/CameraBridge.cpp \
+src/cpp/subwinDrawing/DrawableSubwinBridgeFactory.cpp \
+src/cpp/subwinDrawing/CameraFactory.cpp \
+src/cpp/subwinDrawing/DrawableSubwinJoGL.cpp \
+src/cpp/subwinDrawing/Camera.cpp \
+src/cpp/subwinDrawing/CameraBridgeFactory.cpp \
+src/cpp/polylineDrawing/DrawablePolylineBrirdgeFactory.cpp \
+src/cpp/polylineDrawing/DrawablePolylineJoGL.cpp \
+src/cpp/DrawableClippedObjectJoGL.cpp \
+src/cpp/GraphicSynchronization/GlobalSynchronizer.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerBridgeFactory.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerFactory.cpp \
+src/cpp/GraphicSynchronization/LocalSynchronizer.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizer.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerInterface.cpp \
+src/cpp/GraphicSynchronization/GraphicSynchronizerJavaMapper.cpp \
+src/cpp/rectangleDrawing/ConcreteDrawableRectangle.cpp \
+src/cpp/subwinDrawing/DrawableSubwinJavaMapper.cpp \
+src/cpp/figureDrawing/DrawableFigureJavaMapper.cpp \
+src/cpp/polylineDrawing/DrawablePolylineJavaMapper.cpp \
+src/cpp/rectangleDrawing/DrawableRectangleJavaMapper.cpp \
+src/cpp/rectangleDrawing/RectangleFillDrawerJavaMapper.cpp \
+src/cpp/rectangleDrawing/RectangleLineDrawerJavaMapper.cpp \
+src/cpp/rectangleDrawing/RectangleMarkDrawerJavaMapper.cpp \
+src/jni/DrawableFigureGL.cpp \
+src/jni/DrawableSubwinGL.cpp \
+src/jni/DrawablePolylineGL.cpp \
+src/jni/DrawableRectangleGL.cpp \
+src/jni/RectangleFillDrawerGL.cpp \
+src/jni/RectangleLineDrawerGL.cpp \
+src/jni/RectangleMarkDrawerGL.cpp \
+src/cpp/arcDrawing/ArcLineDrawerJoGL.cpp \
+src/cpp/arcDrawing/DrawableArcBridgeFactory.cpp \
+src/cpp/arcDrawing/DrawableArcJavaMapper.cpp \
+src/cpp/arcDrawing/DrawableArcJoGL.cpp \
+src/cpp/arcDrawing/ArcFillDrawerJavaMapper.cpp \
+src/cpp/arcDrawing/ArcLineDrawerJavaMapper.cpp \
+src/cpp/arcDrawing/ConcreteDrawableArc.cpp \
+src/cpp/arcDrawing/ArcFillDrawerJoGL.cpp \
+src/jni/ArcLineDrawerGL.cpp \
+src/jni/ArcFillDrawerGL.cpp \
+src/jni/DrawableArcGL.cpp \
+src/jni/FigureScilabCall_wrap.c \
+src/cpp/polylineDrawing/PolylineLineDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/InterpolatedDecomposition.cpp \
+src/cpp/polylineDrawing/StairCaseDecomposition.cpp \
+src/cpp/polylineDrawing/ConcreteDrawablePolyline.cpp \
+src/cpp/polylineDrawing/PolylineLineDrawerJoGL.cpp \
+src/jni/PolylineLineDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineFillDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/PolylineFillDrawerJoGL.cpp \
+src/jni/PolylineFillDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineMarkDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/PolylineMarkDrawerJoGL.cpp \
+src/jni/PolylineMarkDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineArrowDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/PolylineArrowDrawerJoGL.cpp \
+src/jni/PolylineArrowDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineBarDrawerJoGL.cpp \
+src/cpp/polylineDrawing/BarDecomposition.cpp \
+src/cpp/polylineDrawing/PolylineBarDrawerJavaMapper.cpp \
+src/jni/PolylineBarDrawerGL.cpp \
+src/cpp/polylineDrawing/PolylineInterpColorDrawerJavaMapper.cpp \
+src/cpp/polylineDrawing/PolylineInterpColorDrawerJoGL.cpp \
+src/jni/PolylineInterpColorDrawerGL.cpp \
+src/cpp/textDrawing/DrawableTextJoGL.cpp \
+src/cpp/textDrawing/DrawableTextBridgeFactory.cpp \
+src/cpp/textDrawing/DrawableTextJavaMapper.cpp \
+src/jni/DrawableTextGL.cpp \
+src/cpp/textDrawing/ConcreteDrawableText.cpp \
+src/cpp/textDrawing/StandardTextDrawerJavaMapper.cpp \
+src/cpp/textDrawing/StandardTextDrawerJoGL.cpp \
+src/jni/StandardTextDrawerGL.cpp \
+src/cpp/textDrawing/TextContentDrawerJoGL.cpp \
+src/cpp/textDrawing/FilledTextDrawerJavaMapper.cpp \
+src/cpp/textDrawing/FilledTextDrawerJoGL.cpp \
+src/jni/FilledTextDrawerGL.cpp \
+src/cpp/textDrawing/CenteredTextDrawerJavaMapper.cpp \
+src/cpp/textDrawing/CenteredTextDrawerJoGL.cpp \
+src/jni/CenteredTextDrawerGL.cpp \
+src/jni/IsoViewCameraGL.cpp \
+src/jni/IsometricCameraGL.cpp \
+src/cpp/subwinDrawing/IsoViewCameraJavaMapper.cpp \
+src/cpp/subwinDrawing/IsometricCameraJavaMapper.cpp \
+src/cpp/subwinDrawing/LinearBoundsComputer.cpp \
+src/cpp/subwinDrawing/ConcreteDrawableSubwin.cpp \
+src/cpp/subwinDrawing/LogarithmicBoundsComputer.cpp \
+src/cpp/polylineDrawing/VerticalBarDecomposition.cpp \
+src/cpp/polylineDrawing/HorizontalBarDecomposition.cpp \
+src/jni/BackTrihedronDrawerGL.cpp \
+src/cpp/subwinDrawing/BackTrihedronDrawerJoGL.cpp \
+src/cpp/subwinDrawing/BackTrihedronDrawerJavaMapper.cpp \
+src/jni/FullBoxDrawerGL.cpp \
+src/jni/HalfBoxDrawerGL.cpp \
+src/cpp/subwinDrawing/HalfBoxDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/HalfBoxDrawerJoGL.cpp \
+src/cpp/subwinDrawing/FullBoxDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/FullBoxDrawerJoGL.cpp \
+src/cpp/subwinDrawing/UserDefinedTicksComputer.cpp \
+src/cpp/subwinDrawing/TicksDrawer.cpp \
+src/cpp/subwinDrawing/TicksDrawerFactory.cpp \
+src/cpp/subwinDrawing/TicksDrawerJoGL.cpp \
+src/cpp/BasicAlgos.cpp \
+src/cpp/subwinDrawing/AutomaticTicksComputer.cpp \
+src/jni/GraphicSynchronizerJava.cpp \
+src/cpp/subwinDrawing/UserDefLogTicksComputer.cpp \
+src/cpp/subwinDrawing/AutoLogTicksComputer.cpp \
+src/cpp/subwinDrawing/GridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/YGridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/GridDrawer.cpp \
+src/cpp/subwinDrawing/XGridDrawerJoGL.cpp \
+src/cpp/subwinDrawing/ZGridDrawerJoGL.cpp \
+src/cpp/labelDrawing/LabelPositioner.cpp \
+src/cpp/surfaceDrawing/ConcreteDrawableSurface.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceJavaMapper.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceJoGL.cpp \
+src/cpp/surfaceDrawing/SurfaceFacetDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceFacetDrawerJoGL.cpp \
+src/cpp/surfaceDrawing/SurfaceLineDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceLineDrawerJoGL.cpp \
+src/cpp/surfaceDrawing/SurfaceMarkDrawerJavaMapper.cpp \
+src/cpp/surfaceDrawing/SurfaceMarkDrawerJoGL.cpp \
+src/cpp/surfaceDrawing/DrawableSurfaceBridgeFactory.cpp \
+src/jni/DrawableSurfaceGL.cpp \
+src/jni/SurfaceFacetDrawerGL.cpp \
+src/jni/SurfaceLineDrawerGL.cpp \
+src/jni/SurfaceMarkDrawerGL.cpp \
+src/jni/DrawableSegsGL.cpp \
+src/jni/SegsArrowDrawerGL.cpp \
+src/jni/SegsLineDrawerGL.cpp \
+src/jni/SegsMarkDrawerGL.cpp \
+src/cpp/segsDrawing/ChampDecomposer.cpp \
+src/cpp/segsDrawing/ConcreteDrawableSegs.cpp \
+src/cpp/segsDrawing/DrawableSegsBridgeFactory.cpp \
+src/cpp/segsDrawing/DrawableSegsJavaMapper.cpp \
+src/cpp/segsDrawing/DrawableSegsJoGL.cpp \
+src/cpp/segsDrawing/SegsArrowDrawerJavaMapper.cpp \
+src/cpp/segsDrawing/SegsArrowDrawerJoGL.cpp \
+src/cpp/segsDrawing/SegsDecomposer.cpp \
+src/cpp/segsDrawing/SegsLineDrawerJavaMapper.cpp \
+src/cpp/segsDrawing/SegsLineDrawerJoGL.cpp \
+src/cpp/segsDrawing/SegsMarkDrawerJavaMapper.cpp \
+src/cpp/segsDrawing/SegsMarkDrawerJoGL.cpp \
+src/jni/DrawableGrayplotGL.cpp \
+src/cpp/grayplotDrawing/ConcreteDrawableGrayplot.cpp \
+src/cpp/grayplotDrawing/DrawabelGrayplotJavaMapper.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplotBridgeFactory.cpp \
+src/cpp/grayplotDrawing/DrawableGrayplotJoGL.cpp \
+src/cpp/grayplotDrawing/GrayplotDecomposer.cpp \
+src/cpp/grayplotDrawing/MatplotDecomposer.cpp \
+src/jni/DrawableFecGL.cpp \
+src/jni/FecLineDrawerGL.cpp \
+src/jni/FecFacetDrawerGL.cpp \
+src/cpp/fecDrawing/ConcreteDrawableFec.cpp \
+src/cpp/fecDrawing/DrawableFecBridgeFactory.cpp \
+src/cpp/fecDrawing/DrawableFecJavaMapper.cpp \
+src/cpp/fecDrawing/DrawableFecJoGL.cpp \
+src/cpp/fecDrawing/FecFacetDrawerJavaMapper.cpp \
+src/cpp/fecDrawing/FecFacetDrawerJoGL.cpp \
+src/cpp/fecDrawing/FecLineDrawerJavaMapper.cpp \
+src/cpp/fecDrawing/FecLineDrawerJoGL.cpp \
+src/jni/DrawableAxesGL.cpp \
+src/cpp/legendDrawing/ConcreteDrawableLegend.cpp \
+src/cpp/axesDrawing/AxesTicksComputer.cpp \
+src/cpp/axesDrawing/ConcreteDrawableAxes.cpp \
+src/cpp/axesDrawing/DrawableAxesBridgeFactory.cpp \
+src/cpp/axesDrawing/DrawableAxesJavaMapper.cpp \
+src/cpp/axesDrawing/DrawableAxesJoGL.cpp \
+src/cpp/segsDrawing/DecomposeSegsStrategy.cpp \
+src/cpp/labelDrawing/TitlePositioner.cpp \
+src/cpp/labelDrawing/XLabelPositioner.cpp \
+src/cpp/labelDrawing/YLabelPositioner.cpp \
+src/cpp/labelDrawing/ZLabelPositioner.cpp \
+src/cpp/axesDrawing/AxesPositioner.cpp \
+src/cpp/axesDrawing/AxesTicksDrawerJoGL.cpp \
+src/cpp/subwinDrawing/BottomXAxisPositioner.cpp \
+src/cpp/subwinDrawing/LeftYAxisPositioner.cpp \
+src/cpp/subwinDrawing/XAxisPositioner.cpp \
+src/cpp/subwinDrawing/YAxisPositioner.cpp \
+src/cpp/subwinDrawing/MiddleXAxisPositioner.cpp \
+src/cpp/subwinDrawing/MiddleYAxisPositioner.cpp \
+src/cpp/subwinDrawing/AxisPositioner.cpp \
+src/cpp/subwinDrawing/TopXAxisPositioner.cpp \
+src/cpp/subwinDrawing/ZAxisPositioner.cpp \
+src/cpp/subwinDrawing/RightYAxisPositioner.cpp \
+src/cpp/subwinDrawing/SubwinAxisPositioner.cpp \
+src/cpp/subwinDrawing/TicksDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/GridDrawerJavaMapper.cpp \
+src/jni/TicksDrawerGL.cpp \
+src/jni/GridDrawerGL.cpp \
+src/jni/RenderingChecker.cpp \
+src/cpp/RendererFontManager.cpp \
+src/jni/XlFontManager.cpp \
+src/cpp/subwinDrawing/AutoLogSubticksComputer.cpp \
+src/cpp/subwinDrawing/AutomaticSubticksComputer.cpp \
+src/cpp/subwinDrawing/UserDefLogSubticksComputer.cpp \
+src/cpp/subwinDrawing/UserDefinedSubticksComputer.cpp \
+src/cpp/axesDrawing/AxesSubticksComputer.cpp \
+src/jni/GiwsException.cpp \
+src/cpp/rendererBasicAlgos.cpp \
+src/jni/SubwinBackgroundDrawerGL.cpp \
+src/cpp/subwinDrawing/SubwinBackgroundDrawerJavaMapper.cpp \
+src/cpp/subwinDrawing/SubwinBackgroundDrawerJoGL.cpp
 
 
 # List of the gateway c files
-@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
-@GUI_FALSE@libscirenderer_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+GATEWAY_C_SOURCES = sci_gateway/c/gw_renderer.c
 
 # Includes need for the compilation
-@GUI_TRUE@libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-@GUI_TRUE@				-I$(srcdir)/includes/ \
-@GUI_TRUE@				-I$(srcdir)/src/cpp/ \
-@GUI_TRUE@				-I$(srcdir)/src/jni/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/jvm/includes \
-@GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
-@GUI_TRUE@				-I$(top_srcdir)/libs/doublylinkedlist/includes \
-@GUI_TRUE@				-I$(top_srcdir)/modules/output_stream/includes \
-@GUI_TRUE@				-I$(top_srcdir)/modules/graphic_export/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/elementary_functions/includes/ \
-@GUI_TRUE@				-I$(top_srcdir)/modules/gui/includes/
+libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(srcdir)/src/jni/ \
+				-I$(top_srcdir)/modules/jvm/includes \
+				-I$(top_srcdir)/modules/graphics/includes/ \
+				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
+				-I$(top_srcdir)/libs/doublylinkedlist/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/graphic_export/includes/ \
+				-I$(top_srcdir)/modules/elementary_functions/includes/ \
+				-I$(top_srcdir)/modules/gui/includes/
 
-@GUI_TRUE@libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
-
-# All the sources needed by libscirenderer.la
-@GUI_FALSE@libscirenderer_la_SOURCES = src/norenderer/norenderer.c
+libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
-@GUI_TRUE@libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
-@GUI_TRUE@CHECK_SRC = $(GATEWAY_C_SOURCES)
-@GUI_TRUE@INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
+CHECK_SRC = $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 # cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
-@GUI_TRUE@libscirenderer_la_LIBADD = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscirenderer_la_LIBADD = $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # needs the rendererer before $(top_builddir)/modules/jvm/libscijvm.la
-@GUI_TRUE@GIWS_WRAPPERS = src/jni/ArcFillDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/ArcLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/BackTrihedronDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/CenteredTextDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableArcGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableAxesGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableFecGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableFigureGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableGrayplotGL.giws.xml \
-@GUI_TRUE@src/jni/DrawablePolylineGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableRectangleGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableSegsGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableSubwinGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableSurfaceGL.giws.xml \
-@GUI_TRUE@src/jni/DrawableTextGL.giws.xml \
-@GUI_TRUE@src/jni/FecFacetDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/FecLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/FilledTextDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/FullBoxDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/GraphicSynchronizerJava.giws.xml \
-@GUI_TRUE@src/jni/HalfBoxDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/IsometricCameraGL.giws.xml \
-@GUI_TRUE@src/jni/IsoViewCameraGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineArrrowDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineBarDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineFillDrawer.giws.xml \
-@GUI_TRUE@src/jni/PolylineInterpColorDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/PolylineMarkdrawerGL.giws.xml \
-@GUI_TRUE@src/jni/RectangleFillDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/RectangleLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/RectangleMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SegsArrowDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SegsLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SegsMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/StandardTextDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceFacetDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceLineDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/SurfaceMarkDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/TicksDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/GridDrawerGL.giws.xml \
-@GUI_TRUE@src/jni/RenderingChecker.giws.xml \
-@GUI_TRUE@src/jni/XlFontManager.giws.xml \
-@GUI_TRUE@src/jni/SubwinBackgroundDrawerGL.giws.xml
+GIWS_WRAPPERS = src/jni/ArcFillDrawerGL.giws.xml \
+src/jni/ArcLineDrawerGL.giws.xml \
+src/jni/BackTrihedronDrawerGL.giws.xml \
+src/jni/CenteredTextDrawerGL.giws.xml \
+src/jni/DrawableArcGL.giws.xml \
+src/jni/DrawableAxesGL.giws.xml \
+src/jni/DrawableFecGL.giws.xml \
+src/jni/DrawableFigureGL.giws.xml \
+src/jni/DrawableGrayplotGL.giws.xml \
+src/jni/DrawablePolylineGL.giws.xml \
+src/jni/DrawableRectangleGL.giws.xml \
+src/jni/DrawableSegsGL.giws.xml \
+src/jni/DrawableSubwinGL.giws.xml \
+src/jni/DrawableSurfaceGL.giws.xml \
+src/jni/DrawableTextGL.giws.xml \
+src/jni/FecFacetDrawerGL.giws.xml \
+src/jni/FecLineDrawerGL.giws.xml \
+src/jni/FilledTextDrawerGL.giws.xml \
+src/jni/FullBoxDrawerGL.giws.xml \
+src/jni/GraphicSynchronizerJava.giws.xml \
+src/jni/HalfBoxDrawerGL.giws.xml \
+src/jni/IsometricCameraGL.giws.xml \
+src/jni/IsoViewCameraGL.giws.xml \
+src/jni/PolylineArrrowDrawerGL.giws.xml \
+src/jni/PolylineBarDrawerGL.giws.xml \
+src/jni/PolylineFillDrawer.giws.xml \
+src/jni/PolylineInterpColorDrawerGL.giws.xml \
+src/jni/PolylineLineDrawerGL.giws.xml \
+src/jni/PolylineMarkdrawerGL.giws.xml \
+src/jni/RectangleFillDrawerGL.giws.xml \
+src/jni/RectangleLineDrawerGL.giws.xml \
+src/jni/RectangleMarkDrawerGL.giws.xml \
+src/jni/SegsArrowDrawerGL.giws.xml \
+src/jni/SegsLineDrawerGL.giws.xml \
+src/jni/SegsMarkDrawerGL.giws.xml \
+src/jni/StandardTextDrawerGL.giws.xml \
+src/jni/SurfaceFacetDrawerGL.giws.xml \
+src/jni/SurfaceLineDrawerGL.giws.xml \
+src/jni/SurfaceMarkDrawerGL.giws.xml \
+src/jni/TicksDrawerGL.giws.xml \
+src/jni/GridDrawerGL.giws.xml \
+src/jni/RenderingChecker.giws.xml \
+src/jni/XlFontManager.giws.xml \
+src/jni/SubwinBackgroundDrawerGL.giws.xml
 
 
 # Provides macros compilation, Java compilation, cleaning
 # If you want Makefile to call ant, added USEANT=1
-@GUI_TRUE@USEANT = 1
-@GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
+USEANT = 1
+@GIWS_TRUE@BUILT_SOURCES = giws
+
+# All the sources needed by libscirenderer.la
+libscirenderer_disable_la_SOURCES = src/norenderer/norenderer.c
+libscirenderer_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream/includes
+libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscirenderer.la
+pkglib_LTLIBRARIES = libscirenderer-disable.la $(am__append_1)
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Name of the module and the path ######
@@ -1204,7 +978,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1312,8 +1086,10 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscirenderer-disable.la: $(libscirenderer_disable_la_OBJECTS) $(libscirenderer_disable_la_DEPENDENCIES) 
+	$(libscirenderer_disable_la_LINK) -rpath $(pkglibdir) $(libscirenderer_disable_la_OBJECTS) $(libscirenderer_disable_la_LIBADD) $(LIBS)
 libscirenderer.la: $(libscirenderer_la_OBJECTS) $(libscirenderer_la_DEPENDENCIES) 
-	$(libscirenderer_la_LINK) -rpath $(pkglibdir) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
+	$(libscirenderer_la_LINK) $(am_libscirenderer_la_rpath) $(libscirenderer_la_OBJECTS) $(libscirenderer_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -1321,6 +1097,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_disable_la-norenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerGL.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerJavaMapper.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ArcFillDrawerJoGL.Plo@am__quote@
@@ -1574,7 +1351,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-ZLabelPositioner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-getHandleDrawer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-gw_renderer.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-norenderer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscirenderer_la-rendererBasicAlgos.Plo@am__quote@
 
 .c.o:
@@ -1598,12 +1374,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscirenderer_la-norenderer.lo: src/norenderer/norenderer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -MT libscirenderer_la-norenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-norenderer.Tpo -c -o libscirenderer_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirenderer_la-norenderer.Tpo $(DEPDIR)/libscirenderer_la-norenderer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/norenderer/norenderer.c' object='libscirenderer_la-norenderer.lo' libtool=yes @AMDEPBACKSLASH@
+libscirenderer_disable_la-norenderer.lo: src/norenderer/norenderer.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT libscirenderer_disable_la-norenderer.lo -MD -MP -MF $(DEPDIR)/libscirenderer_disable_la-norenderer.Tpo -c -o libscirenderer_disable_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscirenderer_disable_la-norenderer.Tpo $(DEPDIR)/libscirenderer_disable_la-norenderer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/norenderer/norenderer.c' object='libscirenderer_disable_la-norenderer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -c -o libscirenderer_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o libscirenderer_disable_la-norenderer.lo `test -f 'src/norenderer/norenderer.c' || echo '$(srcdir)/'`src/norenderer/norenderer.c
 
 libscirenderer_la-FigureScilabCall_wrap.lo: src/jni/FigureScilabCall_wrap.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscirenderer_la_CPPFLAGS) $(CPPFLAGS) $(libscirenderer_la_CFLAGS) $(CFLAGS) -MT libscirenderer_la-FigureScilabCall_wrap.lo -MD -MP -MF $(DEPDIR)/libscirenderer_la-FigureScilabCall_wrap.Tpo -c -o libscirenderer_la-FigureScilabCall_wrap.lo `test -f 'src/jni/FigureScilabCall_wrap.c' || echo '$(srcdir)/'`src/jni/FigureScilabCall_wrap.c

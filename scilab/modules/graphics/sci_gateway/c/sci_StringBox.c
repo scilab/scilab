@@ -19,13 +19,12 @@
 #include "Scierror.h"
 #include "stack-c.h"
 #include "GetProperty.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "StringBox.h"
 #include "localization.h"
 #include "axesScale.h"
 #include "getPropertyAssignedValue.h"
 #include "CurrentObjectsManagement.h"
+#include "HandleManagement.h"
 
 #define DEFAULT_ANGLE 0.0
 
@@ -184,6 +183,7 @@ int sci_stringbox( char * fname, unsigned long fname_len )
   *stk( stackPointer + 7 )  = corners[2][1] ;
 
   LhsVar( 1 ) = Rhs + 1 ;
+	C2F(putlhsvar)();
   return 0;
 }
 

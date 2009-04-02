@@ -53,7 +53,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/erfc_equation1.mml" />
+          <imagedata align="center" fileref="../mml/erfc_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

@@ -17,11 +17,6 @@
 /*------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "sci_draw.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
-#include "DrawObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "HandleManagement.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
@@ -66,7 +61,6 @@ int sci_draw( char * fname, unsigned long fname_len )
       if (drawnObjects[i] == NULL) {
         FREE(drawnObjects);
         Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
-        LhsVar(1) = 0;
         return 0;
       }
     }
@@ -77,6 +71,7 @@ int sci_draw( char * fname, unsigned long fname_len )
   }
 
   LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

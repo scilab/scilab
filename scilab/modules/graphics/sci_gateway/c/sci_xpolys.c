@@ -20,10 +20,7 @@
 #include "stack-c.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
@@ -46,6 +43,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   {
     /* dimension 0, 0 polyline to draw */
     LhsVar(1)=0 ;
+		C2F(putlhsvar)();
     return 0 ;
   }
 
@@ -79,6 +77,7 @@ int sci_xpolys(char *fname,unsigned long fname_len)
   sciDrawObjIfRequired(sciGetCurrentObj ());
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 

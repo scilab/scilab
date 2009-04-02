@@ -18,7 +18,6 @@
 
 #include "sci_xload.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xload(char *fname,unsigned long fname_len)
@@ -27,6 +26,7 @@ int sci_xload(char *fname,unsigned long fname_len)
  
   /* call a Scilab function to handle compatibility */
   C2F(callscifun)("xload",(unsigned long) 5);
+	C2F(putlhsvar)();
   return 0;
 }
 

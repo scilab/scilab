@@ -18,8 +18,6 @@
 
 #include "sci_xsetech.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "PloEch.h"
 
@@ -75,7 +73,11 @@ int sci_xsetech(char* fname,unsigned long fname_len)
     CheckRhs(minrhs,maxrhs+nopt) ;
     CheckLhs(minlhs,maxlhs) ;
 
-    if ( get_optionals(fname,opts) == 0) { return 0; }
+    if ( get_optionals(fname,opts) == 0) 
+	{ 
+		/* error */
+		return 0; 
+	}
 
     if ( opts[0].position != -1 )
     {
@@ -101,6 +103,7 @@ int sci_xsetech(char* fname,unsigned long fname_len)
   }
   setscale2d(wrect,arect,frect,logflag);
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 
 }

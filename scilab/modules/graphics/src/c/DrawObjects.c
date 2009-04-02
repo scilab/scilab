@@ -20,34 +20,20 @@
  *    This file contains all functions used to Draw the content of a window.
  *    The main functions is sciDrawObj that draws the objects recursively.
  ------------------------------------------------------------------------/-*/
-#include <math.h>
-
-#include <stdio.h> 
-#include <string.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
 
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
-#include "ObjectStructure.h"
-#include "Axes.h"
-#include "Champ.h"
-#include "StringBox.h"
 #include "PloEch.h"
-#include "axesScale.h"
 #include "sciprint.h"
 #include "CurrentObjectsManagement.h"
-#include "WindowList.h"
 #include "ObjectSelection.h"
-
 #include "math_graphics.h"
 #include "Format.h"
-#include "axesScale.h"
-#include "BasicAlgos.h"
+#include "HandleManagement.h"
+
 
 #include "BuildDrawingObserver.h"
 #include "DrawingBridge.h"
@@ -55,7 +41,7 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
-#include "../../../tclsci/includes/GedManagement.h"
+//#include "../../../tclsci/includes/GedManagement.h"
 
 
 #define		round(a)	(int)(((a)<0.0)?(a)-.5:(a)+.5)

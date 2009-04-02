@@ -21,23 +21,16 @@
 /*--------------------------------------------------------------------------*/
 
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "HandleManagement.h"
-#include "InitObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "CurrentObjectsManagement.h"
 #include "CurrentObjectsManagement.h"
 
-#include "../src/c/getHandleProperty/GetHashTable.h"
-#include "../src/c/getHandleProperty/getHandleProperty.h"
+#include "GetHashTable.h"
 
 #include "localization.h"
 #include "Scierror.h"
 
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
-#include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/
@@ -98,7 +91,8 @@ int sci_get(char *fname,unsigned long fname_len)
 				Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get",2);
 				return FALSE;
 			}
-			LhsVar(1)=Rhs+1;
+			LhsVar(1) = Rhs+1;
+			C2F(putlhsvar)();
 		}
 		else /* tclsci handle: should no more happen */
 		{
@@ -110,7 +104,8 @@ int sci_get(char *fname,unsigned long fname_len)
 	case sci_handles: /* scalar argument (hdl + string) */
 		CheckRhs(2,2);
 		GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&m1,&n1,&l1);
-		if (m1!=1||n1!=1) { 
+		if (m1!=1||n1!=1) 
+		{ 
 			lw = 1 + Top - Rhs;
 			C2F(overload)(&lw,"get",3);
 			return 0;
@@ -135,10 +130,13 @@ int sci_get(char *fname,unsigned long fname_len)
 	/* cstk(l2) est la commande, l3 l'indice sur les parametres de la commande */
 	CheckLhs(0,1);
 
-	if (hdl == 0) {
+	if (hdl == 0) 
+	{
 		/* No handle specified */
-		if (sciGet(NULL, cstk(l2)) != 0) {
+		if (sciGet(NULL, cstk(l2)) != 0) 
+		{
 			/* An error has occured */
+			C2F(putlhsvar)();
 			return 0;
 		}
 	}
@@ -151,15 +149,20 @@ int sci_get(char *fname,unsigned long fname_len)
 			if (sciGet(pobj, cstk(l2)) != 0)
 			{
 				/* An error has occured */
+				C2F(putlhsvar)();
 				return 0;
 			}
 		}
 		else
 		{
 			Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+			return 0;
 		}
 	}
+
 	LhsVar(1) = Rhs + 1;
+	C2F(putlhsvar)();
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

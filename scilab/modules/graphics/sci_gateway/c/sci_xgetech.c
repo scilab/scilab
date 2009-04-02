@@ -18,8 +18,6 @@
 
 #include "sci_xgetech.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "PloEch.h"
 
 /*--------------------------------------------------------------------------*/
@@ -39,6 +37,7 @@ int sci_xgetech( char *fname, unsigned long fname_len )
 
   getscale2d(W,F,L,A);
 	for ( i = 1 ; i <= Lhs ; i++) { LhsVar(i) = i; }
+	C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

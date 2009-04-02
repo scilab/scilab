@@ -24,17 +24,11 @@
 #include "Scierror.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
-#include "ObjectStructure.h"
 #include "InitObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DrawObjects.h"
-#include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 
-#include "getHandleProperty/SetHashTable.h"
-#include "getHandleProperty/setHandleProperty.h"
-#include "getHandleProperty/SetPropertyStatus.h"
+#include "SetHashTable.h"
+#include "SetPropertyStatus.h"
 
 
 #include "MALLOC.h" /* MALLOC */
@@ -113,7 +107,8 @@ int sci_set(char *fname, unsigned long fname_len)
 			if (m1 != 1 || n1 != 1) 
 			{ 
 				lw = 1 + Top - Rhs;
-				C2F(overload)(&lw,"set",3);return 0;
+				C2F(overload)(&lw,"set",3);
+				return 0;
 			}
 
 			hdl = (long)*hstk(l1);
@@ -230,6 +225,7 @@ int sci_set(char *fname, unsigned long fname_len)
 		 {
 			 /* An error occured */
 			 LhsVar(1)=0;
+			 C2F(putlhsvar)();
 			 return 0 ;
 		 }
 
@@ -251,7 +247,8 @@ int sci_set(char *fname, unsigned long fname_len)
 			/* No object specified */
 			sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
 		}
-		LhsVar(1)=0;
+		LhsVar(1) = 0;
+		C2F(putlhsvar)();
 	}
 	return 0;
 }

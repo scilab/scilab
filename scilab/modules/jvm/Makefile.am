@@ -16,9 +16,13 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes/
 
-pkglib_LTLIBRARIES = libscijvm.la
+pkglib_LTLIBRARIES = libscijvm-disable.la
 
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
+if GUI
+pkglib_LTLIBRARIES += libscijvm.la
+endif
+
+libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) -lpthread -ldl $(XML_LIBS)
 
 if IS_MACOSX 
 libscijvm_la_LDFLAGS += -framework JavaVM
@@ -53,8 +57,6 @@ includes/getScilabObject.h \
 includes/loadBackGroundClassPath.h \
 includes/loadOnUseClassPath.h 
 
-if GUI
-
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \
 sci_gateway/c/sci_with_embedded_jre.c \
@@ -84,11 +86,11 @@ src/c/getJvmOptions.c
 
 USEANT=1
 
-else
-
-JVM_C_SOURCES = src/nojvm/nojvm.c
-
-endif
+libscijvm_disable_la_SOURCES = src/nojvm/nojvm.c
+libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/call_scilab/includes \
+			-I$(srcdir)/src/c \
+			-I$(top_srcdir)/modules/output_stream/includes/
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 

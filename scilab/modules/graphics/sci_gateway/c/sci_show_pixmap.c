@@ -17,7 +17,6 @@
 
 #include "sci_show_pixmap.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 
@@ -32,7 +31,8 @@ int sci_show_pixmap(char *fname, unsigned long fname_len )
   /* call show_pixmap function */
   showPixmap(sciGetCurrentFigure());
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -19,7 +19,6 @@
 #include "sci_Legend.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
@@ -30,6 +29,8 @@
 #include "DrawObjects.h"
 #include "Axes.h" /* propertyNameToLegendPlace */
 #include "SetProperty.h" /* sciSetLegendLocation */
+#include "HandleManagement.h"
+
 #define DEF_LEGEND_LOCATION "in_upper_right"
 
 /*--------------------------------------------------------------------------*/
@@ -53,13 +54,16 @@ int sci_Legend( char * fname, unsigned long fname_len )
   
   GetMatrixdims(1,&numrow,&numcol);
   n=numrow*numcol;
-  if (numrow==0 || numcol==0) {
+  if (numrow==0 || numcol==0) 
+  {
     CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numrow,&numcol,&l1);
     LhsVar(1) = Rhs+1;
+	C2F(putlhsvar)();
     return 0;
   }
   GetMatrixdims(2,&m2,&n2);
-  if (m2*n2 != n) {
+  if (m2*n2 != n) 
+  {
     Scierror(999,_("%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"),fname,1,2);
     return 0;
   }
@@ -67,15 +71,18 @@ int sci_Legend( char * fname, unsigned long fname_len )
 
   GetRhsVar(1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&l1); 
   GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Str);
-  if (Rhs==3) {
+  if (Rhs==3) 
+  {
     GetRhsVar(3,STRING_DATATYPE,&m2,&n2,&l2);
     location = propertyNameToLegendPlace(cstk(l2));
-    if (location == SCI_LEGEND_POSITION_UNSPECIFIED) {
+    if (location == SCI_LEGEND_POSITION_UNSPECIFIED) 
+	{
       Scierror(999,_("%s: Wrong value for input argument #%d: Incorrect value.\n"),fname,3);
       return 0;
     }
   }
-  else {
+  else 
+  {
     location = propertyNameToLegendPlace(DEF_LEGEND_LOCATION);
   }
 
@@ -96,20 +103,23 @@ int sci_Legend( char * fname, unsigned long fname_len )
   {
     handelsvalue = (unsigned long) (hstk(l1))[n-1-i];
 
-    if (psubwin!=sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) )) {
+    if (psubwin!=sciGetParentSubwin( sciGetPointerFromHandle(handelsvalue) )) 
+	{
       Scierror(999,_("%s: Objects must have the same axes.\n"),fname);
       return 0;
     }
 
     pobj = sciGetPointerFromHandle(handelsvalue);
-    if (pobj == NULL) {
+    if (pobj == NULL) 
+	{
       freeArrayOfString(Str,n);
       FREE(tabofhandles);
       Scierror(999,_("%s: The handle is no more valid.\n"),fname);
       return 0;
     }
     type=sciGetEntityType(pobj);
-    if (type != SCI_POLYLINE) {
+    if (type != SCI_POLYLINE) 
+	{
       freeArrayOfString(Str,n);
       FREE(tabofhandles);
       Scierror(999,_("%s: The %d th handle is not a polyline handle.\n"),fname,i+1);
@@ -119,25 +129,26 @@ int sci_Legend( char * fname, unsigned long fname_len )
     
   }
 
-	/* Create the legend */
-	legend = ConstructLegend (psubwin, Str, tabofhandles, n);
-	sciSetLegendLocation(legend, location);
+  /* Create the legend */
+  legend = ConstructLegend (psubwin, Str, tabofhandles, n);
+  sciSetLegendLocation(legend, location);
 
-	/* Draw it */
+  /* Draw it */
   sciSetCurrentObj(legend);
-	startFigureDataReading(pFigure);
+  startFigureDataReading(pFigure);
   sciDrawObjIfRequired(legend);
   endFigureDataReading(pFigure);
 
   freeArrayOfString(Str,n);
   FREE(tabofhandles);
 
-	/* Return the handle of the newly create dlegend */
+  /* Return the handle of the newly create dlegend */
   numrow = 1;
   numcol = 1;
   CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
   LhsVar(1) = Rhs+1;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -229,7 +229,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/leastsq_equation_1.mml" />
+          <imagedata align="center" fileref="../mml/leastsq_equation_1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

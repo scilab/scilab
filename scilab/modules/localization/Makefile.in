@@ -60,7 +60,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 @NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c
-@IS_MACOSX_TRUE@am__append_2 = -lintl
+@IS_MACOSX_TRUE@am__append_2 = -lintl -lintl
 DIST_COMMON = $(libscilocalization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
@@ -281,6 +281,7 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
+WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
@@ -343,6 +344,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
@@ -366,7 +368,7 @@ libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 
 pkglib_LTLIBRARIES = libscilocalization.la
 libscilocalization_la_LDFLAGS = -version-info \
-	$(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(am__append_2)
+	$(SCILAB_LIBRARY_VERSION) $(am__append_2)
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)

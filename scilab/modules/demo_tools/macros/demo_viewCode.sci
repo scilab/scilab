@@ -22,4 +22,11 @@ function demo_viewCode(this_script)
 	                  "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
 	                  "callback"        , "scipad("""+path+""")" );
 	
+	if getos()=="Darwin" then // Patch because MacOSX native menubar can not display "button menus"
+	  uimenu( "parent"          , my_menu                       , ..
+	      "label"           , gettext(" -- View Code -- ") , ..
+	      "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
+	      "callback"        , "scipad("""+path+""")" );
+	end
+	
 endfunction

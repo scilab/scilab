@@ -18,10 +18,6 @@
 
 #include "sci_xfpoly.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "SetProperty.h"
-#include "ObjectStructure.h"
 #include "DrawObjects.h"
 #include "sciCall.h"
 #include "GetProperty.h"
@@ -64,6 +60,7 @@ int sci_xfpoly(char *fname,unsigned long fname_len)
   sciDrawObjIfRequired(sciGetCurrentObj ());
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 
 }

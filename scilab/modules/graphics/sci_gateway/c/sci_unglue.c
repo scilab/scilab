@@ -18,13 +18,11 @@
 
 #include "sci_unglue.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "ObjectStructure.h"
 #include "GetProperty.h"
 #include "DestroyObjects.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_unglue(char *fname,unsigned long fname_len)
 { 
@@ -67,6 +65,7 @@ int sci_unglue(char *fname,unsigned long fname_len)
       i++;
     }
     LhsVar(1) = Rhs+1;
+		C2F(putlhsvar)();
     sciUnCompound ((sciPointObj *)pobj);
   }
   else

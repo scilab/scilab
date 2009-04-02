@@ -17,9 +17,8 @@
 /* desc : function to retrieve in Scilab the pixel_drawing_mode field of  */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include "localization.h"
+
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "pixel_mode.h"
 #include "returnProperty.h"

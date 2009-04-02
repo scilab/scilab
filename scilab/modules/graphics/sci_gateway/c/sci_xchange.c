@@ -18,11 +18,7 @@
 
 #include "sci_xchange.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "PloEch.h"
-#include "GetProperty.h"
-#include "axesScale.h"
 
 #define VIEWING_RECT_SIZE 4
 
@@ -95,6 +91,7 @@ int sci_xchange( char * fname, unsigned long fname_len )
   LhsVar(1)=Rhs+1;
   LhsVar(2)=Rhs+2;
   LhsVar(3)=Rhs+3;
+	C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -945,7 +945,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1016,7 +1016,7 @@ AC_PCRE()
 ## Tcl/Tk library
 #################
 
-WITH_TKSCI=0
+WITH_TKSCI=no
 if test "$with_tk" != no; then
 
 	# check user arguments
@@ -1059,7 +1059,7 @@ if test "$with_tk" != no; then
 	AC_CHECK_TCLTK
 
 	# set variables
-	if test $WITH_TKSCI = 1; then
+	if test "$WITH_TKSCI" = yes; then
 		AC_DEFINE([WITH_TK], [], [With TK])
 	else
 		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
@@ -1070,7 +1070,8 @@ if test "$with_tk" != no; then
 	AC_SUBST(TK_INC_PATH)
 
 fi
-AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
+AC_SUBST(WITH_TKSCI)
+AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = yes)
 
 #################
 ## MATIO LIBRARY (MAT File I/O Library)
@@ -1392,19 +1393,19 @@ echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
 echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--with-pvm) ............................. = $with_pvm"
+echo "Use PVM (--without-pvm) .......................... = $with_pvm"
 echo "PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
+echo "Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
 echo "Do not use TCL/TK (--without-tk) ................. = $with_tk"
-echo "Do not compile with Ocaml (--without-ocaml) ...... = $with_ocaml"
 echo "TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
 echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
 echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
 echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
-echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
-echo "Don't use MATIO (--without-matio) ................ = $without_matio"
+echo "Use FFTW (--without-fftw) ........................ = $with_fftw"
+echo "Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then

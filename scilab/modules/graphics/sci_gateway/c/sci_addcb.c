@@ -19,10 +19,8 @@
 
 #include "sci_addcb.h"
 #include "stack-c.h"
-#include "GetProperty.h"
+#include "HandleManagement.h"
 #include "Interaction.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -64,7 +62,10 @@ int sci_addcb(char *fname,unsigned long fname_len)
     Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
     return 0;
   }
-  LhsVar(1)=0;
+
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

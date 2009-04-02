@@ -19,11 +19,8 @@
 #include "sci_xfpolys.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "Scierror.h"
-#include "ObjectStructure.h"
 #include "sciCall.h"
-#include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
@@ -46,7 +43,11 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
   mn2 = m2 * n2;
-  if ( mn2 == 0 ) {  LhsVar(1)=0; return 0; } 
+  if ( mn2 == 0 ) {
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
+		return 0;
+	} 
 
 
   if (Rhs == 3) 
@@ -104,7 +105,8 @@ int sci_xfpolys( char *fname, unsigned long fname_len )
 
   sciDrawObjIfRequired(sciGetCurrentObj ());
  
-  LhsVar(1)=0;  
+  LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;  
 } 
 

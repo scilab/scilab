@@ -17,12 +17,9 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xfarcs.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
 #include "sciCall.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
@@ -79,6 +76,7 @@ int sci_xfarcs( char * fname, unsigned long fname_len )
   sciDrawObj(sciGetCurrentObj());
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 
 }

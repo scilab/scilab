@@ -16,20 +16,15 @@
  *    Graphic library
  *    Graphic subroutines interface
  --------------------------------------------------------------------------*/
-#include <math.h>
-#include <stdio.h>
-#include <string.h>
 
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "InitObjects.h"
 #include "BasicAlgos.h"
 #include "math_graphics.h"
 #include "PloEch.h"
 #include "Axes.h"
-#include "Scierror.h"
 #include "Fec.h"
 #include "GrayPlot.h"
 #include "CurrentObjectsManagement.h"
@@ -40,6 +35,7 @@
 #include "sciCall.h"
 #include "DrawingBridge.h"
 #include "Plot2d.h"
+#include "HandleManagement.h"
 
 /**
  * Put min and max of vector in dMin and dMax.

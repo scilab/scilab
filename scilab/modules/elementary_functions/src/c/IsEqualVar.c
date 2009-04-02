@@ -18,7 +18,7 @@
  --------------------------------------------------------------------------*/
 
 #include "IsEqualVar.h"
-
+#include "Scierror.h"
 
 /**intisequalvar
  * Gateway for isequalbitwise and isequal builtins

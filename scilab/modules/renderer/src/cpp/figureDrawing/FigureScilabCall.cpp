@@ -24,6 +24,7 @@ extern "C"
 #include "Interaction.h"
 #include "Axes.h"
 #include "axesScale.h"
+#include "HandleManagement.h"
 }
 
 /*--------------------------------------------------------------------------*/

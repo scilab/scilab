@@ -21,9 +21,6 @@
 #include "DefaultCommandArg.h"
 #include "sci_demo.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DestroyObjects.h"
-#include "GetProperty.h"
 #include "sciCall.h"
 #include "stack-c.h"
 #include "localization.h"
@@ -55,7 +52,11 @@ int sci_matplot(char *fname,unsigned long fname_len)
   }
   CheckRhs(1,5);
 
-  if ( get_optionals(fname,opts) == 0 ) { return 0 ; }
+  if ( get_optionals(fname,opts) == 0 ) 
+  {
+	  C2F(putlhsvar)();
+	  return 0 ; 
+  }
   if ( FirstOpt() < 2)
   {
     Scierror(999,_("%s: Misplaced optional argument: #%d must be at position %d.\n"),
@@ -63,7 +64,13 @@ int sci_matplot(char *fname,unsigned long fname_len)
     return(0);
   }
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
-  if (m1 * n1 == 0) {  LhsVar(1)=0; return 0;} 
+  if (m1 * n1 == 0) 
+  {  
+	  LhsVar(1) = 0;
+	  C2F(putlhsvar)();
+	  return 0;
+  }
+
   GetStrf(fname,2,opts,&strf);
   GetRect(fname,3,opts,&rect);
   GetNax(4,opts,&nax,&flagNax);
@@ -96,7 +103,8 @@ int sci_matplot(char *fname,unsigned long fname_len)
   Objmatplot( stk(l1), &m1, &n1, strf, rect, nax, flagNax ) ;
 
   /* NG end */
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

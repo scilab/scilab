@@ -22,21 +22,9 @@
  *    objects.
  --------------------------------------------------------------------------*/
 
-#include <stdio.h> 
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
 #include "GetProperty.h"
-#include "BuildObjects.h"
-#include "SetProperty.h"
-#include "WindowList.h"
 #include "Scierror.h"
-#include "PloEch.h"
 #include "InitObjects.h"
-#include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "GetJavaProperty.h"
@@ -44,6 +32,7 @@
 #include "localization.h"
 #include "Axes.h"
 #include "stack-c.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 

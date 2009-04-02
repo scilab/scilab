@@ -17,12 +17,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xgrid.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "stack-c.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
-#include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 
@@ -38,6 +34,8 @@ int sci_xgrid(char *fname,unsigned long fname_len)
     style = (int)  *stk(l1);
   }
   LhsVar(1)=0;
+	C2F(putlhsvar)();
+
   status = sciSetGridStyle( sciGetCurrentSubWin(), style, style, style ) ;
   if ( status == 0 )
   {

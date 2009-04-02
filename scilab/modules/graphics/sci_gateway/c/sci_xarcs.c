@@ -18,8 +18,6 @@
 #include "stack-c.h"
 #include "sci_xarcs.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "SetProperty.h"
 #include "GetProperty.h"
 #include "sciCall.h"
 #include "CurrentObjectsManagement.h"
@@ -98,6 +96,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
 
   /* NG end */
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

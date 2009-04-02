@@ -17,8 +17,6 @@
 
 #ifndef __SCIMATH_H__
 #define __SCIMATH_H__
-#include <limits.h>
-#include <math.h>
 #include <stdlib.h>
 #include "BOOL.h"
 #include "core_math.h"

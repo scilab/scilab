@@ -20,8 +20,6 @@
 
 #include "sci_xrect.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"
@@ -114,6 +112,7 @@ int sci_xrect( char *fname, unsigned long fname_len )
   if ( hdl > 0 )
   {
     LhsVar(1)=0;
+		C2F(putlhsvar)();
   }
   return 0;
 } 

@@ -23,6 +23,7 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
 int get_y_label_property( sciPointObj * pobj )

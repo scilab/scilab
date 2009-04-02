@@ -16,16 +16,12 @@
 /* desc : interface for xpoly routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "sci_xpoly.h"
 #include "stack-c.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"
@@ -100,6 +96,7 @@ int sci_xpoly( char * fname, unsigned long fname_len )
 
   /* NG end */
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 

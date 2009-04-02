@@ -19,10 +19,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
+#include "HandleManagement.h"
 #include "returnProperty.h"
-#include "DrawObjects.h"
-#include "BuildObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "Scierror.h"
 #include "localization.h"

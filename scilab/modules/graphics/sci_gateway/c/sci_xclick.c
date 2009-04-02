@@ -17,19 +17,14 @@
 /* desc : interface for xclick routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "sci_xclick.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
 #include "CurrentObjectsManagement.h"
-#include "gw_graphics.h"
 #include "CallJxclick.h"
 #include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
 #include "axesScale.h"
-#include "BasicAlgos.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_xclick(char *fname,unsigned long fname_len)
@@ -121,6 +116,8 @@ int sci_xclick(char *fname,unsigned long fname_len)
   }
 
   deleteMenuCallBack(menuCallback);
+
+	C2F(putlhsvar)();
 
   return 0;
 }

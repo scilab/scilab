@@ -23,7 +23,6 @@
 #include "GetProperty.h" /* sciGetNum */
 #include "CurrentObjectsManagement.h" /* sciGetCurrentFigure */
 #include "CallJxgetmouse.h"
-#include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
 #include "axesScale.h"
@@ -146,15 +145,16 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
 
   switch (Lhs) {
   case 1:
+		C2F(putlhsvar)();
     return 0;
   case 2:
-    LhsVar(1) = Rhs+1;
-
     CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE,&m1,&m1,&l2);
     *stk(l2) = windowsID; /* this is the window number */
     LhsVar(2) = Rhs+2;
+		C2F(putlhsvar)();
     return 0;
   }
+	C2F(putlhsvar)();
   return -1 ;
 }
 

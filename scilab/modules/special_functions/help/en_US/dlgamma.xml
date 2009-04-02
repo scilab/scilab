@@ -65,7 +65,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/dlgamma_equation1.mml" />
+          <imagedata align="center" fileref="../mml/dlgamma_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -79,8 +79,7 @@
 
     <programlisting role="example">
 dlgamma(0.5)
-
-</programlisting>
+ </programlisting>
   </refsection>
 
   <refsection>

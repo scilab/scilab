@@ -16,18 +16,11 @@
 /* desc : interface for xtitle routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "sci_xtitle.h"
 #include "sci_demo.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "stack-c.h"
 #include "Scierror.h"
-#include "GetProperty.h"
-#include "ObjectStructure.h"
 #include "SetProperty.h"
-#include "DrawObjects.h"
 #include "MALLOC.h"
 #include "CurrentObjectsManagement.h"
 #include "freeArrayOfString.h"
@@ -58,7 +51,11 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   nbLabels = Rhs ;
 
   /* get the given options from the name in opts */
-  if ( !get_optionals(fname,opts) ) return 0;
+  if ( !get_optionals(fname,opts) ) 
+  {
+		/* error */
+	  return 0;
+  }
 
   /* compatibility with previous version in which box was put */
   /* at the fourth position */
@@ -142,6 +139,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   sciDrawObj(pFigure);
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 

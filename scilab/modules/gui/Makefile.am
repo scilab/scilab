@@ -7,7 +7,6 @@
 
 include $(top_srcdir)/Makefile.incl.am
 
-if GUI
 GUI_C_SOURCES = \
 src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
@@ -205,17 +204,23 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/graphic_export/includes/ \
 			-I$(top_srcdir)/modules/string/includes/
 
-else
-libscigui_la_CFLAGS=			-Iincludes/ \
+
+# Without the GUI module 
+libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
-GUI_C_SOURCES = src/nogui/nogui.c
+GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
+libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
+
+pkglib_LTLIBRARIES = libscigui-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigui.la 
 endif
 
-pkglib_LTLIBRARIES = libscigui.la
-
-libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(X_LIBS) $(X_EXTRA_LIBS)
+libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 
