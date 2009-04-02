@@ -31,7 +31,12 @@ case 1
       error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
     end
 
-    addSingleMenu(0, varargin(1));
+    if getos()=="Darwin" then
+      // MACOSX version add a submenu with same name because parent menu can not have a callback
+      addMenuSubMenus(0, varargin(1), varargin(1));
+    else
+      addSingleMenu(0, varargin(1));
+    end
 
   else
     error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
@@ -88,7 +93,12 @@ case 2
       error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 2));
     end
 
-    addSingleMenu(scf(varargin(1)), varargin(2))
+    if getos()=="Darwin" then
+      // MACOSX version add a submenu with same name because parent menu can not have a callback
+      addMenuSubMenus(scf(varargin(1)), varargin(2), varargin(2));
+    else
+      addSingleMenu(scf(varargin(1)), varargin(2))
+    end
 
   else
     error(msprintf(_("%s: Wrong input arguments: %s or %s expected.\n"),"addmenu","(menu_label, action_in_a_list)","(graphic_window_id,menu_label)"));

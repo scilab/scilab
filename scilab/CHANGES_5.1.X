@@ -124,6 +124,8 @@ Bug fixes:
 
 * bug 4073 fixed - mprintf does not display some special characters
 
+* bug 4074 fixed - Scilab now uses native MacOSX menubar.
+
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
 * bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C only)
