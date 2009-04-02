@@ -197,12 +197,16 @@ Bug fixes:
 
 * bug 4302 fixed - Do not build the helptool module when --disable-build-help
 		   is used
+		   
+* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * bug 4311 fixed - rcond(eye()) returns 1 and not eye()
 
 * bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
 
 * bug 4321 fixed - strcat with 3 input parameters crashs if input type parameters are wrong.
+
+* bug 4325 fixed - set("auto_clear","off") crashes Scilab.
 
 
                Changes between version 5.0.X and 5.1 of Scilab
@@ -688,8 +692,6 @@ Bug fixes:
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
-
-* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * Side effect in the setenvc function.
 
