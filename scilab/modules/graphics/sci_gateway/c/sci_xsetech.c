@@ -77,7 +77,7 @@ int sci_xsetech(char* fname,unsigned long fname_len)
 
     if ( get_optionals(fname,opts) == 0) 
 	{ 
-		C2F(putlhsvar)();
+		/* error */
 		return 0; 
 	}
 
