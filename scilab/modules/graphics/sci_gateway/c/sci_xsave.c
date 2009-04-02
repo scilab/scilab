@@ -30,6 +30,7 @@ int sci_xsave( char * fname, unsigned long fname_len )
  
   /* call a scilab macro */
   C2F(callscifun)("xsave",(unsigned long) 6);
+	C2F(putlhsvar)();
   return 0;
 
 }

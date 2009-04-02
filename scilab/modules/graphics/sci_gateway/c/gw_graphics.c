@@ -113,7 +113,6 @@ int gw_graphics(void)
 			loadedDep = TRUE;
 		}
 		callFunctionFromGatewayWithExceptions(Tab);
-		C2F(putlhsvar)();
 	}
 	else
 	{

@@ -51,7 +51,6 @@ int sci_unzoom(char *fname,unsigned long fname_len)
     if (zoomedObjects == NULL)
     {
       Scierror(999, _("%s: No more memory.\n"),fname);
-      LhsVar(1)=0; 
       return -1;
     }
 
@@ -64,7 +63,6 @@ int sci_unzoom(char *fname,unsigned long fname_len)
       {
         FREE(zoomedObjects);
         Scierror(999, _("%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"),fname);
-        LhsVar(1)=0; 
         return -1;
       }
     }
@@ -78,6 +76,7 @@ int sci_unzoom(char *fname,unsigned long fname_len)
   
 
   LhsVar(1)=0; 
+	C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

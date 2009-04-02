@@ -2,12 +2,14 @@
                =================================================
 
 
-Improvement:
-============
+Improvements:
+=============
 
-* Catalan localization added (Thanks to Oriol Gonzalez and others)
+* Catalan localization added (Thanks Oriol Gonzalez and others)
 
-* German localization added (Thanks to Armin Mohring and others)
+* German Localization added (Thanks Armin Mohring and others)
+
+* Spanish Localization added (Thanks Federico Vera and others)
 
 Compilation:
 ============
@@ -122,6 +124,8 @@ Bug fixes:
 
 * bug 4073 fixed - mprintf does not display some special characters
 
+* bug 4074 fixed - Scilab now uses native MacOSX menubar.
+
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
 * bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C only)
@@ -193,10 +197,18 @@ Bug fixes:
 
 * bug 4302 fixed - Do not build the helptool module when --disable-build-help
 		   is used
+		   
+* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * bug 4311 fixed - rcond(eye()) returns 1 and not eye()
 
 * bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
+
+* bug 4321 fixed - strcat with 3 input parameters crashs if input type parameters are wrong.
+
+* bug 4325 fixed - set("auto_clear","off") crashes Scilab.
+
+* bug 4326 fixed - move called with an already deleted handle crashes Scilab.
 
 
                Changes between version 5.0.X and 5.1 of Scilab
@@ -682,8 +694,6 @@ Bug fixes:
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
-
-* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * Side effect in the setenvc function.
 
