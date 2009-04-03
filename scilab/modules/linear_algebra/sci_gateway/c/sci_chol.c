@@ -1,7 +1,6 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) ????-2009 - INRIA
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,16 +17,9 @@
 #include "Scierror.h"
 #include "localization.h"
 
-int iRealCholProduct(double *_pdblReal, int _iLeadDim);
-int iComplexCholProduct(doublecomplex *_poIn, int _iLeadDim);
+#include "chol.h"
 
 
-/*--------------------------------------------------------------------------*/
-extern int C2F(dpotrf)();
-extern int C2F(zpotrf)();
-extern int C2F(intdpotrf)(char *fname, unsigned long fname_len);
-extern int C2F(intzpotrf)(char *fname, unsigned long fname_len);
-/*--------------------------------------------------------------------------*/
 int C2F(intchol)(char *fname,unsigned long fname_len)
 {
 	int iCholProductResult = 0;
@@ -119,56 +111,4 @@ int C2F(intchol)(char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int iRealCholProduct(double *_pdblReal, int _iLeadDim)
-{
-	char cOrient = 'U';
-	int iInfo;
-
-	C2F(dpotrf)(&cOrient, &_iLeadDim, _pdblReal, &_iLeadDim, &iInfo);
-	if(iInfo > 0)
-	  {
-	    return iInfo;
-	  }
-
-	if(iInfo == 0 && _iLeadDim > 1)
-	{
-		int iIndex1 = 0, iIndex2 = 0;
-		for(iIndex1 = 0 ; iIndex1 < _iLeadDim ; iIndex1++)
-		{
-			for(iIndex2 = iIndex1 + 1 ; iIndex2 < _iLeadDim ; iIndex2++)
-			{
-				_pdblReal[iIndex2 + iIndex1 * _iLeadDim] = 0;
-			}
-		}
-	}
-
-	return 0;
-}
-
-int iComplexCholProduct(doublecomplex *_poIn, int _iLeadDim)
-{
-	char cOrient = 'U';
-	int iInfo;
-
-	C2F(zpotrf)(&cOrient, &_iLeadDim, _poIn, &_iLeadDim, &iInfo);
-	if(iInfo > 0)
-	  {
-	    return iInfo;
-	  }
-
-	if(iInfo == 0 && _iLeadDim > 1)
-	{
-		int iIndex1 = 0, iIndex2 = 0;
-		for(iIndex1 = 0 ; iIndex1 < _iLeadDim ; iIndex1++)
-		{
-			for(iIndex2 = iIndex1 + 1 ; iIndex2 < _iLeadDim ; iIndex2++)
-			{
-				_poIn[iIndex2 + iIndex1 * _iLeadDim].r = 0;
-				_poIn[iIndex2 + iIndex1 * _iLeadDim].i = 0;
-			}
-		}
-	}
-
-	return 0;
-}
 /*--------------------------------------------------------------------------*/
