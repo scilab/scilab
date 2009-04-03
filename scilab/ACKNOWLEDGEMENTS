@@ -58,8 +58,8 @@ Scilab a better software.
 * Séverin Lemaignan
 	- Advice
 
-* Dan McMahill  
-	- Patches for netBSD
+* Dan McMahill 
+  	- Patches for NetBSD
 
 * Olivier Mehani
 	- Advice
@@ -90,6 +90,9 @@ Scilab a better software.
 	- Bug reports
 	- Bug fixes
 	- Advice
+
+* Federico Vera
+	- Spanish localization
 
 * François Vogel
 	- Scipad

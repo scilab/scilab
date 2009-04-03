@@ -780,7 +780,7 @@ int iArraySum(int *_piArray, int _iStart, int _iEnd)
 	/*Iterative function*/
 	int iIndex = 0;
 	int iVal = 0;
-	for(iIndex = 0 ; iIndex < _iEnd ; iIndex++)
+	for(iIndex = _iStart >= 0 ? _iStart : 0; iIndex < _iEnd ; iIndex++)
 	{
 		iVal += _piArray[iIndex];
 	}
@@ -1535,33 +1535,50 @@ int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalE
 	return 0;
 }
 
-int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType)
+int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pElemType)
 {
-	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
-	int iValType		= *istk(iAddrBase);
-	int iAddrOffset		= iAddrBase + 2;
-	int iAddrItem		= 0;
-
+	int *piBase			= NULL;
+	int *piOffset		= NULL;
+	int *piItem			= NULL;
 	int iIndex			= 0;
-	if(iValType < 0)
+
+	if(_piParentList == NULL)
 	{
-		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iAddrOffset		= iAddrBase + 2;
-		iValType		= *istk(iAddrBase);
+		int iAddrBase	=	iadr(*Lstk(Top - Rhs + _iVar));
+		int iValType	= *istk(iAddrBase);
+
+		if(iValType < 0)
+		{
+			iAddrBase		=	iadr(*istk(iAddrBase + 1));
+			iValType		= *istk(iAddrBase);
+		}
+
+		piBase				= istk(iAddrBase);
+		piOffset			= piBase + 2;
+	}
+	else
+	{
+		if(IsKindOfList(_piParentList))
+		{
+			piBase			= _piParentList;
+			piOffset		= _piParentList + 2;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 
-	*_piItemNumber		= *istk(iAddrBase + 1);
+	*_piItemNumber		= piBase[1];
 
 	if(_pElemType == NULL)
 		return 0;
 
-
 	//Warning : variable starts at a even ( pair ) address, so if the size is odd, we add 1 to have a even address.
-	iAddrItem			= iAddrOffset + *_piItemNumber + 1 + !(*_piItemNumber % 2);
+	piItem		= piOffset + (1 + *_piItemNumber + !(*_piItemNumber % 2));
 	for(iIndex = 0 ; iIndex < *_piItemNumber ; iIndex++)
 	{
-		_pElemType[iIndex] = *istk(iAddrItem);
-		iAddrItem	+= (*istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex)) * 2;
+		_pElemType[iIndex] = piItem[(piOffset[iIndex] - 1) * 2]; //-/+ 1
 	}
 	return 0;
 }
@@ -1584,7 +1601,7 @@ int* iGetAddressFromItemPos(int *_piParent, int _iItemPos)
 		iAddrItem	+= (*istk(iAddrOffset + _iItemNumber) - *istk(iAddrOffset + _iItemNumber - 1)) * 2;
 */
 //	iAddrItem	+= (piOffset[_iItemPos - 1] - 1) * (sizeof(double) / sizeof(int));
-	piAddrItem	+= (piOffset[_iItemPos - 1] - 1) * (sizeof(double) / sizeof(int));
+	piAddrItem	+= (piOffset[_iItemPos] - 1) * (sizeof(double) / sizeof(int));
 
 	return piAddrItem;
 }
@@ -1611,6 +1628,50 @@ int iGetAddressFromItemNumber(int _iVar, int _iItemNumber)
 	iAddrItem	+= (piOffset[_iItemNumber - 1] - 1) * (sizeof(double) / sizeof(int));
 
 	return iAddrItem;
+}
+
+int* iGetListItemPointerFromItemNumber(int _iVar, int* _piParentList, int _iItemNumber)
+{
+	int *pItemAddr = _piParentList;
+	int iItemCount	= 0;
+	int *piOffset		= NULL;
+	int *piItem			= NULL;
+
+	if(pItemAddr == NULL)
+	{//parent is the current list
+		int iAddrBase	=	iadr(*Lstk(Top - Rhs + _iVar));
+		int iValType	= *istk(iAddrBase);
+
+		if(iValType < 0)
+		{
+			iAddrBase		=	iadr(*istk(iAddrBase + 1));
+			iValType		= *istk(iAddrBase);
+		}
+
+		pItemAddr	= istk(iAddrBase);
+	}
+
+	if(!IsKindOfList(pItemAddr))
+	{
+		return 0;
+	}
+
+	iItemCount	= pItemAddr[1];
+	piOffset		= pItemAddr + 2;
+
+	if(_iItemNumber > iItemCount)
+		return 0;
+
+	piItem			= piOffset + iItemCount + 1 + !(iItemCount % 2);
+/*
+	for(iIndex = 0 ; iIndex < _iItemNumber ; iIndex++)
+		iAddrItem	+= (*istk(iAddrOffset + _iItemNumber) - *istk(iAddrOffset + _iItemNumber - 1)) * 2;
+*/
+	//_pElemType[iIndex] = piItem[(piOffset[iIndex] - 1) * 2]
+	//iAddrItem	+= (piOffset[_iItemNumber - 1] - 1) * (sizeof(double) / sizeof(int));
+	piItem += (piOffset[_iItemNumber] - 1) * 2;
+
+	return piItem;
 }
 
 int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, double **_pdblReal, double **_pdblImg)
@@ -1666,6 +1727,72 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 	code2str(&_pszData, (int*) cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
 	return 0;
 }
+
+//Get SubList reference
+int* iGetListItemList(int _iVar, int* _piParentList, int _iItemPos)
+{
+	int iIndex			= 0;
+	int *piChild		= NULL;
+
+	int *piItemPos		= 0;
+
+	if(_piParentList == NULL)
+	{//parent is the current list
+		int iAddrBase	=	iadr(*Lstk(Top - Rhs + _iVar));
+		int iValType	= *istk(iAddrBase);
+
+		if(iValType < 0)
+		{
+			iAddrBase		=	iadr(*istk(iAddrBase + 1));
+			iValType		= *istk(iAddrBase);
+		}
+
+		_piParentList	= istk(iAddrBase);
+	}
+
+	if(!IsKindOfList(_piParentList))
+	{
+		return 0;
+	}
+
+	if(_iItemPos == 0)
+	{
+		piChild = _piParentList;
+	}
+	else
+	{
+		piChild = iGetAddressFromItemPos(_piParentList, _iItemPos);
+	}
+
+	if(!IsKindOfList(piChild))
+		return NULL;
+	return piChild;
+}
+
+//Get SubItem String
+int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData)
+{
+	int *piString = NULL;
+	int* piItemAdd = iGetListItemPointerFromItemNumber(_iVar, _piParentList, _iItemNumber);
+
+	if(piItemAdd == NULL)
+	{
+		return 1;
+	}
+
+	iGetStringFromPointer(piItemAdd, _piRows, _piCols, _piLen, &piString);
+
+	if(_piLen == NULL || _pszData == NULL)
+	{
+		return 0;
+	}
+
+	code2str(&_pszData, piString, iArraySum(_piLen, 0, *_piRows * *_piCols));
+	{
+		return 0;
+	}
+}
+
 
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg)
@@ -1799,6 +1926,29 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	*_piString			= cadr(iAddrData);
 	return 0;
 }
+
+int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen, int** _piString)
+{
+	int iIndex			= 0;
+	int *piOffset		= NULL;
+
+	*_piRows				= _piAddr[1];
+	*_piCols				= _piAddr[2];
+
+
+	if(_piLen == NULL)
+		return 0;
+
+	piOffset			= _piAddr + 4;
+
+	/*Get all offest*/
+	for(iIndex = 0 ; iIndex < *_piRows * *_piCols; iIndex++)
+		_piLen[iIndex] = piOffset[iIndex + 1] - piOffset[iIndex];
+
+	*_piString			= _piAddr + (5 + (*_piRows) * (*_piCols));
+	return 0;
+}
+
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 	int iIndex = 0;

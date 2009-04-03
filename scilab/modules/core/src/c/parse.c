@@ -27,6 +27,7 @@
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "mode_exec.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk

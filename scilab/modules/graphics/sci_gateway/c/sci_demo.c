@@ -68,5 +68,6 @@ int sci_demo( char * fname, char * code, BOOL flagx )
 	
 	/* check if an error has occured while running a_function */
 	LhsVar(1) = 0; 
+	C2F(putlhsvar)();
 	return 0;
 }

@@ -83,7 +83,8 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/linear_interpn_equation1.mml" />
+          <imagedata align="center"
+                     fileref="../mml/linear_interpn_equation1.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -96,7 +97,8 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/linear_interpn_equation2.mml" />
+          <imagedata align="center"
+                     fileref="../mml/linear_interpn_equation2.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
@@ -109,7 +111,8 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/linear_interpn_equation3.mml" />
+          <imagedata align="center"
+                     fileref="../mml/linear_interpn_equation3.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>
