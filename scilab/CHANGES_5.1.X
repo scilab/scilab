@@ -1,4 +1,4 @@
-﻿               Changes between version 5.1.0 and 5.1.1 of Scilab
+               Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
 
@@ -111,6 +111,7 @@ It has been reported a numerous number of time:
 
 Bug fixes:
 ==========
+
 * bug 3186 fixed - input is lost when graphics window is closed.
 
 * bug 3587 fixed - gsort is not stable: It does not preserve the relative order 
@@ -131,6 +132,9 @@ Bug fixes:
 * bug 4073 fixed - mprintf does not display some special characters
 
 * bug 4074 fixed - Scilab now uses native MacOSX menubar.
+
+* bug 4099 fixed - Demos mixing gui and plots were not desactivated on plateforms
+                   having usecanvas set to %T.
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
