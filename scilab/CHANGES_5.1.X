@@ -114,6 +114,8 @@ Bug fixes:
 
 * bug 3186 fixed - input is lost when graphics window is closed.
 
+* bug 3240 fixed - msprintf error in plotprofile.
+
 * bug 3587 fixed - gsort is not stable: It does not preserve the relative order 
   	  	   		   of equal values creates problem with function unique.
 
@@ -123,6 +125,8 @@ Bug fixes:
                    variable tables to compile other files
 
 * bug 3945 fixed - Error with the help example of library()
+
+* bug 3962 fixed - incorrect first left hand side argument of pca (one col instead of two)
 
 * bug 4052 fixed - A wrong usage of xmlCleanupParser (libxml2) was causing
                    a seg fault on startup
