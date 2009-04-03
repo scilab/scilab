@@ -61,8 +61,10 @@ bool bParseListItem(int _iVar, int *_piCurrentItem, vector<string> *_pvStructLis
 		if(piItemTypeChild[0] != sci_strings && piItemTypeChild[1] != sci_mlist) //type
 		{
 			sciprint("Invalid tree");
+			FREE(piItemTypeChild);
 			return 1;
 		}
+		FREE(piItemTypeChild);
 
 		/*check tree structure*/
 		if(bIsTreeStructure(_iVar, piChildItem, 1) == false)
@@ -93,6 +95,7 @@ bool bParseListItem(int _iVar, int *_piCurrentItem, vector<string> *_pvStructLis
 			return false;
 		}
 		_pvStructList->push_back(szLabel);
+		FREE(szLabel);
 
 		//get Icon name
 		char *szIcon = NULL;
@@ -109,6 +112,7 @@ bool bParseListItem(int _iVar, int *_piCurrentItem, vector<string> *_pvStructLis
 			return false;
 		}
 		_pvStructList->push_back(szIcon);
+		FREE(szIcon);
 
 		//get callback name
 		char *szCallBack	= NULL;
@@ -125,6 +129,7 @@ bool bParseListItem(int _iVar, int *_piCurrentItem, vector<string> *_pvStructLis
 			return false;
 		}
 		_pvStructList->push_back(szCallBack);
+		FREE(szCallBack);
 
 		bool nRet = bParseListItem(_iVar, piChildItem, _pvStructList, szCurLvl);
 	}
@@ -205,6 +210,8 @@ int iGetNodeInfo(int _iVar, int* _piParentItem, char* _pszInfo, char* _pszValue)
 	{
 		return iRet;
 	}
+
+	FREE(piItemType);
 	return 0;
 }
 
