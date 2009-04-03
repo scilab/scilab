@@ -40,7 +40,12 @@ int sci_xstring( char *fname, unsigned long fname_len )
   CheckScalar(2,m2,n2);
   yi = y = *stk(l2);
   GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&m3,&n3,&Str);
-  if ( m3*n3 == 0 ) { LhsVar(1)=0; return 0;} 
+  if ( m3*n3 == 0 )
+	{
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
+		return 0;
+	} 
 
   if (Rhs >= 4)
   {
@@ -70,6 +75,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
   freeArrayOfString(Str,m3*n3);
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

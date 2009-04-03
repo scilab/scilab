@@ -54,7 +54,8 @@ int sci_champ_G(char *fname,
   CheckRhs(-1,7) ;
   CheckLhs(0,1) ;
 
-  if (Rhs <= 0) {
+  if (Rhs <= 0) 
+  {
     if (strcmp(fname,"champ")==0) 
     {
       sci_demo(fname,"champ(1:10,1:10,rand(10,10),rand(10,10),1.0);", FALSE);
@@ -73,8 +74,7 @@ int sci_champ_G(char *fname,
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 5 )
   {
-    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d\n"),
-      fname,1, 5);
+    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d\n"), fname,1, 5);
     return -1;
   }
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
@@ -87,6 +87,7 @@ int sci_champ_G(char *fname,
   if (m3 * n3 == 0)
   { 
     LhsVar(1) = 0;
+	C2F(putlhsvar)();
     return 0;
   } 
 
@@ -105,7 +106,8 @@ int sci_champ_G(char *fname,
   }
 
   (*func)(stk(l1 ),stk(l2 ),stk(l3 ),stk(l4 ),&m3,&n3,strf,rect, arfact, 4L);
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

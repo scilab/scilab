@@ -32,6 +32,7 @@ int sci_xname(char *fname,unsigned long fname_len)
   sciSetName( sciGetCurrentFigure(), cstk(l1) ) ;
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

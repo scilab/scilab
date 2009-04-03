@@ -96,6 +96,7 @@ int sci_xarcs(char *fname,unsigned long fname_len)
 
   /* NG end */
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

@@ -106,16 +106,9 @@
     sparse vector. Column/row sorting is not implemented for sparse
     matrix.</para>
 
-    <para>Limitation : if <literal>v</literal> includes %nan elements, matrix
-    will not sort. please uses <link linkend="gsort">gsort</link> in this
-    case.</para>
-
-    <para><emphasis role="bold">This algorithm implements a stable sort : The
-    relative order of records with equal values is maintained in
-    <literal>k</literal>. In other words the values of <literal>k</literal>
-    associated with equal values of <literal>v</literal> are ordered. But it
-    is less efficient than <link linkend="gsort">gsort</link>
-    .</emphasis></para>
+    <para><emphasis role="bold">Remark</emphasis> : <literal>sort </literal>is
+    now obsolete it may be replaced by<emphasis role="bold"> <link
+    linkend="gsort">gsort</link> .</emphasis></para>
   </refsection>
 
   <refsection>
