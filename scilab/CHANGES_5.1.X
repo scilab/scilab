@@ -111,6 +111,12 @@ It has been reported a numerous number of time:
 
 Bug fixes:
 ==========
+* bug 3186 fixed - input is lost when graphics window is closed.
+
+* bug 3587 fixed - gsort is not stable: It does not preserve the relative order of equal values
+                    creates problem with function unique.
+
+* bug 3852 fixed - Line wrapping problem in help browser
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -167,6 +173,9 @@ Bug fixes:
 * bug 4231 fixed - graphics exports functions crash (xs2png, xs2svg, ...)
 
 * bug 4235 fixed - error.h renamed
+
+* bug 4245 fixed - The icon of the progressionbar is a java icon.
+                   It should it be a Scilab one instead.
 
 * bug 4249 fixed - filter dos not work with perfect all pass system
 
