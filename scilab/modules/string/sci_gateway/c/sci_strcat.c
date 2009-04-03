@@ -150,7 +150,7 @@ static int sci_strcat_three_rhs(char *fname)
 			{
 				char **Output_String = NULL;
 				int nchars = 0;
-				int one = 0;
+				int one = 1;
 				/* return a column matrix */ 
 				if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 				{

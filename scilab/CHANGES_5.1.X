@@ -235,6 +235,8 @@ Bug fixes:
 
 * bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
 
+* bug 4316 fixed - mfprintf(0,'string') does not redirect stderr as fprintf(0,...)
+
 * bug 4321 fixed - strcat with 3 input parameters crashs if input type 
   	  	   		   parameters are wrong.
 
