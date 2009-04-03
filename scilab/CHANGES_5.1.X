@@ -197,6 +197,10 @@ Bug fixes:
 * bug 4270 fixed - The module tclsci wasn't really desactivated when using
   	  	   		   the option --without-tk
 
+* bug 4274 fixed - Open dialog invoked from Toolbar to select file to open with Scipad 
+                   has wrong "Scilab SCI files" filter instead of "All Scilab files" 
+                   like dialog invoked from File -> Open a file...
+
 * bug 4282 fixed - When doing a symlink of scilab script, when calling this 
   	  	   		   script, it changes the PWD
 
