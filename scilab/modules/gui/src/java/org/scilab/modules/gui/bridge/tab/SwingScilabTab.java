@@ -288,7 +288,7 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @return index of member in ArrayList
      */
     public int addMember(Canvas member) {
-    	int result = contentPane.addMember(member);
+    	int result;
 
     	if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
     		int[] currentView = getViewingRegion();
@@ -307,8 +307,12 @@ public class SwingScilabTab extends View implements SimpleTab {
     		} catch (InvocationTargetException e) {
     			e.getCause().printStackTrace();
     		}
+    		// set the canvas after doing every thing
+    		result = contentPane.addMember(member);
     		// set the same viewport as before
     		setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
+    	} else {
+    		result = contentPane.addMember(member);
     	}
     	return result;
     }

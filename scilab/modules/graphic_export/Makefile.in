@@ -56,10 +56,11 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
+@GUI_TRUE@am__append_1 = libscigraphic_export.la 
 DIST_COMMON = $(libscigraphic_export_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
-@NEED_JAVA_TRUE@am__append_1 = java
+@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/graphic_export
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -130,6 +131,7 @@ libscigraphic_export_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscigraphic_export_la_LDFLAGS) $(LDFLAGS) -o \
 	$@
+@GUI_TRUE@am_libscigraphic_export_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -295,6 +297,7 @@ UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
+WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
@@ -357,6 +360,7 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
+top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
@@ -426,7 +430,7 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
-pkglib_LTLIBRARIES = libscigraphic_export.la libscigraphic_export-disable.la
+pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_1)
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 #### Name of the module and the path ######
@@ -470,7 +474,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1)
+TARGETS_ALL = $(am__append_2)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -581,7 +585,7 @@ clean-pkglibLTLIBRARIES:
 libscigraphic_export-disable.la: $(libscigraphic_export_disable_la_OBJECTS) $(libscigraphic_export_disable_la_DEPENDENCIES) 
 	$(LINK) -rpath $(pkglibdir) $(libscigraphic_export_disable_la_OBJECTS) $(libscigraphic_export_disable_la_LIBADD) $(LIBS)
 libscigraphic_export.la: $(libscigraphic_export_la_OBJECTS) $(libscigraphic_export_la_DEPENDENCIES) 
-	$(libscigraphic_export_la_LINK) -rpath $(pkglibdir) $(libscigraphic_export_la_OBJECTS) $(libscigraphic_export_la_LIBADD) $(LIBS)
+	$(libscigraphic_export_la_LINK) $(am_libscigraphic_export_la_rpath) $(libscigraphic_export_la_OBJECTS) $(libscigraphic_export_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

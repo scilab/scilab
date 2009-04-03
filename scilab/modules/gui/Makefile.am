@@ -213,7 +213,12 @@ GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
 libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
-pkglib_LTLIBRARIES = libscigui.la libscigui-disable.la
+
+pkglib_LTLIBRARIES = libscigui-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigui.la 
+endif
 
 libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 

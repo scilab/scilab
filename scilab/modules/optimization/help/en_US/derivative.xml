@@ -84,7 +84,8 @@
                 <informalequation>
                   <mediaobject>
                     <imageobject>
-                      <imagedata fileref="../mml/derivative_equation_1.mml" />
+                      <imagedata align="center"
+                                 fileref="../mml/derivative_equation_1.mml" />
                     </imageobject>
                   </mediaobject>
                 </informalequation>
@@ -141,7 +142,7 @@
     <informalequation>
       <mediaobject>
         <imageobject>
-          <imagedata fileref="../mml/derivative_equation_2.mml" />
+          <imagedata align="center" fileref="../mml/derivative_equation_2.mml" />
         </imageobject>
       </mediaobject>
     </informalequation>

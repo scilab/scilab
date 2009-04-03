@@ -42,7 +42,7 @@ c
       elseif(n.eq.-1) then
          if(.not.createvar(2,'d', 1, 1, lRCOND)) return
          stk(lRCOND)=1.0d0
-         lhsvar(1) = 1
+         lhsvar(1) = 2
          return
       endif
 
