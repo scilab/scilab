@@ -49,7 +49,7 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	 */
 	public SwingScilabWaitBar() {
 		super();
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
                 setIconImage(scilabIcon.getImage());
 		
         GridBagLayout gridbag = new GridBagLayout();

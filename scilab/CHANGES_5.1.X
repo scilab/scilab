@@ -178,6 +178,9 @@ Bug fixes:
 
 * bug 4235 fixed - error.h renamed
 
+* bug 4238 fixed - waitbar and progressionbar won't close when clicking on the X 
+                   in the upper-right corner of the window.
+
 * bug 4245 fixed - The icon of the progressionbar is a java icon.
                    It should it be a Scilab one instead.
 
