@@ -65,7 +65,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="..\..\lib\abstractSyntaxTree.lib ..\..\lib\parse.lib $(SolutionDir)bin\libxml2.lib $(SolutionDir)bin\LibScilab.lib"
 				OutputFile="$(SolutionDir)bin\Yasp.exe"
 				LinkIncremental="2"
 				GenerateDebugInformation="true"
@@ -143,7 +142,6 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="..\..\lib\abstractSyntaxTree.lib ..\..\lib\parse.lib $(SolutionDir)bin\libxml2.lib $(SolutionDir)bin\LibScilab.lib msvcrt.lib"
 				OutputFile="$(SolutionDir)bin\Yasp.exe"
 				LinkIncremental="2"
 				IgnoreDefaultLibraryNames="libcmtd.lib"
@@ -367,6 +365,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\bin\libxml2.lib"
 			>
 		</File>
 	</Files>
