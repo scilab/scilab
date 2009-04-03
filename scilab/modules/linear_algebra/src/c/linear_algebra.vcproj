@@ -374,7 +374,23 @@
 				>
 			</File>
 			<File
+				RelativePath=".\balanc.c"
+				>
+			</File>
+			<File
+				RelativePath=".\chol.c"
+				>
+			</File>
+			<File
+				RelativePath=".\det.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainLinear_algebra.c"
+				>
+			</File>
+			<File
+				RelativePath=".\eigen.c"
 				>
 			</File>
 			<File
@@ -403,6 +419,10 @@
 			</File>
 			<File
 				RelativePath=".\qr.c"
+				>
+			</File>
+			<File
+				RelativePath=".\rcond.c"
 				>
 			</File>
 			<File
@@ -491,6 +511,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_zheev.c"
+				>
+			</File>
+			<File
+				RelativePath=".\svd.c"
 				>
 			</File>
 		</Filter>
