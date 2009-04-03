@@ -114,6 +114,8 @@ Bug fixes:
 
 * bug 3186 fixed - input is lost when graphics window is closed.
 
+* bug 3240 fixed - msprintf error in plotprofile.
+
 * bug 3587 fixed - gsort is not stable: It does not preserve the relative order 
   	  	   		   of equal values creates problem with function unique.
 
