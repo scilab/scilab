@@ -69,3 +69,6 @@ Bug fixes:
 
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
 		   causing an error on startup
+
+* bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
+                   are not available.
