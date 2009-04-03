@@ -1010,8 +1010,7 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 #######################
 
 AC_PCRE()
-	  	 
- #############################################
+
 #################
 ## Tcl/Tk library
 #################
@@ -1125,16 +1124,22 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 ## Documentation management #
 #############################
 
+HELP_ENABLE=yes
+
 AC_ARG_ENABLE(build-help,
 		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
-HELP_ENABLE=no
 
 if test "$enable_build_help" != no; then
     AC_DOCBOOK()
-	HELP_ENABLE=yes
+else
+    HELP_ENABLE=no
+fi
 
-fi 
+if test -z "$JAVAC"; then
+    HELP_ENABLE=no
+fi
+
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###

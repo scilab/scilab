@@ -13,7 +13,6 @@
 <!-- =================== -->
 <modules>
 <module name="core" activate="yes"/>
-<module name="helptools" activate="yes"/>
 <module name="differential_equations" activate="yes"/>
 <module name="double" activate="yes"/>
 <module name="elementary_functions" activate="yes"/>
@@ -68,6 +67,7 @@
 <module name="spreadsheet" activate="yes"/>
 <module name="call_scilab" activate="yes"/>
 <!-- comments -->
+<module name="helptools" activate="@HELP_ENABLE@"/>
 <module name="scicos" activate="@SCICOS_ENABLE@"/>
 <module name="scicos_blocks" activate="@SCICOS_ENABLE@"/>
 <!-- comments -->
