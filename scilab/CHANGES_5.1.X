@@ -124,6 +124,8 @@ Bug fixes:
 
 * bug 3945 fixed - Error with the help example of library()
 
+* bug 3962 fixed - incorrect first left hand side argument of pca (one col instead of two)
+
 * bug 4052 fixed - A wrong usage of xmlCleanupParser (libxml2) was causing
                    a seg fault on startup
 
