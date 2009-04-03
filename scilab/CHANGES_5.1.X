@@ -111,6 +111,12 @@ It has been reported a numerous number of time:
 
 Bug fixes:
 ==========
+* bug 3186 fixed - input is lost when graphics window is closed.
+
+* bug 3587 fixed - gsort is not stable: It does not preserve the relative order of equal values
+                    creates problem with function unique.
+
+* bug 3852 fixed - Line wrapping problem in help browser
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -123,6 +129,8 @@ Bug fixes:
 * bug 4067 fixed - bug with completion and some paths
 
 * bug 4073 fixed - mprintf does not display some special characters
+
+* bug 4074 fixed - Scilab now uses native MacOSX menubar.
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
@@ -166,6 +174,9 @@ Bug fixes:
 
 * bug 4235 fixed - error.h renamed
 
+* bug 4245 fixed - The icon of the progressionbar is a java icon.
+                   It should it be a Scilab one instead.
+
 * bug 4249 fixed - filter dos not work with perfect all pass system
 
 * bug 4250 fixed - The online help of intx function was badly located
@@ -195,10 +206,18 @@ Bug fixes:
 
 * bug 4302 fixed - Do not build the helptool module when --disable-build-help
 		   is used
+		   
+* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * bug 4311 fixed - rcond(eye()) returns 1 and not eye()
 
 * bug 4312 fixed - Support for NetBSD in the memory detection (getmemory)
+
+* bug 4321 fixed - strcat with 3 input parameters crashs if input type parameters are wrong.
+
+* bug 4325 fixed - set("auto_clear","off") crashes Scilab.
+
+* bug 4326 fixed - move called with an already deleted handle crashes Scilab.
 
 
                Changes between version 5.0.X and 5.1 of Scilab
@@ -684,8 +703,6 @@ Bug fixes:
 * bug 4221 fixed - graypolarplot uses to much memory.
 
 * bug 4272 fixed - Preconditionning in pcg was not taken into account.
-
-* bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They are reinitialized for each segment.
 
 * Side effect in the setenvc function.
 

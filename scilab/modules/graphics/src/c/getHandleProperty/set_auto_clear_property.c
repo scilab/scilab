@@ -25,6 +25,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
+#include "CurrentObjectsManagement.h"
 
 /*------------------------------------------------------------------------*/
 int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -34,6 +35,12 @@ int set_auto_clear_property( sciPointObj * pobj, size_t stackPointer, int valueT
     Scierror(999, _("Incompatible type for property %s.\n"),"auto_clear") ;
     return SET_PROPERTY_ERROR ;
   }
+
+	if (pobj == NULL)
+	{
+		/* If no object is specified, use the current subwin */
+		pobj = sciGetCurrentSubWin();
+	}
 
   if ( isStringParamEqual( stackPointer, "on" ) )
   {

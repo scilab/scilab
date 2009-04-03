@@ -65,13 +65,14 @@ int sci_glue( char * fname, unsigned long fname_len )
   {
     handelsvalue[i] = (unsigned long) (hstk(l1))[i];
     pobj = sciGetPointerFromHandle(handelsvalue[i]);
-    if (pobj == NULL) {
+    if (pobj == NULL) 
+	{
       Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
       return 0;
     }
     parenthdl = (unsigned long ) sciGetHandle(sciGetParent (pobj));
-    if (i == 0)
-      hdl=parenthdl;
+    if (i == 0) hdl = parenthdl;
+
     if  (parenthdl != hdl)
     {
       Scierror(999,_("%s: Objects must have the same parent.\n"),fname);
@@ -80,14 +81,18 @@ int sci_glue( char * fname, unsigned long fname_len )
 
   }
   ret = CheckForCompound (handelsvalue, n);
-  if (ret>0) {
+  if (ret>0) 
+  {
     Scierror(999,_("%s: Handle %d cannot be glued (invalid parent).\n"),fname,ret);
     return 0;
   }
-  if (ret<0) {
+
+  if (ret<0) 
+  {
     Scierror(999,_("%s: Handle %d cannot be glued (invalid type).\n"),fname,-ret);
     return 0;
   }
+
   sciSetCurrentObj ((sciPointObj *)ConstructCompound (handelsvalue, n));
 
   numrow = 1;
@@ -95,6 +100,7 @@ int sci_glue( char * fname, unsigned long fname_len )
   CreateVar(Rhs+3,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
   hstk(outindex)[0] = sciGetHandle((sciPointObj *) sciGetCurrentObj());
   LhsVar(1) = Rhs+3;
+  C2F(putlhsvar)();
   FREE(handelsvalue);
   return 0;
 }
