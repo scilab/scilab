@@ -133,6 +133,8 @@ Bug fixes:
 
 * bug 4074 fixed - Scilab now uses native MacOSX menubar.
 
+* bug 4088 fixed - When Tcl/Tk is disable, demos are now deactivated.
+
 * bug 4099 fixed - Demos mixing gui and plots were not desactivated on plateforms
                    having usecanvas set to %T.
 
