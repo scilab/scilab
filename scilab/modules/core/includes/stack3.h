@@ -315,7 +315,9 @@ int iAllocMatrixOfStringToAddress(int _iAddr, int _iRows, int _iCols, int *_piLe
 
 /*Get List Information*/
 //Get Item Count and type of each item
-int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType);
+int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pElemType);
+//Get SubList reference
+int* iGetListItemList(int _iVar, int* _piParentList, int iItemPos);
 //Get Sparse Item
 int iGetListItemSparse(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal, double **_pdblImg);
 //Get Poly Item
@@ -326,6 +328,9 @@ int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 int iIsComplexItemElem(int _iVar, int _iItemNumber);
 //Get Item String
 int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
+
+//Get SubItem String
+int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
 /*Create List*/
 //Reserved VarNum for List
@@ -381,6 +386,8 @@ int IsKindOfList(int* _piNode);
 void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
 
+//Internal fonctions to retrieve varaibles information from pointer ( real memory address )
+int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen, int** _piString);
 
 
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
