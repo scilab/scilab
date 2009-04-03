@@ -14,10 +14,17 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2007
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2007 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -598,6 +605,17 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
+#### Target ####
+modulename = renderer
+
+#### renderer : Conf files ####
+libscirenderer_la_rootdir = $(mydatadir)
+libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### renderer : init scripts ####
+libscirenderer_la_etcdir = $(mydatadir)/etc
+libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
+
 # List of the c files
 RENDERER_CPP_SOURCES = \
 src/cpp/subwinDrawing/DrawableSubwinFactory.cpp \
@@ -945,17 +963,6 @@ libscirenderer_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 # the system)
 pkglib_LTLIBRARIES = libscirenderer-disable.la $(am__append_1)
 libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-#### Name of the module and the path ######
-modulename = renderer
-
-#### renderer : Conf files ####
-libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### renderer : init scripts ####
-libscirenderer_la_etcdir = $(mydatadir)/etc
-libscirenderer_la_etc_DATA = etc/renderer.quit etc/renderer.start
 
 #### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
