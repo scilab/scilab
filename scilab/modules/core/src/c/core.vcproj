@@ -635,6 +635,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_exit.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_format.c"
 				>
 			</File>
@@ -984,11 +988,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File

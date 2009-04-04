@@ -29,6 +29,8 @@ Input/Output functions:
 Core functions:
 ===============
 
+ - Request 505 : Add error code capability to exit.
+
  - Rewrite :
  	+ mode
  	+ predef
