@@ -330,7 +330,7 @@ am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_libraryinfo.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo \
-	libscicore_la-sci_exit.lo \
+	libscicore_la-sci_exit.lo 
 am__objects_6 = sci_errclear.lo sci_funcprot.lo sci_global.lo \
 	sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \

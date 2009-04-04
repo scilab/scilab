@@ -10,7 +10,7 @@ for i = 1:10
  if MSDOS then
    [outputs,status,exitcode] = dos(SCI + '/bin/scilex.exe -nwni -e exit(' + string(i) + ')');
  else
-   [outputs,exitcode] = unix(SCI + '/bin/scilab -nwni -e exit(' + string(i) + ')');
+   exitcode = unix(SCI + '/bin/scilab -nwni -e ""exit(' + string(i) + ')""');
  end
  
  if exitcode <> i then pause,end
