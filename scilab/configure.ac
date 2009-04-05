@@ -1225,7 +1225,7 @@ AC_SUBST(SCIPAD_ENABLE)
 
 DEMOTOOLS_ENABLE=yes
 
-if test "$GUI_ENABLE"=no; then
+if test "$GUI_ENABLE" = no; then
    DEMOTOOLS_ENABLE=yes
 fi
 
@@ -1237,7 +1237,7 @@ AC_SUBST(DEMOTOOLS_ENABLE)
 
 GRAPHICS_ENABLE=yes
 
-if test "$GUI_ENABLE"=no; then
+if test "$GUI_ENABLE" = no; then
    GRAPHICS_ENABLE=no
 fi
 
