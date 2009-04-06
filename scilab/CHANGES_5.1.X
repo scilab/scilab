@@ -250,6 +250,8 @@ Bug fixes:
 
 * bug 4326 fixed - move called with an already deleted handle crashes Scilab.
 
+* bug 4332 fixed - completion copies selected item instead of completing according to this one.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
