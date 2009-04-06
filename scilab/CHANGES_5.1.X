@@ -109,6 +109,8 @@ It has been reported a numerous number of time:
 
 * bug 4204 fixed - Strange error message when using usecanvas(%F).
 
+* bug 4331 fixed - Wrong result for gamma(13).
+
 Bug fixes:
 ==========
 
@@ -247,6 +249,8 @@ Bug fixes:
 * bug 4325 fixed - set("auto_clear","off") crashes Scilab.
 
 * bug 4326 fixed - move called with an already deleted handle crashes Scilab.
+
+* bug 4332 fixed - completion copies selected item instead of completing according to this one.
 
 
                Changes between version 5.0.X and 5.1 of Scilab
