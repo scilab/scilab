@@ -14,10 +14,17 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -55,16 +62,8 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = $(JAVA_JNI_INCLUDE) -Isrc/cpp $(TCL_INC_PATH) \
-@GUI_TRUE@	$(TK_INC_PATH) -I$(top_srcdir)/libs/MALLOC/includes/ \
-@GUI_TRUE@	-I$(top_srcdir)/libs/hashtable/ \
-@GUI_TRUE@	-I$(top_srcdir)/modules/jvm/includes \
-@GUI_TRUE@	-I$(top_srcdir)/modules/renderer/includes/ \
-@GUI_TRUE@	-I$(top_srcdir)/modules/action_binding/includes \
-@GUI_TRUE@	-I$(top_srcdir)/modules/output_stream/includes \
-@GUI_TRUE@	-I$(top_srcdir)/modules/graphic_export/includes/ \
-@GUI_TRUE@	-I$(top_srcdir)/modules/output_stream/includes
-DIST_COMMON = $(am__libscigraphics_la_include_HEADERS_DIST) \
+@GUI_TRUE@am__append_1 = libscigraphics.la
+DIST_COMMON = $(libscigraphics_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
@@ -102,728 +101,385 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscigraphics_disable_la_LIBADD =
-am__libscigraphics_disable_la_SOURCES_DIST =  \
-	src/nographics/nographics.c
-@GUI_TRUE@am_libscigraphics_disable_la_OBJECTS =  \
-@GUI_TRUE@	libscigraphics_disable_la-nographics.lo
+am_libscigraphics_disable_la_OBJECTS =  \
+	libscigraphics_disable_la-nographics.lo
 libscigraphics_disable_la_OBJECTS =  \
 	$(am_libscigraphics_disable_la_OBJECTS)
 libscigraphics_disable_la_LINK = $(LIBTOOL) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscigraphics_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscigraphics_disable_la_LDFLAGS) $(LDFLAGS) -o $@
-@GUI_TRUE@libscigraphics_la_DEPENDENCIES =  \
-@GUI_TRUE@	$(top_builddir)/libs/hashtable/libscihashtable.la \
-@GUI_TRUE@	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
-@GUI_TRUE@	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-@GUI_TRUE@	$(top_builddir)/modules/renderer/libscirenderer.la \
-@GUI_TRUE@	$(top_builddir)/modules/tclsci/libscitclsci.la \
-@GUI_TRUE@	$(top_builddir)/modules/gui/libscigui.la \
-@GUI_TRUE@	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
-@GUI_TRUE@	$(top_builddir)/modules/core/libscicore.la \
-@GUI_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-@GUI_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
-@GUI_TRUE@	$(top_builddir)/modules/fileio/libscifileio.la
-am__libscigraphics_la_SOURCES_DIST = src/c/GetCommandArg.c \
-	src/c/WindowList.c \
-	src/c/getHandleProperty/get_figure_position_property.c \
-	src/c/getHandleProperty/get_figure_size_property.c \
-	src/c/getHandleProperty/get_visible_property.c \
-	src/c/getHandleProperty/get_old_style_property.c \
-	src/c/getHandleProperty/get_figures_id_property.c \
-	src/c/getHandleProperty/get_figure_style_property.c \
-	src/c/getHandleProperty/get_pixel_drawing_mode_property.c \
-	src/c/getHandleProperty/get_line_mode_property.c \
-	src/c/getHandleProperty/get_axes_size_property.c \
-	src/c/getHandleProperty/get_thickness_property.c \
-	src/c/getHandleProperty/get_font_foreground_property.c \
-	src/c/getHandleProperty/get_bar_layout_property.c \
-	src/c/getHandleProperty/get_current_axes_property.c \
-	src/c/getHandleProperty/get_bar_width_property.c \
-	src/c/getHandleProperty/get_font_color_property.c \
-	src/c/getHandleProperty/get_default_axes_property.c \
-	src/c/getHandleProperty/get_y_shift_property.c \
-	src/c/getHandleProperty/get_immediate_drawing_property.c \
-	src/c/getHandleProperty/get_current_entity_property.c \
-	src/c/getHandleProperty/get_background_property.c \
-	src/c/getHandleProperty/get_rotation_style_property.c \
-	src/c/getHandleProperty/get_type_property.c \
-	src/c/getHandleProperty/get_current_figure_property.c \
-	src/c/getHandleProperty/get_mark_foreground_property.c \
-	src/c/getHandleProperty/get_default_figure_property.c \
-	src/c/getHandleProperty/get_children_property.c \
-	src/c/getHandleProperty/get_parent_property.c \
-	src/c/getHandleProperty/get_surface_mode_property.c \
-	src/c/getHandleProperty/get_figure_id_property.c \
-	src/c/getHandleProperty/get_mark_mode_property.c \
-	src/c/getHandleProperty/get_pixmap_property.c \
-	src/c/getHandleProperty/get_interp_color_mode.c \
-	src/c/getHandleProperty/get_font_size_property.c \
-	src/c/getHandleProperty/get_x_shift_property.c \
-	src/c/getHandleProperty/get_z_shift_property.c \
-	src/c/getHandleProperty/get_line_style_property.c \
-	src/c/getHandleProperty/get_foreground_property.c \
-	src/c/getHandleProperty/get_mark_style_property.c \
-	src/c/getHandleProperty/get_color_map_property.c \
-	src/c/getHandleProperty/get_polyline_style_property.c \
-	src/c/getHandleProperty/get_font_angle_property.c \
-	src/c/getHandleProperty/get_interp_color_vector.c \
-	src/c/getHandleProperty/get_figure_name_property.c \
-	src/c/getHandleProperty/get_arrow_size_factor_property.c \
-	src/c/getHandleProperty/get_mark_size_unit_property.c \
-	src/c/getHandleProperty/get_mark_size_property.c \
-	src/c/getHandleProperty/get_mark_background_property.c \
-	src/c/getHandleProperty/get_auto_resize_property.c \
-	src/c/getHandleProperty/get_fill_mode_property.c \
-	src/c/getHandleProperty/get_tight_limits_property.c \
-	src/c/getHandleProperty/get_auto_ticks_property.c \
-	src/c/getHandleProperty/get_x_label_property.c \
-	src/c/getHandleProperty/get_auto_scale_property.c \
-	src/c/getHandleProperty/get_auto_dimensionning_property.c \
-	src/c/getHandleProperty/get_text_box_property.c \
-	src/c/getHandleProperty/get_clip_box_property.c \
-	src/c/getHandleProperty/get_tics_direction_property.c \
-	src/c/getHandleProperty/get_position_property.c \
-	src/c/getHandleProperty/get_y_label_property.c \
-	src/c/getHandleProperty/get_data_property.c \
-	src/c/getHandleProperty/get_auto_clear_property.c \
-	src/c/getHandleProperty/get_title_property.c \
-	src/c/getHandleProperty/get_zoom_state_property.c \
-	src/c/getHandleProperty/get_zoom_box_property.c \
-	src/c/getHandleProperty/get_log_flags_property.c \
-	src/c/getHandleProperty/get_x_location_property.c \
-	src/c/getHandleProperty/get_text_box_mode_property.c \
-	src/c/getHandleProperty/get_y_location_property.c \
-	src/c/getHandleProperty/get_z_label_property.c \
-	src/c/getHandleProperty/get_alignment_property.c \
-	src/c/getHandleProperty/get_font_style_property.c \
-	src/c/getHandleProperty/get_auto_rotation_property.c \
-	src/c/getHandleProperty/get_clip_state_property.c \
-	src/c/getHandleProperty/get_callback_property.c \
-	src/c/getHandleProperty/get_auto_position_property.c \
-	src/c/getHandleProperty/get_closed_property.c \
-	src/c/getHandleProperty/get_callbackmevent_property.c \
-	src/c/getHandleProperty/get_text_property.c \
-	src/c/getHandleProperty/get_margins_property.c \
-	src/c/getHandleProperty/get_view_property.c \
-	src/c/getHandleProperty/get_data_bounds_property.c \
-	src/c/getHandleProperty/get_axes_reverse_property.c \
-	src/c/getHandleProperty/get_tics_color_property.c \
-	src/c/getHandleProperty/get_axes_bounds_property.c \
-	src/c/getHandleProperty/get_tics_style_property.c \
-	src/c/getHandleProperty/get_user_data_property.c \
-	src/c/getHandleProperty/get_xtics_coord_property.c \
-	src/c/getHandleProperty/get_color_mode_property.c \
-	src/c/getHandleProperty/get_z_bounds_property.c \
-	src/c/getHandleProperty/get_data_mapping_property.c \
-	src/c/getHandleProperty/get_arrow_size_property.c \
-	src/c/getHandleProperty/get_rotation_angles_property.c \
-	src/c/getHandleProperty/get_callback_type_property.c \
-	src/c/getHandleProperty/get_format_n_property.c \
-	src/c/getHandleProperty/get_color_flag_property.c \
-	src/c/getHandleProperty/get_sub_tics_property.c \
-	src/c/getHandleProperty/get_hidden_axis_color_property.c \
-	src/c/getHandleProperty/get_ytics_coord_property.c \
-	src/c/getHandleProperty/get_labels_font_size_property.c \
-	src/c/getHandleProperty/get_isoview_property.c \
-	src/c/getHandleProperty/get_grid_property.c \
-	src/c/getHandleProperty/get_box_property.c \
-	src/c/getHandleProperty/get_hidden_color_property.c \
-	src/c/getHandleProperty/get_handle_visible_property.c \
-	src/c/getHandleProperty/get_labels_font_color_property.c \
-	src/c/getHandleProperty/get_surface_color_property.c \
-	src/c/getHandleProperty/get_tics_label_property.c \
-	src/c/getHandleProperty/get_labels_font_style_property.c \
-	src/c/getHandleProperty/get_axes_visible_property.c \
-	src/c/getHandleProperty/get_cube_scaling_property.c \
-	src/c/getHandleProperty/get_tics_segment_property.c \
-	src/c/getHandleProperty/get_cdata_mapping_property.c \
-	src/c/getHandleProperty/get_colored_property.c \
-	src/c/getHandleProperty/get_triangles_property.c \
-	src/c/getHandleProperty/get_viewport_property.c \
-	src/c/getHandleProperty/get_info_message_property.c \
-	src/c/getHandleProperty/get_y_ticks_property.c \
-	src/c/getHandleProperty/get_z_ticks_property.c \
-	src/c/getHandleProperty/get_x_ticks_property.c \
-	src/c/getHandleProperty/setGetHashTable.c \
-	src/c/getHandleProperty/get_segs_color_property.c \
-	src/c/getHandleProperty/get_screen_position_property.c \
-	src/c/getHandleProperty/get_dimension_property.c \
-	src/c/getHandleProperty/get_event_handler_property.c \
-	src/c/getHandleProperty/get_event_handler_enable_property.c \
-	src/c/getHandleProperty/get_arc_drawing_method_property.c \
-	src/c/getHandleProperty/get_fractional_font_property.c \
-	src/c/getHandleProperty/get_links_property.c \
-	src/c/getHandleProperty/get_legend_location_property.c \
-	src/c/getHandleProperty/get_filled_property.c \
-	src/c/getHandleProperty/get_color_range_property.c \
-	src/c/getHandleProperty/get_outside_colors_property.c \
-	src/c/getHandleProperty/get_grid_position_property.c \
-	src/c/getHandleProperty/get_anti_aliasing_property.c \
-	src/c/getHandleProperty/GetHashTable.c \
-	src/c/graphicModuleLoad.c \
-	src/c/getHandleProperty/set_old_style_property.c \
-	src/c/getHandleProperty/set_figure_name_property.c \
-	src/c/getHandleProperty/getPropertyAssignedValue.c \
-	src/c/getHandleProperty/set_visible_property.c \
-	src/c/getHandleProperty/set_pixel_drawing_mode_property.c \
-	src/c/getHandleProperty/set_interp_color_vector_property.c \
-	src/c/getHandleProperty/set_immediate_drawing_property.c \
-	src/c/getHandleProperty/set_figure_size_property.c \
-	src/c/getHandleProperty/set_background_property.c \
-	src/c/getHandleProperty/set_rotation_style_property.c \
-	src/c/getHandleProperty/set_current_figure_property.c \
-	src/c/getHandleProperty/set_axes_size_property.c \
-	src/c/getHandleProperty/set_default_values_property.c \
-	src/c/getHandleProperty/set_figure_position_property.c \
-	src/c/getHandleProperty/set_color_map_property.c \
-	src/c/getHandleProperty/set_auto_resize_property.c \
-	src/c/getHandleProperty/set_current_axes_property.c \
-	src/c/getHandleProperty/set_current_entity_property.c \
-	src/c/getHandleProperty/set_figure_id_property.c \
-	src/c/getHandleProperty/set_pixmap_property.c \
-	src/c/getHandleProperty/set_figure_style_property.c \
-	src/c/ColorMapManagement.c \
-	src/c/getHandleProperty/set_mark_size_property.c \
-	src/c/getHandleProperty/set_y_shift_property.c \
-	src/c/getHandleProperty/set_auto_scale_property.c \
-	src/c/getHandleProperty/set_auto_dimensionning_property.c \
-	src/c/getHandleProperty/set_text_box_property.c \
-	src/c/getHandleProperty/set_text_property.c \
-	src/c/getHandleProperty/set_mark_mode_property.c \
-	src/c/getHandleProperty/set_clip_box_property.c \
-	src/c/getHandleProperty/set_z_shift_property.c \
-	src/c/getHandleProperty/set_line_style_property.c \
-	src/c/getHandleProperty/set_polyline_style_property.c \
-	src/c/getHandleProperty/set_line_mode_property.c \
-	src/c/getHandleProperty/set_thickness_property.c \
-	src/c/getHandleProperty/set_font_foreground_property.c \
-	src/c/getHandleProperty/set_text_box_mode_property.c \
-	src/c/getHandleProperty/set_bar_layout_property.c \
-	src/c/getHandleProperty/set_bar_width_property.c \
-	src/c/getHandleProperty/SetPropertyStatus.c \
-	src/c/getHandleProperty/set_font_style_property.c \
-	src/c/getHandleProperty/set_surface_mode_property.c \
-	src/c/getHandleProperty/set_font_size_property.c \
-	src/c/getHandleProperty/set_mark_style_property.c \
-	src/c/getHandleProperty/set_mark_background_property.c \
-	src/c/getHandleProperty/set_interp_color_mode_property.c \
-	src/c/getHandleProperty/set_data_property.c \
-	src/c/getHandleProperty/set_font_angle_property.c \
-	src/c/getHandleProperty/set_auto_clear_property.c \
-	src/c/getHandleProperty/set_arrow_size_factor_property.c \
-	src/c/getHandleProperty/set_mark_size_unit_property.c \
-	src/c/getHandleProperty/set_zoom_state_property.c \
-	src/c/getHandleProperty/set_fill_mode_property.c \
-	src/c/getHandleProperty/set_zoom_box_property.c \
-	src/c/getHandleProperty/set_font_color_property.c \
-	src/c/getHandleProperty/set_alignment_property.c \
-	src/c/getHandleProperty/set_mark_foreground_property.c \
-	src/c/getHandleProperty/set_clip_state_property.c \
-	src/c/getHandleProperty/set_x_shift_property.c \
-	src/c/getHandleProperty/set_foreground_property.c \
-	src/c/getHandleProperty/set_tics_direction_property.c \
-	src/c/getHandleProperty/set_title_property.c \
-	src/c/getHandleProperty/set_x_location_property.c \
-	src/c/getHandleProperty/set_auto_position_property.c \
-	src/c/getHandleProperty/set_tight_limits_property.c \
-	src/c/getHandleProperty/set_x_label_property.c \
-	src/c/getHandleProperty/set_y_label_property.c \
-	src/c/getHandleProperty/set_y_location_property.c \
-	src/c/getHandleProperty/set_z_label_property.c \
-	src/c/getHandleProperty/set_auto_rotation_property.c \
-	src/c/getHandleProperty/set_callback_property.c \
-	src/c/getHandleProperty/set_closed_property.c \
-	src/c/getHandleProperty/set_callbackmevent_property.c \
-	src/c/getHandleProperty/set_cdata_mapping_property.c \
-	src/c/getHandleProperty/set_y_ticks_property.c \
-	src/c/getHandleProperty/set_z_bounds_property.c \
-	src/c/getHandleProperty/set_position_property.c \
-	src/c/getHandleProperty/set_z_ticks_property.c \
-	src/c/getHandleProperty/set_axes_bounds_property.c \
-	src/c/getHandleProperty/set_tics_style_property.c \
-	src/c/getHandleProperty/SetHashTable.c \
-	src/c/getHandleProperty/set_handle_visible_property.c \
-	src/c/getHandleProperty/set_labels_font_color_property.c \
-	src/c/getHandleProperty/set_parent_property.c \
-	src/c/getHandleProperty/set_axes_visible_property.c \
-	src/c/getHandleProperty/set_triangles_property.c \
-	src/c/getHandleProperty/set_tics_color_property.c \
-	src/c/getHandleProperty/set_color_flag_property.c \
-	src/c/getHandleProperty/set_labels_font_size_property.c \
-	src/c/getHandleProperty/set_tics_segment_property.c \
-	src/c/getHandleProperty/set_user_data_property.c \
-	src/c/getHandleProperty/set_view_property.c \
-	src/c/getHandleProperty/set_arrow_size_property.c \
-	src/c/getHandleProperty/set_children_property.c \
-	src/c/getHandleProperty/set_axes_reverse_property.c \
-	src/c/getHandleProperty/set_grid_property.c \
-	src/c/getHandleProperty/set_log_flags_property.c \
-	src/c/getHandleProperty/set_cube_scaling_property.c \
-	src/c/getHandleProperty/set_colored_property.c \
-	src/c/getHandleProperty/set_margins_property.c \
-	src/c/getHandleProperty/set_auto_ticks_property.c \
-	src/c/getHandleProperty/set_xtics_coord_property.c \
-	src/c/getHandleProperty/set_color_mode_property.c \
-	src/c/getHandleProperty/set_data_bounds_property.c \
-	src/c/getHandleProperty/set_tics_labels_property.c \
-	src/c/getHandleProperty/set_data_mapping_property.c \
-	src/c/getHandleProperty/set_rotation_angles_property.c \
-	src/c/getHandleProperty/set_callback_type_property.c \
-	src/c/getHandleProperty/set_segs_color_property.c \
-	src/c/getHandleProperty/set_format_n_property.c \
-	src/c/getHandleProperty/set_sub_tics_property.c \
-	src/c/getHandleProperty/set_hidden_axis_color_property.c \
-	src/c/getHandleProperty/set_isoview_property.c \
-	src/c/getHandleProperty/set_box_property.c \
-	src/c/getHandleProperty/set_hidden_color_property.c \
-	src/c/getHandleProperty/set_label_font_style_property.c \
-	src/c/getHandleProperty/set_surface_color_property.c \
-	src/c/getHandleProperty/set_yticks_coord_property.c \
-	src/c/getHandleProperty/CheckTicksProperty.c \
-	src/c/getHandleProperty/set_x_ticks_property.c \
-	src/c/getHandleProperty/set_viewport_property.c \
-	src/c/getHandleProperty/set_info_message_property.c \
-	src/c/getHandleProperty/set_screen_position_property.c \
-	src/c/getHandleProperty/set_dimension_property.c \
-	src/c/getHandleProperty/set_event_handler_property.c \
-	src/c/getHandleProperty/set_event_handler_enable_property.c \
-	src/c/getHandleProperty/set_arc_drawing_method_property.c \
-	src/c/getHandleProperty/set_fractional_font_property.c \
-	src/c/getHandleProperty/set_links_property.c \
-	src/c/getHandleProperty/set_legend_location_property.c \
-	src/c/getHandleProperty/set_filled_property.c \
-	src/c/getHandleProperty/set_color_range_property.c \
-	src/c/getHandleProperty/set_outside_colors_property.c \
-	src/c/getHandleProperty/set_grid_position_property.c \
-	src/c/getHandleProperty/set_anti_aliasing_property.c \
-	src/c/DefaultCommandArg.c src/c/Axes.c src/c/sciMatrix.c \
-	src/c/DrawObjects.c src/c/GetProperty.c src/c/Contour.c \
-	src/c/SetProperty.c src/c/BasicAlgos.c src/c/BuildObjects.c \
-	src/c/sciCall.c src/c/CloneObjects.c src/c/InitObjects.c \
-	src/c/pixel_mode.c src/c/Format.c src/c/Champ.c \
-	src/c/StringMatrix.c src/c/FeC.c src/c/Plo2dEch.c \
-	src/c/Plo2dn.c src/c/Gray.c src/c/DestroyObjects.c \
-	src/c/math_graphics.c src/c/Interaction.c \
-	src/c/HandleManagement.c src/c/StringBox.c src/c/axesScale.c \
-	src/c/TerminateGraphics.c src/c/CurrentObjectsManagement.c \
-	src/c/ObjectSelection.c src/c/periEmpty.c src/c/scitokenize.c \
-	src/c/get_ticks_utils.c src/c/SciHandleTab.c \
-	sci_gateway/c/sci_swap_handles.c sci_gateway/c/sci_grayplot.c \
-	sci_gateway/c/sci_matplot1.c sci_gateway/c/sci_xfpolys.c \
-	sci_gateway/c/sci_xget.c sci_gateway/c/sci_newaxes.c \
-	sci_gateway/c/sci_xlfont.c sci_gateway/c/sci_xgraduate.c \
-	sci_gateway/c/sci_xgrid.c sci_gateway/c/sci_xclick.c \
-	sci_gateway/c/sci_geom3d.c sci_gateway/c/sci_xset.c \
-	sci_gateway/c/sci_xgetech.c sci_gateway/c/sci_unzoom.c \
-	sci_gateway/c/sci_xsegs.c sci_gateway/c/sci_clear_pixmap.c \
-	sci_gateway/c/sci_glue.c sci_gateway/c/sci_xarc.c \
-	sci_gateway/c/sci_xpolys.c sci_gateway/c/sci_xstring.c \
-	sci_gateway/c/sci_xstringb.c sci_gateway/c/sci_xsetech.c \
-	sci_gateway/c/sci_show_window.c sci_gateway/c/sci_param3d1.c \
-	sci_gateway/c/sci_xname.c sci_gateway/c/sci_xpoly.c \
-	sci_gateway/c/sci_xchange.c sci_gateway/c/sci_matplot.c \
-	sci_gateway/c/sci_drawaxis.c sci_gateway/c/sci_demo.c \
-	sci_gateway/c/sci_plot2d1.c sci_gateway/c/sci_xrect.c \
-	sci_gateway/c/sci_draw.c sci_gateway/c/sci_xarrows.c \
-	sci_gateway/c/sci_plot3d.c sci_gateway/c/sci_move.c \
-	sci_gateway/c/sci_copy.c sci_gateway/c/sci_relocate_handle.c \
-	sci_gateway/c/sci_get.c sci_gateway/c/sci_xarcs.c \
-	sci_gateway/c/sci_xfpoly.c sci_gateway/c/sci_drawlater.c \
-	sci_gateway/c/sci_champ.c sci_gateway/c/sci_set.c \
-	sci_gateway/c/sci_showalluimenushandles.c \
-	sci_gateway/c/sci_unglue.c sci_gateway/c/gw_graphics.c \
-	sci_gateway/c/sci_zoom_rect.c sci_gateway/c/sci_delete.c \
-	sci_gateway/c/sci_plot2d.c sci_gateway/c/sci_xrects.c \
-	sci_gateway/c/sci_xtitle.c sci_gateway/c/sci_StringBox.c \
-	sci_gateway/c/sci_xgetmouse.c sci_gateway/c/sci_drawnow.c \
-	sci_gateway/c/sci_xfarcs.c sci_gateway/c/sci_param3d.c \
-	sci_gateway/c/sci_contour2di.c sci_gateway/c/sci_xdel.c \
-	sci_gateway/c/sci_winsid.c sci_gateway/c/sci_addcb.c \
-	sci_gateway/c/sci_fec.c sci_gateway/c/sci_rubberbox.c \
-	sci_gateway/c/sci_rotate_axes.c \
-	sci_gateway/c/sci_is_handle_valid.c \
-	sci_gateway/c/sci_show_pixmap.c sci_gateway/c/sci_Legend.c
-@GUI_TRUE@am__objects_1 = libscigraphics_la-GetCommandArg.lo \
-@GUI_TRUE@	libscigraphics_la-WindowList.lo \
-@GUI_TRUE@	libscigraphics_la-get_figure_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_figure_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_visible_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_old_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_figures_id_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_figure_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_pixel_drawing_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_line_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_axes_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_thickness_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_font_foreground_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_bar_layout_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_current_axes_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_bar_width_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_font_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_default_axes_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_y_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_immediate_drawing_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_current_entity_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_background_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_rotation_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_type_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_current_figure_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_mark_foreground_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_default_figure_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_children_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_parent_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_surface_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_figure_id_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_mark_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_pixmap_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_interp_color_mode.lo \
-@GUI_TRUE@	libscigraphics_la-get_font_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_x_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_z_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_line_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_foreground_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_mark_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_color_map_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_polyline_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_font_angle_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_interp_color_vector.lo \
-@GUI_TRUE@	libscigraphics_la-get_figure_name_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_arrow_size_factor_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_mark_size_unit_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_mark_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_mark_background_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_resize_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_fill_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_tight_limits_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_x_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_scale_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_dimensionning_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_text_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_clip_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_tics_direction_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_y_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_data_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_clear_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_title_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_zoom_state_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_zoom_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_log_flags_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_x_location_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_text_box_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_y_location_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_z_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_alignment_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_font_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_rotation_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_clip_state_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_callback_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_auto_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_closed_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_callbackmevent_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_text_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_margins_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_view_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_data_bounds_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_axes_reverse_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_tics_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_axes_bounds_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_tics_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_user_data_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_xtics_coord_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_color_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_z_bounds_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_data_mapping_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_arrow_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_rotation_angles_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_callback_type_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_format_n_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_color_flag_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_sub_tics_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_hidden_axis_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_ytics_coord_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_labels_font_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_isoview_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_grid_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_hidden_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_handle_visible_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_labels_font_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_surface_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_tics_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_labels_font_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_axes_visible_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_cube_scaling_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_tics_segment_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_cdata_mapping_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_colored_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_triangles_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_viewport_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_info_message_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_y_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_z_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_x_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-setGetHashTable.lo \
-@GUI_TRUE@	libscigraphics_la-get_segs_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_screen_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_dimension_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_event_handler_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_event_handler_enable_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_arc_drawing_method_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_fractional_font_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_links_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_legend_location_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_filled_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_color_range_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_outside_colors_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_grid_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-get_anti_aliasing_property.lo \
-@GUI_TRUE@	libscigraphics_la-GetHashTable.lo \
-@GUI_TRUE@	libscigraphics_la-graphicModuleLoad.lo \
-@GUI_TRUE@	libscigraphics_la-set_old_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_figure_name_property.lo \
-@GUI_TRUE@	libscigraphics_la-getPropertyAssignedValue.lo \
-@GUI_TRUE@	libscigraphics_la-set_visible_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_pixel_drawing_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_interp_color_vector_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_immediate_drawing_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_figure_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_background_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_rotation_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_current_figure_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_axes_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_default_values_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_figure_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_color_map_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_resize_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_current_axes_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_current_entity_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_figure_id_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_pixmap_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_figure_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-ColorMapManagement.lo \
-@GUI_TRUE@	libscigraphics_la-set_mark_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_y_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_scale_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_dimensionning_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_text_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_text_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_mark_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_clip_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_z_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_line_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_polyline_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_line_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_thickness_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_font_foreground_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_text_box_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_bar_layout_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_bar_width_property.lo \
-@GUI_TRUE@	libscigraphics_la-SetPropertyStatus.lo \
-@GUI_TRUE@	libscigraphics_la-set_font_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_surface_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_font_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_mark_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_mark_background_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_interp_color_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_data_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_font_angle_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_clear_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_arrow_size_factor_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_mark_size_unit_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_zoom_state_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_fill_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_zoom_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_font_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_alignment_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_mark_foreground_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_clip_state_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_x_shift_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_foreground_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_tics_direction_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_title_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_x_location_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_tight_limits_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_x_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_y_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_y_location_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_z_label_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_rotation_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_callback_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_closed_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_callbackmevent_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_cdata_mapping_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_y_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_z_bounds_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_z_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_axes_bounds_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_tics_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-SetHashTable.lo \
-@GUI_TRUE@	libscigraphics_la-set_handle_visible_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_labels_font_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_parent_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_axes_visible_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_triangles_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_tics_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_color_flag_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_labels_font_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_tics_segment_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_user_data_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_view_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_arrow_size_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_children_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_axes_reverse_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_grid_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_log_flags_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_cube_scaling_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_colored_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_margins_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_auto_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_xtics_coord_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_color_mode_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_data_bounds_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_tics_labels_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_data_mapping_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_rotation_angles_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_callback_type_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_segs_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_format_n_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_sub_tics_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_hidden_axis_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_isoview_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_box_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_hidden_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_label_font_style_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_surface_color_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_yticks_coord_property.lo \
-@GUI_TRUE@	libscigraphics_la-CheckTicksProperty.lo \
-@GUI_TRUE@	libscigraphics_la-set_x_ticks_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_viewport_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_info_message_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_screen_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_dimension_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_event_handler_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_event_handler_enable_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_arc_drawing_method_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_fractional_font_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_links_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_legend_location_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_filled_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_color_range_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_outside_colors_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_grid_position_property.lo \
-@GUI_TRUE@	libscigraphics_la-set_anti_aliasing_property.lo \
-@GUI_TRUE@	libscigraphics_la-DefaultCommandArg.lo \
-@GUI_TRUE@	libscigraphics_la-Axes.lo \
-@GUI_TRUE@	libscigraphics_la-sciMatrix.lo \
-@GUI_TRUE@	libscigraphics_la-DrawObjects.lo \
-@GUI_TRUE@	libscigraphics_la-GetProperty.lo \
-@GUI_TRUE@	libscigraphics_la-Contour.lo \
-@GUI_TRUE@	libscigraphics_la-SetProperty.lo \
-@GUI_TRUE@	libscigraphics_la-BasicAlgos.lo \
-@GUI_TRUE@	libscigraphics_la-BuildObjects.lo \
-@GUI_TRUE@	libscigraphics_la-sciCall.lo \
-@GUI_TRUE@	libscigraphics_la-CloneObjects.lo \
-@GUI_TRUE@	libscigraphics_la-InitObjects.lo \
-@GUI_TRUE@	libscigraphics_la-pixel_mode.lo \
-@GUI_TRUE@	libscigraphics_la-Format.lo \
-@GUI_TRUE@	libscigraphics_la-Champ.lo \
-@GUI_TRUE@	libscigraphics_la-StringMatrix.lo \
-@GUI_TRUE@	libscigraphics_la-FeC.lo \
-@GUI_TRUE@	libscigraphics_la-Plo2dEch.lo \
-@GUI_TRUE@	libscigraphics_la-Plo2dn.lo \
-@GUI_TRUE@	libscigraphics_la-Gray.lo \
-@GUI_TRUE@	libscigraphics_la-DestroyObjects.lo \
-@GUI_TRUE@	libscigraphics_la-math_graphics.lo \
-@GUI_TRUE@	libscigraphics_la-Interaction.lo \
-@GUI_TRUE@	libscigraphics_la-HandleManagement.lo \
-@GUI_TRUE@	libscigraphics_la-StringBox.lo \
-@GUI_TRUE@	libscigraphics_la-axesScale.lo \
-@GUI_TRUE@	libscigraphics_la-TerminateGraphics.lo \
-@GUI_TRUE@	libscigraphics_la-CurrentObjectsManagement.lo \
-@GUI_TRUE@	libscigraphics_la-ObjectSelection.lo \
-@GUI_TRUE@	libscigraphics_la-periEmpty.lo \
-@GUI_TRUE@	libscigraphics_la-scitokenize.lo \
-@GUI_TRUE@	libscigraphics_la-get_ticks_utils.lo \
-@GUI_TRUE@	libscigraphics_la-SciHandleTab.lo
-@GUI_TRUE@am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
-@GUI_TRUE@	libscigraphics_la-sci_grayplot.lo \
-@GUI_TRUE@	libscigraphics_la-sci_matplot1.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xfpolys.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xget.lo \
-@GUI_TRUE@	libscigraphics_la-sci_newaxes.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xlfont.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xgraduate.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xgrid.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xclick.lo \
-@GUI_TRUE@	libscigraphics_la-sci_geom3d.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xset.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xgetech.lo \
-@GUI_TRUE@	libscigraphics_la-sci_unzoom.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xsegs.lo \
-@GUI_TRUE@	libscigraphics_la-sci_clear_pixmap.lo \
-@GUI_TRUE@	libscigraphics_la-sci_glue.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xarc.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xpolys.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xstring.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xstringb.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xsetech.lo \
-@GUI_TRUE@	libscigraphics_la-sci_show_window.lo \
-@GUI_TRUE@	libscigraphics_la-sci_param3d1.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xname.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xpoly.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xchange.lo \
-@GUI_TRUE@	libscigraphics_la-sci_matplot.lo \
-@GUI_TRUE@	libscigraphics_la-sci_drawaxis.lo \
-@GUI_TRUE@	libscigraphics_la-sci_demo.lo \
-@GUI_TRUE@	libscigraphics_la-sci_plot2d1.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xrect.lo \
-@GUI_TRUE@	libscigraphics_la-sci_draw.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xarrows.lo \
-@GUI_TRUE@	libscigraphics_la-sci_plot3d.lo \
-@GUI_TRUE@	libscigraphics_la-sci_move.lo \
-@GUI_TRUE@	libscigraphics_la-sci_copy.lo \
-@GUI_TRUE@	libscigraphics_la-sci_relocate_handle.lo \
-@GUI_TRUE@	libscigraphics_la-sci_get.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xarcs.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xfpoly.lo \
-@GUI_TRUE@	libscigraphics_la-sci_drawlater.lo \
-@GUI_TRUE@	libscigraphics_la-sci_champ.lo \
-@GUI_TRUE@	libscigraphics_la-sci_set.lo \
-@GUI_TRUE@	libscigraphics_la-sci_showalluimenushandles.lo \
-@GUI_TRUE@	libscigraphics_la-sci_unglue.lo \
-@GUI_TRUE@	libscigraphics_la-gw_graphics.lo \
-@GUI_TRUE@	libscigraphics_la-sci_zoom_rect.lo \
-@GUI_TRUE@	libscigraphics_la-sci_delete.lo \
-@GUI_TRUE@	libscigraphics_la-sci_plot2d.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xrects.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xtitle.lo \
-@GUI_TRUE@	libscigraphics_la-sci_StringBox.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xgetmouse.lo \
-@GUI_TRUE@	libscigraphics_la-sci_drawnow.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xfarcs.lo \
-@GUI_TRUE@	libscigraphics_la-sci_param3d.lo \
-@GUI_TRUE@	libscigraphics_la-sci_contour2di.lo \
-@GUI_TRUE@	libscigraphics_la-sci_xdel.lo \
-@GUI_TRUE@	libscigraphics_la-sci_winsid.lo \
-@GUI_TRUE@	libscigraphics_la-sci_addcb.lo \
-@GUI_TRUE@	libscigraphics_la-sci_fec.lo \
-@GUI_TRUE@	libscigraphics_la-sci_rubberbox.lo \
-@GUI_TRUE@	libscigraphics_la-sci_rotate_axes.lo \
-@GUI_TRUE@	libscigraphics_la-sci_is_handle_valid.lo \
-@GUI_TRUE@	libscigraphics_la-sci_show_pixmap.lo \
-@GUI_TRUE@	libscigraphics_la-sci_Legend.lo
-@GUI_TRUE@am_libscigraphics_la_OBJECTS = $(am__objects_1) \
-@GUI_TRUE@	$(am__objects_2)
+libscigraphics_la_DEPENDENCIES =  \
+	$(top_builddir)/libs/hashtable/libscihashtable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/renderer/libscirenderer.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/gui/libscigui.la \
+	$(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la \
+	$(top_builddir)/modules/core/libscicore.la \
+	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/fileio/libscifileio.la
+am__objects_1 = libscigraphics_la-GetCommandArg.lo \
+	libscigraphics_la-WindowList.lo \
+	libscigraphics_la-get_figure_position_property.lo \
+	libscigraphics_la-get_figure_size_property.lo \
+	libscigraphics_la-get_visible_property.lo \
+	libscigraphics_la-get_old_style_property.lo \
+	libscigraphics_la-get_figures_id_property.lo \
+	libscigraphics_la-get_figure_style_property.lo \
+	libscigraphics_la-get_pixel_drawing_mode_property.lo \
+	libscigraphics_la-get_line_mode_property.lo \
+	libscigraphics_la-get_axes_size_property.lo \
+	libscigraphics_la-get_thickness_property.lo \
+	libscigraphics_la-get_font_foreground_property.lo \
+	libscigraphics_la-get_bar_layout_property.lo \
+	libscigraphics_la-get_current_axes_property.lo \
+	libscigraphics_la-get_bar_width_property.lo \
+	libscigraphics_la-get_font_color_property.lo \
+	libscigraphics_la-get_default_axes_property.lo \
+	libscigraphics_la-get_y_shift_property.lo \
+	libscigraphics_la-get_immediate_drawing_property.lo \
+	libscigraphics_la-get_current_entity_property.lo \
+	libscigraphics_la-get_background_property.lo \
+	libscigraphics_la-get_rotation_style_property.lo \
+	libscigraphics_la-get_type_property.lo \
+	libscigraphics_la-get_current_figure_property.lo \
+	libscigraphics_la-get_mark_foreground_property.lo \
+	libscigraphics_la-get_default_figure_property.lo \
+	libscigraphics_la-get_children_property.lo \
+	libscigraphics_la-get_parent_property.lo \
+	libscigraphics_la-get_surface_mode_property.lo \
+	libscigraphics_la-get_figure_id_property.lo \
+	libscigraphics_la-get_mark_mode_property.lo \
+	libscigraphics_la-get_pixmap_property.lo \
+	libscigraphics_la-get_interp_color_mode.lo \
+	libscigraphics_la-get_font_size_property.lo \
+	libscigraphics_la-get_x_shift_property.lo \
+	libscigraphics_la-get_z_shift_property.lo \
+	libscigraphics_la-get_line_style_property.lo \
+	libscigraphics_la-get_foreground_property.lo \
+	libscigraphics_la-get_mark_style_property.lo \
+	libscigraphics_la-get_color_map_property.lo \
+	libscigraphics_la-get_polyline_style_property.lo \
+	libscigraphics_la-get_font_angle_property.lo \
+	libscigraphics_la-get_interp_color_vector.lo \
+	libscigraphics_la-get_figure_name_property.lo \
+	libscigraphics_la-get_arrow_size_factor_property.lo \
+	libscigraphics_la-get_mark_size_unit_property.lo \
+	libscigraphics_la-get_mark_size_property.lo \
+	libscigraphics_la-get_mark_background_property.lo \
+	libscigraphics_la-get_auto_resize_property.lo \
+	libscigraphics_la-get_fill_mode_property.lo \
+	libscigraphics_la-get_tight_limits_property.lo \
+	libscigraphics_la-get_auto_ticks_property.lo \
+	libscigraphics_la-get_x_label_property.lo \
+	libscigraphics_la-get_auto_scale_property.lo \
+	libscigraphics_la-get_auto_dimensionning_property.lo \
+	libscigraphics_la-get_text_box_property.lo \
+	libscigraphics_la-get_clip_box_property.lo \
+	libscigraphics_la-get_tics_direction_property.lo \
+	libscigraphics_la-get_position_property.lo \
+	libscigraphics_la-get_y_label_property.lo \
+	libscigraphics_la-get_data_property.lo \
+	libscigraphics_la-get_auto_clear_property.lo \
+	libscigraphics_la-get_title_property.lo \
+	libscigraphics_la-get_zoom_state_property.lo \
+	libscigraphics_la-get_zoom_box_property.lo \
+	libscigraphics_la-get_log_flags_property.lo \
+	libscigraphics_la-get_x_location_property.lo \
+	libscigraphics_la-get_text_box_mode_property.lo \
+	libscigraphics_la-get_y_location_property.lo \
+	libscigraphics_la-get_z_label_property.lo \
+	libscigraphics_la-get_alignment_property.lo \
+	libscigraphics_la-get_font_style_property.lo \
+	libscigraphics_la-get_auto_rotation_property.lo \
+	libscigraphics_la-get_clip_state_property.lo \
+	libscigraphics_la-get_callback_property.lo \
+	libscigraphics_la-get_auto_position_property.lo \
+	libscigraphics_la-get_closed_property.lo \
+	libscigraphics_la-get_callbackmevent_property.lo \
+	libscigraphics_la-get_text_property.lo \
+	libscigraphics_la-get_margins_property.lo \
+	libscigraphics_la-get_view_property.lo \
+	libscigraphics_la-get_data_bounds_property.lo \
+	libscigraphics_la-get_axes_reverse_property.lo \
+	libscigraphics_la-get_tics_color_property.lo \
+	libscigraphics_la-get_axes_bounds_property.lo \
+	libscigraphics_la-get_tics_style_property.lo \
+	libscigraphics_la-get_user_data_property.lo \
+	libscigraphics_la-get_xtics_coord_property.lo \
+	libscigraphics_la-get_color_mode_property.lo \
+	libscigraphics_la-get_z_bounds_property.lo \
+	libscigraphics_la-get_data_mapping_property.lo \
+	libscigraphics_la-get_arrow_size_property.lo \
+	libscigraphics_la-get_rotation_angles_property.lo \
+	libscigraphics_la-get_callback_type_property.lo \
+	libscigraphics_la-get_format_n_property.lo \
+	libscigraphics_la-get_color_flag_property.lo \
+	libscigraphics_la-get_sub_tics_property.lo \
+	libscigraphics_la-get_hidden_axis_color_property.lo \
+	libscigraphics_la-get_ytics_coord_property.lo \
+	libscigraphics_la-get_labels_font_size_property.lo \
+	libscigraphics_la-get_isoview_property.lo \
+	libscigraphics_la-get_grid_property.lo \
+	libscigraphics_la-get_box_property.lo \
+	libscigraphics_la-get_hidden_color_property.lo \
+	libscigraphics_la-get_handle_visible_property.lo \
+	libscigraphics_la-get_labels_font_color_property.lo \
+	libscigraphics_la-get_surface_color_property.lo \
+	libscigraphics_la-get_tics_label_property.lo \
+	libscigraphics_la-get_labels_font_style_property.lo \
+	libscigraphics_la-get_axes_visible_property.lo \
+	libscigraphics_la-get_cube_scaling_property.lo \
+	libscigraphics_la-get_tics_segment_property.lo \
+	libscigraphics_la-get_cdata_mapping_property.lo \
+	libscigraphics_la-get_colored_property.lo \
+	libscigraphics_la-get_triangles_property.lo \
+	libscigraphics_la-get_viewport_property.lo \
+	libscigraphics_la-get_info_message_property.lo \
+	libscigraphics_la-get_y_ticks_property.lo \
+	libscigraphics_la-get_z_ticks_property.lo \
+	libscigraphics_la-get_x_ticks_property.lo \
+	libscigraphics_la-setGetHashTable.lo \
+	libscigraphics_la-get_segs_color_property.lo \
+	libscigraphics_la-get_screen_position_property.lo \
+	libscigraphics_la-get_dimension_property.lo \
+	libscigraphics_la-get_event_handler_property.lo \
+	libscigraphics_la-get_event_handler_enable_property.lo \
+	libscigraphics_la-get_arc_drawing_method_property.lo \
+	libscigraphics_la-get_fractional_font_property.lo \
+	libscigraphics_la-get_links_property.lo \
+	libscigraphics_la-get_legend_location_property.lo \
+	libscigraphics_la-get_filled_property.lo \
+	libscigraphics_la-get_color_range_property.lo \
+	libscigraphics_la-get_outside_colors_property.lo \
+	libscigraphics_la-get_grid_position_property.lo \
+	libscigraphics_la-get_anti_aliasing_property.lo \
+	libscigraphics_la-GetHashTable.lo \
+	libscigraphics_la-graphicModuleLoad.lo \
+	libscigraphics_la-set_old_style_property.lo \
+	libscigraphics_la-set_figure_name_property.lo \
+	libscigraphics_la-getPropertyAssignedValue.lo \
+	libscigraphics_la-set_visible_property.lo \
+	libscigraphics_la-set_pixel_drawing_mode_property.lo \
+	libscigraphics_la-set_interp_color_vector_property.lo \
+	libscigraphics_la-set_immediate_drawing_property.lo \
+	libscigraphics_la-set_figure_size_property.lo \
+	libscigraphics_la-set_background_property.lo \
+	libscigraphics_la-set_rotation_style_property.lo \
+	libscigraphics_la-set_current_figure_property.lo \
+	libscigraphics_la-set_axes_size_property.lo \
+	libscigraphics_la-set_default_values_property.lo \
+	libscigraphics_la-set_figure_position_property.lo \
+	libscigraphics_la-set_color_map_property.lo \
+	libscigraphics_la-set_auto_resize_property.lo \
+	libscigraphics_la-set_current_axes_property.lo \
+	libscigraphics_la-set_current_entity_property.lo \
+	libscigraphics_la-set_figure_id_property.lo \
+	libscigraphics_la-set_pixmap_property.lo \
+	libscigraphics_la-set_figure_style_property.lo \
+	libscigraphics_la-ColorMapManagement.lo \
+	libscigraphics_la-set_mark_size_property.lo \
+	libscigraphics_la-set_y_shift_property.lo \
+	libscigraphics_la-set_auto_scale_property.lo \
+	libscigraphics_la-set_auto_dimensionning_property.lo \
+	libscigraphics_la-set_text_box_property.lo \
+	libscigraphics_la-set_text_property.lo \
+	libscigraphics_la-set_mark_mode_property.lo \
+	libscigraphics_la-set_clip_box_property.lo \
+	libscigraphics_la-set_z_shift_property.lo \
+	libscigraphics_la-set_line_style_property.lo \
+	libscigraphics_la-set_polyline_style_property.lo \
+	libscigraphics_la-set_line_mode_property.lo \
+	libscigraphics_la-set_thickness_property.lo \
+	libscigraphics_la-set_font_foreground_property.lo \
+	libscigraphics_la-set_text_box_mode_property.lo \
+	libscigraphics_la-set_bar_layout_property.lo \
+	libscigraphics_la-set_bar_width_property.lo \
+	libscigraphics_la-SetPropertyStatus.lo \
+	libscigraphics_la-set_font_style_property.lo \
+	libscigraphics_la-set_surface_mode_property.lo \
+	libscigraphics_la-set_font_size_property.lo \
+	libscigraphics_la-set_mark_style_property.lo \
+	libscigraphics_la-set_mark_background_property.lo \
+	libscigraphics_la-set_interp_color_mode_property.lo \
+	libscigraphics_la-set_data_property.lo \
+	libscigraphics_la-set_font_angle_property.lo \
+	libscigraphics_la-set_auto_clear_property.lo \
+	libscigraphics_la-set_arrow_size_factor_property.lo \
+	libscigraphics_la-set_mark_size_unit_property.lo \
+	libscigraphics_la-set_zoom_state_property.lo \
+	libscigraphics_la-set_fill_mode_property.lo \
+	libscigraphics_la-set_zoom_box_property.lo \
+	libscigraphics_la-set_font_color_property.lo \
+	libscigraphics_la-set_alignment_property.lo \
+	libscigraphics_la-set_mark_foreground_property.lo \
+	libscigraphics_la-set_clip_state_property.lo \
+	libscigraphics_la-set_x_shift_property.lo \
+	libscigraphics_la-set_foreground_property.lo \
+	libscigraphics_la-set_tics_direction_property.lo \
+	libscigraphics_la-set_title_property.lo \
+	libscigraphics_la-set_x_location_property.lo \
+	libscigraphics_la-set_auto_position_property.lo \
+	libscigraphics_la-set_tight_limits_property.lo \
+	libscigraphics_la-set_x_label_property.lo \
+	libscigraphics_la-set_y_label_property.lo \
+	libscigraphics_la-set_y_location_property.lo \
+	libscigraphics_la-set_z_label_property.lo \
+	libscigraphics_la-set_auto_rotation_property.lo \
+	libscigraphics_la-set_callback_property.lo \
+	libscigraphics_la-set_closed_property.lo \
+	libscigraphics_la-set_callbackmevent_property.lo \
+	libscigraphics_la-set_cdata_mapping_property.lo \
+	libscigraphics_la-set_y_ticks_property.lo \
+	libscigraphics_la-set_z_bounds_property.lo \
+	libscigraphics_la-set_position_property.lo \
+	libscigraphics_la-set_z_ticks_property.lo \
+	libscigraphics_la-set_axes_bounds_property.lo \
+	libscigraphics_la-set_tics_style_property.lo \
+	libscigraphics_la-SetHashTable.lo \
+	libscigraphics_la-set_handle_visible_property.lo \
+	libscigraphics_la-set_labels_font_color_property.lo \
+	libscigraphics_la-set_parent_property.lo \
+	libscigraphics_la-set_axes_visible_property.lo \
+	libscigraphics_la-set_triangles_property.lo \
+	libscigraphics_la-set_tics_color_property.lo \
+	libscigraphics_la-set_color_flag_property.lo \
+	libscigraphics_la-set_labels_font_size_property.lo \
+	libscigraphics_la-set_tics_segment_property.lo \
+	libscigraphics_la-set_user_data_property.lo \
+	libscigraphics_la-set_view_property.lo \
+	libscigraphics_la-set_arrow_size_property.lo \
+	libscigraphics_la-set_children_property.lo \
+	libscigraphics_la-set_axes_reverse_property.lo \
+	libscigraphics_la-set_grid_property.lo \
+	libscigraphics_la-set_log_flags_property.lo \
+	libscigraphics_la-set_cube_scaling_property.lo \
+	libscigraphics_la-set_colored_property.lo \
+	libscigraphics_la-set_margins_property.lo \
+	libscigraphics_la-set_auto_ticks_property.lo \
+	libscigraphics_la-set_xtics_coord_property.lo \
+	libscigraphics_la-set_color_mode_property.lo \
+	libscigraphics_la-set_data_bounds_property.lo \
+	libscigraphics_la-set_tics_labels_property.lo \
+	libscigraphics_la-set_data_mapping_property.lo \
+	libscigraphics_la-set_rotation_angles_property.lo \
+	libscigraphics_la-set_callback_type_property.lo \
+	libscigraphics_la-set_segs_color_property.lo \
+	libscigraphics_la-set_format_n_property.lo \
+	libscigraphics_la-set_sub_tics_property.lo \
+	libscigraphics_la-set_hidden_axis_color_property.lo \
+	libscigraphics_la-set_isoview_property.lo \
+	libscigraphics_la-set_box_property.lo \
+	libscigraphics_la-set_hidden_color_property.lo \
+	libscigraphics_la-set_label_font_style_property.lo \
+	libscigraphics_la-set_surface_color_property.lo \
+	libscigraphics_la-set_yticks_coord_property.lo \
+	libscigraphics_la-CheckTicksProperty.lo \
+	libscigraphics_la-set_x_ticks_property.lo \
+	libscigraphics_la-set_viewport_property.lo \
+	libscigraphics_la-set_info_message_property.lo \
+	libscigraphics_la-set_screen_position_property.lo \
+	libscigraphics_la-set_dimension_property.lo \
+	libscigraphics_la-set_event_handler_property.lo \
+	libscigraphics_la-set_event_handler_enable_property.lo \
+	libscigraphics_la-set_arc_drawing_method_property.lo \
+	libscigraphics_la-set_fractional_font_property.lo \
+	libscigraphics_la-set_links_property.lo \
+	libscigraphics_la-set_legend_location_property.lo \
+	libscigraphics_la-set_filled_property.lo \
+	libscigraphics_la-set_color_range_property.lo \
+	libscigraphics_la-set_outside_colors_property.lo \
+	libscigraphics_la-set_grid_position_property.lo \
+	libscigraphics_la-set_anti_aliasing_property.lo \
+	libscigraphics_la-DefaultCommandArg.lo \
+	libscigraphics_la-Axes.lo libscigraphics_la-sciMatrix.lo \
+	libscigraphics_la-DrawObjects.lo \
+	libscigraphics_la-GetProperty.lo libscigraphics_la-Contour.lo \
+	libscigraphics_la-SetProperty.lo \
+	libscigraphics_la-BasicAlgos.lo \
+	libscigraphics_la-BuildObjects.lo libscigraphics_la-sciCall.lo \
+	libscigraphics_la-CloneObjects.lo \
+	libscigraphics_la-InitObjects.lo \
+	libscigraphics_la-pixel_mode.lo libscigraphics_la-Format.lo \
+	libscigraphics_la-Champ.lo libscigraphics_la-StringMatrix.lo \
+	libscigraphics_la-FeC.lo libscigraphics_la-Plo2dEch.lo \
+	libscigraphics_la-Plo2dn.lo libscigraphics_la-Gray.lo \
+	libscigraphics_la-DestroyObjects.lo \
+	libscigraphics_la-math_graphics.lo \
+	libscigraphics_la-Interaction.lo \
+	libscigraphics_la-HandleManagement.lo \
+	libscigraphics_la-StringBox.lo libscigraphics_la-axesScale.lo \
+	libscigraphics_la-TerminateGraphics.lo \
+	libscigraphics_la-CurrentObjectsManagement.lo \
+	libscigraphics_la-ObjectSelection.lo \
+	libscigraphics_la-periEmpty.lo \
+	libscigraphics_la-scitokenize.lo \
+	libscigraphics_la-get_ticks_utils.lo \
+	libscigraphics_la-SciHandleTab.lo
+am__objects_2 = libscigraphics_la-sci_swap_handles.lo \
+	libscigraphics_la-sci_grayplot.lo \
+	libscigraphics_la-sci_matplot1.lo \
+	libscigraphics_la-sci_xfpolys.lo libscigraphics_la-sci_xget.lo \
+	libscigraphics_la-sci_newaxes.lo \
+	libscigraphics_la-sci_xlfont.lo \
+	libscigraphics_la-sci_xgraduate.lo \
+	libscigraphics_la-sci_xgrid.lo libscigraphics_la-sci_xclick.lo \
+	libscigraphics_la-sci_geom3d.lo libscigraphics_la-sci_xset.lo \
+	libscigraphics_la-sci_xgetech.lo \
+	libscigraphics_la-sci_unzoom.lo libscigraphics_la-sci_xsegs.lo \
+	libscigraphics_la-sci_clear_pixmap.lo \
+	libscigraphics_la-sci_glue.lo libscigraphics_la-sci_xarc.lo \
+	libscigraphics_la-sci_xpolys.lo \
+	libscigraphics_la-sci_xstring.lo \
+	libscigraphics_la-sci_xstringb.lo \
+	libscigraphics_la-sci_xsetech.lo \
+	libscigraphics_la-sci_show_window.lo \
+	libscigraphics_la-sci_param3d1.lo \
+	libscigraphics_la-sci_xname.lo libscigraphics_la-sci_xpoly.lo \
+	libscigraphics_la-sci_xchange.lo \
+	libscigraphics_la-sci_matplot.lo \
+	libscigraphics_la-sci_drawaxis.lo \
+	libscigraphics_la-sci_demo.lo libscigraphics_la-sci_plot2d1.lo \
+	libscigraphics_la-sci_xrect.lo libscigraphics_la-sci_draw.lo \
+	libscigraphics_la-sci_xarrows.lo \
+	libscigraphics_la-sci_plot3d.lo libscigraphics_la-sci_move.lo \
+	libscigraphics_la-sci_copy.lo \
+	libscigraphics_la-sci_relocate_handle.lo \
+	libscigraphics_la-sci_get.lo libscigraphics_la-sci_xarcs.lo \
+	libscigraphics_la-sci_xfpoly.lo \
+	libscigraphics_la-sci_drawlater.lo \
+	libscigraphics_la-sci_champ.lo libscigraphics_la-sci_set.lo \
+	libscigraphics_la-sci_showalluimenushandles.lo \
+	libscigraphics_la-sci_unglue.lo \
+	libscigraphics_la-gw_graphics.lo \
+	libscigraphics_la-sci_zoom_rect.lo \
+	libscigraphics_la-sci_delete.lo \
+	libscigraphics_la-sci_plot2d.lo \
+	libscigraphics_la-sci_xrects.lo \
+	libscigraphics_la-sci_xtitle.lo \
+	libscigraphics_la-sci_StringBox.lo \
+	libscigraphics_la-sci_xgetmouse.lo \
+	libscigraphics_la-sci_drawnow.lo \
+	libscigraphics_la-sci_xfarcs.lo \
+	libscigraphics_la-sci_param3d.lo \
+	libscigraphics_la-sci_contour2di.lo \
+	libscigraphics_la-sci_xdel.lo libscigraphics_la-sci_winsid.lo \
+	libscigraphics_la-sci_addcb.lo libscigraphics_la-sci_fec.lo \
+	libscigraphics_la-sci_rubberbox.lo \
+	libscigraphics_la-sci_rotate_axes.lo \
+	libscigraphics_la-sci_is_handle_valid.lo \
+	libscigraphics_la-sci_show_pixmap.lo \
+	libscigraphics_la-sci_Legend.lo
+am_libscigraphics_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscigraphics_la_OBJECTS = $(am_libscigraphics_la_OBJECTS)
 libscigraphics_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscigraphics_la_CFLAGS) $(CFLAGS) \
 	$(libscigraphics_la_LDFLAGS) $(LDFLAGS) -o $@
+@GUI_TRUE@am_libscigraphics_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -838,8 +494,8 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscigraphics_disable_la_SOURCES) \
 	$(libscigraphics_la_SOURCES)
-DIST_SOURCES = $(am__libscigraphics_disable_la_SOURCES_DIST) \
-	$(am__libscigraphics_la_SOURCES_DIST)
+DIST_SOURCES = $(libscigraphics_disable_la_SOURCES) \
+	$(libscigraphics_la_SOURCES)
 libscigraphics_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscigraphics_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
@@ -847,56 +503,6 @@ nobase_libscigraphics_la_gedDATA_INSTALL = $(install_sh_DATA)
 DATA = $(libscigraphics_la_etc_DATA) $(libscigraphics_la_root_DATA) \
 	$(libscigraphics_la_sci_gateway_DATA) \
 	$(nobase_libscigraphics_la_ged_DATA)
-am__libscigraphics_la_include_HEADERS_DIST = includes/sci_xdel.h \
-	includes/sci_winsid.h includes/sci_addcb.h \
-	includes/sci_grayplot.h includes/sci_xlfont.h \
-	includes/GetCommandArg.h includes/sci_xgrid.h \
-	includes/sci_geom3d.h includes/DefaultCommandArg.h \
-	includes/sci_xgraduate.h includes/sci_unzoom.h \
-	includes/sci_xsegs.h includes/sci_clear_pixmap.h \
-	includes/sci_xarc.h includes/sci_xpolys.h \
-	includes/sci_xstring.h includes/Axes.h includes/sci_xsetech.h \
-	includes/sciMatrix.h includes/sci_show_window.h \
-	includes/sci_param3d1.h includes/graphicModuleLoad.h \
-	includes/sci_matplot.h includes/sci_drawaxis.h \
-	includes/sci_xrect.h includes/sci_plot2d1.h \
-	includes/GetProperty.h includes/SetProperty.h \
-	includes/sci_xarrows.h includes/sci_move.h \
-	includes/sci_relocate_handle.h includes/BasicAlgos.h \
-	includes/sciCall.h includes/sci_showalluimenushandles.h \
-	includes/sci_get.h includes/InitObjects.h \
-	includes/sci_xfpoly.h includes/sci_drawlater.h \
-	includes/Format.h includes/sci_set.h includes/sci_delete.h \
-	includes/sci_plot2d.h includes/sci_StringBox.h \
-	includes/sci_xgetmouse.h includes/Interaction.h \
-	includes/sci_xfarcs.h includes/sci_contour2di.h \
-	includes/HandleManagement.h includes/sci_fec.h \
-	includes/sci_matplot1.h includes/XsetXgetParameters.h \
-	includes/sci_xfpolys.h includes/WindowList.h \
-	includes/sci_xget.h includes/sci_swap_handles.h \
-	includes/sci_newaxes.h includes/PloEch.h includes/sci_xclick.h \
-	includes/sci_xset.h includes/sci_xgetech.h includes/sci_glue.h \
-	includes/sci_xstringb.h includes/sci_xname.h \
-	includes/DrawObjects.h includes/sci_xpoly.h \
-	includes/sci_xchange.h includes/sci_demo.h \
-	includes/ObjectStructure.h includes/sci_draw.h \
-	includes/sci_plot3d.h includes/sci_copy.h \
-	includes/BuildObjects.h includes/CloneObjects.h \
-	includes/sci_xarcs.h includes/pixel_mode.h \
-	includes/sci_champ.h includes/Champ.h includes/StringMatrix.h \
-	includes/sci_unglue.h includes/gw_graphics.h \
-	includes/sci_zoom_rect.h includes/DestroyObjects.h \
-	includes/sci_xrects.h includes/sci_xtitle.h \
-	includes/math_graphics.h includes/sci_drawnow.h \
-	includes/sci_param3d.h includes/CurrentObjectsManagement.h \
-	includes/ObjectSelection.h includes/axesScale.h \
-	includes/Contour.h includes/getDictionaryGetProperties.h \
-	includes/getDictionarySetProperties.h includes/GrayPlot.h \
-	includes/sci_xload.h includes/sci_xsave.h \
-	includes/TerminateGraphics.h includes/sci_rubberbox.h \
-	includes/sci_rotate_axes.h includes/sci_is_handle_valid.h \
-	includes/sci_show_pixmap.h includes/sci_Legend.h \
-	includes/Plot2d.h
 libscigraphics_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscigraphics_la_include_HEADERS)
 ETAGS = etags
@@ -927,6 +533,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -945,7 +552,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -955,6 +565,8 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -1014,6 +626,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -1098,16 +711,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
-# the module Doublylinkedlist  is included here... of course, it is not
-# used in the mode without gui but It causes some silly problems with includes
-libscigraphics_la_CFLAGS =  \
-	-I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/c/getHandleProperty/ \
-	-I$(top_srcdir)/modules/gui/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/string/includes/ $(am__append_1)
-
 #### target ####
 modulename = graphics
 
@@ -1118,548 +721,569 @@ libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
 libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
-@GUI_TRUE@GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
-@GUI_TRUE@src/c/WindowList.c \
-@GUI_TRUE@src/c/getHandleProperty/get_figure_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_figure_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_visible_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_old_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_figures_id_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_figure_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_pixel_drawing_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_line_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_axes_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_thickness_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_font_foreground_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_bar_layout_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_current_axes_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_bar_width_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_font_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_default_axes_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_y_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_immediate_drawing_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_current_entity_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_background_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_rotation_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_type_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_current_figure_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_mark_foreground_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_default_figure_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_children_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_parent_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_surface_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_figure_id_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_mark_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_pixmap_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_interp_color_mode.c \
-@GUI_TRUE@src/c/getHandleProperty/get_font_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_x_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_z_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_line_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_foreground_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_mark_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_color_map_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_polyline_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_font_angle_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_interp_color_vector.c \
-@GUI_TRUE@src/c/getHandleProperty/get_figure_name_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_arrow_size_factor_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_mark_size_unit_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_mark_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_mark_background_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_resize_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_fill_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_tight_limits_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_x_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_scale_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_dimensionning_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_text_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_clip_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_tics_direction_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_y_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_data_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_clear_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_title_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_zoom_state_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_zoom_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_log_flags_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_x_location_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_text_box_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_y_location_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_z_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_alignment_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_font_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_rotation_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_clip_state_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_callback_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_auto_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_closed_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_callbackmevent_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_text_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_margins_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_view_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_data_bounds_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_axes_reverse_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_tics_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_axes_bounds_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_tics_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_user_data_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_xtics_coord_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_color_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_z_bounds_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_data_mapping_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_arrow_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_rotation_angles_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_callback_type_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_format_n_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_color_flag_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_sub_tics_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_hidden_axis_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_ytics_coord_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_labels_font_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_isoview_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_grid_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_hidden_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_handle_visible_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_labels_font_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_surface_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_tics_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_labels_font_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_axes_visible_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_cube_scaling_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_tics_segment_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_cdata_mapping_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_colored_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_triangles_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_viewport_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_info_message_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_y_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_z_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_x_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/setGetHashTable.c \
-@GUI_TRUE@src/c/getHandleProperty/get_segs_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_screen_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_dimension_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_event_handler_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_event_handler_enable_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_arc_drawing_method_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_fractional_font_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_links_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_legend_location_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_filled_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_color_range_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_outside_colors_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_grid_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/get_anti_aliasing_property.c \
-@GUI_TRUE@src/c/getHandleProperty/GetHashTable.c \
-@GUI_TRUE@src/c/graphicModuleLoad.c \
-@GUI_TRUE@src/c/getHandleProperty/set_old_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_figure_name_property.c \
-@GUI_TRUE@src/c/getHandleProperty/getPropertyAssignedValue.c \
-@GUI_TRUE@src/c/getHandleProperty/set_visible_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_pixel_drawing_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_interp_color_vector_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_immediate_drawing_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_figure_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_background_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_rotation_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_current_figure_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_axes_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_default_values_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_figure_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_color_map_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_resize_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_current_axes_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_current_entity_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_figure_id_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_pixmap_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_figure_style_property.c \
-@GUI_TRUE@src/c/ColorMapManagement.c \
-@GUI_TRUE@src/c/getHandleProperty/set_mark_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_y_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_scale_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_dimensionning_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_text_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_text_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_mark_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_clip_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_z_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_line_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_polyline_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_line_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_thickness_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_font_foreground_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_text_box_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_bar_layout_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_bar_width_property.c \
-@GUI_TRUE@src/c/getHandleProperty/SetPropertyStatus.c \
-@GUI_TRUE@src/c/getHandleProperty/set_font_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_surface_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_font_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_mark_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_mark_background_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_interp_color_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_data_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_font_angle_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_clear_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_arrow_size_factor_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_mark_size_unit_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_zoom_state_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_fill_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_zoom_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_font_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_alignment_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_mark_foreground_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_clip_state_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_x_shift_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_foreground_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_tics_direction_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_title_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_x_location_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_tight_limits_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_x_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_y_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_y_location_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_z_label_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_rotation_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_callback_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_closed_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_callbackmevent_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_cdata_mapping_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_y_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_z_bounds_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_z_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_axes_bounds_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_tics_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/SetHashTable.c \
-@GUI_TRUE@src/c/getHandleProperty/set_handle_visible_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_labels_font_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_parent_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_axes_visible_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_triangles_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_tics_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_color_flag_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_labels_font_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_tics_segment_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_user_data_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_view_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_arrow_size_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_children_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_axes_reverse_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_grid_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_log_flags_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_cube_scaling_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_colored_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_margins_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_auto_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_xtics_coord_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_color_mode_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_data_bounds_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_tics_labels_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_data_mapping_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_rotation_angles_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_callback_type_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_segs_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_format_n_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_sub_tics_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_hidden_axis_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_isoview_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_box_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_hidden_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_label_font_style_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_surface_color_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_yticks_coord_property.c \
-@GUI_TRUE@src/c/getHandleProperty/CheckTicksProperty.c \
-@GUI_TRUE@src/c/getHandleProperty/set_x_ticks_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_viewport_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_info_message_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_screen_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_dimension_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_event_handler_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_event_handler_enable_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_arc_drawing_method_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_fractional_font_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_links_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_legend_location_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_filled_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_color_range_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_outside_colors_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_grid_position_property.c \
-@GUI_TRUE@src/c/getHandleProperty/set_anti_aliasing_property.c \
-@GUI_TRUE@src/c/DefaultCommandArg.c \
-@GUI_TRUE@src/c/Axes.c \
-@GUI_TRUE@src/c/sciMatrix.c \
-@GUI_TRUE@src/c/DrawObjects.c \
-@GUI_TRUE@src/c/GetProperty.c \
-@GUI_TRUE@src/c/Contour.c \
-@GUI_TRUE@src/c/SetProperty.c \
-@GUI_TRUE@src/c/BasicAlgos.c \
-@GUI_TRUE@src/c/BuildObjects.c \
-@GUI_TRUE@src/c/sciCall.c \
-@GUI_TRUE@src/c/CloneObjects.c \
-@GUI_TRUE@src/c/InitObjects.c \
-@GUI_TRUE@src/c/pixel_mode.c \
-@GUI_TRUE@src/c/Format.c \
-@GUI_TRUE@src/c/Champ.c \
-@GUI_TRUE@src/c/StringMatrix.c \
-@GUI_TRUE@src/c/FeC.c \
-@GUI_TRUE@src/c/Plo2dEch.c \
-@GUI_TRUE@src/c/Plo2dn.c \
-@GUI_TRUE@src/c/Gray.c \
-@GUI_TRUE@src/c/DestroyObjects.c \
-@GUI_TRUE@src/c/math_graphics.c \
-@GUI_TRUE@src/c/Interaction.c \
-@GUI_TRUE@src/c/HandleManagement.c \
-@GUI_TRUE@src/c/StringBox.c \
-@GUI_TRUE@src/c/axesScale.c \
-@GUI_TRUE@src/c/TerminateGraphics.c \
-@GUI_TRUE@src/c/CurrentObjectsManagement.c \
-@GUI_TRUE@src/c/ObjectSelection.c \
-@GUI_TRUE@src/c/periEmpty.c \
-@GUI_TRUE@src/c/scitokenize.c \
-@GUI_TRUE@src/c/get_ticks_utils.c \
-@GUI_TRUE@src/c/SciHandleTab.c
 
-@GUI_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
-@GUI_TRUE@sci_gateway/c/sci_grayplot.c \
-@GUI_TRUE@sci_gateway/c/sci_matplot1.c \
-@GUI_TRUE@sci_gateway/c/sci_xfpolys.c \
-@GUI_TRUE@sci_gateway/c/sci_xget.c \
-@GUI_TRUE@sci_gateway/c/sci_newaxes.c \
-@GUI_TRUE@sci_gateway/c/sci_xlfont.c \
-@GUI_TRUE@sci_gateway/c/sci_xgraduate.c \
-@GUI_TRUE@sci_gateway/c/sci_xgrid.c \
-@GUI_TRUE@sci_gateway/c/sci_xclick.c \
-@GUI_TRUE@sci_gateway/c/sci_geom3d.c \
-@GUI_TRUE@sci_gateway/c/sci_xset.c \
-@GUI_TRUE@sci_gateway/c/sci_xgetech.c \
-@GUI_TRUE@sci_gateway/c/sci_unzoom.c \
-@GUI_TRUE@sci_gateway/c/sci_xsegs.c \
-@GUI_TRUE@sci_gateway/c/sci_clear_pixmap.c \
-@GUI_TRUE@sci_gateway/c/sci_glue.c \
-@GUI_TRUE@sci_gateway/c/sci_xarc.c \
-@GUI_TRUE@sci_gateway/c/sci_xpolys.c \
-@GUI_TRUE@sci_gateway/c/sci_xstring.c \
-@GUI_TRUE@sci_gateway/c/sci_xstringb.c \
-@GUI_TRUE@sci_gateway/c/sci_xsetech.c \
-@GUI_TRUE@sci_gateway/c/sci_show_window.c \
-@GUI_TRUE@sci_gateway/c/sci_param3d1.c \
-@GUI_TRUE@sci_gateway/c/sci_xname.c \
-@GUI_TRUE@sci_gateway/c/sci_xpoly.c \
-@GUI_TRUE@sci_gateway/c/sci_xchange.c \
-@GUI_TRUE@sci_gateway/c/sci_matplot.c \
-@GUI_TRUE@sci_gateway/c/sci_drawaxis.c \
-@GUI_TRUE@sci_gateway/c/sci_demo.c \
-@GUI_TRUE@sci_gateway/c/sci_plot2d1.c \
-@GUI_TRUE@sci_gateway/c/sci_xrect.c \
-@GUI_TRUE@sci_gateway/c/sci_draw.c \
-@GUI_TRUE@sci_gateway/c/sci_xarrows.c \
-@GUI_TRUE@sci_gateway/c/sci_plot3d.c \
-@GUI_TRUE@sci_gateway/c/sci_move.c \
-@GUI_TRUE@sci_gateway/c/sci_copy.c \
-@GUI_TRUE@sci_gateway/c/sci_relocate_handle.c \
-@GUI_TRUE@sci_gateway/c/sci_get.c \
-@GUI_TRUE@sci_gateway/c/sci_xarcs.c \
-@GUI_TRUE@sci_gateway/c/sci_xfpoly.c \
-@GUI_TRUE@sci_gateway/c/sci_drawlater.c \
-@GUI_TRUE@sci_gateway/c/sci_champ.c \
-@GUI_TRUE@sci_gateway/c/sci_set.c \
-@GUI_TRUE@sci_gateway/c/sci_showalluimenushandles.c \
-@GUI_TRUE@sci_gateway/c/sci_unglue.c \
-@GUI_TRUE@sci_gateway/c/gw_graphics.c \
-@GUI_TRUE@sci_gateway/c/sci_zoom_rect.c \
-@GUI_TRUE@sci_gateway/c/sci_delete.c \
-@GUI_TRUE@sci_gateway/c/sci_plot2d.c \
-@GUI_TRUE@sci_gateway/c/sci_xrects.c \
-@GUI_TRUE@sci_gateway/c/sci_xtitle.c \
-@GUI_TRUE@sci_gateway/c/sci_StringBox.c \
-@GUI_TRUE@sci_gateway/c/sci_xgetmouse.c \
-@GUI_TRUE@sci_gateway/c/sci_drawnow.c \
-@GUI_TRUE@sci_gateway/c/sci_xfarcs.c \
-@GUI_TRUE@sci_gateway/c/sci_param3d.c \
-@GUI_TRUE@sci_gateway/c/sci_contour2di.c \
-@GUI_TRUE@sci_gateway/c/sci_xdel.c \
-@GUI_TRUE@sci_gateway/c/sci_winsid.c \
-@GUI_TRUE@sci_gateway/c/sci_addcb.c \
-@GUI_TRUE@sci_gateway/c/sci_fec.c \
-@GUI_TRUE@sci_gateway/c/sci_rubberbox.c \
-@GUI_TRUE@sci_gateway/c/sci_rotate_axes.c \
-@GUI_TRUE@sci_gateway/c/sci_is_handle_valid.c \
-@GUI_TRUE@sci_gateway/c/sci_show_pixmap.c \
-@GUI_TRUE@sci_gateway/c/sci_Legend.c
+# the module Doublylinkedlist  is included here... of course, it is not
+# used in the mode without gui but It causes some silly problems with includes
+libscigraphics_la_CFLAGS =  \
+	-I$(top_srcdir)/libs/doublylinkedlist/includes \
+	-I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/c/getHandleProperty/ \
+	-I$(top_srcdir)/modules/gui/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ $(JAVA_JNI_INCLUDE) \
+	-Isrc/cpp $(TCL_INC_PATH) $(TK_INC_PATH) \
+	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/libs/hashtable/ \
+	-I$(top_srcdir)/modules/jvm/includes \
+	-I$(top_srcdir)/modules/renderer/includes/ \
+	-I$(top_srcdir)/modules/action_binding/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/graphic_export/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes
+GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
+src/c/WindowList.c \
+src/c/getHandleProperty/get_figure_position_property.c \
+src/c/getHandleProperty/get_figure_size_property.c \
+src/c/getHandleProperty/get_visible_property.c \
+src/c/getHandleProperty/get_old_style_property.c \
+src/c/getHandleProperty/get_figures_id_property.c \
+src/c/getHandleProperty/get_figure_style_property.c \
+src/c/getHandleProperty/get_pixel_drawing_mode_property.c \
+src/c/getHandleProperty/get_line_mode_property.c \
+src/c/getHandleProperty/get_axes_size_property.c \
+src/c/getHandleProperty/get_thickness_property.c \
+src/c/getHandleProperty/get_font_foreground_property.c \
+src/c/getHandleProperty/get_bar_layout_property.c \
+src/c/getHandleProperty/get_current_axes_property.c \
+src/c/getHandleProperty/get_bar_width_property.c \
+src/c/getHandleProperty/get_font_color_property.c \
+src/c/getHandleProperty/get_default_axes_property.c \
+src/c/getHandleProperty/get_y_shift_property.c \
+src/c/getHandleProperty/get_immediate_drawing_property.c \
+src/c/getHandleProperty/get_current_entity_property.c \
+src/c/getHandleProperty/get_background_property.c \
+src/c/getHandleProperty/get_rotation_style_property.c \
+src/c/getHandleProperty/get_type_property.c \
+src/c/getHandleProperty/get_current_figure_property.c \
+src/c/getHandleProperty/get_mark_foreground_property.c \
+src/c/getHandleProperty/get_default_figure_property.c \
+src/c/getHandleProperty/get_children_property.c \
+src/c/getHandleProperty/get_parent_property.c \
+src/c/getHandleProperty/get_surface_mode_property.c \
+src/c/getHandleProperty/get_figure_id_property.c \
+src/c/getHandleProperty/get_mark_mode_property.c \
+src/c/getHandleProperty/get_pixmap_property.c \
+src/c/getHandleProperty/get_interp_color_mode.c \
+src/c/getHandleProperty/get_font_size_property.c \
+src/c/getHandleProperty/get_x_shift_property.c \
+src/c/getHandleProperty/get_z_shift_property.c \
+src/c/getHandleProperty/get_line_style_property.c \
+src/c/getHandleProperty/get_foreground_property.c \
+src/c/getHandleProperty/get_mark_style_property.c \
+src/c/getHandleProperty/get_color_map_property.c \
+src/c/getHandleProperty/get_polyline_style_property.c \
+src/c/getHandleProperty/get_font_angle_property.c \
+src/c/getHandleProperty/get_interp_color_vector.c \
+src/c/getHandleProperty/get_figure_name_property.c \
+src/c/getHandleProperty/get_arrow_size_factor_property.c \
+src/c/getHandleProperty/get_mark_size_unit_property.c \
+src/c/getHandleProperty/get_mark_size_property.c \
+src/c/getHandleProperty/get_mark_background_property.c \
+src/c/getHandleProperty/get_auto_resize_property.c \
+src/c/getHandleProperty/get_fill_mode_property.c \
+src/c/getHandleProperty/get_tight_limits_property.c \
+src/c/getHandleProperty/get_auto_ticks_property.c \
+src/c/getHandleProperty/get_x_label_property.c \
+src/c/getHandleProperty/get_auto_scale_property.c \
+src/c/getHandleProperty/get_auto_dimensionning_property.c \
+src/c/getHandleProperty/get_text_box_property.c \
+src/c/getHandleProperty/get_clip_box_property.c \
+src/c/getHandleProperty/get_tics_direction_property.c \
+src/c/getHandleProperty/get_position_property.c \
+src/c/getHandleProperty/get_y_label_property.c \
+src/c/getHandleProperty/get_data_property.c \
+src/c/getHandleProperty/get_auto_clear_property.c \
+src/c/getHandleProperty/get_title_property.c \
+src/c/getHandleProperty/get_zoom_state_property.c \
+src/c/getHandleProperty/get_zoom_box_property.c \
+src/c/getHandleProperty/get_log_flags_property.c \
+src/c/getHandleProperty/get_x_location_property.c \
+src/c/getHandleProperty/get_text_box_mode_property.c \
+src/c/getHandleProperty/get_y_location_property.c \
+src/c/getHandleProperty/get_z_label_property.c \
+src/c/getHandleProperty/get_alignment_property.c \
+src/c/getHandleProperty/get_font_style_property.c \
+src/c/getHandleProperty/get_auto_rotation_property.c \
+src/c/getHandleProperty/get_clip_state_property.c \
+src/c/getHandleProperty/get_callback_property.c \
+src/c/getHandleProperty/get_auto_position_property.c \
+src/c/getHandleProperty/get_closed_property.c \
+src/c/getHandleProperty/get_callbackmevent_property.c \
+src/c/getHandleProperty/get_text_property.c \
+src/c/getHandleProperty/get_margins_property.c \
+src/c/getHandleProperty/get_view_property.c \
+src/c/getHandleProperty/get_data_bounds_property.c \
+src/c/getHandleProperty/get_axes_reverse_property.c \
+src/c/getHandleProperty/get_tics_color_property.c \
+src/c/getHandleProperty/get_axes_bounds_property.c \
+src/c/getHandleProperty/get_tics_style_property.c \
+src/c/getHandleProperty/get_user_data_property.c \
+src/c/getHandleProperty/get_xtics_coord_property.c \
+src/c/getHandleProperty/get_color_mode_property.c \
+src/c/getHandleProperty/get_z_bounds_property.c \
+src/c/getHandleProperty/get_data_mapping_property.c \
+src/c/getHandleProperty/get_arrow_size_property.c \
+src/c/getHandleProperty/get_rotation_angles_property.c \
+src/c/getHandleProperty/get_callback_type_property.c \
+src/c/getHandleProperty/get_format_n_property.c \
+src/c/getHandleProperty/get_color_flag_property.c \
+src/c/getHandleProperty/get_sub_tics_property.c \
+src/c/getHandleProperty/get_hidden_axis_color_property.c \
+src/c/getHandleProperty/get_ytics_coord_property.c \
+src/c/getHandleProperty/get_labels_font_size_property.c \
+src/c/getHandleProperty/get_isoview_property.c \
+src/c/getHandleProperty/get_grid_property.c \
+src/c/getHandleProperty/get_box_property.c \
+src/c/getHandleProperty/get_hidden_color_property.c \
+src/c/getHandleProperty/get_handle_visible_property.c \
+src/c/getHandleProperty/get_labels_font_color_property.c \
+src/c/getHandleProperty/get_surface_color_property.c \
+src/c/getHandleProperty/get_tics_label_property.c \
+src/c/getHandleProperty/get_labels_font_style_property.c \
+src/c/getHandleProperty/get_axes_visible_property.c \
+src/c/getHandleProperty/get_cube_scaling_property.c \
+src/c/getHandleProperty/get_tics_segment_property.c \
+src/c/getHandleProperty/get_cdata_mapping_property.c \
+src/c/getHandleProperty/get_colored_property.c \
+src/c/getHandleProperty/get_triangles_property.c \
+src/c/getHandleProperty/get_viewport_property.c \
+src/c/getHandleProperty/get_info_message_property.c \
+src/c/getHandleProperty/get_y_ticks_property.c \
+src/c/getHandleProperty/get_z_ticks_property.c \
+src/c/getHandleProperty/get_x_ticks_property.c \
+src/c/getHandleProperty/setGetHashTable.c \
+src/c/getHandleProperty/get_segs_color_property.c \
+src/c/getHandleProperty/get_screen_position_property.c \
+src/c/getHandleProperty/get_dimension_property.c \
+src/c/getHandleProperty/get_event_handler_property.c \
+src/c/getHandleProperty/get_event_handler_enable_property.c \
+src/c/getHandleProperty/get_arc_drawing_method_property.c \
+src/c/getHandleProperty/get_fractional_font_property.c \
+src/c/getHandleProperty/get_links_property.c \
+src/c/getHandleProperty/get_legend_location_property.c \
+src/c/getHandleProperty/get_filled_property.c \
+src/c/getHandleProperty/get_color_range_property.c \
+src/c/getHandleProperty/get_outside_colors_property.c \
+src/c/getHandleProperty/get_grid_position_property.c \
+src/c/getHandleProperty/get_anti_aliasing_property.c \
+src/c/getHandleProperty/GetHashTable.c \
+src/c/graphicModuleLoad.c \
+src/c/getHandleProperty/set_old_style_property.c \
+src/c/getHandleProperty/set_figure_name_property.c \
+src/c/getHandleProperty/getPropertyAssignedValue.c \
+src/c/getHandleProperty/set_visible_property.c \
+src/c/getHandleProperty/set_pixel_drawing_mode_property.c \
+src/c/getHandleProperty/set_interp_color_vector_property.c \
+src/c/getHandleProperty/set_immediate_drawing_property.c \
+src/c/getHandleProperty/set_figure_size_property.c \
+src/c/getHandleProperty/set_background_property.c \
+src/c/getHandleProperty/set_rotation_style_property.c \
+src/c/getHandleProperty/set_current_figure_property.c \
+src/c/getHandleProperty/set_axes_size_property.c \
+src/c/getHandleProperty/set_default_values_property.c \
+src/c/getHandleProperty/set_figure_position_property.c \
+src/c/getHandleProperty/set_color_map_property.c \
+src/c/getHandleProperty/set_auto_resize_property.c \
+src/c/getHandleProperty/set_current_axes_property.c \
+src/c/getHandleProperty/set_current_entity_property.c \
+src/c/getHandleProperty/set_figure_id_property.c \
+src/c/getHandleProperty/set_pixmap_property.c \
+src/c/getHandleProperty/set_figure_style_property.c \
+src/c/ColorMapManagement.c \
+src/c/getHandleProperty/set_mark_size_property.c \
+src/c/getHandleProperty/set_y_shift_property.c \
+src/c/getHandleProperty/set_auto_scale_property.c \
+src/c/getHandleProperty/set_auto_dimensionning_property.c \
+src/c/getHandleProperty/set_text_box_property.c \
+src/c/getHandleProperty/set_text_property.c \
+src/c/getHandleProperty/set_mark_mode_property.c \
+src/c/getHandleProperty/set_clip_box_property.c \
+src/c/getHandleProperty/set_z_shift_property.c \
+src/c/getHandleProperty/set_line_style_property.c \
+src/c/getHandleProperty/set_polyline_style_property.c \
+src/c/getHandleProperty/set_line_mode_property.c \
+src/c/getHandleProperty/set_thickness_property.c \
+src/c/getHandleProperty/set_font_foreground_property.c \
+src/c/getHandleProperty/set_text_box_mode_property.c \
+src/c/getHandleProperty/set_bar_layout_property.c \
+src/c/getHandleProperty/set_bar_width_property.c \
+src/c/getHandleProperty/SetPropertyStatus.c \
+src/c/getHandleProperty/set_font_style_property.c \
+src/c/getHandleProperty/set_surface_mode_property.c \
+src/c/getHandleProperty/set_font_size_property.c \
+src/c/getHandleProperty/set_mark_style_property.c \
+src/c/getHandleProperty/set_mark_background_property.c \
+src/c/getHandleProperty/set_interp_color_mode_property.c \
+src/c/getHandleProperty/set_data_property.c \
+src/c/getHandleProperty/set_font_angle_property.c \
+src/c/getHandleProperty/set_auto_clear_property.c \
+src/c/getHandleProperty/set_arrow_size_factor_property.c \
+src/c/getHandleProperty/set_mark_size_unit_property.c \
+src/c/getHandleProperty/set_zoom_state_property.c \
+src/c/getHandleProperty/set_fill_mode_property.c \
+src/c/getHandleProperty/set_zoom_box_property.c \
+src/c/getHandleProperty/set_font_color_property.c \
+src/c/getHandleProperty/set_alignment_property.c \
+src/c/getHandleProperty/set_mark_foreground_property.c \
+src/c/getHandleProperty/set_clip_state_property.c \
+src/c/getHandleProperty/set_x_shift_property.c \
+src/c/getHandleProperty/set_foreground_property.c \
+src/c/getHandleProperty/set_tics_direction_property.c \
+src/c/getHandleProperty/set_title_property.c \
+src/c/getHandleProperty/set_x_location_property.c \
+src/c/getHandleProperty/set_auto_position_property.c \
+src/c/getHandleProperty/set_tight_limits_property.c \
+src/c/getHandleProperty/set_x_label_property.c \
+src/c/getHandleProperty/set_y_label_property.c \
+src/c/getHandleProperty/set_y_location_property.c \
+src/c/getHandleProperty/set_z_label_property.c \
+src/c/getHandleProperty/set_auto_rotation_property.c \
+src/c/getHandleProperty/set_callback_property.c \
+src/c/getHandleProperty/set_closed_property.c \
+src/c/getHandleProperty/set_callbackmevent_property.c \
+src/c/getHandleProperty/set_cdata_mapping_property.c \
+src/c/getHandleProperty/set_y_ticks_property.c \
+src/c/getHandleProperty/set_z_bounds_property.c \
+src/c/getHandleProperty/set_position_property.c \
+src/c/getHandleProperty/set_z_ticks_property.c \
+src/c/getHandleProperty/set_axes_bounds_property.c \
+src/c/getHandleProperty/set_tics_style_property.c \
+src/c/getHandleProperty/SetHashTable.c \
+src/c/getHandleProperty/set_handle_visible_property.c \
+src/c/getHandleProperty/set_labels_font_color_property.c \
+src/c/getHandleProperty/set_parent_property.c \
+src/c/getHandleProperty/set_axes_visible_property.c \
+src/c/getHandleProperty/set_triangles_property.c \
+src/c/getHandleProperty/set_tics_color_property.c \
+src/c/getHandleProperty/set_color_flag_property.c \
+src/c/getHandleProperty/set_labels_font_size_property.c \
+src/c/getHandleProperty/set_tics_segment_property.c \
+src/c/getHandleProperty/set_user_data_property.c \
+src/c/getHandleProperty/set_view_property.c \
+src/c/getHandleProperty/set_arrow_size_property.c \
+src/c/getHandleProperty/set_children_property.c \
+src/c/getHandleProperty/set_axes_reverse_property.c \
+src/c/getHandleProperty/set_grid_property.c \
+src/c/getHandleProperty/set_log_flags_property.c \
+src/c/getHandleProperty/set_cube_scaling_property.c \
+src/c/getHandleProperty/set_colored_property.c \
+src/c/getHandleProperty/set_margins_property.c \
+src/c/getHandleProperty/set_auto_ticks_property.c \
+src/c/getHandleProperty/set_xtics_coord_property.c \
+src/c/getHandleProperty/set_color_mode_property.c \
+src/c/getHandleProperty/set_data_bounds_property.c \
+src/c/getHandleProperty/set_tics_labels_property.c \
+src/c/getHandleProperty/set_data_mapping_property.c \
+src/c/getHandleProperty/set_rotation_angles_property.c \
+src/c/getHandleProperty/set_callback_type_property.c \
+src/c/getHandleProperty/set_segs_color_property.c \
+src/c/getHandleProperty/set_format_n_property.c \
+src/c/getHandleProperty/set_sub_tics_property.c \
+src/c/getHandleProperty/set_hidden_axis_color_property.c \
+src/c/getHandleProperty/set_isoview_property.c \
+src/c/getHandleProperty/set_box_property.c \
+src/c/getHandleProperty/set_hidden_color_property.c \
+src/c/getHandleProperty/set_label_font_style_property.c \
+src/c/getHandleProperty/set_surface_color_property.c \
+src/c/getHandleProperty/set_yticks_coord_property.c \
+src/c/getHandleProperty/CheckTicksProperty.c \
+src/c/getHandleProperty/set_x_ticks_property.c \
+src/c/getHandleProperty/set_viewport_property.c \
+src/c/getHandleProperty/set_info_message_property.c \
+src/c/getHandleProperty/set_screen_position_property.c \
+src/c/getHandleProperty/set_dimension_property.c \
+src/c/getHandleProperty/set_event_handler_property.c \
+src/c/getHandleProperty/set_event_handler_enable_property.c \
+src/c/getHandleProperty/set_arc_drawing_method_property.c \
+src/c/getHandleProperty/set_fractional_font_property.c \
+src/c/getHandleProperty/set_links_property.c \
+src/c/getHandleProperty/set_legend_location_property.c \
+src/c/getHandleProperty/set_filled_property.c \
+src/c/getHandleProperty/set_color_range_property.c \
+src/c/getHandleProperty/set_outside_colors_property.c \
+src/c/getHandleProperty/set_grid_position_property.c \
+src/c/getHandleProperty/set_anti_aliasing_property.c \
+src/c/DefaultCommandArg.c \
+src/c/Axes.c \
+src/c/sciMatrix.c \
+src/c/DrawObjects.c \
+src/c/GetProperty.c \
+src/c/Contour.c \
+src/c/SetProperty.c \
+src/c/BasicAlgos.c \
+src/c/BuildObjects.c \
+src/c/sciCall.c \
+src/c/CloneObjects.c \
+src/c/InitObjects.c \
+src/c/pixel_mode.c \
+src/c/Format.c \
+src/c/Champ.c \
+src/c/StringMatrix.c \
+src/c/FeC.c \
+src/c/Plo2dEch.c \
+src/c/Plo2dn.c \
+src/c/Gray.c \
+src/c/DestroyObjects.c \
+src/c/math_graphics.c \
+src/c/Interaction.c \
+src/c/HandleManagement.c \
+src/c/StringBox.c \
+src/c/axesScale.c \
+src/c/TerminateGraphics.c \
+src/c/CurrentObjectsManagement.c \
+src/c/ObjectSelection.c \
+src/c/periEmpty.c \
+src/c/scitokenize.c \
+src/c/get_ticks_utils.c \
+src/c/SciHandleTab.c
 
-@GUI_TRUE@libscigraphics_la_CXXFLAGS = -Iincludes/ \
-@GUI_TRUE@				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
-@GUI_TRUE@				-I$(top_srcdir)/modules/jvm/includes \
-@GUI_TRUE@			 	-I$(top_srcdir)/modules/graphic_export/includes/
+GATEWAY_C_SOURCES = sci_gateway/c/sci_swap_handles.c \
+sci_gateway/c/sci_grayplot.c \
+sci_gateway/c/sci_matplot1.c \
+sci_gateway/c/sci_xfpolys.c \
+sci_gateway/c/sci_xget.c \
+sci_gateway/c/sci_newaxes.c \
+sci_gateway/c/sci_xlfont.c \
+sci_gateway/c/sci_xgraduate.c \
+sci_gateway/c/sci_xgrid.c \
+sci_gateway/c/sci_xclick.c \
+sci_gateway/c/sci_geom3d.c \
+sci_gateway/c/sci_xset.c \
+sci_gateway/c/sci_xgetech.c \
+sci_gateway/c/sci_unzoom.c \
+sci_gateway/c/sci_xsegs.c \
+sci_gateway/c/sci_clear_pixmap.c \
+sci_gateway/c/sci_glue.c \
+sci_gateway/c/sci_xarc.c \
+sci_gateway/c/sci_xpolys.c \
+sci_gateway/c/sci_xstring.c \
+sci_gateway/c/sci_xstringb.c \
+sci_gateway/c/sci_xsetech.c \
+sci_gateway/c/sci_show_window.c \
+sci_gateway/c/sci_param3d1.c \
+sci_gateway/c/sci_xname.c \
+sci_gateway/c/sci_xpoly.c \
+sci_gateway/c/sci_xchange.c \
+sci_gateway/c/sci_matplot.c \
+sci_gateway/c/sci_drawaxis.c \
+sci_gateway/c/sci_demo.c \
+sci_gateway/c/sci_plot2d1.c \
+sci_gateway/c/sci_xrect.c \
+sci_gateway/c/sci_draw.c \
+sci_gateway/c/sci_xarrows.c \
+sci_gateway/c/sci_plot3d.c \
+sci_gateway/c/sci_move.c \
+sci_gateway/c/sci_copy.c \
+sci_gateway/c/sci_relocate_handle.c \
+sci_gateway/c/sci_get.c \
+sci_gateway/c/sci_xarcs.c \
+sci_gateway/c/sci_xfpoly.c \
+sci_gateway/c/sci_drawlater.c \
+sci_gateway/c/sci_champ.c \
+sci_gateway/c/sci_set.c \
+sci_gateway/c/sci_showalluimenushandles.c \
+sci_gateway/c/sci_unglue.c \
+sci_gateway/c/gw_graphics.c \
+sci_gateway/c/sci_zoom_rect.c \
+sci_gateway/c/sci_delete.c \
+sci_gateway/c/sci_plot2d.c \
+sci_gateway/c/sci_xrects.c \
+sci_gateway/c/sci_xtitle.c \
+sci_gateway/c/sci_StringBox.c \
+sci_gateway/c/sci_xgetmouse.c \
+sci_gateway/c/sci_drawnow.c \
+sci_gateway/c/sci_xfarcs.c \
+sci_gateway/c/sci_param3d.c \
+sci_gateway/c/sci_contour2di.c \
+sci_gateway/c/sci_xdel.c \
+sci_gateway/c/sci_winsid.c \
+sci_gateway/c/sci_addcb.c \
+sci_gateway/c/sci_fec.c \
+sci_gateway/c/sci_rubberbox.c \
+sci_gateway/c/sci_rotate_axes.c \
+sci_gateway/c/sci_is_handle_valid.c \
+sci_gateway/c/sci_show_pixmap.c \
+sci_gateway/c/sci_Legend.c
 
-@GUI_TRUE@libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
+libscigraphics_la_CXXFLAGS = -Iincludes/ \
+				-Isrc/c/ $(JAVA_JNI_INCLUDE) \
+				-I$(top_srcdir)/modules/jvm/includes \
+			 	-I$(top_srcdir)/modules/graphic_export/includes/
+
+libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
 
 # For the code check (splint)
-@GUI_TRUE@CHECK_SRC = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
-@GUI_TRUE@INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
-@GUI_TRUE@libscigraphics_la_LIBADD = $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
+CHECK_SRC = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
+INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
+libscigraphics_la_LIBADD = $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 
 #### graphics : gateway declaration ####
-@GUI_TRUE@libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-@GUI_TRUE@libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
+libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
 #### graphics : include files ####
-@GUI_TRUE@libscigraphics_la_includedir = $(pkgincludedir)/graphics
-@GUI_TRUE@libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
-@GUI_TRUE@includes/sci_winsid.h \
-@GUI_TRUE@includes/sci_addcb.h \
-@GUI_TRUE@includes/sci_grayplot.h \
-@GUI_TRUE@includes/sci_xlfont.h \
-@GUI_TRUE@includes/GetCommandArg.h \
-@GUI_TRUE@includes/sci_xgrid.h \
-@GUI_TRUE@includes/sci_geom3d.h \
-@GUI_TRUE@includes/DefaultCommandArg.h \
-@GUI_TRUE@includes/sci_xgraduate.h \
-@GUI_TRUE@includes/sci_unzoom.h \
-@GUI_TRUE@includes/sci_xsegs.h \
-@GUI_TRUE@includes/sci_clear_pixmap.h \
-@GUI_TRUE@includes/sci_xarc.h \
-@GUI_TRUE@includes/sci_xpolys.h \
-@GUI_TRUE@includes/sci_xstring.h \
-@GUI_TRUE@includes/Axes.h \
-@GUI_TRUE@includes/sci_xsetech.h \
-@GUI_TRUE@includes/sciMatrix.h \
-@GUI_TRUE@includes/sci_show_window.h \
-@GUI_TRUE@includes/sci_param3d1.h \
-@GUI_TRUE@includes/graphicModuleLoad.h \
-@GUI_TRUE@includes/sci_matplot.h \
-@GUI_TRUE@includes/sci_drawaxis.h \
-@GUI_TRUE@includes/sci_xrect.h \
-@GUI_TRUE@includes/sci_plot2d1.h \
-@GUI_TRUE@includes/GetProperty.h \
-@GUI_TRUE@includes/SetProperty.h \
-@GUI_TRUE@includes/sci_xarrows.h \
-@GUI_TRUE@includes/sci_move.h \
-@GUI_TRUE@includes/sci_relocate_handle.h \
-@GUI_TRUE@includes/BasicAlgos.h \
-@GUI_TRUE@includes/sciCall.h \
-@GUI_TRUE@includes/sci_showalluimenushandles.h \
-@GUI_TRUE@includes/sci_get.h \
-@GUI_TRUE@includes/InitObjects.h \
-@GUI_TRUE@includes/sci_xfpoly.h \
-@GUI_TRUE@includes/sci_drawlater.h \
-@GUI_TRUE@includes/Format.h \
-@GUI_TRUE@includes/sci_set.h \
-@GUI_TRUE@includes/sci_delete.h \
-@GUI_TRUE@includes/sci_plot2d.h \
-@GUI_TRUE@includes/sci_StringBox.h \
-@GUI_TRUE@includes/sci_xgetmouse.h \
-@GUI_TRUE@includes/Interaction.h \
-@GUI_TRUE@includes/sci_xfarcs.h \
-@GUI_TRUE@includes/sci_contour2di.h \
-@GUI_TRUE@includes/HandleManagement.h \
-@GUI_TRUE@includes/sci_fec.h \
-@GUI_TRUE@includes/sci_matplot1.h \
-@GUI_TRUE@includes/XsetXgetParameters.h \
-@GUI_TRUE@includes/sci_xfpolys.h \
-@GUI_TRUE@includes/WindowList.h \
-@GUI_TRUE@includes/sci_xget.h \
-@GUI_TRUE@includes/sci_swap_handles.h \
-@GUI_TRUE@includes/sci_newaxes.h \
-@GUI_TRUE@includes/PloEch.h \
-@GUI_TRUE@includes/sci_xclick.h \
-@GUI_TRUE@includes/sci_xset.h \
-@GUI_TRUE@includes/sci_xgetech.h \
-@GUI_TRUE@includes/sci_glue.h \
-@GUI_TRUE@includes/sci_xstringb.h \
-@GUI_TRUE@includes/sci_xname.h \
-@GUI_TRUE@includes/DrawObjects.h \
-@GUI_TRUE@includes/sci_xpoly.h \
-@GUI_TRUE@includes/sci_xchange.h \
-@GUI_TRUE@includes/sci_demo.h \
-@GUI_TRUE@includes/ObjectStructure.h \
-@GUI_TRUE@includes/sci_draw.h \
-@GUI_TRUE@includes/sci_plot3d.h \
-@GUI_TRUE@includes/sci_copy.h \
-@GUI_TRUE@includes/BuildObjects.h \
-@GUI_TRUE@includes/CloneObjects.h \
-@GUI_TRUE@includes/sci_xarcs.h \
-@GUI_TRUE@includes/pixel_mode.h \
-@GUI_TRUE@includes/sci_champ.h \
-@GUI_TRUE@includes/Champ.h \
-@GUI_TRUE@includes/StringMatrix.h \
-@GUI_TRUE@includes/sci_unglue.h \
-@GUI_TRUE@includes/gw_graphics.h \
-@GUI_TRUE@includes/sci_zoom_rect.h \
-@GUI_TRUE@includes/DestroyObjects.h \
-@GUI_TRUE@includes/sci_xrects.h \
-@GUI_TRUE@includes/sci_xtitle.h \
-@GUI_TRUE@includes/math_graphics.h \
-@GUI_TRUE@includes/sci_drawnow.h \
-@GUI_TRUE@includes/sci_param3d.h \
-@GUI_TRUE@includes/CurrentObjectsManagement.h \
-@GUI_TRUE@includes/ObjectSelection.h \
-@GUI_TRUE@includes/axesScale.h \
-@GUI_TRUE@includes/Contour.h \
-@GUI_TRUE@includes/getDictionaryGetProperties.h \
-@GUI_TRUE@includes/getDictionarySetProperties.h \
-@GUI_TRUE@includes/GrayPlot.h \
-@GUI_TRUE@includes/sci_xload.h \
-@GUI_TRUE@includes/sci_xsave.h \
-@GUI_TRUE@includes/TerminateGraphics.h \
-@GUI_TRUE@includes/sci_rubberbox.h \
-@GUI_TRUE@includes/sci_rotate_axes.h \
-@GUI_TRUE@includes/sci_is_handle_valid.h \
-@GUI_TRUE@includes/sci_show_pixmap.h \
-@GUI_TRUE@includes/sci_Legend.h \
-@GUI_TRUE@includes/Plot2d.h
+libscigraphics_la_includedir = $(pkgincludedir)/graphics
+libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
+includes/sci_winsid.h \
+includes/sci_addcb.h \
+includes/sci_grayplot.h \
+includes/sci_xlfont.h \
+includes/GetCommandArg.h \
+includes/sci_xgrid.h \
+includes/sci_geom3d.h \
+includes/DefaultCommandArg.h \
+includes/sci_xgraduate.h \
+includes/sci_unzoom.h \
+includes/sci_xsegs.h \
+includes/sci_clear_pixmap.h \
+includes/sci_xarc.h \
+includes/sci_xpolys.h \
+includes/sci_xstring.h \
+includes/Axes.h \
+includes/sci_xsetech.h \
+includes/sciMatrix.h \
+includes/sci_show_window.h \
+includes/sci_param3d1.h \
+includes/graphicModuleLoad.h \
+includes/sci_matplot.h \
+includes/sci_drawaxis.h \
+includes/sci_xrect.h \
+includes/sci_plot2d1.h \
+includes/GetProperty.h \
+includes/SetProperty.h \
+includes/sci_xarrows.h \
+includes/sci_move.h \
+includes/sci_relocate_handle.h \
+includes/BasicAlgos.h \
+includes/sciCall.h \
+includes/sci_showalluimenushandles.h \
+includes/sci_get.h \
+includes/InitObjects.h \
+includes/sci_xfpoly.h \
+includes/sci_drawlater.h \
+includes/Format.h \
+includes/sci_set.h \
+includes/sci_delete.h \
+includes/sci_plot2d.h \
+includes/sci_StringBox.h \
+includes/sci_xgetmouse.h \
+includes/Interaction.h \
+includes/sci_xfarcs.h \
+includes/sci_contour2di.h \
+includes/HandleManagement.h \
+includes/sci_fec.h \
+includes/sci_matplot1.h \
+includes/XsetXgetParameters.h \
+includes/sci_xfpolys.h \
+includes/WindowList.h \
+includes/sci_xget.h \
+includes/sci_swap_handles.h \
+includes/sci_newaxes.h \
+includes/PloEch.h \
+includes/sci_xclick.h \
+includes/sci_xset.h \
+includes/sci_xgetech.h \
+includes/sci_glue.h \
+includes/sci_xstringb.h \
+includes/sci_xname.h \
+includes/DrawObjects.h \
+includes/sci_xpoly.h \
+includes/sci_xchange.h \
+includes/sci_demo.h \
+includes/ObjectStructure.h \
+includes/sci_draw.h \
+includes/sci_plot3d.h \
+includes/sci_copy.h \
+includes/BuildObjects.h \
+includes/CloneObjects.h \
+includes/sci_xarcs.h \
+includes/pixel_mode.h \
+includes/sci_champ.h \
+includes/Champ.h \
+includes/StringMatrix.h \
+includes/sci_unglue.h \
+includes/gw_graphics.h \
+includes/sci_zoom_rect.h \
+includes/DestroyObjects.h \
+includes/sci_xrects.h \
+includes/sci_xtitle.h \
+includes/math_graphics.h \
+includes/sci_drawnow.h \
+includes/sci_param3d.h \
+includes/CurrentObjectsManagement.h \
+includes/ObjectSelection.h \
+includes/axesScale.h \
+includes/Contour.h \
+includes/getDictionaryGetProperties.h \
+includes/getDictionarySetProperties.h \
+includes/GrayPlot.h \
+includes/sci_xload.h \
+includes/sci_xsave.h \
+includes/TerminateGraphics.h \
+includes/sci_rubberbox.h \
+includes/sci_rotate_axes.h \
+includes/sci_is_handle_valid.h \
+includes/sci_show_pixmap.h \
+includes/sci_Legend.h \
+includes/Plot2d.h
 
 
 ### graphics : ged files ###
-@GUI_TRUE@libscigraphics_la_geddir = $(mydatadir)
-@GUI_TRUE@nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
-@GUI_TRUE@tcl/ged/Axes.tcl \
-@GUI_TRUE@tcl/ged/Axis.tcl \
-@GUI_TRUE@tcl/ged/Champ.tcl \
-@GUI_TRUE@tcl/ged/Compound.tcl \
-@GUI_TRUE@tcl/ged/Fac3d.tcl \
-@GUI_TRUE@tcl/ged/Fec.tcl \
-@GUI_TRUE@tcl/ged/Figure.tcl \
-@GUI_TRUE@tcl/ged/Grayplot.tcl \
-@GUI_TRUE@tcl/ged/Legend.tcl \
-@GUI_TRUE@tcl/ged/Matplot.tcl \
-@GUI_TRUE@tcl/ged/ObjectsBrowser.tcl \
-@GUI_TRUE@tcl/ged/Plot3d.tcl \
-@GUI_TRUE@tcl/ged/Polyline.tcl \
-@GUI_TRUE@tcl/ged/Rectangle.tcl \
-@GUI_TRUE@tcl/ged/Segs.tcl \
-@GUI_TRUE@tcl/ged/Text.tcl \
-@GUI_TRUE@tcl/ged/images/arc.gif \
-@GUI_TRUE@tcl/ged/images/axes.gif \
-@GUI_TRUE@tcl/ged/images/axis.gif \
-@GUI_TRUE@tcl/ged/images/champ.gif \
-@GUI_TRUE@tcl/ged/images/compound.gif \
-@GUI_TRUE@tcl/ged/images/fac3d.gif \
-@GUI_TRUE@tcl/ged/images/fec.gif \
-@GUI_TRUE@tcl/ged/images/figure.gif \
-@GUI_TRUE@tcl/ged/images/grayplot.gif \
-@GUI_TRUE@tcl/ged/images/leaf.gif \
-@GUI_TRUE@tcl/ged/images/legend.gif \
-@GUI_TRUE@tcl/ged/images/matplot.gif \
-@GUI_TRUE@tcl/ged/images/passwd.gif \
-@GUI_TRUE@tcl/ged/images/plot3d.gif \
-@GUI_TRUE@tcl/ged/images/polyline.gif \
-@GUI_TRUE@tcl/ged/images/rectangle.gif \
-@GUI_TRUE@tcl/ged/images/segs.gif \
-@GUI_TRUE@tcl/ged/images/text.gif
+libscigraphics_la_geddir = $(mydatadir)
+nobase_libscigraphics_la_ged_DATA = tcl/ged/Arc.tcl \
+tcl/ged/Axes.tcl \
+tcl/ged/Axis.tcl \
+tcl/ged/Champ.tcl \
+tcl/ged/Compound.tcl \
+tcl/ged/Fac3d.tcl \
+tcl/ged/Fec.tcl \
+tcl/ged/Figure.tcl \
+tcl/ged/Grayplot.tcl \
+tcl/ged/Legend.tcl \
+tcl/ged/Matplot.tcl \
+tcl/ged/ObjectsBrowser.tcl \
+tcl/ged/Plot3d.tcl \
+tcl/ged/Polyline.tcl \
+tcl/ged/Rectangle.tcl \
+tcl/ged/Segs.tcl \
+tcl/ged/Text.tcl \
+tcl/ged/images/arc.gif \
+tcl/ged/images/axes.gif \
+tcl/ged/images/axis.gif \
+tcl/ged/images/champ.gif \
+tcl/ged/images/compound.gif \
+tcl/ged/images/fac3d.gif \
+tcl/ged/images/fec.gif \
+tcl/ged/images/figure.gif \
+tcl/ged/images/grayplot.gif \
+tcl/ged/images/leaf.gif \
+tcl/ged/images/legend.gif \
+tcl/ged/images/matplot.gif \
+tcl/ged/images/passwd.gif \
+tcl/ged/images/plot3d.gif \
+tcl/ged/images/polyline.gif \
+tcl/ged/images/rectangle.gif \
+tcl/ged/images/segs.gif \
+tcl/ged/images/text.gif
 
-@GUI_TRUE@USEANT = 1
-@GUI_TRUE@libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
-@GUI_TRUE@libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
-@GUI_TRUE@libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-pkglib_LTLIBRARIES = libscigraphics.la libscigraphics-disable.la
+libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
+libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
+libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+
+# endif
+pkglib_LTLIBRARIES = libscigraphics-disable.la $(am__append_1)
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
+@GUI_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -1782,7 +1406,7 @@ clean-pkglibLTLIBRARIES:
 libscigraphics-disable.la: $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_DEPENDENCIES) 
 	$(libscigraphics_disable_la_LINK) -rpath $(pkglibdir) $(libscigraphics_disable_la_OBJECTS) $(libscigraphics_disable_la_LIBADD) $(LIBS)
 libscigraphics.la: $(libscigraphics_la_OBJECTS) $(libscigraphics_la_DEPENDENCIES) 
-	$(libscigraphics_la_LINK) -rpath $(pkglibdir) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
+	$(libscigraphics_la_LINK) $(am_libscigraphics_la_rpath) $(libscigraphics_la_OBJECTS) $(libscigraphics_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)

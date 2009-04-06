@@ -1,9 +1,37 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-### Vincent COUVERT <vincent.couvert@inria.fr>
-### INRIA - Scilab 2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
+# Copyright (C) INRIA   - 2007 - Vincent COUVERT
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
+#### Target ######
+modulename=gui
+
+
+#### gui : Conf files ####
+libscigui_la_rootdir = $(mydatadir)
+libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+
+#### gui : init scripts ####
+libscigui_la_etcdir = $(mydatadir)/etc
+libscigui_la_etc_DATA = etc/gui.quit \
+etc/gui.start \
+etc/graphics_menubar.xml \
+etc/graphics_toolbar.xml \
+etc/helpbrowser_menubar.xml \
+etc/main_menubar.xml \
+etc/main_toolbar.xml \
+etc/flexdock-themes.xml
+
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -235,27 +263,6 @@ INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
-#### Target ######
-modulename=gui
-
-
-#### gui : Conf files ####
-libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-
-#### gui : init scripts ####
-libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit \
-etc/gui.start \
-etc/graphics_menubar.xml \
-etc/graphics_toolbar.xml \
-etc/helpbrowser_menubar.xml \
-etc/main_menubar.xml \
-etc/main_toolbar.xml \
-etc/flexdock-themes.xml
-
-
 #### gui : gateway declaration ####
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
@@ -383,7 +390,5 @@ images/icons/zoom-area.png
 
 
 if GUI
-
 USEANT=1
-
 endif

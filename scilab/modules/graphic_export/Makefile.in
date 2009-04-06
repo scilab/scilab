@@ -14,11 +14,17 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### Graphic export module
-### INRIA - Scilab 2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -193,6 +199,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -211,7 +218,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -221,6 +231,8 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -280,6 +292,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -364,6 +377,17 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
+#### Name of the module and the path ######
+modulename = graphic_export
+
+#### graphic_export : Conf files ####
+libscigraphic_export_la_rootdir = $(mydatadir)
+libscigraphic_export_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### graphic_export : init scripts ####
+libscigraphic_export_la_etcdir = $(mydatadir)/etc
+libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.start
+
 # List of the c files
 GRAPHIC_EXPORT_CPP_SOURCES = src/cpp/exportToFile.cpp \
 src/jni/FileExporter.cpp \
@@ -432,17 +456,6 @@ libscigraphic_export_disable_la_CPPFLAGS = -I$(top_srcdir)/modules/output_stream
 # the system)
 pkglib_LTLIBRARIES = libscigraphic_export-disable.la $(am__append_1)
 libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-
-#### Name of the module and the path ######
-modulename = graphic_export
-
-#### graphic_export : Conf files ####
-libscigraphic_export_la_rootdir = $(mydatadir)
-libscigraphic_export_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### graphic_export : init scripts ####
-libscigraphic_export_la_etcdir = $(mydatadir)/etc
-libscigraphic_export_la_etc_DATA = etc/graphic_export.quit etc/graphic_export.start
 
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway

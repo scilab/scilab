@@ -149,10 +149,22 @@ function plotprofile(fun)
       if or(c_i==[90 122 65363]) then
         k=min(n,k+1)
       end
+      kstr = string(k);
+      if isempty(kstr) then
+	kstr = "";
+      end
+      ncallsstr = string(ncalls(k));
+      if isempty(ncallsstr) then
+	ncallsstr = "";
+      end
+      tcpustr = string(tcpu(k));
+      if isempty(tcpustr) then
+	tcpustr = "";
+      end
       if ncalls(k)==1 then
-        msg=msprintf(gettext("line %s [%s call, %s sec] :: "), string(k), string(ncalls(k)), string(tcpu(k)) ) + txt(k);
+        msg=msprintf(gettext("line %s [%s call, %s sec] :: "), kstr, ncallsstr, tcpustr) + txt(k);
       else
-        msg=msprintf(gettext("line %s [%s calls, %s sec] :: "), string(k), string(ncalls(k)), string(tcpu(k)) ) + txt(k);
+        msg=msprintf(gettext("line %s [%s calls, %s sec] :: "), kstr, ncallsstr, tcpustr) + txt(k);
       end
    // show source code in another window
       if withpad then
