@@ -53,6 +53,9 @@ whos -name %
         <link linkend="who">who</link>
       </member>
       <member>
+        <link linkend="who_user">who_user</link>
+      </member>
+      <member>
         <link linkend="typeof">typeof</link>
       </member>
     </simplelist>
