@@ -119,7 +119,9 @@ proc execfile {{buf "current"} {getpath false}} {
     }
 
     if {$savedintempdir && !$getpath} {
-        catch {file delete -- $f}
+        #catch {file delete -- $f}
+	# Let Scilab manage its own synchronization to remove temporary file.
+	ScilabEval_lt "mdelete(\"$f\");" "seq"
     }
 
     # this is in case a script modifies a file opened in Scipad
@@ -333,7 +335,7 @@ proc xmlhelpfile {} {
 
     if {$Scilab5} {
         pleaseuseabetterscilabversion 3015
-    
+
     } else {
         filetosavecur
         set filetocomp $listoffile("[gettextareacur]",fullname)

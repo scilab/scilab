@@ -161,17 +161,38 @@ if test -z "$F77"; then
    AC_PROG_F77
 fi
 
+
+# case statements were introduced in fortran 90 so we can use that
+# as a test to see if our compiler is fortran 90 compatible.
 f90compatible=false
 if test -z "$F77"; then
   AC_MSG_ERROR([No fortran compiler found. Cannot compile scilab without a fortran compiler])
-else
-	case "$F77" in
-	 *90*|*95*|gfortran|fort|ifort|ifc|efc|ftn|pghpf)
+fi
+
+AC_MSG_CHECKING([if $F77 is a fortran 90 compatible compiler])
+ f90compatible=false
+AC_LANG_PUSH([Fortran 77])
+AC_COMPILE_IFELSE([
+      PROGRAM hello
+        do 50 i = 1, 5
+           select case ( i )
+              case (1)
+                 print*, "case is 1, i is ", i
+              case ( 2 : 3 )
+                 print*, "case is 2 to 3, i is ", i
+              case default
+                 print*, "default case, i is ", i
+              end select
+ 50           continue
+      END
+	],
+	[AC_MSG_RESULT([yes])
 	 AC_DEFINE([G95_FORTRAN],[],[uses G95 fortran])
 	 f90compatible=true
-	 ;;
-	esac
-fi
+	],
+	[AC_MSG_RESULT([no])]
+)
+AC_LANG_POP([Fortran 77])
 
 ############ C ###############
 
@@ -204,10 +225,19 @@ AC_CHECK_SIZEOF([long])
 
 ### C++ ###
 AC_PROG_CXX
-AC_CHECK_PROG(cxx_present, $CXX, "yes", "no")
-if test "x$cxx_present" != "xyes"; then
-    AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
-fi
+# we can't just do something like
+# AC_CHECK_PROG(cxx_present, $CXX, "yes", "no")
+# because if the user has specified the full path of the desired C++ compiler then AC_CHECK_PROG
+# will fail.  If AC_PROG_CXX fails to find a c++ compiler it will set CXX=g++ so just run AC_CHECK_PROG
+# in this special case
+case $CXX in
+	g++)
+		AC_CHECK_PROG([cxx_present], [$CXX], [yes], [no])
+		if test "x$cxx_present" != "xyes"; then
+		    AC_MSG_ERROR([No C++ compiler found. Cannot compile scilab without a C++ compiler])
+		fi
+		;;
+esac
 
 # for "subdir-objects"
 
@@ -278,10 +308,30 @@ fi
 ######################
 
 if test -n "$F77"; then
-dnl @TODO : il faut peut etre verifier que c'est bien gfortran
+dnl @TODO : Maybe we should check that it is actually gfortran
    if test "$enable_debug_fortran" = yes; then
-	  FFLAGS="$FFLAGS -g -Wall -Wimplicit -Wsurprising"
-	  # -D_FORTIFY_SOURCE=2
+	# -D_FORTIFY_SOURCE=2
+	AC_LANG_PUSH([Fortran 77])
+	for flag in -g -Wall -Wimplicit -Wsurprising ; do
+		case " ${FFLAGS} " in
+			*\ ${flag}\ *)
+				# flag is already present
+				;;
+
+			*)
+				AC_MSG_CHECKING([if the Fortran compiler accepts ${flag}])
+				ac_save_FFLAGS="$FFLAGS"
+				FFLAGS="$FFLAGS ${flag}"
+				AC_COMPILE_IFELSE([AC_LANG_PROGRAM()],
+					[AC_MSG_RESULT([yes])],
+					[AC_MSG_RESULT([no])
+					FFLAGS="$ac_save_FFLAGS"
+					]
+				)
+				;;
+		esac
+	done
+	AC_LANG_POP([Fortran 77])
    else
 	  FFLAGS="$FFLAGS -DNDEBUG"
    fi
@@ -895,7 +945,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -975,7 +1025,7 @@ AC_PCRE()
 ## Tcl/Tk library
 #################
 
-WITH_TKSCI=0
+WITH_TKSCI=no
 if test "$with_tk" != no; then
 
 	# check user arguments
@@ -1018,7 +1068,7 @@ if test "$with_tk" != no; then
 	AC_CHECK_TCLTK
 
 	# set variables
-	if test $WITH_TKSCI = 1; then
+	if test "$WITH_TKSCI" = yes; then
 		AC_DEFINE([WITH_TK], [], [With TK])
 	else
 		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
@@ -1029,7 +1079,8 @@ if test "$with_tk" != no; then
 	AC_SUBST(TK_INC_PATH)
 
 fi
-AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
+AC_SUBST(WITH_TKSCI)
+AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = yes)
 
 #################
 ## MATIO LIBRARY (MAT File I/O Library)
@@ -1352,19 +1403,19 @@ echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
 echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--with-pvm) ............................. = $with_pvm"
+echo "Use PVM (--without-pvm) .......................... = $with_pvm"
 echo "PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
+echo "Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
 echo "Do not use TCL/TK (--without-tk) ................. = $with_tk"
-echo "Do not compile with Ocaml (--without-ocaml) ...... = $with_ocaml"
 echo "TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
 echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
 echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
 echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
-echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
-echo "Don't use MATIO (--without-matio) ................ = $without_matio"
+echo "Use FFTW (--without-fftw) ........................ = $with_fftw"
+echo "Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then

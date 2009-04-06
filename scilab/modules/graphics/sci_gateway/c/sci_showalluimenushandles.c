@@ -52,7 +52,10 @@ int sci_showalluimenushandles( char *fname, unsigned long fname_len )
 	  Scierror(999,_("%s: Wrong type for input argument: '%s' handle expected.\n"),fname,"Figure");
   return 0;
   }
-  LhsVar(1)=0;
+
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

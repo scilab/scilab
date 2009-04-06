@@ -156,7 +156,7 @@ void BarDecomposition::getBarPlotMarkVertices(double xCoords[], double yCoords[]
   // special case for with logarithmic mode
   // bars starts at y = 1 = 10^0 and not 0 which is not displayable
   char logFlags[3];
-  sciGetLogFlags(pPolyline, logFlags);
+  sciGetLogFlags(sciGetParentSubwin(pPolyline), logFlags);
   if (logFlags[1] == 'l')
   {
     for (int i = 0; i < semiSize ; i++)

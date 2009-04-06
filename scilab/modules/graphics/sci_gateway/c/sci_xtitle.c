@@ -58,7 +58,11 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   nbLabels = Rhs ;
 
   /* get the given options from the name in opts */
-  if ( !get_optionals(fname,opts) ) return 0;
+  if ( !get_optionals(fname,opts) ) 
+  {
+		/* error */
+	  return 0;
+  }
 
   /* compatibility with previous version in which box was put */
   /* at the fourth position */
@@ -142,6 +146,7 @@ int sci_xtitle( char * fname, unsigned long fname_len )
   sciDrawObj(pFigure);
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 }
 

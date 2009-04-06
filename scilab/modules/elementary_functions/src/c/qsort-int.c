@@ -10,44 +10,60 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*
+ * Modified 2006 by S.Steer and A.Cornet INRIA  (changing generic code to sepcialized code 
+ * by hand macro expansion).
+ * Modified 2009 by S.Steer  INRIA (to make in stable when index is wanted)
+ */
 #include "qsort.h"
 #include "qsort-int.h"
 
 /*--------------------------------------------------------------------------*/ 
-static int compareCint(char *i,char *j)
+static int compareCint(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((int *)i) > *((int *)j))
-    return (1);
-  if ( *((int *)i) < *((int *)j))
-    return (-1);
+  if ( *((int *)i) > *((int *)j)) return (1);
+  if ( *((int *)i) < *((int *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDint(char *i,char *j)
+static int compareDint(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((int *)i) < *((int *)j))
-    return (1);
-  if ( *((int *)i) > *((int *)j))
-    return (-1);
+  if ( *((int *)i) < *((int *)j)) return (1);
+  if ( *((int *)i) > *((int *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareCuint(char *i,char *j)
+static int compareCuint(char *i,char *j,char *indi,char *indj,int iflag)
 {
   if ( *((unsigned int *)i) > *((unsigned int *)j))
     return (1);
   if ((unsigned int) *((unsigned int *)i) <(unsigned int) *((unsigned int *)j))
     return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDuint(char *i,char *j)
+static int compareDuint(char *i,char *j,char *indi,char *indj,int iflag)
 {
   if ((unsigned int) *((unsigned int *)i) < (unsigned int)*((unsigned int *)j))
     return (1);
   if ( (unsigned int)*((unsigned int *)i) > (unsigned int)*((unsigned int *)j))
     return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 

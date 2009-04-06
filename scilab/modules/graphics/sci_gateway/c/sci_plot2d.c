@@ -78,7 +78,11 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   CheckRhs(1,9);
 
   iskip=0;
-  if ( get_optionals(fname,opts) == 0) { return 0 ; }
+  if ( get_optionals(fname,opts) == 0) 
+  { 
+	  C2F(putlhsvar)();
+	  return 0 ; 
+  }
 
   if (GetType(1)==sci_strings)
   {
@@ -181,6 +185,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   if(n1 == -1 || n2 == -1 || m1 == -1 || m2 == -1)
   {
 	  Scierror(999, _("%s: Wrong size for input arguments #%d and #%d.\n"), fname, 1, 2); /* @TODO : detail error */
+	  return 0;
   }
 
   sciGetStyle( fname, 3+iskip, n1, opts, &style ) ;
@@ -303,7 +308,8 @@ int sci_plot2d( char * fname, unsigned long fname_len )
   sciGetCurrentFigure();
   Objplot2d (1,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend, rect,nax,flagNax);
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*------------------------------------------------------------------------*/

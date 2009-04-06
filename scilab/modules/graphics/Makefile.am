@@ -13,6 +13,17 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/
 
+#### target ####
+modulename=graphics
+
+#### graphics : Conf files ####
+libscigraphics_la_rootdir = $(mydatadir)
+libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### graphics : init scripts ####
+libscigraphics_la_etcdir = $(mydatadir)/etc
+libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
+
 if GUI
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
@@ -422,20 +433,11 @@ if USE_EMBEDDED_BLAS
 libscigraphics_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
 endif
 
-#### graphics : Conf files ####
-libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-
-####�graphics : init scripts ####
-libscigraphics_la_etcdir = $(mydatadir)/etc
-libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
-
-####�graphics : gateway declaration ####
+#### graphics : gateway declaration ####
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
-####�graphics : include files ####
+#### graphics : include files ####
 libscigraphics_la_includedir=$(pkgincludedir)/graphics
 libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
@@ -579,7 +581,6 @@ tcl/ged/images/rectangle.gif \
 tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
-
 USEANT=1
 
 else
@@ -589,12 +590,12 @@ GRAPHICS_C_SOURCES = src/nographics/nographics.c
 libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
 
 libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
+
 endif
+
 
 pkglib_LTLIBRARIES = libscigraphics.la
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
-
-modulename=graphics
 
 include $(top_srcdir)/Makefile.incl.am

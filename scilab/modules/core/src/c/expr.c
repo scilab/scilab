@@ -14,6 +14,7 @@
 #include "msgs.h"
 #include "stack-def.h"
 #include "stack-c.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/ 
 static int inc = 1;
 static int checkvalue = 4095;
