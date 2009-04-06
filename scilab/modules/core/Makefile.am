@@ -260,7 +260,8 @@ sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
-sci_gateway/c/sci_readgateway.c
+sci_gateway/c/sci_readgateway.c \
+sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_funcprot.f \

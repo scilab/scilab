@@ -28034,7 +28034,7 @@ fi
 
 DEMOTOOLS_ENABLE=yes
 
-if test "$GUI_ENABLE"=no; then
+if test "$GUI_ENABLE" = no; then
    DEMOTOOLS_ENABLE=yes
 fi
 
@@ -28046,7 +28046,7 @@ fi
 
 GRAPHICS_ENABLE=yes
 
-if test "$GUI_ENABLE"=no; then
+if test "$GUI_ENABLE" = no; then
    GRAPHICS_ENABLE=no
 fi
 
