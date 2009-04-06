@@ -62,7 +62,7 @@ assert_equal ( gamma(1.0) , 1.0 );
 assert_equal ( gamma(2.0) , 1.0 );
 assert_equal ( gamma(3.0) , 2.0 );
 assert_equal ( gamma(4.0) , 6.0 );
-assert_equal ( gamma(5.0) , 6.0 );
+assert_equal ( gamma(5.0) , 24.0 );
 assert_equal ( gamma(10.0) , 362880.0 );
 assert_close ( gamma(13.0) , 479001600.0 , 1000 * %eps );
 assert_close ( gamma(171) , 7.257415615308056415e+306 , %eps );
