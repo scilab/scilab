@@ -59,6 +59,8 @@ str=msprintf(format,a1,...,an);</synopsis>
         <listitem>
           <para>scalar, file descriptor given by <literal>mopen</literal>
           (it's a positive integer). </para>
+          <para> if fd equals 0 redirection in stderr.</para>
+          <para> if fd equals 6 redirection in stdout.</para>
 
           <para>OBSOLETE :The value <literal>-1</literal> refers to the
           default file ( i.e the last opened file).</para>
