@@ -109,6 +109,8 @@ It has been reported a numerous number of time:
 
 * bug 4204 fixed - Strange error message when using usecanvas(%F).
 
+* bug 4331 fixed - Wrong result for gamma(13).
+
 Bug fixes:
 ==========
 
