@@ -129,8 +129,8 @@ C  Machine dependent parameters
 C----------------------------------------------------------------------
 CS    DATA XBIG,XMININ,EPS/35.040E0,1.18E-38,1.19E-7/,
 CS   1     XINF/3.4E38/
-CS      DATA XBIG,XMININ,EPS/171.624D0,2.23D-308,2.22D-16/,
-CS     1     XINF/1.79D308/
+      DATA XBIG,XMININ,EPS/171.624D0,2.23D-308,2.22D-16/,
+     1     XINF/1.79D308/
 C----------------------------------------------------------------------
 C  Numerator and denominator coefficients for rational minimax
 C     approximation over (1,2).
