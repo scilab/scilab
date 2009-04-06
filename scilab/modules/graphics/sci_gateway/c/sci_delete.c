@@ -68,7 +68,7 @@ int sci_delete(char *fname,unsigned long fname_len)
       startGraphicDataWriting();
       sciXbasc();
       endGraphicDataWriting();
-			sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
+	  sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
       return 0;
     }
     else
@@ -154,6 +154,7 @@ int sci_delete(char *fname,unsigned long fname_len)
     
   }
   
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }

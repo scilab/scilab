@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2008 - INRIA
+// Copyright (C) 2009 - DIGITEO
 //
 // This file is distributed under the same license as the Scilab package.
 //
@@ -13,9 +14,15 @@ subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gatew
                "Finite Elements"             ,"fec/fec.dem.gateway.sce"                             ; ..
                "Bezier curves and surfaces"  ,"bezier/bezier.dem.gateway.sce"                       ; ..
                "More surfaces"               ,"surface/surfaces.dem.gateway.sce"                    ; ..
-               "Misc"                        ,"misc/misc.dem.sce"                                   ; ..
                "Complex elementary functions","cmplxfunc/cmplxfunc.dem.gateway.sce"                 ; ..
-               "bar histogram"               ,"bar/bar.dem.sce"                                         ; ..
-               "Colormap"                    ,"colormap.dem.sce"                                    ];
+               "bar histogram"               ,"bar/bar.dem.sce"                                     ];
+
+
+
+if ~ usecanvas() then
+    subdemolist = [ subdemolist ;
+                "Misc"                        ,"misc/misc.dem.sce"                                  ; ..
+                "Colormap"                    ,"colormap.dem.sce"                                   ];
+end
 
 subdemolist(:,2) = demopath + subdemolist(:,2);

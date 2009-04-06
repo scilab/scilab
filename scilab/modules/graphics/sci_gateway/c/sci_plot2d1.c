@@ -105,7 +105,11 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
 
 
   iskip=0;
-  if ( get_optionals(fname,opts) == 0) return 0;
+  if ( get_optionals(fname,opts) == 0) 
+  {
+	  C2F(putlhsvar)();
+	  return 0;
+  }
 
   if (GetType(1)==sci_strings) {
     /* logflags */
@@ -248,7 +252,8 @@ int sci_plot2d1_G( char * fname, int ptype, unsigned long fname_len )
   Objplot2d (ptype,logFlags,stk(l1), stk(l2), &n1, &m1, style, strf,legend,rect, nax, flagNax);
 
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/
