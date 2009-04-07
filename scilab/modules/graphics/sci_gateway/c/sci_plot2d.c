@@ -37,7 +37,6 @@
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )
 {
-  static char str[]="x=(0:0.1:2*%pi)';plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[-1,-2,3],rect=[0,-2,2*%pi,2], axesflag=1);";
 
   int m1, n1, l1, m2, n2, l2, lt;
   int test,i,j,iskip;
@@ -71,7 +70,7 @@ int sci_plot2d( char * fname, unsigned long fname_len )
                             {-1,NULL,NULL,0,0}};
   if (Rhs == 0) 
   {
-    sci_demo(fname,str,FALSE);
+    sci_demo(fname, fname_len);
     return 0;
   }
 

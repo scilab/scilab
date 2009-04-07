@@ -61,20 +61,10 @@ int sci_plot3d( char * fname, unsigned long fname_len )
   */
   if (Rhs <= 0)
   {
-   int lw = (Top > 0 ? Top - 1 : Top);
-   C2F(overload)(&lw, fname, fname_len);
+   sci_demo(fname, fname_len);
    return 0;
   }
 
-
-  /*
-  if (Rhs <= 0)
-  {
-    sprintf(C2F(cha1).buf,"x = %%pi * [-1:0.05:1]';z = sin(x)*cos(x)';f = gcf();f.color_map = jetcolormap(32);%s(x, x, z, 70, 70);e=gce();e.color_flag = 1;",fname);
-    sci_demo(fname,C2F(cha1).buf, FALSE);
-    return 0;
-  }
-  */
   CheckRhs(3,8);
 
   if ( get_optionals(fname,opts) == 0)
