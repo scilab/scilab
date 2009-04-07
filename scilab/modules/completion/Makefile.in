@@ -92,6 +92,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicompletion_la_etcdir)" \
 	"$(DESTDIR)$(libscicompletion_la_rootdir)" \
 	"$(DESTDIR)$(libscicompletion_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscicompletion_la_testutilitiesdir)" \
 	"$(DESTDIR)$(libscicompletion_la_includedir)"
 pkglibLTLIBRARIES_INSTALL = $(INSTALL)
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
@@ -146,9 +147,11 @@ DIST_SOURCES = $(am__libscicompletion_la_SOURCES_DIST)
 libscicompletion_la_etcDATA_INSTALL = $(INSTALL_DATA)
 libscicompletion_la_rootDATA_INSTALL = $(INSTALL_DATA)
 libscicompletion_la_sci_gatewayDATA_INSTALL = $(INSTALL_DATA)
+libscicompletion_la_testutilitiesDATA_INSTALL = $(INSTALL_DATA)
 DATA = $(libscicompletion_la_etc_DATA) \
 	$(libscicompletion_la_root_DATA) \
-	$(libscicompletion_la_sci_gateway_DATA)
+	$(libscicompletion_la_sci_gateway_DATA) \
+	$(libscicompletion_la_testutilities_DATA)
 libscicompletion_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libscicompletion_la_include_HEADERS)
 ETAGS = etags
@@ -418,6 +421,15 @@ includes/completion.h \
 includes/getCommonPart.h \
 includes/getPartLine.h \
 includes/completeLine.h
+
+
+#### completion : test file ####
+libscicompletion_la_testutilitiesdir = $(mydatadir)/tests/utilities
+libscicompletion_la_testutilities_DATA = tests/utilities/build_primitives.sce \
+tests/utilities/sci_completeline.c \
+tests/utilities/sci_getcommonpart.c \
+tests/utilities/sci_getfilepartlevel.c \
+tests/utilities/sci_getpartlevel.c
 
 
 #### SWIG Declaration ####
@@ -742,6 +754,23 @@ uninstall-libscicompletion_la_sci_gatewayDATA:
 	  echo " rm -f '$(DESTDIR)$(libscicompletion_la_sci_gatewaydir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(libscicompletion_la_sci_gatewaydir)/$$f"; \
 	done
+install-libscicompletion_la_testutilitiesDATA: $(libscicompletion_la_testutilities_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscicompletion_la_testutilitiesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscicompletion_la_testutilitiesdir)"
+	@list='$(libscicompletion_la_testutilities_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(libscicompletion_la_testutilitiesDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(libscicompletion_la_testutilitiesdir)/$$f'"; \
+	  $(libscicompletion_la_testutilitiesDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(libscicompletion_la_testutilitiesdir)/$$f"; \
+	done
+
+uninstall-libscicompletion_la_testutilitiesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscicompletion_la_testutilities_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(libscicompletion_la_testutilitiesdir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(libscicompletion_la_testutilitiesdir)/$$f"; \
+	done
 install-libscicompletion_la_includeHEADERS: $(libscicompletion_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscicompletion_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscicompletion_la_includedir)"
@@ -839,7 +868,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicompletion_la_etcdir)" "$(DESTDIR)$(libscicompletion_la_rootdir)" "$(DESTDIR)$(libscicompletion_la_sci_gatewaydir)" "$(DESTDIR)$(libscicompletion_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscicompletion_la_etcdir)" "$(DESTDIR)$(libscicompletion_la_rootdir)" "$(DESTDIR)$(libscicompletion_la_sci_gatewaydir)" "$(DESTDIR)$(libscicompletion_la_testutilitiesdir)" "$(DESTDIR)$(libscicompletion_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -893,7 +922,8 @@ install-data-am: install-data-local \
 	install-libscicompletion_la_etcDATA \
 	install-libscicompletion_la_includeHEADERS \
 	install-libscicompletion_la_rootDATA \
-	install-libscicompletion_la_sci_gatewayDATA
+	install-libscicompletion_la_sci_gatewayDATA \
+	install-libscicompletion_la_testutilitiesDATA
 
 install-dvi: install-dvi-am
 
@@ -935,6 +965,7 @@ uninstall-am: uninstall-libscicompletion_la_etcDATA \
 	uninstall-libscicompletion_la_includeHEADERS \
 	uninstall-libscicompletion_la_rootDATA \
 	uninstall-libscicompletion_la_sci_gatewayDATA \
+	uninstall-libscicompletion_la_testutilitiesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 .MAKE: install-am install-strip
@@ -951,7 +982,8 @@ uninstall-am: uninstall-libscicompletion_la_etcDATA \
 	install-libscicompletion_la_etcDATA \
 	install-libscicompletion_la_includeHEADERS \
 	install-libscicompletion_la_rootDATA \
-	install-libscicompletion_la_sci_gatewayDATA install-man \
+	install-libscicompletion_la_sci_gatewayDATA \
+	install-libscicompletion_la_testutilitiesDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \
 	install-ps install-ps-am install-strip installcheck \
 	installcheck-am installdirs maintainer-clean \
@@ -962,6 +994,7 @@ uninstall-am: uninstall-libscicompletion_la_etcDATA \
 	uninstall-libscicompletion_la_includeHEADERS \
 	uninstall-libscicompletion_la_rootDATA \
 	uninstall-libscicompletion_la_sci_gatewayDATA \
+	uninstall-libscicompletion_la_testutilitiesDATA \
 	uninstall-pkglibLTLIBRARIES
 
 
