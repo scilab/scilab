@@ -120,8 +120,6 @@ function test_run(varargin)
 	global create_ref;
 	global launch_mode;
 	global launch_mode_arg;  // TRUE if user specify the launch mode
-	global skip_tests;       // if true, the second argument is the list of tests
-	                         // to skip instead of the list of tests to launch 
 	
 	launch_mode_arg = %F;
 	
@@ -129,7 +127,9 @@ function test_run(varargin)
 	test_types         = ["unit_tests","nonreg_tests"];
 	test_types_keeped  = "all_tests"; // By default, lauch nonreg tests AND unitary tests
 	
-	skip_tests         = %F; // By default, the second input argument is the list
+	skip_tests         = %F; // if true, the second argument is the list of tests
+	                         // to skip instead of the list of tests to launch
+	                         // By default, the second input argument is the list
 	                         // of test to launch
 	
 	check_ref          = %T;
