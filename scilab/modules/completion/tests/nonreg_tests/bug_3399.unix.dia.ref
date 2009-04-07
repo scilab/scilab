@@ -25,10 +25,12 @@
    ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
+if ierr<>0 then bugmes();quit;end
 Shared archive loaded.
 Link done.
 Shared archive loaded.
 Link done.
+if ierr<>0 then bugmes();quit;end
 //cd /h<TAB>
 currentline = 'cd /h';
 newline = completeline(currentline,'home',getfilepartlevel(currentline),getpartlevel(currentline),%t);

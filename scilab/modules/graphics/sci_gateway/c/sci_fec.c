@@ -19,8 +19,8 @@
 #include <string.h>
 
 #include "sci_fec.h"
-#include "sci_demo.h"
 #include "stack-c.h"
+#include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "gw_graphics.h"
@@ -58,8 +58,8 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   if (Rhs <= 0)
   {
-    sci_demo (fname," exec(\"SCI/modules/graphics/demos/fec/fec.ex1\");",FALSE);
-    return 0;
+		sci_demo(fname, fname_len);
+		return 0;
   }
 
   CheckRhs(4,12);

@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 Mut_Indiv = mutation_ga_binary('11111111',[]);
 
 if length(Mut_Indiv)~=8 then pause,end

@@ -15,10 +15,12 @@
    Compilation of sci_getfilepartlevel.c
    Compilation of sci_getcommonpart.c
    Building shared library (be patient)
+if ierr<>0 then bugmes();quit;end
 Shared archive loaded.
 Link done.
 Shared archive loaded.
 Link done.
+if ierr<>0 then bugmes();quit;end
 r = getfilepartlevel('cd c:\Program Files\scilab-5.1');
 if r <>'c:\Program Files\scilab-5.1' then bugmes();quit;end;
 r = getfilepartlevel('cd(""c:\Program Files\scilab-5.1');

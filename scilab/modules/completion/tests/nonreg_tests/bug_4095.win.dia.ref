@@ -22,10 +22,12 @@
    Compilation of sci_getfilepartlevel.c
    Compilation of sci_getcommonpart.c
    Building shared library (be patient)
+if ierr<>0 then bugmes();quit;end
 Shared archive loaded.
 Link done.
 Shared archive loaded.
 Link done.
+if ierr<>0 then bugmes();quit;end
 // cd SCI/mod<TAB>
 currentline = 'cd SCI/mod';
 r = getfilepartlevel(currentline);

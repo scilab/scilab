@@ -62,6 +62,10 @@ Enhancement:
 * isfield() now accepts matrix of strings (fieldnames) as second input argument.
   Then, it returns a matrix of booleans.
 
+* test_run() now accepts "skip_tests" as optionnal argument (3rd argument), if
+  present, the second input argument of test_run is no more the list of tests to
+  launch but the list of tests to skip.
+  For example, test_run("time",["bug_1506" "bug_793"],"skip_tests");
 
 License:
 ========
