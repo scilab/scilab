@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 Pop_init = init_ga_default(10,[]);
 
 if length(Pop_init)~=10 then pause,end;
