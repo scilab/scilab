@@ -13,19 +13,9 @@
 // completion copies selected item instead of completing according to this one.
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
-   Generate a gateway file
-   Generate a loader file
-   Generate a Makefile: Makelib
-   Running the makefile
-   Compilation of sci_completeline.c
-   Compilation of sci_getpartlevel.c
-   Compilation of sci_getfilepartlevel.c
-   Compilation of sci_getcommonpart.c
-   Building shared library (be patient)
-Shared archive loaded.
-Link done.
-Shared archive loaded.
-Link done.
+ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
 // You choose thermaSnap.img
 currentline = 'scipad thermaSnap.';
 r = completeline(currentline,'thermaSnap.img',getfilepartlevel(currentline),getpartlevel(currentline),%t);

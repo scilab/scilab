@@ -4,7 +4,6 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- Non-regression test for bug 4067 -->
 //
 // <-- Bugzilla URL -->
@@ -12,15 +11,11 @@
 //
 // <-- Short Description -->
 // Completion STD mode.
-
+// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
-
 ilib_verbose(0);
-ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
-if ierr<>0 then pause, end
-ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
-if ierr<>0 then pause, end
-
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
 chdir(TMPDIR);
 mkdir('bug_4067');
 chdir('bug_4067');
@@ -28,20 +23,17 @@ fd = mopen('bugA.sce','wt');
 mclose(fd);
 fd = mopen('bugB.sce','wt');
 mclose(fd);
-
 //exec bug<tab>
 currentline = 'exec bug';
 r = getfilepartlevel(currentline);
-if r <> 'bug' then pause,end
+if r <> 'bug' then bugmes();quit;end
 r = completion(getfilepartlevel(currentline),'files');
-if and(gsort(r) <> gsort(['bugA.sce';'bugB.sce'])) then pause,end
-
+if and(gsort(r) <> gsort(['bugA.sce';'bugB.sce'])) then bugmes();quit;end
 newline = completeline(currentline,'bugA.sce',getfilepartlevel(currentline),getpartlevel(currentline),%t);
-if newline<>'exec bugA.sce' then pause,end
-
+if newline<>'exec bugA.sce' then bugmes();quit;end
 // -->cd /h<TAB>
 currentline = 'cd /h';
 r = getfilepartlevel(currentline);
-if r <> '/h' then pause,end
+if r <> '/h' then bugmes();quit;end
 newline = completeline(currentline,'/home',getfilepartlevel(currentline),getpartlevel(currentline),%t);
-if newline<>'cd /home' then pause,end
+if newline<>'cd /home' then bugmes();quit;end
