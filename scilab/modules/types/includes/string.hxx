@@ -20,7 +20,7 @@
 using std::string;
 namespace types
 {
-  class String : public GenericType
+  class EXTERN_TYPES String : public GenericType
   {
   public :
 							String(int _iRows, int _iCols);

@@ -19,7 +19,7 @@ using std::string;
 
 namespace types
 {
-	class Double : public GenericType
+	class EXTERN_TYPES Double : public GenericType
 	{
   public :
 		~Double();

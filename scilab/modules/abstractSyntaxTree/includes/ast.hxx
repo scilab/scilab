@@ -21,11 +21,22 @@
 # include "location.hxx"
 # include "visitor.hxx"
 
+
+#ifdef _MSC_VER
+	#if AST_EXPORTS
+		#define EXTERN_AST __declspec (dllexport)
+	#else
+		#define EXTERN_AST __declspec (dllimport)
+	#endif
+#else
+	#define EXTERN_AST 
+#endif
+
 namespace ast
 {
 
   /** \brief Abstract an Abstract Syntax Tree node. */
-  class Ast
+  class EXTERN_AST Ast
   {
     /** \name Ctor & dtor.
      ** \{ */

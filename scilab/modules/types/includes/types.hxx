@@ -15,16 +15,17 @@
 
 #include <vector>
 #include <iostream>
-#include <string.h>
+#include <string>
 #include "internal.hxx"
-#include "anytype.hxx"
+
+using namespace std;
 
 namespace types
 {
   /*
   ** Type
   */
-	class GenericType : public InternalType
+	class EXTERN_TYPES GenericType : public InternalType
   {
 
 	protected :

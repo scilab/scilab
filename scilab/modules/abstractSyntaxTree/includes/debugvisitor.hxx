@@ -23,7 +23,7 @@
 
 namespace ast
 {
-  class DebugVisitor : public GenVisitor<const_kind>
+  class EXTERN_AST DebugVisitor : public GenVisitor<const_kind>
   {
   public:
     DebugVisitor() {}

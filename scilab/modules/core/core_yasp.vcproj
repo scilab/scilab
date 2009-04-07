@@ -125,7 +125,7 @@
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__CORE_YASP__"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="2"
+				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
@@ -142,10 +142,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib"
 				OutputFile="$(SolutionDir)bin\Yasp.exe"
 				LinkIncremental="2"
-				IgnoreDefaultLibraryNames="libcmtd.lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				RandomizedBaseAddress="1"
@@ -340,10 +339,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath=".\src\cpp\configvariable.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\scilab.cpp"
 				>
 			</File>
@@ -353,10 +348,6 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath=".\includes\configvariable.hxx"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"
@@ -366,10 +357,6 @@
 		</Filter>
 		<File
 			RelativePath="..\..\bin\lapack.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\bin\libxml2.lib"
 			>
 		</File>
 	</Files>

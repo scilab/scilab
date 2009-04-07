@@ -20,12 +20,24 @@
 #include <alltypes.hxx>
 //#include "scilabfunction.hxx"
 
+
+#ifdef _MSC_VER
+	#if FUNC_MAN_EXPORTS
+		#define EXTERN_FUNC_MAN __declspec (dllexport)
+	#else
+		#define EXTERN_FUNC_MAN __declspec (dllimport)
+	#endif
+#else
+	#define EXTERN_FUNC_MAN 
+#endif
+
 using namespace std;
+
 
 //Gateway function pointer
 typedef bool (*GW_MOD)(void); 
 
-class FuncManager
+class EXTERN_FUNC_MAN FuncManager
 {
 private : 
 //	map <string, FuncInfo*>	m_FuncMap;

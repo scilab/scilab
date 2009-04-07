@@ -13,15 +13,14 @@
 #ifndef __IMP_LIST_HXX__
 #define __IMP_LIST_HXX__
 
-#include "internal.hxx"
-#include "alltypes.hxx"
+#include "types.hxx"
 
 namespace types
 {
 	/*
 	** Type
 	*/
-	class ImplicitList : public InternalType
+	class EXTERN_TYPES ImplicitList : public InternalType
 	{
 	private :
 		double					m_dblStart;

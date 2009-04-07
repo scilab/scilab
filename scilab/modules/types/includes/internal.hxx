@@ -19,9 +19,20 @@
 #include <string.h>
 #include "anytype.hxx"
 
+
+#ifdef _MSC_VER
+	#if TYPES_EXPORTS
+		#define EXTERN_TYPES __declspec (dllexport)
+	#else
+		#define EXTERN_TYPES __declspec (dllimport)
+	#endif
+#else
+	#define EXTERN_TYPES
+#endif
+
 namespace types
 {
-	class InternalType
+	class EXTERN_TYPES InternalType
   {
   public :
     enum RealType {

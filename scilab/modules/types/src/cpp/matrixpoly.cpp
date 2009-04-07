@@ -14,6 +14,8 @@
 #include "matrixpoly.hxx"
 #include "core_math.h"
 #include "tostring_common.hxx"
+#include "poly.hxx"
+#include "double.hxx"
 
 using namespace std;
 

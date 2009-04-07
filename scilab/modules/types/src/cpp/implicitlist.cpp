@@ -12,6 +12,7 @@
 #include <math.h>
 #include "implicitlist.hxx"
 #include "core_math.h"
+#include "double.hxx"
 
 namespace types
 {

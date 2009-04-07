@@ -18,7 +18,7 @@
 
 namespace types
 {
-	class Function : public InternalType
+	class EXTERN_TYPES Function : public InternalType
 	{
 	public :
 		enum ReturnValue

@@ -13,6 +13,7 @@
 #include <math.h>
 #include "poly.hxx"
 #include "tostring_common.hxx"
+#include "double.hxx"
 
 extern "C"
 {

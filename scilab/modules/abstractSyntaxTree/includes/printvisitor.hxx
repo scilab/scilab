@@ -23,7 +23,7 @@
 
 namespace ast
 {
-  class PrintVisitor : public GenVisitor<const_kind>
+  class EXTERN_AST PrintVisitor : public GenVisitor<const_kind>
   {
   public:
     PrintVisitor(std::ostream& my_ostr) :

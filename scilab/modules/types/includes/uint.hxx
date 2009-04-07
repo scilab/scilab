@@ -17,7 +17,7 @@
 
 namespace types
 {
-	class UInt : public GenericType
+	class EXTERN_TYPES UInt : public GenericType
 	{
   public :
 		~UInt();

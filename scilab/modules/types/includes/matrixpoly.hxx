@@ -10,14 +10,14 @@
 *
 */
 
-#ifndef __PMATRIXOLY_HH__
-#define __PMATRIXOLY_HH__
+#ifndef __MATRIXPOLY_HH__
+#define __MATRIXPOLY_HH____MATRIXPOLY_HH__
 
-#include "alltypes.hxx"
+#include "types.hxx"
 
 namespace types
 {
-	class MatrixPoly : public GenericType
+	class EXTERN_TYPES MatrixPoly : public GenericType
 	{
   public :
 		MatrixPoly();
@@ -60,4 +60,4 @@ namespace types
 		string				m_szVarName;
 	};
 }
-#endif /* !__PMATRIXOLY_HH__ */
+#endif /* !__MATRIXPOLY_HH__ */

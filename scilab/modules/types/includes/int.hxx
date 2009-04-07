@@ -17,7 +17,7 @@
 
 namespace types
 {
-	class Int : public GenericType
+	class EXTERN_TYPES Int : public GenericType
 	{
   public :
     Int(int _iReal);

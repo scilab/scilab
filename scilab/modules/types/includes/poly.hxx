@@ -15,14 +15,13 @@
 
 #include <list>
 #include "types.hxx"
-#include "double.hxx"
 
 using std::string;
 using std::list;
 
 namespace types
 {
-	class Poly : public GenericType
+	class EXTERN_TYPES Poly : public GenericType
 	{
   public :
 		Poly();

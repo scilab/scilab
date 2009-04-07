@@ -33,7 +33,7 @@ int GetVarMaxDim(types::InternalType *_pIT, int _iCurrentDim, int _iMaxDim);
 
 namespace ast
 {
-  class ExecVisitor : public GenVisitor<const_kind>
+  class EXTERN_AST ExecVisitor : public GenVisitor<const_kind>
   {
   public:
     ExecVisitor()

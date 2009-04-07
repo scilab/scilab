@@ -19,7 +19,18 @@
 #include <stdlib.h>
 #include "parse.hxx"
 
-class Parser
+#ifdef _MSC_VER
+	#if PARSE_EXPORTS
+		#define EXTERN_PARSE __declspec (dllexport)
+	#else
+		#define EXTERN_PARSE __declspec (dllimport)
+	#endif
+#else
+	#define EXTERN_PARSE 
+#endif
+
+
+class EXTERN_PARSE Parser
 {
 private:
   Parser()

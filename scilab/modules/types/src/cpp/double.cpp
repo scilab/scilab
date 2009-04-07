@@ -322,7 +322,7 @@ namespace types
 	{
 		if(m_pdblReal != NULL)
 		{
-			delete m_pdblReal;
+			delete[] m_pdblReal;
 			m_pdblReal = NULL;
 		}
 	}
