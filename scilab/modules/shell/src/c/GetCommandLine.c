@@ -28,9 +28,7 @@
 #include "charEncoding.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
-#if _MSC_VER
 #include "TermReadAndProcess.h"
-#endif
 #include "stack-def.h"
 
 #ifdef _MSC_VER
