@@ -863,6 +863,7 @@ JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
+HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 # All the filename are important here.
 # The filename must be the same as the function name
@@ -4408,7 +4409,7 @@ install-data-local:
 	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
-	for lang in $(ALL_LINGUAS); do \
+	for lang in $(HELP_CHAPTERLANG); do \
 		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 		if test -f $$HELPFILE; then \
 			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \
