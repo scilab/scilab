@@ -9,5 +9,4 @@
 
 path = SCI+"/modules/fileio/help/pt_BR";
 add_help_chapter("Arquivos : funções de Entrada/Saída",path,%T);
-clear path add_help_chapter;da",path,%T);
 clear path add_help_chapter;
