@@ -1000,7 +1000,7 @@ endfunction
 
 function create_MD(dirs,titles,output_filename,language)
 	
-	if language == "fr_FR" then
+	if or(language == ["fr_FR";"pt_BR"]) then
 		encoding = "ISO-8859-1";
 	else
 		encoding = "UTF-8";
@@ -1080,7 +1080,7 @@ endfunction
 
 function create_MD_dir(my_dir,my_title,output_filename,language)
 	
-	if language == "fr_FR" then
+	if or(language == ["fr_FR";"pt_BR"]) then
 		encoding = "ISO-8859-1";
 	else
 		encoding = "UTF-8";
@@ -1335,7 +1335,7 @@ endfunction
 function create_MD_scicos(basedir, masterdoc, language)
 
 // Encoding management
-if language == "fr_FR" then
+if or(language == ["fr_FR";"pt_BR"]) then
   encoding = "ISO-8859-1";
 else
   encoding = "UTF-8";
