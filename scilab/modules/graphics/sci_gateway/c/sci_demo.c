@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006-2009 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -20,7 +20,7 @@
 
 int sci_demo( char * fname, int fname_len)
 {
-	int lw = (Top > 0 ? Top - 1 : Top);
-	C2F(overload)(&lw, fname, fname_len);
-	return 0;
+  int lw = 0;
+  C2F(overload)(&lw, fname, fname_len);
+  return 0;
 }

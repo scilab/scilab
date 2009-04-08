@@ -261,6 +261,10 @@ Bug fixes:
 
 * bug 4332 fixed - completion copies selected item instead of completing according to this one.
 
+* bug 4342 fixed - When the coutour function is called, an error message is printed.
+
+* bug 4343 fixed - the plot3d demo doesn't seems to work.
+
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
