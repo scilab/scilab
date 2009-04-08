@@ -20,7 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>X=lsq(A,B [,tol])</synopsis>
+    <synopsis>[X [,rk] ]=lsq(A,B [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Parameters</title>
@@ -51,6 +51,12 @@
         <term>X</term>
         <listitem>
           <para>real or complex (n x p) matrix</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>integer : effective rank of A.</para>
         </listitem>
       </varlistentry>
     </variablelist>
