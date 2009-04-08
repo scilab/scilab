@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="coffg" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>coffg</refname>
+
+    <refpurpose>matriz inversa de polinômios</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Ns,d]=coffg(Fs)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Fs</term>
+
+        <listitem>
+          <para>matriz quadrada de polinômios</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>coffg</literal> computa <literal>Fs^-1</literal> onde
+    <literal>Fs</literal> é uma matriz de polinômios, pelo método dos
+    cofatores.</para>
+
+    <para><literal>Fs</literal> inverse = <literal>Ns/d</literal></para>
+
+    <para><literal>d</literal> = denominador comum; <literal>Ns</literal> =
+    numerador (uma matriz de polinômios)</para>
+
+    <para>(Para matrizes grandes, seja paciente... os resultados geralmente
+    são confiáveis)</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s')
+a=[ s, s^2+1; s  s^2-1];
+[a1,d]=coffg(a);
+(a1/d)-inv(a)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="determ">determ</link></member>
+
+      <member><link linkend="detr">detr</link></member>
+
+      <member><link linkend="invr">invr</link></member>
+
+      <member><link linkend="penlaur">penlaur</link></member>
+
+      <member><link linkend="glever">glever</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D.; ;</para>
+  </refsection>
+</refentry>

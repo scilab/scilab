@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="scilab" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>scilab</refname>
+
+    <refpurpose>principal script unix para executar o Scilab e ferramentas de
+    miscelânea</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Sqeüência de Chamamento</title>
+
+    <synopsis>scilab &lt;Options&gt;</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>-args Arguments</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, os argumentos são passados ao
+          Scilab. Eles podem ser recebidos pela função <link
+          linkend="sciargs">sciargs</link>. para passagem de múltiplos
+          argumentos use, seqüências de palavras separadas por espaços entre
+          aspas simples: <literal>scilab -args 'foo1 foo2'</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-display Display</term>
+
+        <listitem>
+          <para>Para uso apenas em sistemas Xwindow para ajustar um display de
+          servidor X. O display padrão é unix:0.0</para>
+
+          <para><literal>-display</literal> pode ser abreviado por
+          <literal>-d</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-debug</term>
+
+        <listitem>
+          <para>Inicia o Scilab no debugger gdb (apenas para
+          Unix/linux).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-e Instrução</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, então a instrução Scilab
+          <literal>Instrução</literal> é executada primeiro (logo após a
+          execução do arquivo de inicialização) no Scilab. As opções
+          <literal>-e</literal> e <literal>-f</literal> são mutuamente
+          exclusivas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-f arquivo</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, então o script Scilab
+          <literal>arquivo</literal> é executado primeiro (logo após a
+          execução do arquivo de inicialização) no Scilab. As opções
+          <literal>-e</literal> e <literal>-f</literal> são mutuamente
+          exclusivas.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-l idioma</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, ela fica o idioma do usuário.
+          Os possíveis valores para <literal>idioma</literal> são
+          <literal>'fr'</literal> para francês, <literal>'en'</literal> para
+          inglês e 'br' para português brasileiro. O idioma padrão é inglês. O
+          valor padrão é fixado no arquivo
+          <literal>scilab.start</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>scilab -link &lt;objetos&gt;</term>
+
+        <listitem>
+          <para>É utilizado para produzir um <literal>scilex</literal> (código
+          executável do Scilab) local ligado (linkado) aos os arquivos
+          adicionais fornecidos pelo usuário em
+          <literal>&lt;objetos&gt;</literal>. Este comando também produz um
+          script <literal>scilab</literal>, o qual, quando chamado, executará
+          o novo arquivo scilex gerado.</para>
+
+          <para>Por exemplo:</para>
+
+          <programlisting>
+	  
+	  scilab -link  C/interf.o C/evol.o C/bib.a
+	  
+	</programlisting>
+
+          <para>criará o novo arquivo <literal>scilex</literal> no qual o
+          arquivo padrão <literal>interf.o</literal> será substituído por
+          <literal>C/interf.o</literal>.</para>
+
+          <para><literal>-link</literal> não pode ser utilizado com quaisquer
+          das outras opções.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-mem N</term>
+
+        <listitem>
+          <para>Ajusta o tamanho de pilha inicial, para uso com a opção -ns.
+          Sem a opção -ns, a pilha inicial é ajustada pelo script
+          scilab.start.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nb</term>
+
+        <listitem>
+          <para>Se esta opção está presente, então o cartão de boas-vindas não
+          é impresso.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-ns</term>
+
+        <listitem>
+          <para>Se esta opção está presente, o arquivo de inicialização
+          <literal>SCI/etc/scilab.start</literal> e os arquivos de
+          inicialização do usuário <literal>SCIHOME/.scilab</literal>,
+          <literal>SCIHOME/scilab.ini</literal> não são executados.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nouserstartup</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, os arquivos de inicialização
+          do usuário <literal>SCIHOME/.scilab</literal>,
+          <literal>SCIHOME/scilab.ini</literal> não são executados.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nw</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, então o Scilab não é executado
+          em uma janela específica.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nwni</term>
+
+        <listitem>
+          <para>Se esta opção estiver presente, então o Scilab não é executado
+          em uma janela específica e não aceita interação do usuário. Esta
+          opção pode ser utilizada com as opções -f ou -e .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>--texmacs</term>
+
+        <listitem>
+          <para>Esta opção é reservada para TexMacs.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-version</term>
+
+        <listitem>
+          <para>Esta opção imprime a versão do produto e sai.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="companion" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>companion</refname>
+
+    <refpurpose>matriz companheira</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>A=companion(p)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>polinômio ou vetor de polinômios </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz quadrada</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna uma matriz quadrada <literal>A</literal> com o polinômio
+    característico igual a <literal>p</literal> se <literal>p</literal> é
+    mônico. Se <literal>p</literal> não é mônico, o polinômio característico
+    de <literal>A</literal> é igual a <literal>p/c</literal> onde
+    <literal>c</literal> é o coeficiente do termo de maior grau em
+    <literal>p</literal>.</para>
+
+    <para>Se <literal>p</literal> é um vetor de polinômios mônicos,
+    <literal>A</literal> é diagonal em blocos, e o polinômio característico do
+    i-ésimo bloco é <literal>p(i)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s');
+p=poly([1,2,3,4,1],'s','c')
+det(s*eye()-companion(p))
+roots(p)
+spec(companion(p))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="spec">spec</link></member>
+
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="randpencil">randpencil</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.D.</para>
+  </refsection>
+</refentry>

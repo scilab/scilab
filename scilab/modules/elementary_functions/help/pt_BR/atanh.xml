@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="atanh" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>atanh</refname>
+
+    <refpurpose>arco-tangente hiperbólico</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>t=atanh(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>matriz ou vetor de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>matriz ou vetor de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Os compontente do vetor <literal>t</literal> são os arcos-tangentes
+    hiperbólicos das entradas correspondentes em <literal>x</literal>. O
+    domínio de definição é <literal>[-1,1]</literal> para a função real (ver
+    "Observação").</para>
+  </refsection>
+
+  <refsection>
+    <title>Observação </title>
+
+    <para>No Scilab (como em alguns outros softwares numéricos), quando se
+    tenta avaliar uma função matemática elementar fora de seu domínio de
+    definição no caso real, uma extensão complexa é usada (com resultado
+    complexo). O exemplo mais famoso é a função sqrt (tente
+    <literal>sqrt(-1)</literal> !). !). Esta aproximação tem algumas
+    desvantagens quando você avalia a função em um ponto singular que pode
+    levar a diferentes resultados quando o ponto é considerado como real ou
+    complexo. Para a função <literal>atanh</literal> isto ocorre para
+    <literal>-1</literal> e <literal>1</literal> porque, nestes pontos, a
+    parte imaginária não converge e então <literal>atanh(1) = +Inf + i
+    NaN</literal> enquanto <literal>atanh(1) = +Inf</literal> para o caso real
+    (como lim x-&gt;1- de atanh(x)). Então, quando você avaliar esta função no
+    vetor <literal>[1 2]</literal> , como <literal>2</literal> está fora do
+    domínio de definição, a extensão complexa é usada para todo o vetor e o
+    resultado de <literal>atanh(1) = +Inf + i NaN</literal> enquanto o
+    resultado de <literal>atanh(1) = +Inf</literal> com <literal>[1
+    0.5]</literal> , por exemplo.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// exemplo 1
+x=[0,%i,-%i]
+tanh(atanh(x))
+
+// exemplo 2
+x = [-%inf -3 -2 -1 0 1 2 3 %inf]
+ieee(2)
+atanh(tanh(x))
+
+// exemplo 3 (ver "Observação")
+ieee(2)
+atanh([1 2])
+atanh([1 0.5])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tanh">tanh</link></member>
+
+      <member><link linkend="ieee">ieee</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

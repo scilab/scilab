@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="chol" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>chol</refname>
+
+    <refpurpose>Cholesky factorization</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[R]=chol(X)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>uma matriz simétrica e positiva definida de reais ou
+          complexos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Se <literal>X</literal> é positiva definida, então <literal>R =
+    chol(X)</literal> produz uma matriz triangular superior
+    <literal>R</literal> tal que <literal>R'*R = X</literal>.</para>
+
+    <para><literal>chol(X)</literal> usa apenas a diagonal e o triângulo
+    superior de <literal>X</literal>. O triângulo inferior é assumido como
+    sendo a transposta (ou complexo conjugado) da superior.</para>
+  </refsection>
+
+  <refsection>
+    <title>Referências</title>
+
+    <para>A decomposição de Cholesky é baseada nas rotinas de Lapack DPOTRF
+    para matrizes de reais e ZPOTRF no caso de matrizes de complexos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+W=rand(5,5)+%i*rand(5,5);
+X=W*W';
+R=chol(X);
+norm(R'*R-X)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="spchol">spchol</link></member>
+
+      <member><link linkend="qr">qr</link></member>
+
+      <member><link linkend="svd">svd</link></member>
+
+      <member><link linkend="bdiag">bdiag</link></member>
+
+      <member><link linkend="fullrf">fullrf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="spaninter" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>spaninter</refname>
+
+    <refpurpose>interseção de subespaços</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento</title>
+
+    <synopsis>[X,dim]=spaninter(A,B [,tol])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A, B</term>
+
+        <listitem>
+          <para>duas matrizes de reais ou de complexos com igual número de
+          linhas </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>matriz quadrada ortogonal ou unitária</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+
+        <listitem>
+          <para>inteiro, dimensão do subesbaço Im(<literal>A</literal>) inter
+          Im(<literal>B</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Computa a intereseção de Im(<literal>A</literal>) e
+    Im(<literal>B</literal>).</para>
+
+    <para>As primeiras <literal>dim</literal> colunas de <literal>X</literal>
+    geram esta interseção i.e. <literal>X(:,1:dim)</literal> é uma base
+    ortogonal para</para>
+
+    <para>Im(<literal>A</literal>) inter Im(<literal>B</literal>)</para>
+
+    <para>Na base <literal>X</literal>, <literal>A</literal> e
+    <literal>B</literal> são respectivamente representados por:</para>
+
+    <para><literal>X'*A</literal> e <literal>X'*B</literal>.</para>
+
+    <para><literal>tol</literal> é um limiar (<literal>sqrt(%eps)</literal> é
+    o valor padrão).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=rand(5,3)*rand(3,4);     // A é 5 x 4, rank=3
+B=[A(:,2),rand(5,1)]*rand(2,2);
+[X,dim]=spaninter(A,B);
+X1=X(:,1:dim);    //A interseção
+svd(A),svd([X1,A])   // X1 no gerado(A) (span(A))
+svd(B),svd([B,X1])   // X1 no gerado(B) (span(B))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="spanplus">spanplus</link></member>
+
+      <member><link linkend="spantwo">spantwo</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D.; ;</para>
+  </refsection>
+</refentry>
