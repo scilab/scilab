@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="errclear" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>errclear</refname>
+
+    <refpurpose>limpeza de erros</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>errclear([n])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Limpa a ação (manipulador de erros) conectada ao erro de tipo
+    <literal>n</literal>.</para>
+
+    <para>Se <literal>n</literal> é positivo, é o número do erro limpo; caso
+    contrário, todos os erros são limpos (caso padrão).</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="errcatch">errcatch</link></member>
+
+      <member><link linkend="iserror">iserror</link></member>
+
+      <member><link linkend="lasterror">lasterror</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

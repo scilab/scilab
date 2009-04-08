@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ldiv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ldiv</refname>
+
+    <refpurpose>divisão longa entre matrizes de polinômios</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[x]=ldiv(n,d,k)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n,d</term>
+
+        <listitem>
+          <para>duas matrizes de polinômios reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>x=ldiv(n,d,k)</literal> fornece os <literal>k</literal>
+    primeiros coeficientes da divisão longa de <literal>n</literal> por
+    <literal>d</literal> i.e. the a expansão de Taylor da matriz de razões de
+    polinômios <literal>[nij(z)/dij(z)]</literal> aproximando-se do
+    infinito.</para>
+
+    <para>Os coeficientes de expansão de <literal>nij/dij</literal> são
+    armazenados em <literal>x((i-1)*n+k,j) k=1:n</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+wss=ssrand(1,1,3);[a,b,c,d]=abcd(wss);
+wtf=ss2tf(wss);
+x1=ldiv(numer(wtf),denom(wtf),5)
+x2=[c*b;c*a*b;c*a^2*b;c*a^3*b;c*a^4*b]
+wssbis=markp2ss(x1',5,1,1);
+wtfbis=clean(ss2tf(wssbis))
+x3=ldiv(numer(wtfbis),denom(wtfbis),5)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="arl2">arl2</link></member>
+
+      <member><link linkend="markp2ss">markp2ss</link></member>
+
+      <member><link linkend="pdiv">pdiv</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

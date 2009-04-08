@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="symbols" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>symbols</refname>
+
+    <refpurpose>nomes dos operadores Scilab</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Use os nomes seguintes para obter ajuda em um símbolo
+    específico</para>
+
+    <informaltable border="1">
+      <tr>
+        <td>operator</td>
+
+        <td>nome na ajuda do Scilab</td>
+      </tr>
+
+      <tr>
+        <td>',", .'</td>
+
+        <td>quote (aspas)</td>
+      </tr>
+
+      <tr>
+        <td>+</td>
+
+        <td>plus (sinal de mais)</td>
+      </tr>
+
+      <tr>
+        <td>-</td>
+
+        <td>minus (sinal de menos)</td>
+      </tr>
+
+      <tr>
+        <td>*,.*</td>
+
+        <td>star (estrela, asterísco)</td>
+      </tr>
+
+      <tr>
+        <td>/, ./, /.</td>
+
+        <td>slash (barra)</td>
+      </tr>
+
+      <tr>
+        <td>\,.\ ,\.</td>
+
+        <td>backslash (barra invertida)</td>
+      </tr>
+
+      <tr>
+        <td>.</td>
+
+        <td>dot (ponto)</td>
+      </tr>
+
+      <tr>
+        <td>=, ==</td>
+
+        <td>equal (igual)</td>
+      </tr>
+
+      <tr>
+        <td>&lt;,&gt;,&gt;=,&lt;=,&lt;&gt;</td>
+
+        <td>less (desigualdades )</td>
+      </tr>
+
+      <tr>
+        <td>~</td>
+
+        <td>tilda (til)</td>
+      </tr>
+
+      <tr>
+        <td>[</td>
+
+        <td>left (colchete esquerdo)</td>
+      </tr>
+
+      <tr>
+        <td>]</td>
+
+        <td>right (colchete direito)</td>
+      </tr>
+
+      <tr>
+        <td>()</td>
+
+        <td>parents (parênteses)</td>
+      </tr>
+
+      <tr>
+        <td>%</td>
+
+        <td>percent </td>
+      </tr>
+
+      <tr>
+        <td>:</td>
+
+        <td>colon (dois-pontos)</td>
+      </tr>
+
+      <tr>
+        <td>,</td>
+
+        <td>comma (vírgula)</td>
+      </tr>
+
+      <tr>
+        <td>;</td>
+
+        <td>semi (ponto-e-vírgula)</td>
+      </tr>
+
+      <tr>
+        <td><literal>^</literal></td>
+
+        <td>hat (chapéu, circunflexo)</td>
+      </tr>
+
+      <tr>
+        <td><literal>.^</literal></td>
+
+        <td>power (potência)</td>
+      </tr>
+
+      <tr>
+        <td>|</td>
+
+        <td>or (barra vertical, "ou" lógico)</td>
+      </tr>
+
+      <tr>
+        <td>&amp;</td>
+
+        <td>and ("e" comercial, "e" lógico)</td>
+      </tr>
+
+      <tr>
+        <td>.*., ./., .\.</td>
+
+        <td>kron (produto de Kronecker)</td>
+      </tr>
+    </informaltable>
+  </refsection>
+
+  <refsection>
+    <title> Observações</title>
+
+    <para>Por razões históricas, símbolos diferentes podem representar o mesmo
+    operador:</para>
+
+    <para><literal>{</literal> tem o mesmo significado que
+    <literal>[</literal></para>
+
+    <para><literal>}</literal> tem o mesmo significado que
+    <literal>]</literal></para>
+
+    <para><literal>@</literal> tem o mesmo significado que
+    <literal>~</literal></para>
+
+    <para><literal>`</literal> tem o mesmo significado que &lt;</para>
+
+    <para>É altamente recomendável que não se use esses recursos, pois eles
+    serão removidos futuramente</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="overloading">overloading</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="less" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>less</refname>
+
+    <refpurpose>(&lt;) comparação "menor do que"</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="great">
+    <refname>great</refname>
+
+    <refpurpose>(&gt;) comparação "maior do que"</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Símbolo de comparação lógica </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>&lt;&gt;</term>
+
+        <listitem>
+          <para>significa "diferente" (é o mesmo que ~= ) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;</term>
+
+        <listitem>
+          <para>significa "menor do que". </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&gt;</term>
+
+        <listitem>
+          <para>significa "maior do que". </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;=</term>
+
+        <listitem>
+          <para>significa "maior do que". </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&gt;=</term>
+
+        <listitem>
+          <para>significa "maior do que ou igual a".</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="if">if</link></member>
+
+      <member><link linkend="comparison">comparison</link></member>
+
+      <member><link linkend="equal">equal</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

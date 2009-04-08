@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rref" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rref</refname>
+
+    <refpurpose>computa a matriz-linha reduzida a forma escada por
+    transformações de LU</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>R=rref(A)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz m x n com entradas escalares </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>R</term>
+
+        <listitem>
+          <para>matriz m x n, forma escada de A</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>rref</literal> computa a forma escada de linhas reduzidas
+    da matriz dada pela decomposição esquerda LU. Se for necessária a
+    transformação usada, basta chamar <literal>X=rref([A,eye(m,m)])</literal>
+    A forma escada de linhas reduzidas <literal>R</literal> é
+    <literal>X(:,1:n)</literal> e a transformação esquerda
+    <literal>L</literal> ié dada por <literal>X(:,n+1:n+m)</literal> tal como
+    <literal>L*A=R</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=[1 2;3 4;5 6];
+X=rref([A,eye(3,3)]);
+R=X(:,1:2)
+L=X(:,3:5);L*A
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="lu">lu</link></member>
+
+      <member><link linkend="qr">qr</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

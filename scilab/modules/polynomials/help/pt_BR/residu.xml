@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="residu" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>residu</refname>
+
+    <refpurpose>resíduo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>P, Q1, Q2</term>
+
+        <listitem>
+          <para>polinômios ou matrizes de polinômios de coeficientes reais ou
+          complexos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>V=residu(P,Q1,Q2)</literal> retorna a matriz
+    <literal>V</literal> tal que <literal>V(i,j)</literal> é a soma dos
+    resíduos da fração racional <literal>P(i,j)/(Q1(i,j)*Q2(i,j))</literal>
+    calculada nos zeros de <literal>Q1(i,j)</literal>.</para>
+
+    <para><literal>Q1(i,j)</literal> e <literal>Q2(i,j)</literal> não devem
+    possuir raízes em comum.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s');
+H=[s/(s+1)^2,1/(s+2)];N=numer(H);D=denom(H);
+w=residu(N.*horner(N,-s),D,horner(D,-s));  //N(s) N(-s) / D(s) D(-s)
+sqrt(sum(w))  //This is H2 norm
+h2norm(tf2ss(H))
+//
+p=(s-1)*(s+1)*(s+2)*(s+10);a=(s-5)*(s-1)*(s*s)*((s+1/2)**2);
+b=(s-3)*(s+2/5)*(s+3);
+residu(p,a,b)+531863/4410    //Exato
+z=poly(0,'z');a=z^3+0.7*z^2+0.5*z-0.3;b=z^3+0.3*z^2+0.2*z+0.1;
+atild=gtild(a,'d');btild=gtild(b,'d');
+residu(b*btild,z*a,atild)-2.9488038   //Exato
+a=a+0*%i;b=b+0*%i;
+real(residu(b*btild,z*a,atild)-2.9488038) //Caso complexo
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="pfss">pfss</link></member>
+
+      <member><link linkend="bdiag">bdiag</link></member>
+
+      <member><link linkend="roots">roots</link></member>
+
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="gtild">gtild</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.Delebecque INRIA</para>
+  </refsection>
+</refentry>
