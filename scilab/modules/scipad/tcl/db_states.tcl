@@ -4,7 +4,7 @@
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
 #  Copyright (C) 2004-2008 - Francois Vogel
 #
-#  Localization files ( in tcl/msg_files/) are copyright of the 
+#  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
 #
 # This program is free software; you can redistribute it and/or modify
@@ -91,174 +91,174 @@ proc getdbstate {} {
 }
 
 proc setdbmenuentriesstates_bp {} {
-    global pad watch watchwinicons watchwinstepicons
-    global Shift_F8 Shift_F9 Shift_F11 Shift_F12
-    global MenuEntryId
-    global bug2384_fixed
+#     global pad watch watchwinicons watchwinstepicons
+#     global Shift_F8 Shift_F9 Shift_F11 Shift_F12
+#     global MenuEntryId
+#     global bug2384_fixed
 
-    set errmess "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
+#     set errmess "Unknown debugstate in proc setdbmenuentriesstates_bp: please report"
 
-    set dm $pad.filemenu.debug
-    set dms $pad.filemenu.debug.step
+#     set dm $pad.filemenu.debug
+#     set dms $pad.filemenu.debug.step
 
-    if {[getdbstate] == "NoDebug"} {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
-        bind all <F9> {insertremove_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
-        bind all <Control-F9> {showbptgui_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
-        pbind all $Shift_F9 {removeallbpt_scipad_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
-        bind all <F10> {configurefoo_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state disabled
-        bind all <F11> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state disabled
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state disabled
-        pbind all $Shift_F8 {}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state disabled
-        bind all <F8> {}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state disabled
-        bind all <Control-F8> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state disabled
-        pbind all $Shift_F11 {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
-        bind all <Control-F11> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
-        pbind all $Shift_F12 {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
-        bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
-        bind all <F12> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state normal
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state normal
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state normal
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state normal
+#     if {[getdbstate] == "NoDebug"} {
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
+#         bind all <F9> {insertremove_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
+#         bind all <Control-F9> {showbptgui_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
+#         pbind all $Shift_F9 {removeallbpt_scipad_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
+#         bind all <F10> {configurefoo_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state disabled
+#         bind all <F11> {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state disabled
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state disabled
+#         pbind all $Shift_F8 {}
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state disabled
+#         bind all <F8> {}
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state disabled
+#         bind all <Control-F8> {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state disabled
+#         pbind all $Shift_F11 {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state disabled
+#         bind all <Control-F11> {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
+#         pbind all $Shift_F12 {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
+#         bind all <Control-F12> {showwatch_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
+#         bind all <F12> {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state normal
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state normal
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state normal
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state normal
 
-    } elseif {[getdbstate] == "ReadyForDebug"} {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
-        bind all <F9> {insertremove_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
-        bind all <Control-F9> {showbptgui_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
-        pbind all $Shift_F9 {removeallbpt_scipad_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
-        bind all <F10> {configurefoo_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
-        bind all <F11> {tonextbreakpoint_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state normal
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state normal
-        pbind all $Shift_F8 {stepbystepinto_bp}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state normal
-        bind all <F8> {stepbystepover_bp}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
-        bind all <Control-F8> {stepbystepout_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
-        pbind all $Shift_F11 {runtoreturnpoint_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
-        bind all <Control-F11> {runtocursor_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
-        pbind all $Shift_F12 {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
-        bind all <Control-F12> {showwatch_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
-        bind all <F12> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state disabled
+#     } elseif {[getdbstate] == "ReadyForDebug"} {
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
+#         bind all <F9> {insertremove_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
+#         bind all <Control-F9> {showbptgui_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
+#         pbind all $Shift_F9 {removeallbpt_scipad_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state normal
+#         bind all <F10> {configurefoo_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
+#         bind all <F11> {tonextbreakpoint_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state normal
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state normal
+#         pbind all $Shift_F8 {stepbystepinto_bp}
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state normal
+#         bind all <F8> {stepbystepover_bp}
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
+#         bind all <Control-F8> {stepbystepout_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
+#         pbind all $Shift_F11 {runtoreturnpoint_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
+#         bind all <Control-F11> {runtocursor_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state disabled
+#         pbind all $Shift_F12 {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
+#         bind all <Control-F12> {showwatch_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
+#         bind all <F12> {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state disabled
 
-    } elseif {[getdbstate] == "DebugInProgress"} {
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
-        bind all <F9> {insertremove_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
-        bind all <Control-F9> {showbptgui_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
-        pbind all $Shift_F9 {removeallbpt_scipad_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state disabled
-        bind all <F10> {}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
-        bind all <F11> {tonextbreakpoint_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state normal
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state normal
-        pbind all $Shift_F8 {stepbystepinto_bp}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state normal
-        bind all <F8> {stepbystepover_bp}
-        $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
-        bind all <Control-F8> {stepbystepout_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
-        pbind all $Shift_F11 {runtoreturnpoint_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
-        bind all <Control-F11> {runtocursor_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state normal
-        pbind all $Shift_F12 {goonwo_bp}
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
-        bind all <Control-F12> {showwatch_bp}
-        if {$bug2384_fixed} {
-            $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state normal
-            bind all <F12> {break_bp}
-        } else {
-            $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
-            bind all <F12> {}
-        }
-        $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state disabled
-        $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state disabled
+#     } elseif {[getdbstate] == "DebugInProgress"} {
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Insert/Remove breakpoint"]) -state normal
+#         bind all <F9> {insertremove_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Edit breakpoints"]) -state normal
+#         bind all <Control-F9> {showbptgui_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Remove &all breakpoints"]) -state normal
+#         pbind all $Shift_F9 {removeallbpt_scipad_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Configure execution..."]) -state disabled
+#         bind all <F10> {}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Go to next b&reakpoint"]) -state normal
+#         bind all <F11> {tonextbreakpoint_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "&Step by step"]) -state normal
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &into"]) -state normal
+#         pbind all $Shift_F8 {stepbystepinto_bp}
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step o&ver"]) -state normal
+#         bind all <F8> {stepbystepover_bp}
+#         $dms entryconfigure $MenuEntryId($dms.[mcra "Step &out"]) -state normal
+#         bind all <Control-F8> {stepbystepout_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to re&turn point"]) -state normal
+#         pbind all $Shift_F11 {runtoreturnpoint_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Run to c&ursor"]) -state normal
+#         bind all <Control-F11> {runtocursor_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"]) -state normal
+#         pbind all $Shift_F12 {goonwo_bp}
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Show &watch"]) -state normal
+#         bind all <Control-F12> {showwatch_bp}
+#         if {$bug2384_fixed} {
+#             $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state normal
+#             bind all <F12> {break_bp}
+#         } else {
+#             $dm entryconfigure $MenuEntryId($dm.[mcra "&Break"]) -state disabled
+#             bind all <F12> {}
+#         }
+#         $dm entryconfigure $MenuEntryId($dm.[mcra "Cance&l debug"]) -state normal
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "S&cilab"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&XML"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&none"]) -state disabled
+#         $pad.filemenu.scheme entryconfigure $MenuEntryId($pad.filemenu.scheme.[mcra "&Colorize"]) -state disabled
 
-    } else {
-        tk_messageBox -message $errmess
-    }
+#     } else {
+#         tk_messageBox -message $errmess
+#     }
 
-    if {[istoplevelopen watch]} {
-        set wi $watchwinicons
-        set wis $watchwinstepicons
-        if {[getdbstate] == "NoDebug"} {
-            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
-            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
-        } elseif {[getdbstate] == "ReadyForDebug"} {
-            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
-            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
-        } elseif {[getdbstate] == "DebugInProgress"} {
-            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
-            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
-            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
-            if {$bug2384_fixed} {
-                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
-            } else {
-                [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-            }
-            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
-        } else {
-            tk_messageBox -message $errmess
-        }
-    }
+#     if {[istoplevelopen watch]} {
+#         set wi $watchwinicons
+#         set wis $watchwinstepicons
+#         if {[getdbstate] == "NoDebug"} {
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
+#         } elseif {[getdbstate] == "ReadyForDebug"} {
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
+#         } elseif {[getdbstate] == "DebugInProgress"} {
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
+#             [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state normal
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state normal
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state normal
+#             [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state normal
+#             [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state normal
+#             if {$bug2384_fixed} {
+#                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state normal
+#             } else {
+#                 [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+#             }
+#             [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state normal
+#         } else {
+#             tk_messageBox -message $errmess
+#         }
+#     }
 
 }
 
@@ -333,15 +333,15 @@ proc unsetdebuggerbusycursor {} {
 }
 
 proc unsetdebuggerwidgetbusycursor {w} {
-    global cursorsinwidgets 
-    if {[info exists cursorsinwidgets($w)]} { 
-        $w configure -cursor $cursorsinwidgets($w) 
+    global cursorsinwidgets
+    if {[info exists cursorsinwidgets($w)]} {
+        $w configure -cursor $cursorsinwidgets($w)
     } else {
-        $w configure -cursor {} 
+        $w configure -cursor {}
     }
     foreach child [filteroutmenuclones [winfo children $w]] {
         unsetdebuggerwidgetbusycursor $child
-    } 
+    }
 }
 
 proc checkendofdebug_bp {{stepmode "nostep"}} {
@@ -676,16 +676,16 @@ proc clearscilaberror {} {
 #
 #    -->[str,n,line,func]=lasterror(%f)
 #     func  =
-#    
-#    
+#
+#
 #     line  =
-#    
+#
 #        0.
 #     n  =
-#    
+#
 #        0.
 #     str  =
-#    
+#
 #         []
 #
     if {[isscilabbusy 5]} {return}
