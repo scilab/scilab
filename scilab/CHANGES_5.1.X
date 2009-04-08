@@ -38,8 +38,6 @@ Help & Tests:
 * Some equations in the documentation converted to the MathML format 
   (bugs #4180 & #4182)
 
-* Help improved about javasci - Scilab Java API
-
 * Page "Compile and run with Javasci" added
 
 * Examples in javasci translated into english
