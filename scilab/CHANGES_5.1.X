@@ -259,6 +259,8 @@ Bug fixes:
 
 * bug 4326 fixed - move called with an already deleted handle crashes Scilab.
 
+* bug 4315 fixed - completion("",["commands","macros"]) will only returns "commands"
+
 * bug 4332 fixed - completion copies selected item instead of completing according to this one.
 
 * bug 4342 fixed - When the coutour function is called, an error message is printed.
