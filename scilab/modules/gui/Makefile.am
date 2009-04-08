@@ -137,7 +137,8 @@ sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
-src/cpp/displaytree.cpp
+src/cpp/displaytree.cpp \
+src/jni/ScilabDisplayTree.cpp
 
 
 GIWS_WRAPPERS = \

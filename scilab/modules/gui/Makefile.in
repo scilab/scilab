@@ -215,7 +215,8 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-LookAndFeelManager.lo \
 	libscigui_la-sci_raise_window.lo libscigui_la-sci_usecanvas.lo \
 	libscigui_la-GiwsException.lo libscigui_la-Juigetfile.lo \
-	libscigui_la-CallJuigetfile.lo libscigui_la-displaytree.lo
+	libscigui_la-CallJuigetfile.lo libscigui_la-displaytree.lo \
+	libscigui_la-ScilabDisplayTree.lo
 am_libscigui_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -640,7 +641,8 @@ sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
-src/cpp/displaytree.cpp
+src/cpp/displaytree.cpp \
+src/jni/ScilabDisplayTree.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -1006,6 +1008,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PopupMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-RadioButton.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ScilabDisplayTree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontAngle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontName.Plo@am__quote@
@@ -2065,6 +2068,13 @@ libscigui_la-displaytree.lo: src/cpp/displaytree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/displaytree.cpp' object='libscigui_la-displaytree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-displaytree.lo `test -f 'src/cpp/displaytree.cpp' || echo '$(srcdir)/'`src/cpp/displaytree.cpp
+
+libscigui_la-ScilabDisplayTree.lo: src/jni/ScilabDisplayTree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-ScilabDisplayTree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-ScilabDisplayTree.Tpo -c -o libscigui_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-ScilabDisplayTree.Tpo $(DEPDIR)/libscigui_la-ScilabDisplayTree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ScilabDisplayTree.cpp' object='libscigui_la-ScilabDisplayTree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
