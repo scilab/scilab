@@ -48,6 +48,7 @@ int sci_winsid(char *fname,unsigned long fname_len)
     FREE(ids);
   }
   LhsVar(1) = Rhs+1;
+	C2F(putlhsvar)();
   return status;
 }
 /*--------------------------------------------------------------------------*/

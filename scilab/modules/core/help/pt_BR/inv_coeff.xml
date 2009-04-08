@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="inv_coeff" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>inv_coeff</refname>
+
+    <refpurpose>constrói uma matriz de polinômios a partir de seus
+    coeficientes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>C</term>
+
+        <listitem>
+          <para>matriz grande de coeficientes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d</term>
+
+        <listitem>
+          <para>grau da matriz de polinômios. Parâmetro opcional com valor
+          padrão <literal>d=-1+size(C,'c')/size(C,'r')</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>name</term>
+
+        <listitem>
+          <para>string fornecendo o nome da variável polinomial (valor padrão
+          <literal>'x'</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>P=inv_coeff(Mp,k)</literal>, quando <literal>k</literal> é
+    compatível com o tamanho de <literal>Mp</literal> size, retorna uma matriz
+    de polinômios de grau k. <literal>C=[C0,C1,...,Ck]</literal> and
+    <literal>P= C0 + C1*x +... +Ck*x^k</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=int(10*rand(2,6))
+// Construindo uma matriz de polinômios de grau 1
+P=inv_coeff(A,1)
+norm(coeff(P)-A)
+// Usando valor padrão para o grau
+P1=inv_coeff(A)
+norm(coeff(P1)-A)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="degree">degree</link></member>
+
+      <member><link linkend="coeff">coeff</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

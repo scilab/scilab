@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rcond" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rcond</refname>
+
+    <refpurpose>número de condicionamento inverso</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rcond(X)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>rcond(X)</literal> é uma estimativa para a recíproca da
+    condição de <literal>X</literal> na norma-1.</para>
+
+    <para>Se <literal>X</literal> é bem condicionada,
+    <literal>rcond(X)</literal> é próximo a 1. Senão,
+    <literal>rcond(X)</literal> é próximo a 0.</para>
+
+    <para><literal>[r,z]=rcond(X)</literal> ajusta <literal>r</literal> a
+    <literal>rcond(X)</literal> e retorna <literal>z</literal> tal que
+    <literal>norm(X*z,1) = r*norm(X,1)*norm(z,1)</literal></para>
+
+    <para>Portanto, se <literal>rcond</literal> é pequeno,
+    <literal>z</literal> é um vetor do núcleo.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=diag([1:10]);
+rcond(A)
+A(1,1)=0.000001;
+rcond(A)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="svd">svd</link></member>
+
+      <member><link linkend="cond">cond</link></member>
+
+      <member><link linkend="inv">inv</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

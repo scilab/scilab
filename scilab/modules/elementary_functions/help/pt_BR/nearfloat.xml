@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="nearfloat" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>nearfloat</refname>
+
+    <refpurpose>get previous or next floating-point number</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xnear = nearfloat(dir, x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>dir</term>
+
+        <listitem>
+          <para>string ("succ" ou "pred") </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>escalar real, vetor ou matriz de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xnear</term>
+
+        <listitem>
+          <para>escalar real, vetor ou matriz de reais </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função computa, elemento a elemento, os vizinhos
+    correspondentes dos elementos de <literal>x</literal> (no conjunto de
+    pontos flutuantes subjacente, ver number_properties), os sucessores se
+    <literal>dir = "succ"</literal> e e os predecessores se <literal>dir =
+    "pred"</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+format("e",22)
+nearfloat("succ",1) - 1
+1 - nearfloat("pred",1)
+format("v") //retoma o formato padrão
+   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="number_properties">number_properties</link></member>
+
+      <member><link linkend="frexp">frexp</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>B.P.</para>
+  </refsection>
+</refentry>

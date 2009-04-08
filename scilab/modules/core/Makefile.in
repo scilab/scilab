@@ -206,7 +206,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/c/sci_librarieslist.c \
 	sci_gateway/c/sci_libraryinfo.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
-	sci_gateway/c/sci_readgateway.c \
+	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_exit.c \
 	sci_gateway/fortran/sci_errclear.f \
 	sci_gateway/fortran/sci_funcprot.f \
 	sci_gateway/fortran/sci_global.f \
@@ -328,7 +328,7 @@ am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_librarieslist.lo \
 	libscicore_la-sci_libraryinfo.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
-	libscicore_la-sci_readgateway.lo
+	libscicore_la-sci_readgateway.lo libscicore_la-sci_exit.lo
 am__objects_6 = sci_errclear.lo sci_funcprot.lo sci_global.lo \
 	sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
@@ -399,6 +399,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -417,7 +418,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -427,6 +431,8 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -486,6 +492,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -699,7 +706,8 @@ sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
-sci_gateway/c/sci_readgateway.c
+sci_gateway/c/sci_readgateway.c \
+sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_funcprot.f \
@@ -911,6 +919,7 @@ JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
+HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
@@ -1048,6 +1057,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_errclear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_exists.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_exit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_format.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funcprot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_funptr.Plo@am__quote@
@@ -2058,6 +2068,13 @@ libscicore_la-sci_readgateway.lo: sci_gateway/c/sci_readgateway.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_readgateway.lo `test -f 'sci_gateway/c/sci_readgateway.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readgateway.c
 
+libscicore_la-sci_exit.lo: sci_gateway/c/sci_exit.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_exit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_exit.Tpo -c -o libscicore_la-sci_exit.lo `test -f 'sci_gateway/c/sci_exit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exit.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_exit.Tpo $(DEPDIR)/libscicore_la-sci_exit.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_exit.c' object='libscicore_la-sci_exit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_exit.lo `test -f 'sci_gateway/c/sci_exit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exit.c
+
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
 
@@ -2880,7 +2897,7 @@ install-data-local:
 	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
-	for lang in $(ALL_LINGUAS); do \
+	for lang in $(HELP_CHAPTERLANG); do \
 		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 		if test -f $$HELPFILE; then \
 			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \

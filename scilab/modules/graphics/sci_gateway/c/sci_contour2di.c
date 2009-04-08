@@ -82,6 +82,7 @@ int sci_contour2di( char * fname, unsigned long fname_len )
   }
   LhsVar(1)=Rhs+2;
   LhsVar(2)=Rhs+3;
+  PutLhsVar();
   return 0;
 }
 /*--------------------------------------------------------------------------*/

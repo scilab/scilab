@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="host" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>host</refname>
+
+    <refpurpose>execução de comandos do Unix ou DOS</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>stat=host(command-name)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>command-name</term>
+
+        <listitem>
+          <para>um string contendo uma instrução sh Unix </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stat</term>
+
+        <listitem>
+          <para>um flag ("indicador") inteiro </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Envia um string <literal>command-name</literal> para o Unix para
+    execução pelo interpretador de comando (sh em Unix, ou command.com em
+    DOS). As saídas e os erros padrões do comando do shell são escritos no
+    shell chamado. <literal>stat</literal> fornece -1 se o "host" (significa
+    "anfitrião") não pode ser chamado (memória disponível do sistema
+    insuficiente) ou se o interpretador de comando retorna o código.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+    //criando uma função getdir baseda no host
+    function wd=getdir()
+      if MSDOS then 
+        host('cd&gt;'+TMPDIR+'\path');
+      else
+        host('pwd&gt;'+TMPDIR+'/path');
+      end
+      wd=read(TMPDIR+'/path',1,1,'(a)')
+    endfunction
+    //chamando-a
+    wd=getdir()
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="edit">edit</link></member>
+
+      <member><link linkend="manedit">manedit</link></member>
+
+      <member><link linkend="unix_g">unix_g</link></member>
+
+      <member><link linkend="unix_s">unix_s</link></member>
+
+      <member><link linkend="unix_w">unix_w</link></member>
+
+      <member><link linkend="unix_x">unix_x</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

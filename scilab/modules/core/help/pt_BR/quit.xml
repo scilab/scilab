@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="quit" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>quit</refname>
+
+    <refpurpose>Decresce o nível de pausa ou termina o Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>quit</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>O comando <literal>quit</literal> tem dois significados diferentes
+    dependendo do contexto de chamamento:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Se não houver <literal>pause</literal> ativo,</term>
+
+        <listitem>
+          <para>Então o comando <literal>quit</literal> faz o Scilab terminar,
+          mesmo que o comando seja chamado dentro de uma função.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Se houver <literal>pause</literal> ativo,</term>
+
+        <listitem>
+          <para>Então o comando <literal>quit</literal> aborta instruções
+          iniciadas neste nível de pausa e termina o nível de pausa
+          corrente.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+      // Saindo do Scilab
+      function foo(x),if x then quit,end,endfunction
+      foo(%t) //quits scilab
+
+      //terminando instrução iniciada num contexto de pausa
+      function foo(x),if x then quit,end,endfunction
+      pause
+      foo(%t) //retorna ao nível de prompt principal
+
+      function foo1(x),
+        mprintf('P1\n')
+        if x then pause, mprintf('P2\n'),end,
+        mprintf('P3\n')
+      endfunction
+     
+      foo1(%t) //enter com quit no prompt seguinte
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="pause">pause</link></member>
+
+      <member><link linkend="break">break</link></member>
+
+      <member><link linkend="abort">abort</link></member>
+
+      <member><link linkend="exit">exit</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

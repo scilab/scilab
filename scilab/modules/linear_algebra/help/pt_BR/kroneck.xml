@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="kroneck" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>kroneck</refname>
+
+    <refpurpose>forma de Kronecker de feixe de matrizes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F)
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(E,A)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>F</term>
+
+        <listitem>
+          <para>feixe de matrizes de reais <literal>F=s*E-A</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E,A</term>
+
+        <listitem>
+          <para>duas matrizes de reais de mesma dimensão</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Q,Z</term>
+
+        <listitem>
+          <para>duas matrizes quadradas ortogonais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Qd,Zd</term>
+
+        <listitem>
+          <para>dois vetores de inteiros </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>numbeps,numeta</term>
+
+        <listitem>
+          <para>dois vetores de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Forma de Kronecker de feixe de matrizes: <literal>kroneck</literal>
+    computa duas matrizes ortogonais <literal>Q, Z</literal> que põem o feixe
+    <literal>F=s*E -A</literal> na forma triangular superior:</para>
+
+    <programlisting>
+
+
+           | sE(eps)-A(eps) |        X       |      X     |      X        |
+           |----------------|----------------|------------|---------------|
+           |        O       | sE(inf)-A(inf) |      X     |      X        |
+Q(sE-A)Z = |---------------------------------|----------------------------|
+           |                |                |            |               |
+           |        0       |       0        | sE(f)-A(f) |      X        |
+           |--------------------------------------------------------------|
+           |                |                |            |               |
+           |        0       |       0        |      0     | sE(eta)-A(eta)|
+
+   
+    </programlisting>
+
+    <para>As dimensões dos quatro blocos são dadas por:</para>
+
+    <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x
+    Zd(2)</literal>, <literal>f = Qd(3) x Zd(3)</literal>,
+    <literal>eta=Qd(4)xZd(4)</literal></para>
+
+    <para>O bloco <literal>inf</literal> contém modos infinitos de
+    feixes.</para>
+
+    <para>O bloco <literal>f</literal> contém modos finitos de feixes.</para>
+
+    <para>A estrutura dos blocos epsilon e eta é dada por </para>
+
+    <para><literal>numbeps(1)</literal> = <literal>#</literal> de blocos eps
+    de tamanho 0 x 1</para>
+
+    <para><literal>numbeps(2)</literal> = <literal>#</literal> de blocos eps
+    de tamanho 1 x 2</para>
+
+    <para><literal>numbeps(3)</literal> = <literal>#</literal> de blocos eps
+    de tamanho 2 x 3 etc...</para>
+
+    <para><literal>numbeta(1)</literal> = <literal>#</literal> de blocos eta
+    de tamanho 1 x 0</para>
+
+    <para><literal>numbeta(2)</literal> = <literal>#</literal> de blocos eta
+    de tamanho 2 x 1</para>
+
+    <para><literal>numbeta(3)</literal> = <literal>#</literal> de blocos eta
+    de tamanho 3 x 2 etc...</para>
+
+    <para>O código foi retirado de T. Beelen (Slicot-WGS group).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+F=randpencil([1,1,2],[2,3],[-1,3,1],[0,3]);
+Q=rand(17,17);Z=rand(18,18);F=Q*F*Z;
+//feixe aleatório com eps1=1,eps2=1,eps3=1; 2 blocos J @ infty (infinito)
+//com dimensões 2 e 
+//3 autovalores finitos em -1,3,1 e eta1=0,eta2=3
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
+[Qd(1),Zd(1)]    //parte eps. é sum(epsi) x (sum(epsi) + número de epsi) (sum="soma")
+[Qd(2),Zd(2)]    //parte infinita
+[Qd(3),Zd(3)]    //parte finita
+[Qd(4),Zd(4)]    //parte eta é (sum(etai) + number(eta1)) x sum(etai) (number=número)
+numbeps
+numbeta
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gschur">gschur</link></member>
+
+      <member><link linkend="gspec">gspec</link></member>
+
+      <member><link linkend="systmat">systmat</link></member>
+
+      <member><link linkend="pencan">pencan</link></member>
+
+      <member><link linkend="randpencil">randpencil</link></member>
+
+      <member><link linkend="trzeros">trzeros</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

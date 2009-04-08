@@ -26,7 +26,7 @@ int sci_matplot1( char * fname, unsigned long fname_len )
   int m1, n1, l1,m2,n2,l2;
   if ( Rhs <= 0 )
   {
-    sci_demo(fname,"plot2d([0,10],[0,10],0);a=ones(50,50);a= 3*tril(a)+2*a;Matplot1(a,[4,4,9,9]);", FALSE);
+		sci_demo(fname, fname_len);
     return 0;
   }
 
@@ -37,6 +37,7 @@ int sci_matplot1( char * fname, unsigned long fname_len )
   if ( m1 * n1 == 0 )
   {
     LhsVar(1) = 0 ;
+	C2F(putlhsvar)();
     return 0 ;
   } 
 
@@ -44,7 +45,8 @@ int sci_matplot1( char * fname, unsigned long fname_len )
 
   Objmatplot1 (stk(l1), &m1, &n1,stk(l2)) ;
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

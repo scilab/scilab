@@ -41,10 +41,11 @@ int sci_newaxes( char * fname,unsigned long fname_len )
     CreateVar(Rhs+1,GRAPHICAL_HANDLE_DATATYPE,&numrow,&numcol,&outindex);
     *hstk(outindex) = sciGetHandle(masousfen);
 
-
-    LhsVar(1)=1;
+    LhsVar(1) = 1;
+	C2F(putlhsvar)();
   }
-  else {
+  else 
+  {
     Scierror(999,_("%s: No more memory.\n"),fname);
   }
   return 0;

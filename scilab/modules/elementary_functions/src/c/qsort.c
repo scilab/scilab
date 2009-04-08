@@ -52,12 +52,13 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- *  Modified for Scilab Jean-Philippe Chancelier 
- *  to keep a permutation index 
+ *  Modified for Scilab Jean-Philippe Chancelier  to keep a permutation index 
+ *  Modified for Scilab by Serge Steer to make it stable when permutation index is computed.
  */
 /*--------------------------------------------------------------------------*/ 
 /*
  * Qsort routine from Bentley & McIlroy's "Engineering a Sort Function".
+ * Software---Practice and Experience, 23(11):1249-1265
  */
 /*--------------------------------------------------------------------------*/ 
 void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)(), int (*swapcode)(), int (*lswapcodeind)())
@@ -68,25 +69,26 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
 
  loop:	
   swap_cnt = 0;
-  if (n < 7) {
+  if (n < 7) { /* Insertion sort on smallest arrays */
     for (pm = a + es, tabm= tab + es1 ; pm < (char *) a + n * es; pm += es, tabm +=es1 )
       {
-	for (pl = pm, tabl= tabm ; pl > (char *) a && cmp(pl - es, pl) > 0;  pl -= es, tabl -=es1)
+	for (pl = pm, tabl= tabm ; pl > (char *) a && cmp(pl - es, pl,tabl-es1,tabl,flag) > 0;  pl -= es, tabl -=es1)
 	  {
-	    swapind(tabl,tabl- es1);
+	    swapind(tabl,tabl-es1);
 	    swap(pl, pl - es);
 	  }
       }
     return;
   }
-  pm = a + (n / 2) * es;
+ /*Determine the pivot */
+  pm = a + (n / 2) * es;/* Small arrays, middle element */
   tabm = tab + (n / 2)*es1 ;
   if (n > 7) {
     pl = a; 
     tabl = tab;
     pn = a + (n - 1) * es; 
     tabn = tab + (n-1) *es1;
-    if (n > 40) {
+    if (n > 40) {/* Big arrays, pseudomedian of 9 */
       dind= (n/8) *es1;
       d =   (n/8) *es;
       med3(pl,tabl,pl, pl + d, pl + 2 * d, tabl, tabl + dind, tabl + 2 * dind, cmp);
@@ -95,29 +97,42 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
     }
     med3(pm,tabm,pl, pm, pn, tabl, tabm, tabn, cmp);
   }
+/* Put it at the first position */
+ /* Partionning */
   swapind(tab,tabm);
   swap(a, pm);
 
-  pa = pb = a + es;
-  pc = pd = a + (n - 1) * es;
-
+  /* pointers on data array */
+  pa = pb = a + es;/* pa and pb start from the beginning of the array */
+  pc = pd = a + (n - 1) * es;/* pc and pd start from the end of the array */
+  /* similar pointers for index array */
   taba = tabb = tab + es1;
   tabc = tabd = tab + (n - 1) * es1;
-
+  /* here we have
+    |a  |pa                            | pc|   
+    |a  |pb                            | pd| 
+    |*a |                ?             | ? |
+   */ 
   for (;;) {
-    while (pb <= pc && (r = cmp(pb, a)) <= 0) {
-      if (r == 0) {
+    /* increase the pointer pb while it points on values lesser  than the pivot (pointer a) */
+    while (pb <= pc && (r = cmp(pb, a,tabb,tab,flag)) <= 0) {
+      if (r == 0) {/*The pivot and  value pointed to by pb are equal */
+	/* store the equal value at the location pa and increase pa */
 	swap_cnt = 1;
 	swapind(taba,tabb);
 	taba +=es1;
 	swap(pa, pb);
 	pa += es;
       }
-      pb += es;
+      pb += es;/* next number */
       tabb += es1;
     }
-    while (pb <= pc && (r = cmp(pc, a)) >= 0) {
-      if (r == 0) {
+
+    /* here pb points on a value greater than the pivot */
+    /* decrease the pointer pc while it points on a value greater than the pivot (pointer a) */
+    while (pb <= pc && (r = cmp(pc, a,tabc,tab,flag)) >= 0) {
+      if (r == 0) {/*The pivot and  value pointed to by pc are equal */
+	/* store the equal value at the location pd and decrease pd */
 	swap_cnt = 1;
 	swapind(tabc,tabd);
 	tabd -= es1;
@@ -127,29 +142,47 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
       pc -= es;
       tabc -= es1;
     }
-    if (pb > pc)
+    /* here pc points on a value lesser than the pivot */
+    if (pb > pc){
+      /* here we have
+	 |a      |pa      |pc|pb     pd|      $|        
+	 |   =*a |    <*a |       >*a  | =*a  $|
+      */   
+      /* partition is done */
       break;
+    }    
+    /*here
+      pc  points on a value lesser than the pivot
+      and  
+      pb points on a value greater than the pivot 
+      swap the values
+    */
     swapind(tabb,tabc);
     tabb += es1;
     tabc -= es1;
     swap(pb, pc);
     swap_cnt = 1;
+    /* increase pb and decrease pc */
     pb += es;
     pc -= es;
+   /* here we have
+    |a      |pa      |pb       pc|       pd|      $|        
+    |   =*a |    <*a |     ?     |    >*a  | =*a  $|
+   */ 
   }
 
   if (swap_cnt == 0) {  /* Switch to insertion sort */
     for (pm = a + es, tabm= tab + es1 ; pm < (char *) a + n * es; pm += es, tabm +=es1)
       {
-	for (pl = pm, tabl= tabm ; pl > (char *) a && cmp(pl - es, pl) > 0;  pl -= es, tabl -=es1)
+	for (pl = pm, tabl= tabm ; pl > (char *) a && cmp(pl - es, pl,tabl-es1,tabl,flag) > 0;  pl -= es, tabl -=es1)
 	  {
-	    swapind(tabl,tabl- es1);
+	    swapind(tabl,tabl-es1);
 	    swap(pl, pl - es);
 	  }
       }
     return;
   }
-
+  /* put the equal values in the middle */
   pn = a + n * es;
   r = (int)Min(pa - (char *)a, pb - pa);
   vecswap(a, pb - r, r);
@@ -165,6 +198,7 @@ void sciqsort(char *a, char *tab, int flag, int n, int es, int es1, int (*cmp)()
   vecswapind(tabb, tabn - r1, r1);
 
   if ((r = (int)(pb - pa)) > es )
+    /* recall  sciqsort for the lower part */
     sciqsort(a, tab,flag, r / es, es, es1, cmp,swapcode,lswapcodeind);
   if ((r = (int)(pd - pc)) > es) { 
     /* Iterate rather than recurse to save stack space */

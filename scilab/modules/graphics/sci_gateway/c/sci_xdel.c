@@ -42,7 +42,6 @@ int sci_xdel(char *fname,unsigned long fname_len)
 			if (!sciIsExistingFigure((int) windowNumbers[i]))
 			{
 				Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, (int) windowNumbers[i]);
-				LhsVar(1)=0;
 				return -1;
 			}
 		}
@@ -55,6 +54,7 @@ int sci_xdel(char *fname,unsigned long fname_len)
     sciDeleteWindow( sciGetNum(sciGetCurrentFigure()) ) ;
   }
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 } 
 

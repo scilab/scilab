@@ -37,7 +37,12 @@ int sci_xarrows(char *fname,unsigned long fname_len)
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   mn2 = m2 * n2;
   CheckSameDims(1,2,m1,n1,m2,n2);
-  if (mn2 == 0) {   LhsVar(1)=0;  return 0;} 
+  if (mn2 == 0)
+	{
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
+		return 0;
+	} 
 
   if (Rhs >= 3) { GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3); CheckScalar(3,m3,n3); arsize = *stk(l3); } 
 
@@ -65,6 +70,7 @@ int sci_xarrows(char *fname,unsigned long fname_len)
   sciDrawObj(sciGetCurrentObj());
 
   LhsVar(1)=0;
+	C2F(putlhsvar)();
   return 0;
 } 
 

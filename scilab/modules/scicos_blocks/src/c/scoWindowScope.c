@@ -41,7 +41,9 @@
 #include "DrawingBridge.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
+#include "HandleManagement.h" /* sciGetHandle */
 
+extern int C2F(dcopy)();
 
 void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
 {
