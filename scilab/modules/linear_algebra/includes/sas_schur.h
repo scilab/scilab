@@ -17,7 +17,7 @@
  *
  * in/out data :
  *
- * @param pData1 double[complex]* in/out data of the real or complex ('z' format) arg1 matrix. output : forme de schur
+ * @param pData1 double[complex]* in/out data of the real or complex ('z' format) arg1 matrix. output : schur
  * @param pData2 double[complex]* in/out data of the real or complex ('z' format) arg2 matrix.
  * NULL if only one argument matrix. output: generalized schur form of arg2.
  *

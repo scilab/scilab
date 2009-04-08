@@ -16,6 +16,10 @@
 
 #include "sas_schur.h"
 
+/*
+ * Lapack routines used to perform the schur decompositions
+ */
+
 extern void C2F(dgges)(char const jobVsL[1], char const jobVsR[1], char const sort[1],  int* (*select)(double*, double*, double*), int const* n
 		       , double* a, int const* ldA, double* b, int const* ldB, int* sDim, double* alphaR, double* alphaI, double* beta
 		       , double* VSL, int const* ldVSL, double* VSR, int const* ldVSR, double* work, int const* lWork, int* bWork, int* info );
@@ -32,14 +36,31 @@ extern void C2F(zgees)(char const jobVs[1], char const sort[1],  int* (*select)(
 		       , int * sDim, doublecomplex* w, doublecomplex* VS, int const* ldVS, doublecomplex* work, int const* lWork, double* rWork
 		       , int* bWork, int* info );
 
-static double* iAllocDggesWorkspace(int iCols, int computeLhsOpt, int* allocated)
+/*
+ * functions allocating workspace memory for schur decompositions : first try to allocate optimal workspace by querying Lapack. If MALLOC for optimal
+ * worspace fail, try to allocate minimal workspace. If that also fails, return NULL.
+ * Set *allocated to nb of allocated elements (double[complex]not bytes!).
+ *
+ * in :
+ *
+ * iCols int in : nb of rows/cols of the matri[x|ces]
+ * computeSchurVectors int (boolean semantics) in : whether schur vectors are to be computed.
+ *
+ * out :
+ *
+ * allocated int* out: nb of allocated elements (double[complex]not bytes!).
+ *
+ * @return ptr to allocated workspace, NULL if allocation failed.
+ */
+
+static double* iAllocDggesWorkspace(int iCols, int computeSchurVectors, int* allocated)
 {
   int info;
   int query=-1;
   double optim;
   double* ret= NULL;
-  C2F(dgges)(computeLhsOpt ? "V" : "N", computeLhsOpt ? "N" : "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, NULL, &iCols
-	     , NULL, &iCols, &optim, &query, NULL, &info); 
+  C2F(dgges)(computeSchurVectors ? "V" : "N", computeSchurVectors ? "N" : "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols
+	     , NULL, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, &info); 
   *allocated= (int) optim;
   ret= (double*) MALLOC( (*allocated) * sizeof(double));
   if(!ret)
@@ -53,13 +74,13 @@ static double* iAllocDggesWorkspace(int iCols, int computeLhsOpt, int* allocated
     }
   return ret;
 }
-static double* iAllocDgeesWorkspace(int iCols, int computeLhsOpt, int* allocated)
+static double* iAllocDgeesWorkspace(int iCols, int computeSchurVectors, int* allocated)
 {
   int info;
   int query=-1;
   double optim;
   double* ret= NULL;
-  C2F(dgees)(computeLhsOpt ? "V" : "N", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, &optim, &query, NULL, &info); 
+  C2F(dgees)(computeSchurVectors ? "V" : "N", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, &optim, &query, NULL, &info); 
   *allocated= (int) optim;
   ret= (double*) MALLOC( (*allocated) * sizeof(double));
   if(!ret)
@@ -73,14 +94,14 @@ static double* iAllocDgeesWorkspace(int iCols, int computeLhsOpt, int* allocated
     }
   return ret;
 }
-static doublecomplex* iAllocZggesWorkspace(int iCols, int computeLhsOpt, int* allocated)
+static doublecomplex* iAllocZggesWorkspace(int iCols, int computeSchurVectors, int* allocated)
 {
   int info;
   int query=-1;
   doublecomplex optim;
   doublecomplex* ret= NULL;
-  C2F(zgges)(computeLhsOpt ? "V" : "N", computeLhsOpt ? "V" : "N", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, NULL
-	     , &iCols, &optim, &query, NULL, NULL, &info);
+  C2F(zgges)(computeSchurVectors ? "V" : "N", computeSchurVectors ? "V" : "N", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols
+	     , NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, NULL, &info);
 
   *allocated= (int) optim.r;
   ret= (doublecomplex*) MALLOC( (*allocated) * sizeof(doublecomplex));
@@ -95,13 +116,13 @@ static doublecomplex* iAllocZggesWorkspace(int iCols, int computeLhsOpt, int* al
     }
   return ret;
 }
-static doublecomplex* iAllocZgeesWorkspace(int iCols, int computeLhsOpt, int* allocated)
+static doublecomplex* iAllocZgeesWorkspace(int iCols, int computeSchurVectors, int* allocated)
 {
   int info;
   int query=-1;
   doublecomplex optim;
   doublecomplex* ret= NULL;
-  C2F(zgees)(computeLhsOpt ? "V" : "N", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, &optim, &query, NULL, NULL, &info); 
+  C2F(zgees)(computeSchurVectors ? "V" : "N", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, &optim, &query, NULL, NULL, &info); 
   *allocated= (int) optim.r;
   ret= (doublecomplex*) MALLOC( (*allocated) * sizeof(doublecomplex));
   if(!ret)
@@ -116,6 +137,9 @@ static doublecomplex* iAllocZgeesWorkspace(int iCols, int computeLhsOpt, int* al
   return ret;
 }
 
+/*
+ * part of the API. Cf. sas_schur.h
+ */
 int iSchurM(double* pData1, double* pData2, int iCols, int complexArgs, double* pLhsOpt1, double* pLhsOpt2)
 {
   int info= 0;
