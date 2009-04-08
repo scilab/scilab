@@ -171,7 +171,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		/* read a line into the buffer, but not too
 		* big */
 		*eof = (fgets(buffer, *buf_size, stdin) == NULL);
-		*len_line = strlen(buffer);
+		*len_line = (int)strlen(buffer);
 		/* remove newline character if there */
 		if(buffer[*len_line - 1] == '\n') 
 		{
