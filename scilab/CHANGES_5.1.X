@@ -11,7 +11,7 @@ Improvements:
 
 * Spanish Localization added (Thanks Federico Vera and others)
 
-* Online Help translated into português do Brasil (pt_BR) added
+* Online Help translated into português do Brasil (pt_BR) added (Thanks Daniel de Souza Grilo)
 
 
 Compilation:
