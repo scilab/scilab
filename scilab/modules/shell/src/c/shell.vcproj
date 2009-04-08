@@ -535,7 +535,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\windows\TermReadAndProcess.h"
+				RelativePath=".\TermReadAndProcess.h"
 				>
 			</File>
 		</Filter>

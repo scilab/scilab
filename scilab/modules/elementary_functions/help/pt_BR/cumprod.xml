@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="cumprod" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>cumprod</refname>
+
+    <refpurpose>produto cumulativo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y=cumprod(x)
+y=cumprod(x,'r') ou y=cumprod(x,1)
+y=cumprod(x,'c') ou y=cumprod(x,2)
+y=cumprod(x,'m')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor ou matriz de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>vetor ou matriz de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para um vetor ou matriz <literal>x</literal>,
+    <literal>y=cumprod(x)</literal> retorna em <literal>y</literal> o produto
+    cumulativo de todas as entradas de <literal>x</literal> tomadas coluna a
+    coluna.</para>
+
+    <para><literal>y=cumprod(x,'c')</literal> (ou, equivalentemente,
+    <literal>y=cumprod(x,2)</literal>) retorna em <literal>y</literal> o
+    produto cumulativo dos elementos das colunas de <literal>x</literal>:
+    <literal> y(i,:)=cumprod(x(i,:))</literal></para>
+
+    <para><literal>y=cumprod(x,'r')</literal> (ou, equivalentemente,
+    <literal>y=cumprod(x,2)</literal>) retorna em <literal>y</literal> o
+    produto cumulativo dos elementos das linhas de <literal>x</literal>:
+    <literal> y(:,i)=cumprod(x(:,i))</literal>.</para>
+
+    <para><literal>y=cumprod(x,'m')</literal> é o produto cumulativo ao longo
+    da primeira dimensão não-singleton de <literal>x</literal> (para
+    compatibilidade com Matlab).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=[1,2;3,4];
+cumprod(A)
+cumprod(A,'r')
+cumprod(A,'c')
+rand('seed',0);
+a=rand(3,4);
+[m,n]=size(a);
+w=zeros(a);
+w(1,:)=a(1,:);
+for k=2:m;w(k,:)=w(k-1,:).*a(k,:);end;w-cumprod(a,'r')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cumsum">cumsum</link></member>
+
+      <member><link linkend="sum">sum</link></member>
+
+      <member><link linkend="prod">prod</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

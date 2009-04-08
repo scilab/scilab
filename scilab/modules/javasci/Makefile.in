@@ -14,14 +14,17 @@
 
 @SET_MAKE@
 
+#
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at    
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -177,6 +180,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -195,7 +199,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -205,6 +212,8 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -264,6 +273,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@

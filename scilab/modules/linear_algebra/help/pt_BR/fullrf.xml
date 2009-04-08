@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fullrf" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fullrf</refname>
+
+    <refpurpose>fatoração de posto completo (ou cheio)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Q,M,rk]=fullrf(A,[tol])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para>número real (limiar para determinação do posto) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Q,M</term>
+
+        <listitem>
+          <para>matriz de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rk</term>
+
+        <listitem>
+          <para>inteiro(posto de <literal>A</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Fatoração de posto cheio : <literal>fullrf</literal> retorna
+    <literal>Q</literal> e <literal>M</literal> tais que <literal>A =
+    Q*M</literal> com Im(<literal>Q</literal>)=Im(<literal>A</literal>) e
+    Nuc(<literal>M</literal>)=Nuc(<literal>A</literal>), <literal>Q</literal>
+    de posto-coluna cheio, <literal>M</literal> de posto-linha cheio e
+    <literal>rk = rank(A) = #columns(Q) = #rows(M)</literal>.</para>
+
+    <para><literal>tol</literal> é um parâmetro real opcional (valor real
+    padrão é <literal>sqrt(%eps)</literal>). O posto <literal>rk</literal> de
+    <literal>A</literal> é definido como o número de valores singulares
+    maiores que <literal>norm(A)*tol</literal>.</para>
+
+    <para>Se A é simétrica, <literal>fullrf</literal> retorna
+    <literal>M=Q'</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=rand(5,2)*rand(2,5);
+[Q,M]=fullrf(A);
+norm(Q*M-A,1)
+[X,d]=rowcomp(A);Y=X';
+svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2)) (span = "gerado")
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="svd">svd</link></member>
+
+      <member><link linkend="qr">qr</link></member>
+
+      <member><link linkend="fullrfk">fullrfk</link></member>
+
+      <member><link linkend="rowcomp">rowcomp</link></member>
+
+      <member><link linkend="colcomp">colcomp</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.D.;</para>
+  </refsection>
+</refentry>

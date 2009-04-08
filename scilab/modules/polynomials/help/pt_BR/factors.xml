@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="factors" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>factors</refname>
+
+    <refpurpose>fatoração numérica real</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[lnum,g]=factors(pol [,'flag'])
+[lnum,lden,g]=factors(rat [,'flag'])
+rat=factors(rat,'flag')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>pol</term>
+
+        <listitem>
+          <para>polinômio real</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rat</term>
+
+        <listitem>
+          <para>razão de polinômios reais
+          (<literal>rat=pol1/pol2</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>lnum</term>
+
+        <listitem>
+          <para>lista de polinômios (de graus 1 ou 2) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>lden</term>
+
+        <listitem>
+          <para>lista de polinômios (de graus 1 ou 2) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>g</term>
+
+        <listitem>
+          <para>número real </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string <literal>'c'</literal> ou <literal>'d'</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna os fatores do polinômio <literal>pol</literal> na lista
+    <literal>lnum</literal> e o "ganho" g.</para>
+
+    <para>Tem-se pol= g vezes o produto das entradas da lista
+    <literal>lnum</literal> (se <literal>flag</literal> não for fornecido). Se
+    <literal>flag='c'</literal> for dado, então tem-se <literal>|pol(i
+    omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>. Se
+    <literal>flag='d'</literal> for dado, então tem-se <literal>|pol(exp(i
+    omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>. Se
+    o argumento de <literal>factors</literal> for uma razão
+    <literal>rat=pol1/pol2</literal>, os fatores do numerador
+    <literal>pol1</literal> e do denominador <literal>pol2</literal> são
+    retornados nas listas <literal>lnum</literal> e <literal>lden</literal>
+    respectivamente.</para>
+
+    <para>O "ganho" é retornado como <literal>g</literal>, i.e. tem-se: rat= g
+    vezes (produto das entradas de lnum) / (produto das entradas de
+    lden).</para>
+
+    <para>Se <literal>flag</literal> for <literal>'c'</literal>
+    (respectivamente, <literal>'d'</literal>), as raízes
+    <literal>pol</literal> serão refletidas em relação em relação ao eixo
+    imaginário (respectivamente, ao círculo unitário), i.e. os fatores em
+    <literal>lnum</literal> são polinômios estáveis.</para>
+
+    <para>A mesma coisa se <literal>factors</literal> for invocado com
+    argumentos racionais: as entradas em <literal>lnum</literal> e
+    <literal>lden</literal> são polinômios estáveis se <literal>flag</literal>
+    for dado. <literal>R2=factors(R1,'c')</literal> ou
+    <literal>R2=factors(R1,'d')</literal> com <literal>R1</literal> uma função
+    racional ou lista <literal>syslin</literal> SISO, então a saída
+    <literal>R2</literal> é uma transferência com com numerador e denominador
+    estáveis e com a mesma magnitude de <literal>R1</literal> ao longo do eixo
+    imaginário (<literal>'c'</literal>) ou do círculo unitário
+    (<literal>'d'</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="simp">simp</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

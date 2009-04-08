@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="inttype" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>inttype</refname>
+
+    <refpurpose>tipos de dados inteiros</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[i]=inttype(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>uma matriz de inteiros (ver int8,..)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>i</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>inttype(x)</literal> retorna um inteiro que indica o tipo
+    das entradas de <literal>x</literal> como segue :</para>
+
+    <para>1 : representação de inteiros de um byte</para>
+
+    <para>2 : representação de inteiros de dois bytes</para>
+
+    <para>4 : representação de inteiros de quatro bytes</para>
+
+    <para>11 : representação de inteiros de um byte sem sinal</para>
+
+    <para>12 : representação de inteiros de dois bytes sem sinal</para>
+
+    <para>14 : representação de inteiros de quatro bytes sem sinal</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=uint16(1:10);
+inttype(x)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="int8">int8</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

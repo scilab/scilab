@@ -14,10 +14,17 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -179,6 +186,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -197,7 +205,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -207,6 +218,8 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -266,6 +279,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -349,6 +363,17 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+
+#### Target ####
+modulename = jvm
+
+#### jvm : Conf files ####
+libscijvm_la_rootdir = $(mydatadir)
+libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### jvm : init scripts ####
+libscijvm_la_etcdir = $(mydatadir)/etc
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
 libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \
@@ -365,15 +390,6 @@ pkglib_LTLIBRARIES = libscijvm-disable.la $(am__append_1)
 libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) \
 	-lpthread -ldl $(XML_LIBS) $(am__append_2)
 libscijvm_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-modulename = jvm
-
-#### jvm : Conf files ####
-libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### jvm : init scripts ####
-libscijvm_la_etcdir = $(mydatadir)/etc
-libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
