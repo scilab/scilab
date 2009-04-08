@@ -786,6 +786,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\jni\ScilabDisplayTree.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\setMainWindowTitle.c"
 				>
 			</File>
@@ -1396,6 +1400,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sci_uiwait.h"
+				>
+			</File>
+			<File
+				RelativePath="..\jni\ScilabDisplayTree.hxx"
 				>
 			</File>
 			<File
