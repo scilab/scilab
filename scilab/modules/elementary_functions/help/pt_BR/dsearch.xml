@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="dsearch" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dsearch</refname>
+
+    <refpurpose>Busca binária (também conhecida como busca dicótoma em
+    francês)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[ind, occ, info] = dsearch(X, val [, ch ])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>um vetor ou matriz de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>val</term>
+
+        <listitem>
+          <para>um vetor (linha ou coluna) de reais com n componentes em ordem
+          estritamente crescente val(1) &lt; val(2) &lt; ... &lt; val(n)
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ch</term>
+
+        <listitem>
+          <para>(opcional) um caractere "c" ou "d" (valor padrão "c") </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>um vetor ou matriz de reais com as mesmas dimensões que X
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ</term>
+
+        <listitem>
+          <para>um vetor de reais com o mesmo formato que val (mas com n-1
+          componentes no caso em que ch="c") </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função é útil para encontrar em uma tabela ("table") ordenada
+    e/ou contar o número de componentes de um vetor caindo em algumas classes
+    (sendo uma classe um intervalo ou um valor). </para>
+
+    <para>Por padrão ou quando <literal>ch="c"</literal>, temos o caso de
+    intervalos, isto é, para cada X(i), busca em qual dos n-1 intervalos o
+    componente do vetor cai, sendo os intervalos definidos por: </para>
+
+    <programlisting>
+            I1 = [val(1), val(2)]
+            Ik = (val(k), val(k+1)] for 1 &lt; k &lt;= n-1 ; 
+</programlisting>
+
+    <para>e:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ind(i)</term>
+
+        <listitem>
+          <para>é o número do intervalo de X(i) (0 se X(i) não está em
+          [val(1),val(n)]) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ(k)</term>
+
+        <listitem>
+          <para>é o número de componentes de X que estão em Ik </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>é o número de componentes de X que não estão em
+          [val(1),val(n)] </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Quando <literal>ch="d"</literal>, temos o caso discreto, isto é,
+    para cada X(i) busca se é igual a um valor val(k) e:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ind(i)</term>
+
+        <listitem>
+          <para>é igual ao índice do componente de val que corresponde a X(i)
+          (ind(i) = k se X(i)=val(k)) ou 0 se X(i) não está em val. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ(k)</term>
+
+        <listitem>
+          <para>é igual ao número de componentes de X iguais a val(k) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>é o número de componentes de X que não estão no conjunto
+          {val(1),...,val(n)} </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// exemplo #1 (estatística elementar para U(0,1))
+m = 50000 ; n = 10;
+X = grand(m,1,"def");
+val = linspace(0,1,n+1)';
+[ind, occ] = dsearch(X, val);
+xbasc() ; plot2d2(val, [occ/m;0])  // sem normalização: y deve ser próximo de 1/n
+
+
+// exemplo #2 (estatística elementar para B(N,p))
+N = 8 ; p = 0.5; m = 50000;
+X = grand(m,1,"bin",N,p); val = (0:N)';
+[ind, occ] = dsearch(X, val, "d");
+Pexp = occ/m; Pexa = binomial(p,N); 
+xbasc() ; hm = 1.1*max(max(Pexa),max(Pexp));
+plot2d3([val val+0.1], [Pexa' Pexp],[1 2],"111",  ...
+        "Pexact@Pexp", [-1 0 N+1 hm],[0 N+2 0 6])
+xtitle(  "Distribuição binomial B("+string(N)+","+string(p)+") :" ...
+        +" probabilidades exatas versus as experimentais")
+
+
+// exemplo #3 (polinômio de Hermite seccionado)
+x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
+y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
+d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
+X = linspace(0, 1, 200)';
+ind = dsearch(X, x);
+// definindo funções bases hermitianas
+deff("y=Ll(t,k,x)","y=(t-x(k+1))./(x(k)-x(k+1))")   // Lagrange esquerdo em Ik
+deff("y=Lr(t,k,x)","y=(t-x(k))./(x(k+1)-x(k))")     // Lagrange direito em Ik
+deff("y=Hl(t,k,x)","y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2")
+deff("y=Hr(t,k,x)","y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2")
+deff("y=Kl(t,k,x)","y=(t-x(k)).*Ll(t,k,x).^2")
+deff("y=Kr(t,k,x)","y=(t-x(k+1)).*Lr(t,k,x).^2")
+// plotando a curva
+Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
+xbasc(); plot2d(X,Y,2) ; plot2d(x,y,-9,"000") 
+xtitle("Um polinômio seccionado de hermite")
+// NOTE : a verificação pode ser feita adicionando-se : 
+// YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
+   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="find">find</link></member>
+
+      <member><link linkend="tabul">tabul</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>B.P.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="lufact" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lufact</refname>
+
+    <refpurpose>fatoração LU esparsa</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[hand,rk]=lufact(A,prec)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz quadrada esparsa </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hand</term>
+
+        <listitem>
+          <para>manipulador para fatores LU esparsos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rk</term>
+
+        <listitem>
+          <para>inteiro (posto de A) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prec</term>
+
+        <listitem>
+          <para>vetor de tamanho 2 <literal>prec=[eps,reps]</literal>
+          fornecendo os limiares absoluto e relativo.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>[hand,rk]=lufact(A)</literal> realiza a fatoração LU da
+    matriz esparsa <literal>A</literal>. <literal>hand</literal> (sem
+    exibição) é usado por <literal>lusolve</literal> (para resolver sistemas
+    lineares) e <literal>luget</literal> (para retirar os fatores).
+    <literal>hand</literal> deve ser limpo pelo comando:
+    <literal>ludel(hand)</literal>;</para>
+
+    <para>A matriz A não precisa ser de posto cheio, mas deve ser quadrada
+    (desde que A é assumida como sendo esparsa, pode-se adicionar 0, se
+    necessário, para quadrá-la). </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>eps :</term>
+
+        <listitem>
+          <para>a magnitude absoluta que um elemento deve ter para ser
+          considerado um candidato a pivô, exceto como último recurso. Este
+          número deve ser posto de modo a ser significantemente menor que o
+          menor elemento da diagonal que se espera estar localizado na matriz.
+          O valor padrão é <literal>%eps</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>reps :</term>
+
+        <listitem>
+          <para>Este número determina qual será o limiar relativo do pivô.
+          Deve estar entre 0 e 1. Se for 1, então o método de pivoteamento
+          torna-se pivotação completa, que é muito lento e tende a completar a
+          matriz. Se o número acertado é próximo de 0, o método de
+          pivoteamento torna-se estritamente de Markowitz, sem limiar. O
+          limiar de pivô é usado para eliminar candidatos a pivô que poderiam
+          causar crescimento excessivo de elementos se fossem usados.
+          Crescimento de elementos é a causa dos erros de arredondamento.
+          Crescimento de elementos ocorre mesmo em matrizes bem condicionadas.
+          Definir o reps como um número grande reduzirá o crescimento de
+          elementos e os erros de arredondamento, mas colocá-lo muito grande
+          aumentará muito o tempo de execução e resultará num grande número de
+          preenchimentos. Se isto ocorrer, a precisão pode ficar prejudicada
+          por causa do grande número de operações requeridas na matriz devido
+          ao grande número de preenchimentos. 0.001 parece um bom valor, e é o
+          valor default. O default é escolhido fornecendo-se um valor maior
+          que 1 ou menor que ou igual a 0. Este valor deve ser aumentado e a
+          matriz resolvida se o crescimento for excessivo. Mudar o limiar do
+          pivô não melhora o desempenho em matrizes onde o crescimento é
+          baixo, como é geralmente o caso de matrizes mal-condicionadas. reps
+          foi escolhido para uso com matrizes quase diagonalmente dominantes
+          como uma matriz de admissão de nó e nó modificado. Para estas
+          matrizes, geralmente o melhor é usar pivotação diagonal. Para
+          matrizes sem uma diagonal forte, geralmente é melhor usar um limiar
+          maior, como 0.01 ou 0.1.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+a=rand(5,5);b=rand(5,1);A=sparse(a);
+[h,rk]=lufact(A);
+x=lusolve(h,b);a*x-b
+ludel(h)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sparse">sparse</link></member>
+
+      <member><link linkend="lusolve">lusolve</link></member>
+
+      <member><link linkend="luget">luget</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

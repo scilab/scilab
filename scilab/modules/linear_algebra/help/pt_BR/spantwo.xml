@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="spantwo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>spantwo</refname>
+
+    <refpurpose>soma e interseção de subespaços</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Xp,dima,dimb,dim]=spantwo(A,B, [tol])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A, B</term>
+
+        <listitem>
+          <para>duas matrizes de reais ou complexos com igual número de linhas
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Xp</term>
+
+        <listitem>
+          <para>matriz quadrada não-singular </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dima, dimb, dim</term>
+
+        <listitem>
+          <para>inteiros, dimensões dos subespaços </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para>número real não-negativo</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dadas duas matrizes <literal>A</literal> e <literal>B</literal> com
+    o mesmo número de linhas, retorna uma matriz quadrada
+    <literal>Xp</literal> (não-singular, mas não necessariamente ortogonal)
+    tal que :</para>
+
+    <programlisting>
+
+         [A1, 0]    (dim-dimb linhas)
+Xp*[A,B]=[A2,B2]    (dima+dimb-dim linhas)
+         [0, B3]    (dim-dima linha)
+         [0 , 0]
+   
+    </programlisting>
+
+    <para>As primeiras <literal>dima</literal> colunas de
+    <literal>inv(Xp)</literal> geram Im(<literal>A</literal>).</para>
+
+    <para>As colunas de <literal>dim-dimb+1</literal> até
+    <literal>dima</literal> de <literal>inv(Xp)</literal> geram a interseção
+    de Im(A) e Im(B).</para>
+
+    <para>As primeiras <literal>dim</literal> colunas de
+    <literal>inv(Xp)</literal> geram
+    Im(<literal>A</literal>)+Im(<literal>B</literal>).</para>
+
+    <para>As colunas de <literal>dim-dimb+1</literal> até
+    <literal>dim</literal> de <literal>inv(Xp)</literal> geram
+    Im(<literal>B</literal>).</para>
+
+    <para>A matrix <literal>[A1;A2]</literal> tem posto-linha cheio (=
+    posto(A)), a matrix <literal>[B2;B3]</literal> tem posto-linha cheio
+    (=posto(B)), a matriz <literal>[A2,B2]</literal> tem posto-linha (=posto(A
+    inter B)) e a matriz <literal>[A1,0;A2,B2;0,B3]</literal> tem posto-linha
+    cheio (=posto(A+B)).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=[1,0,0,4;
+   5,6,7,8;
+   0,0,11,12;
+   0,0,0,16];
+B=[1,2,0,0]';C=[4,0,0,1]; 
+Sl=ss2ss(syslin('c',A,B,C),rand(A));
+[no,X]=contr(Sl('A'),Sl('B'));CO=X(:,1:no);  //Parte controlável
+[uo,Y]=unobs(Sl('A'),Sl('C'));UO=Y(:,1:uo);  //Parte inobservável
+[Xp,dimc,dimu,dim]=spantwo(CO,UO);    //Decomposição de Kalman
+Slcan=ss2ss(Sl,inv(Xp));
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="spanplus">spanplus</link></member>
+
+      <member><link linkend="spaninter">spaninter</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D.</para>
+  </refsection>
+</refentry>

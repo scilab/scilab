@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="error" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>error</refname>
+
+    <refpurpose>mensagens de erro</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>error(message [,n])
+error(n)
+error(n,pos)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>message</term>
+
+        <listitem>
+          <para>um string. A mensagem de erro a ser exibida</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>um inteiro. O número associado à mensagem de erro</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pos</term>
+
+        <listitem>
+          <para>um inteiro. Um parâmetro para a mensagem de erro </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>error</literal> permite escrever uma mensagem de erro e
+    manipular o erro. Por padrão, <literal>error</literal> interrompe a
+    execução corrente e retorna ao nível de prompt. Este padrão pode ser
+    modificado utilizando-se as funções <literal>errcatch</literal> ou
+    <literal>execstr(...,'errcatch')</literal>.</para>
+
+    <para><literal>error(message)</literal> imprime o string contido em
+    <literal>message</literal>. O número associado à mensagem de erro é 10000.
+    </para>
+
+    <para><literal>error(message,n)</literal> imprime o string contido em
+    <literal>message</literal>. O número associado à mensagem de erro é dado
+    por n . Este número deve ser maior que 10000. </para>
+
+    <para><literal>error(n)</literal> imprime a mensagem de erro predefinda
+    associada ao número de erro <literal>n</literal>.</para>
+
+    <para>Algumas mensagens de erro predefinidas requerem um parâmetro (ver
+    <link linkend="error_table">error_table</link>). Neste caso, o argumento
+    <literal>pos</literal> deve ser usado <literal>error(n,pos)</literal> para
+    fornecer o valor do parâmetro. Em outros casos, o parâmetro é
+    ignorado.</para>
+
+    <para>Ver <link linkend="error_table">error_table</link> para uma lista
+    das mensagens de erro e seus números associados.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+error('my error message')
+error(43)
+error(52,3)
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="warning">warning</link></member>
+
+      <member><link linkend="errcatch">errcatch</link></member>
+
+      <member><link linkend="execstr">execstr</link></member>
+
+      <member><link linkend="lasterror">lasterror</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

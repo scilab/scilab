@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="interpln" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interpln</refname>
+
+    <refpurpose>interpolação linear</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[y]=interpln(xyd,x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xyd</term>
+
+        <listitem>
+          <para>matriz de duas linhas (coordenadas xy dos pontos) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor (de abscissas) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>vetor (de ordenadas)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dado <literal>xyd</literal> um conjunto de pontos no plano xy de
+    abscissas crescentes e <literal>x</literal> aum conjunto de abscissas,
+    esta função computa <literal>y</literal> , os valores correspondentes às
+    ordenadas, por interpolação linear.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos </title>
+
+    <programlisting role="example">
+
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[-3],"011"," ",[-10,-40,50,50]);
+yi=interpln([x;y],-4:45);
+plot2d((-4:45)',yi',[3],"000");
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin">splin</link></member>
+
+      <member><link linkend="interp">interp</link></member>
+
+      <member><link linkend="smooth">smooth</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

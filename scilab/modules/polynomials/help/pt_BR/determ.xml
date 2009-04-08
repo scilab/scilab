@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="determ" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>determ</refname>
+
+    <refpurpose>determinante de matrizes de polinômios</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>res=determ(W [,k])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>W</term>
+
+        <listitem>
+          <para>matriz quadrada de polinômios reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>inteiro (limite superior para o grau do determinante de
+          W)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna o determinante de uma matriz de polinômios reais (computação
+    feita por Transformada Rápida de Fourier (TRF) se W possuir tamanho maior
+    do que 2*2).</para>
+
+    <para><literal>res=determ(W [,k])</literal><literal>k</literal> é um
+    inteiro maior do que o grau verdadeiro do determinante de
+    <literal>W</literal>.</para>
+
+    <para>O valor padrão de <literal>k</literal> é a menor potência de 2 que é
+    maior que <literal>n*maxi(degree(W))</literal>.</para>
+
+    <para>Método (apenas se o tamanho de W for maior que 2*2) : avalia o
+    determinante de W para as freqüências de Fourier e aplica a TRF inversa
+    para os coeficientes do determinante.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=poly(0,'s');
+w=s*rand(10,10);
+determ(w)
+det(coeff(w,1))*s^10
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="det">det</link></member>
+
+      <member><link linkend="detr">detr</link></member>
+
+      <member><link linkend="coffg">coffg</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.D.</para>
+  </refsection>
+</refentry>

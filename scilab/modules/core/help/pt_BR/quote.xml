@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="quote" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>quote</refname>
+
+    <refpurpose>(') transpose operator, string delimiter</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>quote (aspas) ( ' ) é usado para a transposta conjugada de uma
+    matriz.</para>
+
+    <para>quote ( .' ) é usado para a transposta não-conjugada de uma
+    matriz.</para>
+
+    <para>Aspas simples (') ou duplas (") também são usadas para definir
+    strings (strings são definidos por aspas nas extremidades). Aspas simples
+    dentro de um string são denotadas por duas aspas simples e aspas duplas
+    são denotadas por uma aspas simples e uma dupla.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+[1+%i, 2]'
+[1+%i, 2].'
+x='Isto é um string'
+'Ele disse: ''Bom'''
+ 
+  </programlisting>
+  </refsection>
+</refentry>

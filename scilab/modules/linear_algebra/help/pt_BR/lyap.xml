@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="lyap" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lyap</refname>
+
+    <refpurpose>equação de Lyapunov</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[X]=lyap(A,C,'c')
+[X]=lyap(A,C,'d')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A, C</term>
+
+        <listitem>
+          <para>matrizes quadradas de reais, <literal>C</literal> deve ser
+          simétrica</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>X = lyap(A,C,flag)</literal> resolve as equações matriciais
+    de tempo contínuo ou de tempo discreto de Lyapunov:</para>
+
+    <programlisting>
+
+       A'*X + X*A = C       ( flag='c' )
+      A'*X*A - X = C       ( flag='d' )
+   
+    </programlisting>
+
+    <para>Perceba que existe uma única solução se e só se um autovalor de
+    <literal>A</literal> não é um autovalor de <literal>-A</literal>
+    (<literal>flag='c'</literal>) ou 1 sobre um autovalor de
+    <literal>A</literal> (<literal>flag='d'</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=rand(4,4);C=rand(A);C=C+C';
+X=lyap(A,C,'c');
+A'*X + X*A -C
+X=lyap(A,C,'d');
+A'*X*A - X -C
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sylv">sylv</link></member>
+
+      <member><link linkend="ctr_gram">ctr_gram</link></member>
+
+      <member><link linkend="obs_gram">obs_gram</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
