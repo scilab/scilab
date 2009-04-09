@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
 //
@@ -302,7 +304,4 @@ Shared archive loaded.
 Link done.
 y0=ones(n,1);yd0=0*y0;
 yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
-norm(y-yb)
- ans  =
- 
-    8.602E-13  
+if (norm(y-yb) - 8.602D-13) > %eps then bugmes();quit;end
