@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="hrmt" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>hrmt</refname>
+
+    <refpurpose>máximo divisor comum de polinômios</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[pg,U]=hrmt(v)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>vetor linha de polinômios, i.e. matriz de polinômios
+          <literal>1</literal>x<literal>k</literal> </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pg</term>
+
+        <listitem>
+          <para>polinômio</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>U</term>
+
+        <listitem>
+          <para>matriz de polinômios unimodular</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>[pg,U]=hrmt(v)</literal> retorna uma matriz unimodular
+    <literal>U</literal> e <literal>pg</literal> = MDC do vetor linha de
+    polinômios <literal>v</literal> tais que <literal>v*U =
+    [pg,0]</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+x=poly(0,'x');
+v=[x*(x+1),x^2*(x+1),(x-2)*(x+1),(3*x^2+2)*(x+1)];
+[pg,U]=hrmt(v);U=clean(U)
+det(U)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="gcd">gcd</link></member>
+
+      <member><link linkend="htrianr">htrianr</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>S. Steer INRIA</para>
+  </refsection>
+</refentry>

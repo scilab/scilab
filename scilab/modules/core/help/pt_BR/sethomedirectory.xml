@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="sethomedirectory" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sethomedirectory</refname>
+
+    <refpurpose>ajusta o diretório home do Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[home,scilabhome]=sethomedirectory()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Ajusta o endereço hom do Scilab : variável "SCIHOME".</para>
+
+    <para>No Windows 2k e XP , C:\Documents and
+    Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+
+    <para>No Windows Vista ,
+    C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+
+    <para>No Unix, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

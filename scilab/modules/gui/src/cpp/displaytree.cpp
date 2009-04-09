@@ -338,3 +338,8 @@ int iGetFieldValue(int _iVar, int* _piCurrentItem, char* _pszFieldName, char * _
 	FREE(piLen);
 	return 0;
 }
+
+void displayTree(vector<string> vecteur)
+{
+
+}

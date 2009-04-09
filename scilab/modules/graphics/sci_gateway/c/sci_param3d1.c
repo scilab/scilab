@@ -49,7 +49,7 @@ int sci_param3d1( char *fname, unsigned long fname_len )
 
   if (Rhs <= 0)
   {
-    sci_demo(fname,  "t=0:0.1:5*%pi;param3d1(sin(t),cos(t),t/10,35,45,'X@Y@Z',[2,4]);", FALSE);
+    sci_demo(fname, fname_len);
     return 0;
   }
 

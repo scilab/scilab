@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Serge STEER
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="add_demo" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>add_demo</refname>
+
+    <refpurpose>adiciona uma entrada na lista de demonstrações</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>add_demo(title,path)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+
+        <listitem>
+          <para>string, o título da demonstração</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>path</term>
+
+        <listitem>
+          <para>string, o endereço do script scilab associado à
+          demonstração</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função adiciona uma nova entrada na lista de demonstrações. A
+    demonstração deve ser executada por um arquivo script do Scilab. Se o dado
+    título já existir <literal>title</literal> na lista de demonstrações
+    associada ao mesmo arquivo, nada é feito. Esta função checa se o arquivo
+    existe.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+  //criando um simples script de demonstração
+  path=TMPDIR+'/foo.sce';
+  mputl('disp Hello',path)
+  add_demo('My first demo',path)
+  //a demonstração pode agora ser executada através do menu "Demos".
+  
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver também</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="add_help_chapter">add_help_chapter</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer , INRIA</para>
+  </refsection>
+</refentry>

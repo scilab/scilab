@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="cshep2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>cshep2d</refname>
+
+    <refpurpose>bidimensional cubic shepard (scattered)
+    interpolation</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>tl_coef = cshep2d(xyz)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xyz</term>
+
+        <listitem>
+          <para>uma matriz n x 3 dos pontos de interpolação interpolação (sem
+          grid), a i-ésima linha dadas as coordenadas (x,y) e então a altitude
+          z do i-ésimo ponto de interpolação</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tl_coef</term>
+
+        <listitem>
+          <para>uma estrutura tlist do Scilab (do tipo cshep2d)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função é útil para definir uma função de interpolação 2d quando
+    os pontos não estão em um grid (você pode usá-la para este caso, mas <link
+    linkend="splin2d">splin2d</link> é melhor para este propósito). O
+    interpolante é do tipo cúbico de Shepard e é uma função de duas variáveis
+    de classe C2 (duas vezes continuamente diferenciável)
+    <emphasis>s(x,y)</emphasis> tal que : <emphasis>s(xi,yi)=zi</emphasis>
+    para todo <emphasis>i=1,..,n</emphasis> ( <emphasis>(xi,yi,zi)</emphasis>
+    sendo a i-ésima linha de <literal>xyz</literal>).</para>
+
+    <para>A avaliação de s em alguns pontos deve ser feita pela função <link
+    linkend="eval_cshep2d">eval_cshep2d</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Observação</title>
+
+    <para>A função operea se <emphasis role="bold">n &gt;= 10</emphasis>, se
+    os nós não são todos colineares (i.e. as coordenadas
+    <emphasis>(x,y)</emphasis> dos pontos de interpolação não estão na mesma
+    reta) e se não há nós duplicados (i.e. dois ou mais pontos de interpolação
+    com as mesmas coordenadas <emphasis>(x,y)</emphasis> ). Há erro se essas
+    condições não são respeitadas. </para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// interpolação de cos(x)cos(y) com pontos de interpolação escolhidos aleatoriamente
+n = 150; // número de pontos de interpolação
+xy = grand(n,2,"unf",0,2*%pi);
+z = cos(xy(:,1)).*cos(xy(:,2));
+xyz = [xy z];
+tl_coef = cshep2d(xyz);
+
+// avaliação em um grid
+m = 30;
+xx = linspace(0,2*%pi,m);
+[X,Y] = ndgrid(xx,xx);
+Z = eval_cshep2d(X,Y, tl_coef);
+xbasc()
+plot3d(xx,xx,Z,flag=[2 6 4])
+param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
+xtitle("Interpolação cúbica de Shepard de cos(x)cos(y) com pontos de interpolação escolhidos aleatoriamente")
+legends("pontos de interpolação",-9,1)
+xselect()
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin2d">splin2d</link></member>
+
+      <member><link linkend="eval_cshep2d">eval_cshep2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <simplelist type="vert">
+      <member>Robert J. Renka</member>
+
+      <member>B. Pincon (interface do Scilab)</member>
+    </simplelist>
+  </refsection>
+</refentry>

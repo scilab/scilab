@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="iconvert" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>iconvert</refname>
+
+    <refpurpose>conversão para representação inteira de 1 a 4
+    bytes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y=iconvert(X,itype)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>matriz de floats ou inteiros </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>matriz de inteiros codificados em 1, 2 ou 4 bytes </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Converte e armazena dados para inteiros de 1, 2 ou 4 bytes.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>itype=0</term>
+
+        <listitem>
+          <para>retorna números em ponto flutuante </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>itype=1</term>
+
+        <listitem>
+          <para>retorna números int8 no intervalo [-128,127] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>itype=11</term>
+
+        <listitem>
+          <para>retorna números uint8 no intervalo [0,255]</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>itype=2</term>
+
+        <listitem>
+          <para>retorna números int16 no intervalo [-32768,32767] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>itype=12</term>
+
+        <listitem>
+          <para>retorna números uint16 no intervalo [0, 65535] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>itype=4</term>
+
+        <listitem>
+          <para>retorna números int32 no intervalo [-2147483648,2147483647]
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>itype=14</term>
+
+        <listitem>
+          <para>retorna números uint32 no intervalo [0, 4294967295]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+b=int32([1 -120 127 312])
+y=iconvert(b,1)
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="double">double</link></member>
+
+      <member><link linkend="inttype">inttype</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

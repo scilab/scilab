@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="frexp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>frexp</refname>
+
+    <refpurpose>separa um número em ponto flutuante em potência de base 2 e
+    mantissa</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[f,e]=frexp(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor ou matriz de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>array de valores reais, geralmente no intervalo 0.5 &lt;=
+          abs(f) &lt; 1. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>e</term>
+
+        <listitem>
+          <para>array de inteiros que satisfazem a equação: <literal>x =
+          f.*2.^e</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função corresponde à função ANSI C frexp(). Quaisquer zeros em
+    <literal>x</literal> produzem <literal>f=0</literal> e
+    <literal>e=0</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+[f,e]=frexp([1,%pi,-3,%eps])
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="log">log</link></member>
+
+      <member><link linkend="hat">hat</link></member>
+
+      <member><link linkend="ieee">ieee</link></member>
+
+      <member><link linkend="log2">log2</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

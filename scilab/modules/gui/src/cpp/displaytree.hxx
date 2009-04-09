@@ -16,6 +16,9 @@
 
 #include <vector>
 #include <sstream>
+#include <string>
+
+using namespace std;
 
 #define TREE_REF_NAME			"Tree"
 #define TREE_REF_LABEL		"label"
@@ -29,5 +32,11 @@ int iGetFieldIndex(int _iVar, int* _piCurrentItem, char* _pszFieldName);
 int iGetNodeCallBack(int _iVar, int* _piCurrentItem, char* _pzValue);
 int iGetNodeIcon(int _iVar, int* _piCurrentItem, char* _pzValue);
 int iGetNodeLabel(int _iVar, int* _piCurrentItem, char* _pzValue);
+
+/**
+* Give to Java the Tree data structure
+* @param[in] vecteur the tree data structure
+*/
+void displayTree(vector<string> vecteur);
 
 #endif /* __DISPLAY_TREE__ */
