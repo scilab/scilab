@@ -231,7 +231,7 @@ public class Juigetfile {
 		SwingScilabFileChooser ssfc = new SwingScilabFileChooser();				
 		ssfc.setDirectorySelectionOnly();
 		if (Juigetfile.initialDirectory != null) {
-			System.out.println("initialDir = " + Juigetfile.initialDirectory);
+                    //System.out.println("initialDir = " + Juigetfile.initialDirectory);
 			ssfc.setInitialDirectory(Juigetfile.initialDirectory);
 		}
 		if (Juigetfile.boxtTitle != null) {
