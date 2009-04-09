@@ -157,7 +157,11 @@ int sci_plot3d( char * fname, unsigned long fname_len )
     }
   }
 
-  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) { LhsVar(1)=0; return 0;}
+  if (m1 * n1 == 0 || m2 * n2 == 0 || m3 * n3 == 0) {
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
+		return 0;
+	}
   SciWin() ;
 
   /******************** 24/015/2002 ********************/
