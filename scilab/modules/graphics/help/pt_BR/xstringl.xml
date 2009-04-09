@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xstringl" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xstringl</refname>
+
+    <refpurpose>computa uma caixa que cerca strings</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>rect=xstringl(x,y,str,[fontId,fontSize])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>vetor de reais de 4 entradas definindo a caixa </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>escalares reais, coordenadas do ponto infeirior esquerdo
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>matriz de strings </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fontId</term>
+
+        <listitem>
+          <para>um inteiro especificando o tipo de fonte </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fontSize</term>
+
+        <listitem>
+          <para>um inteiro especificando o tamanho da fonte</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xstringl</literal> retorna em
+    <literal>rect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+    altura) o tamanho do retângulo na escala de gráficos corrente que cerca os
+    strings <literal>str</literal> escritos na localização
+    <literal>x,y</literal> (ponto inferior esquerdo).</para>
+
+    <para>O resultado pode ser aproximado utilizando-se um driver
+    Postscript.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+plot2d([0;1],[0;1],0)
+str=["Scilab" "não";"é" "elisaB"];
+r=xstringl(0.5,0.5,str)
+xrects([r(1) r(2)+r(4) r(3) r(4)]')
+xstring(r(1),r(2),str)
+ 
+
+plot2d([0;1],[0;1],0)
+str=["Scilab" "não";"é" "Matlab"];
+r2 = xstringl(0.5,0.5,str,2,5)
+xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]')
+xstring(r2(1),r2(2),str)
+
+txt2=gce();
+txt2.font_size = 5;
+txt2.font_style = 2;  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="titlepage">titlepage</link></member>
+
+      <member><link linkend="xstring">xstring</link></member>
+
+      <member><link linkend="xstringl">xstringl</link></member>
+
+      <member><link linkend="xtitle">xtitle</link></member>
+
+      <member><link linkend="stringbox">stringbox</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

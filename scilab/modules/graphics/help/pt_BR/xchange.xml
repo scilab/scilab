@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xchange" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xchange</refname>
+
+    <refpurpose>conversão de coordenadas reais para coordenadas
+    pixeis</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>duas matrizes de tamanho (n1,n2) (coordenadas de um conjunto
+          de pontos) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dir</term>
+
+        <listitem>
+          <para>parâmetro utilizado para especificar o tipo de conversão (ver
+          "Description" para detalhes)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x1,y1</term>
+
+        <listitem>
+          <para>duas matrizes de tamanho (n1,n2) (coordenadas de um conjunto
+          de pontos) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>um vetor de tamanho 4</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Após o uso de uma função de gráficos, <literal>xchange</literal>
+    computa coordenadas pixel a partir de coordenadas reais e vice-versa de
+    acordo com o valor de parâmetro <literal>dir</literal>:"f2i" (float para
+    int) significa real para pixel e "i2f" (int para float) significa pixel
+    para real. <literal>x1</literal> e <literal>y1</literal> são as
+    coordenadas de um conjunto de pontos definidos pelas antigas coordenadas
+    <literal>x</literal> e <literal>y</literal>.</para>
+
+    <para><literal>rect</literal> são as coordenadas em pixel do retângulo no
+    qual o esboço foi feito: [ponto superior esquerdo, largura,
+    altura].</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+t=[0:0.1:2*%pi]';
+plot2d(t,sin(t))
+[x,y,rect]=xchange(1,1,"f2i")
+[x,y,rect]=xchange(0,0,"i2f")
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>
