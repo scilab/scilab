@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="eval3dp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>eval3dp</refname>
+
+    <refpurpose>computa facetas 3d de uma superfície
+    parametrizada</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Xf,Yf,Zf</term>
+
+        <listitem>
+          <para>matrizes de tamanho (4,n-1*m-1). <literal>Xf(:,i)</literal>
+          ,<literal>Yf(:,i)</literal> e <literal>Zf(:,i)</literal> são
+          respectivamente as coordenadas nos eixos x, y e z dos 4 pontos da
+          i-ésima faceta de quatro lados. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fun</term>
+
+        <listitem>
+          <para>uma função do Scilab. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>p1</term>
+
+        <listitem>
+          <para>um vetor de tamanho <literal>n</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>p2</term>
+
+        <listitem>
+          <para>um vetor de tamanho <literal>m</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>eval3dp</literal> computa uma representação de uma faceta
+    de quatro lados de uma superfície 3d parametrizada definida pela função
+    <literal>fun</literal>. <literal>fun(p1,p2)</literal> computa as
+    coordenadas nos eixos x, y e z dos pontos correspondentes da superfície
+    como [x(i),y(i),z(i)]=fun(p1(i),p2(i)). Isto é usado para
+    eficiência.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+p1=linspace(0,2*%pi,10);
+p2=linspace(0,2*%pi,10);
+deff("[x,y,z]=scp(p1,p2)",["x=p1.*sin(p1).*cos(p2)";..
+                            "y=p1.*cos(p1).*cos(p2)";..
+                            "z=p1.*sin(p2)"])
+[Xf,Yf,Zf]=eval3dp(scp,p1,p2);
+plot3d(Xf,Yf,Zf)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="genfac3d">genfac3d</link></member>
+
+      <member><link linkend="plot3d">plot3d</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
