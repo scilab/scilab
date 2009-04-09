@@ -65,10 +65,12 @@ int sci_delete(char *fname,unsigned long fname_len)
     GetRhsVar(1,STRING_DATATYPE,&m2,&n2,&l2);
     if (strcmp(cstk(l2),"all") == 0)
     {
-      startGraphicDataWriting();
-      sciXbasc();
-      endGraphicDataWriting();
-	  sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
+			startGraphicDataWriting();
+			sciXbasc();
+			endGraphicDataWriting();
+			sciDrawObj(sciGetCurrentFigure()); /* redraw the figure to see the change */
+			LhsVar(1) = 0;
+			C2F(putlhsvar)();
       return 0;
     }
     else
