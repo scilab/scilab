@@ -17,8 +17,10 @@
 
 // creates a UNC path example \\MON-PC\TEST-UNC-PATH
 // launch scilab from this UNC path
-cd '\\MON-PC\TEST-UNC-PATH'
-pwd
-cd SCI
-cd WSCI
-chdir '\\MON-PC\TEST-UNC-PATH'
+if MSDOS then
+  cd '\\MON-PC\TEST-UNC-PATH'
+  pwd
+  cd SCI
+  cd WSCI
+  chdir '\\MON-PC\TEST-UNC-PATH'
+end
