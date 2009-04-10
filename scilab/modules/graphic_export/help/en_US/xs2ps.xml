@@ -92,9 +92,9 @@ xs2ps(fig, file_name [,orientation])</synopsis>
 scf(0);
 plot2d();
 // Postcript export
-xs2ps(0,'foo.ps');
-xs2ps(gcf(),'foo.ps');
-</programlisting>
+filename='foo.ps';
+xs2ps(0,filename);
+    </programlisting>
   </refsection>
 
   <refsection>
