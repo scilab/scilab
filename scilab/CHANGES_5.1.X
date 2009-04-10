@@ -271,6 +271,7 @@ Bug fixes:
 
 * bug 4343 fixed - the plot3d demo doesn't seems to work.
 
+* bug 4372 fixed - The graphics from the genetic_algorithms and simulated_annealing toolbox where not displayed
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
