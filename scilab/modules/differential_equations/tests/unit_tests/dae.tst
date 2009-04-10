@@ -4,6 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
+
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
 //
@@ -301,4 +305,4 @@ ilib_for_link(['myres','myjac'],'band.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/band
 exec(TMPDIR+'/bandloader.sce'); //incremental linking
 y0=ones(n,1);yd0=0*y0;
 yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
-norm(y-yb)
+if (norm(y-yb) - 8.602D-13) > %eps then pause,end

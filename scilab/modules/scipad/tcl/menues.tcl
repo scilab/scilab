@@ -4,7 +4,7 @@
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
 #  Copyright (C) 2004-2008 - Francois Vogel
 #
-#  Localization files ( in tcl/msg_files/) are copyright of the 
+#  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
 #
 # This program is free software; you can redistribute it and/or modify
@@ -148,61 +148,65 @@ proc createmenues {} {
 # debug menu entries have for now hardwired accelerators, because they are
 # handled elsewhere according to the debug state machine
 # Their bindings are not changed when switching style
-    menu $pad.filemenu.debug -tearoff 1
-    eval "$pad.filemenu add cascade [me "&Debug"] -menu $pad.filemenu.debug "
-    eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
-               -command \"insertremove_bp\" -accelerator F9\
-               -image menubutsetbptimage -compound left "
-    eval "$pad.filemenu.debug add command [me "&Edit breakpoints"] \
-               -command \"showbptgui_bp\" -accelerator Ctrl+F9\
-               -image menubuteditbptimage -compound left "
-    eval "$pad.filemenu.debug add command [me "Remove &all breakpoints"] \
-               -command \"removeallbpt_scipad_bp\" -accelerator Shift+F9\
-               -image menubutremoveallimage -compound left "
-    $pad.filemenu.debug add separator
-    eval "$pad.filemenu.debug add command [me "&Configure execution..."] \
-               -command \"configurefoo_bp\" -accelerator F10\
-               -image menubutconfigureimage -compound left "
-    $pad.filemenu.debug add separator
-    eval "$pad.filemenu.debug add command [me "Go to next b&reakpoint"] \
-               -command \"tonextbreakpoint_bp\" -accelerator F11\
-               -image menubutnextimage -compound left "
 
-    menu $pad.filemenu.debug.step -tearoff 1
-    eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
-                  -menu $pad.filemenu.debug.step \
-                  -image menubutstepimage -compound left "
-        eval "$pad.filemenu.debug.step add command [me "Step &into"] \
-                 -command \"stepbystepinto_bp\" -accelerator Shift+F8\
-                 -image menubutstepenterimage -compound left "
-        eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
-                 -command \"stepbystepover_bp\" -accelerator F8\
-                 -image menubutstepoverimage -compound left "
-        eval "$pad.filemenu.debug.step add command [me "Step &out"] \
-                 -command \"stepbystepout_bp\" -accelerator Ctrl+F8\
-                 -image menubutstepexitimage -compound left "
+# --
+# -- Disable Debug Menu
+# --
 
-    eval "$pad.filemenu.debug add command [me "Run to re&turn point"] \
-               -command \"runtoreturnpoint_bp\" -accelerator Shift+F11\
-               -image menubutruntoreturnimage -compound left "
-    eval "$pad.filemenu.debug add command [me "Run to c&ursor"] \
-               -command \"runtocursor_bp\" -accelerator Ctrl+F11\
-               -image menubutruntocursorimage -compound left "
-    eval "$pad.filemenu.debug add command \
-               [me "G&o on ignoring any breakpoint"] \
-               -command \"goonwo_bp\" -accelerator Shift+F12\
-               -image menubutgoonignorimage -compound left "
-    $pad.filemenu.debug add separator
-    eval "$pad.filemenu.debug add command [me "Show &watch"] \
-               -command \"showwatch_bp\" -accelerator Ctrl+F12\
-               -image menubutwatchimage -compound left "
-    $pad.filemenu.debug add separator
-    eval "$pad.filemenu.debug add command [me "&Break"] \
-               -command \"break_bp\" -accelerator F12\
-               -image menubutbreakimage -compound left "
-    eval "$pad.filemenu.debug add command [me "Cance&l debug"] \
-               -command \"canceldebug_bp\" \
-               -image menubutcancelimage -compound left "
+#     menu $pad.filemenu.debug -tearoff 1
+#     eval "$pad.filemenu add cascade [me "&Debug"] -menu $pad.filemenu.debug "
+#     eval "$pad.filemenu.debug add command [me "&Insert/Remove breakpoint"] \
+#                -command \"insertremove_bp\" -accelerator F9\
+#                -image menubutsetbptimage -compound left "
+#     eval "$pad.filemenu.debug add command [me "&Edit breakpoints"] \
+#                -command \"showbptgui_bp\" -accelerator Ctrl+F9\
+#                -image menubuteditbptimage -compound left "
+#     eval "$pad.filemenu.debug add command [me "Remove &all breakpoints"] \
+#                -command \"removeallbpt_scipad_bp\" -accelerator Shift+F9\
+#                -image menubutremoveallimage -compound left "
+#     $pad.filemenu.debug add separator
+#     eval "$pad.filemenu.debug add command [me "&Configure execution..."] \
+#                -command \"configurefoo_bp\" -accelerator F10\
+#                -image menubutconfigureimage -compound left "
+#     $pad.filemenu.debug add separator
+#     eval "$pad.filemenu.debug add command [me "Go to next b&reakpoint"] \
+#                -command \"tonextbreakpoint_bp\" -accelerator F11\
+#                -image menubutnextimage -compound left "
+#     menu $pad.filemenu.debug.step -tearoff 1
+#     eval "$pad.filemenu.debug add cascade [me "&Step by step"]\
+#                   -menu $pad.filemenu.debug.step \
+#                   -image menubutstepimage -compound left "
+#         eval "$pad.filemenu.debug.step add command [me "Step &into"] \
+#                  -command \"stepbystepinto_bp\" -accelerator Shift+F8\
+#                  -image menubutstepenterimage -compound left "
+#         eval "$pad.filemenu.debug.step add command [me "Step o&ver"] \
+#                  -command \"stepbystepover_bp\" -accelerator F8\
+#                  -image menubutstepoverimage -compound left "
+#         eval "$pad.filemenu.debug.step add command [me "Step &out"] \
+#                  -command \"stepbystepout_bp\" -accelerator Ctrl+F8\
+#                  -image menubutstepexitimage -compound left "
+
+#     eval "$pad.filemenu.debug add command [me "Run to re&turn point"] \
+#                -command \"runtoreturnpoint_bp\" -accelerator Shift+F11\
+#                -image menubutruntoreturnimage -compound left "
+#     eval "$pad.filemenu.debug add command [me "Run to c&ursor"] \
+#                -command \"runtocursor_bp\" -accelerator Ctrl+F11\
+#                -image menubutruntocursorimage -compound left "
+#     eval "$pad.filemenu.debug add command \
+#                [me "G&o on ignoring any breakpoint"] \
+#                -command \"goonwo_bp\" -accelerator Shift+F12\
+#                -image menubutgoonignorimage -compound left "
+#     $pad.filemenu.debug add separator
+#     eval "$pad.filemenu.debug add command [me "Show &watch"] \
+#                -command \"showwatch_bp\" -accelerator Ctrl+F12\
+#                -image menubutwatchimage -compound left "
+#     $pad.filemenu.debug add separator
+#     eval "$pad.filemenu.debug add command [me "&Break"] \
+#                -command \"break_bp\" -accelerator F12\
+#                -image menubutbreakimage -compound left "
+#     eval "$pad.filemenu.debug add command [me "Cance&l debug"] \
+#                -command \"canceldebug_bp\" \
+#                -image menubutcancelimage -compound left "
 
     # scheme menu
     menu $pad.filemenu.scheme -tearoff 1
@@ -396,7 +400,7 @@ proc createmenues {} {
 # REMOVE -state disabled below to make this option menu work
             eval "$pad.filemenu.options.bindings add radiobutton \
                 [me $l]  -state disabled \
-                -variable bindstyle -value $l -command \"rebind\"" 
+                -variable bindstyle -value $l -command \"rebind\""
         }
     }
     menu $pad.filemenu.options.messageboxes -tearoff 0
@@ -504,7 +508,7 @@ proc createmenues {} {
             \"[mc "Changes in the Scipad codebase"]\"}"
 
     # now make the menu bar visible
-    $pad configure -menu $pad.filemenu 
+    $pad configure -menu $pad.filemenu
 
     # create array of menu entries identifiers
     # this array allows to avoid to refer to menu entries by their hardcoded id

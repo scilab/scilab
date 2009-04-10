@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="typename" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>typename</refname>
+
+    <refpurpose>associa um nome ao tipo de variável</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[types [ [,names]]=typename()
+typename(name,type)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>types</term>
+
+        <listitem>
+          <para>vetor coluna de inteiros: os códigos dos tipos de cada tipo de
+          dado definido. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>names</term>
+
+        <listitem>
+          <para>vetor coluna de strings: os nomes associados aos códigos de
+          tipos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>type</term>
+
+        <listitem>
+          <para>inteiro: o código de tipo do novo tipo de dado. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>name</term>
+
+        <listitem>
+          <para>string: o nome associado ao código de tipo </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>O overloading de funções e operadores faz uso de nomes formais
+    associados aos tipos de dados para formar o nome da função de overloading
+    (ver overloading). <literal>typename</literal> pode ser usado para
+    manipular esses nomes formais para tipos de dados "hard-coded" (os nomes
+    formais de tipos de dados codificados de <literal>tlist</literal> ou
+    <literal>mlist</literal> são definidos de outra forma, ver
+    <literal>overloading</literal>).</para>
+
+    <para>Chamado sem argumento do lado direito, <literal>typename</literal>
+    retorna informações sobre tipos de dados definidos.</para>
+
+    <para>Chamado com argumento do lado direito, <literal>typename</literal>
+    associa um nome a um código de tipo de dado.</para>
+
+    <para><literal>typename('',type)</literal> suprime o tipo de dado
+    fornecido pelo seu código <literal>type</literal> de tabelas de tipos de
+    dados conhecidos.</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="type">type</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+
+      <member><link linkend="overloading">overloading</link></member>
+
+      <member><link linkend="tlist">tlist</link></member>
+
+      <member><link linkend="mlist">mlist</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

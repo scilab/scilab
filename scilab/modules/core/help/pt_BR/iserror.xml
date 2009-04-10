@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="iserror" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>iserror</refname>
+
+    <refpurpose>teste de ocorrência de erros</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>iserror([n])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Testa se um número de erro <literal>n</literal> ocorreu (após uma
+    chamada a <literal>errcatch</literal>). <literal>iserror</literal> retorna
+    <literal>1</literal> se o erro ocorreu e <literal>0</literal> , caso
+    contrário.</para>
+
+    <para><literal>n&gt;0</literal> é o número do erro ; todos os erros são
+    testados com <literal>n&lt;0</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="error">error</link></member>
+
+      <member><link linkend="errcatch">errcatch</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

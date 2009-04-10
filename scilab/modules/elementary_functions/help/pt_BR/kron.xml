@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="kron" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>kron</refname>
+
+    <refpurpose>produto de Kronecker (.*.) </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>kron(A,B)
+A.*.B</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>kron(A,B)</literal> ou <literal>A.*.B</literal> retorna o
+    produto tensorial de Kronecker entre duas matrizes <literal>A</literal> e
+    <literal>B</literal>. A matriz resultante tem a seguinte forma de blocos:
+    </para>
+
+    <programlisting>
+              | A(1,1) B ..... A(1,n) B |
+              |   .              .      |
+    A .*. B = |   .              .      |   
+              |   .              .      |
+              | A(m,1) B ..... A(m,n) B |
+    </programlisting>
+
+    <para>Se <literal>A</literal> é uma matriz <literal>m x n</literal> e
+    <literal>B</literal> é uma matriz <literal>p x q</literal> , então
+    <literal>A.*.B</literal> é uma matriz <literal>(m*p) x
+    (n*q)</literal>.</para>
+
+    <para><literal>A</literal> e <literal>B</literal> podem ser matrizes
+    esparsas.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=[1,2;3,4];
+kron(A,A)
+A.*.A
+sparse(A).*.sparse(A)
+A(1,1)=%i;
+kron(A,A)
+ 
+  </programlisting>
+  </refsection>
+</refentry>

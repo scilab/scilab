@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="schur" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>schur</refname>
+
+    <refpurpose>decomposição (ordenada) de Schur de matrizes e
+    feixes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[U,T] = schur(A)
+[U,dim [,T] ]=schur(A,flag)
+[U,dim [,T] ]=schur(A,extern1)
+
+[As,Es [,Q,Z]]=schur(A,E)
+[As,Es [,Q],Z,dim] = schur(A,E,flag)
+[Z,dim] = schur(A,E,flag)
+[As,Es [,Q],Z,dim]= schur(A,E,extern2)
+[Z,dim]= schur(A,E,extern2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para> matriz quadrada de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos com as mesmas dimensões
+          de<literal> A</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string (<literal>'c'</literal>
+          ou<literal>'d'</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>extern1</term>
+
+        <listitem>
+          <para>uma ``external'' (função externa), veja abaixo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>extern2</term>
+
+        <listitem>
+          <para>uma ``external'', veja abaixo </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>U</term>
+
+        <listitem>
+          <para>matriz quadrada ortogonal ou unitária </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Q</term>
+
+        <listitem>
+          <para>matriz quadrada ortogonal ou unitária </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>matriz quadrada ortogonal ou unitária </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>T</term>
+
+        <listitem>
+          <para>matriz quadrada triangular superior ou quasi-triangular
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>As</term>
+
+        <listitem>
+          <para>matriz quadrada triangular superior ou quasi-triangular
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Es</term>
+
+        <listitem>
+          <para>matriz quadrada triangular superior </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Formas de Schur, formas ordenadas de Schur de matrizes e feixes
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>FORMA DE SCHUR MATRICIAL</term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>Forma de Schur usual:</term>
+
+              <listitem>
+                <para><literal>[U,T] = schur(A)</literal> produz uma matriz de
+                Schur <literal>T</literal> e uma matriz unitária
+                <literal>U</literal> tais que <literal>A = U*T*U'</literal> e
+                <literal>U'*U = eye(U)</literal>. Por si mesmo,
+                schur(<literal>A</literal>) retorna <literal>T</literal>. Se
+                <literal>A</literal> é de complexos, a Forma de Schur Complexa
+                é retornada na matriz <literal>T</literal>. A Forma de Schur
+                Complexa é triangular superior com os autovalores de
+                <literal>A</literal> na diagonal. Se <literal>A</literal> é de
+                reais, a Forma de Schur Real é retornada. A Forma de Schur
+                Real tem autovalores reais na diagonal e os autovalores
+                complexos em blocos 2-por-2 na diagonal.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Formas de Schur ordenadas</term>
+
+              <listitem>
+                <para><literal>[U,dim]=schur(A,'c')</literal> rretorna uma
+                matriz unitária <literal>U</literal> que transforma
+                <literal>A</literal> em uma forma de Schur. Ainda, as
+                primeiras dim colunas de <literal>U</literal> formam uma base
+                para o autoespaço de <literal>A</literal> associado aos
+                autovalores com partes reais negativas (autoespaço de "tempo
+                contínuo" estável).</para>
+
+                <para><literal>[U,dim]=schur(A,'d')</literal> retorna uma
+                matriz unitária <literal>U</literal> que transforma
+                <literal>A</literal> em uma forma de Schur. Ainda, as
+                primeiras <literal>dim</literal> colunas de
+                <literal>U</literal> geram uma base do autoespaço de
+                <literal>A</literal> associado aos autovalores de magnitude
+                menor que 1 (autoespaço de "tempo discreto" estável).</para>
+
+                <para><literal>[U,dim]=schur(A,extern1)</literal> retorna uma
+                matriz unitária <literal>U</literal> que transforma
+                <literal>A</literal> em uma forma de Schur. Ainda, as
+                <literal>dim</literal> primeiras colunas de
+                <literal>U</literal> geram uma base para o autoespaço de
+                <literal>A</literal> associado aos autovalores que são
+                selecionados pela "external" <literal>extern1</literal> (veja
+                "external" para detalhes). Esta "external" pode ser descrita
+                por uma função do Scilab ou por um "procedure" de C ou
+                FORTRAN: </para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>Uma Função do Scilab</term>
+
+                    <listitem>
+                      <para>Se <literal>extern1</literal> é descrita por uma
+                      função do Scilab, deve ter a seguinte seqüência de
+                      chamamento: <literal>s=extern1(Ev)</literal>, onde
+                      <literal>Ev</literal> é um autovalor e
+                      <literal>s</literal> um booleano.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>Um "Procedure" C ou FORTRAN</term>
+
+                    <listitem>
+                      <para>Se <literal>extern1</literal> é descrita por uma
+                      função de C ou FORTRAN, deve ter a seguinte seqüência de
+                      chamamento: <literal>int extern1(double *EvR, double
+                      *EvI)</literal> onde <literal>EvR</literal> e
+                      <literal>EvI</literal> são partes real e complexa de
+                      autovalor. Valor verdadeiro ou diferente de zero
+                      retornado significa autovalor selecionado.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>FORMAS DE SCHUR DE FEIXES</term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>Forma de Schur de Feixe Usual</term>
+
+              <listitem>
+                <para><literal>[As,Es] = schur(A,E)</literal> produz uma
+                matriz <literal>As</literal> quasi-triangular e uma matriz
+                triangular <literal>Es</literal> que são a forma generalizada
+                de Schur do par <literal>A, E</literal>.</para>
+
+                <para><literal>[As,Es,Q,Z] = schur(A,E)</literal> retorna,
+                ainda, duas matrizes unitárias <literal>Q</literal> e
+                <literal>Z</literal> tais que <literal>As=Q'*A*Z</literal> e
+                <literal>Es=Q'*E*Z</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Formas de Schur Ordenadas:</term>
+
+              <listitem>
+                <para><literal>[As,Es,Z,dim] = schur(A,E,'c')</literal>
+                retorna a forma real generalizada de Schur do feixe
+                <literal>s*E-A</literal>. Ainda, as primeiras dim colunas de
+                <literal>Z</literal> geram uma base para o autoespaço direito
+                associado aos autovalores com partes reais negativas
+                (autoespaço de "tempo contínuo" generalizado).</para>
+
+                <para><literal>[As,Es,Z,dim] = schur(A,E,'d')</literal></para>
+
+                <para>retorna a forma real generalizada de Schur do feixe
+                <literal>s*E-A</literal>. Ainda, as dim primeiras colunas de
+                <literal>Z</literal> formam uma base para o autoespaço direito
+                associado aos autovalores de magnitude menor que 1 (autoespaço
+                de "tempo discreto" generalizado).</para>
+
+                <para><literal>[As,Es,Z,dim] =
+                schur(A,E,extern2)</literal></para>
+
+                <para>retorna a forma real generalizada de Schur do feixe
+                <literal>s*E-A</literal>. Ainda, as dim primeiras colunas de
+                <literal>Z</literal> formam uma base para o autoespaço direito
+                associado aos autovalores do feixe que são selecionados de
+                acordo com a regra que é dada pela "external"
+                <literal>extern2</literal>. (veja "external" para detalhes).
+                Esta external pode ser descrita por uma função do Scilab ou
+                por um "procedure" de C ou FORTRAN. </para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>Função do Scilab</term>
+
+                    <listitem>
+                      <para>Se <literal>extern2</literal> é descrita por uma
+                      função do Scilab, deve ter a seqüência de chamamento:
+                      <literal>s=extern2(Alpha,Beta)</literal>, onde
+                      <literal>Alpha</literal> e <literal>Beta</literal>
+                      definem um autovalor generalizado e <literal>s</literal>
+                      um booleano.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>Um "Procedure" C ou FORTRAN</term>
+
+                    <listitem>
+                      <para>Se a "external" <literal>extern2</literal> é
+                      descrita por um "procedure" C ou FORTRAN, deve ter a
+                      seqüência de chamamento:</para>
+
+                      <para><literal>int extern2(double *AlphaR, double
+                      *AlphaI, double *Beta)</literal></para>
+
+                      <para>se <literal>A</literal> e <literal>E</literal> são
+                      matrizes de reais e</para>
+
+                      <para><literal>int extern2(double *AlphaR, double
+                      *AlphaI, double *BetaR, double *BetaI)</literal></para>
+
+                      <para>se <literal>A</literal> ou <literal>E</literal> é
+                      matriz de complexos. <literal>Alpha</literal>, e
+                      <literal>Beta</literal> definem o autovalor
+                      generalizado. Um valor verdadeiro ou diferente de zero
+                      siginfica autovalor generalizado selecionado.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Referências</title>
+
+    <para>As computações da forma de Schur matricial são baseadas nas rotinas
+    de Lapack DGEES e ZGEES.</para>
+
+    <para>As computações da forma de Schur de feixes são baseadas nas rotinas
+    de Lapack DGGES e ZGGES.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//FORMA SCHUR DE UMA MATRIZ
+//----------------------
+A=diag([-0.9,-2,2,0.9]);X=rand(A);A=inv(X)*A*X;
+[U,T]=schur(A);T
+
+[U,dim,T]=schur(A,'c');
+T(1:dim,1:dim)      //autovalores estáveis contínuos
+
+function t=mytest(Ev),t=abs(Ev)&lt;0.95,endfunction
+[U,dim,T]=schur(A,mytest);
+T(1:dim,1:dim)  
+
+// A mesma função em C (um compilador é requerido)
+C=['int mytest(double *EvR, double *EvI) {' //o codigo C
+   'if (*EvR * *EvR + *EvI * *EvI &lt; 0.9025) return 1;'
+   'else return 0; }';]
+mputl(C,TMPDIR+'/mytest.c')
+
+
+//construindo e ligando
+lp=ilib_for_link('mytest','mytest.o',[],'c',TMPDIR+'/Makefile');
+link(lp,'mytest','c'); 
+
+//executando
+[U,dim,T]=schur(A,'mytest');
+//FORMA SCHUR DE UM FEIXE
+//----------------------
+F=[-1,%s, 0,   1;
+    0,-1,5-%s, 0;
+    0, 0,2+%s, 0;
+    1, 0, 0, -2+%s];
+A=coeff(F,0);E=coeff(F,1);
+[As,Es,Q,Z]=schur(A,E);
+Q'*F*Z //isto é As+%s*Es
+
+
+[As,Es,Z,dim] = schur(A,E,'c')
+function t=mytest(Alpha,Beta),t=real(Alpha)&lt;0,endfunction
+[As,Es,Z,dim] = schur(A,E,mytest)
+
+//a mesma função em FORTRAN (um compilador é requerido)
+ftn=['funcao inteira mytestf(ar,ai,b)' //codigo FORTRAN
+      'double precision ar,ai,b'
+      'mytestf=0'
+      'if(ar.lt.0.0d0) mytestf=1'
+      'end']
+mputl('      '+ftn,TMPDIR+'/mytestf.f')
+
+//construíndo e ligando
+lp=ilib_for_link('mytestf','mytestf.o',[],'F',TMPDIR+'/Makefile');
+link(lp,'mytestf','f'); 
+
+//executando
+
+[As,Es,Z,dim] = schur(A,E,'mytestf')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="spec">spec</link></member>
+
+      <member><link linkend="bdiag">bdiag</link></member>
+
+      <member><link linkend="ricc">ricc</link></member>
+
+      <member><link linkend="pbig">pbig</link></member>
+
+      <member><link linkend="psmall">psmall</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

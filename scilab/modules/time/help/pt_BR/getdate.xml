@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getdate" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getdate</refname>
+
+    <refpurpose>retorna informação sobre data e hora</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>dt=getdate()
+x=getdate("s")
+dt=getdate(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>dt</term>
+
+        <listitem>
+          <para>um vetor de inteiros com 10 entradas (ver abaixo) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>um inteiro contendo uma data codificada em segundos a partir
+          de 01/01/1970</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>dt=getdate()</term>
+
+        <listitem>
+          <para>retorna a dada corrente no formato dado abaixo:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>dt(1)</term>
+
+              <listitem>
+                <para>o ano como um número (com o século) entre 0000 e 9999.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(2)</term>
+
+              <listitem>
+                <para>o mês do ano como um número entre 01 e 12. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(3)</term>
+
+              <listitem>
+                <para>o número da semana ISO 8601 como um número entre 01 e
+                53. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(4)</term>
+
+              <listitem>
+                <para>o dia Juliano do ano como um número entre 001 e 366.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(5)</term>
+
+              <listitem>
+                <para>especifica o dia da semana como um número decimal entre
+                1 e 7 , com 1 representando domingo. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(6)</term>
+
+              <listitem>
+                <para>o dia do mês como um número entre 01 e 31. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(7)</term>
+
+              <listitem>
+                <para>a hora do dia como um número entre 00 e 23. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(8)</term>
+
+              <listitem>
+                <para>o minuto da hora como um número entre 00 e 59. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(9)</term>
+
+              <listitem>
+                <para>o segundo do minuto como um número entre 00 e 59.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>dt(10)</term>
+
+              <listitem>
+                <para>o milissegundo do segundo como um número entre 000 e
+                999.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x=getdate("s")</term>
+
+        <listitem>
+          <para>retorna um escalar com o número de segundos desde 01/01/1970,
+          00:00 UTC (Convenção de Tempo Unix) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dt=getdate(x)</term>
+
+        <listitem>
+          <para>põe a data dada por x (número de segundos desde 01/01/1970,
+          00:00 UTC) no formato acima. Neste caso, dt(10) é sempre igual a
+          0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+w=getdate()
+mprintf("Ano:%d,Mês:%d,Dia:%d",w(1),w(2),w(6));
+
+x=getdate("s")
+getdate(x)
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="date">date</link></member>
+
+      <member><link linkend="timer">timer</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

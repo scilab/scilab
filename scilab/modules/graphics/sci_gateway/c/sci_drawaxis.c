@@ -61,7 +61,11 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   CheckRhs(minrhs,maxrhs+nopt) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  if ( get_optionals(fname,opts) == 0) return 0;
+  if ( get_optionals(fname,opts) == 0)
+	{
+		/* error */
+		return 0;
+	}
   if ( opts[0].position != -1 ) 
   { 
     CheckLength(opts[0].position,opts[0].m,1);

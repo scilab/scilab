@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="max" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>max</refname>
+
+    <refpurpose>máximo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[m [,k]]=max(A)
+[m [,k]]=max(A,'c')
+[m [,k]]=max(A,'r')
+[m [,k]]=max(A,'m')
+[m [,k]]=max(A1,A2,...,An)
+[m [,k]]=max(list(A1,A2,...,An))</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>vetor ou matriz de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>A1,...,An</term>
+
+        <listitem>
+          <para>um conjunto de vetores ou matrizes, todos de tamanhos iguais,
+          ou de escalares</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para <literal>A</literal>, um vetor ou matriz de reais,
+    <literal>max(A)</literal> é o maior elemento de <literal>A</literal>.
+    <literal>[m,k]=max(A)</literal> fornece, ainda, o índice do máximo. Um
+    segundo argumento do tipo string <literal>'r'</literal> ou
+    <literal>'c'</literal> pode ser usado : <literal>'r'</literal> é usado
+    para obter um vetor-linha <literal>m</literal> tal que
+    <literal>m(j)</literal> contém o méximo da <literal>j</literal> -ésima
+    coluna de A (<literal>A(:,j)</literal>), <literal>k(j)</literal> fornece o
+    índice de linha que contém o máximo para a coluna <literal>j</literal>.
+    <literal>'c'</literal> é usado para a operação dual de linhas de
+    <literal>A</literal>. <literal>'m'</literal> é usado para compatibilidade
+    com Matlab.</para>
+
+    <para><literal>m=max(A1,A2,...,An)</literal>, onde todos os
+    <literal>Aj</literal> são matrizes de mesmo tamanho, retorna um vetor ou
+    matriz <literal>m</literal> de tamanho <literal>size(m)=size(A1)</literal>
+    tal que <literal>m(i)= max( Aj(i)), j=1,...,n</literal>.
+    <literal>[m,k]=max(A1,A2,...,An)</literal> fornece, ainda, o vetor ou
+    matriz <literal>k</literal>. Fixado <literal>i</literal>,
+    <literal>k(i)</literal> é o número do primeiro Aj(i) a alcançar o
+    máximo.</para>
+
+    <para><literal>[m,k]=max(list(A1,...,An))</literal> é uma outra sintaxe
+    para <literal>[m,k]=max(A1,A2,...,An)</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+[m,n]=max([1,3,1])
+[m,n]=max([3,1,1],[1,3,1],[1,1,3])
+[m,n]=max([3,-2,1],1)
+[m,n]=max(list([3,1,1],[1,3,1],[1,1,3]))
+[m,n]=max(list(1,3,1))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sort">sort</link></member>
+
+      <member><link linkend="find">find</link></member>
+
+      <member><link linkend="mini">mini</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="setfield" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>setfield</refname>
+
+    <refpurpose>inserção de campos de listas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>setfield(i,x,l)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>matriz de qualquer tipo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>l</term>
+
+        <listitem>
+          <para>lista, tlist ou mlist </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>i</term>
+
+        <listitem>
+          <para>índice de campo, ver "insertion" para mais detalhes.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função é equivalente à sintaxe <literal>l(i)=x</literal> spara
+    inserção de campos, com a única diferença de que também se aplica a
+    objetos <literal>mlist</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+l=list(1,'qwerw',%s)
+l(1)='Modificado'
+l(0)='Adicionado'
+l(6)=['mais um';'adicionado']
+//
+
+a=hypermat([2,2,2],rand(1:2^3));// hipermatrizes são codificadas usando-se mlists
+setfield(3,1:8,a);a // ajusta o valor de campo para 1:8
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="insertion">insertion</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

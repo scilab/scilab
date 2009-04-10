@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="debug" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>debug</refname>
+
+    <refpurpose>nivel de depuração ("debugging") debugging level</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>debug(level-int)
+level-int=debug()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>level-int</term>
+
+        <listitem>
+          <para>inteiro (de 0 a 4)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para os valores 0, 1, 2, 3 ou 4 de <literal>level-int</literal> ,
+    define vários níveis de depuração. Isto é voltado para o analisador
+    sintático, não para scripts Scilab. Para usuários mais experientes do
+    Scilab.</para>
+
+    <para>Para o valor -1 de <literal>level-int</literal> ,
+    <literal>debug</literal> define um nível especial de depuração dedicado à
+    instrulçao ScilabEval Tcl.</para>
+
+    <para>Ver também o depurador do <literal>Scipad</literal>,que é voltado
+    para depuração de scripts Scilab.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ScilabEval">ScilabEval</link></member>
+
+      <member><link linkend="scipad">scipad</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

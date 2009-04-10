@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="im_inv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>im_inv</refname>
+
+    <refpurpose>imagem inversa</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[X,dim]=im_inv(A,B [,tol])
+[X,dim,Y]=im_inv(A,B, [,tol])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+
+        <listitem>
+          <para>duas matirzes de reais ou complexos com igual número de
+          colunas</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>matriz quadrada ortogonal ou unitária de ordem igual ao número
+          de colunas de <literal>A</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+
+        <listitem>
+          <para>inteiro (dimensão do subespaço) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Y</term>
+
+        <listitem>
+          <para>matriz ortogonal de ordem igual ao número de linhas de
+          <literal>A</literal> e <literal>B</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>[X,dim]=im_inv(A,B)</literal>
+    computa<literal>(A^-1)(B)</literal> ,i.e, vetores cujas imagens através de
+    <literal>A</literal> estão em Im(<literal>B</literal>)</para>
+
+    <para>As <literal>dim</literal> primeiras colunas de <literal>X</literal>
+    geram<literal> (A^-1)(B)</literal></para>
+
+    <para><literal>tol</literal> é um limiar usado para testar a inclusão de
+    subespaço ; o valor padrão é <literal>tol = 100*%eps</literal>. Se
+    <literal>Y</literal> é retornado, então <literal>[Y*A*X,Y*B]</literal> é
+    particionado como segue:
+    <literal>[A11,A12;0,A22]</literal>,<literal>[B1;0]</literal></para>
+
+    <para>onde <literal>B1</literal> tem posto-linha cheio (igual a
+    posto<literal>(B)</literal>) e <literal>A22</literal> tem posto-coluna
+    cheio e tem <literal>dim</literal> colunas.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=[rand(2,5);[zeros(3,4),rand(3,1)]];B=[[1,1;1,1];zeros(3,2)];
+W=rand(5,5);A=W*A;B=W*B;
+[X,dim]=im_inv(A,B)
+svd([A*X(:,1:dim),B])   //vetores A*X(:,1:dim) pertencem a range(B) (Imagem de B: Im(B))
+[X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="rowcomp">rowcomp</link></member>
+
+      <member><link linkend="spaninter">spaninter</link></member>
+
+      <member><link linkend="spanplus">spanplus</link></member>
+
+      <member><link linkend="linsolve">linsolve</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+</refentry>

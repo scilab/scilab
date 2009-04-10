@@ -14,9 +14,11 @@
 // Scilab didn't manage UNC path on Windows
 
 // <-- INTERACTIVE TEST -->
+// <-- WINDOWS ONLY -->
 
 // creates a UNC path example \\MON-PC\TEST-UNC-PATH
 // launch scilab from this UNC path
+
 cd '\\MON-PC\TEST-UNC-PATH'
 pwd
 cd SCI
