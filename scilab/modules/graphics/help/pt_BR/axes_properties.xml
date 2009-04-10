@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="axes_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>axes_properties</refname>
+
+    <refpurpose>descrição das propriedades de entidades Axes (de
+    eixos)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A entidade Axes é o segundo nível da hierarquia das entidades de
+    gráfico. Esta entidade define os parâmetros que permitem a mudança de
+    coordenadas e o esboço dos eixos tanto quanto os valores padrões dos
+    parâmetros para criação de entidades galhos</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Propriedades dos eixos </term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>parent:</term>
+
+              <listitem>
+                <para>este campo contém o manipulador da figura raiz</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>children:</term>
+
+              <listitem>
+                <para>Fvetor FA contendo os manipuladores de todos os objetos
+                gráficos galhos dos eixos. Estes objetos gráficos são do tipo
+                <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
+                <literal>"Polyline"</literal>, <literal>"Segs"</literal>,
+                <literal>"Arc"</literal>, <literal>"Grayplot"</literal>,..
+                (ver <link
+                linkend="Compound_properties">Compound_properties</link>,
+                <link
+                linkend="rectangle_properties">rectangle_properties</link>,
+                <link linkend="champ_properties">champ_properties</link>,
+                <link linkend="axis_properties">axis_properties</link>, <link
+                linkend="polyline_properties">polyline_properties</link>,
+                <link linkend="segs_properties">segs_properties</link>, <link
+                linkend="grayplot_properties">grayplot_properties</link>,
+                <link linkend="surface_properties">surface_properties</link>,
+                <link linkend="param3d_properties">param3d_properties</link>,
+                <link linkend="fec_properties">fec_properties</link>, <link
+                linkend="text_properties">text_properties</link>, <link
+                linkend="legend_properties">legend_properties</link>)</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>visible:</term>
+
+              <listitem>
+                <para>este campo contém o valor da propriedade
+                <literal>visible</literal> (visível) para os eixos. O valor
+                pode ser <literal>"on" </literal> (ligado) ou
+                <literal>"off"</literal> . (desligado). Por padrão, os eixos
+                são visíveis, <literal>"on"</literal> , caso todos os galhos
+                visíveis sejam exibidos na tela. Se <literal>"off"</literal> ,
+                os eixos e seus galhos não são esboçados. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>axes_visible:</term>
+
+              <listitem>
+                <para>um vetor de strings <literal>1x3</literal> string
+                vector. Esta propriedade especifica se o eixo deve ser
+                desenhado ou não. Seu valor pode ser <literal>"on"</literal>
+                ou <literal>"off"</literal> para um ajuste global. Para agir
+                em um único eixo, a sintaxe é
+                <literal>axes_visible(N)</literal> onde <literal>N</literal> é
+                <literal>1,2</literal> ou <literal>3</literal> correspondentes
+                aos eixos <literal> x,y</literal> ou <literal>z</literal>.O
+                dado de escala e, se requerido, os grides são desenhados se o
+                valor for <literal>"on"</literal>. Note que ao criar uma
+                simples entidade de eixo usando os comandos
+                <literal>gca()</literal> (atalho para
+                <literal>get"current_axes")</literal>) ou
+                <literal>gcf()</literal> (atalho para
+                <literal>get(current_figure)</literal>), a visibilidade dos
+                eixos é ajustada para <literal>"off"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>axes_reverse:</term>
+
+              <listitem>
+                <para>um vetor de strings <literal>1x3</literal>
+                correspondentes aos três eixos (X,Y,Z). Para cada eixo, a
+                propriedade especifica a direção dos valores crescentes. Se
+                <literal>"off"</literal>, a direção padrão é usada. Se
+                <literal>"on"</literal>, a direção é invertida. Também é
+                possível utilizar apenas um string, <literal>"on"</literal> ou
+                <literal>"off"</literal>, para ajustar simultaneamente os três
+                dados. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>grid:</term>
+
+              <listitem>
+                <para>o valor do campo é um vetor
+                <literal>[x-grid,y-grid,z-grid]</literal> onde
+                <literal>x-grid</literal> controla o esboço para o eixo x, e
+                <literal>y-grid, z-grid</literal> respectivamente para os
+                eixos y e z. O valor padrão é <literal>-1</literal>, os grides
+                não são desenhados, caso contrário, os grides são desenhados
+                utilizando a cor dada indexada pelo valor do grid. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>grid_position:</term>
+
+              <listitem>
+                <para>Este string determina a posição do grido comparada às
+                outras entidades gráficas. Seu valor pode ser
+                <literal>"foreground"</literal> para desenhar o grid à frente
+                das outras entidades ou <literal>"background"</literal> para
+                desenhar o grid atrás.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x_location:</term>
+
+              <listitem>
+                <para>especifica a localização do eixo y. Os valores possíveis
+                são:</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"bottom"</literal>. Neste caso, o eixo y é
+                    desenhado na parte direita do retângulo de eixos. </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>"top"</literal>. Neste caso, o eixo y é
+                    desenhado na parte esquerda do retângulo de eixos. </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>"middle"</literal> . Neste caso, o eixo y é
+                    desenhado na posição mais próxima da coordenada 0 do eixo
+                    x. </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y_location:</term>
+
+              <listitem>
+                <para>especifica a localização do eixo y. Os valores possíveis
+                são:</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"left"</literal>. Neste caso, o eixo y é
+                    desenhado na parte direita do retângulo de eixos.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>"right"</literal>. Neste caso, o eixo y é
+                    desenhado na parte esquerda do retângulo de eixos.</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>"middle"</literal>. Neste caso, o eixo y é
+                    desenhado na posição mais próxima da coordenada 0 do eixo
+                    x. </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>title:</term>
+
+              <listitem>
+                <para>um objeto anexado à entidade de eixos que retorna um
+                manipulador gráfico de uma estrutura label (rótulo) (ver <link
+                linkend="label_properties">label_properties</link>). Este
+                campo define um título com opções sobre este label. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x_label:</term>
+
+              <listitem>
+                <para> um objeto anexado à entidade de eixos que retorna um
+                manipulador gráfico de uma estrutura label (ver <link
+                linkend="label_properties">label_properties</link>). Este
+                campo define um label sobre o eixo x com opções sobre este
+                label. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y_label:</term>
+
+              <listitem>
+                <para> um objeto anexado à entidade de eixos que retorna um
+                manipulador gráfico de uma estrutura label (ver <link
+                linkend="label_properties">label_properties</link>). Este
+                campo define um label sobre o eixo y com opções sobre este
+                label. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>z_label:</term>
+
+              <listitem>
+                <para>um objeto anexado à entidade de eixos que retorna um
+                manipulador gráfico de uma estrutura label (ver <link
+                linkend="label_properties">label_properties</link>). Este
+                campo define um label sobre o eixo z com opções sobre este
+                label. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>auto_ticks:</term>
+
+              <listitem>
+                <para>um vetor de strings <literal>1x3</literal> fornecendo o
+                status auto_ticks para cada eixo. Esta propriedade especifica
+                se cada eixo é graduado utilizando-se um algoritmo
+                computacional ou não (graduações feitas pelo usuário). Os
+                valores podem ser <literal>"on"</literal> ou
+                <literal>"off"</literal> para ajuste global. Para agir em um
+                único eixo, a sintaxe é <literal>auto_ticks(N)</literal> onde
+                <literal>N</literal> é <literal>1,2</literal> ou
+                <literal>3</literal> correspondentes aos eixos
+                <literal>x,y</literal> ou <literal>z</literal>. Note que a
+                edição de tiques (textos e/ou localizações) via
+                <literal>x_ticks, y_ticks</literal> ou
+                <literal>z_ticks</literal> ajusta automaticamente
+                <literal>auto_ticks</literal> para <literal>"off"</literal>
+                para os eixos correspondentes. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x_ticks.locations:</term>
+
+              <listitem>
+                <para>um vetor de reais contendo a localização das graduações
+                sobre o eixo x. Esta propriedade pode ser editada
+                especificando-se um novo vetor de reais (de mesmo tamanho).
+                Para especificar graduações maiores ou menores, pode-se agir
+                no tlist <literal>x_ticks</literal> definindo também um vetor
+                de strings <literal>x_ticks.labels</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y_ticks.locations:</term>
+
+              <listitem>
+                <para>um vetor de reais contendo a localização das graduações
+                sobre o eixo y. Esta propriedade pode ser editada
+                especificando-se um novo vetor de reais (de mesmo tamanho).
+                Para especificar graduações maiores ou menores, pode-se agir
+                no tlist <literal>y_ticks</literal> definindo também um vetor
+                de strings <literal>y_ticks.labels</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>z_ticks.locations:</term>
+
+              <listitem>
+                <para>um vetor de reais contendo a localização das graduações
+                sobre o eixo z. Esta propriedade pode ser editada
+                especificando-se um novo vetor de reais (de mesmo tamanho).
+                Para especificar graduações maiores ou menores, pode-se agir
+                no tlist <literal>z_ticks</literal> definindo também um vetor
+                de strings <literal>z_ticks.labels</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>x_ticks.labels:</term>
+
+              <listitem>
+                <para>um vetor de strings contendo rótulos para as graduações
+                no eixo x. Esta propriedade pode ser editada especificando-se
+                um novo vetor (de mesmo tamanho). Para especificar graduações
+                menores ou maiores, pode se agir no tlist
+                <literal>x_ticks</literal> definindo também um vetor de reais
+                <literal>x_ticks.locations</literal> .</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>y_ticks.labels:</term>
+
+              <listitem>
+                <para>um vetor de strings contendo rótulos para as graduações
+                no eixo y. Esta propriedade pode ser editada especificando-se
+                um novo vetor (de mesmo tamanho). Para especificar graduações
+                menores ou maiores, pode se agir no tlist
+                <literal>y_ticks</literal> definindo também um vetor de reais
+                <literal>y_ticks.locations</literal> .</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>z_ticks.labels:</term>
+
+              <listitem>
+                <para>um vetor de strings contendo rótulos para as graduações
+                no eixo z. Esta propriedade pode ser editada especificando-se
+                um novo vetor (de mesmo tamanho). Para especificar graduações
+                menores ou maiores, pode se agir no tlist
+                <literal>z_ticks</literal> definindo também um vetor de reais
+                <literal>z_ticks.locations</literal> .</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>box:</term>
+
+              <listitem>
+                <para>esta propriedade especifica se os eixos devem ser
+                encerrados por uma caixa. Seu valor pode ser
+                <literal>"off"</literal>, <literal>"hidden_axes"</literal>,
+                <literal>"back_half"</literal> ou <literal>"on".</literal> Se
+                o valor for <literal>"off"</literal>, a caixa não é desenhada.
+                Se a propriedade for <literal>"hidden_axes"</literal>, apenas
+                a moldura de trás é desenhada. Se o valor for
+                <literal>"back_half"</literal>, os eixos X, Y e Z são
+                desenhados também. Se a propriedade for
+                <literal>"on"</literal> , a caixa toda é desenhada.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>filled:</term>
+
+              <listitem>
+                <para>Esta propriedade especifica se o plano de fundo dos
+                eixos devem ser desenhados ou não. Seu valor pode ser
+                <literal>"off"</literal> ou <literal>"on".</literal> Se o
+                valor for <literal>"off"</literal>, o plano de fundo não é
+                desenhado e a caixa de eixos é transparente. Se a propriedade
+                for <literal>"on"</literal> , o plano de fundo é desenhado
+                utilizando-se a cor especificada pela propriedade
+                <literal>background</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>sub_ticks:</term>
+
+              <listitem>
+                <para>esta propriedade determina o número de subtiques a serem
+                desenhados entre dois tiques principais. O valor de campo é o
+                vetor <literal>[nx,ny]</literal> onde <literal>nx</literal> é
+                o número de subtiques para o eixo x e <literal>ny</literal> é
+                o correspondente para o eixo y.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>font_style:</term>
+
+              <listitem>
+                <para>especifica a fonte a ser utilizada para exibir os
+                rótulos. É um inteiro positivo que faz referência a uma das
+                fontes carregadas. Seu valor deve estar entre 0, referenciando
+                a primeira fonte e o número de fontes carregadas menos um,
+                referenciando a última fonte carregada. Para mais informações,
+                ver <link
+                linkend="graphics_fonts">graphics_fonts</link>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>font_size:</term>
+
+              <listitem>
+                <para>um inteiro especificando o tamanho da fonte usada para
+                para os rótulos dos tiques. Se a propriedade
+                <literal>fractional_font</literal> for
+                <literal>"off"</literal> , apenas a parte inteira do valor é
+                utilizada. Para mais informações, ver <link
+                linkend="graphics_fonts">graphics_fonts</link>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>font_color:</term>
+
+              <listitem>
+                <para>esta propriedade determina a cor dos rótulos dos tiques.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>fractional_font:</term>
+
+              <listitem>
+                <para>esta propriedade especifica se os rótulos dos tiques
+                serão exibidos com tamanhos de fonte fracionários. Seu valor
+                pode ser <literal>"on"</literal> ou <literal>"off"</literal>.
+                Se <literal>"on"</literal> , o valor em ponto flutuante de
+                <literal>font_size</literal> é usado para exibição e a fonte
+                não possui outro nome. Se <literal>"off"</literal> apenas a
+                parte inteira é utilizada e a fonte não é suavizada.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>isoview:</term>
+
+              <listitem>
+                <para>esta propriedade é utilizada para se obter escalas
+                isométricas para os eixos x, y e z (por exemplo, para fazer
+                com que a exibição da curva sin(x) versus cos(x) seja um
+                círculo, não uma elipse). Os valores podem ser
+                <literal>"on"</literal> ou <literal>"off"</literal>. Se o
+                valor for <literal>"on"</literal>, os
+                <literal>data_bounds</literal> dos eixos mudam automaticamente
+                de acordo com os valores da propriedade de figura
+                correspondente <literal>figure_size</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>cube_scaling:</term>
+
+              <listitem>
+                <para>esta propriedade é utilizada no modo <literal>3d
+                mode</literal> para se obter uma nova escala para os eixos x,
+                y e z. De fato, permite que os dados se encaixem em um cubo
+                1x1x1; o objetivo é uma melhor visualização de gráficos 3d
+                caso as escalas dos eixos se diferenciem muito umas das
+                outras. Os valores podem ser <literal>"on" </literal> ou
+                <literal>"off"</literal> (que é o valor padrão). Na maior
+                parte dos casos, ajuda a gerar uma visualização 3d semelhante
+                a do Matlab. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>view:</term>
+
+              <listitem>
+                <para> este campo é relacionado ao universo gráfico. Toma
+                <literal>"3d"</literal> como valor correspondente a
+                visualizações em três dimensões. Em outros casos, pode ser
+                <literal>"2d"</literal> para esboço inicial 2d (valor padrão).
+                Este flag também depende dos esboços com os quais o usuário
+                entra: um comando <literal>plot3d </literal>por exemplo, vai
+                alternar o flag <literal>view</literal> de
+                <literal>"2d"</literal> para <literal>"3d"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>rotation_angles:</term>
+
+              <listitem>
+                <para>este campo é o vetor <literal>[alpha,theta]</literal>.
+                Estes dois valores fornecem as coordenadas esféricas de
+                obsevação (em graus). </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>log_flags:</term>
+
+              <listitem>
+                <para>string de três caracteres que ajusta a escala (linear ou
+                logarítmica) o longo dos eixos. Cada caractere especifica a
+                escala para os eixos x, y e z respectivamente. Os valores
+                podem ser <literal>'n'</literal> para escala linear ou
+                <literal>'l'</literal> para escala logarítmica. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>tight_limits:</term>
+
+              <listitem>
+                <para>se está propriedade for <literal>"on"</literal> os eixos
+                se adaptam para se encaixarem dentro dos valores máximos e
+                mínimos de <literal>data_bounds</literal>. Se o campo for
+                <literal>"off"</literal>, os eixos podem aumentar os limites
+                de modo a produzir rótulos de tiques convenientes. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>data_bounds:</term>
+
+              <listitem>
+                <para> este campo contém os valores de limite para as
+                coordenadas x,y e z. É a matriz
+                <literal>[xmin,ymin,zmin;xmax,ymax,zmax]</literal> ou
+                <literal>[xmin,ymin;xmax,ymax]</literal>. Note que, para ter
+                estritamente os limites de dados especificados,
+                <literal>tight_limits</literal> deve ser ajustado para
+                <literal>"on"</literal> (ver acima). </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>zoom_box:</term>
+
+              <listitem>
+                <para>este campo contém a caixa de zoom corrente, se forem
+                fornecidas quaisquer coordenadas. É uma matriz vazia (sem
+                zoom) ou vetor
+                <literal>[xmin,ymin,xmax,ymax,zmin,zmax]</literal> (define um
+                retângulo dado por dois vértices opostos ).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>margins:</term>
+
+              <listitem>
+                <para>um vetor
+                <literal>[margin_left,margin_right,margin_top,margin_bottom]</literal>
+                especificando a porção das margens para estes eixos. Este
+                vetor é composto de números em [0 1] com valores padrões:
+                [0.125 0.125 0.125 0.125] (estes números são razões relativas
+                aos valores correspondentes da propriedade de figura
+                <literal>figure_size</literal>).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>axes_bounds:</term>
+
+              <listitem>
+                <para>um vetor <literal>[x_left,y_up,width,height]</literal>
+                especificando a porção da figura usada por estes eixos, onde
+                <literal>x_left</literal>, <literal>y_up</literal>,
+                <literal>width</literal> e <literal>height</literal> são
+                números em [0 1] fornecendo respectivamente a posição do canto
+                superior esquerdo e a dimensão dos eixos (testes números são
+                razões relativas aos valores correspondentes da propriedade de
+                figura <literal>figure_size</literal>).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>hidden_axis_color:</term>
+
+              <listitem>
+                <para>esta propriedade define a cor do eixo escondido. É um
+                índice relativo ao mapa de cores corrente.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>user_data:</term>
+
+              <listitem>
+                <para>este campo pode armazenar qualquer variável Scilab na
+                estrutura de dados de eixos e recuperá-la.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Propriedades para funções de alto-nível</term>
+
+        <listitem>
+          <para>As funções <literal>plot</literal>,
+          <literal>plot2dx</literal>, <literal>grayplot</literal> e
+          <literal>matplot</literal> utilizam as propriedades seguintes para
+          decidir como misturar esboços consecutivos se isto não for declarado
+          pelo argumento de chamada <literal>frameflag</literal> calling
+          argument. O resultado da mistura é decidido através destas duas
+          propriedades:</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>auto_clear:</term>
+
+              <listitem>
+                <para> se esta propriedade for <literal>"on"</literal>, uma
+                chamada a um gráfico de alto-nível reinicializa os eixos
+                correntes e apaga todos os seus galhos antes de realizar o
+                esboço. Se for <literal>"off"</literal> os esboços serão
+                adicionados aos eixos correntes de acordo com a propriedade
+                <literal>"auto_scale"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>auto_scale:</term>
+
+              <listitem>
+                <para>uma propriedade para atualizar os limites de dados dos
+                eixos. Se o valor for <literal>"on"</literal>, um novo esboço
+                adaptará as propriedades de eixos correntes para se adequar
+                aos esboços anteriores e correntes. Se o valor for
+                <literal>"off"</literal> o novo esboço será esboçado nos
+                limites de dados correntes.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Valores padrões dos galhos: </term>
+
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>hiddencolor:</term>
+
+              <listitem>
+                <para>esta propriedade controla as cores das partes
+                escondidas. Toma como valor um índice relativo ao mapa de
+                cores corrente. Em outro caso, se for um valor negativo, as
+                partes escondidas tomam a mesma cor que a superfície. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>line_mode:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                line_mode para objetos Segs, Rectangle, Legend, Axis, Plot3d,
+                Fac3d, e Polyline. Seus valores podem ser <literal>"on"
+                </literal>(padrão) ou <literal>"off"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>line_style:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>line_style</literal> para objetos Segs, Arcs,
+                Rectangle e Polyline. <literal>line_style</literal> seleciona
+                o tipo de linha que será utilizado nos desenhos de linhas. Seu
+                valor deve ser um inteiro no intervalo [0 6]. 0 e 1 significam
+                linhas sólidas, os outros selecionam linhas tracejadas (ver
+                <link linkend="getlinestyle">getlinestyle</link>).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>thickness:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>thickness</literal> para todos os objetos que
+                utilizam linhas. Seu valor deve ser um inteiro
+                positivo.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mark_mode:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>mark_mode</literal> para os objetos Segs, Rectangle,
+                Legend, Axis, Plot3d, Fac3d e Polyline. Seu valor pode ser
+                <literal>"on" </literal> ou <literal>"off"</literal>
+                (padrão).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mark_style:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>mark_style</literal> para objetos Segs, Rectangle,
+                Legend, Axis, Plot3d, Fac3d e Polyline.
+                <literal>mark_style</literal> seleciona o tipo de marca a ser
+                exibida. Seu valor deve ser um inteiro no intervalo [0 9] que
+                significa: ponto, sinal de mais, cruz, estrela, diamante
+                preenchido, diamante, triângulo para cima, triângulo para
+                baixo, trevo ou círculo. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mark_size_unit:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>mark_size_unit</literal> para objetos Segs,
+                Rectangle, Legend, Axis, Plot3d, Fac3d e Polyline. Se
+                <literal>mark_size_unit</literal> é ajustado para
+                <literal>"point"</literal>, então o valor de
+                <literal>mark_size</literal> é diretamente fornecido em
+                pontos. Quando <literal>mark_size_unit</literal> é ajustado
+                para <literal>"tabulated"</literal>,
+                <literal>mark_size</literal> é computado de acordo com o array
+                de tamanho de fonte: logo seu valor deve ser um inteiro no
+                intervalo [0 5] que significa 8pt, 10pt, 12pt, 14pt, 18pt e
+                24pt. Note que <link linkend="plot2d">plot2d</link> e funções
+                puras do Scilab utilizam o modo <literal>tabulated</literal>
+                como padrão; ao utilizar-se a função <link
+                linkend="plot">plot</link> o modo <literal>point</literal> é
+                automaticamente habilitado.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mark_size:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>mark_size</literal> para objetos Segs, Rectangle,
+                Legend, Axis, Plot3d, Fac3d, e Polyline.
+                <literal>mark_size</literal> seleciona o tamanho de fonte da
+                marca ser exibida. Deve ser um valor inteiro entre [0 5] que
+                significa 8pt, 10pt, 12pt, 14pt, 18pt e 24pt (ver <link
+                linkend="getmark">getmark</link>).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mark_foreground:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>mark_foreground</literal> criados sob os eixos.
+                Objetos Polyline, Rectangle, Legend, Surface, Segment e Axis
+                utilizam esta propriedade para especificar uma cor de primeiro
+                plano (borda) para suas marcas. O valor deve ser um índice de
+                cor relativo ao mapa de cores corrente. Note que o valor
+                padrão é <literal>-1</literal> (preto padrão) e, mesmo que
+                você mude o <literal>color_map</literal>, este valor
+                <literal>-1</literal> sempre apontará para a cor preta padrão.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>mark_background:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>mark_background</literal> para todos os objetos
+                criados sob os eixos. objetos Polyline, Rectangle, Legend,
+                Surface, Segment e Axis utilizam esta propriedade para
+                especificar uma cor de plano de fundo (face) para suas marcas.
+                O valor deve ser um índice de cor relativo ao mapa de cores
+                corrente. Note que o valor padrão é <literal>-2</literal>
+                (branco padrão) e, mesmo que você mude o
+                <literal>color_map</literal>, este valor <literal>-2</literal>
+                sempre apontará para a cor branca padrão. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>foreground:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>foreground</literal> para eixos e para todos os
+                objetos criados sob os eixos. O valor deve ser um índice de
+                cor relativo ao mapa de cores corrente. Note que o valor
+                padrão é <literal>-1</literal> (preto padrão) e, mesmo que
+                você mude o <literal>color_map</literal>, este valor
+                <literal>-1</literal> sempre apontará para a cor preta padrão.
+                </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>background:</term>
+
+              <listitem>
+                <para>este campo controla o valor padrão da propriedade
+                <literal>background</literal> para os eixos e para objetos
+                criados sob os eixos. O valor deve ser um índice de cor
+                relativo ao mapa de cores corrente. Note que o valor padrão é
+                <literal>-2</literal> branco padrão) e mesmo que você mude o
+                <literal>color_map</literal>, este valor <literal>-2</literal>
+                sempre apontará para a cor branca padrão. </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>arc_drawing_mode:</term>
+
+              <listitem>
+                <para>este campo controla o valor padrão da propriedade
+                default <literal>arc_drawing_mode</literal> para todos os
+                objetos Arc criados sob este objeto Axes. Seu valor pode ser
+                <literal>"nurbs"</literal> ou
+                <literal>"lines"</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>clip_state:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>clip_state</literal> para todos os objetos. Seu valor
+                pode ser:</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"off"</literal> isto indica todos os
+                    objetos criados depois que não estão recortados (valor
+                    padrão). </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>"clipgrf"</literal> isto indica todos os
+                    objetos criados depois que estão recortados fora das
+                    fronteiras dos eixos. </para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>"on"</literal> isto indica todos os objetos
+                    criados depois que estão recortados fora do retângulo
+                    através da propriedade clip_box.</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>clip_box:</term>
+
+              <listitem>
+                <para>este campo contém o valor padrão da propriedade
+                <literal>clip_box</literal> para todos os objetos. Deve ser
+                uma matriz vazia se clip_state for <literal>"off"</literal>.
+                Em outro caso, o recorte é dado por
+                <literal>[x,y,w,h]</literal> (ponto superior esquerdo,
+                largura, altura). </para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Nota sobre valores padrões:</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term></term>
+
+                    <listitem>
+                      <para>Todas essas propriedades e campos listados herdam
+                      de valores padrões armazenados em um modelo de eixos.
+                      Estes valores podem ser visualizados e modificados. Para
+                      isto, utilize o comando
+                      <literal>get("default_axes")</literal> command : ele
+                      retorna o manipulador gráfico do modelo de eixos. Note
+                      que nenhuma janela de gráficos é criada por este
+                      comando. Note que os próximos eixos criados herdarão
+                      deste modelo (ver "exemplo sobre modelo de eixos"
+                      abaixo)</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">  
+   lines(0) // desabilitando o paginamento vertical
+   a=get("current_axes")//obtendo o manipulador dos novos eixos criados
+   a.axes_visible="on"; // tornando os eixos visíveis
+   a.font_size=3; //ajustando o tamanho da fonte dos rótulos dos tiques
+   a.x_location="top"; //ajustando a posição do eixo x
+   a.data_bounds=[-100,-2,-1;100,2,1]; //ajustando os valores limites para as coordenadas x,y e z
+   a.sub_tics=[5,0];
+   a.labels_font_color=5;
+   a.grid=[2,2];
+   a.box="off";
+   
+   // exemplo com eixos 3d
+   clf(); //limpando a janela de gráficos
+   x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
+   a=gca(); // obtendo o manipulador dos eixos correntes
+   a.grid=[1 -1 -1]; //make x-grid
+   a.rotation_angles=[70 250]; //girando eixos com ângulos dados
+   a.grid=[1 6 -1]; //criando y-grid
+   a.view="2d"; //retornando a vista 2d
+   a.box="back_half"; 
+   a.labels_font_color=5;
+   a.children.children.thickness=4;
+   a.children.children.polyline_style=3;
+   a.view="3d"; //return te the 3d view
+   a.children.children.thickness=1;
+   a.children.children.foreground=2;
+   a.grid=[1 6 3]; //criando z-grid
+   a.parent.background=4;
+   a.background=7;
+   plot2d(cos(x)+1,3*sin(x)-3);
+   plot2d(cos(x)+7,3*sin(x)+3);
+   a.children(2).children.polyline_style=2;
+   a.children(1).children.polyline_style=4;
+   a.children(1).children.foreground=5;
+   a.children(2).children.foreground=14;
+   a.parent.figure_size= [1200,800];
+   a.box="on";
+   a.labels_font_size=4;
+   a.parent.background=8;
+   a.parent.figure_size= [400,200];
+   a.rotation_angles=[0 260];
+   delete(a.children(2)); 
+   delete(); // deletando objeto corrente
+
+   a = gca();
+   a.labels_font_size=1;
+   a.auto_clear= "on";
+   x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
+
+   a.data_bounds(:,1) = [1;15] ; // ajustando limites positivos para o eixo x
+   a.log_flags = "lnn" ; // ajustando o eixo X para escala logarítmica
+   a.log_flags = "nnn" ; // voltando para escala linear
+
+   a=gca(); 
+   a.rotation_angles=[45 45];
+   a.data_bounds=[-20,-3,-2;20 3 ,2];
+   xrect([-4 0.5 8 1]);
+   a.auto_clear = "off" ;
+   a.isoview="on"; // modo de isovisualização
+   xrect([-2 0.25 4 0.5]);
+   a.children(1).fill_mode="on";
+   a.axes_visible="off";
+   a.children(1).data=[-2 0.25 -1 4 0.5];
+   a.children(2).data=[-4 0.5 1 8 1];
+   x=2*%pi*(0:7)/8;
+   xv=[.2*sin(x);.9*sin(x)];yv=[.2*cos(x);.9*cos(x)];
+   xsegs(10*xv,yv,1:8)
+   s=a.children(1);
+   s.arrow_size=1;
+   s.segs_color=5;
+   a.data_bounds //os valores limites para as coordenadas x,y e z 
+   a.view="2d";
+   a.data_bounds=[-10,-1; 10,1]; // ajustando os valores limites para vistas bidimensionais
+   
+   // exemplo com eixos modelos
+   da=gda() // obtendo manipulador dos eixo modelos para ver e editar campos
+   // título padrão
+   da.title.text="My Default@Title"
+   da.title.foreground = 12;
+   da.title.font_size = 4;
+   // rótulos x padrões
+   da.x_label.text="x";
+   da.x_label.font_style = 8;
+   da.x_label.font_size = 2;
+   da.x_label.foreground = 5;
+   da.x_location = "middle";
+   // rótulos y padrões
+   da.y_label.text="y";
+   da.y_label.font_style = 3;
+   da.y_label.font_size = 5;
+   da.y_label.foreground = 3;
+   da.y_location = "right";
+   da.thickness = 2;
+   da.foreground = 7;
+   // o esboço
+   x=(0:0.1:2*%pi)';
+   plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
+   sda() // de volta aos eixos modelos padrões
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="lines">lines</link></member>
+
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="gca">gca</link></member>
+
+      <member><link linkend="gda">gda</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="sda">sda</link></member>
+
+      <member><link linkend="sdf">sdf</link></member>
+
+      <member><link linkend="scf">scf</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

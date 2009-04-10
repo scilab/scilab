@@ -13,6 +13,8 @@
 // Wildcards should not be interpreted as such in completion, but as literal text.
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
 // get*<TAB>
 currentline = 'get*';
 r = getpartlevel(currentline);

@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="spec" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>spec</refname>
+
+    <refpurpose>autovalores de matrizes e feixes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>evals=spec(A)
+[R,diagevals]=spec(A)
+
+evals=spec(A,B)
+[alpha,beta]=spec(A,B)
+[alpha,beta,Z]=spec(A,B)
+[alpha,beta,Q,Z]=spec(A,B)
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>B</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos com as mesmas dimensões
+          que<literal> A</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>evals</term>
+
+        <listitem>
+          <para>vetor de reais ou complexos, os autovalores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>diagevals</term>
+
+        <listitem>
+          <para>matriz diagonal de reais ou complexos (autovalores ao longo da
+          diagonal)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>alpha</term>
+
+        <listitem>
+          <para>vetor de reais ou complexos, al./be fornece os
+          autovalores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>beta</term>
+
+        <listitem>
+          <para>vetor de reais, al./be fornece os autovalores</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>R</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos invertível, autovetores
+          direitos da matriz </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Q</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos invertível, autovetores
+          esquerdos do feixe </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>matriz quadrada de reais ou complexos invertível, autovetores
+          direitos do feixe</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>evals=spec(A)</term>
+
+        <listitem>
+          <para> retorna no vetor <literal>evals</literal> os
+          autovalores.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[R,diagevals] =spec(A)</term>
+
+        <listitem>
+          <para>retorna na matriz diagonal <literal>evals</literal> os
+          autovalores e em <literal>R</literal> os autovetores
+          direitos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>evals=spec(A,B)</term>
+
+        <listitem>
+          <para> retorna o espectro do feixe de matrizes A - s B, i.e. as
+          raízes da matriz de polinômios s B - A.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[alpha,beta] = spec(A,B)</term>
+
+        <listitem>
+          <para>retorna o espectro do feixe de matrizes <literal>A - s
+          B</literal>, i.e. as raízes da matriz de polinômios <literal>A - s
+          B</literal>. Auto valores generalizados alpha e beta são tais que a
+          matriz <literal>A - alpha./beta B</literal> é uma matriz singular.
+          Os autovalores são dados por <literal>al./be</literal> e se
+          <literal>beta(i) = 0</literal> o i-ésimo autovalor está no infinito.
+          (Para <literal>B = eye(A), alpha./beta</literal> é
+          <literal>spec(A)</literal>). É usualmente representado pelo par
+          (alpha,beta), já que há uma interpretação razoável para beta=0, e
+          até mesmo para os dois sendo zero.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[alpha,beta,R] = spec(A,B)</term>
+
+        <listitem>
+          <para> retorna, ainda, a matriz <literal>R</literal> de autovetores
+          direitos generalizados do feixe.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[al,be,Q,Z] = spec(A,B)</term>
+
+        <listitem>
+          <para>rretorna ainda a matriz <literal>Q</literal> e
+          <literal>Z</literal> de autovetores esquerdos e direitos
+          generalizados do feixe.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Referências</title>
+
+    <para>As computações de autovalores de matrizes são baseadas nas rotinas
+    Lapack</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>DGEEV e ZGEEV quando as matrizes não são simétricas,</para>
+      </listitem>
+
+      <listitem>
+        <para>DSYEV e ZHEEV quando as matrizes são simétricas.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Uma matriz de complexos simétrica tem termos fora da diagonal
+    conjugados e termos diagonais reais.</para>
+
+    <para>As computações de autovalores de feixes são baseadas nas rotinas
+    Lapack DGGEV e ZGGEV.</para>
+  </refsection>
+
+  <refsection>
+    <title>Matrizes de reais e de complexos</title>
+
+    <para>Deve-se notar que o tipo das variáveis de saída, tais como evals ou
+    R por exemplo, não é necessariamente o mesmo das que das matrizes de
+    entrada A e B. No parágrafo seguinte, análisamos o tipo das variáveis de
+    saída no caso onde nos casos onde se computa os autovalores e autovetores
+    de uma única matriz A.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Matriz A de reais</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Simétrica</para>
+
+            <para>Os autovetores e autovalores são reais.</para>
+          </listitem>
+
+          <listitem>
+            <para>Não simétrica</para>
+
+            <para>Os autovetores e autovalores são complexos.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>Matriz A de complexos</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Simétrica</para>
+
+            <para>Os autovalores são reais, mas os autovetores são
+            complexos.</para>
+          </listitem>
+
+          <listitem>
+            <para>Não simétrica</para>
+
+            <para>Os autovetores e autovalores são complexos.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+// AUTOVALORES DA MATRIZ
+A=diag([1,2,3]);
+X=rand(3,3);
+A=inv(X)*A*X;
+spec(A)
+//
+x=poly(0,'x');
+pol=det(x*eye()-A)
+roots(pol)
+//
+[S,X]=bdiag(A);
+clean(inv(X)*A*X)
+
+// AUTOVALORES DO FEIXE
+A=rand(3,3);
+[al,be,R] = spec(A,eye(A));
+al./be
+clean(inv(R)*A*R)  //exibindo os autovalores (matriz genérica)
+A=A+%i*rand(A);
+E=rand(A);
+roots(det(A-%s*E))   //caso de complexos
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="det">det</link></member>
+
+      <member><link linkend="schur">schur</link></member>
+
+      <member><link linkend="bdiag">bdiag</link></member>
+
+      <member><link linkend="colcomp">colcomp</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

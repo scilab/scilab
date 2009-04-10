@@ -74,3 +74,5 @@ Bug fixes:
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
+
+* bug 4360 fixed - The reference of bug_3954.tst was missing

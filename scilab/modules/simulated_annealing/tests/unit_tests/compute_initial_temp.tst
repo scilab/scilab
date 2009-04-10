@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM_NOT_MANDATORY -->
+
 deff('y=test_func(x)','y=x^2');
 
 x0 = 10;

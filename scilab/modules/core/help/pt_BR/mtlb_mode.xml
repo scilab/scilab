@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="mtlb_mode" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mtlb_mode</refname>
+
+    <refpurpose>alterna para modo de operações do Matlab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>mmode=mtlb_mode()
+mtlb_mode(mmode)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title> Parâmetros </title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mmode</term>
+
+        <listitem>
+          <para>booleano</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Adições e subtrações do Scilab e do Matlab funcionam de modo
+    diferente quando usadas com matrizes vazias: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>Scilab</term>
+
+        <listitem>
+          <para>:</para>
+
+          <programlisting>
+
+a+[] --&gt;a
+a-[] --&gt;a
+[]+a --&gt;a
+[]-a --&gt;-a
+   
+        </programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Matlab</term>
+
+        <listitem>
+          <programlisting>
+
+a+[] --&gt;[]
+a-[] --&gt;[]
+[]+a --&gt;[]
+[]-a --&gt;[]
+   
+        </programlisting>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal> mtlb_mode(%t)</literal> alterna para o modo de operações
+    para adição e subtração do Matlab. <literal> mtlb_mode(%f)</literal> volta
+    para o modo de operações do Scilab.</para>
+
+    <para><literal> mtlb_mode()</literal> retorna o valor 'mmode'
+    corrente.</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="empty">empty</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

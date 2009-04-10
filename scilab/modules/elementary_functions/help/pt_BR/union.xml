@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="union" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>union</refname>
+
+    <refpurpose>extrai componentes da união de um vetor</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>
+      [v [,ka, kb] ] = union(a,b)
+      [v [,ka, kb] ] = union(a,b,orient)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>vetor ou matriz de números ou strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>b</term>
+
+        <listitem>
+          <para>vetor ou matriz de números ou strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orient</term>
+
+        <listitem>
+          <para>flag com valores possíveis : 1 ou "r", 2 ou "c".</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>vetor linha ou matriz de números ou strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ka</term>
+
+        <listitem>
+          <para>vetor linha de inteiros</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>kb</term>
+
+        <listitem>
+          <para>vetor linha de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>union(a,b)</literal> retorna um vetor linha ordenado que
+    retém as entradas únicas de <literal>[a(:);b(:)]</literal>.</para>
+
+    <para><literal>union(a,b,"r")</literal> ou
+    <literal>union(a,b,1)</literal>retorna a matriz formada pela união das
+    linhas únicas de <literal>a</literal> e <literal>b</literal> em ordem
+    lexicográfica ascendente. Neste caso, as matrizes <literal>a</literal> e
+    <literal>b</literal> devem ter o mesmo número de colunas.</para>
+
+    <para><literal>union(a,b,"c")</literal> ou
+    <literal>union(a,b,2)</literal>retorna a matriz formada pela união das
+    colunas únicas de <literal>a</literal> e <literal>b</literal> em ordem
+    lexicográfica ascendente. Neste caso, as matrizes <literal>a</literal> e
+    <literal>b</literal> devem ter o mesmo número de colunas.</para>
+
+    <para><literal>[v,ka,kb]=union(a,b)</literal> também retorna vetores de
+    índices <literal>ka</literal> e <literal>kb</literal> tais que
+    <literal>v</literal> é uma combinação ordenada das entradas
+    <literal>a(ka)</literal> e <literal>b(kb)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=round(5*rand(10,1));
+B=round(5*rand(7,1));
+
+union(A,B)
+[N,ka,kb]=union(A,B)
+
+union('a'+string(A),'b'+string(B))
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="unique">unique</link></member>
+
+      <member><link linkend="gsort">gsort</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

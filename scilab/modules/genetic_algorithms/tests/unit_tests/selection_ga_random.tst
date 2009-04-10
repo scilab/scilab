@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 deff('y=test_func(x)','y=x^2');
 
 Pop_in = list();
@@ -32,4 +34,3 @@ if length(Pop_out)~=100 then pause,end
 if size(Pop_out)~=size(Pop_in) then pause,end
 if length(Efficiency)~=100 then pause,end
 if ~isempty(MO_Total_FObj_out) then pause,end
-

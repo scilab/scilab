@@ -25,22 +25,9 @@
 //    France
 //    November 18, 2003 at 15:38:42
 
-// <-- INTERACTIVE TEST -->
+// <-- JVM NOT MANDATORY -->
 
 p = poly(0,'p');
 G = syslin('c', (1-p)/((p+1)*(p+3)));
 t = [0:1/100:8];
-
-diary(TMPDIR+"/bug549.txt");
-	csim('step',t,G);
-diary(0);
-
-if MSDOS then
-	[rep,stat]=unix_g('findstr /c:""warning"" bug549.txt')
-else
-	[rep,stat]=unix_g("fgrep warning bug549.txt") ;
-end
-
-mdelete(TMPDIR+"/bug549.txt");
-
-if stat == 0 then pause,end
+csim('step',t,G);

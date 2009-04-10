@@ -537,8 +537,6 @@ includes/Contour.h \
 includes/getDictionaryGetProperties.h \
 includes/getDictionarySetProperties.h \
 includes/GrayPlot.h \
-includes/sci_xload.h \
-includes/sci_xsave.h \
 includes/TerminateGraphics.h \
 includes/sci_rubberbox.h \
 includes/sci_rotate_axes.h \

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="sec" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sec</refname>
+
+    <refpurpose>computa a secante elemento a elemento do
+    argumento.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y = sec(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>array de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>array de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Computa a secante elemento a elemento do argumento. A secante é uma
+    função periódica definida como 1/cos. Para dados reais, os resultados são
+    reais em <literal>]-%inf -1] U [1 %inf[</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    x=[0 %pi/3 2*%pi/3 %pi/4 3*%pi/4 %pi/6 5*%pi/6 %pi];
+    sec(x)
+    x=linspace(-%pi,%pi,100)
+    plot(x,sec(x))
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cos">cos</link></member>
+
+      <member><link linkend="secd">secd</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Função Usada</title>
+
+    <para>Esta função usa a função <literal>cos</literal>.</para>
+  </refsection>
+</refentry>

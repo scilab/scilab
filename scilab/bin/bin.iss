@@ -53,6 +53,7 @@ Source: bin\DetectFramework.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\GetWindowsVersion.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libiconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libintl.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}

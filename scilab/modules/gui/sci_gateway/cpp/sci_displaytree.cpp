@@ -1,30 +1,34 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Antoine ELIAS
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2008 - INRIA - Antoine ELIAS
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 /*--------------------------------------------------------------------------*/ 
 
 
 #include <vector>
 #include <sstream>
+#include <iostream> 
+#include <string>
 
 extern "C" 
 {
-	#include "stack-c.h"
-	#include "gw_gui.h"
-	#include "stdlib.h"
-	#include "sciprint.h"
-	#include "MALLOC.h"
+#include "stack-c.h"
+#include "gw_gui.h"
+#include "stdlib.h"
+#include "sciprint.h"
+#include "MALLOC.h"
+#include "getScilabJavaVM.h"
 }
 
 #include "displaytree.hxx"
+#include "ScilabDisplayTree.hxx"
 
 using namespace std;
 /*--------------------------------------------------------------------------*/
@@ -105,10 +109,10 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 		return false;
 	}
 
-	szCallBack		= (char*)MALLOC((iRet + 1) * sizeof(char));
+	szCallBack		= (char*)MALLOC((iRet + 1) * sizeof(char)); //new char[iRet + 1]; replace later
 	iRet			= iGetNodeCallBack(1, piCurrentItem, szCallBack);
 	StructList.push_back(szCallBack);
-	FREE(szCallBack);
+	FREE(szCallBack); //delete[] szCallBack; replace later
 
 	if(iRet == -1)
 	{
@@ -117,6 +121,31 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 
 	bool nRet = bParseListItem(1, piCurrentItem, &StructList, szCurLevel);
 
+
+	// Conversion Vector<string> to char **	
+	char **tab = NULL;
+	char *tmp = NULL;
+	size_t i = 0;
+
+	size_t struct_size = StructList.size();
+	tab = new char*[struct_size];
+
+	for(i = 0; i < struct_size; ++i)
+	{
+		size_t element_size = StructList.at(i).size();	
+		tab[i] = strdup(StructList.at(i).c_str());		
+	}
+	
 	//Java
+	org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, struct_size);
+
+	//Free
+	for(i = 0; i < struct_size; ++i)
+	{
+		delete[] tab[i];
+	}
+
+	delete[] tab;
+
 	return 0;
 }
