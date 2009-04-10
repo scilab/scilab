@@ -20,5 +20,5 @@ uigetcolor("My title", 200, 200, 200);
 [R, G, B] = uigetcolor("My title")
 [R, G, B] = uigetcolor([200 200 200])
 [R, G, B] = uigetcolor("My title", [200 200 200]);
-[R, G, B] = uigetcolor(200 200 200);
+[R, G, B] = uigetcolor(200, 200, 200);
 [R, G, B] = uigetcolor("My title", 200, 200, 200);

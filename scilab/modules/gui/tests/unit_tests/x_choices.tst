@@ -19,7 +19,7 @@ rep  = x_choices("Toggle Menu",list(l1,l2,l3));
 
 // test2
 tog  = "toggle ";
-tog  = tog(ones(1,500))'+string(1:500);
+tog  = tog(ones(1,500))+string(1:500);
 l1   = list("choice 1", 1,tog);
 l2   = list("choice 2", 2,["toggle d1","toggle d2", "toggle d3"]);
 l3   = list("choice 3", 3,["toggle e1","toggle e2"]);

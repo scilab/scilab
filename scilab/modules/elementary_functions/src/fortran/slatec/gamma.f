@@ -113,7 +113,7 @@ C----------------------------------------------------------------------
 CS    REAL 
       DOUBLE PRECISION 
      1    C,CONV,EPS,FACT,HALF,ONE,P,PI,Q,RES,SQRTPI,SUM,TWELVE,
-     2    TWO,X,XBIG,XDEN,XINF,XNUM,Y,Y1,YSQ,Z,ZERO
+     2    TWO,X,XBIG,XDEN,XINF,XNUM,Y,Y1,YSQ,Z,ZERO, XMININ
       DIMENSION C(7),P(8),Q(8)
 C----------------------------------------------------------------------
 C  Mathematical constants
