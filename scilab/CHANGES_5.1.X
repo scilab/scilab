@@ -67,6 +67,12 @@ Enhancement:
   present, the second input argument of test_run is no more the list of tests to
   launch but the list of tests to skip.
   For example, test_run("time",["bug_1506" "bug_793"],"skip_tests");
+  
+* test_run() : The following tags have been added :
+  - <-- WINDOWS ONLY --> If the operating system isn't Windows, the test is skipped.
+  - <-- UNIX ONLY -->    If the operating system isn't an unix OS, the test is skipped.
+  - <-- LINUX ONLY -->   If the operating system isn't Linux, the test is skipped.
+  - <-- MACOSX ONLY -->  If the operating system isn't MacOSX, the test is skipped.
 
 License:
 ========
