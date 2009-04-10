@@ -66,14 +66,17 @@ fpsetmask(0);
 #else
   setScilabMode(SCILAB_STD);
 #endif
-
+  /*
+Desactivated since it is breaking Scilab GUI when not launched from a tty
   if(!isatty(fileno(stdin))) { 
+  */
 	  /* if not an interactive terminal 
 	   * then, we are disabling the banner 
 	   * Since the banner is disabled in the scilab script checking 
 	   * with the function sciargs is -nb is present, I add this argument
 	   * by hand
 	   */
+  /*
 	char** pNewArgv = (char**)malloc((argc + 1) * sizeof(char*));
 
 	for(i = 0 ; i < argc ; i++)
@@ -88,7 +91,7 @@ fpsetmask(0);
   }else{
 	  setCommandLineArgs(argv, argc);
   }
-
+*/
 
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
