@@ -46,8 +46,7 @@ function ilib_gen_Make_unix(names,   ..
 	  for i=1:mt ; 
 		// mex files to be added to the build process
 		if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' then
-		disp("add 1")
-		  if find(files==table(i,2)) == [] then // If not already in the array
+		  if isempty(find(basename(files)==table(i,2))) then // If not already in the array
 			files=[files, table(i,2)] // add it to the file list
 		  end
 		end
