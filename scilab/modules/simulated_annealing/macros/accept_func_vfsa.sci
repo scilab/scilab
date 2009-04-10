@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function Level = accept_func_vfsa(F_current, F_neigh, T)
-Level = 1 / (1 + exp(-(F_current - F_neigh)/T));
+Level = 1 / (1 + exp(-(F_current - F_neigh)/max(T,%eps)));
 endfunction
