@@ -66,10 +66,11 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">    scf(0)
+    <programlisting role="example">
+scf(0)
 plot2d()
 //PPM export
-filename='foo.ps';
+filename='foo.ppm';
 xs2ppm(0,filename);
   </programlisting>
   </refsection>

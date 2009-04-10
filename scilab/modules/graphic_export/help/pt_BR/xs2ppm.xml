@@ -70,7 +70,7 @@
 scf(0)
 plot2d()
 //exportando para PPM
-filename='foo.ps';
+filename='foo.ppm';
 xs2ppm(0,filename);
   </programlisting>
   </refsection>
