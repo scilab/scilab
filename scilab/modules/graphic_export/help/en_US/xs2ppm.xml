@@ -67,9 +67,10 @@
     <title>Examples</title>
 
     <programlisting role="example">    scf(0)
-    plot2d()
-    //PPM export
-    xs2ppm(0,(foo.ppm');
+plot2d()
+//PPM export
+filename='foo.ps';
+xs2ppm(0,filename);
   </programlisting>
   </refsection>
 
