@@ -59,5 +59,6 @@ for i=1:nb_disp
   if DisplayIndiv then disp(pop_opt(i)); end
 end
 
+scf();
 plot_ising2d(pop_opt(1));
 
