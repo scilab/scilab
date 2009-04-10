@@ -39,6 +39,14 @@
 //       This test will be executed with the -l fr_FR option.
 //     <-- JVM NOT MANDATORY -->
 //       This test will be executed with the nwni mode by default.
+//     <-- WINDOWS ONLY -->
+//       If the operating system isn't Windows, the test is skipped.
+//     <-- UNIX ONLY -->
+//       If the operating system isn't an unix OS, the test is skipped.
+//     <-- LINUX ONLY -->
+//       If the operating system isn't Linux, the test is skipped.
+//     <-- MACOSX ONLY -->
+//       If the operating system isn't MacOSX, the test is skipped.
 //
 //   Each test is executed in a separated process, created with the "host" command.
 //   That enables the current command to continue, even if the test as
@@ -622,6 +630,30 @@ function [status_id,status_msg,status_details] = test_run_onetest(module,test,te
 	
 	if grep(txt,"<-- REOPENED -->") <> [] then
 		status_msg = "skipped : Bug reopened";
+		status_id  = 10;
+		return;
+	end
+	
+	if (~MSDOS) & (grep(txt,"<-- WINDOWS ONLY -->") <> [])  then
+		status_msg = "skipped : Windows only";
+		status_id  = 10;
+		return;
+	end
+	
+	if MSDOS & (grep(txt,"<-- UNIX ONLY -->") <> [])  then
+		status_msg = "skipped : Unix only";
+		status_id  = 10;
+		return;
+	end
+	
+	if (~LINUX) & (grep(txt,"<-- LINUX ONLY -->") <> [])  then
+		status_msg = "skipped : Linux only";
+		status_id  = 10;
+		return;
+	end
+	
+	if (~MACOSX) & (grep(txt,"<-- MACOSX ONLY -->") <> [])  then
+		status_msg = "skipped : MacOSX only";
 		status_id  = 10;
 		return;
 	end
