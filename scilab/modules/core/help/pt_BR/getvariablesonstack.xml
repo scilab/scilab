@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="getvariablesonstack"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct.
+    2007)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getvariablesonstack</refname>
+
+    <refpurpose>retorna nomes de variáveis em na pilha Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>s=getvariablesonstack()
+s=getvariablesonstack('local')
+s=getvariablesonstack('global')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>s</term>
+
+        <listitem>
+          <para>uma matriz de strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna na variável <literal>s</literal> nomes de variáveis na pilha
+    do Scilab.</para>
+
+    <para>getvariablesonstack('local') retorna o nome das variáveis locais na
+    pilha.</para>
+
+    <para>getvariablesonstack('global') retorna o nome das variáveis globais
+    na pilha.</para>
+
+    <para>As variáveis são organizadas na ordem alfabética.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">getvariablesonstack()
+  getvariablesonstack('local')
+  getvariablesonstack('global')
+
+   </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="who">who</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

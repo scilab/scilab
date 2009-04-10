@@ -49,7 +49,7 @@ int sci_xset( char *fname, unsigned long fname_len )
 
   if (Rhs <= 0)
 	{
-		sci_demo(fname,"xsetm();",FALSE);
+		sci_demo(fname, fname_len);
 		return 0;
 	}
 
@@ -86,6 +86,8 @@ int sci_xset( char *fname, unsigned long fname_len )
     /* second argument is not a scalar it must be a string */ 
     GetRhsVar(2,STRING_DATATYPE,&m2,&n2,&l2);
     C2F(xsetg)(cstk(l1),cstk(l2),m1,m2);
+		LhsVar(1)=0;
+		C2F(putlhsvar)();
     return 0;
   }
 

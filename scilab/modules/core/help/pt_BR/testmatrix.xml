@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="testmatrix" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>testmatrix</refname>
+
+    <refpurpose>gera algumas matrizes particulares</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[y]=testmatrix(name,n)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+
+        <listitem>
+          <para>um string </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>inteiros , tamanho da matriz</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>matriz <literal>n</literal> x <literal>m</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Cria algumas matrizes particulares </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>testmatrix('magi',n)</term>
+
+        <listitem>
+          <para>retorna um quadrado mágico de tamanho <literal>n</literal>
+          .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>testmatrix('frk',n)</term>
+
+        <listitem>
+          <para>retorna a matriz de Franck :</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>testmatrix('hilb',n)</term>
+
+        <listitem>
+          <para>é a matriz inversa da matriz n x n de Hilbert <literal> (Hij=
+          1/(i+j-1))</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM_NOT_MANDATORY -->
+
 x_current = 1;
 
 x_neigh = neigh_func_default(x_current,10,[]);

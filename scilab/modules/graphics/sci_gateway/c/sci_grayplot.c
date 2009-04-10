@@ -49,7 +49,7 @@ int sci_grayplot( char *fname, unsigned long fname_len )
 
   if (Rhs <= 0)
   {
-    sci_demo(fname, "t=-%pi:0.1:%pi;m=sin(t)'*cos(t);grayplot(t,t,m);", FALSE);
+		sci_demo(fname, fname_len);
     return 0;
   }
   CheckRhs(3,7);

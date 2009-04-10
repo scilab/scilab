@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sfact" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sfact</refname>
+
+    <refpurpose>fatoração espectral em tempo discreto</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>F=sfact(P)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+
+        <listitem>
+          <para>matriz de polinômios reais</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Acha <literal>F</literal>, um fator espectral de
+    <literal>P</literal>. <literal>P</literal> é uma matriz de polinômios tal
+    que cada raiz de <literal>P</literal> possui uma imagem simétrica em
+    relação ao círculo unitário. O problema é singular se uma raiz estiver no
+    círculo unitário.</para>
+
+    <para><literal>sfact(P)</literal> retorna uma matriz de polinômios
+    <literal>F(z)</literal> que é anti-estável e tal que</para>
+
+    <para><literal>P = F(z)* F(1/z) *z^n</literal></para>
+
+    <para> Para polinômios escalares um algorimto específico é implementado.
+    Os algoritmos são implementados do livro de Kucera.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//exemplo polinomial
+z=poly(0,'z');
+p=(z-1/2)*(2-z)
+w=sfact(p);
+w*numer(horner(w,1/z))
+//exemplo matricial
+F1=[z-1/2,z+1/2,z^2+2;1,z,-z;z^3+2*z,z,1/2-z];
+P=F1*gtild(F1,'d');  //P é simétrica
+F=sfact(P)
+roots(det(P))
+roots(det(gtild(F,'d')))  //as raízes estáveis
+roots(det(F))             //as raízes anti-estáveis
+clean(P-F*gtild(F,'d'))
+//exemplo de uso de tempo contínuo
+
+s=poly(0,'s');
+p=-3*(s+(1+%i))*(s+(1-%i))*(s+0.5)*(s-0.5)*(s-(1+%i))*(s-(1-%i));p=real(p);
+//p(s) = polinômio em s^2 , procura por f estável tal que p=f(s)*f(-s) 
+w=horner(p,(1-s)/(1+s));  // transformação bilinear w=p((1-s)/(1+s))
+wn=numer(w);              //tomando o numerador
+fn=sfact(wn);f=numer(horner(fn,(1-s)/(s+1))); //fator e transformação de volta
+f=f/sqrt(horner(f*gtild(f,'c'),0));f=f*sqrt(horner(p,0));      //normalização
+roots(f)    //f é estável
+clean(f*gtild(f,'c')-p)    //f(s)*f(-s) é p(s)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="gtild">gtild</link></member>
+
+      <member><link linkend="fspecg">fspecg</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

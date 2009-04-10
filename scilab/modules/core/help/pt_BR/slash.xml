@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="slash" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>slash</refname>
+
+    <refpurpose>(/) divisão esquerda-direita e feedback
+    ("resposta")</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Divisão esquerda-direita. <literal>x=A / b</literal> é a solução de
+    <literal>x*b=A</literal> .</para>
+
+    <para><literal>b/a = (a' \ b')'</literal> .</para>
+
+    <para><literal>a ./ b</literal> é a matriz com entradas <literal>a(i,j)/
+    b(i,j)</literal>. Se <literal>b</literal> é escalar (matriz 1x1) esta
+    operação é o mesmo que <literal> a./b*ones(a)</literal>. (mesma convenção
+    se <literal>a</literal> é um escalar).</para>
+
+    <para>Observe que<literal> 123./b</literal> é interpretado como
+    <literal>(123.)/b</literal>. Nestes casos, o ponto é parte do número, não
+    do operador.</para>
+
+    <para>(\) significa divisão direita-esquerda.</para>
+
+    <para>Feedback de sistema.<literal> S=G/.K</literal> avalia
+    <literal>S=G*(eye()+K*G)^(-1)</literal> . Este operador evita o problema
+    de simplificação.</para>
+
+    <para>Observe que<literal> G/.5</literal> é interpretado como
+    <literal>G/(.5)</literal>. Em tais casos, o ponto é parte do número, não
+    do operador.</para>
+
+    <para>Comentário. <literal>//</literal> comenta uma linha, i.e. linhas que
+    começam por <literal>//</literal> são ignoradas pelo interpretador.</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="inv">inv</link></member>
+
+      <member><link linkend="percent">percent</link></member>
+
+      <member><link linkend="backslash">backslash</link></member>
+
+      <member><link linkend="ieee">ieee</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

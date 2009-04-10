@@ -1,10 +1,10 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
       subroutine funnam(id,fct,il1)
@@ -17,8 +17,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       data percen/56/,under/36/
       name(1)=percen
       i=2
-      call typ2cod(il1,name(i),n1)
-      i=i+n1
+      if (il1 .ne. 0) then
+         call typ2cod(il1,name(i),n1)
+         i=i+n1
+      endif
       name(i)=under
       i=i+1
       n1=min(len(fct),11)
@@ -34,7 +36,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       INCLUDE 'stack.h'
       integer iadr
       iadr(l)=l+l-1
-      call funnam(ids(1,pt+1),fct,iadr(lstk(k)))
+      if (k .le. 0) then
+         call funnam(ids(1,pt+1),fct,0)
+      else
+         call funnam(ids(1,pt+1),fct,iadr(lstk(k)))
+      endif
       return
       end
 

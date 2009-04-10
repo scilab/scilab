@@ -59,14 +59,7 @@ int sci_champ_G(char *fname,
 
   if (Rhs <= 0) 
   {
-    if (strcmp(fname,"champ")==0) 
-    {
-      sci_demo(fname,"champ(1:10,1:10,rand(10,10),rand(10,10),1.0);", FALSE);
-    }
-    else if (strcmp(fname,"champ1")==0)
-    {
-      sci_demo(fname,"champ1(1:10,1:10,rand(10,10),rand(10,10),1.0);", FALSE);
-    }
+		sci_demo(fname, fname_len);
     return 0;
   } 
   else if ( Rhs < 4 ) 

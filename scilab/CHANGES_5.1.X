@@ -11,6 +11,9 @@ Improvements:
 
 * Spanish Localization added (Thanks Federico Vera and others)
 
+* Online Help translated into português do Brasil (pt_BR) added (Thanks Daniel de Souza Grilo)
+
+
 Compilation:
 ============
 
@@ -38,8 +41,6 @@ Help & Tests:
 * Some equations in the documentation converted to the MathML format 
   (bugs #4180 & #4182)
 
-* Help improved about javasci - Scilab Java API
-
 * Page "Compile and run with Javasci" added
 
 * Examples in javasci translated into english
@@ -62,6 +63,10 @@ Enhancement:
 * isfield() now accepts matrix of strings (fieldnames) as second input argument.
   Then, it returns a matrix of booleans.
 
+* test_run() now accepts "skip_tests" as optionnal argument (3rd argument), if
+  present, the second input argument of test_run is no more the list of tests to
+  launch but the list of tests to skip.
+  For example, test_run("time",["bug_1506" "bug_793"],"skip_tests");
 
 License:
 ========
@@ -252,7 +257,13 @@ Bug fixes:
 
 * bug 4326 fixed - move called with an already deleted handle crashes Scilab.
 
+* bug 4315 fixed - completion("",["commands","macros"]) will only returns "commands"
+
 * bug 4332 fixed - completion copies selected item instead of completing according to this one.
+
+* bug 4342 fixed - When the coutour function is called, an error message is printed.
+
+* bug 4343 fixed - the plot3d demo doesn't seems to work.
 
 
                Changes between version 5.0.X and 5.1 of Scilab

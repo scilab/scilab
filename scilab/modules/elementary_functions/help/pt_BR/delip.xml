@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="delip" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>delip</refname>
+
+    <refpurpose>Integral elíptica</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[r]=delip(x,ck)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor real com elementos não-negativos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ck</term>
+
+        <listitem>
+          <para>número real entre -1 e 1 </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>número real ou complexo ou vetor de reais ou complexos com
+          mesmo tamanho que <literal>x</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A integral elíptica de primeira espécie com parâmetro
+    <literal>ck</literal> definido como segue:</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata>
+            <mml:math><mml:semantics> <mml:mrow> <mml:munderover> <mml:mo
+            mml:stretchy="false">∫</mml:mo> <mml:mn>0</mml:mn>
+            <mml:mi>x</mml:mi> </mml:munderover> <mml:mfrac> <mml:mi
+            mml:fontstyle="italic">dt</mml:mi> <mml:msqrt> <mml:mrow>
+            <mml:mrow> <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
+            <mml:mn>1</mml:mn> <mml:mo mml:stretchy="false">−</mml:mo>
+            <mml:msup> <mml:mi>t</mml:mi> <mml:mn>2</mml:mn> </mml:msup>
+            </mml:mrow> <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
+            <mml:mrow> <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
+            <mml:mrow> <mml:mn>1</mml:mn> <mml:mo
+            mml:stretchy="false">−</mml:mo> <mml:msubsup> <mml:mi>c</mml:mi>
+            <mml:mi>k</mml:mi> <mml:mn>2</mml:mn> </mml:msubsup> </mml:mrow>
+            <mml:msup> <mml:mi>t</mml:mi> <mml:mn>2</mml:mn> </mml:msup>
+            </mml:mrow> <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
+            </mml:mrow> </mml:msqrt> </mml:mfrac> </mml:mrow> <mml:annotation
+            mml:encoding="StarMath 5.0">int from{0} to{x} {{dt} over sqrt{
+            (1-t^2)(1-c_k^2 t^2)}}</mml:annotation></mml:semantics></mml:math>
+          </imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Onde <literal>x</literal> é real e positivo e <literal>ck</literal>
+    está em <literal>[-1 1]</literal>.</para>
+
+    <para>Se x é menor do que ou igual a 1, o resultado é real.</para>
+
+    <para>Quando chamado com <literal>x</literal>, um vetor real
+    <literal>r</literal> é avaliado para cada entrada de
+    <literal>x</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+ck=0.5;
+delip([1,2],ck)
+deff('y=f(t)','y=1/sqrt((1-t^2)*(1-ck^2*t^2))')
+intg(0,1,f)    //OK, desde que a solução seja real!
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="amell">amell</link></member>
+
+      <member><link linkend="asn">%asn</link></member>
+
+      <member><link linkend="sn">%sn</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

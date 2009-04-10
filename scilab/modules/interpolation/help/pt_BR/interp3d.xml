@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="interp3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interp3d</refname>
+
+    <refpurpose>função de avaliação spline 3d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp, yp, zp</term>
+
+        <listitem>
+          <para>vetores ou matrizes de reais de mesmo tamanho </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tl</term>
+
+        <listitem>
+          <para>tlist do tipo "splin3d", definindo um tensor spline 3d
+          (chamado <literal>s</literal> a partir daqui) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>out_mode</term>
+
+        <listitem>
+          <para>(opcional) string definindo a avaliação de
+          <literal>s</literal> fora do grid
+          ([xmin,xmax]x[ymin,ymax]x[zmin,zmax]) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fp</term>
+
+        <listitem>
+          <para>vetor ou matriz de mesmo formato que <literal>xp</literal>,
+          <literal>yp</literal> e <literal>zp</literal>, avaliação elemento a
+          elemento de <literal>s</literal> onesses pontos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dfpdx, dfpdy, dfpdz</term>
+
+        <listitem>
+          <para>vetores (ou matrizes) de mesmo formato que
+          <literal>xp</literal>, <literal>yp</literal> e
+          <literal>zp</literal>, avaliação elemento a elemento das primeiras
+          derivadas de <literal>s</literal> nesses pontos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dada uma tlist <literal>tl</literal> definindo uma função spline 3d
+    (ver <link linkend="splin3d">splin3d</link>) esta função avalia
+    <emphasis>s</emphasis> (e <emphasis>ds/dx, ds/dy, ds/dz</emphasis> , se
+    necessário) em <emphasis>(xp(i),yp(i),zp(i))</emphasis> :</para>
+
+    <programlisting>
+      zp(i) = s(xp(i),yp(i))   
+      dzpdx(i) = ds/dx(xp(i),yp(i),zp(i))
+      dzpdy(i) = ds/dy(xp(i),yp(i),zp(i))  
+      dzpdz(i) = ds/dz(xp(i),yp(i),zp(i))
+         </programlisting>
+
+    <para>O parâmetro <literal>out_mode</literal>define a regra de avaliação
+    para extrapolação, i.e. para <emphasis>(xp(i),yp(i),zp(i)) fora de
+    [xmin,xmax]x[ymin,ymax]x[zmin,zmax]</emphasis>:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+
+        <listitem>
+          <para>uma extrapolação por zero é feita </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"by_nan"</term>
+
+        <listitem>
+          <para>extrapolação por NaN ("não é número") </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"C0"</term>
+
+        <listitem>
+          <para>a extrapolação definida como segue :</para>
+
+          <programlisting>
+    s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
+                           em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
+         </programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para>: <literal>s</literal> é estendido por periodicidade.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos </title>
+
+    <programlisting role="example">
+// veja exemplos na página da função splin3d
+
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin3d">splin3d</link></member>
+
+      <member><link linkend="bsplin3val">bsplin3val</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <simplelist type="vert">
+      <member>R.F. Boisvert, C. De Boor (código da biblioteca FORTRAN CMLIB)
+      </member>
+
+      <member>B. Pincon (interface Scilab)</member>
+    </simplelist>
+  </refsection>
+</refentry>

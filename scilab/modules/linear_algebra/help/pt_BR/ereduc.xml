@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ereduc" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ereduc</refname>
+
+    <refpurpose>computa de forma escada de colunas da matriz por
+    transformações qz</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>matriz m x n de entradas reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para>escalar real positivo </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E</term>
+
+        <listitem>
+          <para>matriz em forma escada de colunas </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Q</term>
+
+        <listitem>
+          <para>matriz unitária m x m </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>matriz unitária n x n </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stair</term>
+
+        <listitem>
+          <para>vetor de índices,</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>*</term>
+
+              <listitem>
+                <para><literal>ISTAIR(i) = + j</literal> se o elemento da
+                borda <literal>E(i,j)</literal> é uma quina.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>*</term>
+
+              <listitem>
+                <para><literal>ISTAIR(i) = - j</literal> se o elemento da
+                borda <literal>E(i,j)</literal> não é uma quina.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+
+          <para><literal>(i=1,...,M)</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rk</term>
+
+        <listitem>
+          <para>inteiro, posto estimado da matriz</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dada uma matriz X <literal>m x n</literal> (não necessariamente
+    regular), a função ereduc calcula a matriz unitária transformada
+    <literal>E=Q*X*Z</literal> que está na forma escada de colunas (forma
+    trapezoidal). Ainda, o posto da matriz <literal>X</literal> é
+    determinado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+X=[1 2 3;4 5 6]
+[E,Q,Z ,stair ,rk]=ereduc(X,1.d-15)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="fstair">fstair</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
+  </refsection>
+</refentry>

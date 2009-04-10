@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bessel" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv xml:id="besseli">
+    <refname>besseli</refname>
+
+    <refpurpose>funções modificadas de Bessel do primeiro tipo (I sub
+    alfa).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="besselj">
+    <refname>besselj</refname>
+
+    <refpurpose>funções de Bessel do primeiro tipo (J sub alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="besselk">
+    <refname>besselk</refname>
+
+    <refpurpose>funções modificadas de Bessel do segundo tipo (K sub
+    alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="bessely">
+    <refname>bessely</refname>
+
+    <refpurpose>funções de Bessel do segundo tipo (Y sub alpha).</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="besselh">
+    <refname>besselh</refname>
+
+    <refpurpose>funções de Bessel do terceiro tipo (também conhecidas como
+    funções de Hankel)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y = besseli(alpha,x [,ice])
+y = besselj(alpha,x [,ice])
+y = besselk(alpha,x [,ice])
+y = bessely(alpha,x [,ice])
+y = besselh(alpha,x)
+y = besselh(alpha,K,x [,ice])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>alpha</term>
+
+        <listitem>
+          <para>vetor de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ice</term>
+
+        <listitem>
+          <para>flag (sinalizador) inteiro, com valor padrão 0 </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>K</term>
+
+        <listitem>
+          <para>inteiro, com valores possíveis 1 ou 2, a função do tipo de
+          Hankel.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Aviso: a semântica destas funções varia entre o Scilab-3.0 e
+    Scilab-3.1. A semântica antiga está disponível para compatibilidade usando
+    as funções <link linkend="oldbesseli">oldbesseli</link>, <link
+    linkend="oldbesselj">oldbesselj</link>, <link
+    linkend="oldbesselk">oldbesselk</link>, <link
+    linkend="oldbessely">oldbessely</link>.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>besseli(alpha,x)</literal> computa as funções de Bessel
+        modificadas do primeiro tipo (I sub alfa), para ordem real
+        <literal>alpha</literal> e argumento <literal>x</literal>.
+        <literal>besseli(alpha,x,1)</literal> computa
+        <literal>besseli(alpha,x).*exp(-abs(real(x)))</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>besselj(alpha,x)</literal> computa as funções de Bessel
+        do primeiro tipo (J sub alfa), para ordem real
+        <literal>alpha</literal> e argumento <literal>x</literal>.
+        <literal>besselj(alpha,x,1)</literal> computa
+        <literal>besselj(alpha,x).*exp(-abs(imag(x)))</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>besselk(alpha,x)</literal> computa as funções de Bessel
+        modificadas do segundo tipo (K sub alfa), para ordem real
+        <literal>alpha</literal> e argumento <literal>x</literal>.
+        <literal>besselk(alpha,x,1)</literal> computa
+        <literal>besselk(alpha,x).*exp(x)</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>bessely(alpha,x)</literal> computa as funções de Bessel
+        do segundo tipo (Y sub alfa), para ordem real <literal>alpha</literal>
+        e argumento <literal>x</literal>.
+        <literal>bessely(alpha,x,1)</literal> computa
+        <literal>bessely(alpha,x).*exp(-abs(imag(x)))</literal>.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>besselh(alpha [,K] ,x)</literal> computa as funções de
+        Bessel do terceiro tipo (função de Hankel H1 ou H2, dependendo do
+        <literal>K</literal>), para ordem real <literal>alpha</literal> e
+        argumentot <literal>x</literal>. Se omitido, <literal>K</literal> é
+        suposto como sendo 1. <literal>besselh(alpha,1,x,1)</literal> computa
+        <literal>besselh(alpha,1,x).*exp(-%i*x)</literal> e
+        <literal>besselh(alpha,2,x,1)</literal> computa
+        <literal>besselh(alpha,2,x).*exp(%i*x)</literal></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Observações </title>
+
+    <para>Se <literal>alpha</literal> e <literal>x</literal> são arrays de
+    mesmo tamanho, o resultado <literal>y</literal> também terá este tamanho.
+    Se uma entrada é um escalar, ela é expandida para o tamanho da outra
+    entrada. Se uma entrada é um vetor linha e a outra é um vetor coluna, o
+    resultado <literal>y</literal> é um table 2-dimensional ("tabela") de
+    valores de funções.</para>
+
+    <para>As funções de Bessel Y_alfa e J_alfa são duas soluções independentes
+    da equação diferencial de Bessel:</para>
+
+    <programlisting>2 2 2 x y" + x y' + (x - alfa ) y = 0 , alfa &gt;=
+    0</programlisting>
+
+    <para>As funções modificadas de Bessel K_alfa e I_alfa são duas soluções
+    independentes para a equação diferencial de Bessel :</para>
+
+    <programlisting>2 2 2 x y" + x y' - (x + alfa ) y = 0 , alfa &gt;=
+    0</programlisting>
+
+    <para>As funções de Hankel de primeiro e segundo tipos H^1_alfa e
+    H^2_alfa, são combinações lineares das funções de Bessel de primeiro e
+    segundo tipos:</para>
+
+    <programlisting>H^1_alfa(z) = J_alfa(z) + i Y_alfa(z) H^2_alfa(z) =
+    J_alfa(z) - i Y_alfa(z)</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+//  Funções I de Bessel
+// ==================
+   x = linspace(0.01,10,5000)';
+   xbasc()
+   subplot(2,1,1)
+   plot2d(x,besseli(0:4,x), style=2:6)
+   legend('I'+string(0:4),2);
+   xtitle("Algumas funções modificadas de Bessel do primeiro tipo")
+   subplot(2,1,2)
+   plot2d(x,besseli(0:4,x,1), style=2:6)
+   legend('I'+string(0:4),1);
+   xtitle("Algumas funções modificadas de Bessel do primeiro tipo escaladas")
+
+// Funções J de Bessel
+// =================
+   x = linspace(0,40,5000)';
+   xbasc()
+   plot2d(x,besselj(0:4,x), style=2:6, leg="J0@J1@J2@J3@J4")
+   legend('I'+string(0:4),1);
+   xtitle("Algumas funções de Bessel do primeiro tipo")
+
+// Usando o fato de que J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
+// Para comparar o algoritmo de besselj(0.5,x) com uma fórmula mais direta 
+   x = linspace(0.1,40,5000)';
+   y1 = besselj(0.5, x);
+   y2 = sqrt(2 ./(%pi*x)).*sin(x);
+   er = abs((y1-y2)./y2);
+   ind = find(er &gt; 0 &amp; y2 ~= 0);
+   xbasc()
+   subplot(2,1,1)
+   plot2d(x,y1,style=2)
+   xtitle("besselj(0.5,x)")
+   subplot(2,1,2)
+   plot2d(x(ind), er(ind), style=2, logflag="nl")
+   xtitle("Erro relativo entre as duas fórmulas para besselj(0.5,x)") 
+
+
+// Funções K de Bessel
+// =================
+   x = linspace(0.01,10,5000)';
+   xbasc()
+   subplot(2,1,1)
+   plot2d(x,besselk(0:4,x), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
+   xtitle("Algumas funções modificadas de Bessel do segundo tipo")
+   subplot(2,1,2)
+   plot2d(x,besselk(0:4,x,1), style=0:4, rect=[0,0,6,10])
+   legend('K'+string(0:4),1);
+   xtitle("Algumas funções modificadas de Bessel do segundo tipo escaladas")
+
+// Funções Y de Bessel
+// =================
+   x = linspace(0.1,40,5000)'; // funções Y de Bessel não possuem limite para x -&gt; 0+
+   xbasc()
+   plot2d(x,bessely(0:4,x), style=0:4, rect=[0,-1.5,40,0.6])
+   legend('Y'+string(0:4),4);
+   xtitle("Algumas funções de Bessel do segundo tipo")
+
+// Funções H de Bessel
+// =================
+   x=-4:0.025:2; y=-1.5:0.025:1.5;
+   [X,Y] = ndgrid(x,y);
+   H = besselh(0,1,X+%i*Y); 
+   clf();f=gcf();
+   xset("fpf"," ")
+   f.color_map=jetcolormap(16);
+   contour2d(x,y,abs(H),0.2:0.2:3.2,strf="034",rect=[-4,-1.5,3,1.5])
+   legends(string(0.2:0.2:3.2),1:16,"ur")
+   xtitle("Curvas de nível de |H1(0,z)|")
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <simplelist type="vert">
+      <member>Amos, D. E., (SNLA)</member>
+
+      <member>Daniel, S. L., (SNLA)</member>
+
+      <member>Weston, M. K., (SNLA)</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Função Usada</title>
+
+    <para>Os códigos-fontes podem ser achados em routines/calelm</para>
+
+    <para>Slatec : dbesi.f, zbesi.f, dbesj.f, zbesj.f, dbesk.f, zbesk.f,
+    dbesy.f, zbesy.f, zbesh.f</para>
+
+    <para>Drivers para estender a área de definição (Serge Steer INRIA):
+    dbesig.f, zbesig.f, dbesjg.f, zbesjg.f, dbeskg.f, zbeskg.f, dbesyg.f,
+    zbesyg.f, zbeshg.f</para>
+  </refsection>
+</refentry>

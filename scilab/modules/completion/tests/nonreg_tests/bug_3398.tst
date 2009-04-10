@@ -18,8 +18,10 @@
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
-exec('SCI/modules/completion/tests/utilities/build_primitives.sce',-1);
-exec('SCI/modules/completion/tests/utilities/loader.sce',-1);
+ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
+if ierr<>0 then pause, end
+ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
+if ierr<>0 then pause, end
 
 currentline = 'exec le';
 r = getpartlevel(currentline);

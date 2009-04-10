@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="randpencil" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>randpencil</refname>
+
+    <refpurpose>feixe aleatório</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>F=randpencil(eps,infi,fin,eta)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title> Parâmetros </title>
+
+    <variablelist>
+      <varlistentry>
+        <term>eps</term>
+
+        <listitem>
+          <para>vetor de inteiros </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>infi</term>
+
+        <listitem>
+          <para>vetor de inteiros </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fin</term>
+
+        <listitem>
+          <para>vetor de reais, ou polinômio mônico, ou vetor de polinômios
+          mônicos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>eta</term>
+
+        <listitem>
+          <para>vetor de inteiros </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F</term>
+
+        <listitem>
+          <para>feixe de matrizes de reais <literal>F=s*E-A</literal>
+          (<literal>s=poly(0,'s')</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Função utilitária. <literal>F=randpencil(eps,infi,fin,eta)</literal>
+    retorna um feixe aleatório <literal>F</literal> com dada estrutura de
+    Kronecker. A estrutura é dada por: <literal>eps=[eps1,...,epsk]</literal>:
+    estrutura de blocos epsilon (tamanho eps1x(eps1+1),....)
+    <literal>fin=[l1,...,ln]</literal> conjunto de autovalores finitos
+    (assumidos como reais) (possivelmente [])
+    <literal>infi=[k1,...,kp]</literal> tamanho de blocos J no infinito
+    <literal>ki&gt;=1</literal> (infi=[] se não há blocos J).
+    <literal>eta=[eta1,...,etap]</literal>: estrutura dos blocos eta (size
+    eta1+1)xeta1,...)</para>
+
+    <para><literal>epsi</literal>'s devem ser &gt;=0,
+    <literal>etai</literal>'s devem ser &gt;=0, <literal>infi</literal>'s
+    devem ser &gt;=1.</para>
+
+    <para>Se <literal>fin</literal> é um polinômio (mônico), o bloco finito
+    admite raízes de <literal>fin</literal> como autovalores.</para>
+
+    <para>Se <literal>fin</literal> é um vetor de polinômios, eles são os
+    divisores elementares finitos de <literal>F</literal> ,i.e., as raízes de
+    <literal>p(i)</literal> são autovalores finitos de
+    <literal>F</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+F=randpencil([0,1],[2],[-1,0,1],[3]);
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
+Qd, Zd
+s=poly(0,'s');
+F=randpencil([],[1,2],s^3-2,[]); //feixe regular
+det(F)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="kroneck">kroneck</link></member>
+
+      <member><link linkend="pencan">pencan</link></member>
+
+      <member><link linkend="penlaur">penlaur</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

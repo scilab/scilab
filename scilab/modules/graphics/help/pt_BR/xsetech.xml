@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xsetech" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xsetech</refname>
+
+    <refpurpose>ajusta a sub-janela de uma janela de gráficos para
+    esboço</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xsetech(wrect,[frect,logflag])
+xsetech(wrect=[...],frect=[..],logflag="..", arect=[...])
+xsetech()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>wrect</term>
+
+        <listitem>
+          <para>vetor de tamanho 4 definindo a sub-janela a ser utilizada.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>frect</term>
+
+        <listitem>
+          <para>vetor de tamanho 4. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>logflag</term>
+
+        <listitem>
+          <para>string de tamanho 2 "xy", onde x e y podem ser "n" ou "l". "n"
+          escala normal e "l" significa escala logarítmica. x refere-se ao
+          eixo x e y ao eixo y. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arect</term>
+
+        <listitem>
+          <para>vetor de tamanho 4.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição </title>
+
+    <para><literal>xsetech</literal> é principalmente utilizado para ajustar a
+    sub-janela da janela de gráficos que será utilizada para esboço. A
+    sub-janela é especificada através do parâmetro
+    <literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo, largura,
+    altura). Os valores em <literal>wrect</literal> a são especificados
+    utilizando-se a proporção de largura ou altura da janela de gráficos
+    corrente. Por exemplo, <literal>wrect=[0,0,1,1]</literal> significa que
+    toda a janela será utilizada e <literal>wrect=[0.5,0,0.5,1]</literal>
+    significa que a região gráfica será a metade direita da janela de
+    gráficos.</para>
+
+    <para><literal>xsetech</literal> também ajusta as escalas gráficas
+    correntes para esboço 2d e pode ser utilizada juntamente a rotinas
+    gráficas que requerem a escala de gráficos corrente (por exemplo
+    <literal>strf="x0z"</literal> ou <literal>frameflag=0</literal> em
+    <literal>plot2d</literal>).</para>
+
+    <para><literal>frect=[xmin,ymin,xmax,ymax]</literal> é utilizado para
+    ajustar a escala gráfica e é igual ao argumento <literal>rect</literal> de
+    <literal>plot2d</literal>. Se <literal>frect</literal> não for fornecido,
+    o valor corrente da escala de gráficos permanece inalterado. O valor
+    padrão de <literal>rect</literal> é <literal>[0,0,1,1]</literal> (na
+    criação de janelas, quando se volta para o valor padrão com
+    <literal>xset('default')</literal> ou quando se limpa eventos gráficos
+    gravados <literal>xbasc()</literal>).</para>
+
+    <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> é utilizado
+    para ajustar a moldura gráfica dentro da sub-janela. A moldura gráfica é
+    especificada (como <literal>wrect</literal>) utilizando-se a proporção de
+    largura ou altura da sub-janela de gráficos corrente. O valor padrão é
+    <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> não for
+    fornecido, o valor padrão permanece inalterado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// para obter uma explanação gráfica dos parâmetros de xsetech entre com:
+exec('SCI/modules/graphics/demos/xsetechfig.sce');
+
+
+// aqui xsetech é usado para dividir a janela de gráficos em duas partes
+// o primeiro xsetech é usado para se ajustar a primeira sub-janela 
+// e a escala de gráficos corrente
+xsetech([0,0,1.0,0.5],[-5,-3,5,3])
+// chamamos plot2d com a opção "001" para utilizar a escala de gráficos
+// ajustada por xsetech 
+plot2d([1:10]',[1:10]',1,"001"," ")
+// então xsetech é usado para ajustar a segunda sub-janela
+xsetech([0,0.5,1.0,0.5])
+// a escala de gráficos é ajustada por xsetech para [0,0,1,1] por padrão
+// e nós a modificamos utilizando o argumento rect em plot2d 
+plot2d([1:10]',[1:10]',1,"011"," ",[-6,-6,6,6])
+// quatro esboços em uma única janela de gráficos
+xbasc()
+xset("font",2,0)
+xsetech([0,0,0.5,0.5]); plot3d()
+xsetech([0.5,0,0.5,0.5]); plot2d()
+xsetech([0.5,0.5,0.5,0.5]); grayplot()
+xsetech([0,0.5,0.5,0.5]); histplot()
+// de volta aos valores padrões para a sub-janela
+xsetech([0,0,1,1])
+// um esboço com arect modificado 
+xbasc()
+xset("default")
+xsetech(arect=[0,0,0,0]) 
+x=1:0.1:10;plot2d(x',sin(x)')
+xbasc()
+xsetech(arect=[1/8,1/8,1/16,1/4])
+x=1:0.1:10;plot2d(x',sin(x)')
+xbasc()
+xset("default")
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="xgetech">xgetech</link></member>
+
+      <member><link linkend="subplot">subplot</link></member>
+
+      <member><link linkend="isoview">isoview</link></member>
+
+      <member><link linkend="square">square</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

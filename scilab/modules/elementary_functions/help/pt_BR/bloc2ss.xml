@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bloc2ss" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bloc2ss</refname>
+
+    <refpurpose> conversão de diagrama de blocos para espaço de estados
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[sl]=bloc2ss(blocd)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>blocd</term>
+
+        <listitem>
+          <para>lista</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sl</term>
+
+        <listitem>
+          <para>lista</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dada uma representação em diagrama de blocos de um sistema linear,
+    <literal>bloc2ss</literal> converte esta representação em um sistema
+    linear de espaço de estados. O primeiro elemento da lista
+    <literal>blocd</literal> deve ser o string (cadeia de caracteres)
+    <literal>'blocd'</literal>. Cada outro elemento desta lista é, por si
+    mesmo, uma lista de um dos seguintes tipos :</para>
+
+    <programlisting>
+
+list('transfer','nome_do_sistema_linear')
+
+   
+    </programlisting>
+
+    <programlisting>
+
+list('link','nome_do_link', [número_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior],
+               [caixa_de_fluxo_inferior_1,número_de_porta_da_caixa_inferior_1],
+               [caixa_de_fluxo_inferior_2,número_de_porta_da_caixa_inferior_2],
+               ...)
+
+   
+    </programlisting>
+
+    <para>Os strings <literal>'transfer'</literal> e
+    <literal>'links'</literal> são palavras-chaves as quais indicam o tipo de
+    elemento no diagrama de blocos ("transfer"=transferência, "link"=
+    ligação).</para>
+
+    <para>Caso 1: o segundo parâmetro da lista é um string que pode se referir
+    (para uma possível avaliação posterior) ao nome Scilab de um sistema
+    linear dado em representação de espaço de estados (lista
+    <literal>syslin</literal>) ou em forma de trasnferência (matriz de razões
+    de polinômios).</para>
+
+    <para>A cada bloco de transferência é associado um inteiro. A cada entrada
+    e saida de um bloco de transferência, também é associado seu número, um
+    inteiro (ver exemplos).</para>
+
+    <para>Caso 2: O segundo tipo de elemento em uma representação de diagrama
+    de blocos é um link. Um link liga uma saída de um bloco representado pelo
+    par <literal>[
+    número_de_caixa_de_fluxo_superior,porta_da_caixa_de_fluxo_superior]</literal>,
+    a diferentes entradas de outros blocos. Cada tal entrada é representada
+    pelo par [caixa_de_fluxo_inferior_i,número_de_porta_da_caixa_inferior_i]
+    .</para>
+
+    <para>Os diferentes elementos de um diagrama de blocos podem ser definidos
+    em ordem arbitrária.</para>
+
+    <para>Por exmeplo:</para>
+
+    <para>[1] <literal>S1*S2</literal> com feedback (resposta) de
+    unidade.</para>
+
+    <para>Há 3 transferências <literal>S1</literal> (número
+    <literal>n_s1=2</literal>) , <literal>S2</literal> (número
+    <literal>n_s2=3</literal>) e um adicionador ("adder") (número
+    <literal>n_add=4</literal>) com função de transferência simbólica
+    <literal>['1','1']</literal>.</para>
+
+    <para>Há 4 links. O primeiro (de nome <literal>'U'</literal>) liga a
+    entrada (porta 0 de bloco fictício -1, omitido) à porta 1 do adicionador.
+    Os segundo e terceiro ligam respectivamente a porta (de saída) 1 do
+    adicionador à porta (de entrada) 1 do sistema <literal>S1</literal>, e a
+    porta (de saída) 1 de <literal>S1</literal> à porta (de entrada) 1 de
+    <literal>S2</literal>. O quarto link (de nome <literal>'Y'</literal>) liga
+    a porta (de saída) 1 de <literal>S2</literal> à saída (porta 0 do bloco
+    fictício -1, omitido) e à porta (de entrada) 2 do adicionador.</para>
+
+    <programlisting>
+
+//Inicialização
+syst=list('blocd'); l=1;
+//
+//Sistemas
+l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //Sistema 1
+l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //Sistema 2
+l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adicionador
+//
+//Links
+// Entradas  -1 --&gt; entrada 1
+l=l+1;syst(l)=list('link','U1',[-1],[n_adder,1]);
+// Internal 
+l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
+l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
+// Saídas // -1 -&gt; saída 1
+l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+   
+    </programlisting>
+
+    <para>Com <literal>s=poly(0,'s');S1=1/(s+1);S2=1/s;</literal> o resultado
+    da avaliação de chamada <literal>sl=bloc2ss(syst);</literal> é uma
+    representação em estado-espaço para <literal>1/(s^2+s-1)</literal>.</para>
+
+    <para>[2] exemplo da transformação linear fracional (TLF e, em inglês
+    LFT):</para>
+
+    <programlisting>
+
+//Inicialização
+syst=list('blocd'); l=1;
+//
+//Sistema (planta de blocos 2x2)
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']); 
+// 
+//Controlador
+l=l+1;n_k=l;syst(l)=list('transfer','k');
+// 
+//Links
+l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
+l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
+l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
+l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+   
+    </programlisting>
+
+    <para>Com</para>
+
+    <programlisting>
+
+P=syslin('c',A,B,C,D);
+P11=P(1,1); 
+P12=P(1,2);
+P21=P(2,1); 
+P22=P(2,2);
+K=syslin('c',Ak,Bk,Ck,Dk);
+   
+    </programlisting>
+
+    <para><literal>bloc2exp(syst)</literal> retorna a avaliação de TLF de
+    <literal>P</literal> e <literal>K</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bloc2exp">bloc2exp</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>S. S., F. D. (INRIA)</para>
+  </refsection>
+</refentry>
