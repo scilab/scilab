@@ -52,5 +52,6 @@ printf('Initial temperature T0 = %f\n', T0);
 printf('optimal solution:\n'); disp(x_opt);
 printf('value of the objective function = %f\n', f_opt);
 
+scf();
 plot_ising2d(x_opt);
 

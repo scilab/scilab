@@ -77,6 +77,7 @@ deff('y=fobjs(x)','y = ' + funcname + '(x);');
 [f_pareto,pop_pareto] = pareto_filter(fobj_pop_opt,pop_opt);
 
 if (size(fobj_pop_opt,2)==2) then
+  scf();
   drawlater;
   subplot(2,1,1);
   printf('plotting init population ...\n');
