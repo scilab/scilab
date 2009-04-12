@@ -239,13 +239,14 @@ $ ./myExample
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link></member>
 
-      <member><link linkend="SciDouble">SciDouble</link></member>
+      <member><link linkend="call_scilab">call_scilab</link></member>
 
-      <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>
+      <member><link linkend="StartScilab">StartScilab</link></member>
 
-      <member><link linkend="SciString">SciString</link></member>
+      <member><link linkend="SendScilabJob">SendScilabJob</link></member>
+
+      <member><link linkend="SendScilabJobs">SendScilabJobs</link></member>
 
       <member><link linkend="SciStringArray">SciStringArray</link></member>
     </simplelist>
