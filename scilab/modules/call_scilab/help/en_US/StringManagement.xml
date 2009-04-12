@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="StringManagement" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="StringManagement_callscilab" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -34,22 +34,15 @@
 	
 	</para>
 
-    <para>This help describes the features of the javasci API.</para>
+    <para>This help describes how strings and matrix of strings can 
+be handle through the Call Scilab API.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// A simple Java example 
-// Filename: DisplayPI.java
-
-import javasci.Scilab;
-
-public class DisplayPI {
-public static void main(String []args){
-Scilab.Exec("disp(%pi);");
-}
-}</programlisting>
+    <programlisting role="example">
+</programlisting>
   </refsection>
 
   <refsection>
@@ -57,14 +50,6 @@ Scilab.Exec("disp(%pi);");
 
     <simplelist type="inline">
       <member><link linkend="Scilab">Scilab</link></member>
-      <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
-      <member><link linkend="SciDouble">SciDouble</link></member>
-
-      <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>
-
-      <member><link linkend="SciString">SciString</link></member>
-
-      <member><link linkend="SciStringArray">SciStringArray</link></member>
     </simplelist>
   </refsection>
 
