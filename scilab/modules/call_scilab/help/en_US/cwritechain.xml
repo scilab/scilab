@@ -78,6 +78,15 @@
             <para>The length of the string (fortran compatibility)</para>
           </listitem>
         </varlistentry>
+
+        <varlistentry>
+          <term>C2F</term>
+
+          <listitem>
+            <para>C2F is just a macro which provides to this function the
+            ability to be called from fortran</para>
+          </listitem>
+        </varlistentry>
       </variablelist></para>
   </refsection>
 
