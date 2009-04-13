@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="BooleanManagement_callscilab"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Boolean management</refname>
+
+    <refpurpose>How to manage Scilab's boolean read and write process using
+    call_scilab</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This help describes how boolean and matrix of booleans can be handle
+    through the Call Scilab API.</para>
+
+    <para>There are several functions which can be used to read / write from
+    the memory of Scilab. These functions are described in dedicated
+    pages.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting>/* 
+ * Write a matrix of boolean into Scilab
+ * B=[F F T F; 
+ *    F F F T ]
+ * Note that it is done column by column
+ */ 
+	int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
+	int rowB=2, colB=4; /* Size of the matrix */
+	char variableNameB[] = "B";
+	C2F(cwritebmat)(variableNameB, &amp;rowB, &amp;colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+
+	printf("Display from Scilab of B:\n");
+	SendScilabJob("disp(B);"); /* Display B */
+</programlisting>
+
+    <programlisting>/* Read the previously declared matrix of boolean B */
+	int rowB_ = 0, colB_ = 0, lp_ = 0;
+	int i = 0, j = 0;
+	int *matrixOfBooleanB = NULL; /* Int instead of double */
+
+	char variableToBeRetrievedB[] = "B";
+
+	/* First, retrieve the size of the matrix */
+	C2F(cmatbptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+
+	/* Alloc the memory */
+	matrixOfBooleanB=(int*)malloc((rowB_*colB_)*sizeof(int));
+
+	/* Load the matrix */
+	C2F(creadbmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfBooleanB,strlen(variableToBeRetrievedB) );
+
+	printf("\n");
+	printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+	for(j = 0 ; j &lt; rowB_ ; j++)
+	{
+		for(i = 0 ; i &lt; colB_ ; i++)
+		{
+			/* Display the formated matrix ... the way the user expects */
+			printf("%d ",matrixOfBooleanB[i * rowB_ + j]);
+		}
+		printf("\n"); /* New row of the matrix */
+	}
+
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      linkend="StartScilab">StartScilab</link>, <link
+      linkend="DoubleManagement">DoubleManagement</link>, <link
+      linkend="StringManagement">StringManagement</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>
