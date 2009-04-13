@@ -1,6 +1,8 @@
-lines(0);
-
 // example of use of the genetic algorithm on a 2D Ising model
+
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
 
 // Loading test problems
 
@@ -62,3 +64,4 @@ end
 scf();
 plot_ising2d(pop_opt(1));
 
+funcprot(old_funcprot);

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="DisableInteractiveMode" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>DisableInteractiveMode</refname>
+
+    <refpurpose>Disables some features (plotting, gui creation, Tcl/Tk...) and leave only the computing engine</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <synopsis>void DisableInteractiveMode(void);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Calling this fonction will disable some features of Scilab.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// A simple DisableInteractiveMode example
+
+
+	DisableInteractiveMode();
+	int code=SendScilabJob("plot3d()"); /* This will failed since plot3d is
+										   among the disable features*/
+	if (code!=0){
+		char lastjob[4096];
+		if (GetLastJob(lastjob,4096))  {
+			printf("Failed command: %s\n",lastjob);
+		}
+	}
+	
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="Scilab">Scilab</link></member>
+
+      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link></member>
+
+      <member><link linkend="SendScilabJob">SendScilabJob</link></member>
+
+      <member><link linkend="TerminateScilab">TerminateScilab</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>
