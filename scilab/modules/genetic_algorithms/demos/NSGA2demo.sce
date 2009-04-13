@@ -1,3 +1,7 @@
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
+
 //
 // Definition of the operators
 //
@@ -112,4 +116,6 @@ if (size(fobj_pop_opt,2)==2) then
   xtitle('Objective function space','f1','f2');
   drawnow;
 end
+
+funcprot(old_funcprot);
 
