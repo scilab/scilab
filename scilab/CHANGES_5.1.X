@@ -276,6 +276,8 @@ Bug fixes:
 
 * bug 4372 fixed - The graphics from the genetic_algorithms and simulated_annealing toolbox where not displayed
 
+* bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
+
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================
 

@@ -285,7 +285,14 @@ void ShowDynLinks(void)
 	{
 		if ( hd[i].ok == TRUE) { if (getWarningMode())sciprint("%d ",i);count++;}
 	}
-	if (getWarningMode()) sciprint(_("] : %d libraries.\n"),count);
+	if ( (count == 1) || (count == 0) )
+	{
+		if (getWarningMode()) sciprint(_("] : %d library.\n"),count);
+	}
+	else
+	{
+		if (getWarningMode()) sciprint(_("] : %d libraries.\n"),count);
+	}
 
 	for ( i = NEpoints-1 ; i >=0 ; i--) 
 	{
