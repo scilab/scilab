@@ -47,7 +47,7 @@
             <link linkend="rectangle_properties">rectangle_properties</link>, <link linkend="champ_properties">champ_properties</link>,
             <link linkend="axis_properties">axis_properties</link>, <link linkend="polyline_properties">polyline_properties</link>,
             <link linkend="segs_properties">segs_properties</link>, <link linkend="grayplot_properties">grayplot_properties</link>,
-            <link linkend="surface_properties">surface_properties</link>, <link linkend="param3d_properties">param3d_properties</link>,
+            <link linkend="surface_properties">surface_properties</link>,
             <link linkend="fec_properties">fec_properties</link>, <link linkend="text_properties">text_properties</link>,
             <link linkend="legend_properties">legend_properties</link>)</para>
               </listitem>

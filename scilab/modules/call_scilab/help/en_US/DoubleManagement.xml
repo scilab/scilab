@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="DoubleManagement_callscilab"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Double management</refname>
+
+    <refpurpose>How to manage Scilab's double read and write process using
+    call_scilab</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This help describes how doubles and matrix of doubles can be handle
+    through the Call Scilab API.</para>
+
+    <para>There are several functions which can be used to read / write from
+    the memory of Scilab. These functions are described in dedicated
+    pages.</para>
+
+    <para>Note that the default type of a numeric value in Scilab is double.
+    For example, in <emphasis>a=1</emphasis> or <emphasis>a=[1,2]</emphasis>,
+    <emphasis>a</emphasis> will be consider as a double.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting>
+	/* 
+	 * Write a matrix into Scilab
+	 * B=[1 4 2 3; 
+	 *    3 9 8 2 ]
+	 * Note that it is done column by column
+	 */ 
+	double B[] = {1,3,4,9,2,8,3,2};   /* Declare the matrix */
+	int rowB = 2, colB = 4; /* Size of the matrix */
+	char variableNameB[] = "B";
+
+	C2F(cwritemat)(variableNameB, &amp;rowB, &amp;colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
+
+	printf("\n");
+	printf("Display from Scilab of B:\n");
+	SendScilabJob("disp(B);"); /* Display A */
+</programlisting>
+
+    <programlisting>/* Read the previously declared matrix of double B */
+	int rowB_ = 0, colB_ = 0, lp_ = 0;
+	double *matrixOfDoubleB = NULL;
+	int i = 0, j = 0;
+
+	char variableToBeRetrievedB[] = "B";
+
+	/* First, retrieve the size of the matrix */
+	C2F(cmatptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
+
+	/* Alloc the memory */
+	matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
+
+	/* Load the matrix */
+	C2F(creadmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
+
+	printf("\n");
+	printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+	for(j = 0 ; j &lt; rowB_ ; j++)
+		{
+			for(i = 0 ; i &lt; colB_ ; i++)
+				{
+					/* Display the formated matrix ... the way the user
+					 * expect */
+					printf("%5.2f ",matrixOfDoubleB[i * rowB_ + j]);
+				}
+			printf("\n"); /* New row of the matrix */
+		}
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      linkend="StartScilab">StartScilab</link>, <link
+      linkend="BooleanManagement">BooleanManagement</link>, <link
+      linkend="StringManagement">StringManagement</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

@@ -25,7 +25,7 @@
 
     <refname>call_scilab</refname>
 
-    <refpurpose>call_scilab is an interface in order to call Scilab engine from C/C++ code</refpurpose>
+    <refpurpose>call_scilab is an interface which provides the ability to call Scilab engine from C/C++ code</refpurpose>
   </refnamediv>
 
   <refsection>

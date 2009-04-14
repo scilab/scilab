@@ -299,7 +299,17 @@ void ShowDynLinks(void)
 		}
 	}
 
-	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) sciprint(_("] : %d libraries.\n"),count);
+	if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT) 
+	{
+		if ( (count == 1) || (count == 0) )
+		{
+			sciprint(_("] : %d library.\n"),count);
+		}
+		else
+		{
+			sciprint(_("] : %d libraries.\n"),count);
+		}
+	}
 
 	for ( i = NEpoints-1 ; i >=0 ; i--) 
 	{
