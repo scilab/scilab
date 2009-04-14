@@ -36,6 +36,7 @@ oGetDoubleComplexFromPointer
 GetRhsVarMatrixComplex
 vFreeDoubleComplexFromPointer
 iIsComplex
+GetVarDimension
 ;
 ;core_f
 ;

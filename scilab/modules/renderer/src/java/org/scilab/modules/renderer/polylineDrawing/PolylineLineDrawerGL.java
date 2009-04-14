@@ -58,26 +58,35 @@ public class PolylineLineDrawerGL extends LineDrawerGL implements PolylineDrawer
 		gl.glColor3d(color[0], color[1], color[2]);
 		
 		
-		gl.glBegin(GL.GL_LINES);
-		
-		int i = 0;
-		// search for the first finite element
-		while (i < nbLines && !GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
-			i++;
-		}
-		
-		for ( ; i < nbLines - 1; i++) {
-			if (GeomAlgos.isVector3DFinite(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1])) {
+		// The polyline might be cutted in several pieces if data contained some %nan values.
+		// So several glBegin/glEnd pairs might be needed.
+		// To get dashes along the whole polyline and not only triangles
+		// We need to use GL_LINE_STRIP instead of GL_LINES
+		boolean previousValueIsNan = true;
+		for (int i = 0; i < nbLines; i++) {
+			if (GeomAlgos.isVector3DFinite(xCoords[i], yCoords[i], zCoords[i])) {
+				if (previousValueIsNan) {
+					// new line sequence
+					// check if there are at least two consecutive valid values.
+					if (i < nbLines - 1 && GeomAlgos.isVector3DFinite(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1])) {
+						gl.glBegin(GL.GL_LINE_STRIP);
+						previousValueIsNan = false;
+					}
+				}
 				gl.glVertex3d(xCoords[i], yCoords[i], zCoords[i]);
-				gl.glVertex3d(xCoords[i + 1], yCoords[i + 1], zCoords[i + 1]);
 				
-			} else {
-				//	this line can't be displayed neither the next one
-				i++;
+			} else if (!previousValueIsNan) {
+				// stop recording
+				// end the last polyline
+				gl.glEnd();
+				previousValueIsNan = true;
 			}
 			
 		}
-		gl.glEnd();
+		if (!previousValueIsNan) {
+			// end the last polyline
+			gl.glEnd();
+		}
 		
 		GLTools.endDashMode(gl);
 		

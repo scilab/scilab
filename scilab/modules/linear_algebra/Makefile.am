@@ -14,6 +14,8 @@ src/c/chol.c \
 src/c/svd.c \
 src/c/rcond.c \
 src/c/det.c \
+src/c/schur.c \
+src/c/lsq.c \
 src/c/issymmetric.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \

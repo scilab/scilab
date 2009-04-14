@@ -120,7 +120,7 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
 	  Scierror(999,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
 	  ret= 1;
 	}
-      else /* not at last the interesting case */
+      else /* now at last the interesting case */
 	{
 	  int iRowsToCompute= iRows;
 	  double dblTol= -1.;

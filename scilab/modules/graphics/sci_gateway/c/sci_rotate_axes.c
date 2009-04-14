@@ -55,6 +55,7 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
     {
       Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
       LhsVar(1) = 0;
+	  C2F(putlhsvar)();
       return -1;
     }
 
@@ -64,17 +65,17 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
     {
       Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
       LhsVar(1) = 0;
+	  C2F(putlhsvar)();
       return -1;
     }
 
     rotatedObject = sciGetPointerFromHandle(getHandleFromStack(stackPointer));
 
-		if (rotatedObject == NULL)
-		{
-			Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
-      LhsVar(1) = 0;
-      return -1;
-		}
+	if (rotatedObject == NULL)
+	{
+		Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
+        return -1;
+	}
     else if (sciGetEntityType(rotatedObject) == SCI_FIGURE)
     {
       interactiveRotation(rotatedObject);
@@ -86,12 +87,13 @@ int sci_rotate_axes(char *fname,unsigned long fname_len)
     else
     {
       Scierror(999, _("%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"), fname, 1);
-      LhsVar(1) = 0;
       return -1;
     }
   }
 
   LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/
