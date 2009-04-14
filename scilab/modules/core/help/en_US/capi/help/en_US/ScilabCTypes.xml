@@ -16,7 +16,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>The string/char * datatype in the Scilab stack: </para>
+    <para>The string/char * datatype in the Scilab memory: </para>
 
     <itemizedlist>
       <listitem>
@@ -28,7 +28,7 @@
       </listitem>
     </itemizedlist>
 
-    <para>The string/char ** datatype in the Scilab stack:</para>
+    <para>The string/char ** datatype in the Scilab memory:</para>
 
     <itemizedlist>
       <listitem>
@@ -172,7 +172,7 @@
       </listitem>
     </itemizedlist>
 
-    <para>The scilab pointer datatype in the Scilab stack:</para>
+    <para>The scilab pointer datatype in the Scilab memory:</para>
 
     <itemizedlist>
       <listitem>
@@ -184,7 +184,7 @@
       </listitem>
     </itemizedlist>
 
-    <para>The scilab graphic handle datatype in the Scilab stack:</para>
+    <para>The scilab graphic handle datatype in the Scilab memory:</para>
 
     <itemizedlist>
       <listitem>

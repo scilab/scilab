@@ -37,7 +37,7 @@
 
         <listitem>
           <para>Specifies the data to be converted according to the format
-          parameter.</para>
+          parameter (%s, %d, ...).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,7 +47,8 @@
     <title>Description</title>
 
     <para>C interface function which emulates the C language printf function.
-    You must include sciprint.h to benefit from this function.</para>
+    You must include sciprint.h to benefit from this function. This header is provided in the output_stream module (this directory should be included by default).</para>
+<para>Note that if you want to trigger an error, the function Scierror is more appropriate.</para>
   </refsection>
 
   <refsection>
@@ -80,6 +81,7 @@ int sci_mysciprint(char * fname)
       linkend="printf_conversion">printf_conversion</link></member>
 
       <member><link linkend="printf">printf</link></member>
+      <member><link linkend="Scierror">Scierror</link></member>
     </simplelist>
   </refsection>
 </refentry>

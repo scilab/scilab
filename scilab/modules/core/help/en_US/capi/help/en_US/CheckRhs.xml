@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="CheckLhs" xml:lang="en"
+<refentry version="5.0-subset Scilab" xml:id="CheckRhs" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -9,7 +9,7 @@
   <refnamediv xml:id="???">
     <refname>CheckRhs</refname>
 
-    <refpurpose>C interface macro which checks the number of input parameters
+    <refpurpose>C interface macro which checks the number of input arguments
     present in the calling Scilab function.</refpurpose>
   </refnamediv>
 
@@ -27,7 +27,7 @@
         <term>nb_min_params</term>
 
         <listitem>
-          <para>the minimum number of input parameters which must be present
+          <para>The minimum number of input arguments which must be present
           in the calling Scilab function</para>
         </listitem>
       </varlistentry>
@@ -36,7 +36,7 @@
         <term>nb_max_params</term>
 
         <listitem>
-          <para>the maximum number of input parameters which must be present
+          <para>the maximum number of input arguments which must be present
           in the calling Scilab function</para>
         </listitem>
       </varlistentry>
@@ -46,10 +46,10 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface macro which checks the number of input parameters
+    <para>C interface macro which checks the number of input arguments
     present in the calling Scilab function. You must include stack-c.h to
-    benefit from this function. If the number of input parameters is not
-    between nb_min_params and nb_max_params, we quit the C interface and an
+    benefit from this function. If the number of input arguments is not
+    between nb_min_params and nb_max_params, we quit the C interface (return 0;) and an
     error is returned in the Scilab console.</para>
   </refsection>
 
@@ -57,7 +57,7 @@
     <title>Examples</title>
 
     <para>In this example, the C interface function checks for a number of
-    input parameters which must be between 2 and 3.</para>
+    input arguments which must be between 2 and 3.</para>
 
     <programlisting> 
 #include &lt;stack-c.h&gt;
@@ -73,10 +73,10 @@ int sci_mycheckrhs(char * fname)
     <para>Now, some functions testing this interface:</para>
 
     <programlisting role="example"> 
-mycheckrhs(A,B); // OK, 2 output parameters
-mycheckrhs(A,B,C); // OK, 3 output parameters
-mycheckrhs(A); // ERROR, 1 output parameter
-mycheckrhs(A,B,C,D); // ERROR, 4 output parameters
+mycheckrhs(A,B); // OK, 2 output arguments
+mycheckrhs(A,B,C); // OK, 3 output arguments
+mycheckrhs(A); // ERROR, 1 output argument
+mycheckrhs(A,B,C,D); // ERROR, 4 output arguments
  </programlisting>
   </refsection>
 

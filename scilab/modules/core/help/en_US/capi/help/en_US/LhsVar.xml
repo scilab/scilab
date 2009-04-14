@@ -11,7 +11,7 @@
     <refname>LhsVar</refname>
 
     <refpurpose>a C interface macro which specifies which variables created
-    inside the C interface will be returned as an output variable</refpurpose>
+    inside the C interface will be returned as an Scilab output argument</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -28,7 +28,7 @@
         <term>RankPos</term>
 
         <listitem>
-          <para>the rank of the output parameter</para>
+          <para>as integer providing the rank of the output argument</para>
         </listitem>
       </varlistentry>
 
@@ -37,7 +37,7 @@
 
         <listitem>
           <para>the rank of the variable created inside the C interface to be
-          returned as an output variable</para>
+          returned as an Scilab output argument</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,7 +47,7 @@
     <title>Description</title>
 
     <para>A C interface macro which specifies which variables created inside
-    the C interface will be returned as an output variable</para>
+    the C interface will be returned as an Scilab output argument</para>
   </refsection>
 
   <refsection>
@@ -57,17 +57,17 @@
 
     <itemizedlist>
       <listitem>
-        <para> the number of lines (first output parameter)</para>
+        <para> the number of lines (first output argument)</para>
       </listitem>
 
       <listitem>
-        <para> the number of rows (second output parameter)</para>
+        <para> the number of rows (second output argument)</para>
       </listitem>
     </itemizedlist>
 
     <para>We create an intermediate Scilab variable which will handle an
     integer but will neither be used nor returned as an output
-    parameter.</para>
+    argument.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -89,12 +89,12 @@ int sci_mysizedouble(char * fname)
   CreateVar(3, MATRIX_OF_INTEGER_DATATYPE, &amp;m_nop,             &amp;n_nop,             &amp;l_nop);
   CreateVar(4, MATRIX_OF_INTEGER_DATATYPE, &amp;m_out_columns_row, &amp;n_out_columns_col, &amp;l_out_columns_pos);
 
-  *istk(l_out_lines_pos)   = m_in_row;
-  *istk(l_nop)             = 1;
-  *istk(l_out_columns_pos) = n_in_col;
+  *istk(l_out_lines_pos)   = m_in_row; // TODO please describe
+  *istk(l_nop)             = 1; 	   // TODO please describe
+  *istk(l_out_columns_pos) = n_in_col; // TODO please describe
 
-  LhsVar(1) = 2;
-  LhsVar(2) = 4;
+  LhsVar(1) = 2; // TODO Why 2 ?
+  LhsVar(2) = 4; // TODO Why 4 ?
 
   return 0;
 }

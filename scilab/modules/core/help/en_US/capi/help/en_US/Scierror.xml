@@ -57,7 +57,8 @@
 
     <para>C interface function which emulates the C language printf function
     and returns an integer value specifying an error level. You must include
-    Scierror.h to benefit from this function.</para>
+    Scierror.h to benefit from this function. This header is pr
+ovided in the output_stream module (this directory should be included by default).</para>
   </refsection>
 
   <refsection>
@@ -87,6 +88,7 @@ int sci_myscierror(char * fname)
       linkend="printf_conversion">printf_conversion</link></member>
 
       <member><link linkend="printf">printf</link></member>
+      <member><link linkend="sciprint">sciprint</link></member>
     </simplelist>
   </refsection>
 </refentry>
