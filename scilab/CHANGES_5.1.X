@@ -1,3 +1,21 @@
+               Changes between version 5.1.1 and 5.1.2 of Scilab
+               =================================================
+
+Bug fixes:
+==========
+
+ * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
+                    possible value was 'clipgrf' instead of 'cliprf'.
+
+ * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
+                    links to this page exist in the documentation.
+
+ * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
+                    we have only one symbol.
+
+
+
+
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
