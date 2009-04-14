@@ -76,3 +76,5 @@ Bug fixes:
                    are not available.
 
 * bug 4360 fixed - The reference of bug_3954.tst was missing
+
+* bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0, the lines/edges should disappear.

@@ -233,8 +233,10 @@
         <term>thickness</term>
 
         <listitem>
-          <para>This field gives the thickness of the line used to draw the
-          rectangle shape.</para>
+          <para>This property is a positive real specifying the surrounding rectangle shape width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.</para>
         </listitem>
       </varlistentry>
 

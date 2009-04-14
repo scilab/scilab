@@ -282,7 +282,7 @@ namespace sciGraphics
 			sciInitLineWidth(m_aLines[i], sciGetLineWidth(legendedObject));
 			sciInitLineStyle(m_aLines[i], sciGetLineStyle(legendedObject));
 
-			if (   sciGetIsLine(legendedObject)
+			if (   sciGetIsDisplayingLines(legendedObject)
 				  || sciGetPolylineStyle(legendedObject) == 3
 					|| sciGetPolylineStyle(legendedObject) == 6)
 			{

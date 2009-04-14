@@ -50,8 +50,8 @@ int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
 int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
-int sciInitLineWidth( sciPointObj * pobj, int linewidth ) ;
-int sciSetLineWidth ( sciPointObj * pobj, int linewidth ) ;  /* SET */
+int sciInitLineWidth( sciPointObj * pobj, double linewidth ) ;
+int sciSetLineWidth ( sciPointObj * pobj, double linewidth ) ;  /* SET */
 
 int sciInitIsLine(sciPointObj * pobj, BOOL isline);
 int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
