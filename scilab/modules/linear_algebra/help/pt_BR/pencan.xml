@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="pencan" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>pencan</refname>
+
+    <refpurpose>forma canônica de feixe de matrizes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento</title>
+
+    <synopsis>[Q,M,i1]=pencan(Fs)
+[Q,M,i1]=pencan(E,A)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Fs</term>
+
+        <listitem>
+          <para>um feixe regular <literal>s*E-A</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>E,A</term>
+
+        <listitem>
+          <para>duas matrizes quadradas de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Q,M</term>
+
+        <listitem>
+          <para>duas matrizes não-singulares de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>i1</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dado o feixe regular <literal>Fs=s*E-A</literal>,
+    <literal>pencan</literal> retorna as matrizes <literal>Q</literal> e
+    <literal>M</literal> tais que <literal>M*(s*E-A)*Q</literal> está na forma
+    "canônica".</para>
+
+    <para><literal>M*E*Q</literal> é uma matriz de blocos</para>
+
+    <programlisting>
+
+[I,0;
+ 0,N]
+   
+    </programlisting>
+
+    <para>com <literal>N</literal> nilpotente e <literal>i1</literal> =
+    tamanho da matriz acima <literal>I</literal>.</para>
+
+    <para><literal>M*A*Q</literal> é uma matriz de blocos:</para>
+
+    <programlisting>
+
+[Ar,0;
+ 0,I]
+   
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+F=randpencil([],[1,2],[1,2,3],[]);
+F=rand(6,6)*F*rand(6,6);
+[Q,M,i1]=pencan(F);
+W=clean(M*F*Q)
+roots(det(W(1:i1,1:i1)))
+det(W($-2:$,$-2:$))
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="glever">glever</link></member>
+
+      <member><link linkend="penlaur">penlaur</link></member>
+
+      <member><link linkend="rowshuff">rowshuff</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D.; ;</para>
+  </refsection>
+</refentry>

@@ -527,8 +527,11 @@
               <term>thickness: </term>
               <listitem>
                 <para>This field contains the default <literal>thickness</literal>
-            property value for all objects using line drawing. Its value
-            should be positive integer.</para>
+            property value for all objects using line drawing. It is a positive real specifying the line width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.
+			</para>
               </listitem>
             </varlistentry>
             <varlistentry>

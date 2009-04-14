@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="number_properties" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>number_properties</refname>
+
+    <refpurpose>determina parâmetros de ponto flutuante</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>pr = number_properties(prop)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>prop</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pr</term>
+
+        <listitem>
+          <para>escalar real ou booleano </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição </title>
+
+    <para>Esta função pode ser usada para receber os números/propriedades
+    característicos do conjunto de pontos flutuantes aqui dentoado por
+    <literal>F(b,p,emin,emax)</literal> ((geralmente o conjunto de "floats" de
+    64 bits prescritos por IEEE 754). Números de <literal>F</literal> são da
+    forma: </para>
+
+    <programlisting>
+
+     sign * m * b^e
+   
+    </programlisting>
+
+    <para><literal>e</literal> é o expoente e <literal>m</literal> a
+    mantissa:</para>
+
+    <programlisting>
+
+     m = d_1 b^(-1) + d_2 b^(-2) + .... + d_p b^(-p)
+   
+    </programlisting>
+
+    <para><literal>d_i</literal> os dígitos estão em <literal>[0,
+    b-1]</literal> e <literal>e</literal> em <literal>[emin, emax]</literal>,
+    o número é dito "normalizado" se <literal>d_1 ~= 0</literal>. Os seguintes
+    podem ser recebidos: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>prop = "radix"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é a raiz <literal>b</literal> do
+          conjunto <literal>F</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "digits"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é o número de dígitos de
+          <literal>p</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "huge"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é o maior float positivo de
+          <literal>F</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "tiny"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é o menor float normalizado
+          positivo de <literal>F</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "denorm"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é um booleano (%t se números
+          denormalizados são utilizados) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "tiniest"</term>
+
+        <listitem>
+          <para>então se denorm = %t, <literal>pr</literal> é o número
+          positivo denormalizado mínimo. Em outro caso, <literal>pr</literal>
+          = tiny</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "eps"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é a máquina epsilon ( geralmente
+          (<literal>b^(1-p))/2</literal> ) que é o erro máximo relativo entre
+          um real <literal>x</literal> (tal que <literal>|x|</literal> está em
+          <literal>[tiny, huge]</literal>) e <literal>fl(x)</literal>, sua
+          aproximação em ponto flutuante em <literal>F</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "minexp"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é <literal>emin</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>prop = "maxexp"</term>
+
+        <listitem>
+          <para>então <literal>pr</literal> é <literal>emax</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Observações</title>
+
+    <para>Esta função usa uma rotina de LAPACK dlamch para receber os
+    parâmetros máquinas (os nomes (radix, digits, huge, etc...) são aqueles
+    recomendados pelo padrão LIA 1 e são diferentes daqueles correspondentes
+    em LAPACK) ; CUIDADO: às vezes você poderá encontrar a seguinte para a
+    máquina epsilon: <literal>eps = b^(1-p)</literal> , mas nesta função nós
+    usamos a definição tradicional (ver prop = "eps" acima) e então
+    <literal>eps = (b^(1-p))/2</literal> se o arredondamento normal acontecer
+    e <literal>eps = b^(1-p)</literal> se não acontecer.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+b = number_properties("radix")
+eps = number_properties("eps")
+   
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="nearfloat">nearfloat</link></member>
+
+      <member><link linkend="frexp">frexp</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Bruno Pincon</para>
+  </refsection>
+</refentry>

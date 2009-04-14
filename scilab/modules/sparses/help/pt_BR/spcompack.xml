@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="spcompack" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>spcompack</refname>
+
+    <refpurpose>converte uma representação de adjacência comprimida em
+    representação de adjacência padrão</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xadj</term>
+
+        <listitem>
+          <para>vetor de inteiros de comprimento (n+1). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xlindx</term>
+
+        <listitem>
+          <para>vetor de inteiros de comprimento n+1 (ponteiros). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>lindx</term>
+
+        <listitem>
+          <para>vetor de inteiros </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>adjncy</term>
+
+        <listitem>
+          <para>vetor de inteiros </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <programlisting>
+
+A função utilitária spcompak é usada para converter uma representação de adjacência
+comprimida em uma representação de adjacência padrão.
+
+   
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// A é a matriz esparsa:
+A=[1,0,0,0,0,0,0;
+   0,1,0,0,0,0,0;
+   0,0,1,0,0,0,0;
+   0,0,1,1,0,0,0;
+   0,0,1,1,1,0,0;
+   0,0,1,1,0,1,0;
+   0,0,1,1,0,1,1];
+A=sparse(A);
+//Para esta matriz a representação padrão de adjacência é dada por:
+xadj=[1,2,3,8,12,13,15,16];
+adjncy=[1, 2, 3,4,5,6,7, 4,5,6,7, 5, 6,7, 7];
+//(ver sp2adj).
+// Incrementos no vetor xadj dão o número de entradas não nulas em cada coluna
+// i.e., há 2-1=1 entrada na coluna 1
+//    há 3-2=1 entrada na coluna 2
+//    há 8-3=5 entradas na coluna 3
+//              12-8=4                      4
+//etc.
+//O índice de linha dessas entradas é dado pelo vetor adjncy
+// por exemplo, 
+// adjncy (3:7)=adjncy(xadj(3):xadj(4)-1)=[3,4,5,6,7] 
+// diz que as 5=xadj(4)-xadj(3) entradas na coluna 3 têm índices de linha
+// 3,4,5,6,7.
+//Na representação compacta, as seqüências repetidas em adjncy
+//são eliminadas.
+//Aqui em adjncy, as seqüências 4,5,6,7  e 7 são eliminadas.
+//A estrutura padrão (xadj,adjncy) toma a forma comprimida (lindx,xlindx)
+lindx=[1, 2, 3,4,5,6,7, 5, 6,7];
+xlindx=[1,2,3,8,9,11];
+//(colunas 4 e 7 de A são eliminadas).
+//A pode ser reconstruída de (xadj,xlindx,lindx).
+[xadj,adjncy,anz]= sp2adj(A);
+adjncy-spcompack(xadj,xlindx,lindx)
+
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sp2adj">sp2adj</link></member>
+
+      <member><link linkend="adj2sp">adj2sp</link></member>
+
+      <member><link linkend="spget">spget</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="atand" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>atand</refname>
+
+    <refpurpose>arcos-tangentes 2-quadrantes e 4-quadrantes elemento a
+    elemento do argumento com resultados em graus</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>phi=atand(x)
+phi=atand(y,x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>escalar, vetor ou matriz de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phi</term>
+
+        <listitem>
+          <para>escalar, vetor ou matriz de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x, y</term>
+
+        <listitem>
+          <para>escalare, vetore ou matrizes de reais com tamanhos
+          iguais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phi</term>
+
+        <listitem>
+          <para>escalar, vetor ou matriz de reais</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A primeira forma computa o arco-tangente 2-quadrantes, que é o
+    inverso de <literal>tand(phi)</literal>. Os elementos de
+    <literal></literal><literal>phi</literal> estão no intervalo [-90,
+    90].</para>
+
+    <para>A primeira forma computa o arco-tangente 4-quadrantes (atan2 em
+    Fortran), isto é, retorna o argumento (ângulo) do número complexo
+    <literal>x+i*y</literal>. A imagem de <literal>atand(y,x)</literal> é
+    [-180,180i].</para>
+
+    <para>Ambas as formas são idênticas se <literal>x&gt;0</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">// exemplo com a segunda forma
+x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
+atand(x)
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tan">tan</link></member>
+
+      <member><link linkend="ieee">tand</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+
+      <member></member>
+    </simplelist>
+  </refsection>
+</refentry>

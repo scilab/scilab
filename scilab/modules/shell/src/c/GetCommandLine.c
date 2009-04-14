@@ -28,9 +28,7 @@
 #include "charEncoding.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
-#if _MSC_VER
 #include "TermReadAndProcess.h"
-#endif
 #include "stack-def.h"
 
 #ifdef _MSC_VER
@@ -161,6 +159,9 @@ static void *watchGetCommandLine(void *in) {
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
+#ifdef DO_NOT_BUILD_THIS
+	/* Desactivated since it is breaking Scilab GUI when not launched from a tty */
+
 	/* if not an interactive terminal */
 #ifdef _MSC_VER
 	/* if file descriptor returned is -2 stdin is not associated with an intput stream */
@@ -173,7 +174,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		/* read a line into the buffer, but not too
 		* big */
 		*eof = (fgets(buffer, *buf_size, stdin) == NULL);
-		*len_line = strlen(buffer);
+		*len_line = (int)strlen(buffer);
 		/* remove newline character if there */
 		if(buffer[*len_line - 1] == '\n') 
 		{
@@ -181,6 +182,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		}
 		return;
 	}
+#endif
 
   if(!initialized)
     {

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rowshuff" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rowshuff</refname>
+
+    <refpurpose>algoritmo de embaralhamento</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Ws,Fs1]=rowshuff(Fs, [alfa])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Fs</term>
+
+        <listitem>
+          <para>feixe quadrado de reais <literal>Fs = s*E-A</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Ws</term>
+
+        <listitem>
+          <para>matriz de polinômios </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Fs1</term>
+
+        <listitem>
+          <para>feixe quadrado de reais <literal>F1s = s*E1 -A1</literal> com
+          <literal>E1</literal> não-singular </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>alfa</term>
+
+        <listitem>
+          <para>número real (<literal>alfa = 0</literal> é o valor
+          padrão)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Algoritmo de embaralhamento: dado o feixe
+    <literal>Fs=s*E-A</literal>, retorna Ws=W(s) (matriz quadrada de
+    polinômios) tal que:</para>
+
+    <para><literal> Fs1 = s*E1-A1 = W(s)*(s*E-A) </literal> é um feixe com
+    matriz <literal>E1</literal> não-singular.</para>
+
+    <para>Isto é possível se, e só se, o feixe <literal>Fs = s*E-A</literal> é
+    regular (i.e., invertível). O grau de <literal>Ws</literal> é igual ao
+    índice do feixe.</para>
+
+    <para>Os pólos no infinito de<literal> Fs</literal> asão colocados para
+    <literal>alfa</literal> e os zeros de <literal>Ws</literal> estão em
+    <literal>alfa</literal>.</para>
+
+    <para>Note que <literal>(s*E-A)^-1 = (s*E1-A1)^-1 * W(s) =
+    (W(s)*(s*E-A))^-1 *W(s)</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+F=randpencil([],[2],[1,2,3],[]);
+F=rand(5,5)*F*rand(5,5);   // feixe regular  5 x 5 com três avaliações em 1,2,3
+[Ws,F1]=rowshuff(F,-1);
+[E1,A1]=pen2ea(F1);
+svd(E1)           //E1 não-singular
+roots(det(Ws))
+clean(inv(F)-inv(F1)*Ws,1.d-7)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="pencan">pencan</link></member>
+
+      <member><link linkend="glever">glever</link></member>
+
+      <member><link linkend="penlaur">penlaur</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D.; ; ; ; ;</para>
+  </refsection>
+</refentry>

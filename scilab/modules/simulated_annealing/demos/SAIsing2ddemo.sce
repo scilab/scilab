@@ -1,6 +1,8 @@
-lines(0);
-
 // example of use of the simulated annealing method
+
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
 
 // Loading the test problem
 
@@ -52,5 +54,8 @@ printf('Initial temperature T0 = %f\n', T0);
 printf('optimal solution:\n'); disp(x_opt);
 printf('value of the objective function = %f\n', f_opt);
 
+scf();
 plot_ising2d(x_opt);
+
+funcprot(old_funcprot);
 

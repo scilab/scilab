@@ -15,3 +15,4 @@ SEP #15 : Scilab Tree component
 SEP #16 : anti aliasing
 SEP #17 : add verbose option for dynamic link
 SEP #18 : scilab new binaries (linux, mac)
+SEP #19 : extend exit

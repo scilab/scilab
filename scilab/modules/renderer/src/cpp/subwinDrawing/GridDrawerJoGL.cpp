@@ -51,7 +51,7 @@ void GridDrawerJoGL::initializeDrawing(void)
   sciPointObj * pSubwin = getDrawer()->getDrawedObject();
 
   // set line color and width
-  getGridDrawerJavaMapper()->setGridParameters(getGridStyle(), (float)sciGetLineWidth(pSubwin), 
+  getGridDrawerJavaMapper()->setGridParameters(getGridStyle(), sciGetLineWidth(pSubwin), 
 																							 sciGetGridFront(pSubwin) == TRUE);
 
 }

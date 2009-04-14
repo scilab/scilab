@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bitand" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bitand</refname>
+
+    <refpurpose>AND ("e") aplicado às representações binárias dos argumentos
+    de entrada</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[z]=bitand(x,y)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>escalar/vetor/matriz/hipermatriz de inteiros positivos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>escalar/vetor/matriz/hipermatriz de inteiros positivos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>escalar/vetor/matriz/hipermatriz de inteiros positivos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dado <literal>x</literal> e <literal>y</literal> dois inteiros
+    positivos, esta função retorna <literal>z</literal> o número decimal cuja
+    forma binária é o AND das representações binárias de <literal>x</literal>
+    e <literal>y</literal>. (<literal>x</literal>, <literal>y</literal> e
+    <literal>z</literal> devem ter o mesmo tamanho). Se a dimensão de
+    <literal>x</literal> (e <literal>y</literal>) é superior a 1, então
+    <literal>z(i)</literal> é igual a
+    <literal>bitand(x(i),y(i))</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">// exemplo 1 :
+// '1010110' : é a representação binária de 86 
+// '1011011' : é a representação binária de 91   
+// '1010010' : é a representação binária para AND aplicado às formas binárias de 86 e 91 
+// então, o número decimal correspondente a AND aplicado às formas binárias de 86 and 91 is : 82
+x=86; y=91
+z=bitand(x,y)
+
+
+// exemplo 2 :
+x=[12,45],y=[25,49]
+z=bitand(x,y)
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bitor">bitor</link></member>
+
+      <member><link linkend="bin2dec">bin2dec</link></member>
+
+      <member><link linkend="dec2bin">dec2bin</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

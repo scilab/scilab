@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="list" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>list</refname>
+
+    <refpurpose>objeto do Scilab e definição de lists ("listas")</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>list(a1,....an)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Cria um <literal>list</literal> com elementos
+    <literal>ai</literal>'s que são elementos Scilab arbitrários
+    (<literal>matrix, list,...</literal>). O tipo de objetos
+    <literal>list</literal> é 15. <literal>list()</literal> cria o
+    <literal>list</literal> vazio (0 elementos). </para>
+  </refsection>
+
+  <refsection>
+    <title>Operações em Listas</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>extração</term>
+
+        <listitem>
+          <para>: <literal>[x,y,z...]=L(v)</literal> onde <literal>v</literal>
+          é um vetor de índices; <literal>[x,y,z]=L(:)</literal> extrai todos
+          os elementos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>inserção no índice i</term>
+
+        <listitem>
+          <para>: <literal>L(i)=a</literal> (note que não é errado usar
+          <literal>L(i)=a</literal> com <emphasis>i &gt; 1 +
+          size(L)</emphasis> mas algumas entradas de lista estão então
+          indefinidas e sua extração levanta um erro). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>anexar elemento no fim da lista</term>
+
+        <listitem>
+          <para>: <literal>L($+1)=e</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>anexar elementos no início da lista</term>
+
+        <listitem>
+          <para>: <literal>L(0)=e</literal>. (note que após esta operação e
+          está no índice 1, os elementos iniciais foram movidos para a
+          direita). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>deleção</term>
+
+        <listitem>
+          <para>: <literal>L(i)=null()</literal> remove o i-ésimo elemento da
+          lista <literal>L</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>concatenação de duas listas</term>
+
+        <listitem>
+          <para>: <literal>L3 = lstcat(L1,L2)</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>número de elementos de uma lista</term>
+
+        <listitem>
+          <para>você pode usar tanto <literal>nb_elm = size(L)</literal> ou
+          <literal>nb_elm = length(L)</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iterações com uma lista</term>
+
+        <listitem>
+          <para>é possível usar uma lista <literal>L</literal> com um laço
+          ("loop") <link linkend="for">for</link>: <literal>for
+          e=L,...,end</literal> é um laço com <literal>length(L)</literal>
+          iterações, a variável de laço <literal>e</literal> sendo igual a
+          <literal>L(i)</literal> na i-ésima iteração.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Observações </title>
+
+    <para>O Scilab também possui outros tipos de listas, o tipo <link
+    linkend="tlist">tlist</link> (lista com tipo) e o tipo <link
+    linkend="mlist">mlist</link> que são úteis para definir um novo tipo de
+    dado com o operador <link linkend="overloading">overloading</link>
+    facilities (<link linkend="hypermatrices">hypermatrices</link>
+    (hipermatrizes), que são arrays multi-dimensionais no Scilab, são, na
+    verdade, <emphasis>mlist</emphasis>).</para>
+
+    <para><emphasis>struct</emphasis> do Matlab também estão
+    disponíveis.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+l = list(1,["a" "b"])
+l(0) = "foo"
+l($+1) = "olá"
+l(2) = "toto"
+l(3) = rand(1,2)
+l(3) = null()
+lbis = list("gewurtz", "caipirina" ,"debug")
+lter = lstcat(l,lbis)
+size(lter) - size(lbis) - size(l)  // deve ser zero
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="null">null</link></member>
+
+      <member><link linkend="lstcat">lstcat</link></member>
+
+      <member><link linkend="tlist">tlist</link></member>
+
+      <member><link linkend="insertion">insertion</link></member>
+
+      <member><link linkend="extraction">extraction</link></member>
+
+      <member><link linkend="size">size</link></member>
+
+      <member><link linkend="length">length</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

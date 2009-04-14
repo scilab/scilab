@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="classmarkov" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>classmarkov</refname>
+
+    <refpurpose>classes transientes e recorrentes da matriz de
+    Markov</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento</title>
+
+    <synopsis>[perm,rec,tr,indsRec,indsT]=classmarkov(M)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>matriz de Markov N x N de reais. A soma das entradas em cada
+          linha deve ser acrescida em uma unidade</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>perm</term>
+
+        <listitem>
+          <para>vetor de permutação de inteiros</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rec, tr</term>
+
+        <listitem>
+          <para>vetor de inteiros, número (número de estados em cada classe
+          recorrente, número de estados transientes) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>indsRec,indsT</term>
+
+        <listitem>
+          <para>vetor de inteiros (índices dos estados recorrentes e
+          transientes)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna um vetor de permutação <literal>perm</literal> tal
+    que</para>
+
+    <programlisting>
+
+M(perm,perm) = [M11 0 0 0 0   0]
+               [0 M22 0 0     0]
+               [0 0 M33       0]
+               [      ...      ]
+               [0 0       Mrr 0]
+               [* *        *  Q]
+   
+    </programlisting>
+
+    <para>Cada <literal>Mii</literal> é uma matriz de Markov de dimensão
+    <literal>rec(i) i=1,..,r</literal>. <literal>Q</literal> é uma submatriz
+    de Markov de dimensão <literal>tr</literal>. Estados de 1 a sum(rec) são
+    recorrentes e estados de r+1 a n são transientes. Tem-se
+    <literal>perm=[indsRec,indsT]</literal> onde indsRec é um vetor de tamanho
+    sum(rec) e indsT é um vetor de tamanho tr.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//P tem 2 classes recorrentes (com 2 e 1 estados) e 2 estados transientes
+P=genmarkov([2,1],2,'perm')
+[perm,rec,tr,indsRec,indsT]=classmarkov(P);
+P(perm,perm)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="genmarkov">genmarkov</link></member>
+
+      <member><link linkend="eigenmarkov">eigenmarkov</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

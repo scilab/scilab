@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="clear" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>clear</refname>
+
+    <refpurpose>cancela variáveis</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>clear a</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Este comando cancela variáveis que não estão protegidas. Ele remove
+    as variáveis nomeadas do ambiente. Por si só, <literal>clear</literal>
+    cancela todas as variáveis, exceto as protegidas por
+    <literal>predef</literal>. Logo, os dois comandos
+    <literal>predef(0)</literal> e <literal>clear</literal> removem todas as
+    variáveis.</para>
+
+    <para>Normalmente, variáveis protegidas são bibliotecas padrões e
+    variáveis com o prefixo '%'</para>
+
+    <para>Note a sintaxe particular <literal>clear a</literal> e não
+    <literal>clear(a)</literal>. Note também que <literal>a=[]</literal> não
+    cancela <literal>a</literal> , mas define <literal>a</literal> como uma
+    matriz vazia.</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="predef">predef</link></member>
+
+      <member><link linkend="who">who</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

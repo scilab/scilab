@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="glever" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>glever</refname>
+
+    <refpurpose>inverso do feixe de matrizes</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>E, A</term>
+
+        <listitem>
+          <para>duas matrizes de reais quadradas de igual dimensão</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>s</term>
+
+        <listitem>
+          <para>string (o valor padrão é '<literal>s</literal>')</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Bfs,Bis</term>
+
+        <listitem>
+          <para>duas matrizes de polinômios </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>chis</term>
+
+        <listitem>
+          <para>polinômio</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Computação de</para>
+
+    <para><literal>(s*E-A)^-1</literal></para>
+
+    <para>pelo algoritmo generalizado de Leverrier para um feixe de
+    matrizes.</para>
+
+    <programlisting>
+
+(s*E-A)^-1 = (Bfs/chis) - Bis.
+   
+    </programlisting>
+
+    <para><literal>chis</literal> = polinômio característico (até uma
+    constante multiplicativa).</para>
+
+    <para><literal>Bfs</literal> = nmatriz de polinômios como
+    numerador.</para>
+
+    <para><literal>Bis</literal> = matriz de polinômios ( - expansão de
+    <literal>(s*E-A)^-1</literal> ao infinito).</para>
+
+    <para>Note o sinal - antes de <literal>Bis</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Cuidado </title>
+
+    <para>Esta função usa <literal>cleanp</literal> para simplificar
+    <literal>Bfs,Bis</literal> e <literal>chis</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+[Bfs,Bis,chis]=glever(F)
+inv(F)-((Bfs/chis) - Bis)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="rowshuff">rowshuff</link></member>
+
+      <member><link linkend="det">det</link></member>
+
+      <member><link linkend="invr">invr</link></member>
+
+      <member><link linkend="coffg">coffg</link></member>
+
+      <member><link linkend="pencan">pencan</link></member>
+
+      <member><link linkend="penlaur">penlaur</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D. (1988)</para>
+  </refsection>
+</refentry>

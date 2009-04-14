@@ -64,7 +64,10 @@ void DrawableSegsFactory::setStrategies( ConcreteDrawableSegs * segs )
     segs->setDecomposeStrategy(new ChampDecomposer(segs));
   }
 
-  segs->addDrawingStrategy(new SegsLineDrawerJoGL(segs));
+	if (sciGetLineWidth(pSegs) > 0)
+	{
+		segs->addDrawingStrategy(new SegsLineDrawerJoGL(segs));
+	}
 
   if (sciGetArrowSize(pSegs) != 0)
   {

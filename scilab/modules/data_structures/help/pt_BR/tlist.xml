@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="tlist" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>tlist</refname>
+
+    <refpurpose>objeto do Scilab e definição de listas com tipos ("typed
+    lists") </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>tlist(typ,a1,....an )</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+
+        <listitem>
+          <para>string ou vetor de strings </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ai</term>
+
+        <listitem>
+          <para>qualquer objeto Scilab (<literal>matrix,
+          list,string...</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Cria um <literal>typed-list</literal> com elementos
+    <literal>ai</literal>'s. O argumento <literal>typ</literal> especifica o
+    tipo da lista. Tais <literal>typed-list</literal> permitem ao usuário
+    definir novas operações trabalhando nestes objetos através de funções do
+    Scilab. A única diferença entre um <literal>typed-list</literal> e um
+    <literal>list</literal> (lista) é o valor do tipo (16 ao invés de
+    15).</para>
+
+    <para><literal>typ(1)</literal> espeifica o tipo de lista (string usado
+    para definir operações "soft-coded").</para>
+
+    <para>Se especificado, <literal>typ(i)</literal> pode fornecer o nome
+    formal do <literal>i+1</literal> -ésimo elemento.</para>
+
+    <para>Operações padrões em <literal>list</literal> operam de modo
+    semelhante para <literal>typed-list</literal>:</para>
+
+    <para>Extração : <literal>[x,y,z...]=l(v)</literal> onde
+    <literal>v</literal> é o vetor de índices; <literal>[x,y,z]=l(:)</literal>
+    extrai todos os elementos.</para>
+
+    <para>Inserção: <literal>l(i)=a</literal></para>
+
+    <para>Deleção: <literal>l(i)=null()</literal> remove o i-ésimo elemento do
+    <literal>tlist l</literal>.</para>
+
+    <para>Exibição.</para>
+
+    <para>Além disso, se <literal>typ(2:n+1)</literal> forem especificados, o
+    usuário pode apontar elementos por seus nomes.</para>
+
+    <para>Abaixo fornecemos exemplos de onde tlists são usados:</para>
+
+    <para>Sistemas lineares são representados por
+    <literal>typed-list</literal> específicos, ex.: um sistema linear
+    <literal>[A,B,C,D]</literal> é representado pelo tlist
+    <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal>
+    e esta lista específica pode ser criada pela função
+    <literal>syslin</literal>.</para>
+
+    <para>Sys(2), Sys('A') ou Sys.A é a estado-matriz e Sys('dt') ou Sys.dt é
+    o domínio de tempo</para>
+
+    <para>Uma matriz de razões de polinômios <literal>H</literal> é
+    representada por um <literal>typed-list</literal>
+    <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> onde
+    <literal>Num</literal> e <literal>Den</literal> são duas matrizes de
+    polinômios e um sistema linear (ex.: de tempo contínuo) com matriz de
+    transferência <literal>H</literal> possivelmente criada por
+    <literal>syslin('c',H)</literal>.</para>
+
+    <para>H(2), H('num') ou H.num é o numerador da matriz de
+    transferência</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="null">null</link></member>
+
+      <member><link linkend="percent">percent</link></member>
+
+      <member><link linkend="syslin">syslin</link></member>
+
+      <member><link linkend="list">list</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

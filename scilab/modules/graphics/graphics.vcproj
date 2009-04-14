@@ -1257,10 +1257,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xload.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xname.c"
 				>
 			</File>
@@ -1278,10 +1274,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xrects.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xsave.c"
 				>
 			</File>
 			<File
@@ -2247,10 +2239,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_xload.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_xname.h"
 				>
 			</File>
@@ -2268,10 +2256,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xrects.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xsave.h"
 				>
 			</File>
 			<File

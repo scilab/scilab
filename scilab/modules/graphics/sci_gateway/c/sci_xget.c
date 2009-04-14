@@ -38,7 +38,7 @@ int sci_xget(char *fname,unsigned long fname_len)
 
   if ( Rhs <= 0 )
   {
-    sci_demo(fname,"xsetm();",FALSE);
+    sci_demo(fname, fname_len);
     return 0;
   }
 
@@ -173,7 +173,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"thickness") == 0)
     {
-      x1[0] = sciGetLineWidth(sciGetCurrentSubWin());
+      x1[0] = (int) sciGetLineWidth(sciGetCurrentSubWin());
       x2 = 1;
     }
     else if(strcmp(cstk(l1),"wdim") == 0)

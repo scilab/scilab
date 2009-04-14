@@ -70,8 +70,8 @@ static gw_generic_table Tab[]=
 {C2F(sci_librarieslist),"librarieslist"},
 {C2F(sci_libraryinfo),"libraryinfo"},
 {C2F(sci_getdebuginfo),"getdebuginfo"},
-{C2F(sci_readgateway),"readgateway"}
-
+{C2F(sci_readgateway),"readgateway"},
+{C2F(sci_exit),"exit"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_core(void)

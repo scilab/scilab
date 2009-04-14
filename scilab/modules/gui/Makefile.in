@@ -14,12 +14,19 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-### Vincent COUVERT <vincent.couvert@inria.fr>
-### INRIA - Scilab 2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006-2008 - Sylvestre Ledru
+# Copyright (C) INRIA   - 2007 - Vincent COUVERT
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -137,7 +144,8 @@ am__objects_4 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_setlookandfeel.lo \
 	libscigui_la-sci_getinstalledlookandfeels.lo \
 	libscigui_la-sci_getlookandfeel.lo \
-	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo
+	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
+	libscigui_la-sci_displaytree.lo
 am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
@@ -207,7 +215,8 @@ am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-LookAndFeelManager.lo \
 	libscigui_la-sci_raise_window.lo libscigui_la-sci_usecanvas.lo \
 	libscigui_la-GiwsException.lo libscigui_la-Juigetfile.lo \
-	libscigui_la-CallJuigetfile.lo
+	libscigui_la-CallJuigetfile.lo libscigui_la-displaytree.lo \
+	libscigui_la-ScilabDisplayTree.lo
 am_libscigui_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
@@ -275,6 +284,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -293,7 +303,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -303,6 +316,8 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -362,6 +377,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -446,6 +462,25 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 
+#### Target ######
+modulename = gui
+
+#### gui : Conf files ####
+libscigui_la_rootdir = $(mydatadir)
+libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### gui : init scripts ####
+libscigui_la_etcdir = $(mydatadir)/etc
+libscigui_la_etc_DATA = etc/gui.quit \
+etc/gui.start \
+etc/graphics_menubar.xml \
+etc/graphics_toolbar.xml \
+etc/helpbrowser_menubar.xml \
+etc/main_menubar.xml \
+etc/main_toolbar.xml \
+etc/flexdock-themes.xml
+
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -504,6 +539,7 @@ JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
+HELP_CHAPTERLANG = en_US fr_FR pt_BR
 GUI_C_SOURCES = \
 src/c/TerminateGui.c \
 src/c/buildMainWindowTitle.c \
@@ -605,7 +641,9 @@ sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp \
 src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
-src/cpp/CallJuigetfile.cpp
+src/cpp/CallJuigetfile.cpp \
+src/cpp/displaytree.cpp \
+src/jni/ScilabDisplayTree.cpp
 
 GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
@@ -650,7 +688,8 @@ sci_gateway/cpp/sci_setlookandfeel.cpp \
 sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
 sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
-sci_gateway/cpp/sci_uigetfile.cpp
+sci_gateway/cpp/sci_uigetfile.cpp \
+sci_gateway/cpp/sci_displaytree.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
 	-I$(srcdir)/includes/ \
@@ -708,25 +747,6 @@ INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
 libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-
-#### Target ######
-modulename = gui
-
-#### gui : Conf files ####
-libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### gui : init scripts ####
-libscigui_la_etcdir = $(mydatadir)/etc
-libscigui_la_etc_DATA = etc/gui.quit \
-etc/gui.start \
-etc/graphics_menubar.xml \
-etc/graphics_toolbar.xml \
-etc/helpbrowser_menubar.xml \
-etc/main_menubar.xml \
-etc/main_toolbar.xml \
-etc/flexdock-themes.xml
-
 
 #### gui : gateway declaration ####
 libscigui_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -989,6 +1009,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PopupMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-PushButton.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-RadioButton.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-ScilabDisplayTree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolBackgroundColor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontAngle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-SetUicontrolFontName.Plo@am__quote@
@@ -1021,12 +1042,14 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-Widget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-addmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-buildMainWindowTitle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-getMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-messageboxoptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getcallbackobject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_getinstalledlookandfeels.Plo@am__quote@
@@ -1423,6 +1446,13 @@ libscigui_la-sci_uigetfile.lo: sci_gateway/cpp/sci_uigetfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uigetfile.cpp' object='libscigui_la-sci_uigetfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uigetfile.lo `test -f 'sci_gateway/cpp/sci_uigetfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uigetfile.cpp
+
+libscigui_la-sci_displaytree.lo: sci_gateway/cpp/sci_displaytree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_displaytree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_displaytree.Tpo -c -o libscigui_la-sci_displaytree.lo `test -f 'sci_gateway/cpp/sci_displaytree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displaytree.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_displaytree.Tpo $(DEPDIR)/libscigui_la-sci_displaytree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_displaytree.cpp' object='libscigui_la-sci_displaytree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_displaytree.lo `test -f 'sci_gateway/cpp/sci_displaytree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displaytree.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp
@@ -2033,6 +2063,20 @@ libscigui_la-CallJuigetfile.lo: src/cpp/CallJuigetfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-CallJuigetfile.lo `test -f 'src/cpp/CallJuigetfile.cpp' || echo '$(srcdir)/'`src/cpp/CallJuigetfile.cpp
 
+libscigui_la-displaytree.lo: src/cpp/displaytree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-displaytree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-displaytree.Tpo -c -o libscigui_la-displaytree.lo `test -f 'src/cpp/displaytree.cpp' || echo '$(srcdir)/'`src/cpp/displaytree.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-displaytree.Tpo $(DEPDIR)/libscigui_la-displaytree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/displaytree.cpp' object='libscigui_la-displaytree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-displaytree.lo `test -f 'src/cpp/displaytree.cpp' || echo '$(srcdir)/'`src/cpp/displaytree.cpp
+
+libscigui_la-ScilabDisplayTree.lo: src/jni/ScilabDisplayTree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-ScilabDisplayTree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-ScilabDisplayTree.Tpo -c -o libscigui_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-ScilabDisplayTree.Tpo $(DEPDIR)/libscigui_la-ScilabDisplayTree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/ScilabDisplayTree.cpp' object='libscigui_la-ScilabDisplayTree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -2442,7 +2486,7 @@ install-data-local:
 	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
-	for lang in $(ALL_LINGUAS); do \
+	for lang in $(HELP_CHAPTERLANG); do \
 		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 		if test -f $$HELPFILE; then \
 			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \

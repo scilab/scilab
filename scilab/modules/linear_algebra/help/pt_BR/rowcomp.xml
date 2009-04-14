@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rowcomp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rowcomp</refname>
+
+    <refpurpose>compressão de linhas, imagem</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento</title>
+
+    <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz de reais ou de complexos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string opcional, com valores possíveis
+          <literal>'svd'</literal> ou <literal>'qr'</literal>. O valor padrão
+          é <literal>'svd'</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para>número real não-negativo opcional. O valor padrão é
+          <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>W</term>
+
+        <listitem>
+          <para>matriz quadrada não-singular (matriz mudança de base)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rk</term>
+
+        <listitem>
+          <para>inteiro (posto de <literal>A</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Compressão de linhas de <literal>A</literal>. <literal>Ac =
+    W*A</literal> é uma matriz de linhas comprimidas, i.e.
+    <literal>Ac=[Af;0]</literal> com <literal>Af</literal> de posto-linha
+    cheio.</para>
+
+    <para><literal>flag</literal> e <literal>tol</literal> são parâmetros
+    opcionais: <literal>flag='qr'</literal> ou <literal>'svd'</literal> (o
+    padrão é <literal>'svd'</literal>).</para>
+
+    <para><literal>tol</literal> é um parâmetro de tolerância.</para>
+
+    <para>As <literal>rk</literal> primeiras colunas de <literal>W'</literal>
+    geram a imagem de <literal>A</literal>.</para>
+
+    <para>As <literal>rk</literal> primeiras linhas (do topo) de
+    <literal>W</literal> geram a imagem de linha de
+    <literal>A</literal>.</para>
+
+    <para>Um vetor não nulo <literal>x</literal> pertence à
+    Im(<literal>A</literal>) se,e só se, <literal>W*x</literal> é de linhas
+    comprimidas de acordo com <literal>Ac</literal> i.e, a norma de seus
+    últimos componentes é pequena com relação a dos seus primeiros
+    componentes.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    
+    A=rand(5,2)*rand(2,4);              //  4 vetores colunas, 2 independentes
+    [X,dim]=rowcomp(A);Xp=X';
+    svd([Xp(:,1:dim),A])                //span(A) = span(Xp(:,1:dim) (span="gerado")
+    x=A*rand(4,1);                      //x pertence a span(A)
+    y=X*x  
+    norm(y(dim+1:$))/norm(y(1:dim))     // pequeno
+    
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="colcomp">colcomp</link></member>
+
+      <member><link linkend="fullrf">fullrf</link></member>
+
+      <member><link linkend="fullrfk">fullrfk</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F. D.; INRIA</para>
+  </refsection>
+
+  <refsection>
+    <title>Função Usada </title>
+
+    <para>A função <literal>rowcomp</literal> é baseada nas decomposições
+    <link linkend="svd">svd</link> (decomposição em valores singulares) ou
+    <link linkend="qr">qr</link> .</para>
+  </refsection>
+</refentry>

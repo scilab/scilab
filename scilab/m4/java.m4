@@ -812,7 +812,3 @@ AC_DEFUN([AC_JAVA_TOOLS_CHECK], [
     fi
     ])
 ])
-
-
-
-    	

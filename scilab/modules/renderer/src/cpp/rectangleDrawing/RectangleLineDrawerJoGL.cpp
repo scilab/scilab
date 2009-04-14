@@ -41,7 +41,7 @@ void RectangleLineDrawerJoGL::drawRectangle( void )
 
   // set the line parameters
   getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pObj)->foregroundcolor,
-                                               (float)sciGetLineWidth(pObj),
+                                               sciGetLineWidth(pObj),
                                                sciGetLineStyle(pObj));
 
   // get the coordinates of the four corners of the rectangle.

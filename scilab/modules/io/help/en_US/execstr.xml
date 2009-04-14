@@ -100,7 +100,17 @@ lasterror(%t)
 execstr('a=[1 2 3)','errcatch')
 lasterror(%t)
 
- 
+// variable1 does not exist
+if execstr('variable1;','errcatch')<>0 then disp("Trigger an error"),end
+
+// variable2 exists ... no error is triggered by execstr
+variable2=[2,3]; 
+if execstr('variable2;','errcatch')<>0 then 
+   disp("Trigger an error");
+else
+   disp("execstr is happy");
+end
+
   ]]></programlisting>
   </refsection>
   <refsection>

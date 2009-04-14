@@ -29,6 +29,8 @@ Input/Output functions:
 Core functions:
 ===============
 
+ - Request 505 : Add error code capability to exit.
+
  - Rewrite :
  	+ mode
  	+ predef
@@ -69,3 +71,10 @@ Bug fixes:
 
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
 		   causing an error on startup
+
+* bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
+                   are not available.
+
+* bug 4360 fixed - The reference of bug_3954.tst was missing
+
+* bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0, the lines/edges should disappear.

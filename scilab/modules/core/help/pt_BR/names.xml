@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="names" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>names</refname>
+
+    <refpurpose>scilab names syntax</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Nomes de variáveis ou funções no Scilab devem começar com uma letra,
+    ou com um dos seguintes caracteres especiais: '<literal>%</literal>',
+    '<literal>_</literal>', '<literal>#</literal>', '<literal>!</literal>',
+    '<literal>$</literal>', '<literal>?</literal>'.</para>
+
+    <para>Os próximos caracteres podem ser letras ou um dos seguintes
+    caracteres especiais: '<literal>_</literal>', '<literal>#</literal>',
+    '<literal>!</literal>', '<literal>$</literal>',
+    '<literal>?</literal>'</para>
+
+    <para>Nomes podem ser tão longos quanto se queira, mas apenas os primeiros
+    24 caracteres serão levados em consideração. Letras maiúsculas e
+    minúsculas são diferentes.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+//Nomes válidos
+%eps
+A1=123
+#Color=8
+My_Special_Color_Table=rand(10,3)
+//Nomes inválidos
+//1A , b%, .C
+ 
+  </programlisting>
+  </refsection>
+</refentry>
