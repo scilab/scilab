@@ -9,6 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifndef DET_H
+#define DET_H
 
 /*
  * computes the determinant of a real or complex square matrix, performing MALLOCation of temp variables as needed.
@@ -28,4 +30,7 @@
  * @return error code : 0 for success, -1 for MALLOC failure, other values from LAPACK [z|g]etrf.
  *
  */
+
 int iDetM(double* pData, int iCols, double* pMantissaReal, double* pMantissaImg, int* piExponent);
+
+#endif
