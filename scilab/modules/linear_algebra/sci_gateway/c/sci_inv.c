@@ -49,7 +49,7 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	  GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
 	}
 	if(iRows != iCols){
-	  Err = 1;
+	  Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
 	  ret=20;
 	}else{
 	  if(iCols != 0){
@@ -71,11 +71,11 @@ int C2F(intinv)(char *fname,unsigned long fname_len)
 	    }
 	  }
 	}
-	if(ret >0){ Error(ret) ; }
-	else{
+	/* redondant	if(ret >0){ Error(ret) ; } 
+	   else{*/
 	  LhsVar(1) = 1;
-	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ */
-	}
+	  /* TODO rajouter le PutLhsVar(); quand il sera enlevé du gw_ 
+	}*/
 	}
 	return 0;
 }

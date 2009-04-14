@@ -60,14 +60,14 @@ int C2F(intdet)(char *fname,unsigned long fname_len)
       }
     if( iRows != iCols)
       {
-	Scierror(999,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+	Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
 	ret= 1;
       }
     else
       {
 	if(iRows == -1)
 	  {
-	    Scierror(999,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
+	    Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
 	    ret= 1;
 	  }
 	else
