@@ -22,6 +22,7 @@
 #include <string.h>
 #include "sciprint.h"
 #include "machine.h"
+#include "charEncoding.h"
 
 extern  int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
 extern void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
@@ -150,7 +151,7 @@ double *inptr[],*outptr[],*t;
   else if (*flag==4) {
     F2C(cvstr)(&(ipar[1]),&(ipar[10]),str,&job,(unsigned long)strlen(str));
     str[ipar[1]] = '\0';
-    fd = fopen(str,"rb");
+	wcfopen(fd,str,"rb");
     if (!fd ) {
       sciprint("Could not open the file!\n");
       *flag = -1;

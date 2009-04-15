@@ -1,5 +1,11 @@
-LIBRARY    fileio.dll
+
+	LIBRARY    fileio.dll
 
 
 EXPORTS
- cluni0_
+;
+;fileio
+;
+cluni0_
+getshortpathname_
+

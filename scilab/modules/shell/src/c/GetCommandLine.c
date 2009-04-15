@@ -25,7 +25,6 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
-#include "charEncoding.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
@@ -87,8 +86,7 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-			char szTempUTF[bsiz];
-      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
+      __CommandLine = TermReadAndProcess();
     }
 }
 

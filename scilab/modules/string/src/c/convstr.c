@@ -15,31 +15,48 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-#include <ctype.h> 
-#include "gw_string.h"
 #include "convstr.h"
+#include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int mn)
+char **convstr(char **Input_Matrix, char typ, int mn)
 {
-	int x = 0;
-	for (x =0 ; x < mn; x++)
+	char **Output_Matrix = (char**)MALLOC(sizeof(char*)*mn);
+	if (Output_Matrix)
 	{
-		int y = 0;
-		for (y = 0;y < (int)strlen(Input_Matrix[x]);y++)
+		int x = 0;
+		for (x =0 ; x < mn; x++)
 		{
-			/*To traverse every string in the string matrix */
-			if ( (typ == UPPER) || (typ == UPPER_B) )
+			wchar_t *wcInput = to_wide_string(Input_Matrix[x]);
+			if (wcInput)
 			{
-				/*converts the matrix of strings  str-matrix into upper case */
-				Output_Matrix[x][y] = (char)toupper(Input_Matrix[x][y]);
+				wchar_t *wcOutput = to_wide_string(Input_Matrix[x]);
+				int y = 0;
+				for (y = 0; y < (int)wcslen(wcInput); y++)
+				{
+					/*To traverse every string in the string matrix */
+					if ( (typ == UPPER) || (typ == UPPER_B) )
+					{
+						/*converts the matrix of strings  str-matrix into upper case */
+						wcOutput[y] = (wchar_t)towupper(wcInput[y]);
+					}
+					else if ( (typ==LOW) || (typ==LOW_B) )
+					{
+						/*converts the matrix of strings  str-matrix  into lower case */
+						wcOutput[y] = (wchar_t)towlower(wcInput[y]);
+					}
+				}
+				FREE(wcInput); wcInput = NULL;
+				wcOutput[y] = L'\0'; 
+				Output_Matrix[x] = wide_string_to_UTF8(wcOutput);
+				FREE(wcOutput); wcOutput = NULL;
 			}
-			else if ( (typ==LOW) || (typ==LOW_B) )
+			else
 			{
-				/*converts the matrix of strings  str-matrix  into lower case */
-				Output_Matrix[x][y] = (char)tolower(Input_Matrix[x][y]);
+				Output_Matrix[x] = NULL;
 			}
 		}
-        Output_Matrix[x][y] = 0;
 	}
+	return Output_Matrix;
 }
 /*--------------------------------------------------------------------------*/

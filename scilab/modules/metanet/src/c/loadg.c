@@ -15,6 +15,7 @@
 #include "hashtable_metanet.h"
 #include "loadg.h"
 #include "localization.h"
+#include "charEncoding.h"
 
 static int CompString(char **s1,char **s2)
 {
@@ -98,7 +99,7 @@ void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, 
   strcat(fname,"/");
   strcat(fname,*name);
   strcat(fname,".graph");
-  fg = fopen(fname,"r");
+  wcfopen(fg,fname,"r");
   if (fg == 0)
   {
     sprintf(description,_("Unable to open file \"%s/%s.graph\""),dir,*name);

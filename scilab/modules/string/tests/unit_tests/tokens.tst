@@ -29,3 +29,39 @@ if  s <> [' '; ' '] then pause,end
 s = tokens(' '+ascii(9)+' ',' ');
 if  s <> ascii(9) then pause,end
 //===============================
+str = "世界您好";
+ch = "界";
+r = tokens(str,ch);
+ref = ["世";"您好"];
+if and(ref <> r) then pause,end
+//===============================
+str = "азеазея";
+ch = "з";
+r = tokens(str,ch);
+ref = ["а";"еа";"ея"];
+if and(ref <> r) then pause,end
+//===============================
+str = "ハロー・ワールド";
+ch = "ワ";
+r = tokens(str,ch);
+ref = ["ハロー・";"ールド"];
+if and(ref <> r) then pause,end
+//===============================
+str = "เฮลโลเวิลด์";
+ch = "ฮ";
+r = tokens(str,ch);
+ref = ["เ";"ลโลเวิลด์ "];
+if and(ref <> r) then pause,end
+//===============================
+str = "حريات وحقوق";
+ch = "و";
+r = tokens(str,ch);
+ref = ["حريات";"حق";"ق"];
+if and(ref <> r) then pause,end
+//===============================
+str = "תוכנית";
+ch = "ו";
+r = tokens(str,ch);
+ref = ["ת";"כנית"];
+if and(ref <> r) then pause,end
+//===============================

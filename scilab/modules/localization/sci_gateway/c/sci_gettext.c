@@ -16,7 +16,6 @@
 #include "gw_localization.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gettext)(char *fname,unsigned long fname_len)
 {

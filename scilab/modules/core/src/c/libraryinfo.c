@@ -22,6 +22,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 char *getlibrarypath(char *libraryname)
 {
@@ -70,7 +71,7 @@ char **getlistmacrosfromlibrary(char *libraryname,int *sizearray)
 
 			sprintf(fullfilename,"%s%s",expandedpath,filenameNAMES);
 
-			pFile = fopen (fullfilename,"rt");
+			wcfopen (pFile,fullfilename,"rt");
 			if (pFile)
 			{
 				while(fgets (line,sizeof(line),pFile) != NULL)

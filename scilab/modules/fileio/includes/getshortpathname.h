@@ -13,6 +13,7 @@
 #ifndef __GETSHORTPATHNAME_H__
 #define __GETSHORTPATHNAME_H__
 
+#include "machine.h" /* C2F */
 #include "BOOL.h" /* BOOL */
 
 /**
@@ -25,6 +26,7 @@
 */
 char *getshortpathname(char *longpathname, BOOL *convertok);
 
+int C2F(getshortpathname)(char *pathname,int *len);
 
 #endif /* __GETSHORTPATHNAME_H__ */
 /*--------------------------------------------------------------------------*/

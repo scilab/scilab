@@ -16,51 +16,61 @@
 #include "getScilabDirectory.h"
 #include "MALLOC.h"
 #include "setgetSCIpath.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 char *getScilabDirectory(BOOL UnixStyle)
 {
-	char ScilabModuleName[MAX_PATH + 1];
-	char drive[_MAX_DRIVE];
-	char dir[_MAX_DIR];
-	char fname[_MAX_FNAME];
-	char ext[_MAX_EXT];
+	char *SciPathName = NULL;
+	wchar_t* wcSciPathName = NULL;
+	wchar_t ScilabModuleName[MAX_PATH + 1];
+	wchar_t drive[_MAX_DRIVE];
+	wchar_t dir[_MAX_DIR];
+	wchar_t fname[_MAX_FNAME];
+	wchar_t ext[_MAX_EXT];
+	wchar_t *DirTmp = NULL;
 
-	char *SciPathName=NULL;
-	char *DirTmp=NULL;
 
-	if (!GetModuleFileName ((HINSTANCE)GetModuleHandle("libScilab"), (char*) ScilabModuleName, MAX_PATH))
+	if (!GetModuleFileNameW ((HINSTANCE)GetModuleHandleW(L"libScilab"), (wchar_t*) ScilabModuleName, MAX_PATH))
 	{
 		return NULL;
 	}
 
-	_splitpath(ScilabModuleName,drive,dir,fname,ext);
+	_wsplitpath(ScilabModuleName,drive,dir,fname,ext);
 
-	if (dir[strlen(dir)-1] == '\\') dir[strlen(dir)-1] = '\0';
+	if (dir[wcslen(dir)-1] == L'\\') dir[wcslen(dir)-1] = L'\0';
 
-	DirTmp=strrchr (dir, '\\');
-	if (strlen(dir)-strlen(DirTmp)>0)
+	DirTmp = wcsrchr (dir, L'\\');
+
+	if (wcslen(dir) - wcslen(DirTmp)>0)
 	{
-		dir[strlen(dir)-strlen(DirTmp)] = '\0';
+		dir[wcslen(dir) - wcslen(DirTmp)] = L'\0';
 	}
 	else return NULL;
 
-	SciPathName = (char*)MALLOC((int)( strlen(drive) + strlen(dir) + 5)*sizeof(char));
-	if (SciPathName)
+	wcSciPathName = (wchar_t*)MALLOC((int)( wcslen(drive) + wcslen(dir) + 5)*sizeof(wchar_t));
+	if (wcSciPathName)
 	{
-		_makepath(SciPathName,drive,dir,NULL,NULL);
-
+		_wmakepath(wcSciPathName,drive,dir,NULL,NULL);
 		if ( UnixStyle )
 		{	
-			int i=0;
-			for (i=0;i<(int)strlen(SciPathName);i++)
+			int i = 0;
+			for (i=0;i<(int)wcslen(wcSciPathName);i++)
 			{
-				if (SciPathName[i]=='\\') SciPathName[i]='/';
+				if (wcSciPathName[i] == L'\\') wcSciPathName[i] = L'/';
 			}
 		}
-		SciPathName[strlen(SciPathName)-1]='\0';
-		setSCIpath(SciPathName);
+		wcSciPathName[wcslen(wcSciPathName)-1]='\0';
 
+		SciPathName = wide_string_to_UTF8(wcSciPathName);
+		FREE(wcSciPathName);
+		wcSciPathName = NULL;
 	}
+	
+	if (SciPathName)
+	{
+		setSCIpath(SciPathName);
+	}
+
 	return SciPathName;
 }
 /*--------------------------------------------------------------------------*/ 
