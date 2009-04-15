@@ -254,8 +254,11 @@ int GetIdFromFilename(char *filename)
 	{
 		char fullpath[PATH_MAX*4];
 		int i=0;
-
+		#ifdef _MSC_VER
 		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+		#else
+		if( realpath( filename,fullpath ) == NULL )
+		#endif
 		{
 			/* if we are a problem */
 			strcpy(fullpath,filename);
