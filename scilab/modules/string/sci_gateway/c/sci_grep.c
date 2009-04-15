@@ -169,15 +169,24 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 			wchar_t* wcInputOne = to_wide_string(Inputs_param_one[y]);
 			wchar_t* wcInputTwo = to_wide_string(Inputs_param_two[x]);
 
-			if (wcsstr(wcInputOne,wcInputTwo)!=NULL)
+			if (wcInputOne && wcInputTwo)
 			{
-				results->values[results->currentLength] = y+1;
-				results->positions[results->currentLength] = x+1;
-				results->currentLength++;
-			}
+				if (wcsstr(wcInputOne,wcInputTwo) != NULL)
+				{
+					results->values[results->currentLength] = y+1;
+					results->positions[results->currentLength] = x+1;
+					results->currentLength++;
+				}
 
-			if (wcInputOne) {FREE(wcInputOne); wcInputOne = NULL;}
-			if (wcInputTwo) {FREE(wcInputTwo); wcInputTwo = NULL;}
+				FREE(wcInputOne); wcInputOne = NULL;
+				FREE(wcInputTwo); wcInputTwo = NULL;
+			}
+			else
+			{
+				if (wcInputOne) {FREE(wcInputOne); wcInputOne = NULL;}
+				if (wcInputTwo) {FREE(wcInputTwo); wcInputTwo = NULL;}
+				return MEMORY_ALLOC_ERROR;
+			}
 		}
 	}
 	return GREP_OK;

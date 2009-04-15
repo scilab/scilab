@@ -96,7 +96,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 		if (len)
 		{
 			wcoccurrence_str = wcinput_string;
-			while(wcoccurrence_str != NULL && *wcoccurrence_str != L'\0') 
+			while(wcoccurrence_str && wcstring_to_search && (*wcoccurrence_str != L'\0')) 
 			{
 				wcoccurrence_str = wcsstr (wcoccurrence_str, wcstring_to_search);
 				if (wcoccurrence_str != NULL) 
