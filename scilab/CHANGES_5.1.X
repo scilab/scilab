@@ -1,5 +1,29 @@
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
+Compilation:
+============
+
+* "make check" now builds also call_scilab examples
+
+Source reorganisation:
+======================
+
+* Some function profiles in stack3.h provided to manage named named variable
+  have been moved in CallScilab.h (please note that we haven't changed the ABI
+  and the symbols remain in the core library)
+  The goal of this modification is to separate functions dealing with the 
+  call_scilab API and the internal API used in the gateways.
+
+* In call_scilab:
+  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
+  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead 
+    (same profile)
+  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
+
+Help & Tests:
+=============
+
+* Documentation and examples about call_scilab added
 
 Bug fixes:
 ==========
