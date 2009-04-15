@@ -6,7 +6,7 @@ c This file is released into the public domain
       
       subroutine ext10f(neq, t, y, ydot)
 c     -------------------------------------------
-c     exemple with a call to readmat routine
+c     exemple with a call to creadmat routine
 c     -->param=[0.04,10000,3d+7];
 c     -->link('ext10f.o','ext10f')
 c     -->y=ode([1;0;0],0,[0.4,4],'ext10f')

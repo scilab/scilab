@@ -275,4 +275,40 @@ pkgconfig_DATA = scilab.pc
 
 .NOTPARALLEL: macros doc
 
+CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/
+CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
 
+check_PROGRAMS = call_scilab_c_simple call_scilab_c call_scilab_c_getlastjob call_scilab_c_DisableInteractiveMode call_scilab_readwriteboolean call_scilab_readwritecomplexmatrix call_scilab_readwritematrix call_scilab_readwritestring
+
+call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c
+call_scilab_c_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+
+call_scilab_c_simple_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/simple_call_scilab.c
+call_scilab_c_simple_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_simple_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_c_getlastjob_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/GetLastJob.c
+call_scilab_c_getlastjob_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_getlastjob_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_c_DisableInteractiveMode_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/DisableInteractiveMode.c
+call_scilab_c_DisableInteractiveMode_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_c_DisableInteractiveMode_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwriteboolean_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwriteboolean.c
+call_scilab_readwriteboolean_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwriteboolean_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwritecomplexmatrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritecomplexmatrix.c
+call_scilab_readwritecomplexmatrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwritecomplexmatrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwritematrix_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritematrix.c
+call_scilab_readwritematrix_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwritematrix_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
+
+call_scilab_readwritestring_SOURCES = $(top_srcdir)/modules/call_scilab/examples/basicExamples/readwritestring.c
+call_scilab_readwritestring_CFLAGS = $(CALL_SCILAB_CFLAGS_COMMON)
+call_scilab_readwritestring_LDFLAGS = $(CALL_SCILAB_LDADD_COMMON)
