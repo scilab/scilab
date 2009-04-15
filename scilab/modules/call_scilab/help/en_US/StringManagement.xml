@@ -80,7 +80,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, 
  <link linkend="BooleanManagement">BooleanManagement</link>,
- <link linkend="DoubleManagement">DoubleManagement</link>,
+ <link linkend="MatrixManagement">MatrixManagement</link>,
 	   <link linkend="cwritechain">cwritechain</link>, 
 	    <link linkend="creadchain">creadchain</link>
 </member>

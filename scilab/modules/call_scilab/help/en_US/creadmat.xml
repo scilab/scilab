@@ -10,8 +10,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="cwritebmat"
-          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+<refentry version="5.0-subset Scilab" xml:id="creadmat" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
           xmlns:ns5="http://www.w3.org/1999/xhtml"
@@ -22,14 +22,15 @@
   </info>
 
   <refnamediv>
-    <refname>cwritebmat</refname>
+    <refname>creadmat</refname>
 
-    <refpurpose>Write a single boolean or a matrix of boolean into Scilab memory using
-    call_scilab</refpurpose>
+    <refpurpose>Read a single double or a matrix of double from Scilab memory using
+    call_scilab. Note that it is the default datatype in Scilab.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <para>int C2F(cwritebmat)(char *name, int *m, int *n, int *mat, unsigned long name_len);</para>
+    <para>int C2F(creadmat) (char *name, int *m, int *n, double *scimat, unsigned long name_len);
+</para>
   </refsynopsisdiv>
 
   <refsection>
@@ -43,7 +44,6 @@
             <para>The name of the future Scilab variable</para>
           </listitem>
         </varlistentry>
-
         <varlistentry>
           <term>m</term>
 
@@ -61,10 +61,10 @@
         </varlistentry>
 
         <varlistentry>
-          <term>mat</term>
+          <term>scimat</term>
 
           <listitem>
-            <para>The actual matrix of boolean (array of int). Note that it is going to be stored in Scilab columnwise.</para>
+				 <para>The actual matrix of double (array of double). Note that it is going to be stored in Scilab columnwise.</para>
           </listitem>
         </varlistentry>
 
@@ -72,8 +72,8 @@
           <term>name_len</term>
 
           <listitem>
-            <para>The length of the variable <emphasis>name</emphasis>
-            (fortran compatibility)</para>
+            <para>The length of the variable <emphasis>name
+            </emphasis>(fortran compatibility)</para>
           </listitem>
         </varlistentry>
 
@@ -91,27 +91,47 @@
   <refsection>
     <title>Description</title>
 
-    <para>This help describes how to use the function cwritebmat.</para>
+    <para>This help describes how to use the function creadmat.</para>
 
-    <para>Using this function will basically do the same as <emphasis>A=[ T F F T ];</emphasis> but straight into Scilab memory with call_scilab.</para>
+    <para>Using this function will retrieve a variable called
+    <emphasis>name</emphasis> from Scilab memory into a standard C
+    <emphasis>double *</emphasis>.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">// This example shows how to write a Scilab matrix of boolean in Scilab engine
-// It is the equivalent to B=[F F T F;
-// 	  	 	 			   	  F F F T ] in Scilab interpretor
-// See: modules/call_scilab/examples/basicExamples/readwriteboolean.c
+    <programlisting role="example">		/* Load the previously set variable B */
+// See: modules/call_scilab/examples/basicExamples/readwritematrix.c
+		int rowB_ = 0, colB_ = 0, lp_ = 0;
+		double *matrixOfDoubleB = NULL;
+		int i = 0, j = 0;
 
-// StartScilab
-			int B[]={0,0,0,0,1,0,0,1};   /* Declare the matrix */
-			int rowB=2, colB=4; /* Size of the matrix */
-			char variableNameB[] = "B";
-			C2F(cwritebmat)(variableNameB, &rowB, &colB, B, strlen(variableNameB)); /* Write it into Scilab's memory */
-			printf("\n");
-			printf("Display from Scilab of B:\n");
-			SendScilabJob("disp(B);"); /* Display B */
+		char variableToBeRetrievedB[] = "B";
+
+		/* First, retrieve the size of the matrix */
+		C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+
+		/* Alloc the memory */
+		matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
+
+		/* Load the matrix */
+		C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
+
+		printf("\n");
+		printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
+		for(j = 0 ; j < rowB_ ; j++)
+			{
+				for(i = 0 ; i < colB_ ; i++)
+					{
+						/* Display the formated matrix ... the way the user
+						 * expect */
+						printf("%5.2f ",matrixOfDoubleB[i * rowB_ + j]);
+					}
+				printf("\n"); /* New row of the matrix */
+			}
+
+
 </programlisting>
   </refsection>
 
@@ -120,7 +140,9 @@
 
     <simplelist type="inline">
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link linkend="BooleanManagement">BooleanManagement</link></member>
+      linkend="StartScilab">StartScilab</link>, <link
+      linkend="cwritemat">cwritemat</link>, <link
+      linkend="MatrixManagement">MatrixManagement</link></member>
     </simplelist>
   </refsection>
 
