@@ -82,7 +82,7 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 	  }
 	if( (i==1) && (iRows[0] != iRows[1]) )
 	  {
-	    Scierror(256, _("%s and %s must have equal number of rows.\n"), "A", "B");
+	    Scierror(265, _("%s and %s must have equal number of rows.\n"), "A", "B");
 	    ret= 1;
 	  }
       }
