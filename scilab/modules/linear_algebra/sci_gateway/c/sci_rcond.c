@@ -53,7 +53,7 @@ int C2F(intrcond)(char *fname,unsigned long fname_len)
       }
     if( iRows != iCols)
       {
-	Scierror(999,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+	Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
 	ret= 1;
       }
     else
