@@ -198,7 +198,7 @@
             clipped.</para>
             </listitem>
             <listitem>
-              <para><literal>"cliprf"</literal> this means that the text is clipped
+              <para><literal>"clipgrf"</literal> this means that the text is clipped
             outside the Axes box.</para>
             </listitem>
             <listitem>

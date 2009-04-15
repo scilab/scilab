@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-07-25 14:57+0000\n"
+"PO-Revision-Date: 2009-04-12 07:12+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -34,111 +34,111 @@ msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr "%s：输入参数的值错误：文件名必须为一个字符串。\n"
 
 msgid "Data array must have 1- or 2-dimensions only."
-msgstr ""
+msgstr "数据数组必须只能有1维或2维。"
 
 msgid "Error while writing sound file."
-msgstr ""
+msgstr "写声音文件时出错。"
 
 msgid ""
 "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
-msgstr ""
+msgstr "Mu-law只能用于8位数据。使用了method=''linear''。"
 
 msgid "Unrecognized data format."
-msgstr ""
+msgstr "无法识别的数据格式。"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
+msgstr "%s：输入参数的数目错误，应该为%d个。\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr ""
+msgstr "%s：输出参数的数目错误。\n"
 
 msgid "Audio capabilities not available."
-msgstr ""
+msgstr "不存在音频功能。"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的大小错误。\n"
 
 msgid "only 8/16/24/32 bits for the encoding."
-msgstr ""
+msgstr "只能为8/16/24/32位编码。"
 
 msgid "Unknown data format."
-msgstr ""
+msgstr "未知的数据格式。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少%d个。\n"
 
 msgid "Requires 2-D values only."
-msgstr ""
+msgstr "值需要2D值。"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
 "vector of %d integers.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
-msgstr ""
+msgstr "%s：输入参数的值错误：索引范围必须制定为一个标量，或有%d元素的向量。\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr ""
+msgstr "%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
 
 msgid ".wav file does not contain the RIFF identifier."
-msgstr ""
+msgstr ".wav文件不包含RIFF标识。"
 
 msgid ".wav file does not contain the wave identifier."
-msgstr ""
+msgstr ".wav文件不包含wave标识。"
 
 msgid "Error reading .wav file."
-msgstr ""
+msgstr "读.wav文件出错。"
 
 msgid "Error reading <fact-ck> chunk."
-msgstr ""
+msgstr "读<fact-ck>块出错。"
 
 msgid "Invalid .wav file: found data before format information."
-msgstr ""
+msgstr "不正确的.wav文件：在格式信息之前发现数据"
 
 msgid "Incorrect chunk size information in RIFF file."
-msgstr ""
+msgstr "在RIFF文件中有不正确的块（chunk）大小信息。"
 
 msgid "Invalid wav format."
-msgstr ""
+msgstr "不正确的wav格式。"
 
 msgid "Error reading wav file."
-msgstr ""
+msgstr "读wav文件时发生错误。"
 
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr "%s：一个错误发生：不支持格式%s的数据压缩。\n"
 
 msgid "Cannot read .wav file  with more than 16 bits per sample."
-msgstr ""
+msgstr "无法读每个采样超过16位的.wav文件。"
 
 msgid "Sample limit vector must have 2 entries."
-msgstr ""
+msgstr "采样限制向量必须有2个入口。"
 
 msgid "Sample limits out of range."
-msgstr ""
+msgstr "采样限制超出范围。"
 
 msgid "Invalid sample limits (use ascending order)."
-msgstr ""
+msgstr "不正确的采样限制（使用升序）"
 
 msgid "Cannot play file."
 msgstr "无法播放文件。"

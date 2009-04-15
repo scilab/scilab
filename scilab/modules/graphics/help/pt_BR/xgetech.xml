@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xgetech" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xgetech</refname>
+
+    <refpurpose>retorna a escala de gráficos corrente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[wrect,frect,logflag,arect]=xgetech()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>wrect,frect</term>
+
+        <listitem>
+          <para>vetores de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>logflag</term>
+
+        <listitem>
+          <para>string de tamanho 2 "xy"</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xgetech</literal> retorna a escala de gráficos corrente (da
+    janela corrente). O retângulo [xmin,ymin,xmax,ymax] dado por
+    <literal>frect</literal> é o tamanho de toda a janela de gráficos. O
+    esboço será feito na região da janela de gráficos corrente especificada
+    por <literal>wrect</literal>.</para>
+
+    <para><literal>wrect=[x,y,w,h]</literal> (ponto superior esquerdo,
+    largura, altura) descreve uma região dentro de uma janela de gráficos. Os
+    valores em <literal>wrect</literal> são especificados utilizando-se a
+    proporção de largura e altura da janela de gráficos:</para>
+
+    <para><literal>wrect=[0 0 1 1]</literal> significa que toda a janela de
+    gráficos será utilizada.</para>
+
+    <para><literal>wrect=[0.5 0 0.5 1]</literal> significa que a região de
+    gráficos é a metade direita da janela de gráficos.</para>
+
+    <para><literal>logflag</literal> é um string de tamanho 2 "xy", onde x e y
+    podem ser "n" ou "l". "n" significa escala normal (linear) e "l" significa
+    escala logarítmica. x corresponde ao eixo x e y corresponde ao eixo
+    y.</para>
+
+    <para><literal>arect=[x_left, x_right,y_up,y_down]</literal> fornece o
+    tamanho da moldura dentro da subjanela. O quadro gráfico é especificado
+    (como <literal>wrect</literal>) utilizando-se a proporção de largura ou
+    altura da subjanela de gráficos corrente. O valor padrão é
+    <literal>1/8*[1,1,1,1]</literal>. Se <literal>arect</literal> não for
+    fornecido, o valor corrente permanece inalterado.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+// primeira subjanela
+xsetech([0,0,1.0,0.5])
+plot2d()
+// então, xsetech, é usado para ajustar a segunda sub-janela
+xsetech([0,0.5,1.0,0.5])
+grayplot()
+// obtendo as escalas gráficas da primeira sub-janela
+xsetech([0,0,1.0,0.5])
+[wrect,frect,logflag,arect]=xgetech();
+// obtendo as escalas gráficas da segunda sub-janela
+xsetech([0,0.5,1.0,0.5])
+[wrect,frect,logflag,arect]=xgetech();
+xbasc();
+xset('default')
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xsetech">xsetech</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.;</para>
+  </refsection>
+</refentry>

@@ -21,7 +21,7 @@
 // put in this file 
 
 printf('go to SCILAB working directory\n\n');
-cd(getenv('SCIHOME'));
+cd(SCIHOME);
 
 // saves .scilab
 // and launch scilab

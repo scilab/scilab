@@ -17,7 +17,7 @@ c     fjac_list   : contains the jacobian (if you want to give it)
 c                   ( example jex -> jacobian for fex)
 c     Examples :
 c       fex, jex : first example 
-c       fex2     : uses readmat (or matz) to get parameters 
+c       fex2     : uses creadmat (or matz) to get parameters 
 c       fex3     : uses matptr to get parameters 
 c       fexab    : a more complex example with matpr
 c-----------------------------------------------------------------
@@ -84,12 +84,12 @@ c     ode([1;0;0],0,[0.4,4],'fex','jex')
 
       subroutine fex2(neq, t, y, ydot)
 c     -------------------------------------------
-c     exemple with a call to readmat routine
+c     exemple with a call to creadmat routine
 c     param must be defined as a scilab variable
       double precision t, y, ydot, param
       dimension y(3), ydot(3), param(3)
 
-      call readmat('param'//char(0),m,n,param)
+      call creadmat('param'//char(0),m,n,param)
 c     *******************************
 
       ydot(1) = param(1)*y(1) + param(2)*y(2)*y(3)

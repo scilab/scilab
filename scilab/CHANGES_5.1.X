@@ -1,3 +1,45 @@
+               Changes between version 5.1.1 and 5.1.2 of Scilab
+               =================================================
+Compilation:
+============
+
+* "make check" now builds also call_scilab examples
+
+Source reorganisation:
+======================
+
+* Some function profiles in stack3.h provided to manage named named variable
+  have been moved in CallScilab.h (please note that we haven't changed the ABI
+  and the symbols remain in the core library)
+  The goal of this modification is to separate functions dealing with the 
+  call_scilab API and the internal API used in the gateways.
+
+* In call_scilab:
+  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
+  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead 
+    (same profile)
+  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
+
+Help & Tests:
+=============
+
+* Documentation and examples about call_scilab added
+
+Bug fixes:
+==========
+
+ * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
+                    possible value was 'clipgrf' instead of 'cliprf'.
+
+ * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
+                    links to this page exist in the documentation.
+
+ * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
+                    we have only one symbol.
+
+
+
+
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
@@ -41,8 +83,6 @@ Help & Tests:
 * Some equations in the documentation converted to the MathML format 
   (bugs #4180 & #4182)
 
-* Help improved about javasci - Scilab Java API
-
 * Page "Compile and run with Javasci" added
 
 * Examples in javasci translated into english
@@ -69,6 +109,12 @@ Enhancement:
   present, the second input argument of test_run is no more the list of tests to
   launch but the list of tests to skip.
   For example, test_run("time",["bug_1506" "bug_793"],"skip_tests");
+  
+* test_run() : The following tags have been added :
+  - <-- WINDOWS ONLY --> If the operating system isn't Windows, the test is skipped.
+  - <-- UNIX ONLY -->    If the operating system isn't an unix OS, the test is skipped.
+  - <-- LINUX ONLY -->   If the operating system isn't Linux, the test is skipped.
+  - <-- MACOSX ONLY -->  If the operating system isn't MacOSX, the test is skipped.
 
 License:
 ========
@@ -165,6 +211,9 @@ Bug fixes:
 
 * bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
+
+* bug 4242 fixed - Copyright added (INRIA code) 
+		   on modules/linear_algebra/src/fortran/doldqr.f
 
 * bug 4150 fixed - user startup executed twice if you change directory to 
   	  	   		   SCIHOME in this file.
@@ -267,6 +316,9 @@ Bug fixes:
 
 * bug 4343 fixed - the plot3d demo doesn't seems to work.
 
+* bug 4372 fixed - The graphics from the genetic_algorithms and simulated_annealing toolbox where not displayed
+
+* bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================

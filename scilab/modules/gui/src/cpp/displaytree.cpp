@@ -256,7 +256,7 @@ int iGetFieldIndex(int _iVar, int* _piCurrentItem, char* _pszFieldName)
 	int iLen			= 0;
 	int *piLen		= NULL;
 	char *pszField	= NULL;
-	int iRet = iGetListSubItemString(_iVar, _piCurrentItem, 0, &iRows, &iCols, piLen, pszField);
+	int iRet = iGetListSubItemString(_iVar, _piCurrentItem, 0, &iRows, &iCols, piLen, pszField);\
 	if(iRet != 0)
 	{
 		return 1;
@@ -282,6 +282,7 @@ int iGetFieldIndex(int _iVar, int* _piCurrentItem, char* _pszFieldName)
 	{
 		char *szSubString = (char*)MALLOC(iLen * sizeof(char));
 		strncpy(szSubString, pszField + iArraySum(piLen, 0, i), piLen[i]);
+		szSubString[piLen[i]] = 0;
 		if(strcmp(_pszFieldName, szSubString) == 0)
 		{
 			FREE(szSubString);
@@ -300,7 +301,7 @@ int iGetFieldValue(int _iVar, int* _piCurrentItem, char* _pszFieldName, char * _
 {
 	int iIndex = iGetFieldIndex(_iVar, _piCurrentItem, _pszFieldName);
 	if(iIndex == -1)
-	{
+	{	
 		return -1;
 	}
 

@@ -8,7 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function plot_ising2d(Var)
-scf();
 drawlater;
 a = gca();
 Size = size(Var,1);

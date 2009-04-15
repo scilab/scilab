@@ -43,11 +43,11 @@ function flag = assert_equal ( computed , expected )
 endfunction
 // unit tests for gamma() function
 // =============================================================================
-if ~isnan(gamma(-1.e308))    then bugmes();quit;end
-assert_close ( gamma(-170.6) ,  -2.082900836150297478e-308 , %eps );
+assert_equal ( isnan(gamma(-1.e308)) , %T );
+assert_close ( gamma(-170.6) ,  -2.082900836150297478e-308 , 1.e2 * %eps );
 assert_close ( gamma(-1.5) , 2.36327180120735480529 , %eps );
-if ~isnan(gamma(-2.))    then bugmes();quit;end
-if ~isnan(gamma(-1.))    then bugmes();quit;end
+assert_equal ( isnan(gamma(-2.)) , %T );
+assert_equal ( isnan(gamma(-1.)) , %T );
 assert_close ( gamma(-0.5) , -3.5449077018110317638389 , %eps );
 assert_equal ( gamma(0.0) , %inf );
 assert_close ( gamma(1.e-307) , 1.e307 , %eps );
@@ -61,7 +61,7 @@ assert_equal ( gamma(4.0) , 6.0 );
 assert_equal ( gamma(5.0) , 24.0 );
 assert_equal ( gamma(10.0) , 362880.0 );
 assert_close ( gamma(13.0) , 479001600.0 , 1000 * %eps );
-assert_close ( gamma(171) , 7.257415615308056415e+306 , %eps );
+assert_close ( gamma(171) , 7.257415615308056415e+306 , 1.e3 * %eps );
 assert_equal ( gamma(172) , %inf );
 assert_equal ( gamma(%inf) , %inf );
 assert_equal ( gamma(-%inf) , %inf );
