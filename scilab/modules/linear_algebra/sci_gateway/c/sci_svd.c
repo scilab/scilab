@@ -106,7 +106,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
     {
       if((iRows == -1) || (iCols== -1))
 	{
-	  Scierror(999,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
+	  Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
 	   ret= 1;
 	}
       else
@@ -114,24 +114,12 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 	  int const totalsize= iRows * iCols * (complexArg ? 2 : 1); 
 	  if(!C2F(vfinite)(&totalsize, pData))
 	    {
-	      Scierror(999,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"), 1);
+	      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"), 1);
 	      ret= 1;
 	    }
 	  else
 	    {
-	      switch(Lhs){
-	      case 4:
-		{
-		  if( (Rhs == 2) && ( GetType(2) == sci_matrix) ) /* other cases with Rhs==2 are handled as economy mode */
-		    {
-		      int dummy; /* original code does not check iRows == iCols == 1 */
-		      double* tmpData;
-		      GetRhsVarMatrixDouble(2, &dummy, &dummy, &tmpData);
-		      tol= *tmpData;
-		    }
-		  iAllocMatrixOfDouble(Rhs+4, 1, 1, &pRk);
-		}/* no break */
-	      case 3:
+	      if(Lhs >= 3)
 		{
 		  int const economyRows= economy ? Min(iRows, iCols) : iRows;
 		  int const economyCols= economy ? Min(iRows, iCols) : iCols;
@@ -149,20 +137,29 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 		      iAllocMatrixOfDouble(Rhs+2, economyRows, economyCols, &pS);
 		      iAllocMatrixOfDouble(Rhs+3, iCols, economyCols , &pV);
 		    }
-		 
-		  break;
+		  if(Lhs == 4)
+		    {
+		      if( (Rhs == 2) && ( GetType(2) == sci_matrix) ) /* other cases with Rhs==2 are handled as economy mode */
+			{
+			  int dummy; /* original code does not check iRows == iCols == 1 */
+			  double* tmpData;
+			  GetRhsVarMatrixDouble(2, &dummy, &dummy, &tmpData);
+			  tol= *tmpData;
+			}
+		      iAllocMatrixOfDouble(Rhs+4, 1, 1, &pRk);
+		    }
 		}
-	      case 2:
+	      else
 		{
-		  Scierror(999,_("%s: Wrong number of output arguments.\n"),fname);
-		  break;
+		  if(Lhs == 2)
+		    {
+		      Scierror(78,_("%s: Wrong number of output arguments.\n"),fname);
+		    }
+		  else /* Lhs == 1 */
+		    {
+		      iAllocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
+		    }
 		}
-	      case 1:
-		{
-		  iAllocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
-		  break;
-		}
-	      }
 	      ret=  iSvdM(pData, iRows, iCols, complexArg, economy, tol, pSV, pU, pS, pV, pRk);
 	      if(ret){
 		if( ret == -1)
@@ -171,7 +168,7 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 		  }
 		else
 		  {
-		    Scierror(999,_("Convergence problem...\n"));
+		    Scierror(24,_("Convergence problem...\n"));
 		  }
 	      }
 	      else
@@ -191,16 +188,13 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
 			  }
 			}
 		    }
-		  switch(Lhs)
-		    {
-		    case 4: LhsVar(4)= Rhs + 4; /* no break */
-		    case 3:
+		  {
+		    int i;
+		    for(i= Lhs; i != 0; --i)
 		      {
-			LhsVar(3)= Rhs + 3;
-			LhsVar(2)= Rhs + 2;
-		      } /* no break */
-		    case 1: LhsVar(1)= Rhs + 1 ;
-		    }
+			LhsVar(i)= Rhs + i;
+		      }
+		  }
 		}
 	    }
 	}

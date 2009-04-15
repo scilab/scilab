@@ -57,7 +57,7 @@ int C2F(inthess)(char *fname,unsigned long fname_len)
     }
   if( iRows != iCols)
     {
-      Scierror(999,_("%s: Wrong size for input argument #%d: Square matrix expected.\n"),fname, 1);
+      Scierror(20,_("%s: Wrong size for input argument #%d: Square matrix expected.\n"),fname, 1);
     }
   else
     {
