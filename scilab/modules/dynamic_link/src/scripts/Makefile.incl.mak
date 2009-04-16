@@ -37,6 +37,7 @@ CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE) /Fo"$(DIR_OBJ)/" /Fd"
 # include options 
 INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/core/includes" \
+-I"$(SCIDIR)/modules/call_scilab/includes" \
 -I"$(SCIDIR)/modules/output_stream/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
@@ -82,7 +83,8 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/scioutput_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
 "$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
-"$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib"
+"$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
+"$(SCIDIR1)/bin/call_scilab.lib"
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
