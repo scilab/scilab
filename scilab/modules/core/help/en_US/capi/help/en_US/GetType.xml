@@ -36,7 +36,7 @@
         <term>SciType</term>
 
         <listitem>
-          <para>the type (defined in the sci_types enum which you can find in
+          <para>the type (defined in the <link linkend="sci_types">sci_types</link> enum which you can find in
           stack-c.h) of the variable at position StackPos on the stack</para>
         </listitem>
       </varlistentry>
