@@ -90,7 +90,7 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 	memset(pchar, 0x00, (iMaxLen + 1) * sizeof(char));
 
 	iCharLen = wcstombs (pchar, pwstr, iMaxLen);
-	if(iCharLen == 0)
+	if(iCharLen < 0)
 	{
 		FREE(pchar);
 		return NULL;
