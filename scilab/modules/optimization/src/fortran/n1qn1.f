@@ -72,17 +72,17 @@ c!
          call basout(io, lp, 
      $    '***** enters -qn code- (without bound cstr)')
 
-         write(bufstr,'(''dimension='',i,'', epsq='',d,
-     $    '', verbosity level: imp='',i)') n,eps,imp
-         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+c         write(bufstr,'(''dimension='',i,'', epsq='',d,
+c     $    '', verbosity level: imp='',i)') n,eps,imp
+c         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
          
-         write(bufstr,
-     $    '(''max number of iterations allowed: iter='',i)'),niter
-         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+c         write(bufstr,
+c     $    '(''max number of iterations allowed: iter='',i)'),niter
+c         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
          
-         write(bufstr,
-     $    '(''max number of calls to costf allowed: nap='',i)'),nsim
-         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+c         write(bufstr,
+c     $    '(''max number of calls to costf allowed: nap='',i)'),nsim
+c         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
          
          call basout(io ,lp ,
      $    '------------------------------------------------')
@@ -97,9 +97,9 @@ c!
      1 niter,nsim,imp,lp,zm,zm(nd),zm(nw),zm(nxa),zm(nga),
      2 zm(nxb),zm(ngb),izs,rzs,dzs)
       if (imp.gt.0) then
-        write(bufstr,
-     $   '(''***** leaves -qn code-, gradient norm='',d)') sqrt(eps)
-      call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+c       write(bufstr,
+c    $   '(''***** leaves -qn code-, gradient norm='',d)') sqrt(eps)
+c     call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
      
       endif
       end
