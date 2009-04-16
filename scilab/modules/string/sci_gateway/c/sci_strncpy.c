@@ -71,7 +71,7 @@ int sci_strncpy(char *fname,unsigned long fname_len)
 					wchar_t *wcstring = to_wide_string(InputString_Parameter1[j]);
 					if (wcstring)
 					{
-						len = wcslen(wcstring);
+						len = (int)wcslen(wcstring);
 						FREE(wcstring);
 						wcstring = NULL;
 					}

@@ -195,7 +195,7 @@ int sci_strindex(char *fname,unsigned long fname_len)
 					wchar_t *wcpartStr = NULL;
 					partStr[Output_Start] = '\0';
 					wcpartStr = to_wide_string(partStr);
-					values[nbValues++].data = wcslen(wcpartStr) + 1; /* adding the answer into the outputmatrix */
+					values[nbValues++].data = (int)wcslen(wcpartStr) + 1; /* adding the answer into the outputmatrix */
 					values[nbposition++].position = x+1;        /* The number according to the str2 matrix */
 
 					if (partStr) {FREE(partStr); partStr = NULL;}

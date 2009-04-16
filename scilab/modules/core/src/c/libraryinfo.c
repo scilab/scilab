@@ -23,6 +23,7 @@
 #include "strdup_windows.h"
 #endif
 #include "charEncoding.h"
+#include "CallScilab.h"
 /*--------------------------------------------------------------------------*/
 char *getlibrarypath(char *libraryname)
 {

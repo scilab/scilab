@@ -195,9 +195,9 @@ int sci_regexp(char *fname,unsigned long fname_len)
 							if (backupPointerstart_point) {FREE(backupPointerstart_point); backupPointerstart_point = NULL;}
 							if (backupOutput_End) {FREE(backupOutput_End); backupOutput_End = NULL;}
 
-							if (wcbackupPointerOutput_Start) wcOutput_Start = wcslen(wcbackupPointerOutput_Start);
-							if (wcbackupPointerstart_point) wcstart_point = wcslen(wcbackupPointerstart_point);
-							if (wcbackupOutput_End) wcOutput_End = wcslen(wcbackupOutput_End);
+							if (wcbackupPointerOutput_Start) wcOutput_Start = (int)wcslen(wcbackupPointerOutput_Start);
+							if (wcbackupPointerstart_point) wcstart_point = (int)wcslen(wcbackupPointerstart_point);
+							if (wcbackupOutput_End) wcOutput_End = (int)wcslen(wcbackupOutput_End);
 
 							if (wcbackupPointerOutput_Start) {FREE(backupPointerOutput_Start); wcbackupPointerOutput_Start = NULL;}
 							if (wcbackupPointerstart_point) {FREE(wcbackupPointerstart_point); wcbackupPointerstart_point = NULL;}

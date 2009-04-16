@@ -50,7 +50,7 @@ char **findfiles(char *path, char *filespec, int *sizeListReturned)
 	wcfilespec = to_wide_string(filespec);
 	wcpath = to_wide_string(path);
 
-	len = ( wcslen(wcpath) + wcslen(wcfilespec) + 8);
+	len = (int)( wcslen(wcpath) + wcslen(wcfilespec) + 8);
 	wcstrPattern = (wchar_t*)MALLOC(sizeof(wchar_t)*len);
 	swprintf(wcstrPattern,len,L"%s/%s", wcpath, wcfilespec);
 

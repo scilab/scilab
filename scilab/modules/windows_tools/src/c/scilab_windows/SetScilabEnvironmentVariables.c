@@ -186,7 +186,7 @@ BOOL Set_SOME_ENVIRONMENTS_VARIABLES_FOR_SCILAB(void)
 
 	/* WIN64 variable Environment */
     #ifdef _WIN64
-		putenv ("WIN64=OK");
+		_putenv ("WIN64=OK");
 	#endif
 
 	if ( GetSystemMetrics(SM_REMOTESESSION) ) 
