@@ -1,5 +1,9 @@
 // example of use of the simulated annealing method
 
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
+
 // Definition of the Rastrigin test problem
 
 //
@@ -248,4 +252,6 @@ if DoHuang then
   end
   drawnow;
 end
+
+funcprot(old_funcprot);
 

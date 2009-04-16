@@ -39,7 +39,7 @@ void ArcLineDrawerJoGL::drawArc( void )
 
   // set the line parameters
   getLineDrawerJavaMapper()->setLineParameters(sciGetGraphicContext(pObj)->foregroundcolor,
-                                               (float)sciGetLineWidth(pObj),
+                                               sciGetLineWidth(pObj),
                                                sciGetLineStyle(pObj));
 
   // get the data of the arc

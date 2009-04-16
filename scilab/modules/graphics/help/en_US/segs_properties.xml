@@ -80,8 +80,10 @@
       <varlistentry>
         <term>thickness: </term>
         <listitem>
-          <para>This field contains the <literal>thickness</literal> property for all
-        segments. Its value should be a non negative integer..</para>
+          <para>This property is a positive real specifying the arrow width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

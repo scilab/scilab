@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="StringManagement_callscilab"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>String management</refname>
+
+    <refpurpose>How to manage Scilab's String read and write process using
+    call_scilab</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This help describes how strings and matrix of strings can be handle
+    through the Call Scilab API.</para>
+
+    <para>There are several functions which can be used to read / write from
+    the memory of Scilab. These functions are described in dedicated
+    pages.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// This example shows how to write a Scilab string in Scilab engine
+// It is the equivalent to A="my Message"; in Scilab interpretor
+
+// StartScilab
+		char *myString = "my Message";   /* Declare the string */
+		char variableName[] = "A"; / * The name of the future variable in Scilab */
+		int sizeOfMyString=strlen(myString);
+
+		C2F(cwritechain)(variableName, &amp;sizeOfMyString  , myString, strlen(variableName), sizeOfMyString); /* Write it into Scilab's memory */
+
+		printf("Display from Scilab of A:\n");
+		SendScilabJob("disp(A);"); /* Display A */</programlisting>
+
+    <programlisting>		/* Load the previously set variable A */
+		{
+			int sizeA = 0;
+			char myStringFromScilab[bsiz]; /* Static char */
+			int length_myStringFromScilab = bsiz; /* Max size (it is going to be 
+												* changed by creadchain */
+			char variableToBeRetrieved[]="A";
+
+			/* We are loading a single string from Scilab */
+			C2F(creadchain)(variableToBeRetrieved,&amp;length_myStringFromScilab,myStringFromScilab,strlen(variableToBeRetrieved),strlen(myStringFromScilab));
+
+			printf("\n");
+			printf("Display of A (size %d): %s\n", length_myStringFromScilab, myStringFromScilab);
+		}</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      linkend="StartScilab">StartScilab</link>, 
+ <link linkend="BooleanManagement">BooleanManagement</link>,
+ <link linkend="DoubleManagement">DoubleManagement</link>,
+	   <link linkend="cwritechain">cwritechain</link>, 
+	    <link linkend="creadchain">creadchain</link>
+</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

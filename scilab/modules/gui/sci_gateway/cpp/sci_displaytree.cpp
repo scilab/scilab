@@ -43,6 +43,7 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	int *piCurrentItem = NULL;
 	string szCurLevel = "";
 
+
 	iGetListItemType(1, piCurrentItem, &iItemCount, NULL);
 	int *piItemType = (int*)MALLOC(iItemCount * sizeof(int));
 	iGetListItemType(1, piCurrentItem, &iItemCount, piItemType);

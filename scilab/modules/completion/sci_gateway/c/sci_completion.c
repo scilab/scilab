@@ -109,17 +109,13 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
-					if (param2) {FREE(param2); param2 = NULL;}
 					freeArrayOfString(Inputs2,m1*n1);
 					Scierror(999,_("%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),fname,"functions","commands","variables","macros","graphic_properties","files");
 					return 0;
 				}
-
-				if (param2) {FREE(param2); param2 = NULL;}
-				freeArrayOfString(Inputs2,m1*n1);
-
 				putResultOnStack(1,Results,sizeResults);
 				freePointerDictionary(Results,sizeResults);
+				freeArrayOfString(Inputs2,m1*n1);
 				C2F(putlhsvar)();
 
 			}

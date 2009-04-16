@@ -1,5 +1,9 @@
 // example of use of the genetic algorithm
 
+lines(0);
+old_funcprot = funcprot();
+funcprot(0);
+
 // Definition of the Rastrigin test problem
 
 //
@@ -139,3 +143,6 @@ printf('Genetic Algorithm - binary: %d points from pop_opt\n', nb_disp);
 for i=1:nb_disp 
   printf('Individual %d: x(1) = %f x(2) = %f -> f = %f\n', i, pop_opt(i)(1), pop_opt(i)(2), fobj_pop_opt(i));
 end
+
+funcprot(old_funcprot);
+

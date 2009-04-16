@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="call_scilab" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+
+    <refname>call_scilab</refname>
+
+    <refpurpose>call_scilab is an interface which provides the ability to call Scilab engine from C/C++ code</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Scilab offers the possibility to be called from a native (C/C++)
+    application.</para>
+
+    <para>Thanks to this module, it is possible to call Scilab from C/C++
+	in order to interface Scilab's features from an other code/application
+	or to be able to interface Scilab's features from an other language.</para>
+	<para>It is also possible to read and write most of the Scilab datastructures thanks to this module</para>	
+
+    <para>This help describes the features of the call_scilab API.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// A simple call_scilab example 
+
+#include &lt;stdio.h&gt; /* stderr */
+
+#include "stack-c.h" /* Provide functions to access to the memory of Scilab */
+#include "CallScilab.h" /* Provide functions to call Scilab engine */
+
+// Filename: simple_call_scilab.c
+
+int main(void)
+{
+/****** INITIALIZATION **********/
+#ifdef _MSC_VER
+	if ( StartScilab(NULL,NULL,NULL) == FALSE )
+#else
+	if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
+#endif
+		{
+			fprintf(stderr,"Error while calling StartScilab\n");
+			return -1;
+		}
+
+/****** ACTUAL Scilab TASKS *******/
+
+	SendScilabJob("myMatrix=['sample','for the help']");
+	SendScilabJob("disp(myMatrix);"); // Will display !sample  for the help  !
+	SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.  
+
+/****** TERMINATION **********/
+	if ( TerminateScilab(NULL) == FALSE ) {
+		fprintf(stderr,"Error while calling TerminateScilab\n");
+		return -2;
+	}
+	return 0;
+}
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="Scilab">Scilab</link></member>
+      <member><link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link></member>
+      <member><link linkend="StringManagement">String Management</link></member>
+
+      <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>
+
+      <member><link linkend="SciString">SciString</link></member>
+
+      <member><link linkend="SciStringArray">SciStringArray</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

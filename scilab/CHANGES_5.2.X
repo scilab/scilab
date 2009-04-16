@@ -69,6 +69,8 @@ Bug fixes:
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
+* bug 4262 fixed - lines returns incorrect values.
+
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
 		   causing an error on startup
 
@@ -76,3 +78,5 @@ Bug fixes:
                    are not available.
 
 * bug 4360 fixed - The reference of bug_3954.tst was missing
+
+* bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0, the lines/edges should disappear.
