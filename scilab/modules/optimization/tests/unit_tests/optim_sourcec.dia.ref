@@ -8,14 +8,12 @@
 //
 // optim.tst --
 //   Test the optim command with the Rosenbrock test case
-//   in the case where the cost function is provided as a Fortran 
+//   in the case where the cost function is provided as a Fortran
 //   routine.
 //   The "genros" function is defined in optimization/sci_gateway/fortran/Ex-optim.f
 //
 // This is the precision measured with experiments.
-
 ilib_verbose(0);
-
 Leps=10^12*%eps;
 // n : dimension of the problem
 n=3;
@@ -56,21 +54,20 @@ linkid=link(libpath,'rosenc','c');
 valtd=100;
 // Test with default solver and default settings.
 [f,x,g]=optim('rosenc',x0,'td',valtd);
-if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 // Test with all solvers
 solverlist=["gc" "qn" "nd"];
 for solver=solverlist
   [f,x,g]=optim('rosenc',x0,solver,'td',valtd);
-  if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+  if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
 end
 // Test all verbose levels with all possible solvers
 verboselevels=[0];
 for verbose=verboselevels
   for solver=solverlist
     [f,x,g]=optim('rosenc',x0,solver,'td',valtd,imp=verbose);
-    if abs(f-1+norm(x-xopt) ) > Leps then pause,end
+    if abs(f-1+norm(x-xopt) ) > Leps then bugmes();quit;end
   end
 end
 // Clean-up
 ulink(linkid);
-
