@@ -105,6 +105,8 @@ wchar_t *to_wide_string(char *_UTFStr)
 	char *psz = _UTFStr;
 	mbstate_t ps;
 
+	if(_UTFStr == NULL) return NULL;
+
 	memset (&ps, 0x00, sizeof(ps));
 	pszLen = mbsrtowcs(NULL, (const char**)&psz, 0, &ps);
 
@@ -120,7 +122,8 @@ wchar_t *to_wide_string(char *_UTFStr)
 	}
 	memset(_buf, 0x00, (pszLen + 1) * sizeof(wchar_t));
 
-	mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
+	pszLen = mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
+	_buf[pszLen] = L'\0';
 	return _buf;
 }
 
