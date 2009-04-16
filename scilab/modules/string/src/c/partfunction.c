@@ -34,9 +34,10 @@ char **partfunction(char** stringInput,int m,int n,int *vectInput,int row)
 		int j = 0;
 		int lengthstringInput = 0;
 		wchar_t *wcInput = to_wide_string(stringInput[i]);
+		wchar_t *wcOutput = NULL;
 		if (wcInput) lengthstringInput = (int)wcslen(wcInput);
 
-		wchar_t *wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t)*((row)+1));
+		wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t)*((row)+1));
 
 		for (j = 0;j < row; j++)
 		{
