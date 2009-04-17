@@ -100,6 +100,10 @@ static int isasciiStrings(char *fname)
 			Length_Output_Matrix = Length_Output_Matrix + (int)wcslen(wcInput);
 			FREE(wcInput); wcInput = NULL;
 		}
+		else
+		{
+			Length_Output_Matrix = Length_Output_Matrix + (int)strlen(Input_StringMatrix[x]);
+		}
 	}
 
 	if (Length_Output_Matrix != 0) 
@@ -127,6 +131,15 @@ static int isasciiStrings(char *fname)
 				nbOutput_IntMatrix++;
 			}
 			FREE(wcInput); wcInput = NULL;
+		}
+		else
+		{
+			for (y = 0;y < (int)strlen(Input_StringMatrix[x]); y++)
+			{
+				if (isascii(Input_StringMatrix[x][y])) Output_BooleanMatrix[nbOutput_IntMatrix] = (int)TRUE;
+				else Output_BooleanMatrix[nbOutput_IntMatrix] = (int)FALSE; 
+				nbOutput_IntMatrix++;
+			}
 		}
 	}
 
