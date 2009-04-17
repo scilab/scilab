@@ -51,8 +51,7 @@ void diary_nnl(char *str,int *n)
 	if (u)
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
-		//if (fd) fwrite(str,sizeof(unsigned char),*n,fd);
-		if (fd) fprintf(fd,"%s",str);
+		if (fd) fwrite(str,sizeof(unsigned char),*n,fd);
 	}
 }
 /*--------------------------------------------------------------------------*/
