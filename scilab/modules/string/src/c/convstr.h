@@ -22,12 +22,12 @@
 
 /**
 * convstr case conversion 
-* @param[in] Input_Matrix Input string matrix
-* @param[in] typ  'l' or 'u'  means low or upper
-* @param[in] Number_Input   the number of input string matrix
-* @return Output_Matrix 
+* param[in] Input_Matrix Input string matrix
+* param[out] Output_Matrix 
+* param[in] typ  'l' or 'u'  means low or upper
+* param[in] Number_Input   the number of input string matrix
 */
-char **convstr(char **Input_Matrix, char typ, int Number_Input);
+void convstr(char **Input_Matrix, char **Output_Matrix, char typ, int Number_Input);
 
 #endif /* __CONVSTR_H__ */
 /*--------------------------------------------------------------------------*/

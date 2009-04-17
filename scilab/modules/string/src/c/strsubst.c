@@ -59,14 +59,11 @@ char **strsubst_reg(char **strings_input,int strings_dim,char *string_to_search,
 /*-------------------------------------------------------------------------------------*/
 char *strsub(char* input_string, const char* string_to_search, const char* replacement_string)
 {
-	int count = 0;
-	int len = 0;
-	wchar_t *wcinput_string = NULL;
-	wchar_t *wcstring_to_search = NULL;
-	wchar_t *wcreplacement_string = NULL;
-	wchar_t *wcoccurrence_str = NULL;
-	wchar_t *wcreplacedString = NULL;
-	wchar_t *wcresult_str = NULL;
+	char *occurrence_str = NULL, *result_str = NULL;
+	
+
+	char *replacedString = NULL;
+	int count = 0, len = 0;
 
 	if (input_string == NULL) return NULL;
 
@@ -75,88 +72,54 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 		return strdup(input_string);
 	}
 
-	wcinput_string = to_wide_string(input_string);
-	wcstring_to_search = to_wide_string((char*)string_to_search);
-	wcreplacement_string = to_wide_string((char*)replacement_string);
-
-	if (wcinput_string && wcstring_to_search)
+	occurrence_str = strstr (input_string, string_to_search);
+	if (occurrence_str == NULL)
 	{
-	wcoccurrence_str = wcsstr (wcinput_string, wcstring_to_search);
-	}
-	else
-	{
-		wcoccurrence_str = NULL;
-	}	
-
-	if (wcoccurrence_str == NULL)
-	{
-		FREE(wcinput_string); wcinput_string = NULL;
-		FREE(wcstring_to_search); wcstring_to_search = NULL;
-		FREE(wcreplacement_string); wcreplacement_string = NULL;
 		return strdup(input_string);
 	}
 
-	if (wcslen (wcreplacement_string) > wcslen (wcstring_to_search)) 
+	if (strlen (replacement_string) > strlen (string_to_search)) 
 	{
 		count = 0;
-		len = (int)wcslen (wcstring_to_search);
-		if (len > 0)
+		len = (int)strlen (string_to_search);
+		if (len)
 		{
-			wcoccurrence_str = wcinput_string;
-			while(wcoccurrence_str && (*wcoccurrence_str != L'\0')) 
+			occurrence_str = input_string;
+			while(occurrence_str != NULL && *occurrence_str != '\0') 
 			{
-				if (wcoccurrence_str && wcstring_to_search)
+				occurrence_str = strstr (occurrence_str, string_to_search);
+				if (occurrence_str != NULL) 
 				{
-					wcoccurrence_str = wcsstr (wcoccurrence_str, wcstring_to_search);
-				}
-				else
-				{
-					wcoccurrence_str = NULL;
-				}
-				if (wcoccurrence_str != NULL) 
-				{
-					wcoccurrence_str += len;
+					occurrence_str += len;
 					count++;
 				}
 			}
 		}
-		len = count * ((int)wcslen(wcreplacement_string) - (int)wcslen(wcstring_to_search)) + (int)wcslen(wcinput_string);
+		len = count * ((int)strlen(replacement_string) - (int)strlen(string_to_search)) + (int)strlen(input_string);
 	}
-	else len = (int)wcslen(wcinput_string);
+	else len = (int)strlen(input_string);
 
-	wcreplacedString = (wchar_t*)MALLOC (sizeof(wchar_t)*(len + 1));
-	if (wcreplacedString == NULL) 
+	replacedString = MALLOC (sizeof(char)*(len + 1));
+	if (replacedString == NULL) return NULL;
+
+	occurrence_str = input_string;
+	result_str = replacedString;
+	len = (int)strlen (string_to_search);
+	while(*occurrence_str != '\0') 
 	{
-		FREE(wcreplacement_string); wcreplacement_string = NULL;
-		FREE(wcstring_to_search); wcstring_to_search = NULL;
-		FREE(wcreplacement_string); wcreplacement_string = NULL;
-		return NULL;
-	}
-
-	wcoccurrence_str = wcinput_string;
-	wcresult_str = wcreplacedString;
-
-	len = (int)wcslen (wcstring_to_search);
-
-	if (wcoccurrence_str && wcresult_str && wcstring_to_search)
-{
-	while(*wcoccurrence_str != L'\0') 
-	{
-		if (*wcoccurrence_str == wcstring_to_search[0] && wcsncmp(wcoccurrence_str, wcstring_to_search, len) == 0) 
+		if (*occurrence_str == string_to_search[0] && strncmp (occurrence_str, string_to_search, len) == 0) 
 		{
-			const wchar_t *N = NULL;
-			N = wcreplacement_string;
-			while (*N != L'\0') *wcresult_str++ = *N++;
-			wcoccurrence_str += len;
+			const char *N = NULL;
+			N = replacement_string;
+			while (*N != '\0') *result_str++ = *N++;
+			occurrence_str += len;
 		}
-		else *wcresult_str++ = *wcoccurrence_str++;
+		else *result_str++ = *occurrence_str++;
 	}
-}
-	*wcresult_str = L'\0';
+	*result_str = '\0';
 
-	return wide_string_to_UTF8(wcreplacedString);
-}
-/*-------------------------------------------------------------------------------------*/
+	return replacedString;
+}/*-------------------------------------------------------------------------------------*/
 char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string)
 {
 	char *tail = NULL;

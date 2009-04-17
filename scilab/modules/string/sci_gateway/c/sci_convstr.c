@@ -111,16 +111,28 @@ int sci_convstr(char *fname,unsigned long fname_len)
 		break;
 	}
 	
-	/* convstr algorithm */
-	Output_Matrix = convstr(Input_Matrix,typ,mn); 
-
-	freeArrayOfString(Input_Matrix,mn);
+	Output_Matrix = (char**)MALLOC(sizeof(char*)*(mn));
 	if (Output_Matrix == NULL)
 	{
-		Scierror(999,("%s: No more memory.\n"),fname);
+		Scierror(999,_("%s: No more memory.\n"),fname);
 		return 0;
 	}
-
+	
+	for (i = 0;i < mn;i++)
+	{
+		Output_Matrix[i] = (char*)MALLOC( sizeof(char*) * (strlen(Input_Matrix[i])+1) );
+		if (Output_Matrix[i] == NULL)
+		{
+			freeArrayOfString(Output_Matrix,i);
+			Scierror(999,("%s: No more memory.\n"),fname);
+			return 0;
+		}
+	}
+	
+	/* convstr algorithm */
+	convstr(Input_Matrix,Output_Matrix,typ,mn); 
+	freeArrayOfString(Input_Matrix,mn);
+	
 	/* put on scilab stack */
 	numRow   = Row_Num_One; 
 	numCol   = Col_Num_One ;
