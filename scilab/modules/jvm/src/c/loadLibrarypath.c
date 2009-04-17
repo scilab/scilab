@@ -22,10 +22,11 @@
 #include "MALLOC.h"
 #include "localization.h"
 #include "stricmp.h"
-
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
+#include "BOOL.h"
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadLibrarypath(char *xmlfilename)
 {
@@ -44,7 +45,16 @@ BOOL LoadLibrarypath(char *xmlfilename)
 			xmlXPathObjectPtr xpathObj = NULL;
 			char *libraryPath=NULL;
 
-			doc = xmlParseFile (xmlfilename);
+			{
+				BOOL bConvert = FALSE;
+				char *shortxmlfilename = getshortpathname(xmlfilename,&bConvert);
+				if (shortxmlfilename)
+				{
+					doc = xmlParseFile (shortxmlfilename);
+					FREE(shortxmlfilename);
+					shortxmlfilename = NULL;
+				}
+			}
 
 			if (doc == NULL) 
 			{

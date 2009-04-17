@@ -18,7 +18,6 @@
 #include "localization.h"
 #include "MALLOC.h"
 #include "Scierror.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int sci_getlongpathname(char *fname,unsigned long l)
 {
@@ -29,7 +28,6 @@ int sci_getlongpathname(char *fname,unsigned long l)
 
 	if (GetType(1) == sci_strings)
 	{
-		char szTemp[bsiz];
 		int bOK=FALSE;
 		char *LongName=NULL;
 		char *ShortName=NULL;
@@ -37,16 +35,15 @@ int sci_getlongpathname(char *fname,unsigned long l)
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 
 		/* bug 3089 */
-		ShortName = UTFToLocale(cstk(l1), szTemp);
+		ShortName = cstk(l1);
 
 		LongName = getlongpathname(ShortName,&bOK);
 
 		if (LongName) 
 		{
-		  char *LongNameUTF=localeToUTF(LongName, szTemp);
-			m1 = (int)strlen(LongNameUTF);
+			m1 = (int)strlen(LongName);
 			n1 = 1;
-			CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&LongNameUTF);
+			CreateVarFromPtr(Rhs+ 1,STRING_DATATYPE,&m1,&n1,&LongName);
 		}
 		else 
 		{

@@ -29,6 +29,7 @@ c declarations des scalaires
       integer  n, imp, io, retour, nsim, ntotap, nappel, indic, j
       logical  intfor, maxpas, rfinie, accept, encadr, depas
       external prosca, simul
+      character bufstr*(4096)
 c
 c initialisations
       depas=.false.
@@ -38,14 +39,20 @@ c initialisations
       ap=zero
       fp=finit
       dp=dg
-      if (imp .gt. 3) write(io,1) alpha, dg
+      if (imp .gt. 3) then
+         write(bufstr,1) alpha, dg
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      endif
 c calcul de la longueur du pas
       call prosca(n,d,d,pas,izs,rzs,dzs)
       pas=sqrt(pas)
 c test d'erreur dans la recherche lineaire
 1000  continue
       if (alpha * pas .le. dx) then
-      if (imp .gt. 3) write(io,1001)
+      if (imp .gt. 3) then
+        write(bufstr,1001)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      endif
       retour=1
       return
       else if (ntotap .eq. nsim) then
@@ -66,7 +73,8 @@ c calculs de f et g en ce point
       if (indic .lt. 0) then
       depas=.true.
       if (imp . gt. 3) then
-      write(io,2001) alpha,indic
+        write(bufstr,2001) alpha,indic
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
       delta=alpha - ap
       if (delta .le. dx) then
@@ -82,8 +90,9 @@ c calcul de la derivee suivant d au point xfinal
       call prosca(n,d,gfinal,dal,izs,rzs,dzs)
 c
       if (imp .gt. 3) then
-      aux2=f - finit
-      write(io,2002) alpha, aux2, dal
+        aux2=f - finit
+        write(bufstr,2002) alpha, aux2, dal
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
       if (indic .eq. 0) then
       retour=2

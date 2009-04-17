@@ -5,7 +5,7 @@
 
 MEXLIB_C_SOURCES = src/c/mexlib.c
 
-MEXLIB_FLAGS = -I$(srcdir)/includes/ -I$(top_srcdir)/modules/output_stream/includes/
+MEXLIB_FLAGS = -I$(srcdir)/includes/ -I$(top_srcdir)/modules/output_stream/includes/ -I$(top_srcdir)/modules/call_scilab/includes/
 
 MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
 

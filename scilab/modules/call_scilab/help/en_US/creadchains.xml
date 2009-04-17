@@ -107,6 +107,7 @@
     <title>Examples</title>
 
     <programlisting role="example">		/* Load the previously set variable A */
+// See: modules/call_scilab/examples/basicExamples/readwritestring.c
 			int sizeA = 0;
 			char myStringFromScilab[bsiz]; /* Static char */
 			int length_myStringFromScilab = bsiz; /* Max size (it is going to be changed by creadchain */

@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="StringManagement_callscilab"
+<refentry version="5.0-subset Scilab" xml:id="cwritechain"
           xml:lang="en" xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@
 
     <para>This help describes how to use the function cwritechain.</para>
 
-    <para>Using this function will basically do the same as A<emphasis> = "my
+    <para>Using this function will basically do the same as <emphasis>A = "my
     own String";</emphasis> but straight into Scilab memory with
     call_scilab.</para>
   </refsection>
@@ -105,6 +105,7 @@
 
     <programlisting role="example">// This example shows how to write a Scilab string in Scilab engine
 // It is the equivalent to A="my Message"; in Scilab interpretor
+// See: modules/call_scilab/examples/basicExamples/readwritestring.c
 
 // StartScilab
 		char *myString = "my Message";   /* Declare the string */

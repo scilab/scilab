@@ -21,6 +21,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 char **strsubst(char **strings_input,int strings_dim,char *string_to_search,char *replacement_string)
 {
@@ -118,8 +119,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 	*result_str = '\0';
 
 	return replacedString;
-}
-/*-------------------------------------------------------------------------------------*/
+}/*-------------------------------------------------------------------------------------*/
 char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string)
 {
 	char *tail = NULL;

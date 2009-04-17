@@ -22,6 +22,8 @@
 #include "cluni0.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "charEncoding.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static int playsound(char *filename,char *command);
 /*--------------------------------------------------------------------------*/
@@ -71,10 +73,20 @@ int sci_Playsound (char *fname,unsigned long fname_len)
 static int playsound(char *filename, char *command)
 {
 #ifdef _MSC_VER
-	/* Stop Playing*/
-	PlaySound(NULL,NULL,SND_PURGE);
-	/* Play Wav file	*/
-	PlaySound(filename,NULL,SND_ASYNC|SND_FILENAME);
+	if (filename)
+	{
+		wchar_t *wcFilename = to_wide_string(filename);
+
+		/* Stop Playing*/
+		PlaySound(NULL,NULL,SND_PURGE);
+		/* Play Wav file	*/
+		if (wcFilename)
+		{
+			PlaySoundW(wcFilename, NULL, SND_ASYNC|SND_FILENAME);
+			FREE(wcFilename);
+			wcFilename = NULL;
+		}
+	}
 	return 0;
 #else
 	/* linux : a player should be detected by configure ? */

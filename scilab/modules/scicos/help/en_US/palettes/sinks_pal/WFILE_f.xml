@@ -104,7 +104,8 @@ record has the following form:
  where   is the value
 of time when block is called and  is the ith input value. 
 </para>
-    <para>
+<para>This block does not manage UTF filename.</para>
+<para>
 The pair block is .  
 
 </para>

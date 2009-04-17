@@ -39,7 +39,7 @@ static int sci_strcat_one_rhs(char *fname);
 static int sci_strcat_rhs_one_is_a_matrix(char *fname);
 static int sumlengthstring(int rhspos);
 /*-------------------------------------------------------------------------------------*/
-int C2F(sci_strcat)(char *fname,unsigned long fname_len)
+int sci_strcat(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,3);
 	CheckLhs(1,1);

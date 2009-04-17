@@ -44,6 +44,7 @@
 
     <programlisting role="example">// This example shows how to write a Scilab string in Scilab engine
 // It is the equivalent to A="my Message"; in Scilab interpretor
+// See: modules/call_scilab/examples/basicExamples/readwritestring.c
 
 // StartScilab
 		char *myString = "my Message";   /* Declare the string */
@@ -56,7 +57,8 @@
 		SendScilabJob("disp(A);"); /* Display A */</programlisting>
 
     <programlisting>		/* Load the previously set variable A */
-		{
+// See: modules/call_scilab/examples/basicExamples/readwritestring.c
+
 			int sizeA = 0;
 			char myStringFromScilab[bsiz]; /* Static char */
 			int length_myStringFromScilab = bsiz; /* Max size (it is going to be 
@@ -68,7 +70,7 @@
 
 			printf("\n");
 			printf("Display of A (size %d): %s\n", length_myStringFromScilab, myStringFromScilab);
-		}</programlisting>
+</programlisting>
   </refsection>
 
   <refsection>
@@ -78,7 +80,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, 
  <link linkend="BooleanManagement">BooleanManagement</link>,
- <link linkend="DoubleManagement">DoubleManagement</link>,
+ <link linkend="MatrixManagement">MatrixManagement</link>,
 	   <link linkend="cwritechain">cwritechain</link>, 
 	    <link linkend="creadchain">creadchain</link>
 </member>

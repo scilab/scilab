@@ -5,7 +5,6 @@ EXPORTS
 ;
 ;core
 ;
- IsAFile 
  com_
  recu_
  putlhsvar_

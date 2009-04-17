@@ -13,6 +13,7 @@
 //  an error occurs when a change directory operation implies a directory name with french accent letter ('é' for example).
 curdir = pwd();
 mkdir(TMPDIR,'cédéùà');
-if cd(TMPDIR + filesep() + 'cédéùà') <> TMPDIR + filesep() + 'cédéùà' then bugmes();quit;end
-cd(curdir);
-if chdir(TMPDIR + filesep() + 'cédéùà') <> %T then bugmes();quit;end
+p = TMPDIR + filesep() + 'cédéùà';
+if isdir(p) <> %t then bugmes();quit;end
+if cd(p) <> p then bugmes();quit;end
+if chdir(p) <> %T then bugmes();quit;end

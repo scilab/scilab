@@ -47,7 +47,9 @@ c     ouverture du fichier names
       buf=buf(1:n)//'names'
       mode(1)=-1
       lunit=0
-      call clunit(lunit,buf(1:n+5),mode)
+      len = n+5
+      call getshortpathname(buf(1:len),len)
+      call clunit(lunit,buf(1:len),mode)
       if(err.gt.0) then
          buf(n+6:)=' '
          call error(err)
