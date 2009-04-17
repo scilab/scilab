@@ -56,11 +56,11 @@ wchar_t *to_wide_string(char *_UTFStr)
 	if(MultiByteToWideChar(CP_UTF8, 0, _UTFStr, -1, _buf, nwide) == 0)
 	{
 		FREE(_buf);
-		return NULL;
+		_buf = NULL;
 	}
 	return _buf;
 }
-
+/*--------------------------------------------------------------------------*/
 int wcstat(char* filename, struct _stat *st)
 {
 	int stat_result = 0;
@@ -69,6 +69,7 @@ int wcstat(char* filename, struct _stat *st)
 	FREE(wfilename);
 	return stat_result;
 }
+/*--------------------------------------------------------------------------*/
 #else //Linux check for MAC OS X
 char *wide_string_to_UTF8(wchar_t *_wide)
 {
@@ -95,9 +96,10 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 		FREE(pchar);
 		return NULL;
 	}
+	pchar[iCharLen] = '\0';
 	return pchar;
 }
-
+/*--------------------------------------------------------------------------*/
 wchar_t *to_wide_string(char *_UTFStr)
 {
 	wchar_t *_buf = NULL;
@@ -105,10 +107,15 @@ wchar_t *to_wide_string(char *_UTFStr)
 	char *psz = _UTFStr;
 	mbstate_t ps;
 
+	if (_UTFStr == NULL)
+	{
+		return NULL;
+	}
+
 	memset (&ps, 0x00, sizeof(ps));
 	pszLen = mbsrtowcs(NULL, (const char**)&psz, 0, &ps);
 
-	if(pszLen == (size_t)-1)
+	if (pszLen < 0)
 	{
 		return NULL;
 	}
@@ -120,14 +127,22 @@ wchar_t *to_wide_string(char *_UTFStr)
 	}
 	memset(_buf, 0x00, (pszLen + 1) * sizeof(wchar_t));
 
-	mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
+	pszLen = mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
+	if(pszLen < 0)
+	{
+		FREE(_buf);
+		_buf = NULL;
+	}
+	else
+	{
+		_buf[pszLen] = L'\0';
+	}
 	return _buf;
 }
-
+/*--------------------------------------------------------------------------*/
 int wcstat(char* filename, struct stat *st)
 {
 	return stat(filename, st);
 }
-
 #endif
 /*--------------------------------------------------------------------------*/
