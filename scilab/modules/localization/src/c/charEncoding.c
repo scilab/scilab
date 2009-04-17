@@ -88,10 +88,9 @@ char *wide_string_to_UTF8(wchar_t *_wide)
 	{
 		return NULL;
 	}
-	memset(pchar, 0x00, (iMaxLen + 1) * sizeof(char));
 
 	iCharLen = wcstombs (pchar, pwstr, iMaxLen);
-	if(iCharLen < 0)
+	if ( iCharLen == (size_t)(-1) )
 	{
 		FREE(pchar);
 		return NULL;
@@ -115,7 +114,7 @@ wchar_t *to_wide_string(char *_UTFStr)
 	memset (&ps, 0x00, sizeof(ps));
 	pszLen = mbsrtowcs(NULL, (const char**)&psz, 0, &ps);
 
-	if (pszLen < 0)
+	if ( pszLen == (size_t)(-1) )
 	{
 		return NULL;
 	}
@@ -125,13 +124,13 @@ wchar_t *to_wide_string(char *_UTFStr)
 	{
 		return NULL;
 	}
-	memset(_buf, 0x00, (pszLen + 1) * sizeof(wchar_t));
 
 	pszLen = mbsrtowcs(_buf, (const char**)&psz, (int)strlen(psz), &ps);
-	if(pszLen < 0)
+
+	if ( pszLen == (size_t)(-1) )
 	{
 		FREE(_buf);
-		_buf = NULL;
+		return NULL;
 	}
 	else
 	{
