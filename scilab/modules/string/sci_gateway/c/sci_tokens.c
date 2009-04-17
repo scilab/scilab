@@ -24,10 +24,11 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define one 1
 /*--------------------------------------------------------------------------*/
-int C2F(sci_tokens)(char *fname,unsigned long fname_len)
+int sci_tokens(char *fname,unsigned long fname_len)
 {
 
 	int Row_One = 0,Col_One = 0; 
@@ -66,12 +67,16 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 					{
 						if (Delimiters[i])
 						{
-							if ( (int)strlen(Delimiters[i]) > 1)
+							wchar_t *wcDelim = to_wide_string(Delimiters[i]);
+							if ( (int)wcslen(wcDelim) > 1)
 							{
+								if (wcDelim) {FREE(wcDelim); wcDelim = NULL;}
 								freeArrayOfString(Input_Strings,mn_One);
 								Scierror(999,_("%s: Wrong type for input argument #%d: A character or a vector of single characters expected.\n"),fname,2);
 								return 0;
 							}
+
+							if (wcDelim) {FREE(wcDelim); wcDelim = NULL;}
 						}
 					}
 					sizeDelimiters = mn_Two;

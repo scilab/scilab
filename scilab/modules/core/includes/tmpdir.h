@@ -25,14 +25,6 @@ void C2F(settmpdir)(void);
  * @TODO add comment
  *
  * @param void  
- * @return <ReturnValue>
- */
-char *get_sci_tmp_dir(void);
-
-/**
- * @TODO add comment
- *
- * @param void  
  */
 void C2F(tmpdirc)(void);
 

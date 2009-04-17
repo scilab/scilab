@@ -35,7 +35,7 @@
 /*--------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
-  int ns,ierr,seq = 0;
+  int ns,ierr = 0,seq = 0;
   char *command;
 
   char *comm[arbitrary_max_queued_callbacks];

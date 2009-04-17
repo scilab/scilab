@@ -1,3 +1,46 @@
+
+               Changes between version 5.1.1 and 5.1.2 of Scilab
+               =================================================
+Compilation:
+============
+
+* "make check" now builds also call_scilab examples
+
+Source reorganisation:
+======================
+
+* Some function profiles in stack3.h provided to manage named named variable
+  have been moved in CallScilab.h (please note that we haven't changed the ABI
+  and the symbols remain in the core library)
+  The goal of this modification is to separate functions dealing with the 
+  call_scilab API and the internal API used in the gateways.
+
+* In call_scilab:
+  * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
+  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead 
+    (same profile)
+  * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
+
+Help & Tests:
+=============
+
+* Documentation and examples about call_scilab added
+
+Bug fixes:
+==========
+
+ * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
+                    possible value was 'clipgrf' instead of 'cliprf'.
+
+ * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
+                    links to this page exist in the documentation.
+
+ * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
+                    we have only one symbol.
+
+
+
+
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
@@ -105,6 +148,10 @@ It has been reported a numerous number of time:
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
                    (mtlb_eig is now obsolete).
+                   
+* bug 3839 fixed - strrev doesn't work correctly if the string to be reversed includes some accentuated characters.
+
+* bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 
 * bug 3705 fixed - During execution of any Scipad sequence, entering abort 
                    after the prompt hang up both Scipad and Console.
@@ -135,6 +182,8 @@ Bug fixes:
   	  	   		   of equal values creates problem with function unique.
 
 * bug 3852 fixed - Line wrapping problem in help browser
+
+* bug 3666 fixed - 'input' with accentued character returns incorrect value
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -169,6 +218,8 @@ Bug fixes:
 
 * bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
+                   
+* bug 4141 fixed - ascii doesn't support extended ascii values in the range of [128-255].
 
 * bug 4242 fixed - Copyright added (INRIA code) 
 		   on modules/linear_algebra/src/fortran/doldqr.f
@@ -239,11 +290,9 @@ Bug fixes:
 
 * bug 4295 fixed - mdelete no more works with "*.extension" as input (wildcard).
 
-* bug 4297 fixed - A spelling mistake was causing in some cases with the 
-  	  	   		   pfss function
+* bug 4297 fixed - A spelling mistake was causing in some cases with the pfss function
 
-* bug 4299 fixed - getmemory is reporting bad total memory on system with 
-  	    	  	   a lot of memory (> 3Go)
+* bug 4299 fixed - getmemory is reporting bad total memory on system with a lot of memory (> 3Go)
 
 * bug 4301 fixed - Better reporting at the end of the configure
 
@@ -275,6 +324,8 @@ Bug fixes:
 * bug 4343 fixed - the plot3d demo doesn't seems to work.
 
 * bug 4372 fixed - The graphics from the genetic_algorithms and simulated_annealing toolbox where not displayed
+
+* bug 4386 fixed - link('show') with only one symbol writes 'librairies' and not 'library'.
 
                Changes between version 5.0.X and 5.1 of Scilab
                ===============================================

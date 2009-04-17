@@ -2,8 +2,5 @@
 
 
 EXPORTS
-	UTFToLocale
-	localeToUTF
-	isOutputInUTF 
-	readNextUTFChar
-	setOutputInUTF
+	to_wide_string
+	wide_string_to_UTF8

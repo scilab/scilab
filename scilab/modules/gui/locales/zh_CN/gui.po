@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-09-24 02:10+0000\n"
+"PO-Revision-Date: 2009-04-13 06:48+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "&File"
@@ -30,7 +30,7 @@ msgid "&?"
 msgstr "&?"
 
 msgid "Control Plot3d"
-msgstr ""
+msgstr "控制Plot3d"
 
 msgid "File"
 msgstr "文件"
@@ -39,7 +39,7 @@ msgid "Close"
 msgstr "关闭"
 
 msgid "GUI"
-msgstr ""
+msgstr "GUI"
 
 msgid ""
 "Scilab 5.0 and future versions are released under the terms of the CeCILL "
@@ -59,7 +59,7 @@ msgid ""
 "\n"
 msgstr ""
 "作者：\n"
-"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"Scilab协会 / INRIA / ENPC / 其他贡献者\n"
 "\n"
 
 #, c-format
@@ -415,7 +415,7 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串向量。\n"
 
 msgid "Scilab Choices Request"
-msgstr ""
+msgstr "Scilab需要选择"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
@@ -425,10 +425,10 @@ msgid "Scilab Choose Message"
 msgstr "Scilab选择消息"
 
 msgid "Scilab Input Value Request"
-msgstr ""
+msgstr "Scilab需要输入"
 
 msgid "Scilab Multiple Values Request"
-msgstr ""
+msgstr "Scilab需要多个值"
 
 #, c-format
 msgid ""
@@ -736,7 +736,7 @@ msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
 
 msgid "&New figure..."
-msgstr "新figure...(&N)"
+msgstr "新Figure...(&N)"
 
 msgid "&Load..."
 msgstr "载入(&L)..."
@@ -823,7 +823,7 @@ msgid "&Start entity picker"
 msgstr "开始选择实体(&S)"
 
 msgid "S&top entity picker"
-msgstr "停止entity拾取(&t)"
+msgstr "停止选择实体(&t)"
 
 msgid "&Scilab Help"
 msgstr "Scilab帮助(&S)"
@@ -919,7 +919,7 @@ msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
 
 msgid "Scilab &Demonstrations"
-msgstr "Scilab &Demons"
+msgstr "Scilab &Demos"
 
 msgid "&Web links"
 msgstr "网页链接(&W)"

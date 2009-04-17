@@ -21,6 +21,7 @@
 #include <string.h>
 #include "stack-c.h"
 
+#include "CallScilab.h"
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -51,19 +52,19 @@ int C2F(readmat)(char *namex,int *m, int *n, double *scimat, unsigned long name_
 }
 
 /*----------------------------------------------------------------
- * readmat reads vector/matrix in scilab's internal stack
+ * creadmat reads vector/matrix in scilab's internal stack
  * calling sequence
  *     logic=creadmat('matrixname',m,n,scimat)
  *  matrixname: character string; name of the scilab variable.
- *  m: number of rows (output of readmat)
- *  n: number of columns (output of readmat)
- *  scimat: matrix entries stored columnwise (output of readmat)
+ *  m: number of rows (output of creadmat)
+ *  n: number of columns (output of creadmat)
+ *  scimat: matrix entries stored columnwise (output of creadmat)
  *    Example of use:
  *    Amat is a real 2 x 3 scilab matrix
  *    your subroutine should be as follows:
  *    subroutine mysubr(...)
  *    ...
- *    call readmat('Amat',m,n,scimat)
+ *    call creadmat('Amat',m,n,scimat)
  *    => m=3 , n=2, and scimat(1)=Amat(1,1)
  *                      scimat(2)=Amat(2,1)
  *                      scimat(3)=Amat(3,1)
@@ -228,6 +229,7 @@ int C2F(putvar)(int  *number,char *namex,  unsigned long name_len)
 
 /*------------------------------------------------------
  *     see creadchain
+ * Obsolete function. please use creadchain
  *------------------------------------------------------*/
 
 int C2F(readchain)(char *namex,  int *itslen, char *chai,  unsigned long name_len, unsigned long chai_len)
@@ -395,7 +397,7 @@ int C2F(matptr)(char *namex, int *m, int *n, int *lp, unsigned long name_len)
 
 /*----------------------------------------------------------------
  * !purpose
- *     matptr returns the adress of real matrix "name"
+ *     matptr returns the address of real matrix "name"
  *     in scilab's internal stack
  *     m=number of rows
  *     n=number of columns
@@ -441,7 +443,7 @@ int C2F(cmatptr)(char *namex, int *m,int *n,int *lp, unsigned long name_len)
 
 /*----------------------------------------------------------------
  * !purpose
- *     cmatcptr returns the adress of complex matrix "name"
+ *     cmatcptr returns the address of complex matrix "name"
  *     in scilab's internal stack
  *     m=number of rows
  *     n=number of columns
@@ -493,7 +495,7 @@ int C2F(cmatcptr)(char *namex, int *m, int *n, int *lp, unsigned long name_len)
 
 /*----------------------------------------------------------------
  * !purpose
- *     matptr returns the adress of real matrix "name"
+ *     matptr returns the address of real matrix "name"
  *     in scilab's internal stack
  *     m=number of rows
  *     n=number of columns
@@ -628,7 +630,7 @@ int C2F(str2name)(char *namex, int *id, unsigned long name_len)
 	return 0;
 }
 /*----------------------------------------------------------------
- *     objptr returns the adress of "name"
+ *     objptr returns the address of "name"
  *     in scilab's internal stack
  *----------------------------------------------------------------*/
 
@@ -2163,7 +2165,7 @@ void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 	if(piRoot == _piCurrentNode)
 	{//Main List, just close
 		//Close current list
-		int iScale = _piEnd - piRoot;
+		int iScale = (int)(_piEnd - piRoot);
 		int iDoubleSclale = iScale / 2;
 		*Lstk(Top - Rhs + _iVar + 1) = *Lstk(Top - Rhs + _iVar) + iDoubleSclale;
 	}
@@ -2178,7 +2180,7 @@ void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 		if(piRoot == piParentParent && ( iPos + 1) == iItemNumber)
 		{
 			//Close Parent list
-			int iScale = _piEnd - piRoot;
+			int iScale = (int)(_piEnd - piRoot);
 			int iDoubleSclale = iScale / 2;
 			*Lstk(Top - Rhs + _iVar + 1) = *Lstk(Top - Rhs + _iVar) + iDoubleSclale;
 		}

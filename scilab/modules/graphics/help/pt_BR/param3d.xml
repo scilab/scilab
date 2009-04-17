@@ -253,8 +253,8 @@
 
     <para>Note que propriedades como <literal>rotation angles</literal>,
     <literal>colors</literal> e <literal>thickness</literal> da superfície
-    esboçada também podem ser ajustadas através das propriedades de param3d
-    (ver <link linkend="param3d_properties">param3d_properties</link>).</para>
+    esboçada também podem ser ajustadas através das propriedades de polyline
+    (ver <link linkend="polyline_properties">polyline_properties</link>).</para>
 
     <para>Use <literal>param3d1</literal> para realizar esboços
     múltiplos.</para>

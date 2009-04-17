@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2009-03-31 16:02+0000\n"
+"PO-Revision-Date: 2009-04-07 01:18+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-31 22:37+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Signal Processing"
@@ -30,8 +30,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: Valor incorrecto para el parámetro de entrada #%d: Debe estar en el "
-"conjunto {%s}.\n"
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
+"{%s}.\n"
 
 #, c-format
 msgid ""
@@ -44,7 +44,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba un escalar.\n"
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -162,7 +162,7 @@ msgstr ""
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s: Parámetros de entrada incompatibles #%d y #%d: Se los esperaba del mismo "
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se esperaban del mismo "
 "tamaño.\n"
 
 #, c-format
