@@ -2165,7 +2165,7 @@ void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 	if(piRoot == _piCurrentNode)
 	{//Main List, just close
 		//Close current list
-		int iScale = _piEnd - piRoot;
+		int iScale = (int)(_piEnd - piRoot);
 		int iDoubleSclale = iScale / 2;
 		*Lstk(Top - Rhs + _iVar + 1) = *Lstk(Top - Rhs + _iVar) + iDoubleSclale;
 	}
@@ -2180,7 +2180,7 @@ void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 		if(piRoot == piParentParent && ( iPos + 1) == iItemNumber)
 		{
 			//Close Parent list
-			int iScale = _piEnd - piRoot;
+			int iScale = (int)(_piEnd - piRoot);
 			int iDoubleSclale = iScale / 2;
 			*Lstk(Top - Rhs + _iVar + 1) = *Lstk(Top - Rhs + _iVar) + iDoubleSclale;
 		}

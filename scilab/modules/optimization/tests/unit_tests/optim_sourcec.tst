@@ -13,6 +13,9 @@
 //   The "genros" function is defined in optimization/sci_gateway/fortran/Ex-optim.f
 //
 // This is the precision measured with experiments.
+
+ilib_verbose(0);
+
 Leps=10^12*%eps;
 // n : dimension of the problem
 n=3;
@@ -61,7 +64,7 @@ for solver=solverlist
   if abs(f-1+norm(x-xopt) ) > Leps then pause,end
 end
 // Test all verbose levels with all possible solvers
-verboselevels=[0 1 2 3];
+verboselevels=[0];
 for verbose=verboselevels
   for solver=solverlist
     [f,x,g]=optim('rosenc',x0,solver,'td',valtd,imp=verbose);

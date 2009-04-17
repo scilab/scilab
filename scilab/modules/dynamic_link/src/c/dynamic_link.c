@@ -29,6 +29,8 @@
 #ifdef _MSC_VER
 #include "getenvc.h"
 #endif
+#include "getshortpathname.h"
+#include "BOOL.h"
 /*---------------------------------------------------------------------------*/
 static void Underscores(int isfor, char *ename, char *ename1);
 static int SearchFandS(char *op, int ilib);
@@ -339,7 +341,15 @@ int Sci_dlopen( char *loaded_file)
 	static DynLibHandle  hd1 = NULL;
 	int i = 0;
 
-	hd1 = LoadDynLibrary (loaded_file);
+	BOOL bConvert = FALSE;
+	/* libname on format 8.3 for localization problem */
+	char *shortLibName = getshortpathname(loaded_file,&bConvert);
+	if (shortLibName)
+	{
+		hd1 = LoadDynLibrary (shortLibName);
+		FREE(shortLibName);
+		shortLibName = NULL;
+	}
 
 	if ( hd1 == NULL )  return -1 ; /* the shared archive was not loaded. */
 

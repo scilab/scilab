@@ -105,6 +105,7 @@ Chaque enregistrement à la forme suivante :
  où  est la valeur du temps lorsque le bloc est appelé et  est la 
  valeur d'entrée.
 </para>
+<para>Ce bloc ne gere pas les noms de fichier au format UTF.</para>
     <para>
 Ce bloc fonctionne de paire avec le bloc .
 

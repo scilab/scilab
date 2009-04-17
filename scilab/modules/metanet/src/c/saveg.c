@@ -14,6 +14,8 @@
 #include "saveg.h"
 #include "localization.h"
 #include "machine.h"
+#include "charEncoding.h"
+
 static int CompString(char **s1, char **s2)
 {
   return strcmp((char*)*s1,(char*)*s2);
@@ -124,7 +126,7 @@ void C2F(saveg) (char *path, int *lpath,
   strcat(fname,"/");
   strcat(fname,nname);
   strcat(fname,".graph");
-  f = fopen(fname,"w");
+  wcfopen(f,fname,"w");
   if (f == NULL) {
     sprintf(description,
 	    _("Unable to write file in directory %s, check access"),dir);
