@@ -62,7 +62,7 @@ int C2F(issymmetric)(int *stackPosition) {
     return(NOT_SYMMETRIC);
   }
 
-  if (!iIsComplex(intAddress)) {
+  if (!iIsComplex(*stackPosition)) {
     /*
     ** REAL Case.
     */

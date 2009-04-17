@@ -116,9 +116,12 @@ static int dgeevWorkSizes(int iCols, int lhs, int* optWorkSize, int* minWorkSize
 {
   int info=0, query=-1;
   double opt;
-  C2F(dgeev)("N", "N", &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
-  *optWorkSize= (int)opt;
+  /* cet appel de routine Fortran écrase des valeurs dans la pile ! notamment celles des this call to the Fortran routine trashes the stack !!! including arguments xxxWorkSize /!\ TODO investigate 
+    C2F(dgeev)("N", "N", &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, NULL, &iCols, &opt, &query, &info);
+    *optWorkSize= (int)opt;
+    */
   *minWorkSize= (lhs==2) ? Max(1, 4* iCols) : Max(1, 3*iCols);
+  *optWorkSize= *minWorkSize;
   return info;
 }
 

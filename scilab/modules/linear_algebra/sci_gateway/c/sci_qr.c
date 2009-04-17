@@ -57,7 +57,7 @@ int C2F(intqr)(char *fname,unsigned long fname_len)
       return 0;
     }
   CheckRhs(1,2); /* qr(X[,"e"|tol]) */
-  CheckLhs(2,4); /*[Q,R[,E]]=qr(X[,"e"]), [Q,R,rk,E]=qr(X[,tol])*/
+  CheckLhs(1,4); /*[Q,R[,E]]=qr(X[,"e"]), [Q,R,rk,E]=qr(X[,tol])*/
   complexArg= iIsComplex(1);
 
   if(complexArg)
