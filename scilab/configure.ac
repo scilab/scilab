@@ -796,7 +796,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
