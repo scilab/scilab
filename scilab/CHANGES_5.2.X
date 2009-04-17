@@ -115,3 +115,5 @@ Bug fixes:
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
 
+* bug 4403 fixed - isinf was defined (when not provided by the system) with a 
+  	  	   		   return
