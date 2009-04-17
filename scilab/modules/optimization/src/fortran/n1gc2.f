@@ -83,7 +83,7 @@ c
       write(bufstr,2)
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       else if (mode .eq. 6) then
-      write(buf,4)
+      write(bufstr,4)
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       else
       write(io,5)epsrel,niter,nsim

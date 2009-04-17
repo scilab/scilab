@@ -79,7 +79,14 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 	wcstring_to_search = to_wide_string((char*)string_to_search);
 	wcreplacement_string = to_wide_string((char*)replacement_string);
 
+	if (wcinput_string && wcstring_to_search)
+	{
 	wcoccurrence_str = wcsstr (wcinput_string, wcstring_to_search);
+	}
+	else
+	{
+		wcoccurrence_str = NULL;
+	}	
 
 	if (wcoccurrence_str == NULL)
 	{
@@ -93,12 +100,19 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 	{
 		count = 0;
 		len = (int)wcslen (wcstring_to_search);
-		if (len)
+		if (len > 0)
 		{
 			wcoccurrence_str = wcinput_string;
-			while(wcoccurrence_str && wcstring_to_search && (*wcoccurrence_str != L'\0')) 
+			while(wcoccurrence_str && (*wcoccurrence_str != L'\0')) 
 			{
-				wcoccurrence_str = wcsstr (wcoccurrence_str, wcstring_to_search);
+				if (wcoccurrence_str && wcstring_to_search)
+				{
+					wcoccurrence_str = wcsstr (wcoccurrence_str, wcstring_to_search);
+				}
+				else
+				{
+					wcoccurrence_str = NULL;
+				}
 				if (wcoccurrence_str != NULL) 
 				{
 					wcoccurrence_str += len;
@@ -124,6 +138,8 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 
 	len = (int)wcslen (wcstring_to_search);
 
+	if (wcoccurrence_str && wcresult_str && wcstring_to_search)
+{
 	while(*wcoccurrence_str != L'\0') 
 	{
 		if (*wcoccurrence_str == wcstring_to_search[0] && wcsncmp(wcoccurrence_str, wcstring_to_search, len) == 0) 
@@ -135,6 +151,7 @@ char *strsub(char* input_string, const char* string_to_search, const char* repla
 		}
 		else *wcresult_str++ = *wcoccurrence_str++;
 	}
+}
 	*wcresult_str = L'\0';
 
 	return wide_string_to_UTF8(wcreplacedString);
