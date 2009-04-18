@@ -23,7 +23,7 @@ Source reorganisation:
 Help & Tests:
 =============
 
-* Documentation and examples about call_scilab added
+* Documentation and examples about call_scilab (BooleanManagement call_scilab compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement TerminateScilab) added
 
 Bug fixes:
 ==========
@@ -37,7 +37,7 @@ Bug fixes:
  * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
                     we have only one symbol.
 
-
+ * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c 
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab

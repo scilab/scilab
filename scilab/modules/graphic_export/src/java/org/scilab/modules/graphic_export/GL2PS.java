@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * Copyright (C) 2009 - DIGITEO - Jean-Baptiste Silvy
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,14 +16,16 @@
 import org.scilab.modules.graphic_export.jni.GL2PSConstant;
 import org.scilab.modules.graphic_export.jni.GL2PSWrapping;
 import org.scilab.modules.graphic_export.jni.GL2PSWrappingJNI;
+
 /**
  * GL2PS Class
  * @author Sylvestre Koumar
+ * 		   Jean-Baptiste Silvy
  *
  */
 public class GL2PS {
 
-	/** Get GL2PS constants*/ 
+	/* GL2PS constants*/ 
 	public static final int GL2PS_MAJOR_VERSION = GL2PSConstant.get_GL2PS_MAJOR_VERSION();
 	public static final int GL2PS_MINOR_VERSION = GL2PSConstant.get_GL2PS_MINOR_VERSION();
 	public static final int GL2PS_PATCH_VERSION = GL2PSConstant.get_GL2PS_PATCH_VERSION();
@@ -71,8 +74,8 @@ public class GL2PS {
 	public static final int GL2PS_TEXT_TL = GL2PSConstant.get_GL2PS_TEXT_TL();
 	public static final int GL2PS_TEXT_TR = GL2PSConstant.get_GL2PS_TEXT_TR();
 
-	public static final int RGBA_SIZE = 4;
-
+	private static final int VIEWPORT_SIZE = 4;
+	
 	/**
 	 * Constructor
 	 */
@@ -82,164 +85,172 @@ public class GL2PS {
 
 
 	/**
-	 * Begin page
-	 * @param title of the page
-	 * @param producer of the page
-	 * @param viewport of the page
-	 * @param format of the page
-	 * @param sort index of the figure to redraw
-	 * @param options index of the figure to redraw
-	 * @param colormode index of the figure to redraw
-	 * @param colorsize index of the figure to redraw
-	 * @param colormap_r index of the figure to redraw
-	 * @param colormap_g index of the figure to redraw
-	 * @param colormap_b index of the figure to redraw
-	 * @param colormap_a index of the figure to redraw
-	 * @param nr index of the figure to redraw
-	 * @param ng index of the figure to redraw
-	 * @param nb index of the figure to redraw
-	 * @param buffersize index of the figure to redraw
-	 * @param filename index of the figure to redraw
-	 * @return GL2PSWrappingJNI.sci_gl2psBeginPage
+	 * Interface to gl2psBeginPage (http://geuz.org/gl2ps/#tth_sEc2.1)
+	 * @param title Specifies the plot title.
+	 * @param producer Specifies the plot producer.
+	 * @param viewport Array of size 4. Specifies the plot viewport.
+	 * @param format Specifies the output format.
+	 * @param sort Specifies the sorting algorithm.
+	 * @param options Sets global plot options.
+	 * @param colormode Specifies the color mode.
+	 * @param colorsize Specifies the size of the colormap.
+	 * @param colortable_r Red channel of colormap.
+	 * @param colortable_g Green channel of colormap.
+	 * @param colortable_b Blue channel of colormap.
+	 * @param colortable_a Alpha channel of colormap.
+	 * @param nr Controls the number of flat-shaded (sub-)triangles used to approximate a smooth-shaded triangle.
+	 * @param ng Controls the number of flat-shaded (sub-)triangles used to approximate a smooth-shaded triangle.
+	 * @param nb Controls the number of flat-shaded (sub-)triangles used to approximate a smooth-shaded triangle.
+	 * @param buffersize Specifies the size of the feedback buffer.
+	 * @param filename Path of the exported file. Unlike standard GL2PS, there is only one parameter to select the
+	 *                 output file.
+	 * @return GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psBeginPage(String title, String producer, int[] viewport, 
 							  int format, int sort, int options, int colormode, int colorsize, 
-							  float[] colormap_r, float[] colormap_g, float[] colormap_b, float[] colormap_a, 
+							  float[] colortable_r, float[] colortable_g, float[] colortable_b, float[] colortable_a, 
 							  int nr, int ng, int nb, int buffersize, String filename) {
 		
-		float[] colormap_r1 = colormap_r;
-		float[] colormap_g1 = colormap_g;
-		float[] colormap_b1 = colormap_b;
-		float[] colormap_a1 = colormap_a;
+		// Swig does not like null arrays
+		float[] colormapR = colortable_r;
+		float[] colormapG = colortable_g;
+		float[] colormapB = colortable_b;
+		float[] colormapA = colortable_a;
 		
 		int[] viewport1 = viewport;
-		if (colormap_r == null) {
-			colormap_r1 = new float[RGBA_SIZE];
+		
+		if (colormapR == null) {
+			colormapR = new float[0];
 		}
-		if (colormap_g == null) {
-			colormap_g1 = new float[RGBA_SIZE];
+		if (colormapG == null) {
+			colormapG = new float[0];
 		}
-		if (colormap_b == null) {
-			colormap_b1 = new float[RGBA_SIZE];
+		if (colormapB == null) {
+			colormapB = new float[0];
 		}
-		if (colormap_a == null) {
-			colormap_a1 = new float[RGBA_SIZE];
+		if (colormapA == null) {
+			colormapA = new float[0];
 		}
+		
 		if (viewport == null) {
-			viewport1 = new int[RGBA_SIZE];
+			// Swig requests an array of size 4
+			viewport1 = new int[VIEWPORT_SIZE];
 		}
-		return GL2PSWrappingJNI.sci_gl2psBeginPage(title, producer, viewport1, format, sort, options, colormode, colorsize, colormap_r1, colormap_g1, colormap_b1, colormap_a1, nr, ng, nb, buffersize, filename);
+		return GL2PSWrappingJNI.sci_gl2psBeginPage(title, producer, viewport1,
+												  format, sort, options, colormode, colorsize,
+												  colormapR, colormapG, colormapB, colormapA,
+												  nr, ng, nb, buffersize, filename);
 	}	
 
 	/**
-	 * End of the page
-	 * @return GL2PSWrappingJNI.sci_gl2psEndPage
+	 * Interface to gl2psEndPage (http://geuz.org/gl2ps/#tth_sEc2.1)
+	 * @return GL2PS_NO_FEEDBACK, GL2PS_OVERFLOW, GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psEndPage() {
 		return GL2PSWrapping.sci_gl2psEndPage();
 	}
 
 	/**
-	 * Option of the page
-	 * @param options of the page
-	 * @return GL2PSWrappingJNI.sci_gl2psSetOptions
+	 * Interface to gl2psSetOptions (http://geuz.org/gl2ps/#tth_sEc2.9)
+	 * @param options global option
+	 * @return GL2PS_UNINITIALIZED or GL2PS_SUCCESS
 	 */
 	public int gl2psSetOptions(int options) {
 		return GL2PSWrappingJNI.sci_gl2psSetOptions(options);
 	}
 
 	/**
-	 * Beginning of the viewport
-	 * @param viewport of the figure
-	 * @return GL2PSWrappingJNI.sci_gl2psBeginViewport
+	 * Interface to gl2psBeginViewport (http://geuz.org/gl2ps/#tth_sEc2.8)
+	 * @param viewport Array of size 4. New viewport.
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psBeginViewport(int[] viewport) {
 		return GL2PSWrappingJNI.sci_gl2psBeginViewport(viewport);
 	}
 
 	/**
-	 * End of the viewport
-	 * @return GL2PSWrappingJNI.sci_gl2psEndViewport
+	 * Interface to gl2psEndViewport (http://geuz.org/gl2ps/#tth_sEc2.8)
+	 * @return GL2PS_OVERFLOW, GL2PS_NO_FEEDBACK, GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psEndViewport() {
 		return GL2PSWrappingJNI.sci_gl2psEndViewport();
 	}
 
 	/**
-	 * Text
-	 * @param str text to display
-	 * @param fontname of the text
-	 * @param fontsize of the text
-	 * @return GL2PSWrappingJNI.sci_gl2psText
+	 * Interface to gl2psText (http://geuz.org/gl2ps/#tth_sEc2.2)
+	 * @param str Specifies the text string to print.
+	 * @param fontname Specifies the PostScript name of a valid Type 1 font.
+	 * @param fontsize Specifies the size of the font.
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psText(String str, String fontname, short fontsize) {
 		return GL2PSWrappingJNI.sci_gl2psText(str, fontname, fontsize);
 	}
 
 	/**
-	 * TextOPT
-	 * @param str text to display
-	 * @param fontname of the text
-	 * @param fontsize of the text
-	 * @param align of the text
-	 * @param angle of the text
-	 * @return GL2PSWrappingJNI.sci_gl2psTextOpt
+	 * Interface to gl2psTextOpt (http://geuz.org/gl2ps/#tth_sEc2.2)
+	 * @param str Specifies the text string to print.
+	 * @param fontname Specifies the PostScript name of a valid Type 1 font.
+	 * @param fontsize Specifies the size of the font.
+	 * @param align Specifies the text string alignment with respect to the current raster position.
+	 * @param angle Specifies a rotation angle for the text string.
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psTextOpt(String str, String fontname, short fontsize, int align, float angle) {
 		return GL2PSWrappingJNI.sci_gl2psTextOpt(str, fontname, fontsize, align, angle);
 	}
 
 	/**
-	 * Special
-	 * @param format of special
-	 * @param str of special
-	 * @return GL2PSWrappingJNI.sci_gl2psSpecial
+	 * Interface to gl2psSpecial (http://geuz.org/gl2ps/#tth_sEc2.4)
+	 * @param format Specifies the output format for which the special string will be printed.
+	 * @param str Specifies the string to print.
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psSpecial(int format, String str) {
 		return GL2PSWrappingJNI.sci_gl2psSpecial(format, str);
 	}
 
 	/**
-	 * Enable
-	 * @param mode enable mode
-	 * @return GL2PSWrappingJNI.sci_gl2psEnable
+	 * Interface to gl2psEnable (http://geuz.org/gl2ps/#tth_sEc2.5)
+	 * @param mode GL2PS_LINE_STIPPLE, GL2PS_POLYGON_OFFSET_FILL, GL2PS_BLEND or GL2PS_POLYGON_BOUNDARY
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psEnable(int mode) {
 		return GL2PSWrappingJNI.sci_gl2psEnable(mode);
 	}
 
 	/**
-	 * Disable
-	 * @param mode disable mode
-	 * @return GL2PSWrappingJNI.sci_gl2psDisable
+	 * Interface to gl2psDisable (http://geuz.org/gl2ps/#tth_sEc2.5)
+	 * @param mode GL2PS_LINE_STIPPLE, GL2PS_POLYGON_OFFSET_FILL, GL2PS_BLEND or GL2PS_POLYGON_BOUNDARY
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psDisable(int mode) {
 		return GL2PSWrappingJNI.sci_gl2psDisable(mode);
 	}
 
 	/**
-	 * Size of the point
-	 * @param value value given for the size
-	 * @return GL2PSWrappingJNI.sci_gl2psPointSize
+	 * Interface to gl2psPointSize (http://geuz.org/gl2ps/#tth_sEc2.6)
+	 * @param value point size
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psPointSize(float value) {
 		return GL2PSWrappingJNI.sci_gl2psPointSize(value);
 	}
 
 	/**
-	 * Width of the line
-	 * @param value value value given for the width
-	 * @return GL2PSWrappingJNI.sci_gl2psLineWidth
+	 * Interface to gl2psLineWidth (http://geuz.org/gl2ps/#tth_sEc2.6)
+	 * @param value line width
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
 	 */
 	public int gl2psLineWidth(float value) {
 		return GL2PSWrappingJNI.sci_gl2psLineWidth(value);
 	}
 
 	/**
-	 * Blend Function
-	 * @param sfactor sfactor
-	 * @param dfactor dfactor
-	 * @return GL2PSWrappingJNI.sci_gl2psBlendFunc
+	 * Interface to gl2psBlendFunc (http://geuz.org/gl2ps/#tth_sEc2.7)
+	 * @param sfactor sfactor of glBlendFunc
+	 * @param dfactor dfactor of glBlendFunc
+	 * @return GL2PS_UNINITIALIZED, GL2PS_WARNING or GL2PS_SUCCESS
 	 */
 	public int gl2psBlendFunc(int sfactor, int dfactor) {
 		return GL2PSWrappingJNI.sci_gl2psBlendFunc(sfactor, dfactor);
@@ -247,11 +258,11 @@ public class GL2PS {
 
 	/**
 	 * Draw an image map (undocumented function)
-	 * @param width of the image map
-	 * @param height of the image map
-	 * @param position of the image map
-	 * @param imagemap imagemap
-	 * @return GL2PSWrappingJNI.sci_gl2psDrawImageMap
+	 * @param width width of the image map in pixels
+	 * @param height height of the image map in pixels
+	 * @param position Array of size 3. Position of the image map
+	 * @param imagemap A string?
+	 * @return GL2PS_UNINITIALIZED or GL2PS_SUCCESS
 	 */
 	public int gl2psDrawImageMap(int width, int height, float[] position, String imagemap) {
 		return GL2PSWrappingJNI.sci_gl2psDrawImageMap(width, height, position, imagemap);
@@ -260,7 +271,7 @@ public class GL2PS {
 	/**
 	 * Get the extension of the file (undocumented function)
 	 * @param format file format
-	 * @return GL2PSWrappingJNI.sci_gl2psGetFileExtension
+	 * @return format
 	 */
 	public String gl2psGetFileExtension(int format) {
 		return GL2PSWrappingJNI.sci_gl2psGetFileExtension(format);
@@ -270,7 +281,7 @@ public class GL2PS {
 	/**
 	 * Get format description (undocumented function)
 	 * @param format file format description
-	 * @return GL2PSWrappingJNI.sci_gl2psGetFormatDescription
+	 * @return description
 	 */
 	public String gl2psGetFormatDescription(int format) {
 		return GL2PSWrappingJNI.sci_gl2psGetFormatDescription(format);
