@@ -28,6 +28,9 @@ Help & Tests:
 Bug fixes:
 ==========
 
+ * bug 3264 fixed - More explicit message when too many files have been 
+		    opened.
+
  * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
                     possible value was 'clipgrf' instead of 'cliprf'.
 
