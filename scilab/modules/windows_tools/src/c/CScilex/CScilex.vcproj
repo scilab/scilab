@@ -149,10 +149,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msvcrt.lib"
 				OutputFile="../../../../../bin/Scilex.exe"
 				LinkIncremental="1"
-				IgnoreDefaultLibraryNames="msvcrtd.lib"
+				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				ProgramDatabaseFile="$(OutDir)/CScilex.pdb"
 				SubSystem="1"
