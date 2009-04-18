@@ -25,6 +25,7 @@ Input/Output functions:
 
  - Rewrite :
     + getenv
+    + diary
 
 Core functions:
 ===============

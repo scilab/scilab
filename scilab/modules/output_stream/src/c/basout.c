@@ -85,11 +85,11 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	else
 	{
 		buffer = string;
-        	nbcharacters = (long int)strlen(buffer);
+        nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
 		if (*lunit == C2F(iop).wio) 
 		{
-			diary(string, &nbcharacters);
+			diary(string, &nbcharacters,TRUE);
 		}
 		else 
 		{
