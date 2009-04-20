@@ -73,11 +73,12 @@ xs2ppm(fig, file_name)</synopsis>
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example">    scf(0)
-    plot2d()
-    //PPM export
-    xs2ppm(0,'foo.ppm')
-    xs2ppm(gcf(),'foo.ppm');
+    <programlisting role="example">
+scf(0)
+plot2d()
+//PPM export
+filename='foo.ppm';
+xs2ppm(0,filename);
   </programlisting>
   </refsection>
 

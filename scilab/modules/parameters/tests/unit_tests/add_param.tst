@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM_NOT_MANDATORY -->
+
 test_list = init_param();
 
 test_list = add_param(test_list,'test',%T);

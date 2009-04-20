@@ -15,7 +15,6 @@ package org.scilab.modules.gui.bridge.waitbar;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,14 +42,15 @@ public class SwingScilabWaitBar extends JFrame implements SimpleWaitBar {
 	
 	private JLabel messageLabel;
 
-	private Icon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
+	private ImageIcon scilabIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png");
 	
 	/**
 	 * Default constructor
 	 */
 	public SwingScilabWaitBar() {
 		super();
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+
+                setIconImage(scilabIcon.getImage());
 		
         GridBagLayout gridbag = new GridBagLayout();
         GridBagConstraints c = new GridBagConstraints();

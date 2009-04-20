@@ -146,6 +146,7 @@ c
       dimension x(n),g(n),binf(n),bsup(n),epsx(n)
       dimension izs(*),vect(nvect),ivect(nivect),ialg(15),alg(15)
       character*6 nomf
+      character bufstr*(4096)
       external simul
 c
 c     initialisation des parametres
@@ -169,7 +170,11 @@ c     verification des entrees
       ii=min(n,napmax,itmax)
       if(ii.gt.0)go to 10
       indgc=-11
-      if(imp.gt.0) write(io,123)indgc
+      if(imp.gt.0) then
+        write(bufstr,123) indgc
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
+      
 123   format(' gcbd : retour avec indgc=',i8)
       return
 10    aa=min(zero,epsg,df0)
@@ -177,7 +182,10 @@ c     verification des entrees
 11    aa=min(aa,epsx(i))
       if(aa.gt.0.0d+0) goto 12
       indgc=-12
-      if(imp.gt.0) write(io,123) indgc
+      if(imp.gt.0) then
+        write(bufstr,123) indgc
+        call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
+      endif
       return
 12    continue
 c
@@ -195,7 +203,8 @@ c     decoupage de la memoire
       nfin=n+ndiag
 c
       if(nfin.gt.nvect) then
-         write(io,1000)nfin,nvect
+         write(bufstr,1000) nfin,nvect
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
 1000  format (' gcbd:insuffisance memoire; nvect=',i5,'devrait etre:',
      &  i5)
       indgc=-14
@@ -206,7 +215,8 @@ c
       nindex=n+nindic
       nfin=nt+nindex
       if(nfin.gt.nivect) then
-         write(io,2000)nfin,nivect
+         write(bufstr,2000)nfin,nivect
+         call basout(io ,lp ,bufstr(1:lnblnk(bufstr)))
 2000  format (' gcbd:insuffisance memoire; nivect=',i5,'devrait etre:',
      &  i5)
       indgc=-14

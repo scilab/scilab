@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="rankqr" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>rankqr</refname>
+
+    <refpurpose>fatoração QR com revelação do posto</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>RCOND</term>
+
+        <listitem>
+          <para> número real usado para determinar o posto efetivo de
+          <literal>A</literal>, que é definido como sendo a ordem da maior
+          submatriz regente triangular <literal>R11</literal> na fatoração QR
+          com pivoteamento de <literal>A</literal>, cujo número de
+          condicionamento estimado é &lt; <literal>1/RCOND</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>JPVT</term>
+
+        <listitem>
+          <para>vetor de inteiros nas entradas, se <literal>JPVT(i)</literal>
+          não é 0, a <literal>i</literal>-ésimo coluna de <literal>
+          A</literal> é permtutada para a frente de <literal>AP</literal>,
+          senão, a coluna <literal>i</literal> é uma coluna livre. Na saída,
+          se <literal>JPVT(i) = k</literal>, então a
+          <literal>i</literal>-ésima coluna de <literal>A*P</literal> era a
+          <literal>k</literal>-ésima coluna de <literal>A</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>RANK</term>
+
+        <listitem>
+          <para>posto efetivo de <literal>A</literal>, i.e., a ordem da
+          submatriz <literal>R11</literal>. É o mesmo que a ordem da submatriz
+          <literal>T1</literal> na fatoração ortogonal completa de
+          <literal>A</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>SVAL</term>
+
+        <listitem>
+          <para>vetor de reais com 3 componentes; as estimativas de alguns dos
+          valores singulares do fator triangular <literal>R</literal>.</para>
+
+          <para><literal>SVAL(1)</literal> é o maior valor singular de
+          <literal>R(1:RANK,1:RANK)</literal>;</para>
+
+          <para><literal>SVAL(2)</literal> é o menor valor singular de
+          <literal>R(1:RANK,1:RANK)</literal>;</para>
+
+          <para><literal>SVAL(3) </literal>é o menor valor singular de
+          <literal>R(1:RANK+1,1:RANK+1)</literal>, se <literal>RANK</literal>
+          &lt; <literal>MIN(M,N)</literal>, ou de
+          <literal>R(1:RANK,1:RANK)</literal>, caso contrário.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Computa (opcionalmente) uma fatoração QR com revelação do posto de
+    uma matriz de reais geral M-por-N, ou de complexos <literal>A</literal>,
+    que pode ser deficiente de posto, e estima seu posto efetivo usando
+    estimativa de condição incremental.</para>
+
+    <para>A rotina usa uma fatoração QR com pivoteamento de colunas:</para>
+
+    <programlisting>
+
+        A * P = Q * R,  onde  R = [ R11 R12 ],
+                                   [  0  R22 ]
+
+    </programlisting>
+
+    <para>com <literal>R11</literal> definida como a maior submatriz regente
+    cujo número de condição estimado é menor que <literal>1/RCOND</literal>. A
+    ordem de <literal>R11</literal>, <literal>RANK</literal>, é o posto
+    efetivo de<literal>A</literal>.</para>
+
+    <para>Se a fatoração triangular revela o posto (que será o caso se as
+    colunas regentes forem bem condicionadas), então
+    <literal>SVAL(1)</literal> também será uma estimativa para o maior valor
+    singular de <literal>A</literal>, e <literal>SVAL(2)</literal> e
+    <literal>SVAL(3)</literal> serão estimativas para o
+    <literal>RANK</literal>-ésimo e <literal>(RANK+1)</literal>-ésimo valores
+    singulares de <literal>A</literal>, respectivamente.</para>
+
+    <para>Examinando-se estes valores, pode-se confirmar que o posto é bem
+    definido a respeito do valor escolhido de <literal>RCOND</literal>. A
+    razão <literal>SVAL(1)/SVAL(2)</literal> é uma estimativa do número de
+    condicionamento de <literal>R(1:RANK,1:RANK)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=rand(5,3)*rand(3,7);
+[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="qr">qr</link></member>
+
+      <member><link linkend="rank">rank</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title> Funções Usadas</title>
+
+    <para>Rotinas da biblioteca Slicot MB03OD, ZB03OD.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="SendScilabJobs" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>SendScilabJobs</refname>
+
+    <refpurpose>Send Scilab tasks from a C/C++ code
+    (call_scilab)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <synopsis>int SendScilabJobs(char **jobs, int numberjobs);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This fonction is provided in call_scilab. This function send many tasks
+    which will be proccessed by the Scilab engine.</para>
+	<para>Note that the ending ";" is not mandatory at the end of a command.</para>
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>jobs</term>
+        <listitem>
+          <para>an array of standard C char* containing the Scilab instructions</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>numberjobs</term>
+        <listitem>
+          <para>The number of the Scilab instructions</para>
+        </listitem>
+      </varlistentry>
+     <varlistentry>
+        <term>returns</term>
+        <listitem>
+          <para>0 is all the operations are successful.</para>
+          <para>-10 if .</para>
+          <para>&lt;0 and &gt; -10 when an error occurred in the execution.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// A simple SendScilabJobs example
+
+	char* jobs[3];
+	jobs[0]="a = 1";
+	jobs[1]="b = 3";
+	jobs[2]="c = a + b;";
+	SendScilabJobs(jobs,3);
+	SendScilabJob("disp(c);"); // Will display   4.
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="Scilab">Scilab</link></member>
+
+      <member><link linkend="SendScilabJob">SendScilabJob</link></member>
+
+      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link></member>
+
+      <member><link linkend="StringManagement">String
+      Management</link></member>
+
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

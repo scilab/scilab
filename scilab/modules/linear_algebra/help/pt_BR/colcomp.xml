@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="colcomp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>colcomp</refname>
+
+    <refpurpose>compressão de colunas, núcleo</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[W,rk]=colcomp(A [,flag] [,tol])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz de reais ou complexos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para>número real</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>W</term>
+
+        <listitem>
+          <para>matriz quadrada não-singular (mudança de base) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rk</term>
+
+        <listitem>
+          <para>inteiro (posto de <literal>A</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Compressão de colunas de <literal>A</literal>: <literal>Ac =
+    A*W</literal> é de colunas comprimidas ,i.e.,</para>
+
+    <para><literal>Ac=[0,Af]</literal> com o posto-coluna de
+    <literal>Af</literal> cheio, posto(<literal>Af</literal>) =
+    posto(<literal>A</literal>) = <literal>rk</literal>.</para>
+
+    <para><literal>flag</literal> e <literal>tol</literal> são parâmetros
+    opcionais: <literal>flag = 'qr'</literal> ou <literal>'svd'</literal> (o
+    padrão é <literal>'svd'</literal>).</para>
+
+    <para><literal>tol</literal> = parâmetro de tolerância (de ordem
+    <literal>%eps</literal> como valor padrão).</para>
+
+    <para>As <literal>ma-rk</literal> primeiras colunas de
+    <literal>W</literal> geram o núcleo de <literal>A</literal> quando
+    <literal>size(A)=(na,ma)</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+A=rand(5,2)*rand(2,5);
+[X,r]=colcomp(A);
+norm(A*X(:,1:$-r),1)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="rowcomp">rowcomp</link></member>
+
+      <member><link linkend="fullrf">fullrf</link></member>
+
+      <member><link linkend="fullrfk">fullrfk</link></member>
+
+      <member><link linkend="kernel">kernel</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>F.D.;</para>
+  </refsection>
+</refentry>

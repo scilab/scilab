@@ -37,6 +37,7 @@ c
       integer i,indic,indica,indicd
       double precision tesf,tesd,tg,fg,fpg,td,ta,fa,fpa,d2,f,fp,ffn,fd,
      /    fpd,z,z1,test
+      character bufstr*(4096)
 c
  1000 format (/4x,9h nlis0   ,4x,4hfpn=,d10.3,4h d2=,d9.2,
      1 7h  tmin=,d9.2,6h tmax=,d9.2)
@@ -70,7 +71,10 @@ c
       if (t.gt.tmin) go to 20
       t=tmin
       if (t.le.tmax) go to 20
-      if (imp.gt.0) write (io,1007)
+      if (imp.gt.0) then
+        write (bufstr,1007)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       tmin=tmax
    20 if (fn+t*fpn.lt.fn+0.9d+0*t*fpn) go to 30
       t=2.d+0*t
@@ -81,7 +85,10 @@ c
           t=tmax
           logic=1
       endif
-      if (imp.ge.4) write (io,1000) fpn,d2,tmin,tmax
+      if (imp.ge.4) then
+        write (bufstr,1000) fpn,d2,tmin,tmax
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 c
 c     --- nouveau x
 c
@@ -123,7 +130,10 @@ c
           td=t
           indicd=indic
           logic=0
-          if (imp.ge.4) write (io,1004) t,indic
+          if (imp.ge.4) then
+            write (bufstr,1004) t,indic
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            endif
           t=tg+0.1d+0*(td-tg)
           go to 905
       endif
@@ -141,13 +151,19 @@ c
           fpd=fp
           indicd=indic
           logic=0
-          if(imp.ge.4) write (io,1002) t,ffn,fp
+          if(imp.ge.4) then
+            write (bufstr,1002) t,ffn,fp
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            endif
           go to 500
       endif
 c
 c     --- test 1 ok, donc deuxieme test de Wolfe
 c
-      if(imp.ge.4) write (io,1003) t,ffn,fp
+      if(imp.ge.4) then
+        write (bufstr,1003) t,ffn,fp
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       if(fp.gt.tesd) then
           logic=0
           go to 320
@@ -240,10 +256,18 @@ c
       do 930 i=1,n
   930 xn(i)=xn(i)+tg*d(i)
   940 if (imp.le.0) go to 999
-      write (io,1001)
-      write (io,1005) tg,fg,fpg
-      if (logic.eq.6) write (io,1005) td,fd,fpd
-      if (logic.eq.7) write (io,1006) td,indicd
+      write (bufstr,1001)
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      write (bufstr,1005) tg,fg,fpg
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      if (logic.eq.6) then
+        write (bufstr,1005) td,fd,fpd
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
+      if (logic.eq.7) then
+        write (bufstr,1006) td,indicd
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       go to 999
 c
 c               recopiage de x et boucle

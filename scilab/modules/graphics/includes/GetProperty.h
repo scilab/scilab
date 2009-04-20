@@ -48,8 +48,9 @@ int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
 
 int sciGetBackground (sciPointObj * pobj); /* GET */
 int sciGetForeground (sciPointObj * pobj); /* GET */
-int sciGetLineWidth (sciPointObj * pobj); /* GET */
+double sciGetLineWidth (sciPointObj * pobj); /* GET */
 BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
+BOOL sciGetIsDisplayingLines(sciPointObj * pObj);
 int sciGetLineStyle (sciPointObj * pobj); /* GET */
 BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */

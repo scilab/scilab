@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2008-10-27 13:54+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"PO-Revision-Date: 2009-04-12 07:19+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-02-09 12:56+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "&File"
@@ -69,7 +69,7 @@ msgid "Tcl/Tk interface not loaded."
 msgstr "Tcl/Tk界面没有载入。"
 
 msgid "Open"
-msgstr ""
+msgstr "打开"
 
 msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
 msgstr "警告：Tcl/Tk 界面发生错误。没有激活界面。\n"
@@ -163,6 +163,9 @@ msgid ""
 "Check your SCI environment variable.\n"
 "Tcl initialisation failed !"
 msgstr ""
+"没有找到Tcl初始化脚本。\n"
+"请检查您的SCI环境变量。\n"
+"Tcl初始化失败！"
 
 msgid ""
 "The SCI environment variable is not set.\n"
@@ -172,27 +175,27 @@ msgstr ""
 "Tcl 初始化失败！\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
+msgstr "Tcl错误：无法创建Tcl解释器（Tcl_CreateInter）。\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
-msgstr ""
+msgstr "Tcl错误：Tcl初始化过程中发生错误（Tcl_Init）：%s\n"
 
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
-msgstr ""
+msgstr "Tcl错误：TK初始化过程中发生错误（Tk_Init）：%s\n"
 
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
 "%s\n"
-msgstr ""
+msgstr "Tcl错误：Scilab/Tcl初始化过程发生错误。无法设置SciPath：%s\n"
 
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
 "%s\n"
-msgstr ""
+msgstr "Tcl错误：Scilab/TK初始化过程发生错误。装载%s时出错：%s\n"
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"

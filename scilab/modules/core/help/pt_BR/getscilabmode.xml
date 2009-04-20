@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="getscilabmode" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-04-02 14:33:52 +0200 (Mon, 02 Apr 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getscilabmode</refname>
+
+    <refpurpose>retorna o modo do Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>mode = getscilabmode()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna o modo do Scilab. Quatro são os possíveis modos : STD , API
+    , NW , NWNI .</para>
+
+    <para><literal>API </literal>o Scilab é lançado como um API.</para>
+
+    <para><literal>STD</literal> o Scilab padrão (gui, plot ...)</para>
+
+    <para><literal>NW</literal> Scilab em linha de comando com esboços.</para>
+
+    <para><literal>NWNI </literal>Scilab em linha de comando sem quaisquer
+    gráficos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">getscilabmode()</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="scilab">scilab</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

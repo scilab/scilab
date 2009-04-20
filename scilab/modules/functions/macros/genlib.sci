@@ -151,7 +151,7 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
     end
     
     // create library
-    execstr(nam+'=lib('''+path1+''')')
+    execstr(nam+'=lib('''+getshortpathname(path1)+''')')
     //save it
     
     if execstr('save('''+path1+'lib'''+','+nam+')','errcatch')<>0 then

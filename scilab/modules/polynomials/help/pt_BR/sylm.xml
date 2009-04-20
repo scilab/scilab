@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sylm" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sylm</refname>
+
+    <refpurpose>matriz de Sylvester</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[S]=sylm(a,b)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>a,b</term>
+
+        <listitem>
+          <para>duas matrizes de polinômios </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>S</term>
+
+        <listitem>
+          <para>matriz</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>sylm(a,b)</literal> fornece a matriz de Sylvester associada
+    aos polinômios <literal>a</literal> e <literal>b</literal>, i.e. a matriz
+    <literal>S</literal> tal que:</para>
+
+    <para><literal>coeff( a*x + b*y )' = S *
+    [coeff(x)';coeff(y)']</literal>.</para>
+
+    <para>A dimensão de <literal>S</literal> é igual a
+    <literal>degree(a)+degree(b)</literal>.</para>
+
+    <para>Se <literal>a</literal> e <literal>b</literal> são polinômios primos
+    entre si, então</para>
+
+    <para><literal>rank(sylm(a,b))=degree(a)+degree(b))</literal> e as
+    instruções</para>
+
+    <programlisting>
+
+  u = sylm(a,b) \ eye(na+nb,1)
+  x = poly(u(1:nb),'z','coeff')
+  y = poly(u(nb+1:na+nb),'z','coeff')
+   
+    </programlisting>
+
+    <para>computam os fatores de Bezout <literal>x</literal> e
+    <literal>y</literal> de graus mínimos tais que <literal>a*x+b*y =
+    1</literal></para>
+  </refsection>
+</refentry>

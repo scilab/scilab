@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="chsolve" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>chsolve</refname>
+
+    <refpurpose>solucionador esparso de Cholesky</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>sol=chsolve(spcho,rhs)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>spcho</term>
+
+        <listitem>
+          <para>lista contendo os fatores de Cholesky na forma codificada
+          retornados por chfact</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rhs, sol</term>
+
+        <listitem>
+          <para>vetores colunas cheios</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>sol=chsolve(spcho,rhs)</literal> computa a solução de
+    <literal>rhs=A*sol</literal>, com <literal>A</literal> uma matriz
+    simétrica e positiva definida. Esta função é baseada nos programas
+    Ng-Peyton (ORNL). Veja os programas FORTRAN para uma descrição completa
+    das variáveis em <literal>spcho</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    
+    A=sprand(20,20,0.1);
+    A=A*A'+eye();  
+    spcho=chfact(A);
+    sol=(1:20)';rhs=A*sol;
+    spcho=chfact(A);
+    chsolve(spcho,rhs)
+    
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="chfact">chfact</link></member>
+
+      <member><link linkend="sparse">sparse</link></member>
+
+      <member><link linkend="lufact">lufact</link></member>
+
+      <member><link linkend="luget">luget</link></member>
+
+      <member><link linkend="spchol">spchol</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -16,6 +16,8 @@
 // Clipping does not work in 3D.
 // 
 
+lines(0);
+
 M = 10;
 N = 10;
 //Define and Discretize Domain (ft)
@@ -33,11 +35,9 @@ Z=zeros(M,N)
 
 //Plot Topographic Result in 3D
 f0=scf(55);
-a=get("current_axes")//get the handle of the newly created axes
-    a.data_bounds=[-10,10,-50,50,0,10]; //set the boundary
-values for the x, y and z coordinates.
-xset("line style", 4)                     //Make Contour
-Lines Dashed
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-10,10,-50,50,0,10]; //set the boundary values for the x, y and z coordinates.
+xset("line style", 4) //Make Contour Lines Dashed
 xset("fpf",string=" ")
 plot3d(x,y,Z,alpha=45,theta=45,flag=[5,3,4],ebox=[-10,10,-50,50,0,10]);
 

@@ -34,7 +34,6 @@ int main(void)
 	 */
 	{
 		char *myString = "my Message";   /* Declare the string */
-		int rowA = 1, colA = 4; /* Size of the matrix */
 		char variableName[] = "A";
 		int sizeOfMyString=strlen(myString);
 

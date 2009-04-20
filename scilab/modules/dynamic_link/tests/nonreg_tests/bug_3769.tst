@@ -7,6 +7,8 @@
 
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
+// <-- INTERACTIVE TEST -->
+// <-- WINDOWS ONLY -->
 
 // <-- Non-regression test for bug 3647 -->
 //
@@ -16,16 +18,10 @@
 // <-- Short Description -->
 // Dynamic link doesn't detect intel fortran compiler version 11 on Windows
 
-// <-- INTERACTIVE TEST -->
-
-// On Windows Only
 // Please be sure that you have installed Intel fortran 11
 // launch scilab 
-//
 
 r = findmsifortcompiler();
 if r <> ifort11 then pause,end
 
 // And checks that others tests about dynamic link work
-
-//================================================

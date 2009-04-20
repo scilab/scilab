@@ -489,7 +489,7 @@ try,catch */
 		break;
 		case 66:
 		{
-			displayAndStoreError(_("No more logical units available!\n"));
+			displayAndStoreError(_("Too many files opened!\n"));
 		}
 		break;
 		case 67:

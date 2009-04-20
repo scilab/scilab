@@ -1,4 +1,3 @@
-****** Beginning of validation of PROD.dia.ref ******
 *** TEST 1 PASSED ***
 
 *** TEST 2 PASSED ***
@@ -53,23 +52,14 @@
 
 *** TEST 27 PASSED ***
 
-TEST 28: Scilab and Matlab size do not match for res28
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 28 FAILED ***
+TEST 28: Scilab/Matlab size does not match for res28: [0 0]/[1 0]
+*** TEST 28 PASSED ***
 
-TEST 29: Scilab and Matlab size do not match for res29
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 29 FAILED ***
+TEST 29: Scilab/Matlab size does not match for res29: [0 0]/[1 0]
+*** TEST 29 PASSED ***
 
-TEST 30: Scilab and Matlab size do not match for res30
-Matlab: 1 0
-Scilab: 0 0
-Trying to compare results...
-*** TEST 30 FAILED ***
+TEST 30: Scilab/Matlab size does not match for res30: [0 0]/[1 0]
+*** TEST 30 PASSED ***
 
 *** TEST 31 PASSED ***
 
@@ -119,23 +109,14 @@ Trying to compare results...
 
 *** TEST 54 PASSED ***
 
-TEST 55: Scilab and Matlab size do not match for res55
-Matlab: 0 1
-Scilab: 0 0
-Trying to compare results...
-*** TEST 55 FAILED ***
+TEST 55: Scilab/Matlab size does not match for res55: [0 0]/[0 1]
+*** TEST 55 PASSED ***
 
-TEST 56: Scilab and Matlab size do not match for res56
-Matlab: 0 1
-Scilab: 0 0
-Trying to compare results...
-*** TEST 56 FAILED ***
+TEST 56: Scilab/Matlab size does not match for res56: [0 0]/[0 1]
+*** TEST 56 PASSED ***
 
-TEST 57: Scilab and Matlab size do not match for res57
-Matlab: 0 1
-Scilab: 0 0
-Trying to compare results...
-*** TEST 57 FAILED ***
+TEST 57: Scilab/Matlab size does not match for res57: [0 0]/[0 1]
+*** TEST 57 PASSED ***
 
 *** TEST 58 PASSED ***
 
@@ -239,4 +220,3 @@ Trying to compare results...
 
 *** TEST 108 PASSED ***
 
-****** End of validation of PROD.dia.ref ******

@@ -579,7 +579,7 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
 
 }
 
-int sciSetLineWidth( sciPointObj * pobj, int linewidth )
+int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 {
   if ( sciGetLineWidth( pobj ) == linewidth )
   {
@@ -594,10 +594,10 @@ int sciSetLineWidth( sciPointObj * pobj, int linewidth )
  * Sets the line width
  */
 int
-sciInitLineWidth (sciPointObj * pobj, int linewidth)
+sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
 
-  if (linewidth < 0)
+  if (linewidth < 0.0)
     {
       Scierror(999, _("Line width must be greater than %d.\n"),0);
       return -1;

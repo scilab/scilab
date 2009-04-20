@@ -42,7 +42,8 @@ src/c/isDrive.c \
 src/c/removedir.c \
 src/c/set_xxprintf.c \
 src/c/cluni0.c \
-src/c/scicurdir.c
+src/c/scicurdir.c \
+src/c/fullpath.c
 
 
 GATEWAY_SOURCES = \

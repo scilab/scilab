@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="errcatch" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>errcatch</refname>
+
+    <refpurpose>"Armadilha" para erros</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>errcatch(n [,'action'] [,'option'])
+errcatch()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>inteiro </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>action, option</term>
+
+        <listitem>
+          <para>strings</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>errcatch</literal> fornece uma "ação" (manipulador de
+    erros) quando um erro do tipo <literal>n</literal> ocorre.
+    <literal>n</literal> tem o seguinte significado: </para>
+
+    <para>Se <literal>n&gt;0</literal>, <literal>n</literal> é o número do
+    erro a ser apanhado </para>
+
+    <para>Se <literal>n&lt;0</literal> todos os erros devem ser
+    apanhados</para>
+
+    <para><literal>action</literal> é um dos seguintes strings: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"pause"</term>
+
+        <listitem>
+          <para>uma pausa é executada quando se apanha o erro. Esta opção é
+          útil para propósitos de depuramento. Use
+          <literal>whereami()</literal> para obter informações sobre o
+          contexto corrente. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"continue"</term>
+
+        <listitem>
+          <para>a próxima instrução na função ou em arquivos executáveis é
+          executada, a instrução corrente é ignorada. É possível verificar se
+          um erro ocorreu utilizando a função <literal>iserror</literal>
+          function . Não se esqueça de apagar o erro utilizando a função
+          <literal>errclear</literal> o quanto antes. Esta função é útil para
+          recuperação de erros. Em muitos casos, o uso de <literal>
+          errcatch(n,"continue",..)</literal> pode ser substituído pelo uso da
+          função <link linkend="execstr">execstr</link> ou da estrutura de
+          controle <link linkend="try">try</link> control structure.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"kill"</term>
+
+        <listitem>
+          <para>modo padrão, todas as funções intermediárias são canceladas e
+          o Scilab retorna ao prompt de nível 0. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"stop"</term>
+
+        <listitem>
+          <para>interrompe a sessão do Scilab corrente (útil quando o Scilab é
+          chamado por um programa externo).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal>option</literal> é o string <literal>'nomessage'</literal>
+    para cancelar mensagens de erro.</para>
+
+    <para>Para retornar ao modo padrão, entre
+    <literal>errcatch(-1,"kill")</literal> ou, de modo semelhante,
+    <literal>errcatch(-1)</literal>.<literal>errcatch()</literal> é um
+    equivalente obsoleto a <literal>errcatch(-1)</literal>.</para>
+
+    <para></para>
+
+    <para>As ações de <literal>errcatch</literal> se aplicm ao contexto
+    corrente de avaliação (function, exec, pause ) e a todos os subníveis. Uma
+    segunda chamada a <literal>errcatch</literal> em um sub-nível esconde a
+    inicial para este sub-nível. Se uma segunda chamada a
+    <literal>errcatch</literal> é feita no mesmo nível o efeito da primeira é
+    removido.</para>
+
+    <para>Quando chamado no contexto de uma função do Scilab ou em exec o
+    <literal>errcatch</literal> é automaticamente reiniciado quando a função
+    retorna</para>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="try">try</link></member>
+
+      <member><link linkend="errclear">errclear</link></member>
+
+      <member><link linkend="iserror">iserror</link></member>
+
+      <member><link linkend="whereami">whereami</link></member>
+
+      <member><link linkend="execstr">execstr</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

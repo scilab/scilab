@@ -259,8 +259,8 @@ param3d1(x,y,list(z,colors),[theta,alpha,leg,flag,ebox])</synopsis>
 
     <para>Note that properties like <literal>rotation angles</literal>,
     <literal>colors</literal> and <literal>thickness</literal> of the plotted
-    curves can also be got or modified through the param3d entity properties
-    (see <link linkend="param3d_properties">param3d_properties</link>).</para>
+    curves can also be got or modified through the polyline entity properties
+    (see <link linkend="polyline_properties">polyline_properties</link>).</para>
 
     <para>Enter the command <literal>param3d1()</literal> to see a
     demo.</para>

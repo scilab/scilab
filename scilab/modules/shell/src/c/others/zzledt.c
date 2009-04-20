@@ -47,6 +47,7 @@
 #include "freeArrayOfString.h"
 #include "getCommonPart.h"
 #include "completeLine.h"
+#include "TermReadAndProcess.h"
 /*--------------------------------------------------------------------------*/
 #ifdef aix
 #define ATTUNIX
@@ -259,13 +260,9 @@ static void updateToken(char *linebuffer)
  * line editor
  **********************************************************************/
 
-//void TermReadAndProcess(char *buffer,int *buf_size,int *len_line,int * eof,
-//			int *menusflag,int * modex,long int dummy1)
 char *TermReadAndProcess(void)
 {
 
-  //fprintf(stderr, "[TERM READ N PROCESS]...\n");
-  //fflush(NULL);
   int cursor_max = 0;
   int cursor = 0;
   int yank_len,i;
@@ -323,13 +320,10 @@ char *TermReadAndProcess(void)
 
   while(1)
     {
-      //fprintf(stderr, ".");
-      //fflush(NULL);
       /* main loop to read keyboard input */
       /* get next keystroke (no echo) returns -1 if interrupted */
       keystroke = gchar_no_echo();
-      //fprintf(stderr, "keystroke [%d]\n", keystroke);
-      //fflush(NULL);
+
       if ( (keystroke ==  CTRL_C) || (keystroke == CTRL_X) ) /* did not exist in old gtk version */
 	{
 	  int j = SIGINT;
@@ -631,7 +625,8 @@ char *TermReadAndProcess(void)
  exit:
   /* copy to return buffer */
   buffer=strdup(wk_buf);
-  putchar('\r');  putchar('\n');
+  putchar('\r');
+  putchar('\n');
 #ifdef KEYPAD
   set_crmod();
   disable_keypad_mode();
@@ -983,10 +978,10 @@ static void backspace(int n)
     while(n--)
 #ifdef TERMCAP
       if(BC) {                 /* if control-H won-t work */
-	fputs(BC, stdout);
+		  fputs(BC, stdout);
       }
       else {                   /* otherwise just use a normal control-H */
-	putchar('\010');
+		  putchar('\010');
       }
 #else
     putchar('\010');
@@ -1186,6 +1181,7 @@ static void init_io()
   erase_char = arg.sg_erase;
 #endif
 
+/* Get terminal mode */
 #ifdef ATTUNIX
 #ifdef HAVE_TERMIOS_H
   (void) tcgetattr (fd, &arg);

@@ -109,7 +109,6 @@ int TerminalPrintf(char *buffer)
 		if (buffer[0] != 0)
 		{
 			int len = (int)strlen (buffer);
-
 			/* flush all stream */
 			/* problem with fortran output */
 			fflush(NULL);
@@ -158,14 +157,14 @@ static unsigned char TerminalGetchar(void)
 							char c = actionControlKey();
 							if (c) 
 							{
-								ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
+								ReadConsoleInputW (Win32InputStream, &irBuffer, 1, &n);
 								return c;
 							}
 							else
 							{
 								if (irBuffer.Event.KeyEvent.uChar.AsciiChar != '\0')
 								{
-									ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
+									ReadConsoleInputW (Win32InputStream, &irBuffer, 1, &n);
 									c = irBuffer.Event.KeyEvent.uChar.AsciiChar;
 									if ( (c>0) && !iscntrl(c) ) return c;
 								}
@@ -438,10 +437,9 @@ char *TerminalGetString(char *prompt)
 			}
 			else
 			{
-				char szTempUTF[bsiz];
 				char *line = getCurrentLine();
 				TerminalPutc('\n');
-				appendLineToScilabHistory(localeToUTF(line, szTempUTF));
+				appendLineToScilabHistory(line);
 				return line;
 			}
 		}

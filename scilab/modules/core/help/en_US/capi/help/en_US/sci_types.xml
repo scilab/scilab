@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="Lhs" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv xml:id="???">
+    <refname>sci_types</refname>
+
+    <refpurpose>a C enumeration which defines the types available for a
+    variable</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>A C enumeration which defines the types available for a variable.
+    You must include stack-c.h to benefit from this types definition.</para>
+
+    <para>The list of available types is the following:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>1 - sci_matrix: a matrix of doubles</para>
+      </listitem>
+
+      <listitem>
+        <para>2 - sci_poly: a polynomials matrix</para>
+      </listitem>
+
+      <listitem>
+        <para>4 - sci_boolean: a boolean matrix</para>
+      </listitem>
+
+      <listitem>
+        <para>5 - sci_sparse: a sparse matrix</para>
+      </listitem>
+
+      <listitem>
+        <para>6 - sci_boolean_sparse: a sparse boolean matrix</para>
+      </listitem>
+
+      <listitem>
+        <para>7 - sci_matlab_sparse: a sparse matlab matrix</para>
+      </listitem>
+
+      <listitem>
+        <para>8 - sci_ints: a matrix of integers</para>
+      </listitem>
+
+      <listitem>
+        <para>9 - sci_handles: a graphical handle</para>
+      </listitem>
+
+      <listitem>
+        <para>10 - sci_strings: a matrix of strings</para>
+      </listitem>
+
+      <listitem>
+        <para>11 - sci_u_function: an uncompiled Scilab function</para>
+      </listitem>
+
+      <listitem>
+        <para>13 - sci_c_function! a compiled Scilab function</para>
+      </listitem>
+
+      <listitem>
+        <para>14 - sci_lib: a library of Scilab functions</para>
+      </listitem>
+
+      <listitem>
+        <para>15 - sci_list: a Scilab list</para>
+      </listitem>
+
+      <listitem>
+        <para>16 - sci_tlist: a Scilab tlist</para>
+      </listitem>
+
+      <listitem>
+        <para>17 - sci_mlist: a Scilab mlist</para>
+      </listitem>
+
+      <listitem>
+        <para>128 - sci_lufact_pointer: a pointer</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>You can either use integers or enumeration types to check the type
+    of the variables. Using the enumeration type is recommended because of the
+    explicit meaning of the value of the enumeration type.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>In this example, the C interface function takes one parameter.
+    Through a switch case structure, we display the type of the variable sent
+    as a parameter.</para>
+
+    <programlisting role="example"> 
+#include &lt;stack-c.h&gt;
+#include &lt;sciprint.h&gt;
+
+int sci_mysci_typeslhs(char * fname)
+{
+  switch(GetType(1))
+  {
+    case sci_matrix:
+      sciprint("a matrix of doubles\n");
+      break;
+    case sci_poly:
+      sciprint("a matrix of polynomials\n");
+      break;
+    case sci_boolean:
+      sciprint("a matrix of booleans\n");
+      break;
+    case sci_sparse:
+      sciprint("a sparse matrix of doubles\n");
+      break;
+    case sci_boolean_sparse:
+      sciprint("a sparse matrix of booleans\n");
+      break;
+    case sci_matlab_sparse:
+      sciprint("a sparse matlab matrix\n");
+      break;
+    case sci_ints:
+      sciprint("a matrix of integers\n");
+      break;
+    case sci_handles:
+      sciprint("a graphic handle\n");
+      break;
+    case sci_strings:
+      sciprint("a matrix of strings\n");
+      break;
+    case sci_u_function:
+      sciprint("an uncompiled Scilab function\n");
+      break;
+    case sci_c_function:
+      sciprint("a compiled Scilab function\n");
+      break;
+    case sci_lib:
+      sciprint("a library of Scilab functions\n");
+      break;
+    case sci_list:
+      sciprint("a Scilab list\n");
+      break;
+    case sci_tlist:
+      sciprint("a Scilab tlist\n");
+      break;
+    case sci_mlist:
+      sciprint("a Scilab mlist\n");
+      break;
+    case sci_lufact_pointer:
+      sciprint("a pointer\n");
+      break;
+    default:
+      sciprint("unknown type !\n"); // Should never happen
+  }
+
+  return 0;
+}
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sciprint">sciprint</link></member>
+
+      <member><link linkend="GetType">GetType</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -22,6 +22,7 @@
 #endif
 #include "FindFileExtension.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 char *FindFileExtension(char *filename)
 {
@@ -41,7 +42,15 @@ char *FindFileExtension(char *filename)
 			if (extension) sprintf(extension,"%s",&filename[i]);
 		}
 		#else
-		extension = strdup(PathFindExtension(filename));
+		{
+			wchar_t *wcFilename = to_wide_string(filename);
+			if (wcFilename)
+			{
+				extension = wide_string_to_UTF8(PathFindExtensionW(wcFilename));
+				FREE(wcFilename);
+				wcFilename = NULL;
+			}
+		}
 		#endif
 	}
 	return extension;

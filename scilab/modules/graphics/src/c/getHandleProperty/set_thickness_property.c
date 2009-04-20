@@ -35,6 +35,6 @@ int set_thickness_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-  return sciSetLineWidth( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
+  return sciSetLineWidth( pobj, getDoubleFromStack( stackPointer ) ) ;
 }
 /*------------------------------------------------------------------------*/

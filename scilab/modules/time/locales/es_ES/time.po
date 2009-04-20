@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 16:29+0100\n"
-"PO-Revision-Date: 2009-03-31 20:59+0000\n"
+"PO-Revision-Date: 2009-04-07 00:29+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-31 22:36+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -30,7 +30,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s: Número de argumentos de entrada erróneo.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada.\n"
 
 msgid "Jan"
 msgstr "Ene"
@@ -128,12 +128,13 @@ msgstr "%s: Número incorrecto de argumentos de entrada.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Número incorrecto de argumentos de entrada: Se esperan %d.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Same size expected.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada: Se espera el mismo tamaño.\n"
+"%s: Tamaño incorrecto del argumento de entrada: Se esperaba el mismo "
+"tamaño.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Integer expected.\n"
@@ -166,7 +167,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: Valor incorrecto de argumento de entrada #%d: se esperaba \"%s\" o "
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba \"%s\" o "
 "\"%s\".\n"
 
 msgid "Sat"

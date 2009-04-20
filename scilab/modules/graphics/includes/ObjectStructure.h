@@ -186,8 +186,8 @@ typedef struct
   int fillcolor;
   /** Wheter the object is filled or not */
   BOOL isfilled;
-  /** associeted to PEN or mark size */
-  int linewidth;
+  /** thickness of lines */
+  double linewidth;
   /** */
   BOOL isline;
   /** */

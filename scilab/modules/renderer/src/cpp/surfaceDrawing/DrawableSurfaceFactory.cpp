@@ -55,7 +55,7 @@ void DrawableSurfaceFactory::setStrategies( ConcreteDrawableSurface * surface )
   if (sciGetIsLine(pSurface))
   {
 
-    if (ppSurface->flag[0] >= 0)
+		if (ppSurface->flag[0] >= 0 && sciGetLineWidth(pSurface) > 0.0)
     {
       surface->addDrawingStrategy(new SurfaceLineDrawerJoGL(surface));
     }

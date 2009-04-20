@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="typeof" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>typeof</refname>
+
+    <refpurpose>tipo do objeto</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[t]=typeof(object)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>object</term>
+
+        <listitem>
+          <para>objeto Scilab</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>t=typeof(object)</literal> retorna um dos seguintes
+    strings:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"constant"</term>
+
+        <listitem>
+          <para>se o objeto é uma matriz constante de reais ou
+          complexos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"polynomial"</term>
+
+        <listitem>
+          <para>se o objeto é uma matriz de polinômios</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"function"</term>
+
+        <listitem>
+          <para>se o objeto é uma função (código Scilab).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"handle"</term>
+
+        <listitem>
+          <para>se o objeto é um manipulador ("alça")</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"string"</term>
+
+        <listitem>
+          <para>se o objeto é uma matriz de strings</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"boolean"</term>
+
+        <listitem>
+          <para>se o objeto é uma matriz de valores booleanos</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"list"</term>
+
+        <listitem>
+          <para>se o objeto é uma lista</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"rational"</term>
+
+        <listitem>
+          <para>se o objeto é a é uma martriz de razões de polinômios (matriz
+          de transferência)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"state-space"</term>
+
+        <listitem>
+          <para>se o objeto é um modelo de espaço de estados (ver <link
+          linkend="syslin">syslin</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"sparse"</term>
+
+        <listitem>
+          <para>se o objeto é uma matriz (de reais) esparsa.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"boolean sparse"</term>
+
+        <listitem>
+          <para>se o objeto é uma matriz de valores booleanos esparsa.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"hypermat"</term>
+
+        <listitem>
+          <para>se o objeto é uma hipermatriz (array N-dimensional N
+          &gt;=3).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"st"</term>
+
+        <listitem>
+          <para>se o objeto é um array de estrutura</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"ce"</term>
+
+        <listitem>
+          <para>se o objeto é um array de células</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>the first string in the first list entry</term>
+
+        <listitem>
+          <para>se o objeto é um tlist ou mlist</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"fptr"</term>
+
+        <listitem>
+          <para>se o objeto é intrínseco ao Scilab (código C ou
+          Fortran).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"pointer"</term>
+
+        <listitem>
+          <para>se o objeto é um ponteiro (ver <link
+          linkend="lufact">lufact</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"size implicit"</term>
+
+        <listitem>
+          <para>se o objeto é um polinômio de tamanho implícito para
+          indexação.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+typeof(1)
+typeof(poly(0,'x'))
+
+typeof(1/poly(0,'x'))
+typeof(%t)
+
+w=sprand(100,100,0.001);
+typeof(w)
+typeof(w==w)
+
+deff('y=f(x)','y=2*x');
+typeof(f)
+
+L=tlist(['V','a','b'],18,'Scilab');
+typeof(L)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="type">type</link></member>
+
+      <member><link linkend="strings">strings</link></member>
+
+      <member><link linkend="syslin">syslin</link></member>
+
+      <member><link linkend="poly">poly</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
