@@ -23,6 +23,11 @@
 #if _MSC_VER
 #include <float.h>
 #endif
+
+#ifdef solaris
+#include <ieeefp.h>
+#endif
+
 #include "machine.h" /* isinf */
 
 #ifndef min

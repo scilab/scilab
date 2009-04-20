@@ -24,10 +24,13 @@ Source reorganisation:
 Help & Tests:
 =============
 
-* Documentation and examples about call_scilab added
+* Documentation and examples about call_scilab (BooleanManagement call_scilab compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement TerminateScilab) added
 
 Bug fixes:
 ==========
+
+ * bug 3264 fixed - More explicit message when too many files have been 
+		    opened.
 
  * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
                     possible value was 'clipgrf' instead of 'cliprf'.
@@ -38,8 +41,9 @@ Bug fixes:
  * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
                     we have only one symbol.
 
-
-
+ * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c
+ 
+ * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
