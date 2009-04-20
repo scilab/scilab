@@ -45,7 +45,7 @@ v = call_scifunc(30,12,scilabfoo);
 
     <itemizedlist>
       <listitem>
-        <para>position of the first element (Rhs) on stack</para>
+        <para>position of the first element (Rhs) in the Scilab memory</para>
       </listitem>
 
       <listitem>
@@ -153,7 +153,7 @@ int sci_call_scifunc(char *fname)
   // rhs eq. 2
   // lhs eq. 1
         
-  // Position first element on Stack to use by Scilab Function 
+  // Position first element in the Scilab memory to use by Scilab Function 
   // v = call_scifunc(300,120,scilabfoo);
   // On stack : 300 is on Top position (1)
   // 120 second position

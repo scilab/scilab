@@ -10,7 +10,7 @@
     <refname>Lhs</refname>
 
     <refpurpose>C interface macro which returns the number of output
-    parameters present in the calling Scilab function</refpurpose>
+    arguments present in the calling Scilab function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -27,7 +27,7 @@
         <term>nb_params</term>
 
         <listitem>
-          <para>the number of output parameters present in the calling Scilab
+          <para>the number of output arguments present in the calling Scilab
           function</para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface macro which returns the number of output parameters
+    <para>C interface macro which returns the number of output arguments
     present in the calling Scilab function. You must include stack-c.h to
     benefit from this function.</para>
   </refsection>
@@ -46,8 +46,8 @@
     <title>Examples</title>
 
     <para>In this example, the C interface function can take several output
-    parameters and prints in the Scilab console the integer corresponding to
-    the number of output parameters detected in the calling Scilab
+    arguments and prints in the Scilab console the integer corresponding to
+    the number of output arguments detected in the calling Scilab
     function.</para>
 
     <programlisting role="example"> 
@@ -56,7 +56,7 @@
 
 int sci_mylhs(char * fname)
 {
-  sciprint("The number of output parameters is %d\n", Lhs);
+  sciprint("The number of output arguments is %d\n", Lhs);
 
   return 0;
 }

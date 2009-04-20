@@ -10,7 +10,7 @@
   <refnamediv xml:id="???">
     <refname>How to access a matrix</refname>
 
-    <refpurpose>how to access a matrix using the C API</refpurpose>
+    <refpurpose>How to access a matrix using the C API</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -25,16 +25,15 @@
 
     <itemizedlist>
       <listitem>
-        <para>first, we will get an access to the matrix</para>
+        <para>First, we will get an access to the matrix in the Scilab memory</para>
       </listitem>
 
       <listitem>
-        <para>we will perform some simple operations on the matrix (we will
-        multiply by 2 each elements of the matrix)</para>
+        <para>We will perform some simple operations on the matrix (in this example, we will multiply by 2 each elements of the matrix)</para>
       </listitem>
 
       <listitem>
-        <para>we will return the result to Scilab</para>
+        <para>We will return the result to Scilab</para>
       </listitem>
     </itemizedlist>
 
@@ -180,7 +179,7 @@ Link done.
  </programlisting>
 
     <para>This simple function has produced a new matrix which corresponds to
-    the matrix transmitted as an input parameter and for which each elements
+    the matrix transmitted as an input argument and for which each elements
     of the matrix has been multiplied by 2.</para>
 
     <para></para>

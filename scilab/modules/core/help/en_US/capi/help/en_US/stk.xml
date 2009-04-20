@@ -11,7 +11,7 @@
     <refname>stk</refname>
 
     <refpurpose>return a pointer to a double to access data stored at a given
-    position on the stack</refpurpose>
+    position in the Scilab memory</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -28,8 +28,8 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position on the stack of the variable to be accessed
-          (input parameter)</para>
+          <para>the position in the Scilab memory of the variable to be accessed
+          (input argument)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,7 +39,7 @@
     <title>Description</title>
 
     <para>This C interface function returns a pointer to a double to access
-    data stored at a given position on the stack.</para>
+    data stored at a given position in the Scilab memory .</para>
   </refsection>
 
   <refsection>

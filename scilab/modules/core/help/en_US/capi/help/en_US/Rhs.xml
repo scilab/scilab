@@ -9,7 +9,7 @@
   <refnamediv xml:id="???">
     <refname>Rhs</refname>
 
-    <refpurpose>C interface macro which returns the number of input parameters
+    <refpurpose>C interface macro which returns the number of input arguments
     present in the calling Scilab function</refpurpose>
   </refnamediv>
 
@@ -27,7 +27,7 @@
         <term>nb_params</term>
 
         <listitem>
-          <para>the number of input parameters present in the calling Scilab
+          <para>the number of input arguments present in the calling Scilab
           function</para>
         </listitem>
       </varlistentry>
@@ -45,9 +45,9 @@
   <refsection>
     <title>Examples</title>
 
-    <para>In this example, the C interface function can take several inpur
-    parameters and prints in the Scilab console the integer corresponding to
-    the number of input parameters detected in the calling Scilab
+    <para>In this example, the C interface function can take several input
+    arguments and prints in the Scilab console the integer corresponding to
+    the number of input arguments detected in the calling Scilab
     function.</para>
 
     <programlisting role="example"> 
