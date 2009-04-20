@@ -35,10 +35,7 @@ PathOrigin = getenv("PATH");
 for i = 1 : size(tab_ref,'*')
 	sz = "dir_" + tab_ref(i);
 	a = chdir(sz);
-	if(a <> %T) then
-		pause
-	end
-
+	if(a <> %T) then pause,	end
 	szTemp = getshortpathname(mydir + filesep() + sz);
 	NewPath = PathOrigin + ";" + szTemp;
 	setenv("PATH", NewPath);
@@ -46,9 +43,7 @@ for i = 1 : size(tab_ref,'*')
 	ilib_for_link('test','test.o',[],"c");
 	chdir(SCI);
 	ierr = execstr("link(""libtest.dll"")","errcatch");
-	if(ierr <> 0) then
-		pause
-	end
+	if(ierr <> 0) then pause, end
 	ulink();
 	setenv("PATH", PathOrigin);
 	chdir(mydir);
