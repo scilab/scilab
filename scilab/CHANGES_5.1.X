@@ -44,6 +44,9 @@ Bug fixes:
  * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
                     we have only one symbol.
 
+ * bug 4391 fixed - make install-html (when the option --with-install-help-xml
+   	   			  	is added to the configure) wasn't installing MathML sources
+
  * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c
  
  * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
