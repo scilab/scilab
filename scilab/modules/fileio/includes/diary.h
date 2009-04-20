@@ -13,27 +13,32 @@
 #ifndef __DIARY_H__
 #define __DIARY_H__
 
+#include "BOOL.h"
 
 /**
-* TODO
-* @return
+* Get File ID descriptor of the diary
+* @return File ID
 */
 int getdiary(void);
 
 /**
-* TODO
-* @param str
-* @param n
+* Diary (writes in a file)
+* @param str : string to write
+* @param n : length of str (fortran)
+* @param addCR : to add a '\n'
 */
-void diary(char *str,long int *n);
-
+void diary(char *str,long int *n, BOOL addCR);
 
 /**
-* TODO
-* @param str
-* @param n
+* Close diaries
 */
-void diary_nnl(char *str,int *n);
+BOOL closeAllDiaries(void);
+
+/**
+* Set diary ID
+*/
+void setDiaryId(int fd);
+
 
 #endif /* __DIARY_H__ */
 

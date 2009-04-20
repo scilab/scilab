@@ -17,7 +17,6 @@
 #include "stack-def.h" /* bsiz */
 #include "scilabmode.h"
 #include "../../console/includes/ConsolePrintf.h"
-#include "charEncoding.h"
 #ifdef _MSC_VER
 #include "TermPrintf.h"
 #endif
@@ -60,7 +59,7 @@ void scivprint(char *fmt,va_list args)
 		if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
 		lstr = (int) strlen(s_buf);
-		diary_nnl(s_buf,&lstr);
+		diary(s_buf,&lstr,FALSE);
 	}
 	
 	va_end(savedargs);
@@ -88,7 +87,6 @@ void printf_scilab(char *buffer,BOOL withDiary)
 {
 	if (buffer)
 	{
-		char szLocale[bsiz];
 		if (getScilabMode() == SCILAB_STD)
 		{
 			ConsolePrintf(buffer);
@@ -96,16 +94,16 @@ void printf_scilab(char *buffer,BOOL withDiary)
 		else
 		{
 			#ifdef _MSC_VER
-			TermPrintf_Windows(UTFToLocale(buffer, szLocale));
+			TermPrintf_Windows(buffer);
 			#else
-			printf("%s",UTFToLocale(buffer, szLocale));
+			printf("%s",buffer);
 			#endif
 		}
 
 		if ( (withDiary) && getdiary() ) 
 		{
-			int lstr = (int)strlen(UTFToLocale(buffer, szLocale));
-			diary_nnl(UTFToLocale(buffer, szLocale),&lstr);
+			int lstr = (int)strlen(buffer);
+			diary(buffer,&lstr,FALSE);
 		}
 	}
 }

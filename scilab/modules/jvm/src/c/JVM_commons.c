@@ -16,6 +16,9 @@
 #include "JVM_commons.h"
 #include "dynamiclibrary.h"
 #include "localization.h"
+#include "getshortpathname.h"
+#include "BOOL.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/ 
 static DynLibHandle hLibJVM = NULL;
 /*--------------------------------------------------------------------------*/ 
@@ -63,7 +66,15 @@ BOOL FreeDynLibJVM(void)
 BOOL LoadFuntionsJVM(char *filedynlib)
 {
 
-	hLibJVM = LoadDynLibrary(filedynlib); 
+	BOOL bConvert = FALSE;
+	/* libname on format 8.3 for localization problem */
+	char *shortLibName = getshortpathname(filedynlib,&bConvert);
+	if (shortLibName)
+	{
+		hLibJVM = LoadDynLibrary(shortLibName); 
+		FREE(shortLibName);
+		shortLibName = NULL;
+	}
 	
 	if (hLibJVM)
 	{

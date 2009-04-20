@@ -11,6 +11,10 @@
 
 function demo_viewCode(this_script)
 	
+	if ~with_tk() then
+	  return
+	end
+	
 	path = get_absolute_file_path(this_script)+this_script;
 	
 	// Récupération du handle sur la fenêtre courante
@@ -18,15 +22,8 @@ function demo_viewCode(this_script)
 	
 	//Création du nouveau menu
 	my_menu = uimenu( "parent"          , my_fig                       , ..
-	                  "label"           , gettext(" -- View Code -- ") , ..
-	                  "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
-	                  "callback"        , "scipad("""+path+""")" );
-	
-	if getos()=="Darwin" then // Patch because MacOSX native menubar can not display "button menus"
-	  uimenu( "parent"          , my_menu                       , ..
-	      "label"           , gettext(" -- View Code -- ") , ..
-	      "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
-	      "callback"        , "scipad("""+path+""")" );
-	end
+	    "label"           , gettext(" -- View Code -- ") , ..
+	    "Foregroundcolor" , [ 0/255 81/255 6/255 ]       , ..
+	    "callback"        , "scipad("""+path+""")" );
 	
 endfunction

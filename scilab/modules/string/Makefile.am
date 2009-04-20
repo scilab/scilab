@@ -22,8 +22,7 @@ src/c/strsubst.c \
 src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
-src/c/isalphanum.c \
-src/c/kmp.c
+src/c/isalphanum.c
 
 STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
 

@@ -117,6 +117,7 @@ lib
 tcllib
 _tmp_project.h
 scilab-bin
+scilab-cli-bin
 tclmajor
 tclminor
 .libs

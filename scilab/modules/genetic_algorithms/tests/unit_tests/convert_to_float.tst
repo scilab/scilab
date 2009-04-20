@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 y = convert_to_float('11111111', 8, 2, -2);
 
 if y~=2 then pause,end

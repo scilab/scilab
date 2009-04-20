@@ -38,15 +38,6 @@ int sci_mput(char *fname,unsigned long fname_len)
 	if (GetType(1) == sci_matrix)
 	{
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
-		if (m1*n1 == 1)
-		{
-			n1 = m1*n1;
-		}
-		else
-		{
-			Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,1);
-			return 0;
-		}
 	}
 	else
 	{

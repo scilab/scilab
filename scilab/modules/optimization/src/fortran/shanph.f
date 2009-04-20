@@ -15,12 +15,17 @@ c      diag=(y,(diag-1)y)/(y,s)*diag
 c
       implicit double precision (a-h,o-z)
       dimension diag(n),y(nt,n),s(nt,n),ys(nt),index(nt)
+      character bufstr*(4096)
+      
       inp=index(np)
       cof=0.
       do 203 i=1,n
 203   cof=cof + y(inp,i)**2/diag(i)
       cof=cof/ys(inp)
-      if(imp.gt.3)write(io,1203)cof
+      if(imp.gt.3) then
+        write(bufstr,1203) cof
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1203  format(' gcbd. facteur d echelle=',d15.7)
       do 205 i=1,n
 205   diag(i)=cof*diag(i)

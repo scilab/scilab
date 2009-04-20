@@ -23,6 +23,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts);
 /*--------------------------------------------------------------------------*/
@@ -170,7 +171,12 @@ static int GetIndexLastModifiedFileInList(char **ListFilename,int numberelemnts)
 			}
 
 		}
-		resultstat = _stat(FileName, &buf );
+
+		{
+		wchar_t *pszFileName = to_wide_string(FileName);
+		resultstat = _wstat(pszFileName, &buf );
+		FREE(pszFileName);
+		}
 #else
 		resultstat = stat(FileName, &buf );
 #endif

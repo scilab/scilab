@@ -152,7 +152,7 @@ detect_type_of_scilab
 
 detect_scilab_path() {
 
-	OLDPWD=`pwd`
+LOCALOLDPWD=`pwd`
 
 # Use scilab-bin in the current dir if it exists
 # If not, then start resolving symlinks until we find scilab-bin
@@ -462,7 +462,7 @@ if test $SCIVERBOSE -ne 0; then
 fi
 
 # Returns to the original path
-cd "$OLDPWD"
+cd "$LOCALOLDPWD"
 
 #if test "$DISPLAY" = ""; then
 #  DISPLAY="unix:0.0"

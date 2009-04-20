@@ -12,9 +12,11 @@
  */
 
 /*
- * Modified 2006 S.Steer (changing generic code to sepcialized code 
+ * Modified 2006 by S.Steer and A.Cornet INRIA  (changing generic code to sepcialized code 
  * by hand macro expansion).
+ * Modified 2009 by S.Steer  INRIA (to make in stable when index is wanted)
  */
+
 #include "qsort.h"
 #include "qsort-short.h"
 
@@ -34,39 +36,47 @@ static int swapcodeshort(char * parmi,char * parmj,int n,int incr)
   return(0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareCshort(char *i,char *j)
+static int compareCshort(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((short *)i) > *((short *)j))
-    return (1);
-  if ( *((short *)i) < *((short *)j))
-    return (-1);
+  if ( *((short *)i) > *((short *)j)) return (1);
+  if ( *((short *)i) < *((short *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDshort(char *i,char *j)
+static int compareDshort(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((short *)i) < *((short *)j))
-    return (1);
-  if ( *((short *)i) > *((short *)j))
-    return (-1);
+  if ( *((short *)i) < *((short *)j)) return (1);
+  if ( *((short *)i) > *((short *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareCushort(char *i,char *j)
+static int compareCushort(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((unsigned short *)i) > *((unsigned short *)j))
-    return (1);
-  if ( *((unsigned short *)i) < *((unsigned short *)j))
-    return (-1);
+  if ( *((unsigned short *)i) > *((unsigned short *)j)) return (1);
+  if ( *((unsigned short *)i) < *((unsigned short *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 
-static int compareDushort(char *i,char *j)
+static int compareDushort(char *i,char *j,char *indi,char *indj,int iflag)
 {
-  if ( *((unsigned short *)i) < *((unsigned short *)j))
-    return (1);
-  if ( *((unsigned short *)i) > *((unsigned short *)j))
-    return (-1);
+  if ( *((unsigned short *)i) < *((unsigned short *)j)) return (1);
+  if ( *((unsigned short *)i) > *((unsigned short *)j)) return (-1);
+  if (iflag) {
+    if ( *((int *)indi) > *((int *)indj)) return (1);
+    if ( *((int *)indi) < *((int *)indj)) return (-1);
+  }
   return (0);
 }
 /*--------------------------------------------------------------------------*/ 

@@ -42,7 +42,7 @@ void HalfBoxDrawerJoGL::drawAxesBox(int concealedCornerIndex)
   getHalfBoxDrawerJavaMapper()->setBoxParameters(pSUBWIN_FEATURE(pSubwin)->axes.hiddenAxisColor,
                                                  sciGetGraphicContext(pSubwin)->foregroundcolor,
                                                  sciGetLineStyle(pSubwin),
-                                                 (float) sciGetLineWidth(pSubwin));
+                                                 (float)sciGetLineWidth(pSubwin));
 
   // get displayed bounds
   double bounds[6];

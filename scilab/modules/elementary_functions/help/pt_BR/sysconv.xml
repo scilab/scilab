@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sysconv" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sysconv</refname>
+
+    <refpurpose>conversão de sistema</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[s1,s2]=sysconv(s1,s2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>s1,s2</term>
+
+        <listitem>
+          <para>lista (sistemas <literal>syslin</literal> lineares)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Converte <literal>s1</literal> e <literal>s2</literal> para
+    representação comum a fim de que operações de interconexão de sistemas
+    possam ser aplicadas. Função utilitária para peritos. A regra de conversão
+    é dada na seguinte tabela. </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"c"</term>
+
+        <listitem>
+          <para>sistema de tempo contínuo</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"d"</term>
+
+        <listitem>
+          <para>sistema de tempo discreto </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>sistema amostrado com período de amostragem n </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[]</term>
+
+        <listitem>
+          <para>sistema com domínio de tempo indefinido. Para sistemas mistos,
+          s1 e s2 são postos em representação de estado-espaço.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <programlisting>
+
+ s1\s2  |   "c"     |     "d"     |      n2        |     []     |
+ ---------------------------------------------------------------
+ "c"   | nada       |incompatível | c2e(s1,n2)     |  c(s2)     |
+ ---------------------------------------------------------------
+ "d"   |incompatível| nada        | e(s1,n2)       |  d(s2)     |
+ ---------------------------------------------------------------
+ n1    | c2e(s2,n1) | e(s2,n1)    | n1&lt;&gt;n2 incomp  |  e(s2,n1)  |
+       |            |             | n1=n2  nada    |            |
+ ---------------------------------------------------------------
+ []    | c(s1)      | d(s1)       | e(s1,n2)       |  nada      |
+ ---------------------------------------------------------------
+   
+    </programlisting>
+
+    <para>Com o seguinte significado: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>n1,n2</term>
+
+        <listitem>
+          <para>período de amostragem </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c2e(s,n)</term>
+
+        <listitem>
+          <para>o sistema de tempo contínuo s é transformado em um sistema
+          amostrado com período de amostragem n. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c(s)</term>
+
+        <listitem>
+          <para>conversão para tempo contínuo (domínio de tempo é
+          <literal>"c"</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d(s)</term>
+
+        <listitem>
+          <para>conversão para tempo discreto (domínio de tempo é
+          <literal>"d"</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>e(s,n)</term>
+
+        <listitem>
+          <para>conversão para sistema amostrado com período
+          <literal>n</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+s1=ssrand(1,1,2);
+s2=ss2tf(s1);
+[s1,s2]=sysconv(s1,s2);
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="syslin">syslin</link></member>
+
+      <member><link linkend="ss2tf">ss2tf</link></member>
+
+      <member><link linkend="tf2ss">tf2ss</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

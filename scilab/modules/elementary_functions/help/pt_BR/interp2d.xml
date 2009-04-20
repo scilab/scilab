@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="interp2d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interp2d</refname>
+
+    <refpurpose>função de avaliação spline bicúbica (2d)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[zp[,dzpdx,dzpdy[,d2zpdxx,d2zpdxy,d2zpdyy]]]=interp2d(xp,yp,x,y,C [,out_mode])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp, yp</term>
+
+        <listitem>
+          <para>vetores ou matrizes de reais de mesmo tamanho </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y,C</term>
+
+        <listitem>
+          <para>vetores de reais definindo uma função de spline bicúbico ou
+          sub-spline (chamada <literal>s</literal> daqui em diante) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>out_mode</term>
+
+        <listitem>
+          <para>(opcional) string definindo a avaliação de
+          <literal>s</literal> fora de [x(1),x(nx)]x[y(1),y(ny)] </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zp</term>
+
+        <listitem>
+          <para>vetor ou matriz com o mesmo formato que <literal>xp</literal>
+          e <literal>yp</literal>, avaliação elemento a elemento de
+          <literal>s</literal> nestes pontos. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dzpdx, dzpdy</term>
+
+        <listitem>
+          <para>vetores (ou matrizes) de mesmo formato que
+          <literal>xp</literal> e <literal>yp</literal>, avaliação elemento a
+          elemento das derivadas primeiras de <literal>s</literal> nesses
+          pontos.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d2zpdxx, d2zpdxy, d2zpdyy</term>
+
+        <listitem>
+          <para>vetores (ou matrizes) de mesmo formato que
+          <literal>xp</literal> e <literal>yp</literal>, eavaliação elemento a
+          elemento das derivadas segundas de <literal>s</literal> nesses
+          pontos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dados três vetores <literal>(x,y,C)</literal> definindo uma função
+    de sub-spline ou spline bicúbico (ver <link
+    linkend="splin2d">splin2d</link>) esta função avalia s (e <emphasis>ds/dx,
+    ds/dy, d2s/dxx, d2s/dxy, d2s/dyy</emphasis> se necessário) em
+    <emphasis>(xp(i),yp(i))</emphasis> :</para>
+
+    <programlisting>
+      zp(i) = s(xp(i),yp(i))   
+      dzpdx(i) = ds/dx(xp(i),yp(i))
+      dzpdy(i) = ds/dy(xp(i),yp(i))  
+      d2zpdxx(i) = d2s/dx2(xp(i),yp(i))
+      d2zpdxy(i) = d2s/dxdy(xp(i),yp(i))  
+      d2zpdyy(i) = d2s/dy2(xp(i),yp(i))
+         </programlisting>
+
+    <para>O parâmetro <literal>out_mode</literal> define a regra de avaliação
+    para extrapolação, i.e., para <emphasis>(xp(i),yp(i)) fora de
+    [x(1),x(nx)]x[y(1),y(ny)]</emphasis>:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+
+        <listitem>
+          <para>uma extrapolação por zero é realizada </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"by_nan"</term>
+
+        <listitem>
+          <para>extrapolação por NaN </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"C0"</term>
+
+        <listitem>
+          <para>Extrapolação definida como segue :</para>
+
+          <programlisting>
+     s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo 
+                           em [x(1),x(nx)]x[y(1),y(ny)] de (x,y)
+         </programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"natural"</term>
+
+        <listitem>
+          <para>a extrapolação é realizada utilizando o elemento de área
+          bicúbico mais próximo de (x,y). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para>: <literal>s</literal> é estendida por periodicidade. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos </title>
+
+    <programlisting role="example">
+// veja os exemplos de splin2d
+
+// este exemplo mostra características de extrapolações diferentes
+// interpolação de cos(x)cos(y)
+n = 7;  // um grid de interpolação n x n
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+
+// agora avaliando em um domínio maior que [0,2pi]x [0,2pi]
+m = 80; // parâmetro de discretização do grid de avaliação
+xx = linspace(-0.5*%pi,2.5*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz1 = interp2d(XX,YY, x, y, C, "C0");
+zz2 = interp2d(XX,YY, x, y, C, "by_zero");
+zz3 = interp2d(XX,YY, x, y, C, "periodic");
+zz4 = interp2d(XX,YY, x, y, C, "natural");
+xbasc()
+subplot(2,2,1)
+  plot3d(xx, yy, zz1, flag=[2 6 4])
+  xtitle("Extrapolação com o outmode C0")
+subplot(2,2,2)
+  plot3d(xx, yy, zz2, flag=[2 6 4])
+  xtitle("Extrapolação com o outmode by_zero")
+subplot(2,2,3)
+  plot3d(xx, yy, zz3, flag=[2 6 4])
+  xtitle("Extrapolação com o outmode periodic")
+subplot(2,2,4)
+  plot3d(xx, yy, zz4, flag=[2 6 4])
+  xtitle("Extrapolação com o outmode natural")
+xselect()
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin2d">splin2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

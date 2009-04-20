@@ -13,7 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include "set_xxprintf.h"
 #include "sciprint.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static int voidflush(FILE *fp);
 /*--------------------------------------------------------------------------*/
@@ -24,7 +23,6 @@ extern char sprintf_buffer[MAX_SPRINTF_SIZE];
 
 void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 {
-	 setOutputInUTF(TRUE); /*default output encoding is UTF*/
 	if (fp == (FILE *) 0)
 	{
 		/* sprintf */
@@ -45,7 +43,6 @@ void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 		*target = (char *) fp;
 		*flush = fflush;
 		*xxprintf = (XXPRINTF) fprintf;
-		 setOutputInUTF(FALSE); /*output in  system locale  for external file*/
 	}
 }
 /*--------------------------------------------------------------------------*/

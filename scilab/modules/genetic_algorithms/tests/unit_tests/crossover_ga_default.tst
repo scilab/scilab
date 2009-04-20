@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 [Crossed_Indiv1, Crossed_Indiv2] = crossover_ga_default(1,-1,[]);
 
 if (Crossed_Indiv1<-1) | (Crossed_Indiv1>1) | (Crossed_Indiv2<-1) | (Crossed_Indiv2>1) then pause,end

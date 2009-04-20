@@ -16,6 +16,7 @@
 #include "completion.h"
 #include "Scierror.h"
 #include "toolsdictionary.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static int returnEmptyMatrix(int pos);
 static int putResultOnStack(int pos,char **result,int sizeresult);
@@ -30,8 +31,18 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-		partOfWord = cstk(l1);
+		char ** Inputs1 = NULL;
+		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Inputs1);
+		if ( (m1 == n1) && (n1 == 1) )
+		{
+			partOfWord = Inputs1[0];
+		}
+		else
+		{
+			freeArrayOfString(Inputs1,m1 * n1);
+			Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+			return 0;
+		}
 	}
 	else
 	{
@@ -55,12 +66,22 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 		{
 			if (GetType(2) == sci_strings)
 			{
+				char **Inputs2 = NULL;
 				char *param2 = NULL;
 				char **Results = NULL;
 				int sizeResults = 0;
 
-				GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-				param2 = cstk(l1);
+				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Inputs2);
+				if ( (m1 == n1) && (n1 == 1) )
+				{
+					param2 = Inputs2[0];
+				}
+				else
+				{
+					freeArrayOfString(Inputs2,m1 * n1);
+					Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
+					return 0;
+				}
 
 				if ( strcmp(param2,"functions") == 0 )
 				{
@@ -88,12 +109,13 @@ int C2F(sci_completion)(char *fname,unsigned long fname_len)
 				}
 				else
 				{
+					freeArrayOfString(Inputs2,m1*n1);
 					Scierror(999,_("%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"),fname,"functions","commands","variables","macros","graphic_properties","files");
 					return 0;
 				}
-
 				putResultOnStack(1,Results,sizeResults);
 				freePointerDictionary(Results,sizeResults);
+				freeArrayOfString(Inputs2,m1*n1);
 				C2F(putlhsvar)();
 
 			}

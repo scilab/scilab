@@ -8,6 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+// <-- JVM NOT MANDATORY -->
+
 Mut_Indiv = mutation_ga_default(2,[]);
 
 if (Mut_Indiv>2) | (Mut_Indiv<-2) then pause,end

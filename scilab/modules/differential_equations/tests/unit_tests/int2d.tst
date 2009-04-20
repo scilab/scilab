@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 X=[0,0;1,1;1,0];
 Y=[0,0;0,1;1,1];
 deff('z=f(x,y)','z=cos(x+y)')

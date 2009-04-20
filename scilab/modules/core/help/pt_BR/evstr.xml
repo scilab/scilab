@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="evstr" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>evstr</refname>
+
+    <refpurpose>avaliação de expressões</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>H=evstr(Z)
+[H,ierr]=evstr(Z)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>matriz de strings <literal>M</literal> ou
+          <literal>list(M,Subexp)</literal></para>
+
+          <variablelist>
+            <varlistentry>
+              <term>M</term>
+
+              <listitem>
+                <para>matriz de strings</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Subexp</term>
+
+              <listitem>
+                <para>vetor de strings</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>H</term>
+
+        <listitem>
+          <para>matriz</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ierr</term>
+
+        <listitem>
+          <para>inteiro, indicador de erro </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Retorna o resultado da avaliação da matriz de strings
+    <literal>M</literal>. Cada elemento da matriz deve definir uma expressão
+    Scilab válida.</para>
+
+    <para>Se a avaliação de <literal>M</literal> levar a um erro, a versão de
+    valor de único retorno, <literal>H=evstr(M)</literal>, levanta erro de
+    modo usual. A versão de dois valores de retorno,
+    <literal>[H,ierr]=evstr(M)</literal> , por outro lado, não produz erro,
+    mas retorna o número de erro em <literal>ierr</literal>.</para>
+
+    <para>Se <literal>Z</literal> é uma lista, <literal>Subexp </literal>é um
+    vetor de strings, que define subexpressões que são avaliadas antes da
+    avaliação de <literal>M</literal>. Estas subexpressões devem ser referidas
+    como <literal>%(k)</literal> em <literal>M</literal>, onde
+    <literal>k</literal> é o índice da subexpressão em
+    <literal>Subexp</literal>.</para>
+
+    <para>evstr('a=1') não é válido (use <literal>execstr</literal> ao
+    invés).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+
+a=1; b=2; Z=['a','b'] ; evstr(Z) 
+
+a=1; b=2; Z=list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="execstr">execstr</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="type" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>type</refname>
+
+    <refpurpose>tipo de variável</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento </title>
+
+    <synopsis>[i]=type(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>objeto Scilab</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>i</term>
+
+        <listitem>
+          <para>inteiro</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>type(x)</literal>retorna um inteiro que indica o tipo de
+    <literal>x </literal>como segue:</para>
+
+    <para> 1 : uma matriz constante de reais ou complexos;</para>
+
+    <para> 2 : uma matriz de polinômios;</para>
+
+    <para> 4 : uma matriz de valores booleanos;</para>
+
+    <para> 5 : uma matriz esparsa;</para>
+
+    <para> 6 : uma matriz de valores booleanos esparsa;</para>
+
+    <para> 7 : uma matriz esparsa do Matlab.</para>
+
+    <para> 8 : uma matriz de inteiros armazenados em 1, 2 ou 4 bytes;</para>
+
+    <para> 9 : uma matriz de manipuladores gráficos;</para>
+
+    <para> 10 : uma matriz de strings;</para>
+
+    <para> 11 : uma função não-compilada (código Scilab);</para>
+
+    <para> 13 : uma função compilada (código Scilab);</para>
+
+    <para> 14 : uma biblioteca de funções;</para>
+
+    <para> 15 : uma lista;</para>
+
+    <para> 16 : uma lista com tipo ("typed list" ou "tlist");</para>
+
+    <para> 17 : uma lista com tipo orientada matricialmente (mlist);</para>
+
+    <para> 128 : um ponteiro (ver <link
+    linkend="lufact">lufact</link>).</para>
+
+    <para>129 : polinômio de tamanho implícito, usado para indexação.</para>
+
+    <para>130 : intrínseco do Scilab (código C ou Fortran).</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="typeof">typeof</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

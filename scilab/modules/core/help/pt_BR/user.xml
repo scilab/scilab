@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="user" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>user</refname>
+
+    <refpurpose>interface para rotinas FORTRAN ou C</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[s_1,s_2,...,s_lhs]=user(e_1,e_2,...,e_rhs)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Com este comando, é possível utilizar um programa externo como um
+    comando do Scilab onde <literal>(s_1,s_2,...,s_lhs)</literal> são as
+    variáveis de saída e<literal> (e_1,e_2,...,e_rhs)</literal> asão as
+    variáveis de entrada. Para inserir este comando no Scilab, é necessário
+    escrever algumas linhas na subrotina FORTRAN <literal>user</literal> do
+    Scilab. Ver <literal>intersci</literal> ou a documentação do Scilab para
+    mais .</para>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="fort">fort</link></member>
+
+      <member><link linkend="link">link</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -10,6 +10,7 @@
 #include "olestream-unwrap.h"
 #include "localization.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
 #ifdef _MSC_VER
 	#include "strdup_windows.h"
 #endif
@@ -157,7 +158,7 @@ int OLEUNWRAP_save_stream( struct OLEUNWRAP_object *oleuw, char *fname, char *de
 		return -1;
 	}
 
-	f = fopen(full_name,"wb");
+	wcfopen(f, full_name, "wb");
 	if (f != NULL)
 	{
 		size_t write_count;

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="call" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>call</refname>
+
+    <refpurpose>chamada a rotinas de usuário FORTRAN ou C</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>// forma longa: 'out' está presente  
+[y1,...,yk]=call("ident",x1,px1,"tx1",...,xn,pxn,"txn", 
+"out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl") 
+// forma curta : nenhum parâmetro 'out' 
+[y1,....,yk]=call("ident",x1,...,xn) </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"ident"</term>
+
+        <listitem>
+          <para>string.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi</term>
+
+        <listitem>
+          <para>real matrix or string </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pxi, pyi</term>
+
+        <listitem>
+          <para>inteiro </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>txi, tyi</term>
+
+        <listitem>
+          <para>string <literal>"d"</literal>, <literal>"r"</literal>,
+          <literal>"i"</literal> ou <literal>"c"</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Chamada interativa ao programa do usuário FORTRAN (ou C) do Scilab.
+    A rotina deve estar previamente linkada ("ligada") ao Scilab. Este link
+    pode ser feito: </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>Com o comando "<literal>link</literal>" do Scilab (linkagem
+        "suave" ("soft") incremental) durante a sessão Scilab. (ver
+        <literal>link</literal>)</para>
+      </listitem>
+
+      <listitem>
+        <para>Por re-linkagem "forçosa" ("hard"), escrevendo a rotina dentro
+        da rotina Scilab <literal>default/Ex-fort.f</literal>, adicionando o
+        ponto de entrada no arquivo <literal>default/Flist</literal> e então
+        re-linkando o Scilab com o comando <literal>make bin/scilex</literal>
+        no diretório principal do Scilab.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Há duas formas de sintaxe de chamamento, uma curta e uma longa. A
+    curta fornece um código mais rápido e uma sintaxe de chamamento mais
+    fácil, mas deve-se escrever uma pequena interface (C ou FORTRAN) para que
+    esta forma seja possível. A forma longa torna possível uma chamada a uma
+    rotina FORTRAN (ou C) sem modificação do código, mas a sintaxe é mais
+    complexa e o código interpretado mais devagar.</para>
+
+    <para>O significado de cada parâmetro é descrito abaixo: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"ident"</term>
+
+        <listitem>
+          <para>é o nome da subrotina chamada. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x1,...,xn</term>
+
+        <listitem>
+          <para>são as variáveis de entrada (strings ou matrizes de reais)
+          enviados à rotina</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>px1,...,pxn</term>
+
+        <listitem>
+          <para>são as respectivas posições destas variáveis na seqüência de
+          chamamento da rotina <literal>"ident"</literal> e</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tx1,...,txn</term>
+
+        <listitem>
+          <para>são seus tipos (<literal>"r"</literal>,
+          <literal>"i"</literal>, <literal>"d"</literal> e
+          <literal>"c"</literal> para ponto flutuante real , inteiro, dupla
+          precisão e strings) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"out"</term>
+
+        <listitem>
+          <para>é a palavra-chave usada para separar variáveis de entrada das
+          variáveis de saída. Quando esta palavra-chave está presente, ela
+          indica que a forma longa será usada e quando não está presente,
+          indica que a forma curta será usada. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[ny1, my1]</term>
+
+        <listitem>
+          <para>são os tamanhos (número de linhas e colunas. Para argumentos
+          'c',<literal> m1*n1</literal> é o número de caracteres) das
+          variáveis de saída e </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>py1, ...</term>
+
+        <listitem>
+          <para>são as posições das variáveis de saída (possivelmente iguais a
+          <literal>pxi</literal> ) na seqüência de chamamento da rotina. Os
+          inteiros <literal>pyi</literal>'s devem estar em ordem
+          crescente.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"ty1", ...</term>
+
+        <listitem>
+          <para>são os tipos FORTRAN das variáveis de saída. As
+          <literal>k</literal> primeiras variáveis de saída são postas em
+          <literal>y1,..., yk</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>Se uma variável de saída coincide com uma variável de entrada (i.e.,
+    <literal>pyi=pxj</literal> ) pode-se apenas passar sua posição
+    <literal>pyi</literal> . O tamanho e tipo de <literal>yi</literal> são
+    então os mesmos que os de<literal>xi</literal>. Se uma variável de saída
+    coincide com uma variável de entrada e são especificadas as dimensões da
+    variável de saída, <literal>[myl,nyl]</literal> deve satisfazer a condição
+    de compatibilidade <literal>mxk*nxk &gt;= myl*nyl</literal>.</para>
+
+    <para>No caso da sintaxe curta,
+    <literal>[y1,....,yk]=call("ident",x1,...,xn)</literal>, os parâmetros de
+    entrada <literal>xi</literal>'s e o nome <literal>"ident"</literal> são
+    enviados para a rotina de interface <literal>Ex-fort</literal>. Esta
+    rotina de interface é, então, muito semelhante a uma interface (ver código
+    fonte no diretório <literal>SCIDIR/default/Ex-fort.f</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    
+    //Exemplo 1 com um código C simples
+    f1=['#include &lt;math.h&gt;'
+        'void fooc(c,a,b,m,n)'
+         'double a[],*b,c[];'
+         'int *m,*n;'
+         '{'
+         '   int i;'
+         '   for ( i =0 ; i &lt; (*m)*(*n) ; i++) '
+         '     c[i] = sin(a[i]) + *b; '
+         '}'];
+
+    mputl(f1,'fooc.c')
+
+    //criando a biblioteca compartilhada (um gateway (ligação), um Makefile e um loader (carregador) são 
+    //gerados.)  
+
+    ilib_for_link('fooc','fooc.o',[],"c") 
+
+    // carregando a biblioteca compartilhada  
+
+    exec loader.sce 
+
+    //usando a nova primitiva
+    a=[1,2,3;4,5,6];b= %pi;
+    [m,n]=size(a);
+
+    // Entradas:
+    // a está na posição 2 e double
+    // b                3     double
+    // n                4     integer
+    // m                5     integer
+    // Saídas:
+    // c está na posição 1 e double com tamanho [m,n]
+    c=call("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+
+    //Exemplo 2 com um código FORTRAN simples
+    f1=['      subroutine foof(c,a,b,n,m)'
+        '      integer n,m'
+        '      double precision a(*),b,c(*)'
+        '      do 10 i=1,m*n '
+        '        c(i) = sin(a(i))+b'
+        '   10 continue'
+        '      end'];
+    mputl(f1,'foof.f')
+
+    //criando a biblioteca compartilhada (um gateway, um Makefile e um loader são  
+    //gerados.)  
+
+    ilib_for_link('foof','foof.o',[],"f") 
+
+    // carrega a biblioteca compartilhada 
+
+    exec loader.sce 
+
+    //usando a nova primitiva
+    a=[1,2,3;4,5,6];b= %pi;
+    [m,n]=size(a);
+    c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
+
+
+ 
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="c_link">c_link</link></member>
+
+      <member><link linkend="intersci">intersci</link></member>
+
+      <member><link linkend="addinter">addinter</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

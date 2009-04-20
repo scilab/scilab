@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="equal" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>equal</refname>
+
+    <refpurpose>(=) atribuição ou comparação, sinal de igualdade</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Atribuição:</term>
+
+        <listitem>
+          <para>o sinal de igualdade ( = ) é usado para denotar a atribuição
+          de valor(es) a variável(eis). A sintaxe pode ser :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>a=expr</literal> onde <literal>a</literal> é um
+              nome de variável e <literal>expr</literal> uma expressão do
+              Scilab cuja avaliação conduz a um único resultado. </para>
+            </listitem>
+
+            <listitem>
+              <para><literal>[a,b,...]=expr</literal> onde
+              <literal>a</literal>,<literal>b</literal>,<literal>...</literal>
+              são nomes de variáveis e <literal>expr</literal> uma expressão
+              do Scilab cuja avaliação conduz a tantos resultados quanto o
+              número de variáveis dadas.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Comparação:</term>
+
+        <listitem>
+          <para>o sinal de igualdade ( = ) também é usado em operadores de
+          comparação:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>a==b</literal>, denota comparação de igualdade
+              entre os valores das expressões <literal> a</literal> e
+              <literal>b</literal>.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>a~=b</literal>, denota comparação de desigualdade
+              entre os valores das expressões <literal>a</literal> e <literal>
+              b</literal>:</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>a&lt;=b</literal> e <literal>a&gt;=b</literal>
+              denotam comparações de ordem entre os valores de <literal>
+              a</literal> e <literal> b</literal>:</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>Ver <link linkend="comparison">comparison</link> para detalhes
+          semânticos.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    
+    a = sin(3.2)
+    M = [2.1,3.3,8.5;7.6,6.7,6.9;0,6.3,8.8];
+    [u,s] = schur(M)
+    [1:10] == 4 
+    1~=2
+    
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="less">less</link></member>
+
+      <member><link linkend="great">great</link></member>
+
+      <member><link linkend="boolean">boolean</link></member>
+
+      <member><link linkend="isequal">isequal</link></member>
+
+      <member><link linkend="comparison">comparison</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

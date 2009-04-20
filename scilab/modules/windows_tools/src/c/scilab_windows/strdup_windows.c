@@ -28,4 +28,15 @@ char *strdup_windows(const char *strSource)
 	}
 	return retStr;
 }
+
+wchar_t *wstrdup_windows(const wchar_t *strSource)
+{
+	wchar_t *retStr = NULL;
+	if (strSource)
+	{
+		retStr = (wchar_t *)MALLOC(sizeof(wchar_t)*((int)wcslen(strSource)+1));
+		if (retStr) wcscpy(retStr,strSource);
+	}
+	return retStr;
+}
 /*--------------------------------------------------------------------------*/

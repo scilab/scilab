@@ -50,4 +50,15 @@ STR6 = strncpy(STR,6);
 REF = [STR1,STR2,STR3;STR4,STR5,STR6];
 if strncpy(STRS,[1,2,3;4,5,6])<> REF then pause,end
 //===============================
+tab_ref = [
+"世界您好",
+"азеазея",
+"ハロー・ワールド",
+"เฮลโลเวิลด์",
+"حريات وحقوق",
+"תוכנית"];
 
+for i=1:size(tab_ref,'*')
+ r = strncpy(tab_ref(i),i);
+ if r <> part(tab_ref(i),1:i) then pause,end
+end

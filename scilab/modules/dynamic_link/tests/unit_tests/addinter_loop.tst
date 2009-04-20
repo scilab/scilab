@@ -20,6 +20,7 @@
 // numbers of files already openend
 // scilab minimun 3 LoadLibrary (libscilab.dll,
 // jvm.dll,fftw.dll)
+lines(0);
 //================================================
 loop_max = 77; // may be more on linux
 //================================================

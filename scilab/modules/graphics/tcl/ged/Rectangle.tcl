@@ -250,7 +250,7 @@ combobox $w.frame.thickness \
     -textvariable curthick \
     -editable true \
     -command [list SelectThickness ] -font $gedFont
-eval $w.frame.thickness list insert end [list "0.5" "1.0" "2.0" "3.0" "4.0" "6.0" "8.0" "10.0" "15.0" "20.0" "25.0" "30.0"]
+eval $w.frame.thickness list insert end [list "0.0" "1.0" "2.0" "3.0" "4.0" "5.0" "6.0" "8.0" "10.0"]
 
 
 pack $w.frame.stylelabel -in $w.frame.rectst   -side left
