@@ -1,11 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009 - DIGITEO - Antoine Elias - Allan CORNET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//<-- ENGLISH IMPOSED -->
+
+ilib_verbose(0);
 
 mydir = TMPDIR + filesep() + "loadlib";
 createdir(mydir);
@@ -32,6 +33,9 @@ tab_ref = [
 "תוכנית"];
 
 PathOrigin = getenv("PATH");
+
+if MSDOS then
+
 for i = 1 : size(tab_ref,'*')
 	sz = "dir_" + tab_ref(i);
 	a = chdir(sz);
@@ -40,13 +44,16 @@ for i = 1 : size(tab_ref,'*')
 	NewPath = PathOrigin + ";" + szTemp;
 	setenv("PATH", NewPath);
 	mputl(fileC,'test.c');
-	ilib_for_link('test','test.o',[],"c");
+	ilib_for_link('test','test.c',[],"c");
 	chdir(SCI);
-	ierr = execstr("link(""libtest.dll"")","errcatch");
+	commandstr = "link(" + """libtest" + getdynlibext() +""")";
+	ierr = execstr(commandstr,"errcatch");
 	if(ierr <> 0) then pause, end
 	ulink();
 	setenv("PATH", PathOrigin);
 	chdir(mydir);
+end
+
 end
 sleep(2000);
 chdir(TMPDIR);
