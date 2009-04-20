@@ -119,6 +119,8 @@ Bug fixes:
 
 * bug 4380 fixed - diary(0) without a initialization of diary crashs scilab.
 
+* bug 4380 fixed - merror error codes not documented.
+
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
 
