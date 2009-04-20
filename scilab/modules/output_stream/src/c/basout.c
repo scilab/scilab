@@ -28,13 +28,15 @@ extern int C2F(writelunitstring)();
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
 	char *buffer = NULL;
-	static int ich;
 
-	int i = 0;
 	/* bug 3831 */
-	for (i = 0; i < nbcharacters; i++) 
+	if (string)
 	{
-		 if (string[i] == 0) string[i] = ' ';
+		int i = 0;
+		for (i = 0; i < nbcharacters - 1; i++) 
+		{
+			if (string[i] == 0) string[i] = ' ';
+		}
 	}
 
 	if (*lunit == C2F(iop).wte)
@@ -87,6 +89,7 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 		buffer = string;
         nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
+		string[nbcharacters] ='\0';
 		if (*lunit == C2F(iop).wio) 
 		{
 			diary(string, &nbcharacters,TRUE);

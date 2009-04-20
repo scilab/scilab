@@ -123,9 +123,12 @@ BOOL HistoryFile::writeToFile(std::string filename)
 			}
 
 			commentendsession = getCommentDateSession(FALSE);
-			fputs(commentendsession,pFile);
-			fputs("\n",pFile);
-			if (commentendsession) {FREE(commentendsession);commentendsession=NULL;}
+			if (commentendsession)
+			{
+				fputs(commentendsession,pFile);
+				fputs("\n",pFile);
+				FREE(commentendsession);commentendsession=NULL;
+			}
 			fclose(pFile);
 			bOK = TRUE;
 		}

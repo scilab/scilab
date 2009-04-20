@@ -443,9 +443,11 @@ BOOL HistoryManager::loadFromFile(char *filename)
 
 		/* add date & time @ begin session */
 		commentbeginsession = getCommentDateSession(TRUE);
-		appendLine(commentbeginsession);
-		if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
-
+		if (commentbeginsession)
+		{
+			appendLine(commentbeginsession);
+			FREE(commentbeginsession);commentbeginsession=NULL;
+		}
 		bOK = TRUE;
 	}
 	return bOK;
@@ -468,8 +470,11 @@ void HistoryManager::reset(void)
 
 	/* Add date & time begin session */
 	commentbeginsession = getCommentDateSession(TRUE);
-	appendLine(commentbeginsession);
-	if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
+	if (commentbeginsession)
+	{
+		appendLine(commentbeginsession);
+		FREE(commentbeginsession);commentbeginsession=NULL;
+	}
 }
 /*--------------------------------------------------------------------------*/
 char **HistoryManager::getAllLines(int *numberoflines)
