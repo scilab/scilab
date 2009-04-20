@@ -109,8 +109,10 @@ Bug fixes:
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
+                   
+* bug 4307 fixed - %io has no help file.                   
 
-* bug 4360 fixed - The reference of bug_3954.tst was missing
+* bug 4360 fixed - The reference of bug_3954.tst was missing.
 
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.
@@ -120,5 +122,5 @@ Bug fixes:
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
 
-* bug 4403 fixed - isinf was defined (when not provided by the system) with a 
-  	  	   		   return
+* bug 4403 fixed - isinf was defined (when not provided by the system) with a return
+
