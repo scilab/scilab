@@ -61,7 +61,6 @@ sci_gateway/fortran/intdisp.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \
-sci_gateway/fortran/intdiary.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
