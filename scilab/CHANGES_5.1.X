@@ -5,6 +5,10 @@ Compilation:
 
 * "make check" now builds also call_scilab examples
 
+* --enable-debug-java add two options to the JVM args (-verbose:jni and 
+  -Xcheck:jni) in order to provide more feedbacks on debug
+  Note that this should be used into a binary since it is expensive
+
 Source reorganisation:
 ======================
 
