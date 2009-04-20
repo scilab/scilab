@@ -69,6 +69,8 @@ char encoding bugs :
 
 * bug 4003 fixed - setenv & getenv do not manage utf string on Windows.
 
+* bug 4012 fixed - display of month and week are wrong in sessions starts and ends (history manager).
+
 * bug 4019 fixed - with -nw or -nwni mode on Windows, console returns error about
                    localization.
 
