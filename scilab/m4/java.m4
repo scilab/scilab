@@ -422,6 +422,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
        # Sun
           machine=sparc
           ;;
+	    powerpc)
+	  	  machine=ppc
+		  ;;
     esac
 
     # Check for known JDK installation layouts
