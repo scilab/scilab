@@ -77,7 +77,6 @@ lib /DEF:&quot;$(InputDir)fileio_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="..\..\sci_gateway\fortran\intdeff.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intdiary.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intdisp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intexec.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intexecstr.f"/>
