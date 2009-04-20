@@ -40,8 +40,9 @@ Bug fixes:
  * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
                     we have only one symbol.
 
- * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c 
-
+ * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c
+ 
+ * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
