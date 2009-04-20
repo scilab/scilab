@@ -113,6 +113,8 @@ Bug fixes:
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.
 
+* bug 4380 fixed - diary(0) without a initialization of diary crashs scilab.
+
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
 
