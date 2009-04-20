@@ -11,7 +11,7 @@
 ##
 
 FUNCTION_MANAGER_CPP_SOURCES 	= src/cpp/funcmanager.cpp \
-				$(top_builddir)/modules/core/src/cpp/configvariable.cpp
+				$(top_builddir)/modules/system_env/src/cpp/configvariable.cpp
 
 
 pkglib_LTLIBRARIES 	= libscifunctions_manager.la
@@ -24,6 +24,7 @@ libscifunctions_manager_la_CXXFLAGS	=	-I$(top_builddir)/modules/types/includes/ 
 						-I$(top_builddir)/modules/symbol/includes/ \
 						-I$(top_builddir)/modules/elementary_functions/includes/ \
 						-I$(top_builddir)/modules/operations/includes/ \
+						-I$(top_builddir)/modules/system_env/includes/ \
 						-Iincludes/ \
 						-Isrc/cpp \
 						$(XML_FLAGS)
