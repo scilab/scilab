@@ -30,14 +30,13 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	char *buffer = NULL;
 
 	/* bug 3831 */
-	if ( (nbcharacters > 0) && string)
+	if (string)
 	{
 		int i = 0;
-		for (i = 0; i < nbcharacters; i++) 
+		for (i = 0; i < nbcharacters - 1; i++) 
 		{
 			if (string[i] == 0) string[i] = ' ';
 		}
-		if ( nbcharacters > 1 ) string[nbcharacters] = '\0';
 	}
 
 	if (*lunit == C2F(iop).wte)

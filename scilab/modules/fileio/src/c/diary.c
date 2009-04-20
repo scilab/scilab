@@ -16,6 +16,19 @@
 #include "filesmanagement.h"
 #include "mclose.h"
 /*--------------------------------------------------------------------------*/
+static char* removeBlanks(char *_str)
+{
+	int len = 0;
+	int i = 0;
+	len = (int) strlen(_str);
+	for(i = len - 1;i >=0 ; i--)
+	{
+		if (_str[i] != ' ') break;
+	}
+	_str[i+1] = '\0';
+	return  _str;
+}
+/*--------------------------------------------------------------------------*/
 int getdiary(void)
 {
 	return C2F(iop).wio;
@@ -39,6 +52,11 @@ void diary(char *str,long int *n,BOOL addCR)
 	if ( u != 0 )
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
+		int len = 0;
+
+		str = removeBlanks(str);
+		len = (int) strlen (str);
+
 		if (fd)
 		{
 			if (addCR)
