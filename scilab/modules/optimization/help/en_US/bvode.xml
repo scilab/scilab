@@ -17,10 +17,18 @@
     method</refpurpose>
   </refnamediv>
 
+  <refnamediv xml:id="bvodeS">
+    <refname>bvodeS</refname>
+
+    <refpurpose>Simplified call to bvode</refpurpose>
+  </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
     <synopsis>zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)</synopsis>
+
+    <synopsis>zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -103,8 +111,8 @@
         <listitem>
           <para>an array with 11 integer elements:</para>
 
-          <para>[<literal>nonlin, k, n, ntol, ndimf, ndimi, iprint, iread,
-          iguess, rstart,nfxpnt]</literal></para>
+          <para>[<literal>nonlin, collpnt, subint, ntol, ndimf, ndimi, iprint,
+          iread, iguess, rstart,nfxpnt]</literal></para>
 
           <variablelist>
             <varlistentry>
@@ -117,25 +125,25 @@
             </varlistentry>
 
             <varlistentry>
-              <term>k: ipar(2)</term>
+              <term>collpnt: ipar(2)</term>
 
               <listitem>
                 <para>Gives the number of collocation points per subinterval
-                where max(m(j)) &lt;= k &lt;= 7</para>
+                where max(m(j)) &lt;= collpnt &lt;= 7</para>
 
                 <para>if <literal>ipar(2)=0</literal> then
-                <literal>k</literal> is set to max ( max(m(j))+1 , 5-max(m(j))
-                )</para>
+                <literal>collpnt</literal> is set to max ( max(m(j))+1 ,
+                5-max(m(j)) )</para>
               </listitem>
             </varlistentry>
 
             <varlistentry>
-              <term>n: ipar(3)</term>
+              <term>subint: ipar(3)</term>
 
               <listitem>
                 <para>Gives the number of subintervals in the initial mesh. if
                 <literal>ipar(3) = 0</literal> then bvode arbitrarily sets
-                <literal>n = 5</literal>.</para>
+                <literal>subint = 5</literal>.</para>
               </listitem>
             </varlistentry>
 
@@ -163,7 +171,7 @@
                 <para>The ipar(5) value must respect the constraint
                 ipar(5)&gt;=nmax*nsizef where</para>
 
-                <para><literal>nsizef=4+3*M+(5+k*N)*(k*N+M)+(2*M-nrec)*2*M</literal>
+                <para><literal>nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-nrec)*2*M</literal>
                 (<literal>nrec</literal> is the number of right end boundary
                 conditions).</para>
               </listitem>
@@ -181,7 +189,7 @@
                 ipar(6)&gt;=nmax*nsizei where</para>
 
                 <para><literal>nsizei=3 +
-                </literal><literal>k*N+M</literal>.</para>
+                </literal><literal>collpnt*N+M</literal>.</para>
               </listitem>
             </varlistentry>
 
@@ -331,7 +339,7 @@
             </varlistentry>
 
             <varlistentry>
-              <term>rstart: ipar(10)</term>
+              <term>ireg: ipar(10)</term>
 
               <listitem>
                 <variablelist>
@@ -347,8 +355,8 @@
                     <term>= 1</term>
 
                     <listitem>
-                      <para>if the first relax factor is =rstart, and the
-                      nonlinear iteration does not rely on past covergence
+                      <para>if the first relax factor is equal to ireg, and
+                      the nonlinear iteration does not rely on past covergence
                       (use for an extra sensitive nonlinear problem
                       only).</para>
                     </listitem>
@@ -1116,14 +1124,43 @@
           </itemizedlist>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>&lt;optional_args&gt;</term>
+
+        <para>It should be either:</para>
+
+        <itemizedlist>
+          <listitem>any left part of the ordered sequence of values: <para>
+              <literal>guess, dfsub, dgsub, fixpnt, ndimf, ndimi, ltol, tol,
+              ntol,nonlin, collpnt, subint, iprint, ireg, ifail</literal>
+            </para></listitem>
+
+          <listitem>or any sequence of <literal>arg_name=argvalue</literal>
+          with <literal>arg_name</literal> in: <literal>guess</literal>,
+          <literal>dfsub</literal>, <literal>dgsub</literal>,
+          <literal>fixpnt</literal>, <literal>ndimf</literal>,
+          <literal>ndimi</literal>, <literal>ltol</literal>,
+          <literal>tol</literal>, <literal>ntol</literal>,
+          <literal>nonlin</literal>, <literal>collpnt</literal>,
+          <literal>subint</literal>, <literal>iprint</literal>,
+          <literal>ireg</literal>, <literal>ifail</literal></listitem>
+        </itemizedlist>
+
+        <para>Where all these arguments excepted <literal>ifail</literal> are
+        described above. <literal>ifail</literal> can be used to display the
+        bvode call corresonding to the selected optional arguments. If
+        <literal>guess</literal> is given <literal>iguess</literal> is set to
+        1</para>
+      </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para>This package solves a multi-point boundary value problem for a mixed
-    order system of ode-s given by</para>
+    <para>These functions solves a multi-point boundary value problem for a
+    mixed order system of ode-s given by</para>
 
     <informalequation>
       <mediaobject>
@@ -1636,8 +1673,6 @@
     and returned by <literal>bvode</literal> is the column vector formed by
     the components of z(u(x)) for a given <literal>x</literal>.</para>
 
-    <para />
-
     <para>The method used to approximate the solution u is collocation at
     gaussian points, requiring m(i)-1 continuous derivatives in the i-th
     component, i = 1:N. here, k is the number of collocation points (stages)
@@ -1648,7 +1683,7 @@
   <refsection>
     <title>Examples</title>
 
-    <para>The problems below is taken from the paper [1] of the
+    <para>The first two problems below are taken from the paper [1] of the
     Bibliography.</para>
 
     <itemizedlist>
@@ -2178,8 +2213,8 @@ endfunction
 
 fixpnt=[ ];//All boundary conditions are located at x_low and x_up
 
-//    nonlin  k n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
-ipar=[0       0 1 2    2000   200   1      0     0      0      0     ]
+//    nonlin  collpnt n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
+ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
 
 ltol=[1,3];//set tolerance control on zu(1) and zu(3)
 tol=[1.e-11,1.e-11];//set tolreance values for these two controls
@@ -2192,7 +2227,25 @@ zu([1,3],[1 $]) //should be zero
 plot(xpoints,zu(1,:)) // the evolution of the solution u
 zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
 norm(zu-zu1)
-  </programlisting>
+	</programlisting>
+      </listitem>
+
+      <listitem>
+         Same problem using 
+
+        <literal>bvodeS</literal>
+
+         and an initial guess 
+
+        <programlisting role="example"> 
+function [z,lhS]=zstart(x)
+  z=zeros(5,1);z(5)=1;
+  lhS=[0;1];
+endfunction
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
+	  </programlisting>
+
+         
       </listitem>
 
       <listitem>
@@ -2573,12 +2626,12 @@ eps4mu=eps^4/dmu
 xt=sqrt(2*(gam-1)/gam)
 
 fixpnt=[ ];//All boundary conditions are located at x_low and x_up
-k=4;
-nsizef=4+3*M+(5+k*N)*(k*N+M)+(2*M-2)*2*M ;
-nsizei=3 + k*N+M;;
+collpnt=4;
+nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
+nsizei=3 + collpnt*N+M;;
 nmax=200;
-//    nonlin  k n  ntol ndimf        ndimi        iprint iread iguess rstart nfxpnt
-ipar=[1       k 10 4    nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
+//    nonlin  collpnt n  ntol ndimf        ndimi        iprint iread iguess rstart nfxpnt
+ipar=[1       k       10 4    nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
 
 ltol=1:4;//set tolerance control on zu(1) zu(2 ) zu(3) and zu(4)
 tol=[1.e-5,1.e-5,1.e-5,1.e-5];//set tolreance values for these four controls
@@ -2609,6 +2662,162 @@ zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
         fsub2,dfsub2,gsub2,dgsub2,guess2);
 scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and psi
 </programlisting>
+      </listitem>
+
+      <listitem>
+        <para>An eigenvalue problem:</para>
+
+        <programlisting role="example">
+// y''(x)=-la*y(x)
+// BV: y(0)=y'(0); y(1)=0
+// Eigenfunctions and eigenvalues are y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
+// where s(n) are the zeros of f(s,n)=s+atan(s)-(n+1)*pi, n=0,1,2,...
+// To get a third boundary condition, we choose y(0)=1
+// (With y(x) also c*y(x) is a solution for each constant c.)
+// We solve the following ode system:
+// y''=-la*y
+// la'=0
+// BV: y(0)=y'(0), y(0)=1; y(1)=0
+// z=[y(x) ; y'(x) ; la]
+
+function rhs=fsub(x,z)
+  rhs=[-z(3)*z(1);0]
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1)-z(2) z(1)-1 z(1)]
+  g=g(i)
+endfunction
+
+// The following start function is good for the first 8 eigenfunctions.
+function [z,lhs]=ystart(x,z,la0)
+  z=[1;0;la0]
+  lhs=[0;0]
+endfunction
+
+a=0;b=1;
+m=[2;1];
+n=2;
+zeta=[a a b];
+N=101;
+x=linspace(a,b,N)';
+
+// We have s(n)-(n+1/2)*pi -&gt; 0 for n to infinity.
+la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+
+clf()
+plot(x,[z(1,:)' z(2,:)']) 
+xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
+legend(['y(x)';'y''(x)'])
+      </programlisting>
+      </listitem>
+
+      <listitem>
+         A boundary value problem with more than one solution. 
+
+        <programlisting role="example">
+// DE: y''(x)=-exp(y(x))
+// BV: y(0)=0; y(1)=0
+// This boundary value problem has more than one solution.
+// It is demonstrated how to find two of them with the help of
+// some preinformation of the solutions y(x) to build the function ystart.
+// z=[y(x);y'(x)]
+
+a=0;b=1;m=2;n=1;
+zeta=[a b];
+N=101;
+tol=1e-8*[1 1];
+x=linspace(a,b,N);
+
+function rhs=fsub(x,z),rhs=-exp(z(1));endfunction
+
+function g=gsub(i,z)
+  g=[z(1) z(1)]
+  g=g(i)
+endfunction
+
+function [z,lhs]=ystart(x,z,M) 
+  //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+  z=[M;0]
+  //lhs=[-exp(4*x*(1-x)*M)]
+  lhs=0
+endfunction
+
+for M=[1 4]
+   if M==1
+      z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   else
+      z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   end
+end
+
+// Integrating the ode yield e.g. the two solutions yex and yex1. 
+
+function y=f(c),y=c.*(1-tanh(sqrt(c)/4).^2)-2;endfunction 
+c=fsolve(2,f);
+
+function y=yex(x,c)
+  y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+endfunction 
+
+function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
+c1=fsolve(0.1,f1);
+
+function y=yex1(x,c1)
+  y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+endfunction 
+
+disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
+disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+clf();
+subplot(2,1,1)
+plot2d(x,z(1,:),style=[5])
+xtitle('Two different solutions','x',' ') 
+subplot(2,1,2)
+plot2d(x,z1(1,:),style=[5])
+xtitle(' ','x',' ')
+      </programlisting>
+
+         
+      </listitem>
+
+      <listitem>
+        <para>A multi-point boundary value problem.</para>
+
+        <programlisting role="example">
+// DE y'''(x)=1
+// z=[y(x);y'(x);y''(x)]
+// BV: y(-1)=2 y(1)=2
+// Side condition: y(0)=1 
+
+a=-1;b=1;c=0;
+// The side condition point c must be included in the array fixpnt.
+n=1;
+m=[3];
+
+function rhs=fsub(x,z)
+  rhs=1
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1)-2 z(1)-1 z(1)-2]
+  g=g(i)
+endfunction
+
+N=10;
+zeta=[a c b];
+x=linspace(a,b,N);
+
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
+          
+function y=yex(x)
+y=x.^3/6+x.^2-x./6+1
+endfunction
+
+disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
+      </programlisting>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -2644,7 +2853,8 @@ scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and
     <title>Authors</title>
 
     <para>This help is based on the original colnew.f comments, adapted to
-    Scilab by J.P Chancelier ENPC, revised by S. Steer INRIA</para>
+    Scilab by J.P Chancelier ENPC, on the bvodeS help page due to Rainer von
+    Seggern, both merged and revised by S. Steer INRIA</para>
   </refsection>
 
   <refsection>
