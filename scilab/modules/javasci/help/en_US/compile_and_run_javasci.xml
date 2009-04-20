@@ -147,8 +147,6 @@ Scilab.Exec("disp((%pi^2)/6);");
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="Scilab">Scilab</link></member>
-
       <member><link linkend="SciDouble">SciDouble</link></member>
 
       <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>

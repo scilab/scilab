@@ -48,7 +48,7 @@ int getgrayplotdata(sciPointObj *pobj)
 
   addColVectorToReturnedList( tList, ppgrayplot->pvecx, ppgrayplot->nx ) ;
 
-  addColVectorToReturnedList( tList, ppgrayplot->pvecx, ppgrayplot->ny ) ;
+  addColVectorToReturnedList( tList, ppgrayplot->pvecy, ppgrayplot->ny ) ;
 
   addMatrixToReturnedList( tList, ppgrayplot->pvecz, ppgrayplot->nx, ppgrayplot->ny ) ;
 

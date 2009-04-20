@@ -35,6 +35,7 @@ CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE)
 # include options 
 INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
 -I"$(SCIDIR)\modules\core\includes" \
+-I"$(SCIDIR)\modules\call_scilab\includes" \
 -I"$(SCIDIR)\modules\output_stream\includes" \
 -I"$(SCIDIR)\modules\jvm\includes" \
 -I"$(SCIDIR)\modules\localization\includes" \
