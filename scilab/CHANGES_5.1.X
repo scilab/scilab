@@ -34,10 +34,13 @@ Bug fixes:
 ==========
 
  * bug 3264 fixed - More explicit message when too many files have been 
-		    opened.
+		    	  	opened.
 
- * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
-                    possible value was 'clipgrf' instead of 'cliprf'.
+ * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under 
+   	   			  	PowerPC
+
+ * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
+   	   			  	the second possible value was 'clipgrf' instead of 'cliprf'.
 
  * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
                     links to this page exist in the documentation.
