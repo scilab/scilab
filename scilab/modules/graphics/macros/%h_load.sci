@@ -733,8 +733,16 @@ function [h,immediate_drawing] = load_graphichandle(fd)
 
     // plot3d modify the given rotation angles
     // trick to force keeping the good rotation angles F.Leray 18.02.05
+    // same issue with axes properties... B.Jofret 21.04.09
     a=gca();
     rotation_angles = a.rotation_angles;
+    axes_visible = a.axes_visible;
+    box = a.box;
+    margins = a.margins;
+    x_label_visible = a.x_label.visible;
+    y_label_visible = a.y_label.visible;
+    z_label_visible = a.z_label.visible;
+
     if is_higher_than([3 1 0 1]) & color_flag >= 2 then
       plot3d1(x,y,list(z,clr))
     elseif or(color_flag==[2 5]) then
@@ -743,7 +751,14 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       plot3d(x,y,z)
     end
 
+   // Restore this properties after plot3d.
     a.rotation_angles = rotation_angles;
+    a.axes_visible = axes_visible;
+    a.box = box;
+    a.margins = margins;
+    a.x_label.visible = x_label_visible;
+    a.y_label.visible = y_label_visible;
+    a.z_label.visible = z_label_visible;
 
     h=gce();
     set(h,"visible",visible)
