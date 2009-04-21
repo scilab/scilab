@@ -422,7 +422,7 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
        # Sun
           machine=sparc
           ;;
-	    powerpc)
+	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
     esac

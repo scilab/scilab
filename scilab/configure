@@ -11751,7 +11751,7 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
        # Sun
           machine=sparc
           ;;
-	    powerpc)
+	    powerpc|ppc64)
 	  	  machine=ppc
 		  ;;
     esac
