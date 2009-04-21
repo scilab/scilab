@@ -9,7 +9,7 @@
   <refnamediv xml:id="???">
     <refname>CheckLhs</refname>
 
-    <refpurpose>C interface macro which checks the number of output parameters
+    <refpurpose>C interface macro which checks the number of output arguments
     present in the calling Scilab function.</refpurpose>
   </refnamediv>
 
@@ -27,7 +27,7 @@
         <term>nb_min_params</term>
 
         <listitem>
-          <para>the minimum number of output parameters which must be present
+          <para>the minimum number of output arguments which must be present
           in the calling Scilab function</para>
         </listitem>
       </varlistentry>
@@ -36,7 +36,7 @@
         <term>nb_max_params</term>
 
         <listitem>
-          <para>the maximum number of output parameters which must be present
+          <para>the maximum number of output arguments which must be present
           in the calling Scilab function</para>
         </listitem>
       </varlistentry>
@@ -46,10 +46,10 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface macro which checks the number of output parameters
+    <para>C interface macro which checks the number of output arguments
     present in the calling Scilab function. You must include stack-c.h to
-    benefit from this function. If the number of parameters is not between
-    nb_min_params and nb_max_params, we quit the C interface and an error is
+    benefit from this function. If the number of arguments is not between
+    nb_min_params and nb_max_params, we quit the C interface (return 0) and an error is
     returned in the Scilab console.</para>
   </refsection>
 
@@ -57,7 +57,7 @@
     <title>Examples</title>
 
     <para>In this example, the C interface function checks for a number of
-    output parameters which must be between 2 and 3.</para>
+    output arguments which must be between 2 and 3.</para>
 
     <programlisting> 
 #include &lt;stack-c.h&gt;
@@ -73,10 +73,10 @@ int sci_mychecklhs(char * fname)
     <para>Now, some functions testing this interface:</para>
 
     <programlisting role="example"> 
-[A,B] = mychecklhs(); // OK, 2 output parameters
-[A,B,C] = mychecklhs(); // OK, 3 output parameters
-[A] = mychecklhs(); // ERROR, 1 output parameter
-[A,B,C,D] = mychecklhs(); // ERROR, 4 output parameters
+[A,B] = mychecklhs(); // OK, 2 output arguments
+[A,B,C] = mychecklhs(); // OK, 3 output arguments
+[A] = mychecklhs(); // ERROR, 1 output argument
+[A,B,C,D] = mychecklhs(); // ERROR, 4 output arguments
  </programlisting>
   </refsection>
 

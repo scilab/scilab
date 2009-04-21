@@ -7,10 +7,10 @@
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
-    <refname>SciDunction</refname>
+    <refname>SciFunction</refname>
 
     <refpurpose>C interface function which call a Scilab function which input
-    parameters and store the output parameters.</refpurpose>
+    parameters and store the output parameters.</refpurpose> <!-- TODO: please update ... unclear -->
   </refnamediv>
 
   <refsynopsisdiv>
@@ -27,8 +27,8 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>the position on the stack of the variable for which we want to
-          know the type (input parameter)</para>
+          <para>the position in the Scilab memory of the variable for which we want to
+          know the type (input argument)</para>
         </listitem>
       </varlistentry>
 
@@ -37,7 +37,7 @@
 
         <listitem>
           <para>the type (defined in the sci_types enum which you can find in
-          stack-c.h) of the variable at position StackPos on the stack</para>
+          stack-c.h) of the variable at position StackPos in the Scilab memory</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -54,8 +54,8 @@
   <refsection>
     <title>Examples</title>
 
-    <para>In this example, the C interface function takes 2 inputs parameters,
-    copy these parameters on the stack, call a Scilab function and copy the
+    <para>In this example, the C interface function takes 2 input arguments,
+    copy these parameters in the Scilab memory, call a Scilab function and copy the
     output parameters and returns it in the Scilab console.</para>
 
     <programlisting> 
@@ -138,10 +138,10 @@ deff('y = myfunc(x1, x2)','y = sqrt(x1^2+x2^2)','c');
 y = myscifunction(x1, x2, myfunc); // OK
  </programlisting>
 
-    <para>If the function returns 3 parameters, the output parameters will be
-    stored at position 4, 5, 6. So, if you have 1 input parameter and 3 output
-    parameters, verify that the position 4, 5 and 6 have been reserved on the
-    stack. To reserve some space on the stack, create fake variables.</para>
+    <para>If the function returns 3 arguments, the output arguments will be
+    stored at position 4, 5, 6. So, if you have 1 input argument and 3 output
+    arguments, verify that the position 4, 5 and 6 have been reserved in the
+    Scilab memory. To reserve some space in the Scilab memory, create fake variables. <!-- TODO explain, link or create a new page how to create fake variables --></para>
   </refsection>
 
   <refsection>

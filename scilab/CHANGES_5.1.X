@@ -5,6 +5,10 @@ Compilation:
 
 * "make check" now builds also call_scilab examples
 
+* --enable-debug-java add two options to the JVM args (-verbose:jni and 
+  -Xcheck:jni) in order to provide more feedbacks on debug
+  Note that this should be used into a binary since it is expensive
+
 Source reorganisation:
 ======================
 
@@ -28,8 +32,14 @@ Help & Tests:
 Bug fixes:
 ==========
 
- * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
-                    possible value was 'clipgrf' instead of 'cliprf'.
+ * bug 3264 fixed - More explicit message when too many files have been 
+		    	  	opened.
+
+ * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under 
+   	   			  	PowerPC
+
+ * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
+   	   			  	the second possible value was 'clipgrf' instead of 'cliprf'.
 
  * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
                     links to this page exist in the documentation.
@@ -37,8 +47,12 @@ Bug fixes:
  * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
                     we have only one symbol.
 
- * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c 
+ * bug 4391 fixed - make install-html (when the option --with-install-help-xml
+   	   			  	is added to the configure) wasn't installing MathML sources
 
+ * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c
+ 
+ * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
