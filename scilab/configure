@@ -1048,11 +1048,11 @@ enable_relocatable
 enable_maintainer_mode
 enable_dependency_tracking
 enable_debug
-enable_debugC
-enable_debugCXX
-enable_debugJava
-enable_debugFortran
-enable_debugLinker
+enable_debug_C
+enable_debug_CXX
+enable_debug_java
+enable_debug_fortran
+enable_debug_linker
 enable_stopOnWarning
 with_gcc
 with_g77
@@ -5690,33 +5690,33 @@ if test "${enable_debug+set}" = set; then
 fi
 
 
-# Check whether --enable-debugC was given.
-if test "${enable_debugC+set}" = set; then
-  enableval=$enable_debugC;
+# Check whether --enable-debug-C was given.
+if test "${enable_debug_C+set}" = set; then
+  enableval=$enable_debug_C;
 fi
 
 
-# Check whether --enable-debugCXX was given.
-if test "${enable_debugCXX+set}" = set; then
-  enableval=$enable_debugCXX;
+# Check whether --enable-debug-CXX was given.
+if test "${enable_debug_CXX+set}" = set; then
+  enableval=$enable_debug_CXX;
 fi
 
 
-# Check whether --enable-debugJava was given.
-if test "${enable_debugJava+set}" = set; then
-  enableval=$enable_debugJava;
+# Check whether --enable-debug-java was given.
+if test "${enable_debug_java+set}" = set; then
+  enableval=$enable_debug_java;
 fi
 
 
-# Check whether --enable-debugFortran was given.
-if test "${enable_debugFortran+set}" = set; then
-  enableval=$enable_debugFortran;
+# Check whether --enable-debug-fortran was given.
+if test "${enable_debug_fortran+set}" = set; then
+  enableval=$enable_debug_fortran;
 fi
 
 
-# Check whether --enable-debugLinker was given.
-if test "${enable_debugLinker+set}" = set; then
-  enableval=$enable_debugLinker;
+# Check whether --enable-debug-linker was given.
+if test "${enable_debug_linker+set}" = set; then
+  enableval=$enable_debug_linker;
 fi
 
 
