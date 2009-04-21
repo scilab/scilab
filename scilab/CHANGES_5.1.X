@@ -55,6 +55,8 @@ Bug fixes:
  
  * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
 
+ * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
+
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
