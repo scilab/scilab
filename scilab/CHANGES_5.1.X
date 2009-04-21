@@ -6,6 +6,10 @@ Compilation:
 
 * "make check" now builds also call_scilab examples
 
+* --enable-debug-java add two options to the JVM args (-verbose:jni and 
+  -Xcheck:jni) in order to provide more feedbacks on debug
+  Note that this should be used into a binary since it is expensive
+
 Source reorganisation:
 ======================
 
@@ -40,6 +44,9 @@ Bug fixes:
 
  * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
                     we have only one symbol.
+
+ * bug 4391 fixed - make install-html (when the option --with-install-help-xml
+   	   			  	is added to the configure) wasn't installing MathML sources
 
  * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c
  
