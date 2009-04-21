@@ -445,6 +445,15 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
                 D=$ac_java_jvm_dir/jre/lib/$machine/client
+		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+			# Try the server directory
+			D=$ac_java_jvm_dir/jre/lib/$machine/server
+			if test ! -f $D/libjvm.so; then
+				AC_MSG_ERROR([Could not find libjvm.so in
+				jre/lib/$machine/client/ or in jre/lib/$machine/server/.
+				Please report to http://bugzilla.scilab.org/])
+			fi
+		fi
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
