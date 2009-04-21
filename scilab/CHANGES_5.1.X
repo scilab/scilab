@@ -54,6 +54,9 @@ Bug fixes:
  
  * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
 
+ * bug 4426 fixed - uigetfile() - File name is cut when we are in the root directory.
+
+
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
 
