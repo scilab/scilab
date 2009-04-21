@@ -169,6 +169,7 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -498,6 +499,12 @@ top_srcdir = @top_srcdir@
 
 # What is the mask of the help source
 @TCLTK_TRUE@DOCMASKXML = *.xml
+
+# What is the mask of the MathML sources
+@TCLTK_FALSE@DOCMASKMML = *.mml
+
+# What is the mask of the MathML sources
+@TCLTK_TRUE@DOCMASKMML = *.mml
 
 ########### INSTALL DATA ###################
 # Install macros, help & demos
@@ -945,7 +952,17 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 fi; \
-@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	done; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_TRUE@	fi
 @TCLTK_TRUE@install-data-local:
 # Install the tests
 @TCLTK_TRUE@	@echo "-------- Install tests (if any) --------"; \
@@ -1115,7 +1132,17 @@ uninstall-am: uninstall-libsciscipad_la_bindingsDATA \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		fi; \
 @INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 fi; \
-@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	done; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@		fi; \
+@INSTALL_HELP_XML_TRUE@@TCLTK_FALSE@	fi
 @TCLTK_FALSE@install-data-local:
 # Install the tests
 @TCLTK_FALSE@	@echo "-------- Install tests (if any) --------"; \

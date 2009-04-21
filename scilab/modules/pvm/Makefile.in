@@ -265,6 +265,7 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -555,6 +556,12 @@ top_srcdir = @top_srcdir@
 
 # What is the mask of the help source
 @PVM_TRUE@DOCMASKXML = *.xml
+
+# What is the mask of the MathML sources
+@PVM_FALSE@DOCMASKMML = *.mml
+
+# What is the mask of the MathML sources
+@PVM_TRUE@DOCMASKMML = *.mml
 
 ########### INSTALL DATA ###################
 # Install macros, help & demos
@@ -1419,7 +1426,17 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 fi; \
-@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	done; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@@PVM_TRUE@	fi
 @PVM_TRUE@install-data-local:
 # Install the tests
 @PVM_TRUE@	@echo "-------- Install tests (if any) --------"; \
@@ -1589,7 +1606,17 @@ uninstall-am: uninstall-libscipvm_la_etcDATA \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@		  done ; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@		fi; \
 @INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 fi; \
-@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	done; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		  done ; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@		fi; \
+@INSTALL_HELP_XML_TRUE@@PVM_FALSE@	fi
 @PVM_FALSE@install-data-local:
 # Install the tests
 @PVM_FALSE@	@echo "-------- Install tests (if any) --------"; \

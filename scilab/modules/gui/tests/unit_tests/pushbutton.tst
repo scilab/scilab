@@ -14,27 +14,21 @@ uicontrol_generic_test("pushbutton");
 
 // Default relief value
 h = uicontrol("parent", scf(), "style", "pushbutton");
-if get(h, "relief") <> "raised" then
-  pause
-end
+if get(h, "relief") <> "raised" then pause; end
 
 // --- Value tests ---
 // Default value
-if ~isempty(get(h, "value")) then
-  pause
-end
+if ~isempty(get(h, "value")) then pause; end
+
 set(h, "value", [1]);
-if get(h, "value") <> 1 then
-  pause
-end
+if get(h, "value") <> 1 then pause; end
+
 set(h, "value", [1 2 3]);
-if ~and(get(h, "value") == [1 2 3]) then
-  pause
-end
+if ~and(get(h, "value") == [1 2 3]) then pause; end
+
 set(h, "value", []);
-if ~isempty(get(h, "value")) then
-  pause
-end
+if ~isempty(get(h, "value")) then pause; end
+
 // TODO test with wrong values
 
 // Test uicontrol without style property to create PushButtons

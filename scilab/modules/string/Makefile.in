@@ -220,6 +220,7 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -491,6 +492,9 @@ pkgdocdir = $(mydatadir)
 
 # What is the mask of the help source
 DOCMASKXML = *.xml
+
+# What is the mask of the MathML sources
+DOCMASKMML = *.mml
 
 ########### INSTALL DATA ###################
 # Install macros, help & demos
@@ -1408,7 +1412,17 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	 fi; \
-@INSTALL_HELP_XML_TRUE@	done
+@INSTALL_HELP_XML_TRUE@	done; \
+@INSTALL_HELP_XML_TRUE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@	fi
 install-data-local:
 # Install the tests
 	@echo "-------- Install tests (if any) --------"; \
