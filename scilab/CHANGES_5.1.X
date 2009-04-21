@@ -58,6 +58,8 @@ Bug fixes:
 
  * bug 4426 fixed - uigetfile() - File name is cut when we are in the root directory.
 
+ * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
