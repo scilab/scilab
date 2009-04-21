@@ -59,7 +59,7 @@ void scivprint(char *fmt,va_list args)
 		if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
 		lstr = (int) strlen(s_buf);
-		diary_nnl(s_buf,&lstr);
+		diary(s_buf,&lstr,FALSE);
 	}
 	
 	va_end(savedargs);
@@ -103,7 +103,7 @@ void printf_scilab(char *buffer,BOOL withDiary)
 		if ( (withDiary) && getdiary() ) 
 		{
 			int lstr = (int)strlen(buffer);
-			diary_nnl(buffer,&lstr);
+			diary(buffer,&lstr,FALSE);
 		}
 	}
 }

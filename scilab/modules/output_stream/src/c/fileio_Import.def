@@ -2,7 +2,6 @@
 
 
 EXPORTS
-	diary
-  diary_nnl	
-  getdiary  
+diary
+getdiary  
 	

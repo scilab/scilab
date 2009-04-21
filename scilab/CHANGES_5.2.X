@@ -25,6 +25,7 @@ Input/Output functions:
 
  - Rewrite :
     + getenv
+    + diary
 
 Core functions:
 ===============
@@ -68,6 +69,8 @@ char encoding bugs :
 
 * bug 4003 fixed - setenv & getenv do not manage utf string on Windows.
 
+* bug 4012 fixed - display of month and week are wrong in sessions starts and ends (history manager).
+
 * bug 4019 fixed - with -nw or -nwni mode on Windows, console returns error about
                    localization.
 
@@ -106,14 +109,20 @@ Bug fixes:
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
+                   
+* bug 4307 fixed - %io has no help file.                   
 
-* bug 4360 fixed - The reference of bug_3954.tst was missing
+* bug 4360 fixed - The reference of bug_3954.tst was missing.
 
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.
 
+* bug 4380 fixed - diary(0) without a initialization of diary crashs scilab.
+
+* bug 4380 fixed - merror error codes not documented.
+
 * bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
                    standard output.
 
-* bug 4403 fixed - isinf was defined (when not provided by the system) with a 
-  	  	   		   return
+* bug 4403 fixed - isinf was defined (when not provided by the system) with a return
+
