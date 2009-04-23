@@ -80,19 +80,19 @@ AC_CANONICAL_HOST
 AC_ARG_ENABLE(debug,
    AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
 
-AC_ARG_ENABLE(debugC,
+AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
 
-AC_ARG_ENABLE(debugCXX,
+AC_ARG_ENABLE(debug-CXX,
    AC_HELP_STRING([--enable-debug-CXX],[Do not optimize and print warning messages (C++ code)]))
 
-AC_ARG_ENABLE(debugJava,
+AC_ARG_ENABLE(debug-java,
    AC_HELP_STRING([--enable-debug-java],[Print warning messages and line numbers (Java code)]))
 
-AC_ARG_ENABLE(debugFortran,
+AC_ARG_ENABLE(debug-fortran,
    AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
-AC_ARG_ENABLE(debugLinker,
+AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
 
 AC_ARG_ENABLE(stopOnWarning,
