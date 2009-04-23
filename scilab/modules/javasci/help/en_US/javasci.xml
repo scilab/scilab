@@ -56,7 +56,11 @@ Scilab.Exec("disp(%pi);");
 
     <simplelist type="inline">
       <member><link linkend="compile_and_run_javasci">Compile and run with Javasci</link></member>
+
+      <member><link linkend="javasci_faq">Javasci FAQ</link></member>
+
       <member><link linkend="SciDouble">SciDouble</link></member>
+
 
       <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>
 
