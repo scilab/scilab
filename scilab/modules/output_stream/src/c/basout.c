@@ -90,7 +90,7 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
         nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
 		string[nbcharacters] ='\0';
-		if (*lunit == C2F(iop).wio) 
+		if (*lunit == getdiary()) 
 		{
 			diary(string, &nbcharacters,TRUE);
 		}
