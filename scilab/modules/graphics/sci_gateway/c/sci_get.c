@@ -21,23 +21,16 @@
 /*--------------------------------------------------------------------------*/
 
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "HandleManagement.h"
-#include "InitObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "CurrentObjectsManagement.h"
 #include "CurrentObjectsManagement.h"
 
-#include "../src/c/getHandleProperty/GetHashTable.h"
-#include "../src/c/getHandleProperty/getHandleProperty.h"
+#include "GetHashTable.h"
 
 #include "localization.h"
 #include "Scierror.h"
 
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
-#include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/

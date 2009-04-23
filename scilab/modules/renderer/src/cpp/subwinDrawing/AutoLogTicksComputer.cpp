@@ -10,15 +10,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include <math.h>
-#include <stdio.h>
 
 #include "AutoLogTicksComputer.hxx"
 
 extern "C"
 {
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
 #include "Format.h"
 #include "DrawObjects.h"
+#include "math_graphics.h"
 }
 
 namespace sciGraphics

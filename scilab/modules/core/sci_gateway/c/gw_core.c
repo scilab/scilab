@@ -51,11 +51,9 @@ static gw_generic_table Tab[]=
 {C2F(sci_clear),"clear"},
 {C2F(sci_what),"what"},
 {C2F(sci_sciargs),"sciargs"},
-{C2F(sci_chdir),"chdir"},
 {C2F(sci_ieee),"ieee"},
 {C2F(sci_typename),"typename"},
 {C2F(sci_global),"global"},
-{C2F(sci_getcwd),"getcwd"},
 {C2F(sci_clearglobal),"clearglobal"},
 {C2F(sci_isglobal),"isglobal"},
 {C2F(sci_gstacksize),"gstacksize"},
@@ -72,8 +70,8 @@ static gw_generic_table Tab[]=
 {C2F(sci_librarieslist),"librarieslist"},
 {C2F(sci_libraryinfo),"libraryinfo"},
 {C2F(sci_getdebuginfo),"getdebuginfo"},
-{C2F(sci_readgateway),"readgateway"}
-
+{C2F(sci_readgateway),"readgateway"},
+{C2F(sci_exit),"exit"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_core(void)

@@ -8,8 +8,6 @@
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #ifndef USE_F2C
-	#pragma comment(lib,"ifconsol.lib")
-	#pragma comment(lib,"libifport.lib")
 	#ifdef _DEBUG
 		#pragma comment(lib,"libifcoremdd.lib")
 		#pragma comment(lib,"libmmdd.lib")
@@ -17,7 +15,6 @@
 		#pragma comment(lib,"libifcoremd.lib")
 		#pragma comment(lib,"libmmd.lib")
 	#endif
-	#pragma comment(lib,"libirc.lib")
 #endif
 /*-----------------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../bin/libxml2.lib")

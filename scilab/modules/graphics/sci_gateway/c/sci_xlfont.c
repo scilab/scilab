@@ -17,12 +17,7 @@
 /* desc : interface for xlfont routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include <stdlib.h>
-#include "gw_graphics.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "MALLOC.h"
 #include "RendererFontManager.h"
 #include "freeArrayOfString.h"
 #include "localization.h"

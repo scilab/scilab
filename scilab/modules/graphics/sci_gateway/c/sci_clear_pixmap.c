@@ -17,7 +17,6 @@
 
 #include "sci_show_pixmap.h"
 #include "stack-c.h"
-#include "GetProperty.h"
 #include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 

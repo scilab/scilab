@@ -29,6 +29,7 @@ extern "C"
 {
 #include "GetProperty.h"
 #include "DrawObjects.h"
+#include "HandleManagement.h"
 }
 
 
@@ -159,7 +160,7 @@ void DrawableFigure::redrawSubwins(void)
 /*---------------------------------------------------------------------------------*/
 void DrawableFigure::forceDisplay( void )
 { 
-  if ( !checkAutoRedraw() && !isDisplayingSingleObject() )
+  if ( !checkAutoRedraw() )
   {
     // if a single object is available this override drawlater()/ drawnow()
     return;
@@ -317,6 +318,16 @@ void DrawableFigure::closeGraphicCanvas(void)
 void DrawableFigure::setUseSingleBuffer(bool useSingleBuffer)
 {
 	getFigureImp()->setUseSingleBuffer(useSingleBuffer);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigure::getAntialiasingQuality(void)
+{
+	return getFigureImp()->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigure::setAntialiasingQuality(int quality)
+{
+	getFigureImp()->setAntialiasingQuality(quality);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigure::isAbleToCreateFigure(void)

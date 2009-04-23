@@ -21,7 +21,6 @@
 #include "get_data_property.h"
 #include "getHandleProperty.h"
 #include "GetProperty.h"
-#include "returnProperty.h"
 #include "returnPropertyList.h"
 #include "Scierror.h"
 #include "localization.h"

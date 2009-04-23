@@ -1,3 +1,4 @@
+
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
 Compilation:
@@ -172,6 +173,10 @@ It has been reported a numerous number of time:
 
 * bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
                    (mtlb_eig is now obsolete).
+                   
+* bug 3839 fixed - strrev doesn't work correctly if the string to be reversed includes some accentuated characters.
+
+* bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 
 * bug 3705 fixed - During execution of any Scipad sequence, entering abort
                    after the prompt hang up both Scipad and Console.
@@ -202,6 +207,8 @@ Bug fixes:
   	  	   		   of equal values creates problem with function unique.
 
 * bug 3852 fixed - Line wrapping problem in help browser
+
+* bug 3666 fixed - 'input' with accentued character returns incorrect value
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the
                    variable tables to compile other files
@@ -236,6 +243,8 @@ Bug fixes:
 
 * bug 4134 fixed - In some cases, bad detection of a 64 bit arch was
                    causing a seg fault during the "make doc" process
+                   
+* bug 4141 fixed - ascii doesn't support extended ascii values in the range of [128-255].
 
 * bug 4242 fixed - Copyright added (INRIA code)
 		   on modules/linear_algebra/src/fortran/doldqr.f

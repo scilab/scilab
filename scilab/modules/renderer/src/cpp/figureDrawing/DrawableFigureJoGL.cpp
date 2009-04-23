@@ -23,6 +23,7 @@ extern "C"
 #include "DrawObjects.h"
 #include "getScilabJavaVM.h"
 #include "CallFigure.h"
+#include "HandleManagement.h"
 }
 
 #include <string.h>
@@ -217,6 +218,16 @@ void DrawableFigureJoGL::closeGraphicCanvas(void)
 void DrawableFigureJoGL::setUseSingleBuffer(bool useSingleBuffer)
 {
 	getFigureJavaMapper()->setUseSingleBuffer(useSingleBuffer);
+}
+/*---------------------------------------------------------------------------------*/
+int DrawableFigureJoGL::getAntialiasingQuality(void)
+{
+	return getFigureJavaMapper()->getAntialiasingQuality();
+}
+/*---------------------------------------------------------------------------------*/
+void DrawableFigureJoGL::setAntialiasingQuality(int quality)
+{
+	getFigureJavaMapper()->setAntialiasingQuality(quality);
 }
 /*---------------------------------------------------------------------------------*/
 bool DrawableFigureJoGL::isAbleToCreateFigure(void)

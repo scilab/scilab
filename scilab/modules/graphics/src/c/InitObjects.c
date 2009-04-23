@@ -24,10 +24,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
+
 
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
@@ -36,15 +33,12 @@
 #include "InitObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
-#include "PloEch.h"
-#include "Axes.h"
 #include "DestroyObjects.h"
 #include "CloneObjects.h"
 #include "BuildObjects.h"
 #include "sciprint.h"
-#include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
-#include "Interaction.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
@@ -951,6 +945,7 @@ FigureModelData * newFigureModelData( void )
   modelData->viewport[2] = 610;
   modelData->viewport[3] = 461;
 	modelData->infoMessage = NULL;
+	modelData->antialiasingQuality = 0;
 
   return modelData ;
 }

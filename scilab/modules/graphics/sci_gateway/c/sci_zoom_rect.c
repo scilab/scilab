@@ -20,18 +20,13 @@
 #include "sci_zoom_rect.h"
 #include "stack-c.h"
 #include "getPropertyAssignedValue.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "axesScale.h"
 #include "DrawingBridge.h"
-#include "CurrentObjectsManagement.h"
-#include "GraphicSynchronizerInterface.h"
-#include "Interaction.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "getPropertyAssignedValue.h"
 #include "GetProperty.h"
 #include "SetPropertyStatus.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 static sciPointObj * getZoomedObject(const char * fname);

@@ -24,13 +24,14 @@
   <refnamediv>
     <refname>xs2ps</refname>
 
-    <refpurpose>send graphics to a file in PS syntax</refpurpose>
+    <refpurpose>send graphics to a PS file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2ps(win_num,filen,[orientation])</synopsis>
+    <synopsis>xs2ps(win_num, file_name [,orientation])
+xs2ps(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar or vector .</para>
+          <para>integer, id of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>fig</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>handle of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>file_name</term>
+
+        <listitem>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
 
@@ -57,24 +66,22 @@
         <term>orientation</term>
 
         <listitem>
-          <para>optional character, with possible values 'p' (portrait) or 'l'
-          (landscape). The default value is 'p'.</para>
+          <para>optional character, with possible values 'portrait' or
+          'landscape'. The default value is 'portrait'.</para>
         </listitem>
       </varlistentry>
-    </variablelist>
+	</variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2ps</literal> saves the recorded graphics of the window
-    <literal>win_num</literal> to file <literal>filen</literal> in Postscript
-    syntax. The <literal>filen</literal> must not have suffix
-    extension.</para>
+    <para><literal>xs2ps</literal> exports the display of a graphic window
+    into a PostScript file.</para>
 
     <para>Note that the generated Postscript file cannot be direcly printed
     since it requires a header file. The function <literal>xs2eps</literal>
-    can be used to directly produce an encapsulated Postscript file with an
+    can be used to directly produce an encapsulated Postscript file with a
     header.</para>
   </refsection>
 

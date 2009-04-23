@@ -13,6 +13,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <ctype.h>
+#include "stack-def.h"
 #include "TermConsole.h"
 #include "MALLOC.h"
 #include "TermCommand.h"
@@ -108,31 +109,17 @@ int TerminalPrintf(char *buffer)
 		if (buffer[0] != 0)
 		{
 			int len = (int)strlen (buffer);
-			/* UTF-8 coded on 2 chars */
-			char *OEM_string = (char*)MALLOC(sizeof(char)*(2*len)); 
-			if (OEM_string)
-			{
-				/* flush all stream */
-				/* problem with fortran output */
-				fflush(NULL);
+			/* flush all stream */
+			/* problem with fortran output */
+			fflush(NULL);
 
-				/* NW windows term uses OEM characters */
-				/* We need to convert to ANSI characters with OEMToChar */
-				/* http://msdn.microsoft.com/en-us/library/ms647473(VS.85).aspx */
-				CharToOem(buffer,OEM_string);
+			len = fputs (buffer, stdout);
 
-				len = fputs (OEM_string, stdout);
+			/* flush all stream */
+			/* problem with fortran output */
+			fflush(NULL);
 
-				FREE(OEM_string);
-				OEM_string = NULL;
-
-				/* flush all stream */
-				/* problem with fortran output */
-				fflush(NULL);
-
-				return len;
-			}
-			return -1;
+			return len;
 		}
 		return 0;
 	}
@@ -170,14 +157,14 @@ static unsigned char TerminalGetchar(void)
 							char c = actionControlKey();
 							if (c) 
 							{
-								ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
+								ReadConsoleInputW (Win32InputStream, &irBuffer, 1, &n);
 								return c;
 							}
 							else
 							{
 								if (irBuffer.Event.KeyEvent.uChar.AsciiChar != '\0')
 								{
-									ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
+									ReadConsoleInputW (Win32InputStream, &irBuffer, 1, &n);
 									c = irBuffer.Event.KeyEvent.uChar.AsciiChar;
 									if ( (c>0) && !iscntrl(c) ) return c;
 								}
@@ -450,10 +437,9 @@ char *TerminalGetString(char *prompt)
 			}
 			else
 			{
-				char szTempUTF[bsiz];
 				char *line = getCurrentLine();
 				TerminalPutc('\n');
-				appendLineToScilabHistory(localeToUTF(line, szTempUTF));
+				appendLineToScilabHistory(line);
 				return line;
 			}
 		}

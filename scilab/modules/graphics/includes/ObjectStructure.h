@@ -21,19 +21,8 @@
 #ifndef __SCI_OBJECT_STRUCTURE__
 #define __SCI_OBJECT_STRUCTURE__
 
-
-
-/*en fait il n'y a essentiellement besion que de Math.h dans stack-c.h
-  sauf pour les callback (il faudrait creer une fonction et l'appeler) */
-#include "stack-c.h"
 #include "StringMatrix.h"
 #include "DoublyLinkedList.h"
-
-#ifdef _MSC_VER
-#undef Top 
-#include <windows.h>
-#define Top C2F(vstk).top
-#endif
 
 #define NUMCOLORS_SCI 32
 #define SCI_FIGURE_NAME_LENGTH 256
@@ -197,8 +186,8 @@ typedef struct
   int fillcolor;
   /** Wheter the object is filled or not */
   BOOL isfilled;
-  /** associeted to PEN or mark size */
-  int linewidth;
+  /** thickness of lines */
+  double linewidth;
   /** */
   BOOL isline;
   /** */
@@ -297,6 +286,7 @@ typedef struct
   int numColors ;
   BOOL autoResizeMode;
 	char * infoMessage; /**< String displayed in the info bar of the graphic window */
+	int antialiasingQuality;
 }
 FigureModelData ;
 

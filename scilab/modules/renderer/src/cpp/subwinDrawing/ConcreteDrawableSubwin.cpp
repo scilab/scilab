@@ -21,6 +21,7 @@ extern "C"
 #include "SetProperty.h"
 #include "pixel_mode.h"
 #include "DrawingBridge.h"
+#include "HandleManagement.h"
 }
 
 using namespace std;

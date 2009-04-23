@@ -547,4 +547,140 @@ if strindex('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'   
 if strindex('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ,'r') <>  []  then pause,end
 if strindex('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ,'r') <>  []  then pause,end
 if strindex('fools'                                   ,'/(foo|fool|money|parted)$/'            ,'r') <>  []  then pause,end
-//========================================================================================
+//======================================================================================== 
+// Chinese
+str = '世界您好';
+[r,w] = strindex(str,'/^世界/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/世界$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/您好$/','r');
+if r <> 3 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/^您好/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/界您/','r');
+if r <> 2 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'界您');
+if r <> 2 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/界_您/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Russian
+str = 'привет мир';
+[r,w] = strindex(str,'/^привет/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/привет$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/мир$/','r');
+if r <> 8 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/^мир/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/вет\sм/','r');
+if r <> 4 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/вет_м/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Cyrilic
+str = 'АБВГДЄЖЅЗИІКЛМНОПҀРСТѸФХѠЦЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ';
+
+[r,w] = strindex(str,'/^АБВГДЄЖЅЗИІКЛМНОПҀР/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/АБВГДЄЖЅЗИІКЛМНОПҀР$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ$/','r');
+if r <> 27 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/^ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/ИІКЛМНОПҀРСТѸФХѠЦЧШЩЪ/','r');
+if r <> 10 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/ИІКЛМНОПҀ_РСТѸФХѠЦЧШЩЪ/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Japanese
+str = '丑丞串乃之乎也云亘亙些亦亥亨亮仔伊伎伍伽佃佑伶侃侑俄侠俣俐侶倭俺倶倦倖偲僅傭儲允兎兜其冥冴冶凄凌凜凛凧凪凰凱函刹劉劫勁勃';
+
+[r,w] = strindex(str,'/^丑丞串乃之乎也云亘亙些亦/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/丑丞串乃之乎也云亘亙些亦$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/凰凱函刹劉劫勁勃$/','r');
+if r <> 53 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/^凰凱函刹劉劫勁勃/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/亨亮仔伊伎伍伽佃佑伶侃/','r');
+if r <> 14 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/亨亮仔伊_伎伍伽佃佑伶侃/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 
+// Thaï
+str = 'มกระดุกกระดิก';
+[r,w] = strindex(str,'/^มกระดุกกร/','r');
+if r <> 1 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/มกระดุกกร$/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/กกระดิก$/','r');
+if r <> 7 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/^กกระดิก/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+
+[r,w] = strindex(str,'/ดุกก/','r');
+if r <> 5 then pause,end
+if w <> 1 then pause,end
+
+[r,w] = strindex(str,'/ดุก_ก/','r');
+if r <> [] then pause,end
+if w <> [] then pause,end
+//======================================================================================== 

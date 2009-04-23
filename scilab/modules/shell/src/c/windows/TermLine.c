@@ -15,6 +15,7 @@
 #include <wincon.h>
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "TermLine.h"
 #include "HistoryManager.h"
 #include "TermConsole.h"
@@ -213,9 +214,8 @@ void moveBackHistory(void)
 
 	if (newline)
 	{
-		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline, szLocale));
+		copyLine(newline);
 		FREE(newline);
 		newline = NULL;
 	}
@@ -238,9 +238,8 @@ void moveForwardHistory(void)
 
 	if (newline)
 	{
-		char szLocale[bsiz];
 		clearCurrentLine();
-		copyLine(UTFToLocale(newline, szLocale));
+		copyLine(newline);
 		FREE(newline);
 		newline = NULL;
 	}
@@ -426,8 +425,7 @@ void putLineSearchedHistory(void)
 
 	if (line)
 	{
-		char szLocale[bsiz];
-		copyLine(UTFToLocale(line, szLocale));
+		copyLine(line);
 		FREE(line);
 		line = NULL;
 	}

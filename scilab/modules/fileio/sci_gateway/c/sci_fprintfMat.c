@@ -20,7 +20,7 @@
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int int_objfprintfMat(char *fname,unsigned long fname_len)
+int sci_fprintfMat(char *fname,unsigned long fname_len)
 {
 	int l1 = 0, m1 = 0, n1 = 0,l2 = 0,m2 = 0,n2 = 0,m3 = 0,n3 = 0,l3 = 0,i = 0,j = 0,mS = 0,nS = 0;
 	FILE  *f;
@@ -33,11 +33,11 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		char szTemp[bsiz];
+		char *filename2 = NULL;
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 
 		/* BUG 3714 */
-		filename = UTFToLocale(cstk(l1), szTemp);
+		filename = cstk(l1);
 	}
 	else
 	{
@@ -86,7 +86,15 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 		GetRhsVar(4,MATRIX_OF_STRING_DATATYPE,&mS,&nS,&Str2);
 	}
 
-	if (( f = fopen(filename,"w")) == (FILE *)0)
+	#if _MSC_VER
+	#define MODEFD "wt"
+	#else
+	#define MODEFD "w"
+	#endif
+
+	wcfopen(f , filename,MODEFD);
+
+	if ( f == (FILE *)0 )
 	{
 		Scierror(999,_("%s: Cannot open file %s.\n"),fname,filename);
 		return 0;
@@ -94,8 +102,7 @@ int int_objfprintfMat(char *fname,unsigned long fname_len)
 
 	if ( Rhs >= 4 )
 	{
-		char szTempLocale[bsiz];
-		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",UTFToLocale(Str2[i], szTempLocale));
+		for ( i=0 ; i < mS*nS ; i++) fprintf(f,"%s\n",Str2[i]);
 	}
 
 	for (i = 0 ; i < m2 ; i++ )

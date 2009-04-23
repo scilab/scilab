@@ -47,7 +47,7 @@ function ilib_gen_Make_unix(names,   ..
 		// mex files to be added to the build process
 		if table(i,3)=='cmex' | table(i,3)=='fmex' | table(i,3)=='Fmex' then
 		  if isempty(find(basename(files)==table(i,2))) then // If not already in the array
-			files=[files, table(i,2)] // add it to the file list
+		    files=[files, table(i,2)] // add it to the file list
 		  end
 		end
 	  end
@@ -55,8 +55,7 @@ function ilib_gen_Make_unix(names,   ..
 	
 	end // isdef('tables')
 
-	warningmode = warning('query');
-	
+		
 	originPath  = pwd();
 	linkBuildDir    = TMPDIR;
 	commandpath = SCI+"/modules/dynamic_link/src/scripts/";
@@ -79,7 +78,7 @@ function ilib_gen_Make_unix(names,   ..
 	// Copy files => linkBuildDir
 	chdir(linkBuildDir);
 	
-	if (warningmode == 'on') then
+	if ( ilib_verbose() <> 0 ) then
 		mprintf(gettext("   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"),"ilib_gen_Make");
 	end
 	
@@ -123,7 +122,7 @@ function ilib_gen_Make_unix(names,   ..
 			filesMatching = ls(filename+".*");
 			// The user provided the real filename
 			if filesMatching == [] then
-				if (warningmode == 'on') then
+				if ( ilib_verbose() <> 0 ) then
 					mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",x);
 				end
 				copyfile(x, linkBuildDir);
@@ -137,15 +136,15 @@ function ilib_gen_Make_unix(names,   ..
 				ignoredFileExtension=[".lo",".la",".lai"]
 				for f=filesMatching(:)'
 					if strindex(f,ignoredFileExtension) == [] then
-					  if (warningmode == 'on') then
-						mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",f);
+					  if ( ilib_verbose() <> 0 ) then
+						  mprintf(gettext("   %s: Copy %s to TMPDIR\n"),"ilib_gen_Make",f);
 					  end
 					
 					  copyfile(f, linkBuildDir);
 					  filelist = filelist + " " + f;
 					else
-					  if (warningmode == 'on') then
-						mprintf(gettext("   %s: File %s ignored.\n"),"ilib_gen_Make",f);
+					  if ( ilib_verbose() <> 0 ) then
+						  mprintf(gettext("   %s: File %s ignored.\n"),"ilib_gen_Make",f);
 					  end
 					end
 				end
@@ -178,7 +177,7 @@ function ilib_gen_Make_unix(names,   ..
 	end
 	
 	// Alter the Makefile in order to compile the right files
-	if (warningmode == 'on') then
+	if ( ilib_verbose() <> 0 ) then
 		mprintf(gettext("   %s: Modification of the Makefile in TMPDIR.\n"),"ilib_gen_Make");
 	end
 	
@@ -186,8 +185,10 @@ function ilib_gen_Make_unix(names,   ..
 	[msg,ierr, stderr] = unix_g(cmd);
 	
 	if ierr <> 0 then
-	  mprintf(gettext("%s: Error while modifing the reference Makefile:\n"),"ilib_gen_Make")
-	  mprintf(msg+" "+stderr);
+	  if ( ilib_verbose() <> 0 ) then
+	    mprintf(gettext("%s: Error while modifing the reference Makefile:\n"),"ilib_gen_Make")
+	    mprintf(msg + " " + stderr);
+	  end
 	  return;
 	end
 	
@@ -205,16 +206,18 @@ function generateConfigure(workingPath, ..
 	// We launch ./configure in order to produce a "generic" Makefile 
 	// for this computer
 
-	if (warningmode == 'on') then
+	if ( ilib_verbose() <> 0 ) then
 		mprintf(gettext("   %s: configure : Generate Makefile.\n"),"ilib_gen_Make");
 	end
-	cmd=gencompilationflags_unix(ldflags, cflags, fflags, cc)
-	cmd=workingPath+"/compilerDetection.sh "+cmd
+	cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc)
+	cmd = workingPath+"/compilerDetection.sh "+cmd
 	
 	[msg,ierr,stderr] = unix_g(cmd);
 	
 	if ierr <> 0 then
-		mprintf(msg+" "+stderr);
+	  if ( ilib_verbose() <> 0 ) then
+		  mprintf(msg + " " + stderr);
+		end
 		return %F;
 	end
 	

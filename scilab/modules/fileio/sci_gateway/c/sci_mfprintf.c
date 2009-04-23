@@ -23,7 +23,7 @@
 static BOOL forceSTDERRredirect = TRUE;
 #endif
 /*--------------------------------------------------------------------------*/ 
-int int_objfprintf(char *fname,unsigned long fname_len)
+int sci_fprintf(char *fname,unsigned long fname_len)
 {
 	FILE *f;
 	BOOL isSTD = FALSE;

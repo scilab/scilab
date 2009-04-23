@@ -56,12 +56,6 @@ int main(int argc, char **argv)
 
   InitializeLaunchScilabSignal();
 
-  #if (defined __GNUC__  )
-		putenv ("COMPILER=gcc");
-	#else
-		putenv ("COMPILER=cc or another");
-	#endif
-
 #if defined(netbsd) || defined(freebsd)
 /* floating point exceptions */
 fpsetmask(0);
@@ -99,10 +93,10 @@ fpsetmask(0);
   }
 #endif
 
-setCommandLineArgs(argv, argc);
-
+  setCommandLineArgs(argv, argc);
+	  
   /* scanning options */
-  for ( i=0 ; i < argc ; i++)
+  for ( i=1 ; i < argc ; i++)
   {
       if ( strcmp(argv[i],"-nw") == 0)
       {

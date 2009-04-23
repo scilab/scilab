@@ -4,14 +4,7 @@
 ##########
 
 LINEAR_ALGEBRA_C_SOURCES = src/c/schurtable.c \
-src/c/issymmetric.c \
-src/c/assembleEigenvectors.c \
-src/c/intdgeev.c \
-src/c/intdggev.c \
-src/c/intdsyev.c \
-src/c/intzgeev.c \
-src/c/intzggev.c \
-src/c/intzheev.c
+src/c/issymmetric.c
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = src/fortran/intdggbal.f \
 src/fortran/intzgeqpf4.f \
@@ -87,7 +80,14 @@ sci_gateway/c/sci_eig.c \
 sci_gateway/c/gw_linear_algebra.c \
 sci_gateway/c/sci_inv.c \
 sci_gateway/c/sci_svd.c \
-sci_gateway/c/sci_lsq.c
+sci_gateway/c/sci_lsq.c \
+sci_gateway/c/assembleEigenvectors.c \
+sci_gateway/c/sci_dgeev.c \
+sci_gateway/c/sci_dggev.c \
+sci_gateway/c/sci_dsyev.c \
+sci_gateway/c/sci_zgeev.c \
+sci_gateway/c/sci_zggev.c \
+sci_gateway/c/sci_zheev.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/bschur.f
 
@@ -107,14 +107,6 @@ CHECK_SRC= $(LINEAR_ALGEBRA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscilinear_algebra_la_CFLAGS)
 
 libscilinear_algebra_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
-
-if USE_EMBEDDED_LAPACK
-libscilinear_algebra_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscilinear_algebra_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la 
-endif
 
 #### Target ######
 modulename=linear_algebra

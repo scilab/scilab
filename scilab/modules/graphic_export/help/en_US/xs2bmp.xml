@@ -24,13 +24,14 @@
   <refnamediv>
     <refname>xs2bmp</refname>
 
-    <refpurpose>send graphics to a file in BMP syntax</refpurpose>
+    <refpurpose>send graphics to a BMP file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2bmp(win_num,filen)</synopsis>
+    <synopsis>xs2bmp(win_num, file_name)
+xs2bmp(fig, file_name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar.</para>
+          <para>integer, id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>file_name</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,14 +67,11 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2bmp</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in BMP
-    format.</para>
+    <para><literal>xs2bmp</literal> exports the display of a graphic window into a BMP file.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
-
     <programlisting role="example">
 scf(0)
 plot2d()

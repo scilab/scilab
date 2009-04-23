@@ -1,17 +1,17 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * desc : interface for xs2file routine
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Fabrice Leray
+* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+* Copyright (C) 2009 - DIGITEO - Allan CORNET
+* desc : interface for xs2file routine
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <string.h>
 #include <stdio.h>
@@ -185,9 +185,9 @@ int xs2file(char * fname, ExportFileType fileType )
 static BOOL isVectorialExport(ExportFileType fileType)
 {
 	return   fileType == EPS_EXPORT
-		  || fileType == PS_EXPORT
-		  || fileType == PDF_EXPORT
-		  || fileType == SVG_EXPORT;
+		|| fileType == PS_EXPORT
+		|| fileType == PDF_EXPORT
+		|| fileType == SVG_EXPORT;
 }
 /*--------------------------------------------------------------------------*/
 

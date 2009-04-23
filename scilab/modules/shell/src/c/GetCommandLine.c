@@ -25,7 +25,6 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
-#include "charEncoding.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
@@ -87,8 +86,7 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-		char szTempUTF[bsiz];
-      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
+      __CommandLine = TermReadAndProcess();
     }
 }
 
@@ -174,7 +172,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		/* read a line into the buffer, but not too
 		* big */
 		*eof = (fgets(buffer, *buf_size, stdin) == NULL);
-		*len_line = strlen(buffer);
+		*len_line = (int)strlen(buffer);
 		/* remove newline character if there */
 		if(buffer[*len_line - 1] == '\n') 
 		{

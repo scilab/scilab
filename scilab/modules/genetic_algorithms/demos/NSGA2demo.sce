@@ -1,12 +1,14 @@
+////////////////////////////////////////
+// Demo of the NSGA2 Genetic Algorithm //
+////////////////////////////////////////
+
+my_handle = scf(100001);
+clf(my_handle,'reset');
+demo_viewCode('NSGA2demo.sce');
+
 lines(0);
 old_funcprot = funcprot();
 funcprot(0);
-
-//
-// Definition of the operators
-//
-
-// Definition of the deb_1 multiobjective test problem
 
 /////////////////////////
 // Deb 1 test function //
@@ -81,7 +83,6 @@ deff('y=fobjs(x)','y = ' + funcname + '(x);');
 [f_pareto,pop_pareto] = pareto_filter(fobj_pop_opt,pop_opt);
 
 if (size(fobj_pop_opt,2)==2) then
-  scf();
   drawlater;
   subplot(2,1,1);
   printf('plotting init population ...\n');

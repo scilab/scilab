@@ -25,6 +25,8 @@
 #include "stack-c.h"
 #include "intfilestat.h"
 #include "cluni0.h"
+#include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int C2F(intfilestat)(char * fname,unsigned long fname_len)
 {
@@ -48,7 +50,7 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 #ifdef _MSC_VER
    {
 		char *path=cstk(l2);
-		wsprintf(DriveTemp,"%s",path);
+		sprintf(DriveTemp,"%s",path);
 		if (path)
 		{
 			if ( (path[strlen(path)-1]=='/') || (path[strlen(path)-1]=='\\') )
@@ -57,7 +59,18 @@ int C2F(intfilestat)(char * fname,unsigned long fname_len)
 			}
 
 		}
-		result = _stat(path, &buf );
+
+		{
+			wchar_t *wcpath = to_wide_string(path);
+			if (wcpath)
+			{
+				result = _wstat(wcpath, &buf );
+				FREE(wcpath);
+				wcpath = NULL;
+			}
+			else result = 0;
+		}
+
    }
 #else
    result = stat(cstk(l2), &buf );

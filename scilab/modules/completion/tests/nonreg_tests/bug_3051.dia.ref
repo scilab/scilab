@@ -1,0 +1,32 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 3051 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3051
+//
+// <-- Short Description -->
+//
+// <-- JVM NOT MANDATORY -->
+ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
+// gethi<Tab>
+currentline = 'gethi';
+ref = ['gethistory';'gethistoryfile'];
+r = completion(currentline);
+if ~and(r == ref) then bugmes();quit;end
+if getcommonpart(r) <> 'gethistory' then bugmes();quit;end
+cd SCI/contrib/;
+//cd toolbo[TAB]
+currentline = 'cd toolbo';
+r = getfilepartlevel(currentline);
+if r <> 'toolbo' then bugmes();quit;end;
+r2 = completion(r,'files');
+if r2 <> 'toolbox_skeleton' + filesep() then bugmes();quit;end
+r = completeline(currentline,r2,getpartlevel(currentline),getfilepartlevel(currentline),%t);
+if r <> 'cd toolbox_skeleton' + filesep() then bugmes();quit;end

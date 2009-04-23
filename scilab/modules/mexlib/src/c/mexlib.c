@@ -66,6 +66,7 @@
 #include "erro.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "CallScilab.h"
 
 static char *the_current_mex_name;
 

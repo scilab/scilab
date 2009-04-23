@@ -20,14 +20,14 @@
  *    (Figure and/or Subwin) to the default graphics properties.
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
-#include "HandleManagement.h"
 
 
 #ifndef __SCI_INIT_GRAPHICS__
 #define __SCI_INIT_GRAPHICS__
 
+#include "ObjectStructure.h"
 #include "BOOL.h"
+#include "machine.h" /* C2F */
 
 extern int C2F(graphicsmodels) (void);
 extern int sciInitGraphicContext (sciPointObj * pobj); /* INITOBJECT */

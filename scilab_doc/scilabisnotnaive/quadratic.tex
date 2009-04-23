@@ -1,0 +1,511 @@
+\section{Quadratic equation}
+
+In this section, we detail the computation of the roots of a quadratic polynomial.
+As we shall see, there is a whole world from the mathematics formulas to the 
+implementation of such computations. In the first part, we briefly report the formulas which allow to 
+compute the real roots of a quadratic equation with real coefficients.
+We then present the naïve algorithm based on these mathematical formulas. 
+In the second part, we make some experiments in Scilab and compare our
+naïve algorithm with the \emph{roots} Scilab primitive.
+In the third part, we analyse 
+why and how floating point numbers must be taken into account when the 
+implementation of such roots is required.
+
+\subsection{Theory}
+
+We consider the following quadratic equation, with real 
+coefficients $a, b, c \in \RR$ \cite{wikipediaquadratic,wikipedialossofsign,mathworldquadratic} :
+
+\begin{eqnarray}
+a x^2 + b x + c = 0.
+\end{eqnarray}
+
+The real roots of the quadratic equations are
+\begin{eqnarray}
+x_- &=& \frac{-b- \sqrt{b^2-4ac}}{2a}, \label{real:x-}\\
+x_+ &=& \frac{-b+ \sqrt{b^2-4ac}}{2a}, \label{real:x+}
+\end{eqnarray}
+with the hypothesis that the discriminant $\Delta=b^2-4ac$
+is positive.
+
+The naive, simplified, algorithm which computes the roots of the 
+quadratic is presented in figure \ref{naive-quadratic}.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $\Delta\gets b^2-4ac$
+\STATE $s\gets \sqrt{\Delta}$
+\STATE $x_-\gets (-b-s)/(2a)$
+\STATE $x_+\gets (-b+s)/(2a)$
+\end{algorithmic}
+\caption{Naive algorithm to compute the real roots of a quadratic equation}
+\label{naive-quadratic}
+\end{figure}
+
+\subsection{Experiments}
+
+The following Scilab function is a straitforward implementation
+of the previous formulas.
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+function r=myroots(p)
+  c=coeff(p,0);
+  b=coeff(p,1);
+  a=coeff(p,2);
+  r=zeros(2,1);
+  r(1)=(-b+sqrt(b^2-4*a*c))/(2*a);
+  r(2)=(-b-sqrt(b^2-4*a*c))/(2*a);
+endfunction
+\end{lstlisting}
+
+The goal of this section is to show that some additionnal
+work is necessary to compute the roots of the quadratic equation
+with sufficient accuracy.
+We will especially pay attention to rounding errors and 
+overflow problems.
+In this section, we show that the \emph{roots} command 
+of the Scilab language is not \emph{naive}, in the sense that it 
+takes into account for the floating point implementation details 
+that we will see in the next section.
+
+
+
+\subsubsection{Rounding errors}
+
+We analyse the rounding errors which are 
+appearing when the discriminant of the quadratic equation 
+is such that $b^2\approx 4ac$.
+We consider the following quadratic equation 
+\begin{eqnarray}
+\epsilon x^2 + (1/\epsilon)x - \epsilon = 0
+\end{eqnarray}
+with $\epsilon=0.0001=10^{-4}$.
+
+The two real solutions of the quadratic equation are
+\begin{eqnarray}
+x_- &=& \frac{-1/\epsilon- \sqrt{1/\epsilon^2+4\epsilon^2}}{2\epsilon} \approx  -1/\epsilon^2, \\
+x_+ &=& \frac{-1/\epsilon+ \sqrt{1/\epsilon^2+4\epsilon^2}}{2\epsilon} \approx  \epsilon^2
+\end{eqnarray}
+
+The following Scilab script shows an example of the computation
+of the roots of such a polynomial with the \emph{roots}
+primitive and with a naive implementation.
+Only the positive root $x_+ \approx \epsilon^2$ is considered in this 
+test (the $x_-$ root is so that $x_- \rightarrow -\infty$ in both 
+implementations).
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+p=poly([-0.0001 10000.0 0.0001],"x","coeff");
+e1 = 1e-8;
+roots1 = myroots(p);
+r1 = roots1(1);
+roots2 = roots(p);
+r2 = roots2(1);
+error1 = abs(r1-e1)/e1;
+error2 = abs(r2-e1)/e1;
+printf("Expected : %e\n", e1);
+printf("Naive method : %e (error=%e)\n", r1,error1);
+printf("Scilab method : %e (error=%e)\n", r2, error2);
+\end{lstlisting}
+
+The script then prints out :
+
+\begin{verbatim}
+Expected : 1.000000e-008
+Naive method : 9.094947e-009 (error=9.050530e-002)
+Scilab method : 1.000000e-008 (error=1.654361e-016)
+\end{verbatim}
+
+The result is surprising, since the naive root has 
+no correct digit and a relative error which is 14 orders 
+of magnitude greater than the relative error of the Scilab root.
+
+The explanation for such a behaviour is that the expression of the 
+positive root is the following 
+
+\begin{eqnarray}
+x_+ &=& \frac{-1/\epsilon+ \sqrt{1/\epsilon^2+4\epsilon^2}}{2\epsilon}
+\end{eqnarray}
+
+and is numerically evalutated as 
+
+\begin{verbatim}
+\sqrt{1/\epsilon^2+4\epsilon^2} = 10000.000000000001818989
+\end{verbatim}
+
+As we see, the first digits are correct, but the last digits 
+are polluted with rounding errors. When the expression $-1/\epsilon+ \sqrt{1/\epsilon^2+4\epsilon^2}$
+is evaluated, the following computations are performed~:
+
+\begin{verbatim}
+-1/\epsilon+ \sqrt{1/\epsilon^2+4\epsilon^2} 
+  = -10000.0 + 10000.000000000001818989 
+  = 0.0000000000018189894035
+\end{verbatim}
+
+The user may think that the result is extreme, but it 
+is not. Reducing furter the value of $\epsilon$ down to 
+$\epsilon=10^{-11}$, we get the following output :
+
+\begin{verbatim}
+Expected : 1.000000e-022
+Naive method : 0.000000e+000 (error=1.000000e+000)
+Scilab method : 1.000000e-022 (error=1.175494e-016)
+\end{verbatim}
+
+The relative error is this time 16 orders of magnitude 
+greater than the relative error of the Scilab root.
+In fact, the naive implementation computes a false root $x_+$ even for 
+a value of epsilon equal to $\epsilon=10^-3$, where the relative 
+error is 7 times greater than the relative error produced by the 
+\emph{roots} primitive.
+
+\subsubsection{Overflow}
+
+In this section, we analyse the overflow exception which is  
+appearing when the discriminant of the quadratic equation 
+is such that $b^2>> 4ac$.
+We consider the following quadratic equation 
+\begin{eqnarray}
+x^2 + (1/\epsilon)x + 1 = 0
+\end{eqnarray}
+with $\epsilon\rightarrow 0$.
+
+The roots of this equation are 
+\begin{eqnarray}
+x_- &\approx& -1/\epsilon \rightarrow -\infty, \qquad \epsilon \rightarrow 0\\
+x_+ &\approx& -\epsilon \rightarrow 0^-, \qquad \epsilon \rightarrow 0
+\end{eqnarray}
+To create a difficult case, we search $\epsilon$ so that 
+$1/\epsilon^2 = 10^{310}$, because we know that $10^{308}$
+is the maximum value available with double precision floating 
+point numbers. One possible solution is $\epsilon=10^{-155}$.
+
+The following Scilab script shows an example of the computation
+of the roots of such a polynomial with the \emph{roots}
+primitive and with a naive implementation.
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+// Test #3 : overflow because of b
+e=1.e-155
+a = 1;
+b = 1/e;
+c = 1;
+p=poly([c b a],"x","coeff");
+expected = [-e;-1/e];
+roots1 = myroots(p);
+roots2 = roots(p);
+error1 = abs(roots1-expected)/norm(expected);
+error2 = abs(roots2-expected)/norm(expected);
+printf("Expected : %e %e\n", expected(1),expected(2));
+printf("Naive method : %e %e (error=%e)\n", roots1(1),roots1(2),error1);
+printf("Scilab method : %e %e (error=%e)\n", roots2(1),roots2(2), error2);
+\end{lstlisting}
+
+The script then prints out :
+
+\begin{verbatim}
+Expected : -1.000000e-155 -1.000000e+155
+Naive method : Inf Inf (error=Nan)
+Scilab method : -1.000000e-155 -1.000000e+155 (error=0.000000e+000)
+\end{verbatim}
+
+As we see, the $b^2-4ac$ term has been evaluated as $1/\epsilon^2-4$,
+which is approximately equal to $10^{310}$. This number cannot 
+be represented in a floating point number. It therefore produces the 
+IEEE overflow exception and set the result as \emph{Inf}.
+
+\subsection{Explanations}
+
+The following tricks are extracted from the 
+\emph{quad} routine of the \emph{RPOLY} algorithm by
+Jenkins \cite{Jenkins1975}. This algorithm is used by Scilab in the 
+roots primitive, where a special case is handled when the 
+degree of the equation is equal to 2, i.e. a quadratic equation.
+
+\subsubsection{Properties of the roots}
+
+One can easily show that the sum and the product of the roots
+allow to recover the coefficients of the equation which was solve.
+One can show that 
+\begin{eqnarray}
+x_- + x_+ &=&\frac{-b}{a}\\
+x_- x_+ &=&\frac{c}{a}
+\end{eqnarray}
+Put in another form, one can state that the computed roots are 
+solution of the normalized equation 
+\begin{eqnarray}
+x^2 - \left(\frac{x_- + x_+}{a}\right) x  + x_- x_+ &=&0
+\end{eqnarray}
+
+Other transformation leads to an alternative form for the roots. 
+The original quadratic equation can be written as a quadratic 
+equation on $1/x$
+\begin{eqnarray}
+c(1/x)^2 + b (1/x)  + a &=&0
+\end{eqnarray}
+Using the previous expressions for the solution of $ax^2+bx+c=0$ leads to the 
+following expression of the roots of the quadratic equation when the 
+discriminant is positive 
+\begin{eqnarray}
+x_- &=& \frac{2c}{-b+ \sqrt{b^2-4ac}}, \label{real:x-inverse}\\
+x_+ &=& \frac{2c}{-b- \sqrt{b^2-4ac}} \label{real:x+inverse}
+\end{eqnarray}
+These roots can also be computed from \ref{real:x-}, with the 
+multiplication by $-b+ \sqrt{b^2-4ac}$.
+
+\subsubsection{Conditionning of the problem}
+
+The conditionning of the problem may be evaluated with the 
+computation of the partial derivatives of the roots of the 
+equations with respect to the coefficients.
+These partial derivatives measure the sensitivity of the 
+roots of the equation with respect to small errors which might 
+pollute the coefficients of the quadratic equations.
+
+In the following, we note $x_-=\frac{-b- \sqrt{\Delta}}{2a}$ 
+and $x_+=\frac{-b+ \sqrt{\Delta}}{2a}$ when $a\neq 0$.
+If the discriminant is stricly positive and $a\neq 0$, i.e. if the roots 
+of the quadratic are real, the partial derivatives of the 
+roots are the following :
+\begin{eqnarray}
+\frac{\partial x_-}{\partial a} &=& \frac{c}{a\sqrt{\Delta}} + \frac{b+\sqrt{\Delta}}{2a^2}, \qquad a\neq 0, \qquad \Delta\neq 0\\
+\frac{\partial x_+}{\partial a} &=& -\frac{c}{a\sqrt{\Delta}} + \frac{b-\sqrt{\Delta}}{2a^2}\\
+\frac{\partial x_-}{\partial b} &=& \frac{-1-b/\sqrt{\Delta}}{2a}\\
+\frac{\partial x_+}{\partial b} &=& \frac{-1+b/\sqrt{\Delta}}{2a}\\
+\frac{\partial x_-}{\partial c} &=& \frac{1}{\sqrt{\Delta}}\\
+\frac{\partial x_+}{\partial c} &=& -\frac{1}{\sqrt{\Delta}}
+\end{eqnarray}
+
+If the discriminant is zero, the partial derivatives of the 
+double real root are the following :
+\begin{eqnarray}
+\frac{\partial x_\pm}{\partial a} &=& \frac{b}{2a^2}, \qquad a\neq 0\\
+\frac{\partial x_\pm}{\partial b} &=& \frac{-1}{2a}\\
+\frac{\partial x_\pm}{\partial c} &=& 0
+\end{eqnarray}
+
+The partial derivates indicate that if $a\approx 0$ or $\Delta\approx 0$,
+the problem is ill-conditionned. 
+
+
+
+\subsubsection{Floating-Point implementation : fixing rounding error}
+
+In this section, we show how to compute the roots of a 
+quadratic equation with protection against rounding 
+errors, protection against overflow and a minimum 
+amount of multiplications and divisions.
+
+Few but important references deals with floating point
+implementations of the roots of a quadratic polynomial.
+These references include the important paper \cite{WhatEveryComputerScientist} by Golberg, 
+the Numerical Recipes \cite{NumericalRecipes}, chapter 5, section 5.6
+and \cite{FORSYTHE1991}, \cite{Nievergelt2003}, \cite{Kahan2004}.
+
+The starting point is the mathematical solution of the quadratic equation, 
+depending on the sign of the discriminant $\Delta=b^2 - 4ac$ :
+\begin{itemize}
+\item If $\Delta> 0$, there are two real roots, 
+\begin{eqnarray}
+x_\pm &=& \frac{-b\pm \sqrt{\Delta}}{2a}, \qquad a\neq 0
+\end{eqnarray}
+\item If $\Delta=0$, there are one double root,
+\begin{eqnarray}
+x_\pm &=& -\frac{b}{2a}, \qquad a\neq 0
+\end{eqnarray}
+\item If $\Delta< 0$, 
+\begin{eqnarray}
+x_\pm &=&\frac{-b}{2a} \pm i \frac{\sqrt{-\Delta}}{2a}, \qquad a\neq 0
+\end{eqnarray}
+\end{itemize}
+
+
+In the following, we make the hypothesis that $a\neq 0$.
+
+The previous experiments suggest that the floating point implementation
+must deal with two different problems :
+\begin{itemize}
+\item rounding errors when $b^2\approx 4ac$ because of the cancelation of the 
+terms which have opposite signs,
+\item overflow in the computation of the discriminant $\Delta$ when $b$ is 
+large in magnitude with respect to $a$ and $c$.
+\end{itemize}
+
+When $\Delta>0$, the rounding error problem can be splitted in two cases
+\begin{itemize}
+\item if $b<0$, then $-b+\sqrt{b^2-4ac}$ may suffer of rounding errors,
+\item if $b>0$, then $-b-\sqrt{b^2-4ac}$ may suffer of rounding errors.
+\end{itemize}
+ 
+Obviously, the rounding problem will not appear when $\Delta<0$,
+since the complex roots do not use the sum $-b+\sqrt{b^2-4ac}$.
+When $\Delta=0$, the double root does not cause further trouble.
+The rounding error problem must be solved only when $\Delta>0$ and the 
+equation has two real roots.
+
+A possible solution may found in combining the following expressions for the 
+roots 
+\begin{eqnarray}
+x_- &=& \frac{-b- \sqrt{b^2-4ac}}{2a}, \label{real:x-2}\\
+x_- &=& \frac{2c}{-b+ \sqrt{b^2-4ac}}, \label{real:x-inverse2}\\
+x_+ &=& \frac{-b+ \sqrt{b^2-4ac}}{2a}, \label{real:x+2}\\
+x_+ &=& \frac{2c}{-b- \sqrt{b^2-4ac}} \label{real:x+inverse2}
+\end{eqnarray}
+
+The trick is to pick the formula so that the sign of $b$ is the 
+same as the sign of the square root.
+
+The following choice allow to solve the rounding error problem 
+\begin{itemize}
+\item compute $x_-$ : if $b<0$, then compute $x_-$ from \ref{real:x-inverse2}, else 
+(if $b>0$), compute $x_-$ from \ref{real:x-2},
+\item compute $x_+$ : if $b<0$, then compute $x_+$ from \ref{real:x+2}, else 
+(if $b>0$), compute $x_+$ from \ref{real:x+inverse2}.
+\end{itemize}
+
+The solution of the rounding error problem  can be adressed, by considering the 
+modified Fagnano formulas
+\begin{eqnarray}
+x_1 &=& -\frac{2c}{b+sgn(b)\sqrt{b^2-4ac}}, \\
+x_2 &=& -\frac{b+sgn(b)\sqrt{b^2-4ac}}{2a}, 
+\end{eqnarray}
+where 
+\begin{eqnarray}
+sgn(b)=\left\{\begin{array}{l}
+1, \textrm{ if } b\geq 0,\\
+-1, \textrm{ if } b< 0,
+\end{array}\right.
+\end{eqnarray}
+The roots $x_{1,2}$ correspond to $x_{+,-}$ so that if $b<0$, $x_1=x_-$ and
+if $b>0$, $x_1=x_+$. On the other hand, if $b<0$, $x_2=x_+$ and
+if $b>0$, $x_2=x_-$.
+
+An additionnal remark is that the division by two (and the multiplication
+by 2) is exact with floating point numbers so these operations
+cannot be a source of problem. But it is 
+interesting to use $b/2$, which involves only one division, instead
+of the three multiplications $2*c$, $2*a$ and $4*a*c$.
+This leads to the following expressions of the real roots 
+\begin{eqnarray}
+x_- &=& -\frac{c}{(b/2)+sgn(b)\sqrt{(b/2)^2-ac}}, \\
+x_+ &=& -\frac{(b/2)+sgn(b)\sqrt{(b/2)^2-ac}}{a}, 
+\end{eqnarray}
+which can be simplified into
+\begin{eqnarray}
+b'&=&b/2\\
+h&=& -\left(b'+sgn(b)\sqrt{b'^2-ac}\right)\\
+x_1 &=& \frac{c}{h}, \\
+x_2 &=& \frac{h}{a}, 
+\end{eqnarray}
+where the discriminant is positive, i.e. $b'^2-ac>0$.
+
+One can use the same value $b'=b/2$ with the complex roots in the 
+case where the discriminant is negative, i.e. $b'^2-ac<0$ :
+\begin{eqnarray}
+x_1 &=& -\frac{b'}{a} - i \frac{\sqrt{ac-b'^2}}{a}, \\
+x_2 &=& -\frac{b'}{a} + i \frac{\sqrt{ac-b'^2}}{a}, 
+\end{eqnarray}
+
+A more robust algorithm, based on the previous analysis is presented in figure \ref{robust-quadratic}.
+By comparing \ref{naive-quadratic} and \ref{robust-quadratic}, we can see that 
+the algorithms are different in many points.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\IF {$a=0$}
+        \IF {$b=0$}
+            \STATE $x_-\gets 0$
+            \STATE $x_+\gets 0$
+        \ELSE
+            \STATE $x_-\gets -c/b$
+            \STATE $x_+\gets 0$
+        \ENDIF
+\ELSIF {$c=0$}
+        \STATE $x_-\gets -b/a$
+        \STATE $x_+\gets 0$        
+\ELSE
+        \STATE $b'\gets b/2$
+        \STATE $\Delta\gets b'^2 - ac$
+        \IF {$\Delta<0$}
+                \STATE $s\gets \sqrt{-\Delta}$
+                \STATE $x_1^R\gets -b'/a$
+                \STATE $x_1^I\gets -s/a$
+                \STATE $x_2^R\gets x_-^R$
+                \STATE $x_2^I\gets -x_1^I$
+        \ELSIF {$\Delta=0$}
+                \STATE $x_1\gets -b'/a$
+                \STATE $x_2\gets x_2$
+        \ELSE
+                \STATE $s\gets \sqrt{\Delta}$
+                \IF {$b>0$}
+                    \STATE $g=1$
+                \ELSE
+                    \STATE $g=-1$
+                \ENDIF
+                \STATE $h=-(b'+g*s)$
+                \STATE $x_1\gets c/h$
+                \STATE $x_2\gets h/a$
+        \ENDIF
+\ENDIF 
+\end{algorithmic}
+\caption{A more robust algorithm to compute the roots of a quadratic equation}
+\label{robust-quadratic}
+\end{figure}
+
+\subsubsection{Floating-Point implementation : fixing overflow problems}
+
+The remaining problem is to compute $b'^2-ac$ without creating 
+unnecessary overflows. 
+
+Notice that a small improvment
+has allread been done : if $|b|$ is close to the upper bound $10^{154}$, 
+then $|b'|$ may be less difficult to process since $|b'|=|b|/2 < |b|$.
+One can then compute the square root by using normalization methods, 
+so that the overflow problem can be drastically reduced.
+The method is based on the fact that the term $b'^2-ac$ can be 
+evaluted with two equivalent formulas
+\begin{eqnarray}
+b'^2-ac &=& b'^2\left[1-(a/b')(c/b')\right] \\
+b'^2-ac &=& c\left[b'(b'/c) - a\right]
+\end{eqnarray}
+
+\begin{itemize}
+\item If $|b'|>|c|>0$, then the expression involving $\left(1-(a/b')(c/b')\right)$
+is so that no overflow is possible since $|c/b'| < 1$ and the problem occurs
+only when $b$ is large in magnitude with respect to $a$ and $c$.
+\item If $|c|>|b'|>0$, then the expression involving $\left(b'(b'/c) - a\right)$
+should limit the possible overflows since $|b'/c| < 1$.
+\end{itemize}
+These normalization tricks are similar to the one used by Smith in the 
+algorithm for the division of complex numbers \cite{Smith1962}.
+
+\subsection{References}
+
+The 1966 technical report by G. Forsythe \cite{Forsythe1966} 
+presents the floating point system and the possible large error 
+in using mathematical algorithms blindly. An accurate way of solving 
+a quadratic is outlined. A few general remarks are made about 
+computational mathematics. The 1991 paper by Goldberg 
+\cite{WhatEveryComputerScientist} is a general presentation of the floating
+point system and its consequences. It begins with background on floating point 
+representation and rounding errors, continues with a discussion
+of the IEEE floating point standard and concludes with examples of how
+computer system builders can better support floating point. The section
+1.4, "Cancellation" specificaly consider the computation of the roots
+of a quadratic equation.
+One can also consult the experiments performed by Nievergelt in \cite{Nievergelt2003}.
+
+

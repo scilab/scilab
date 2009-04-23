@@ -16,8 +16,6 @@
 /* desc : interface for contour2di routine                                */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "sci_contour2di.h"
 #include "GetCommandArg.h"
 #include "Scierror.h"

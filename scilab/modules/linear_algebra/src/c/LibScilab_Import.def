@@ -27,7 +27,7 @@ createvar_
 checklhs_
 checkrhs_
 callFunctionFromGateway
-iAllocMatrixOfDoubleComplex
+iAllocComplexMatrixOfDouble
 GetRhsVarMatrixDouble
 iAllocMatrixOfDouble
 vGetPointerFromDoubleComplex

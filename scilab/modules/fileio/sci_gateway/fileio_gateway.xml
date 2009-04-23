@@ -66,4 +66,7 @@
 <PRIMITIVE gatewayId="34" primitiveId="31" primitiveName="isdir"/>
 <PRIMITIVE gatewayId="34" primitiveId="32" primitiveName="removedir"/>
 <PRIMITIVE gatewayId="34" primitiveId="33" primitiveName="createdir"/>
+<PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="pwd" />
+<PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="getcwd" />
+<PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="chdir" />
 </GATEWAY>

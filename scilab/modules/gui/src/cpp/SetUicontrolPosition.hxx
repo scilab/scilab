@@ -17,6 +17,7 @@
 #include "UnitsConversion.hxx"
 extern "C"
 {
+#include "stack-c.h"
 #include "SetUicontrolPosition.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -26,6 +27,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "UicontrolStyleToString.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __SET_UICONTROL_POSITION_HXX__ */

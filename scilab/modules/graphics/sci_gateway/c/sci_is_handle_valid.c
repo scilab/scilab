@@ -16,13 +16,11 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_is_handle_valid.h"
-#include "gw_graphics.h"
 #include "stack-c.h"
 #include "HandleManagement.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "getPropertyAssignedValue.h"
-#include "CurrentObjectsManagement.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_is_handle_valid(char *fname,unsigned long fname_len)

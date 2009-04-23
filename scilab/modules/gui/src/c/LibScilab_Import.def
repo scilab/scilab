@@ -29,4 +29,7 @@ sciReturnRowVectorFromInt
 sciReturnDouble
 sciReturnString
 sciReturnRowVector
-cluni0_
+iGetListItemType
+iGetListItemList
+iGetListSubItemString
+iArraySum

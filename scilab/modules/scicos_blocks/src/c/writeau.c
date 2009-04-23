@@ -22,6 +22,7 @@
 #include <string.h>
 #include <math.h>
 #include "sciprint.h"
+#include "charEncoding.h"
 
 void mput2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
@@ -102,7 +103,7 @@ double *inptr[],*outptr[],*t;
       
     }
   else if (*flag==4) {
-    fd = fopen("/dev/audio","wb");
+	  wcfopen(fd,"/dev/audio","wb");
     if (!fd ) {
       sciprint("Could not open /dev/audio!\n");
       *flag = -3;

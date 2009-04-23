@@ -22,7 +22,6 @@
 #include "math_graphics.h"
 #include "MALLOC.h"
 #include "CurrentObjectsManagement.h"
-#include "ObjectSelection.h"
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 #include "GraphicSynchronizerInterface.h"

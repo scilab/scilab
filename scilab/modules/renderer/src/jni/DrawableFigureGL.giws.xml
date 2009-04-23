@@ -99,5 +99,10 @@
 	<method name="setUseSingleBuffer" returnType="void">
 	  <param type="boolean" name="useSingleBuffer" />
     </method>
+	<method name="getAntialiasingQuality" returnType="int">
+    </method>
+	<method name="setAntialiasingQuality" returnType="void">
+	  <param type="int" name="quality" />
+    </method>
   </object>
 </package>

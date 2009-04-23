@@ -19,13 +19,12 @@
 /*------------------------------------------------------------------------*/
 
 #include "setHandleProperty.h"
-#include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
-#include "Interaction.h"
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "HandleManagement.h"
 
 /*------------------------------------------------------------------------*/
 int set_links_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )

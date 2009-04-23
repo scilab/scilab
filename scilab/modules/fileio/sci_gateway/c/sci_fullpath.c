@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,9 +11,6 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-#include <sys/param.h>
-#endif
 #include <stdlib.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
@@ -21,13 +18,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
-#include "charEncoding.h"
+#include "fullpath.h"
 /*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-#define _fullpath(a,r,l)        realpath(r,a)
-#endif
-/*--------------------------------------------------------------------------*/
-int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
+int sci_fullpath(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(Rhs,0);
 	CheckRhs(1,1) ;
@@ -37,14 +30,18 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 	{
 		static int l1,n1,m1;
 		char *relPath = NULL;
-		char szTemp[bsiz];
 		char fullpath[PATH_MAX*4];
+		char *returnedPath = NULL;
 		
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
-		relPath = UTFToLocale(cstk(l1), szTemp);
+		relPath = cstk(l1);
 
-		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
+		#ifdef _MSC_VER
+		#else
+		#endif
+
+		if( get_full_path( fullpath, relPath, PATH_MAX*4 ) != NULL )
 		{
 			char *Output=NULL;
 			Output=(char*)MALLOC((strlen(fullpath)+1)*sizeof(char));

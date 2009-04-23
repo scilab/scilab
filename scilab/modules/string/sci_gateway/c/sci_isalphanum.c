@@ -23,7 +23,7 @@
 #include "isalphanum.h"
 #include "MALLOC.h"
 /*----------------------------------------------------------------------------*/
-int C2F(sci_isalphanum)(char *fname,unsigned long fname_len)
+int sci_isalphanum(char *fname,unsigned long fname_len)
 {
 	int Type_One = 0;
 	

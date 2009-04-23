@@ -24,13 +24,14 @@
   <refnamediv>
     <refname>xs2fig</refname>
 
-    <refpurpose>send graphics to a file in FIG syntax</refpurpose>
+    <refpurpose>send graphics to a FIG file.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>xs2fig(win_num, filen [,orientation])</synopsis>
+    <synopsis>xs2fig(win_num, file_name [,orientation])
+xs2fig(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -41,15 +42,23 @@
         <term>win_num</term>
 
         <listitem>
-          <para>integer scalar.</para>
+          <para>integer, id of the figure to export.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>handle of the figure to export.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>filen</term>
+        <term>file_name</term>
 
         <listitem>
-          <para>string, file name.</para>
+          <para>string, name of the exported file.</para>
         </listitem>
       </varlistentry>
 
@@ -57,8 +66,7 @@
         <term>orientation</term>
 
         <listitem>
-          <para>optional character, with possible values 'p' (portrait) or 'l'
-          (landscape). The default value is 'p'.</para>
+          <para>optional character, with possible values 'portrait' or 'landscape'. The default value is 'portrait'.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -67,19 +75,12 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>xs2fig</literal> sends the recorded graphics of the window
-    <literal>win_num</literal> in the file <literal>filen</literal> in FIG
-    format.</para>
+    <para><literal>xs2fig</literal> exports the display of a graphic window into an FIG file.</para>
 
-    <para>For format FIG we create an EPS file which will be convert into FIG
-    format by pstoedit.</para>
-
-    <para>To export FIG files GPL Ghostscript (32bits) need to be
-    installed.</para>
-
-    <para>Link to get GPL Ghostscript : http://www.ghostscript.com/awki</para>
+    <para>The export file is obtained by creating an EPS file and converting it into FIG
+    format using pstoedit.</para>
+	
   </refsection>
-
   <refsection>
     <title>Examples</title>
 
@@ -88,6 +89,7 @@
 scf(0);
 plot2d();
 xs2fig(0,'foo.fig');
+xs2fig(gcf(),'foo.fig')
   </programlisting>
   </refsection>
 

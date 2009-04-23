@@ -37,9 +37,6 @@ ilib_for_link('ext1c','fun1.o',[],"c")
  ans  =
  
  libext1c.dylib   
-// disable message
-warning_mode = warning('query');
-warning('off');
 // load the shared library
 exec loader.sce
  
@@ -54,6 +51,8 @@ ext1c_path = get_absolute_file_path('loader.sce');
  
  
 link(ext1c_path+'libext1c.dylib',['ext1c'],'c');
+Shared archive loaded.
+Link done.
  
 // remove temp. variables on stack
  
@@ -63,8 +62,6 @@ clear get_file_path;
  
 // ------------------------------------------------------
  
-// enable message
-warning(warning_mode);
 chdir(cur_dir);
 //using the new primitive
 a=[1,2,3];b=[4,5,6];n=3;

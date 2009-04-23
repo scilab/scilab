@@ -5,12 +5,10 @@ EXPORTS
 ;
 ;core
 ;
- IsAFile 
  com_
  recu_
  putlhsvar_
  intersci_
- cluni0_
  stack_
  createvar_
  getrhsvar_
@@ -22,7 +20,6 @@ EXPORTS
  iop_
  GetFile
  getTMPDIR
- scigetcwd
  vartype_
  callFunctionFromGateway
  freeArrayOfString

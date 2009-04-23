@@ -4,11 +4,11 @@
  * Copyright (C) 1998-2000 - ENPC
  * Copyright (C) 2003 - ENPC - Jean-Philippe CHANCELIER
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
@@ -30,6 +30,7 @@
 #include "MALLOC.h"
 
 extern int C2F(stackp)(int *id, int *macmod);
+extern int C2F(dcopy)();
 
 /*------------------------------------------------------*/
 void *Name2ptr(char *namex);
@@ -608,7 +609,7 @@ int C2F(str2name)(char *namex, int *id, unsigned long name_len)
 	int ix = 0;
 	int lon = 0;
 
-	for (ix = 0 ; ix < (int)  name_len ; ix++ ) 
+	for (ix = 0 ; ix < (int)  name_len ; ix++ )
 	{
 		if ( namex[ix] == '\0') break;
 		lon++;
@@ -618,7 +619,7 @@ int C2F(str2name)(char *namex, int *id, unsigned long name_len)
 	/* remove blanks in namex */
 	for (ix = 0; ix < lon; ix++)
 	{
-		if ( namex[ix] == ' ') 
+		if ( namex[ix] == ' ')
 		{
 			namex[ix] = '\0';
 			lon = (int)strlen(namex);
@@ -781,7 +782,7 @@ int iArraySum(int *_piArray, int _iStart, int _iEnd)
 	/*Iterative function*/
 	int iIndex = 0;
 	int iVal = 0;
-	for(iIndex = 0 ; iIndex < _iEnd ; iIndex++)
+	for(iIndex = _iStart >= 0 ? _iStart : 0; iIndex < _iEnd ; iIndex++)
 	{
 		iVal += _piArray[iIndex];
 	}
@@ -818,7 +819,7 @@ int iIsComplex(int _iVar)
 	returns array of coeff of polynom matrix
 	example :
 
-	In			: 
+	In			:
 	_iVarNum	: Variable number in the stack
 
 	Out			:
@@ -862,14 +863,14 @@ void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, 
 }
 
 /**********************************************************************
- * SPARSE MATRICES 
- *       [it,m,n,nel,mnel,icol,lr,lc] 
- *       nel : number of non nul elements 
- *       istk(mnel+i-1), i=1,m : number of non nul elements of row i 
+ * SPARSE MATRICES
+ *       [it,m,n,nel,mnel,icol,lr,lc]
+ *       nel : number of non nul elements
+ *       istk(mnel+i-1), i=1,m : number of non nul elements of row i
  *       non nul elements are stored in row order as follows:
- *       istk(icol+j-1) ,j=1,nel, column of the j-th non null element 
- *       stk(lr + j-1)  ,j=1,nel, real value of the j-th non null element 
- *       stk(lc + j-1)  ,j=1,nel, imag. value of the j-th non null element 
+ *       istk(icol+j-1) ,j=1,nel, column of the j-th non null element
+ *       stk(lr + j-1)  ,j=1,nel, real value of the j-th non null element
+ *       stk(lc + j-1)  ,j=1,nel, imag. value of the j-th non null element
  *       lc is to be used only if matrix is complex (it==1)
  **********************************************************************/
 void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal)
@@ -992,7 +993,7 @@ void CreateCSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalEl
 
 	for(iIndex = 0 ; iIndex < _iRows ; iIndex++)
 		*istk(iAddElemByRow + iIndex) = _piElemByRow[iIndex];
-	
+
 	for(iIndex = 0 ; iIndex < _iTotalElem ; iIndex++)
 	{
 		int iTemp		= 0;
@@ -1044,7 +1045,7 @@ void CreateCBooleanSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _i
 
 	for(iIndex = 0 ; iIndex < _iRows ; iIndex++)
 		*istk(iAddElemByRow + iIndex) = _piElemByRow[iIndex];
-	
+
 	for(iIndex = 0 ; iIndex < _iTotalElem ; iIndex++)
 	{
 //		int iTemp		= 0;
@@ -1131,7 +1132,7 @@ void CheckVarUsed(int _iVarNum)
 	int iVar = Top - Rhs + _iVarNum;
 
 	int iAddress = iadr(*Lstk(iVar));
-	if (*istk(iAddress ) < 0) 
+	if (*istk(iAddress ) < 0)
 		iAddress = iadr(*istk(iAddress +1));
 
 
@@ -1140,7 +1141,7 @@ void CheckVarUsed(int _iVarNum)
 	case sci_matrix :
 		iAddress += 4;
 		break;
-	case sci_poly : 
+	case sci_poly :
 		iAddress += 9 + (*istk(iAddress + 1) * *istk(iAddress + 2));
 		break;
 	case sci_boolean :
@@ -1185,7 +1186,7 @@ void GetVarDimension(int _iVarNum, int* _piRows, int* _piCols)
 	int iVar = Top - Rhs + _iVarNum;
 
 	int iAddress = iadr(*Lstk(iVar));
-	if (*istk(iAddress ) < 0) 
+	if (*istk(iAddress ) < 0)
 		iAddress = iadr(*istk(iAddress +1));
 
 	*_piRows = *istk(iAddress + 1);
@@ -1215,7 +1216,7 @@ int iGetOrient(int _iVal)
 		Error(44);
 		return -2;
 	}
-	
+
 	if(iRows != 1 || iCols != 1)
 	{
 		Error(89);
@@ -1244,12 +1245,12 @@ int iGetOrient(int _iVal)
 	return iMode;
 }
 
-/* 
+/*
 _iAllocMatrixDoubleOrComplex --
   Reserve space in stack for a matrix of real or complex.
 Arguments
   _iPos : index of the Scilab variable
-  _iComplex : type data in the matrix. If  is 0, the 
+  _iComplex : type data in the matrix. If  is 0, the
      _iComplex = 0 > real data
      _iComplex = 1 > complex data
   _iRows : number of rows in the matrix
@@ -1272,15 +1273,7 @@ int	_iAllocMatrixDoubleOrComplex(int _iPos, int _iComplex, int _iRows, int _iCol
 	if(Err > -iSize)
 		return 17;
 
-	*istk(iAddr)		= sci_matrix;
-	*istk(iAddr + 1 )	= Min(_iRows, _iRows * _iCols);
-	*istk(iAddr + 2 )	= Min(_iCols, _iRows * _iCols);
-	*istk(iAddr + 3 )	= _iComplex;
-
-	*_pdblRealData	= stk(sadr(iAddrData));
-
-	if(_iComplex != 0)
-		*_pdblImgData	= *_pdblRealData + _iRows * _iCols;
+	iAllocComplexMatrixOfDoubleToAddress(istk(iAddr), _iComplex, _iRows, _iCols, _pdblRealData, _pdblImgData);
 
 	intersci_.ntypes[_iPos - 1]	= '$';
 	intersci_.iwhere[_iPos - 1]	= *Lstk(iNewPos);
@@ -1290,7 +1283,25 @@ int	_iAllocMatrixDoubleOrComplex(int _iPos, int _iComplex, int _iRows, int _iCol
 	return 0;
 }
 
-/* 
+/*for internal use, assign values in variable without, VarNum, just scilab address*/
+int	iAllocComplexMatrixOfDoubleToAddress(int* _piAddr, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+{
+//	int iAddrData		= _iAddr + 4;
+
+	_piAddr[0]			= sci_matrix;
+	_piAddr[1]			= Min(_iRows, _iRows * _iCols);
+	_piAddr[2]			= Min(_iCols, _iRows * _iCols);
+	_piAddr[3]			= _iComplex;
+
+
+	*_pdblRealData		= (double*)(_piAddr + 4);
+	if(_iComplex != 0)
+		*_pdblImgData	= *_pdblRealData + _iRows * _iCols;
+
+	return 0;
+}
+
+/*
 iAllocMatrixOfDouble --
   Reserve space in stack for a matrix of double.
 Arguments
@@ -1307,8 +1318,8 @@ int iAllocMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealDa
 	return _iAllocMatrixDoubleOrComplex(_iPos, 0, _iRows, _iCols, _pdblRealData, NULL);
 }
 
-/* 
-iAllocMatrixOfDoubleComplex --
+/*
+iAllocComplexMatrixOfDouble --
   Reserve space in stack for a matrix of complex.
 Arguments
   _iPos : index of the Scilab variable
@@ -1317,7 +1328,7 @@ Arguments
   _pdblRealData : pointer to the block of data for real values
   _pdblImgData : pointer to the block of data for complex values
 */
-int	iAllocMatrixOfDoubleComplex(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+int	iAllocComplexMatrixOfDouble(int _iPos, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	return _iAllocMatrixDoubleOrComplex(_iPos, 1, _iRows,  _iCols, _pdblRealData, _pdblImgData);
 }
@@ -1333,10 +1344,28 @@ int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int
 {
 	int iNewPos			= Top - Rhs + _iNewVal;
 	//int iNewPos			= Top + _iNewVal;
-	int iIndex			= 0;
 	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddrData		= 0;
+
+	iAllocComplexMatrixOfPolyToAddress(iAddrBase, _iComplex, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, _pdblImgData);
+	iAddrData = iAddrBase + (9 + _iRows * _iCols);
+
+	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
+	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
+	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrData);
+
+	*Lstk(iNewPos + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1) * 2;
+	return 0;
+}
+
+
+/*for internal use, assign values in variable without, VarNum, just scilab address*/
+int iAllocComplexMatrixOfPolyToAddress(int _iAddr, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData)
+{
+	int iAddrBase		= _iAddr;
 	int iAddrPtr		= 0;
 	int iAddrData		= 0;
+	int iIndex			= 0;
 
 	*istk(iAddrBase)	= sci_poly;
 	*istk(iAddrBase + 1)= _iRows;
@@ -1347,6 +1376,7 @@ int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int
 	iAddrPtr = iAddrBase + 8;
 	*istk(iAddrPtr) = 1;
 	iAddrPtr++;
+
 	for(iIndex = 0 ; iIndex < _iRows * _iCols ; iIndex++)
 	{
 		*istk(iAddrPtr + iIndex) = _piPow[iIndex] + *istk(iAddrPtr -1 + iIndex);
@@ -1358,11 +1388,46 @@ int iAllocComplexMatrixOfPoly(int _iNewVal, int _iComplex, int** _piVarName, int
 	if(_iComplex != 0)
 		*_pdblImgData = stk(sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols));
 
+	return 0;
+}
+
+/*Reserve space in stack for a matrix of string*/
+int iAllocMatrixOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _piStringData)
+{
+	int iNewPos			= Top - Rhs + _iNewVal;
+	//int iNewPos			= Top + _iNewVal;
+	int iAddrBase		= iadr(*Lstk(iNewPos));
+	int iAddrData		= 0;
+
+	iAllocMatrixOfStringToAddress(iAddrBase, _iRows, _iCols, _piLen, _piStringData);
+	iAddrData = iAddrBase + (5 + _iRows * _iCols);
+
+	*_piStringData = cstk(sadr(iAddrData));
+
 	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
 	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
 	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrData);
 
-	*Lstk(iNewPos + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1);
+	*Lstk(iNewPos + 1) = sadr(iAddrData) + iArraySum(_piLen, 0, _iRows * _iCols);
+	return 0;
+}
+
+int iAllocMatrixOfStringToAddress(int _iAddr, int _iRows, int _iCols, int *_piLen, char **_piStringData)
+{
+	int iAddrPtr	= 0;
+	int iIndex		= 0;
+	*istk(_iAddr)	= sci_strings;
+	*istk(_iAddr + 1)= _iRows;
+	*istk(_iAddr + 2)= _iCols;
+	*istk(_iAddr + 3)= 0; // Non complex values
+
+	iAddrPtr = _iAddr + 4;
+	*istk(iAddrPtr) = 1;
+	iAddrPtr++;
+	for(iIndex = 0 ; iIndex < _iRows * _iCols ; iIndex++)
+	{
+		*istk(iAddrPtr + iIndex) = _piLen[iIndex] + *istk(iAddrPtr -1 + iIndex);
+	}
 	return 0;
 }
 
@@ -1472,69 +1537,75 @@ int iAllocBooleanSparseMatrix(int _iNewVal, int _iRows, int _iCols, int _iTotalE
 	return 0;
 }
 
-/*Reserve space in stack for a matrix of string*/
-int iAllocMatricOfString(int _iNewVal, int _iRows, int _iCols, int *_piLen, char** _pszRealData)
+int iGetListItemType(int _iVar, int* _piParentList, int *_piItemNumber, int *_pElemType)
 {
-	int iNewPos			= Top - Rhs + _iNewVal;
-	//int iNewPos			= Top + _iNewVal;
+	int *piBase			= NULL;
+	int *piOffset		= NULL;
+	int *piItem			= NULL;
 	int iIndex			= 0;
-	int iAddrBase		= iadr(*Lstk(iNewPos));
-	int iAddrPtr		= 0;
-	int iAddrData		= 0;
 
-	*istk(iAddrBase)	= sci_strings;
-	*istk(iAddrBase + 1)= _iRows;
-	*istk(iAddrBase + 2)= _iCols;
-	*istk(iAddrBase + 3)= 0; // Non complex values
-
-	iAddrPtr = iAddrBase + 4;
-	*istk(iAddrPtr) = 1;
-	iAddrPtr++;
-	for(iIndex = 0 ; iIndex < _iRows * _iCols ; iIndex++)
+	if(_piParentList == NULL)
 	{
-		*istk(iAddrPtr + iIndex) = _piLen[iIndex] + *istk(iAddrPtr -1 + iIndex);
+		int iAddrBase	=	iadr(*Lstk(Top - Rhs + _iVar));
+		int iValType	= *istk(iAddrBase);
+
+		if(iValType < 0)
+		{
+			iAddrBase		=	iadr(*istk(iAddrBase + 1));
+			iValType		= *istk(iAddrBase);
+		}
+
+		piBase				= istk(iAddrBase);
+		piOffset			= piBase + 2;
 	}
-	iAddrData = iAddrBase + (5 + _iRows * _iCols);
-
-	*_pszRealData = cstk(sadr(iAddrData));
-
-	C2F(intersci).ntypes[_iNewVal - 1]	= '$';
-	C2F(intersci).iwhere[_iNewVal - 1]	= *Lstk(iNewPos);
-	C2F(intersci).lad[_iNewVal - 1]		= sadr(iAddrData);
-
-	*Lstk(iNewPos + 1) = sadr(iAddrData) + iArraySum(_piLen, 0, _iRows * _iCols);
-	return 0;
-}
-
-int iGetListItemType(int _iVar, int *_piItemNumber, int *_pElemType)
-{
-	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
-	int iValType		= *istk(iAddrBase);
-	int iAddrOffset		= iAddrBase + 2;
-	int iAddrItem		= 0;
-
-	int iIndex			= 0;
-	if(iValType < 0)
+	else
 	{
-		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iAddrOffset		= iAddrBase + 2;
-		iValType		= *istk(iAddrBase);
+		if(IsKindOfList(_piParentList))
+		{
+			piBase			= _piParentList;
+			piOffset		= _piParentList + 2;
+		}
+		else
+		{
+			return 0;
+		}
 	}
 
-	*_piItemNumber		= *istk(iAddrBase + 1);
+	*_piItemNumber		= piBase[1];
 
 	if(_pElemType == NULL)
 		return 0;
 
-
-	//Warning : variable starts at a even ( pair ) address, so if the size is even, we add 1 to have a even address.
-	iAddrItem			= iAddrOffset + *_piItemNumber + 1 + !(*_piItemNumber % 2);
+	//Warning : variable starts at a even ( pair ) address, so if the size is odd, we add 1 to have a even address.
+	piItem		= piOffset + (1 + *_piItemNumber + !(*_piItemNumber % 2));
 	for(iIndex = 0 ; iIndex < *_piItemNumber ; iIndex++)
 	{
-		_pElemType[iIndex] = *istk(iAddrItem);
-		iAddrItem	+= (*istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex)) * 2;
+		_pElemType[iIndex] = piItem[(piOffset[iIndex] - 1) * 2]; //-/+ 1
 	}
 	return 0;
+}
+
+int* iGetAddressFromItemPos(int *_piParent, int _iItemPos)
+{
+	int iValType		= _piParent[0];
+	int iItemCount		= _piParent[1];
+	int *piOffset		= _piParent + 2;
+
+	int *piAddrItem		= NULL;
+
+	if(_iItemPos > iItemCount)
+		return 0;
+
+	piAddrItem			= piOffset + iItemCount + 1 + !(iItemCount % 2);
+	//iAddrItem			= iAddrOffset + iItemCount + 1 + !(iItemCount % 2);
+/*
+	for(iIndex = 0 ; iIndex < _iItemNumber ; iIndex++)
+		iAddrItem	+= (*istk(iAddrOffset + _iItemNumber) - *istk(iAddrOffset + _iItemNumber - 1)) * 2;
+*/
+//	iAddrItem	+= (piOffset[_iItemPos - 1] - 1) * (sizeof(double) / sizeof(int));
+	piAddrItem	+= (piOffset[_iItemPos] - 1) * (sizeof(double) / sizeof(int));
+
+	return piAddrItem;
 }
 
 int iGetAddressFromItemNumber(int _iVar, int _iItemNumber)
@@ -1542,26 +1613,67 @@ int iGetAddressFromItemNumber(int _iVar, int _iItemNumber)
 	int	iItemCount		= 0;
 	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
 	int iValType		= *istk(iAddrBase);
-	int iAddrOffset		= 0;
+	int iAddrOffset		= iAddrBase + 2;
 	int iAddrItem		= 0;
 	int iIndex			= 0;
+	int *piOffset		= istk(iAddrOffset);
 
-	if(iValType < 0)
-	{
-		iAddrBase		= iadr(*istk(iAddrBase + 1));
-		iValType		= *istk(iAddrBase);
-	}
-	
-	iAddrOffset			= iAddrBase + 2;
 	iItemCount			= *istk(iAddrBase + 1);
 	if(_iItemNumber > iItemCount)
 		return 0;
 
 	iAddrItem			= iAddrOffset + iItemCount + 1 + !(iItemCount % 2);
+/*
 	for(iIndex = 0 ; iIndex < _iItemNumber ; iIndex++)
-		iAddrItem	+= (*istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex)) * 2;
+		iAddrItem	+= (*istk(iAddrOffset + _iItemNumber) - *istk(iAddrOffset + _iItemNumber - 1)) * 2;
+*/
+	iAddrItem	+= (piOffset[_iItemNumber - 1] - 1) * (sizeof(double) / sizeof(int));
 
 	return iAddrItem;
+}
+
+int* iGetListItemPointerFromItemNumber(int _iVar, int* _piParentList, int _iItemNumber)
+{
+	int *pItemAddr = _piParentList;
+	int iItemCount	= 0;
+	int *piOffset		= NULL;
+	int *piItem			= NULL;
+
+	if(pItemAddr == NULL)
+	{//parent is the current list
+		int iAddrBase	=	iadr(*Lstk(Top - Rhs + _iVar));
+		int iValType	= *istk(iAddrBase);
+
+		if(iValType < 0)
+		{
+			iAddrBase		=	iadr(*istk(iAddrBase + 1));
+			iValType		= *istk(iAddrBase);
+		}
+
+		pItemAddr	= istk(iAddrBase);
+	}
+
+	if(!IsKindOfList(pItemAddr))
+	{
+		return 0;
+	}
+
+	iItemCount	= pItemAddr[1];
+	piOffset		= pItemAddr + 2;
+
+	if(_iItemNumber > iItemCount)
+		return 0;
+
+	piItem			= piOffset + iItemCount + 1 + !(iItemCount % 2);
+/*
+	for(iIndex = 0 ; iIndex < _iItemNumber ; iIndex++)
+		iAddrItem	+= (*istk(iAddrOffset + _iItemNumber) - *istk(iAddrOffset + _iItemNumber - 1)) * 2;
+*/
+	//_pElemType[iIndex] = piItem[(piOffset[iIndex] - 1) * 2]
+	//iAddrItem	+= (piOffset[_iItemNumber - 1] - 1) * (sizeof(double) / sizeof(int));
+	piItem += (piOffset[_iItemNumber] - 1) * 2;
+
+	return piItem;
 }
 
 int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, double **_pdblReal, double **_pdblImg)
@@ -1618,6 +1730,72 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 	return 0;
 }
 
+//Get SubList reference
+int* iGetListItemList(int _iVar, int* _piParentList, int _iItemPos)
+{
+	int iIndex			= 0;
+	int *piChild		= NULL;
+
+	int *piItemPos		= 0;
+
+	if(_piParentList == NULL)
+	{//parent is the current list
+		int iAddrBase	=	iadr(*Lstk(Top - Rhs + _iVar));
+		int iValType	= *istk(iAddrBase);
+
+		if(iValType < 0)
+		{
+			iAddrBase		=	iadr(*istk(iAddrBase + 1));
+			iValType		= *istk(iAddrBase);
+		}
+
+		_piParentList	= istk(iAddrBase);
+	}
+
+	if(!IsKindOfList(_piParentList))
+	{
+		return 0;
+	}
+
+	if(_iItemPos == 0)
+	{
+		piChild = _piParentList;
+	}
+	else
+	{
+		piChild = iGetAddressFromItemPos(_piParentList, _iItemPos);
+	}
+
+	if(!IsKindOfList(piChild))
+		return NULL;
+	return piChild;
+}
+
+//Get SubItem String
+int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData)
+{
+	int *piString = NULL;
+	int* piItemAdd = iGetListItemPointerFromItemNumber(_iVar, _piParentList, _iItemNumber);
+
+	if(piItemAdd == NULL)
+	{
+		return 1;
+	}
+
+	iGetStringFromPointer(piItemAdd, _piRows, _piCols, _piLen, &piString);
+
+	if(_piLen == NULL || _pszData == NULL)
+	{
+		return 0;
+	}
+
+	code2str(&_pszData, piString, iArraySum(_piLen, 0, *_piRows * *_piCols));
+	{
+		return 0;
+	}
+}
+
+
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )
 int iGetDoubleFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piReal, int *_piImg)
 {
@@ -1640,7 +1818,7 @@ int iGetPolyFromAddress(int _iAddr, int** _piVarName, int* _piRows, int* _piCols
 	*_piCols			= *istk(_iAddr + 2);
 	*_piVarName			= istk(_iAddr + 4);
 	iAddrOffset			= _iAddr + 8; //4 Stack header + 4 variable name
-	
+
 
 	if(_piPow == NULL)
 		return 0;
@@ -1718,7 +1896,6 @@ int iGetBooleanSparseFromAddress(int _iAddr, int* _piRows, int* _piCols, int* _p
 
 int iGetBooleanFromAddress(int _iAddr, int *_piRows, int *_piCols, int* _piBool)
 {
-
 	return 0;
 }
 
@@ -1729,10 +1906,6 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	int iIndex			= 0;
 	char *pToto			= NULL;
 
-	int *pTest1		= 0;
-	int *pTest2		= 0;
-	char *pTest3		= 0;
-
 	*_piRows			= *istk(_iAddr + 1);
 	*_piCols			= *istk(_iAddr + 2);
 
@@ -1740,10 +1913,7 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	if(_piLen == NULL)
 		return 0;
 
-	pTest1 = istk(_iAddr);
-
 	iAddrOffset			= _iAddr + 4;
-	pTest2 = istk(iAddrOffset);
 	/*Get all offest*/
 	for(iIndex = 0 ; iIndex < *_piRows * *_piCols; iIndex++)
 		_piLen[iIndex] = *istk(iAddrOffset + iIndex + 1) - *istk(iAddrOffset + iIndex );
@@ -1756,9 +1926,31 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 	iAddrData = _iAddr + (5 + *_piRows * *_piCols);
 
 	*_piString			= cadr(iAddrData);
-	pTest3			= cstk(*_piString);
 	return 0;
 }
+
+int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen, int** _piString)
+{
+	int iIndex			= 0;
+	int *piOffset		= NULL;
+
+	*_piRows				= _piAddr[1];
+	*_piCols				= _piAddr[2];
+
+
+	if(_piLen == NULL)
+		return 0;
+
+	piOffset			= _piAddr + 4;
+
+	/*Get all offest*/
+	for(iIndex = 0 ; iIndex < *_piRows * *_piCols; iIndex++)
+		_piLen[iIndex] = piOffset[iIndex + 1] - piOffset[iIndex];
+
+	*_piString			= _piAddr + (5 + (*_piRows) * (*_piCols));
+	return 0;
+}
+
 void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg)
 {
 	int iIndex = 0;
@@ -1822,6 +2014,306 @@ void vFreeDoubleComplexFromPointer(doublecomplex *_poComplex)
 		FREE(_poComplex);
 }
 
+/*
+Create a list in scilab stack
+This function only "reserves" VarNum
+To add data, call iListAllocxxxx
+*/
+int* iAllocTList(int _iVar, int _iItemNumber)
+{
+	return iAllocListCommon(_iVar, _iItemNumber, sci_tlist);
+}
+
+int* iAllocList(int _iVar, int _iItemNumber)
+{
+	return iAllocListCommon(_iVar, _iItemNumber, sci_list);
+}
+
+int* iAllocMList(int _iVar, int _iItemNumber)
+{
+	return iAllocListCommon(_iVar, _iItemNumber, sci_mlist);
+}
+
+int* iAllocHyperMatrix(int _iVar, int _iDims)
+{
+	return iAllocMList(_iVar, _iDims);
+}
+
+int* iAllocListCommon(int _iVar, int _iItemNumber, int _iListType)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
+	int *pRoot			= NULL;
+
+	pRoot = iListAllocListCommon(_iVar, istk(iAddrBase), 0 /*Main Root*/ , _iItemNumber, _iListType);
+
+
+	if(_iItemNumber == 0)
+		*Lstk(Top - Rhs + _iVar + 1) = sadr(iAddrBase + _iItemNumber + 3);
+
+	C2F(intersci).ntypes[Top - Rhs + _iVar - 1]	= '$';
+	C2F(intersci).iwhere[Top - Rhs + _iVar - 1]	= *Lstk(_iVar);
+	// + 3 : 1 pour le type + 1 pour la taille + 1 pour le premier increment tjs a 1
+	C2F(intersci).lad[Top - Rhs + _iVar - 1]	= sadr(iAddrBase + _iItemNumber + 3);
+
+	return pRoot;
+}
+
+int* iListAllocListCommon(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber, int _iListType)
+{
+	int iIndex			= 0;
+	int *piChild		= NULL;
+
+	int *piItemPos		= 0;
+	if(_iItemPos == 0)
+	{
+		piChild = _piParentList;
+	}
+	else
+	{
+		piChild = iGetAddressFromItemPos(_piParentList, _iItemPos);
+	}
+
+
+	piChild[0]	= _iListType;
+	piChild[1]	= _iItemNumber;
+	piItemPos	= piChild + 2;
+
+	piItemPos[0]		= 1; //offset of the first variable
+
+	//Ensure that offset are null before add variable in the list
+	for(iIndex = 1 ; iIndex <= _iItemNumber ; iIndex++)
+		piItemPos[iIndex] = 0;
+
+	return piChild;
+}
+
+int* iListAllocList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber)
+{
+	return iListAllocListCommon(_iVar, _piParentList, _iItemPos, _iItemNumber, sci_list);
+}
+
+int* iListAllocTList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber)
+{
+	return iListAllocListCommon(_iVar, _piParentList, _iItemPos, _iItemNumber, sci_tlist);
+}
+
+int* iListAllocMList(int _iVar, int* _piParentList, int _iItemPos, int _iItemNumber)
+{
+	return iListAllocListCommon(_iVar, _piParentList, _iItemPos, _iItemNumber, sci_mlist);
+}
+
+int* iListAllocHyperMatrix(int _iVar, int* _piParentList, int _iItemPos, int _iDims)
+{
+	return iListAllocMList(_iVar, _piParentList, _iItemPos, _iDims);
+}
+
+int iListAllocMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double **_pdblRealData)
+{
+	return iListAllocComplexMatrixOfDouble(_iVar, _piParent, _iItemPos, 0, _iRows, _iCols, _pdblRealData, NULL);
+}
+
+int iListAllocComplexMatrixOfDouble(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblRealData, double **_pdblImgData)
+{
+	//int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
+	int iType			= _piParent[0];
+	int iItemNumber		= _piParent[1];
+	int *piItemPos		= &_piParent[2];
+	int iIndex			= 0;
+	int iStart			= 0;
+	int* piItemAddr		= NULL;
+
+	if(iType != sci_list && iType != sci_tlist && iType != sci_mlist)
+		return 1;
+
+	if(_iItemPos <= 0 || iItemNumber < _iItemPos)
+		return 2;
+
+	/*check if previous variables are already stored*/
+	for(iIndex = 0 ; iIndex < _iItemPos ; iIndex++)
+	{
+		if(piItemPos[iIndex] == 0)
+		{
+			return 3;
+		}
+	}
+
+	/*complete Start address of the new variable*/
+	piItemAddr = iGetAddressFromItemPos(_piParent, _iItemPos);
+	iAllocComplexMatrixOfDoubleToAddress(piItemAddr, _iComplex, _iRows, _iCols, _pdblRealData, _pdblImgData);
+
+	//iAllocComplexMatrixOfDoubleToAddress(iStart, _iComplex, _iRows, _iCols, _pdblRealData, _pdblImgData);
+
+	piItemPos[_iItemPos] = piItemPos[_iItemPos - 1] + 2 + _iRows * _iCols * (_iComplex + 1);
+
+	if(_iItemPos == iItemNumber)
+	{
+		int* piEnd = (int*) (*_pdblRealData + _iRows * _iCols * (_iComplex + 1));
+		vCloseNode(_iVar, _piParent, _iItemPos, piEnd);
+	}
+
+	return 0;
+}
+
+void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
+{
+	//Get Root address;
+	int *piRoot = istk(iadr(*Lstk(Top - Rhs + _iVar)));
+	int *piItemPos = &_piCurrentNode[2];
+	int iItemNumber		= _piCurrentNode[1];
+
+	//check if we are in bigger list.
+	if(piRoot == _piCurrentNode)
+	{//Main List, just close
+		//Close current list
+		int iScale = (int)(_piEnd - piRoot);
+		int iDoubleSclale = iScale / 2;
+		*Lstk(Top - Rhs + _iVar + 1) = *Lstk(Top - Rhs + _iVar) + iDoubleSclale;
+	}
+	else //Not the main list, try to go up
+	{
+		/* \o/ */
+		int iPos	= 0;
+		int *piParentParent = piGetParentNode(piRoot, _piCurrentNode, &iPos);
+		int *piOffset = &piParentParent[2];
+		int Ch1  = piItemPos[_iItemPos] + 1 + iItemNumber/2 + 1;
+		piOffset[iPos+1] = piOffset[iPos] - 1 + Ch1;
+		if(piRoot == piParentParent && ( iPos + 1) == iItemNumber)
+		{
+			//Close Parent list
+			int iScale = (int)(_piEnd - piRoot);
+			int iDoubleSclale = iScale / 2;
+			*Lstk(Top - Rhs + _iVar + 1) = *Lstk(Top - Rhs + _iVar) + iDoubleSclale;
+		}
+	}
+}
+
+int* piGetParentNode(int* _piStart, int* _piToFind, int *_piPos)
+{
+	if(IsKindOfList(_piStart))
+	{
+		int iItem	= _piStart[1];
+		int iIndex	= 0;
+		for(iIndex = 0 ; iIndex < iItem ; iIndex++)
+		{
+			int *piChild = iGetAddressFromItemPos(_piStart, iIndex + 1);
+			if(piChild == _piToFind)
+			{
+				*_piPos	= iIndex;
+				return _piStart;
+			}
+			else
+			{
+				int *piTemp = piGetParentNode(piChild, _piToFind, _piPos);
+				if(piTemp != 0)
+				{
+					return piTemp;
+				}
+			}
+		}
+	}
+	return 0;
+}
+
+int IsKindOfList(int* _piNode)
+{
+	if(_piNode[0] == sci_list || _piNode[0] == sci_tlist || _piNode[0] == sci_mlist)
+		return 1;
+	else
+		return 0;
+}
+
+int iListAllocMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData)
+{
+	return iListAllocComplexMatrixOfPoly(_iVar, _piParent, _iItemPos, 0, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, NULL);
+}
+
+/*Reserve space in stack for a matrix of complex polynom*/
+int iListAllocComplexMatrixOfPoly(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int** _piVarName, int _iRows, int _iCols, int *_piPow, double** _pdblRealData, double** _pdblImgData)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
+	int iType			= *istk(iAddrBase);
+	int iItemNumber		= *istk(iAddrBase + 1);
+	int *piItemPos		= istk(iAddrBase + 2); // size == iItemNumber
+	int iStart			= 0;
+	int iIndex			= 0;
+	int iAddrData		= 0;
+
+	if(iType != sci_list && iType != sci_tlist && iType != sci_mlist)
+		return 1;
+
+	if(_iItemPos <= 0 || iItemNumber < _iItemPos)
+		return 2;
+
+	/*check if previous variables are already stored*/
+	for(iIndex = 0 ; iIndex < _iItemPos ; iIndex++)
+	{
+		if(piItemPos[iIndex] == 0)
+		{
+			return 3;
+		}
+	}
+
+	iStart = iGetAddressFromItemNumber(_iVar, _iItemPos);
+	iAllocComplexMatrixOfPolyToAddress(iStart, _iComplex, _piVarName, _iRows, _iCols, _piPow, _pdblRealData, _pdblImgData);
+
+	iAddrData = iAddrBase + (9 + _iRows * _iCols);
+	piItemPos[_iItemPos] = piItemPos[_iItemPos - 1] + ((9 + _iRows * _iCols) + !((_iRows * _iCols) % 2)) / 2 + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1);
+	if(_iItemPos == iItemNumber)
+	{
+		//*Lstk(Top - Rhs + _iVar + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1) * 2;
+		int* piEnd = (int*) (*_pdblRealData + iArraySum(_piPow, 0, _iRows * _iCols) * (_iComplex + 1));
+		vCloseNode(_iVar, _piParent, _iItemPos, piEnd);
+	}
+	return 0;
+}
+
+
+int iListAllocString(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int *_piLen, char** _pszData)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVar));
+	int iType			= *istk(iAddrBase);
+	int iItemNumber		= *istk(iAddrBase + 1);
+	int *piItemPos		= istk(iAddrBase + 2); // size == iItemNumber
+	int iStart			= 0;
+	int iIndex			= 0;
+	int iAddrData		= 0;
+
+	if(iType != sci_list && iType != sci_tlist && iType != sci_mlist)
+		return 1;
+
+	if(_iItemPos <= 0 || iItemNumber < _iItemPos)
+		return 2;
+
+	/*check if previous variables are already stored*/
+	for(iIndex = 0 ; iIndex < _iItemPos ; iIndex++)
+	{
+		if(piItemPos[iIndex] == 0)
+		{
+			return 3;
+		}
+	}
+
+	iStart = iGetAddressFromItemNumber(_iVar, _iItemPos);
+	iAllocMatrixOfStringToAddress(iStart, _iRows, _iCols, _piLen, _pszData);
+
+	iAddrData = iAddrBase + (9 + _iRows * _iCols);
+	piItemPos[_iItemPos] = piItemPos[_iItemPos - 1] + ((9 + _iRows * _iCols) + !((_iRows * _iCols) % 2)) / 2 + iArraySum(_piLen, 0, _iRows * _iCols);
+	if(_iItemPos == iItemNumber)
+		*Lstk(Top - Rhs + _iVar + 1) = sadr(iAddrData) + iArraySum(_piLen, 0, _iRows * _iCols) * 2;
+
+	return 0;
+}
+
+/*
+GetRhsVarMatrixDouble --
+  Returns a pointer on the data of a matrix of double.
+Arguments
+  number :
+  _iPos : index of the Scilab variable
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+*/
 int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRealData)
 {
 	unsigned long type_len;
@@ -1833,6 +2325,17 @@ int GetRhsVarMatrixDouble(int number, int *_iRows, int *_iCols, double **_pdblRe
 	*_pdblRealData = stk(lr);
 	return 0;
 }
+/*
+GetRhsVarMatrixComplex --
+  Returns a pointer on the data of a matrix of double.
+Arguments
+  number :
+  _iPos : index of the Scilab variable
+  _iRows : number of rows in the matrix
+  _iCols : number of columns in the matrix
+  _pdblRealData : pointer to the block of data for real values
+  _pdblImgData : pointer to the block of data for complex values
+*/
 int GetRhsVarMatrixComplex(int number, int *_iRows, int *_iCols, double **_pdblRealData, double **_pdblImgData)
 {
 	unsigned long type_len;

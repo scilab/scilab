@@ -10,9 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#ifndef __NOGRAPHICS_H__
+#define __NOGRAPHICS_H__
 
-#include "Scierror.h"
+#include "machine.h"
 #include "ObjectStructure.h"
+
+
 int gw_graphics(void);
 
 void loadGraphicModule(void);
@@ -70,3 +74,5 @@ int C2F(SetDriver)(void);
 void GetDriver1(char *str, int *v2,int * v3,int * v4, int *v5,int * v6,int * v7,double * dv1,double * dv2,double * dv3,double * dv4);
 
 void sciGetIdFigure (int *vect, int *id, int *flag);
+
+#endif /* __NOGRAPHICS_H__ */

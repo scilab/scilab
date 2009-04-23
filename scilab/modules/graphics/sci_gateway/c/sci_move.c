@@ -16,12 +16,8 @@
 /* desc : interface for move routine                                      */
 /*------------------------------------------------------------------------*/
 
-#include <time.h>
-#include <stdio.h>
-
+#include "stack-c.h"
 #include "sci_move.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "Interaction.h"
 #include "localization.h"
 #include "Scierror.h"

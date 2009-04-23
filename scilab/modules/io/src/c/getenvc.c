@@ -25,6 +25,7 @@
 #include "PATH_MAX.h"
 #include "FileExist.h"
 #include "charEncoding.h"
+
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static void searchenv_others(const char *filename, const char *varname,
@@ -33,23 +34,59 @@ static void searchenv_others(const char *filename, const char *varname,
 /*--------------------------------------------------------------------------*/
 void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 {
-	char szTemp[bsiz];
-	char *locale = NULL;
 #ifdef _MSC_VER
-	if (GetEnvironmentVariable(UTFToLocale(var, szTemp),buf,(DWORD)*buflen) == 0)
+
+
+	BOOL bMalloc = FALSE;
+	wchar_t *wvar = to_wide_string(var);
+	//wchar_t wbuf[bsiz];
+
+	wchar_t *wbuf = _wgetenv(wvar);
+
+	*ierr = 0;
+	if(wbuf == NULL)
 	{
-		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
-		*ierr=1;
+		bMalloc = TRUE;
+		wbuf = (wchar_t*)MALLOC(sizeof(wchar_t) * *buflen);
+		if (GetEnvironmentVariableW(wvar, wbuf,(DWORD)*buflen) == 0)
+		{
+			if( *iflag == 1 )
+			{
+				sciprint(_("Undefined environment variable %s.\n"),var);
+			}
+			*ierr=1;
+		}
+	}
+
+	if(*ierr != 1)
+	{
+		char* temp = wide_string_to_UTF8(wbuf);
+		strcpy(buf, temp);
+		*buflen = (int)strlen(buf);
+		*ierr=0;
+	}
+
+	if(bMalloc)
+	{
+		FREE(wbuf);
+	}
+
+	/*
+	if (GetEnvironmentVariable(var, buf,(DWORD)*buflen) == 0)
+	{
+	if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
+	*ierr=1;
 	}
 	else
 	{
-		locale = localeToUTF(buf, szTemp);
-		*buflen = (int)strlen(locale);
-		strncpy(buf,locale,*buflen);
-		*ierr=0;
+	*buflen = (int)strlen(buf);
+	*ierr=0;
 	}
+	*/
 #else
-	if ( (locale=localeToUTF(getenv(UTFToLocale(var, szTemp)), szTemp) ) == 0)
+	char *locale = NULL;
+	locale=getenv(var);
+	if ( locale == NULL )
 	{
 		if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
 		*ierr=1;
@@ -138,20 +175,37 @@ char *searchEnv(const char *name,const char *env_var)
 {
 	char *buffer = NULL;
 	char fullpath[PATH_MAX];
-	char szLocale[bsiz];
 
 	strcpy(fullpath,"");
 
 #if _MSC_VER
-	_searchenv((const char*)UTFToLocale((char*)name, szLocale),(const char*)env_var,fullpath);
-#else
-	searchenv_others(UTFToLocale(name, szLocale),env_var,fullpath);
-#endif
+	{
+		wchar_t *wname			= NULL;
+		wchar_t *wenv_var		= NULL;
+		wchar_t wfullpath[PATH_MAX];
 
+		wname			= to_wide_string((char*)name);
+		wenv_var	= to_wide_string((char*)env_var);
+
+		wcscpy(wfullpath,L"");
+
+		_wsearchenv(wname, wenv_var, wfullpath);
+
+		if (wcslen(wfullpath) > 0)
+		{
+			buffer = wide_string_to_UTF8(wfullpath);
+		}
+
+		FREE(wname);
+		FREE(wenv_var);
+	}
+#else
+	searchenv_others(name, env_var,fullpath);
 	if (strlen(fullpath) > 0)
 	{
-		buffer = strdup(localeToUTF(fullpath, szLocale));
+		buffer = strdup(fullpath);
 	}
+#endif
 	return buffer;
 }
 /*--------------------------------------------------------------------------*/

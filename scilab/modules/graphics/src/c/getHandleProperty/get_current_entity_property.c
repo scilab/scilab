@@ -19,11 +19,12 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
+#include "HandleManagement.h"
 #include "returnProperty.h"
 #include "CurrentObjectsManagement.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "MALLOC.h"
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/

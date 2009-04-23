@@ -6,3 +6,5 @@ EXPORTS
 sciGetNum
 getFigureFromIndex
 sciIsExistingFigure
+sciGetEntityType
+sciGetPointerFromHandle

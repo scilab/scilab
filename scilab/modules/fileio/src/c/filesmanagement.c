@@ -9,9 +9,6 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef _MSC_VER
-#include <sys/param.h>
-#endif
 #include <string.h>
 #include <stdlib.h>
 #include "PATH_MAX.h"
@@ -21,10 +18,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
-/*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-#define _fullpath(a,r,l) realpath(r,a)
-#endif
+#include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
 	FILE *ftformat;
@@ -38,7 +32,7 @@ typedef struct {
 static scilabfile *ScilabFileList = NULL;
 static int CurFile = -1;
 static int PreviousFile = -1;
-static int CurrentMaxFiles=DEFAULT_MAX_FILES;
+static int CurrentMaxFiles = DEFAULT_MAX_FILES;
 /*--------------------------------------------------------------------------*/
 FILE *GetFileOpenedInScilab(int Id)
 {
@@ -138,7 +132,7 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	}
 	else
 	{
-		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
+		if( get_full_path( fullpath, name, PATH_MAX*4 ) != NULL )
 		{
 			ptrName = strdup(fullpath);
 			if (ptrName)
@@ -237,7 +231,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		char fullpath[PATH_MAX*4];
 		int i=0;
 
-		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
 		{
 			/* if we are a problem */
 			strcpy(fullpath,filename);
@@ -252,5 +246,32 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		}
 	}
 	return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+int GetIdFromFilename(char *filename)
+{
+	if (ScilabFileList)
+	{
+		char fullpath[PATH_MAX*4];
+		int i=0;
+		#ifdef _MSC_VER
+		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+		#else
+		if( realpath( filename,fullpath ) == NULL )
+		#endif
+		{
+			/* if we are a problem */
+			strcpy(fullpath,filename);
+		}
+
+		for (i = 0; i < CurrentMaxFiles; i++)
+		{
+			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
+			{
+				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return i;
+			}
+		}
+	}
+	return FILE_ID_NOT_DEFINED;
 }
 /*--------------------------------------------------------------------------*/

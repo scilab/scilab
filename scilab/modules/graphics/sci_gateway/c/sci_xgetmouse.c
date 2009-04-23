@@ -23,7 +23,6 @@
 #include "GetProperty.h" /* sciGetNum */
 #include "CurrentObjectsManagement.h" /* sciGetCurrentFigure */
 #include "CallJxgetmouse.h"
-#include "GetProperty.h"
 #include "ObjectSelection.h"
 #include "WindowList.h"
 #include "axesScale.h"

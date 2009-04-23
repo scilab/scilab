@@ -67,10 +67,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -150,10 +150,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalOptions="/fixed:no"
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmdd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -238,6 +238,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -327,6 +328,7 @@
 				AdditionalDependencies="LibScilab.lib scigui.lib scilab_windows.lib ../../bin/blasplus.lib ../../bin/lapack.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
+				IgnoreDefaultLibraryNames="libmmd.lib"
 				ModuleDefinitionFile="graphics.def"
 				GenerateDebugInformation="false"
 				SubSystem="2"
@@ -436,6 +438,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\get_alignment_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\get_anti_aliasing_property.c"
 				>
 			</File>
 			<File
@@ -1009,6 +1015,14 @@
 			<File
 				RelativePath=".\src\c\math_graphics.c"
 				>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						Optimization="1"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\src\c\ObjectSelection.c"
@@ -1243,10 +1257,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_xload.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_xname.c"
 				>
 			</File>
@@ -1264,10 +1274,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_xrects.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_xsave.c"
 				>
 			</File>
 			<File
@@ -1316,6 +1322,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getHandleProperty\set_alignment_property.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getHandleProperty\set_anti_aliasing_property.c"
 				>
 			</File>
 			<File
@@ -2229,10 +2239,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\sci_xload.h"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\sci_xname.h"
 				>
 			</File>
@@ -2250,10 +2256,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\sci_xrects.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\sci_xsave.h"
 				>
 			</File>
 			<File

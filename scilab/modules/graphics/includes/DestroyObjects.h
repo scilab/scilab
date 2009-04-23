@@ -23,12 +23,11 @@
  - freeing memory
  --------------------------------------------------------------------------*/
 
-#include "ObjectStructure.h"
-#include "HandleManagement.h"
-
-
 #ifndef __SCI_DESTROY__
 #define __SCI_DESTROY__
+
+#include "ObjectStructure.h"
+#include "machine.h" /* C2F */
 
 
 int destroyGraphicsSons(sciPointObj * pthis);

@@ -14,8 +14,10 @@
 
 extern "C"
 {
+#include <string.h>
 #include "Format.h"
 #include "DrawObjects.h"
+#include "math_graphics.h"
 }
 
 namespace sciGraphics

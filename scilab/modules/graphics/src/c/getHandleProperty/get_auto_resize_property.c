@@ -19,7 +19,6 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
 

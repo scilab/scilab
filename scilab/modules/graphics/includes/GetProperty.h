@@ -29,7 +29,6 @@
 
 
 #include "ObjectStructure.h"
-#include "HandleManagement.h"
 #include "StringMatrix.h"
 #include "BOOL.h"
 
@@ -49,8 +48,9 @@ int sciGetBackgroundToDisplay (sciPointObj * pobj); /* GET */
 
 int sciGetBackground (sciPointObj * pobj); /* GET */
 int sciGetForeground (sciPointObj * pobj); /* GET */
-int sciGetLineWidth (sciPointObj * pobj); /* GET */
+double sciGetLineWidth (sciPointObj * pobj); /* GET */
 BOOL sciGetIsLine (sciPointObj * pobj); /* GET */
+BOOL sciGetIsDisplayingLines(sciPointObj * pObj);
 int sciGetLineStyle (sciPointObj * pobj); /* GET */
 BOOL sciGetIsMark (sciPointObj * pobj); /* GET */
 BOOL sciGetIsFilled (sciPointObj * pobj); /* GET */
@@ -268,6 +268,8 @@ void sciGetOutsideColor(sciPointObj * pObj, int colors[2]); /* GET */
 void sciGetZBounds(sciPointObj * pObj, double bounds[2]); /* GET */
 
 BOOL sciGetGridFront(sciPointObj * pObj); /* GET */
+
+int sciGetAntialiasingQuality(sciPointObj * pObj); /* GET */
 
 sciLegendPlace sciGetLegendLocation(sciPointObj * pObj); /* GET */
 

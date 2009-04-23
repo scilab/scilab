@@ -24,6 +24,7 @@ extern "C"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "math_graphics.h"
+#include "HandleManagement.h"
 }
 
 #define DEPTH_FRONT 0.01
@@ -281,7 +282,7 @@ namespace sciGraphics
 			sciInitLineWidth(m_aLines[i], sciGetLineWidth(legendedObject));
 			sciInitLineStyle(m_aLines[i], sciGetLineStyle(legendedObject));
 
-			if (   sciGetIsLine(legendedObject)
+			if (   sciGetIsDisplayingLines(legendedObject)
 				  || sciGetPolylineStyle(legendedObject) == 3
 					|| sciGetPolylineStyle(legendedObject) == 6)
 			{

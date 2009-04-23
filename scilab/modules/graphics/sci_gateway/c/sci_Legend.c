@@ -19,7 +19,6 @@
 #include "sci_Legend.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "MALLOC.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
@@ -30,6 +29,8 @@
 #include "DrawObjects.h"
 #include "Axes.h" /* propertyNameToLegendPlace */
 #include "SetProperty.h" /* sciSetLegendLocation */
+#include "HandleManagement.h"
+
 #define DEF_LEGEND_LOCATION "in_upper_right"
 
 /*--------------------------------------------------------------------------*/

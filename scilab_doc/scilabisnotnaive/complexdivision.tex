@@ -1,0 +1,540 @@
+\section{Complex division}
+
+In that section, we analyse the problem of the complex division in Scilab.
+We especially detail the difference between the mathematical, straitforward
+formula and the floating point implementation. In the first part, we briefly report 
+the formulas which allow to 
+compute the real and imaginary parts of the division of two complex numbers.
+We then present the naïve algorithm based on these mathematical formulas. 
+In the second part, we make some experiments in Scilab and compare our
+naïve algorithm with the \emph{/} Scilab operator.
+In the third part, we analyse 
+why and how floating point numbers must be taken into account when the 
+implementation of such division is required.
+
+\subsection{Theory}
+
+The formula which allows to compute the 
+real and imaginary parts of the division of two 
+complex numbers is 
+\begin{eqnarray}
+\frac{a + ib}{c + id} = \frac{ac + bd}{c^2 + d^2} + i \frac{bc - ad}{c^2 + d^2} 
+\end{eqnarray}
+
+The naive algorithm for the computation of the complex division
+is presented in figure \ref{naive-complexdivision}.
+
+\begin{figure}[htbp]
+\begin{algorithmic}
+\STATE $den \gets c^2 + d^2$
+\STATE $e \gets (ac + bd)/ den$
+\STATE $f \gets (bc - ad)/ den$ 
+\end{algorithmic}
+\caption{Naive algorithm to compute the complex division}
+\label{naive-complexdivision}
+\end{figure}
+
+
+\subsection{Experiments}
+
+The following Scilab function is a straitforward implementation
+of the previous formulas.
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+// 
+// naive --
+//   Compute the complex division with a naive method.
+//
+function [cr,ci] = naive (ar , ai , br , bi )
+  den = br * br + bi * bi;
+  cr = (ar * br + ai * bi) / den;
+  ci = (ai * br - ar * bi) / den;
+endfunction
+\end{lstlisting}
+
+In the following script, one compares the naive implementation
+against the Scilab implementation with two cases.
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+  // Check that no obvious bug is in mathematical formula.
+  [cr ci] = naive ( 1.0 , 2.0 , 3.0 , 4.0 )
+  (1.0 + 2.0 * %i)/(3.0 + 4.0 * %i)
+  // Check that mathematical formula does not perform well
+  // when large number are used.
+  [cr ci] = naive ( 1.0 , 1.0 , 1.0 , 1.e307 )
+  (1.0 + 1.0 * %i)/(1.0 + 1.e307 * %i)
+\end{lstlisting}
+
+That prints out the following messages.
+
+\begin{verbatim}
+-->  // Check that no obvious bug is in mathematical formula.
+-->  [cr ci] = naive ( 1.0 , 2.0 , 3.0 , 4.0 )
+ ci  =
+    0.08  
+ cr  =
+    0.44  
+-->  (1.0 + 2.0 * %i)/(3.0 + 4.0 * %i)
+ ans  =
+    0.44 + 0.08i  
+-->  // Check that mathematical formula does not perform well
+-->  // when large number are used.
+-->  [cr ci] = naive ( 1.0 , 1.0 , 1.0 , 1.e307 )
+ ci  =
+    0.  
+ cr  =
+    0.  
+-->  (1.0 + 1.0 * %i)/(1.0 + 1.e307 * %i)
+ ans  =
+    1.000-307 - 1.000-307i  
+\end{verbatim}
+
+The simple calculation confirms that there is no bug in the 
+naive implementation. But differences are apprearing when 
+large numbers are used. In the second case, the naive 
+implementation does not give a single exact digit !
+
+To make more complete tests, the following script allows to 
+compare the results of the naive and the Scilab methods.
+We use three kinds of relative errors 
+\begin{enumerate}
+\item the relative error on the complex numbers, as a whole $e=\frac{|e - c|}{|e|}$,
+\item the relative error on the real part $e=\frac{|e_r - e_r|}{e_r}$,
+\item the relative error on the imaginary part $e=\frac{|e_i - e_i|}{e_i}$.
+\end{enumerate}
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+// 
+// compare --
+//   Compare 3 methods for complex division:
+//   * naive method
+//   * Smith method
+//   * C99 method
+//
+function compare (ar, ai, br, bi, rr, ri)
+  printf("****************\n");
+  printf("           a = %10.5e +  %10.5e * I\n" , ar ,  ai );
+  printf("           b = %10.5e +  %10.5e * I\n" , br ,  bi );
+  [cr ci] = naive ( ar, ai, br, bi);
+  printf("Naive  --> c = %10.5e +  %10.5e * I\n" , cr ,  ci );
+  c = cr + %i * ci
+  r = rr + %i * ri;
+  error1 = abs(r - c)/abs(r);
+  if (rr==0.0) then
+    error2 = abs(rr - cr);
+  else
+    error2 = abs(rr - cr)/abs(rr);
+  end
+  if (ri==0.0) then
+    error3 = abs(ri - ci);
+  else
+    error3 = abs(ri - ci)/abs(ri);
+  end
+  printf("   e1 = %10.5e, e2 = %10.5e, e3 = %10.5e\n", error1, error2, error3);
+  
+  a = ar + ai * %i;
+  b = br + bi * %i;
+  c = a/b;
+  cr = real(c);
+  ci = imag(c);
+  printf("Scilab --> c = %10.5e +  %10.5e * I\n" , cr ,  ci );
+  c = cr + %i * ci
+  error1 = abs(r - c)/abs(r);
+  if (rr==0.0) then
+    error2 = abs(rr - cr);
+  else
+    error2 = abs(rr - cr)/abs(rr);
+  end
+  if (ri==0.0) then
+    error3 = abs(ri - ci);
+  else
+    error3 = abs(ri - ci)/abs(ri);
+  end
+  printf("   e1 = %10.5e, e2 = %10.5e, e3 = %10.5e\n", error1, error2, error3);
+endfunction
+\end{lstlisting}
+
+In the following script, we compare the naive and the Scilab
+implementations of the complex division with 4 couples of 
+complex numbers. The first instruction "ieee(2)" configures the 
+IEEE system so that Inf and Nan numbers are generated instead 
+of Scilab error messages.
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+ieee(2);
+// Check that naive implementation does not have a bug
+ar = 1;
+ai = 2;
+br = 3;
+bi = 4;
+rr = 11/25;
+ri = 2/25;
+compare (ar, ai, br, bi, rr, ri);
+
+// Check that naive implementation is not robust with respect to overflow
+ar = 1;
+ai = 1;
+br = 1;
+bi = 1e307;
+rr = 1e-307;
+ri = -1e-307;
+compare (ar, ai, br, bi, rr, ri);
+
+// Check that naive implementation is not robust with respect to underflow
+ar = 1;
+ai = 1;
+br = 1e-308;
+bi = 1e-308;
+rr = 1e308;
+ri = 0.0;
+compare (ar, ai, br, bi, rr, ri);
+
+\end{lstlisting}
+
+The script then prints out the following messages.
+
+\begin{verbatim}
+****************
+           a = 1.00000e+000 +  2.00000e+000 * I
+           b = 3.00000e+000 +  4.00000e+000 * I
+Naive  --> c = 4.40000e-001 +  8.00000e-002 * I
+   e1 = 0.00000e+000, e2 = 0.00000e+000, e3 = 0.00000e+000
+Scilab --> c = 4.40000e-001 +  8.00000e-002 * I
+   e1 = 0.00000e+000, e2 = 0.00000e+000, e3 = 0.00000e+000
+****************
+           a = 1.00000e+000 +  1.00000e+000 * I
+           b = 1.00000e+000 +  1.00000e+307 * I
+Naive  --> c = 0.00000e+000 +  -0.00000e+000 * I
+   e1 = 1.00000e+000, e2 = 1.00000e+000, e3 = 1.00000e+000
+Scilab --> c = 1.00000e-307 +  -1.00000e-307 * I
+   e1 = 2.09614e-016, e2 = 1.97626e-016, e3 = 1.97626e-016
+****************
+           a = 1.00000e+000 +  1.00000e+000 * I
+           b = 1.00000e-308 +  1.00000e-308 * I
+Naive  --> c = Inf +  Nan * I
+   e1 = Nan, e2 = Inf, e3 = Nan
+Scilab --> c = 1.00000e+308 +  0.00000e+000 * I
+   e1 = 0.00000e+000, e2 = 0.00000e+000, e3 = 0.00000e+000
+\end{verbatim}
+
+The case \#2 and \#3 shows very surprising results.
+With case \#2, the relative errors shows that the naive 
+implementation does not give any correct digits.
+In case \#3, the naive implementation produces Nan and Inf results.
+In both cases, the Scilab command "/" gives accurate results, i.e.,
+with at least 16 significant digits.
+
+\subsection{Explanations}
+
+In this section, we analyse the reason why the naive implementation
+of the complex division leads to unaccurate results.
+In the first section, we perform algebraic computations 
+and shows the problems of the naive formulas.
+In the second section, we present the Smith's method.
+
+\subsubsection{Algebraic computations}
+
+Let's analyse the second test and check the division of test \#2 :
+
+\begin{eqnarray}
+\frac{1 + I}{1 + 10^{307} I } = 10^{307} - I * 10^{-307}
+\end{eqnarray}
+
+The naive formulas leads to the following results.
+
+\begin{eqnarray}
+den &=& c^2 + d^2 = 1^2 + (10^{307})^2 = 1 + 10^{614} \approx 10^{614} \\
+e &=& (ac + bd)/ den = (1*1 + 1*10^{307})/1e614 \approx 10^{307}/10^{614} \approx 10^{-307}\\
+f &=& (bc - ad)/ den = (1*1 - 1*10^{307})/1e614 \approx -10^{307}/10^{614} \approx -10^{-307}
+\end{eqnarray}
+
+To understand what happens with the naive implementation, one should
+focus on the intermediate numbers.
+If one uses the naive formula with double precision numbers, then
+
+\begin{eqnarray}
+den = c^2 + d^2 = 1^2 + (10^{307})^2 = Inf
+\end{eqnarray}
+
+This generates an overflow, because $(10^{307})^2 = 10^{614}$ is not representable
+as a double precision number.
+
+The $e$ and $f$ terms are then computed as 
+
+\begin{eqnarray}
+e = (ac + bd)/ den = (1*1 + 1*10^{307})/Inf = 10^{307}/Inf = 0\\
+f = (bc - ad)/ den = (1*1 - 1*10^{307})/Inf = -10^{307}/Inf = 0
+\end{eqnarray}
+
+The result is then computed without any single correct digit,
+even though the initial numbers are all representable as double precision
+numbers.
+
+Let us check that the case \#3 is associated with an underflow.
+We want to compute the following complex division :
+
+\begin{eqnarray}
+\frac{1 + I}{10^{-308} +  10^{-308} I}= 10^{308}
+\end{eqnarray}
+
+The naive mathematical formula gives 
+
+\begin{eqnarray}
+den &=& c^2 + d^2 = (10^{-308})^2 + (10^{-308})^2 = 10^{-616}10^{-616} + 10^{-616} = 2 \times 10^{-616} \\
+e &=& (ac + bd)/ den = (1*10^{-308} + 1*10^{-308})/(2 \times 10^{-616}) \\
+ &\approx&  (2 \times 10^{-308})/(2 \times 10^{-616}) \approx 10^{-308} \\
+f &=& (bc - ad)/ den = (1*10^{-308} - 1*10^{-308})/(2 \times 10^{-616}) \approx 0/10^{-616} \approx 0
+\end{eqnarray}
+
+With double precision numbers, the computation is not performed this way.
+Terms which are lower than $10^{-308}$ are too small to be representable 
+in double precision and will be reduced to 0 so that an underflow occurs.
+
+\begin{eqnarray}
+den &=& c^2 + d^2 = (10^{-308})^2 + (10^{-308})^2 = 10^{-616} + 10^{-616} = 0 \\
+e &=& (ac + bd)/ den = (1*10^{-308} + 1*10^{-308})/0 \approx 2\times 10^{-308}/0 \approx Inf \\
+f &=& (bc - ad)/ den = (1*10^{-308} - 1*10^{-308})/0 \approx 0/0 \approx NaN \\
+\end{eqnarray}
+
+\subsubsection{The Smith's method}
+
+In this section, we analyse the Smith's method and present the detailed
+steps of this algorithm in the cases \#2 and \#3.
+
+In Scilab, the algorithm which allows to perform the complex 
+division is done by the the \emph{wwdiv} routine, which implements the 
+Smith's method \cite{368661}, \cite{WhatEveryComputerScientist}.
+The Smith's algorithm is based on normalization, which allow to 
+perform the division even if the terms are large. 
+
+The starting point of the method is the mathematical definition 
+
+\begin{eqnarray}
+\frac{a + ib}{c + id} = \frac{ac + bd}{c^2 + d^2} + i \frac{bc - ad}{c^2 + d^2} 
+\end{eqnarray}
+
+The method of Smith is based on the rewriting of this formula in 
+two different, but mathematically equivalent formulas. The basic 
+trick is to make the terms $d/c$ or $c/d$ appear in the formulas.
+When $c$ is larger than $d$, the formula involving $d/c$ is used.
+Instead, when $d$ is larger than $c$, the formula involving $c/d$ is 
+used. That way, the intermediate terms in the computations rarely 
+exceeds the overflow limits.
+
+Indeed, the complex division formula can be written as 
+\begin{eqnarray}
+\frac{a + ib}{c + id} = \frac{a + b(d/c)}{c + d(d/c)} + i \frac{b - a(d/c)}{c + d(d/c)} \\
+\frac{a + ib}{c + id} = \frac{a(c/d) + b}{c(d/c) + d} + i \frac{b(c/d) - a}{c(d/c) + d} 
+\end{eqnarray}
+
+These formulas can be simplified as 
+
+\begin{eqnarray}
+\frac{a + ib}{c + id} = \frac{a + br}{c + dr} + i \frac{b - ar}{c + dr}, \qquad r = d/c \\
+\frac{a + ib}{c + id} = \frac{ar + b}{cr + d} + i \frac{br - a}{cr + d} , \qquad r = c/d
+\end{eqnarray}
+
+The Smith's method is based on the following algorithm.
+
+\begin{algorithmic}
+\IF {$( |d| <= |c| )$}
+  \STATE $r \gets d / c$
+  \STATE $den \gets c + r * d$
+  \STATE $e \gets (a + b * r)/ den $
+  \STATE $f \gets (b - a * r)/ den $
+\ELSE
+  \STATE $r \gets c / d$
+  \STATE $den  \gets d + r * c$
+  \STATE $e \gets (a * r + b)/den $
+  \STATE $f \gets (b * r - a)/den$
+\ENDIF
+\end{algorithmic}
+
+As we are going to check immediately, the Smith's method 
+performs very well in cases \#2 and \#3.
+
+In the case \#2 $\frac{1+i}{1+10^{-308} i}$, the Smith's method is
+
+\begin{verbatim}
+If ( |1e308| <= |1| ) > test false
+Else
+  r = 1 / 1e308 = 0
+  den  = 1e308 +  0 * 1 = 1e308
+  e = (1 * 0 + 1) / 1e308 = 
+  f = (1 * 0 - 1) / 1e308 = -1e-308
+\end{verbatim}
+
+In the case \#3 $\frac{1+i}{10^{-308}+10^{-308} i}$, the Smith's method is 
+
+\begin{verbatim}
+If ( |1e-308| <= |1e-308| ) > test true
+  r = 1e-308 / 1e308 = 1
+  den  = 1e-308 +  1 * 1e-308 = 2e308
+  e = (1 + 1 * 1) / 2e308 = 1e308
+  f = (1 - 1 * 1) / 2e308 = 0
+\end{verbatim}
+
+\subsection{One more step}
+
+In that section, we show the limitations of the Smith's method.
+
+Suppose that we want to perform the following division 
+
+\begin{eqnarray}
+\frac{10^{307} + i 10^{-307}}{10^205 + i 10^{-205}} = 10^102 - i 10^-308
+\end{eqnarray}
+
+The following Scilab script allows to compare the naive implementation
+and Scilab's implementation based on Smith's method.
+
+\lstset{language=Scilab}
+\lstset{numbers=left}
+\lstset{basicstyle=\footnotesize}
+\lstset{keywordstyle=\bfseries}
+\begin{lstlisting}
+// Check that Smith method is not robust in complicated cases
+ar = 1e307;
+ai = 1e-307;
+br = 1e205;
+bi = 1e-205;
+rr = 1e102;
+ri = -1e-308;
+compare (ar, ai, br, bi, rr, ri);
+\end{lstlisting}
+
+When executed, the script produces the following output.
+
+\begin{verbatim}
+****************
+           a = 1.00000e+307 +  1.00000e-307 * I
+           b = 1.00000e+205 +  1.00000e-205 * I
+Naive  --> c = Nan +  -0.00000e+000 * I
+   e1 = 0.00000e+000, e2 = Nan, e3 = 1.00000e+000
+Scilab --> c = 1.00000e+102 +  0.00000e+000 * I
+   e1 = 0.00000e+000, e2 = 0.00000e+000, e3 = 1.00000e+000
+\end{verbatim}
+
+As expected, the naive method produces a Nan.
+More surprisingly, the Scilab output is also quite approximated.
+More specifically, the imaginary part is computed as zero, although
+we know that the exact result is $10^-308$, which is representable 
+as a double precision number.
+The relative error based on the norm of the complex number is 
+accurate ($e1=0.0$), but the relative error based on the imaginary
+part only is wrong ($e3=1.0$), without any correct digits.
+
+The reference \cite{1667289} cites an analysis by Hough which 
+gives a bound for the relative error produced by the Smith's method
+
+\begin{eqnarray}
+|zcomp - zref| <= eps |zref|
+\end{eqnarray}
+
+The paper \cite{214414} (1985), though, makes a distinction between
+the norm $|zcomp - zref|$ and the relative error for the 
+real and imaginary parts. It especially gives an example
+where the imaginary part is wrong.
+
+In the following paragraphs, we detail the derivation
+of an example inspired by \cite{214414}, but which 
+shows the problem with double precision numbers (the example
+in \cite{214414} is based on an abstract machine with 
+exponent range $\pm 99$).
+
+Suppose that $m,n$ are integers so that the following 
+conditions are satisfied
+\begin{eqnarray}
+m >> 0\\
+n >> 0\\
+n >> m
+\end{eqnarray}
+
+One can easily proove that the complex division can be approximated 
+as  
+\begin{eqnarray}
+\frac{10^n + i 10^{-n}}{10^m + i 10^{-m}} &=& 
+\frac{10^{n+m} + 10^{-(m+n)}}{10^{2m} + 10^{-2m}} +  
+i \frac{10^{m-n} - 10^{n-m}}{10^{2m} + 10^{-2m}}
+\end{eqnarray}
+
+Because of the above assumptions, that leads to the following 
+approximation 
+\begin{eqnarray}
+\frac{10^n + i 10^{-n}}{10^m + i 10^{-m}} \approx 10^{n-m} - i 10^{n-3m}
+\end{eqnarray}
+which is correct up to approximately several 100 digits.
+
+One then consider $m,n<308$ but so that 
+\begin{eqnarray}
+n - 3 m = -308
+\end{eqnarray}
+
+For example, the couple $m=205$, $n=307$ satisfies all conditions.
+That leads to the complex division 
+
+\begin{eqnarray}
+\frac{10^{307} + i 10^{-307}}{10^{205} + i 10^{-205}} = 10^{102} - i 10^{-308}
+\end{eqnarray}
+
+It is easy to check that the naive implementation does not 
+proove to be accurate on that example.
+We have already shown that the Smith's method is failing to 
+produce a non zero imaginary part. Indeed, the steps of the 
+Smith algorithm are the following 
+
+\begin{verbatim}
+If ( |1e-205| <= |1e205| ) > test true
+  r = 1e-205 / 1e205 = 0
+  den  = 1e205 +  0 * 1e-205 = 1e205
+  e = (10^307 + 10^-307 * 0) / 1e205 = 1e102
+  f = (10^-307 - 10^307 * 0) / 1e205 = 0
+\end{verbatim}
+
+The real part is accurate, but the imaginary part has no 
+correct digit. One can also check that the inequality $|zcomp - zref| <= eps |zref|$ 
+is still true.
+
+The limits of Smith's method have been reduced in Stewart's paper \cite{214414}.
+The new algorithm is based on the theorem which states that if $x_1 \ldots x_n$
+are $n$ floating point representable numbers then $\min_{i=1,n}(x_i) \max_{i=1,n}(x_i)$
+is also representable. The algorithm uses that theorem to perform a 
+correct computation.
+
+Stewart's algorithm is superseded by the one by Li et Al \cite{567808}, but 
+also by Kahan's \cite{KAHAN1987}, which, from  \cite{1039814}, is the one implemented
+in the C99 standard.
+
+\subsection{References}
+
+The 1962 paper by R. Smith \cite{368661} describes the algorithm which is used in 
+Scilab. The Goldberg paper \cite{WhatEveryComputerScientist} introduces many 
+of the subjects presented in this document, including the problem of the 
+complex division. The 1985 paper by Stewart \cite{214414} gives insight to 
+distinguish between the relative error of the complex numbers and the relative
+error made on real and imaginary parts. It also gives an algorithm based 
+on min and max functions. Knuth's bible \cite{artcomputerKnuthVol2} presents
+the Smith's method in section 4.2.1, as exercize 16. Knuth gives also 
+references \cite{Wynn:1962:AAP} and \cite{DBLP:journals/cacm/Friedland67}.
+The 1967 paper by Friedland \cite{DBLP:journals/cacm/Friedland67} describes 
+two algorithm to compute the absolute value of a complex number 
+$|x+iy| = \sqrt{x^2+y^2}$ and the square root of a 
+complex number $\sqrt{x+iy}$.
+
+
+

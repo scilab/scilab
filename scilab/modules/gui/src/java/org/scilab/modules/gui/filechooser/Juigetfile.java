@@ -46,7 +46,7 @@ public class Juigetfile {
 	public static void uigetfile() {	
 		String[] mask = new String[DEFAULT_MASK.length];
 		String[] description = new String[0];
-		mask = DEFAULT_MASK;		
+		mask = DEFAULT_MASK;
 		
 		uigetfile(mask, description, DEFAULT_INITIAL_DIRECTORY, DEFAULT_BOX_TITLE, DEFAULT_MULTIPLE_SELECTION);
 	}

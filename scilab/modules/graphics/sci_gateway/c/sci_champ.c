@@ -21,11 +21,8 @@
 #include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DestroyObjects.h"
 #include "DefaultCommandArg.h"
 #include "Champ.h"
-#include "GetProperty.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

@@ -15,13 +15,8 @@
 /* file: sci_draw.h                                                       */
 /* desc : interface for draw routine                                      */
 /*------------------------------------------------------------------------*/
-
+#include "stack-c.h"
 #include "sci_draw.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
-#include "DrawObjects.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "HandleManagement.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"

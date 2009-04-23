@@ -19,8 +19,6 @@
 
 #include "sci_delete.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "DestroyObjects.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -35,6 +33,7 @@
 #include "DestroyUicontrol.h"
 #include "DestroyWaitBar.h"
 #include "Scierror.h"
+#include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
@@ -132,17 +131,21 @@ int sci_delete(char *fname,unsigned long fname_len)
         BOOL selected = sciGetIsSelected( pobj ) ;
         sciPointObj * parentObj = sciGetParent(pobj);
         startFigureDataWriting(parentFigure);
-        sciSetCurrentObj(parentObj) ; /* A LAISSER F.Leray 25.03.04*/
+				if (sciIsCurrentObject(pobj))
+				{
+					/* If the object is the current one, modify the current object pointer */
+					sciSetCurrentObj(parentObj) ; /* A LAISSER F.Leray 25.03.04*/
+				}
         sciDelGraphicObj( pobj ) ; /* don't use pobj after this point */
         pobj = NULL ;
         
         /* test here: we could have deleted the selected subwindow, we must choose an other */
         /* We must always have one selected subwindow (if at least one subwindow exists) */
         if ( objType == SCI_SUBWIN && selected )
-          {
-            /* we have to select antoher subwindow if one exists at least */
-            sciSelectFirstSubwin( parentFigure ) ;
-          }
+        {
+          /* we have to select antoher subwindow if one exists at least */
+          sciSelectFirstSubwin( parentFigure ) ;
+        }
         
         endFigureDataWriting(parentFigure);
         

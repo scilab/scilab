@@ -19,6 +19,8 @@
 #ifndef _SET_GET_HASHTABLE_H_
 #define _SET_GET_HASHTABLE_H_
 
+#include <stdlib.h>
+
 #include "hashtable.h"
 #include "ObjectStructure.h"
 

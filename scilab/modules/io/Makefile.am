@@ -6,7 +6,8 @@
 IO_C_SOURCES = src/c/getpidc.c \
 src/c/setenvc.c \
 src/c/systemc.c \
-src/c/getenvc.c
+src/c/getenvc.c \
+src/c/GetenvB.c
 
 IO_FORTRAN_SOURCES = src/fortran/v2unit.f \
 src/fortran/newsave.f \
@@ -54,14 +55,12 @@ sci_gateway/fortran/intexec.f \
 sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
-sci_gateway/fortran/intgetenv.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intprint.f \
 sci_gateway/fortran/intdisp.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \
-sci_gateway/fortran/intdiary.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
@@ -116,6 +115,7 @@ libsciio_la_includedir=$(pkgincludedir)/io
 libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
 includes/gw_io.h \
 includes/getenvc.h \
-includes/setenvc.h
+includes/setenvc.h \
+includes/GetenvB.h
 
 include $(top_srcdir)/Makefile.incl.am

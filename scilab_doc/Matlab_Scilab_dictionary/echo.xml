@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="echo">
+  <refnamediv>
+    <refname>echo</refname>
+    <refpurpose>(Matlab function) Echo lines during execution</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>
+      <informaltable border="1" pgwide="1">
+        <tr>
+          <td align="center">
+            <emphasis role="bold">Matlab</emphasis>
+          </td>
+          <td align="center">
+            <emphasis role="bold">Scilab</emphasis>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <programlisting role="example"><![CDATA[
+echo
+]]></programlisting>
+          </td>
+          <td>
+            <programlisting role="example"><![CDATA[
+mode
+]]></programlisting>
+          </td>
+        </tr>
+      </informaltable>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+Scilab <emphasis role="bold">mode</emphasis> and Matlab <emphasis role="bold">echo</emphasis> are not exactly equivalents but they both change the information displayed during execution. Scilab <emphasis role="bold">mode</emphasis> has to be called inside a script or a function but Matlab <emphasis role="bold">echo</emphasis> can be called from prompt. However, some uses are equivalents such as:
+</para>
+    <variablelist>
+      <varlistentry>
+        <term>echo</term>
+        <listitem>
+          <para> is equivalent to Scilab <emphasis role="bold">mode(abs(mode()-1))</emphasis> for scripts and non-compiled functions
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>echo on</term>
+        <listitem>
+          <para> is equivalent to Scilab <emphasis role="bold">mode(1)</emphasis> for scripts and non-compiled functions
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>echo off</term>
+        <listitem>
+          <para> is equivalent to Scilab <emphasis role="bold">mode(0)</emphasis>
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

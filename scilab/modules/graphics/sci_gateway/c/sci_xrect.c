@@ -20,8 +20,6 @@
 
 #include "sci_xrect.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "sciCall.h"
 #include "DrawObjects.h"
 #include "GetProperty.h"

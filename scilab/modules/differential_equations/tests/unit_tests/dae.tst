@@ -160,6 +160,9 @@ t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(1:2,qq);y0d1=yy(2:3,qq);
 if abs(nn(1)-162.57763)>0.004 then pause,end
 
 //same with C code
+
+ilib_verbose(0);
+
 code=['#include <math.h>'
       'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
       '{res[0] = yd[0] - y[1];'
@@ -184,8 +187,6 @@ t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',hotd);
 
-
-
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
@@ -195,7 +196,6 @@ t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 [yy,nn,hotd]=dae("root",[y0,y0d],t0,t,atol,rtol,'res22','jac22',ng,'gr22');
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,'res22','jac22',ng,'gr22',hotd);
-
 
 //banded systems
 
@@ -305,4 +305,5 @@ ilib_for_link(['myres','myjac'],'band.o',[],'c',TMPDIR+'/Makefile',TMPDIR+'/band
 exec(TMPDIR+'/bandloader.sce'); //incremental linking
 y0=ones(n,1);yd0=0*y0;
 yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
-if (norm(y-yb) - 8.602D-13) > %eps then pause,end
+a = norm(y-yb);
+if (a > %eps * 1e5) then pause,end

@@ -17,12 +17,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xgrid.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "stack-c.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
-#include "DrawObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 

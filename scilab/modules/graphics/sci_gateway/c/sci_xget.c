@@ -21,14 +21,10 @@
 #include "sci_demo.h"
 #include "XsetXgetParameters.h"
 #include "GetProperty.h"
-#include "ObjectStructure.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "Format.h"
 #include "Scierror.h"
 #include "ObjectSelection.h"
-#include "msgs.h"
 #include "localization.h"
 #include "returnProperty.h"
 /*--------------------------------------------------------------------------*/
@@ -177,7 +173,7 @@ int sci_xget(char *fname,unsigned long fname_len)
     }
     else if(strcmp(cstk(l1),"thickness") == 0)
     {
-      x1[0] = sciGetLineWidth(sciGetCurrentSubWin());
+      x1[0] = (int) sciGetLineWidth(sciGetCurrentSubWin());
       x2 = 1;
     }
     else if(strcmp(cstk(l1),"wdim") == 0)

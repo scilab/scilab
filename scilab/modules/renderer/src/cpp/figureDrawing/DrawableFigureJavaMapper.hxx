@@ -97,6 +97,10 @@ public:
 
 	virtual void setUseSingleBuffer(bool useSingleBuffer);
 
+  int getAntialiasingQuality(void);
+	
+	void setAntialiasingQuality(int quality);
+
   static bool isAbleToCreateFigure(void);
   /*----------------------------------------------------------------------*/
 

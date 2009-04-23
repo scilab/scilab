@@ -22,27 +22,17 @@
  *    objects.
  --------------------------------------------------------------------------*/
 
-#include <stdio.h> 
-#include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
-
 #include "GetProperty.h"
-#include "BuildObjects.h"
-#include "SetProperty.h"
-#include "WindowList.h"
 #include "Scierror.h"
-#include "PloEch.h"
 #include "InitObjects.h"
-#include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "GetJavaProperty.h"
 #include "BasicAlgos.h"
 #include "localization.h"
 #include "Axes.h"
+#include "stack-c.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h" /* MALLOC */
 
@@ -488,8 +478,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 /**sciGetLineWidth
  * Gets the line width
  */
-int
-sciGetLineWidth (sciPointObj * pobj)
+double sciGetLineWidth (sciPointObj * pobj)
 {
   if (sciGetGraphicContext(pobj) != NULL)
   {
@@ -599,6 +588,14 @@ sciGetIsLine (sciPointObj * pobj)
 		printSetGetErrorMessage("line_mode");
 		return FALSE;
 	}
+}
+
+/**
+ * @return TRUE if the object is actually displaying lines.
+ */
+BOOL sciGetIsDisplayingLines(sciPointObj * pObj)
+{
+	return sciGetIsLine(pObj) && (sciGetLineWidth(pObj) > 0.0);
 }
 
 /**sciGetIsFilled
@@ -3858,6 +3855,28 @@ BOOL sciGetGridFront(sciPointObj * pObj)
     printSetGetErrorMessage("grid_position");
 		return FALSE;
   }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * @return the number of pass used for antialiasing or 0 if antialiasing is disable.
+ */
+int sciGetAntialiasingQuality(sciPointObj * pObj)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_FIGURE:
+		if (isFigureModel(pObj))
+		{
+			return pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality;
+		}
+		else
+		{
+			return sciGetJavaAntialiasingQuality(pObj);
+		}
+  default:
+    printSetGetErrorMessage("anti_aliasing");
+		return FALSE;
+	}
 }
 /*----------------------------------------------------------------------------------*/
 /**

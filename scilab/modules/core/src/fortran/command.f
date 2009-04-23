@@ -37,7 +37,7 @@ C
       data blank/40/
       data func/202841615,387453469,nz2*673720360/
    
-C     if, else, for, while, end, select, case, quit, return
+C     if, else, for, while, end, select, case, quit, quit, return
       data ((cmd(i,j), i = 1,nsiz), j = 1,10)/
      &     673713938,nz1*673720360,
      &     236721422,nz1*673720360,
@@ -47,7 +47,7 @@ C     if, else, for, while, end, select, case, quit, return
      $     236260892,673717516,nz2*673720360,
      &     236718604,nz1*673720360,
      $     487726618,nz1*673720360,
-     &     487727374,nz1*673720360,
+     $     487726618,nz1*673720360,
      $     505220635,673715995,nz2*673720360/
 C     help, what, who, pause, clear, resume, then, do, apropos, abort
       data ((cmd(i,j), i = 1,nsiz), j = 11,20)/
@@ -162,7 +162,7 @@ C     mots cles if  then else for do  while end case selec
       goto (32,33,30,31,35,36,37) k
       goto (42,42) k-16
 C     
-      goto (50,55,45,16,16,16,20,16,45,16,
+      goto (50,50,45,16,16,16,20,16,45,16,
      &     16,16,120,130,38,140,150,16,16,130,160,170) k-7
  16   call error(16)
       return
@@ -314,26 +314,6 @@ C     quit (sortie)
       goto 998
 
 C     
-C     -------------
-C     exit
-C     -------------
-C     
- 55   continue
-c     if special compilation mode skip  commands
-      if (comp(3).eq.1) then
-         fin=0
-         fun=0
-         return
-      endif
-C     compilation exit:<20>
-      if (compil(20,0,0,0,0)) return
-      if (niv.gt.0) then
-         call sciquit
-         stop
-      endif
-      fun = 99
-      goto 998
-C     
 C     pwd
 C     ---
  140  continue
@@ -348,9 +328,9 @@ c     if special compilation mode skip  commands
          fun=0
          return
       endif
-      fun=13
+      fun=34
 c     if you modify pwd position in core gateway , you need change fin      
-      fin=40
+      fin=34
       rhs=0
       return
 C     

@@ -120,13 +120,14 @@ int C2F(parse)(void)
 				  673720360,673720360 };
   /* static int catch[6] = {203229708,673720337,673720360,673720360, 673720360,673720360 };*/
 
-  static int *Ids     = C2F(recu).ids-nsiz-1;
-  static int *Rstk    = C2F(recu).rstk-1;
-  static int *Pstk    = C2F(recu).pstk-1;
-  static int *Lstk    = C2F(vstk).lstk-1;
-  static int *Lin     = C2F(iop).lin-1;
-  static int *Lpt     = C2F(iop).lpt-1;
-  static int *Lct     = C2F(iop).lct-1;
+  static int *Ids     = C2F(recu).ids - nsiz - 1;
+  static int *Rstk    = C2F(recu).rstk - 1;
+  static int *Pstk    = C2F(recu).pstk - 1;
+  static int *Lstk    = C2F(vstk).lstk - 1;
+  static int *Lin     = C2F(iop).lin - 1;
+  static int *Lct     = C2F(iop).lct - 1;
+  static int *Lpt     = C2F(iop).lpt - 1;
+  
 
   /* System generated locals */
   int i__2, i__3;
@@ -213,7 +214,7 @@ int C2F(parse)(void)
   /* ------------------- */
  L12:
   if (Lct[4] <= -10) {
-    Lct[4] = -Lct[4] - 11;
+	Lct[4] = -Lct[4] - 11;
   } else {
     if (Lct[4] / 2 % 2 == 1) {
       i__2 = Lct[4] / 4;
@@ -315,7 +316,7 @@ int C2F(parse)(void)
   Fin = 2;
   if (Lct[4] <= -10) {
     Fin = -1;
-    Lct[4] = -Lct[4] - 11;
+	Lct[4] = -Lct[4] - 11;
   }
   /*     *call* macro */
   goto L88;

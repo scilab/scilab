@@ -26,7 +26,7 @@
 #include "localization.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_isdir)(char *fname,unsigned long fname_len)
+int sci_isdir(char *fname,unsigned long fname_len)
 {
 	int l1 = 0,n1 = 0,m1 = 0;
 

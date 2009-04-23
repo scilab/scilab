@@ -16,15 +16,9 @@
 /* desc : interface for plot2d routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
-
 #include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
-#include "DestroyObjects.h"
-#include "GetProperty.h"
 #include "BasicAlgos.h"
 #include "sciCall.h"
 #include "DefaultCommandArg.h"
@@ -32,7 +26,6 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "CurrentObjectsManagement.h"
-#include "Scierror.h"
 
 /*------------------------------------------------------------------------*/
 int sci_plot2d( char * fname, unsigned long fname_len )

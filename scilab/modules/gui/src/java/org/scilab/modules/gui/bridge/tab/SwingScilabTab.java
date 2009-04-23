@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import javax.swing.Action;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import org.flexdock.docking.DockingConstants;
@@ -41,6 +42,7 @@ import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
+import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -60,6 +62,7 @@ import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
 import org.scilab.modules.gui.toolbar.ToolBar;
+import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.BarUpdater;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.SciUndockingAction;
@@ -102,7 +105,7 @@ public class SwingScilabTab extends View implements SimpleTab {
     public SwingScilabTab(String name) {
 	super(name, name, name);
 
-	// This button is "overloaded" when we add a callback
+	//This button is "overloaded" when we add a callback
 	//this.addAction(DockingConstants.CLOSE_ACTION);
 	// Removed because make JOGL crash when "Unpin"
 	//this.addAction(DockingConstants.PIN_ACTION);
@@ -684,7 +687,55 @@ public class SwingScilabTab extends View implements SimpleTab {
     private void removeMember(SwingScilabPopupMenu member) {
 	contentPane.removeWidget(member);
     }
+    
+    /**
+     * Add a Tree member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addMember(Tree member) {
+	return this.addMember((SwingScilabTree) member.getAsSimpleTree());
+    }
 
+    /**
+     * Add a Tree member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addMember(SwingScilabTree member) {
+	return contentPane.addWidget(member.getAsComponent());
+    }
+
+    
+    /**
+     * Add a Tree member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addTree(SwingScilabTree member) {
+    	this.setContentPane(member.getAsComponent());
+    	return this.getComponentZOrder(member.getAsComponent());
+    }
+
+    /**
+     * Remove a PopupMenu from its container
+     * @param member the PopupMenu to remove
+     */
+    public void removeMember(Tree member) {
+	this.removeMember((SwingScilabTree) member.getAsSimpleTree());
+    }
+
+    /**
+     * Remove a PopupMenu from its container
+     * @param member the PopupMenu to remove
+     */
+    private void removeMember(SwingScilabTree member) {
+	contentPane.removeTree(member);
+    }
+    
+    
+    
+    
     /**
      * Add a member (dockable element) to container and returns its index
      * @param member the member to add
@@ -778,9 +829,13 @@ public class SwingScilabTab extends View implements SimpleTab {
      * @param callback the callback to set.
      */
     public void setCallback(CallBack callback) {
-	callback.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
-	this.addAction(callback);
-
+	if (callback != null) {
+	    callback.putValue(Action.NAME, DockingConstants.CLOSE_ACTION);
+	    this.addAction(callback);
+	}
+	else {
+	    this.addAction(DockingConstants.CLOSE_ACTION);
+	}
 	/* Undock button */
 	SciUndockingAction undockAction = new SciUndockingAction(this);
 	undockAction.putValue(Action.NAME, "undock");

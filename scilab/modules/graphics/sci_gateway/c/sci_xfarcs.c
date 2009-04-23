@@ -17,12 +17,9 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_xfarcs.h"
-#include "GetProperty.h"
-#include "SetProperty.h"
 #include "sciCall.h"
 #include "stack-c.h"
 #include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "localization.h"

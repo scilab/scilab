@@ -13,9 +13,9 @@
 // <-- Short Description -->
 // Completion delete some characters of the string we are typing (With NW mode).
 
-// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
+ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
 if ierr<>0 then pause, end
 ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);

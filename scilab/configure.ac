@@ -1,7 +1,16 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007/2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 dnl Process this file with autoconf to produce a configure script.
 
 
@@ -706,11 +715,35 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	fi
 fi
 
+JAVA_ENABLE=yes
+
+if test -z "$JAVAC"; then
+   JAVA_ENABLE=no
+fi
+
+AC_SUBST(JAVA_ENABLE)
+
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
 AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
+
+##############################################################
+## GUI module
+##############################################################
+
+GUI_ENABLE=no
+
+if test "$JAVA_ENABLE" != no; then
+   GUI_ENABLE=yes
+fi
+
+if test "$with_gui" != no; then
+   GUI_ENABLE=yes
+fi
+
+AC_SUBST(GUI_ENABLE)
 
 ##############################################################
 ## test for functions in standard C library and C math library
@@ -769,7 +802,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -867,7 +900,8 @@ AC_ARG_WITH(ocaml,
 
 
 SCICOS_ENABLE=no
-if test "$with_scicos" != no -a "$with_gui" != no; then
+
+if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
    save_LIBS="$LIBS"
@@ -889,10 +923,16 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 		fi
 		SCICOS_ENABLE=yes
 fi
+
+
+
+
+
+
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
-AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
+AM_CONDITIONAL(OCAML,  test "$with_ocaml" != no)		
+AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
 #################
@@ -982,27 +1022,18 @@ AM_CONDITIONAL(GENERATE_LOCALIZATION_FILES, test "$BUILD_LOCALIZATION_ENABLE" = 
 #######################
 AC_MSG_CHECKING([if BLAS, ATLAS or MKL is available])
 echo ""
-EMBEDDED_BLAS=0
 ACX_BLAS(
 		[AC_MSG_RESULT([$BLAS_TYPE found])]
 		,
-		AC_MSG_WARN([Impossible to find a blas compatible library (see BLAS or ATLAS). Use the version of generic blas embedded])
-		EMBEDDED_BLAS=1
+		AC_MSG_ERROR([Impossible to find a BLAS compatible library (see BLAS or ATLAS).])
 		)
-AM_CONDITIONAL(USE_EMBEDDED_BLAS, test $EMBEDDED_BLAS = 1)
-
 
 AC_MSG_CHECKING([if LAPACK is available])
 echo ""
-EMBEDDED_LAPACK=0
 ACX_LAPACK(
 		[AC_MSG_RESULT([$LAPACK_TYPE found])],
-		AC_MSG_WARN([Impossible to find the LAPACK library. Use the version of lapack embedded])
-		EMBEDDED_LAPACK=1
+		AC_MSG_ERROR([Impossible to find the LAPACK library.])
 		)
-AM_CONDITIONAL(USE_EMBEDDED_LAPACK, test $EMBEDDED_LAPACK = 1)
-
-
 
 #################
 ## UMFPACK
@@ -1025,8 +1056,7 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 #######################
 
 AC_PCRE()
-	  	 
- #############################################
+
 #################
 ## Tcl/Tk library
 #################
@@ -1140,19 +1170,28 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 ## Documentation management #
 #############################
 
+HELP_ENABLE=yes
+
 AC_ARG_ENABLE(build-help,
 		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
-HELP_ENABLE=no
 
 if test "$enable_build_help" != no; then
     AC_DOCBOOK()
-	HELP_ENABLE=yes
+else
+    HELP_ENABLE=no
+fi
 
-fi 
+if test "$JAVA_ENABLE" = no; then
+    HELP_ENABLE=no
+fi
+
+AC_SUBST(HELP_ENABLE)
+
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###
+
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files])
 		)
@@ -1162,6 +1201,53 @@ if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
 fi 
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 
+##############################################################
+## Javasci module
+##############################################################
+
+JAVASCI_ENABLE=yes
+
+if test "$JAVA_ENABLE" = no -o "$JAVASCI" = no; then
+   JAVASCI_ENABLE=no
+fi
+
+AC_SUBST(JAVASCI_ENABLE)
+
+##############################################################
+## Scipad module
+##############################################################
+
+SCIPAD_ENABLE=yes
+
+if test "$WITH_TKSCI" = no -o "$GUI_ENABLE" = no; then
+   SCIPAD_ENABLE=no
+fi
+
+AC_SUBST(SCIPAD_ENABLE)
+
+##############################################################
+## demo_tools module
+##############################################################
+
+DEMOTOOLS_ENABLE=yes
+
+if test "$GUI_ENABLE" = no; then
+   DEMOTOOLS_ENABLE=yes
+fi
+
+AC_SUBST(DEMOTOOLS_ENABLE)
+
+##############################################################
+## graphics/renderer/graphic_export module
+##############################################################
+
+GRAPHICS_ENABLE=yes
+
+if test "$GUI_ENABLE" = no; then
+   GRAPHICS_ENABLE=no
+fi
+
+AC_SUBST(GRAPHICS_ENABLE)
 
 #########################
 ## libtool
@@ -1235,8 +1321,6 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 AC_CONFIG_FILES([
-libs/lapack/Makefile
-libs/blas/Makefile
 libs/MALLOC/Makefile
 libs/dynamiclibrary/Makefile
 libs/doublylinkedlist/Makefile
@@ -1485,19 +1569,10 @@ fi
 
 echo ""
 echo "BLAS/LAPACK/ATLAS Configuration:"
-if test $EMBEDDED_BLAS = 0; then
-   echo "BLAS LIBS ............. = $BLAS_LIBS"
-   echo "BLAS TYPE ............. = $BLAS_TYPE"
-else
-   echo "BLAS LIBS ............. = Use the generic version of BLAS embedded"
-fi
-
-if test $EMBEDDED_LAPACK = 0; then
-   echo "LAPACK LIBS ........... = $LAPACK_LIBS"
-   echo "LAPACK TYPE ........... = $LAPACK_TYPE"
-else
-   echo "LAPACK LIBS ........... = Use the LAPACK embedded"
-fi
+echo "BLAS LIBS ............. = $BLAS_LIBS"
+echo "BLAS TYPE ............. = $BLAS_TYPE"
+echo "LAPACK LIBS ........... = $LAPACK_LIBS"
+echo "LAPACK TYPE ........... = $LAPACK_TYPE"
 
 echo ""
 
@@ -1645,5 +1720,4 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
-echo "
-"
+echo ""

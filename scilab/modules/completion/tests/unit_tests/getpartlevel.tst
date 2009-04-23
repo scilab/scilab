@@ -4,10 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
-// <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 
+ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
 if ierr<>0 then pause, end
 ierr = exec(SCI+"/modules/completion/tests/utilities/loader.sce","errcatch",-1);
@@ -16,7 +15,7 @@ if ierr<>0 then pause, end
 r = getpartlevel('cd c:\Program Files\scilab-5.1');
 if r <>'1' then pause,end;
 
-r = getpartlevel('cd(""c:\Program Files\scilab-5.1')
+r = getpartlevel('cd(""c:\Program Files\scilab-5.1');
 if r <>'1' then pause,end;
 
 r = getpartlevel('printf(""hello"")');

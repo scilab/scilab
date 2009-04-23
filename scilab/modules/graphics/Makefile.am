@@ -1,17 +1,15 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 
-# the module Doublylinkedlist  is included here... of course, it is not
-# used in the mode without gui but It causes some silly problems with includes
-libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
-	-I$(srcdir)/includes/ \
-	-I$(srcdir)/src/c/ \
-	-I$(srcdir)/src/c/getHandleProperty/ \
-	-I$(top_srcdir)/modules/gui/includes/ \
-	-I$(top_srcdir)/modules/fileio/includes/ \
-	-I$(top_srcdir)/modules/string/includes/
 
 #### target ####
 modulename=graphics
@@ -24,7 +22,18 @@ libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
 libscigraphics_la_etcdir = $(mydatadir)/etc
 libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
 
-if GUI
+
+
+# the module Doublylinkedlist  is included here... of course, it is not
+# used in the mode without gui but It causes some silly problems with includes
+libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/c/getHandleProperty/ \
+	-I$(top_srcdir)/modules/gui/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/string/includes/
+
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
@@ -161,6 +170,7 @@ src/c/getHandleProperty/get_filled_property.c \
 src/c/getHandleProperty/get_color_range_property.c \
 src/c/getHandleProperty/get_outside_colors_property.c \
 src/c/getHandleProperty/get_grid_position_property.c \
+src/c/getHandleProperty/get_anti_aliasing_property.c \
 src/c/getHandleProperty/GetHashTable.c \
 src/c/graphicModuleLoad.c \
 src/c/getHandleProperty/set_old_style_property.c \
@@ -297,6 +307,7 @@ src/c/getHandleProperty/set_filled_property.c \
 src/c/getHandleProperty/set_color_range_property.c \
 src/c/getHandleProperty/set_outside_colors_property.c \
 src/c/getHandleProperty/set_grid_position_property.c \
+src/c/getHandleProperty/set_anti_aliasing_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \
@@ -425,13 +436,6 @@ INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
 libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la
 
 
-if USE_EMBEDDED_LAPACK
-libscigraphics_la_LIBADD += $(top_builddir)/libs/lapack/libscilapack.la
-endif
-
-if USE_EMBEDDED_BLAS
-libscigraphics_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
 
 #### graphics : gateway declaration ####
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -533,8 +537,6 @@ includes/Contour.h \
 includes/getDictionaryGetProperties.h \
 includes/getDictionarySetProperties.h \
 includes/GrayPlot.h \
-includes/sci_xload.h \
-includes/sci_xsave.h \
 includes/TerminateGraphics.h \
 includes/sci_rubberbox.h \
 includes/sci_rotate_axes.h \
@@ -581,21 +583,29 @@ tcl/ged/images/rectangle.gif \
 tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
-USEANT=1
+libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 
-else
+libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
-GRAPHICS_C_SOURCES = src/nographics/nographics.c
-
-libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES)
+libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
 libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
 
+# endif
+
+pkglib_LTLIBRARIES = libscigraphics-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscigraphics.la
+endif
+
+libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
+
+
+if GUI
+USEANT=1
 endif
 
 
-pkglib_LTLIBRARIES = libscigraphics.la
-
-libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) $(TCLTK_LIBS) $(X_LIBS)
-
 include $(top_srcdir)/Makefile.incl.am
+ 

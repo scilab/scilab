@@ -6,7 +6,13 @@ SEP  #6 : An interface to CLP
 SEP  #7 : Object Oriented Programming under Scilab
 SEP  #8 : Writing Scilab function uigetfile
 SEP  #9 : Scipad / New function "Create help from files"
-SEP #10 : 
-SEP #11 : 
+SEP #10 : montecarlo
+SEP #11 : quasirandom
 SEP #12 : Scipad / Add support for text encodings
 SEP #13 : Add missing trigonometric functions
+SEP #14 : OS Tag added in the JVM options configuration file
+SEP #15 : Scilab Tree component
+SEP #16 : anti aliasing
+SEP #17 : add verbose option for dynamic link
+SEP #18 : scilab new binaries (linux, mac)
+SEP #19 : extend exit

@@ -16,8 +16,6 @@ com_
 callFunctionFromGateway
 getlibrarieslist
 getlistmacrosfromlibrary
-scigetcwd
-cluni0_
 getVariablesName
 getcommandkeywords
 GetFunctionsList

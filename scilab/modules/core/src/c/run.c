@@ -88,8 +88,8 @@ int C2F(run)(void)
   static int    *Lstk = C2F(vstk).lstk-1;
   static int    *Lin  = C2F(iop).lin-1;
   static int    *Lpt  = C2F(iop).lpt-1;
-  static int    *Lct  = C2F(iop).lct-1;
   static int  *Infstk = C2F(vstk).infstk-1;
+  static int    *Lct = C2F(iop).lct - 1;
 
   static double equiv_4[1];
 #define x (equiv_4)
@@ -765,7 +765,7 @@ int C2F(run)(void)
   Fin = 2;
   if (Lct[4] <= -10) {
     Fin = -1;
-    Lct[4] = -Lct[4] - 11;
+	Lct[4] = -Lct[4] - 11;
   }
   Ids[1 + Pt * nsiz] = lc;
   Ids[2 + Pt * nsiz] = Top;
@@ -859,7 +859,7 @@ int C2F(run)(void)
     Lpt[2] = Lin[2 + k];
     Lpt[3] = Lin[3 + k];
     Lpt[4] = Lin[4 + k];
-    Lct[4] = Lin[6 + k ];
+	Lct[4] = Lin[6 + k ];
     Lpt[6] = k;
     if (Rstk[Pt] <= 502) {
       if (Pt>1) {
@@ -1240,7 +1240,7 @@ int C2F(run)(void)
     goto L253;
   }
   /*     fin points on the newly saved variable */
-  if (!(Lct[4] >= 0 && ip != semi && Fin != 0)) goto L252;
+  if (!(Lct[4] >= 0 && ip != semi && Fin != 0))  goto L252;
   ifin=Fin;
  L251:
   C2F(print)(istk(li), &ifin, &C2F(iop).wte);
@@ -1336,7 +1336,7 @@ int C2F(run)(void)
   C2F(errgst).err1  = Ids[4 + Pt * nsiz];
   C2F(errgst).errpt = Ids[5 + Pt * nsiz];
   C2F(com).sym      = Ids[6 + Pt * nsiz]/10000;
-  Lct[4]            = Ids[6 + Pt * nsiz]-10000*C2F(com).sym-100;
+  Lct[4]            = Ids[6 + Pt * nsiz]-10000*C2F(com).sym - 100;
   if (ok) {
     /* no error occured in the try part*/
     nc = *istk(l0-1);

@@ -26,13 +26,10 @@
  --------------------------------------------------------------------------*/
 
 
-#include "ObjectStructure.h"
-#include "HandleManagement.h"
-
-
 #ifndef __SCI_SET_PROPERTY__
 #define __SCI_SET_PROPERTY__
 
+#include "ObjectStructure.h"
 #include "BOOL.h"
 
 void Obj_RedrawNewAngle(sciPointObj * pSubwin, double alpha, double theta); /* SET  */
@@ -53,8 +50,8 @@ int sciSetBackground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 int sciInitForeground( sciPointObj * pobj, int colorindex ) ;
 int sciSetForeground ( sciPointObj * pobj, int colorindex ) ; /* SET */
 
-int sciInitLineWidth( sciPointObj * pobj, int linewidth ) ;
-int sciSetLineWidth ( sciPointObj * pobj, int linewidth ) ;  /* SET */
+int sciInitLineWidth( sciPointObj * pobj, double linewidth ) ;
+int sciSetLineWidth ( sciPointObj * pobj, double linewidth ) ;  /* SET */
 
 int sciInitIsLine(sciPointObj * pobj, BOOL isline);
 int sciSetIsLine (sciPointObj * pobj, BOOL isline);  /* SET */
@@ -272,6 +269,9 @@ int sciSetGridFront(sciPointObj * pObj, BOOL gridFront); /* SET */
 
 int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location);
 int sciSetLegendLocation(sciPointObj * pObj, sciLegendPlace location); /* SET */
+
+int sciInitAntialiasingQuality(sciPointObj * pObj, int quality);
+int sciSetAntialiasingQuality(sciPointObj * pObj, int quality); /* SET */
 
 BOOL sciCheckColorIndex(sciPointObj * pObj, int colorIndex);
 

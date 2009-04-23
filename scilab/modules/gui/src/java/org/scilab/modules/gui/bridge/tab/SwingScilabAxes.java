@@ -22,10 +22,12 @@ import java.security.InvalidParameterException;
 
 import javax.swing.JComponent;
 import javax.swing.JLayeredPane;
+import javax.swing.JScrollPane;
 import javax.swing.Scrollable;
 
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.frame.SwingScilabFrame;
+import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.events.AxesRotationTracker;
 import org.scilab.modules.gui.events.ScilabEventListener;
@@ -332,7 +334,21 @@ public class SwingScilabAxes extends JLayeredPane implements Scrollable {
 	public void removeFrame(SwingScilabFrame frame) {
 		ScilabSwingUtilities.removeFromParent(frame);
 	}
+	
+	
+	public int addTree(SwingScilabTree member) {
+		// Add the jtree to a scrolling pane		
+		this.add(member.getAsComponent(), WIDGET_LAYER, TOP_POSITION);
+		//this.setAutoResizeMode(false);
+		return this.getComponentZOrder(member.getAsComponent());
+	}
 
+	public int removeTree(SwingScilabTree member) {
+		// Add the jtree to a scrolling pane
+		this.remove(member.getAsComponent());
+		return this.getComponentZOrder(member.getAsComponent());
+	}
+	
 	/**
 	 * Get the displacement in pixel that should be used for rotating axes
 	 * @param displacement out parameter, [x,y] array of displacement in pixels

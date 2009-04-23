@@ -16,6 +16,7 @@
 #include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
+#include "stack-c.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "CurrentObjectsManagement.h"
@@ -24,7 +25,7 @@ extern "C"{
 #include "getPropertyAssignedValue.h"
 #include "localization.h"
 #include "Scierror.h"
-
+#include "HandleManagement.h"
 }
 
 using namespace org_scilab_modules_gui_bridge;

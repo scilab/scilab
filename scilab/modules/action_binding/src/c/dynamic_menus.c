@@ -54,7 +54,7 @@ IMPORT_SIGNAL __threadSignal LaunchScilab;
 
 /*--------------------------------------------------------------------------*/
 static CommandRec *commandQueue = NULL;
-static __threadLock commandQueueSingleAccess;
+static __threadLock commandQueueSingleAccess = __StaticInitLock;
 /*--------------------------------------------------------------------------*/
 int StoreCommand (char *command)
 {

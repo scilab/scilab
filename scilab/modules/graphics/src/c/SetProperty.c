@@ -31,10 +31,6 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <math.h>
-#include <stdlib.h>
-#include <stdarg.h>
-#include <time.h>
 
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
@@ -43,11 +39,9 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "InitObjects.h"
-#include "DrawObjects.h"
 #include "BuildObjects.h"
-#include "math_graphics.h" /* GET_NB_DIGITS */
+#include "math_graphics.h"
 #include "Scierror.h"
-#include "../../gui/includes/GraphicWindow.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "BasicAlgos.h"
@@ -55,10 +49,10 @@
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "GraphicSynchronizerInterface.h"
+#include "HandleManagement.h"
 
 #include "MALLOC.h"
 #include "DrawingBridge.h"
-#include "Scierror.h"
 
 #include "CallFigure.h"
 
@@ -585,7 +579,7 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
 
 }
 
-int sciSetLineWidth( sciPointObj * pobj, int linewidth )
+int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 {
   if ( sciGetLineWidth( pobj ) == linewidth )
   {
@@ -600,10 +594,10 @@ int sciSetLineWidth( sciPointObj * pobj, int linewidth )
  * Sets the line width
  */
 int
-sciInitLineWidth (sciPointObj * pobj, int linewidth)
+sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
 
-  if (linewidth < 0)
+  if (linewidth < 0.0)
     {
       Scierror(999, _("Line width must be greater than %d.\n"),0);
       return -1;
@@ -3878,6 +3872,43 @@ int sciSetGridFront(sciPointObj * pObj, BOOL gridFront)
 		return 1;
 	}
 	return sciInitGridFront(pObj, gridFront);
+}
+/*----------------------------------------------------------------------------------*/
+int sciInitAntialiasingQuality(sciPointObj * pObj, int quality)
+{
+  switch (sciGetEntityType(pObj))
+  {
+	case SCI_FIGURE:
+		if (isFigureModel(pObj))
+		{
+			pFIGURE_FEATURE(pObj)->pModelData->antialiasingQuality = quality;
+		}
+		else
+		{
+			sciSetJavaAntialiasingQuality(pObj, quality);
+		}
+		return 0;
+  default:
+    printSetGetErrorMessage("anti_aliasing");
+		return -1;
+  }
+}
+/*----------------------------------------------------------------------------------*/
+/**
+ * Modify the quality of antialiasing or disable it.
+ * If quality if 0, the antialiasing is disabled,
+ * otherwise it might be either 1, 2, 4, 8 or 16 and then
+ * specifies the number of pass for antialiasing.
+ * @param quality positive integer.
+ */
+int sciSetAntialiasingQuality(sciPointObj * pObj, int quality)
+{
+  if (sciGetAntialiasingQuality(pObj) == quality)
+	{
+		/* nothing to do */
+		return 1;
+	}
+	return sciInitAntialiasingQuality(pObj, quality);
 }
 /*----------------------------------------------------------------------------------*/
 int sciInitLegendLocation(sciPointObj * pObj, sciLegendPlace location)

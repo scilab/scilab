@@ -19,12 +19,12 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
+#include "HandleManagement.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int get_default_axes_property( sciPointObj * pobj )
 {

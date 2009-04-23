@@ -15,6 +15,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
+#include "stack-c.h"
 #include "BuildObjects.h"
 #include "Scierror.h"
 #include "UicontrolStyleToString.h"
@@ -26,6 +27,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "SetPropertyStatus.h"
 #include "WindowList.h"
+#include "HandleManagement.h"
 }
 
 #endif /* __SETUICONTROLPARENT_HXX__ */

@@ -23,9 +23,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "PATH_MAX.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_createdir)(char *fname,unsigned long l)
+int sci_createdir(char *fname,unsigned long l)
 {
 	CheckRhs(1,1);
 	CheckLhs(0,1);

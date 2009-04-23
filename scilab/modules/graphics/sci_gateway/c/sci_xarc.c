@@ -20,8 +20,6 @@
 #include "sciCall.h"
 #include "GetProperty.h"
 #include "stack-c.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "CurrentObjectsManagement.h"
 #include "GraphicSynchronizerInterface.h"
 #include "DrawingBridge.h"

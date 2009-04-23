@@ -52,9 +52,6 @@ INCLUDE_FLAGS = $(libscispecial_functions_la_CFLAGS)
 
 libscispecial_functions_la_LIBADD =   $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/statistics/libscistatistics.la
 
-if USE_EMBEDDED_BLAS
-libscispecial_functions_la_LIBADD += $(top_builddir)/libs/blas/libsciblas.la
-endif
 
 #### Target ######
 modulename=special_functions

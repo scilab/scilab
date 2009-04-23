@@ -15,10 +15,8 @@
 /* file: sci_geom3d.c                                                     */
 /* desc : interface for geom3d routine                                    */
 /*------------------------------------------------------------------------*/
-
+#include "stack-c.h"
 #include "sci_geom3d.h"
-#include "BuildObjects.h"
-#include "gw_graphics.h"
 #include "GetProperty.h"
 #include "CurrentObjectsManagement.h"
 

@@ -19,6 +19,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "setgetSCIpath.h"
+#include "getshortpathname.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 											  char *dynLibName,
@@ -29,13 +31,22 @@ dynamic_gateway_error_code callDynamicGateway(char *moduleName,
 	if (*hlib == NULL)
 	{
 		/* Under Linux/Unix, load thanks to dlopen */
-		*hlib = LoadDynLibrary(dynLibName); 
 #ifdef _MSC_VER
+		BOOL bConvert = FALSE;
+		/* libname on format 8.3 for localization problem */
+		char *shortLibName = getshortpathname(dynLibName,&bConvert);
+		if (shortLibName)
+		{
+			*hlib = LoadDynLibrary(shortLibName); 
+			FREE(shortLibName);
+			shortLibName = NULL;
+		}
 		if (*hlib == NULL) 
 		{
 			return DYN_GW_LOAD_LIBRARY_ERROR;
 		}
 #else
+		*hlib = LoadDynLibrary(dynLibName); 
 		if (*hlib == NULL) 
 		{
 			/* Haven't been able to find the lib with dlopen... 

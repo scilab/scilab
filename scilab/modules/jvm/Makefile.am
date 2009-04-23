@@ -1,7 +1,28 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
+
+#### Target ####
+modulename=jvm
+
+#### jvm : Conf files ####
+libscijvm_la_rootdir = $(mydatadir)
+libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### jvm : init scripts ####
+libscijvm_la_etcdir = $(mydatadir)/etc
+libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
+
+
 
 
 libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
@@ -16,24 +37,19 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/call_scilab/includes \
 			-I$(top_srcdir)/modules/fileio/includes/
 
-pkglib_LTLIBRARIES = libscijvm.la
+pkglib_LTLIBRARIES = libscijvm-disable.la
 
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
+if GUI
+pkglib_LTLIBRARIES += libscijvm.la
+endif
+
+libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) -lpthread -ldl $(XML_LIBS)
 
 if IS_MACOSX 
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
 libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
-modulename=jvm
-
-#### jvm : Conf files ####
-libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-#### jvm : init scripts ####
-libscijvm_la_etcdir = $(mydatadir)/etc
-libscijvm_la_etc_DATA = etc/jvm.quit etc/jvm.start etc/jvm_options.xml
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -52,8 +68,6 @@ includes/catchIfJavaException.h \
 includes/getScilabObject.h \
 includes/loadBackGroundClassPath.h \
 includes/loadOnUseClassPath.h 
-
-if GUI
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_system_getproperty.c \
 sci_gateway/c/sci_system_setproperty.c \
@@ -84,11 +98,11 @@ src/c/getJvmOptions.c
 
 USEANT=1
 
-else
-
-JVM_C_SOURCES = src/nojvm/nojvm.c
-
-endif
+libscijvm_disable_la_SOURCES = src/nojvm/nojvm.c
+libscijvm_disable_la_CFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/call_scilab/includes \
+			-I$(srcdir)/src/c \
+			-I$(top_srcdir)/modules/output_stream/includes/
 
 libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
