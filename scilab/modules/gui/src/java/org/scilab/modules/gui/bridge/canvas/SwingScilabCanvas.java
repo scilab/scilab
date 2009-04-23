@@ -28,7 +28,6 @@ import javax.media.opengl.GLCapabilities;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
 
-import org.scilab.modules.gui.bridge.ScilabBridge;
 import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 import org.scilab.modules.gui.canvas.SimpleCanvas;
 import org.scilab.modules.gui.events.ScilabRubberBox;
@@ -99,8 +98,12 @@ public class SwingScilabCanvas extends SwingScilabCanvasImpl implements SimpleCa
 			// try to enable both
 			// multisampling and accumulation buffers
 			// since we don't know the one that will be choose for now.
-			cap.setSampleBuffers(true);
-			cap.setNumSamples(antialiasingQuality);
+			
+			// According to SEP 16, disable multsampling because of its stability issues
+			//cap.setSampleBuffers(true);
+			//cap.setNumSamples(antialiasingQuality);
+			
+			// request accumulation buffer
 			cap.setAccumRedBits(ACCUM_BUFFER_BITS);
 			cap.setAccumGreenBits(ACCUM_BUFFER_BITS);
 			cap.setAccumBlueBits(ACCUM_BUFFER_BITS);
