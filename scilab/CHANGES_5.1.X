@@ -32,6 +32,8 @@ Help & Tests:
 Bug fixes:
 ==========
 
+ * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic troubble.
+
  * bug 2042 fixed - copy function altered axes properties.
 
  * bug 3264 fixed - More explicit message when too many files have been
