@@ -86,10 +86,7 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		buffer = string;
-        nbcharacters = (long int)strlen(buffer);
 		/* Output to a file */
-		string[nbcharacters] ='\0';
 		if (*lunit == getdiary()) 
 		{
 			diary(string, &nbcharacters,TRUE);
