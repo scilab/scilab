@@ -116,7 +116,7 @@ for i=1:prod(sizevarless(1))
 	ytemp(size(ytemp,"*")+1).entries = permutevarj(k).entries;
       end
     else
-      ytemp= [ytemp (permutevarj(1+lj*(i-1):lj*i))'];
+      ytemp= [ytemp (permutevarj(1+lj*(i-1):lj*i)).'];
     end 
   end
 end

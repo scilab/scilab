@@ -132,7 +132,7 @@ int C2F(xgray)(double *x, double *y, double *z, int *n1, int *n2, char *strflag,
 
   if( bounds_changed || axes_properties_changed )
   {
-    sciDrawObj(sciGetCurrentFigure());
+		forceRedraw(psubwin);
   }
 
   sciSetCurrentObj (ConstructGrayplot 
