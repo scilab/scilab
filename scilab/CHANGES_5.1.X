@@ -62,6 +62,8 @@ Bug fixes:
 
  * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
 
+ * bug 4439 fixed - Unexpected complex conjugates when using cat.
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
