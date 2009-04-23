@@ -46,11 +46,15 @@ c
       call prosca (n,g,g,ps,izs,rzs,dzs)
       gnorm=sqrt(ps)
       if (impres.ge.1) then
-        write (bufstr,900) f,gnorm
+      
+        write (bufstr,900) f
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
+        write (bufstr,990) gnorm
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-900   format (5x,"f         = ",d15.8,
-     /       /,5x,"norm of g = ",d15.8)
+900   format (5x,"f         = ",d15.8)
+990   format (5x,"norm of g = ",d15.8)
 c
 c     ---- mise a l'echelle de la premiere direction de descente
 c
@@ -62,7 +66,7 @@ c
         write(bufstr,899) precos
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-899   format (/," n1qn3a: descent direction -g: precon = ",d10.3)
+899   format (" n1qn3a: descent direction -g: precon = ",d10.3)
       if (impres.eq.3) then
           write(bufstr,901)
           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
@@ -102,12 +106,12 @@ c
         write(bufstr,901)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-901   format (/,1x,79("-"))
+901   format (1x,79("-"))
       if (impres.ge.4) then
         write(bufstr,9010)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-9010  format (1x)
+9010  format (1x,' ')
       if (impres.ge.3) then
         write (bufstr,902) iter,isim,f,hp0
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
@@ -125,7 +129,7 @@ c
         write (bufstr,903)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-903   format (/," n1qn3: line search")
+903   format (" n1qn3: line search")
 c
 c         ---- calcul de tmin
 c
@@ -160,7 +164,7 @@ c
                 write(bufstr,904) iter
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif
-904           format(/," >>> n1qn3 (iteration ",i3,
+904           format(" >>> n1qn3 (iteration ",i3,
      /                "): line search blocked on tmax: ",
      /                "decrease the scaling")
           elseif (moderl.eq.4) then
@@ -194,7 +198,7 @@ c
         write (bufstr,905) eps1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-905   format (/," n1qn3: stopping criterion on g: ",d12.5)
+905   format (" n1qn3: stopping criterion on g: ",d12.5)
       if (eps1.lt.epsg) then
           mode=1
           goto 1000
@@ -205,7 +209,7 @@ c
             write (bufstr,906) iter
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
-906       format (/," >>> n1qn3 (iteration ",i3,
+906       format (" >>> n1qn3 (iteration ",i3,
      /            "): maximal number of iterations")
           goto 1000
       endif
@@ -215,7 +219,7 @@ c
             write (bufstr,907) iter,isim
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
-907       format (/," >>> n1qn3 (iteration ",i3,"): ",i6,
+907       format (" >>> n1qn3 (iteration ",i3,"): ",i6,
      /            " simulations (maximal number reached)")
           goto 1000
       endif
@@ -243,7 +247,7 @@ c
                 write (bufstr,910) dk1/dk
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif
-910           format (/," n1qn3: convergence rate, s(k)/s(k-1) = ",
+910           format (" n1qn3: convergence rate, s(k)/s(k-1) = ",
      /                d12.5)
               dk=dk1
           endif
@@ -255,16 +259,16 @@ c
                 write (bufstr,908) iter,ys
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif
-908           format (/," >>> n1qn3 (iteration ",i2,
+908           format (" >>> n1qn3 (iteration ",i2,
      /                "): the scalar product (y,s) = ",d12.5
-     /                /27x,"is not positive")
+     /                27x,"is not positive")
               goto 1000
           endif
           if (impres.ge.5) then
             write(bufstr,909)
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
-909       format (/," n1qn3: matrix update:")
+909       format (" n1qn3: matrix update:")
 c
 c          ---- ybar et sbar
 c
@@ -348,11 +352,13 @@ c
       if (hp0.ge.0.d+0) then
           mode=7
           if (impres.ge.1) then
-            write (bufstr,913) iter,hp0
+            write (bufstr,913) iter
+            call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+            write (bufstr,9130) hp0
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
-913       format (/," >>> n1qn3 (iteration ",i2,"): "
-     /            /5x," the search direction d is not a",
+913       format (" >>> n1qn3 (iteration ",i2,"): ")
+9130      format (5x," the search direction d is not a",
      /             "descent direction: (g,d) = ",d12.5)
           goto 1000
       endif
@@ -367,7 +373,7 @@ c
           r1=ps*180.d0/pi
           write (bufstr,914) sngl(r1)
           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-914       format (/," n1qn3: descent direction d: ",
+914       format (" n1qn3: descent direction d: ",
      /            "angle(-g,d) = ",f5.1," degrees")
       endif
 c
