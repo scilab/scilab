@@ -579,24 +579,28 @@ public class CoordinateTransformation {
 		if (isAntiAliasingEnable()) {
 			// anti-aliasing is enable, check if we can use
 			// multiSampling
-			if (gl.isExtensionAvailable("GL_VERSION_1_3")) {
-				// multisampling can be enabled
-				// but check if we really have the requested number of buffers
-				int[] nbSampleBuffers = {0};
-				gl.glGetIntegerv(GL.GL_SAMPLES, nbSampleBuffers, 0);
-				if (nbSampleBuffers[0] == antiAliasingQuality) {
-					// every thing ok, we have as many samples as we need
-					useFallBackAntialiasing = false;
-					gl.glEnable(GL.GL_MULTISAMPLE);
-				} else {
-					// we don't have the same, number we need to use accumulation buffers
-					useFallBackAntialiasing = true;
-					gl.glDisable(GL.GL_MULTISAMPLE);
-				}
-			} else {
-				// gl version is lower than 1.3, multi sampling is not available
-				useFallBackAntialiasing = true;
-			}
+//			if (gl.isExtensionAvailable("GL_VERSION_1_3")) {
+//				// multisampling can be enabled
+//				// but check if we really have the requested number of buffers
+//				int[] nbSampleBuffers = {0};
+//				gl.glGetIntegerv(GL.GL_SAMPLES, nbSampleBuffers, 0);
+//				if (nbSampleBuffers[0] == antiAliasingQuality) {
+//					// every thing ok, we have as many samples as we need
+//					useFallBackAntialiasing = false;
+//					gl.glEnable(GL.GL_MULTISAMPLE);
+//				} else {
+//					// we don't have the same, number we need to use accumulation buffers
+//					useFallBackAntialiasing = true;
+//					gl.glDisable(GL.GL_MULTISAMPLE);
+//				}
+//			} else {
+//				// gl version is lower than 1.3, multi sampling is not available
+//				useFallBackAntialiasing = true;
+//			}
+			
+			// According to SEP and because of stability issues, use only Accum buffer antialiasing
+			// and not multisampling
+			useFallBackAntialiasing = true;
 			
 			// if fallback mode is on, check that accum buffer is OK
 			if (useFallBackAntialiasing) {

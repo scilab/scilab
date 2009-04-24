@@ -56,13 +56,9 @@ for i = 1 : size(tab_ref,'*')
   fonttemp = pathtemp + filesep() + fontname;
   copyfile(fontfull, fonttemp);
   ierr = execstr('r = xlfont(fonttemp);','errcatch');
-  if ierr <> 0 then
-		pause
-	end
-	if ~isdef('r') then
-		pause
-	end
-	clear r;
+  if ierr <> 0 then pause, end
+  if ~isdef('r') then pause, end
+  clear r;
 end
 
 xlfont('reset')

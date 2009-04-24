@@ -433,10 +433,6 @@
 				RelativePath=".\sciprint_full.c"
 				>
 			</File>
-			<File
-				RelativePath=".\sciprint_nd.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -492,10 +488,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sciprint_full.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\sciprint_nd.h"
 				>
 			</File>
 		</Filter>

@@ -200,6 +200,9 @@ public class BasicExample {
     <title>See Also</title>
 
     <simplelist type="inline">
+      <member><link linkend="javasci">Javasci</link></member>
+      <member><link linkend="javasci_faq">Javasci FAQ</link></member>
+
       <member><link linkend="SciDouble">SciDouble</link></member>
 
       <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>

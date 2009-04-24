@@ -899,6 +899,7 @@ PYTHON
 SWIG_JAVA
 SWIG_RUNTIME_LIBS_DIR
 SWIG_BIN
+JAVA_DEBUG_OPTIONS
 JAVA_HOME
 JAVA_JNI_LIBS
 JAVA_JNI_INCLUDE
@@ -1050,10 +1051,11 @@ enable_relocatable
 enable_maintainer_mode
 enable_dependency_tracking
 enable_debug
-enable_debugC
-enable_debugCXX
-enable_debugFortran
-enable_debugLinker
+enable_debug_C
+enable_debug_CXX
+enable_debug_java
+enable_debug_fortran
+enable_debug_linker
 enable_stopOnWarning
 with_gcc
 with_g77
@@ -1764,6 +1766,7 @@ Optional Features:
   --enable-debug-C        Do not optimize and print warning messages (C code)
   --enable-debug-CXX      Do not optimize and print warning messages (C++
                           code)
+  --enable-debug-java     Print warning messages and line numbers (Java code)
   --enable-debug-fortran  Do not optimize and print warning messages (Fortran
                           code)
   --enable-debug-linker   Print warning messages from the linker (ld)
@@ -5690,27 +5693,33 @@ if test "${enable_debug+set}" = set; then
 fi
 
 
-# Check whether --enable-debugC was given.
-if test "${enable_debugC+set}" = set; then
-  enableval=$enable_debugC;
+# Check whether --enable-debug-C was given.
+if test "${enable_debug_C+set}" = set; then
+  enableval=$enable_debug_C;
 fi
 
 
-# Check whether --enable-debugCXX was given.
-if test "${enable_debugCXX+set}" = set; then
-  enableval=$enable_debugCXX;
+# Check whether --enable-debug-CXX was given.
+if test "${enable_debug_CXX+set}" = set; then
+  enableval=$enable_debug_CXX;
 fi
 
 
-# Check whether --enable-debugFortran was given.
-if test "${enable_debugFortran+set}" = set; then
-  enableval=$enable_debugFortran;
+# Check whether --enable-debug-java was given.
+if test "${enable_debug_java+set}" = set; then
+  enableval=$enable_debug_java;
 fi
 
 
-# Check whether --enable-debugLinker was given.
-if test "${enable_debugLinker+set}" = set; then
-  enableval=$enable_debugLinker;
+# Check whether --enable-debug-fortran was given.
+if test "${enable_debug_fortran+set}" = set; then
+  enableval=$enable_debug_fortran;
+fi
+
+
+# Check whether --enable-debug-linker was given.
+if test "${enable_debug_linker+set}" = set; then
+  enableval=$enable_debug_linker;
 fi
 
 
@@ -10567,8 +10576,6 @@ else
    enable_debug_CXX=no
 fi
 
-
-
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -11448,7 +11455,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 11451 "configure"
+// #line 11458 "configure"
 
 
 public class conftest {
@@ -11498,7 +11505,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11501 "configure"
+// #line 11508 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -11546,7 +11553,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 11549 "configure"
+// #line 11556 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -11573,7 +11580,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 11576 "configure"
+// #line 11583 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11747,6 +11754,9 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
        # Sun
           machine=sparc
           ;;
+	    powerpc|ppc64)
+	  	  machine=ppc
+		  ;;
     esac
 
     # Check for known JDK installation layouts
@@ -11773,6 +11783,19 @@ $as_echo "$ac_cv_java_jvm_jni_working" >&6; }
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
                 D=$ac_java_jvm_dir/jre/lib/$machine/client
+		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+			# Try the server directory
+			D=$ac_java_jvm_dir/jre/lib/$machine/server
+			if test ! -f $D/libjvm.so; then
+				{ { $as_echo "$as_me:$LINENO: error: Could not find libjvm.so in
+				jre/lib/$machine/client/ or in jre/lib/$machine/server/.
+				Please report to http://bugzilla.scilab.org/" >&5
+$as_echo "$as_me: error: Could not find libjvm.so in
+				jre/lib/$machine/client/ or in jre/lib/$machine/server/.
+				Please report to http://bugzilla.scilab.org/" >&2;}
+   { (exit 1); exit 1; }; }
+			fi
+		fi
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
@@ -12865,7 +12888,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12868 "configure"
+// #line 12891 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12938,7 +12961,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12941 "configure"
+// #line 12964 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -13011,7 +13034,7 @@ $as_echo_n "checking looks2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13014 "configure"
+// #line 13037 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -13087,7 +13110,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13090 "configure"
+// #line 13113 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13160,7 +13183,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13163 "configure"
+// #line 13186 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13233,7 +13256,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13236 "configure"
+// #line 13259 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13306,7 +13329,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13309 "configure"
+// #line 13332 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13380,7 +13403,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13383 "configure"
+// #line 13406 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13453,7 +13476,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13456 "configure"
+// #line 13479 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13526,7 +13549,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13529 "configure"
+// #line 13552 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13599,7 +13622,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13602 "configure"
+// #line 13625 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -13672,6 +13695,11 @@ $as_echo "$as_me: WARNING: We do not support $ac_java_jvm_name yet" >&2;}
 
 
 
+    if test "$enable_debug_java" = yes; then
+	   JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
+	   <option value='-Xcheck:jni'/>"
+
+	fi
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 
@@ -25910,7 +25938,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 25913 "configure"
+#line 25941 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -26469,7 +26497,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 26472 "configure"
+#line 26500 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27320,7 +27348,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27323 "configure"
+// #line 27351 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -27393,7 +27421,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27396 "configure"
+// #line 27424 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -27468,7 +27496,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27471 "configure"
+// #line 27499 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -27541,7 +27569,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27544 "configure"
+// #line 27572 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -27614,7 +27642,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27617 "configure"
+// #line 27645 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -27687,7 +27715,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27690 "configure"
+// #line 27718 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -27760,7 +27788,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27763 "configure"
+// #line 27791 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -27833,7 +27861,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27836 "configure"
+// #line 27864 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -27907,7 +27935,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27910 "configure"
+// #line 27938 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -28608,7 +28636,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 28611 "configure"' > conftest.$ac_ext
+  echo '#line 28639 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -30478,11 +30506,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30481: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30509: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30485: \$? = $ac_status" >&5
+   echo "$as_me:30513: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30768,11 +30796,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30771: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30799: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30775: \$? = $ac_status" >&5
+   echo "$as_me:30803: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30872,11 +30900,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30875: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30903: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30879: \$? = $ac_status" >&5
+   echo "$as_me:30907: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33357,7 +33385,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 33360 "configure"
+#line 33388 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -33457,7 +33485,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 33460 "configure"
+#line 33488 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -35886,11 +35914,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35889: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:35917: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:35893: \$? = $ac_status" >&5
+   echo "$as_me:35921: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -35990,11 +36018,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35993: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36021: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:35997: \$? = $ac_status" >&5
+   echo "$as_me:36025: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -37588,11 +37616,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37591: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37619: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:37595: \$? = $ac_status" >&5
+   echo "$as_me:37623: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -37692,11 +37720,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37695: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37723: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:37699: \$? = $ac_status" >&5
+   echo "$as_me:37727: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -39924,11 +39952,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:39927: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:39955: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:39931: \$? = $ac_status" >&5
+   echo "$as_me:39959: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40214,11 +40242,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40217: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40245: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:40221: \$? = $ac_status" >&5
+   echo "$as_me:40249: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40318,11 +40346,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40321: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40349: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:40325: \$? = $ac_status" >&5
+   echo "$as_me:40353: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -45081,6 +45109,7 @@ echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_l
 echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
 echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
 echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java	$enable_debug_java"
 echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning	$enable_stop_on_warning"
 

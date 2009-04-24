@@ -1,4 +1,10 @@
-// example of use of the genetic algorithm on a 2D Ising model
+/////////////////////////////////////////////////////////////////
+// example of use of the genetic algorithm on a 2D Ising model //
+/////////////////////////////////////////////////////////////////
+
+my_handle = scf(100001);
+clf(my_handle,'reset');
+demo_viewCode('GAIsing2ddemo.sce');
 
 lines(0);
 old_funcprot = funcprot();
@@ -61,7 +67,6 @@ for i=1:nb_disp
   if DisplayIndiv then disp(pop_opt(i)); end
 end
 
-scf();
 plot_ising2d(pop_opt(1));
 
 funcprot(old_funcprot);

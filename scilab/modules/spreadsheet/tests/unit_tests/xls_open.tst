@@ -24,13 +24,9 @@ for i = 1 : size(tab_ref, "*")
 	newfile = tab_ref(i) + ".xls";
 	copyfile(origfile, newfile);
 	[fileID, fileStream, SheetNames, SheetPos] = xls_open(newfile);
-	if(fileID == 0) then
-		pause
-	else
-		mclose(fileID);
-	end
+	if(fileID == 0) then pause, end
+	mclose(fileID);
 end
-
 
 cd TMPDIR
 removedir open_xls_tests;

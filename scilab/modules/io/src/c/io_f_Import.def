@@ -6,7 +6,6 @@ EXPORTS
 ; io_f
 ; --------------------------------------- 
 	intdeff_
-	intdiary_
 	intdisp_
 	intexec_
 	intexecstr_

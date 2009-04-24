@@ -92,6 +92,9 @@ fpsetmask(0);
 	  setCommandLineArgs(argv, argc);
   }
 #endif
+
+  setCommandLineArgs(argv, argc);
+	  
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
   {

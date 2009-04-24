@@ -14,7 +14,7 @@ function save_graph(g,path)
   if type(path)<>10|prod(size(path))<>1 then
     error('Second argument must be a string')
   end
-  path=pathconvert(path,%t,%t)
+  path=pathconvert(path,%f,%t)
   if isdir(path) then
     path=path+g.name+'.graph'
   else

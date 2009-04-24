@@ -38,13 +38,20 @@ c
       external    simul, prosca
 c
       if (imp .gt. 0) then
-      write(bufstr,1) n,nrz,niter,nsim,imp,
-     / epsrel,df1,dxmin
+      
+      write(bufstr,1) n
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr))) 
+      
+      write(bufstr,11) nrz,niter,nsim,imp
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr))) 
+      
+      write(bufstr,12) epsrel,df1,dxmin
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr))) 
+      
       endif
-1     format(19h entree dans n1gc2:,6x,22hdimension du probleme ,
-     /i3/2x,4hnrz=,i4,4x,6hniter=,i3,4x,5hnsim=,i4,4x,4himp=,i3/2x,
-     /7hepsrel=,d8.2,4x,4hdf1=,d8.2,4x,6hdxmin=,d8.2)
+1     format(19h entree dans n1gc2:,6x,22hdimension du probleme ,i3)
+11    format(2x,4hnrz=,i4,4x,6hniter=,i3,4x,5hnsim=,i4,4x,4himp=,i3)
+12    format(2x,7hepsrel=,d8.2,4x,4hdf1=,d8.2,4x,6hdxmin=,d8.2)
       if ( n.le.0 .or. niter.le.0 .or. nsim.le.0 .or.
      / dxmin.le.zero .or. df1.le.zero
      / .or. epsrel.le.zero .or. epsrel.gt.un ) then
@@ -86,14 +93,16 @@ c
       write(bufstr,4)
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       else
-      write(io,5)epsrel,niter,nsim
+      write(io,5)epsrel
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+      write(io,51) niter,nsim
       call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
       endif
       return
-2     format(/,38h n1gc2   rz insuffisamment dimensionne)
-3     format(/,25h n1gc2   appel incoherent)
-4     format(/,22h n1gc2   fin sur dxmin)
-5     format(/,16h sortie de n1gc2,7x,12hnorme de g =,d15.9/9x,
-     / 6hniter=,i4,4x,5hnsim=,i5)
+2     format(38h n1gc2   rz insuffisamment dimensionne)
+3     format(25h n1gc2   appel incoherent)
+4     format(22h n1gc2   fin sur dxmin)
+5     format(16h sortie de n1gc2,7x,12hnorme de g =,d15.9)
+51     format(9x, 6hniter=,i4,4x,5hnsim=,i5)
       end
