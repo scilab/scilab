@@ -20,9 +20,7 @@ k = 42;
 
 function r=f(x),
   // check that k is still 42
-  if (k <> 42) then
-    pause;
-  end
+  if (k <> 42) then pause, end
   r=x;
 endfunction
 

@@ -19,7 +19,6 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/msgstxt.c \
 				src/c/basout.c \
 				src/c/sciprint.c \
-				src/c/sciprint_nd.c \
 				src/c/sciprint_full.c \
 				src/c/errmds.c \
 				src/c/errmsg.c \
@@ -74,7 +73,6 @@ includes/erro.h \
 includes/do_error_number.h \
 includes/errmds.h \
 includes/sciprint.h \
-includes/sciprint_nd.h \
 includes/Scierror.h \
 includes/basout.h \
 includes/msgs.h \

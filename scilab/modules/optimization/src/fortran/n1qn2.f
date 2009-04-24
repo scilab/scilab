@@ -196,17 +196,38 @@ c
 c---- impressions initiales et controle des arguments
 c
       if (impres.ge.1) then
-         write (bufstr,900) n,dxmin,df1,epsg,niter,nsim,impres
+         write (bufstr,900)
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9001) n
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9002) dxmin
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9003) df1
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9004) epsg
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9005) niter
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9006) nsim
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         
+         write (bufstr,9006) impres
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
-900   format (/,' n1qn2: point d''entree',/,
-     /    5x,'dimension du probleme (n)              :',i6,/,
-     /    5x,'precision absolue en x (dxmin)         :',d9.2,/,
-     /    5x,'decroissance attendue pour f (df1)     :',d9.2,/,
-     /    5x,'precision relative en g (epsg)         :',d9.2,/,
-     /    5x,'nombre maximal d''iterations (niter)    :',i6,/,
-     /    5x,'nombre maximal d''appels a simul (nsim) :',i6,/,
-     /    5x,'niveau d''impression (impres)           :',i4)
+900   format (' n1qn2: point d''entree')
+9001  format (5x,'dimension du probleme (n)              :',i6)
+9002  format (5x,'precision absolue en x (dxmin)         :',d9.2)
+9003  format (5x,'decroissance attendue pour f (df1)     :',d9.2)
+9004  format (5x,'precision relative en g (epsg)         :',d9.2)
+9005  format (5x,'nombre maximal d''iterations (niter)    :',i6)
+9006  format (5x,'nombre maximal d''appels a simul (nsim) :',i6)
+9007  format (5x,'niveau d''impression (impres)           :',i4)
       if (n.le.0.or.niter.le.0.or.nsim.le.0.or.dxmin.le.0.0d+0
      /    .or.epsg.le.0.0d+0.or.epsg.gt.1.0d+0) then
           mode=2
@@ -214,7 +235,7 @@ c
             write (bufstr,901)
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
-901       format (/,' >>> n1qn2 : appel incoherent')
+901       format (' >>> n1qn2 : appel incoherent')
           goto 904
       endif
       if (ndz.lt.5*n+1) then
@@ -223,7 +244,7 @@ c
             write (bufstr,902)
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
-902       format (/,' >>> n1qn2: memoire allouee insuffisante')
+902       format (' >>> n1qn2: memoire allouee insuffisante')
           goto 904
       endif
 c
@@ -234,12 +255,16 @@ c
       m=ndzu/l1memo
       ndzu=m*l1memo+3*n
       if (impres.ge.1) then
-        write (bufstr,903) ndz,ndzu,m
+        write (bufstr,903) ndz
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write (bufstr,9031) ndzu
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write (bufstr,9032) m
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
-903   format (/5x,'memoire allouee (ndz)  :',i7,/,
-     /         5x,'memoire utilisee       :',i7,/,
-     /         5x,'nombre de mises a jour :',i6,/)
+903   format (5x,'memoire allouee (ndz)  :',i7)
+9031  format (5x,'memoire utilisee       :',i7)
+9032  format (5x,'nombre de mises a jour :',i6)
       id=1
       igg=id+n
       iaux=igg+n
@@ -258,25 +283,40 @@ c---- impressions finales
 c
 904   continue
       if (impres.ge.1) then
-        write (bufstr,905) mode,niter,nsim,epsg
+        write (bufstr,905) 
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write (bufstr,9051) mode
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write (bufstr,9052) niter
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write (bufstr,9053) nsim
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write (bufstr,9054) epsg
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
       endif
-905   format (/,1x,79('-'),/,
-     /        /,1x,'n1qn2 : sortie en mode ',i2,
-     /        /,5x,'nombre d''iterations              : ',i4,
-     /        /,5x,'nombre d''appels a simul          : ',i6,
-     /        /,5x,'precision relative atteinte sur g: ',d9.2)
+905   format (1x,79('-'))
+9051  format (1x,'n1qn2 : sortie en mode ',i2)
+9052  format (5x,'nombre d''iterations              : ',i4)
+9053  format (5x,'nombre d''appels a simul          : ',i6)
+9054  format (5x,'precision relative atteinte sur g: ',d9.2)
       call prosca (n,x,x,ps,izs,rzs,dzs)
       r1=sqrt(ps)
       call prosca (n,g,g,ps,izs,rzs,dzs)
       r2=sqrt(ps)
       if (impres.ge.1) then
-        write (bufstr,906) r1,f,r2
+        write (bufstr,906) r1
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
+        write (bufstr,9061) f
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
+        write (bufstr,9062) r2
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
         endif
-906   format (5x,'norme de x = ',d15.8,
-     /      /,5x,'f          = ',d15.8,
-     /      /,5x,'norme de g = ',d15.8)
+906   format (5x,'norme de x = ',d15.8)
+9061  format (5x,'f          = ',d15.8)
+9062  format (5x,'norme de g = ',d15.8)
 c
       return
       end

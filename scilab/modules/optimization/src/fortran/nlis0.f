@@ -39,17 +39,17 @@ c
      /    fpd,z,z1,test
       character bufstr*(4096)
 c
- 1000 format (/4x,9h nlis0   ,4x,4hfpn=,d10.3,4h d2=,d9.2,
+ 1000 format (4x,9h nlis0   ,4x,4hfpn=,d10.3,4h d2=,d9.2,
      1 7h  tmin=,d9.2,6h tmax=,d9.2)
- 1001 format (/4x,6h nlis0,3x,12hfin sur tmin,8x,
+ 1001 format (4x,6h nlis0,3x,12hfin sur tmin,8x,
      1 3hpas,12x,9hfonctions,5x,8hderivees)
  1002 format (4x,6h nlis0,37x,d10.3,2d11.3)
  1003 format (4x,6h nlis0,d14.3,2d11.3)
  1004 format (4x,6h nlis0,37x,d10.3,7h indic=,i3)
  1005 format (4x,6h nlis0,14x,2d18.8,d11.3)
  1006 format (4x,6h nlis0,14x,d18.8,12h      indic=,i3)
- 1007 format (/4x,6h nlis0,10x,17htmin force a tmax)
- 1008 format (/4x,6h nlis0,10x,16happel incoherent)
+ 1007 format (4x,6h nlis0,10x,17htmin force a tmax)
+ 1008 format (4x,6h nlis0,10x,16happel incoherent)
       if (n.gt.0 .and. fpn.lt.0.d+0 .and. t.gt.0.d+0
      1 .and. tmax.gt.0.d+0 .and. amf.gt.0.d+0
      1 .and. amd.gt.amf .and. amd.lt.1.d+0) go to 5

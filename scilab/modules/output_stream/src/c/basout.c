@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2009 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -23,18 +24,16 @@
 /*--------------------------------------------------------------------------*/ 
 #define bufferformat "%s\n"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(writelunitstring)();
-/*--------------------------------------------------------------------------*/ 
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
-	char *buffer = NULL;
-	static int ich;
-
-	int i = 0;
 	/* bug 3831 */
-	for (i = 0; i < nbcharacters; i++) 
+	if (string)
 	{
-		 if (string[i] == 0) string[i] = ' ';
+		int i = 0;
+		for (i = 0; i < nbcharacters - 1; i++) 
+		{
+			if (string[i] == 0) string[i] = ' ';
+		}
 	}
 
 	if (*lunit == C2F(iop).wte)
@@ -79,22 +78,13 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 			strncpy(buffer,string,nbcharacters);
 			buffer[nbcharacters]='\0';
 			sciprint(bufferformat,buffer);
-			if (buffer) { FREE(buffer); buffer = NULL;}
+			FREE(buffer);
+			buffer = NULL;
 		}
 	} 
 	else
 	{
-		buffer = string;
-        	nbcharacters = (long int)strlen(buffer);
-		/* Output to a file */
-		if (*lunit == C2F(iop).wio) 
-		{
-			diary(string, &nbcharacters);
-		}
-		else 
-		{
-			C2F(writelunitstring)(lunit, string,nbcharacters);
-		}
+		diary(string, &nbcharacters,TRUE);
 	}
 	return 0;
 } 

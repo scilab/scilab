@@ -108,7 +108,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="folhp.f"/>
 		<File RelativePath="formatnumber.f"/>
 		<File RelativePath="ftob.f"/>
-		<File RelativePath="functionsforbasout.f"/>
 		<File RelativePath="funnam.f"/>
 		<File RelativePath="funs.f"/>
 		<File RelativePath="getch.f"/>

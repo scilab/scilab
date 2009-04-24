@@ -225,7 +225,7 @@ c     bouclage
         write(bufstr,1210)iter,f
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-1210  format(/' dans gcbd  iter=',i3,'  f=',d15.7)
+1210  format(' dans gcbd  iter=',i3,'  f=',d15.7)
       if(iter.eq.1)then
          irit=1
          goto 301
@@ -490,11 +490,13 @@ c      fin des calculs
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
       if(imp.ge.1.and.indrl.le.zero) then
-        write(bufstr,1910) indrl
+        write(bufstr,1910)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write(bufstr,1911) indrl
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-1910  format(' arret impose par la recherche lineaire. cf notice rlbd',
-     & /,' indicateur de rlbd=',i6)
+1910  format(' arret impose par la recherche lineaire. cf notice rlbd')
+1911  format(' indicateur de rlbd=',i6)
       if(imp.ge.1) then
         write(bufstr,950)f,difg,nap,iter,indgc
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
