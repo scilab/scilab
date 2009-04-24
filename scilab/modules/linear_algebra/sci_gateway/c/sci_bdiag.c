@@ -164,6 +164,9 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 			}
 		    }
 		}
+	      FREE(le);
+	      FREE(lib);
+	      FREE(lw);
 	      }
 	    }
 	}
