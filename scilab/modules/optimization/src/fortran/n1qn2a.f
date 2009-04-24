@@ -65,7 +65,7 @@ c
         write(bufstr,899) precon
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-899   format (/,' n1qn2a: direction de descente -g: precon = ',d10.3)
+899   format (' n1qn2a: direction de descente -g: precon = ',d10.3)
       if (impres.eq.3) then
           write(bufstr,901)
           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
@@ -105,18 +105,22 @@ c
         write(bufstr,901)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-901   format (/,1x,79('-'))
+901   format (1x,79('-'))
       if (impres.ge.4) then
         write(bufstr,9010)
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
-9010  format (1x)
+9010  format (1x,' ')
       if (impres.ge.3) then
-        write (bufstr,902) iter,isim,f,hp0
+        write (bufstr,902) iter,isim
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
+        write (bufstr,9020) f,hp0
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        
         endif
-902   format (' n1qn2: iter ',i3,', simul ',i3,
-     /        ', f=',d15.8,', h''(0)=',d12.5)
+902   format (' n1qn2: iter ',i3,', simul ',i3)
+9020  format (', f=',d15.8,', h''(0)=',d12.5)
       do 101 i=1,n
           gg(i)=g(i)
 101   continue

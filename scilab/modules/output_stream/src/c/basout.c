@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) DIGITEO - 2009 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -23,12 +24,8 @@
 /*--------------------------------------------------------------------------*/ 
 #define bufferformat "%s\n"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(writelunitstring)();
-/*--------------------------------------------------------------------------*/ 
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
-	char *buffer = NULL;
-
 	/* bug 3831 */
 	if (string)
 	{
@@ -81,23 +78,13 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 			strncpy(buffer,string,nbcharacters);
 			buffer[nbcharacters]='\0';
 			sciprint(bufferformat,buffer);
-			if (buffer) { FREE(buffer); buffer = NULL;}
+			FREE(buffer);
+			buffer = NULL;
 		}
 	} 
 	else
 	{
-		buffer = string;
-        nbcharacters = (long int)strlen(buffer);
-		/* Output to a file */
-		string[nbcharacters] ='\0';
-		if (*lunit == C2F(iop).wio) 
-		{
-			diary(string, &nbcharacters,TRUE);
-		}
-		else 
-		{
-			C2F(writelunitstring)(lunit, string,nbcharacters);
-		}
+		diary(string, &nbcharacters,TRUE);
 	}
 	return 0;
 } 

@@ -126,3 +126,5 @@ Bug fixes:
 
 * bug 4403 fixed - isinf was defined (when not provided by the system) with a return
 
+* bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
+

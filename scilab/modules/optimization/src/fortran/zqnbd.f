@@ -158,7 +158,7 @@ c     d ou cst=som((y(i)*(dx))**2))/(2*df0)
          write(bufstr,1210)iter,f
          call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
          endif
-1210  format(/' qnbd : iter=',i3,'  f=',d15.7)
+1210  format(' qnbd : iter=',i3,'  f=',d15.7)
 c     x1,g1 valeurs a l iteration precedente
       if(iter.eq.1)go to 300
       cof1=0.0d+0
