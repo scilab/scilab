@@ -186,7 +186,7 @@
     //creating the shared library (a gateway, a Makefile and a loader are 
     //generated. 
 
-    ilib_for_link('fooc','fooc.o',[],"c") 
+    ilib_for_link('fooc','fooc.c',[],"c") 
 
     // load the shared library 
 
@@ -218,7 +218,7 @@
     //creating the shared library (a gateway, a Makefile and a loader are 
     //generated. 
 
-    ilib_for_link('foof','foof.o',[],"f") 
+    ilib_for_link('foof','foof.c',[],"f") 
 
     // load the shared library 
 

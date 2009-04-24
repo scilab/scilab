@@ -44,7 +44,22 @@ void ConcreteDrawableText::getBoundingRectangle(double corner1[3], double corner
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2])
 {
-  m_pDrawingTextStrategy->getScreenBoundingBox(corner1, corner2, corner3, corner4);
+  double corners[4][3]; // more accurate corners
+	getScreenBoundingBox(corners[0], corners[1], corners[2], corners[3]);
+
+	// convert them to int
+	for (int i = 0; i < 2; i++)
+	{
+		corner1[i] = (int) corners[0][i];
+		corner2[i] = (int) corners[1][i];
+		corner3[i] = (int) corners[2][i];
+		corner4[i] = (int) corners[3][i];
+	}
+}
+/*---------------------------------------------------------------------------------*/
+void ConcreteDrawableText::getScreenBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
+{
+	m_pDrawingTextStrategy->getScreenBoundingBox(corner1, corner2, corner3, corner4);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::setTextDrawingStrategy(DrawTextContentStrategy * strategy)
