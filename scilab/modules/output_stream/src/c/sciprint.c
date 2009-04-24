@@ -104,8 +104,7 @@ static void printf_scilab(char *buffer)
 		if ( getdiary() ) 
 		{
 			// diary output line
-			int lstr = (int)strlen(buffer);
-			diary(buffer,&lstr,FALSE);
+			diary(buffer,FALSE);
 		}
 	}
 }
