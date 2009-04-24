@@ -24,14 +24,6 @@
  */
 void sciprint(char *fmt,...) ;
 
-/*
-* Print
-* works as sciprint
-* difference is that the argument list is a pointer to a list of arguments
-* @param fmt Format of the format string
-* @param [in] args
-*/
-void scivprint(char *fmt,va_list args);
 
 /**
  * Print
@@ -45,11 +37,5 @@ void scivprint(char *fmt,va_list args);
  */
 int sciprint2(int iv,char *fmt,...);
 
-/**
-* print a string 
-* @param[in] buffer to disp
-* @param[in] TRUE or FALSE if we use diary
-*/
-void printf_scilab(char *buffer,BOOL withDiary);
 #endif /* __SCIPRINT_H__ */
 /*--------------------------------------------------------------------------*/ 

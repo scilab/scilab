@@ -96,7 +96,6 @@ am__objects_1 = libscioutput_stream_la-erro.lo \
 	libscioutput_stream_la-msgstxt.lo \
 	libscioutput_stream_la-basout.lo \
 	libscioutput_stream_la-sciprint.lo \
-	libscioutput_stream_la-sciprint_nd.lo \
 	libscioutput_stream_la-sciprint_full.lo \
 	libscioutput_stream_la-errmds.lo \
 	libscioutput_stream_la-errmsg.lo \
@@ -160,6 +159,7 @@ CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
 CYGPATH_W = @CYGPATH_W@
 DEFS = @DEFS@
+DEMOTOOLS_ENABLE = @DEMOTOOLS_ENABLE@
 DEPDIR = @DEPDIR@
 DOCBOOK_ROOT = @DOCBOOK_ROOT@
 DSYMUTIL = @DSYMUTIL@
@@ -178,7 +178,10 @@ FLIBS = @FLIBS@
 FOP = @FOP@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
+GUI_ENABLE = @GUI_ENABLE@
+HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
@@ -188,6 +191,9 @@ JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
+JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
+JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
 JAVA_JNI_INCLUDE = @JAVA_JNI_INCLUDE@
@@ -247,6 +253,7 @@ RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCIPAD_ENABLE = @SCIPAD_ENABLE@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -327,7 +334,6 @@ sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
 sysconfdir = @sysconfdir@
 target_alias = @target_alias@
-top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
@@ -339,7 +345,6 @@ OUTPUT_STREAM_C_SOURCES = src/c/erro.c \
 				src/c/msgstxt.c \
 				src/c/basout.c \
 				src/c/sciprint.c \
-				src/c/sciprint_nd.c \
 				src/c/sciprint_full.c \
 				src/c/errmds.c \
 				src/c/errmsg.c \
@@ -387,7 +392,6 @@ includes/erro.h \
 includes/do_error_number.h \
 includes/errmds.h \
 includes/sciprint.h \
-includes/sciprint_nd.h \
 includes/Scierror.h \
 includes/basout.h \
 includes/msgs.h \
@@ -425,6 +429,9 @@ pkgdocdir = $(mydatadir)
 # What is the mask of the help source
 DOCMASKXML = *.xml
 
+# What is the mask of the MathML sources
+DOCMASKMML = *.mml
+
 ########### INSTALL DATA ###################
 # Install macros, help & demos
 # Where it should be installed
@@ -452,6 +459,7 @@ JARMASK = *.jar
 # Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
+HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
@@ -535,7 +543,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint_full.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint_nd.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -620,13 +627,6 @@ libscioutput_stream_la-sciprint.lo: src/c/sciprint.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint.c' object='libscioutput_stream_la-sciprint.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
-
-libscioutput_stream_la-sciprint_nd.lo: src/c/sciprint_nd.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint_nd.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint_nd.Tpo -c -o libscioutput_stream_la-sciprint_nd.lo `test -f 'src/c/sciprint_nd.c' || echo '$(srcdir)/'`src/c/sciprint_nd.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscioutput_stream_la-sciprint_nd.Tpo $(DEPDIR)/libscioutput_stream_la-sciprint_nd.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint_nd.c' object='libscioutput_stream_la-sciprint_nd.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint_nd.lo `test -f 'src/c/sciprint_nd.c' || echo '$(srcdir)/'`src/c/sciprint_nd.c
 
 libscioutput_stream_la-sciprint_full.lo: src/c/sciprint_full.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint_full.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint_full.Tpo -c -o libscioutput_stream_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
@@ -1028,7 +1028,17 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	 fi; \
-@INSTALL_HELP_XML_TRUE@	done
+@INSTALL_HELP_XML_TRUE@	done; \
+@INSTALL_HELP_XML_TRUE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@	fi
 install-data-local:
 # Install the tests
 	@echo "-------- Install tests (if any) --------"; \
@@ -1048,7 +1058,7 @@ install-data-local:
 	done
 # Install the help chapter
 	@echo "-------- Install the help chapter (if any) --------"; \
-	for lang in $(ALL_LINGUAS); do \
+	for lang in $(HELP_CHAPTERLANG); do \
 		HELPFILE=$(srcdir)/$(HELP_CHAPTERDIR)$$lang/$(HELP_CHAPTERFILE); \
 		if test -f $$HELPFILE; then \
 			echo $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/$(HELP_CHAPTERDIR)/$$lang/; \

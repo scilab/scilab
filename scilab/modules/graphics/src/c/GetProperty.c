@@ -478,8 +478,7 @@ sciGetMarkBackgroundToDisplay (sciPointObj * pobj)
 /**sciGetLineWidth
  * Gets the line width
  */
-int
-sciGetLineWidth (sciPointObj * pobj)
+double sciGetLineWidth (sciPointObj * pobj)
 {
   if (sciGetGraphicContext(pobj) != NULL)
   {
@@ -589,6 +588,14 @@ sciGetIsLine (sciPointObj * pobj)
 		printSetGetErrorMessage("line_mode");
 		return FALSE;
 	}
+}
+
+/**
+ * @return TRUE if the object is actually displaying lines.
+ */
+BOOL sciGetIsDisplayingLines(sciPointObj * pObj)
+{
+	return sciGetIsLine(pObj) && (sciGetLineWidth(pObj) > 0.0);
 }
 
 /**sciGetIsFilled

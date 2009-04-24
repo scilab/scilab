@@ -1,7 +1,16 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007/2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 dnl Process this file with autoconf to produce a configure script.
 
 
@@ -71,16 +80,19 @@ AC_CANONICAL_HOST
 AC_ARG_ENABLE(debug,
    AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
 
-AC_ARG_ENABLE(debugC,
+AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
 
-AC_ARG_ENABLE(debugCXX,
+AC_ARG_ENABLE(debug-CXX,
    AC_HELP_STRING([--enable-debug-CXX],[Do not optimize and print warning messages (C++ code)]))
 
-AC_ARG_ENABLE(debugFortran,
+AC_ARG_ENABLE(debug-java,
+   AC_HELP_STRING([--enable-debug-java],[Print warning messages and line numbers (Java code)]))
+
+AC_ARG_ENABLE(debug-fortran,
    AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
-AC_ARG_ENABLE(debugLinker,
+AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
 
 AC_ARG_ENABLE(stopOnWarning,
@@ -275,8 +287,6 @@ if test "$enable_debug_CXX" = yes; then
 else
    enable_debug_CXX=no
 fi
-
-
 
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
@@ -684,6 +694,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
     AC_SUBST(JAVA_HOME)
 
 
+    if test "$enable_debug_java" = yes; then
+	   JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
+	   <option value='-Xcheck:jni'/>"
+	   AC_SUBST(JAVA_DEBUG_OPTIONS)
+	fi
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
@@ -700,11 +715,35 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	fi
 fi
 
+JAVA_ENABLE=yes
+
+if test -z "$JAVAC"; then
+   JAVA_ENABLE=no
+fi
+
+AC_SUBST(JAVA_ENABLE)
+
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
 AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
+
+##############################################################
+## GUI module
+##############################################################
+
+GUI_ENABLE=no
+
+if test "$JAVA_ENABLE" != no; then
+   GUI_ENABLE=yes
+fi
+
+if test "$with_gui" != no; then
+   GUI_ENABLE=yes
+fi
+
+AC_SUBST(GUI_ENABLE)
 
 ##############################################################
 ## test for functions in standard C library and C math library
@@ -763,7 +802,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -861,7 +900,8 @@ AC_ARG_WITH(ocaml,
 
 
 SCICOS_ENABLE=no
-if test "$with_scicos" != no -a "$with_gui" != no; then
+
+if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
    save_LIBS="$LIBS"
@@ -883,10 +923,16 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 		fi
 		SCICOS_ENABLE=yes
 fi
+
+
+
+
+
+
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
-AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
+AM_CONDITIONAL(OCAML,  test "$with_ocaml" != no)		
+AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
 #################
@@ -1010,8 +1056,7 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 #######################
 
 AC_PCRE()
-	  	 
- #############################################
+
 #################
 ## Tcl/Tk library
 #################
@@ -1125,19 +1170,28 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 ## Documentation management #
 #############################
 
+HELP_ENABLE=yes
+
 AC_ARG_ENABLE(build-help,
 		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
-HELP_ENABLE=no
 
 if test "$enable_build_help" != no; then
     AC_DOCBOOK()
-	HELP_ENABLE=yes
+else
+    HELP_ENABLE=no
+fi
 
-fi 
+if test "$JAVA_ENABLE" = no; then
+    HELP_ENABLE=no
+fi
+
+AC_SUBST(HELP_ENABLE)
+
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###
+
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files])
 		)
@@ -1147,6 +1201,53 @@ if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
 fi 
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 
+##############################################################
+## Javasci module
+##############################################################
+
+JAVASCI_ENABLE=yes
+
+if test "$JAVA_ENABLE" = no -o "$JAVASCI" = no; then
+   JAVASCI_ENABLE=no
+fi
+
+AC_SUBST(JAVASCI_ENABLE)
+
+##############################################################
+## Scipad module
+##############################################################
+
+SCIPAD_ENABLE=yes
+
+if test "$WITH_TKSCI" = no -o "$GUI_ENABLE" = no; then
+   SCIPAD_ENABLE=no
+fi
+
+AC_SUBST(SCIPAD_ENABLE)
+
+##############################################################
+## demo_tools module
+##############################################################
+
+DEMOTOOLS_ENABLE=yes
+
+if test "$GUI_ENABLE" = no; then
+   DEMOTOOLS_ENABLE=yes
+fi
+
+AC_SUBST(DEMOTOOLS_ENABLE)
+
+##############################################################
+## graphics/renderer/graphic_export module
+##############################################################
+
+GRAPHICS_ENABLE=yes
+
+if test "$GUI_ENABLE" = no; then
+   GRAPHICS_ENABLE=no
+fi
+
+AC_SUBST(GRAPHICS_ENABLE)
 
 #########################
 ## libtool
@@ -1381,6 +1482,7 @@ echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_l
 echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
 echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
 echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java	$enable_debug_java"
 echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning	$enable_stop_on_warning"
 
@@ -1618,5 +1720,4 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
-echo "
-"
+echo ""

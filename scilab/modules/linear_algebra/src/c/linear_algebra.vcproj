@@ -414,6 +414,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\lsq.c"
+				>
+			</File>
+			<File
 				RelativePath=".\lu.c"
 				>
 			</File>
@@ -423,6 +427,10 @@
 			</File>
 			<File
 				RelativePath=".\rcond.c"
+				>
+			</File>
+			<File
+				RelativePath=".\schur.c"
 				>
 			</File>
 			<File

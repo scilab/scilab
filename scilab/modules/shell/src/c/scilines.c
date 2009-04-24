@@ -89,7 +89,6 @@ BOOL setColumnsSize(int colums)
 /*--------------------------------------------------------------------------*/
 BOOL setLinesSize(int lines_)
 {
-
 	C2F(iop).lct[1] = Max(MIN_NUMBERS_LINES,lines_);
 	return TRUE;
 }

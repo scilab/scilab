@@ -60,7 +60,7 @@ txt=ascii(a)</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>This function convert Scilab string to a vector of ascii code or
+    <para>This function convert Scilab string to a vector of ascii code (the first 127 codes are ASCII) or
     vector of ascii code to Scilab strings.</para>
 
     <para>If <literal>txt</literal> is a matrix of string,

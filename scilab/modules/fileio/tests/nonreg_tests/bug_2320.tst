@@ -8,7 +8,7 @@
 
 // <-- Non-regression test for bug 2320 -->
 //
-
+// <-- INTERACTIVE TEST -->
 // UNC Path not managed 
 
 

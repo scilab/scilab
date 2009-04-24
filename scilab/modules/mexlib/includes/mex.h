@@ -117,8 +117,6 @@ int mxGetNumberOfDimensions(const mxArray *ptr);
 int mxGetNumberOfFields(const mxArray *ptr);
 void *mxGetData(const mxArray *ptr);
 void *mxGetImagData(const mxArray *ptr);
-extern void diary_nnl(char *str,int *n);
-extern int getdiary();
 
 void clear_mex(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs);
 

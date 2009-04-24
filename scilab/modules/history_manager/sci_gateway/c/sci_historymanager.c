@@ -64,8 +64,11 @@ int C2F(sci_historymanager)(char *fname,unsigned long fname_len)
 
 						/* add date & time @ begin session */
 						commentbeginsession = getCommentDateSession(TRUE);
-						appendLineToScilabHistory(commentbeginsession);
-						if (commentbeginsession) {FREE(commentbeginsession);commentbeginsession=NULL;}
+						if (commentbeginsession)
+						{
+							appendLineToScilabHistory(commentbeginsession);
+							FREE(commentbeginsession);commentbeginsession=NULL;
+						}
 					}
 
 					strcpy(Output,"on");

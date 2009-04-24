@@ -1,5 +1,4 @@
 function plot_ising2d(Var)
-scf();
 drawlater;
 a = gca();
 Size = size(Var,1);

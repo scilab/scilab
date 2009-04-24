@@ -1,67 +1,59 @@
-****** Beginning of validation of LOGICAL.dia.ref ******
-TEST 1: Scilab returns Double and Matlab returns Boolean for res1
-TEST 1: Infered type do not match for res1
-M2SCI: Double
-Matlab: Boolean
-Trying to compare results...
+TEST 1: Scilab/Matlab type does not match for res1: Double/Boolean
+TEST 1: M2SCI/Matlab type does not match for res1: Double/Boolean
 *** TEST 1 FAILED ***
 
-TEST 2: Scilab returns Double and Matlab returns Boolean for res2
-TEST 2: Infered type do not match for res2
-M2SCI: Double
-Matlab: Boolean
-Trying to compare results...
+TEST 2: Scilab/Matlab type does not match for res2: Double/Boolean
+TEST 2: M2SCI/Matlab type does not match for res2: Double/Boolean
 *** TEST 2 FAILED ***
 
-TEST 3: Scilab returns Double and Matlab returns Boolean for res3
-*** TEST 3 PASSED ***
+TEST 3: Scilab/Matlab type does not match for res3: Double/Boolean
+*** TEST 3 FAILED ***
 
-*** TEST 4 PASSED ***
+*** TEST 4 FAILED ***
 
-*** TEST 5 PASSED ***
+*** TEST 5 FAILED ***
 
-*** TEST 6 PASSED ***
+*** TEST 6 FAILED ***
 
-*** TEST 7 PASSED ***
+*** TEST 7 FAILED ***
 
-*** TEST 8 PASSED ***
+*** TEST 8 FAILED ***
 
-*** TEST 9 PASSED ***
+*** TEST 9 FAILED ***
 
-*** TEST 10 PASSED ***
+*** TEST 10 FAILED ***
 
-*** TEST 11 PASSED ***
+*** TEST 11 FAILED ***
 
-*** TEST 12 PASSED ***
+*** TEST 12 FAILED ***
 
-*** TEST 13 PASSED ***
+*** TEST 13 FAILED ***
 
-*** TEST 14 PASSED ***
+*** TEST 14 FAILED ***
 
-*** TEST 15 PASSED ***
+*** TEST 15 FAILED ***
 
-*** TEST 16 PASSED ***
+*** TEST 16 FAILED ***
 
-*** TEST 17 PASSED ***
+*** TEST 17 FAILED ***
 
-*** TEST 18 PASSED ***
+*** TEST 18 FAILED ***
 
-*** TEST 19 PASSED ***
+*** TEST 19 FAILED ***
 
-*** TEST 20 PASSED ***
+*** TEST 20 FAILED ***
 
-*** TEST 21 PASSED ***
+*** TEST 21 FAILED ***
 
-*** TEST 22 PASSED ***
+*** TEST 22 FAILED ***
 
-*** TEST 23 PASSED ***
+*** TEST 23 FAILED ***
 
-*** TEST 24 PASSED ***
+*** TEST 24 FAILED ***
 
-*** TEST 25 PASSED ***
+*** TEST 25 FAILED ***
 
-*** TEST 26 PASSED ***
+*** TEST 26 FAILED ***
 
-*** TEST 27 PASSED ***
+*** TEST 27 FAILED ***
 
-****** End of validation of LOGICAL.dia.ref ******

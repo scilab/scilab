@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="gschur" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gschur</refname>
+
+    <refpurpose>forma de Schur generalizada (função obsoleta) </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title> Seqüência de Chamamento</title>
+
+    <synopsis>[As,Es]=gschur(A,E)
+[As,Es,Q,Z]=gschur(A,E)
+[As,Es,Z,dim] = gschur(A,E,flag)
+[As,Es,Z,dim]= gschur(A,E,extern)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Esta função é obsoleta e agora está inclusa na função
+    <literal>schur</literal> function. Na maior parte dos casos, a função
+    <literal>gschur</literal> irá ainda trabalhar como antes, mas será
+    removida em um lançamento futuro do Scilab.</para>
+
+    <para>As três sintaxes podem ser substituídas por</para>
+
+    <programlisting>
+
+[As,Es]=schur(A,E)
+[As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE A TRANSPOSIÇÃO AQUI
+[As,Es,Z,dim] = schur(A,E,flag) 
+   
+    </programlisting>
+
+    <para>A última sintaxe requer algumas adaptações a mais: </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>if</term>
+
+        <listitem>
+          <para>é uma função do Scilab, a nova seqüência de chamamento deve
+          ser <literal>[As,Es,Z,dim]= schur(A,E,Nextern)</literal> com Nextern
+          definido como segue:</para>
+
+          <programlisting>
+
+function t=Nextern(R)
+if R(2)==0 then
+  t=extern([1,R(1),R(3)])==1
+else
+  c=(R(1)+%i*R(2))/R(3)
+  t=extern([2,real(c+c'),real(c*c')])==1
+end
+endfunction
+   
+        </programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>if</term>
+
+        <listitem>
+          <para>é o nome de uma função externa codificada em FORTRAN ou C, a
+          nova seqüência de chamamento deve ser <literal>[As,Es,Z,dim]=
+          schur(A,E,'nextern')</literal> com nextern definido como
+          segue:</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <programlisting>
+
+      logical function nextern(ar,ai,beta)
+      double precision ar,ai,beta
+      integer r,extern
+      if (ai.eq.0.0d0) then
+        r=extern(1,ar,beta,0.0d0,0.0d0)
+      else
+        r=extern(2,0.0d0,0.0d0,2.0d0*ar,ar*ar+ai*ai)
+      endif
+      nextern=r.eq.1
+      end
+   
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="external">external</link></member>
+
+      <member><link linkend="schur">schur</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -27,7 +27,7 @@
 #include "freeArrayOfString.h"
 #include "partfunction.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_part)(char *fname,unsigned long fname_len)
+int sci_part(char *fname,unsigned long fname_len)
 {
 	int i = 0;
 

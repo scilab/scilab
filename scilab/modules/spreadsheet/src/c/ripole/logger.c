@@ -15,6 +15,7 @@
 #include "localization.h"
 #include "logger.h"
 #include "MALLOC.h"
+#include "charEncoding.h"
 
 #ifndef _MSC_VER
 static int _LOGGER_mode = _LOGGER_SYSLOG;
@@ -110,7 +111,7 @@ int LOGGER_set_logfile( char *lfname )
 {
 	int result = 0;
 
-	_LOGGER_outf = fopen(lfname,"a");
+	wcfopen(_LOGGER_outf, lfname, "a");
 	if (!_LOGGER_outf)
 	{
 #ifndef _MSC_VER

@@ -126,7 +126,10 @@
     It_Pre = 100;
     x_test = neigh_func_default(x0);
 
-    T0 = compute_initial_temp(x0, f, Proba_start, It_Pre, neigh_func_default,[]);
+    comp_t_params = init_param();
+    comp_t_params = add_param(comp_t_params,'neigh_func', neigh_func_default);
+
+    T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, comp_t_sa);
   </programlisting>
   </refsection>
 

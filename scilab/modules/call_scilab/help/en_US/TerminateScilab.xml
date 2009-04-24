@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="TerminateScilab" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>TerminateScilab</refname>
+
+    <refpurpose>Stops and terminates Scilab engine in Call Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+<synopsis>BOOL TerminateScilab(char *ScilabQuit);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This fonction stops the Scilab engine. It is strongly recommanded
+    to call this function at the end when using Call Scilab .</para>
+
+    <para>BOOL is just a simple typedef on int (<literal>typedef int
+    BOOL</literal>). TRUE is defined on 1 (<literal>#define TRUE 1</literal>)
+    and FALSE is defined on 0 (<literal>#define FALSE 0</literal>).</para>
+  </refsection>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+
+      <varlistentry>
+        <term>ScilabQuit</term>
+
+        <listitem>
+          <para>a standard C char* containing the path to Scilab quit
+          script (scilab.quit)</para>
+
+          <para>If ScilabStartup is NULL, Scilab will use the default path
+          (detected from SCIpath).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>returns</term>
+
+        <listitem>
+          <para>1 (TRUE) if the operation is successfull.</para>
+
+          <para>0 (FALSE) if an error during initialization occured.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">// A simple TerminateScilab example
+	if ( TerminateScilab(NULL) == FALSE ) {
+		fprintf(stderr,"Error while calling TerminateScilab\n");
+		return -2;
+	}
+
+</programlisting>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+
+      <member><link linkend="compile_and_run_call_scilab">Compile and run with
+      call_scilab</link></member>
+      <member><link linkend="StartScilab">StartScilab</link></member>
+
+      <member><link linkend="SendScilabJob">SendScilabJob</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

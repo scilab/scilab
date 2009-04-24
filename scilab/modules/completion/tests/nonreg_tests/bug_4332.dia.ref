@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 4332 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=4332
+//
+// <-- Short Description -->
+// completion copies selected item instead of completing according to this one.
+// <-- ENGLISH IMPOSED -->
+// <-- JVM NOT MANDATORY -->
+ilib_verbose(0);
+if ierr<>0 then bugmes();quit;end
+if ierr<>0 then bugmes();quit;end
+// You choose thermaSnap.img
+currentline = 'scipad thermaSnap.';
+r = completeline(currentline,'thermaSnap.img',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'scipad thermaSnap.img' then bugmes();quit;end
+// You choose thermaSnap.sce
+currentline = 'scipad thermaSnap.';
+r = completeline(currentline,'thermaSnap.sce',getfilepartlevel(currentline),getpartlevel(currentline),%t);
+if r <> 'scipad thermaSnap.sce' then bugmes();quit;end

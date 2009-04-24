@@ -3,25 +3,25 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA 2007 - Cong WU
  * Copyright (C) INRIA 2008 - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
-/* desc : For usual or polynomial matrix  n  is the int equal to 
-   number of rows times number of columns of  M . (Also valid for  M  
-   a boolean matrix) 
+/* desc : For usual or polynomial matrix  n  is the int equal to
+   number of rows times number of columns of  M . (Also valid for  M
+   a boolean matrix)
 
-   For matrices made of character strings (and in particular for a 
-   character string)  length  returns in  n  the length of entries of 
-   the matrix of character strings  M . 
+   For matrices made of character strings (and in particular for a
+   character string)  length  returns in  n  the length of entries of
+   the matrix of character strings  M .
 
-   The length of a list is the number of elements in the list 
-   (also given by  size ). 
+   The length of a list is the number of elements in the list
+   (also given by  size ).
 
    length('123')  is  3 .  length([1,2;3,4])  is  4 .                     */
 /*------------------------------------------------------------------------*/
@@ -34,6 +34,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*----------------------------------------------------------------------------*/
 /* get length */
 static int lengthStrings(int RhsPosition);
@@ -43,7 +44,7 @@ static int lengthPoly(int RhsPosition);
 /* !!! WARNING !!! : Read comments about length on sparse matrix */
 static int lengthSparse(int RhsPosition);
 /*----------------------------------------------------------------------------*/
-int C2F(sci_length)(char *fname,unsigned long fname_len)
+int sci_length(char *fname,unsigned long fname_len)
 {
 	int lenghtValue = 0;
 	int m_out = 1, n_out = 1, l_out = 0;
@@ -51,7 +52,7 @@ int C2F(sci_length)(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	switch ( GetType(1) ) 
+	switch ( GetType(1) )
 	{
 		case sci_poly :
 			lenghtValue = lengthPoly(1);
@@ -111,82 +112,50 @@ int C2F(sci_length)(char *fname,unsigned long fname_len)
 /*--------------------------------------------------------------------------*/
 static int lengthStrings(int RhsPosition)
 {
-	int m = 0, n = 0; /* matrix size */
-	int mn = 0; /* m*n */
+	char **Input_StringMatrix = NULL;
+	int Row_Num = 0,Col_Num = 0,mn = 0;
 
-	int il = 0; int ilrd = 0;
-	int l1 = 0;
+	/* When input character string or matrix of strings. */
+	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
+	mn = Row_Num*Col_Num;
 
-	int outIndex = 0 ;
-	int x = 0;
-	
-	int lw = RhsPosition + Top - Rhs;
-	
-	l1 = *Lstk(lw);
-	il = iadr(l1);
-
-	if (*istk(il ) < 0) il = iadr(*istk(il + 1));
-
-	/* get dimensions */
-	m = getNumberOfLines(il); /* row */
-	n = getNumberOfColumns(il); /* col */
-	mn = m * n ;
-	
-	ilrd = il + 4;
-	
-	/* readjust stack before to call createvar */
-	C2F(intersci).ntypes[RhsPosition - 1] = '$';
-	C2F(intersci).iwhere[RhsPosition - 1] = l1;
-	C2F(intersci).lad[RhsPosition - 1] = l1;
-
-	/* Create Variable on stack */
-	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &m,&n, &outIndex );
-	for  ( x = 0; x < mn; x++ )
+	if (Input_StringMatrix)
 	{
-		/* put length of strings */
-		/* beginning of string : *istk(ilrd + x + 1) */
-		/* end of string : *istk(ilrd + x) */
-		stk(outIndex)[x] = (double) (*istk(ilrd + x + 1) - *istk(ilrd + x));
+		int outIndex = 0 ;
+		int x = 0;
+
+		CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
+		for  ( x = 0; x < mn; x++ )
+		{
+			if (Input_StringMatrix[x])
+			{
+				wchar_t *wcLine = to_wide_string(Input_StringMatrix[x]);
+				if (wcLine)
+				{
+					stk(outIndex)[x] = (int) wcslen(wcLine);
+					FREE(wcLine); wcLine = NULL;
+				}
+				else
+				{
+					stk(outIndex)[x] = -1;
+				}
+			}
+			else
+			{
+				stk(outIndex)[x] = 0;
+			}
+		}
+
+		LhsVar(1) = Rhs+1 ;
+		C2F(putlhsvar)();
+		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
 	}
-
-	LhsVar(1) = Rhs+1 ;
-	C2F(putlhsvar)();
+	else
+	{
+		freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
+		Scierror(999,_("%s: No more memory.\n"),"length");
+	}
 	return 0;
-
-	/* benchmark on Windows */
-	/* C2D 6600 2.4 Ghz */
-	/* fortran code : 135 microsecondes */
-	/* optimized code stack2 : 146 microsecondes */
-	/* code stack3 (commented) : 17629 microsecondes */
-	/* Conclusion : GetRhsVar with strings is too slow ... */
-
-	//char **Input_StringMatrix = NULL;
-	//int Row_Num = 0,Col_Num = 0,mn = 0;
-
-	///* When input character string or matrix of strings. */
-	//GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
-	//mn = Row_Num*Col_Num;  
-
-	//if (Input_StringMatrix)
-	//{
-	//	int outIndex = 0 ;
-	//	int x = 0;
-
-	//	CreateVar( Rhs+1, MATRIX_OF_DOUBLE_DATATYPE, &Row_Num,&Col_Num, &outIndex );
-	//	for  ( x = 0; x < mn; x++ )
-	//	{
-	//		stk(outIndex)[x] = (int)strlen(Input_StringMatrix[x]);
-	//	}
-	//	LhsVar(1) = Rhs+1 ;
-	//	C2F(putlhsvar)();
-	//	freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-	//}
-	//else
-	//{
-	//	freeArrayOfString(Input_StringMatrix,Row_Num * Col_Num);
-	//	Scierror(999,_("%s: No more memory.\n"),fname);
-	//}
-	//return 0;
 }
 /*--------------------------------------------------------------------------*/
 static int lengthOthers(char *fname)
@@ -216,7 +185,7 @@ static int lengthPoly(int RhsPosition)
       int l1 = 0;
 
       int lw = RhsPosition + Top - Rhs;
-      
+
       l1 = *Lstk(lw);
       il = iadr(l1);
 
@@ -226,9 +195,9 @@ static int lengthPoly(int RhsPosition)
       m = getNumberOfLines(il); /* row */
       n = getNumberOfColumns(il); /* col */
       mn = m * n ;
-      
+
       ilrd = il + 4;
-      
+
       /* readjust stack before to call createvar */
       C2F(intersci).ntypes[RhsPosition - 1] = '$';
       C2F(intersci).iwhere[RhsPosition - 1] = l1;
@@ -244,13 +213,13 @@ static int lengthPoly(int RhsPosition)
 static int lengthSparse(int RhsPosition)
 {
 	int m = 0, n = 0; /* matrix size */
-    int lengthreturned = 0; 
+    int lengthreturned = 0;
 
     int il = 0; int ilrd = 0;
     int l1 = 0;
-      
+
     int lw = RhsPosition + Top - Rhs;
-      
+
     l1 = *Lstk(lw);
     il = iadr(l1);
 
@@ -261,9 +230,9 @@ static int lengthSparse(int RhsPosition)
     n = getNumberOfColumns(il); /* col */
 
 	lengthreturned = Max(m,n);
-      
+
     ilrd = il + 4;
-      
+
     /* readjust stack before to call createvar */
     C2F(intersci).ntypes[RhsPosition - 1] = '$';
     C2F(intersci).iwhere[RhsPosition - 1] = l1;

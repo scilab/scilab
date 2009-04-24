@@ -15,6 +15,5 @@
 // <-- Short Description -->
 //     "position" property format "x|y|w|h" not accepted by figure(), despite what said in help
 
-f = figure(1,"position","0|0|300|500");
-
-if or(get(f,"position")<>[0 0 300 500]) then pause; end
+f = figure(1,"position","100|100|300|500");
+if or(get(f,"position")<>[100 100 300 500]) then pause; end

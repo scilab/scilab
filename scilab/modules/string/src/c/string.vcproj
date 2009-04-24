@@ -418,10 +418,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\kmp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\men_Sutils.c"
 				>
 			</File>
@@ -644,10 +640,6 @@
 			</File>
 			<File
 				RelativePath=".\isletter.h"
-				>
-			</File>
-			<File
-				RelativePath=".\kmp.h"
 				>
 			</File>
 			<File

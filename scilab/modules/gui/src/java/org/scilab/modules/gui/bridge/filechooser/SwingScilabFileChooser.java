@@ -132,7 +132,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 				for (int i = 0; i < files.length; i++) {
 					selection[i] = files[i].getAbsolutePath();
 					selectionPath = files[i].getParentFile().getPath();
-					selectionFileNames[i] = files[i].getAbsolutePath().substring(selectionPath.length() + 1);
+					selectionFileNames[i] = files[i].getName();
 				}					
 			} else {
 				File file = this.getSelectedFile();
@@ -140,7 +140,7 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
 				selection[0] = file.getAbsolutePath();
 				selectionPath = file.getParentFile().getPath();
 				selectionFileNames = new String[1];
-				selectionFileNames[0] = file.getAbsolutePath().substring(selectionPath.length() + 1);
+				selectionFileNames[0] = file.getName();
 				selectionSize = 1;						
 			}
 			

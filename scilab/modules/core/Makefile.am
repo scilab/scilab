@@ -95,7 +95,6 @@ src/fortran/dldsp.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
-src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \
@@ -260,7 +259,8 @@ sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
-sci_gateway/c/sci_readgateway.c
+sci_gateway/c/sci_readgateway.c \
+sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_funcprot.f \

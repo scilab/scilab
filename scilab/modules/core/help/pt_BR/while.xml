@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="while" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim, 10 sep
+    2006)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>while</refname>
+
+    <refpurpose>palavra-chave da estrutura while (significa
+    "enquanto...")</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>while</literal> . Deve ser terminado por
+    <literal>"end"</literal></para>
+
+    <para><literal>while expressão ,instruções1,...[,else instruções],
+    end</literal></para>
+
+    <para><literal>while expressão do instruções1,...[,else instruções],
+    end</literal></para>
+
+    <para><literal>while expressão then instruções1,...[,else instruções],
+    end</literal></para>
+
+    <para>Notas:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>A única restrição é que cada palavra-chave "then" ou "do" deve
+        estar na mesma linha que a palavra-chave "while".</para>
+      </listitem>
+
+      <listitem>
+        <para>As palavras-chaves "then" ou "do" podem ser substituídas por um
+        retorno de carro ou uma vírgula. Para compatibilidade com o Matlab,
+        também é possível, mas não recomendado, por um espaço entre o fim da
+        expressão e o início da primeira instrução.</para>
+      </listitem>
+
+      <listitem>
+        <para>A construção opcional <literal>,else instruções</literal>
+        permite fornecer instruções que são executadas quando a expressão
+        expressão torna-se falsa.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>Aviso: o número de caracateres usados para definir o corpo de
+    qualquer estrutura condicional (if while for ou select/case) deve ser
+    limitado a 16k.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example">
+    
+	     e=1; a=1; k=1;
+	     while norm(a-(a+e),1) &gt; %eps, e=e/2; k=k+1; end
+	     e,k
+    
+  </programlisting>
+  </refsection>
+
+  <refsection>
+    <title> Ver Também </title>
+
+    <simplelist type="inline">
+      <member><link linkend="for">for</link></member>
+
+      <member><link linkend="select">select</link></member>
+
+      <member><link linkend="break">break</link></member>
+
+      <member><link linkend="return">return</link></member>
+
+      <member><link linkend="pause">pause</link></member>
+    </simplelist>
+  </refsection>
+</refentry>
