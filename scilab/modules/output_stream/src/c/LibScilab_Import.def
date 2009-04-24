@@ -24,7 +24,6 @@ checkrhs_
 checklhs_
 intersci_
 createvar_
-writelunitstring_
 getScilabMode
 cvname_
 getIntermediateMemoryNeeded
