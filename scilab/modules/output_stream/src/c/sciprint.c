@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "../../fileio/includes/diary.h"
 #include "stack-def.h" /* bsiz */
 #include "scilabmode.h"
