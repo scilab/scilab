@@ -19,10 +19,11 @@
 #ifdef _MSC_VER
 #include "strdup_Windows.h"
 #endif
+#include "BOOL.h"
 /*------------------------------------------------------------------------*/
-static char Sci_Prompt[10];
-static BOOL dispWarningLevelPrompt=TRUE;
-static char *temporaryPrompt=NULL;
+static char Sci_Prompt[PROMPT_SIZE_MAX];
+static BOOL dispWarningLevelPrompt = TRUE;
+static char *temporaryPrompt = NULL;
 /*------------------------------------------------------------------------*/
 /* setprlev : set the current prompt string */
 /*------------------------------------------------------------------------*/
@@ -36,7 +37,7 @@ void C2F(setprlev)( int *pause)
 			if (getWarningMode())
 			{
 				sciprint(_("Type '%s' or '%s' to return to standard level prompt.\n\n"),"resume","abort");
-				dispWarningLevelPrompt=FALSE;
+				dispWarningLevelPrompt = FALSE;
 			}
 		}
 		sprintf(Sci_Prompt,SCIPROMPT_INTERRUPT,*pause);

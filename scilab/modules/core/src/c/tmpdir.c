@@ -33,7 +33,6 @@ extern  char  *getenv();
 #include "strdup_windows.h"
 #endif
 #include "MALLOC.h" /* MALLOC */
-#include "prompt.h"
 #include "tmpdir.h"
 #include "localization.h"
 #include "charEncoding.h"

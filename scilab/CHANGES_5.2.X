@@ -130,3 +130,5 @@ Bug fixes:
 
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
 
+* bug 4461 fixed - redefines prompt not displayed in a diary.
+

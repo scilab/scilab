@@ -30,7 +30,6 @@ src/c/setgetSCIpath.c \
 src/c/getmemory.c \
 src/c/Funtab.c \
 src/c/csignal.c \
-src/c/prompt.c \
 src/c/callinterf.c \
 src/c/scimem.c \
 src/c/banier.c \
@@ -194,8 +193,7 @@ src/fortran/wmdsp.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f \
-src/fortran/promptecho.f
+src/fortran/isinstring.f 
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -388,7 +386,6 @@ includes/machine.h.vc \
 includes/Os_specific.h \
 includes/PARAMS.h \
 includes/PATH_MAX.h \
-includes/prompt.h \
 includes/realmain.h \
 includes/returnanan.h \
 includes/returnProperty.h \

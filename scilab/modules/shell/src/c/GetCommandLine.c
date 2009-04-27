@@ -29,6 +29,7 @@
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "stack-def.h"
+#include "diary.h"
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -39,7 +40,7 @@
 
 
 /*--------------------------------------------------------------------------*/
-static char Sci_Prompt[10];
+static char Sci_Prompt[PROMPT_SIZE_MAX];
 static char* tmpPrompt = NULL;
 static char * __CommandLine;
 /*--------------------------------------------------------------------------*/
@@ -73,7 +74,8 @@ static void getCommandLine(void)
       if (tmpPrompt != NULL)
         {
           SetConsolePrompt(tmpPrompt);
-          ClearTemporaryPrompt();
+
+		  if (getdiary() == 0) ClearTemporaryPrompt();
         }
       else
         {

@@ -149,7 +149,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="print.f"/>
 		<File RelativePath="prntid.f"/>
 		<File RelativePath="prompt.f"/>
-		<File RelativePath=".\promptecho.f"/>
 		<File RelativePath="ptover.f"/>
 		<File RelativePath="ptrback.f"/>
 		<File RelativePath="putid.f"/>

@@ -660,10 +660,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\promptecho.c"
-				>
-			</File>
-			<File
 				RelativePath=".\ptover.c"
 				>
 			</File>
@@ -1245,10 +1241,6 @@
 			</File>
 			<File
 				RelativePath=".\prompt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\promptecho.f"
 				>
 			</File>
 			<File

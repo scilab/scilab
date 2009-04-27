@@ -31,6 +31,8 @@
 #endif
 #define SCIPROMPT_INTERRUPT "-%d->"
 
+#define PROMPT_SIZE_MAX 64
+
 /*--------------------------------------------------------------------------*/ 
 void C2F(setprlev)( int *pause);
 void GetCurrentPrompt(char *CurrentPrompt);
