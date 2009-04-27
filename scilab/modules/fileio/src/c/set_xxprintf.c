@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,14 +13,15 @@
 /*--------------------------------------------------------------------------*/
 #include "set_xxprintf.h"
 #include "sciprint.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
+/* local function used to flush with sprintf */
 static int voidflush(FILE *fp);
+/* local function used to call scivprint */
+static int local_sciprint (int iv, char *fmt,...);
 /*--------------------------------------------------------------------------*/
 extern char sprintf_buffer[MAX_SPRINTF_SIZE];
 /*--------------------------------------------------------------------------*/
-
-#include "scilabmode.h"
-
 void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 {
 	if (fp == (FILE *) 0)
@@ -35,7 +36,7 @@ void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 		/* sciprint2 */
 		*target =  (char *) 0;
 		*flush = fflush;
-		*xxprintf = (XXPRINTF) sciprint2;
+		*xxprintf = (XXPRINTF) local_sciprint;
 	}
 	else
 	{
@@ -49,5 +50,17 @@ void set_xxprintf(FILE *fp,XXPRINTF *xxprintf,FLUSH *flush,char **target)
 static int voidflush(FILE *fp)
 {
 	return 0;
+}
+/*--------------------------------------------------------------------------*/
+static int local_sciprint (int iv, char *fmt,...)
+{
+	int count = 0;
+	va_list ap;
+
+	va_start(ap,fmt);
+	count = scivprint(fmt, ap);
+	va_end (ap);
+
+	return count;
 }
 /*--------------------------------------------------------------------------*/
