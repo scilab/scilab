@@ -69,6 +69,8 @@ Bug fixes:
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
 
+ * bug 4466 fixed - .' operator defined for strings and booleans
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
