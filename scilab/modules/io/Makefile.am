@@ -47,7 +47,10 @@ sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
 sci_gateway/c/sci_disp.c \
 sci_gateway/c/sci_newest.c \
-sci_gateway/c/sci_get_absolute_file_path.c
+sci_gateway/c/sci_get_absolute_file_path.c 
+
+
+GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/oldloadsave.f \
 sci_gateway/fortran/intwrite4b.f \
@@ -77,11 +80,14 @@ libsciio_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
+libsciio_la_CPPFLAGS= 	-I$(srcdir)/includes/ 
+			-I$(top_srcdir)/modules/core/includes
+
 pkglib_LTLIBRARIES = libsciio.la
 
 libsciio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(IO_C_SOURCES) $(GATEWAY_C_SOURCES)

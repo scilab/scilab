@@ -12,8 +12,9 @@
  */
 
 /*--------------------------------------------------------------------------*/
+#include "gw_time.h"
+#include "stack-c.h"
 #include "MALLOC.h"
-#include "sci_calendar.h"
 #include "Scierror.h"
 #include "IsAScalar.h"
 #include "InversionMatrixInt.h"
@@ -29,7 +30,7 @@ static long ymd_to_scalar (unsigned year, unsigned month, unsigned day);
 /*--------------------------------------------------------------------------*/
 int days[12]    = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 /*--------------------------------------------------------------------------*/
-int C2F(sci_calendar)(char *fname,unsigned long fname_len)
+int sci_calendar(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 

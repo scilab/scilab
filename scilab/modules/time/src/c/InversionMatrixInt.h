@@ -14,6 +14,9 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __INVERSIONMATRIXINT_H__
 #define __INVERSIONMATRIXINT_H__
+
+#include "dynlib_time.h"
+
 /**
  * @TODO add comment
  *
@@ -22,7 +25,7 @@
  * @param Matrix    
  * @return <ReturnValue>
  */
-int *InversionMatrixInt(int W,int L,int *Matrix);
+TIME_IMPEXP  int *InversionMatrixInt(int W,int L,int *Matrix);
 
 #endif /* __INVERSIONMATRIXINT_H__ */
 /*--------------------------------------------------------------------------*/

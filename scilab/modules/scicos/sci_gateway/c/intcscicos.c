@@ -27,9 +27,7 @@
 #include "stack-c.h"
 #define Top C2F(vstk).top
 
-/* REORGANIZATION */
 #include "BuildObjects.h"
-/* #include "../interf/intcommongraphics.h" */
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "HandleManagement.h" /* sciGetPointerFromHandle */

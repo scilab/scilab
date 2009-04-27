@@ -100,9 +100,13 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link
+      linkend="creadmat">creadmat</link>,<link
+      linkend="cwritemat">cwritemat</link>,
+	<link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="BooleanManagement">BooleanManagement</link>, <link
+      linkend="ComplexManagement">ComplexManagement</link>, <link
       linkend="StringManagement">StringManagement</link></member>
     </simplelist>
   </refsection>

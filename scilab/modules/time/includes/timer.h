@@ -15,7 +15,9 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __TIMER_H__
 #define __TIMER_H__
+
 #include "machine.h" /* C2F */
+#include "dynlib_time.h" /* TIME_IMPEXP */
 
 /**
 * Returns the CPU time since the preceding call to "C2F(timer)"
@@ -24,13 +26,13 @@
 * @param etime 
 * @return 0
 */
-int C2F(timer)(double *etime);
+TIME_IMPEXP int C2F(timer)(double *etime);
 
 /**
 * Returns the CPU time since the preceding call to "scilab_timer"
 * @return elapsed time
 */
-double scilab_timer(void);
+TIME_IMPEXP double scilab_timer(void);
 
 #endif /* __TIMER_H__ */
 /*--------------------------------------------------------------------------*/
