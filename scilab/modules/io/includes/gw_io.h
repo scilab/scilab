@@ -70,6 +70,8 @@ int C2F(intreadb)(void);
 int C2F(intwrite)(void);
 int C2F(intwrite4b)(void);
 int C2F(intwritb)(void);
+
+int sci_export_to_hdf5(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_IO__ */
 /*--------------------------------------------------------------------------*/

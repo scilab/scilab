@@ -66,4 +66,5 @@
 <PRIMITIVE gatewayId="5" primitiveId="29" primitiveName="getrelativefilename" />
 <PRIMITIVE gatewayId="5" primitiveId="30" primitiveName="newest" />
 <PRIMITIVE gatewayId="5" primitiveId="31" primitiveName="get_absolute_file_path" />
+<PRIMITIVE gatewayId="5" primitiveId="32" primitiveName="export_to_hdf5" />
 </GATEWAY>
