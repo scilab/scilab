@@ -27,19 +27,19 @@ function varargout = sscanf(buf,frmt)
 	nv         = lhs;
 	
 	if type(buf)<>10 then
-		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"sscanf",1));
+		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A String expected.\n"),"sscanf",1));
 	end
 	
 	if size(buf,"*")<>1 then
-		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"sscanf",1);
+		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A String expected.\n"),"sscanf",1));
 	end
 	
 	if type(frmt)<>10 then
-		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"),"sscanf",2));
+		error(999, msprintf(gettext("%s: Wrong type for input argument #%d: A String expected.\n"),"sscanf",2));
 	end
 	
 	if size(frmt,"*")<>1 then
-		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")),"sscanf",2);
+		error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A String expected.\n"),"sscanf",2));
 	end
 	
 	lb          = 1;

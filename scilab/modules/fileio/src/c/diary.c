@@ -14,44 +14,77 @@
 #include "diary.h"
 #include "stack-c.h"
 #include "filesmanagement.h"
+#include "mclose.h"
+/*--------------------------------------------------------------------------*/
+static char* removeBlanks(char *_str)
+{
+	int len = 0;
+	int i = 0;
+	len = (int) strlen(_str);
+	for(i = len - 1;i >=0 ; i--)
+	{
+		if (_str[i] != ' ') break;
+	}
+	_str[i+1] = '\0';
+	return  _str;
+}
 /*--------------------------------------------------------------------------*/
 int getdiary(void)
 {
 	return C2F(iop).wio;
 }
 /*--------------------------------------------------------------------------*/
-void diary(char *str,long int *n)
+void setDiaryId(int fd)
+{
+	C2F(iop).wio = fd;
+}
+/*--------------------------------------------------------------------------*/
+void diary(char *str,BOOL addCR)
 {
 #if defined(_MSC_VER)
 	/* On Windows, We must have CRLF here */
-	char newline[3]="\r\n";
-	int nn=2;
+	char newline[3] = "\r\n";
 #else
-	char newline[1]="\n";
-	int nn=1;
+	char newline[1] = "\n";
 #endif
-	int u;
 
-	u=getdiary();
+	int u = getdiary();
 	if ( u != 0 )
 	{
 		FILE *fd= GetFileOpenedInScilab(u);
+		int len = 0;
+
+		str = removeBlanks(str);
+		len = (int) strlen (str);
+
 		if (fd)
 		{
-			fwrite(str,sizeof(unsigned char),*n,fd);
-			fwrite(newline,sizeof(unsigned char),nn,fd);
+			if (addCR)
+			{
+				fprintf(fd,"%s%s",str,newline);
+			}
+			else
+			{
+				fprintf(fd,"%s",str);
+			}
 		}
 	}
 }
 /*--------------------------------------------------------------------------*/
-void diary_nnl(char *str,int *n)
+BOOL closeAllDiaries(void)
 {
-	int u = getdiary();
+	BOOL bClosed = FALSE;
 
-	if (u)
+	/* close previous diary */
+	int fd_diary = getdiary();
+	if (fd_diary != 0)
 	{
-		FILE *fd= GetFileOpenedInScilab(u);
-		if (fd) fwrite(str,sizeof(unsigned char),*n,fd);
+		double res = 0.0;
+		C2F(mclose)(&fd_diary, &res);
+		setDiaryId(0);
+		bClosed = TRUE;
 	}
+
+	return bClosed;
 }
 /*--------------------------------------------------------------------------*/

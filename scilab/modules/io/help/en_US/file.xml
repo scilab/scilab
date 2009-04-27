@@ -163,7 +163,7 @@ file(action,unit)
 
         <listitem>
           <para>integer vector, logical unit descriptor of the opened files.
-          Units 5 and 6 are reserved by the system for input and output
+          Units 5 and 6 (%io) are reserved by the system for input and output
           devices.</para>
         </listitem>
       </varlistentry>
@@ -398,6 +398,8 @@ mclose(u2);
       <member><link linkend="mopen">mopen</link></member>
 
       <member><link linkend="mclose">mclose</link></member>
+      
+      <member><link linkend="file">file</link></member>
     </simplelist>
   </refsection>
 </refentry>

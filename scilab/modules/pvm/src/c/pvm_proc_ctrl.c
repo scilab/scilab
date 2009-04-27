@@ -181,7 +181,7 @@
 #include "GetenvB.h"
 #include "PATH_MAX.h"
 #include "sciprint.h"
-#include "sciprint_nd.h"
+#include "sciprint.h"
 #include "localization.h"
 
 extern int pvmendtask(void);
@@ -289,21 +289,21 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			{
 				argc = 1;
 				argv[0] = path;
-				sciprint_nd(_("The configuration file %s is used.\n"), path);
+				sciprint(_("The configuration file %s is used.\n"), path);
 			} 
 			else 
 			{
 				ro = getenv("PVM_ROOT");
 				if (ro != NULL)
 				{
-					sciprint_nd(_("Warning: PVM_ROOT is set to %s\n"),ro);
-					sciprint_nd(_("but there exists no configuration file:\n"));
-					sciprint_nd("%s\n", path);
+					sciprint(_("Warning: PVM_ROOT is set to %s\n"),ro);
+					sciprint(_("but there exists no configuration file:\n"));
+					sciprint("%s\n", path);
 					FREE(path);
 				}
 				else
 				{
-					sciprint_nd(_("Warning: PVM_ROOT is not set.\n"),ro);
+					sciprint(_("Warning: PVM_ROOT is not set.\n"),ro);
 				}
 			}
 		}
@@ -321,12 +321,12 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			strcat(path, PVM_CONFIG_FILE); 
 			if (stat(path, &buf) == 0)
 			{
-				sciprint_nd(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
+				sciprint(_("The standard configuration file $SCI%s will be used.\nWith SCI=%s\nSCI will have to be set on remote hosts\nin order to spawn scilab\n"),PVM_CONFIG_FILE,rd,rd);
 				/* Standard Scilab configuration file needs env variables PVM_ROOT, SCI, PVM_ARCH */
 				/* If they are not set then return */
 				if (getenv("PVM_ROOT") == NULL || getenv("PVM_ARCH") == NULL || getenv("SCI"))
 				{
-					sciprint_nd(_("The standard configuration file $SCI%s%s needs the environment variables %s, %s, %s to be set. PVM can not be started.\n"),PVM_MODULE, PVM_CONFIG_FILE, "PVM_ROOT", "PVM_ARCH", "SCI");
+					sciprint(_("The standard configuration file $SCI%s%s needs the environment variables %s, %s, %s to be set. PVM can not be started.\n"),PVM_MODULE, PVM_CONFIG_FILE, "PVM_ROOT", "PVM_ARCH", "SCI");
 					*res = -1;
 					return;
 				}
@@ -336,7 +336,7 @@ void C2F(scipvmstart)(int *res, char *hostfile, int *hostfile_len)
 			else
 			{
 				FREE(path);
-				sciprint_nd(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
+				sciprint(_("Warning: The standard configuration file $SCI%s was not found.\nWe supposed that PVM and scilab are in standard place on your net\n (Cf. man pvmd3)\n"),PVM_CONFIG_FILE);
 			}
 		} /* SCI */
 	}

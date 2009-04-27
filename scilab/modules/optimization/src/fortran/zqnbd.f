@@ -14,33 +14,59 @@ c
       implicit double precision (a-h,o-z)
       real rzs(*)
       double precision dzs(*)
+      character bufstr*(4096)
       dimension x1(n),x2(n),g1(n),dir(n),epsx(n)
       dimension binf(n),bsup(n),x(n),g(n),dh(*),indic(n),izig(n),
      &izs(*)
       external simul,proj
 c
       if(imp.lt.4)go to 3
-      write(io,1020)izag,ig,in,irel,iact,epsrel
+      write(bufstr,1020)izag,ig,in,irel,iact,epsrel
+      call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 1020  format(' qnbd :  izag,ig,in,irel,iact,epsrel=',5i3,f11.4)
 c
-      if(ig.eq.1)write(io,110)
+      if(ig.eq.1) then
+        write(bufstr,110)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 110   format(' test sur gradient pour sortie ib')
-      if(in.eq.1)write(io,111)
+      if(in.eq.1) then 
+        write(bufstr,111)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 111   format(' test sur nombre de defactorisations pour sortie ib')
-      if(izag.ne.0)write(io,112)izag
+      if(izag.ne.0) then
+        write(bufstr,112)izag
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 112   format(' memorisation de variables izag=',i3)
-      if(irel.eq.1)write(io,114)epsrel
+      if(irel.eq.1) then
+        write(bufstr,114)epsrel
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 114   format(' methode de minimisations incompletes ; epsrel=',d11.4)
-      if(iact.eq.1)write(io,116)
+      if(iact.eq.1) then
+        write(bufstr,116)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 116   format(' blocage des variables dans ib')
-      if(ieps1.eq.1)write(io,118)
+      if(ieps1.eq.1) then
+        write(bufstr,118)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 118   format(' parametre eps1 nul')
-      if(ieps1.eq.2)write(io,119)
+      if(ieps1.eq.2) then
+        write(bufstr,119)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 119   format(' parametre eps1 grand')
 c
 c     cscal1 utilise pour calculer eps(x) = eps1 cf avant 310
       cscal1=1.0d+8
-      if(ieps1.eq.2)write(io,120)cscal1
+      if(ieps1.eq.2) then
+        write(bufstr,120)cscal1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 120   format(' parametre eps1=eps(x) calcule avec cscal1=',d11.4)
 3     continue
 c
@@ -62,10 +88,16 @@ c
       if(indqn.eq.1)go to 10
       if(indqn.eq.2)go to 30
 c     erreur
-      if(imp.gt.0)write(io,105)indqn
+      if(imp.gt.0) then
+        write(bufstr,105)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 105   format(' qnbd  : valeur non admissible de indqn  ',i5)
       indqn=-105
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 10    continue
 c     on initialise dh a l identite puis a l iteration 2
@@ -88,7 +120,10 @@ c     iter nombre d iterations de descente
       if(indsim.le.0)then
       indqn=-1
       if(indsim.eq.0)indqn=0
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 123   format(' qnbd : indqn=',i8)
       return
       endif
@@ -108,13 +143,22 @@ c     d ou cst=som((y(i)*(dx))**2))/(2*df0)
       iconv=0
 200   iter=iter +1
       if(iter.le.itmax)go to 202
-      if(imp.gt.0)write(io,1202)
+      if(imp.gt.0) then
+        write(bufstr,1202)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1202  format(' qnbd : maximum d iterations atteint')
       indqn=5
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
-202   if(imp.ge.2)write(io,1210)iter,f
-1210  format(/' qnbd : iter=',i3,'  f=',d15.7)
+202   if(imp.ge.2) then
+         write(bufstr,1210)iter,f
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         endif
+1210  format(' qnbd : iter=',i3,'  f=',d15.7)
 c     x1,g1 valeurs a l iteration precedente
       if(iter.eq.1)go to 300
       cof1=0.0d+0
@@ -130,7 +174,10 @@ c      dh=(y,y)/(y,s)*id
       do 203 i=1,n
 203   cof2=cof2 + g1(i)**2
       cof2=cof2/cof1
-      if(imp.gt.3)write(io,1203)cof2
+      if(imp.gt.3) then
+        write(bufstr,1203)cof2
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1203  format(' qnbd : facteur d echelle=',d11.4)
       dh(1)=cof2
       i1=1
@@ -235,18 +282,27 @@ c     calcul sig1 pour 2eme mise a jour
       do 271 i=1,n
 271   sig1=sig1+dir(i)*x2(i)
       if(sig1.gt.0.0d+0)go to 272
-      if(imp.gt.2)write(io,1272)sig1
+      if(imp.gt.2) then
+        write(bufstr,1272)sig1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1272  format(' qnbd : pb (bs,s) negatif=',d11.4)
 c
 c     ******************************************************
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 272      sig1=-1.0d+0/sig1
 c     truc powell si (y,s) negatif
       if(cof1.gt.zero)go to 277
-      if(imp.gt.2)write(io,1270)cof1
+      if(imp.gt.2) then
+        write(bufstr,1270)cof1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1270  format(' qnbd : emploi truc powell (y,s)=',d11.4)
       teta=-1.0d+0/sig1
       teta=.8*teta/(teta-cof1)
@@ -267,11 +323,17 @@ c      premiere mise a jour de dh
       call calmaj(dh,n,dir,sig1,x2,ir,mk,epsmc,nfac)
       if(ir.ne.nfac)go to 280
       go to 300
-280   if(imp.gt.0)write(io,282)
+280   if(imp.gt.0) then
+         write(bufstr,282)
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         endif
 282   format(' qnbd : pb dans appel majour')
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 300   continue
 c
@@ -291,7 +353,10 @@ c
       eps1=min(eps0,eps1)
       if(ieps1.eq.1)eps1=0.0d+0
       if(ieps1.eq.2)eps1=eps1*1.0d+4
-      if(imp.gt.3)write(io,322)eps1
+      if(imp.gt.3) then
+         write(bufstr,322)eps1
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         endif
 322   format(' qnbd : val de eps1 servant a partitionner les variables'
      &,d11.4)
 c     nfac nombre de lignes factorisees (nr pour ajour)
@@ -308,7 +373,10 @@ c     si irit=1 on peut relacher des variables
       irit=0
       if(difg1.le.epsrel*difg0)irit=1
       if(irel.eq.0.or.iter.eq.1)irit=1
-      if(irit*irel.gt.0.and.imp.gt.3)write(io,1320)difg0,epsrel,difg1
+      if(irit*irel.gt.0.and.imp.gt.3) then
+        write(bufstr,1320)difg0,epsrel,difg1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1320  format(' qnbd : redemarrage ; difg0,epsrel,difg1=',3d11.4)
 c
       tiers=1.0d+0/3.0d+0
@@ -333,16 +401,25 @@ c     on defactorise si necessaire
       if(ic.gt.nfac)go to 340
       idfac=idfac+1
       mode=-1
-      if(imp.ge.4)write(io,336)k
+      if(imp.ge.4) then
+        write(bufstr,336)k
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 336   format(' defactorisation de ',i3)
       izig(k)=izig(k) + izag
       call ajour(mode,n,k,nfac,dh,x2,indic)
       if(mode.eq.0) go to 340
-      if(imp.gt.0)write(io,333)mode
+      if(imp.gt.0) then
+        write(bufstr,333)mode
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 333   format(' qnbd : pb dans ajour. mode=',i3)
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 c     on factorise
 335   continue
@@ -353,17 +430,29 @@ c     on factorise
       if(ifac.ge.n3.and.iter.gt.1)go to 340
       if(abs(g(k)).le.gr)go to 340
       ifac=ifac+1
-      if(imp.ge.4)write(io,339)k
+      if(imp.ge.4) then
+        write(bufstr,339)k
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 339   format(' on factorise l indice ',i3)
       call ajour(mode,n,k,nfac,dh,x2,indic)
       if(mode.eq.0)go to 340
-      if(imp.gt.0) write(io,333)mode
+      if(imp.gt.0) then
+        write(bufstr,333)mode
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       indqn=8
       if(iter.eq.1)indqn=-5
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 340   continue
-      if(imp.ge.2)write(io,350)ifac,idfac,nfac
+      if(imp.ge.2) then
+        write(bufstr,350)ifac,idfac,nfac
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 350   format(' qnbd : nbre fact',i3,' defact',i3,
      &' total var factorisees',i3)
 c
@@ -406,11 +495,17 @@ c     dans le nouveau syst d indices
 411   x2(i)=v
 412   continue
       if(ir.eq.nfac)go to 660
-      if(imp.gt.0)write(io,650)
+      if(imp.gt.0) then
+        write(bufstr,650)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 650   format(' qnbd : pb num dans mult par inverse')
       indqn=7
       if(iter.eq.1)indqn=-6
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 660   continue
       do 610 i=1,n
@@ -442,11 +537,17 @@ c     ifp =1 si fpn trop petit. on prend alors d=-g
 710   fpn=fpn + g(i)*dir(i)
       if(fpn.gt.0.0d+0) then
          if(ifp.eq.1) then
-            if(imp.gt.0)write(io,1705) fpn
+            if(imp.gt.0) then
+              write(bufstr,1705) fpn
+              call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+              endif
 1705        format(' qnbd : arret fpn non negatif=',d11.4)
             indqn=6
             if(iter.eq.1)indqn=-3
-            if(imp.gt.0)write(io,123)indqn
+            if(imp.gt.0) then
+              write(bufstr,123)indqn
+              call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+              endif
             return
          else
             ifp=1
@@ -482,7 +583,10 @@ c     amd,amf tests sur h'(t) et diff
          if(indsim.le.0)then
             indqn=-3
             if(indsim.eq.0)indqn=0
-            if(imp.gt.0)write(io,123)indqn
+            if(imp.gt.0) then
+              write(bufstr,123)indqn
+              call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+              endif
             return
          endif
       endif
@@ -492,22 +596,32 @@ c     amd,amf tests sur h'(t) et diff
          if(indrl.eq.-3)indqn=13
          if(indrl.eq.-4)indqn=12
          if(indrl.le.-1000)indqn=11
-         if(imp.gt.0)write(io,123)indqn
+         if(imp.gt.0) then
+           write(bufstr,123)indqn
+           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+           endif
          return
       endif
 c
 753   if(imp.lt.6)go to 778
       do 760 i=1,n
-760      write(io,777)i,x(i),g(i),dir(i)
+760      write(bufstr,777)i,x(i),g(i),dir(i)
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
 777   format(' i=',i2,' xgd ',3f11.4)
 c
 778   continue
       if(nap.lt.napmax)go to 758
       f=fn
-      if(imp.gt.0)write(io,755)napmax
+      if(imp.gt.0) then
+        write(bufstr,755)napmax
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 755   format(' qnbd : retour cause max appels simul',i9)
       indqn=4
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 758   continue
 c     section 8 test de convergence
@@ -516,10 +630,16 @@ c
       if(abs(x(i)-x1(i)).gt.epsx(i))go to 806
 805   continue
       f=fn
-      if(imp.gt.0)write(io,1805)
+      if(imp.gt.0) then
+        write(bufstr,1805)
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1805  format(' qnbd : retour apres convergence de x')
       indqn=3
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
 806   continue
       difg=0.0d+0
@@ -543,20 +663,35 @@ c
       df0=-diff
       if(irit.eq.1)difg0=difg1
       f=fn
-      if(imp.ge.2)write(io,860)epsg,difg,epsf,diff,nap
+      if(imp.ge.2) then
+         write(bufstr,860)epsg,difg,epsf,diff,nap
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         endif
 860   format(' qnbd : epsg,difg=',2d11.4,'  epsf,diff=',2d11.4
      &,'  nap=',i3)
       if(diff.lt.epsf)then
       indqn=2
-      if(imp.gt.0)write(io,1865)diff
+      if(imp.gt.0) then
+        write(bufstr,1865)diff
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1865  format(' qnbd : retour cause decroissance f trop petite=',d11.4)
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
       endif
       if(difg.gt.epsg)go to 200
       indqn=1
-      if(imp.gt.0)write(io,1900)difg
+      if(imp.gt.0) then
+        write(bufstr,1900)difg
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 1900  format(' qnbd : retour cause gradient projete petit=',d11.4)
-      if(imp.gt.0)write(io,123)indqn
+      if(imp.gt.0) then
+        write(bufstr,123)indqn
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
       end

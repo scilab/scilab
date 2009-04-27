@@ -40,7 +40,7 @@
       <varlistentry>
         <term>libs</term>
         <listitem>
-          <para>string matrix giving extra libraries needed for shred library creation</para>
+          <para>string matrix giving extra libraries needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -120,7 +120,7 @@
     the same directory using the <literal>loadername</literal> variable.</para>
     <para>
     Many examples are provided in <literal>examples/link-examples-so</literal>
-    directory.</para>
+    directory. They are all released into the public domain.</para>
 	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
   </refsection>
   <refsection>
@@ -142,7 +142,7 @@ mputl(f1,'fun1.c')
 //creating the shared library (a gateway, a Makefile and a loader are 
 //generated. 
 
-ilib_for_link('ext1c','fun1.o',[],"c") 
+ilib_for_link('ext1c','fun1.c',[],"c") 
 
 // load the shared library 
 

@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "../../fileio/includes/diary.h"
 #include "stack-def.h" /* bsiz */
 #include "scilabmode.h"
@@ -28,9 +27,22 @@
 #define MAXPRINTF bsiz /* bsiz size of internal chain buf */
 /*--------------------------------------------------------------------------*/ 
 /* sciprint uses scivprint */
-/* scivprint uses scivprint_nd */
-/* sciprint_nd uses scivprint_nd */
-/* all use printf_scilab at the end */
+/* scivprint uses printf_scilab */
+/*--------------------------------------------------------------------------*/ 
+/*
+* Print
+* works as sciprint
+* difference is that the argument list is a pointer to a list of arguments
+* @param fmt Format of the format string
+* @param [in] args
+*/
+static int scivprint(char *fmt,va_list args);
+/*--------------------------------------------------------------------------*/ 
+/**
+* print a string 
+* @param[in] buffer to disp
+*/
+static void printf_scilab(char *buffer);
 /*--------------------------------------------------------------------------*/ 
 void sciprint(char *fmt,...) 
 {
@@ -41,49 +53,38 @@ void sciprint(char *fmt,...)
 	va_end (ap);
 }
 /*--------------------------------------------------------------------------*/ 
-void scivprint(char *fmt,va_list args) 
+static int scivprint(char *fmt,va_list args) 
 {
+	static char s_buf[MAXPRINTF];
+	int count=0;
+
 	va_list savedargs;
 	va_copy(savedargs, args);
 	
-	scivprint_nd(fmt,args);
+	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, args );
+	if (count == -1) s_buf[MAXPRINTF-1]='\0';
 
-	if (getdiary()) 
-	{
-		int count = 0;
-		char s_buf[MAXPRINTF];
-		int lstr = 0;
-
-		count= vsnprintf(s_buf,MAXPRINTF-1, fmt, savedargs );
-
-		if (count == -1) s_buf[MAXPRINTF-1]='\0';
-
-		lstr = (int) strlen(s_buf);
-		diary_nnl(s_buf,&lstr);
-	}
+	printf_scilab(s_buf);
 	
 	va_end(savedargs);
+
+	return count;
 }
 /*--------------------------------------------------------------------------*/ 
 /* as sciprint but with an added first argument which is ignored (used in do_printf) */
 int sciprint2 (int iv, char *fmt,...)
 {
-	va_list ap;
 	int count = 0;
-	char s_buf[MAXPRINTF];
+	va_list ap;
 
 	va_start(ap,fmt);
-	count= vsnprintf(s_buf,MAXPRINTF-1, fmt, ap );
+	count = scivprint(fmt, ap);
 	va_end (ap);
-
-	if (count == -1) s_buf[MAXPRINTF-1]='\0';
-
-	printf_scilab(s_buf,TRUE);
 
 	return count;
 }
 /*--------------------------------------------------------------------------*/ 
-void printf_scilab(char *buffer,BOOL withDiary)
+static void printf_scilab(char *buffer)
 {
 	if (buffer)
 	{
@@ -100,10 +101,10 @@ void printf_scilab(char *buffer,BOOL withDiary)
 			#endif
 		}
 
-		if ( (withDiary) && getdiary() ) 
+		if ( getdiary() ) 
 		{
-			int lstr = (int)strlen(buffer);
-			diary_nnl(buffer,&lstr);
+			// diary output line
+			diary(buffer,FALSE);
 		}
 	}
 }

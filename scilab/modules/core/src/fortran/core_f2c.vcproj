@@ -496,10 +496,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\functionsforbasout.c"
-				>
-			</File>
-			<File
 				RelativePath=".\funnam.c"
 				>
 			</File>
@@ -1085,10 +1081,6 @@
 			</File>
 			<File
 				RelativePath=".\ftob.f"
-				>
-			</File>
-			<File
-				RelativePath=".\functionsforbasout.f"
 				>
 			</File>
 			<File

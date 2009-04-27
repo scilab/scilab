@@ -130,8 +130,8 @@ am__objects_3 = libsciio_la-sci_execstr.lo libsciio_la-sci_read4b.lo \
 	libsciio_la-sci_get_absolute_file_path.lo
 am__objects_4 = oldloadsave.lo intwrite4b.lo intexec.lo intgetf.lo \
 	intrat.lo intwritb.lo intwrite.lo intprint.lo intdisp.lo \
-	intread4b.lo intdeff.lo intlib.lo intdiary.lo intread.lo \
-	intexecstr.lo intreadb.lo intfile.lo
+	intread4b.lo intdeff.lo intlib.lo intread.lo intexecstr.lo \
+	intreadb.lo intfile.lo
 am_libsciio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
@@ -227,6 +227,7 @@ JAVA = @JAVA@
 JAVAC = @JAVAC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
+JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -429,7 +430,6 @@ sci_gateway/fortran/intdisp.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \
-sci_gateway/fortran/intdiary.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
@@ -509,6 +509,9 @@ pkgdocdir = $(mydatadir)
 
 # What is the mask of the help source
 DOCMASKXML = *.xml
+
+# What is the mask of the MathML sources
+DOCMASKMML = *.mml
 
 ########### INSTALL DATA ###################
 # Install macros, help & demos
@@ -1009,9 +1012,6 @@ intdeff.lo: sci_gateway/fortran/intdeff.f
 intlib.lo: sci_gateway/fortran/intlib.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intlib.lo `test -f 'sci_gateway/fortran/intlib.f' || echo '$(srcdir)/'`sci_gateway/fortran/intlib.f
 
-intdiary.lo: sci_gateway/fortran/intdiary.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdiary.lo `test -f 'sci_gateway/fortran/intdiary.f' || echo '$(srcdir)/'`sci_gateway/fortran/intdiary.f
-
 intread.lo: sci_gateway/fortran/intread.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intread.lo `test -f 'sci_gateway/fortran/intread.f' || echo '$(srcdir)/'`sci_gateway/fortran/intread.f
 
@@ -1390,7 +1390,17 @@ install-html-local:
 @INSTALL_HELP_XML_TRUE@		  done ; \
 @INSTALL_HELP_XML_TRUE@		fi; \
 @INSTALL_HELP_XML_TRUE@	 fi; \
-@INSTALL_HELP_XML_TRUE@	done
+@INSTALL_HELP_XML_TRUE@	done; \
+@INSTALL_HELP_XML_TRUE@	@echo "-------- Install of MathML sources --------"; \
+@INSTALL_HELP_XML_TRUE@	 if test -d $(srcdir)/help/mml/; then \
+@INSTALL_HELP_XML_TRUE@	  $(mkinstalldirs) $(DESTDIR)$(pkgdocdir)/help/mml/ && \
+@INSTALL_HELP_XML_TRUE@		if ls -lLd $(srcdir)/help/mml/$(DOCMASKMML) >/dev/null 2>&1; then \
+@INSTALL_HELP_XML_TRUE@		  for file in $(srcdir)/help/mml/$(DOCMASKMML) ; do \
+@INSTALL_HELP_XML_TRUE@		    echo "$(INSTALL_DATA) $$file $(DESTDIR)$(pkgdocdir)/help/mml" ; \
+@INSTALL_HELP_XML_TRUE@	    	$(INSTALL_DATA) "$$file" $(DESTDIR)$(pkgdocdir)/help/mml ; \
+@INSTALL_HELP_XML_TRUE@		  done ; \
+@INSTALL_HELP_XML_TRUE@		fi; \
+@INSTALL_HELP_XML_TRUE@	fi
 install-data-local:
 # Install the tests
 	@echo "-------- Install tests (if any) --------"; \

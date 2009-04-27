@@ -33,24 +33,12 @@ for i = 1 : size(tab_ref,"*")
 			else;
 				ref = 2;
 			end
-			if(newest(TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/newest_"+tab_ref(j)) <> ref) then
-				pause
-			end
-			if(newest([TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/newest_"+tab_ref(j)]) <> ref) then
-				pause
-			end
-			if(newest([TMPDIR+"/newest_"+tab_ref(i); TMPDIR+"/newest_"+tab_ref(j)]) <> ref) then
-				pause
-			end
-			if(newest(TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/no_file") <> 1) then
-				pause
-			end
-			if(newest([TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/no_file"]) <> 1) then
-				pause
-			end
-			if(newest([TMPDIR+"/newest_"+tab_ref(i); TMPDIR+"/no_file"]) <> 1) then
-				pause
-			end
+			if(newest(TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/newest_"+tab_ref(j)) <> ref) then bugmes();quit;end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/newest_"+tab_ref(j)]) <> ref)  then bugmes();quit;end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i); TMPDIR+"/newest_"+tab_ref(j)]) <> ref)  then bugmes();quit;end
+			if(newest(TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/no_file") <> 1)  then bugmes();quit;end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/no_file"]) <> 1)  then bugmes();quit;end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i); TMPDIR+"/no_file"]) <> 1)  then bugmes();quit;end
 		end
 	end
 end

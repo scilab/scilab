@@ -80,16 +80,19 @@ AC_CANONICAL_HOST
 AC_ARG_ENABLE(debug,
    AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
 
-AC_ARG_ENABLE(debugC,
+AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
 
-AC_ARG_ENABLE(debugCXX,
+AC_ARG_ENABLE(debug-CXX,
    AC_HELP_STRING([--enable-debug-CXX],[Do not optimize and print warning messages (C++ code)]))
 
-AC_ARG_ENABLE(debugFortran,
+AC_ARG_ENABLE(debug-java,
+   AC_HELP_STRING([--enable-debug-java],[Print warning messages and line numbers (Java code)]))
+
+AC_ARG_ENABLE(debug-fortran,
    AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
-AC_ARG_ENABLE(debugLinker,
+AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
 
 AC_ARG_ENABLE(stopOnWarning,
@@ -284,8 +287,6 @@ if test "$enable_debug_CXX" = yes; then
 else
    enable_debug_CXX=no
 fi
-
-
 
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
@@ -693,6 +694,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
     AC_SUBST(JAVA_HOME)
 
 
+    if test "$enable_debug_java" = yes; then
+	   JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
+	   <option value='-Xcheck:jni'/>"
+	   AC_SUBST(JAVA_DEBUG_OPTIONS)
+	fi
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
@@ -796,7 +802,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -1476,6 +1482,7 @@ echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_l
 echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
 echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
 echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java	$enable_debug_java"
 echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning	$enable_stop_on_warning"
 

@@ -177,16 +177,10 @@ static int GREP_OLD(GREPRESULTS *results,char **Inputs_param_one,int mn_one,char
 					results->positions[results->currentLength] = x+1;
 					results->currentLength++;
 				}
+			}
 
-				FREE(wcInputOne); wcInputOne = NULL;
-				FREE(wcInputTwo); wcInputTwo = NULL;
-			}
-			else
-			{
-				if (wcInputOne) {FREE(wcInputOne); wcInputOne = NULL;}
-				if (wcInputTwo) {FREE(wcInputTwo); wcInputTwo = NULL;}
-				return MEMORY_ALLOC_ERROR;
-			}
+			if (wcInputOne) {FREE(wcInputOne); wcInputOne = NULL;}
+			if (wcInputTwo) {FREE(wcInputTwo); wcInputTwo = NULL;}
 		}
 	}
 	return GREP_OK;

@@ -1,6 +1,5 @@
-               Changes between version 5.1.X and 5.2 of Scilab
-               ===============================================
-
+               Changes between version 5.1.X and 5.2.0 of Scilab
+               =================================================
 
 Compilation:
 ============
@@ -18,22 +17,26 @@ Compilation:
 Source reorganisation:
 ======================
 
-* Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to SCI/modules/src/scripts
+* Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
+  SCI/modules/src/scripts
 
 Input/Output functions:
 =======================
 
+ - Input arguments of fprintf are checked 
+
  - Rewrite :
- 	+ getenv
- 	
+    + getenv
+    + diary
+
 Core functions:
 ===============
 
  - Request 505 : Add error code capability to exit.
 
  - Rewrite :
- 	+ mode
- 	+ predef
+     + mode
+     + predef
 
 fileio functions:
 =================
@@ -43,6 +46,7 @@ fileio functions:
 
 Dynamic link:
 =============
+
  - Windows : temporary files (objects) are generated in a intermediate subdirectory (Release or Debug)
    ilib_for_link and ilib_gen_Make (with Visual studio) use a same makefile template.
    (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC)
@@ -50,39 +54,42 @@ Dynamic link:
  - ilib_verbose (SEP #17) Set level of display returned by dynamic link functions.
  
  - add a example to call a scilab macro from a C interface
-  (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
-  
-char encoding:
-==============
+   (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
+
+char encoding bugs :
+====================
+
+* bug 3433 fixed - length with a UTF string returns a incorrect size
+
+* bug 3472 fixed - Dropping files in the Scilab shell doesn't work when the path
+             contains accented characters.
+
+* bug 3666 fixed - 'input' returns accented characters.
+
+* bug 3839 fixed - strrev() doesn't work correctly if the string to be reversed
+                   includes some accentuated characters.
+
+* bug 4003 fixed - setenv & getenv do not manage utf string on Windows.
+
+* bug 4012 fixed - display of month and week are wrong in sessions starts and ends (history manager).
+
+* bug 4019 fixed - with -nw or -nwni mode on Windows, console returns error about
+                   localization.
+
+* bug 4068 fixed - Accentuated names in directories not supported.
+
+* bug 4145 fixed - Simplified Chinese file names can not shown correctly.
+
+* bug 4233 fixed - exec command with a UTF filename fails.
+
+* bug 4277 fixed - strsubst,regexp, strindex, grep return strange results if accented
+                   characters and character class are associated in the pattern to match.
 
 Bug fixes:
 ==========
 
-bug 3433 - length with a UTF string returns a incorrect size
-
-bug 3472 - Dropping files in the Scilab shell doesn't work when the path contains accented characters.
-
-bug 3666 - 'input' returns accented characters.
-
-bug 3839 - strrev() doesn't work correctly if the string to be reversed includes some accentuated characters.
-
-bug 4003 - setenv & getenv do not manage utf string on Windows.
-
-bug 4019 - with -nw or -nwni mode on Windows, console returns error about localization.
-
-bug 4068 - Accentuated names in directories not supported.
-
-bug 4145 - Simplified Chinese file names can not shown correctly.
-
-bug 4233 - exec command with a UTF filename fails.
-
-bug 4277 - strsubst,regexp, strindex, grep return strange results if accented characters and character class are associated in the pattern to match.
-
-
-Bug fixes:
-==========
-
-* bug 1628 fixed - with long programs (several hours) I get a negative value for timer()
+* bug 1628 fixed - with long programs (several hours) I get a negative value for
+                   timer()
 
 * bug 3772 fixed - input argument of 'predef' was not correctly checked.
 
@@ -90,7 +97,8 @@ Bug fixes:
 
 * bug 3884 fixed - chdir, getcwd, pwd moved from core to fileio module.
 
-* bug 3953 fixed - delete() always sets the current entity to the parent of the deleted entity.
+* bug 3953 fixed - delete() always sets the current entity to the parent of the
+                   deleted entity.
 
 * bug 3992 fixed - remove some invalid dependencies on external libraries.
 
@@ -99,11 +107,26 @@ Bug fixes:
 * bug 4262 fixed - lines returns incorrect values.
 
 * bug 4267 fixed - A non initilization of a lock under Netbsd was 
-		   causing an error on startup
+                   causing an error on startup
 
 * bug 4307 fixed - Desactivate (in modules.xml) modules if its functionnalities
                    are not available.
+                   
+* bug 4307 fixed - %io has no help file.                   
 
-* bug 4360 fixed - The reference of bug_3954.tst was missing
+* bug 4360 fixed - The reference of bug_3954.tst was missing.
 
-* bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0, the lines/edges should disappear.
+* bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
+                   the lines/edges should disappear.
+
+* bug 4380 fixed - diary(0) without a initialization of diary crashs scilab.
+
+* bug 4380 fixed - merror error codes not documented.
+
+* bug 4409 fixed - fortran optim subroutines use write (fortran) and not basout as
+                   standard output.
+
+* bug 4403 fixed - isinf was defined (when not provided by the system) with a return
+
+* bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
+

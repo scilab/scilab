@@ -57,16 +57,20 @@ char* scistrrev(char* str)
 		revstr = wide_string_to_UTF8(wcrevstr);
 		if (wcrevstr) {FREE(wcrevstr);wcrevstr = NULL;}
 #else
-		int i = wcslen(wcstr);
-		int t = !(i%2)? 1 : 0;      // check the length of the string .
+		int i = 0;
+		int t = 0;
 		int j = 0, k = 0;
+
+		if (wcstr) i = (int)wcslen(wcstr);
+		t = !(i%2)? 1 : 0;      // check the length of the string .
+		
 		/* copy character by character to reverse string */
 		k = 0;
 		for(j = i-1; j > (i/2 -t) ; j-- )
 		{
 			/* j starts from end of string */
 			/* k starts from beginning of string */
-			wchar_t ch  = wcstr[j]; /* ch temp. character 
+			wchar_t ch  = wcstr[j]; /* ch temp. character */
 			wcstr[j]   = wcstr[k]; /* end and beginning characters are exchanged */
 			wcstr[k++] = ch;
 		}
