@@ -39,7 +39,7 @@ void setDiaryId(int fd)
 	C2F(iop).wio = fd;
 }
 /*--------------------------------------------------------------------------*/
-void diary(char *str,long int *n,BOOL addCR)
+void diary(char *str,BOOL addCR)
 {
 #if defined(_MSC_VER)
 	/* On Windows, We must have CRLF here */

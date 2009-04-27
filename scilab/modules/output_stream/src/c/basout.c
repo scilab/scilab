@@ -84,7 +84,12 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		diary(string, &nbcharacters,TRUE);
+		if (*lunit == -2)
+		{
+			// it write a INPUT command line in diary
+		}
+		string[nbcharacters] = '\0';
+		diary(string,TRUE);
 	}
 	return 0;
 } 

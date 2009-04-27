@@ -24,10 +24,9 @@ int getdiary(void);
 /**
 * Diary (writes in a file)
 * @param str : string to write
-* @param n : length of str (fortran)
 * @param addCR : to add a '\n'
 */
-void diary(char *str,long int *n, BOOL addCR);
+void diary(char *str, BOOL addCR);
 
 /**
 * Close diaries

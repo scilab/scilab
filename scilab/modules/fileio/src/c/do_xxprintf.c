@@ -55,7 +55,7 @@ static void error_on_rval(XXPRINTF xxprintf,FLUSH flush,char *target)
 static int call_printf(XXPRINTF xxprintf,char *target,char *p,char *sval,int *asterisk,int asterisk_count,int conversion_type,double dval )
 {
 	/* for switch on number of '*' and type */
-#define  choosetype(num,type)  (5*(num)+(type))
+	#define  choosetype(num,type)  (5*(num)+(type))
 
 	int retval=-1;
 
@@ -149,7 +149,6 @@ int do_xxprintf (char *fname, FILE *fp, char *format, int nargs, int argcount, i
 	ccount      = 1;
 
 	set_xxprintf(fp,&xxprintf,&flush,&target);
-	/* Use file handle to set an internal boolean value for output encoding (UTF or system locale)*/
 
 	/* "scan" string format. */
 	while (TRUE)

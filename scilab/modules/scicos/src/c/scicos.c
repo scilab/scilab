@@ -2218,7 +2218,7 @@ void cossimdaskr(told)
 	    if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
             {
 	      if (flagr>=0) {
-		sciprint("**** SUNDIALS.IDA succesfully initialized *****/r/n" );
+		sciprint("**** SUNDIALS.IDA succesffully initialized *****/r/n" );
 	      }
 	      else{
 		sciprint("**** SUNDIALS.IDA failed to initialize ->try again *****/r/n" );

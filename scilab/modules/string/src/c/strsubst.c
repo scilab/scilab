@@ -213,7 +213,7 @@ char *strsub_reg(char* input_string, const char* string_to_search, const char* r
 		}
 
 		wcsncpy(wcreplacedString,wcinput_string,wcOutput_Start);
-		wcreplacedString[wcOutput_Start]='\0';
+		wcreplacedString[wcOutput_Start]=L'\0';
 		wcscat(wcreplacedString,wcreplacement_string);
 		wctail = wcinput_string + wcOutput_End;
 		wcscat(wcreplacedString,wctail);

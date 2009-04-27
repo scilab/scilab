@@ -5,25 +5,51 @@ EXPORTS
 ;
 ;core
 ;
- com_
- recu_
- putlhsvar_
- intersci_
- stack_
- createvar_
- getrhsvar_
- checklhs_
- checkrhs_
- gettype_
- vstk_
- createvarfromptr_
- iop_
- GetFile
- getTMPDIR
- vartype_
- callFunctionFromGateway
- freeArrayOfString
- getWarningMode
- IsAScalar
+IsAFile 
+com_
+recu_
+putlhsvar_
+intersci_
+stack_
+createvar_
+getrhsvar_
+checklhs_
+checkrhs_
+gettype_
+vstk_
+createvarfromptr_
+iop_
+GetFile
+getTMPDIR
+vartype_
+callFunctionFromGateway
+freeArrayOfString
+getWarningMode
+IsAScalar
+iAllocMatrixOfBoolean
+iAllocMatrixOfDouble
+iGetAddressFromItemPos
+iGetListItemType
+GetRhsStringVar
+iArraySum
+getComplexMatrixOfDouble
+getMatrixOfDouble
+getVarType
+isVarComplex
+getVarAddressFromNumber
+getComplexZMatrixOfDouble
+allocMatrixOfDouble
+allocComplexMatrixOfDouble
+createMatrixOfDouble
+createComplexMatrixOfDouble
+createNamedMatrixOfDouble
+createNamedComplexMatrixOfDouble
+cwritemat_
+readNamedMatrixOfDouble
+readNamedComplexMatrixOfDouble
+getMatrixOfString
+getMatrixOfStringCumulativeLength
+createMatrixOfString
+createNamedMatrixOfString
+readNamedMatrixOfString
 ;
-

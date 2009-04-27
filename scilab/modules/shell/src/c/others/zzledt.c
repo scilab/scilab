@@ -33,7 +33,6 @@
 #include "localization.h"
 #include "scilabmode.h"
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
 #include "ConsoleRead.h"
