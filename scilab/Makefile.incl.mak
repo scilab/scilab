@@ -44,6 +44,7 @@ INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
+-I"$(SCIDIR)/modules/time/includes" \
 -I"$(SCIDIR)/libs/intl"
 
 
@@ -84,7 +85,8 @@ XLIBSBIN="$(SCIDIR1)\bin\MALLOC.lib" "$(SCIDIR1)\bin\blasplus.lib" \
 "$(SCIDIR1)\bin\scioutput_stream.lib" "$(SCIDIR1)\bin\dynamic_link.lib" \
 "$(SCIDIR1)\bin\integer.lib" "$(SCIDIR1)\bin\optimization_f.lib" \
 "$(SCIDIR1)\bin\libjvm.lib" "$(SCIDIR1)\bin\scilocalization.lib" \
-"$(SCIDIR1)\bin\libintl.lib" "$(SCIDIR1)\bin\linpack_f.lib"
+"$(SCIDIR1)\bin\libintl.lib" "$(SCIDIR1)\bin\linpack_f.lib" \
+"$(SCIDIR1)\bin\time.lib"
 #==================================================
 .c.obj	:
 	@echo ------------- Compile file $< --------------
