@@ -883,6 +883,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\variable_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\version.c"
 				>
 			</File>
@@ -1273,6 +1277,10 @@
 			</File>
 			<File
 				RelativePath=".\userf2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\variable_api.h"
 				>
 			</File>
 			<File
