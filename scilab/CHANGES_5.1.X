@@ -10,6 +10,9 @@ Compilation:
   -Xcheck:jni) in order to provide more feedbacks on debug
   Note that this should be used into a binary since it is expensive
 
+* C++ => Java connector updated (using GIWS - 
+  http://www.scilab.org/giws/ version 1.0.2)
+
 Source reorganisation:
 ======================
 
@@ -66,6 +69,8 @@ Bug fixes:
  * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
+
+ * bug 4466 fixed - .' operator defined for strings and booleans
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
