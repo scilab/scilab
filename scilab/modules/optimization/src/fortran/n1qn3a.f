@@ -260,8 +260,8 @@ c
                 call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
                 endif
 908           format (" >>> n1qn3 (iteration ",i2,
-     /                "): the scalar product (y,s) = ",d12.5
-     /                27x,"is not positive")
+     & "): the scalar product (y,s) = ",
+     & d12.5,27x,"is not positive")
               goto 1000
           endif
           if (impres.ge.5) then

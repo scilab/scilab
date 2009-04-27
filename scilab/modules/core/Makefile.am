@@ -95,7 +95,6 @@ src/fortran/dldsp.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
-src/fortran/functionsforbasout.f \
 src/fortran/setgetmode.f \
 src/fortran/showstack.f \
 src/fortran/misops.f \

@@ -23,6 +23,8 @@ Source reorganisation:
 Input/Output functions:
 =======================
 
+ - Input arguments of fprintf are checked 
+
  - Rewrite :
     + getenv
     + diary
