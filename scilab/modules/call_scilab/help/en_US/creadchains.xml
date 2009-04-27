@@ -126,7 +126,9 @@
     <simplelist type="inline">
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="cwritechain">cwritechain</link></member>
+      linkend="cwritechain">cwritechain</link>,
+      <link linkend="StringManagement">String Management</link>
+</member>
     </simplelist>
   </refsection>
 
