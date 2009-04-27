@@ -658,7 +658,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/string/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/intersci/includes \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes \
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/action_binding/includes
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/action_binding/includes \
+@SCICOS_TRUE@			-I$(top_srcdir)/modules/time/includes
 
 @SCICOS_FALSE@libsciscicos_la_SOURCES = $(NO_SCICOS_C_SOURCES)
 @SCICOS_TRUE@libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -1919,7 +1920,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-@SCICOS_TRUE@			-I$(top_srcdir)/modules/time/includes
 
 # @TODO check how to avoid the rebuild of the parser/lexer
 
