@@ -11,7 +11,21 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
+#ifndef  __REALTIME_H__
+#define __REALTIME_H__
 
-int C2F(realtimeinit)(double *t,double *scale);
-int C2F(realtime)(double *t);
+#include "machine.h"
+#include "dynlib_time.h"
+
+/**
+* @TODO add comment
+*/
+TIME_IMPEXP int C2F(realtimeinit)(double *t,double *scale);
+
+/**
+* @TODO add comment
+*/
+TIME_IMPEXP int C2F(realtime)(double *t);
+
+#endif /* __REALTIME_H__ */ 
+/*--------------------------------------------------------------------------*/

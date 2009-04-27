@@ -12,13 +12,13 @@
 */
 
 /*--------------------------------------------------------------------------*/
-#include "sci_timer.h"
+#include "gw_time.h"
 #include "timer.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_timer)(char *fname,unsigned long fname_len)
+int sci_timer(char *fname,unsigned long fname_len)
 {
 	int l1 = 0,n1 = 0;
 	double timerval = 0;
