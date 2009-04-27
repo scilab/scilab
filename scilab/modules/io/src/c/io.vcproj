@@ -418,7 +418,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\sci_export_to_hdf5.cpp"
+				RelativePath="..\..\sci_gateway\cpp\sci_export_to_hdf5.cpp"
 				>
 			</File>
 			<File
@@ -571,11 +571,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\setenvc.h"
+				RelativePath=".\setenvc.h"
 				>
 			</File>
 			<File
-				RelativePath=".\setenvc.h"
+				RelativePath="..\..\includes\setenvc.h"
 				>
 			</File>
 			<File
