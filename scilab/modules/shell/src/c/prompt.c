@@ -66,7 +66,10 @@ char *GetTemporaryPrompt(void)
 /*------------------------------------------------------------------------*/
 void ClearTemporaryPrompt(void)
 {
-  FREE(temporaryPrompt);
-  temporaryPrompt = NULL;
+	if (temporaryPrompt)
+	{
+		FREE(temporaryPrompt);
+		temporaryPrompt = NULL;
+	}
 }
 /*------------------------------------------------------------------------*/

@@ -74,8 +74,6 @@ static void getCommandLine(void)
       if (tmpPrompt != NULL)
         {
           SetConsolePrompt(tmpPrompt);
-
-		  if (getdiary() == 0) ClearTemporaryPrompt();
         }
       else
         {

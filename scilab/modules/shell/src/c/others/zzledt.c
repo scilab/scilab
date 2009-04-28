@@ -307,7 +307,6 @@ char *TermReadAndProcess(void)
       if(tmpPrompt!=NULL)
         {
           printf("%s",tmpPrompt);
-          if (getdiary() == 0) ClearTemporaryPrompt();
         }
       else
         {
@@ -684,7 +683,6 @@ static void displayPrompt(char *wk_buf)
 	if (tmpPrompt!=NULL)
 	{
 		sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
-		if (getdiary() == 0) ClearTemporaryPrompt();
 	}
 	else
 	{

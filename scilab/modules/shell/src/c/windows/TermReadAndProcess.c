@@ -30,7 +30,6 @@ char * TermReadAndProcess(void)
     if (GetTemporaryPrompt() != NULL) /* Input function is used */
     {
 		returnedline = TerminalGetString(GetTemporaryPrompt());
-        if (getdiary() == 0) ClearTemporaryPrompt();
 	}
 	else
 	{

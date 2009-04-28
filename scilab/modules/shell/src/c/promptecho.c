@@ -30,7 +30,6 @@ int C2F(promptecho)(int *lunit, char *string, int *strl,int string_len)
 	if (GetTemporaryPrompt())
 	{
 		promptstr = strdup(GetTemporaryPrompt());
-		 if (getdiary() != 0) ClearTemporaryPrompt();
 	}
 	else
 	{
