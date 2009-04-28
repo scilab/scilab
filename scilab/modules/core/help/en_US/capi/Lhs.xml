@@ -9,8 +9,8 @@
   <refnamediv xml:id="???">
     <refname>Lhs</refname>
 
-    <refpurpose>C interface macro which returns the number of output
-    arguments present in the calling Scilab function</refpurpose>
+    <refpurpose>A C macro which provides the number of output arguments
+    present in the calling Scilab function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -37,9 +37,11 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface macro which returns the number of output arguments
+    <para>Lhs provides a C macro which provides the number of output arguments
     present in the calling Scilab function. You must include stack-c.h to
     benefit from this function.</para>
+
+    <para>Note: Lhs means Left Hand Side.</para>
   </refsection>
 
   <refsection>

@@ -10,7 +10,7 @@
   <refnamediv xml:id="???">
     <refname>stk</refname>
 
-    <refpurpose>return a pointer to a double to access data stored at a given
+    <refpurpose>Return a pointer to a double to access data stored at a given
     position in the Scilab memory</refpurpose>
   </refnamediv>
 
@@ -28,8 +28,8 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position in the Scilab memory of the variable to be accessed
-          (input argument)</para>
+          <para>the position in the Scilab memory of the variable to be
+          accessed (input argument)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,8 +38,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>This C interface function returns a pointer to a double to access
-    data stored at a given position in the Scilab memory .</para>
+    <para>This C gateway function returns a pointer to a double to access data
+    stored at a given position in the Scilab memory .</para>
   </refsection>
 
   <refsection>
@@ -55,9 +55,9 @@ int sci_myones(char * fname)
   m_row = 1; n_col = 1; // We create a scalar
   CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_row, &amp;n_col, &amp;l_pos);
 
-  *stk(l_pos) = 1.0;
+  *stk(l_pos) = 1.0; // TODO explain
 
-  LhsVar(1) = 1;
+  LhsVar(1) = 1; TODO explain
 
   return 0;
 }
@@ -69,7 +69,9 @@ int sci_myones(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="ScilabCTypes">Scilab C Type</link></member>
+
       <member><link linkend="CreateVar">CreateVar</link></member>
+
       <member><link linkend="LhsVar">LhsVar</link></member>
     </simplelist>
   </refsection>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<refentry version="5.0-subset Scilab" xml:id="CallingAScilabFunctionFromACInterface" xml:lang="en"
+<refentry version="5.0-subset Scilab"
+          xml:id="CallingAScilabFunctionFromACInterface" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -12,7 +13,7 @@
   </info>
 
   <refnamediv>
-    <refname>Calling a scilab function (macros) from a C interface</refname>
+    <refname>Calling a scilab function (macros) from a C gateway</refname>
 
     <refpurpose>Calling a scilab function (macros) from a C
     interface</refpurpose>
@@ -23,7 +24,7 @@
 
     <para>When you write a interface with scilab, you can need to call another
     function directly from your function. You can pass a pointer on scilab
-    function to your function. </para>
+    function to your function.</para>
 
     <para>The source files of this example are stored in the directory
     examples/call_scifunction.</para>
@@ -35,11 +36,11 @@ exec call_scifunction.sce; // launch scilab
 v = call_scifunc(30,12,scilabfoo);
  </programlisting>
 
-    <para> you pass a pointer on a scilab function (scilabfoo macro) to your
+    <para>you pass a pointer on a scilab function (scilabfoo macro) to your
     function 'call_scifunc'.</para>
 
-    <para>C2F(scifunction) calls another scilab function (here scilabfoo).
-    </para>
+    <para>C2F(scifunction) calls another scilab function (here
+    scilabfoo).</para>
 
     <para>You need to indicate :</para>
 
@@ -57,7 +58,7 @@ v = call_scifunc(30,12,scilabfoo);
       </listitem>
 
       <listitem>
-        <para>number of Rhs (input of scilab function called) </para>
+        <para>number of Rhs (input of scilab function called)</para>
       </listitem>
     </itemizedlist>
 
@@ -65,8 +66,8 @@ v = call_scifunc(30,12,scilabfoo);
     interface into Scilab is the following:</para>
 
     <programlisting> 
-files=['sci_call_scifunc.c'];
-ilib_build('callscifunc',['call_scifunc','sci_call_scifunc'],files,[]);
+files=['sci_call_scifunc.c']; // Defines the list of file
+ilib_build('callscifunc',['call_scifunc','sci_call_scifunc'],files,[]); // Build the files and creates the loader
 
 exec loader.sce;
 
@@ -195,14 +196,23 @@ int sci_call_scifunc(char *fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckLhs">CheckLhs</link></member>
+
       <member><link linkend="CheckRhs">CheckRhs</link></member>
+
       <member><link linkend="stk">stk</link></member>
+
       <member><link linkend="LhsVar">LhsVar</link></member>
+
       <member><link linkend="GetType">GetType</link></member>
+
       <member><link linkend="Scierror">Scierror</link></member>
+
       <member><link linkend="Scifunction">Scifunction</link></member>
+
       <member><link linkend="Rhs">Rhs</link></member>
+
       <member><link linkend="Lhs">Lhs</link></member>
+
       <member><link linkend="sci_types">sci_types</link></member>
     </simplelist>
   </refsection>
