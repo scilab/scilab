@@ -23,6 +23,7 @@
 #include "MALLOC.h"
 #include "BOOL.h"
 #include "charEncoding.h"
+#include "isdir.h"
 /*--------------------------------------------------------------------------*/
 extern int swap;
 /*--------------------------------------------------------------------------*/
@@ -51,6 +52,12 @@ void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int
 	if ( *fd == -1 )
 	{
 		*error=1; /* Too many opened files */
+		return;
+	}
+
+	if (isdir(file))
+	{
+		*error = 2; /* Could not open the file*/
 		return;
 	}
 

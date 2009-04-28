@@ -20,7 +20,11 @@
 #include "freeArrayOfString.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
+<<<<<<< HEAD:scilab/modules/core/sci_gateway/c/sci_getmd5.c
 #include "charEncoding.h"
+=======
+#include "isdir.h"
+>>>>>>> refs/remotes/origin/5.1:scilab/modules/core/sci_gateway/c/sci_getmd5.c
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 {
@@ -68,6 +72,16 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 				real_path = (char*)MALLOC(sizeof(char*)*lout);
 
 				C2F(cluni0)(Input_Matrix[i], real_path, &out_n, (long)strlen(Input_Matrix[i]), lout);
+
+				/* bug 4469 */
+				if (isdir(real_path))
+				{
+					Scierror(999,_("%s: The file %s does not exist.\n"),fname, Input_Matrix[i]);
+					freeArrayOfString(Output_Matrix,mn);
+					freeArrayOfString(Input_Matrix,mn);
+					FREE(real_path);real_path=NULL;
+					return 0;
+				}
 
 				wcfopen(fp , real_path,"rb");
 
