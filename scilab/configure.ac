@@ -891,7 +891,7 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 fi
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
@@ -1431,10 +1431,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else 
    echo "Not using Scicos"
 fi
