@@ -443,10 +443,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\realtime.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\resource.h"
 				>
 			</File>
