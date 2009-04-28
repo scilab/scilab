@@ -620,8 +620,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       msu='tabulated'
     end
 
-    color_mode     = mget(1,characterFormat,fd); // color_mode
-    color_flag     = mget(1,characterFormat,fd); // color_flag
+    if is_higher_than([5 1 1 0]) then
+	  color_mode     = mget(1,'il',fd); // color_mode
+	  color_flag     = mget(1,'il',fd); // color_flag
+	else
+	  color_mode     = mget(1,characterFormat,fd);
+	  color_flag     = mget(1,characterFormat,fd);
+	end
 
     sz=mget(2,'il',fd); // data.x
     x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
@@ -647,6 +652,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     x_label_visible = a.x_label.visible;
     y_label_visible = a.y_label.visible;
     z_label_visible = a.z_label.visible;
+	x_label_text = a.x_label.text;
+	y_label_text = a.y_label.text;
+	z_label_text = a.z_label.text;
+	axes_isoview = a.isoview;
 
 
     if or(color_flag==[2 5]) then
@@ -663,6 +672,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     a.x_label.visible = x_label_visible;
     a.y_label.visible = y_label_visible;
     a.z_label.visible = z_label_visible;
+	a.x_label.text = x_label_text;
+	a.y_label.text = y_label_text;
+	a.z_label.text = z_label_text;
+	a.isoview = axes_isoview;
 
 
     h=gce();
@@ -710,8 +723,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
       mark_foreground=mget(1,'il',fd) ; // mark_foreground
       mark_background=mget(1,'il',fd) ; // mark_background
     end
-    color_mode     = mget(1,characterFormat,fd); // color_mode
-    color_flag     = mget(1,characterFormat,fd); // color_flag
+    if is_higher_than([5 1 1 0]) then
+	  color_mode     = mget(1,'il',fd); // color_mode
+	  color_flag     = mget(1,'il',fd); // color_flag
+	else
+	  color_mode     = mget(1,characterFormat,fd);
+	  color_flag     = mget(1,characterFormat,fd);
+	end
 
     sz=mget(2,'il',fd); // data.x
     x=matrix(mget(prod(sz),'dl',fd),sz(1),-1);
@@ -740,6 +758,7 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     // plot3d modify the given rotation angles
     // trick to force keeping the good rotation angles F.Leray 18.02.05
     // same issue with axes properties... B.Jofret 21.04.09
+	// and labels text and isoview
     a=gca();
     rotation_angles = a.rotation_angles;
     axes_visible = a.axes_visible;
@@ -748,6 +767,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     x_label_visible = a.x_label.visible;
     y_label_visible = a.y_label.visible;
     z_label_visible = a.z_label.visible;
+	x_label_text = a.x_label.text;
+	y_label_text = a.y_label.text;
+	z_label_text = a.z_label.text;
+	axes_isoview = a.isoview;
 
     if is_higher_than([3 1 0 1]) & color_flag >= 2 then
       plot3d1(x,y,list(z,clr))
@@ -765,6 +788,10 @@ function [h,immediate_drawing] = load_graphichandle(fd)
     a.x_label.visible = x_label_visible;
     a.y_label.visible = y_label_visible;
     a.z_label.visible = z_label_visible;
+	a.x_label.text = x_label_text;
+	a.y_label.text = y_label_text;
+	a.z_label.text = z_label_text;
+	a.isoview = axes_isoview;
 
     h=gce();
     set(h,"visible",visible)
