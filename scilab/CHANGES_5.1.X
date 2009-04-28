@@ -69,6 +69,8 @@ Bug fixes:
  * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
+
+ * bug 4459 fixed - grayplot does not always plot map containing %nan.
  
  * bug 4463 fixed - Creating an one-colored Sgrayplot generate some exceptions and does not plot anything.
 

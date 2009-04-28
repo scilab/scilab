@@ -60,7 +60,7 @@ public class DrawableGrayplotGL extends DrawableClippedObjectGL {
 		
 		// rectangles are used to render each pixel
 		// Using textures would be much faster
-		// hower it would not be compatible with GL2PS, so for now we keep the slow version
+		// however it would not be compatible with GL2PS, so for now we keep the slow version
 		
 		startRecordDL();
 		gl.glBegin(GL.GL_QUADS);
