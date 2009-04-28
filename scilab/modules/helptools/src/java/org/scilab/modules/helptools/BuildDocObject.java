@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.xml.sax.SAXParseException;
+import org.xml.sax.SAXException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
@@ -208,6 +209,11 @@ public class BuildDocObject extends StyleSheet {
 			System.err.println("Public ID: "+e.getPublicId());
 			System.err.println("System Id: "+ e.getSystemId());
             return null;
+        } catch (SAXException e) {
+           System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
+					  + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
+		   return null;
+
         } catch (IOException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
