@@ -20,11 +20,8 @@
 #include "freeArrayOfString.h"
 #include "cluni0.h"
 #include "PATH_MAX.h"
-<<<<<<< HEAD:scilab/modules/core/sci_gateway/c/sci_getmd5.c
 #include "charEncoding.h"
-=======
 #include "isdir.h"
->>>>>>> refs/remotes/origin/5.1:scilab/modules/core/sci_gateway/c/sci_getmd5.c
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 {
