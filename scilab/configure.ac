@@ -769,7 +769,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -891,7 +891,7 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 fi
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)		
 AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
 
 
