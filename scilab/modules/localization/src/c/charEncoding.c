@@ -15,10 +15,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <locale.h>
 #include "charEncoding.h"
 #include "MALLOC.h"
-#include <locale.h>
-
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 char *wide_string_to_UTF8(wchar_t *_wide)
@@ -51,7 +50,7 @@ wchar_t *to_wide_string(char *_UTFStr)
 	if(_UTFStr == NULL) return NULL;
 	nwide = MultiByteToWideChar(CP_UTF8, 0, _UTFStr, -1, NULL, 0);
 	if(nwide == 0) return NULL;
-	_buf = MALLOC(nwide * sizeof(wchar_t));
+	_buf = (wchar_t *)MALLOC(nwide * sizeof(wchar_t));
 	if(_buf == NULL) return NULL;
 	if(MultiByteToWideChar(CP_UTF8, 0, _UTFStr, -1, _buf, nwide) == 0)
 	{
