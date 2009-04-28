@@ -11,6 +11,7 @@
  */
  /*--------------------------------------------------------------------------*/
 #include "gw_renderer.h"
+#include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
