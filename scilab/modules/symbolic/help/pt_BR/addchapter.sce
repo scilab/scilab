@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/symbolic/help/pt_BR";
-add_help_chapter("Cálculos Formais",path,%T);
+add_help_chapter("CÃ¡lculos Formais",path,%T);
 clear path add_help_chapter;

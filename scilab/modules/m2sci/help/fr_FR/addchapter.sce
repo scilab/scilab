@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/m2sci/help/fr_FR";
-add_help_chapter("Aide à la conversion Matlab vers Scilab",path,%T);
+add_help_chapter("Aide Ã  la conversion Matlab vers Scilab",path,%T);
 clear path add_help_chapter;
