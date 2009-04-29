@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,41 +16,41 @@
   </info>
   <refnamediv>
     <refname>mtlb_plot</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab plot</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab plot</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>La fonction Matlab <literal>plot</literal> et la fonction Scilab <literal>plot2d</literal> se comportent différemment.</para>
+    <para>La fonction Matlab <literal>plot</literal> et la fonction Scilab <literal>plot2d</literal> se comportent diffÃ©remment.</para>
     <para>
-    La fonction <literal>mtlb_plot(...)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>plot(...)</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <literal>mtlb_plot(...)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>plot(...)</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_plot</literal> quand il n'y a pas de valeur de sortie,
-    dans ce cas, les couleurs doivent être changées par l'utilisateur:
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_plot</literal> quand il n'y a pas de valeur de sortie,
+    dans ce cas, les couleurs doivent Ãªtre changÃ©es par l'utilisateur:
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un paramètre d'entrée, si <literal>Y</literal> est réel
-        <literal>mtlb_plot(Y)</literal> peut être remplacé par <literal>plot2d(Y)</literal>
+        Avec un paramÃ¨tre d'entrÃ©e, si <literal>Y</literal> est rÃ©el
+        <literal>mtlb_plot(Y)</literal> peut Ãªtre remplacÃ© par <literal>plot2d(Y)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec un paramètre d'entrée, si <literal>Y</literal> est complex
-        <literal>mtlb_plot(Y)</literal> peut être remplacé par <literal>plot2d(real(Y),imag(Y))</literal>
+        Avec un paramÃ¨tre d'entrÃ©e, si <literal>Y</literal> est complex
+        <literal>mtlb_plot(Y)</literal> peut Ãªtre remplacÃ© par <literal>plot2d(real(Y),imag(Y))</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec deux paramètres d'entrée <literal>X</literal> et <literal>Y</literal>, si <literal>Y</literal> n'est pas une chaîne de caractères,
-        <literal>mtlb_plot(X,Y)</literal> peut être remplacé par <literal>plot2d(X,Y)</literal>
+        Avec deux paramÃ¨tres d'entrÃ©e <literal>X</literal> et <literal>Y</literal>, si <literal>Y</literal> n'est pas une chaÃ®ne de caractÃ¨res,
+        <literal>mtlb_plot(X,Y)</literal> peut Ãªtre remplacÃ© par <literal>plot2d(X,Y)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_plot</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_plot</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

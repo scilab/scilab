@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_SWITCH2_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_SWITCH2_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_SWITCH2_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_SWITCH2_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -111,8 +111,8 @@ input is passed. Otherwise, the third input is passed.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_SWITCH2_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_SWITCH2_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -128,34 +128,34 @@ input is passed. Otherwise, the third input is passed.
         <para>
           <emphasis role="bold">Datatype(1= real double  2=Complex)</emphasis>
         </para>
-        <para> un scalaire. Donne le type de donnée en entrée/sortie.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> un scalaire. Donne le type de donnÃ©e en entrÃ©e/sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">pass first input if: u2<inlinemediaobject><imageobject><imagedata fileref="../../../images/SWITCH2_m_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject>=a </emphasis>
         </para>
-        <para> Détermine la condition pour laquelle la première entrée est redirigée. Cette condition peut être une entrée de contôle supérieure ou égale, strictement supérieure ou différente de la valeur donnée dans le paramètre<emphasis role="bold">threshold a</emphasis> . Si l'entrée de contrôle satisfie la condition alors c'est la première entrée régulière qui est redirigée à la sortie, sinon c'est la troisième entrée régulière.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> DÃ©termine la condition pour laquelle la premiÃ¨re entrÃ©e est redirigÃ©e. Cette condition peut Ãªtre une entrÃ©e de contÃ´le supÃ©rieure ou Ã©gale, strictement supÃ©rieure ou diffÃ©rente de la valeur donnÃ©e dans le paramÃ¨tre<emphasis role="bold">threshold a</emphasis> . Si l'entrÃ©e de contrÃ´le satisfie la condition alors c'est la premiÃ¨re entrÃ©e rÃ©guliÃ¨re qui est redirigÃ©e Ã  la sortie, sinon c'est la troisiÃ¨me entrÃ©e rÃ©guliÃ¨re.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">threshold a</emphasis>
         </para>
-        <para> Définit la valeur de détection qui détermine qu'elle est l'entrée redigirée vers la sortie.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> DÃ©finit la valeur de dÃ©tection qui dÃ©termine qu'elle est l'entrÃ©e redigirÃ©e vers la sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">use zero crossing: yes </emphasis>
         </para>
-        <para> A sélectionner pour permettre la détection 'zero-crossing'.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> A sÃ©lectionner pour permettre la dÃ©tection 'zero-crossing'.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_SWITCH2_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_SWITCH2_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -164,14 +164,14 @@ input is passed. Otherwise, the third input is passed.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> oui</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
@@ -185,26 +185,26 @@ input is passed. Otherwise, the third input is passed.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

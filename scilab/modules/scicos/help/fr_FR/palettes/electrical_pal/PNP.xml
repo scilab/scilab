@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_PNP">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_PNP">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_PNP">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_PNP">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PNP">Modèle Modelica</link>
+              <link linkend="PNP">ModÃ¨le Modelica</link>
             </para>
           </listitem>
           <listitem>
@@ -95,7 +95,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -103,13 +103,13 @@
   <refsection id="Description_PNP">
     <title>Description</title>
     <para>
-Ce bloc est un modèle simple pour le transistor bipolaire PNP basé sur le modèle  Ebers-Moll.  
+Ce bloc est un modÃ¨le simple pour le transistor bipolaire PNP basÃ© sur le modÃ¨le  Ebers-Moll.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_PNP">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_PNP">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -123,8 +123,8 @@ Ce bloc est un modèle simple pour le transistor bipolaire PNP basé sur le modèle
 </para>
     <informaltable border="1" cellpadding="3">
       <tr>
-        <td align="left">Paramètre</td>
-        <td align="left">Valeur pas défaut</td>
+        <td align="left">ParamÃ¨tre</td>
+        <td align="left">Valeur pas dÃ©faut</td>
         <td align="left">Description</td>
       </tr>
       <tr>
@@ -219,12 +219,12 @@ Ce bloc est un modèle simple pour le transistor bipolaire PNP basé sur le modèle
       </tr>
     </informaltable>
   </refsection>
-  <refsection id="Propriétéspardéfaut_PNP">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_PNP">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -262,175 +262,175 @@ Ce bloc est un modèle simple pour le transistor bipolaire PNP basé sur le modèle
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Bf'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Bf'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 50
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 50
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Br'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Br'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.1
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.1
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Is'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Is'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Vak'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Vak'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.02
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.02
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Tauf'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Tauf'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1.200E-10
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1.200E-10
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Taur'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Taur'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 5.000E-09
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 5.000E-09
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Ccs'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Ccs'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1.000E-12
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1.000E-12
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Cje'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Cje'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 4.000E-13
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 4.000E-13
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Cjc'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Cjc'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 5.000E-13
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 5.000E-13
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Phie'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Phie'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.8
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.8
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Me'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Me'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.4
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.4
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Phic'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Phic'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.8
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.8
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Mc'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Mc'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.333
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.333
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Gbc'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Gbc'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1.000E-15
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1.000E-15
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Gbe'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Gbe'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1.000E-15
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1.000E-15
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Vt'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Vt'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.02585
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.02585
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'EMinMax'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'EMinMax'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 40
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 40
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -450,8 +450,8 @@ Ce bloc est un modèle simple pour le transistor bipolaire PNP basé sur le modèle
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_PNP">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_PNP">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/PNP.mo</para>

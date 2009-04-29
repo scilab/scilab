@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> ensemble de sommets d'un chemin  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>ns = path_2_nodes(p,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>vecteur ligne des numéros des arcs formant le chemin
+          <para>vecteur ligne des numÃ©ros des arcs formant le chemin
 </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>ns  </term>
         <listitem>
-          <para>vecteur ligne des numéros des sommets
+          <para>vecteur ligne des numÃ©ros des sommets
 </para>
         </listitem>
       </varlistentry>
@@ -50,9 +50,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>path_2_nodes</literal> renvoie le vecteur des numéros des sommets <literal>ns</literal> correspondant au 
-    chemin <literal>p</literal> donné par les numéros des arcs le composant; si <literal>p</literal> n'est pas un chemin, le
-    vecteur vide <literal>[]</literal> est renvoyé.
+    <para><literal>path_2_nodes</literal> renvoie le vecteur des numÃ©ros des sommets <literal>ns</literal> correspondant au 
+    chemin <literal>p</literal> donnÃ© par les numÃ©ros des arcs le composant; si <literal>p</literal> n'est pas un chemin, le
+    vecteur vide <literal>[]</literal> est renvoyÃ©.
   </para>
   </refsection>
   <refsection>

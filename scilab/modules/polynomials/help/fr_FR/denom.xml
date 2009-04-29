@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="denom">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>denom</refname>
-    <refpurpose> dénominateur  </refpurpose>
+    <refpurpose> dÃ©nominateur  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>den=denom(r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>r  </term>
@@ -24,7 +24,7 @@
       <varlistentry>
         <term>den  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -32,15 +32,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>den=denom(r)</literal> renvoie le dénominateur d'une
-    matrice rationnelle <literal>R</literal> (<literal>R</literal> peut aussi être
-    une matrice constante ou une matrice de polynômes).
+    <para><literal>den=denom(r)</literal> renvoie le dÃ©nominateur d'une
+    matrice rationnelle <literal>R</literal> (<literal>R</literal> peut aussi Ãªtre
+    une matrice constante ou une matrice de polynÃ´mes).
   </para>
     <para>
-    Puisque dans Scilab les matrices rationnelles sont représentées
+    Puisque dans Scilab les matrices rationnelles sont reprÃ©sentÃ©es
     comme
     <literal>r=list(['r','num','den','dt'],num,den,[])</literal>,
-    <literal>denom(r</literal>) est équivalent à <literal>r(3)</literal>,
+    <literal>denom(r</literal>) est Ã©quivalent Ã  <literal>r(3)</literal>,
     <literal>r('den')</literal> ou <literal>r.den)</literal>.
   </para>
   </refsection>

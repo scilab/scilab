@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="exists">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -9,25 +9,25 @@
   variable</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>exists(name [,where])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>name</term>
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>where</term>
         <listitem>
-          <para>une chaîne de caractères optionnelle pouvant
+          <para>une chaÃ®ne de caractÃ¨res optionnelle pouvant
           prendre les valeurs: <literal>'l'</literal> (local),
           <literal>'n'</literal> (nolocal) et <literal>'a'</literal>
-          (all). La valeur par défaut est
+          (all). La valeur par dÃ©faut est
           <literal>'all'</literal></para>
         </listitem>
       </varlistentry>
@@ -35,15 +35,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>exists(name)</literal> renvoie <literal>1</literal> si la variable nommée
+    <para><literal>exists(name)</literal> renvoie <literal>1</literal> si la variable nommÃ©e
     <literal>name</literal> existe et <literal>0</literal> sinon.</para>
     <para>Mise en garde : une fonction utilisant <literal>exists</literal> peut
-    renvoyer un résultat dépendant de l'environnement courant !</para>
+    renvoyer un rÃ©sultat dÃ©pendant de l'environnement courant !</para>
     <para><literal>exists(name,'local')</literal> renvoie <literal>1</literal> si la variable
-    nommée <literal>name</literal> existe dans l'environnement de la fonction
+    nommÃ©e <literal>name</literal> existe dans l'environnement de la fonction
     courante et <literal>0</literal> sinon.</para>
     <para><literal>exists(name,'nolocal')</literal> renvoie <literal>1</literal> si la
-    variable nommée <literal>name</literal> existe dans l'environnement appelant (y
+    variable nommÃ©e <literal>name</literal> existe dans l'environnement appelant (y
     compris le niveau du shell Scilab) de la fonction courante et <literal>0</literal>
     sinon.</para>
     <para>Attention: la fonction <literal>exists</literal> ne teste

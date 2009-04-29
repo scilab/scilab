@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="tanh" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,20 +17,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>t=tanh(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x,t</term>
 
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)</para>
+          <para>vecteur ou matrice (rÃ©elle ou complexe)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,8 +39,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>Les éléments de <literal>t</literal> sont les tangentes
-    hyperboliques des éléments de <literal>x</literal>.</para>
+    <para>Les Ã©lÃ©ments de <literal>t</literal> sont les tangentes
+    hyperboliques des Ã©lÃ©ments de <literal>x</literal>.</para>
   </refsection>
 
   <refsection>

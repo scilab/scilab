@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="inttrap" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,26 +13,26 @@
   <refnamediv>
     <refname>inttrap</refname>
 
-    <refpurpose>intégration approchée de données expérimentales avec la
-    méthode des trapèzes.</refpurpose>
+    <refpurpose>intÃ©gration approchÃ©e de donnÃ©es expÃ©rimentales avec la
+    mÃ©thode des trapÃ¨zes.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>v = inttrap([x,] s)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur des abscisses, classées par ordre croissant. La valeur
-          par défaut est <literal>1:size(y,'*')</literal></para>
+          <para>vecteur des abscisses, classÃ©es par ordre croissant. La valeur
+          par dÃ©faut est <literal>1:size(y,'*')</literal></para>
         </listitem>
       </varlistentry>
 
@@ -40,7 +40,7 @@
         <term>s</term>
 
         <listitem>
-          <para>vecteur des ordonnées.</para>
+          <para>vecteur des ordonnÃ©es.</para>
         </listitem>
       </varlistentry>
 
@@ -48,7 +48,7 @@
         <term>v</term>
 
         <listitem>
-          <para>valeur de l'approximation de l'intégrale</para>
+          <para>valeur de l'approximation de l'intÃ©grale</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,12 +59,12 @@
 
     <para>Calcule une approximation de :</para>
 
-    <para>où f est donnée sous forme de valeurs expérimentales :</para>
+    <para>oÃ¹ f est donnÃ©e sous forme de valeurs expÃ©rimentales :</para>
 
     <para><literal>s(i)=f(x(i))</literal> et <literal>x0=x(1)</literal>,
     <literal>x1=x(n)</literal></para>
 
-    <para>Entre les points, f est approchée linéairement.</para>
+    <para>Entre les points, f est approchÃ©e linÃ©airement.</para>
   </refsection>
 
   <refsection>

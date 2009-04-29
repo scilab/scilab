@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CMATVIEW">
   <refnamediv>
     <refname>CMATVIEW</refname>
-    <refpurpose>Scope matriciel coloré</refpurpose>
+    <refpurpose>Scope matriciel colorÃ©</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CMATVIEW">Scope matriciel coloré</link>
+          <link linkend="CMATVIEW">Scope matriciel colorÃ©</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_CMATVIEW">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_CMATVIEW">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CMATVIEW">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CMATVIEW">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -108,8 +108,8 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_CMATVIEW">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_CMATVIEW">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -126,26 +126,26 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
           <emphasis role="bold">ColorMap</emphasis>
         </para>
         <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
-        <para> Propriétés : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMATVIEW_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
+        <para> PropriÃ©tÃ©s : Must be a mx3 matrix and m<inlinemediaobject><imageobject><imagedata fileref="../../../images/CMATVIEW_img3_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> = 3 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Minimum level range</emphasis>
         </para>
         <para> The minimum level range is the minimum value who comes in the regular input port. It would be linked to the 'cold value' of the colormap.</para>
-        <para> Propriétés : A scalar </para>
+        <para> PropriÃ©tÃ©s : A scalar </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Maximum level range</emphasis>
         </para>
         <para> The maximum level range is the maximum value who comes in the regular input port. It would be linked to the 'hot value' of the colormap.</para>
-        <para> Propriétés : A scalar</para>
+        <para> PropriÃ©tÃ©s : A scalar</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CMATVIEW">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CMATVIEW">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -154,33 +154,33 @@ CMATVIEW est un scope qui montre les valeurs des matrices sur une grille en coul
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_MAXMIN">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_MAXMIN">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_MAXMIN">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_MAXMIN">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -90,7 +90,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Non_linear_pal">Non_linear - Palette Non-linéaire</link>
+          <link linkend="Non_linear_pal">Non_linear - Palette Non-linÃ©aire</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -99,14 +99,14 @@
     <title>Description</title>
     <para>
 Ce bloc peut trouver aussi bien le maximum que le minimum dans les
-éléments de ses entrées.
-La fonction min ou max peut être choisie dans les paramètres de la
-boîte de dialogue.
+Ã©lÃ©ments de ses entrÃ©es.
+La fonction min ou max peut Ãªtre choisie dans les paramÃ¨tres de la
+boÃ®te de dialogue.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_MAXMIN">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_MAXMIN">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -122,27 +122,27 @@ boîte de dialogue.
         <para>
           <emphasis role="bold">Min or Max</emphasis>
         </para>
-        <para> La fonction (min ou max) à appliquer à l'entrée.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La fonction (min ou max) Ã  appliquer Ã  l'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Number of input vectors</emphasis>
         </para>
-        <para> Le nombre d'entrées du bloc.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Le nombre d'entrÃ©es du bloc.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">zero-crossing</emphasis>
         </para>
-        <para> Sélectionnez ce paramètre pour permettre l'utilisation de la détection 'zero crossing' pour déterminer les valeurs minimales et maximales.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> SÃ©lectionnez ce paramÃ¨tre pour permettre l'utilisation de la dÃ©tection 'zero crossing' pour dÃ©terminer les valeurs minimales et maximales.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_MAXMIN">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_MAXMIN">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -151,14 +151,14 @@ boîte de dialogue.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -166,26 +166,26 @@ boîte de dialogue.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,16 +16,16 @@
   </info>
   <refnamediv>
     <refname>cmb_lin</refname>
-    <refpurpose> combinaison linéaire symbolique  </refpurpose>
+    <refpurpose> combinaison linÃ©aire symbolique  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[x]=cmb_lin(alfa,x,beta,y)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Évalue <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> sont des chaînes de caractères (routine de bas niveau).
+    Ã‰value <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> sont des chaÃ®nes de caractÃ¨res (routine de bas niveau).
   </para>
   </refsection>
   <refsection>

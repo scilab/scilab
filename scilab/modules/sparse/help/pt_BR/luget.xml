@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>luget</refname>
 
-    <refpurpose>extração dos fatores LU esparsos</refpurpose>
+    <refpurpose>extraÃ§Ã£o dos fatores LU esparsos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>[P,L,U,Q]=luget(hand)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
         <term>hand</term>
 
         <listitem>
-          <para>manipulador, saída de <literal>lufact</literal></para>
+          <para>manipulador, saÃ­da de <literal>lufact</literal></para>
         </listitem>
       </varlistentry>
 
@@ -49,7 +49,7 @@
         <term>P</term>
 
         <listitem>
-          <para>matriz de permutação esparsa</para>
+          <para>matriz de permutaÃ§Ã£o esparsa</para>
         </listitem>
       </varlistentry>
 
@@ -58,7 +58,7 @@
 
         <listitem>
           <para>matriz esparsa, triangular infeiror se <literal>hand</literal>
-          é obtida de uma matriz não-singular</para>
+          Ã© obtida de uma matriz nÃ£o-singular</para>
         </listitem>
       </varlistentry>
 
@@ -66,7 +66,7 @@
         <term>U</term>
 
         <listitem>
-          <para>matriz quadrada triangular superior esparsa não-snigular
+          <para>matriz quadrada triangular superior esparsa nÃ£o-snigular
           preenchida com 1 ao longo da diagonal principal </para>
         </listitem>
       </varlistentry>
@@ -75,27 +75,27 @@
         <term>Q</term>
 
         <listitem>
-          <para>matriz de permutação esparsa</para>
+          <para>matriz de permutaÃ§Ã£o esparsa</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>[P,L,U,Q]=luget(hand)</literal> com <literal>hand</literal>
     obtida pelo comando <literal>[hand,rk]=lufact(A)</literal> com
     <literal>A</literal> uma matriz esparsa retorna quatro matrizes esparsas
     tais que <literal>P*L*U*Q=A</literal>.</para>
 
-    <para>A matriz A não precisa ser de posto cheio, mas deve ser quadrada
-    (desde que A é assumida esparsa, pode-se adicionar 0, se necessário, para
+    <para>A matriz A nÃ£o precisa ser de posto cheio, mas deve ser quadrada
+    (desde que A Ã© assumida esparsa, pode-se adicionar 0, se necessÃ¡rio, para
     quadrar A).</para>
 
-    <para>Se <literal>A</literal> é singular, a matriz <literal>L</literal> é
+    <para>Se <literal>A</literal> Ã© singular, a matriz <literal>L</literal> Ã©
     de colunas comprimidas (com <literal>rk</literal> colunas independentes
-    não-nulas): a matriz não-singular esparsa <literal>Q'*inv(U)</literal>
+    nÃ£o-nulas): a matriz nÃ£o-singular esparsa <literal>Q'*inv(U)</literal>
     comprime em colunas <literal>A</literal>.</para>
   </refsection>
 
@@ -114,7 +114,7 @@ ludel(hand)
   </refsection>
 
   <refsection>
-    <title>Ver Também </title>
+    <title>Ver TambÃ©m </title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

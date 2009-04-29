@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="union" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,7 +18,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>
       [v [,ka, kb] ] = union(a,b)
@@ -27,15 +27,15 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres ou de chaînes de
-          caractères.</para>
+          <para>vecteur ou matrice de nombres ou de chaÃ®nes de
+          caractÃ¨res.</para>
         </listitem>
       </varlistentry>
 
@@ -43,8 +43,8 @@
         <term>b</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres ou de chaînes de
-          caractères.</para>
+          <para>vecteur ou matrice de nombres ou de chaÃ®nes de
+          caractÃ¨res.</para>
         </listitem>
       </varlistentry>
 
@@ -60,8 +60,8 @@
         <term>v</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres ou de chaînes de
-          caractères.</para>
+          <para>vecteur ou matrice de nombres ou de chaÃ®nes de
+          caractÃ¨res.</para>
         </listitem>
       </varlistentry>
 
@@ -87,26 +87,26 @@
     <title>Description</title>
 
     <para><literal>union(a,b)</literal> renvoie un vecteur ligne contenant les
-    valeurs distinctes (classées par ordre croissant) contenues dans les
-    éléments de <literal>[a(:);b(:)]</literal>.</para>
+    valeurs distinctes (classÃ©es par ordre croissant) contenues dans les
+    Ã©lÃ©ments de <literal>[a(:);b(:)]</literal>.</para>
 
     <para><literal>union(a,b,"r")</literal> ou
-    <literal>union(a,b,1)</literal>renvoie la matrice formée de l'union des
-    lignes distinctes de <literal>a</literal> et <literal>b</literal> triées
+    <literal>union(a,b,1)</literal>renvoie la matrice formÃ©e de l'union des
+    lignes distinctes de <literal>a</literal> et <literal>b</literal> triÃ©es
     dans l'ordre lexicographique croissant. Dans ce cas les matrices
-    <literal>a</literal> et <literal>b</literal> doivent avoir le même nombre
+    <literal>a</literal> et <literal>b</literal> doivent avoir le mÃªme nombre
     de colonnes.</para>
 
     <para><literal>union(a,b,"c")</literal> ou
-    <literal>union(a,b,2)</literal>renvoie la matrice formée de l'union des
-    colonnes distinctes de <literal>a</literal> et <literal>b</literal> triées
+    <literal>union(a,b,2)</literal>renvoie la matrice formÃ©e de l'union des
+    colonnes distinctes de <literal>a</literal> et <literal>b</literal> triÃ©es
     dans l'ordre lexicographique croissant. Dans ce cas les matrices
-    <literal>a</literal> et <literal>b</literal> doivent avoir le même nombre
+    <literal>a</literal> et <literal>b</literal> doivent avoir le mÃªme nombre
     de lignes.</para>
 
     <para><literal>[v,ka,kb]=union(a,b)</literal> renvoie aussi les vecteurs
     d'indices <literal>ka</literal> et <literal>kb</literal> tels que
-    <literal>v</literal> est une combinaison triée des termes de
+    <literal>v</literal> est une combinaison triÃ©e des termes de
     <literal>a(ka)</literal> et <literal>b(kb)</literal>.</para>
   </refsection>
 

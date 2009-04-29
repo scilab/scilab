@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -137,7 +137,7 @@ altitudes, and some other thermal-hydraulic coefficients.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Diamètre interne du tube : D (m)</emphasis>
+          <emphasis role="bold">DiamÃ¨tre interne du tube : D (m)</emphasis>
         </para>
         <para> Pipe diameter</para>
         <para> Properties : Type 'vec' of size -1. </para>
@@ -151,7 +151,7 @@ altitudes, and some other thermal-hydraulic coefficients.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Altitude entrée tuyauterie : z1 (m)</emphasis>
+          <emphasis role="bold">Altitude entrÃ©e tuyauterie : z1 (m)</emphasis>
         </para>
         <para> Altitude of the first port (z1)</para>
         <para> Properties : Type 'vec' of size -1. </para>
@@ -165,7 +165,7 @@ altitudes, and some other thermal-hydraulic coefficients.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Si 0, masse volumique imposée fu fluide : p_rho (kg/m3)</emphasis>
+          <emphasis role="bold">Si 0, masse volumique imposÃ©e fu fluide : p_rho (kg/m3)</emphasis>
         </para>
         <para> Fluid density</para>
         <para> Properties : Type 'vec' of size -1.</para>

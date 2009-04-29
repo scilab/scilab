@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>titlepage</refname>
 
-    <refpurpose>adiciona título no meio de uma janela de gráficos</refpurpose>
+    <refpurpose>adiciona tÃ­tulo no meio de uma janela de grÃ¡ficos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>titlepage(str)</synopsis>
   </refsynopsisdiv>
@@ -48,15 +48,15 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>titlepage</literal> exibe a matriz de strings
-    <literal>str</literal> no meio da janela de gráficos corrente com uma
-    fonte a maior possível.</para>
+    <literal>str</literal> no meio da janela de grÃ¡ficos corrente com uma
+    fonte a maior possÃ­vel.</para>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="xtitle">xtitle</link></member>

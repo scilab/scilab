@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>imag</refname>
 
-    <refpurpose>parte imaginária</refpurpose>
+    <refpurpose>parte imaginÃ¡ria</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>[y]=imag(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,15 +56,15 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>imag(x)</literal> é a parte imaginária de
-    <literal>x</literal>. (ver <literal> %i</literal> para entrar com números
+    <para><literal>imag(x)</literal> Ã© a parte imaginÃ¡ria de
+    <literal>x</literal>. (ver <literal> %i</literal> para entrar com nÃºmeros
     complexos).</para>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="real">real</link></member>

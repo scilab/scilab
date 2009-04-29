@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,15 +16,15 @@
   </info>
   <refnamediv>
     <refname>bandwr</refname>
-    <refpurpose> réduction de largeur de bande pour une matrice creuse  </refpurpose>
+    <refpurpose> rÃ©duction de largeur de bande pour une matrice creuse  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[iperm,mrepi,prof,ierr] = bandwr(sp,[iopt])
 [iperm,mrepi,prof,ierr] = bandwr(lp,ls,n,[iopt])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>sp  </term>
@@ -93,33 +93,33 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>bandwr</literal> résout le problème de la réduction de largeur de bande pour 
-    une matrice creuse : la matrice est supposée triangulaire supérieure avec 
+    <para><literal>bandwr</literal> rÃ©sout le problÃ¨me de la rÃ©duction de largeur de bande pour 
+    une matrice creuse : la matrice est supposÃ©e triangulaire supÃ©rieure avec 
     une diagonale pleine.
   </para>
     <para>
-    Dans la première séquence d'appel, <literal>sp</literal> désigne une matrice creuse; 
+    Dans la premiÃ¨re sÃ©quence d'appel, <literal>sp</literal> dÃ©signe une matrice creuse; 
     l'argument optionnel <literal>iopt</literal> vaut 0 ou 1 : 1 si
-    réduire le profil de la matrice est plus important que réduire la largeur 
+    rÃ©duire le profil de la matrice est plus important que rÃ©duire la largeur 
     de bande et 0 si la largeur de bande est plus important.
   </para>
     <para>
-    La deuxième séquence d'appel correspond à la  description d'un graphe :
+    La deuxiÃ¨me sÃ©quence d'appel correspond Ã  la  description d'un graphe :
     <literal>lp</literal> est un vecteur ligne de pointeurs de la description du 
     graphe sous forme de liste d'adjacence (sa taille est le nombre de sommets 
     du graphe + 1);
     <literal>ls</literal> est un vecteur ligne, tableau de sommets de la description du 
-    graphe sous forme de liste d'adjacence (sa taille est le nombre d'arêtes 
-    du graphe, c'est à dire le nombre de termes non-nuls de la matrice creuse 
-    associée).
+    graphe sous forme de liste d'adjacence (sa taille est le nombre d'arÃªtes 
+    du graphe, c'est Ã  dire le nombre de termes non-nuls de la matrice creuse 
+    associÃ©e).
     <literal>n</literal> est le nombre de sommets (dimension de <literal>sp</literal>).
   </para>
-    <para><literal>iperm</literal> est le vecteur de la permutation pour réordonner les lignes et 
-    les colonnes, qui réduit la largeur de bande et/ou le profil (nouvelle 
-    numérotation des sommets du graphe).
-    <literal>mrepi</literal> est la permutation inverse (mrepi(iperm) est l'identité).
+    <para><literal>iperm</literal> est le vecteur de la permutation pour rÃ©ordonner les lignes et 
+    les colonnes, qui rÃ©duit la largeur de bande et/ou le profil (nouvelle 
+    numÃ©rotation des sommets du graphe).
+    <literal>mrepi</literal> est la permutation inverse (mrepi(iperm) est l'identitÃ©).
     <literal>prof</literal> est le tableau donnant le profil de la matrice creuse
-    après la réduction de largeur de bande si <literal>iopt</literal> vaut 1. Si <literal>iopt</literal> 
+    aprÃ¨s la rÃ©duction de largeur de bande si <literal>iopt</literal> vaut 1. Si <literal>iopt</literal> 
     vaut 0 ce tableau est nul sauf pour le premier terme, donnant alors la 
     largeur de bande.
     La simple commande <literal>max(prof(2:$)-prof(1:($-1)))</literal> renvoie
@@ -142,10 +142,10 @@ ww=tril(a)'+eye();
 ww1=full(ww);
 xset('window',1)
 hist3d((ww1+tril(ww1',-1)+tril(ww1,-1)'),52,85); 
-// RÉDUCTION DE LARGEUR DE BANDE POUR LA MATRICE
+// RÃ‰DUCTION DE LARGEUR DE BANDE POUR LA MATRICE
 [iperm,mrepi,prof,ierr]=bandwr(ww);
 max(prof(2:$)-prof(1:($-1)))
-// GRAPHE AVEC LA NOUVELLE NUMÉROTATION
+// GRAPHE AVEC LA NOUVELLE NUMÃ‰ROTATION
 g2=g;g2('node_name')=string(iperm);
 show_graph(g2,'new')
 // NOUVELLE MATRICE
@@ -153,7 +153,7 @@ n=g('node_number');
 yy=ww1(mrepi,mrepi);
 xset('window',3)
 hist3d((yy+tril(yy',-1)+tril(yy,-1)'),52,85); 
-// ON COMMENCE AVEC LA MÊME MATRICE
+// ON COMMENCE AVEC LA MÃŠME MATRICE
 [ij,v,mn]=spget(ww);
 g1=make_graph('foo',0,n,ij(:,1)',ij(:,2)');
 g1('node_x')=g('node_x');g1('node_y')=g('node_y');

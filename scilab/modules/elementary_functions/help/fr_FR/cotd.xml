@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,25 +24,25 @@
   <refnamediv>
     <refname>cotd</refname>
 
-    <refpurpose>cotangent des éléments de l'argument donnés en
-    degrés.</refpurpose>
+    <refpurpose>cotangent des Ã©lÃ©ments de l'argument donnÃ©s en
+    degrÃ©s.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=cotg(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>Tableau réel.</para>
+          <para>Tableau rÃ©el.</para>
         </listitem>
       </varlistentry>
 
@@ -50,7 +50,7 @@
         <term>y</term>
 
         <listitem>
-          <para>Tableau réel de mêmes dimensions que
+          <para>Tableau rÃ©el de mÃªmes dimensions que
           <literal>x</literal>.</para>
         </listitem>
       </varlistentry>
@@ -60,15 +60,15 @@
   <refsection>
     <title>Description</title>
 
-    <para>Les éléments de <literal>y</literal> sont les cotangentes
-    (<literal>y=cos(x)./sin(x)</literal>) des éléments correspondants de
-    <literal>x</literal> supposés donnés en degrés. Pour les éléments égaux à
-    <literal>n*180</literal> avec <literal>n</literal> entier le résultat et
+    <para>Les Ã©lÃ©ments de <literal>y</literal> sont les cotangentes
+    (<literal>y=cos(x)./sin(x)</literal>) des Ã©lÃ©ments correspondants de
+    <literal>x</literal> supposÃ©s donnÃ©s en degrÃ©s. Pour les Ã©lÃ©ments Ã©gaux Ã 
+    <literal>n*180</literal> avec <literal>n</literal> entier le rÃ©sultat et
     infini (ou une erreur selon le mode ieee choisi) tandis que
-    <literal>cotg(n*%pi)</literal> est très grand mais fini car
-    <literal>%pi</literal> ne peut être représenté exactement. Pour les
-    éléments égaux à <literal>n*90</literal> avec <literal>n</literal> entier
-    et impair le résultat est exactement 0.</para>
+    <literal>cotg(n*%pi)</literal> est trÃ¨s grand mais fini car
+    <literal>%pi</literal> ne peut Ãªtre reprÃ©sentÃ© exactement. Pour les
+    Ã©lÃ©ments Ã©gaux Ã  <literal>n*90</literal> avec <literal>n</literal> entier
+    et impair le rÃ©sultat est exactement 0.</para>
   </refsection>
 
   <refsection>

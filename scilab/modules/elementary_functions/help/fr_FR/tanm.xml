@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="tanm" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,20 +17,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[t]=tanm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x,t</term>
 
         <listitem>
-          <para>matrice carrée réelle ou complexe</para>
+          <para>matrice carrÃ©e rÃ©elle ou complexe</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,7 +40,7 @@
     <title>Description</title>
 
     <para><literal>tanm(x)</literal> est la tangente matricielle de la matrice
-    carrée x.</para>
+    carrÃ©e x.</para>
   </refsection>
 
   <refsection>

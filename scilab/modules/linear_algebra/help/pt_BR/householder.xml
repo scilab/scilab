@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>householder</refname>
 
-    <refpurpose>matriz de reflexão ortogonal de Householder</refpurpose>
+    <refpurpose>matriz de reflexÃ£o ortogonal de Householder</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>u=householder(v [,w])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
 
         <listitem>
           <para>vetor coluna de reais ou complexos com o mesmo tamanho que
-          <literal>v</literal>. Valor padrão é
+          <literal>v</literal>. Valor padrÃ£o Ã©
           <literal>eye(v)</literal></para>
         </listitem>
       </varlistentry>
@@ -66,22 +66,22 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para>Dados dois vetores coluna <literal>v</literal>, <literal>
     w</literal> de mesmo tamanho, <literal>householder(v,w)</literal> retorna
-    um vetor coluna unitário <literal>u</literal>, tal que<literal>
-    (eye()-2*u*u')*v</literal> é proporcional a <literal>w</literal>.
-    <literal>(eye()-2*u*u')</literal> é a matriz de reflexão ortogonal de
+    um vetor coluna unitÃ¡rio <literal>u</literal>, tal que<literal>
+    (eye()-2*u*u')*v</literal> Ã© proporcional a <literal>w</literal>.
+    <literal>(eye()-2*u*u')</literal> Ã© a matriz de reflexÃ£o ortogonal de
     Householder .</para>
 
-    <para>O valor padrão de<literal> w</literal> é<literal> eye(v)</literal>.
-    Neste caso, o vetor <literal> (eye()-2*u*u')*v</literal> é o
+    <para>O valor padrÃ£o de<literal> w</literal> Ã©<literal> eye(v)</literal>.
+    Neste caso, o vetor <literal> (eye()-2*u*u')*v</literal> Ã© o
     vetor<literal> eye(v)*norm(v)</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="qr">qr</link></member>

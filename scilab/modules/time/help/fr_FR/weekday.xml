@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -19,14 +19,14 @@
     <refpurpose>Retourne le jour de la semaine</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[N,S] = weekday(D)
 [N,S] = weekday(D, form)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>[N,S] = weekday(D) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S) pour une date donnée (sous la forme d'un "serial date number" : see <link linkend="datenum">datenum</link>). Le paramètre passé en entrée peut être une matrice de "serial date number"</para>
-    <para>[N,S] = weekday(D, form)) retourne le jour de la semaine sous une forme numérique(N) et une chaîne de caractère(S), où le contenu de S dépend du paramètre "form". Si form est égal à 'long', S contient le nom complet du jour de la semaine tandis que si form est égal à 'short', S contient l'abbreviation du nom du jour de la semaine.</para>
+    <para>[N,S] = weekday(D) retourne le jour de la semaine sous une forme numÃ©rique(N) et une chaÃ®ne de caractÃ¨re(S) pour une date donnÃ©e (sous la forme d'un "serial date number" : see <link linkend="datenum">datenum</link>). Le paramÃ¨tre passÃ© en entrÃ©e peut Ãªtre une matrice de "serial date number"</para>
+    <para>[N,S] = weekday(D, form)) retourne le jour de la semaine sous une forme numÃ©rique(N) et une chaÃ®ne de caractÃ¨re(S), oÃ¹ le contenu de S dÃ©pend du paramÃ¨tre "form". Si form est Ã©gal Ã  'long', S contient le nom complet du jour de la semaine tandis que si form est Ã©gal Ã  'short', S contient l'abbreviation du nom du jour de la semaine.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
