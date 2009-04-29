@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/polynomials/help/fr_FR";
-add_help_chapter("Polynômes",path,%T);
+add_help_chapter("PolynÃ´mes",path,%T);
 clear path add_help_chapter;

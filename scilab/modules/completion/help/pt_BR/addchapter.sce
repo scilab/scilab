@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/completion/help/pt_BR";
-add_help_chapter("Complementação",path,%T);
+add_help_chapter("ComplementaÃ§Ã£o",path,%T);
 clear path add_help_chapter;

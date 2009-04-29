@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/scilab2fortran/help/pt_BR";
-add_help_chapter("Convers„o Scilab-Fortran",path,%T);
+add_help_chapter("Convers√£o Scilab-Fortran",path,%T);
 clear path add_help_chapter;

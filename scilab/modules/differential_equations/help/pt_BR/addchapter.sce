@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/differential_equations/help/pt_BR";
-add_help_chapter("Equações Diferenciais",path,%T);
+add_help_chapter("EquaÃ§Ãµes Diferenciais",path,%T);
 clear path add_help_chapter;
