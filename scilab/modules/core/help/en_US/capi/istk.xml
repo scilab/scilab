@@ -28,8 +28,8 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position on the Scilab memory of the variable to be accessed
-          (input argument)</para>
+          <para>the position on the Scilab memory of the variable to be
+          accessed (input argument)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,7 +38,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>This C interface function returns a pointer to an integer to access
+    <para>This C gateway function returns a pointer to an integer to access
     data stored at a given position on the Scilab memory.</para>
   </refsection>
 
@@ -55,7 +55,7 @@ int sci_myones(char * fname)
   m_row = 1; n_col = 1; // We create a scalar
   CreateVar(1, MATRIX_OF_INTEGER_DATATYPE, &amp;m_row, &amp;n_col, &amp;l_pos);
 
-  *istk(l_pos) = 1;
+  *istk(l_pos) = 1; // TODO: what are we doing here ?
 
   LhsVar(1) = 1;
 
@@ -69,7 +69,9 @@ int sci_myones(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="ScilabCTypes">Scilab C Type</link></member>
+
       <member><link linkend="CreateVar">CreateVar</link></member>
+
       <member><link linkend="LhsVar">LhsVar</link></member>
     </simplelist>
   </refsection>

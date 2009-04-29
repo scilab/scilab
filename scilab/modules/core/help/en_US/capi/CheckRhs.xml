@@ -9,8 +9,8 @@
   <refnamediv xml:id="???">
     <refname>CheckRhs</refname>
 
-    <refpurpose>C interface macro which checks the number of input arguments
-    present in the calling Scilab function.</refpurpose>
+    <refpurpose>C macro which checks the number of input arguments present in
+    the calling Scilab function.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -27,8 +27,8 @@
         <term>nb_min_params</term>
 
         <listitem>
-          <para>The minimum number of input arguments which must be present
-          in the calling Scilab function</para>
+          <para>The minimum number of input arguments which must be present in
+          the calling Scilab function</para>
         </listitem>
       </varlistentry>
 
@@ -36,8 +36,8 @@
         <term>nb_max_params</term>
 
         <listitem>
-          <para>the maximum number of input arguments which must be present
-          in the calling Scilab function</para>
+          <para>the maximum number of input arguments which must be present in
+          the calling Scilab function</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -46,18 +46,25 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface macro which checks the number of input arguments
-    present in the calling Scilab function. You must include stack-c.h to
-    benefit from this function. If the number of input arguments is not
-    between nb_min_params and nb_max_params, we quit the C interface (return 0;) and an
-    error is returned in the Scilab console.</para>
+    <para>C macro which checks the number of input arguments present in the
+    calling Scilab function. You must include stack-c.h to benefit from this
+    function. </para>
+
+    <para>If the number of input arguments is not between nb_min_params and
+    nb_max_params, we quit the C interface (<literal>return 0;</literal>) and
+    an error is returned in the Scilab console.</para>
+
+    <para>Since <literal>CheckRhs</literal> is doing a <literal>return
+    0;</literal> within the gateway function, it is important to call this
+    macro before any memory allocation in order to avoid any memory
+    leak.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <para>In this example, the C interface function checks for a number of
-    input arguments which must be between 2 and 3.</para>
+    <para>In this example, the C gateway function checks for a number of input
+    arguments which must be between 2 and 3.</para>
 
     <programlisting> 
 #include &lt;stack-c.h&gt;
