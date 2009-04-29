@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -16,29 +16,29 @@
   </info>
   <refnamediv>
     <refname>cdfbet</refname>
-    <refpurpose> fonction de répartition de la distribution Beta  </refpurpose>
+    <refpurpose> fonction de rÃ©partition de la distribution Beta  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[P,Q]=cdfbet("PQ",X,Y,A,B)
 [X,Y]=cdfbet("XY",A,B,P,Q)
 [A]=cdfbet("A",B,P,Q,X,Y)
 [B]=cdfbet("B",P,Q,X,Y,A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,X,Y,A,B  </term>
         <listitem>
-          <para>cinq vecteurs réels de même taille.
+          <para>cinq vecteurs rÃ©els de mÃªme taille.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P,Q (Q=1-P)  </term>
         <listitem>
-          <para>L'intégrale de 0 à X de la distribution beta (En entrée : [0, 1].)
+          <para>L'intÃ©grale de 0 Ã  X de la distribution beta (En entrÃ©e : [0, 1].)
 </para>
         </listitem>
       </varlistentry>
@@ -52,7 +52,7 @@
       <varlistentry>
         <term>X,Y (Y=1-X)  </term>
         <listitem>
-          <para>Borne supérieure d'intégration  (En entrée : [0,1],  En recherche : [0,1]) A,B : Les deux paramètres de la densité (En entrée: (0,+infini), En recherche : [1D-300,1D300] ) 
+          <para>Borne supÃ©rieure d'intÃ©gration  (En entrÃ©e : [0,1],  En recherche : [0,1]) A,B : Les deux paramÃ¨tres de la densitÃ© (En entrÃ©e: (0,+infini), En recherche : [1D-300,1D300] ) 
 </para>
         </listitem>
       </varlistentry>
@@ -61,11 +61,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Étant donnés les autres, calcule un paramètre de la distribution beta 
-    (la distribution Beta est proportionnelle à <literal>t^(A-1) * (1-t)^(B-1)</literal>).
+    Ã‰tant donnÃ©s les autres, calcule un paramÃ¨tre de la distribution beta 
+    (la distribution Beta est proportionnelle Ã  <literal>t^(A-1) * (1-t)^(B-1)</literal>).
   </para>
     <para>
-    La fonction de répartition  (P)  est calculée directement par le code associé à la référence
+    La fonction de rÃ©partition  (P)  est calculÃ©e directement par le code associÃ© Ã  la rÃ©fÃ©rence
   </para>
     <para>
     DiDinato, A. R. and Morris,  A.   H.  Algorithm 708: Significant
@@ -73,10 +73,10 @@
     Trans. Math.  Softw. 18 (1993), 360-373.
   </para>
     <para>
-    Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+    Le calcul des autres paramÃ¨tres implique une recherche d'une valeur conduisant Ã  la valeur dÃ©sirÃ©e pour P. La recherche dÃ©pend de la monotonicitÃ© de P par rapport aux autres paramÃ¨tres.
   </para>
     <para>
-    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    TirÃ© de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
     Functions, Inverses, and Other Parameters (February, 1994)
     Barry W. Brown, James Lovato and Kathy Russell. The University of
     Texas.

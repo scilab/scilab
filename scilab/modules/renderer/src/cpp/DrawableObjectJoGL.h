@@ -18,6 +18,11 @@
 #include "DrawableObject.h"
 #include "DrawableObjectJavaMapper.hxx"
 
+#ifdef _MSC_VER
+#pragma warning(once : 4250)
+#endif
+
+
 namespace sciGraphics
 {
 class DrawableObjectJoGL : public virtual DrawableObjectBridge

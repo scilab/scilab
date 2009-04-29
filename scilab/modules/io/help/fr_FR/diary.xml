@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,22 +16,22 @@
   </info>
   <refnamediv>
     <refname>diary</refname>
-    <refpurpose> Enregistrement des entrées sorties de la console Scilab</refpurpose>
+    <refpurpose> Enregistrement des entrÃ©es sorties de la console Scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>
       diary(f)
       diary(0)
     </synopsis>
   </refsynopsisdiv>
  <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>Une chaine de caractères qui donne le chemin du fichier.</para>
+          <para>Une chaine de caractÃ¨res qui donne le chemin du fichier.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,11 +40,11 @@
   <refsection>
     <title>Description</title>
     <para><literal>diary(f)</literal> ouvre le fichier dont le chemin
-    est donné par <literal>f</literal> et enregistre toutes les
-    entrées sorties de la console Scilab à partir de ce
+    est donnÃ© par <literal>f</literal> et enregistre toutes les
+    entrÃ©es sorties de la console Scilab Ã  partir de ce
     point. </para>
-    <para> L'enregistrement est arrêté et le fichier associé
-    est fermé par un appel à <literal>diary(0)</literal> ou par
+    <para> L'enregistrement est arrÃªtÃ© et le fichier associÃ©
+    est fermÃ© par un appel Ã  <literal>diary(0)</literal> ou par
     l'ouverture d'un autre fichier diary.</para>
   </refsection>
   

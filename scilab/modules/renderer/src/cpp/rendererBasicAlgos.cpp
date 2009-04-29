@@ -28,6 +28,8 @@ void destroyRendererString(char * string)
   delete[] string;
 }
 /*--------------------------------------------------------------------------*/
+/* It must be moved in SCI_GATEWAY directory */
+/* NOT in renderer in GRAPHICS */
 void callFunctionFromGatewayWithExceptions(gw_generic_table * tab)
 {
 	try

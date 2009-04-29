@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_state">
   <refnamediv>
     <refname>scicos_state</refname>
-    <refpurpose>Définit une structure state</refpurpose>
+    <refpurpose>DÃ©finit une structure state</refpurpose>
   </refnamediv>
   <refsection id="Module_scicos_state">
     <title>Module</title>
@@ -39,9 +39,9 @@
   <refsection id="state_scicos_state">
     <title>state</title>
     <para>
- Une liste typée scilab de type xcs. Cette
- liste contient tous les états du diagramme qui
- vont évoluer pendant la simulation.
+ Une liste typÃ©e scilab de type xcs. Cette
+ liste contient tous les Ã©tats du diagramme qui
+ vont Ã©voluer pendant la simulation.
 </para>
     <para>
 state contient x, z, oz, iz, 
@@ -65,33 +65,33 @@ Type : tlist scilab.
         <para>
           <emphasis role="bold">x</emphasis>
         </para>
-        <para> Le registre des états continus qui est obtenu en concatenant tous les états continus de tous les blocs.</para>
+        <para> Le registre des Ã©tats continus qui est obtenu en concatenant tous les Ã©tats continus de tous les blocs.</para>
         <para> 
-Taille : total des tailles de tous les registres des états continus.
+Taille : total des tailles de tous les registres des Ã©tats continus.
 </para>
         <para>
-Type : vecteur colonne de nombres réels.
+Type : vecteur colonne de nombres rÃ©els.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">z</emphasis>
         </para>
-        <para> Le registre des états discrets qui est obtenu en concatenant tous les états discrets de tous les blocs.</para>
+        <para> Le registre des Ã©tats discrets qui est obtenu en concatenant tous les Ã©tats discrets de tous les blocs.</para>
         <para> 
-Taille : total des tailles de tous les registres des états discrets.
+Taille : total des tailles de tous les registres des Ã©tats discrets.
 </para>
         <para>
-Type : vecteur colonne de nombres réels.
+Type : vecteur colonne de nombres rÃ©els.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">oz</emphasis>
         </para>
-        <para> La liste des états objets discrets obtenue par la concaténation de tous les états objets de tous les blocs.</para>
+        <para> La liste des Ã©tats objets discrets obtenue par la concatÃ©nation de tous les Ã©tats objets de tous les blocs.</para>
         <para> 
-Taille : total des tailles de toutes les listes des états objet.
+Taille : total des tailles de toutes les listes des Ã©tats objet.
 </para>
         <para>
 Type : liste scilab.
@@ -101,20 +101,20 @@ Type : liste scilab.
         <para>
           <emphasis role="bold">iz</emphasis>
         </para>
-        <para> Vecteur de taille égale au nombre de blocs.</para>
-        <para> Ce vecteur est utilisé pour enregistrer les pointeurs des registres de travail (work) Si un bloc fait une allocation du registre work à l'initialisation (flag=4) alors le pointeur associé est enregistré ici.</para>
+        <para> Vecteur de taille Ã©gale au nombre de blocs.</para>
+        <para> Ce vecteur est utilisÃ© pour enregistrer les pointeurs des registres de travail (work) Si un bloc fait une allocation du registre work Ã  l'initialisation (flag=4) alors le pointeur associÃ© est enregistrÃ© ici.</para>
         <para> 
 Taille : nombre de blocs.
 </para>
         <para>
-Type : vecteur colonne de nombres réels.
+Type : vecteur colonne de nombres rÃ©els.
 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">tevts</emphasis>
         </para>
-        <para> Un vecteur de taille égale au nombre de sources d'activation. C'est une table contenant les dates des événements programmés dans evtspt.</para>
+        <para> Un vecteur de taille Ã©gale au nombre de sources d'activation. C'est une table contenant les dates des Ã©vÃ©nements programmÃ©s dans evtspt.</para>
         <para> 
 Taille : nombre de sources d'activation.
 </para>
@@ -126,7 +126,7 @@ Type : vecteur colonne de nombre entiers.
         <para>
           <emphasis role="bold">evtspt</emphasis>
         </para>
-        <para> Un vecteur de taille égale au nombre de sources d'activation. C'est une table d'événements.</para>
+        <para> Un vecteur de taille Ã©gale au nombre de sources d'activation. C'est une table d'Ã©vÃ©nements.</para>
         <para> 
 Taille : nombre de sources d'activation.
 </para>
@@ -138,7 +138,7 @@ Type : vecteur colonne de nombre entiers.
         <para>
           <emphasis role="bold">pointi</emphasis>
         </para>
-        <para> Le numéro du prochain événement.</para>
+        <para> Le numÃ©ro du prochain Ã©vÃ©nement.</para>
         <para> 
 Taille : 1.
 </para>
@@ -150,9 +150,9 @@ Type : entier.
         <para>
           <emphasis role="bold">outtb</emphasis>
         </para>
-        <para> Liste scilab contenant tous les registres de sortie des blocs. Chaque éléments de cette liste contient des données typées matricielles.</para>
+        <para> Liste scilab contenant tous les registres de sortie des blocs. Chaque Ã©lÃ©ments de cette liste contient des donnÃ©es typÃ©es matricielles.</para>
         <para> 
-Taille : nombre de ports réguliers de sortie.
+Taille : nombre de ports rÃ©guliers de sortie.
 </para>
         <para>
 Type : liste scilab contenant des matrices.

@@ -10,7 +10,7 @@
   <refnamediv xml:id="???">
     <refname>CreateVar</refname>
 
-    <refpurpose>a C interface function which allows to create a new Scilab
+    <refpurpose>a C gateway function which allows to create a new Scilab
     variable</refpurpose>
   </refnamediv>
 
@@ -28,8 +28,7 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>the rank of the variable to be created (input
-          argument)</para>
+          <para>The rank of the variable to be created (input argument)</para>
         </listitem>
       </varlistentry>
 
@@ -37,8 +36,8 @@
         <term>Type</term>
 
         <listitem>
-          <para>the Scilab type of the variable to be created (input
-          argument). Can be (see Scilab C Type for more information):</para>
+          <para>The <link linkend="ScilabCTypes">Scilab C Type</link> of the
+          variable to be created (input argument).</para>
 
           <itemizedlist>
             <listitem>
@@ -126,8 +125,8 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position in the Scilab memory of the created variable (output
-          argument)</para>
+          <para>the position in the Scilab memory of the created variable
+          (output argument)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -136,7 +135,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>A C interface function which allows to create a new Scilab
+    <para>A C gateway function which allows to create a new Scilab
     variable</para>
   </refsection>
 
@@ -167,7 +166,9 @@ int sci_myones(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="ScilabCTypes">Scilab C Type</link></member>
+
       <member><link linkend="istk">istk</link></member>
+
       <member><link linkend="LhsVar">LhsVar</link></member>
     </simplelist>
   </refsection>

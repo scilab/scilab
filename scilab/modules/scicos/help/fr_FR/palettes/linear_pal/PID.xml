@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_PID">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_PID">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_PID">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_PID">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="PID">Contenu du super-bloc compilé</link>
+              <link linkend="PID">Contenu du super-bloc compilÃ©</link>
             </para>
           </listitem>
           <listitem>
@@ -98,13 +98,13 @@
   <refsection id="Description_PID">
     <title>Description</title>
     <para>
-Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dérivé (PID) est un organe de contrôle permettant d'effectuer une régulation en boucle fermée d'un système industriel. C'est le régulateur le plus utilisé dans l'industrie et permet de contrôler la grande majorité des procédés.  
+Ce bloc implÃ©mente un rÃ©gulateur PID. Un rÃ©gulateur Proportionnel IntÃ©gral DÃ©rivÃ© (PID) est un organe de contrÃ´le permettant d'effectuer une rÃ©gulation en boucle fermÃ©e d'un systÃ¨me industriel. C'est le rÃ©gulateur le plus utilisÃ© dans l'industrie et permet de contrÃ´ler la grande majoritÃ© des procÃ©dÃ©s.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_PID">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_PID">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,26 +121,26 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
           <emphasis role="bold">Proportional</emphasis>
         </para>
         <para> La valeur du gain qui multiplie l'erreur.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Integral</emphasis>
         </para>
-        <para> La valeur de l'intervalle de temps sur lequel l'erreur est intégrée.(1/Integral)</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La valeur de l'intervalle de temps sur lequel l'erreur est intÃ©grÃ©e.(1/Integral)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Derivation</emphasis>
         </para>
-        <para> La valeur de temps suivant laquelle l'erreur est dérivée.</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+        <para> La valeur de temps suivant laquelle l'erreur est dÃ©rivÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_PID">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_PID">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -149,14 +149,14 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
@@ -164,26 +164,26 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -201,8 +201,8 @@ Ce bloc implémente un régulateur PID. Un régulateur Proportionnel Intégral Dériv
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenudusuperbloccompilé_PID">
-    <title>Contenu du super-bloc compilé</title>
+  <refsection id="ContenudusuperbloccompilÃ©_PID">
+    <title>Contenu du super-bloc compilÃ©</title>
     <para>
       <inlinemediaobject>
         <imageobject>

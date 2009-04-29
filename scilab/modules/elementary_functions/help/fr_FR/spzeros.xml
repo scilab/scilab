@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="spzeros" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -59,15 +59,15 @@
 
     <para><literal>sp=spzeros(nrows,ncols)</literal> renvoie une matrice
     creuse nulle <literal>sp</literal> avec <literal>nrows</literal> lignes et
-    <literal>ncols</literal> colonnes (Équivalent à
+    <literal>ncols</literal> colonnes (Ã‰quivalent Ã 
     <literal>sparse([],[],[nrow,ncols])</literal>).</para>
 
     <para><literal>sp=spzeros(A)</literal> renvoie une matrice creuse nulle de
-    mêmes dimensions que <literal>A</literal>. Si
+    mÃªmes dimensions que <literal>A</literal>. Si
     <literal>[m,n]=size(A)</literal>, les commandes
     <literal>spzeros(m,n)</literal> et <literal>spzeros(A)</literal> sont
-    équivalentes. En particulier <literal>spzeros(3)</literal> n'est pas
-    équivalent à <literal>spzeros(3,3)</literal>.</para>
+    Ã©quivalentes. En particulier <literal>spzeros(3)</literal> n'est pas
+    Ã©quivalent Ã  <literal>spzeros(3,3)</literal>.</para>
   </refsection>
 
   <refsection>

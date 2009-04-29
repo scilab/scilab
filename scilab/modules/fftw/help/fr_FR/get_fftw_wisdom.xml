@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_fftw_wisdom">
   <info>
     <pubdate>February 2006</pubdate>
@@ -8,16 +8,16 @@
     <refpurpose>retourne le wisdom fftw</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[txt]=get_fftw_wisdom()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>txt</term>
         <listitem>
-          <para>Matrice de chaîne de caractères contenant le wisdom fftw.</para>
+          <para>Matrice de chaÃ®ne de caractÃ¨res contenant le wisdom fftw.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -25,7 +25,7 @@
   <refsection>
     <title>Description</title>
     <para>
-       Cette fonction retourne le wisdom fftw sous la forme d'une chaîne de caractère.
+       Cette fonction retourne le wisdom fftw sous la forme d'une chaÃ®ne de caractÃ¨re.
     </para>
   </refsection>
   <refsection>

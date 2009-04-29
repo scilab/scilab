@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="scifunction" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>scifunction</refname>
+
+    <refpurpose>C function which call a Scilab function which input parameters
+    and store the output parameters.</refpurpose>
+
+    <!-- TODO: please update ... unclear -->
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>int C2F(scifunction)(int *number, int *ptr, int *mlhs, int *mrhs);</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>number</term>
+
+        <listitem>
+          <para>the position in the Scilab memory of the variable for which we
+          want to TODO</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ptr</term>
+
+        <listitem>
+          <para>TODO</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mlhs</term>
+
+        <listitem>
+          <para>TODO</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mrhs</term>
+
+        <listitem>
+          <para>TODO</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C2F</term>
+
+        <listitem>
+          <para>C2F is just a macro which provides to this function the
+          ability to be called from fortran</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>A C interface function which call a Scilab function which input
+    parameters and store the output parameters. You must include stack-c.h to
+    benefit from this function.</para>
+
+    <para>TODO this function can be hard to use. It deserves much more
+    description.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>In this example, the C interface function takes 2 input arguments,
+    copy these parameters in the Scilab memory, call a Scilab function and
+    copy the output parameters and returns it in the Scilab console.</para>
+
+    <programlisting> 
+#include &lt;stack-c.h&gt;
+#include &lt;string.h&gt;
+
+int sci_myscifunction(char * fname)
+{
+  int m_param_1,      n_param_1,      l_param_1; // x1
+  int m_param_2,      n_param_2,      l_param_2; // x2
+  int m_param_3,      n_param_3,      l_param_3; // the Scilab function
+  int m_copy_param_1, n_copy_param_1, l_copy_param_1;
+  int m_copy_param_2, n_copy_param_2, l_copy_param_2;
+  int m_out,          n_out,          l_out; // the result
+  int nb_rhs_scifunc, nb_lhs_scifunc;
+
+  // Normally, we must check the type and size of each variables
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_param_1, &amp;n_param_1, &amp;l_param_1);
+  GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_param_2, &amp;n_param_2, &amp;l_param_2);
+  GetRhsVar(3, EXTERNAL_DATATYPE, &amp;m_param_3, &amp;n_param_3, &amp;l_param_3);
+
+  nb_lhs_scifunc = 1; // One output parameter
+  nb_rhs_scifunc = 2; // Two input parameters
+
+  // Now create two copies of the input parameters
+  m_copy_param_1 = m_param_1;
+  n_copy_param_1 = n_param_1;
+  CreateVar(4, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_copy_param_1, &amp;n_copy_param_1, &amp;l_copy_param_1);
+  memcpy(stk(l_copy_param_1),stk(l_param_1),m_param_1*n_param_1*sizeof(double));
+
+  m_copy_param_2 = m_param_2;
+  n_copy_param_2 = n_param_2;
+  CreateVar(5, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_copy_param_2, &amp;n_copy_param_2, &amp;l_copy_param_2);
+  memcpy(stk(l_copy_param_2),stk(l_param_2),m_param_2*n_param_2*sizeof(double));
+
+  // The called Scilab function has the following prototype
+  // function y = myfunc(x1, x2)
+
+  // Now call the Scilab function
+  SciFunction(4,&amp;l_param_3,&amp;nb_lhs_scifunc,&amp;nb_rhs_scifunc);
+ 
+  // The result is stored on the stack starting from position 4.
+  // Get the result:
+  GetRhsVar(4, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_out, &amp;n_out, &amp;l_out);
+
+  // Put the result into Scilab
+  LhsVar(1) = 4;
+
+  return 0;
+}
+ </programlisting>
+
+    <para>The Scilab script which allows to test our C interface is the
+    following:</para>
+
+    <programlisting> 
+function y = myfunc(x1, x2)
+  y = sqrt(x1^2+x2^2);
+endfunction
+
+x1 = 10;
+x2 = 20;
+
+y = myscifunction(x1, x2, myfunc);
+ </programlisting>
+
+    <para>Warning: the SciFunction C function does not work yet with non
+    compiled Scilab function. Here is an example which doesn't work:</para>
+
+    <programlisting> 
+deff('y = myfunc(x1, x2)','y = sqrt(x1^2+x2^2)','n');
+
+x1 = 10;
+x2 = 20;
+
+y = myscifunction(x1, x2, myfunc); // ERROR
+
+deff('y = myfunc(x1, x2)','y = sqrt(x1^2+x2^2)','c');
+
+y = myscifunction(x1, x2, myfunc); // OK
+ </programlisting>
+
+    <para>If the function returns 3 arguments, the output arguments will be
+    stored at position 4, 5, 6. So, if you have 1 input argument and 3 output
+    arguments, verify that the position 4, 5 and 6 have been reserved in the
+    Scilab memory. To reserve some space in the Scilab memory, create fake
+    variables.<!-- TODO explain, link or create a new page how to create fake variables --></para>
+  </refsection>
+
+  <refsection>
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sci_types">sci_types</link></member>
+
+      <member><link linkend="deff">deff</link></member>
+
+      <member><link linkend="GetRhsVar">GetRhsVar</link></member>
+
+      <member><link linkend="CreateVar">CreateVar</link></member>
+
+      <member><link linkend="LhsVar">LhsVar</link></member>
+
+      <member>stk</member>
+    </simplelist>
+  </refsection>
+</refentry>

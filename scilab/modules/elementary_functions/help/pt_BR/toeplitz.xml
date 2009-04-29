@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -28,33 +28,33 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>A=toeplitz(c [,r])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
         <term>a,c,r</term>
 
         <listitem>
-          <para>matrizes de constantes, polinômios ou strings</para>
+          <para>matrizes de constantes, polinÃ´mios ou strings</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Retorna a matriz de Toeplitz cuja primeira linha é
-    <literal>r</literal> e a primeira coluna é <literal>c</literal>.
+    <para>Retorna a matriz de Toeplitz cuja primeira linha Ã©
+    <literal>r</literal> e a primeira coluna Ã© <literal>c</literal>.
     <literal>c(1)</literal> deve ser igual a <literal>r(1)</literal>.
     <literal>toeplitz(c)</literal> retorna a matriz de Toeplitz
-    simétrica.</para>
+    simÃ©trica.</para>
   </refsection>
 
   <refsection>
@@ -79,7 +79,7 @@ t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="matrix">matrix</link></member>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> remplace un groupe de sommets par un super-sommet  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = supernode(v,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>vecteur ligne, numéros des sommets 
+          <para>vecteur ligne, numÃ©ros des sommets 
 </para>
         </listitem>
       </varlistentry>
@@ -50,14 +50,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>supernode</literal> renvoie le graphe <literal>g1</literal> avec les sommets de numéros donnés
-    par le vecteur <literal>v</literal> contractés en un seul sommet. Le numéro du super-sommet 
-    est le plus petit numéro de <literal>v</literal>. Les caractéristiques des anciens sommets
-    et arêtes sont conservées. Le super-sommet est positionné au barycentre des sommets de
-    <literal>v</literal>. Le diamètre et l'épaisseur du super-sommet sont le double de ceux du sommet remplacé.
+    <para><literal>supernode</literal> renvoie le graphe <literal>g1</literal> avec les sommets de numÃ©ros donnÃ©s
+    par le vecteur <literal>v</literal> contractÃ©s en un seul sommet. Le numÃ©ro du super-sommet 
+    est le plus petit numÃ©ro de <literal>v</literal>. Les caractÃ©ristiques des anciens sommets
+    et arÃªtes sont conservÃ©es. Le super-sommet est positionnÃ© au barycentre des sommets de
+    <literal>v</literal>. Le diamÃ¨tre et l'Ã©paisseur du super-sommet sont le double de ceux du sommet remplacÃ©.
   </para>
     <para>
-    La demande du nouveau sommet, si elle est définie, est la somme des demandes des sommets contractés.
+    La demande du nouveau sommet, si elle est dÃ©finie, est la somme des demandes des sommets contractÃ©s.
   </para>
   </refsection>
   <refsection>

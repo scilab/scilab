@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xclip">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xclip</refname>
-    <refpurpose> (obsolète) définit une zone de "clipping"  </refpurpose>
+    <refpurpose> (obsolÃ¨te) dÃ©finit une zone de "clipping"  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xclip([x,y,w,h])
 xclip(rect)
 xclip("clipgrf")</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x,y,w,h  </term>
         <listitem>
-          <para>valeurs réelles.
+          <para>valeurs rÃ©elles.
 </para>
         </listitem>
       </varlistentry>
@@ -34,19 +34,19 @@ xclip("clipgrf")</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xclip</literal> définit une zone de "clipping" définie par les coordonnées, dans l'échelle courante, du rectangle <literal>x,y,w,h</literal> (point en haut à gauche, largeur, hauteur) : les opérations graphiques sont restreintes à ce rectangle.
+    <para><literal>xclip</literal> dÃ©finit une zone de "clipping" dÃ©finie par les coordonnÃ©es, dans l'Ã©chelle courante, du rectangle <literal>x,y,w,h</literal> (point en haut Ã  gauche, largeur, hauteur) : les opÃ©rations graphiques sont restreintes Ã  ce rectangle.
   </para>
     <para>
-    Si un seul argument est donné, il est considéré comme une spécification de rectangle <literal>rect=[x,y,w,h]</literal>.
+    Si un seul argument est donnÃ©, il est considÃ©rÃ© comme une spÃ©cification de rectangle <literal>rect=[x,y,w,h]</literal>.
   </para>
-    <para><literal>xclip("clipgrf")</literal> est utilisé pour utiliser la zone de clipping égale au cadre du dessin courant.
+    <para><literal>xclip("clipgrf")</literal> est utilisÃ© pour utiliser la zone de clipping Ã©gale au cadre du dessin courant.
   </para>
     <para>
-    Pour supprimer l'effet d'une commande xclip précédente, utiliser <literal>xclip()</literal>.
+    Pour supprimer l'effet d'une commande xclip prÃ©cÃ©dente, utiliser <literal>xclip()</literal>.
 	</para><para>
-		La fonction <literal>xclip</literal> est obsolète et sera supprimée définitivement de Scilab 5.2.
-		Pour définir une zone de "clipping", les propriétés <literal>clip_state</literal> et <literal>clip_box</literal>
-		des entités graphiques peuvent être utilisées.
+		La fonction <literal>xclip</literal> est obsolÃ¨te et sera supprimÃ©e dÃ©finitivement de Scilab 5.2.
+		Pour dÃ©finir une zone de "clipping", les propriÃ©tÃ©s <literal>clip_state</literal> et <literal>clip_box</literal>
+		des entitÃ©s graphiques peuvent Ãªtre utilisÃ©es.
 	</para>
   </refsection>
   <refsection>

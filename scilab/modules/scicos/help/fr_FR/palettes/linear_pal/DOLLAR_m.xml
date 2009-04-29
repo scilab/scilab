@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="DOLLAR_m">
   <refnamediv>
     <refname>DOLLAR_m</refname>
-    <refpurpose>Opérateur retard</refpurpose>
+    <refpurpose>OpÃ©rateur retard</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="DOLLAR_m">Opérateur retard</link>
+          <link linkend="DOLLAR_m">OpÃ©rateur retard</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_DOLLAR_m">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_DOLLAR_m">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_DOLLAR_m">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_DOLLAR_m">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,16 +98,16 @@
   <refsection id="Description_DOLLAR_m">
     <title>Description</title>
     <para>
-Le bloc retard retarde ses entrées de la période spécifiée au niveau du port d'entrée événementiel. Ce bloc est équivalent à l'opérateur discret z-1. Il accepte une seule entrée et génére une seule sortie qui peuvent être aussi bien un scalaire qu'un vecteur. Si l'entrée est un vecteur alors tous les éléments du vecteur sont retardés par la même période.  
+Le bloc retard retarde ses entrÃ©es de la pÃ©riode spÃ©cifiÃ©e au niveau du port d'entrÃ©e Ã©vÃ©nementiel. Ce bloc est Ã©quivalent Ã  l'opÃ©rateur discret z-1. Il accepte une seule entrÃ©e et gÃ©nÃ©re une seule sortie qui peuvent Ãªtre aussi bien un scalaire qu'un vecteur. Si l'entrÃ©e est un vecteur alors tous les Ã©lÃ©ments du vecteur sont retardÃ©s par la mÃªme pÃ©riode.  
 </para>
     <para>
-Ce bloc supporte tous les types de données de scicos. Les types de données en entrée/sortie sont hérités du paramètre "initial condition".  
+Ce bloc supporte tous les types de donnÃ©es de scicos. Les types de donnÃ©es en entrÃ©e/sortie sont hÃ©ritÃ©s du paramÃ¨tre "initial condition".  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_DOLLAR_m">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_DOLLAR_m">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -123,20 +123,20 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
         <para>
           <emphasis role="bold">initial condition</emphasis>
         </para>
-        <para> Définit la valeur de la sortie au début de la simulation.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-2]. </para>
+        <para> DÃ©finit la valeur de la sortie au dÃ©but de la simulation.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-2]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Inherit (no:0, yes:1)</emphasis>
         </para>
-        <para> Lorsque "Inherit" est égal à 1 alors le bloc hérite des événements provenant des ports d'entrée réguliers.</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+        <para> Lorsque "Inherit" est Ã©gal Ã  1 alors le bloc hÃ©rite des Ã©vÃ©nements provenant des ports d'entrÃ©e rÃ©guliers.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_DOLLAR_m">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_DOLLAR_m">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -145,14 +145,14 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -160,26 +160,26 @@ Ce bloc supporte tous les types de données de scicos. Les types de données en en
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

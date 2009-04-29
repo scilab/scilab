@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="symbols">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>symbols</refname>
-    <refpurpose>  opérateurs de Scilab  </refpurpose>
+    <refpurpose>  opÃ©rateurs de Scilab  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
@@ -14,7 +14,7 @@
   </para>
     <informaltable border="1">
       <tr>
-        <td> opérateur</td>
+        <td> opÃ©rateur</td>
         <td>nom dans l'aide de Scilab</td>
       </tr>
       <tr>
@@ -109,12 +109,12 @@
   </refsection>
   <refsection>
     <title>Remarque</title>
-    <para>Pour des raisons historiques,  des symboles différents peuvent représenter le même opérateur:</para>
-    <para> <literal>{</literal> a la même signification que <literal>[</literal></para>
-    <para> <literal>}</literal> a la même signification que  <literal>]</literal></para>
-    <para> <literal>@</literal> a la même signification que  <literal>~</literal></para>
-    <para> <literal>`</literal> a la même signification que  &lt;</para>
-    <para> Il est fortement déconseillé d'utiliser ces opérateurs alternatifs, car il seront supprimés dans le futur.</para>
+    <para>Pour des raisons historiques,  des symboles diffÃ©rents peuvent reprÃ©senter le mÃªme opÃ©rateur:</para>
+    <para> <literal>{</literal> a la mÃªme signification que <literal>[</literal></para>
+    <para> <literal>}</literal> a la mÃªme signification que  <literal>]</literal></para>
+    <para> <literal>@</literal> a la mÃªme signification que  <literal>~</literal></para>
+    <para> <literal>`</literal> a la mÃªme signification que  &lt;</para>
+    <para> Il est fortement dÃ©conseillÃ© d'utiliser ces opÃ©rateurs alternatifs, car il seront supprimÃ©s dans le futur.</para>
   </refsection>
 
   <refsection>

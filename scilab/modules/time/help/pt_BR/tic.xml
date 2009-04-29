@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -24,20 +24,20 @@
   <refnamediv>
     <refname>tic</refname>
 
-    <refpurpose>inicia um cronômetro</refpurpose>
+    <refpurpose>inicia um cronÃ´metro</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>tic()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>A seqüência de comando <literal>tic(); operation; toc();</literal>
-    imprime o número de segundos requeridos para a operação.</para>
+    <para>A seqÃ¼Ãªncia de comando <literal>tic(); operation; toc();</literal>
+    imprime o nÃºmero de segundos requeridos para a operaÃ§Ã£o.</para>
   </refsection>
 
   <refsection>
@@ -55,7 +55,7 @@ toc();
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="toc">toc</link></member>

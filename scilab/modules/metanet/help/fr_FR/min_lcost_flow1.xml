@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>min_lcost_flow1</refname>
-    <refpurpose> flot de coût linéaire minimum  </refpurpose>
+    <refpurpose> flot de coÃ»t linÃ©aire minimum  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[c,phi,flag] = min_lcost_flow1(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -35,7 +35,7 @@
       <varlistentry>
         <term>c  </term>
         <listitem>
-          <para>valeur du coût
+          <para>valeur du coÃ»t
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>problème soluble ou pas (0 ou 1)
+          <para>problÃ¨me soluble ou pas (0 ou 1)
 </para>
         </listitem>
       </varlistentry>
@@ -57,27 +57,27 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_lcost_flow1</literal> calcule flot de coût linéaire minimum dans un réseau 
-    <literal>g</literal>. Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
-    le vecteur ligne des flots sur les arcs <literal>phi</literal>. Si le problème n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est égal à 0, sinon il est égal à 1.
+    <para><literal>min_lcost_flow1</literal> calcule flot de coÃ»t linÃ©aire minimum dans un rÃ©seau 
+    <literal>g</literal>. Elle renvoie le coÃ»t total du flot sur les arcs <literal>c</literal> et
+    le vecteur ligne des flots sur les arcs <literal>phi</literal>. Si le problÃ¨me n'est pas soluble (impossible de trouver un flot compatible), <literal>flag</literal> est Ã©gal Ã  0, sinon il est Ã©gal Ã  1.
   </para>
     <para>
-    Les bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
+    Les bornes sur les flots sont donnÃ©es par les Ã©lÃ©ments <literal>edge_min_cap</literal> et
     <literal>edge_max_cap</literal> du graphe. 
-    Les valeurs des capacités maximum et minimum doivent être entières et positives.
-    La valeur de la capacité maximum doit être supérieure ou égale à la valeur de la capacité minimum.
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
+    Les valeurs des capacitÃ©s maximum et minimum doivent Ãªtre entiÃ¨res et positives.
+    La valeur de la capacitÃ© maximum doit Ãªtre supÃ©rieure ou Ã©gale Ã  la valeur de la capacitÃ© minimum.
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnÃ©e (vecteur vide <literal>[]</literal>), 
+    elle est supposÃ© nulle sur chaque arÃªte.
   </para>
     <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
-    Les coûts doivent être positifs.
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
+    Les coÃ»ts sur les arÃªtes sont donnÃ©s par les Ã©lÃ©ments <literal>edge_cost</literal> du graphe.
+    Les coÃ»ts doivent Ãªtre positifs.
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnÃ©e (vecteur vide <literal>[]</literal>), 
+    elle est supposÃ© nulle sur chaque arÃªte.
   </para>
     <para>
-    Les demandes, i.e. les élément <literal>node_demand</literal> du graphe, doivent être
-    égales à zéro.
+    Les demandes, i.e. les Ã©lÃ©ment <literal>node_demand</literal> du graphe, doivent Ãªtre
+    Ã©gales Ã  zÃ©ro.
   </para>
     <para>
     Cette fonction utilise l'algorithme out-of-kilter.

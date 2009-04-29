@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="not" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>not (~)</refname>
 
-    <refpurpose>négation logique</refpurpose>
+    <refpurpose>nÃ©gation logique</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>~A</synopsis>
   </refsynopsisdiv>
@@ -25,8 +25,8 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>~A</literal> renvoie la négation élément par élément de la
-    matrice booléenne <literal>A</literal>.</para>
+    <para><literal>~A</literal> renvoie la nÃ©gation Ã©lÃ©ment par Ã©lÃ©ment de la
+    matrice boolÃ©enne <literal>A</literal>.</para>
   </refsection>
 
   <refsection>
