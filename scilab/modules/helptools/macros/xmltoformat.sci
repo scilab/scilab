@@ -9,8 +9,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-
 function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
 	
 	// =========================================================================
