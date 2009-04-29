@@ -69,6 +69,8 @@ Bug fixes:
  * bug 4426 fixed - uigetfile() - File name is cut when we are in the root directory.
 
  * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
+ 
+ * bug 4437 fixed - Exporting an empty figure crashes Scilab.
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
 
