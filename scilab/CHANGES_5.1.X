@@ -35,6 +35,8 @@ Help & Tests:
 
 * Javasci FAQ page added
 
+* Online help XML files have been converted into UTF-8
+
 Bug fixes:
 ==========
 
