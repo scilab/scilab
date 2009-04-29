@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/dynamic_link/help/pt_BR";
-add_help_chapter("Link Din‚mico/incremental",path,%T);
+add_help_chapter("Link Din√¢mico/incremental",path,%T);
 clear path add_help_chapter;

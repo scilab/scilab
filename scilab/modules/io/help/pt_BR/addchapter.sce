@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/io/help/pt_BR";
-add_help_chapter("Funções de Entrada/Saída",path,%T);
+add_help_chapter("FunÃ§Ãµes de Entrada/SaÃ­da",path,%T);
 clear path add_help_chapter;

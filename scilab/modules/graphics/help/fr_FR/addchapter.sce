@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/graphics/help/fr_FR";
-add_help_chapter("Bibliothèque graphique",path,%T);
+add_help_chapter("BibliothÃ¨que graphique",path,%T);
 clear path add_help_chapter;

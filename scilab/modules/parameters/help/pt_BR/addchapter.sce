@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/parameters/help/pt_BR";
-add_help_chapter("Par‚metros",path,%T);
+add_help_chapter("Par√¢metros",path,%T);
 clear path add_help_chapter;
