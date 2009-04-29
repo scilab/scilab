@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="while">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>while</refname>
-    <refpurpose> mot-clé utilisé dans une structure while
+    <refpurpose> mot-clÃ© utilisÃ© dans une structure while
     ... end  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>while expr ,instructions,...[,else instructions], end
 while expr do instructions,...[,else instructions], end
 while expr then instructions,...[,else instructions], end</synopsis>
@@ -20,31 +20,31 @@ while expr then instructions,...[,else instructions], end</synopsis>
     <itemizedlist>
       <listitem>
         <para>
-	  La seule contrainte est que chaque mot-clé <literal>then</literal> ou
-	  <literal>do</literal> soit sur la même ligne que le <literal>while</literal>
+	  La seule contrainte est que chaque mot-clÃ© <literal>then</literal> ou
+	  <literal>do</literal> soit sur la mÃªme ligne que le <literal>while</literal>
 	  correspondant.
 	</para>
       </listitem>
       <listitem>
         <para>
-	  Les mot-clés <literal>then</literal> et <literal>do</literal> peuvent
-	  être remplacés par un passage à la ligne ou une
-	  virgule.  Pour la compatibilité avec Matlab, il est aussi
-	  possible, mais non recommendé de mettre un espace à la
-	  place de ces séparateurs.
+	  Les mot-clÃ©s <literal>then</literal> et <literal>do</literal> peuvent
+	  Ãªtre remplacÃ©s par un passage Ã  la ligne ou une
+	  virgule.  Pour la compatibilitÃ© avec Matlab, il est aussi
+	  possible, mais non recommendÃ© de mettre un espace Ã  la
+	  place de ces sÃ©parateurs.
 	</para>
       </listitem>
       <listitem>
         <para>
-	  La construction <literal>,else instructions</literal> permet de spécifier
-	  des instructions à exécuter si l'expression <literal>expr</literal>
+	  La construction <literal>,else instructions</literal> permet de spÃ©cifier
+	  des instructions Ã  exÃ©cuter si l'expression <literal>expr</literal>
 	  est fausse. 
 	</para>
       </listitem>
     </itemizedlist>
     <para>
-      Attention : le nombre de caractères constituant le corps d'une
-      instruction conditionnelle (if while for ou select/case) est limité à
+      Attention : le nombre de caractÃ¨res constituant le corps d'une
+      instruction conditionnelle (if while for ou select/case) est limitÃ© Ã 
       16k..
     </para>
   </refsection>

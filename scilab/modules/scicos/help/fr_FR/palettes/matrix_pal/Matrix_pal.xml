@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Matrix_pal">
   <refnamediv>
     <refname>Matrix_pal</refname>
-    <refpurpose>Palette d'opérations matricielles</refpurpose>
+    <refpurpose>Palette d'opÃ©rations matricielles</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -50,7 +50,7 @@
     <title>Description</title>
     <para>
 Cette palette contient tous les blocs dont vous avez
-besoin pour réaliser des opérations matricielles 
+besoin pour rÃ©aliser des opÃ©rations matricielles 
 simples et complexes.
 
 </para>
@@ -75,22 +75,22 @@ simples et complexes.
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATBKSL">MATBKSL - MATBKSL Division matricielle à gauche</link>
+          <link linkend="MATBKSL">MATBKSL - MATBKSL Division matricielle Ã  gauche</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATCATH">MATCATH - MATCATH Concaténation horizontale</link>
+          <link linkend="MATCATH">MATCATH - MATCATH ConcatÃ©nation horizontale</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATCATV">MATCATV - MATCATV Concaténation verticale</link>
+          <link linkend="MATCATV">MATCATV - MATCATV ConcatÃ©nation verticale</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATDET">MATDET - MATDET Déterminant</link>
+          <link linkend="MATDET">MATDET - MATDET DÃ©terminant</link>
         </para>
       </listitem>
       <listitem>
@@ -145,7 +145,7 @@ simples et complexes.
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATSING">MATSING - MATSING Décomposition en valeurs singulières</link>
+          <link linkend="MATSING">MATSING - MATSING DÃ©composition en valeurs singuliÃ¨res</link>
         </para>
       </listitem>
       <listitem>
@@ -160,12 +160,12 @@ simples et complexes.
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATZCONJ">MATZCONJ - MATZCONJ Matrice conjugée</link>
+          <link linkend="MATZCONJ">MATZCONJ - MATZCONJ Matrice conjugÃ©e</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="MATZREIM">MATZREIM - MATZREIM Décomposition matricielle complexe</link>
+          <link linkend="MATZREIM">MATZREIM - MATZREIM DÃ©composition matricielle complexe</link>
         </para>
       </listitem>
       <listitem>
@@ -175,12 +175,12 @@ simples et complexes.
       </listitem>
       <listitem>
         <para>
-          <link linkend="ROOTCOEF">ROOTCOEF - Calcul de coefficients de polynômes</link>
+          <link linkend="ROOTCOEF">ROOTCOEF - Calcul de coefficients de polynÃ´mes</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="SQRT">SQRT - SQRT Racine carré</link>
+          <link linkend="SQRT">SQRT - SQRT Racine carrÃ©</link>
         </para>
       </listitem>
       <listitem>

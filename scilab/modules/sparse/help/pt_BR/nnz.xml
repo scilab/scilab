@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>nnz</refname>
 
-    <refpurpose>número de entradas não-nulas de uma matriz</refpurpose>
+    <refpurpose>nÃºmero de entradas nÃ£o-nulas de uma matriz</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>n=nnz(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,16 +49,16 @@
         <term>n</term>
 
         <listitem>
-          <para>inteiro, número de elementos não-nulos de X. </para>
+          <para>inteiro, nÃºmero de elementos nÃ£o-nulos de X. </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>nnz</literal> conta o número de entradas não-nulas de uma
+    <para><literal>nnz</literal> conta o nÃºmero de entradas nÃ£o-nulas de uma
     matriz esparsa ou cheia.</para>
   </refsection>
 
@@ -76,7 +76,7 @@ nnz(a)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="spget">spget</link></member>

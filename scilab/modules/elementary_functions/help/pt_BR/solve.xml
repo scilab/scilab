@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>solve</refname>
 
-    <refpurpose>Solucionador simbólico de sistemas lineares</refpurpose>
+    <refpurpose>Solucionador simbÃ³lico de sistemas lineares</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>[x]=solve(A,b)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,9 +48,9 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Resolve <literal>A*x = b</literal> quando <literal>A</literal> é uma
+    <para>Resolve <literal>A*x = b</literal> quando <literal>A</literal> Ã© uma
     matriz triangular superior feita de strings.</para>
   </refsection>
 
@@ -70,7 +70,7 @@ inv([1,1;0,2])*[2;5]
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="trianfml">trianfml</link></member>

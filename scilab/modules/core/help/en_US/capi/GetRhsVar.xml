@@ -10,7 +10,7 @@
   <refnamediv xml:id="???">
     <refname>GetRhsVar</refname>
 
-    <refpurpose>a C interface function which allows to access an argument
+    <refpurpose>a C gateway function which allows to access an argument
     transmitted to a Scilab function</refpurpose>
   </refnamediv>
 
@@ -28,7 +28,7 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>the rank of the variable to be accessed (input
+          <para>The rank of the variable to be accessed (input
           argument)</para>
         </listitem>
       </varlistentry>
@@ -37,8 +37,8 @@
         <term>Type</term>
 
         <listitem>
-          <para>The Scilab type of the variable to be accessed (input
-          argument). Can be (see Scilab C Type for more information):</para>
+          <para>The <link linkend="ScilabCTypes">Scilab C Type</link> of the
+          variable to be accessed (input argument).</para>
 
           <itemizedlist>
             <listitem>
@@ -126,8 +126,8 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position in the Scilab memory of the accessed variable (output
-          argument)</para>
+          <para>the position in the Scilab memory of the accessed variable
+          (output argument)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -136,8 +136,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>A C interface function which allows to access a argument
-    transmitted to a Scilab function</para>
+    <para>A C gateway function which allows to access a argument transmitted
+    to a Scilab function</para>
   </refsection>
 
   <refsection>
@@ -157,7 +157,8 @@
 
     <para>The goal of this function is to created a matrix of integers equal
     to 1.</para>
-<!-- Add the potential profil of the function in Scilab -->
+
+    <!-- TODO: Add the potential profil of the function in Scilab -->
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -193,7 +194,9 @@ int sci_myones(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="ScilabCTypes">Scilab C Type</link></member>
+
       <member><link linkend="istk">istk</link></member>
+
       <member><link linkend="LhsVar">LhsVar</link></member>
     </simplelist>
   </refsection>

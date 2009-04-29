@@ -9,8 +9,8 @@
   <refnamediv xml:id="???">
     <refname>sciprint</refname>
 
-    <refpurpose>C interface function which emulates the C language printf
-    function</refpurpose>
+    <refpurpose>C function to display standard messages to the user (same
+    profil as the C printf function)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -27,8 +27,8 @@
         <term>format</term>
 
         <listitem>
-          <para>a Scilab string. Specifies a character string combining
-          literal characters with conversion specifications.</para>
+          <para>a char* string. Specifies a character string combining literal
+          characters with conversion specifications.</para>
         </listitem>
       </varlistentry>
 
@@ -46,15 +46,20 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface function which emulates the C language printf function.
-    You must include sciprint.h to benefit from this function. This header is provided in the output_stream module (this directory should be included by default).</para>
-<para>Note that if you want to trigger an error, the function Scierror is more appropriate.</para>
+    <para>This C function provides the capabilities to display messages to the
+    Scilab user. Basically; it emulates the C language printf function. You
+    must include sciprint.h to benefit from this function. This header is
+    provided in the output_stream module (this directory should be included by
+    default).</para>
+
+    <para>Note that if you want to trigger an error, the function Scierror is
+    more appropriate.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <para>In this example, the C interface function prints several messages
+    <para>In this example, the C gateway function prints several messages
     illustrating the use of the sciprint function in the Scilab
     console.</para>
 
@@ -81,6 +86,7 @@ int sci_mysciprint(char * fname)
       linkend="printf_conversion">printf_conversion</link></member>
 
       <member><link linkend="printf">printf</link></member>
+
       <member><link linkend="Scierror">Scierror</link></member>
     </simplelist>
   </refsection>

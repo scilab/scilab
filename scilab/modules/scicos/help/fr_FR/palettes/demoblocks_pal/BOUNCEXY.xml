@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -53,12 +53,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_BOUNCEXY">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_BOUNCEXY">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_BOUNCEXY">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_BOUNCEXY">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -90,8 +90,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Boîtededialogue_BOUNCEXY">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_BOUNCEXY">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -107,62 +107,62 @@
         <para>
           <emphasis role="bold">colors</emphasis>
         </para>
-        <para> La description du paramètre 1.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">radii</emphasis>
         </para>
-        <para> La description du paramètre 2.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 2.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">window number (-1 for automatic)</emphasis>
         </para>
-        <para> La description du paramètre 3.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La description du paramÃ¨tre 3.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">animation mode (0,1)</emphasis>
         </para>
-        <para> La description du paramètre 4.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La description du paramÃ¨tre 4.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Xmin</emphasis>
         </para>
-        <para> La description du paramètre 5.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La description du paramÃ¨tre 5.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Xmax</emphasis>
         </para>
-        <para> La description du paramètre 6.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La description du paramÃ¨tre 6.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Ymin</emphasis>
         </para>
-        <para> La description du paramètre 7.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La description du paramÃ¨tre 7.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Ymax</emphasis>
         </para>
-        <para> La description du paramètre 8.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> La description du paramÃ¨tre 8.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_BOUNCEXY">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_BOUNCEXY">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -171,14 +171,14 @@
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -188,19 +188,19 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

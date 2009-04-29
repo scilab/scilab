@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -76,7 +76,7 @@ hilite_nodes(nart);
   </refsection>
   <refsection>
     <title>Bibliography</title>
-    <para>Chartrand, G. "Cut-Vertices and Bridges." §2.4 in Introductory Graph Theory. New York: Dover, pp. 45-49, 1985. </para>
+    <para>Chartrand, G. "Cut-Vertices and Bridges." Â§2.4 in Introductory Graph Theory. New York: Dover, pp. 45-49, 1985. </para>
     <para>Harary, F. Graph Theory. Reading, MA: Addison-Wesley, 1994.</para>
   </refsection>
 </refentry>

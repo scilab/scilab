@@ -1000,12 +1000,6 @@ endfunction
 
 function create_MD(dirs,titles,output_filename,language)
 	
-	if or(language == ["fr_FR";"pt_BR"]) then
-		encoding = "ISO-8859-1";
-	else
-		encoding = "UTF-8";
-	end
-	
 	// Sort dirs and titles
 	my_mat = [titles,dirs];
 	my_mat(grep(my_mat(:,2),"/(.)*core(.)*/","r"),1) = "AAA_Scilab";
@@ -1014,7 +1008,7 @@ function create_MD(dirs,titles,output_filename,language)
 	titles = my_mat(:,1);
 	dirs   = my_mat(:,2);
 	
-	master_document = ["<?xml version=""1.0"" encoding="""+encoding+"""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 	xml_files          = listfiles(dirs+"/*.xml");
@@ -1080,15 +1074,9 @@ endfunction
 
 function create_MD_dir(my_dir,my_title,output_filename,language)
 	
-	if or(language == ["fr_FR";"pt_BR"]) then
-		encoding = "ISO-8859-1";
-	else
-		encoding = "UTF-8";
-	end
-	
 	xml_files   = basename(listfiles(my_dir+"/*.xml"));
 	
-	master_document = ["<?xml version=""1.0"" encoding="""+encoding+"""?>"; ..
+	master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>"; ..
 			"<!DOCTYPE book [";
 			"<!--Begin Entities-->"];
 		
@@ -1334,13 +1322,6 @@ endfunction
 
 function create_MD_scicos(basedir, masterdoc, language)
 
-// Encoding management
-if or(language == ["fr_FR";"pt_BR"]) then
-  encoding = "ISO-8859-1";
-else
-  encoding = "UTF-8";
-end
-
 // TODO this function should use localization
 if language=="fr_FR" then
   aboutscicos = "A propos de Scicos";
@@ -1353,7 +1334,7 @@ end
 // Make the list of all files including subdirectories
 xmlfiles = subDirXmlFiles(basedir);
 
-master_document = ["<?xml version=""1.0"" encoding="""+encoding+"""?>";..
+master_document = ["<?xml version=""1.0"" encoding=""UTF-8""?>";..
 	"<!DOCTYPE book [";
 	"<!--Begin Entities-->"];
     

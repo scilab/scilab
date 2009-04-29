@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="bytecodewalk">
   <info>
@@ -11,11 +11,11 @@
     <refpurpose>parcourt le pseudo code d'une fonction en appliquant un traitement</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>c1 = bytecodewalk(code,query,job)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>code</term>
@@ -29,7 +29,7 @@
         <term>query</term>
         <listitem>
           <para>
-            intier, le code opératoire à rechercher
+            intier, le code opÃ©ratoire Ã  rechercher
           </para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
         <term>job</term>
         <listitem>
           <para>
-            fonction, la fonction a appliquer pour le code opératoire requis
+            fonction, la fonction a appliquer pour le code opÃ©ratoire requis
           </para>
         </listitem>
       </varlistentry>
@@ -45,7 +45,7 @@
         <term>c1</term>
         <listitem>
           <para>
-            vecteur d'entiers (int32): le vecteur des pseudo codes résultant
+            vecteur d'entiers (int32): le vecteur des pseudo codes rÃ©sultant
           </para>
         </listitem>
       </varlistentry>
@@ -54,7 +54,7 @@
   <refsection>
     <title>Description</title>
     <para>
-          Parcourt le pseudo code d'une fonction en appliquant un traitement, pour un code opératoire donné/
+          Parcourt le pseudo code d'une fonction en appliquant un traitement, pour un code opÃ©ratoire donnÃ©/
     </para>
   </refsection>
  

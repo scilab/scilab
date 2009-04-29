@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,44 +24,44 @@
   <refnamediv>
     <refname>ludel</refname>
 
-    <refpurpose>função utilitária usada com lufact</refpurpose>
+    <refpurpose>funÃ§Ã£o utilitÃ¡ria usada com lufact</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>ludel(hand)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
         <term>hand</term>
 
         <listitem>
-          <para>manipulador para fatores lu esparsos (saída de lufact)</para>
+          <para>manipulador para fatores lu esparsos (saÃ­da de lufact)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Esta função é usada de modo conjunto com <literal>lufact</literal>.
-    Ela limpa o espaço de memória interna usado para guardar o resultado de
+    <para>Esta funÃ§Ã£o Ã© usada de modo conjunto com <literal>lufact</literal>.
+    Ela limpa o espaÃ§o de memÃ³ria interna usado para guardar o resultado de
     <literal>lufact</literal>.</para>
 
-    <para>A seqüência de comandos
+    <para>A seqÃ¼Ãªncia de comandos
     <literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal> resolve o
     sistema linear esparso <literal>A*x = b</literal> e limpa
     <literal>p</literal>.</para>
   </refsection>
 
   <refsection>
-    <title>Ver Também </title>
+    <title>Ver TambÃ©m </title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

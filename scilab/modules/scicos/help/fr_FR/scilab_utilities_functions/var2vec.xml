@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -27,7 +27,7 @@
     <refpurpose>Transforme une variable scilab en un vecteur de double</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[vec]=var2vec(var)</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_var2vec">
@@ -43,7 +43,7 @@
   <refsection id="Description_var2vec">
     <title>Description</title>
     <para>
-Les fonctions var2vec / vec2var sont utilisées dans les fonctions d'interfaçages des blocs scilab pour donner la possibilité à l'utilisateur de manipuler des objets scilab avec le registre des paramètres réels (rpar) et avec le registre des états discrets (z).  
+Les fonctions var2vec / vec2var sont utilisÃ©es dans les fonctions d'interfaÃ§ages des blocs scilab pour donner la possibilitÃ© Ã  l'utilisateur de manipuler des objets scilab avec le registre des paramÃ¨tres rÃ©els (rpar) et avec le registre des Ã©tats discrets (z).  
 </para>
     <para>
 </para>
@@ -51,14 +51,14 @@ Les fonctions var2vec / vec2var sont utilisées dans les fonctions d'interfaçages
 [vec]=var2vec(var)
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_var2vec">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_var2vec">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">var :</emphasis> Paramètre d'entrée. Peut-être tous types d'objet scilab.</para>
+        <para><emphasis role="bold">var :</emphasis> ParamÃ¨tre d'entrÃ©e. Peut-Ãªtre tous types d'objet scilab.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">vec :</emphasis> Paramètre de sortie. Un vecteur de nombres réels.</para>
+        <para><emphasis role="bold">vec :</emphasis> ParamÃ¨tre de sortie. Un vecteur de nombres rÃ©els.</para>
       </listitem>
     </itemizedlist>
   </refsection>

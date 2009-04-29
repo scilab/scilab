@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_EDGE_TRIGGER">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_EDGE_TRIGGER">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_EDGE_TRIGGER">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_EDGE_TRIGGER">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="EDGE_TRIGGER">Contenu du super-bloc compilé</link>
+              <link linkend="EDGE_TRIGGER">Contenu du super-bloc compilÃ©</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -93,13 +93,13 @@
   <refsection id="Description_EDGE_TRIGGER">
     <title>Description</title>
     <para>
-Ce bloc génère un événement sur le front montant, descendant ou les deux (en fonction du paramètre du bloc). Un front montant correspond à un changement de valeur négative vers positive ou nulle, ou zéro vers positive. Le front descendant est l'inverse. A noter que ce bloc génère un événement si l'entrée saute à cause d'une activation par événement. L'événement généré est synchrone avec l'événement d'origine. Ce bloc ne détecte pas les traversés de zéro des signaux continus.  
+Ce bloc gÃ©nÃ¨re un Ã©vÃ©nement sur le front montant, descendant ou les deux (en fonction du paramÃ¨tre du bloc). Un front montant correspond Ã  un changement de valeur nÃ©gative vers positive ou nulle, ou zÃ©ro vers positive. Le front descendant est l'inverse. A noter que ce bloc gÃ©nÃ¨re un Ã©vÃ©nement si l'entrÃ©e saute Ã  cause d'une activation par Ã©vÃ©nement. L'Ã©vÃ©nement gÃ©nÃ©rÃ© est synchrone avec l'Ã©vÃ©nement d'origine. Ce bloc ne dÃ©tecte pas les traversÃ©s de zÃ©ro des signaux continus.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_EDGE_TRIGGER">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_EDGE_TRIGGER">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -115,13 +115,13 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
         <para>
           <emphasis role="bold">rising (1), falling (-1), both (0)</emphasis>
         </para>
-        <para> Indique le type du front auquel le bloc doit réagir.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Indique le type du front auquel le bloc doit rÃ©agir.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_EDGE_TRIGGER">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_EDGE_TRIGGER">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -130,33 +130,33 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -174,8 +174,8 @@ Ce bloc génère un événement sur le front montant, descendant ou les deux (en fon
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Contenudusuperbloccompilé_EDGE_TRIGGER">
-    <title>Contenu du super-bloc compilé</title>
+  <refsection id="ContenudusuperbloccompilÃ©_EDGE_TRIGGER">
+    <title>Contenu du super-bloc compilÃ©</title>
     <para>
       <inlinemediaobject>
         <imageobject>

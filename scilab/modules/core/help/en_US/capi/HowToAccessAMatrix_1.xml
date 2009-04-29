@@ -19,17 +19,19 @@
     <para>The goal is to get a matrix of doubles send to a function written in
     C.</para>
 
-    <para>For this, we will wrote a C interface function in which we will
+    <para>For this, we will wrote a C gateway function in which we will
     retrieve the matrix, we will perform some simple steps in this C
     function:</para>
 
     <itemizedlist>
       <listitem>
-        <para>First, we will get an access to the matrix in the Scilab memory</para>
+        <para>First, we will get an access to the matrix in the Scilab
+        memory</para>
       </listitem>
 
       <listitem>
-        <para>We will perform some simple operations on the matrix (in this example, we will multiply by 2 each elements of the matrix)</para>
+        <para>We will perform some simple operations on the matrix (in this
+        example, we will multiply by 2 each elements of the matrix)</para>
       </listitem>
 
       <listitem>
@@ -37,7 +39,8 @@
       </listitem>
     </itemizedlist>
 
-    <para>This example is available in the directory CAPI/examples/ex1.</para>
+    <para>This example is available in the directory
+    SCI/modules/core/examples/ex1.</para>
   </refsection>
 
   <refsection>
@@ -53,19 +56,19 @@ int sci_multiply_by_two(char * fname)
   int i_row, j_col;
 
   // First, access to the input variable (a matrix of doubles)
-  GetRhsVar(1, "d", &amp;m_in_var, &amp;n_in_var, &amp;l_in_var);
+  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_in_var, &amp;n_in_var, &amp;l_in_var);
 
   // Create the returned variable (a matrix of doubles)
   m_out_var = m_in_var;
   n_out_var = n_in_var;
-  CreateVar(2, "d", &amp;m_out_var, &amp;n_out_var, &amp;l_out_var);
+  CreateVar(2, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_out_var, &amp;n_out_var, &amp;l_out_var);
 
   // Perform some simple operations on the matrix
   for(i_row=0; i_row&lt;m_in_var; i_row++)
     {
       for(j_col=0; j_col&lt;n_in_var; j_col++)
         {
-          *stk(l_out_var + i_row + j_col * m_out_var) = 2 * (*stk(l_in_var + i_row + j_col * m_in_var));
+          *stk(l_out_var + i_row + j_col * m_out_var) = 2 * (*stk(l_in_var + i_row + j_col * m_in_var)); // @TODO stk is confusing here
         }
     }
 
@@ -78,9 +81,9 @@ int sci_multiply_by_two(char * fname)
 
     <para>This file must be saved as "multiply_by_two.c".</para>
 
-    <para>The main thing to highlight is that, to build a C interface
-    function, we need to include the header stack-c.h. In this header, we find
-    the prototypes and macros of the main C interface functions.</para>
+    <para>The main thing to highlight is that, to build a C gateway function,
+    we need to include the header stack-c.h. In this header, we find the
+    prototypes and macros of the main C gateway functions.</para>
 
     <para>To be able to build and link such a C function to scilab, we need to
     write a Scilab script which will compile this C function and then create a
@@ -179,16 +182,14 @@ Link done.
  </programlisting>
 
     <para>This simple function has produced a new matrix which corresponds to
-    the matrix transmitted as an input argument and for which each elements
-    of the matrix has been multiplied by 2.</para>
-
-    <para></para>
+    the matrix transmitted as an input argument and for which each element of
+    the matrix has been multiplied by 2.</para>
   </refsection>
 
   <refsection>
-    <title>Rebuilding an interface function</title>
+    <title>Rebuilding a gateway function</title>
 
-    <para>Let's imagine that our interface function has already been build and
+    <para>Let's imagine that our gateway function has already been build and
     we would like to make some changes in our function (multiply by 3 instead
     of 2).</para>
 
@@ -221,16 +222,16 @@ Entry point lib_multiply_by_two in shared library 0.
       </listitem>
 
       <listitem>
-        <para>perform some modification in the source code of our C interface
+        <para>perform some modification in the source code of our C gateway
         function (replace multiply by 2 by 3)</para>
       </listitem>
 
       <listitem>
-        <para>rebuild the C interface function (exec builder.sce;)</para>
+        <para>rebuild the C gateway function (exec builder.sce;)</para>
       </listitem>
 
       <listitem>
-        <para>load the modified C interface function into scilab (exec
+        <para>load the modified C gateway function into scilab (exec
         loader.sce;)</para>
       </listitem>
     </itemizedlist>
@@ -260,8 +261,6 @@ Link done.
     18.    21.    24.    27.    30.  
     33.    36.    39.    42.    45.  
   </programlisting>
-
-    <para></para>
   </refsection>
 
   <refsection>
@@ -269,13 +268,20 @@ Link done.
 
     <simplelist type="inline">
       <member><link linkend="GetRhsVar">GetRhsVar</link></member>
+
       <member><link linkend="ScilabCTypes">Scilab C Types</link></member>
+
       <member><link linkend="CreateVar">CreateVar</link></member>
+
       <member><link linkend="LhsVar">LhsVar</link></member>
+
       <member><link linkend="stk">stk</link></member>
+
       <member><link linkend="ilib_build">ilib_build</link></member>
+
       <member><link linkend="link">link</link></member>
-      <member><link linkend="ulink">ulink</linkend></member>
+
+      <member><link linkend="ulink">ulink</link></member>
     </simplelist>
   </refsection>
 </refentry>

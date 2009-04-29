@@ -9,8 +9,8 @@
   <refnamediv xml:id="???">
     <refname>Rhs</refname>
 
-    <refpurpose>C interface macro which returns the number of input arguments
-    present in the calling Scilab function</refpurpose>
+    <refpurpose>A C macro which provides the number of input arguments present
+    in the calling Scilab function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -37,9 +37,11 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface macro which returns the number of input parameters
+    <para>Rhs provides a C macro which provides the number of input arguments
     present in the calling Scilab function. You must include stack-c.h to
     benefit from this function.</para>
+
+    <para>Note: Rhs means Right Hand Side.</para>
   </refsection>
 
   <refsection>
@@ -69,7 +71,7 @@ int sci_myrhs(char * fname)
     <simplelist type="inline">
       <member><link linkend="sciprint">sciprint</link></member>
 
-      <member><link linkend="lhs">lhs</link></member>
+      <member><link linkend="lhs">Lhs</link></member>
     </simplelist>
   </refsection>
 </refentry>

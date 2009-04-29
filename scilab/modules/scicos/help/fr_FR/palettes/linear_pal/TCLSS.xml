@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TCLSS">
   <refnamediv>
     <refname>TCLSS</refname>
-    <refpurpose>Système linéaire continu avec saut</refpurpose>
+    <refpurpose>SystÃ¨me linÃ©aire continu avec saut</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="TCLSS">Système linéaire continu avec saut</link>
+          <link linkend="TCLSS">SystÃ¨me linÃ©aire continu avec saut</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_TCLSS">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_TCLSS">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_TCLSS">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_TCLSS">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,21 +93,21 @@
   <refsection id="Description_TCLSS">
     <title>Description</title>
     <para>
-Ce bloc réalise un système d'équations d'etat en temporel continu avec
-la possibilités de réaliser des sauts dans l'état.
-Le nombre d'entrées de ce bloc est deux.
-La première entrée est l'entrée régulière du système linéaire.
-La seconde fournie la valeur du nouvel état qui est copié dans l'état du système lorsque le bloc est activé par un événement sur son unique port d'entrée événementiel.
-Cela signifique que l'état du système saute à la valeur présente sur le deuxième port d'entrée (de taille égale à l'état du système).
-Le système est défini par les matrices 
-et par l'état initial .
-Les dimensions des matrices et de l'état initial doivent être appropriées.
-Les tailles des entrées et des sorties sont ajustées automatiquement.
+Ce bloc rÃ©alise un systÃ¨me d'Ã©quations d'etat en temporel continu avec
+la possibilitÃ©s de rÃ©aliser des sauts dans l'Ã©tat.
+Le nombre d'entrÃ©es de ce bloc est deux.
+La premiÃ¨re entrÃ©e est l'entrÃ©e rÃ©guliÃ¨re du systÃ¨me linÃ©aire.
+La seconde fournie la valeur du nouvel Ã©tat qui est copiÃ© dans l'Ã©tat du systÃ¨me lorsque le bloc est activÃ© par un Ã©vÃ©nement sur son unique port d'entrÃ©e Ã©vÃ©nementiel.
+Cela signifique que l'Ã©tat du systÃ¨me saute Ã  la valeur prÃ©sente sur le deuxiÃ¨me port d'entrÃ©e (de taille Ã©gale Ã  l'Ã©tat du systÃ¨me).
+Le systÃ¨me est dÃ©fini par les matrices 
+et par l'Ã©tat initial .
+Les dimensions des matrices et de l'Ã©tat initial doivent Ãªtre appropriÃ©es.
+Les tailles des entrÃ©es et des sorties sont ajustÃ©es automatiquement.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_TCLSS">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_TCLSS">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -123,41 +123,41 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
         <para>
           <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img5_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
         </para>
-        <para> Une matrice carré.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
+        <para> Une matrice carrÃ©.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">B matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas d'entrées.</para>
-        <para> Propriétés : Type 'mat' de taille ["size(%1,2)","-1"]. </para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img6_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le systÃ¨me n'a pas d'entrÃ©es.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille ["size(%1,2)","-1"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de sorties.</para>
-        <para> Propriétés : Type 'mat' de taille ["-1","size(%1,2)"]. </para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le systÃ¨me n'a pas de sorties.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille ["-1","size(%1,2)"]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">D matrix</emphasis>
         </para>
-        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le système n'a pas de terme D.</para>
-        <para> Propriétés : Type 'mat' de taille [-1,-1]. </para>
+        <para> La matrice<inlinemediaobject><imageobject><imagedata fileref="../../../images/TCLSS_img8_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> , [] si le systÃ¨me n'a pas de terme D.</para>
+        <para> PropriÃ©tÃ©s : Type 'mat' de taille [-1,-1]. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Initial state</emphasis>
         </para>
-        <para> Un état initial du système ( vectoriel ou scalaire).</para>
-        <para> Propriétés : Type 'vec' de taille "size(%1,2)". </para>
+        <para> Un Ã©tat initial du systÃ¨me ( vectoriel ou scalaire).</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille "size(%1,2)". </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_TCLSS">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_TCLSS">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
@@ -166,14 +166,14 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -184,26 +184,26 @@ Les tailles des entrées et des sorties sont ajustées automatiquement.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

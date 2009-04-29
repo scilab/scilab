@@ -10,13 +10,13 @@
   <refnamediv xml:id="???">
     <refname>Scilab C Types</refname>
 
-    <refpurpose>the C types available in a C interface</refpurpose>
+    <refpurpose>the C types available in a C gateway</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
-    <para>The string/char * datatype in the Scilab memory: </para>
+    <para>The string/char * datatype in the Scilab memory:</para>
 
     <itemizedlist>
       <listitem>
@@ -36,7 +36,7 @@
       </listitem>
 
       <listitem>
-        <para>"S" </para>
+        <para>"S"</para>
       </listitem>
     </itemizedlist>
 
@@ -49,7 +49,7 @@
       </listitem>
 
       <listitem>
-        <para>"d" </para>
+        <para>"d"</para>
       </listitem>
     </itemizedlist>
 
@@ -75,7 +75,7 @@
       </listitem>
 
       <listitem>
-        <para>"I" </para>
+        <para>"I"</para>
       </listitem>
     </itemizedlist>
 
@@ -89,7 +89,7 @@
       </listitem>
 
       <listitem>
-        <para>"i" </para>
+        <para>"i"</para>
       </listitem>
     </itemizedlist>
 
@@ -102,7 +102,7 @@
       </listitem>
 
       <listitem>
-        <para>"b" </para>
+        <para>"b"</para>
       </listitem>
     </itemizedlist>
 
@@ -115,7 +115,7 @@
       </listitem>
 
       <listitem>
-        <para>"z" </para>
+        <para>"z"</para>
       </listitem>
     </itemizedlist>
 
@@ -124,15 +124,15 @@
 
     <itemizedlist>
       <listitem>
-        <para>SPARSE_MATRIX_DATATYPE </para>
+        <para>SPARSE_MATRIX_DATATYPE</para>
       </listitem>
 
       <listitem>
-        <para>"s" </para>
+        <para>"s"</para>
       </listitem>
     </itemizedlist>
 
-    <para>A list: </para>
+    <para>A list:</para>
 
     <itemizedlist>
       <listitem>
@@ -152,7 +152,7 @@
       </listitem>
 
       <listitem>
-        <para>"t" </para>
+        <para>"t"</para>
       </listitem>
     </itemizedlist>
 
@@ -168,7 +168,7 @@
       </listitem>
 
       <listitem>
-        <para>"m" </para>
+        <para>"m"</para>
       </listitem>
     </itemizedlist>
 
@@ -180,7 +180,7 @@
       </listitem>
 
       <listitem>
-        <para>"p" </para>
+        <para>"p"</para>
       </listitem>
     </itemizedlist>
 
@@ -205,7 +205,7 @@
       </listitem>
 
       <listitem>
-        <para>"f" </para>
+        <para>"f"</para>
       </listitem>
     </itemizedlist>
 
@@ -228,9 +228,13 @@
 
     <simplelist type="inline">
       <member><link linkend="mlist">mlist</link></member>
+
       <member><link linkend="list">list</link></member>
+
       <member><link linkend="tlist">tlist</link></member>
+
       <member><link linkend="CreateVar">CreateVar</link></member>
+
       <member><link linkend="GetRhsVar">GetRhsVar</link></member>
     </simplelist>
   </refsection>

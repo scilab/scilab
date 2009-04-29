@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,18 +16,18 @@
   </info>
   <refnamediv>
     <refname>demo_end</refname>
-    <refpurpose>Termine une démonstration</refpurpose>
+    <refpurpose>Termine une dÃ©monstration</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>demo_end()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-		La fonction demo_end() sert déterminer une démonstration. Elle doit être utilisée
-		conjointement à la fonction demo_begin. Elle récupère  l'état l'environnement de
-		la console tel qu'il était avant l'utilisation de demo_begin : largeur de la
+		La fonction demo_end() sert dÃ©terminer une dÃ©monstration. Elle doit Ãªtre utilisÃ©e
+		conjointement Ã  la fonction demo_begin. Elle rÃ©cupÃ¨re  l'Ã©tat l'environnement de
+		la console tel qu'il Ã©tait avant l'utilisation de demo_begin : largeur de la
 		console et affectation des variables.
 		</para>
   </refsection>

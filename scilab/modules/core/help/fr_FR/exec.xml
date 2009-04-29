@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="exec">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>exec</refname>
-    <refpurpose> exécution d'un script (fichier de commandes)  </refpurpose>
+    <refpurpose> exÃ©cution d'un script (fichier de commandes)  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>exec(path [,mode])
 exec(fun [,mode])
 ierr=exec(path,'errcatch' [,mode])
 ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>path  </term>
         <listitem>
-          <para>chaîne de caractères, le chemin du script à exécuter
+          <para>chaÃ®ne de caractÃ¨res, le chemin du script Ã  exÃ©cuter
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mode  </term>
         <listitem>
-          <para>entier, précisant le mode d'exécution (voir plus bas)
+          <para>entier, prÃ©cisant le mode d'exÃ©cution (voir plus bas)
 	  </para>
         </listitem>
       </varlistentry>
@@ -41,7 +41,7 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       <varlistentry>
         <term>ierr  </term>
         <listitem>
-          <para>entier, 0 ou numéro d'erreur 
+          <para>entier, 0 ou numÃ©ro d'erreur 
 	  </para>
         </listitem>
       </varlistentry>
@@ -49,34 +49,34 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>exec(path [,mode])</literal> exécute séquentiellement les instructions
-      Scilab contenues dans le fichier spécifié par <literal>path</literal> avec le
-      mode d'exécution optionnel <literal>mode</literal> .
+    <para><literal>exec(path [,mode])</literal> exÃ©cute sÃ©quentiellement les instructions
+      Scilab contenues dans le fichier spÃ©cifiÃ© par <literal>path</literal> avec le
+      mode d'exÃ©cution optionnel <literal>mode</literal> .
     </para>
-    <para>Les différentes valeurs de <literal>mode</literal> sont :</para>
+    <para>Les diffÃ©rentes valeurs de <literal>mode</literal> sont :</para>
     <variablelist>
       <varlistentry>
         <term>0</term>
         <listitem>
-          <para>valeur par défaut</para>
+          <para>valeur par dÃ©faut</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>-1</term>
         <listitem>
-          <para>rien n'est affiché</para>
+          <para>rien n'est affichÃ©</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>1</term>
         <listitem>
-          <para>chaque ligne de commande est affichée</para>
+          <para>chaque ligne de commande est affichÃ©e</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>2</term>
         <listitem>
-          <para>l'invite de commande <literal>--&gt;</literal> est affiché</para>
+          <para>l'invite de commande <literal>--&gt;</literal> est affichÃ©</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -88,63 +88,63 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
       <varlistentry>
         <term>4</term>
         <listitem>
-          <para>pause dans l'exécution au début de chaque ligne. L'exécution
-	reprend après un appui sur la touche entrée/return. </para>
+          <para>pause dans l'exÃ©cution au dÃ©but de chaque ligne. L'exÃ©cution
+	reprend aprÃ¨s un appui sur la touche entrÃ©e/return. </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>7</term>
         <listitem>
-          <para>pause + invite + affichage : ce mode est utile pour les démonstrations.</para>
+          <para>pause + invite + affichage : ce mode est utile pour les dÃ©monstrations.</para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>exec(fun [,mode])</literal> exécute la fonction <literal>fun</literal> comme
-      un script : aucun argument n'est utilisé en entrée ou en sortie, et
-      l'exécution se fait dans l'environnement courant (les variables
-      créées dans la fonction sont conservées après l'exécution). Cette
+    <para><literal>exec(fun [,mode])</literal> exÃ©cute la fonction <literal>fun</literal> comme
+      un script : aucun argument n'est utilisÃ© en entrÃ©e ou en sortie, et
+      l'exÃ©cution se fait dans l'environnement courant (les variables
+      crÃ©Ã©es dans la fonction sont conservÃ©es aprÃ¨s l'exÃ©cution). Cette
       forme est plus efficace, car ainsi les instructions du script peuvent
-      être pré-compilées (voir getf, comp). Cette méthode d'exécution des
+      Ãªtre prÃ©-compilÃ©es (voir getf, comp). Cette mÃ©thode d'exÃ©cution des
       scripts permet aussi de stocker des scripts comme des fonctions dans des
       librairies. 
     </para>
     <para>
-      Si une erreur se produit pendant l'exécution, si la chaîne de
-      caractères 'errcatch' est présente, <literal>exec</literal> ne
-      produit pas de message d'erreur, mais stoppe l'exécution du
-      script et renvoie une valeur de <literal>ierr</literal> égale au numéro de
-      l'erreur. Si la chaîne 'errcatch' n'est pas présente,
-      la gestion habituelle des erreurs est utilisée.
+      Si une erreur se produit pendant l'exÃ©cution, si la chaÃ®ne de
+      caractÃ¨res 'errcatch' est prÃ©sente, <literal>exec</literal> ne
+      produit pas de message d'erreur, mais stoppe l'exÃ©cution du
+      script et renvoie une valeur de <literal>ierr</literal> Ã©gale au numÃ©ro de
+      l'erreur. Si la chaÃ®ne 'errcatch' n'est pas prÃ©sente,
+      la gestion habituelle des erreurs est utilisÃ©e.
     </para>
   </refsection>
   <refsection>
     <title>REMARQUE</title>
     <para>
-      Les scripts peuvent maintenant contenir des définitions de fonctions en
+      Les scripts peuvent maintenant contenir des dÃ©finitions de fonctions en
       ligne (voir fonction). 
     </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-    // création d'un script
+    // crÃ©ation d'un script
     mputl('a=1;b=2',TMPDIR+'/myscript')
-    // on l'exécute
+    // on l'exÃ©cute
     exec(TMPDIR+'/myscript')
     whos -name "a "
 
-    // création d'une function
+    // crÃ©ation d'une function
     function y=foo(x),a=x+1;y=a^2,endfunction
     clear a b
-    // appel à la fonction
+    // appel Ã  la fonction
     foo(1)
-    // a est une variable créée dans l'environnement de la fonction foo
-    // elle est détruite à la sortie de la fonction.
+    // a est une variable crÃ©Ã©e dans l'environnement de la fonction foo
+    // elle est dÃ©truite Ã  la sortie de la fonction.
     whos -name "a "
 
-    x=1 // on crée la variable x pour qu'elle soit connue à l'exécution de foo
+    x=1 // on crÃ©e la variable x pour qu'elle soit connue Ã  l'exÃ©cution de foo
     exec(foo)
-    // a et y ont été créées dans l'environnement courant
+    // a et y ont Ã©tÃ© crÃ©Ã©es dans l'environnement courant
     whos -name "a "
     ]]></programlisting>
   </refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="GotoTagVisibilityMO">
   <refnamediv>
     <refname>GotoTagVisibilityMO</refname>
-    <refpurpose>Définit la portée des données d'un bloc GOTOMO</refpurpose>
+    <refpurpose>DÃ©finit la portÃ©e des donnÃ©es d'un bloc GOTOMO</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibilityMO">Définit la portée des données d'un bloc GOTOMO</link>
+          <link linkend="GotoTagVisibilityMO">DÃ©finit la portÃ©e des donnÃ©es d'un bloc GOTOMO</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_GotoTagVisibilityMO">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_GotoTagVisibilityMO">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_GotoTagVisibilityMO">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_GotoTagVisibilityMO">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -103,8 +103,8 @@ This block is used in case of modelica's connection. For more information on how
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_GotoTagVisibilityMO">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_GotoTagVisibilityMO">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,12 +121,12 @@ This block is used in case of modelica's connection. For more information on how
           <emphasis role="bold">GotoTag</emphasis>
         </para>
         <para> The Goto block tag whose visibility is defined by the location of this block.</para>
-        <para> Propriétés : Type 'str' de taille -1.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_GotoTagVisibilityMO">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_GotoTagVisibilityMO">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -135,25 +135,25 @@ This block is used in case of modelica's connection. For more information on how
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -176,7 +176,7 @@ This block is used in case of modelica's connection. For more information on how
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GotoTagVisibility">GotoTagVisibility - Définit la portée des données d'un bloc GOTO (Bloc Scicos)</link>
+          <link linkend="GotoTagVisibility">GotoTagVisibility - DÃ©finit la portÃ©e des donnÃ©es d'un bloc GOTO (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

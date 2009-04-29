@@ -9,8 +9,8 @@
   <refnamediv xml:id="???">
     <refname>Scierror</refname>
 
-    <refpurpose>C interface function which emulates the C language printf
-    function and returns an integer value specifying an error
+    <refpurpose>C function to display errors to the user (same profil as the
+    printf function) and returns an integer value specifying an error
     level</refpurpose>
   </refnamediv>
 
@@ -36,8 +36,8 @@
         <term>format</term>
 
         <listitem>
-          <para>a Scilab string. Specifies a character string combining
-          literal characters with conversion specifications.</para>
+          <para>a char* string. Specifies a character string combining literal
+          characters with conversion specifications.</para>
         </listitem>
       </varlistentry>
 
@@ -49,23 +49,36 @@
           parameter.</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>returns</term>
+
+        <listitem>
+          <para>If the operation is successfull, this function returns the
+          number of characters printed (not including the trailing '\0' used
+          to end output to strings).</para>
+
+          <para>If an error occurred, a negative value is returned.</para>
+        </listitem>
+      </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para>C interface function which emulates the C language printf function
-    and returns an integer value specifying an error level. You must include
-    Scierror.h to benefit from this function. This header is pr
-ovided in the output_stream module (this directory should be included by default).</para>
+    <para>Scierror is a C function to display errors to the user (same profil
+    as the printf function) and returns an integer value specifying an error
+    level. You must include Scierror.h to benefit from this function. This
+    header is pr ovided in the output_stream module (this directory should be
+    included by default).</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <para>In this example, the C interface function prints an error message
-    and returns the error level 133.</para>
+    <para>In this example, the C gateway function prints an error message and
+    returns the error level 133.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -88,6 +101,7 @@ int sci_myscierror(char * fname)
       linkend="printf_conversion">printf_conversion</link></member>
 
       <member><link linkend="printf">printf</link></member>
+
       <member><link linkend="sciprint">sciprint</link></member>
     </simplelist>
   </refsection>

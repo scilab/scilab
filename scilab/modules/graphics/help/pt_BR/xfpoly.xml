@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>xfpoly</refname>
 
-    <refpurpose>preenche um polígono</refpurpose>
+    <refpurpose>preenche um polÃ­gono</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>xfpoly(xv,yv,[close])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
         <term>xv,yv</term>
 
         <listitem>
-          <para>dois vetores de mesmo tamanho (os pontos do polígono). </para>
+          <para>dois vetores de mesmo tamanho (os pontos do polÃ­gono). </para>
         </listitem>
       </varlistentry>
 
@@ -49,19 +49,19 @@
         <term>close</term>
 
         <listitem>
-          <para>inteiro. Se close= 1, a linha poligonal é fechada; o valor
-          padrão é 0.</para>
+          <para>inteiro. Se close= 1, a linha poligonal Ã© fechada; o valor
+          padrÃ£o Ã© 0.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>xfpoly</literal> preenche um polígono com a cor corrente.
-    Se <literal>close</literal> é igual a 1 um ponto é adicionado à poligonal
-    <literal>xv,yv</literal> para definir o polígono.</para>
+    <para><literal>xfpoly</literal> preenche um polÃ­gono com a cor corrente.
+    Se <literal>close</literal> Ã© igual a 1 um ponto Ã© adicionado Ã  poligonal
+    <literal>xv,yv</literal> para definir o polÃ­gono.</para>
   </refsection>
 
   <refsection>
@@ -75,10 +75,10 @@ plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
 xset("color",5)
 xfpoly(x,y)
 
-// apenas para novo estilo de gráficos
-e=gce(); // retorna a última entidade corrente (a última criada aqui é a poligonal)
+// apenas para novo estilo de grÃ¡ficos
+e=gce(); // retorna a Ãºltima entidade corrente (a Ãºltima criada aqui Ã© a poligonal)
 e.fill_mode='off';
-e.closed = 'off' // a poligonal está aberta agora
+e.closed = 'off' // a poligonal estÃ¡ aberta agora
   
 xset("default")
  
@@ -86,7 +86,7 @@ xset("default")
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="xfpolys">xfpolys</link></member>

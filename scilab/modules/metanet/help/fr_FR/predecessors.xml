@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>predecessors</refname>
-    <refpurpose> sommets origines des arcs entrants d'un sommet donné  </refpurpose>
+    <refpurpose> sommets origines des arcs entrants d'un sommet donnÃ©  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>a = predecessors(i,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
@@ -50,7 +50,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>predecessors</literal> renvoie le vecteur ligne des numéros des sommets origines des arcs entrants d'un sommet donné <literal>i</literal> pour un graphe orienté <literal>g</literal> .
+    <para><literal>predecessors</literal> renvoie le vecteur ligne des numÃ©ros des sommets origines des arcs entrants d'un sommet donnÃ© <literal>i</literal> pour un graphe orientÃ© <literal>g</literal> .
   </para>
   </refsection>
   <refsection>

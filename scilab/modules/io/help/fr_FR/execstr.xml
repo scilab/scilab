@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,69 +16,69 @@
   </info>
   <refnamediv>
     <refname>execstr</refname>
-    <refpurpose> exécution d'instructions Scilab contenues dans des chaînes de caractères</refpurpose>
+    <refpurpose> exÃ©cution d'instructions Scilab contenues dans des chaÃ®nes de caractÃ¨res</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>execstr(instr)
 ierr=execstr(instr,'errcatch' [,msg])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>instr  </term>
         <listitem>
-          <para>vecteur de chaînes de caractères</para>
+          <para>vecteur de chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ierr  </term>
         <listitem>
-          <para>entier, 0 ou numéro de l'erreur</para>
+          <para>entier, 0 ou numÃ©ro de l'erreur</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>msg  </term>
         <listitem>
-          <para>chaîne de caractères (<literal>'m'</literal> ou <literal>'n'</literal>). La valeur
-	    par défaut est <literal>'n'</literal>. </para>
+          <para>chaÃ®ne de caractÃ¨res (<literal>'m'</literal> ou <literal>'n'</literal>). La valeur
+	    par dÃ©faut est <literal>'n'</literal>. </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Exécute les instructions Scilab données dans l'argument
+    <para>ExÃ©cute les instructions Scilab donnÃ©es dans l'argument
       <literal>instr</literal>. </para>
     <para>Note : les instructions ne doivent pas comporter de marques de suite (..). </para>
     <para> </para>
-    <para>Si 'errcatch' n'est pas présent dans les arguments, les erreurs sont contrôlées comme d'habitude.</para>
-    <para>Si 'errcatch' est présent dans les arguments, et qu'une erreur est
-      rencontrée lors de l'évaluation d'un élément de <literal>instr</literal>,
+    <para>Si 'errcatch' n'est pas prÃ©sent dans les arguments, les erreurs sont contrÃ´lÃ©es comme d'habitude.</para>
+    <para>Si 'errcatch' est prÃ©sent dans les arguments, et qu'une erreur est
+      rencontrÃ©e lors de l'Ã©valuation d'un Ã©lÃ©ment de <literal>instr</literal>,
       <literal>execstr</literal> ne produit aucun message d'erreur, mais stoppe
-      l'exécution des instructions stockées dans <literal>instr</literal> (au point
-      où l'erreur s'est produite), et renvoie dans <literal>ierr</literal> le numéro
-      de l'erreur. Dans ce cas l'affichage du message d'erreur est contrôlé par
+      l'exÃ©cution des instructions stockÃ©es dans <literal>instr</literal> (au point
+      oÃ¹ l'erreur s'est produite), et renvoie dans <literal>ierr</literal> le numÃ©ro
+      de l'erreur. Dans ce cas l'affichage du message d'erreur est contrÃ´lÃ© par
       l'option <literal>msg</literal> : </para>
     <variablelist>
       <varlistentry>
         <term>"m"</term>
         <listitem>
-          <para>le message d'erreur est affiché et enregistré</para>
+          <para>le message d'erreur est affichÃ© et enregistrÃ©</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>"n"</term>
         <listitem>
-          <para>le message d'erreur n'est pas affiché mais il est enregistré
+          <para>le message d'erreur n'est pas affichÃ© mais il est enregistrÃ©
 	  (voir <literal>lasterror</literal>). Il s'agit du comportement par
-	  défaut. </para>
+	  dÃ©faut. </para>
         </listitem>
       </varlistentry>
     </variablelist>
-    <para> ierr=execstr(instr,'errcatch') peut gérer les erreurs de syntaxes. Ceci
-      peut être utile pour évaluer les instructions obtenues par une requète à
+    <para> ierr=execstr(instr,'errcatch') peut gÃ©rer les erreurs de syntaxes. Ceci
+      peut Ãªtre utile pour Ã©valuer les instructions obtenues par une requÃ¨te Ã 
       l'utilisateur (interface homme-machine).</para>
   </refsection>
   <refsection>
@@ -95,11 +95,11 @@ execstr(['if %t then';
          ' b=0'
          'end'])
 
-// récupération des erreurs d'exécution
+// rÃ©cupÃ©ration des erreurs d'exÃ©cution
 execstr('a=zzzzzzz','errcatch')
 execstr('a=zzzzzzz','errcatch','m')
 
-// récupération des erreurs de syntaxe
+// rÃ©cupÃ©ration des erreurs de syntaxe
 execstr('a=1?02','errcatch')
 lasterror(%t)
 

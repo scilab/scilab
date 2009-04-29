@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="where" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>where</refname>
 
-    <refpurpose>retorna a árvore de chamamento de instruções
+    <refpurpose>retorna a Ã¡rvore de chamamento de instruÃ§Ãµes
     corrente</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title> SeqÃ¼Ãªncia de Chamamento </title>
 
     <synopsis>[linenum,mac]=where()</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -46,20 +46,20 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para>Retorna <literal>linenum</literal> e <literal>mac</literal> tais que
-    a instrução corrente foi chamada pela linha linenum(1) da função mac(1),
-    mac(1) foi chamada pela linha linenum(2) da função mac(2), e assim por
+    a instruÃ§Ã£o corrente foi chamada pela linha linenum(1) da funÃ§Ã£o mac(1),
+    mac(1) foi chamada pela linha linenum(2) da funÃ§Ã£o mac(2), e assim por
     diante.</para>
 
-    <para>mac(i) é, em geral o nome de uma função, mas também pode ser "exec"
-    ou "execstr" se a instrução reside em um arquivo executável ou em uma
-    instrução execstr.</para>
+    <para>mac(i) Ã©, em geral o nome de uma funÃ§Ã£o, mas tambÃ©m pode ser "exec"
+    ou "execstr" se a instruÃ§Ã£o reside em um arquivo executÃ¡vel ou em uma
+    instruÃ§Ã£o execstr.</para>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title> Ver TambÃ©m </title>
 
     <simplelist type="inline">
       <member><link linkend="whereami">whereami</link></member>

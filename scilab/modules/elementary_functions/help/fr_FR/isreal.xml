@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="isreal" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,25 +13,25 @@
   <refnamediv>
     <refname>isreal</refname>
 
-    <refpurpose>vérifie si une matrice a des éléments complexes</refpurpose>
+    <refpurpose>vÃ©rifie si une matrice a des Ã©lÃ©ments complexes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>t=isreal(x)
 t=isreal(x,eps)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice réelle ou complexe.</para>
+          <para>vecteur ou matrice rÃ©elle ou complexe.</para>
         </listitem>
       </varlistentry>
 
@@ -39,7 +39,7 @@ t=isreal(x,eps)</synopsis>
         <term>eps</term>
 
         <listitem>
-          <para>nombre réel positif.</para>
+          <para>nombre rÃ©el positif.</para>
         </listitem>
       </varlistentry>
 
@@ -47,7 +47,7 @@ t=isreal(x,eps)</synopsis>
         <term>t</term>
 
         <listitem>
-          <para>un booléen.</para>
+          <para>un boolÃ©en.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -57,13 +57,13 @@ t=isreal(x,eps)</synopsis>
     <title>Description</title>
 
     <para><literal>isreal(x)</literal> renvoie <literal>%T</literal> (vrai) si
-    <literal>x</literal> est stockée comme une matrice réelle ou
-    <literal>%F</literal> (faux) si <literal>x</literal> est stockée avec une
-    partie imaginaire (même nulle).</para>
+    <literal>x</literal> est stockÃ©e comme une matrice rÃ©elle ou
+    <literal>%F</literal> (faux) si <literal>x</literal> est stockÃ©e avec une
+    partie imaginaire (mÃªme nulle).</para>
 
     <para><literal>isreal(x,eps)</literal> renvoie <literal>%T</literal>
-    (vrai) si <literal>x</literal> est stockée comme une matrice réelle ou si
-    les valeurs absolues des parties imaginaires des éléments de
+    (vrai) si <literal>x</literal> est stockÃ©e comme une matrice rÃ©elle ou si
+    les valeurs absolues des parties imaginaires des Ã©lÃ©ments de
     <literal>x</literal> sont plus petites que <literal>eps</literal>.</para>
   </refsection>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="REGISTER">
   <refnamediv>
     <refname>REGISTER</refname>
-    <refpurpose>Registre à décalage</refpurpose>
+    <refpurpose>Registre Ã  dÃ©calage</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="REGISTER">Registre à décalage</link>
+          <link linkend="REGISTER">Registre Ã  dÃ©calage</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_REGISTER">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_REGISTER">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_REGISTER">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_REGISTER">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,13 +98,13 @@
   <refsection id="Description_REGISTER">
     <title>Description</title>
     <para>
-Ce bloc réalise un registre à décalage.
-Pour chaque événement d'entrée, le registre est décalé d'un élément.
+Ce bloc rÃ©alise un registre Ã  dÃ©calage.
+Pour chaque Ã©vÃ©nement d'entrÃ©e, le registre est dÃ©calÃ© d'un Ã©lÃ©ment.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_REGISTER">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_REGISTER">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,20 +121,20 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
           <emphasis role="bold">Register initial condition</emphasis>
         </para>
         <para> Un vecteur colonne.</para>
-        <para> Ce paramètre contient l'état initial du registre.</para>
-        <para> Propriétés : Type 'vec' de taille -1 </para>
+        <para> Ce paramÃ¨tre contient l'Ã©tat initial du registre.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Datatype</emphasis>
         </para>
-        <para> Ce bloc supporte tous les types de données sauf les complexes.</para>
-        <para> Propriétés : Type 'vec' de taille -1</para>
+        <para> Ce bloc supporte tous les types de donnÃ©es sauf les complexes.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_REGISTER">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_REGISTER">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -143,14 +143,14 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -158,26 +158,26 @@ Pour chaque événement d'entrée, le registre est décalé d'un élément.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

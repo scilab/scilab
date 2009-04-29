@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="modulo" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>modulo</refname>
 
-    <refpurpose>reste arithmétique symétrique modulo m</refpurpose>
+    <refpurpose>reste arithmÃ©tique symÃ©trique modulo m</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="pmodulo">
     <refname>pmodulo</refname>
 
-    <refpurpose>reste arithmétique positif modulo m</refpurpose>
+    <refpurpose>reste arithmÃ©tique positif modulo m</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>i=modulo(n,m)
 i=pmodulo(n,m)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -55,15 +55,15 @@ i=pmodulo(n,m)</synopsis>
     <title>Description</title>
 
     <para><literal>modulo</literal> calcule <literal>i= n (modulo m)</literal>
-    c'est à dire le reste de <literal>n</literal> divisé par
+    c'est Ã  dire le reste de <literal>n</literal> divisÃ© par
     <literal>m</literal> (<literal>n</literal> et <literal>m</literal> sont
     entiers).</para>
 
-    <para>i = n - m .* int (n ./ m). Ici la réponse peut être négative si
-    <literal>n</literal> et/ou <literal>m</literal> sont négatifs.</para>
+    <para>i = n - m .* int (n ./ m). Ici la rÃ©ponse peut Ãªtre nÃ©gative si
+    <literal>n</literal> et/ou <literal>m</literal> sont nÃ©gatifs.</para>
 
     <para><literal>pmodulo</literal> calcule <literal>i = n - m .* floor (n ./
-    m)</literal>, la réponse est positive ou nulle.</para>
+    m)</literal>, la rÃ©ponse est positive ou nulle.</para>
   </refsection>
 
   <refsection>
