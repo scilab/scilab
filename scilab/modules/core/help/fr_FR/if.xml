@@ -1,14 +1,14 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="if">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>if then else</refname>
-    <refpurpose> exécution conditionnelle  </refpurpose>
+    <refpurpose> exÃ©cution conditionnelle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>if expr1 then instructions
 elseif expri then instructions
 ....
@@ -18,24 +18,24 @@ end</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    Le mot-clé <literal>if</literal> évalue une expression logique et exécute un groupe
+    Le mot-clÃ© <literal>if</literal> Ã©value une expression logique et exÃ©cute un groupe
     d'instructions si l'expression est vraie.
   </para>
     <para>
-    Les <literal>expri</literal> sont des expressions à valeurs numériques ou booléennes. Si <literal>expri</literal> est à valeur matricielle la condition est vraie si tous les termes de la matrice sont vrais ou différents de zéro.
+    Les <literal>expri</literal> sont des expressions Ã  valeurs numÃ©riques ou boolÃ©ennes. Si <literal>expri</literal> est Ã  valeur matricielle la condition est vraie si tous les termes de la matrice sont vrais ou diffÃ©rents de zÃ©ro.
   </para>
     <para>
-    Les mot-clés optionnels <literal>elseif</literal> et <literal>else</literal> permettent d'exécuter en alternative des groupes d'instructions. Le mot clé <literal>end</literal>,
+    Les mot-clÃ©s optionnels <literal>elseif</literal> et <literal>else</literal> permettent d'exÃ©cuter en alternative des groupes d'instructions. Le mot clÃ© <literal>end</literal>,
     correspondant au <literal>if</literal>, termine le groupe courant d'instructions. La structure des lignes ci-dessus n'est pas significative et la seule contrainte
-    est que chaque mot-clé <literal>then</literal> doit être sur la même ligne que le <literal>if</literal> ou <literal>elseif</literal> correspondant .
+    est que chaque mot-clÃ© <literal>then</literal> doit Ãªtre sur la mÃªme ligne que le <literal>if</literal> ou <literal>elseif</literal> correspondant .
   </para>
     <para>
   </para>
     <para>
-    Le mot-clé <literal>then</literal> peut être remplacé par un passage à la ligne ou une virgule.
+    Le mot-clÃ© <literal>then</literal> peut Ãªtre remplacÃ© par un passage Ã  la ligne ou une virgule.
   </para>
     <para>
-    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+    Attention : le nombre de caractÃ¨res constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limitÃ© Ã  16k.
   </para>
     <para>
   </para>

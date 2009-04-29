@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,18 +24,18 @@
   <refnamediv>
     <refname>sparse</refname>
 
-    <refpurpose>definição de matriz esparsa</refpurpose>
+    <refpurpose>definiÃ§Ã£o de matriz esparsa</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>sp=sparse(X)
 sp=sparse(ij,v [,mn])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@ sp=sparse(ij,v [,mn])</synopsis>
         <term>ij</term>
 
         <listitem>
-          <para>matriz de inteiros de duas colunas (índices das entradas não
+          <para>matriz de inteiros de duas colunas (Ã­ndices das entradas nÃ£o
           nulas) </para>
         </listitem>
       </varlistentry>
@@ -67,8 +67,8 @@ sp=sparse(ij,v [,mn])</synopsis>
         <term>mn</term>
 
         <listitem>
-          <para>vetor de inteiros com duas entradas (dimensão de linha,
-          dimensão de coluna) </para>
+          <para>vetor de inteiros com duas entradas (dimensÃ£o de linha,
+          dimensÃ£o de coluna) </para>
         </listitem>
       </varlistentry>
 
@@ -83,32 +83,32 @@ sp=sparse(ij,v [,mn])</synopsis>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>sparse</literal> é usado para construir uma matriz esparsa.
-    Apenas entradas não-nulas são armazenadas.</para>
+    <para><literal>sparse</literal> Ã© usado para construir uma matriz esparsa.
+    Apenas entradas nÃ£o-nulas sÃ£o armazenadas.</para>
 
     <para><literal>sp = sparse(X)</literal> converte uma matriz completa para
     sua forma esparsa retirando qualquer elemento nulo. (Se
-    <literal>X</literal> já é esparsa <literal>sp</literal> é
+    <literal>X</literal> jÃ¡ Ã© esparsa <literal>sp</literal> Ã©
     <literal>X</literal>).</para>
 
-    <para><literal>sp=sparse(ij,v [,mn])</literal> constrói uma matriz esparsa
+    <para><literal>sp=sparse(ij,v [,mn])</literal> constrÃ³i uma matriz esparsa
     <literal>mn(1)</literal>-por-<literal>mn(2)</literal> sparse matrix com
     <literal>sp(ij(k,1),ij(k,2))=v(k)</literal>. <literal>ij</literal> e
-    <literal>v</literal> devem ter a mesma dimensão de coluna. Se o parâmetro
-    opcional <literal>mn</literal> não for dado, as dimensões da matriz
-    <literal>sp</literal> são os valores máximos de <literal>ij(:,1)</literal>
+    <literal>v</literal> devem ter a mesma dimensÃ£o de coluna. Se o parÃ¢metro
+    opcional <literal>mn</literal> nÃ£o for dado, as dimensÃµes da matriz
+    <literal>sp</literal> sÃ£o os valores mÃ¡ximos de <literal>ij(:,1)</literal>
     e <literal>ij(:,2)</literal> respectivamente.</para>
 
-    <para>Operações (concatenação, adição, etc,) com matrizes esparsas são
+    <para>OperaÃ§Ãµes (concatenaÃ§Ã£o, adiÃ§Ã£o, etc,) com matrizes esparsas sÃ£o
     feitas usando a mesma sintaxe para matrizes completas.</para>
 
-    <para>Funções elementares também estão disponíveis
+    <para>FunÃ§Ãµes elementares tambÃ©m estÃ£o disponÃ­veis
     (<literal>abs,maxi,sum,diag,...</literal>) para matrizes esparsas.</para>
 
-    <para>Operações mistas (completas-esparsas) são permitidas. Os resultados
-    são completos ou esparsos dependendo das operações.</para>
+    <para>OperaÃ§Ãµes mistas (completas-esparsas) sÃ£o permitidas. Os resultados
+    sÃ£o completos ou esparsos dependendo das operaÃ§Ãµes.</para>
   </refsection>
 
   <refsection>
@@ -124,7 +124,7 @@ x=rand(2,2);abs(x)-full(abs(sparse(x)))
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="full">full</link></member>

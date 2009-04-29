@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,19 +24,19 @@
   <refnamediv>
     <refname>tanh</refname>
 
-    <refpurpose>tangente hiperbólica</refpurpose>
+    <refpurpose>tangente hiperbÃ³lica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>t=tanh(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Os elementos de <literal>t</literal> são as tangentes hiperbólicas
+    <para>Os elementos de <literal>t</literal> sÃ£o as tangentes hiperbÃ³licas
     dos elementos de <literal>x</literal></para>
   </refsection>
 
@@ -53,7 +53,7 @@ sinh(x)./cosh(x)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="atanh">atanh</link></member>

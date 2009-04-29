@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="mode">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>mode</refname>
-    <refpurpose> choisit le mode d'exécution des scripts
+    <refpurpose> choisit le mode d'exÃ©cution des scripts
     et des fonctions  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>mode(k)
 k=mode()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-      Utilisé <literal>uniquement</literal> dans un script ou une fonction,
-      <literal>mode(k)</literal> permet de choisir le mode d'affichage utilisé
-      pendant l'exécution, suivant la valeur de <literal>k</literal> : 
+      UtilisÃ© <literal>uniquement</literal> dans un script ou une fonction,
+      <literal>mode(k)</literal> permet de choisir le mode d'affichage utilisÃ©
+      pendant l'exÃ©cution, suivant la valeur de <literal>k</literal> : 
     </para>
     <variablelist>
       <varlistentry>
         <term>k=0</term>
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées (voir
+          <para>les nouvelles valeurs des variables sont affichÃ©es (voir
 	  <link linkend="semicolon">semicolon</link> ou <link linkend="comma">comma</link>). 
 	</para>
         </listitem>
@@ -32,36 +32,36 @@ k=mode()</synopsis>
       <varlistentry>
         <term>k=-1</term>
         <listitem>
-          <para>l'exécution est silencieuse (rien n'est affiché : mode
-	  par défaut pour les fonctions) 
+          <para>l'exÃ©cution est silencieuse (rien n'est affichÃ© : mode
+	  par dÃ©faut pour les fonctions) 
 	</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k=1 ou k=3</term>
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées, chaque ligne de
-	  commande est affichée et précédée de l'invite de commande (mode
-	  par défaut pour les scripts lancés par "exec") 
+          <para>les nouvelles valeurs des variables sont affichÃ©es, chaque ligne de
+	  commande est affichÃ©e et prÃ©cÃ©dÃ©e de l'invite de commande (mode
+	  par dÃ©faut pour les scripts lancÃ©s par "exec") 
 	</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>k=7</term>
         <listitem>
-          <para>les nouvelles valeurs des variables sont affichées, chaque ligne de
-	  commande est affichée et précédée de l'invite de
-	  commande. L'exécution est interrompue après chaque ligne et
-	  reprend après un appui sur la touche entrée/return.</para>
+          <para>les nouvelles valeurs des variables sont affichÃ©es, chaque ligne de
+	  commande est affichÃ©e et prÃ©cÃ©dÃ©e de l'invite de
+	  commande. L'exÃ©cution est interrompue aprÃ¨s chaque ligne et
+	  reprend aprÃ¨s un appui sur la touche entrÃ©e/return.</para>
           <para>Si la touche
-	  entrée/return et précédée du caractère "p", l'éxecution est suspendue
+	  entrÃ©e/return et prÃ©cÃ©dÃ©e du caractÃ¨re "p", l'Ã©xecution est suspendue
 	  (voir <link linkend="pause">pause</link>).	</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-      L'affichage est supprimé dans les fonctions compilées (voir getf ou
-      comp). Par défaut les fonctions Scilab sont éxécutées en mode silencieux ("-1"). 
+      L'affichage est supprimÃ© dans les fonctions compilÃ©es (voir getf ou
+      comp). Par dÃ©faut les fonctions Scilab sont Ã©xÃ©cutÃ©es en mode silencieux ("-1"). 
 
     </para>
   </refsection>

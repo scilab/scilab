@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ????-2008 - INRIA
@@ -16,20 +16,20 @@
   </info>
   <refnamediv>
     <refname>function</refname>
-    <refpurpose> définition d'une fonction Scilab  </refpurpose>
+    <refpurpose> dÃ©finition d'une fonction Scilab  </refpurpose>
   </refnamediv>
   <refnamediv xml:id="endfunction">
     <refname>endfunction</refname>
-    <refpurpose> fin de la définition d'une fonction Scilab  </refpurpose>
+    <refpurpose> fin de la dÃ©finition d'une fonction Scilab  </refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
     <programlisting><![CDATA[
-       function <arguments_sortie>=<nom_de_la_fonction><arguments_entrée>
+       function <arguments_sortie>=<nom_de_la_fonction><arguments_entrÃ©e>
        <instructions>
         endfunction
    ]]></programlisting>
-    <para>  où</para>
+    <para>  oÃ¹</para>
     <variablelist>
       <varlistentry>
         <term>&lt;nom_de_la_fonction&gt;</term>
@@ -38,15 +38,15 @@
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>&lt;arguments_entrée&gt;</term>
+        <term>&lt;arguments_entrÃ©e&gt;</term>
         <listitem>
-          <para>est la liste d'arguments d'entrée. Il peut s'agir de :</para>
+          <para>est la liste d'arguments d'entrÃ©e. Il peut s'agir de :</para>
           <itemizedlist>
             <listitem>
-              <para>une liste de noms de variables séparés par des virgules, entourée de parenthèses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut être <literal>varargin</literal> (voir varargin)</para>
+              <para>une liste de noms de variables sÃ©parÃ©s par des virgules, entourÃ©e de parenthÃ¨ses, comme  <literal>(x1,...,xm)</literal>. Le dernier nom de variable peut Ãªtre <literal>varargin</literal> (voir varargin)</para>
             </listitem>
             <listitem>
-              <para>la séquence <literal>()</literal> ou rien du tout, si la fonction n'a pas d'argument d'entrée.</para>
+              <para>la sÃ©quence <literal>()</literal> ou rien du tout, si la fonction n'a pas d'argument d'entrÃ©e.</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -57,10 +57,10 @@
           <para>Est la liste d'arguments de sortie. Il peut s'agir de</para>
           <itemizedlist>
             <listitem>
-              <para>une liste de noms de variables séparés par des virgules, entourée de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut être <literal>varargout</literal> (voir varargout)</para>
+              <para>une liste de noms de variables sÃ©parÃ©s par des virgules, entourÃ©e de crochets, comme  <literal>[y1,...,ym]</literal>. Le dernier nom de variable peut Ãªtre <literal>varargout</literal> (voir varargout)</para>
             </listitem>
             <listitem>
-              <para>la séquence <literal>[]</literal>, si la fonction n'a pas d'argument de sortie. Dans ce cas la syntaxe d'appel peut aussi être : <literal>function &lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal></para>
+              <para>la sÃ©quence <literal>[]</literal>, si la fonction n'a pas d'argument de sortie. Dans ce cas la syntaxe d'appel peut aussi Ãªtre : <literal>function &lt;nom_de_la_fonction&gt;&lt;arguments_entrÃ©e&gt;</literal></para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -68,20 +68,20 @@
       <varlistentry>
         <term>&lt;instructions&gt;</term>
         <listitem>
-          <para>une suite d'instructions Scilab.  Cette syntaxe peut être utilisée pour définir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilité avec les anciennes versions de Scilab, les fonctions définies dans un script ne contenant que des déclarations de fonctions peuvent être chargées dans Scilab avec la fonction <literal>getf</literal>.</para>
+          <para>une suite d'instructions Scilab.  Cette syntaxe peut Ãªtre utilisÃ©e pour dÃ©finir des fonctions (voir functions) en ligne ou dans un script (voir exec). Pour raisons de compatibilitÃ© avec les anciennes versions de Scilab, les fonctions dÃ©finies dans un script ne contenant que des dÃ©clarations de fonctions peuvent Ãªtre chargÃ©es dans Scilab avec la fonction <literal>getf</literal>.</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-    La séquence <literal>function &lt;arguments_sortie&gt;=&lt;nom_de_la_fonction&gt;&lt;arguments_entrée&gt;</literal>
-    doit apparaître sur une seule ligne. Cette suite peut être suivie d'instructions Scilab si une virgule ou un point-virgule est ajouté à la fin.
+    La sÃ©quence <literal>function &lt;arguments_sortie&gt;=&lt;nom_de_la_fonction&gt;&lt;arguments_entrÃ©e&gt;</literal>
+    doit apparaÃ®tre sur une seule ligne. Cette suite peut Ãªtre suivie d'instructions Scilab si une virgule ou un point-virgule est ajoutÃ© Ã  la fin.
   </para>
-    <para>    Les définitions de fonctions peuvent être imbriquées.  </para>
+    <para>    Les dÃ©finitions de fonctions peuvent Ãªtre imbriquÃ©es.  </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-// définition en ligne
+// dÃ©finition en ligne
 function [x,y]=myfct(a,b)
 x=a+b
 y=a-b
@@ -89,12 +89,12 @@ endfunction
 
 [x,y]=myfct(3,2)
 
-// définition sur une seule ligne
+// dÃ©finition sur une seule ligne
 function y=sq(x),y=x^2,endfunction
 
 sq(3)
 
-// définitions imbriquées
+// dÃ©finitions imbriquÃ©es
 function y=foo(x)
 a=sin(x)
 function y=sq(x), y=x^2,endfunction
@@ -104,7 +104,7 @@ endfunction
 foo(%pi/3)
 
 
-// définition dans un script
+// dÃ©finition dans un script
 exec SCI/modules/elementary_functions/macros/asinh.sci;
 
 

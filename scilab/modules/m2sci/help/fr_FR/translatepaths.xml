@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -17,38 +17,38 @@
   </info>
   <refnamediv>
     <refname>translatepaths</refname>
-    <refpurpose> convertit un ensemble de répertoires contenant des M-files vers Scilab</refpurpose>
+    <refpurpose> convertit un ensemble de rÃ©pertoires contenant des M-files vers Scilab</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>translatepaths(dirs_path [,res_path])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>dirs_path</term>
         <listitem>
-          <para>un vecteur de chaînes de caractères qui donne les chemins des répertoires à convertir</para>
+          <para>un vecteur de chaÃ®nes de caractÃ¨res qui donne les chemins des rÃ©pertoires Ã  convertir</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>res_path</term>
         <listitem>
-          <para>une chaîne de caractère qui donne le chemin du répertoire où les fonctions Scilab seront écrites. Valeur par défaut : répertoire courant.</para>
+          <para>une chaÃ®ne de caractÃ¨re qui donne le chemin du rÃ©pertoire oÃ¹ les fonctions Scilab seront Ã©crites. Valeur par dÃ©faut : rÃ©pertoire courant.</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>translatepaths</literal>, convertit tous les M-files contenus dans un ensemble de répertoires
+    <para><literal>translatepaths</literal>, convertit tous les M-files contenus dans un ensemble de rÃ©pertoires
     en fonctions Scilab. Chaque fonction est convertie par <literal>mfile2sci</literal>.</para>
     <para>
-    Toutes les informations de traduction sont stockées dans un fichier nommé <literal>"log"</literal> dans
-    le répertoire <literal>res_path</literal>.</para>
+    Toutes les informations de traduction sont stockÃ©es dans un fichier nommÃ© <literal>"log"</literal> dans
+    le rÃ©pertoire <literal>res_path</literal>.</para>
     <para>
-    Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
+    Un appel Ã  <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider Ã  la sÃ©lection d'un fichier/rÃ©pertoire et des options.
     </para>
   </refsection>
   <refsection>

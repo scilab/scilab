@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xfpoly">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,23 +8,23 @@
     <refpurpose>remplit un polygone</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xfpoly(xv,yv,[close])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xv,yv</term>
         <listitem>
-          <para>deux vecteurs de même taille (les points du polygone).</para>
+          <para>deux vecteurs de mÃªme taille (les points du polygone).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>close</term>
         <listitem>
-          <para>entier. Si close=1, la ligne brisée est fermée (valeur par
-          défaut : 0).</para>
+          <para>entier. Si close=1, la ligne brisÃ©e est fermÃ©e (valeur par
+          dÃ©faut : 0).</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -32,8 +32,8 @@
   <refsection>
     <title>Description</title>
     <para><literal>xfpoly</literal> remplit un polygone avec la couleur courante. Si
-    <literal>close</literal> est égal à  1, un point est ajouté à  la ligne brisée
-    <literal>xv,yv</literal> pour définir un polygone.</para>
+    <literal>close</literal> est Ã©gal Ã Â  1, un point est ajoutÃ© Ã Â  la ligne brisÃ©e
+    <literal>xv,yv</literal> pour dÃ©finir un polygone.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

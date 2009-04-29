@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="linspace" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>linspace</refname>
 
-    <refpurpose>vecteur de valeurs équidistantes</refpurpose>
+    <refpurpose>vecteur de valeurs Ã©quidistantes</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[v]=linspace(x1,x2 [,n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x1,x2</term>
 
         <listitem>
-          <para>scalaire réel ou complexe</para>
+          <para>scalaire rÃ©el ou complexe</para>
         </listitem>
       </varlistentry>
 
@@ -38,7 +38,7 @@
         <term>n</term>
 
         <listitem>
-          <para>entier (nombre de valeurs, 100 par défaut)</para>
+          <para>entier (nombre de valeurs, 100 par dÃ©faut)</para>
         </listitem>
       </varlistentry>
 
@@ -46,7 +46,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vecteur ligne réel ou complexe</para>
+          <para>vecteur ligne rÃ©el ou complexe</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -56,11 +56,11 @@
     <title>Description</title>
 
     <para><literal>linspace(x1, x2)</literal> renvoie un vecteur ligne de n
-    valeurs régulièrement espacées entre <literal>x1</literal> et
+    valeurs rÃ©guliÃ¨rement espacÃ©es entre <literal>x1</literal> et
     <literal>x2</literal>. Si <literal>x1</literal> ou <literal>x2</literal>
     sont complexes alors <literal>linspace(x1,x2)</literal> renvoie un vecteur
-    ligne de n valeurs complexes dont les partie réels (resp. imaginaires)
-    sont regulierement espacées entre les partie réels (resp. imaginaires) de
+    ligne de n valeurs complexes dont les partie rÃ©els (resp. imaginaires)
+    sont regulierement espacÃ©es entre les partie rÃ©els (resp. imaginaires) de
     x1 et x2.</para>
   </refsection>
 

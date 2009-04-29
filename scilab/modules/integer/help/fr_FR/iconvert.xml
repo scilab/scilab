@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="iconvert">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>iconvert </refname>
-    <refpurpose> conversion au codage entier à 1,2 ou 4 octets  </refpurpose>
+    <refpurpose> conversion au codage entier Ã  1,2 ou 4 octets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>y=iconvert(X,itype)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
@@ -24,7 +24,7 @@
       <varlistentry>
         <term>y  </term>
         <listitem>
-          <para>matrice d'entiers codés sur 1,2 ou 4 octets.
+          <para>matrice d'entiers codÃ©s sur 1,2 ou 4 octets.
 </para>
         </listitem>
       </varlistentry>
@@ -33,13 +33,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Convertit et stocke sous forme d'entiers à 1,2 ou 4 octets.
+    Convertit et stocke sous forme d'entiers Ã  1,2 ou 4 octets.
   </para>
     <variablelist>
       <varlistentry>
         <term>itype=0</term>
         <listitem>
-          <para>renvoie des nombres à virgule flottante
+          <para>renvoie des nombres Ã  virgule flottante
 </para>
         </listitem>
       </varlistentry>

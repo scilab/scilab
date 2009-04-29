@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_cpr">
   <refnamediv>
     <refname>scicos_cpr</refname>
-    <refpurpose>Structure compilée Scicos</refpurpose>
+    <refpurpose>Structure compilÃ©e Scicos</refpurpose>
   </refnamediv>
   <refsection id="Module_scicos_cpr">
     <title>Module</title>
@@ -41,10 +41,10 @@
     <para>
  La liste scilab <link linkend="scicos_cpr">cpr</link>
 contient 
- le résultat de la compilation.
+ le rÃ©sultat de la compilation.
 </para>
     <para>
-Cette structure est composée des champs
+Cette structure est composÃ©e des champs
  <link linkend="scicos_state">state</link>, <link linkend="scicos_sim">sim</link>, cor et corinv.
 </para>
     <para>
@@ -65,7 +65,7 @@ Type : tlist scilab.
         <para>
           <emphasis role="bold">state</emphasis>
         </para>
-        <para> Une liste typée scilab de type xcs. Cette liste contient tous les états du diagramme qui vont évoluer pendant la simulation.</para>
+        <para> Une liste typÃ©e scilab de type xcs. Cette liste contient tous les Ã©tats du diagramme qui vont Ã©voluer pendant la simulation.</para>
         <para> state contient x, z, oz, iz, tevts, evtspt, pointi et outtb.</para>
         <para> 
 Taille : 9.
@@ -78,7 +78,7 @@ Type : tlist scilab.
         <para>
           <emphasis role="bold">sim</emphasis>
         </para>
-        <para> Une liste typée scilab de type scs. Cette liste contient des tableaux statiques issus du résultat de la compilation. Ces tableaux n'évoluent pas pendant la simulation.</para>
+        <para> Une liste typÃ©e scilab de type scs. Cette liste contient des tableaux statiques issus du rÃ©sultat de la compilation. Ces tableaux n'Ã©voluent pas pendant la simulation.</para>
         <para> 
 Taille : 33.
 </para>
@@ -90,7 +90,7 @@ Type : tlist scilab.
         <para>
           <emphasis role="bold">cor</emphasis>
         </para>
-        <para> C'est une liste avec la même structure récursive que la liste scs_m. Chaque feuille contient l'indice d'un bloc associé à la structure compilée sim.</para>
+        <para> C'est une liste avec la mÃªme structure rÃ©cursive que la liste scs_m. Chaque feuille contient l'indice d'un bloc associÃ© Ã  la structure compilÃ©e sim.</para>
         <para> 
 Taille : nombre d'objets dans scs_m.
 </para>
@@ -102,9 +102,9 @@ Type : scilab list.
         <para>
           <emphasis role="bold">corinv</emphasis>
         </para>
-        <para> corinv(i) est le chemin du bloc i définit dans la structure compilée sim dans la structure scs_m.</para>
+        <para> corinv(i) est le chemin du bloc i dÃ©finit dans la structure compilÃ©e sim dans la structure scs_m.</para>
         <para> 
-Taille : nombre de blocs dans la structure compilée.
+Taille : nombre de blocs dans la structure compilÃ©e.
 </para>
         <para>
 Type : scilab list.

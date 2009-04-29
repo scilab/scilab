@@ -1,20 +1,20 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="try">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>try</refname>
-    <refpurpose> mot clé de début du block try dans une
-    instruction de contrôle try-catch </refpurpose>
+    <refpurpose> mot clÃ© de dÃ©but du block try dans une
+    instruction de contrÃ´le try-catch </refpurpose>
   </refnamediv>
   <refnamediv xml:id="catch">
     <refname>catch</refname>
-    <refpurpose>  mot clé de début du block catch dans une
-    instruction de contrôle try-catch </refpurpose>
+    <refpurpose>  mot clÃ© de dÃ©but du block catch dans une
+    instruction de contrÃ´le try-catch </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>try
 statements
 catch
@@ -23,24 +23,24 @@ end</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>L'instruction de contrôle <literal>try</literal>-<literal>catch</literal> peut être
-      utilisée pour controler les conséquence d'une erreur d'éxécution en permettant
-      l'éxécution de code spécifique en cas d'erreur.</para>
-    <para>Quand une instruction de contrôle <literal>try</literal>-<literal>catch</literal>
-      est exécutée, normalement seules les instructions comprises entre les mots
-      clés  <literal>try</literal> et <literal>catch</literal> sont exécutées. Cependant,
-      si une erreur se produit pendant l'exécution de ces instructions,
-      l'erreur est mémorisée, les instructions restantes jusqu'au mot clé
-      <literal>catch</literal> sont ignorées et les instructions comprises entre les
-      mots clés  <literal>catch</literal> et  <literal>end</literal> sont exécutées en
-      utilisant le mode de gestion des erreurs par défaut (voir: <link linkend="errcatch">errcatch</link>. </para>
-    <para>L'erreur mémorisé peut être retrouvée en utilisant la fonction <link linkend="lasterror">lasterror</link>.</para>
-    <para>Les intructions comprises entre les mots clés  <literal>catch</literal> et
-      <literal>end</literal> peuvent être omises ainsi que le mot clé
+    <para>L'instruction de contrÃ´le <literal>try</literal>-<literal>catch</literal> peut Ãªtre
+      utilisÃ©e pour controler les consÃ©quence d'une erreur d'Ã©xÃ©cution en permettant
+      l'Ã©xÃ©cution de code spÃ©cifique en cas d'erreur.</para>
+    <para>Quand une instruction de contrÃ´le <literal>try</literal>-<literal>catch</literal>
+      est exÃ©cutÃ©e, normalement seules les instructions comprises entre les mots
+      clÃ©s  <literal>try</literal> et <literal>catch</literal> sont exÃ©cutÃ©es. Cependant,
+      si une erreur se produit pendant l'exÃ©cution de ces instructions,
+      l'erreur est mÃ©morisÃ©e, les instructions restantes jusqu'au mot clÃ©
+      <literal>catch</literal> sont ignorÃ©es et les instructions comprises entre les
+      mots clÃ©s  <literal>catch</literal> et  <literal>end</literal> sont exÃ©cutÃ©es en
+      utilisant le mode de gestion des erreurs par dÃ©faut (voir: <link linkend="errcatch">errcatch</link>. </para>
+    <para>L'erreur mÃ©morisÃ© peut Ãªtre retrouvÃ©e en utilisant la fonction <link linkend="lasterror">lasterror</link>.</para>
+    <para>Les intructions comprises entre les mots clÃ©s  <literal>catch</literal> et
+      <literal>end</literal> peuvent Ãªtre omises ainsi que le mot clÃ©
       <literal>catch</literal> si aucun code alternatif n'est fourni.</para>
     <para>Notez que l'on peut aussi utiliser la fonction  <link linkend="execstr">execstr</link>
-      avec l'argument <literal>'errcatch'</literal> pour gérer les erreurs et tout 
-      particulièrement pour gérer les erreurs de syntaxe.</para>
+      avec l'argument <literal>'errcatch'</literal> pour gÃ©rer les erreurs et tout 
+      particuliÃ¨rement pour gÃ©rer les erreurs de syntaxe.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
@@ -51,8 +51,8 @@ end</synopsis>
     u=mopen(file_path,'r')
     x=mget(10,'c',u)
   catch
-    disp(['le fichier '+file_path+ 'ne peut pas être lu', 
-          'on utilise la valeur  par défaut de x'])
+    disp(['le fichier '+file_path+ 'ne peut pas Ãªtre lu', 
+          'on utilise la valeur  par dÃ©faut de x'])
     x=1:10
   end 
   [error_message,error_number]=lasterror(%t) 
