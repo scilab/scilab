@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>[ij,v,mn]=spget(sp)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -49,8 +49,8 @@
         <term>ij</term>
 
         <listitem>
-          <para>matriz de inteiros de duas colunas (índices das entradas
-          não-nulas) </para>
+          <para>matriz de inteiros de duas colunas (Ã­ndices das entradas
+          nÃ£o-nulas) </para>
         </listitem>
       </varlistentry>
 
@@ -58,8 +58,8 @@
         <term>mn</term>
 
         <listitem>
-          <para>vetor de inteiros com duas entradas (dimensão de linha,
-          dimensão de coluna) </para>
+          <para>vetor de inteiros com duas entradas (dimensÃ£o de linha,
+          dimensÃ£o de coluna) </para>
         </listitem>
       </varlistentry>
 
@@ -74,14 +74,14 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>spget</literal> é usado para converter a representação
-    interna de matrizes esparsas na representação padrão <literal>ij,
+    <para><literal>spget</literal> Ã© usado para converter a representaÃ§Ã£o
+    interna de matrizes esparsas na representaÃ§Ã£o padrÃ£o <literal>ij,
     v</literal> .</para>
 
-    <para>Entradas não-nulas de <literal>sp</literal> estão localizadas em
-    linhas e colunas com índices em <literal>ij</literal>.</para>
+    <para>Entradas nÃ£o-nulas de <literal>sp</literal> estÃ£o localizadas em
+    linhas e colunas com Ã­ndices em <literal>ij</literal>.</para>
   </refsection>
 
   <refsection>
@@ -96,7 +96,7 @@ sp=sparse([1,2;4,5;3,10],[1,2,3])
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

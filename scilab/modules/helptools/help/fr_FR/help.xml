@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> commande d'aide en ligne  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>help(key)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>key</term>
         <listitem>
-          <para>Une chaîne de caractères. Donne le nom de la page d'aide à visualiser.</para>
+          <para>Une chaÃ®ne de caractÃ¨res. Donne le nom de la page d'aide Ã  visualiser.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,10 +37,10 @@
     <title>Description</title>
     <para><literal>help</literal> sans argument, visualise la page hypertexte contenat la
       liste des chapitres d'aide.</para>
-    <para><literal>help(key)</literal> visualise la page d'aide associé avec le nom
-      donné par <literal>key</literal>. S'il n'y a pas de page d'aide, <literal>help(key)</literal>
+    <para><literal>help(key)</literal> visualise la page d'aide associÃ© avec le nom
+      donnÃ© par <literal>key</literal>. S'il n'y a pas de page d'aide, <literal>help(key)</literal>
       appele automatiquement <literal>apropos(key)</literal>.</para>
-    <para> Voir  <link linkend="man">man</link> pour apprendre à écrire de nouvelles pages d'aide.</para>
+    <para> Voir  <link linkend="man">man</link> pour apprendre Ã  Ã©crire de nouvelles pages d'aide.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

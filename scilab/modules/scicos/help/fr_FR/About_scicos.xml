@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -39,8 +39,8 @@
   <refsection id="AusujetdeScicos_About_scicos">
     <title>Au sujet de Scicos...</title>
     <para>
-Scicos version 4.2 a été développé dans l'équipe-projet 'Metalau', de
-  manière très proche au consortium Scilab, à l'unité de Rocquencourt de
+Scicos version 4.2 a Ã©tÃ© dÃ©veloppÃ© dans l'Ã©quipe-projet 'Metalau', de
+  maniÃ¨re trÃ¨s proche au consortium Scilab, Ã  l'unitÃ© de Rocquencourt de
   l'INRIA.
 </para>
     <para>
@@ -59,22 +59,22 @@ Les principaux contributeurs de cette version sont :
       </listitem>
       <listitem>
         <para><emphasis role="bold">Masoud Najafi</emphasis> (INRIA)</para>
-        <para> Intégration Modelica.</para>
-        <para> Intégration 'Sundials' dans le simulateur. </para>
+        <para> IntÃ©gration Modelica.</para>
+        <para> IntÃ©gration 'Sundials' dans le simulateur. </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Simone Mannori</emphasis> (INRIA)</para>
-        <para> Conception de l'éditeur nouveau graphique. </para>
+        <para> Conception de l'Ã©diteur nouveau graphique. </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Alan Layec</emphasis> (INRIA)</para>
-        <para> Intégration des données matricielles typées.</para>
-        <para> Coeur du générateur de code C.</para>
+        <para> IntÃ©gration des donnÃ©es matricielles typÃ©es.</para>
+        <para> Coeur du gÃ©nÃ©rateur de code C.</para>
         <para> Documentation Html. </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Benoit Bayol</emphasis> (Etudiant)</para>
-        <para> Jeu de blocs pour l'affichage des données (nouveau graphique) </para>
+        <para> Jeu de blocs pour l'affichage des donnÃ©es (nouveau graphique) </para>
       </listitem>
     </itemizedlist>
     <para><emphasis role="bold">Guru : Serge Steer</emphasis> (INRIA)

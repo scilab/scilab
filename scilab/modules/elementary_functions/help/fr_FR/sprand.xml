@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="sprand" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>sprand</refname>
 
-    <refpurpose>matrice creuse aléatoire</refpurpose>
+    <refpurpose>matrice creuse alÃ©atoire</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>sp=sprand(nrows,ncols,fill [,typ])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -46,7 +46,7 @@
         <term>fill</term>
 
         <listitem>
-          <para>coefficient de remplissage (densité)</para>
+          <para>coefficient de remplissage (densitÃ©)</para>
         </listitem>
       </varlistentry>
 
@@ -54,8 +54,8 @@
         <term>typ</term>
 
         <listitem>
-          <para>chaîne de caractères (<literal>'uniform'</literal> (par
-          défaut) ou <literal>'normal'</literal>)</para>
+          <para>chaÃ®ne de caractÃ¨res (<literal>'uniform'</literal> (par
+          dÃ©faut) ou <literal>'normal'</literal>)</para>
         </listitem>
       </varlistentry>
 
@@ -79,7 +79,7 @@
 
     <para>Si <literal>typ='uniform'</literal> les termes non nuls suivent une
     loi uniforme sur [0,1]. Si <literal>typ='normal'</literal> les termes non
-    nuls suivent une loi normale centrée réduite.</para>
+    nuls suivent une loi normale centrÃ©e rÃ©duite.</para>
   </refsection>
 
   <refsection>

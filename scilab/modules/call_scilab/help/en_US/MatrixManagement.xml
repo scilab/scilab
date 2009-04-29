@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
@@ -100,9 +100,13 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
+      <member><link
+      linkend="creadmat">creadmat</link>,<link
+      linkend="cwritemat">cwritemat</link>,
+	<link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="BooleanManagement">BooleanManagement</link>, <link
+      linkend="ComplexManagement">ComplexManagement</link>, <link
       linkend="StringManagement">StringManagement</link></member>
     </simplelist>
   </refsection>

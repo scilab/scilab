@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="subplot">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>subplot</refname>
-    <refpurpose> divise une fenêtre graphique en sous-fenêtres  </refpurpose>
+    <refpurpose> divise une fenÃªtre graphique en sous-fenÃªtres  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>subplot(m,n,p)
 subplot(mnp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>m,n,p  </term>
@@ -25,7 +25,7 @@ subplot(mnp)</synopsis>
       <varlistentry>
         <term>mnp  </term>
         <listitem>
-          <para>un entier avec <literal>mnp</literal> comme notation décimale
+          <para>un entier avec <literal>mnp</literal> comme notation dÃ©cimale
 </para>
         </listitem>
       </varlistentry>
@@ -34,11 +34,11 @@ subplot(mnp)</synopsis>
   <refsection>
     <title>Description</title>
     <para>
-    subplot(m,n,p) ou subplot(mnp) divise la fenêtre graphique courante
-    en une matrice m x n matrice de sous fenêtres et sélectionne la p-ième sous-fenêtre
-    comme emplacement de dessin par défaut.  Le numéro de la sous-fenêtre
-    est compté ligne par ligne, c'est à dire que l'emplacement
-    (i,j) de la matrice porte le numéro (i-1)*n + j.
+    subplot(m,n,p) ou subplot(mnp) divise la fenÃªtre graphique courante
+    en une matrice m x n matrice de sous fenÃªtres et sÃ©lectionne la p-iÃ¨me sous-fenÃªtre
+    comme emplacement de dessin par dÃ©faut.  Le numÃ©ro de la sous-fenÃªtre
+    est comptÃ© ligne par ligne, c'est Ã  dire que l'emplacement
+    (i,j) de la matrice porte le numÃ©ro (i-1)*n + j.
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -16,15 +16,15 @@
   </info>
   <refnamediv>
     <refname>tic</refname>
-    <refpurpose>Démarre le chronomètre</refpurpose>
+    <refpurpose>DÃ©marre le chronomÃ¨tre</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>tic()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para>La séquence de commandes <literal>tic(); opération; toc();</literal> affiche le nombre de secondes nécessaire pour opération.</para>
+    <para>La sÃ©quence de commandes <literal>tic(); opÃ©ration; toc();</literal> affiche le nombre de secondes nÃ©cessaire pour opÃ©ration.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -27,7 +27,7 @@
     <refpurpose>Fonction superviseur utilitaire</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[myvar]=getscicosvars(str) [myvar]=getscicosvars([str1;str2;...])</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_getscicosvars">
@@ -43,10 +43,10 @@
   <refsection id="Description_getscicosvars">
     <title>Description</title>
     <para>
-Cette fonction utilitaire est utilisée pour retrouver les tableaux de travail du compilateur et du simulateur scicos pendant la simulation.  
+Cette fonction utilitaire est utilisÃ©e pour retrouver les tableaux de travail du compilateur et du simulateur scicos pendant la simulation.  
 </para>
     <para>
-Elle peut-être utilisée dans un bloc scilab pour retourner des informations de tous types de blocs. Cette fonction est très utile pour débugger les diagrammes et pour prototyper des simulations.  
+Elle peut-Ãªtre utilisÃ©e dans un bloc scilab pour retourner des informations de tous types de blocs. Cette fonction est trÃ¨s utile pour dÃ©bugger les diagrammes et pour prototyper des simulations.  
 </para>
     <para>
 </para>
@@ -55,77 +55,77 @@ Elle peut-être utilisée dans un bloc scilab pour retourner des informations de t
 [myvar]=getscicosvars([str1;str2;...])
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_getscicosvars">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_getscicosvars">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">str,str1,str2,... :</emphasis> Ce paramètre est soit une chaîne de caractères ou une matrice de chaine de caractère. Les entrées suivantes sont permises :</para>
-        <para> "x" : retourne le registre des états continus.</para>
-        <para> "nx" : retourne la longueur du registre des états continus.</para>
-        <para> "xptr" : retourne le registre des pointeurs du registre des états continus.</para>
-        <para> "zcptr" : retourne le registre des pointeurs du registre des détections de surfaces.</para>
-        <para> "z" : retourne le registre des états discrets.</para>
-        <para> "nz" : retourne la longueur des registres des états discrets.</para>
-        <para> "zptr" : retourne le registre des pointeurs du registre des états discrets.</para>
-        <para> "noz" : retourne le nombre d'éléments de la liste de l'état discret objet.</para>
-        <para> "oz" : retourne la liste de l'état discret objet.</para>
-        <para> "ozsz" : retourne les tailles des éléments de la liste l'état discret objet.</para>
-        <para> "oztyp" : retourne les types des éléments de la liste l'état discret objet.</para>
-        <para> "ozptr" : retourne le registre des pointeurs de la liste l'état discret objet.</para>
-        <para> "rpar" : retourne le registre des paramètres réels.</para>
-        <para> "rpptr" : retourne le registre des pointeurs du registre des paramètres réels.</para>
-        <para> "ipar" : retourne le registre des paramètres entiers.</para>
-        <para> "ipptr" : retourne le registre des pointeurs du registre des paramètres entiers.</para>
-        <para> "opar" : retourne la liste des paramètres objets.</para>
-        <para> "oparsz" : retourne les tailles des éléments de la liste des paramètres objets.</para>
-        <para> "opartyp" : retourne les types des éléments de la liste des paramètres objets.</para>
-        <para> "opptr" : retourne le registre des pointeurs de la liste des paramètres objets.</para>
+        <para><emphasis role="bold">str,str1,str2,... :</emphasis> Ce paramÃ¨tre est soit une chaÃ®ne de caractÃ¨res ou une matrice de chaine de caractÃ¨re. Les entrÃ©es suivantes sont permises :</para>
+        <para> "x" : retourne le registre des Ã©tats continus.</para>
+        <para> "nx" : retourne la longueur du registre des Ã©tats continus.</para>
+        <para> "xptr" : retourne le registre des pointeurs du registre des Ã©tats continus.</para>
+        <para> "zcptr" : retourne le registre des pointeurs du registre des dÃ©tections de surfaces.</para>
+        <para> "z" : retourne le registre des Ã©tats discrets.</para>
+        <para> "nz" : retourne la longueur des registres des Ã©tats discrets.</para>
+        <para> "zptr" : retourne le registre des pointeurs du registre des Ã©tats discrets.</para>
+        <para> "noz" : retourne le nombre d'Ã©lÃ©ments de la liste de l'Ã©tat discret objet.</para>
+        <para> "oz" : retourne la liste de l'Ã©tat discret objet.</para>
+        <para> "ozsz" : retourne les tailles des Ã©lÃ©ments de la liste l'Ã©tat discret objet.</para>
+        <para> "oztyp" : retourne les types des Ã©lÃ©ments de la liste l'Ã©tat discret objet.</para>
+        <para> "ozptr" : retourne le registre des pointeurs de la liste l'Ã©tat discret objet.</para>
+        <para> "rpar" : retourne le registre des paramÃ¨tres rÃ©els.</para>
+        <para> "rpptr" : retourne le registre des pointeurs du registre des paramÃ¨tres rÃ©els.</para>
+        <para> "ipar" : retourne le registre des paramÃ¨tres entiers.</para>
+        <para> "ipptr" : retourne le registre des pointeurs du registre des paramÃ¨tres entiers.</para>
+        <para> "opar" : retourne la liste des paramÃ¨tres objets.</para>
+        <para> "oparsz" : retourne les tailles des Ã©lÃ©ments de la liste des paramÃ¨tres objets.</para>
+        <para> "opartyp" : retourne les types des Ã©lÃ©ments de la liste des paramÃ¨tres objets.</para>
+        <para> "opptr" : retourne le registre des pointeurs de la liste des paramÃ¨tres objets.</para>
         <para> "outtb" : retourne le registre des sorties.</para>
-        <para> "inpptr" : retourne le registre des pointeurs des ports réguliers d'entrée.</para>
-        <para> "outptr" : retourne le registre des pointeurs des ports réguliers de sorties.</para>
-        <para> "inplnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers d'entrée.</para>
-        <para> "outlnk" : retourne le registre des pointeurs des liens connectés aux ports réguliers de sortie.</para>
-        <para> "subs" : pas utilisé.</para>
+        <para> "inpptr" : retourne le registre des pointeurs des ports rÃ©guliers d'entrÃ©e.</para>
+        <para> "outptr" : retourne le registre des pointeurs des ports rÃ©guliers de sorties.</para>
+        <para> "inplnk" : retourne le registre des pointeurs des liens connectÃ©s aux ports rÃ©guliers d'entrÃ©e.</para>
+        <para> "outlnk" : retourne le registre des pointeurs des liens connectÃ©s aux ports rÃ©guliers de sortie.</para>
+        <para> "subs" : pas utilisÃ©.</para>
         <para> "tevts" : retourne le registre des dates courantes de l'agenda.</para>
-        <para> "evtspt" : retourne le registre des événements courants de l'agenda.</para>
-        <para> "pointi" : retourne le prochain événement à activer.</para>
-        <para> "iord" : retourne le vecteur des blocs activés au début de la simulation.</para>
-        <para> "oord" : retourne le vecteur des blocs dont les sorties affectent le calcul des états continus.</para>
-        <para> "zord" : retourne le vecteur des blocs dont les sorties affectent le calcul des détections de surfaces.</para>
+        <para> "evtspt" : retourne le registre des Ã©vÃ©nements courants de l'agenda.</para>
+        <para> "pointi" : retourne le prochain Ã©vÃ©nement Ã  activer.</para>
+        <para> "iord" : retourne le vecteur des blocs activÃ©s au dÃ©but de la simulation.</para>
+        <para> "oord" : retourne le vecteur des blocs dont les sorties affectent le calcul des Ã©tats continus.</para>
+        <para> "zord" : retourne le vecteur des blocs dont les sorties affectent le calcul des dÃ©tections de surfaces.</para>
         <para> "funtyp" : retourne le vecteur des types des fonctions de calcul.</para>
-        <para> "ztyp" : retourne le vecteur de pointeurs pour les blocs utilisant les détections de surface.</para>
-        <para> "cord" : retourne le vecteur des blocs dont les sorties évoluent continuellement.</para>
-        <para> "ordclk" : retourne la matrice associée aux blocs activés par événements.</para>
+        <para> "ztyp" : retourne le vecteur de pointeurs pour les blocs utilisant les dÃ©tections de surface.</para>
+        <para> "cord" : retourne le vecteur des blocs dont les sorties Ã©voluent continuellement.</para>
+        <para> "ordclk" : retourne la matrice associÃ©e aux blocs activÃ©s par Ã©vÃ©nements.</para>
         <para> "clkptr" : retourne le vecteur de pointeurs pour les ports de sortie d'activation.</para>
-        <para> "ordptr" : retourne le vecteur de pointeurs (à partir de ordclk) qui désigne les parties de ordclk correspondant à une activation donnée.</para>
-        <para> "critev" : retourne le vecteur des événements critiques.</para>
+        <para> "ordptr" : retourne le vecteur de pointeurs (Ã  partir de ordclk) qui dÃ©signe les parties de ordclk correspondant Ã  une activation donnÃ©e.</para>
+        <para> "critev" : retourne le vecteur des Ã©vÃ©nements critiques.</para>
         <para> "mod" : retourne le vecteur de pointeurs des modes des blocs.</para>
         <para> "nmod" : retourne la longueur du vecteur de pointeurs des modes des blocs.</para>
         <para> "iz" : retourne le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
         <para> "izptr" : retourne le vecteur de pointeurs sur le registre qui contient les pointeurs C sur block-<inlinemediaobject><imageobject><imagedata fileref="../../../images/getscicosvars_img1_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> work.</para>
         <para> "nblk" : retourne le nombre de blocs.</para>
         <para> "outtbptr" : retourne le registre qui contient les pointeurs C de outtb.</para>
-        <para> "outtbpsz" : retourne le registre qui contient les tailles des éléments de outtb.</para>
-        <para> "outtbtyp" : retourne le registre qui contient les types des éléments de outtb.</para>
+        <para> "outtbpsz" : retourne le registre qui contient les tailles des Ã©lÃ©ments de outtb.</para>
+        <para> "outtbtyp" : retourne le registre qui contient les types des Ã©lÃ©ments de outtb.</para>
         <para> "nlnk" : retourne le nombre de sortie.</para>
-        <para> "ncord" : retourne le nombre de blocs qui évoluent continuellement.</para>
-        <para> "nordptr" : retourne le nombre de blocs qui évoluent par activation.</para>
+        <para> "ncord" : retourne le nombre de blocs qui Ã©voluent continuellement.</para>
+        <para> "nordptr" : retourne le nombre de blocs qui Ã©voluent par activation.</para>
         <para> "iwa" : n.d.</para>
         <para> "blocks" : retourne une liste scilab qui contient toutes les structures des blocs contenus dans le diagramme.</para>
-        <para> "ng" : retourne la longueur du registre des détections de surface.</para>
-        <para> "g" : retourne le registre des détections de surfaces.</para>
+        <para> "ng" : retourne la longueur du registre des dÃ©tections de surface.</para>
+        <para> "g" : retourne le registre des dÃ©tections de surfaces.</para>
         <para> "t0" : retourne le temps courant de la simulation.</para>
         <para> "tf" : retourne le temps final de la simulation.</para>
-        <para> "Atol" : retourne la tolérance absolue de l'intégrateur du solveur numérique.</para>
-        <para> "rtol" : retourne la tolérance relative de l'intégrateur du solveur numérique.</para>
-        <para> "ttol" : retourne la tolérance sur le temps du simulateur.</para>
-        <para> "deltat" : retourne le temps maximal d'intégration.</para>
-        <para> "hmax" : retourne le pas maximal d'intégration du solveur numérique.</para>
-        <para> "nelem" : retourne le nombre d'éléments dans outtb.</para>
-        <para> "outtb_elem" : retourne le vecteur contenant les numéro d'éléments dans outtb.</para>
+        <para> "Atol" : retourne la tolÃ©rance absolue de l'intÃ©grateur du solveur numÃ©rique.</para>
+        <para> "rtol" : retourne la tolÃ©rance relative de l'intÃ©grateur du solveur numÃ©rique.</para>
+        <para> "ttol" : retourne la tolÃ©rance sur le temps du simulateur.</para>
+        <para> "deltat" : retourne le temps maximal d'intÃ©gration.</para>
+        <para> "hmax" : retourne le pas maximal d'intÃ©gration du solveur numÃ©rique.</para>
+        <para> "nelem" : retourne le nombre d'Ã©lÃ©ments dans outtb.</para>
+        <para> "outtb_elem" : retourne le vecteur contenant les numÃ©ro d'Ã©lÃ©ments dans outtb.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">myvar :</emphasis> Ce paramètre de sortie peut-être soit une matrice de nombre int32, une matrice de nombre réel (double) ou bien une Tlist, suivant le paramètre donné en entrée.</para>
+        <para><emphasis role="bold">myvar :</emphasis> Ce paramÃ¨tre de sortie peut-Ãªtre soit une matrice de nombre int32, une matrice de nombre rÃ©el (double) ou bien une Tlist, suivant le paramÃ¨tre donnÃ© en entrÃ©e.</para>
       </listitem>
     </itemizedlist>
   </refsection>

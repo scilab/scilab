@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
@@ -126,7 +126,9 @@
     <simplelist type="inline">
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="cwritechain">cwritechain</link></member>
+      linkend="cwritechain">cwritechain</link>,
+      <link linkend="StringManagement">String Management</link>
+</member>
     </simplelist>
   </refsection>
 

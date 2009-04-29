@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="intersect" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>intersect</refname>
 
-    <refpurpose>recherche de valeurs communes à deux vecteurs.</refpurpose>
+    <refpurpose>recherche de valeurs communes Ã  deux vecteurs.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>
       [v [,ka,kb]]=intersect(a,b)
@@ -26,14 +26,14 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>a</term>
 
         <listitem>
-          <para>vecteur de nombres ou de chaînes de caractères</para>
+          <para>vecteur de nombres ou de chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
 
@@ -41,7 +41,7 @@
         <term>b</term>
 
         <listitem>
-          <para>vecteur de nombres ou de chaînes de caractères</para>
+          <para>vecteur de nombres ou de chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
 
@@ -49,8 +49,8 @@
         <term>v</term>
 
         <listitem>
-          <para>vecteur ligne ou matrice de nombres ou de chaînes de
-          caractères</para>
+          <para>vecteur ligne ou matrice de nombres ou de chaÃ®nes de
+          caractÃ¨res</para>
         </listitem>
       </varlistentry>
 
@@ -75,31 +75,31 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>intersect(a,b)</literal> renvoie un vecteur trié des
-    valeurs communes à <literal>a</literal> et <literal>b</literal>. A noter
-    que 2 NaN sont toujours considéré comme différents.</para>
+    <para><literal>intersect(a,b)</literal> renvoie un vecteur triÃ© des
+    valeurs communes Ã  <literal>a</literal> et <literal>b</literal>. A noter
+    que 2 NaN sont toujours considÃ©rÃ© comme diffÃ©rents.</para>
 
     <para><literal>[v,ka,kb]=intersect(a,b)</literal> renvoie aussi deux
     vecteurs d'indices <literal>ka</literal> et <literal>kb</literal> tels que
     <literal>v=a(ka)</literal> et <literal>v=b(kb)</literal>.</para>
 
     <para><literal>intersect(a,b,"r")</literal> ou
-    <literal>intersect(a,b,1)</literal> retourne la matrice formée de
+    <literal>intersect(a,b,1)</literal> retourne la matrice formÃ©e de
     l'intersection des lignes distinctes des matrices <literal>a</literal> et
-    <literal>b</literal> triées dans l'ordre lexicographique croissant. Dans
+    <literal>b</literal> triÃ©es dans l'ordre lexicographique croissant. Dans
     ce cas les matrices <literal>a</literal> et <literal>b</literal> doivent
-    avoir le même nombre de colonnes.</para>
+    avoir le mÃªme nombre de colonnes.</para>
 
     <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> retourne aussi les
     vecteurs d'indices <literal>ka</literal> et <literal>kb</literal> tels que
     <literal>v=a(ka,:)</literal> et <literal>v=b(kb,:)</literal>.</para>
 
     <para><literal>intersect(a,b,"c")</literal> ou
-    <literal>intersect(a,b,2)</literal> retourne la matrice formée de
+    <literal>intersect(a,b,2)</literal> retourne la matrice formÃ©e de
     l'intersection des colonnes distinctes des matrices <literal>a</literal>
-    et <literal>b</literal> triées dans l'ordre lexicographique croissant.
+    et <literal>b</literal> triÃ©es dans l'ordre lexicographique croissant.
     Dans ce cas les matrices <literal>a</literal> et <literal>b</literal>
-    doivent avoir le même nombre de lignes.</para>
+    doivent avoir le mÃªme nombre de lignes.</para>
 
     <para><literal>[v,ka,kb]=intersect(a,b,"r")</literal> retourne aussi les
     vecteurs d'indices <literal>ka</literal> et <literal>kb</literal> tels que

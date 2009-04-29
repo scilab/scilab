@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="sd2sci">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,30 +8,30 @@
     <refpurpose> conversion des sorties de gr_menu vers des instructions Scilab  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>sd  </term>
         <listitem>
-          <para>structure de données renvoyée par gr_menu.
+          <para>structure de donnÃ©es renvoyÃ©e par gr_menu.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>sz  </term>
         <listitem>
-          <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant les facteurs de zoom en x et y.
+          <para>vecteur de nombres ou chaÃ®nes de caractÃ¨res avec deux composantes, donnant les facteurs de zoom en x et y.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>orig  </term>
         <listitem>
-          <para>vecteur de nombres ou chaînes de caractères avec deux composantes, donnant un vecteur de translation de l'origine 
+          <para>vecteur de nombres ou chaÃ®nes de caractÃ¨res avec deux composantes, donnant un vecteur de translation de l'origine 
 </para>
         </listitem>
       </varlistentry>
@@ -40,17 +40,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    Etant donné une liste <literal>sd</literal> générée par <literal>gr_menu</literal>
+    Etant donnÃ© une liste <literal>sd</literal> gÃ©nÃ©rÃ©e par <literal>gr_menu</literal>
     <literal>sd2sci</literal> fabrique un vecteur d'instructions Scilab correspondant au graphique
     contenu dans sd.
   </para>
     <para>
-    Les paramètres optionnels <literal>sz</literal> et <literal>orig</literal> permettent de changer l'échelle ou de décaler
+    Les paramÃ¨tres optionnels <literal>sz</literal> et <literal>orig</literal> permettent de changer l'Ã©chelle ou de dÃ©caler
     le graphique initial.
   </para>
     <para>
-    Si <literal>sz</literal> ou <literal>orig</literal> sont donnés sous forme de chaînes de caractères, les instructions
-    générées les utilisent de façon formelle.
+    Si <literal>sz</literal> ou <literal>orig</literal> sont donnÃ©s sous forme de chaÃ®nes de caractÃ¨res, les instructions
+    gÃ©nÃ©rÃ©es les utilisent de faÃ§on formelle.
   </para>
   </refsection>
   <refsection>

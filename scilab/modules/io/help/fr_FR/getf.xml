@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,44 +16,44 @@
   </info>
   <refnamediv>
     <refname>getf</refname>
-    <refpurpose> chargement de fonctions à partir d'un fichier  </refpurpose>
+    <refpurpose> chargement de fonctions Ã  partir d'un fichier  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>getf(file-name [,opt])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>opt</term>
         <listitem>
-          <para>chaîne de caractères optionnelle</para>
+          <para>chaÃ®ne de caractÃ¨res optionnelle</para>
               <variablelist>
                 <varlistentry>
                   <term>"c"</term>
                   <listitem>
-                    <para>les fonctions sont "compilées"  pour accélérer leur exécution (par défaut).</para>
+                    <para>les fonctions sont "compilÃ©es"  pour accÃ©lÃ©rer leur exÃ©cution (par dÃ©faut).</para>
                   </listitem>
                 </varlistentry>
                 
                 <varlistentry>
                   <term>"n"</term>
                   <listitem>
-                    <para>les fonctions ne sont pas "compilées".</para>
+                    <para>les fonctions ne sont pas "compilÃ©es".</para>
                   </listitem>
                 </varlistentry>
                 
                 <varlistentry>
                   <term>"p"</term>
                   <listitem>
-                    <para>les fonctions sont "compilées" et préparées pour les statistiques d'appel (voir <link linkend="profile">profile</link>).</para>
+                    <para>les fonctions sont "compilÃ©es" et prÃ©parÃ©es pour les statistiques d'appel (voir <link linkend="profile">profile</link>).</para>
                   </listitem>
                 </varlistentry>
             </variablelist>
@@ -65,13 +65,13 @@
     <title>Description</title>
     <para>
     Charge une ou plusieurs fonctions (voir <link linkend="functions">functions</link>)
-    définies dans le fichier <literal>'file-name'</literal>.
-    La chaîne de caractères <literal>opt='n'</literal>
-    signifie que les fonctions ne sont pas compilées
-    (pré-interprétées) au chargement. Cela peut être utile
-    en phase de mise au point (voir <link linkend="comp">comp</link>). Par défaut
-    les fonctions sont compilées
-    (i.e. <literal>opt='c'</literal> est utilisée).
+    dÃ©finies dans le fichier <literal>'file-name'</literal>.
+    La chaÃ®ne de caractÃ¨res <literal>opt='n'</literal>
+    signifie que les fonctions ne sont pas compilÃ©es
+    (prÃ©-interprÃ©tÃ©es) au chargement. Cela peut Ãªtre utile
+    en phase de mise au point (voir <link linkend="comp">comp</link>). Par dÃ©faut
+    les fonctions sont compilÃ©es
+    (i.e. <literal>opt='c'</literal> est utilisÃ©e).
   </para>
     <para>
     Dans le fichier chaque fonction doit commencer par une ligne de la forme :
@@ -83,33 +83,33 @@ function [y1,...,yn]=foo(x1,...,xm)
       les lignes suivantes contiennent une suite d'instructions Scilab.
     </para>
     <para>
-      La "ligne de définition" donne la syntaxe
-      d'appel complète de la fonction.  Les <literal>yi</literal>
-      sont les variables de sortie, calculées à partir des
-      variables d'entrée <literal>xi</literal> et des variables
+      La "ligne de dÃ©finition" donne la syntaxe
+      d'appel complÃ¨te de la fonction.  Les <literal>yi</literal>
+      sont les variables de sortie, calculÃ©es Ã  partir des
+      variables d'entrÃ©e <literal>xi</literal> et des variables
       existantes dans le contexte appelant lorsque la fonction est
-      exécutée. On peut utiliser éventuellement un
-      sous-ensemble de ces variables d'entrée et de sortie.
+      exÃ©cutÃ©e. On peut utiliser Ã©ventuellement un
+      sous-ensemble de ces variables d'entrÃ©e et de sortie.
     </para>
     <para>
-      Il est possible d'écrire plusieurs fonctions dans un
-      seul fichier. Une fonction est alors terminée par le
-      mot-clé <link linkend="function">endfunction</link> ou par la ligne de
-      déclaration de la fonction suivante (ancienne convention) ou
+      Il est possible d'Ã©crire plusieurs fonctions dans un
+      seul fichier. Une fonction est alors terminÃ©e par le
+      mot-clÃ© <link linkend="function">endfunction</link> ou par la ligne de
+      dÃ©claration de la fonction suivante (ancienne convention) ou
       par la fin du fichier.
     </para>
-    <para>L'usage de <link linkend="getf">getf</link> ne permet pas gérer
-    correctement les fichiers contenant des fonctions définies a
-    l'intérieur d'une fonction. Le chargement de tels fichiers ne
-    peut se faire que par l'intermédiaire de la fonction
+    <para>L'usage de <link linkend="getf">getf</link> ne permet pas gÃ©rer
+    correctement les fichiers contenant des fonctions dÃ©finies a
+    l'intÃ©rieur d'une fonction. Le chargement de tels fichiers ne
+    peut se faire que par l'intermÃ©diaire de la fonction
     <link linkend="exec">exec</link>. </para>
     <para><link linkend="getf">getf</link> est une fonction obsolete. Le chargement des
-    fonctions doit être réalisé en utilisant la fonction
-    <link linkend="exec">exec</link>. A noter que dans ce cas l'usage des mots-clé
-    <link linkend="function">endfunction</link> est impératif. L'usage de
+    fonctions doit Ãªtre rÃ©alisÃ© en utilisant la fonction
+    <link linkend="exec">exec</link>. A noter que dans ce cas l'usage des mots-clÃ©
+    <link linkend="function">endfunction</link> est impÃ©ratif. L'usage de
     <link linkend="exec">exec</link> sous entend l'option <literal>opt=='c'</literal>.</para>
-   <para>Pour préparer la fonction pour la collecte des
-   statistiques d'appel, il faut désormais utiliser la fonction <link linkend="add_profiling">add_profiling</link>.</para>
+   <para>Pour prÃ©parer la fonction pour la collecte des
+   statistiques d'appel, il faut dÃ©sormais utiliser la fonction <link linkend="add_profiling">add_profiling</link>.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

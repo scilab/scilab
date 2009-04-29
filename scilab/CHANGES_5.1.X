@@ -69,7 +69,14 @@ Bug fixes:
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
 
+ * bug 4459 fixed - grayplot does not always plot map containing %nan.
+ 
+ * bug 4463 fixed - Creating an one-colored Sgrayplot generate some exceptions and does not plot anything.
+
  * bug 4466 fixed - .' operator defined for strings and booleans
+ 
+ * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
+                    and not a filename (linux)
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab

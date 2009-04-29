@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,43 +16,43 @@
   </info>
   <refnamediv>
     <refname>mtlb_fft</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab ifft</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab ifft</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>ifft</literal> et la fonction Scilab <literal>fft</literal> se comportent différemment :</para>
+    <para>Dans plusieurs cas particuliers, la fonction Matlab <literal>ifft</literal> et la fonction Scilab <literal>fft</literal> se comportent diffÃ©remment :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un paramètre d'entrée : si ce paramètre est un scalaire ou un vecteur l'équivalent Scilab
+        Avec un paramÃ¨tre d'entrÃ©e : si ce paramÃ¨tre est un scalaire ou un vecteur l'Ã©quivalent Scilab
 	pour la fonction  Matlab <literal>ifft(A)</literal> est <literal>fft(A,1)</literal> 
-	et si ce paramètre est une matrice l'équivalent Scilab pour l'appel Matlab à <literal>ifft</literal>
+	et si ce paramÃ¨tre est une matrice l'Ã©quivalent Scilab pour l'appel Matlab Ã  <literal>ifft</literal>
 	est <literal>fft(A,1,2,1)</literal>
        </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_ifft(X[,n,[job]])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>ifft(X[,n,[job]])</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les entrées pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_ifft</literal> :
+    La fonction <literal>mtlb_ifft(X[,n,[job]])</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>ifft(X[,n,[job]])</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les entrÃ©es pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_ifft</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
         Si <literal>X</literal> est un scalaire ou un vecteur
-        <literal>mtlb_ifft(X,1)</literal> peut être remplacé par <literal>fft(X,1)</literal>
+        <literal>mtlb_ifft(X,1)</literal> peut Ãªtre remplacÃ© par <literal>fft(X,1)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
         Si <literal>X</literal> est une matrice
-        <literal>mtlb_ifft(X,1)</literal> peut être remplacé par <literal>fft(X,1,2,1)</literal>
+        <literal>mtlb_ifft(X,1)</literal> peut Ãªtre remplacÃ© par <literal>fft(X,1,2,1)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_ifft</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_ifft</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

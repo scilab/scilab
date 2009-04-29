@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -51,7 +51,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="AUTOMAT">AUTOMAT - hybrides (les machines à état fini)</link>
+          <link linkend="AUTOMAT">AUTOMAT - hybrides (les machines Ã  Ã©tat fini)</link>
         </para>
       </listitem>
       <listitem>
@@ -91,7 +91,7 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="EXPRESSION">EXPRESSION - Expression mathématique</link>
+          <link linkend="EXPRESSION">EXPRESSION - Expression mathÃ©matique</link>
         </para>
       </listitem>
       <listitem>
@@ -101,7 +101,7 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="generic_block3">generic_block3 - Bloc générique</link>
+          <link linkend="generic_block3">generic_block3 - Bloc gÃ©nÃ©rique</link>
         </para>
       </listitem>
       <listitem>
@@ -111,12 +111,12 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="LOGICAL_OP">LOGICAL_OP - Opération logique</link>
+          <link linkend="LOGICAL_OP">LOGICAL_OP - OpÃ©ration logique</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="MBLOCK">MBLOCK - Bloc Modelica générique</link>
+          <link linkend="MBLOCK">MBLOCK - Bloc Modelica gÃ©nÃ©rique</link>
         </para>
       </listitem>
       <listitem>
@@ -131,7 +131,7 @@
       </listitem>
       <listitem>
         <para>
-          <link linkend="RELATIONALOP">RELATIONALOP - Opération relationnelle</link>
+          <link linkend="RELATIONALOP">RELATIONALOP - OpÃ©ration relationnelle</link>
         </para>
       </listitem>
       <listitem>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="varn" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,25 +13,25 @@
   <refnamediv>
     <refname>varn</refname>
 
-    <refpurpose>variável simbólica de um polinômio</refpurpose>
+    <refpurpose>variÃ¡vel simbÃ³lica de um polinÃ´mio</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title> SeqÃ¼Ãªncia de Chamamento </title>
 
     <synopsis>[symb]=varn(p)
 [pm]=varn(x,var)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> Parâmetros </title>
+    <title> ParÃ¢metros </title>
 
     <variablelist>
       <varlistentry>
         <term>p</term>
 
         <listitem>
-          <para>polinômio (matriz de polinômios) </para>
+          <para>polinÃ´mio (matriz de polinÃ´mios) </para>
         </listitem>
       </varlistentry>
 
@@ -47,7 +47,7 @@
         <term>x</term>
 
         <listitem>
-          <para>polinômio ou matriz de polinômios </para>
+          <para>polinÃ´mio ou matriz de polinÃ´mios </para>
         </listitem>
       </varlistentry>
 
@@ -55,7 +55,7 @@
         <term>var</term>
 
         <listitem>
-          <para>variável simbólica (string) </para>
+          <para>variÃ¡vel simbÃ³lica (string) </para>
         </listitem>
       </varlistentry>
 
@@ -63,22 +63,22 @@
         <term>pm</term>
 
         <listitem>
-          <para>matriz ou matriz de polinômios</para>
+          <para>matriz ou matriz de polinÃ´mios</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>symb=varn(p)</literal> retorna em <literal>symb</literal> a
-    variável simbólica de <literal>p</literal> (i.e.
+    variÃ¡vel simbÃ³lica de <literal>p</literal> (i.e.
     <literal>varn(poly(0,'x'))</literal> is <literal>'x'</literal>).</para>
 
-    <para><literal>varn(x,'s')</literal> retorna uma matriz de polinômios com
+    <para><literal>varn(x,'s')</literal> retorna uma matriz de polinÃ´mios com
     os mesmos coeficientes que <literal>x</literal> mas com <literal>'s'
-    </literal>como variável simbólica (mudança do nome de variável).</para>
+    </literal>como variÃ¡vel simbÃ³lica (mudanÃ§a do nome de variÃ¡vel).</para>
   </refsection>
 
   <refsection>
@@ -95,7 +95,7 @@ varn(p,'x')
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title> Ver TambÃ©m </title>
 
     <simplelist type="inline">
       <member><link linkend="horner">horner</link></member>

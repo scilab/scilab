@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="try" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,19 +13,19 @@
   <refnamediv>
     <refname>try</refname>
 
-    <refpurpose>início de um bloco try numa instrução de controle try-catch
+    <refpurpose>inÃ­cio de um bloco try numa instruÃ§Ã£o de controle try-catch
     (significa "tentar...")</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="catch">
     <refname>catch</refname>
 
-    <refpurpose>início de um bloco catch numa instrução de controle try-catch
+    <refpurpose>inÃ­cio de um bloco catch numa instruÃ§Ã£o de controle try-catch
     (significa "prender...") </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title> SeqÃ¼Ãªncia de Chamamento </title>
 
     <synopsis>try
 statements
@@ -35,33 +35,33 @@ end</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title> Descrição </title>
+    <title> DescriÃ§Ã£o </title>
 
-    <para>A instrução de controle
+    <para>A instruÃ§Ã£o de controle
     <literal>try</literal>-<literal>catch</literal>pode ser usada para
-    gerenciar códigos que possivelmente poderiam gerar erros.</para>
+    gerenciar cÃ³digos que possivelmente poderiam gerar erros.</para>
 
-    <para>Quando uma instrução de controle
-    <literal>try</literal>-<literal>catch</literal> é executada, normalmente
-    apenas as sentenças entre as palavras-chaves <literal>try</literal> e
-    <literal>catch</literal>são executadas. Contudo, se um erro ocorre durante
-    a execução de uma dessas sentenças, o erro é registrado, as sentenças
-    restantes até <literal>catch</literal>são puladas e as sentenças entre as
-    palavras-chaves <literal>catch</literal> e <literal>end</literal> são
-    executadas usando-se o modo de manipulação de erros padrão (ver: <link
+    <para>Quando uma instruÃ§Ã£o de controle
+    <literal>try</literal>-<literal>catch</literal> Ã© executada, normalmente
+    apenas as sentenÃ§as entre as palavras-chaves <literal>try</literal> e
+    <literal>catch</literal>sÃ£o executadas. Contudo, se um erro ocorre durante
+    a execuÃ§Ã£o de uma dessas sentenÃ§as, o erro Ã© registrado, as sentenÃ§as
+    restantes atÃ© <literal>catch</literal>sÃ£o puladas e as sentenÃ§as entre as
+    palavras-chaves <literal>catch</literal> e <literal>end</literal> sÃ£o
+    executadas usando-se o modo de manipulaÃ§Ã£o de erros padrÃ£o (ver: <link
     linkend="errcatch">errcatch</link>).</para>
 
-    <para>A mensagem de erro registrada pode ser recuperada pela função <link
+    <para>A mensagem de erro registrada pode ser recuperada pela funÃ§Ã£o <link
     linkend="lasterror">lasterror</link> .</para>
 
-    <para>As sentenças <literal>catch</literal> , tanto quanto a palavra-chave
-    <literal>catch</literal> podem ser omitidas se nenhuma sentença
+    <para>As sentenÃ§as <literal>catch</literal> , tanto quanto a palavra-chave
+    <literal>catch</literal> podem ser omitidas se nenhuma sentenÃ§a
     alternativa for fornecida.</para>
 
-    <para>Note que também é possível utilizar a função <link
+    <para>Note que tambÃ©m Ã© possÃ­vel utilizar a funÃ§Ã£o <link
     linkend="execstr">execstr</link> com o argumento<literal>
-    'errcatch'</literal> para manipulação de erros. Isto pode ser
-    particularmente útil para manipulação de erros sintáticos.</para>
+    'errcatch'</literal> para manipulaÃ§Ã£o de erros. Isto pode ser
+    particularmente Ãºtil para manipulaÃ§Ã£o de erros sintÃ¡ticos.</para>
   </refsection>
 
   <refsection>
@@ -74,8 +74,8 @@ end</synopsis>
     u=mopen(file_path,'r')
     x=mget(10,'c',u)
   catch
-    disp(['o arquivo '+file_path+ ' não pode ser lido',
-          'usando valores padrões para x'])
+    disp(['o arquivo '+file_path+ ' nÃ£o pode ser lido',
+          'usando valores padrÃµes para x'])
     x=1:10
   end 
   [error_message,error_number]=lasterror(%t)
@@ -86,7 +86,7 @@ end</synopsis>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title> Ver TambÃ©m </title>
 
     <simplelist type="inline">
       <member><link linkend="error">error</link></member>
