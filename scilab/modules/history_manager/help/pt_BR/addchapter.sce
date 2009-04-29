@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/history_manager/help/pt_BR";
-add_help_chapter("Gerenciador de histórico",path,%T);
+add_help_chapter("Gerenciador de histÃ³rico",path,%T);
 clear path add_help_chapter;
