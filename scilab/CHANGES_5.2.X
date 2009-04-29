@@ -56,6 +56,12 @@ Dynamic link:
  - add a example to call a scilab macro from a C interface
    (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
 
+
+Online Help :
+=============
+
+ - Sub-Chapters are now allowed (See SEP #24)
+
 char encoding bugs :
 ====================
 
