@@ -382,9 +382,21 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		// Scilab Toolboxes
 		//
 		
-		for k=1:size(dirs_c,"*")
+		nb_dir = size(dirs_c,"*");
+		displaydone = 0;
+		
+		for k=1:nb_dir
 			
-			mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
+			if nb_dir > 1 then
+				if displaydone == 0 then
+					mprintf(_("\nBuilding master documents:\n"));
+					displaydone = 1;
+				end
+			else
+				mprintf(_("\nBuilding the master document:\n"));
+			end
+			
+			mprintf(_("\t%s\n"),strsubst(dirs_c(k),SCI_long,"SCI"));
 			
 			this_tree  = contrib_tree(dirs_c(k));
 			master_doc = pathconvert(dirs_c(k)+"/master_help.xml",%F);
@@ -393,17 +405,25 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			mputl(master_str,master_doc);
 			contrib_tree(dirs_c(k)) = this_tree;
 			
-			//if getshortpathname(dirs_c(k)) == getshortpathname(pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k),%f,%f)) then
-			//	create_MD_scicos(dirs_c(k), dirs_c(k)+"/master_help.xml", directory_language_c(k))
-			//end
-			
 		end
 		
 	else
 		
-		for k=1:size(dirs,"*");
+		nb_dir = size(dirs,"*");
+		displaydone = 0;
 		
-			mprintf(_("\nBuilding the master document: %s\n"),titles(k));
+		for k=1:nb_dir
+			
+			if nb_dir > 1 then
+				if displaydone == 0 then
+					mprintf(_("\nBuilding master documents:\n"));
+					displaydone = 1;
+				end
+			else
+				mprintf(_("\nBuilding the master document:\n"));
+			end
+			
+			mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 			
 			this_tree  = contrib_tree(dirs(k));
 			
@@ -419,10 +439,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			mputl(master_str,master_doc);
 			contrib_tree(dirs(k)) = this_tree;
 			
-			//if getshortpathname(dirs(k))==getshortpathname(pathconvert(SCI + "/modules/scicos/help/" + directory_language(k),%f,%f)) then
-			//  create_MD_scicos(dirs(k), dirs(k)+"/master_help.xml", directory_language(k))
-			//end
-		
 		end
 	
 	end
@@ -441,7 +457,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	if all_scilab_help then
 		
-		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
+		mprintf(_("Building the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
 		
 		// Define and create the final output directory if does not exist
 		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
