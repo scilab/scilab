@@ -73,7 +73,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		// "directory_language" input argument is defined !
 		if rhs == 4 then
 			my_wanted_language = directory_language;
-			reset_help_modules_var(my_wanted_language);
+			x2f_reset_help_mod_var(my_wanted_language);
 			%HELPS=[%helps_modules;%helps];
 		end
 		
@@ -81,9 +81,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		dirs_to_build_m        = %helps_modules;
 		dirs_to_build_c        = %helps;
 		
-		dirs                   = get_xml_path(dirs_to_build(:,1),my_wanted_language);
-		dirs_m                 = get_xml_path(dirs_to_build_m(:,1),my_wanted_language);
-		dirs_c                 = get_xml_path(dirs_to_build_c(:,1),my_wanted_language);
+		dirs                   = x2f_get_xml_path(dirs_to_build(:,1),my_wanted_language);
+		dirs_m                 = x2f_get_xml_path(dirs_to_build_m(:,1),my_wanted_language);
+		dirs_c                 = x2f_get_xml_path(dirs_to_build_c(:,1),my_wanted_language);
 		
 		titles                 = dirs_to_build(:,2);
 		titles_m               = dirs_to_build_m(:,2);
@@ -150,9 +150,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		default_language   = [];
 		
 		for k=1:size(dirs,'*')
-			directory_language = [directory_language ; guess_lang(dirs(k)) ]; // Language detection
+			directory_language = [directory_language ; x2f_guess_lang(dirs(k)) ]; // Language detection
 			default_language   = [default_language   ; getdefaultlanguage()]; // Default Language
-			titles             = [titles;gettext("Help chapter")+" ("+dirs(k)+")"];
+			titles             = [titles;gettext("Help chapter")+" "+string(k)];
 			
 			if directory_language(k) == default_language(k) then
 				language_system    = [language_system;%F]; // Enable the language system
@@ -171,7 +171,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		default_language   = [];
 		
 		for k=1:size(dirs,'*')
-			directory_language = [directory_language ; guess_lang(dirs(k)) ]; // Language detection
+			directory_language = [directory_language ; x2f_guess_lang(dirs(k)) ]; // Language detection
 			default_language   = [default_language   ; getdefaultlanguage()]; // Default Language
 			
 			if directory_language(k) == default_language(k) then
@@ -271,9 +271,18 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 		// ast_tree : "Modules" Tree
 		
+		if directory_language_m(1) == "fr_FR" then
+			scilab_manual = "Manuel Scilab"
+		elseif directory_language_m(1) == "pt_BR" then
+			scilab_manual = "Manual Scilab"
+		else
+			scilab_manual = "Scilab manual"
+		end
+		
 		modules_tree = struct();
 		modules_tree("level")      = 0; // It's a book
-		modules_tree("title")      = "Scilab Manual";
+		modules_tree("title")      = scilab_manual;
+		modules_tree("book_title") = scilab_manual;
 		modules_tree("language")   = directory_language_m(1);
 		modules_tree("path")       = SCI;
 		modules_tree("master.xml") = %F;
@@ -373,9 +382,21 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		// Scilab Toolboxes
 		//
 		
-		for k=1:size(dirs_c,"*")
+		nb_dir = size(dirs_c,"*");
+		displaydone = 0;
+		
+		for k=1:nb_dir
 			
-			mprintf(_("\nBuilding the master document: %s\n"),titles_c(k));
+			if nb_dir > 1 then
+				if displaydone == 0 then
+					mprintf(_("\nBuilding master documents:\n"));
+					displaydone = 1;
+				end
+			else
+				mprintf(_("\nBuilding the master document:\n"));
+			end
+			
+			mprintf(_("\t%s\n"),strsubst(dirs_c(k),SCI_long,"SCI"));
 			
 			this_tree  = contrib_tree(dirs_c(k));
 			master_doc = pathconvert(dirs_c(k)+"/master_help.xml",%F);
@@ -384,29 +405,40 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			mputl(master_str,master_doc);
 			contrib_tree(dirs_c(k)) = this_tree;
 			
-			//if getshortpathname(dirs_c(k)) == getshortpathname(pathconvert(SCI + "/modules/scicos/help/" + directory_language_c(k),%f,%f)) then
-			//	create_MD_scicos(dirs_c(k), dirs_c(k)+"/master_help.xml", directory_language_c(k))
-			//end
-			
 		end
 		
 	else
 		
-		for k=1:size(dirs,"*");
+		nb_dir = size(dirs,"*");
+		displaydone = 0;
 		
-			mprintf(_("\nBuilding the master document: %s\n"),titles(k));
+		for k=1:nb_dir
+			
+			if nb_dir > 1 then
+				if displaydone == 0 then
+					mprintf(_("\nBuilding master documents:\n"));
+					displaydone = 1;
+				end
+			else
+				mprintf(_("\nBuilding the master document:\n"));
+			end
+			
+			mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
 			
 			this_tree  = contrib_tree(dirs(k));
+			
+			if isfield(this_tree,"master.xml") & this_tree("master.xml") then
+				this_tree("master_document") = pathconvert(dirs(k)+"/master.xml",%F);
+				contrib_tree(dirs(k)) = this_tree;
+				continue;
+			end
+			
 			master_doc = pathconvert(dirs(k)+"/master_help.xml",%F);
 			this_tree("master_document") = master_doc;
 			master_str = x2f_tree_to_master(this_tree);
 			mputl(master_str,master_doc);
 			contrib_tree(dirs(k)) = this_tree;
 			
-			//if getshortpathname(dirs(k))==getshortpathname(pathconvert(SCI + "/modules/scicos/help/" + directory_language(k),%f,%f)) then
-			//  create_MD_scicos(dirs(k), dirs(k)+"/master_help.xml", directory_language(k))
-			//end
-		
 		end
 	
 	end
@@ -425,7 +457,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 	
 	if all_scilab_help then
 		
-		mprintf(_("\nBuilding the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
+		mprintf(_("Building the scilab manual file ["+output_format+"] (Please wait building ... this can take a while)\n"));
 		
 		// Define and create the final output directory if does not exist
 		final_output_dir = pathconvert(SCI+"/modules/helptools/"+output_format_ext,%f,%f);
@@ -496,7 +528,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 		// Move into the initial directory
 		if ~chdir(cur_dir) then
-			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",oldDir));
+			error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",cur_dir));
 		end
 		
 		// Now we can add the help file to the list of all generated files
@@ -514,6 +546,18 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			
 			if ~isdir(final_output_dir) then
 				mkdir(final_output_dir);
+			end
+			
+			// To improve the final_output_dir path
+			
+			if ~chdir(final_output_dir) then
+				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",final_output_dir));
+			end
+			
+			final_output_dir = pathconvert(pwd(),%f,%f);
+			
+			if ~chdir(cur_dir) then
+				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",cur_dir));
 			end
 			
 			if is_html then
@@ -592,6 +636,9 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 		
 		for k=1:nb_dir
 			
+			// Save the current directory
+			cur_dir = getcwd();
+			
 			this_tree  = contrib_tree(dirs(k));
 			
 			if nb_dir > 1 then
@@ -610,6 +657,14 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			if ~isdir(final_output_dir) then
 				mkdir(final_output_dir);
 			end
+			
+			// To improve the final_output_dir path
+			
+			if ~chdir(final_output_dir) then
+				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",final_output_dir));
+			end
+			
+			final_output_dir = pathconvert(pwd(),%f,%f);
 			
 			if is_html then
 				final_output_dir = pathconvert(final_output_dir+"/"+directory_language(k),%f,%f);
@@ -637,9 +692,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			else
 				buildDoc_file = pathconvert(buildDoc_dir + "scilab_" + directory_language(k) + "_help." + output_format_ext,%f,%f);
 			end
-			
-			// Save the current directory
-			cur_dir = getcwd();
 			
 			// Change Scilab current directory so that Java Indexer works
 			if ~chdir(buildDoc_dir) then
@@ -675,7 +727,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 			
 			// Now we can add the help file to the list of all generated files
 			generated_files = [ generated_files ; final_help_file ];
-				
+			
 		end
 	end
 	
@@ -692,9 +744,11 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 endfunction
 
 
+// =============================================================================
+// dirs_out = x2f_get_xml_path(dirs_in,my_wanted_language)
+// =============================================================================
 
-
-function dirs_out = get_xml_path(dirs_in,my_wanted_language)
+function dirs_out = x2f_get_xml_path(dirs_in,my_wanted_language)
 	
 	dirs_out = [];
 	
@@ -720,8 +774,11 @@ function dirs_out = get_xml_path(dirs_in,my_wanted_language)
 	
 endfunction
 
+// =============================================================================
+// language_out = x2f_guess_lang(dir_in)
+// =============================================================================
 
-function language_out = guess_lang(dir_in)
+function language_out = x2f_guess_lang(dir_in)
 	
 	language_out = getlanguage();
 	
@@ -733,10 +790,11 @@ function language_out = guess_lang(dir_in)
 	
 endfunction
 
+// =============================================================================
+// x2f_reset_help_mod_var(language)
+// =============================================================================
 
-
-
-function reset_help_modules_var(language)
+function x2f_reset_help_mod_var(language)
 	
 	global %helps_modules;
 	
@@ -1085,7 +1143,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
 		end
 		
 		// First case : new field
-		if regexp(FILETOPARSE(i),"/^[a-zA-Z][a-zA-Z0-9]*\s=\s/","o") == 1 then
+		if regexp(FILETOPARSE(i),"/^[a-zA-Z][a-zA-Z0-9_]*\s=\s/","o") == 1 then
 			current_field_length    = regexp(FILETOPARSE(i),"/\s=\s/","o")
 			current_field           = part(FILETOPARSE(i),1:current_field_length-1);
 			current_value           = part(FILETOPARSE(i),current_field_length+3:length(FILETOPARSE(i)));
@@ -1278,12 +1336,17 @@ function master_document = x2f_tree_to_master( tree )
 	master_document = [ master_document ; "<!ENTITY "+tree_xmllist(:,1)+" SYSTEM """+tree_xmllist(:,2)+""">" ]
 	
 	// title management
-	if isfield(tree,"title_addchapter") & (tree("title_addchapter") <> "") then
+	
+	
+	if isfield(tree,"book_title") & (tree("book_title") <> "") then
+		// title defined in CHAPTER
+		book_title = tree("book_title");
+	
+	
+	elseif isfield(tree,"title_addchapter") & (tree("title_addchapter") <> "") then
 		// title defined in addchapter.sce
 		book_title = tree("title_addchapter");
-	elseif isfield(tree,"title") & (tree("title") <> "") then
-		// title defined in CHAPTER
-		book_title = tree("title");
+	
 	else
 		// title built with the directory name
 		book_title = tree("title_default");
@@ -1307,6 +1370,33 @@ function master_document = x2f_tree_to_master( tree )
 		"  </info>"; ..
 		""];
 	
+	// xml list
+	// =========================================================================
+	
+	// title management
+	if isfield(tree,"title") & (tree("title") <> "") then
+		// title defined in CHAPTER
+		section_title = tree("title");
+	elseif isfield(tree,"title_addchapter") & (tree("title_addchapter") <> "") then
+		// title defined in addchapter.sce
+		section_title = tree("title_addchapter");
+	else
+		// title built with the directory name
+		section_title = tree("title_default");
+	end
+	
+	offset = 0;
+	
+	if isfield(tree,"xml_list") then
+		xmllist        = tree("xml_list");
+		if xmllist <> [] then
+			master_document = [ master_document ; "<part xml:id=''section_"+getmd5(tree("path"),"string")+"''>" ];
+			master_document = [ master_document ; "<title>"+section_title+"</title>" ];
+			master_document = [ master_document ; "&"+xmllist(:,1)+";" ];
+			offset          = 1;
+		end
+	end
+	
 	// Loop on dir_
 	// =========================================================================
 	
@@ -1314,41 +1404,35 @@ function master_document = x2f_tree_to_master( tree )
 	my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 	
 	for i=1:size(my_subtrees,"*")
-		master_document = [ master_document ; x2f_tree_to_section( tree(my_subtrees(i)) ) ];
-	end
-	
-	// xml list
-	// =========================================================================
-	
-	if isfield(tree,"xml_list") then
-		xmllist        = tree("xml_list");
-		if xmllist <> [] then
-			master_document = [ master_document ; "&"+xmllist(:,1)+";" ];
-		end
+		master_document = [ master_document ; x2f_tree_to_section( tree(my_subtrees(i)) , offset ) ];
 	end
 	
 	// End of master document
 	// =========================================================================
+	
+	if offset == 1 then
+		master_document = [ master_document ; "</part>" ];
+	end
 	
 	master_document = [ master_document; "</book>" ];
 	
 endfunction
 
 // =============================================================================
-// master_section = x2f_tree_to_section( tree )
-// 
+// master_section = x2f_tree_to_section( tree , offset )
+//
 // Date : 27/04/2009
 // =============================================================================
 
-function master_section = x2f_tree_to_section( tree )
+function master_section = x2f_tree_to_section( tree , offset )
 	
 	rhs = argn(2);
 	
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs <> 1 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_tree_to_section",1));
+	if rhs <> 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"x2f_tree_to_section",2));
 	end
 	
 	// Check input arguments type
@@ -1356,6 +1440,10 @@ function master_section = x2f_tree_to_section( tree )
 	
 	if type(tree) <> 17 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"),"x2f_tree_to_section",1));
+	end
+	
+	if type(offset) <> 1 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A integer expected.\n"),"x2f_tree_to_section",2));
 	end
 	
 	// And now, action ...
@@ -1384,8 +1472,8 @@ function master_section = x2f_tree_to_section( tree )
 				"sect4"   ; ..
 				"sect5"   ];
 	
-	if isfield(tree,"level") & (tree("level")>0) & (tree("level")<8) then
-		section_type = section_types( tree("level") + 1 );
+	if isfield(tree,"level") & ((tree("level") + offset)>0) & ((tree("level") + offset)<8) then
+		section_type = section_types( tree("level") + offset + 1 );
 	else
 		section_type = "reference";
 	end
@@ -1418,7 +1506,7 @@ function master_section = x2f_tree_to_section( tree )
 	my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 	
 	for i=1:size(my_subtrees,"*")
-		master_section = [ master_section ; x2f_tree_to_section( tree(my_subtrees(i)) ) ];
+		master_section = [ master_section ; x2f_tree_to_section( tree(my_subtrees(i)) , offset ) ];
 	end
 	
 	// xml list
@@ -1497,8 +1585,18 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
 	// XML list management
 	// =========================================================================
 	
-	xmllist_1   = tree_in_1("xml_list");
-	xmllist_2   = tree_in_2("xml_list");
+	if isfield(tree_in_1,"xml_list") then
+		xmllist_1 = tree_in_1("xml_list");
+	else
+		xmllist_1 = [];
+	end
+	
+	if isfield(tree_in_2,"xml_list") then
+		xmllist_2 = tree_in_2("xml_list");
+	else
+		xmllist_2 = [];
+	end
+	
 	xmllist_out = xmllist_2;
 	
 	for i=1:size(xmllist_1(:,1),"*")
