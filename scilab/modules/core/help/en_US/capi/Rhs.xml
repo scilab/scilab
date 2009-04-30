@@ -71,7 +71,7 @@ int sci_myrhs(char * fname)
     <simplelist type="inline">
       <member><link linkend="sciprint">sciprint</link></member>
 
-      <member><link linkend="lhs">Lhs</link></member>
+      <member><link linkend="Rhs">Lhs</link></member>
     </simplelist>
   </refsection>
 </refentry>
