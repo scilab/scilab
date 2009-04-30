@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="try" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,19 +13,19 @@
   <refnamediv>
     <refname>try</refname>
 
-    <refpurpose>mot clé de début du bloc try dans une instruction de contrôle
+    <refpurpose>mot clÃ© de dÃ©but du bloc try dans une instruction de contrÃ´le
     try-catch</refpurpose>
   </refnamediv>
 
   <refnamediv xml:id="catch">
     <refname>catch</refname>
 
-    <refpurpose>mot clé de début du bloc catch dans une instruction de
-    contrôle try-catch</refpurpose>
+    <refpurpose>mot clÃ© de dÃ©but du bloc catch dans une instruction de
+    contrÃ´le try-catch</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>try
 statements
@@ -37,54 +37,54 @@ end</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>L'instruction de contrôle
-    <literal>try</literal>-<literal>catch</literal> peut être utilisée pour
-    controler les conséquences d'une erreur d'exécution en permettant
-    l'exécution de code spécifique en cas d'erreur.</para>
+    <para>L'instruction de contrÃ´le
+    <literal>try</literal>-<literal>catch</literal> peut Ãªtre utilisÃ©e pour
+    controler les consÃ©quences d'une erreur d'exÃ©cution en permettant
+    l'exÃ©cution de code spÃ©cifique en cas d'erreur.</para>
 
-    <para>Quand une instruction de contrôle
-    <literal>try</literal>-<literal>catch</literal> est exécutée, normalement
-    seules les instructions comprises entre les mots clés
-    <literal>try</literal> et <literal>catch</literal> sont exécutées.
-    Cependant, si une erreur se produit pendant l'exécution de ces
-    instructions, l'erreur est mémorisée, les instructions restantes jusqu'au
-    mot clé <literal>catch</literal> sont ignorées et les instructions
-    comprises entre les mots clés <literal>catch</literal> et
-    <literal>end</literal> sont exécutées en utilisant le mode de gestion des
-    erreurs par défaut (voir <link linkend="errcatch">errcatch</link>).</para>
+    <para>Quand une instruction de contrÃ´le
+    <literal>try</literal>-<literal>catch</literal> est exÃ©cutÃ©e, normalement
+    seules les instructions comprises entre les mots clÃ©s
+    <literal>try</literal> et <literal>catch</literal> sont exÃ©cutÃ©es.
+    Cependant, si une erreur se produit pendant l'exÃ©cution de ces
+    instructions, l'erreur est mÃ©morisÃ©e, les instructions restantes jusqu'au
+    mot clÃ© <literal>catch</literal> sont ignorÃ©es et les instructions
+    comprises entre les mots clÃ©s <literal>catch</literal> et
+    <literal>end</literal> sont exÃ©cutÃ©es en utilisant le mode de gestion des
+    erreurs par dÃ©faut (voir <link linkend="errcatch">errcatch</link>).</para>
 
-    <para>L'erreur mémorisée peut être retrouvée en utilisant la fonction
+    <para>L'erreur mÃ©morisÃ©e peut Ãªtre retrouvÃ©e en utilisant la fonction
     <link linkend="lasterror">lasterror</link>.</para>
 
-    <para>Les intructions comprises entre les mots clés
-    <literal>catch</literal> et <literal>end</literal> peuvent être omises
-    ainsi que le mot clé <literal>catch</literal> si aucun code alternatif
+    <para>Les intructions comprises entre les mots clÃ©s
+    <literal>catch</literal> et <literal>end</literal> peuvent Ãªtre omises
+    ainsi que le mot clÃ© <literal>catch</literal> si aucun code alternatif
     n'est fourni.</para>
 
     <para>Notez que l'on peut aussi utiliser la fonction <link
     linkend="execstr">execstr</link> avec l'argument
-    <literal>'errcatch'</literal> pour gérer les erreurs et tout
-    particulièrement pour gérer les erreurs de syntaxe.</para>
+    <literal>'errcatch'</literal> pour gÃ©rer les erreurs et tout
+    particuliÃ¨rement pour gÃ©rer les erreurs de syntaxe.</para>
 
-    <para>Notez également que <literal>try-catch</literal> est plus ou moins
-    similaire à :</para>
+    <para>Notez Ã©galement que <literal>try-catch</literal> est plus ou moins
+    similaire Ã  :</para>
 
     <programlisting>if execstr("&lt;instructions du bloc try&gt;","errcatch")&lt;&gt;0 then
   &lt;instructions du bloc catch&gt;
 end</programlisting>
 
-    <para>Il utilise le même mécanisme interne que <link
+    <para>Il utilise le mÃªme mÃ©canisme interne que <link
     linkend="errcatch">errcatch</link>. C'est pourquoi <link
     linkend="errcatch">errcatch</link> ou <emphasis>execstr(...,"errcatch")
-    </emphasis>ne peut pas être utilisé à l'intérieur d'une structure
+    </emphasis>ne peut pas Ãªtre utilisÃ© Ã  l'intÃ©rieur d'une structure
     <literal>try</literal>-<literal>catch</literal>. Un tel contexte est
-    détecté et gérère un message d'erreur spécifique (cette erreur est masquée
-    et mémorisée comme n'importe quelle autre erreur si elle se produit dans
+    dÃ©tectÃ© et gÃ©rÃ¨re un message d'erreur spÃ©cifique (cette erreur est masquÃ©e
+    et mÃ©morisÃ©e comme n'importe quelle autre erreur si elle se produit dans
     le bloc <literal>try</literal>).</para>
 
     <para>Par contre plusieurs structures
-    <literal>try</literal>-<literal>catch</literal> peuvent être imbriquées
-    les unes dans les autres (voir le deuxième exemple ci-dessous).</para>
+    <literal>try</literal>-<literal>catch</literal> peuvent Ãªtre imbriquÃ©es
+    les unes dans les autres (voir le deuxiÃ¨me exemple ci-dessous).</para>
   </refsection>
 
   <refsection>
@@ -96,13 +96,13 @@ try
   u=mopen(file_path,'r')
   x=mget(10,'c',u)
 catch
-  disp(['le fichier '+file_path+ 'ne peut pas être lu', 
-        'on utilise la valeur  par défaut de x'])
+  disp(['le fichier '+file_path+ 'ne peut pas Ãªtre lu', 
+        'on utilise la valeur  par dÃ©faut de x'])
   x=1:10
 end 
 [error_message,error_number]=lasterror(%t) 
 
-// 2ème exemple (structures try/catch imbriquées)
+// 2Ã¨me exemple (structures try/catch imbriquÃ©es)
 function nestedtry(a,b)
 disp("DEBUT")
 mprintf("\ta est %s\t\tb est %s\n",string(a),string(b))
@@ -110,21 +110,21 @@ try
   disp("try 1")
   try
     disp("try 2")
-    z=a+1;  // err si chaîne
+    z=a+1;  // err si chaÃ®ne
   catch
     disp("catch 2")
-    t=b+1;  // err si chaîne
+    t=b+1;  // err si chaÃ®ne
   end
-  disp("après try 2")
+  disp("aprÃ¨s try 2")
 catch
   disp("catch 1")
 end
-disp("après try 1 - FIN")
+disp("aprÃ¨s try 1 - FIN")
 endfunction
 nestedtry(1,1)
-nestedtry("une chaîne",1)
-nestedtry(1,"une chaîne")
-nestedtry("une chaîne","une chaîne") </programlisting>
+nestedtry("une chaÃ®ne",1)
+nestedtry(1,"une chaÃ®ne")
+nestedtry("une chaÃ®ne","une chaÃ®ne") </programlisting>
   </refsection>
 
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>unix</refname>
-    <refpurpose> exécution d'une commande Unix ou DOS  </refpurpose>
+    <refpurpose> exÃ©cution d'une commande Unix ou DOS  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>stat=unix(command-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>command-name</term>
         <listitem>
-          <para>chaîne de caractères contenant les commandes à exécuter</para>
+          <para>chaÃ®ne de caractÃ¨res contenant les commandes Ã  exÃ©cuter</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -42,12 +42,12 @@
   <refsection>
     <title>Description</title>
     <para>
-			Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
-			(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportées dans 
-			l'interpréteur de commande.
+			Envoie la chaÃ®ne <literal>command-name</literal> Ã  l'interprÃ©teur de commande
+			(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs sont reportÃ©es dans 
+			l'interprÃ©teur de commande.
 		</para>
-    <para><literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas être appelée (pas assez de mémoire par exemple) ou
-			alors le code de sortie de l'interpréteur de commande.
+    <para><literal>stat</literal> vaut -1 en sortie si la fonction ne peut pas Ãªtre appelÃ©e (pas assez de mÃ©moire par exemple) ou
+			alors le code de sortie de l'interprÃ©teur de commande.
 		</para>
   </refsection>
   <refsection>

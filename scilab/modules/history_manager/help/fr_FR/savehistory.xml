@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Allan CORNET
@@ -19,17 +19,17 @@
     <refpurpose>sauvegarde l'historique de scilab dans un fichier.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>savehistory()
 savehistory(f)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>f</term>
         <listitem>
-          <para>chemin du fichier dans lequel sera sauvegardé l'historique de scilab</para>
+          <para>chemin du fichier dans lequel sera sauvegardÃ© l'historique de scilab</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,7 +37,7 @@ savehistory(f)</synopsis>
   <refsection>
     <title>Description</title>
     <para>sauvegarde l'historique de scilab dans un fichier.</para>
-    <para>Par défaut, l'historique est sauvegardé dans SCIHOME+'/.history.scilab'</para>
+    <para>Par dÃ©faut, l'historique est sauvegardÃ© dans SCIHOME+'/.history.scilab'</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

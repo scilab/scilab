@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="horner">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>horner</refname>
-    <refpurpose> évaluation d'un polynôme ou d'une fraction rationnelle  </refpurpose>
+    <refpurpose> Ã©valuation d'un polynÃ´me ou d'une fraction rationnelle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>horner(P,x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>P  </term>
         <listitem>
-          <para>polynôme ou matrice de polynômes
+          <para>polynÃ´me ou matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>x  </term>
         <listitem>
-          <para>vecteur de nombres , de polynômes ou de fractions rationnelles
+          <para>vecteur de nombres , de polynÃ´mes ou de fractions rationnelles
 </para>
         </listitem>
       </varlistentry>
@@ -33,24 +33,24 @@
   <refsection>
     <title>Description</title>
     <para>
-    évalue le polynôme ou la fraction rationnelle (ou matrice de fractions rationnelles)
-    <literal>P = P(s)</literal> quand la variable <literal>s</literal> du polynôme 
-    est remplacée par <literal>x</literal> :
+    Ã©value le polynÃ´me ou la fraction rationnelle (ou matrice de fractions rationnelles)
+    <literal>P = P(s)</literal> quand la variable <literal>s</literal> du polynÃ´me 
+    est remplacÃ©e par <literal>x</literal> :
   </para>
     <para><literal>horner(P,x)</literal>=<literal>P(x)</literal></para>
     <para>
-    Exemple (transformation bilinéaire) : supposons que <literal>P = P(s)</literal> est 
-    une matrice de polynômes, alors la matrice de polynômes 
+    Exemple (transformation bilinÃ©aire) : supposons que <literal>P = P(s)</literal> est 
+    une matrice de polynÃ´mes, alors la matrice de polynÃ´mes 
     <literal>P((1+s)/(1-s))</literal> est obtenue par <literal>horner(P,(1+s)/(1-s))</literal>.
   </para>
     <para>
-    Pour évaluer une matrice de polynômes à des fréquences données utiliser plutôt la primitive <literal>freq</literal>. 
+    Pour Ã©valuer une matrice de polynÃ´mes Ã  des frÃ©quences donnÃ©es utiliser plutÃ´t la primitive <literal>freq</literal>. 
   </para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-//evaluation d'un polynŽôme pour un vecteur de nombres
+//evaluation d'un polynÂŽÃ´me pour un vecteur de nombres
 P=poly(1:3,'x')
 horner(P,[1 2 5])
 horner(P,[1 2 5]+%i)
@@ -61,7 +61,7 @@ horner(M,1)
 horner(M,%i)
 horner(M,1/s)
 
-//evaluation d'un polynŽôme pour une matrice de nombres
+//evaluation d'un polynÂŽÃ´me pour une matrice de nombres
 X= [1 2;3 4]
 p=poly(1:3,'x','c')
 m=horner(p, X)

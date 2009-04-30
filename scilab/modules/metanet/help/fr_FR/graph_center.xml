@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> centre d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[no,rad] = graph_center(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -52,9 +52,9 @@
     <title>Description</title>
     <para><literal>graph_center</literal> calcule le centre du graphe <literal>g</literal> i.e. le sommet 
     pour lequel le plus grand des plus petits chemins vers tous les autres 
-    sommets est minimum. La longueur des arcs est supposée entière (1 par défaut). 
+    sommets est minimum. La longueur des arcs est supposÃ©e entiÃ¨re (1 par dÃ©faut). 
     La sortie est la valeur <literal>rad</literal> de la longueur du rayon et
-    <literal>no</literal> qui est le numéro du sommet du centre du graphe.
+    <literal>no</literal> qui est le numÃ©ro du sommet du centre du graphe.
   </para>
   </refsection>
   <refsection>

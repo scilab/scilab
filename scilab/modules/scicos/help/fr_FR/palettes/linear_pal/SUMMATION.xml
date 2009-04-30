@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_SUMMATION">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_SUMMATION">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_SUMMATION">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_SUMMATION">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,28 +98,28 @@
   <refsection id="Description_SUMMATION">
     <title>Description</title>
     <para>
-Ce bloc fait l'addition ou la soustraction de ses entrées. Ce bloc peut additioner et soustraire des grandeurs scalaires, vectorielles et matricielles. Il peut aussi faire la somme cumulative d'une seule entrée vectorielle. 
+Ce bloc fait l'addition ou la soustraction de ses entrÃ©es. Ce bloc peut additioner et soustraire des grandeurs scalaires, vectorielles et matricielles. Il peut aussi faire la somme cumulative d'une seule entrÃ©e vectorielle. 
 </para>
     <para>
-Le nombre d'entrée est donné par le second paramètre de la boite de dialogue. Ce paramètre peut être un vecteur de nombre +1 et -1 ou bien il peut être une seule valeur positive. Dans le premier cas le vecteur donne le nombre d'entrée et le signe indique si c'est une addition ou une soustraction. Pour le second choix, ce bloc est un additionneur dont le nombre d'entrée est déterminée par la valeur de ce paramètre.  
+Le nombre d'entrÃ©e est donnÃ© par le second paramÃ¨tre de la boite de dialogue. Ce paramÃ¨tre peut Ãªtre un vecteur de nombre +1 et -1 ou bien il peut Ãªtre une seule valeur positive. Dans le premier cas le vecteur donne le nombre d'entrÃ©e et le signe indique si c'est une addition ou une soustraction. Pour le second choix, ce bloc est un additionneur dont le nombre d'entrÃ©e est dÃ©terminÃ©e par la valeur de ce paramÃ¨tre.  
 </para>
     <para>
-Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différentes suivant le troisième paramètre "DO ON OVERFLOW":  
+Lorsqu'un dÃ©passement intervient, le rÃ©sulat peut prendre des valeurs diffÃ©rentes suivant le troisiÃ¨me paramÃ¨tre "DO ON OVERFLOW":  
 </para>
     <para>
-1- Un résulat non saturé. 
+1- Un rÃ©sulat non saturÃ©. 
 </para>
     <para>
-2- Un résultat saturé. 
+2- Un rÃ©sultat saturÃ©. 
 </para>
     <para>
-3- Un message d'erreur est signalé lorsqu'un dépassement intervient. 
+3- Un message d'erreur est signalÃ© lorsqu'un dÃ©passement intervient. 
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_SUMMATION">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_SUMMATION">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -135,27 +135,27 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
         <para>
           <emphasis role="bold">Datatype (1=real double 2=complex 3=int32 ...)</emphasis>
         </para>
-        <para> Indique le type de donnée des entrées/sortie. Tous les types de données, numérotés de 1 à 8, sont supportés.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Indique le type de donnÃ©e des entrÃ©es/sortie. Tous les types de donnÃ©es, numÃ©rotÃ©s de 1 Ã  8, sont supportÃ©s.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Number of inputs or sign vector (of +1, -1)</emphasis>
         </para>
-        <para> Indique le nombre d'entrées et le type d'opération (addition ou soustraction). Voir la description pour plus de détails.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> Indique le nombre d'entrÃ©es et le type d'opÃ©ration (addition ou soustraction). Voir la description pour plus de dÃ©tails.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate 2=Error)</emphasis>
         </para>
-        <para> Lorsque que ce paramètre est mis à la valeur 0, le résultat est similaire à une addition de deux matrices. Lorque la valeur est à 1, lorqu'un dépassement intervient, le bloc sature la valeur de sortie. Lorsque la valeur est égale à 2, alors, lors d'un dépassement de capacité, un message d'erreur est envoyé à l'utilisateur. Lorsque le type de donnée est un nombre réel ou un nombre complexe, ce paramètre n'est pas pris en compte.</para>
-        <para> Propriétés : Type 'vec' de taile 1.</para>
+        <para> Lorsque que ce paramÃ¨tre est mis Ã  la valeur 0, le rÃ©sultat est similaire Ã  une addition de deux matrices. Lorque la valeur est Ã  1, lorqu'un dÃ©passement intervient, le bloc sature la valeur de sortie. Lorsque la valeur est Ã©gale Ã  2, alors, lors d'un dÃ©passement de capacitÃ©, un message d'erreur est envoyÃ© Ã  l'utilisateur. Lorsque le type de donnÃ©e est un nombre rÃ©el ou un nombre complexe, ce paramÃ¨tre n'est pas pris en compte.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taile 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_SUMMATION">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_SUMMATION">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -164,14 +164,14 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
@@ -182,26 +182,26 @@ Lorsqu'un dépassement intervient, le résulat peut prendre des valeurs différente
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,-2] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

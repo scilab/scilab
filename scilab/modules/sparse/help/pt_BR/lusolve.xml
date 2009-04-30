@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -28,14 +28,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>lusolve(hand,b)
 lusolve(A,b)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@ lusolve(A,b)</synopsis>
         <term>A</term>
 
         <listitem>
-          <para>matriz quadrada de reais esparsa e invertível </para>
+          <para>matriz quadrada de reais esparsa e invertÃ­vel </para>
         </listitem>
       </varlistentry>
 
@@ -59,19 +59,19 @@ lusolve(A,b)</synopsis>
 
         <listitem>
           <para>manipulador para fatores de lu esparsos previamente computados
-          (saída de lufact)</para>
+          (saÃ­da de lufact)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>x=lusolve(hand,b)</literal> resolve o sistema linear
     esparso <literal>A*x = b</literal>.</para>
 
-    <para><literal>[hand,rk]=lufact(A)</literal> é a saída de lufact.</para>
+    <para><literal>[hand,rk]=lufact(A)</literal> Ã© a saÃ­da de lufact.</para>
 
     <para><literal>x=lusolve(A,b)</literal> resolve o sistema linear esparso
     <literal>A*x = b</literal></para>
@@ -96,7 +96,7 @@ sp*x
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

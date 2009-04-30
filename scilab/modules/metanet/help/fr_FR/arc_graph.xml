@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> graphe avec sommets correspondant aux arcs  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = arc_graph(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -43,22 +43,22 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>arc_graph</literal> renvoie le graphe orienté <literal>g1</literal> avec les sommets 
-    correspondant aux arcs du graphe orienté <literal>g</literal>.
-    <literal>g1</literal> est défini de la façon suivante :
+    <para><literal>arc_graph</literal> renvoie le graphe orientÃ© <literal>g1</literal> avec les sommets 
+    correspondant aux arcs du graphe orientÃ© <literal>g</literal>.
+    <literal>g1</literal> est dÃ©fini de la faÃ§on suivante :
   </para>
     <para>
     - ses sommets correspondent aux arcs de <literal>g</literal>
   </para>
     <para>
-    - 2 sommets du nouveau graphe sont adjacents si et seulement si les arcs correspondants du graphe <literal>g</literal> sont consécutifs.
+    - 2 sommets du nouveau graphe sont adjacents si et seulement si les arcs correspondants du graphe <literal>g</literal> sont consÃ©cutifs.
   </para>
     <para>
-    Les coordonnées des sommets de <literal>g1</literal> sont données par les milieux des 
-    arêtes correspondantes de <literal>g</literal>.
+    Les coordonnÃ©es des sommets de <literal>g1</literal> sont donnÃ©es par les milieux des 
+    arÃªtes correspondantes de <literal>g</literal>.
   </para>
     <para>
-    Si un tel graphe d'arcs n'existe pas, un vecteur vide est renvoyé
+    Si un tel graphe d'arcs n'existe pas, un vecteur vide est renvoyÃ©
   </para>
   </refsection>
   <refsection>

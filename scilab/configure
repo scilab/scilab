@@ -15743,7 +15743,7 @@ else
 
 
 cat >>confdefs.h <<\_ACEOF
-#define isinf(x) !finite(x) && x==x;
+#define isinf(x) (!finite(x) && x==x)
 _ACEOF
 
 
@@ -18253,9 +18253,8 @@ fi
 
 
 	if test "$OCAMLC" = no; then
-		{ { $as_echo "$as_me:$LINENO: error: ocamlc not found. Mandatory to build Scicos (Use --without-ocaml to disable the Modelica compiler)." >&5
-$as_echo "$as_me: error: ocamlc not found. Mandatory to build Scicos (Use --without-ocaml to disable the Modelica compiler)." >&2;}
-   { (exit 1); exit 1; }; }
+		{ $as_echo "$as_me:$LINENO: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&5
+$as_echo "$as_me: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&2;}
 	fi
 	# Extract the first word of "ocamlopt", so it can be a program name with args.
 set dummy ocamlopt; ac_word=$2
@@ -18296,9 +18295,8 @@ fi
 
 
 	if test "$OCAMLOPT" = no; then
-		{ { $as_echo "$as_me:$LINENO: error: ocamlopt not found. Mandatory to build Scicos." >&5
-$as_echo "$as_me: error: ocamlopt not found. Mandatory to build Scicos." >&2;}
-   { (exit 1); exit 1; }; }
+		{ $as_echo "$as_me:$LINENO: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&2;}
 	fi
 	# Extract the first word of "ocamldep", so it can be a program name with args.
 set dummy ocamldep; ac_word=$2
@@ -18339,9 +18337,8 @@ fi
 
 
 	if test "$OCAMLDEP" = no; then
-		{ { $as_echo "$as_me:$LINENO: error: ocamldep not found. Mandatory to build Scicos." >&5
-$as_echo "$as_me: error: ocamldep not found. Mandatory to build Scicos." >&2;}
-   { (exit 1); exit 1; }; }
+		{ $as_echo "$as_me:$LINENO: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&2;}
 	fi
 	# Extract the first word of "ocamlyacc", so it can be a program name with args.
 set dummy ocamlyacc; ac_word=$2
@@ -18382,9 +18379,8 @@ fi
 
 
 	if test "$OCAMLYACC" = no; then
-		{ { $as_echo "$as_me:$LINENO: error: ocamlyacc not found. Mandatory to build Scicos." >&5
-$as_echo "$as_me: error: ocamlyacc not found. Mandatory to build Scicos." >&2;}
-   { (exit 1); exit 1; }; }
+		{ $as_echo "$as_me:$LINENO: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&2;}
 	fi
 	# Extract the first word of "ocamllex", so it can be a program name with args.
 set dummy ocamllex; ac_word=$2
@@ -18425,20 +18421,14 @@ fi
 
 
 	if test "$OCAMLLEX" = no; then
-		{ { $as_echo "$as_me:$LINENO: error: ocamllex not found. Mandatory to build Scicos." >&5
-$as_echo "$as_me: error: ocamllex not found. Mandatory to build Scicos." >&2;}
-   { (exit 1); exit 1; }; }
+		{ $as_echo "$as_me:$LINENO: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&2;}
 	fi
 
 cat >>confdefs.h <<\_ACEOF
 #define WITH_OCAML /**/
 _ACEOF
 
-	OCAMLC=ocamlc
-	OCAMLOPT=ocamlopt
-	OCAMLDEP=ocamldep
-	OCAMLYACC=ocamlyacc
-	OCAMLLEX=ocamllex
 
 
 
@@ -18459,7 +18449,7 @@ fi
 
 
 
- if test "$with_ocaml" != no; then
+ if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
   OCAML_TRUE=
   OCAML_FALSE='#'
 else
@@ -25938,7 +25928,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 25941 "configure"
+#line 25931 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -26497,7 +26487,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 26500 "configure"
+#line 26490 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27348,7 +27338,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27351 "configure"
+// #line 27341 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -27421,7 +27411,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27424 "configure"
+// #line 27414 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -27496,7 +27486,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27499 "configure"
+// #line 27489 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -27569,7 +27559,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27572 "configure"
+// #line 27562 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -27642,7 +27632,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27645 "configure"
+// #line 27635 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -27715,7 +27705,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27718 "configure"
+// #line 27708 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -27788,7 +27778,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27791 "configure"
+// #line 27781 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -27861,7 +27851,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27864 "configure"
+// #line 27854 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -27935,7 +27925,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27938 "configure"
+// #line 27928 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -28636,7 +28626,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 28639 "configure"' > conftest.$ac_ext
+  echo '#line 28629 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -30506,11 +30496,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30509: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30499: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30513: \$? = $ac_status" >&5
+   echo "$as_me:30503: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30796,11 +30786,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30799: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30789: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30803: \$? = $ac_status" >&5
+   echo "$as_me:30793: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30900,11 +30890,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30903: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30893: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30907: \$? = $ac_status" >&5
+   echo "$as_me:30897: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33385,7 +33375,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 33388 "configure"
+#line 33378 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -33485,7 +33475,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 33488 "configure"
+#line 33478 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -35914,11 +35904,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35917: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:35907: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:35921: \$? = $ac_status" >&5
+   echo "$as_me:35911: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -36018,11 +36008,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36021: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36011: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:36025: \$? = $ac_status" >&5
+   echo "$as_me:36015: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -37616,11 +37606,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37619: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37609: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:37623: \$? = $ac_status" >&5
+   echo "$as_me:37613: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -37720,11 +37710,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37723: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37713: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:37727: \$? = $ac_status" >&5
+   echo "$as_me:37717: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -39952,11 +39942,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:39955: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:39945: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:39959: \$? = $ac_status" >&5
+   echo "$as_me:39949: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40242,11 +40232,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40245: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40235: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:40249: \$? = $ac_status" >&5
+   echo "$as_me:40239: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40346,11 +40336,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40349: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40339: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:40353: \$? = $ac_status" >&5
+   echo "$as_me:40343: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -44892,27 +44882,28 @@ $as_echo "$as_me: executing $ac_file commands" >&6;}
 
 
   case $ac_file$ac_mode in
-    "depfiles":C) test x"$AMDEP_TRUE" != x"" || # Autoconf 2.62 quotes --file arguments for eval, but not when files
-# are listed without --file.  Let's play safe and only enable the eval
-# if we detect the quoting.
-case $CONFIG_FILES in
-*\'*) eval set x "$CONFIG_FILES" ;;
-*)   set x $CONFIG_FILES ;;
-esac
-shift
-for mf
-do
-  # Strip MF so we end up with the name of the file.
-  mf=`echo "$mf" | sed -e 's/:.*$//'`
-  # Check whether this is an Automake generated Makefile or not.
-  # We used to match only the files named `Makefile.in', but
-  # some people rename them; so instead we look at the file content.
-  # Grep'ing the first line is not enough: some people post-process
-  # each Makefile.in and add a new line on top of each file to say so.
-  # Grep'ing the whole file is not good either: AIX grep has a line
-  # limit of 2048, but all sed's we know have understand at least 4000.
-  if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
-    dirpart=`$as_dirname -- "$mf" ||
+    "depfiles":C) test x"$AMDEP_TRUE" != x"" || {
+  # Autoconf 2.62 quotes --file arguments for eval, but not when files
+  # are listed without --file.  Let's play safe and only enable the eval
+  # if we detect the quoting.
+  case $CONFIG_FILES in
+  *\'*) eval set x "$CONFIG_FILES" ;;
+  *)   set x $CONFIG_FILES ;;
+  esac
+  shift
+  for mf
+  do
+    # Strip MF so we end up with the name of the file.
+    mf=`echo "$mf" | sed -e 's/:.*$//'`
+    # Check whether this is an Automake generated Makefile or not.
+    # We used to match only the files named `Makefile.in', but
+    # some people rename them; so instead we look at the file content.
+    # Grep'ing the first line is not enough: some people post-process
+    # each Makefile.in and add a new line on top of each file to say so.
+    # Grep'ing the whole file is not good either: AIX grep has a line
+    # limit of 2048, but all sed's we know have understand at least 4000.
+    if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+      dirpart=`$as_dirname -- "$mf" ||
 $as_expr X"$mf" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$mf" : 'X\(//\)[^/]' \| \
 	 X"$mf" : 'X\(//\)$' \| \
@@ -44935,28 +44926,28 @@ $as_echo X"$mf" |
 	    q
 	  }
 	  s/.*/./; q'`
-  else
-    continue
-  fi
-  # Extract the definition of DEPDIR, am__include, and am__quote
-  # from the Makefile without running `make'.
-  DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
-  test -z "$DEPDIR" && continue
-  am__include=`sed -n 's/^am__include = //p' < "$mf"`
-  test -z "am__include" && continue
-  am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
-  # When using ansi2knr, U may be empty or an underscore; expand it
-  U=`sed -n 's/^U = //p' < "$mf"`
-  # Find all dependency output files, they are included files with
-  # $(DEPDIR) in their names.  We invoke sed twice because it is the
-  # simplest approach to changing $(DEPDIR) to its actual value in the
-  # expansion.
-  for file in `sed -n "
-    s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
-       sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
-    # Make sure the directory exists.
-    test -f "$dirpart/$file" && continue
-    fdir=`$as_dirname -- "$file" ||
+    else
+      continue
+    fi
+    # Extract the definition of DEPDIR, am__include, and am__quote
+    # from the Makefile without running `make'.
+    DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
+    test -z "$DEPDIR" && continue
+    am__include=`sed -n 's/^am__include = //p' < "$mf"`
+    test -z "am__include" && continue
+    am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
+    # When using ansi2knr, U may be empty or an underscore; expand it
+    U=`sed -n 's/^U = //p' < "$mf"`
+    # Find all dependency output files, they are included files with
+    # $(DEPDIR) in their names.  We invoke sed twice because it is the
+    # simplest approach to changing $(DEPDIR) to its actual value in the
+    # expansion.
+    for file in `sed -n "
+      s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
+	 sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
+      # Make sure the directory exists.
+      test -f "$dirpart/$file" && continue
+      fdir=`$as_dirname -- "$file" ||
 $as_expr X"$file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$file" : 'X\(//\)[^/]' \| \
 	 X"$file" : 'X\(//\)$' \| \
@@ -44979,7 +44970,7 @@ $as_echo X"$file" |
 	    q
 	  }
 	  s/.*/./; q'`
-    { as_dir=$dirpart/$fdir
+      { as_dir=$dirpart/$fdir
   case $as_dir in #(
   -*) as_dir=./$as_dir;;
   esac
@@ -45020,10 +45011,11 @@ $as_echo X"$as_dir" |
   } || test -d "$as_dir" || { { $as_echo "$as_me:$LINENO: error: cannot create directory $as_dir" >&5
 $as_echo "$as_me: error: cannot create directory $as_dir" >&2;}
    { (exit 1); exit 1; }; }; }
-    # echo "creating $dirpart/$file"
-    echo '# dummy' > "$dirpart/$file"
+      # echo "creating $dirpart/$file"
+      echo '# dummy' > "$dirpart/$file"
+    done
   done
-done
+}
  ;;
     "modules/core/includes/stack.h":C) if ! $CPP $stack_h_cpp_flags - < $srcdir/modules/core/includes/stack.h.in |\
               $GREP -v '^#' > $srcdir/modules/core/includes/stack.h ; then
@@ -45142,10 +45134,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else
    echo "Not using Scicos"
 fi

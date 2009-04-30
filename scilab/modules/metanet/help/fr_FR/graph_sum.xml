@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> somme de deux graphes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g2 = graph_sum(g,g1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -50,11 +50,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>graph_sum</literal> crée un graphe <literal>g2</literal> avec une matrice  d'adjacence égale 
-    à la somme des matrices d'adjacence des deux graphes <literal>g</literal> et 
+    <para><literal>graph_sum</literal> crÃ©e un graphe <literal>g2</literal> avec une matrice  d'adjacence Ã©gale 
+    Ã  la somme des matrices d'adjacence des deux graphes <literal>g</literal> et 
     <literal>g1</literal>.
-    <literal>g</literal> et <literal>g1</literal> sont supposés simples (utiliser <literal>graph_simp</literal> 
-    avant d'appeler <literal>graph_complement</literal> si nécessaire) et avoir le même
+    <literal>g</literal> et <literal>g1</literal> sont supposÃ©s simples (utiliser <literal>graph_simp</literal> 
+    avant d'appeler <literal>graph_complement</literal> si nÃ©cessaire) et avoir le mÃªme
     nombre de sommets.
   </para>
   </refsection>

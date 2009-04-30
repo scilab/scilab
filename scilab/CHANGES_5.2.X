@@ -56,6 +56,12 @@ Dynamic link:
  - add a example to call a scilab macro from a C interface
    (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
 
+
+Online Help :
+=============
+
+ - Sub-Chapters are now allowed (See SEP #24)
+
 char encoding bugs :
 ====================
 
@@ -65,6 +71,8 @@ char encoding bugs :
              contains accented characters.
 
 * bug 3666 fixed - 'input' returns accented characters.
+
+* bug 3701 fixed - "Error during call to UTFToLocale: No such file or directory" on Windows.
 
 * bug 3839 fixed - strrev() doesn't work correctly if the string to be reversed
                    includes some accentuated characters.

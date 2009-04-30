@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="lstsize" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>lstsize</refname>
 
-    <refpurpose>nombre d'éléments des objets list, tlist et mlist</refpurpose>
+    <refpurpose>nombre d'Ã©lÃ©ments des objets list, tlist et mlist</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>n=lstsize(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -38,7 +38,7 @@
         <term>n</term>
 
         <listitem>
-          <para>un entier, le nombre d'éléments de la liste</para>
+          <para>un entier, le nombre d'Ã©lÃ©ments de la liste</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,9 +47,9 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>lstsize(x)</literal> retourne le nombre d'élément d'un
+    <para><literal>lstsize(x)</literal> retourne le nombre d'Ã©lÃ©ment d'un
     objet de type list, tlist ou mlist. Cette fonction est plus efficace que
-    la fonction <literal>size</literal> et à la même signification pour tous
+    la fonction <literal>size</literal> et Ã  la mÃªme signification pour tous
     les objets de type list tandis que <literal>size</literal> est surcharge
     pour les objets de type <literal>mlist</literal>.</para>
   </refsection>

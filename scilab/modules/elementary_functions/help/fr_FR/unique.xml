@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="unique" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,7 +18,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>
       [N [,k]]=unique(M)
@@ -27,15 +27,15 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>M</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres ou de chaînes de
-          caractères</para>
+          <para>vecteur ou matrice de nombres ou de chaÃ®nes de
+          caractÃ¨res</para>
         </listitem>
       </varlistentry>
 
@@ -51,8 +51,8 @@
         <term>N</term>
 
         <listitem>
-          <para>vecteur ou matrice de nombres ou de chaînes de
-          caractères</para>
+          <para>vecteur ou matrice de nombres ou de chaÃ®nes de
+          caractÃ¨res</para>
         </listitem>
       </varlistentry>
 
@@ -71,18 +71,18 @@
 
     <para><literal>unique(M)</literal> renvoie un vecteur contenant les
     valeurs distinctes contenues dans les termes de <literal>M</literal>
-    classées par ordre croissant.</para>
+    classÃ©es par ordre croissant.</para>
 
     <para><literal>unique(M,"r")</literal> ou
     <literal>unique(M,1)</literal>retourne les lignes uniques de
-    <literal>M</literal> triées dans l'ordre lexicographique croissant.</para>
+    <literal>M</literal> triÃ©es dans l'ordre lexicographique croissant.</para>
 
     <para><literal>unique(M,"c")</literal> or
     <literal>unique(M,2)</literal>retourne les colonnes uniques
-    <literal>M</literal> triées dans l'ordre lexicographique croissant.</para>
+    <literal>M</literal> triÃ©es dans l'ordre lexicographique croissant.</para>
 
-    <para>S'il est présent l'argument de sortie <literal>k</literal> contient
-    la position de la première occurrence de chaque valeur distincte dans
+    <para>S'il est prÃ©sent l'argument de sortie <literal>k</literal> contient
+    la position de la premiÃ¨re occurrence de chaque valeur distincte dans
     <literal>M</literal>.</para>
   </refsection>
 

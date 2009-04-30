@@ -802,7 +802,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -931,7 +931,7 @@ fi
 
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML,  test "$with_ocaml" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
 AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
@@ -1515,10 +1515,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else 
    echo "Not using Scicos"
 fi

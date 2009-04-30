@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_RAMP">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_RAMP">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_RAMP">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_RAMP">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,16 +98,16 @@
   <refsection id="Description_RAMP">
     <title>Description</title>
     <para>
-Le bloc RAMP génére un signal qui commence à une date et à une valeur
-spécifiées et évolue suivant une pente donnée.
-Les paramètres <emphasis role="bold">Slope , Start time</emphasis> et <emphasis role="bold">Initial output</emphasis> déterminent
-les caractéristiques du signal de sortie.
-Ces paramètres doivent avoir des dimensions identiques.
+Le bloc RAMP gÃ©nÃ©re un signal qui commence Ã  une date et Ã  une valeur
+spÃ©cifiÃ©es et Ã©volue suivant une pente donnÃ©e.
+Les paramÃ¨tres <emphasis role="bold">Slope , Start time</emphasis> et <emphasis role="bold">Initial output</emphasis> dÃ©terminent
+les caractÃ©ristiques du signal de sortie.
+Ces paramÃ¨tres doivent avoir des dimensions identiques.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_RAMP">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_RAMP">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -123,27 +123,27 @@ Ces paramètres doivent avoir des dimensions identiques.
         <para>
           <emphasis role="bold">Slope</emphasis>
         </para>
-        <para> La pente du signal généré.</para>
+        <para> La pente du signal gÃ©nÃ©rÃ©.</para>
         <para> The rate of change of the generated signal.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Start time</emphasis>
         </para>
-        <para> La date d'origine à laquelle le signal est généré. Propriétés : Type 'vec' de taille 1. </para>
+        <para> La date d'origine Ã  laquelle le signal est gÃ©nÃ©rÃ©. PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Initial output</emphasis>
         </para>
         <para> La valeur initiale du signal.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_RAMP">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_RAMP">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
@@ -152,33 +152,33 @@ Ces paramètres doivent avoir des dimensions identiques.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> oui</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

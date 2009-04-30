@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_ABS_VALUE">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_ABS_VALUE">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_ABS_VALUE">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_ABS_VALUE">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -90,7 +90,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Non_linear_pal">Non_linear - Palette Non-linéaire</link>
+          <link linkend="Non_linear_pal">Non_linear - Palette Non-linÃ©aire</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -98,12 +98,12 @@
   <refsection id="Description_ABS_VALUE">
     <title>Description</title>
     <para>
-Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
+Le bloc Abs calcule Ã  la sortie, la valeur absolue de l'entrÃ©e.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_ABS_VALUE">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_ABS_VALUE">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -119,13 +119,13 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
         <para>
           <emphasis role="bold">use zero_crossing</emphasis>
         </para>
-        <para> Choix Oui/Non (1/0) pour activer la détection de passage à zéro.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Choix Oui/Non (1/0) pour activer la dÃ©tection de passage Ã  zÃ©ro.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_ABS_VALUE">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_ABS_VALUE">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -134,14 +134,14 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> oui</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -149,26 +149,26 @@ Le bloc Abs calcule à la sortie, la valeur absolue de l'entrée.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

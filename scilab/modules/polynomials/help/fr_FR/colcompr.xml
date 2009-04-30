@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="colcompr">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>colcompr</refname>
-    <refpurpose> compression des colonnes d'une matrice de polynômes  </refpurpose>
+    <refpurpose> compression des colonnes d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Y  </term>
         <listitem>
-          <para>matrice carrée de polynômes (base unimodulaire à droite)
+          <para>matrice carrÃ©e de polynÃ´mes (base unimodulaire Ã  droite)
 </para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@
         <term>Ac  </term>
         <listitem>
           <para>
-    : <literal>Ac=A*Y</literal>, matrice de polynômes
+    : <literal>Ac=A*Y</literal>, matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -48,7 +48,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Compression de colonnes de la matrice de polynômes <literal>A</literal> (compression à gauche)
+    Compression de colonnes de la matrice de polynÃ´mes <literal>A</literal> (compression Ã  gauche)
   </para>
   </refsection>
   <refsection>

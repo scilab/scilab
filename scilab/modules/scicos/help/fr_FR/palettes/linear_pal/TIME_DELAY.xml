@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_TIME_DELAY">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_TIME_DELAY">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_TIME_DELAY">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_TIME_DELAY">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,20 +98,20 @@
   <refsection id="Description_TIME_DELAY">
     <title>Description</title>
     <para>
-Ce bloc retarde l'entrée par un laps de temps spécifié.
-Il peut être utilisé pour la simulation d'un retad temporel.
-Au début de la simulation, le bloc délivre la valeur du paramètre
-<emphasis role="bold">Initial input</emphasis> jusqu'à ce que le temps de la simulation dépasse
-le paramètre <emphasis role="bold">Time delay</emphasis>, auquel cas, le bloc commence à réaliser
+Ce bloc retarde l'entrÃ©e par un laps de temps spÃ©cifiÃ©.
+Il peut Ãªtre utilisÃ© pour la simulation d'un retad temporel.
+Au dÃ©but de la simulation, le bloc dÃ©livre la valeur du paramÃ¨tre
+<emphasis role="bold">Initial input</emphasis> jusqu'Ã  ce que le temps de la simulation dÃ©passe
+le paramÃ¨tre <emphasis role="bold">Time delay</emphasis>, auquel cas, le bloc commence Ã  rÃ©aliser
 le retard.
 </para>
     <para>
-La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non-négative.
+La valeur du paramÃ¨tre <emphasis role="bold">Time delay</emphasis> doit Ãªtre non-nÃ©gative.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_TIME_DELAY">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_TIME_DELAY">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -127,27 +127,27 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
         <para>
           <emphasis role="bold">Delay</emphasis>
         </para>
-        <para> Le temps définissant le retard entre l'entrée et la sortie pendant la simulation. Cette valeur doit être supérieure ou égale à zéro.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> Le temps dÃ©finissant le retard entre l'entrÃ©e et la sortie pendant la simulation. Cette valeur doit Ãªtre supÃ©rieure ou Ã©gale Ã  zÃ©ro.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">initial input</emphasis>
         </para>
-        <para> La valeur initiale de la sortie du bloc avant que l'entrée ne soit reportée à la sortie.</para>
-        <para> Propriétés : Type 'vec' de taille 1 </para>
+        <para> La valeur initiale de la sortie du bloc avant que l'entrÃ©e ne soit reportÃ©e Ã  la sortie.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1 </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Buffer size</emphasis>
         </para>
-        <para> L'allocation de mémoire initiale définissant le le nombre de points à enregistrer.</para>
-        <para> Propriétés : Type 'vec' de taille 1</para>
+        <para> L'allocation de mÃ©moire initiale dÃ©finissant le le nombre de points Ã  enregistrer.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_TIME_DELAY">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_TIME_DELAY">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -156,14 +156,14 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
@@ -171,26 +171,26 @@ La valeur du paramètre <emphasis role="bold">Time delay</emphasis> doit être non
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

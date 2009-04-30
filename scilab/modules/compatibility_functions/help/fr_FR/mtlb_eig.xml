@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,11 +16,11 @@
   </info>
   <refnamediv>
     <refname>mtlb_eig</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab eig</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab eig</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>ATTENTION: Cette fonction est obsolète et sera retirée dans la version 5.1.2, veuillez utiliser <link linkend="spec">spec</link> en remplacement.</para>
+    <para>ATTENTION: Cette fonction est obsolÃ¨te et sera retirÃ©e dans la version 5.1.2, veuillez utiliser <link linkend="spec">spec</link> en remplacement.</para>
   </refsection>
   <refsection>
     <title>Voir aussi</title>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
@@ -16,50 +16,50 @@
   </info>
   <refnamediv>
     <refname>cdfgam</refname>
-    <refpurpose> fonction de répartition de la distribution gamma  </refpurpose>
+    <refpurpose> fonction de rÃ©partition de la distribution gamma  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[P,Q]=cdfgam("PQ",X,Shape,Scale)
 [X]=cdfgam("X",Shape,Scale,P,Q)
 [Shape]=cdfgam("Shape",Scale,P,Q,X)
 [Scale]=cdfgam("Scale",P,Q,X,Shape)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,X,Shape,Scale  </term>
         <listitem>
-          <para>5 vecteurs réels de même taille.
+          <para>5 vecteurs rÃ©els de mÃªme taille.
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>P,Q (Q=1-P)  </term>
         <listitem>
-          <para> L'intégrale de 0 à X de la distribution gamma En entrée : [0,1].
+          <para> L'intÃ©grale de 0 Ã  X de la distribution gamma En entrÃ©e : [0,1].
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para> Borne supérieure d'intégration En entrée : [0, +infini). En recherche : [0,1E300]
+          <para> Borne supÃ©rieure d'intÃ©gration En entrÃ©e : [0, +infini). En recherche : [0,1E300]
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Shape  </term>
         <listitem>
-          <para> Le paramètre de forme de la distribution En entrée : (0, +infini). En recherche : [1E-300,1E300]
+          <para> Le paramÃ¨tre de forme de la distribution En entrÃ©e : (0, +infini). En recherche : [1E-300,1E300]
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Scale  </term>
         <listitem>
-          <para> le paramètre d'échelle de la distribution En entrée : (0, +infini). En recherche : (1E-300,1E300]
+          <para> le paramÃ¨tre d'Ã©chelle de la distribution En entrÃ©e : (0, +infini). En recherche : (1E-300,1E300]
 </para>
         </listitem>
       </varlistentry>
@@ -68,11 +68,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Étant donnés les autres, calcule un paramètre de la distribution gamma.
+    Ã‰tant donnÃ©s les autres, calcule un paramÃ¨tre de la distribution gamma.
   </para>
     <para>
-    La fonction de répartition (P) est calculée directement par
-    le code associé à
+    La fonction de rÃ©partition (P) est calculÃ©e directement par
+    le code associÃ© Ã 
   </para>
     <para>
     DiDinato, A. R. and Morris, A. H. Computation of the  incomplete
@@ -80,14 +80,14 @@
     Softw. 12 (1986), 377-393.
   </para>
     <para>
-    Le calcul des autres paramètres implique une recherche d'une valeur conduisant à la valeur désirée pour P. La recherche dépend de la monotonicité de P par rapport aux autres paramètres.
+    Le calcul des autres paramÃ¨tres implique une recherche d'une valeur conduisant Ã  la valeur dÃ©sirÃ©e pour P. La recherche dÃ©pend de la monotonicitÃ© de P par rapport aux autres paramÃ¨tres.
   </para>
     <para>
-    La distribution gamma est proportionnelle à
+    La distribution gamma est proportionnelle Ã 
     <literal>T**(SHAPE - 1) * EXP(- SCALE * T)</literal>
   </para>
     <para>
-    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    TirÃ© de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
     Functions, Inverses, and Other Parameters (February, 1994)
     Barry W. Brown, James Lovato and Kathy Russell. The University of
     Texas.

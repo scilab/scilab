@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> enveloppe convexe d'un ensemble de points dans le plan  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[nhull,ind] = convex_hull(xy)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xy  </term>
         <listitem>
-          <para>matrice réelle 2 x n 
+          <para>matrice rÃ©elle 2 x n 
 </para>
         </listitem>
       </varlistentry>
@@ -51,12 +51,12 @@
   <refsection>
     <title>Description</title>
     <para><literal>convex_hull</literal> trouve l'enveloppe convexe d'un ensemble de n points 
-    dans le plan. <literal>xy</literal> est la matrice 2 x n des coordonnées (x,y) des 
+    dans le plan. <literal>xy</literal> est la matrice 2 x n des coordonnÃ©es (x,y) des 
     points. <literal>convex_hull</literal> renvoie dans <literal>nhull</literal> le nombre
     de points de l'enveloppe convexe et dans <literal>ind</literal> le
     vecteur ligne (de taille <literal>nhull</literal>) donnant les indices dans <literal>xy</literal> des
-    points de la frontière. L'ordre dans <literal>ind</literal> correspond à des points
-    consécutifs sur la frontière.
+    points de la frontiÃ¨re. L'ordre dans <literal>ind</literal> correspond Ã  des points
+    consÃ©cutifs sur la frontiÃ¨re.
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,11 +24,11 @@
   <refnamediv>
     <refname>sign</refname>
 
-    <refpurpose>função de sinal</refpurpose>
+    <refpurpose>funÃ§Ã£o de sinal</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>X=sign(A)</literal> retorna a matriz feita dos sinais de
     <literal>A(i,j)</literal>. Para <literal>A</literal>, feita de complexos
@@ -47,7 +47,7 @@ sign(1+%i)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="abs">abs</link></member>

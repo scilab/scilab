@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_IFTHEL_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_IFTHEL_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_IFTHEL_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_IFTHEL_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -93,18 +93,18 @@
   <refsection id="Description_IFTHEL_f">
     <title>Description</title>
     <para>
-Ce bloc génére un événement sur l'une ses deux sorties événementielles
-lorsqu'un événement en entrée active celui-ci.
-Suivant le signe de la valeur lue sur le port d'entrée régulier,
-l'événement est généré soit sur la branche 'then' ou bien sur la branche
+Ce bloc gÃ©nÃ©re un Ã©vÃ©nement sur l'une ses deux sorties Ã©vÃ©nementielles
+lorsqu'un Ã©vÃ©nement en entrÃ©e active celui-ci.
+Suivant le signe de la valeur lue sur le port d'entrÃ©e rÃ©gulier,
+l'Ã©vÃ©nement est gÃ©nÃ©rÃ© soit sur la branche 'then' ou bien sur la branche
 'else'.
-Ce bloc est un bloc synchrone, ce qui signifie que les événements en entrée
-et en sortie sont générés exactement à la même date et simultanément.
+Ce bloc est un bloc synchrone, ce qui signifie que les Ã©vÃ©nements en entrÃ©e
+et en sortie sont gÃ©nÃ©rÃ©s exactement Ã  la mÃªme date et simultanÃ©ment.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_IFTHEL_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_IFTHEL_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -120,20 +120,20 @@ et en sortie sont générés exactement à la même date et simultanément.
         <para>
           <emphasis role="bold">Inherit (1: no, 0: yes)</emphasis>
         </para>
-        <para> Si 'no' est sélectionné, alors le bloc est activé par son port événementiel d'entrée, sinon il est activé par les événements hérités via son port régulier d'entrée.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Si 'no' est sÃ©lectionnÃ©, alors le bloc est activÃ© par son port Ã©vÃ©nementiel d'entrÃ©e, sinon il est activÃ© par les Ã©vÃ©nements hÃ©ritÃ©s via son port rÃ©gulier d'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">zero-crossing (0: no, 1: yes)</emphasis>
         </para>
-        <para> A sélectionner pour permettre la détection de zéro.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> A sÃ©lectionner pour permettre la dÃ©tection de zÃ©ro.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_IFTHEL_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_IFTHEL_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -142,33 +142,33 @@ et en sortie sont générés exactement à la même date et simultanément.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> oui</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type -1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 2</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 2</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

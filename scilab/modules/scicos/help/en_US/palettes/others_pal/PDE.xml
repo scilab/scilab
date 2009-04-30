@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -141,7 +141,7 @@ type of PDE discriminant (constant or variable, in the
 type : in the manual mode we can give the method type
         (Finite differences, finite elements or finite volumes).
  
-degré : method degre (1 or 2 for the FD and FE methods,
+degrÃ© : method degre (1 or 2 for the FD and FE methods,
         1 for the FV method).
  
 Nombre de noeuds : to give the number of the nodal points.

@@ -35,6 +35,8 @@ Help & Tests:
 
 * Javasci FAQ page added
 
+* Online help XML files have been converted into UTF-8
+
 Bug fixes:
 ==========
 
@@ -44,6 +46,11 @@ Bug fixes:
 
  * bug 3264 fixed - More explicit message when too many files have been
 		    	  	opened.
+
+ * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
+
+ * bug 4101 fixed - -ns option wasn't clearly explaining that it is 
+			disabling many Scilab features
 
  * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under
    	   			  	PowerPC
@@ -67,6 +74,8 @@ Bug fixes:
  * bug 4426 fixed - uigetfile() - File name is cut when we are in the root directory.
 
  * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
+ 
+ * bug 4437 fixed - Exporting an empty figure crashes Scilab.
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
 

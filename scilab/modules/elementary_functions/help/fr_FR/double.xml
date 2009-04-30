@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="double" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,11 +14,11 @@
     <refname>double</refname>
 
     <refpurpose>conversion de type entier vers flottant double
-    précision.</refpurpose>
+    prÃ©cision.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=double(X)
 y=int16(X)
@@ -29,7 +29,7 @@ y=uint32(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -53,9 +53,9 @@ y=uint32(X)</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para>Convertit des données sous forme d'entiers à 1,2 ou 4 octets au type
-    flottant double précision. Si les composantes de <literal>X</literal> sont
-    déjà des flottants double précision il n'y a pas de conversion.</para>
+    <para>Convertit des donnÃ©es sous forme d'entiers Ã  1,2 ou 4 octets au type
+    flottant double prÃ©cision. Si les composantes de <literal>X</literal> sont
+    dÃ©jÃ  des flottants double prÃ©cision il n'y a pas de conversion.</para>
   </refsection>
 
   <refsection>

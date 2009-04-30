@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,31 +19,31 @@
     <refpurpose> valeurs propres d'un faisceau de matrices (obsolete) </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[al,be]=gspec(A,E)
 [al,be,Z]=gspec(A,E)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A, E  </term>
         <listitem>
-          <para>matrices carrées réelles de mêmes dimensions
+          <para>matrices carrÃ©es rÃ©elles de mÃªmes dimensions
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>al, be  </term>
         <listitem>
-          <para>vecteurs réels
+          <para>vecteurs rÃ©els
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Z  </term>
         <listitem>
-          <para>matrice carrée régulière
+          <para>matrice carrÃ©e rÃ©guliÃ¨re
 </para>
         </listitem>
       </varlistentry>
@@ -53,7 +53,7 @@
     <title>Description</title>
     <para>
 Cette fonction est maintenant un cas particulier de la fonction
-<literal>spec</literal>. La syntaxe d'appel doit être remplacée par 
+<literal>spec</literal>. La syntaxe d'appel doit Ãªtre remplacÃ©e par 
   </para>
     <programlisting><![CDATA[
 [al,be]=spec(A,E)
