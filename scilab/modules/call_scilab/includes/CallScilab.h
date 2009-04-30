@@ -292,7 +292,7 @@ int C2F(cwritemat)  (char *name__, int *m, int *n, double *mat, unsigned long na
 
 
 /**
- * cwritemat writes vector/matrix of complex in scilab's memory
+ * cwritecmat writes vector/matrix of complex in scilab's memory
  * logic=cwritecmat('matrixname'//char(0),m,n,mat)
  * @param name__ character string; name of the scilab variable ( null terMinated) 
  * @param m number of rows 
