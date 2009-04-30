@@ -76,7 +76,7 @@ function ilib_gen_gateway(name,tables)
 	        
     // first chek if we already have a gateway 
     [fd,ierr] = mopen(path+tname+'.c');
-    if ierr== 0 then
+    if ierr == 0 then
       mclose(fd);
       t1 = mgetl(path+tname+'.c') 
       if t1 <> t then 
@@ -85,6 +85,10 @@ function ilib_gen_gateway(name,tables)
     else
        // file does not exist we create it 
        mputl(t,path+tname+'.c') ;   
+    end
+    
+    if ilib_verbose() > 1 then
+      disp(t);
     end
   end
 endfunction
