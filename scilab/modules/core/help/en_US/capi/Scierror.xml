@@ -6,7 +6,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv xml:id="???">
+  <refnamediv>
     <refname>Scierror</refname>
 
     <refpurpose>C function to display errors to the user (same profil as the
