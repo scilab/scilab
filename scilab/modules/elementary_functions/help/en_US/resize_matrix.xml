@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
@@ -18,7 +18,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006)
+    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoÃ» 2006)
     $</pubdate>
   </info>
 

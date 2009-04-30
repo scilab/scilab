@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> sous-graphe d'un graphe   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = subgraph(v,ind,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>vecteur ligne, numéros des sommets ou arêtes
+          <para>vecteur ligne, numÃ©ros des sommets ou arÃªtes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ind  </term>
         <listitem>
-          <para>chaîne de caractères, 'nodes' ou 'edges'
+          <para>chaÃ®ne de caractÃ¨res, 'nodes' ou 'edges'
 </para>
         </listitem>
       </varlistentry>
@@ -57,15 +57,15 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>subgraph</literal> renvoie le graphe <literal>g1</literal>, construit avec les numéros donnés par le
+    <para><literal>subgraph</literal> renvoie le graphe <literal>g1</literal>, construit avec les numÃ©ros donnÃ©s par le
     vecteur ligne <literal>v</literal>. 
-    Si <literal>ind</literal> est la chaîne de caractères <literal>'nodes'</literal>, <literal>g1</literal> est construit avec les numéros de sommets 
-    donnés par <literal>v</literal> et les arêtes connectées à ces sommets dans <literal>g</literal>. 
-    Si <literal>ind</literal> est la chaîne de caractères <literal>'edges'</literal>, <literal>g1</literal> est construit avec les numéros d'arêtes 
-    donnés par <literal>v</literal> et les sommets origines et extrémités de ces arêtes dans <literal>g</literal>.
+    Si <literal>ind</literal> est la chaÃ®ne de caractÃ¨res <literal>'nodes'</literal>, <literal>g1</literal> est construit avec les numÃ©ros de sommets 
+    donnÃ©s par <literal>v</literal> et les arÃªtes connectÃ©es Ã  ces sommets dans <literal>g</literal>. 
+    Si <literal>ind</literal> est la chaÃ®ne de caractÃ¨res <literal>'edges'</literal>, <literal>g1</literal> est construit avec les numÃ©ros d'arÃªtes 
+    donnÃ©s par <literal>v</literal> et les sommets origines et extrÃ©mitÃ©s de ces arÃªtes dans <literal>g</literal>.
   </para>
     <para>
-    Toutes les caractéristiques des anciens sommets et arêtes de <literal>g</literal> sont préservées.
+    Toutes les caractÃ©ristiques des anciens sommets et arÃªtes de <literal>g</literal> sont prÃ©servÃ©es.
   </para>
   </refsection>
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="macr2tree">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,11 +8,11 @@
     <refpurpose>conversion d'une fonction en arbre</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>t=macr2tree(nom-de-fonction)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>nom-de-fonction</term>
@@ -31,8 +31,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette primitive convertit une fonction compilée de Scilab <literal>nom-de-fonction</literal>
-    en arbre (tlists imbriquées) qui code la représentation interne de la fonction. 
+    Cette primitive convertit une fonction compilÃ©e de Scilab <literal>nom-de-fonction</literal>
+    en arbre (tlists imbriquÃ©es) qui code la reprÃ©sentation interne de la fonction. 
     A utiliser avec <literal>tree2code</literal>.
     </para>
   </refsection>

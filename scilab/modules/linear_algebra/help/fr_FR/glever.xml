@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> inverse d'un faisceau de matrices  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>E, A  </term>
         <listitem>
-          <para>matrices carrées réelles de même dimensions
+          <para>matrices carrÃ©es rÃ©elles de mÃªme dimensions
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>s  </term>
         <listitem>
-          <para>chaîne de caractères (indéterminée des polynômes, '<literal>s</literal>' par défaut )
+          <para>chaÃ®ne de caractÃ¨res (indÃ©terminÃ©e des polynÃ´mes, '<literal>s</literal>' par dÃ©faut )
 	  </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>chis  </term>
         <listitem>
-          <para>polynôme
+          <para>polynÃ´me
 	  </para>
         </listitem>
       </varlistentry>
@@ -64,17 +64,17 @@
       (s*E-A)^-1
     </para>
     <para>
-      par l'algorithme généralisé de Leverrier pour un faisceau de matrices.
+      par l'algorithme gÃ©nÃ©ralisÃ© de Leverrier pour un faisceau de matrices.
     </para>
     <programlisting><![CDATA[
       (s*E-A)^-1 = (Bfs/chis) - Bis.
       ]]></programlisting>
-    <para><literal>chis</literal> = polynôme caractéristique (à une constante multiplicative près).
+    <para><literal>chis</literal> = polynÃ´me caractÃ©ristique (Ã  une constante multiplicative prÃ¨s).
     </para>
-    <para><literal>Bfs</literal>  = matrice polynomiale de numérateurs
+    <para><literal>Bfs</literal>  = matrice polynomiale de numÃ©rateurs
     </para>
     <para><literal>Bis</literal>
-      = matrice polynomiale ( - développement de <literal>(s*E-A)^-1</literal> à l'infini).
+      = matrice polynomiale ( - dÃ©veloppement de <literal>(s*E-A)^-1</literal> Ã  l'infini).
     </para>
     <para>
       Noter le signe - devant <literal>Bis</literal>.

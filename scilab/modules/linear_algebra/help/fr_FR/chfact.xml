@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> Factorisation de Cholesky creuse  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>spcho=chfact(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice creuse réelle ou complexe
+          <para>matrice creuse rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
@@ -44,8 +44,8 @@
   <refsection>
     <title>Description</title>
     <para>
-    Si <literal>A</literal> est creuse et hermitienne (symétrique dans le cas réel) définie positive, <literal>spcho=chfact(A)</literal> calcule les facteurs de sa factorisation de Cholesky.
-    Cette fonction est basée sur le programme Ng-Peyton (ORNL). Voir le programme Fortran pour une description complète des variables de la liste <literal>spcho</literal>. Cette fonction est à utiliser conjointement avec <literal>chsolve</literal>.
+    Si <literal>A</literal> est creuse et hermitienne (symÃ©trique dans le cas rÃ©el) dÃ©finie positive, <literal>spcho=chfact(A)</literal> calcule les facteurs de sa factorisation de Cholesky.
+    Cette fonction est basÃ©e sur le programme Ng-Peyton (ORNL). Voir le programme Fortran pour une description complÃ¨te des variables de la liste <literal>spcho</literal>. Cette fonction est Ã  utiliser conjointement avec <literal>chsolve</literal>.
   </para>
   </refsection>
   <refsection>

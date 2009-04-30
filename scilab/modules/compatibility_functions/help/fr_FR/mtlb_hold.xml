@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,34 +16,34 @@
   </info>
   <refnamediv>
     <refname>mtlb_hold</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab hold</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab hold</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Il n'y a pas de fonction Scilab equivalente à la fonction Matlab <literal>hold</literal> mais il existe des instructions équivalentes</para>
+    <para>Il n'y a pas de fonction Scilab equivalente Ã  la fonction Matlab <literal>hold</literal> mais il existe des instructions Ã©quivalentes</para>
     <para>
-    La fonction <literal>mtlb_hold(flag)</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>hold flag</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code
+    La fonction <literal>mtlb_hold(flag)</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>hold flag</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code
     Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_hold</literal> :
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_hold</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>flag</literal> est égal à "on"
-        <literal>mtlb_hold(flag)</literal> peut être remplacé par <literal>set(gca(),"auto_clear","off")</literal>
+        Si <literal>flag</literal> est Ã©gal Ã  "on"
+        <literal>mtlb_hold(flag)</literal> peut Ãªtre remplacÃ© par <literal>set(gca(),"auto_clear","off")</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>flag</literal> est égal à "off"
-        <literal>mtlb_hold(flag)</literal> peut être remplacé par <literal>set(gca(),"auto_clear","on")</literal>
+        Si <literal>flag</literal> est Ã©gal Ã  "off"
+        <literal>mtlb_hold(flag)</literal> peut Ãªtre remplacÃ© par <literal>set(gca(),"auto_clear","on")</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_hold</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_hold</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

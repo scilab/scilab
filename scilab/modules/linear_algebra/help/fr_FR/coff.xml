@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,40 +16,40 @@
   </info>
   <refnamediv>
     <refname>coff</refname>
-    <refpurpose> résolvante (méthode des cofacteurs)  </refpurpose>
+    <refpurpose> rÃ©solvante (mÃ©thode des cofacteurs)  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[N,d]=coff(M [,var])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>M  </term>
         <listitem>
-          <para>matrice carrée réelle
+          <para>matrice carrÃ©e rÃ©elle
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>var  </term>
         <listitem>
-          <para>chaîne de caractères (indéterminée des polynômes)
+          <para>chaÃ®ne de caractÃ¨res (indÃ©terminÃ©e des polynÃ´mes)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>N  </term>
         <listitem>
-          <para>matrice de polynômes (de même taille que <literal>M</literal>)
+          <para>matrice de polynÃ´mes (de mÃªme taille que <literal>M</literal>)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>d  </term>
         <listitem>
-          <para>polynôme (polynôme caractéristique de M : <literal>poly(M,var)</literal>)
+          <para>polynÃ´me (polynÃ´me caractÃ©ristique de M : <literal>poly(M,var)</literal>)
 </para>
         </listitem>
       </varlistentry>
@@ -57,14 +57,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>coff</literal> calcule R=<literal>(s*eye()-M)^-1</literal> pour <literal>M</literal> une matrice réelle. 
-    R est donnée par <literal>N/d</literal>.
+    <para><literal>coff</literal> calcule R=<literal>(s*eye()-M)^-1</literal> pour <literal>M</literal> une matrice rÃ©elle. 
+    R est donnÃ©e par <literal>N/d</literal>.
   </para>
-    <para><literal>N</literal> = matrice des numérateurs (polynômes).
+    <para><literal>N</literal> = matrice des numÃ©rateurs (polynÃ´mes).
   </para>
-    <para><literal>d</literal> = dénominateur commun.
+    <para><literal>d</literal> = dÃ©nominateur commun.
   </para>
-    <para><literal>var</literal> chaîne de caractères (indéterminée des polynômes, '<literal>s</literal>' par défaut)
+    <para><literal>var</literal> chaÃ®ne de caractÃ¨res (indÃ©terminÃ©e des polynÃ´mes, '<literal>s</literal>' par dÃ©faut)
   </para>
   </refsection>
   <refsection>

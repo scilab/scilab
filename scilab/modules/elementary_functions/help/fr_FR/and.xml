@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="and" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>b=and(A), b=and(A,'*')
 b=and(A,'r'), b=and(A,1)
@@ -29,26 +29,26 @@ A&amp;B</synopsis>
     <title>Description</title>
 
     <para><literal>and(A)</literal> donne la conjonction (et) logique des
-    éléments de la matrice booléenne <literal>A</literal>.
+    Ã©lÃ©ments de la matrice boolÃ©enne <literal>A</literal>.
     <literal>and(A)</literal> est vrai (<literal>%t</literal>) si tous les
     termes de <literal>A</literal> sont <literal>%t</literal>.</para>
 
     <para><literal>y=and(A,'r')</literal> (et <literal>y=and(A,1)</literal>)
-    donne la conjonction suivant l'indice de ligne. Chaque élément du vecteur
+    donne la conjonction suivant l'indice de ligne. Chaque Ã©lÃ©ment du vecteur
     ligne <literal>y</literal> contient la conjonction de chaque colonne de
     <literal>x</literal> (<literal>y(j)= and(A(i,j),i=1,m)</literal>).</para>
 
     <para><literal>y=and(A,'c')</literal> (et <literal>y=and(A,2)</literal>)
-    donne la conjonction suivant l'indice de colonne. Chaque élément du
+    donne la conjonction suivant l'indice de colonne. Chaque Ã©lÃ©ment du
     vecteur colonne <literal>y</literal> contient la conjonction de chaque
     ligne de <literal>x</literal> (<literal>y(i)=
     and(A(i,j),j=1,n)</literal>)).</para>
 
-    <para><literal>A&amp;B</literal> renvoie la conjonction logique élément
-    par élément des matrices booléennes <literal>A</literal> et
+    <para><literal>A&amp;B</literal> renvoie la conjonction logique Ã©lÃ©ment
+    par Ã©lÃ©ment des matrices boolÃ©ennes <literal>A</literal> et
     <literal>B</literal> .<literal>A</literal> et <literal>B</literal> doivent
-    être des matrices de même dimensions ou l'une d'elle doit être un simple
-    booléen.</para>
+    Ãªtre des matrices de mÃªme dimensions ou l'une d'elle doit Ãªtre un simple
+    boolÃ©en.</para>
   </refsection>
 
   <refsection>

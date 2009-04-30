@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/genetic_algorithms/help/pt_BR";
-add_help_chapter("Algoritmos Genéticos",path,%T);
+add_help_chapter("Algoritmos GenÃ©ticos",path,%T);
 clear path add_help_chapter;

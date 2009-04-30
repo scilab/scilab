@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>graph_complement</refname>
-    <refpurpose> complément d'un graphe   </refpurpose>
+    <refpurpose> complÃ©ment d'un graphe   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = graph_complement(g,[gmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -50,14 +50,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>graph_complement</literal> renvoie le graphe non-orienté <literal>g1</literal> qui est le
-    complément du graphe <literal>g</literal> par rapport au graphe complet correspondant.
+    <para><literal>graph_complement</literal> renvoie le graphe non-orientÃ© <literal>g1</literal> qui est le
+    complÃ©ment du graphe <literal>g</literal> par rapport au graphe complet correspondant.
   </para>
     <para>
-    Quand <literal>gmax</literal> est donné, le complément est fait par rapport à <literal>gmax</literal>.
-    <literal>g</literal> et <literal>gmax</literal> sont supposés être des graphes simples (utiliser <literal>graph_simp</literal> 
-    avant d'appeler <literal>graph_complement</literal> si nécessaire) avec le
-    même nombre de sommets.
+    Quand <literal>gmax</literal> est donnÃ©, le complÃ©ment est fait par rapport Ã  <literal>gmax</literal>.
+    <literal>g</literal> et <literal>gmax</literal> sont supposÃ©s Ãªtre des graphes simples (utiliser <literal>graph_simp</literal> 
+    avant d'appeler <literal>graph_complement</literal> si nÃ©cessaire) avec le
+    mÃªme nombre de sommets.
   </para>
   </refsection>
   <refsection>

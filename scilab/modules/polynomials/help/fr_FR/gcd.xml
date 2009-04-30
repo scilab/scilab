@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="gcd">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,16 +8,16 @@
     <refpurpose> calcul de PGCD  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[pgcd,U]=gcd(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>vecteur ligne de polynômes <literal>p=[p1,..,pn] ou d'entiers (type égal à 8)</literal>
+          <para>vecteur ligne de polynÃ´mes <literal>p=[p1,..,pn] ou d'entiers (type Ã©gal Ã  8)</literal>
 </para>
         </listitem>
       </varlistentry>
@@ -26,7 +26,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Calcule le PGCD des termes de <literal>p</literal> et une matrice unimodulaire (avec le polynôme inverse) <literal>U</literal>, de degré minimal tels que
+    Calcule le PGCD des termes de <literal>p</literal> et une matrice unimodulaire (avec le polynÃ´me inverse) <literal>U</literal>, de degrÃ© minimal tels que
   </para>
     <para>
       <literal>p*U=[0 ... 0 pgcd]</literal>
@@ -35,7 +35,7 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-//cas des polynômes
+//cas des polynÃ´mes
 s=poly(0,'s');
 p=[s,s*(s+1)^2,2*s^2+s^3];
 [pgcd,u]=gcd(p);

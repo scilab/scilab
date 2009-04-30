@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="OpAmp">
   <refnamediv>
     <refname>OpAmp</refname>
-    <refpurpose>Amplificateur opérationnel idéal</refpurpose>
+    <refpurpose>Amplificateur opÃ©rationnel idÃ©al</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="OpAmp">Amplificateur opérationnel idéal</link>
+          <link linkend="OpAmp">Amplificateur opÃ©rationnel idÃ©al</link>
         </para>
       </listitem>
       <listitem>
@@ -58,7 +58,7 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_OpAmp">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_OpAmp">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -68,7 +68,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="OpAmp">Modèle Modelica</link>
+              <link linkend="OpAmp">ModÃ¨le Modelica</link>
             </para>
           </listitem>
           <listitem>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -98,12 +98,12 @@ The ideal OpAmp is a two-port. The left port is fixed to v1=0 and i1=0 (nullator
     <para>
 </para>
   </refsection>
-  <refsection id="Propriétéspardéfaut_OpAmp">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_OpAmp">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -152,8 +152,8 @@ The ideal OpAmp is a two-port. The left port is fixed to v1=0 and i1=0 (nullator
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_OpAmp">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_OpAmp">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/OpAmp.mo</para>

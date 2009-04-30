@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,23 +19,23 @@
     <refpurpose> forme polaire  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Ro,Theta]=polar(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice carrée réelle ou complexe
+          <para>matrice carrÃ©e rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ro, Theta  </term>
         <listitem>
-          <para>matrices réelles
+          <para>matrices rÃ©elles
 </para>
         </listitem>
       </varlistentry>
@@ -44,8 +44,8 @@
   <refsection>
     <title>Description</title>
     <para><literal>[Ro,Theta]=polar(A)</literal> renvoie la forme polaire de
-    <literal>A</literal> c'est à dire :<literal>A=Ro*expm(%i*Theta)</literal>
-    <literal>Ro</literal> symétrique &gt;=0 et <literal>Theta</literal>
+    <literal>A</literal> c'est Ã  dire :<literal>A=Ro*expm(%i*Theta)</literal>
+    <literal>Ro</literal> symÃ©trique &gt;=0 et <literal>Theta</literal>
     hermitienne &gt;=0.
   </para>
   </refsection>

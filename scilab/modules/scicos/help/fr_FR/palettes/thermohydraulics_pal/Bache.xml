@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Bache">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Bache">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Bache">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Bache">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Bache">Modèle Modelica</link>
+              <link linkend="Bache">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - Boîte à outils des composants thermohydrauliques</link>
+          <link linkend="ThermoHydraulics_pal">ThermoHydraulics.cosf - BoÃ®te Ã  outils des composants thermohydrauliques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -93,19 +93,19 @@
   <refsection id="Description_Bache">
     <title>Description</title>
     <para>
-Ce composant représente une bache thermo-hydraulique qui consiste en
-deux ports d'entrée et deux ports de sortie.  Conventionnellement, la
-direction positive pour la rentrée est quand le fluide <emphasis role="bold">entre</emphasis>
+Ce composant reprÃ©sente une bache thermo-hydraulique qui consiste en
+deux ports d'entrÃ©e et deux ports de sortie.  Conventionnellement, la
+direction positive pour la rentrÃ©e est quand le fluide <emphasis role="bold">entre</emphasis>
 dans le port d'entree (ports noirs) et la direction positive pour les
 ports de sortie est quand le fluide <emphasis role="bold">sort</emphasis> des port de sortie
-(ports blancs).  La surface de la bache, la température initiale et
-l'altitude initiale du fluide peuvent être definies par l'utilisateur.
-Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bold">Bouchon</emphasis>.
+(ports blancs).  La surface de la bache, la tempÃ©rature initiale et
+l'altitude initiale du fluide peuvent Ãªtre definies par l'utilisateur.
+Si un port reste non-utilisÃ©, il doit Ãªtre bouchÃ© par le bloc <emphasis role="bold">Bouchon</emphasis>.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Bache">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Bache">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -122,72 +122,72 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
           <emphasis role="bold">Pression dans le ciel de la bache : Patm (Pa)</emphasis>
         </para>
         <para> Pression dans le ciel de la bache</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Section de la bache : A (m2)</emphasis>
         </para>
         <para> Surface de la bache</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Altitude du piquage d entrée 1: ze1 (m)</emphasis>
+          <emphasis role="bold">Altitude du piquage d entrÃ©e 1: ze1 (m)</emphasis>
         </para>
-        <para> Altitude du piquage d'entrée (ze1)</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> Altitude du piquage d'entrÃ©e (ze1)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Altitude du piquage d entrée 2: ze2 (m)</emphasis>
+          <emphasis role="bold">Altitude du piquage d entrÃ©e 2: ze2 (m)</emphasis>
         </para>
-        <para> Altitude du piquage d'entrée (ze2)</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> Altitude du piquage d'entrÃ©e (ze2)</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Altitude du piquage de sortie 1: zs1 (m)</emphasis>
         </para>
         <para> Altitude du piquage de sortie (zs1)</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Altitude du piquage de sortie 2: zs2 (m)</emphasis>
         </para>
         <para> Altitude du piquage de sortie (zs2)</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Altitude initiale du fluide : z0 (m)</emphasis>
         </para>
         <para> Altitude initiale du fluide</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Température initiale du fluide : T0 (K)</emphasis>
+          <emphasis role="bold">TempÃ©rature initiale du fluide : T0 (K)</emphasis>
         </para>
-        <para> Température initiale du fluide</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> TempÃ©rature initiale du fluide</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Si 0, masse volumique imposée du fluide : p_rho (kg/m3)</emphasis>
+          <emphasis role="bold">Si 0, masse volumique imposÃ©e du fluide : p_rho (kg/m3)</emphasis>
         </para>
-        <para> masse volumique imposée du fluide</para>
-        <para> Propriétés : Type 'vec' de taille -1.</para>
+        <para> masse volumique imposÃ©e du fluide</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Bache">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Bache">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -241,95 +241,95 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Patm'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Patm'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 101300
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 101300
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'A'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'A'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'ze1'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'ze1'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 40
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 40
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'ze2'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'ze2'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'zs1'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'zs1'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 40
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 40
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'zs2'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'zs2'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'z0'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'z0'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 30
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 30
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'T0'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'T0'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 290
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 290
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'p_rho'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'p_rho'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -349,8 +349,8 @@ Si un port reste non-utilisé, il doit être bouché par le bloc <emphasis role="bo
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_Bache">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_Bache">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Hydraulics/Bache.mo</para>

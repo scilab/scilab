@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="round" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,20 +17,20 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=round(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matrice réelle ou complexe</para>
+          <para>matrice rÃ©elle ou complexe</para>
         </listitem>
       </varlistentry>
 
@@ -38,8 +38,8 @@
         <term>y</term>
 
         <listitem>
-          <para>matrice entière (ou complexe avec parties réelle et imaginaire
-          entières)</para>
+          <para>matrice entiÃ¨re (ou complexe avec parties rÃ©elle et imaginaire
+          entiÃ¨res)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -48,7 +48,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>round(x)</literal> arrondit les éléments de
+    <para><literal>round(x)</literal> arrondit les Ã©lÃ©ments de
     <literal>x</literal> aux entiers les plus proches.</para>
   </refsection>
 
