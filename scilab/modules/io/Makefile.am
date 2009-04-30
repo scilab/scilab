@@ -22,7 +22,6 @@ sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
 sci_gateway/c/sci_getrelativefilename.c \
-sci_gateway/c/sci_fileinfo.c \
 sci_gateway/c/sci_file.c \
 sci_gateway/c/intsetenv.c \
 sci_gateway/c/sci_exec.c \
@@ -40,7 +39,6 @@ sci_gateway/c/sci_read.c \
 sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
 sci_gateway/c/sci_load.c \
-sci_gateway/c/intfilestat.c \
 sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_oldsave.c \

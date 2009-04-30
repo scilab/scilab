@@ -69,4 +69,5 @@
 <PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="pwd" />
 <PRIMITIVE gatewayId="34" primitiveId="34" primitiveName="getcwd" />
 <PRIMITIVE gatewayId="34" primitiveId="35" primitiveName="chdir" />
+<PRIMITIVE gatewayId="34" primitiveId="36" primitiveName="fileinfo" />
 </GATEWAY>

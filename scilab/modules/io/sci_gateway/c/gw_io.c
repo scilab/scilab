@@ -41,7 +41,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_save),"save"},
 {C2F(sci_load),"load"},
 {C2F(sci_mgetl),"mgetl"},
-{C2F(sci_fileinfo),"fileinfo"},
 {C2F(sci_getio),"getio"},
 {C2F(sci_setenv),"setenv"},
 {C2F(sci_getrelativefilename),"getrelativefilename"},

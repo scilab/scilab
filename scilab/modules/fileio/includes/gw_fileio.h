@@ -13,8 +13,6 @@
 #ifndef __GW_FILEIO_H__
 #define __GW_FILEIO_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-/*--------------------------------------------------------------------------*/ 
 int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 
 int sci_meof(char *fname,unsigned long fname_len);
@@ -52,6 +50,7 @@ int sci_createdir(char *fname,unsigned long fname_len);
 int sci_removedir(char *fname,unsigned long fname_len);
 int sci_chdir(char *fname,unsigned long fname_len);
 int sci_getcwd(char *fname,unsigned long fname_len);
+int sci_fileinfo(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

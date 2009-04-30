@@ -52,7 +52,8 @@ static gw_generic_table Tab[]={
 	{sci_removedir,"removedir"},
 	{sci_createdir,"createdir"},
 	{sci_getcwd,"getcwd"},
-	{sci_chdir,"chdir"}
+	{sci_chdir,"chdir"},
+	{sci_fileinfo,"fileinfo"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)

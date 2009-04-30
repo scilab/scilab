@@ -43,7 +43,8 @@ src/c/removedir.c \
 src/c/set_xxprintf.c \
 src/c/cluni0.c \
 src/c/scicurdir.c \
-src/c/fullpath.c
+src/c/fullpath.c \
+src/c/fileinfo.c
 
 
 GATEWAY_SOURCES = \
@@ -82,15 +83,16 @@ sci_gateway/c/sci_mopen.c \
 sci_gateway/c/sci_mput.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
-sci_gateway/c/sci_mtell.c
+sci_gateway/c/sci_mtell.c \
+sci_gateway/c/sci_fileinfo.c
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/io/includes \
-                		-I$(top_srcdir)/modules/string/includes \
-                		-I$(top_srcdir)/modules/localization/includes
+				-I$(top_srcdir)/modules/string/includes \
+				-I$(top_srcdir)/modules/localization/includes
 
 pkglib_LTLIBRARIES = libscifileio.la
 

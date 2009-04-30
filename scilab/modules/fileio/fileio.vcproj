@@ -417,6 +417,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fileinfo.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fileio.c"
 				>
 			</File>
@@ -546,6 +550,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_fileext.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_fileinfo.c"
 				>
 			</File>
 			<File
@@ -728,6 +736,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\FileExist.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fileinfo.h"
 				>
 			</File>
 			<File
