@@ -6,7 +6,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv xml:id="???">
+  <refnamediv>
     <refname>CheckRhs</refname>
 
     <refpurpose>C macro which checks the number of input arguments present in

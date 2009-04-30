@@ -7,16 +7,10 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>Calling a scilab function (macros) from a C gateway</refname>
-
-    <refpurpose>Calling a scilab function (macros) from a C
-    interface</refpurpose>
+    <refpurpose>Calling a scilab function (macros) from a C interface</refpurpose>
   </refnamediv>
 
   <refsection>

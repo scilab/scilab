@@ -6,7 +6,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv xml:id="???">
+  <refnamediv>
     <refname>Rhs</refname>
 
     <refpurpose>A C macro which provides the number of input arguments present
@@ -71,7 +71,7 @@ int sci_myrhs(char * fname)
     <simplelist type="inline">
       <member><link linkend="sciprint">sciprint</link></member>
 
-      <member><link linkend="lhs">Lhs</link></member>
+      <member><link linkend="Rhs">Lhs</link></member>
     </simplelist>
   </refsection>
 </refentry>

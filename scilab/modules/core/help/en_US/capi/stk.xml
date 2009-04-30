@@ -7,7 +7,7 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:html="http://www.w3.org/1999/xhtml"
           xmlns:db="http://docbook.org/ns/docbook">
-  <refnamediv xml:id="???">
+  <refnamediv>
     <refname>stk</refname>
 
     <refpurpose>Return a pointer to a double to access data stored at a given

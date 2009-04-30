@@ -9,7 +9,6 @@
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
     <refname>How to create and access a list</refname>
-
     <refpurpose>How to create and access a list using the C API</refpurpose>
   </refnamediv>
 
