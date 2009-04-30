@@ -72,6 +72,8 @@ char encoding bugs :
 
 * bug 3666 fixed - 'input' returns accented characters.
 
+* bug 3701 fixed - "Error during call to UTFToLocale: No such file or directory" on Windows.
+
 * bug 3839 fixed - strrev() doesn't work correctly if the string to be reversed
                    includes some accentuated characters.
 
