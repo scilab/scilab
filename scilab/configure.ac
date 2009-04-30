@@ -802,11 +802,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-<<<<<<< HEAD:scilab/configure.ac
-		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
-=======
 		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
->>>>>>> origin/5.1:scilab/configure.ac
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -935,13 +931,8 @@ fi
 
 AC_SUBST(SCICOS_ENABLE)
 
-<<<<<<< HEAD:scilab/configure.ac
-AM_CONDITIONAL(OCAML,  test "$with_ocaml" != no)		
-AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
-=======
 AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
-AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
->>>>>>> origin/5.1:scilab/configure.ac
+AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
 #################
