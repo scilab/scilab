@@ -1585,13 +1585,13 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
 	// XML list management
 	// =========================================================================
 	
-	if isfield(tree_in_1,"xmllist_1") then
+	if isfield(tree_in_1,"xml_list") then
 		xmllist_1 = tree_in_1("xml_list");
 	else
 		xmllist_1 = [];
 	end
 	
-	if isfield(tree_in_2,"xmllist_1") then
+	if isfield(tree_in_2,"xml_list") then
 		xmllist_2 = tree_in_2("xml_list");
 	else
 		xmllist_2 = [];
