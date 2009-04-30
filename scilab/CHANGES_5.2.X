@@ -32,7 +32,7 @@ Input/Output functions:
 Core functions:
 ===============
 
- - Request 505 : Add error code capability to exit.
+ - Request 505 : Add error code capability to exit (SEP #19).
 
  - Rewrite :
      + mode
@@ -42,7 +42,8 @@ fileio functions:
 =================
   - Input arguments of functions are checked 
     (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
-
+    
+  - fileinfo manages column vector of strings (SEP #25)
 
 Dynamic link:
 =============

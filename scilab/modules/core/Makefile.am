@@ -79,7 +79,8 @@ src/c/setPrecisionFPU.c \
 src/c/LaunchScilabSignal.c \
 src/c/getos.c \
 src/c/mode_exec.c \
-src/c/predef.c
+src/c/predef.c \
+src/c/transposeMatrix.c
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -422,6 +423,7 @@ includes/Thread_Wrapper.h \
 includes/setPrecisionFPU.h \
 includes/LaunchScilabSignal.h \
 includes/getos.h \
-includes/mode_exec.h
+includes/mode_exec.h \
+includes/transposeMatrix.h
 
 include $(top_srcdir)/Makefile.incl.am

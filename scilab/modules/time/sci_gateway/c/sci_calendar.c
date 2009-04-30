@@ -17,7 +17,7 @@
 #include "MALLOC.h"
 #include "Scierror.h"
 #include "IsAScalar.h"
-#include "InversionMatrixInt.h"
+#include "transposeMatrix.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 static int isBissextile (unsigned year);
@@ -93,7 +93,7 @@ int sci_calendar(char *fname,unsigned long fname_len)
 	n1=NBRDAY;
 	tmpMatrix=CALMONTH;
 
-	CALMONTH=InversionMatrixInt(NBRDAY,NBRWEEK,CALMONTH);
+	CALMONTH = transposeMatrixInt(NBRDAY,NBRWEEK,CALMONTH);
 	if(tmpMatrix) {FREE(tmpMatrix);tmpMatrix=NULL;}
 
 	CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&CALMONTH);

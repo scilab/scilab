@@ -10,8 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-
+/*--------------------------------------------------------------------------*/
 #include "gw_io.h"
 #include "PATH_MAX.h"
 #include "stack-c.h"
@@ -20,26 +19,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
-/*--------------------------------------------------------------------------*/
-static double *InversionMatrixDouble(int W,int L,double *Matrix)
-{
-	double *buffer = NULL;
-	if (Matrix)
-	{
-		buffer = (double *)MALLOC( (W*L)*sizeof(double) );
-		if (buffer)
-		{
-			int i=0;
-			int j=0;
-
-			for (i=0; i<W; i++) for (j=0; j<L; j++) 
-			{
-				buffer[ i*L+j ] = Matrix[ j*W+i ];
-			}
-		}
-	}
-	return buffer;
-}
+#include "transposeMatrix.h"
 /*--------------------------------------------------------------------------*/
 int sci_fileinfo(char *fname,unsigned long fname_len)
 {
@@ -66,16 +46,6 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 			int result = 0;
 			double *infos = fileinfo(InputString_Parameter[0],&result);
 
-			if (Lhs == 2)
-			{
-				int m_out = 1;
-				int n_out = 1;
-				int l_out = 0;
-				CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE,&m_out,&n_out,&l_out);
-				*stk(l_out) = (double) result;
-				LhsVar(2) = Rhs + 2;
-			}
-
 			if (infos)
 			{
 				int m_out = 1;
@@ -99,34 +69,42 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 
 			freeArrayOfString(InputString_Parameter, mn);
 
+			if (Lhs == 2)
+			{
+				int m_out = 1;
+				int n_out = 1;
+				int l_out = 0;
+				CreateVar(Rhs + 2, MATRIX_OF_DOUBLE_DATATYPE,&m_out,&n_out,&l_out);
+				*stk(l_out) = (double) result;
+				LhsVar(2) = Rhs + 2;
+			}
+
 			C2F(putlhsvar)();
 		}
 		else
 		{
-			if ( ((m == 1) && (n != 1)) || ((m != 1) && (n == 1)) )
+			if ( (m != 1) && (n == 1) )
 			{
 				int *results = (int*)MALLOC(sizeof(int) *mn);
-				
 				double *infos = filesinfo(InputString_Parameter, mn, results);
-
-				
-
 				if (infos)
 				{
 					int m_out = 0;
 					int n_out = 0;
-					double *infs = NULL;
+					double *transposeInfos = NULL;
 
 					m_out = FILEINFO_ARRAY_SIZE;
 					n_out = m*n;
 
-					infs = InversionMatrixDouble(FILEINFO_ARRAY_SIZE,m*n,infos);
+					transposeInfos = transposeMatrixDouble(FILEINFO_ARRAY_SIZE,m*n,infos);
+					FREE(infos); infos = NULL;
 
 					n_out = FILEINFO_ARRAY_SIZE;
 					m_out = m*n;
 
-					CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &infs);
+					CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &m_out, &n_out, &transposeInfos);
 					LhsVar(1) = Rhs + 1;
+					FREE(transposeInfos); transposeInfos = NULL;
 				}
 				else
 				{
@@ -138,7 +116,6 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 
 					CreateVar(Rhs + 1,MATRIX_OF_DOUBLE_DATATYPE,&m_out,&n_out,&l_out);
 					LhsVar(1) = Rhs + 1;
-
 				}
 
 				if (Lhs == 2)
@@ -163,7 +140,7 @@ int sci_fileinfo(char *fname,unsigned long fname_len)
 			else
 			{
 				freeArrayOfString(InputString_Parameter, mn);
-				Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), fname, 1);
+				Scierror(999, _("%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"), fname, 1);
 			}
 		}
 	}

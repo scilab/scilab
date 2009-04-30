@@ -883,6 +883,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\transposeMatrix.c"
+				>
+			</File>
+			<File
 				RelativePath=".\variable_api.c"
 				>
 			</File>
@@ -988,11 +992,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -1273,6 +1277,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\tmpdir.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\transposeMatrix.h"
 				>
 			</File>
 			<File

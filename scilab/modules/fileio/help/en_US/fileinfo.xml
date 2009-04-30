@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="windows-1251"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -30,7 +30,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>[x,ierr]=fileinfo(file)</synopsis>
+    <synopsis>[x,ierr] = fileinfo(files)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -38,10 +38,11 @@
 
     <variablelist>
       <varlistentry>
-        <term>file</term>
+        <term>files</term>
 
         <listitem>
-          <para>a character string, the file pathname</para>
+          <para>a character string or a string column vector, file
+          pathname</para>
         </listitem>
       </varlistentry>
 
@@ -49,8 +50,15 @@
         <term>x</term>
 
         <listitem>
-          <para>an integer vector of size 13 containing information or an empty
-          matrix if file does not exist.</para>
+          <para>an integer vector of size 13 containing information or an
+          empty matrix if file does not exist.</para>
+
+          <para>if 'files' is a a string column vector, x wil be a matrix of
+          size m x 13.</para>
+
+          <para>If a filename does not exist , it will return as output
+          information a line of size 13 with Nan in each element of this line.
+          </para>
         </listitem>
       </varlistentry>
 
@@ -67,7 +75,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>x=fileinfo(file) returns</para>
+    <para>x = fileinfo(file) returns</para>
 
     <variablelist>
       <varlistentry>
@@ -218,6 +226,9 @@ if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
 else
  disp('NO WRITE PERMISSION on this file.');
 end
+
+FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
+[X,ERRS] = fileinfo(FILES)
 
 
 </programlisting>

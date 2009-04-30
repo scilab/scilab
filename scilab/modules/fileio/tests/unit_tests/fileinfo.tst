@@ -25,3 +25,21 @@ for i = 1 : size(tab_ref,'*')
   if ls(fz) == [] then pause,end
   if fileinfo(fz) == [] then pause,end
 end
+
+[x,err] = fileinfo(SCI);
+if err <> 0 then pause,end
+if size(x,'*') <> 13 then pause,end
+
+[x,err] = fileinfo('My_file_not_exist');
+if err == 0 then pause,end
+if x <> [] then pause,end
+
+ierr = execstr('fileinfo([SCI,SCIHOME])','errcatch');
+if ierr <> 999 then pause,end
+
+FILES = [SCI;'My_file_not_exist';SCIHOME;TMPDIR];
+[X,ERRS] = fileinfo(FILES);
+if ~and(isnan(X(2,:))) <> %F then pause,end
+
+if size(X(1,:),'*') <> 13 then pause,end
+if size(FILES,'*') <> size(ERRS,'*') then pause,end

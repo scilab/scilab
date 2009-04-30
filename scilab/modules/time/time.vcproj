@@ -385,10 +385,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\InversionMatrixInt.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\realtime.c"
 				>
 			</File>
@@ -432,10 +428,6 @@
 			</File>
 			<File
 				RelativePath=".\includes\gw_time.h"
-				>
-			</File>
-			<File
-				RelativePath=".\includes\InversionMatrixInt.h"
 				>
 			</File>
 			<File
