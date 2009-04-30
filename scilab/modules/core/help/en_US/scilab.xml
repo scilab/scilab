@@ -108,6 +108,7 @@
 				<literal>SCI/etc/scilab.start</literal> and the user startup files
 				<literal>SCIHOME/.scilab</literal>, <literal>SCIHOME/scilab.ini</literal> are not executed.
 			</para>
+	<para>This option will disable many features in Scilab (Only use if you know what you are doing).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
