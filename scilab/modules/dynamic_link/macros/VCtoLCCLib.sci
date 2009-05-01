@@ -84,7 +84,7 @@ function  bOK = ExportAtlasLibrary(libraryname, pathlib)
 	
 	mprintf('\n');
 	mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then
 	  bOK=%F;	
@@ -136,7 +136,7 @@ function bOK = Exportalibrary(libraryname, pathlib)
 	
 	mprintf('\n');
 	mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then
 	  bOK=%F;	
