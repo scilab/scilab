@@ -55,6 +55,8 @@ Bug fixes:
  * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under
    	   			  	PowerPC
 
+ * bug 4298 fixed - ilib_for_link fails with lcc-win32 (Windows). 	   			  	
+
  * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
    	   			  	the second possible value was 'clipgrf' instead of 'cliprf'.
 

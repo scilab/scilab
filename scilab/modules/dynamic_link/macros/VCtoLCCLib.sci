@@ -1,6 +1,7 @@
 //==========================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA - Allan CORNET
+// Copyright (C) DIGITEO - 2009 - Allan CORNET
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -90,7 +91,7 @@ function  bOK = ExportAtlasLibrary(libraryname, pathlib)
 	  mprintf('\n');
 	  mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
 	end
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then
 	  bOK=%F;	
@@ -148,7 +149,8 @@ function bOK = Exportalibrary(libraryname, pathlib)
 	  mprintf('\n');
 	  mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
 	end
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'.lib""';
+
 	ierr = unix(command);
 	if ierr <> 0 then
 	  bOK=%F;	
