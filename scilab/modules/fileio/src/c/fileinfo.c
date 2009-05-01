@@ -223,7 +223,7 @@ static double *fileinfo_Others(char *filepathname,int *ierr)
 	*ierr = 0;
 
 	result = stat(filepathname, &buf );
-	if (result)
+	if (result == 0)
 	{
 		FILEINFO_ARRAY = (double*)MALLOC(sizeof(double)*FILEINFO_ARRAY_SIZE);
 		if (FILEINFO_ARRAY)
