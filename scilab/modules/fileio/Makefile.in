@@ -144,7 +144,9 @@ am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_moef.lo libscifileio_la-sci_mopen.lo \
 	libscifileio_la-sci_mput.lo libscifileio_la-sci_mputstr.lo \
 	libscifileio_la-sci_mseek.lo libscifileio_la-sci_mtell.lo \
-	libscifileio_la-sci_fileinfo.lo
+	libscifileio_la-sci_fileinfo.lo libscifileio_la-sci_newest.lo \
+	libscifileio_la-sci_get_absolute_file_path.lo \
+	libscifileio_la-sci_getrelativefilename.lo
 am_libscifileio_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscifileio_la_OBJECTS = $(am_libscifileio_la_OBJECTS)
 libscifileio_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
@@ -456,7 +458,10 @@ sci_gateway/c/sci_mput.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
 sci_gateway/c/sci_mtell.c \
-sci_gateway/c/sci_fileinfo.c
+sci_gateway/c/sci_fileinfo.c \
+sci_gateway/c/sci_newest.c \
+sci_gateway/c/sci_get_absolute_file_path.c  \
+sci_gateway/c/sci_getrelativefilename.c 
 
 libscifileio_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -703,9 +708,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fprintfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fscanfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_fullpath.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_get_absolute_file_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getcwd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getdrives.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getlongpathname.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getrelativefilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_getshortpathname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_isdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_maxfiles.Plo@am__quote@
@@ -726,6 +733,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_msprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_msscanf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_mtell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_newest.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_pathsep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-sci_removedir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-scicurdir.Plo@am__quote@
@@ -1304,6 +1312,27 @@ libscifileio_la-sci_fileinfo.lo: sci_gateway/c/sci_fileinfo.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_fileinfo.c' object='libscifileio_la-sci_fileinfo.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_fileinfo.lo `test -f 'sci_gateway/c/sci_fileinfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fileinfo.c
+
+libscifileio_la-sci_newest.lo: sci_gateway/c/sci_newest.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_newest.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_newest.Tpo -c -o libscifileio_la-sci_newest.lo `test -f 'sci_gateway/c/sci_newest.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newest.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-sci_newest.Tpo $(DEPDIR)/libscifileio_la-sci_newest.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_newest.c' object='libscifileio_la-sci_newest.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_newest.lo `test -f 'sci_gateway/c/sci_newest.c' || echo '$(srcdir)/'`sci_gateway/c/sci_newest.c
+
+libscifileio_la-sci_get_absolute_file_path.lo: sci_gateway/c/sci_get_absolute_file_path.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_get_absolute_file_path.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_get_absolute_file_path.Tpo -c -o libscifileio_la-sci_get_absolute_file_path.lo `test -f 'sci_gateway/c/sci_get_absolute_file_path.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_absolute_file_path.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-sci_get_absolute_file_path.Tpo $(DEPDIR)/libscifileio_la-sci_get_absolute_file_path.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_get_absolute_file_path.c' object='libscifileio_la-sci_get_absolute_file_path.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_get_absolute_file_path.lo `test -f 'sci_gateway/c/sci_get_absolute_file_path.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get_absolute_file_path.c
+
+libscifileio_la-sci_getrelativefilename.lo: sci_gateway/c/sci_getrelativefilename.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-sci_getrelativefilename.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-sci_getrelativefilename.Tpo -c -o libscifileio_la-sci_getrelativefilename.lo `test -f 'sci_gateway/c/sci_getrelativefilename.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getrelativefilename.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-sci_getrelativefilename.Tpo $(DEPDIR)/libscifileio_la-sci_getrelativefilename.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_getrelativefilename.c' object='libscifileio_la-sci_getrelativefilename.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-sci_getrelativefilename.lo `test -f 'sci_gateway/c/sci_getrelativefilename.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getrelativefilename.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
