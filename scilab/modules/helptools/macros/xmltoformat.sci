@@ -1009,19 +1009,16 @@ function xmlfiles = x2f_get_xml_files(directory)
 		xmlpaths = [];
 	end
 	
-	// Loop on all xml files to get their modification time
+	// Get XML modification time
 	// =========================================================================
 	
-	format(20);
-	
-	lmt = [];
-	
-	for i=1:size(xmlpaths,"*")
-		infos   = fileinfo(xmlpaths(i));
-		lmt(i)  = string(infos(7));
+	if xmlpaths<>[] then
+		infos = fileinfo(xmlpaths);
+		format(20);
+		lmt   = string(infos(:,7));
+	else
+		lmt   = [];
 	end
-	
-	lmt = matrix(lmt,size(xmlpaths));
 	
 	// Build the final matrix
 	// =========================================================================
@@ -1327,9 +1324,7 @@ function master_document = x2f_tree_to_master( tree )
 	
 	// Process the path if under windows
 	if MSDOS then
-		for i=1:size(tree_xmllist(:,2),"*")
-			tree_xmllist(i,2) = "file:///"+ getshortpathname(tree_xmllist(i,2));
-		end
+		tree_xmllist(:,2) = "file:///"+ getshortpathname(tree_xmllist(:,2));
 	end
 	
 	// Add entities
@@ -1352,7 +1347,10 @@ function master_document = x2f_tree_to_master( tree )
 		book_title = tree("title_default");
 	end
 	
-	book_title = strsubst(book_title,"&","&amp;");
+	book_title = strsubst(book_title,"&"  ,"&amp;");
+	book_title = strsubst(book_title,"""" ,"&quot;");
+	book_title = strsubst(book_title,">"  ,"&gt;");
+	book_title = strsubst(book_title,"<"  ,"&lt;");
 	
 	master_document    = [ master_document; ..
 		"<!--End Entities-->"; ..
@@ -1493,7 +1491,10 @@ function master_section = x2f_tree_to_section( tree , offset )
 		section_title = tree("title_default");
 	end
 	
-	section_title  = strsubst(section_title,"&","&amp;");
+	section_title  = strsubst(section_title,"&"  ,"&amp;");
+	section_title  = strsubst(section_title,"""" ,"&quot;");
+	section_title  = strsubst(section_title,">"  ,"&gt;");
+	section_title  = strsubst(section_title,"<"  ,"&lt;");
 	
 	master_section = [];
 	master_section = [ master_section ; "<"+section_type+" xml:id=''section_"+getmd5(tree("path"),"string")+"''>" ];
