@@ -39,7 +39,7 @@ Help & Tests:
 Bug fixes:
 ==========
 
- * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic troubble.
+ * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
  * bug 2042 fixed - copy function altered axes properties.
 
@@ -89,6 +89,8 @@ Bug fixes:
  * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
                     and not a filename (linux)
 
+ * bug 4469 fixed - A few minor bugs were causing the configure to fail under
+		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================

@@ -10905,7 +10905,7 @@ case "$CC" in
 	;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
-	 LDFLAGS="$LDFLAGS -m"
+	 LDFLAGS="$LDFLAGS -lm"
 	 ;;
   *-*-netbsd*)
     CFLAGS="$CFLAGS -Dnetbsd"
@@ -11258,7 +11258,7 @@ $as_echo "Use JDK path specified ($ok)" >&6; }
 	{ $as_echo "$as_me:$LINENO: checking JAVA_HOME variable" >&5
 $as_echo_n "checking JAVA_HOME variable... " >&6; }
 	# check if JAVA_HOME is set. If it is the case, try to use if first
-	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" == "x"; then
+	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" = "x"; then
 		if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
 		    { $as_echo "$as_me:$LINENO: result: JAVA_HOME variable found, use it as JVM root directory" >&5
 $as_echo "JAVA_HOME variable found, use it as JVM root directory" >&6; }
@@ -12926,7 +12926,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar flexdock used by Scilab Gui (looking for package org.flexdock.docking.DockingManager)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar flexdock used by Scilab Gui (looking for package org.flexdock.docking.DockingManager)" >&2;}
 	  else
@@ -12999,7 +12999,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" == "yes"; then
+	  if test ""yes"" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
 	  else
@@ -13072,7 +13072,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar looks2 used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks2 used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
 	  else
@@ -13148,7 +13148,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar skinlf used by Scilab Gui - Skin Look and Feel (looking for package com.l2fprod.util.AccessUtils)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar skinlf used by Scilab Gui - Skin Look and Feel (looking for package com.l2fprod.util.AccessUtils)" >&2;}
 	  else
@@ -13221,7 +13221,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jogl used by Scilab 3D rendering - Version 1.1.1 (looking for package javax.media.opengl.glu.GLUnurbs)" >&2;}
 	  else
@@ -13294,7 +13294,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" == "yes"; then
+	  if test ""yes"" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar jhall used by Scilab Help Browser (looking for package javax.help.JHelp)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jhall used by Scilab Help Browser (looking for package javax.help.JHelp)" >&2;}
 	  else
@@ -13367,7 +13367,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar javahelp2 used by Scilab Help Browser (looking for package javax.help.JHelp)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar javahelp2 used by Scilab Help Browser (looking for package javax.help.JHelp)" >&2;}
 	  else
@@ -13441,7 +13441,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar gluegen-rt used by Scilab 3D rendering (looking for package com.sun.gluegen.runtime.CPU)" >&2;}
 	  else
@@ -13514,7 +13514,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar jrosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jrosetta-API used by JRosetta : Console API Artenum / Scilab (looking for package com.artenum.rosetta.interfaces.core.ConsoleConfiguration)" >&2;}
 	  else
@@ -13587,7 +13587,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar jrosetta-engine used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jrosetta-engine used by JRosetta : Console Core Artenum / Scilab (looking for package com.artenum.rosetta.core.action.AbstractConsoleAction)" >&2;}
 	  else
@@ -13660,7 +13660,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar commons-logging used by Apache logging (looking for package org.apache.commons.logging.LogFactory)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar commons-logging used by Apache logging (looking for package org.apache.commons.logging.LogFactory)" >&2;}
 	  else
@@ -27297,7 +27297,7 @@ fi
 
 
 	for dir in $with_docbook $SCI_SRCDIR_FULL/thirdparty/docbook/ /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/; do
-		if test -r "$dir/javahelp/javahelp.xsl" -a "$DOCBOOK_ROOT" == ""; then
+		if test -r "$dir/javahelp/javahelp.xsl" -a "$DOCBOOK_ROOT" = ""; then
 			DOCBOOK_ROOT=$dir
         fi
 	done
@@ -27366,7 +27366,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik-all used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&2;}
 	  else
@@ -27439,7 +27439,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" == "yes"; then
+	  if test ""yes"" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar batik used by Apache SVG Library (looking for package org.apache.batik.parser.Parser)" >&2;}
 	  else
@@ -27514,7 +27514,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar saxon used by Saxon XSLT Processor (looking for package com.icl.saxon.Loader)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar saxon used by Saxon XSLT Processor (looking for package com.icl.saxon.Loader)" >&2;}
 	  else
@@ -27587,7 +27587,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar fop used by XML to PDF Translator (fop) (looking for package org.apache.fop.pdf.PDFInfo)" >&2;}
 	  else
@@ -27660,7 +27660,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (at least version 3.1.X) (looking for package net.sourceforge.jeuclid.LayoutContext)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jeuclid-core used by MathML rendering solution (at least version 3.1.X) (looking for package net.sourceforge.jeuclid.LayoutContext)" >&2;}
 	  else
@@ -27733,7 +27733,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar commons-io used by Commons I/O library (looking for package org.apache.commons.io.output.CountingOutputStream)" >&2;}
 	  else
@@ -27806,7 +27806,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar xmlgraphics-commons used by Commons graphics library (looking for package org.apache.xmlgraphics.util.Service)" >&2;}
 	  else
@@ -27879,7 +27879,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar xml-apis-ext used by XML Commons external code (looking for package org.w3c.dom.svg.SVGDocument)" >&2;}
 	  else
@@ -27953,7 +27953,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:$LINENO: result: no" >&5
 $as_echo "no" >&6; }
-	  if test "" == "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:$LINENO: WARNING: Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar avalon-framework used by Common framework for Java server application (looking for package org.apache.avalon.framework.configuration.ConfigurationException)" >&2;}
 	  else
@@ -45080,10 +45080,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else
    echo "Not using Scicos"
 fi
