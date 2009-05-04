@@ -514,7 +514,7 @@ case "$CC" in
 	;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
-	 LDFLAGS="$LDFLAGS -m"
+	 LDFLAGS="$LDFLAGS -lm"
 	 ;;
   *-*-netbsd*)
     CFLAGS="$CFLAGS -Dnetbsd"
