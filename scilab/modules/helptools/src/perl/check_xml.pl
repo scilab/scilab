@@ -41,12 +41,17 @@ my $tmp             = $directory.'/tmp.txt';
 # log file
 my $log             = $directory.'/log.txt';
 
+# XML list
+my %xmllist;
+
 # stats
 my $nb_bad_file      = 0;
 my %bad_file_list;
 
-my $lang;
-
+my %languages;
+$languages{'fr_FR'} = 1;
+$languages{'en_US'} = 1;
+$languages{'pt_BR'} = 1;
 
 # Initialisation du fichier de log
 unless( open(LOG,'> '.$log) )
@@ -66,77 +71,52 @@ else
 	%modules = get_module_list();
 }
 
-$lang = 'en_US';
+# ==============================================================================
+# First step : get the XML list
+# ==============================================================================
 
 foreach my $module (sort keys %modules)
 {
-	print "=================================================================\n";
-	print $module."\n";
-	print "=================================================================\n";
-	
-	my %xml_list = get_xml_list($module,$lang);
-	
-	foreach my $xmlfile (sort keys %xml_list)
+	foreach my $language (sort keys %languages)
 	{
-		print ' - '.$xmlfile;
-		for( my $i =length($xmlfile) ; $i < 40 ; $i++ )
+		my $this_directory = $sci_modules_dir.'/'.$module.'/help/'.$language;
+		
+		if( -d $this_directory )
 		{
-			print '.';
+			get_xml_list($this_directory);
 		}
-		
-		print '['.$lang.'].....';
-		
-		my $nb_error = valid($module,$lang,$xmlfile);
-		
-		if( $nb_error == 0)
-		{
-			print 'OK !';
-		}
-		else
-		{
-			print "\t".$nb_error.' ERRORS';
-		}
-		
-		print "\n";
 	}
 }
 
-$lang = 'fr_FR';
+# ==============================================================================
+# Second step : valid each XML file
+# ==============================================================================
 
-foreach my $module (sort keys %modules)
+foreach my $xmlfile (sort keys %xmllist)
 {
-	print "=================================================================\n";
-	print $module."\n";
-	print "=================================================================\n";
-	
-	my %xml_list = get_xml_list($module,$lang);
-	
-	foreach my $xmlfile (sort keys %xml_list)
+	print ' - '.$xmlfile.' ';
+	for( my $i =length($xmlfile) ; $i < 100 ; $i++ )
 	{
-		print ' - '.$xmlfile;
-		for( my $i =length($xmlfile) ; $i < 40 ; $i++ )
-		{
-			print '.';
-		}
-		
-		print '['.$lang.'].....';
-		
-		my $nb_error = valid($module,$lang,$xmlfile);
-		
-		if( $nb_error == 0)
-		{
-			print 'OK !';
-		}
-		else
-		{
-			print "\t".$nb_error.' ERRORS';
-		}
-		
-		print "\n";
+		print '.';
 	}
+	
+	my $nb_error = valid($xmlfile);
+	
+	if( $nb_error == 0)
+	{
+		print 'OK !';
+	}
+	else
+	{
+		print "\t".$nb_error.' ERRORS';
+	}
+	
+	print "\n";
 }
 
-close(LOG);
+# ==============================================================================
+# Third step : Summary
+# ==============================================================================
 
 print "\n\n";
 my $count = 0;
@@ -145,7 +125,7 @@ foreach my $bad_file (sort keys %bad_file_list)
 {
 	$count++;
 	printf(" %02d",$count);
-	print ' - '.$bad_file;
+	print ' - '.$bad_file.' ';
 	for( my $i =length($bad_file) ; $i < 100 ; $i++ )
 	{
 		print '.';
@@ -187,23 +167,37 @@ sub get_module_list
 
 sub get_xml_list
 {
-	my %list;
-	my $module   = $_[0];
-	my $language = $_[1];
+	my $dir = $_[0];
+	my @list_dir;
 	
-	unless( chdir($sci_modules_dir.'/'.$module.'/help/'.$language) )
+	my $current_directory;
+	
+	# On enregistre le répertoire dans lequel on se situe à l'entrée de la fonction
+	my $previous_directory = getcwd();
+	
+	chdir($dir);
+	
+	@list_dir = <*>;
+	
+	foreach my $list_dir (@list_dir)
 	{
-		return %list;
+		$current_directory = getcwd();
+		
+		if(-d $list_dir)
+		{
+			get_xml_list($current_directory.'/'.$list_dir);
+		}
+		
+		if( (-f $list_dir)
+		   && ($list_dir =~ m/\.xml$/)
+		   && ($list_dir ne 'master.xml')
+		   && ($list_dir ne 'master_help.xml') )
+		{
+			$xmllist{$current_directory.'/'.$list_dir} = 1;
+		}
 	}
 	
-	my @xmlfiles = <*.xml>;
-	
-	foreach my $xmlfile (@xmlfiles)
-	{
-		$list{$xmlfile} = 1;
-	}
-	
-	return %list;
+	chdir($previous_directory);
 }
 
 # ==============================================================================
@@ -212,15 +206,10 @@ sub get_xml_list
 
 sub valid
 {
-	my $module   = $_[0];
-	my $language = $_[1];
-	my $xmlfile  = $_[2];
-	
-	# xml file path
-	my $xmlfile_path = $sci_modules_dir.'/'.$module.'/help/'.$language.'/'.$xmlfile;
+	my $xmlfile  = $_[0];
 	
 	# construction de la commande
-	my $cmd  = 'xmllint --noout --relaxng '.$rng.' '.$xmlfile_path.' ';
+	my $cmd  = 'xmllint --noout --relaxng '.$rng.' '.$xmlfile.' ';
 	$cmd    .= '> '.$tmp.' 2>&1';
 	
 	# Lancement de la commande
@@ -240,7 +229,7 @@ sub valid
 	
 	while(<TMP>)
 	{
-		if( $_ eq $xmlfile_path.' validates'."\n" )
+		if( $_ eq $xmlfile.' validates'."\n" )
 		{
 			$nb_error  = 0;
 			$error_str = '';
@@ -262,10 +251,10 @@ sub valid
 	if( $nb_error > 0 )
 	{
 		$nb_bad_file++;;
-		$bad_file_list{$xmlfile_path} = $nb_error;
+		$bad_file_list{$xmlfile} = $nb_error;
 		
 		print LOG "=================================================================\n";
-		print LOG $sci_modules_dir.'/'.$module.'/help/'.$language.'/'.$xmlfile."\n";
+		print LOG $xmlfile."\n";
 		print LOG "=================================================================\n";
 		print LOG $error_str;
 	}
