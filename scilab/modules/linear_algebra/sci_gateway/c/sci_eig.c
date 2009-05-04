@@ -31,7 +31,7 @@ evals=spec(A,B)
 [alpha,beta,Z]=spec(A,B)
 [alpha,beta,Q,Z]=spec(A,B)
 */
-extern int C2F(complexify)(int *num);
+extern int C2F(complexify)(int const*num);
 
 /* internal function used to detect imaginary part completly and strictly equal to 0. causing troubles to LAPACK. */  
 static int isArrayZero(int size , double * values)

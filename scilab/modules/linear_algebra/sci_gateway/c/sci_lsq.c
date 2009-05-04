@@ -119,7 +119,7 @@ int C2F(intlsq)(char *fname,unsigned long fname_len)
 	      {
 		for(i=0; i != 2; ++i)
 		  {
-		    vFreeDoubleComplexFromPointer(pData[i]);
+		    vFreeDoubleComplexFromPointer((doublecomplex*)pData[i]);
 		  }
 		vGetPointerFromDoubleComplex((doublecomplex*)(pResult), iCols[0] * iCols[1], pResultReal, pResultImg);
 		FREE(pResult);
