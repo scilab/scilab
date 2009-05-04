@@ -19,6 +19,8 @@ Source reorganisation:
 
 * Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
   SCI/modules/src/scripts
+  
+* newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
 
 Input/Output functions:
 =======================

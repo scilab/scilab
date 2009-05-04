@@ -84,7 +84,10 @@ sci_gateway/c/sci_mput.c \
 sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
 sci_gateway/c/sci_mtell.c \
-sci_gateway/c/sci_fileinfo.c
+sci_gateway/c/sci_fileinfo.c \
+sci_gateway/c/sci_newest.c \
+sci_gateway/c/sci_get_absolute_file_path.c  \
+sci_gateway/c/sci_getrelativefilename.c 
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \

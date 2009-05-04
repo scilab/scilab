@@ -43,9 +43,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_getio),"getio"},
 {C2F(sci_setenv),"setenv"},
-{C2F(sci_getrelativefilename),"getrelativefilename"},
-{C2F(sci_newest),"newest"},
-{C2F(sci_get_absolute_file_path),"get_absolute_file_path"},
 {sci_export_to_hdf5,"export_to_hdf5"}
 };
 /*--------------------------------------------------------------------------*/

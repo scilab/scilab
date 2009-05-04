@@ -62,8 +62,5 @@
 <PRIMITIVE gatewayId="5" primitiveId="25" primitiveName="mgetl" />
 <PRIMITIVE gatewayId="5" primitiveId="26" primitiveName="getio" />
 <PRIMITIVE gatewayId="5" primitiveId="27" primitiveName="setenv" />
-<PRIMITIVE gatewayId="5" primitiveId="28" primitiveName="getrelativefilename" />
-<PRIMITIVE gatewayId="5" primitiveId="29" primitiveName="newest" />
-<PRIMITIVE gatewayId="5" primitiveId="30" primitiveName="get_absolute_file_path" />
-<PRIMITIVE gatewayId="5" primitiveId="31" primitiveName="export_to_hdf5" />
+<PRIMITIVE gatewayId="5" primitiveId="28" primitiveName="export_to_hdf5" />
 </GATEWAY>

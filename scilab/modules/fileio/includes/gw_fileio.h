@@ -51,6 +51,9 @@ int sci_removedir(char *fname,unsigned long fname_len);
 int sci_chdir(char *fname,unsigned long fname_len);
 int sci_getcwd(char *fname,unsigned long fname_len);
 int sci_fileinfo(char *fname,unsigned long fname_len);
+int sci_newest(char *fname,unsigned long fname_len);
+int sci_getrelativefilename(char *fname, unsigned long l);
+int sci_get_absolute_file_path(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

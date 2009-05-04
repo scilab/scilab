@@ -42,3 +42,49 @@ a = newest(FileNameList);
 if(a <> 1) then 
 	pause
 end
+
+a=dir('SCI\bin');
+f1=a(2);
+r1=newest(f1);
+clear a f1 r1
+
+realtimeinit(2);
+realtime(0);
+
+tab_ref = [
+"世界您好",
+"азеазея",
+"ハロー・ワールド",
+"حريات وحقوق",
+"תוכנית"];
+
+
+for k=1 : size(tab_ref,"*")
+	realtime(k);
+	mputl("",TMPDIR+"/newest_"+tab_ref(k));
+end
+
+if newest([]) <> [] then pause,end
+if newest()   <> [] then pause,end
+
+if newest("SCI/etc/scilab.start") <> 1 then pause,end
+if newest("SCI/nofile.txt")       <> 1 then pause,end
+
+for i = 1 : size(tab_ref,"*")
+	for j = size(tab_ref,"*") : -1 : 1
+		if(i <> j) then
+			ref = max(i,j);
+			if(ref == i) then
+				ref = 1;
+			else;
+				ref = 2;
+			end
+			if(newest(TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/newest_"+tab_ref(j)) <> ref) then pause, end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/newest_"+tab_ref(j)]) <> ref)  then pause, end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i); TMPDIR+"/newest_"+tab_ref(j)]) <> ref)  then pause, end
+			if(newest(TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/no_file") <> 1)  then pause, end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i), TMPDIR+"/no_file"]) <> 1)  then pause, end
+			if(newest([TMPDIR+"/newest_"+tab_ref(i); TMPDIR+"/no_file"]) <> 1)  then pause, end
+		end
+	end
+end

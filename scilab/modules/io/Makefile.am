@@ -21,7 +21,6 @@ sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
-sci_gateway/c/sci_getrelativefilename.c \
 sci_gateway/c/sci_file.c \
 sci_gateway/c/intsetenv.c \
 sci_gateway/c/sci_exec.c \
@@ -43,9 +42,7 @@ sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_oldsave.c \
 sci_gateway/c/sci_save.c \
-sci_gateway/c/sci_disp.c \
-sci_gateway/c/sci_newest.c \
-sci_gateway/c/sci_get_absolute_file_path.c 
+sci_gateway/c/sci_disp.c
 
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp 
@@ -116,8 +113,7 @@ libsciio_la_sci_gateway_DATA = sci_gateway/io_gateway.xml
 
 ####�io : include files ####
 libsciio_la_includedir=$(pkgincludedir)/io
-libsciio_la_include_HEADERS = includes/sci_getrelativefilename.h \
-includes/gw_io.h \
+libsciio_la_include_HEADERS = includes/gw_io.h \
 includes/getenvc.h \
 includes/setenvc.h \
 includes/GetenvB.h

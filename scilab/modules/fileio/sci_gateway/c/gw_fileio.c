@@ -53,7 +53,10 @@ static gw_generic_table Tab[]={
 	{sci_createdir,"createdir"},
 	{sci_getcwd,"getcwd"},
 	{sci_chdir,"chdir"},
-	{sci_fileinfo,"fileinfo"}
+	{sci_fileinfo,"fileinfo"},
+	{sci_newest,"newest"},
+	{sci_getrelativefilename,"getrelativefilename"},
+	{sci_get_absolute_file_path,"get_absolute_file_path"}
 	};
 /*--------------------------------------------------------------------------*/ 
 int gw_fileio(void)

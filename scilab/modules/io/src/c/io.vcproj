@@ -422,10 +422,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_get_absolute_file_path.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getenv.c"
 				>
 			</File>
@@ -442,10 +438,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getrelativefilename.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_host.c"
 				>
 			</File>
@@ -459,10 +451,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_mgetl.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_newest.c"
 				>
 			</File>
 			<File
@@ -552,10 +540,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_diary.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\sci_getrelativefilename.h"
 				>
 			</File>
 			<File

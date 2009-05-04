@@ -461,6 +461,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\getrelativefilename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getshortpathname.c"
 				>
 			</File>
@@ -577,6 +581,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_get_absolute_file_path.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_getcwd.c"
 				>
 			</File>
@@ -586,6 +594,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_getlongpathname.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_getrelativefilename.c"
 				>
 			</File>
 			<File
@@ -666,6 +678,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mtell.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_newest.c"
 				>
 			</File>
 			<File
@@ -759,6 +775,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fullpath.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\getdrives.h"
 				>
 			</File>
@@ -776,6 +796,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\getlongpathname.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\getrelativefilename.h"
 				>
 			</File>
 			<File
@@ -923,10 +947,6 @@
 		</File>
 		<File
 			RelativePath=".\sci_gateway\fileio_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath=".\src\c\fullpath.h"
 			>
 		</File>
 		<File
