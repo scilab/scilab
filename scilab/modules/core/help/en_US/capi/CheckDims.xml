@@ -112,7 +112,7 @@ int sci_check_properties(char * fname)
       <member><link linkend="CheckLength">CheckLength</link></member>
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="How to check parameters">HowToCheckParameters</link></member>
+      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>
