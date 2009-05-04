@@ -37,7 +37,7 @@
   <refsection>
     <title>Parameters</title>
 
-    <para><variablelist>
+    <variablelist>
         <varlistentry>
           <term>name</term>
 
@@ -88,7 +88,7 @@
             ability to be called from fortran</para>
           </listitem>
         </varlistentry>
-      </variablelist></para>
+      </variablelist>
   </refsection>
 
   <refsection>
