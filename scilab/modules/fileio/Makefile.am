@@ -44,7 +44,9 @@ src/c/set_xxprintf.c \
 src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
-src/c/fileinfo.c
+src/c/fileinfo.c \
+src/c/getrelativefilename.c 
+
 
 
 GATEWAY_SOURCES = \
