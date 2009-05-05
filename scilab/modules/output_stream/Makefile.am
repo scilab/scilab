@@ -39,7 +39,8 @@ OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/dmdspf.f \
 		src/fortran/dmdsp.f \
 		src/fortran/dldsp.f \
-		src/fortran/basouttofile.f
+		src/fortran/basouttofile.f \
+		src/fortran/formatnumber.f
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \

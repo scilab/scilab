@@ -103,7 +103,7 @@ am__objects_1 = libscioutput_stream_la-erro.lo \
 	libscioutput_stream_la-error_internal.lo
 am__objects_2 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo print.lo \
 	lspdsp.lo fmttyp.lo fmt.lo dspdsp.lo dmrdsp.lo dmpdsp.lo \
-	dmdspf.lo dmdsp.lo dldsp.lo basouttofile.lo
+	dmdspf.lo dmdsp.lo dldsp.lo basouttofile.lo formatnumber.lo
 am__objects_3 = libscioutput_stream_la-gw_output_stream.lo \
 	libscioutput_stream_la-sci_print.lo
 am__objects_4 = intprint.lo
@@ -376,7 +376,8 @@ OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/dmdspf.f \
 		src/fortran/dmdsp.f \
 		src/fortran/dldsp.f \
-		src/fortran/basouttofile.f
+		src/fortran/basouttofile.f \
+		src/fortran/formatnumber.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
 		sci_gateway/c/sci_print.c
@@ -761,6 +762,9 @@ dldsp.lo: src/fortran/dldsp.f
 
 basouttofile.lo: src/fortran/basouttofile.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basouttofile.lo `test -f 'src/fortran/basouttofile.f' || echo '$(srcdir)/'`src/fortran/basouttofile.f
+
+formatnumber.lo: src/fortran/formatnumber.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o formatnumber.lo `test -f 'src/fortran/formatnumber.f' || echo '$(srcdir)/'`src/fortran/formatnumber.f
 
 intprint.lo: sci_gateway/fortran/intprint.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intprint.lo `test -f 'sci_gateway/fortran/intprint.f' || echo '$(srcdir)/'`sci_gateway/fortran/intprint.f
