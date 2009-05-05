@@ -133,10 +133,9 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/predef.c src/c/transposeMatrix.c src/c/scimem64.c \
 	src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
-	src/fortran/nextj.f src/fortran/setgetmode.f \
-	src/fortran/showstack.f src/fortran/misops.f \
-	src/fortran/iseye.f src/fortran/chkvar.f \
+	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
+	src/fortran/setgetmode.f src/fortran/showstack.f \
+	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
 	src/fortran/funnam.f src/fortran/isnum.f src/fortran/cmdstr.f \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
@@ -149,54 +148,50 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/israt.f src/fortran/setlnb.f \
 	src/fortran/mrknmd.f src/fortran/stackgl.f \
-	src/fortran/allops.f src/fortran/print.f src/fortran/mname.f \
-	src/fortran/prntid.f src/fortran/command.f \
+	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
-	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/dmdspf.f \
-	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/xerbla.f \
+	src/fortran/dtosci.f src/fortran/bexec.f \
 	src/fortran/varfunptr.f src/fortran/getfun.f \
 	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
 	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
 	src/fortran/errmgr.f src/fortran/defmat.f src/fortran/mklist.f \
-	src/fortran/dmdsp.f src/fortran/sigbas.f src/fortran/indxg.f \
-	src/fortran/matz.f src/fortran/istrue.f src/fortran/inisci.f \
-	src/fortran/ptover.f src/fortran/getfunction.f \
-	src/fortran/stackp.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/lspdsp.f src/fortran/extlarg.f \
+	src/fortran/sigbas.f src/fortran/indxg.f src/fortran/matz.f \
+	src/fortran/istrue.f src/fortran/inisci.f src/fortran/ptover.f \
+	src/fortran/getfunction.f src/fortran/stackp.f \
+	src/fortran/dbasin.f src/fortran/macro.f src/fortran/extlarg.f \
 	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
-	src/fortran/fmttyp.f src/fortran/basnms.f src/fortran/matc.f \
-	src/fortran/ptrback.f src/fortran/getch.f src/fortran/ftob.f \
-	src/fortran/seteol.f src/fortran/basin.f src/fortran/clause.f \
-	src/fortran/compcl.f src/fortran/termf.f src/fortran/expsum.f \
-	src/fortran/eqid.f src/fortran/copyvar.f src/fortran/putid.f \
-	src/fortran/itosci.f src/fortran/formatnumber.f \
-	src/fortran/wmdsp.f src/fortran/stackr2d.f \
-	src/fortran/stacki2d.f src/fortran/stackc2i.f \
-	src/fortran/isinstring.f src/fortran/relocstack.f \
-	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_resume.c \
-	sci_gateway/c/sci_mtlb_mode.c sci_gateway/c/sci_banner.c \
-	sci_gateway/c/sci_where.c sci_gateway/c/sci_errcatch.c \
-	sci_gateway/c/sci_getos.c sci_gateway/c/sci_format.c \
-	sci_gateway/c/sci_getmemory.c sci_gateway/c/sci_havewindow.c \
-	sci_gateway/c/sci_delbpt.c sci_gateway/c/sci_macr2lst.c \
-	sci_gateway/c/sci_isdef.c sci_gateway/c/sci_isglobal.c \
-	sci_gateway/c/sci_who.c sci_gateway/c/sci_errclear.c \
-	sci_gateway/c/sci_global.c sci_gateway/c/sci_funcprot.c \
-	sci_gateway/c/sci_newfun.c sci_gateway/c/sci_warning.c \
-	sci_gateway/c/sci_dispbpt.c sci_gateway/c/sci_whereis.c \
-	sci_gateway/c/sci_intppty.c sci_gateway/c/sci_ieee.c \
-	sci_gateway/c/sci_gstacksize.c sci_gateway/c/sci_lasterror.c \
-	sci_gateway/c/sci_funptr.c sci_gateway/c/sci_return.c \
-	sci_gateway/c/sci_exists.c sci_gateway/c/sci_getmd5.c \
-	sci_gateway/c/sci_clear.c sci_gateway/c/sci_comp.c \
-	sci_gateway/c/sci_clearfun.c sci_gateway/c/sci_setbpt.c \
-	sci_gateway/c/sci_getmodules.c sci_gateway/c/sci_what.c \
-	sci_gateway/c/sci_predef.c sci_gateway/c/sci_clearglobal.c \
-	sci_gateway/c/sci_arg.c sci_gateway/c/sci_type.c \
-	sci_gateway/c/sci_typename.c sci_gateway/c/sci_mode.c \
-	sci_gateway/c/sci_macr2tree.c sci_gateway/c/sci_iserror.c \
-	sci_gateway/c/sci_getversion.c \
+	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
+	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
+	src/fortran/basin.f src/fortran/clause.f src/fortran/compcl.f \
+	src/fortran/termf.f src/fortran/expsum.f src/fortran/eqid.f \
+	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/stackr2d.f src/fortran/stacki2d.f \
+	src/fortran/stackc2i.f src/fortran/isinstring.f \
+	src/fortran/relocstack.f sci_gateway/c/sci_stacksize.c \
+	sci_gateway/c/sci_resume.c sci_gateway/c/sci_mtlb_mode.c \
+	sci_gateway/c/sci_banner.c sci_gateway/c/sci_where.c \
+	sci_gateway/c/sci_errcatch.c sci_gateway/c/sci_getos.c \
+	sci_gateway/c/sci_format.c sci_gateway/c/sci_getmemory.c \
+	sci_gateway/c/sci_havewindow.c sci_gateway/c/sci_delbpt.c \
+	sci_gateway/c/sci_macr2lst.c sci_gateway/c/sci_isdef.c \
+	sci_gateway/c/sci_isglobal.c sci_gateway/c/sci_who.c \
+	sci_gateway/c/sci_errclear.c sci_gateway/c/sci_global.c \
+	sci_gateway/c/sci_funcprot.c sci_gateway/c/sci_newfun.c \
+	sci_gateway/c/sci_warning.c sci_gateway/c/sci_dispbpt.c \
+	sci_gateway/c/sci_whereis.c sci_gateway/c/sci_intppty.c \
+	sci_gateway/c/sci_ieee.c sci_gateway/c/sci_gstacksize.c \
+	sci_gateway/c/sci_lasterror.c sci_gateway/c/sci_funptr.c \
+	sci_gateway/c/sci_return.c sci_gateway/c/sci_exists.c \
+	sci_gateway/c/sci_getmd5.c sci_gateway/c/sci_clear.c \
+	sci_gateway/c/sci_comp.c sci_gateway/c/sci_clearfun.c \
+	sci_gateway/c/sci_setbpt.c sci_gateway/c/sci_getmodules.c \
+	sci_gateway/c/sci_what.c sci_gateway/c/sci_predef.c \
+	sci_gateway/c/sci_clearglobal.c sci_gateway/c/sci_arg.c \
+	sci_gateway/c/sci_type.c sci_gateway/c/sci_typename.c \
+	sci_gateway/c/sci_mode.c sci_gateway/c/sci_macr2tree.c \
+	sci_gateway/c/sci_iserror.c sci_gateway/c/sci_getversion.c \
 	sci_gateway/c/sci_getdebuginfo.c sci_gateway/c/sci_debug.c \
 	sci_gateway/c/gw_core.c sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c sci_gateway/c/sci_error.c \
@@ -275,26 +270,24 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-mode_exec.lo libscicore_la-predef.lo \
 	libscicore_la-transposeMatrix.lo $(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
-am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo dldsp.lo \
-	isany.lo hmcreate.lo nextj.lo setgetmode.lo showstack.lo \
-	misops.lo iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo \
-	isnum.lo cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo \
-	skpins.lo folhp.lo cvname.lo funs.lo fact.lo inibrk.lo \
-	typ2cod.lo prompt.lo intstr.lo createref.lo btof.lo matzs.lo \
-	getnum.lo btofm.lo getsym.lo findequal.lo stackg.lo find.lo \
-	israt.lo setlnb.lo mrknmd.lo stackgl.lo allops.lo print.lo \
-	mname.lo prntid.lo command.lo ref2val.lo namstr.lo stack.lo \
-	isbrk.lo majmin.lo dmdspf.lo xerbla.lo dtosci.lo bexec.lo \
-	varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo \
-	mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo dmdsp.lo \
-	sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo ptover.lo \
-	getfunction.lo stackp.lo dbasin.lo macro.lo lspdsp.lo \
+am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo isany.lo \
+	hmcreate.lo nextj.lo setgetmode.lo showstack.lo misops.lo \
+	iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo \
+	cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo \
+	folhp.lo cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo \
+	prompt.lo intstr.lo createref.lo btof.lo matzs.lo getnum.lo \
+	btofm.lo getsym.lo findequal.lo stackg.lo find.lo israt.lo \
+	setlnb.lo mrknmd.lo stackgl.lo allops.lo mname.lo command.lo \
+	ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo xerbla.lo \
+	dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo \
+	cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo \
+	mklist.lo sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo \
+	ptover.lo getfunction.lo stackp.lo dbasin.lo macro.lo \
 	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
-	fmttyp.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
-	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
-	eqid.lo copyvar.lo putid.lo itosci.lo formatnumber.lo wmdsp.lo \
-	stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
-	$(am__objects_3)
+	basnms.lo matc.lo ptrback.lo getch.lo ftob.lo seteol.lo \
+	basin.lo clause.lo compcl.lo termf.lo expsum.lo eqid.lo \
+	copyvar.lo putid.lo itosci.lo stackr2d.lo stacki2d.lo \
+	stackc2i.lo isinstring.lo $(am__objects_3)
 am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -605,10 +598,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/predef.c src/c/transposeMatrix.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/dldsp.f src/fortran/isany.f src/fortran/hmcreate.f \
-	src/fortran/nextj.f src/fortran/setgetmode.f \
-	src/fortran/showstack.f src/fortran/misops.f \
-	src/fortran/iseye.f src/fortran/chkvar.f \
+	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
+	src/fortran/setgetmode.f src/fortran/showstack.f \
+	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
 	src/fortran/funnam.f src/fortran/isnum.f src/fortran/cmdstr.f \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
@@ -621,31 +613,28 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/israt.f src/fortran/setlnb.f \
 	src/fortran/mrknmd.f src/fortran/stackgl.f \
-	src/fortran/allops.f src/fortran/print.f src/fortran/mname.f \
-	src/fortran/prntid.f src/fortran/command.f \
+	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
-	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/dmdspf.f \
-	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/xerbla.f \
+	src/fortran/dtosci.f src/fortran/bexec.f \
 	src/fortran/varfunptr.f src/fortran/getfun.f \
 	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
 	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
 	src/fortran/errmgr.f src/fortran/defmat.f src/fortran/mklist.f \
-	src/fortran/dmdsp.f src/fortran/sigbas.f src/fortran/indxg.f \
-	src/fortran/matz.f src/fortran/istrue.f src/fortran/inisci.f \
-	src/fortran/ptover.f src/fortran/getfunction.f \
-	src/fortran/stackp.f src/fortran/dbasin.f src/fortran/macro.f \
-	src/fortran/lspdsp.f src/fortran/extlarg.f \
+	src/fortran/sigbas.f src/fortran/indxg.f src/fortran/matz.f \
+	src/fortran/istrue.f src/fortran/inisci.f src/fortran/ptover.f \
+	src/fortran/getfunction.f src/fortran/stackp.f \
+	src/fortran/dbasin.f src/fortran/macro.f src/fortran/extlarg.f \
 	src/fortran/getstr.f src/fortran/cvwm.f \
 	src/fortran/storeglobal.f src/fortran/lst2vars.f \
-	src/fortran/fmttyp.f src/fortran/basnms.f src/fortran/matc.f \
-	src/fortran/ptrback.f src/fortran/getch.f src/fortran/ftob.f \
-	src/fortran/seteol.f src/fortran/basin.f src/fortran/clause.f \
-	src/fortran/compcl.f src/fortran/termf.f src/fortran/expsum.f \
-	src/fortran/eqid.f src/fortran/copyvar.f src/fortran/putid.f \
-	src/fortran/itosci.f src/fortran/formatnumber.f \
-	src/fortran/wmdsp.f src/fortran/stackr2d.f \
-	src/fortran/stacki2d.f src/fortran/stackc2i.f \
-	src/fortran/isinstring.f $(am__append_2)
+	src/fortran/basnms.f src/fortran/matc.f src/fortran/ptrback.f \
+	src/fortran/getch.f src/fortran/ftob.f src/fortran/seteol.f \
+	src/fortran/basin.f src/fortran/clause.f src/fortran/compcl.f \
+	src/fortran/termf.f src/fortran/expsum.f src/fortran/eqid.f \
+	src/fortran/copyvar.f src/fortran/putid.f src/fortran/itosci.f \
+	src/fortran/stackr2d.f src/fortran/stacki2d.f \
+	src/fortran/stackc2i.f src/fortran/isinstring.f \
+	$(am__append_2)
 GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
 sci_gateway/c/sci_resume.c \
 sci_gateway/c/sci_mtlb_mode.c \
@@ -2098,9 +2087,6 @@ getlin.lo: src/fortran/getlin.f
 allowptr.lo: src/fortran/allowptr.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o allowptr.lo `test -f 'src/fortran/allowptr.f' || echo '$(srcdir)/'`src/fortran/allowptr.f
 
-dldsp.lo: src/fortran/dldsp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dldsp.lo `test -f 'src/fortran/dldsp.f' || echo '$(srcdir)/'`src/fortran/dldsp.f
-
 isany.lo: src/fortran/isany.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o isany.lo `test -f 'src/fortran/isany.f' || echo '$(srcdir)/'`src/fortran/isany.f
 
@@ -2221,14 +2207,8 @@ stackgl.lo: src/fortran/stackgl.f
 allops.lo: src/fortran/allops.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o allops.lo `test -f 'src/fortran/allops.f' || echo '$(srcdir)/'`src/fortran/allops.f
 
-print.lo: src/fortran/print.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o print.lo `test -f 'src/fortran/print.f' || echo '$(srcdir)/'`src/fortran/print.f
-
 mname.lo: src/fortran/mname.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mname.lo `test -f 'src/fortran/mname.f' || echo '$(srcdir)/'`src/fortran/mname.f
-
-prntid.lo: src/fortran/prntid.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o prntid.lo `test -f 'src/fortran/prntid.f' || echo '$(srcdir)/'`src/fortran/prntid.f
 
 command.lo: src/fortran/command.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o command.lo `test -f 'src/fortran/command.f' || echo '$(srcdir)/'`src/fortran/command.f
@@ -2247,9 +2227,6 @@ isbrk.lo: src/fortran/isbrk.f
 
 majmin.lo: src/fortran/majmin.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o majmin.lo `test -f 'src/fortran/majmin.f' || echo '$(srcdir)/'`src/fortran/majmin.f
-
-dmdspf.lo: src/fortran/dmdspf.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmdspf.lo `test -f 'src/fortran/dmdspf.f' || echo '$(srcdir)/'`src/fortran/dmdspf.f
 
 xerbla.lo: src/fortran/xerbla.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o xerbla.lo `test -f 'src/fortran/xerbla.f' || echo '$(srcdir)/'`src/fortran/xerbla.f
@@ -2293,9 +2270,6 @@ defmat.lo: src/fortran/defmat.f
 mklist.lo: src/fortran/mklist.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mklist.lo `test -f 'src/fortran/mklist.f' || echo '$(srcdir)/'`src/fortran/mklist.f
 
-dmdsp.lo: src/fortran/dmdsp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmdsp.lo `test -f 'src/fortran/dmdsp.f' || echo '$(srcdir)/'`src/fortran/dmdsp.f
-
 sigbas.lo: src/fortran/sigbas.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sigbas.lo `test -f 'src/fortran/sigbas.f' || echo '$(srcdir)/'`src/fortran/sigbas.f
 
@@ -2326,9 +2300,6 @@ dbasin.lo: src/fortran/dbasin.f
 macro.lo: src/fortran/macro.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o macro.lo `test -f 'src/fortran/macro.f' || echo '$(srcdir)/'`src/fortran/macro.f
 
-lspdsp.lo: src/fortran/lspdsp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lspdsp.lo `test -f 'src/fortran/lspdsp.f' || echo '$(srcdir)/'`src/fortran/lspdsp.f
-
 extlarg.lo: src/fortran/extlarg.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o extlarg.lo `test -f 'src/fortran/extlarg.f' || echo '$(srcdir)/'`src/fortran/extlarg.f
 
@@ -2343,9 +2314,6 @@ storeglobal.lo: src/fortran/storeglobal.f
 
 lst2vars.lo: src/fortran/lst2vars.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lst2vars.lo `test -f 'src/fortran/lst2vars.f' || echo '$(srcdir)/'`src/fortran/lst2vars.f
-
-fmttyp.lo: src/fortran/fmttyp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fmttyp.lo `test -f 'src/fortran/fmttyp.f' || echo '$(srcdir)/'`src/fortran/fmttyp.f
 
 basnms.lo: src/fortran/basnms.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o basnms.lo `test -f 'src/fortran/basnms.f' || echo '$(srcdir)/'`src/fortran/basnms.f
@@ -2391,12 +2359,6 @@ putid.lo: src/fortran/putid.f
 
 itosci.lo: src/fortran/itosci.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o itosci.lo `test -f 'src/fortran/itosci.f' || echo '$(srcdir)/'`src/fortran/itosci.f
-
-formatnumber.lo: src/fortran/formatnumber.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o formatnumber.lo `test -f 'src/fortran/formatnumber.f' || echo '$(srcdir)/'`src/fortran/formatnumber.f
-
-wmdsp.lo: src/fortran/wmdsp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wmdsp.lo `test -f 'src/fortran/wmdsp.f' || echo '$(srcdir)/'`src/fortran/wmdsp.f
 
 stackr2d.lo: src/fortran/stackr2d.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o stackr2d.lo `test -f 'src/fortran/stackr2d.f' || echo '$(srcdir)/'`src/fortran/stackr2d.f
