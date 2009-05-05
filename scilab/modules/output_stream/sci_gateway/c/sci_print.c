@@ -9,10 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
-#include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_print)(char *fname,unsigned long fname_len)
+#include "gw_output_stream.h"
+#include "machine.h" /* C2F */
+/*--------------------------------------------------------------------------*/
+extern int C2F(intprint)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_print(char *fname,unsigned long fname_len)
 {
 	C2F(intprint)();
 	return 0;

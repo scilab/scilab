@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __GW_IO__
-#define __GW_IO__
+#ifndef __GW_IO_H__
+#define __GW_IO_H__
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
@@ -25,7 +25,6 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len);
 int C2F(sci_diary)(char *fname,unsigned long fname_len);
 int C2F(sci_oldsave)(char *fname,unsigned long fname_len);
 int C2F(sci_write)(char *fname,unsigned long fname_len);
-int C2F(sci_print)(char *fname,unsigned long fname_len);
 int C2F(sci_deff)(char *fname,unsigned long fname_len);
 int C2F(sci_rat)(char *fname,unsigned long fname_len);
 int C2F(sci_file)(char *fname,unsigned long fname_len);
@@ -70,6 +69,6 @@ int C2F(intwritb)(void);
 
 int sci_export_to_hdf5(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-#endif /*  __GW_IO__ */
+#endif /* __GW_IO_H__ */
 /*--------------------------------------------------------------------------*/
 

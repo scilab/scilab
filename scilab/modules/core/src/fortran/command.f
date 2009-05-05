@@ -496,7 +496,7 @@ c     . add an third argument to deff, to notify that it is called by function
          lhs=1
 c         *call* deff
          fun=5
-         fin=11
+         fin=10
          go to 999
       endif
 

@@ -376,10 +376,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dmpdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dmpext.c"
 				>
 			</File>
@@ -397,10 +393,6 @@
 			</File>
 			<File
 				RelativePath=".\dmptra.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dmrdsp.c"
 				>
 			</File>
 			<File
@@ -425,10 +417,6 @@
 			</File>
 			<File
 				RelativePath=".\dwmpmu.c"
-				>
-			</File>
-			<File
-				RelativePath=".\fmt.c"
 				>
 			</File>
 			<File
@@ -708,10 +696,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dmpdsp.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dmpext.f"
 				>
 			</File>
@@ -729,10 +713,6 @@
 			</File>
 			<File
 				RelativePath=".\dmptra.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dmrdsp.f"
 				>
 			</File>
 			<File
@@ -757,10 +737,6 @@
 			</File>
 			<File
 				RelativePath=".\dwmpmu.f"
-				>
-			</File>
-			<File
-				RelativePath=".\fmt.f"
 				>
 			</File>
 			<File

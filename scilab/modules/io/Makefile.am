@@ -29,7 +29,6 @@ sci_gateway/c/sci_getenv.c \
 sci_gateway/c/sci_write.c \
 sci_gateway/c/sci_oldload.c \
 sci_gateway/c/sci_writeb.c \
-sci_gateway/c/sci_print.c \
 sci_gateway/c/sci_setenv.c \
 sci_gateway/c/gw_io.c \
 sci_gateway/c/sci_mgetl.c \
@@ -54,7 +53,6 @@ sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
-sci_gateway/fortran/intprint.f \
 sci_gateway/fortran/intdisp.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \

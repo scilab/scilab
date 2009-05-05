@@ -9,7 +9,6 @@ errgst_
 cha1_
 vstk_
 recu_
-prntid_
 errmgr_
 errloc_
 stack_
@@ -29,4 +28,5 @@ cvname_
 getIntermediateMemoryNeeded
 getstackinfo_
 getWarningMode
+callFunctionFromGateway
 ;

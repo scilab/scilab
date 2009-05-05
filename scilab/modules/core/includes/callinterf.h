@@ -53,7 +53,7 @@
 /* 30 */						#include "../../differential_equations/includes/gw_differential_equations4.h"
 /* 31 FREE */						
 /* 32 */						#include "../../differential_equations/includes/gw_differential_equations6.h"
-/* 33  gw_user(); FREE */
+/* 33 */                        #include "../../output_stream/includes/gw_output_stream.h"
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
 /* 35 */						#include "dynamic_gateways.h" /* arnoldi */
 /* 36 */						#include "../../special_functions/includes/gw_special_functions1.h"

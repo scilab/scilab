@@ -24,7 +24,7 @@ src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
 src/c/isalphanum.c
 
-STRING_FORTRAN_SOURCES =src/fortran/strdsp.f
+STRING_FORTRAN_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
 sci_gateway/c/sci_ascii.c \

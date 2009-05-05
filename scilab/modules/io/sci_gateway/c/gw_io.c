@@ -24,7 +24,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_diary),"diary"},
 {C2F(sci_oldsave),"oldsave"},
 {C2F(sci_write),"write"},
-{C2F(sci_print),"print"},
 {C2F(sci_rat),"rat"},
 {C2F(sci_deff),"deff"},
 {C2F(sci_file),"file"},

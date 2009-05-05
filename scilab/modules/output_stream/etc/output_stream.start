@@ -13,6 +13,6 @@
 //load("SCI/modules/output_stream/macros/lib");
 // ====================================================================
 //add help chapter
-//add_module_help_chapter("output_stream");
-//clear add_module_help_chapter;
+add_module_help_chapter("output_stream");
+clear add_module_help_chapter;
 // ====================================================================

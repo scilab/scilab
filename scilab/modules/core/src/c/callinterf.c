@@ -63,7 +63,7 @@ static OpTab Interfaces[] = {
 	/* 30  */ {gw_differential_equations4},
 	/* 31  */ {gw_user2},/* free position may be used */
 	/* 32  */ {gw_differential_equations6},
-	/* 33  */ {gw_user2}, /* free position may be used */
+	/* 33  */ {gw_output_stream},
 	/* 34  */ {gw_fileio},
 	/* 46  */ {gw_dynamic_arnoldi},
 	/* 36  */ {gw_special_functions1},
