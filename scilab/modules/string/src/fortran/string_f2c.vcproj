@@ -405,10 +405,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\strdsp.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\strops.c"
 				>
 			</File>
@@ -430,10 +426,6 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_string.f"
-				>
-			</File>
-			<File
-				RelativePath=".\strdsp.f"
 				>
 			</File>
 			<File

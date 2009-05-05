@@ -91,7 +91,6 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
 src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
-src/fortran/dldsp.f \
 src/fortran/isany.f \
 src/fortran/hmcreate.f \
 src/fortran/nextj.f \
@@ -132,16 +131,13 @@ src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
 src/fortran/stackgl.f \
 src/fortran/allops.f \
-src/fortran/print.f \
 src/fortran/mname.f \
-src/fortran/prntid.f \
 src/fortran/command.f \
 src/fortran/ref2val.f \
 src/fortran/namstr.f \
 src/fortran/stack.f \
 src/fortran/isbrk.f \
 src/fortran/majmin.f \
-src/fortran/dmdspf.f \
 src/fortran/xerbla.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
@@ -156,7 +152,6 @@ src/fortran/whatln.f \
 src/fortran/errmgr.f \
 src/fortran/defmat.f \
 src/fortran/mklist.f \
-src/fortran/dmdsp.f \
 src/fortran/sigbas.f \
 src/fortran/indxg.f \
 src/fortran/matz.f \
@@ -167,13 +162,11 @@ src/fortran/getfunction.f \
 src/fortran/stackp.f \
 src/fortran/dbasin.f \
 src/fortran/macro.f \
-src/fortran/lspdsp.f \
 src/fortran/extlarg.f \
 src/fortran/getstr.f \
 src/fortran/cvwm.f \
 src/fortran/storeglobal.f \
 src/fortran/lst2vars.f \
-src/fortran/fmttyp.f \
 src/fortran/basnms.f \
 src/fortran/matc.f \
 src/fortran/ptrback.f \
@@ -189,8 +182,6 @@ src/fortran/eqid.f \
 src/fortran/copyvar.f \
 src/fortran/putid.f \
 src/fortran/itosci.f \
-src/fortran/formatnumber.f \
-src/fortran/wmdsp.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \

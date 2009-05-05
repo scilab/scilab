@@ -92,9 +92,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="cvwm.f"/>
 		<File RelativePath="dbasin.f"/>
 		<File RelativePath="defmat.f"/>
-		<File RelativePath="dldsp.f"/>
-		<File RelativePath="dmdsp.f"/>
-		<File RelativePath="dmdspf.f"/>
 		<File RelativePath="dtosci.f"/>
 		<File RelativePath="eqid.f"/>
 		<File RelativePath="errmgr.f"/>
@@ -104,9 +101,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="fact.f"/>
 		<File RelativePath="find.f"/>
 		<File RelativePath="findequal.f"/>
-		<File RelativePath="fmttyp.f"/>
 		<File RelativePath="folhp.f"/>
-		<File RelativePath="formatnumber.f"/>
 		<File RelativePath="ftob.f"/>
 		<File RelativePath="funnam.f"/>
 		<File RelativePath="funs.f"/>
@@ -132,7 +127,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="istrue.f"/>
 		<File RelativePath="itosci.f"/>
 		<File RelativePath="logops.f"/>
-		<File RelativePath="lspdsp.f"/>
 		<File RelativePath="lst2vars.f"/>
 		<File RelativePath="macro.f"/>
 		<File RelativePath="majmin.f"/>
@@ -146,8 +140,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="mrknmd.f"/>
 		<File RelativePath="namstr.f"/>
 		<File RelativePath="nextj.f"/>
-		<File RelativePath="print.f"/>
-		<File RelativePath="prntid.f"/>
 		<File RelativePath="prompt.f"/>
 		<File RelativePath="ptover.f"/>
 		<File RelativePath="ptrback.f"/>
@@ -199,7 +191,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="varfunptr.f"/>
 		<File RelativePath="whatln.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\where.f"/>
-		<File RelativePath="wmdsp.f"/>
 		<File RelativePath="xerbla.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\core_gateway.xml"/>
 		<File RelativePath="..\..\sci_gateway\fundef"/>

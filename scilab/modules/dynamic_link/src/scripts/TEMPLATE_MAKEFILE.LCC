@@ -65,7 +65,7 @@ INCLUDES=-I"$(SCIDIR)\libs\MALLOC\includes" \
 SCILAB_LIBS="$(LCCLIBDIR)\MALLOC.lib" "$(LCCLIBDIR)\blasplus.lib" \
 "$(LCCLIBDIR)\libf2c.lib" "$(LCCLIBDIR)\lapack.lib" \
 "$(LCCLIBDIR)\scicos.lib" "$(LCCLIBDIR)\intersci.lib" \
-"$(LCCLIBDIR)\scioutput_stream.lib" "$(LCCLIBDIR)\dynamic_link.lib" \
+"$(LCCLIBDIR)\output_stream.lib" "$(LCCLIBDIR)\dynamic_link.lib" \
 "$(LCCLIBDIR)\integer.lib" "$(LCCLIBDIR)\optimization_f.lib" \
 "$(LCCLIBDIR)\libjvm.lib" "$(LCCLIBDIR)\scilocalization.lib" \
 "$(LCCLIBDIR)\libintl.lib" "$(LCCLIBDIR)\linpack_f.lib" \

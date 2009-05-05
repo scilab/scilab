@@ -22,6 +22,8 @@ Source reorganisation:
   
 * newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
 
+* bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
+
 Input/Output functions:
 =======================
 
