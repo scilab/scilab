@@ -150,8 +150,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/mrknmd.f src/fortran/stackgl.f \
 	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
-	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/dmdspf.f \
-	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/xerbla.f \
+	src/fortran/dtosci.f src/fortran/bexec.f \
 	src/fortran/varfunptr.f src/fortran/getfun.f \
 	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
 	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
@@ -278,15 +278,15 @@ am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo isany.lo \
 	prompt.lo intstr.lo createref.lo btof.lo matzs.lo getnum.lo \
 	btofm.lo getsym.lo findequal.lo stackg.lo find.lo israt.lo \
 	setlnb.lo mrknmd.lo stackgl.lo allops.lo mname.lo command.lo \
-	ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo dmdspf.lo \
-	xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo \
-	error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo \
-	defmat.lo mklist.lo sigbas.lo indxg.lo matz.lo istrue.lo \
-	inisci.lo ptover.lo getfunction.lo stackp.lo dbasin.lo \
-	macro.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
-	lst2vars.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
-	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
-	eqid.lo copyvar.lo putid.lo itosci.lo stackr2d.lo stacki2d.lo \
+	ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo xerbla.lo \
+	dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo \
+	cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo \
+	mklist.lo sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo \
+	ptover.lo getfunction.lo stackp.lo dbasin.lo macro.lo \
+	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
+	basnms.lo matc.lo ptrback.lo getch.lo ftob.lo seteol.lo \
+	basin.lo clause.lo compcl.lo termf.lo expsum.lo eqid.lo \
+	copyvar.lo putid.lo itosci.lo stackr2d.lo stacki2d.lo \
 	stackc2i.lo isinstring.lo $(am__objects_3)
 am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
@@ -615,8 +615,8 @@ CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/mrknmd.f src/fortran/stackgl.f \
 	src/fortran/allops.f src/fortran/mname.f src/fortran/command.f \
 	src/fortran/ref2val.f src/fortran/namstr.f src/fortran/stack.f \
-	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/dmdspf.f \
-	src/fortran/xerbla.f src/fortran/dtosci.f src/fortran/bexec.f \
+	src/fortran/isbrk.f src/fortran/majmin.f src/fortran/xerbla.f \
+	src/fortran/dtosci.f src/fortran/bexec.f \
 	src/fortran/varfunptr.f src/fortran/getfun.f \
 	src/fortran/savlod.f src/fortran/error.f src/fortran/cvdm.f \
 	src/fortran/tradsl.f src/fortran/mkindx.f src/fortran/whatln.f \
@@ -2227,9 +2227,6 @@ isbrk.lo: src/fortran/isbrk.f
 
 majmin.lo: src/fortran/majmin.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o majmin.lo `test -f 'src/fortran/majmin.f' || echo '$(srcdir)/'`src/fortran/majmin.f
-
-dmdspf.lo: src/fortran/dmdspf.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmdspf.lo `test -f 'src/fortran/dmdspf.f' || echo '$(srcdir)/'`src/fortran/dmdspf.f
 
 xerbla.lo: src/fortran/xerbla.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o xerbla.lo `test -f 'src/fortran/xerbla.f' || echo '$(srcdir)/'`src/fortran/xerbla.f

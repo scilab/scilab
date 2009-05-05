@@ -138,7 +138,6 @@ src/fortran/namstr.f \
 src/fortran/stack.f \
 src/fortran/isbrk.f \
 src/fortran/majmin.f \
-src/fortran/dmdspf.f \
 src/fortran/xerbla.f \
 src/fortran/dtosci.f \
 src/fortran/bexec.f \
