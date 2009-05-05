@@ -46,6 +46,7 @@ int sci_strtok(char *fname,unsigned long fname_len);
 int sci_strspn(char *fname,unsigned long fname_len);
 int sci_strtod(char *fname,unsigned long fname_len);
 int sci_regexp(char *fname,unsigned long fname_len);
+int sci_NumTokens(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
 #endif /*  __GW_STRING__ */
 /*--------------------------------------------------------------------------*/

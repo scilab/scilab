@@ -24,6 +24,8 @@ Source reorganisation:
 
 * bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
 
+* printf, msprintf, mprintf, print moved in output_stream module.
+
 Input/Output functions:
 =======================
 

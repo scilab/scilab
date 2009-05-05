@@ -14,7 +14,7 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
-#include "fileio.h"
+#include "scanf_functions.h"
 #include "gw_fileio.h"
 #include "filesmanagement.h"
 #include "Scierror.h"

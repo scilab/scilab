@@ -23,7 +23,9 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/errmds.c \
 				src/c/errmsg.c \
 				src/c/error.c \
-				src/c/error_internal.c
+				src/c/error_internal.c \
+				src/c/do_xxprintf.c \
+				src/c/set_xxprintf.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
@@ -43,7 +45,10 @@ OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
-		sci_gateway/c/sci_print.c
+		sci_gateway/c/sci_print.c \
+		sci_gateway/c/sci_mprintf.c \
+		sci_gateway/c/sci_msprintf.c
+		
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f
 
@@ -92,6 +97,7 @@ includes/Scierror.h \
 includes/basout.h \
 includes/msgs.h \
 includes/sciprint_full.h \
+includes/do_xxprintf.h \
 includes/gw_output_stream.h
 
 include $(top_srcdir)/Makefile.incl.am

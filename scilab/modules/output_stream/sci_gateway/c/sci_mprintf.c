@@ -13,10 +13,10 @@
 #include "Scierror.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
-#include "gw_fileio.h"
+#include "gw_output_stream.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/ 
-int sci_printf(char *fname,unsigned long fname_len)
+int sci_mprintf(char *fname,unsigned long fname_len)
 {
 	static int l1, m1, n1, lcount, rval, k ;
 	

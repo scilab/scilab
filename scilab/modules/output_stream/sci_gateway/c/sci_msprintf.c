@@ -10,15 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include "gw_output_stream.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "do_xxprintf.h"
-#include "gw_fileio.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-
-int sci_sprintf(char *fname,unsigned long fname_len)
+int sci_msprintf(char *fname,unsigned long fname_len)
 {
 	char **lstr=NULL;
 	static int l1, m1, n1,n2,lcount,rval,blk=200;

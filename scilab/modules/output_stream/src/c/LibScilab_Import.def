@@ -23,10 +23,14 @@ checkrhs_
 checklhs_
 intersci_
 createvar_
+getwsmat_
 getScilabMode
 cvname_
 getIntermediateMemoryNeeded
 getstackinfo_
 getWarningMode
 callFunctionFromGateway
+getmatdims_
+overload_
+vartype_ 
 ;

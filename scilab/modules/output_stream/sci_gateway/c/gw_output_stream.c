@@ -16,7 +16,9 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={ 
-	{sci_print, "print"}
+	{sci_print, "print"},
+	{sci_mprintf, "mprintf"},
+	{sci_msprintf, "msprintf"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_output_stream(void)

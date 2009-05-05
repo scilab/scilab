@@ -15,67 +15,10 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
-#include "fileio.h"
+#include "scanf_functions.h"
 #include "cvstr.h"
 #include "localization.h"
 #include "Scierror.h"
-/*--------------------------------------------------------------------------*/
-int NumTokens(char *string)
-{
-	char buf[128];
-	int n      = 1;
-	int lnchar = 0;
-	int ntok   = -1;
-	int length = (int)strlen(string)+1;
-	
-	if (string != 0)
-	{
-		/** Counting leading white spaces **/
-		sscanf(string,"%*[ \r\t\n]%n",&lnchar);
-		
-		while ( n != 0 && n != EOF && lnchar <= length  )
-		{
-			int nchar1=0,nchar2=0;
-			ntok++;
-			n       = sscanf(&(string[lnchar]),"%[^ \r\t\n]%n%*[ \r\t\n]%n",buf,&nchar1,&nchar2);
-			lnchar += (nchar2 <= nchar1) ? nchar1 : nchar2 ;
-		}
-		
-		return(ntok);
-	}
-	return(FAIL);
-}
-
-/*--------------------------------------------------------------------------*/
-/* Utility functions */
-/*--------------------------------------------------------------------------*/
-int StringConvert(char *str)
-/* changes `\``n` --> `\n` idem for \t and \r */
-{
-  char *str1;
-  int count=0;
-  str1 = str;
-
-  while ( *str != 0)
-    {
-      if ( *str == '\\' )
-	{
-	  switch ( *(str+1))
-	    {
-	    case 'n' : *str1 = '\n' ; str1++; str += 2;count++;break;
-	    case 't' : *str1 = '\t' ; str1++; str += 2;break;
-	    case 'r' : *str1 = '\r' ; str1++; str += 2;break;
-	    default : *str1 = *str; str1++; str++;break;
-	    }
-	}
-      else
-	{
-	  *str1 = *str; str1++; str++;
-	}
-    }
-  *str1 = '\0';
-  return count;
-}
 /*--------------------------------------------------------------------------*/
 int Sci_Store(int nrow, int ncol, entry *data, sfdir *type, int retval_s)
 {
@@ -344,38 +287,5 @@ void Free_Scan(int nrow, int ncol, sfdir *type_s, entry **data)
   if (ncol>0) FREE(Data);
 }
 /*--------------------------------------------------------------------------*/
-/********************************************************
- * Converts a Scilab array of  String coded as int array
- * into a regular string.
- * entries of the original array are catenated, separated by
- * '\n'   char
- ********************************************************/
-int SciStrtoStr (int *Scistring, int *nstring, int *ptrstrings, char **strh)
-{
-  char *s,*p;
-  int li,ni,*SciS,i,job=1;
 
-  li=ptrstrings[0];
-  ni=ptrstrings[*nstring] - li + *nstring +1;
-  p=(char *) MALLOC(ni);
-  if (p ==NULL)  return MEM_LACK;
-  SciS= Scistring;
-  s=p;
-  for ( i=1 ; i<*nstring+1 ; i++)
-    {
-      ni=ptrstrings[i]-li;
-      li=ptrstrings[i];
-      F2C(cvstr)(&ni,SciS,s,&job,(long int)ni);
-      SciS += ni;
-      s += ni;
-      if (i<*nstring) {
-	*s='\n';
-	s++;
-      }
-    }
-  *s='\0';
-  *strh=p;
-  return 0;
-}
-/*--------------------------------------------------------------------------*/
 

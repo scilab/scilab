@@ -405,10 +405,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\do_xxprintf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\do_xxscanf.c"
 				>
 			</File>
@@ -418,10 +414,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\fileinfo.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\fileio.c"
 				>
 			</File>
 			<File
@@ -541,6 +533,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\scanf_functions.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_chdir.c"
 				>
 			</File>
@@ -649,10 +645,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mprintf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_mput.c"
 				>
 			</File>
@@ -669,10 +661,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_msprintf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_msscanf.c"
 				>
 			</File>
@@ -685,10 +673,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_NumTokens.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_pathsep.c"
 				>
 			</File>
@@ -698,10 +682,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\scicurdir.c"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\set_xxprintf.c"
 				>
 			</File>
 			<File
@@ -743,10 +723,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\do_xxprintf.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\do_xxscanf.h"
 				>
 			</File>
@@ -756,10 +732,6 @@
 			</File>
 			<File
 				RelativePath=".\src\c\fileinfo.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\fileio.h"
 				>
 			</File>
 			<File
@@ -879,11 +851,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\scicurdir.h"
+				RelativePath=".\src\c\scanf_functions.h"
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\set_xxprintf.h"
+				RelativePath=".\includes\scicurdir.h"
 				>
 			</File>
 			<File

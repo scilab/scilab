@@ -4,8 +4,7 @@
 ##########
 
 FILEIO_SOURCES = src/c/FileExist.c \
-src/c/fileio.c \
-src/c/do_xxprintf.c \
+src/c/scanf_functions.c \
 src/c/do_xxscanf.c \
 src/c/findfiles.c \
 src/c/Status2Mode.c \
@@ -40,7 +39,6 @@ src/c/createdirectory.c \
 src/c/isdir.c \
 src/c/isDrive.c \
 src/c/removedir.c \
-src/c/set_xxprintf.c \
 src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
@@ -52,13 +50,10 @@ src/c/getrelativefilename.c
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
 sci_gateway/c/sci_mfprintf.c \
-sci_gateway/c/sci_mprintf.c \
-sci_gateway/c/sci_msprintf.c \
 sci_gateway/c/sci_mscanf.c \
 sci_gateway/c/sci_msscanf.c \
 sci_gateway/c/sci_mfscanf.c \
 sci_gateway/c/sci_fprintfMat.c \
-sci_gateway/c/sci_NumTokens.c \
 sci_gateway/c/sci_fscanfMat.c \
 sci_gateway/c/sci_findfiles.c \
 sci_gateway/c/sci_maxfiles.c \

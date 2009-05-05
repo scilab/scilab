@@ -386,6 +386,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\do_xxprintf.c"
+				>
+			</File>
+			<File
 				RelativePath=".\errmds.c"
 				>
 			</File>
@@ -426,6 +430,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_mprintf.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_msprintf.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_print.c"
 				>
 			</File>
@@ -439,6 +451,10 @@
 			</File>
 			<File
 				RelativePath=".\sciprint_full.c"
+				>
+			</File>
+			<File
+				RelativePath=".\set_xxprintf.c"
 				>
 			</File>
 		</Filter>
@@ -500,6 +516,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\sciprint_full.h"
+				>
+			</File>
+			<File
+				RelativePath=".\set_xxprintf.h"
 				>
 			</File>
 		</Filter>

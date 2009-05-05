@@ -1,8 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
- * 
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -11,19 +11,20 @@
  *
  */
 #include "stack-c.h"
-#include "gw_fileio.h"
-#include "fileio.h"
+#include "gw_string.h"
+#include "NumTokens.h"
+#include "StringConvert.h"
 /*--------------------------------------------------------------------------*/ 
-int sci_numTokens(char *fname,unsigned long fname_len)
+int sci_NumTokens(char *fname,unsigned long fname_len)
 {
-	static int l1,m1,n1,l2,un=1;
+	int l1 = 0,m1 = 0,n1 = 0,l2 = 0,un = 1;
 	Nbvars = 0;
 	CheckRhs(1,1);
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 	StringConvert(cstk(l1));  /* conversion */
-	CreateVar(Rhs+2,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &l2);
+	CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE, &un, &un, &l2);
 	*stk(l2) = (double) NumTokens(cstk(l1));
-	LhsVar(1) = Rhs+2;
+	LhsVar(1) = Rhs+1;
 	PutLhsVar();
 	return 0;
 }  

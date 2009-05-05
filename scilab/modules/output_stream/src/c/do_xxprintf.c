@@ -21,7 +21,7 @@
 #include "scilabmode.h"
 #include "localization.h"
 #include "set_xxprintf.h"
-#include "fileio.h"
+#include "scistrtostr.h"
 #include "charEncoding.h"
 
 #ifdef _MSC_VER
