@@ -51,6 +51,30 @@
     </itemizedlist>
   </refsection>
   <refsection>
+    <title>Example of image inclusion</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/plot3d.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  
+  <refsection>
+    <title>Example of MathML inclusion</title>
+    <para>
+      <informalequation>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../mml/quadratic.mml" />
+          </imageobject>
+        </mediaobject>
+      </informalequation>
+    </para>
+  </refsection>
+  
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[
     
