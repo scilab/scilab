@@ -1368,7 +1368,7 @@ function master_document = x2f_tree_to_master( tree )
 		"  </info>"; ..
 		""];
 	
-	// xml list
+	// title management
 	// =========================================================================
 	
 	// title management
@@ -1382,6 +1382,9 @@ function master_document = x2f_tree_to_master( tree )
 		// title built with the directory name
 		section_title = tree("title_default");
 	end
+	
+	// xml_list management
+	// =========================================================================
 	
 	offset = 0;
 	
