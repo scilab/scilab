@@ -15,6 +15,7 @@
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
+#include "StringConvert.h"
 #include "gw_fileio.h"
 #include "filesmanagement.h"
 #include "Scierror.h"
