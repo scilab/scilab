@@ -151,3 +151,5 @@ Bug fixes:
 * bug 4461 fixed - redefines prompt not displayed in a diary.
 
 * bug 4467 fixed - getshortpathname,getlongpathname do not manage string matrix as input
+
+* bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
