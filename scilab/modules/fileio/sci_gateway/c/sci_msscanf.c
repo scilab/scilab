@@ -16,6 +16,8 @@
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
 #include "scanf_functions.h"
+#include "scistrtostr.h"
+#include "StringConvert.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"

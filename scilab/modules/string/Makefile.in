@@ -108,7 +108,9 @@ am__objects_1 = libscistring_la-code2str.lo \
 	libscistring_la-strsubst.lo libscistring_la-stringsstrrchr.lo \
 	libscistring_la-stringsstrrev.lo \
 	libscistring_la-stringsCompare.lo \
-	libscistring_la-isalphanum.lo
+	libscistring_la-isalphanum.lo libscistring_la-NumTokens.lo \
+	libscistring_la-StringConvert.lo \
+	libscistring_la-scistrtostr.lo
 am__objects_2 =
 am__objects_3 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_ascii.lo libscistring_la-sci_code2str.lo \
@@ -128,7 +130,7 @@ am__objects_3 = libscistring_la-gw_string.lo \
 	libscistring_la-sci_strrchr.lo libscistring_la-sci_strrev.lo \
 	libscistring_la-sci_strspn.lo libscistring_la-sci_strstr.lo \
 	libscistring_la-sci_strtod.lo libscistring_la-sci_strtok.lo \
-	libscistring_la-sci_regexp.lo
+	libscistring_la-sci_regexp.lo libscistring_la-sci_NumTokens.lo
 am__objects_4 = sci_string.lo strops.lo
 am_libscistring_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
@@ -388,7 +390,10 @@ src/c/strsubst.c \
 src/c/stringsstrrchr.c \
 src/c/stringsstrrev.c \
 src/c/stringsCompare.c \
-src/c/isalphanum.c
+src/c/isalphanum.c \
+src/c/NumTokens.c \
+src/c/StringConvert.c \
+src/c/scistrtostr.c
 
 STRING_FORTRAN_SOURCES = 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_string.c \
@@ -421,7 +426,8 @@ sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \
 sci_gateway/c/sci_strtod.c \
 sci_gateway/c/sci_strtok.c \
-sci_gateway/c/sci_regexp.c
+sci_gateway/c/sci_regexp.c \
+sci_gateway/c/sci_NumTokens.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_string.f \
 sci_gateway/fortran/strops.f
@@ -464,7 +470,10 @@ libscistring_la_include_HEADERS = includes/men_Sutils.h \
 includes/gw_string.h includes/InitializeString.h \
 includes/cvstr.h includes/getfastcode.h \
 includes/stricmp.h includes/strsubst.h \
-includes/code2str.h
+includes/code2str.h \
+includes/NumTokens.h \
+includes/StringConvert.h \
+includes/scistrtostr.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -599,6 +608,8 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-InitializeString.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-NumTokens.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-StringConvert.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-code2str.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-convstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-cvstr.Plo@am__quote@
@@ -611,6 +622,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-partfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-pcre_error.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-pcre_private.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_NumTokens.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_ascii.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_code2str.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_convstr.Plo@am__quote@
@@ -641,6 +653,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strtod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_strtok.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-sci_tokens.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-scistrtostr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-setScilabCharactersCodes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-strcatfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_la-stringsCompare.Plo@am__quote@
@@ -810,6 +823,27 @@ libscistring_la-isalphanum.lo: src/c/isalphanum.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/isalphanum.c' object='libscistring_la-isalphanum.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-isalphanum.lo `test -f 'src/c/isalphanum.c' || echo '$(srcdir)/'`src/c/isalphanum.c
+
+libscistring_la-NumTokens.lo: src/c/NumTokens.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-NumTokens.lo -MD -MP -MF $(DEPDIR)/libscistring_la-NumTokens.Tpo -c -o libscistring_la-NumTokens.lo `test -f 'src/c/NumTokens.c' || echo '$(srcdir)/'`src/c/NumTokens.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-NumTokens.Tpo $(DEPDIR)/libscistring_la-NumTokens.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/NumTokens.c' object='libscistring_la-NumTokens.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-NumTokens.lo `test -f 'src/c/NumTokens.c' || echo '$(srcdir)/'`src/c/NumTokens.c
+
+libscistring_la-StringConvert.lo: src/c/StringConvert.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-StringConvert.lo -MD -MP -MF $(DEPDIR)/libscistring_la-StringConvert.Tpo -c -o libscistring_la-StringConvert.lo `test -f 'src/c/StringConvert.c' || echo '$(srcdir)/'`src/c/StringConvert.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-StringConvert.Tpo $(DEPDIR)/libscistring_la-StringConvert.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/StringConvert.c' object='libscistring_la-StringConvert.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-StringConvert.lo `test -f 'src/c/StringConvert.c' || echo '$(srcdir)/'`src/c/StringConvert.c
+
+libscistring_la-scistrtostr.lo: src/c/scistrtostr.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-scistrtostr.lo -MD -MP -MF $(DEPDIR)/libscistring_la-scistrtostr.Tpo -c -o libscistring_la-scistrtostr.lo `test -f 'src/c/scistrtostr.c' || echo '$(srcdir)/'`src/c/scistrtostr.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-scistrtostr.Tpo $(DEPDIR)/libscistring_la-scistrtostr.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scistrtostr.c' object='libscistring_la-scistrtostr.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-scistrtostr.lo `test -f 'src/c/scistrtostr.c' || echo '$(srcdir)/'`src/c/scistrtostr.c
 
 libscistring_la-gw_string.lo: sci_gateway/c/gw_string.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-gw_string.lo -MD -MP -MF $(DEPDIR)/libscistring_la-gw_string.Tpo -c -o libscistring_la-gw_string.lo `test -f 'sci_gateway/c/gw_string.c' || echo '$(srcdir)/'`sci_gateway/c/gw_string.c
@@ -1027,6 +1061,13 @@ libscistring_la-sci_regexp.lo: sci_gateway/c/sci_regexp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_regexp.c' object='libscistring_la-sci_regexp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_regexp.lo `test -f 'sci_gateway/c/sci_regexp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_regexp.c
+
+libscistring_la-sci_NumTokens.lo: sci_gateway/c/sci_NumTokens.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -MT libscistring_la-sci_NumTokens.lo -MD -MP -MF $(DEPDIR)/libscistring_la-sci_NumTokens.Tpo -c -o libscistring_la-sci_NumTokens.lo `test -f 'sci_gateway/c/sci_NumTokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_NumTokens.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscistring_la-sci_NumTokens.Tpo $(DEPDIR)/libscistring_la-sci_NumTokens.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_NumTokens.c' object='libscistring_la-sci_NumTokens.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscistring_la_CFLAGS) $(CFLAGS) -c -o libscistring_la-sci_NumTokens.lo `test -f 'sci_gateway/c/sci_NumTokens.c' || echo '$(srcdir)/'`sci_gateway/c/sci_NumTokens.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
