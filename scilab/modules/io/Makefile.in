@@ -123,12 +123,11 @@ am__objects_3 = libsciio_la-sci_execstr.lo libsciio_la-sci_read4b.lo \
 	libsciio_la-sci_getpid.lo libsciio_la-sci_write4b.lo \
 	libsciio_la-sci_load.lo libsciio_la-sci_unix.lo \
 	libsciio_la-sci_getf.lo libsciio_la-sci_oldsave.lo \
-	libsciio_la-sci_save.lo libsciio_la-sci_disp.lo
+	libsciio_la-sci_save.lo
 am__objects_4 = libsciio_la-sci_export_to_hdf5.lo
 am__objects_5 = oldloadsave.lo intwrite4b.lo intexec.lo intgetf.lo \
-	intrat.lo intwritb.lo intwrite.lo intdisp.lo intread4b.lo \
-	intdeff.lo intlib.lo intread.lo intexecstr.lo intreadb.lo \
-	intfile.lo
+	intrat.lo intwritb.lo intwrite.lo intread4b.lo intdeff.lo \
+	intlib.lo intread.lo intexecstr.lo intreadb.lo intfile.lo
 am_libsciio_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5)
 libsciio_la_OBJECTS = $(am_libsciio_la_OBJECTS)
@@ -414,8 +413,7 @@ sci_gateway/c/sci_load.c \
 sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_oldsave.c \
-sci_gateway/c/sci_save.c \
-sci_gateway/c/sci_disp.c
+sci_gateway/c/sci_save.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/oldloadsave.f \
@@ -425,7 +423,6 @@ sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
-sci_gateway/fortran/intdisp.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \
@@ -627,7 +624,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-intsetenv.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_deff.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_diary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_disp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_exec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_execstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciio_la-sci_export_to_hdf5.Plo@am__quote@
@@ -900,13 +896,6 @@ libsciio_la-sci_save.lo: sci_gateway/c/sci_save.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_save.lo `test -f 'sci_gateway/c/sci_save.c' || echo '$(srcdir)/'`sci_gateway/c/sci_save.c
 
-libsciio_la-sci_disp.lo: sci_gateway/c/sci_disp.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -MT libsciio_la-sci_disp.lo -MD -MP -MF $(DEPDIR)/libsciio_la-sci_disp.Tpo -c -o libsciio_la-sci_disp.lo `test -f 'sci_gateway/c/sci_disp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disp.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciio_la-sci_disp.Tpo $(DEPDIR)/libsciio_la-sci_disp.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_disp.c' object='libsciio_la-sci_disp.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciio_la_CPPFLAGS) $(CPPFLAGS) $(libsciio_la_CFLAGS) $(CFLAGS) -c -o libsciio_la-sci_disp.lo `test -f 'sci_gateway/c/sci_disp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_disp.c
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
 @am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
@@ -976,9 +965,6 @@ intwritb.lo: sci_gateway/fortran/intwritb.f
 
 intwrite.lo: sci_gateway/fortran/intwrite.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intwrite.lo `test -f 'sci_gateway/fortran/intwrite.f' || echo '$(srcdir)/'`sci_gateway/fortran/intwrite.f
-
-intdisp.lo: sci_gateway/fortran/intdisp.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intdisp.lo `test -f 'sci_gateway/fortran/intdisp.f' || echo '$(srcdir)/'`sci_gateway/fortran/intdisp.f
 
 intread4b.lo: sci_gateway/fortran/intread4b.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intread4b.lo `test -f 'sci_gateway/fortran/intread4b.f' || echo '$(srcdir)/'`sci_gateway/fortran/intread4b.f
