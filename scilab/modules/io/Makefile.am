@@ -40,8 +40,7 @@ sci_gateway/c/sci_load.c \
 sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_oldsave.c \
-sci_gateway/c/sci_save.c \
-sci_gateway/c/sci_disp.c
+sci_gateway/c/sci_save.c
 
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp 
@@ -53,7 +52,6 @@ sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
-sci_gateway/fortran/intdisp.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
 sci_gateway/fortran/intlib.f \

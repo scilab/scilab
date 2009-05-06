@@ -51,15 +51,14 @@
 <PRIMITIVE gatewayId="5" primitiveId="14" primitiveName="readb" />
 <PRIMITIVE gatewayId="5" primitiveId="15" primitiveName="writb" />
 <PRIMITIVE gatewayId="5" primitiveId="16" primitiveName="execstr" />
-<PRIMITIVE gatewayId="5" primitiveId="17" primitiveName="disp" />
-<PRIMITIVE gatewayId="5" primitiveId="18" primitiveName="getpid" />
-<PRIMITIVE gatewayId="5" primitiveId="19" primitiveName="getenv" />
-<PRIMITIVE gatewayId="5" primitiveId="20" primitiveName="read4b" />
-<PRIMITIVE gatewayId="5" primitiveId="21" primitiveName="write4b" />
-<PRIMITIVE gatewayId="5" primitiveId="22" primitiveName="save" />
-<PRIMITIVE gatewayId="5" primitiveId="23" primitiveName="load" />
-<PRIMITIVE gatewayId="5" primitiveId="24" primitiveName="mgetl" />
-<PRIMITIVE gatewayId="5" primitiveId="25" primitiveName="getio" />
-<PRIMITIVE gatewayId="5" primitiveId="26" primitiveName="setenv" />
-<PRIMITIVE gatewayId="5" primitiveId="27" primitiveName="export_to_hdf5" />
+<PRIMITIVE gatewayId="5" primitiveId="17" primitiveName="getpid" />
+<PRIMITIVE gatewayId="5" primitiveId="18" primitiveName="getenv" />
+<PRIMITIVE gatewayId="5" primitiveId="19" primitiveName="read4b" />
+<PRIMITIVE gatewayId="5" primitiveId="20" primitiveName="write4b" />
+<PRIMITIVE gatewayId="5" primitiveId="21" primitiveName="save" />
+<PRIMITIVE gatewayId="5" primitiveId="22" primitiveName="load" />
+<PRIMITIVE gatewayId="5" primitiveId="23" primitiveName="mgetl" />
+<PRIMITIVE gatewayId="5" primitiveId="24" primitiveName="getio" />
+<PRIMITIVE gatewayId="5" primitiveId="25" primitiveName="setenv" />
+<PRIMITIVE gatewayId="5" primitiveId="26" primitiveName="export_to_hdf5" />
 </GATEWAY>

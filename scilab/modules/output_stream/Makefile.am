@@ -48,10 +48,12 @@ OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 GATEWAY_C_SOURCES = sci_gateway/c/gw_output_stream.c \
 		sci_gateway/c/sci_print.c \
 		sci_gateway/c/sci_mprintf.c \
-		sci_gateway/c/sci_msprintf.c
+		sci_gateway/c/sci_msprintf.c \
+		sci_gateway/c/sci_disp.c
 		
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intprint.f \
+			sci_gateway/fortran/intdisp.f
 
 libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \

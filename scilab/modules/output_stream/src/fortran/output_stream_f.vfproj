@@ -90,6 +90,7 @@ lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MAC
 		<File RelativePath=".\fmt.f"/>
 		<File RelativePath=".\fmttyp.f"/>
 		<File RelativePath=".\formatnumber.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intdisp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intprint.f"/>
 		<File RelativePath=".\lspdsp.f"/>
 		<File RelativePath=".\print.f"/>

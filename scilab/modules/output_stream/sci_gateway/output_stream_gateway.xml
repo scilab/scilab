@@ -35,4 +35,5 @@
 <PRIMITIVE gatewayId="33" primitiveId="1" primitiveName="print" />
 <PRIMITIVE gatewayId="33" primitiveId="2" primitiveName="mprintf" />
 <PRIMITIVE gatewayId="33" primitiveId="3" primitiveName="msprintf" />
+<PRIMITIVE gatewayId="33" primitiveId="4" primitiveName="disp" />
 </GATEWAY>

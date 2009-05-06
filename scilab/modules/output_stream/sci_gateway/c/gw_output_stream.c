@@ -18,7 +18,8 @@
 static gw_generic_table Tab[]={ 
 	{sci_print, "print"},
 	{sci_mprintf, "mprintf"},
-	{sci_msprintf, "msprintf"}
+	{sci_msprintf, "msprintf"},
+	{sci_disp, "disp"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_output_stream(void)

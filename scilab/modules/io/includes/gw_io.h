@@ -33,7 +33,6 @@ int C2F(sci_unix)(char *fname,unsigned long fname_len);
 int C2F(sci_readb)(char *fname,unsigned long fname_len);
 int C2F(sci_writb)(char *fname,unsigned long fname_len);
 int C2F(sci_execstr)(char *fname,unsigned long fname_len);
-int C2F(sci_disp)(char *fname,unsigned long fname_len);
 int C2F(sci_getpid)(char *fname,unsigned long fname_len);
 int C2F(sci_getenv)(char *fname,unsigned long fname_len);
 int C2F(sci_read4b)(char *fname,unsigned long fname_len);
@@ -50,7 +49,6 @@ int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
 int C2F(intexec) (char *fname,unsigned long fname_len);
 int C2F(intgetf)(void);
 int C2F(intsave)(void);
-int C2F(intdisp) (void);
 int C2F(intdiary)(void);
 int C2F(intdeff)(void);
 int C2F(intfile)(void);

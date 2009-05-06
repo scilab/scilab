@@ -10,9 +10,12 @@
  *
  */
 
-#include "gw_io.h"
+#include "machine.h"
+#include "gw_output_stream.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_disp)(char *fname,unsigned long fname_len)
+extern int C2F(intdisp)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_disp(char *fname,unsigned long fname_len)
 {
 	C2F(intdisp)();
 	return 0;

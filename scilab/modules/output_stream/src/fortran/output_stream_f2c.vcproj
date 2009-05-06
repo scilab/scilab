@@ -441,6 +441,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\fortran\intdisp.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\intprint.c"
 				>
 			</File>
@@ -522,6 +526,10 @@
 			</File>
 			<File
 				RelativePath=".\formatnumber.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\intdisp.f"
 				>
 			</File>
 			<File

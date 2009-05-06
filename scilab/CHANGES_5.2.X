@@ -26,6 +26,8 @@ Source reorganisation:
 
 * printf, msprintf, mprintf, print moved in output_stream module.
 
+* disp moved in output_stream module.
+
 Input/Output functions:
 =======================
 

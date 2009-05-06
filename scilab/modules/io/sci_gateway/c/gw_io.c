@@ -11,6 +11,7 @@
  */
 
 #include "gw_io.h"
+#include "gw_output_stream.h" /* sci_disp */
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
@@ -32,7 +33,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_readb),"readb"},
 {C2F(sci_writb),"writb"},
 {C2F(sci_execstr),"execstr"},
-{C2F(sci_disp),"disp"},
 {C2F(sci_getpid),"getpid"},
 {C2F(sci_getenv),"getenv"},
 {C2F(sci_read4b),"read4b"},
@@ -82,7 +82,8 @@ int gw_io(void)
 			}
 			case 7:
 			{
-				C2F(intdisp)();
+				#define disp_fname "disp"
+				sci_disp(disp_fname,strlen(disp_fname));
 				return 0;
 			}
 			case 8: 
@@ -90,6 +91,8 @@ int gw_io(void)
 				C2F(intexec)("exec",(unsigned long)strlen("exec"));
 				return 0;
 			}
+			default:
+				return 0;
 		}
 	}
 	 else
