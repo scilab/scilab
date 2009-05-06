@@ -23,14 +23,14 @@ c     .     test if we are under errcatch('stop') mode (imode=3)
       endif
       if(err.gt.0) goto 97
 c     
-
+c	  recursion on gateway
       if(int(rstk(pt)/100).eq.9) then
          ir=rstk(pt)-900
          if(ir.eq.1) then
-c     .     back to matsys
+c     .     back to gw_core
             k=13
          elseif(ir.ge.2.and.ir.le.9) then
-c     .     back to matio
+c     .     back to gw_io
             k=5
          elseif(ir.eq.10) then
 c     .     end of overloaded function
