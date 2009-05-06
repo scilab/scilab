@@ -40,7 +40,7 @@ function bOK = VCtoLCCLib()
     bOK = [bOK , Exportalibrary('optimization_f', WSCI+'\bin')];
     bOK = [bOK , Exportalibrary('scicompletion', WSCI+'\bin')];
     bOK = [bOK , Exportalibrary('scilocalization', WSCI+'\bin')];
-    bOK = [bOK , Exportalibrary('scioutput_stream', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('output_stream', WSCI+'\bin')];
     bOK = [bOK , Exportalibrary('time', WSCI+'\bin')];
 
 		chdir(DirCur);
