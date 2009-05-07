@@ -89,7 +89,7 @@ Bug fixes:
  * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
                     and not a filename (linux)
 
- * bug 4469 fixed - A few minor bugs were causing the configure to fail under
+ * bug 4479 fixed - A few minor bugs were causing the configure to fail under
 		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
