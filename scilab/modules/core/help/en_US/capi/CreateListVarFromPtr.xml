@@ -11,7 +11,7 @@
     <refname>CreateListVarFromPtr</refname>
 
     <refpurpose>a C interface function which allows to create a new Scilab
-    variable from a pointer in a [mt]list</refpurpose>
+    parameter from a pointer in a [mt]list</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -28,7 +28,7 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>the rank of the variable to be created (input
+          <para>the rank of the parameter to be created (input
           parameter)</para>
         </listitem>
       </varlistentry>
@@ -37,7 +37,7 @@
         <term>Type</term>
 
         <listitem>
-          <para>the Scilab type of the variable to be created (input
+          <para>the Scilab type of the parameter to be created (input
           parameter). Can be (see Scilab C Type for more informations):</para>
 
           <itemizedlist>
@@ -126,8 +126,8 @@
         <term>l_stack_list_pos</term>
 
         <listitem>
-          <para>the position on the stack of the created variable in the list
-          (output parameter)</para>
+          <para>the position in the Scilab memory of the created parameter in
+          the list (output parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -144,7 +144,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>A C interface function which allows to create a new Scilab variable
+    <para>A C interface function which allows to create a new Scilab parameter
     from a pointer in a [mt]list</para>
   </refsection>
 
@@ -207,7 +207,6 @@ int sci_create_list(char * fname)
  </programlisting>
 
     <para>This example is available in example/create_list.</para>
-
   </refsection>
 
   <refsection>

@@ -11,7 +11,7 @@
     <refname>istk</refname>
 
     <refpurpose>Return a pointer to an integer to access data stored at a
-    given position on the Scilab memory</refpurpose>
+    given position in the Scilab memory</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -28,7 +28,7 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position on the Scilab memory of the variable to be
+          <para>the position in the Scilab memory of the parameter to be
           accessed (input argument)</para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@
     <title>Description</title>
 
     <para>This C gateway function returns a pointer to an integer to access
-    data stored at a given position on the Scilab memory.</para>
+    data stored at a given position in the Scilab memory.</para>
   </refsection>
 
   <refsection>
@@ -55,7 +55,8 @@ int sci_myones(char * fname)
   m_row = 1; n_col = 1; // We create a scalar
   CreateVar(1, MATRIX_OF_INTEGER_DATATYPE, &amp;m_row, &amp;n_col, &amp;l_pos);
 
-  *istk(l_pos) = 1; // TODO: what are we doing here ?
+  *istk(l_pos) = 1; // We store the value 1 in the memory allocated for output
+                     // parameter 1
 
   LhsVar(1) = 1;
 

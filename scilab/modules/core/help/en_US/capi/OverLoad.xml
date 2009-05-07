@@ -9,7 +9,7 @@
   <refnamediv>
     <refname>OverLoad</refname>
 
-    <refpurpose>C interface function which tells Scilab to look for another
+    <refpurpose>C gateway function which tells Scilab to look for another
     overloaded function</refpurpose>
   </refnamediv>
 
@@ -27,9 +27,9 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>the position on the stack of the variable for which we want to
-          take into account for the overloading process (input
-          parameter)</para>
+          <para>the position in the Scilab memory of the parameter for which
+          we want to take into account for the overloading process (input
+          argument)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -38,14 +38,16 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface function which tells Scilab to look for another
+    <para>A C gateway function which tells Scilab to look for another
     overloaded function. Scilab then appends to the name of the function a
     prefix (like %sp_ if the parameter taken into account is sparse) and look
     for the overloaded function. You must include stack-c.h to benefit from
-    this function. Be careful with the Scilab name of the function. Indeed,
-    the current overloading process of Scilab works only on Scilab primitives
-    (Scilab function wrote in C) which must have a name which is maximum 8
-    char wide.</para>
+    this function. </para>
+
+    <para>Be careful with the Scilab name of the function. Indeed, the current
+    overloading process of Scilab works only on Scilab primitives (Scilab
+    function wrote in C) which must have a Scilab name which is maximum 8 char
+    wide.</para>
   </refsection>
 
   <refsection>
@@ -110,8 +112,6 @@ ldflags = "";
 cflags  = "";
 fflags  = "";
 
-// do not modify below 
-// ----------------------------------------------
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
  </programlisting>
 
@@ -133,15 +133,25 @@ chprop2(sparse([1,2,3]));
 
     <simplelist type="inline">
       <member><link linkend="CheckColumn">CheckColumn</link></member>
+
       <member><link linkend="CheckDims">CheckDims</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>

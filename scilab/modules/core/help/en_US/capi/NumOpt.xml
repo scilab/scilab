@@ -9,7 +9,7 @@
   <refnamediv>
     <refname>NumOpt</refname>
 
-    <refpurpose>C interface function which returns the number of optional
+    <refpurpose>C gateway function which returns the number of optional
     parameters sent to a C function</refpurpose>
   </refnamediv>
 
@@ -36,7 +36,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface function which returns the number of optional parameters
+    <para>A C gateway function which returns the number of optional parameters
     sent to a C function. You must include stack-c.h to benefit from this
     function.</para>
   </refsection>
@@ -45,7 +45,7 @@
     <title>Examples</title>
 
     <para>A more complete example is available in the directory
-    example/optional_parameters.</para>
+    core/example/optional_parameters.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -96,15 +96,25 @@ int sci_optional_parameters(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckDims">CheckDims</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -9,8 +9,8 @@
   <refnamediv>
     <refname>Lhs</refname>
 
-    <refpurpose>A C macro which provides the number of output arguments
-    present in the calling Scilab function</refpurpose>
+    <refpurpose>A C gateway function which provides the number of output
+    arguments present in the calling Scilab function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -37,9 +37,9 @@
   <refsection>
     <title>Description</title>
 
-    <para>Lhs provides a C macro which provides the number of output arguments
-    present in the calling Scilab function. You must include stack-c.h to
-    benefit from this function.</para>
+    <para>Lhs provides a C gateway function which provides the number of
+    output arguments present in the calling Scilab function. You must include
+    stack-c.h to benefit from this function.</para>
 
     <para>Note: Lhs means Left Hand Side.</para>
   </refsection>
@@ -47,7 +47,7 @@
   <refsection>
     <title>Examples</title>
 
-    <para>In this example, the C interface function can take several output
+    <para>In this example, the C gateway function can take several output
     arguments and prints in the Scilab console the integer corresponding to
     the number of output arguments detected in the calling Scilab
     function.</para>

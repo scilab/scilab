@@ -11,17 +11,17 @@
     <refname>How to check parameters</refname>
 
     <refpurpose>how to check parameter send to an interface using the C
-    API</refpurpose>
+    gateway functions</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
-    <para>The goal is to get a set of parameters via a C interface and then to
-    perform some checks in the C function.</para>
+    <para>The goal is to get a set of parameters via a set of C gateway
+    functions and then to perform some checks in the C function.</para>
 
     <para>This example is available in the directory
-    CAPI/examples/check_properties.</para>
+    core/examples/check_properties.</para>
   </refsection>
 
   <refsection>
@@ -124,12 +124,12 @@ int sci_check_properties_2(char * fname)
 
     <para>This file must be saved as "check_properties.c".</para>
 
-    <para>The main thing to highlight is that, to build a C interface
-    function, we need to include the header stack-c.h. In this header, we find
-    the prototypes and macros of the main C interface functions. We also need
-    to include sciprint.h because we use the sciprint function.</para>
+    <para>The main thing to highlight is that, to build a C gateway function,
+    we need to include the header stack-c.h. In this header, we find the
+    prototypes and macros of the main C gateway functions. We also need to
+    include sciprint.h because we use the sciprint function.</para>
 
-    <para>To be able to build and link such a C function to scilab, we need to
+    <para>To be able to build and link such a C function to Scilab, we need to
     write a Scilab script which will compile this C function and then create a
     loader script which will link the C function to a Scilab function.</para>
   </refsection>
@@ -159,8 +159,6 @@ ldflags = "";
 cflags  = "";
 fflags  = "";
 
-// do not modify below 
-// ----------------------------------------------
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
   </programlisting>
 
