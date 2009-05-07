@@ -9,8 +9,8 @@
   <refnamediv>
     <refname>IsOpt</refname>
 
-    <refpurpose>C interface function which checks if a parameter is optional
-    and returns the name of the variable</refpurpose>
+    <refpurpose>C gateway function which checks if a parameter is optional and
+    returns the name of the parameter</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -27,8 +27,8 @@
         <term>Pos</term>
 
         <listitem>
-          <para>the position on the stack of the variable to be checked (input
-          parameter)</para>
+          <para>the position in the Scilab memory of the parameter to be
+          checked (input parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -37,7 +37,7 @@
 
         <listitem>
           <para>an array of char (of size csiz which correspond to the maximum
-          length of a Scilab variable) in which the name of the variable will
+          length of a Scilab variable) in which the name of the parameter will
           be copied if the position Pos is optional (output parameter)</para>
         </listitem>
       </varlistentry>
@@ -55,8 +55,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>C interface function which checks if a parameter is optional and
-    returns the name of the variable. You must include stack-c.h to benefit
+    <para>C gateway function which checks if a parameter is optional and
+    returns the name of the parameter. You must include stack-c.h to benefit
     from this function.</para>
   </refsection>
 
@@ -64,7 +64,7 @@
     <title>Examples</title>
 
     <para>A more complete example is available in the directory
-    example/optional_parameters.</para>
+    core/example/optional_parameters.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -115,15 +115,25 @@ int sci_optional_parameters(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckDims">CheckDims</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>

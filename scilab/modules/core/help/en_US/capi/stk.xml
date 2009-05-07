@@ -55,9 +55,10 @@ int sci_myones(char * fname)
   m_row = 1; n_col = 1; // We create a scalar
   CreateVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_row, &amp;n_col, &amp;l_pos);
 
-  *stk(l_pos) = 1.0; // TODO explain
+  *stk(l_pos) = 1.0; // We store the value 1.0 in the area allocated by CreateVar
 
-  LhsVar(1) = 1; TODO explain
+  LhsVar(1) = 1; // We set the parameter 1 created by CreateVar as an output parameter
+                   // of the gateway function
 
   return 0;
 }

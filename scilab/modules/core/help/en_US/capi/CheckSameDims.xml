@@ -27,8 +27,8 @@
         <term>StackPos_var1</term>
 
         <listitem>
-          <para>the position on the stack of the first variable for which we
-          want to perform the check (input parameter)</para>
+          <para>the position in the Scilab memory of the first parameter for
+          which we want to perform the check (input parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -36,8 +36,8 @@
         <term>StackPos_var2</term>
 
         <listitem>
-          <para>the position on the stack of the second variable for which we
-          want to perform the check (input parameter)</para>
+          <para>the position in the Scilab memory of the second parameter for
+          which we want to perform the check (input parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -46,7 +46,7 @@
 
         <listitem>
           <para>the number of lines of the parameter at position StackPos_var1
-          on the stack</para>
+          in the Scilab memory</para>
         </listitem>
       </varlistentry>
 
@@ -55,7 +55,7 @@
 
         <listitem>
           <para>the number of columns of the parameter at position
-          StackPos_var1 on the stack</para>
+          StackPos_var1 in the Scilab memory</para>
         </listitem>
       </varlistentry>
 
@@ -64,7 +64,7 @@
 
         <listitem>
           <para>the number of lines of the parameter at position StackPos_var2
-          on the stack</para>
+          in the Scilab memory</para>
         </listitem>
       </varlistentry>
 
@@ -73,7 +73,7 @@
 
         <listitem>
           <para>the number of columns of the parameter at position
-          StackPos_var2 on the stack</para>
+          StackPos_var2 in the Scilab memory</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -120,15 +120,25 @@ int sci_check_properties(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckColumn">CheckColumn</link></member>
+
       <member><link linkend="CheckDims">CheckDims</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>

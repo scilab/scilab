@@ -23,67 +23,73 @@
 
     <itemizedlist>
       <listitem>
-        <para>1 - sci_matrix: a matrix of doubles</para>
+        <para>1 - <emphasis>sci_matrix</emphasis>: a matrix of doubles</para>
       </listitem>
 
       <listitem>
-        <para>2 - sci_poly: a polynomials matrix</para>
+        <para>2 - <emphasis>sci_poly</emphasis>: a polynomials matrix</para>
       </listitem>
 
       <listitem>
-        <para>4 - sci_boolean: a boolean matrix</para>
+        <para>4 - <emphasis>sci_boolean</emphasis>: a boolean matrix</para>
       </listitem>
 
       <listitem>
-        <para>5 - sci_sparse: a sparse matrix</para>
+        <para>5 - <emphasis>sci_sparse</emphasis>: a sparse matrix</para>
       </listitem>
 
       <listitem>
-        <para>6 - sci_boolean_sparse: a sparse boolean matrix</para>
+        <para>6 - <emphasis>sci_boolean_sparse</emphasis>: a sparse boolean
+        matrix</para>
       </listitem>
 
       <listitem>
-        <para>7 - sci_matlab_sparse: a sparse matlab matrix</para>
+        <para>7 - <emphasis>sci_matlab_sparse</emphasis>: a sparse matlab
+        matrix</para>
       </listitem>
 
       <listitem>
-        <para>8 - sci_ints: a matrix of integers</para>
+        <para>8 - <emphasis>sci_ints</emphasis>: a matrix of integers</para>
       </listitem>
 
       <listitem>
-        <para>9 - sci_handles: a graphical handle</para>
+        <para>9 - <emphasis>sci_handles</emphasis>: a graphical handle</para>
       </listitem>
 
       <listitem>
-        <para>10 - sci_strings: a matrix of strings</para>
+        <para>10 - <emphasis>sci_strings</emphasis>: a matrix of
+        strings</para>
       </listitem>
 
       <listitem>
-        <para>11 - sci_u_function: an uncompiled Scilab function</para>
+        <para>11 - <emphasis>sci_u_function</emphasis>: an uncompiled Scilab
+        function</para>
       </listitem>
 
       <listitem>
-        <para>13 - sci_c_function! a compiled Scilab function</para>
+        <para>13 - <emphasis>sci_c_function</emphasis>: a compiled Scilab
+        function</para>
       </listitem>
 
       <listitem>
-        <para>14 - sci_lib: a library of Scilab functions</para>
+        <para>14 - <emphasis>sci_lib</emphasis>: a library of Scilab
+        functions</para>
       </listitem>
 
       <listitem>
-        <para>15 - sci_list: a Scilab list</para>
+        <para>15 - <emphasis>sci_list</emphasis>: a Scilab list</para>
       </listitem>
 
       <listitem>
-        <para>16 - sci_tlist: a Scilab tlist</para>
+        <para>16 - <emphasis>sci_tlist</emphasis>: a Scilab tlist</para>
       </listitem>
 
       <listitem>
-        <para>17 - sci_mlist: a Scilab mlist</para>
+        <para>17 - <emphasis>sci_mlist</emphasis>: a Scilab mlist</para>
       </listitem>
 
       <listitem>
-        <para>128 - sci_lufact_pointer: a pointer</para>
+        <para>128 - <emphasis>sci_lufact_pointer</emphasis>: a pointer</para>
       </listitem>
     </itemizedlist>
 

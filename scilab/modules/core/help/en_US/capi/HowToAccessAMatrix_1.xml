@@ -10,7 +10,8 @@
   <refnamediv>
     <refname>How to access a matrix</refname>
 
-    <refpurpose>How to access a matrix using the C API</refpurpose>
+    <refpurpose>How to access a matrix using the C gateway
+    functions</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -54,6 +55,7 @@ int sci_multiply_by_two(char * fname)
   int m_in_var, n_in_var, l_in_var;
   int m_out_var, n_out_var, l_out_var;
   int i_row, j_col;
+  double * pMatrix = NULL;
 
   // First, access to the input variable (a matrix of doubles)
   GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_in_var, &amp;n_in_var, &amp;l_in_var);
@@ -63,12 +65,14 @@ int sci_multiply_by_two(char * fname)
   n_out_var = n_in_var;
   CreateVar(2, MATRIX_OF_DOUBLE_DATATYPE, &amp;m_out_var, &amp;n_out_var, &amp;l_out_var);
 
+  pMatrix = stk(l_in_var);
+
   // Perform some simple operations on the matrix
   for(i_row=0; i_row&lt;m_in_var; i_row++)
     {
       for(j_col=0; j_col&lt;n_in_var; j_col++)
         {
-          *stk(l_out_var + i_row + j_col * m_out_var) = 2 * (*stk(l_in_var + i_row + j_col * m_in_var)); // @TODO stk is confusing here
+          pMatrix[i_row + j_col * m_out_var] = 2 * pMatrix[i_row + j_col * m_in_var];
         }
     }
 
@@ -111,8 +115,6 @@ ldflags = "";
 cflags  = "";
 fflags  = "";
 
-// do not modify below 
-// ----------------------------------------------
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
   </programlisting>
 

@@ -9,8 +9,8 @@
   <refnamediv>
     <refname>sciprint</refname>
 
-    <refpurpose>C function to display standard messages to the user (same
-    profil as the C printf function)</refpurpose>
+    <refpurpose>A C gateway function which displays standard messages to the
+    user (same profil as the C printf function)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -46,11 +46,11 @@
   <refsection>
     <title>Description</title>
 
-    <para>This C function provides the capabilities to display messages to the
-    Scilab user. Basically; it emulates the C language printf function. You
-    must include sciprint.h to benefit from this function. This header is
-    provided in the output_stream module (this directory should be included by
-    default).</para>
+    <para>This C gateway function provides the capabilities to display
+    messages to the Scilab user. Basically; it emulates the C language printf
+    function. You must include sciprint.h to benefit from this function. This
+    header is provided in the output_stream module (this directory should be
+    included by default).</para>
 
     <para>Note that if you want to trigger an error, the function Scierror is
     more appropriate.</para>

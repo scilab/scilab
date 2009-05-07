@@ -11,18 +11,18 @@
     <refname>How to deal with optional parameters</refname>
 
     <refpurpose>how to deal with optional parameters send to an interface
-    using the C API</refpurpose>
+    using the C gateway functions</refpurpose>
   </refnamediv>
 
   <refsection>
     <title>Description</title>
 
-    <para>The goal is to get a set of optional parameters via a C interface
-    and then to perform some checks in the C function (number of optional
+    <para>The goal is to get a set of optional parameters via a C gateway and
+    then to perform some checks in the C function (number of optional
     parameters, does an optional parameters exists, etc.).</para>
 
     <para>This example is available in the directory
-    CAPI/examples/optional_parameters</para>
+    core/examples/optional_parameters</para>
   </refsection>
 
   <refsection>
@@ -148,8 +148,6 @@ ldflags = "";
 cflags  = "";
 fflags  = "";
 
-// do not modify below 
-// ----------------------------------------------
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
   </programlisting>
 

@@ -27,8 +27,8 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>the position on the stack of the variable for which we want to
-          know the type (input parameter)</para>
+          <para>the position in the Scilab memory of the parameter for which
+          we want to know the type (input parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -36,8 +36,8 @@
         <term>m_var</term>
 
         <listitem>
-          <para>the number of lines of the parameter at position StackPos on
-          the stack (input parameter)</para>
+          <para>the number of lines of the parameter at position StackPos in
+          the Scilab memory (input parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -45,8 +45,8 @@
         <term>n_var</term>
 
         <listitem>
-          <para>the number of columns of the parameter at position StackPos on
-          the stack (input parameter)</para>
+          <para>the number of columns of the parameter at position StackPos in
+          the Scilab memory (input parameter)</para>
         </listitem>
       </varlistentry>
 
@@ -104,15 +104,25 @@ int sci_check_properties(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckColumn">CheckColumn</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>
