@@ -161,3 +161,5 @@ Bug fixes:
 * bug 4499 fixed - basename returns a wrong value if file or a directory starts with a dot
 
 * bug 4500 fixed - basename('') returns a error
+
+* bug 4501 fixed - mput() no more allowed integer types as first input argument.
