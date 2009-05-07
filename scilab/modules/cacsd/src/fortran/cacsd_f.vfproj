@@ -68,7 +68,6 @@ cd .."/></Configuration></Configurations>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath="arl2.f"/>
 		<File RelativePath="arl2a.f"/>
-		<File RelativePath="calcsc.f"/>
 		<File RelativePath="calsca.f"/>
 		<File RelativePath="deg1l2.f"/>
 		<File RelativePath="degl2.f"/>

@@ -60,7 +60,8 @@ src/fortran/impcnc.f \
 src/fortran/wdmpad.f \
 src/fortran/wmpcle.f \
 src/fortran/quadit.f \
-src/fortran/quad.f
+src/fortran/quad.f \
+src/fortran/calcsc.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
