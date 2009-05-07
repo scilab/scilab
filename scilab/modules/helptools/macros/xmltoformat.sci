@@ -1084,7 +1084,13 @@ function directories = x2f_get_directories(directory)
 	// Sort directories
 	directories = gsort(basename(directories),"lr","i");
 	
-	// Remove all scilab_xx_XX_help directories
+	// Remove directories that start with a dot from the list
+	directories(grep(directories,"/^\./","r")) = [];
+	
+	// Remove blank strings from the list
+	directories(find(directories == '')) = [];
+	
+	// Remove all scilab_xx_XX_help directories from the list
 	directories( grep(directories,"/^scilab_[a-z][a-z]_[A-Z][A-Z]_help$/","r") ) = []
 	
 endfunction
