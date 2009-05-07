@@ -61,7 +61,9 @@ src/fortran/wdmpad.f \
 src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/quad.f \
-src/fortran/calcsc.f
+src/fortran/calcsc.f \
+src/fortran/writebufstfac.f
+
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
