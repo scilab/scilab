@@ -348,6 +348,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\calcsc.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ddmpev.c"
 				>
 			</File>
@@ -665,6 +669,10 @@
 			</File>
 			<File
 				RelativePath=".\blktit.f"
+				>
+			</File>
+			<File
+				RelativePath=".\calcsc.f"
 				>
 			</File>
 			<File

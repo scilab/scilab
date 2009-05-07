@@ -69,6 +69,7 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="bezout.f"/>
 		<File RelativePath="bezstp.f"/>
 		<File RelativePath="blktit.f"/>
+		<File RelativePath=".\calcsc.f"/>
 		<File RelativePath="ddmpev.f"/>
 		<File RelativePath="dimin.f"/>
 		<File RelativePath="dmp2pm.f"/>
