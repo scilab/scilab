@@ -102,7 +102,6 @@ int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdbl
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
  * @param[in] _pdblReal pointer on data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
 int createNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal);
@@ -115,10 +114,9 @@ int createNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iC
  * @param[in] _iCols Number of column
  * @param[in] _pdblReal pointer on real data
  * @param[in] _pdblImg pointer on img data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int** _piAddress);
+int createNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double named variable data

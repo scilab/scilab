@@ -359,6 +359,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\common_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\comparehandles.c"
 				>
 			</File>
@@ -372,6 +376,10 @@
 			</File>
 			<File
 				RelativePath=".\csignal.c"
+				>
+			</File>
+			<File
+				RelativePath=".\double_api.c"
 				>
 			</File>
 			<File
@@ -499,6 +507,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\int_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\intmacr2tree.c"
 				>
 			</File>
@@ -548,6 +560,10 @@
 			</File>
 			<File
 				RelativePath=".\parse.c"
+				>
+			</File>
+			<File
+				RelativePath=".\poly_api.c"
 				>
 			</File>
 			<File
@@ -839,6 +855,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sparse_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\stack1.c"
 				>
 			</File>
@@ -856,6 +876,10 @@
 			</File>
 			<File
 				RelativePath=".\str2sci.c"
+				>
+			</File>
+			<File
+				RelativePath=".\string_api.c"
 				>
 			</File>
 			<File
@@ -940,6 +964,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\common_api.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\core_math.h"
 				>
 			</File>
@@ -949,6 +977,10 @@
 			</File>
 			<File
 				RelativePath=".\csignal.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\double_api.h"
 				>
 			</File>
 			<File
@@ -988,11 +1020,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
@@ -1084,6 +1116,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\int_api.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\intmacr2tree.h"
 				>
 			</File>
@@ -1145,6 +1181,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\PATH_MAX.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\poly_api.h"
 				>
 			</File>
 			<File
@@ -1216,6 +1256,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\sparse_api.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\stack-c.h"
 				>
 			</File>
@@ -1245,6 +1289,10 @@
 			</File>
 			<File
 				RelativePath=".\str2sci.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\string_api.h"
 				>
 			</File>
 			<File
@@ -1281,6 +1329,10 @@
 			</File>
 			<File
 				RelativePath=".\userf2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\variable_api.h"
 				>
 			</File>
 			<File

@@ -17,5 +17,6 @@
 #include "string_api.h"
 #include "int_api.h"
 #include "poly_api.h"
+#include "sparse_api.h"
 
 #endif /* __VARIABLE_API__ */
