@@ -1473,11 +1473,11 @@ function master_section = x2f_tree_to_section( tree , offset )
 				"book"    ; ..
 				"part"    ; ..
 				"chapter" ; ..
-				"sect1"   ; ..
-				"sect2"   ; ..
-				"sect3"   ; ..
-				"sect4"   ; ..
-				"sect5"   ];
+				"section" ; ..
+				"section"   ; ..
+				"section"   ; ..
+				"section"   ; ..
+				"section"   ];
 	
 	if isfield(tree,"level") & ((tree("level") + offset)>0) & ((tree("level") + offset)<8) then
 		section_type = section_types( tree("level") + offset + 1 );
