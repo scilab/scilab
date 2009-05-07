@@ -196,7 +196,8 @@ int sci_print_list(char * fname)
 }
  </programlisting>
 
-    <para>This example is available in example/print_list.</para>
+    <para>This example is available in
+    SCI/modules/core/example/print_list.</para>
   </refsection>
 
   <refsection>
