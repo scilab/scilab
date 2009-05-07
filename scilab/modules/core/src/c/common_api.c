@@ -12,9 +12,10 @@
  */
 
 #include <string.h>
-#include "stack-c.h"
 
+#include "CallScilab.h"
 #include "common_api.h"
+#include "stack-c.h"
 
 int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 {
@@ -36,6 +37,35 @@ int getVarAddressFromNumber(int _iVar, int** _piAddress)
 {
 	int iAddr = iadr(*Lstk(_iVar));
 	*_piAddress = istk(iAddr);
+	return 0;
+}
+
+int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
+{
+	int iVarID[nsiz];
+	int* piAddr				= NULL;
+
+	//get variable id from name
+	C2F(str2name)(_pstName, iVarID, _iNameLen);
+
+	//define scope of search
+  Fin = -1;
+	//search variable 
+  C2F(stackg)(iVarID);
+
+	if (Err > 0 || Fin == 0)
+	{
+		return 1;
+	}
+
+	//No idea :(
+  if ( *Infstk(Fin) == 2)
+		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
+
+	//get variable address
+	getVarAddressFromNumber(Fin, &piAddr);
+
+	*_piAddress = piAddr;
 	return 0;
 }
 

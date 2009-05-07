@@ -12,6 +12,7 @@
 #ifndef __POLY_API__
 #define __POLY_API__
 
+#include "doublecomplex.h"
 /*****************************/
 /*   poly matrix functions   */
 /*****************************/
@@ -19,89 +20,110 @@
 /**
  * Get polynomial variable data
  * @param[in] _piAddress variable address
- * @param[out] _pstVarName return the variable name of polynomials
+ * @param[out] _pstVarName return variable name of polynomials
+ * @param[out] _piVarNameLen returns length of _pstVarName
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getPolyVariableName(int* _piAddress, char* _pstVarName, int* _piVarNameLen);
+
+/**
+ * Get polynomial variable data
+ * @param[in] _piAddress variable address
  * @param[out] _piRows return number of row 
  * @param[out] _piCols return number of column
- * @param[out] _piDegree return an array of polynomials degrees
+ * @param[out] _piNbCoef return an array of polynomials coefficients
  * @param[out] _pdblReal return polynomials coefficients
  * @return if the operation successed (0) or not ( !0 )
  */
-int getMatrixOfPoly (int* _piAddress, char** _pstVarName, int* _piRows, int* _piCols, int** _piDegree, double** _pdblReal);
+int getMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get complex polynomial variable data
  * @param[in] _piAddress variable address
- * @param[out] _pstVarName return the variable name of polynomials
  * @param[out] _piRows return number of row 
  * @param[out] _piCols return number of column
- * @param[out] _piDegree return an array of polynomials degrees
+ * @param[out] _piNbCoef return an array of polynomials coefficients
  * @param[out] _pdblReal return polynomials coefficients
  * @param[out] _pdblImg return polynomials coefficients
  * @return if the operation successed (0) or not ( !0 )
  */
-int getComplexMatrixOfPoly (int* _piAddress, char** _pstVarName, int* _piRows, int* _piCols, int** _piDegree, double** _pdblReal, double** _pdblImg);
+int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
- * Get complex polynomial variable data
- * @param[in] _piAddress variable address
- * @param[out] _pstVarName return the variable name of polynomials
- * @param[out] _piRows return number of row 
+ * Get polynomial named variable data
+ * @param[in] _iVar variable number
+ * @param[in] _pstVarName Variable Name
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piNbCoef array of polynomials coefficients
+ * @param[in] _pdblReal pointer on data
+ * @param[out] _piAddress return pointer on new variable
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, int** _piAddress);
+
+/**
+ * Get complex polynomial named variable data
+ * @param[in] _iVar variable number
+ * @param[in] _pstVarName Variable Name
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piNbCoef array of polynomials coefficients
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on imaginary data
+ * @param[out] _piAddress return pointer on new variable
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int** _piAddress);
+
+/**
+ * Create polynomial named variable
+ * @param[in] _pstName variable name
+ * @param[in] _iNamelen variable name length
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piNbCoef array of polynomials coefficients
+ * @param[in] _pdblReal pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+
+/**
+ * Create complex polynomial named variable
+ * @param[in] _pstName variable name
+ * @param[in] _iNamelen variable name length
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piNbCoef array of polynomials coefficients
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on img data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
+/**
+ * Get double named variable data
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length 
+ * @param[out] _piRows return number of row
  * @param[out] _piCols return number of column
- * @param[out] _piDegree return an array of polynomials degrees
- * @param[out] _pdblZ return pointer on Z format data ( Real1, Img1, Real2, Img2, ... )
+ * @param[out] _piNbCoef return polynomials coefficients
+ * @param[out] _pdblReal return real data
  * @return if the operation successed (0) or not ( !0 )
  */
-int getComplexZMatrixOfPoly (int* _piAddress, char** _pstVarName, int* _piRows, int* _piCols, int** _piDegree, double** _pdblZ);
-
-
-/**
- * Get complex polynomial variable data
- * @param[in] _pstVarName variable name of polynomials
- * @param[in] _iRows number of row 
- * @param[in] _iCols number of column
- * @param[in] _piDegree array of polynomials degrees
- * @param[out] _pdblReal return pointer on coefficients
- * @param[out] _piAddress return pointer on new variable
- * @return if the operation successed (0) or not ( !0 )
- */
-int allocMatrixOfPoly(char* _pstVarName, int _iRows, int _iCols, int* _piDegree, double** _pdblReal, int** _piAddress);
+int readNamedMatrixOfPoly(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
 
 /**
- * Get complex polynomial variable data
- * @param[in] _pstVarName variable name of polynomials
- * @param[in] _iRows number of row 
- * @param[in] _iCols number of column
- * @param[in] _piDegree array of polynomials degrees
- * @param[out] _pdblReal return pointer on real coefficients
- * @param[out] _pdblImg return pointer on img coefficients
- * @param[out] _piAddress return pointer on new variable
+ * Get double named variable data
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length 
+ * @param[out] _piRows return number of row
+ * @param[out] _piCols return number of column
+ * @param[out] _piNbCoef return polynomials coefficients
+ * @param[out] _pdblReal return real data
+ * @param[out] _pdblImg return imgagianry data
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocComplexMatrixOfPoly(char* _pstVarName, int _iRows, int _iCols, int* _piDegree, double** _pdblReal, double** _pdblImg, int** _piAddress);
-
-/**
- * Get complex polynomial variable data
- * @param[in] _pstVarName variable name of polynomials
- * @param[in] _iRows number of row 
- * @param[in] _iCols number of column
- * @param[in] _piDegree array of polynomials degrees
- * @param[in] _pdblReal pointer on coefficients
- * @param[out] _piAddress return pointer on new variable
- * @return if the operation successed (0) or not ( !0 )
- */
-int setMatrixOfPoly(char* _pstVarName, int _iRows, int _iCols, int* _piDegree, double* _pdblReal, int** _piAddress);
-
-/**
- * Get complex polynomial variable data
- * @param[in] _pstVarName variable name of polynomials
- * @param[in] _iRows number of row 
- * @param[in] _iCols number of column
- * @param[in] _piDegree array of polynomials degrees
- * @param[in] _pdblReal pointer on real coefficients
- * @param[in] _pdblImg pointer on img coefficients
- * @param[out] _piAddress return pointer on new variable
- * @return if the operation successed (0) or not ( !0 )
- */
-int setComplexMatrixOfPoly(char* _pstVarName, int _iRows, int _iCols, int* _piDegree, double* _pdblReal, double* _pdblImg, int** _piAddress);
+int readNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 #endif /* __POLY_API__ */

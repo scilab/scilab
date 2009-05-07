@@ -9,6 +9,8 @@ a = chdir(TMPDIR);
 if ~a then bugmes();quit;end
 b = chdir(SCI);
 if ~b then bugmes();quit;end
+wm = warning('query');
+warning('off');
 c = chdir(pathconvert(SCI+"/nowhere"));
-Ne peux pas aller dans le répertoire SCI/nowhere/.
+warning(wm);
 if c then bugmes();quit;end

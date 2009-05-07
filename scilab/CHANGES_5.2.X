@@ -52,6 +52,8 @@ fileio functions:
     (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
     
   - fileinfo manages column vector of strings (SEP #25)
+  
+  - basename uses fileparts
 
 Dynamic link:
 =============
@@ -155,3 +157,13 @@ Bug fixes:
 * bug 4467 fixed - getshortpathname,getlongpathname do not manage string matrix as input
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
+
+* bug 4497 fixed - xmltoformat gets stuck in directories beginning with '.'.
+
+* bug 4498 fixed - merror() returns weird strings if called before opening files.
+
+* bug 4499 fixed - basename returns a wrong value if file or a directory starts with a dot
+
+* bug 4500 fixed - basename('') returns a error
+
+* bug 4501 fixed - mput() no more allowed integer types as first input argument.

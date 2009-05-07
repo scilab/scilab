@@ -28,10 +28,11 @@ int getVarAddressFromNumber(int _iVar, int** _piAddress);
 /**
  * Get memory address of a variable from the variable name
  * @param[in] _pstName variable name
+ * @param[out] _iNameLen variable name length
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarAddressFromName(char* _pstName, int** _piAddress);
+int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress);
 
 /**
  * Get variable type

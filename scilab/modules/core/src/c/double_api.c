@@ -18,9 +18,9 @@
 #include "CallScilab.h"
 #include "stack-c.h"
 
-//double
+//internal double functions
 int getCommonMatrixOfDouble(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, double** _pdblReal, double** _pdblImg);
-int allocCommonMatrixOfDouble(int _iVar, int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
+int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int** _piAddress);
 int fillCommonMatrixOfDouble(int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 int readCommonNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
@@ -82,7 +82,7 @@ int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, i
 		return 1;
 	}
 
-	iRet = allocCommonMatrixOfDouble(_iVar, piAddr, 0, _iRows, _iCols, &pdblReal, NULL);
+	iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -100,13 +100,7 @@ int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdbl
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
-	if(iRet != 0)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfDouble(_iVar, piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
+	int iRet = allocCommonMatrixOfDouble(_iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -118,14 +112,16 @@ int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdbl
 	return 0;
 }
 
-int allocCommonMatrixOfDouble(int _iVar, int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
+int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int** _piAddress)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
+	int *piAddr			= NULL;
 
-	fillCommonMatrixOfDouble(_piAddress, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
+	getVarAddressFromNumber(iNewPos, _piAddress);
+	fillCommonMatrixOfDouble(*_piAddress, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
-	updateLstk(iNewPos, iAddr + 4, _iRows * _iCols * (_iComplex + 1));
+	updateLstk(iNewPos, iAddr + 4, _iRows * _iCols * (_iComplex + 1) * 2);
 	return 0;
 }
 
@@ -187,7 +183,7 @@ int createNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iC
 	return createCommunNamedMatrixOfDouble(_pstName, _iNameLen, 0, _iRows, _iCols, _pdblReal, NULL);
 }
 
-int createNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int** _piAddress)
+int createNamedComplexMatrixOfDouble(char* _pstName, int _iNameLen, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	return createCommunNamedMatrixOfDouble(_pstName, _iNameLen, 1, _iRows, _iCols, _pdblReal, _pdblImg);
 }
@@ -221,7 +217,7 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
 	}
 
 	//update "variable index"
-	updateLstk(Top, *Lstk(Top) + 4, iSize * (_iComplex + 1));
+	updateLstk(Top, *Lstk(Top) + 4, iSize * (_iComplex + 1) * 2);
 
 	Rhs = 0;
 	//Add name in stack reference list
