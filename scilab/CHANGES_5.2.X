@@ -158,6 +158,8 @@ Bug fixes:
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
 
+* bug 4497 fixed - xmltoformat gets stuck in directories beginning with '.'.
+
 * bug 4499 fixed - basename returns a wrong value if file or a directory starts with a dot
 
 * bug 4500 fixed - basename('') returns a error
