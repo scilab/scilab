@@ -441,9 +441,12 @@ libsciio_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes
+			-I$(top_srcdir)/modules/output_stream/includes/
 
-libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ 
+libsciio_la_CPPFLAGS = -I$(srcdir)/includes/ \
+			-I$(top_srcdir)/modules/core/includes/ \
+                        -I$(top_srcdir)/modules/output_stream/includes/
+
 pkglib_LTLIBRARIES = libsciio.la
 libsciio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -1261,7 +1264,6 @@ uninstall-am: uninstall-libsciio_la_etcDATA \
 	uninstall-libsciio_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-			-I$(top_srcdir)/modules/core/includes
 
 libdummy_io_la-intmgetl.lo: sci_gateway/fortran/intmgetl.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_io_la_FFLAGS) -c -o libdummy_io_la-intmgetl.lo `test -f 'sci_gateway/fortran/intmgetl.f' || echo '$(srcdir)/'`sci_gateway/fortran/intmgetl.f
