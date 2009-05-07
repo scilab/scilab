@@ -107,7 +107,8 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	dmpcle.lo rpoly.lo wmptld.lo wpodiv.lo wdmpmu.lo wmptra.lo \
 	wmpins.lo mpdegr.lo ddmpev.lo realit.lo dpmul.lo sfact2.lo \
 	dmpad.lo nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo \
-	impcnc.lo wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo
+	impcnc.lo wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
+	writebufstfac.lo
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
 	sci_f_bezout.lo sci_f_triu_tril.lo sci_f_roots.lo \
@@ -429,7 +430,8 @@ src/fortran/wdmpad.f \
 src/fortran/wmpcle.f \
 src/fortran/quadit.f \
 src/fortran/quad.f \
-src/fortran/calcsc.f
+src/fortran/calcsc.f \
+src/fortran/writebufstfac.f
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 GATEWAY_C_SOURCES = sci_gateway/c/gw_polynomials.c \
@@ -974,6 +976,9 @@ quad.lo: src/fortran/quad.f
 
 calcsc.lo: src/fortran/calcsc.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o calcsc.lo `test -f 'src/fortran/calcsc.f' || echo '$(srcdir)/'`src/fortran/calcsc.f
+
+writebufstfac.lo: src/fortran/writebufstfac.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebufstfac.lo `test -f 'src/fortran/writebufstfac.f' || echo '$(srcdir)/'`src/fortran/writebufstfac.f
 
 sci_f_simp.lo: sci_gateway/fortran/sci_f_simp.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simp.lo `test -f 'sci_gateway/fortran/sci_f_simp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simp.f

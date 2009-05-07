@@ -27,7 +27,8 @@
   <refsection>
     <title>The C function - access to a [mt]list</title>
 
-    <para>This example is available in core/example/print_list.</para>
+    <para>This example is available in
+    SCI/modules/core/example/print_list.</para>
 
     <para>Let's initialize a mlist in Scilab.</para>
 
@@ -159,7 +160,8 @@ print_list(A);
   <refsection>
     <title>The C function - creation of a [mt]list</title>
 
-    <para>This example is available in core/example/create_list.</para>
+    <para>This example is available in
+    SCI/modules/core/example/create_list.</para>
 
     <para>We now write a simple example to test our new function to create a
     [mt]list.</para>

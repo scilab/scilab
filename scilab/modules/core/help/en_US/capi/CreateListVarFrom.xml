@@ -207,7 +207,8 @@ int sci_create_list(char * fname)
 }
  </programlisting>
 
-    <para>This example is available in example/create_list.</para>
+    <para>This example is available in
+    SCI/modules/core/example/create_list.</para>
   </refsection>
 
   <refsection>

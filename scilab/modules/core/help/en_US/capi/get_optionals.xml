@@ -73,7 +73,7 @@ typedef struct rhs_opts__ {
     <title>Examples</title>
 
     <para>A more complete example is available in the directory
-    example/optional_parameters.</para>
+    SCI/modules/core/example/optional_parameters.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
