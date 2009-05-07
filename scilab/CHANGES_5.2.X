@@ -158,6 +158,8 @@ Bug fixes:
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
 
+* bug 4498 fixed - merror() returns weird strings if called before opening files.
+
 * bug 4499 fixed - basename returns a wrong value if file or a directory starts with a dot
 
 * bug 4500 fixed - basename('') returns a error
