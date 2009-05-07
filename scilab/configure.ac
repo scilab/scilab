@@ -956,14 +956,18 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 #################
 
 # Not in Scilab 5.0
-#AC_ARG_WITH(mpi,
-#    [  --with-mpi	           compile with MPI library])
-#
-#if test "$with_mpi" = yes; then
-#   AC_OPENMPI()
-#   # We will have to detect other implementation of OpenMPI
-#fi
-#AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+AC_ARG_WITH(mpi,
+    AC_HELP_STRING([--without-mpi],[compile with MPI library]))
+
+MPI_ENABLE=no
+if test "$with_mpi" != no; then
+   AC_OPENMPI()
+   # We will have to detect other implementation of OpenMPI
+   MPI_ENABLE=yes
+fi
+AC_SUBST(MPI_ENABLE)
+
+AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
 
 #################
 ## PVM
@@ -1590,14 +1594,14 @@ echo ""
 #   echo "Not using MPI"
 #fi
 
-#if test "$with_openmpi" != "no"; then
-#   echo "OpenMPI Configuration:"
-#   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
-#   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
-#   echo "OpenMPI F77 Compiler ... = $MPIF77"
-#else
-#   echo "Not using MPI"
-#fi
+if test "$with_openmpi" != "no"; then
+   echo "OpenMPI Configuration:"
+   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
+   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+   echo "OpenMPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then

@@ -864,6 +864,12 @@ PVM_INCLUDE
 PVM_LIB
 PVMARCH
 PVMGETARCH
+MPI_FALSE
+MPI_TRUE
+MPI_ENABLE
+OPENMPI_LIBS
+OPENMPI_FLAGS
+OPENMPI_CC
 FFTW_FALSE
 FFTW_TRUE
 FFTW_ENABLE
@@ -1073,6 +1079,7 @@ with_ocaml
 with_fftw
 with_fftw_include
 with_fftw_library
+with_mpi
 with_pvm
 with_pvm_include
 with_pvm_library
@@ -1810,6 +1817,7 @@ Optional Packages:
   --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
+  --without-mpi           compile with MPI library
   --without-pvm           Disable the interface to the PVM library
   --with-pvm-include=DIR  Set the path to the PVM headers
   --with-pvm-library=DIR  Set the path to the PVM library
@@ -11455,7 +11463,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 11458 "configure"
+// #line 11466 "configure"
 
 
 public class conftest {
@@ -11505,7 +11513,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11508 "configure"
+// #line 11516 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -11553,7 +11561,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 11556 "configure"
+// #line 11564 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -11580,7 +11588,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 11583 "configure"
+// #line 11591 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -12888,7 +12896,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12891 "configure"
+// #line 12899 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -12961,7 +12969,7 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12964 "configure"
+// #line 12972 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -13034,7 +13042,7 @@ $as_echo_n "checking looks2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13037 "configure"
+// #line 13045 "configure"
 import com.jgoodies.looks.common.RenderingUtils;
 
 public class conftest {
@@ -13110,7 +13118,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13113 "configure"
+// #line 13121 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -13183,7 +13191,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13186 "configure"
+// #line 13194 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -13256,7 +13264,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13259 "configure"
+// #line 13267 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13329,7 +13337,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13332 "configure"
+// #line 13340 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -13403,7 +13411,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13406 "configure"
+// #line 13414 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -13476,7 +13484,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13479 "configure"
+// #line 13487 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13549,7 +13557,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13552 "configure"
+// #line 13560 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13622,7 +13630,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13625 "configure"
+// #line 13633 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -18976,14 +18984,346 @@ fi
 #################
 
 # Not in Scilab 5.0
-#AC_ARG_WITH(mpi,
-#    [  --with-mpi	           compile with MPI library])
-#
-#if test "$with_mpi" = yes; then
-#   AC_OPENMPI()
-#   # We will have to detect other implementation of OpenMPI
+
+# Check whether --with-mpi was given.
+if test "${with_mpi+set}" = set; then
+  withval=$with_mpi;
+fi
+
+
+MPI_ENABLE=no
+if test "$with_mpi" != no; then
+
+#"$with_openmpi_path" != 'yes' -a "$with_openmpi_path" != 'no'
+#if test false != true; then
+   # Look if mpicc (which provides cflags and ldflags) is available
+#   AC_MSG_CHECKING([openmpi, for mpicc])
+#   OPENMPI_FOUND=0
+#   MPICC="$with_openmpi/bin/mpicc"
+#        if test -x "$MPICC"; then
+#                AC_MSG_RESULT([$MPICC])
+#				OPENMPI_CC=$MPICC
+#				OPENMPI_FOUND=1
+#		fi
+#   if test $OPENMPI_FOUND -eq 0; then
+#   MPICC="$with_openmpi/mpicc"
+#        if test -x "$MPICC"; then
+#				OPENMPI_FOUND=1
+#				OPENMPI_CC=$MPICC
+#                AC_MSG_RESULT([$MPICC])
+#        fi
+#   fi
+#		if test $OPENMPI_FOUND -eq 0; then
+#                AC_MSG_ERROR([Unable to find $MPICC. Please check the path you provided])
+#		else
+#			unset OPENMPI_FOUND
+#		fi
+#else
+		for ac_prog in mpicc
+do
+  # Extract the first word of "$ac_prog", so it can be a program name with args.
+set dummy $ac_prog; ac_word=$2
+{ $as_echo "$as_me:$LINENO: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_OPENMPI_CC+set}" = set; then
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$OPENMPI_CC"; then
+  ac_cv_prog_OPENMPI_CC="$OPENMPI_CC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+  for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_OPENMPI_CC="$ac_prog"
+    $as_echo "$as_me:$LINENO: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+done
+IFS=$as_save_IFS
+
+fi
+fi
+OPENMPI_CC=$ac_cv_prog_OPENMPI_CC
+if test -n "$OPENMPI_CC"; then
+  { $as_echo "$as_me:$LINENO: result: $OPENMPI_CC" >&5
+$as_echo "$OPENMPI_CC" >&6; }
+else
+  { $as_echo "$as_me:$LINENO: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+  test -n "$OPENMPI_CC" && break
+done
+test -n "$OPENMPI_CC" || OPENMPI_CC="no"
+
+		if test "x$MPICC" = "xno"; then
+				{ { $as_echo "$as_me:$LINENO: error: Unable to find mpicc in the path. Please check your installation of openmpi (example : openmpi & openmpi-dev with Debian)" >&5
+$as_echo "$as_me: error: Unable to find mpicc in the path. Please check your installation of openmpi (example : openmpi & openmpi-dev with Debian)" >&2;}
+   { (exit 1); exit 1; }; }
+		fi
 #fi
-#AM_CONDITIONAL(MPI, test "$with_mpi" = yes)
+saved_cflags=$CFLAGS
+saved_LIBS="$LIBS"
+
+CFLAGS=`$OPENMPI_CC --showme:compile`
+LIBS=`$OPENMPI_CC --showme:link`
+
+if test "${ac_cv_header_mpi_h+set}" = set; then
+  { $as_echo "$as_me:$LINENO: checking for mpi.h" >&5
+$as_echo_n "checking for mpi.h... " >&6; }
+if test "${ac_cv_header_mpi_h+set}" = set; then
+  $as_echo_n "(cached) " >&6
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_mpi_h" >&5
+$as_echo "$ac_cv_header_mpi_h" >&6; }
+else
+  # Is the header compilable?
+{ $as_echo "$as_me:$LINENO: checking mpi.h usability" >&5
+$as_echo_n "checking mpi.h usability... " >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+$ac_includes_default
+#include <mpi.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_header_compiler=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_header_compiler=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+{ $as_echo "$as_me:$LINENO: result: $ac_header_compiler" >&5
+$as_echo "$ac_header_compiler" >&6; }
+
+# Is the header present?
+{ $as_echo "$as_me:$LINENO: checking mpi.h presence" >&5
+$as_echo_n "checking mpi.h presence... " >&6; }
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <mpi.h>
+_ACEOF
+if { (ac_try="$ac_cpp conftest.$ac_ext"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_cpp conftest.$ac_ext") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } >/dev/null && {
+	 test -z "$ac_c_preproc_warn_flag$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       }; then
+  ac_header_preproc=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+  ac_header_preproc=no
+fi
+
+rm -f conftest.err conftest.$ac_ext
+{ $as_echo "$as_me:$LINENO: result: $ac_header_preproc" >&5
+$as_echo "$ac_header_preproc" >&6; }
+
+# So?  What about this header?
+case $ac_header_compiler:$ac_header_preproc:$ac_c_preproc_warn_flag in
+  yes:no: )
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h: accepted by the compiler, rejected by the preprocessor!" >&5
+$as_echo "$as_me: WARNING: mpi.h: accepted by the compiler, rejected by the preprocessor!" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h: proceeding with the compiler's result" >&5
+$as_echo "$as_me: WARNING: mpi.h: proceeding with the compiler's result" >&2;}
+    ac_header_preproc=yes
+    ;;
+  no:yes:* )
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h: present but cannot be compiled" >&5
+$as_echo "$as_me: WARNING: mpi.h: present but cannot be compiled" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h:     check for missing prerequisite headers?" >&5
+$as_echo "$as_me: WARNING: mpi.h:     check for missing prerequisite headers?" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h: see the Autoconf documentation" >&5
+$as_echo "$as_me: WARNING: mpi.h: see the Autoconf documentation" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h:     section \"Present But Cannot Be Compiled\"" >&5
+$as_echo "$as_me: WARNING: mpi.h:     section \"Present But Cannot Be Compiled\"" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h: proceeding with the preprocessor's result" >&5
+$as_echo "$as_me: WARNING: mpi.h: proceeding with the preprocessor's result" >&2;}
+    { $as_echo "$as_me:$LINENO: WARNING: mpi.h: in the future, the compiler will take precedence" >&5
+$as_echo "$as_me: WARNING: mpi.h: in the future, the compiler will take precedence" >&2;}
+    ( cat <<\_ASBOX
+## ------------------------------------------ ##
+## Report this to http://bugzilla.scilab.org/ ##
+## ------------------------------------------ ##
+_ASBOX
+     ) | sed "s/^/$as_me: WARNING:     /" >&2
+    ;;
+esac
+{ $as_echo "$as_me:$LINENO: checking for mpi.h" >&5
+$as_echo_n "checking for mpi.h... " >&6; }
+if test "${ac_cv_header_mpi_h+set}" = set; then
+  $as_echo_n "(cached) " >&6
+else
+  ac_cv_header_mpi_h=$ac_header_preproc
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_header_mpi_h" >&5
+$as_echo "$ac_cv_header_mpi_h" >&6; }
+
+fi
+if test "x$ac_cv_header_mpi_h" = x""yes; then
+  OPENMPI_CFLAGS=$CFLAGS
+else
+  { { $as_echo "$as_me:$LINENO: error: Cannot find headers of the library OpenMPI. Please install the dev package (Debian : openmpi-dev)" >&5
+$as_echo "$as_me: error: Cannot find headers of the library OpenMPI. Please install the dev package (Debian : openmpi-dev)" >&2;}
+   { (exit 1); exit 1; }; }
+fi
+
+
+
+{ $as_echo "$as_me:$LINENO: checking for MPI_Init in -lmpi" >&5
+$as_echo_n "checking for MPI_Init in -lmpi... " >&6; }
+if test "${ac_cv_lib_mpi_MPI_Init+set}" = set; then
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lmpi  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char MPI_Init ();
+int
+main ()
+{
+return MPI_Init ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval ac_try_echo="\"\$as_me:$LINENO: $ac_try_echo\""
+$as_echo "$ac_try_echo") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  $as_echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext && {
+	 test "$cross_compiling" = yes ||
+	 $as_test_x conftest$ac_exeext
+       }; then
+  ac_cv_lib_mpi_MPI_Init=yes
+else
+  $as_echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_mpi_MPI_Init=no
+fi
+
+rm -rf conftest.dSYM
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:$LINENO: result: $ac_cv_lib_mpi_MPI_Init" >&5
+$as_echo "$ac_cv_lib_mpi_MPI_Init" >&6; }
+if test $ac_cv_lib_mpi_MPI_Init = yes; then
+  OPENMPI_LIBS=$LIBS
+else
+  { { $as_echo "$as_me:$LINENO: error: openmpi : library missing. (Cannot find symbol MPI_Init in -lmpi). Check if OpenMPI is installed" >&5
+$as_echo "$as_me: error: openmpi : library missing. (Cannot find symbol MPI_Init in -lmpi). Check if OpenMPI is installed" >&2;}
+   { (exit 1); exit 1; }; }
+
+fi
+
+
+#OPENMPI_CPPFLAGS="-I$openmpi_dir/include"
+#OPENMPI_LDFLAGS="-L$openmpi_dir/lib/"
+
+#OPENMPI_HEADER="$openmpi_dir/include/mpi.h"
+#OPENMPI_DIR="$openmpi_dir"
+
+LIBS="$saved_LIBS"
+CFLAGS=$saved_cflags
+
+
+
+
+#CFLAGS="$CFLAGS $OPENMPI_FLAGS"
+#AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([pcre : library missing])])
+
+
+#AC_CHECK_HEADERS([pcre/tree.h],,[AC_MSG_ERROR([pcre : library missing missing])])
+
+# Gets compilation and library flags
+
+   # We will have to detect other implementation of OpenMPI
+   MPI_ENABLE=yes
+fi
+
+
+ if test "$with_mpi" = yes; then
+  MPI_TRUE=
+  MPI_FALSE='#'
+else
+  MPI_TRUE='#'
+  MPI_FALSE=
+fi
+
 
 #################
 ## PVM
@@ -25928,7 +26268,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:$LINENO: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 25931 "configure"
+#line 26271 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -26487,7 +26827,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 26490 "configure"
+#line 26830 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -27338,7 +27678,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27341 "configure"
+// #line 27681 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -27411,7 +27751,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27414 "configure"
+// #line 27754 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -27486,7 +27826,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27489 "configure"
+// #line 27829 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -27559,7 +27899,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27562 "configure"
+// #line 27902 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -27632,7 +27972,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27635 "configure"
+// #line 27975 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -27705,7 +28045,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27708 "configure"
+// #line 28048 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -27778,7 +28118,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27781 "configure"
+// #line 28121 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -27851,7 +28191,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27854 "configure"
+// #line 28194 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -27925,7 +28265,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 27928 "configure"
+// #line 28268 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -28626,7 +28966,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 28629 "configure"' > conftest.$ac_ext
+  echo '#line 28969 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -30496,11 +30836,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30499: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:30839: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30503: \$? = $ac_status" >&5
+   echo "$as_me:30843: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30786,11 +31126,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30789: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31129: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:30793: \$? = $ac_status" >&5
+   echo "$as_me:31133: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -30890,11 +31230,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:30893: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:31233: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:30897: \$? = $ac_status" >&5
+   echo "$as_me:31237: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -33375,7 +33715,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 33378 "configure"
+#line 33718 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -33475,7 +33815,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<EOF
-#line 33478 "configure"
+#line 33818 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -35904,11 +36244,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:35907: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36247: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:35911: \$? = $ac_status" >&5
+   echo "$as_me:36251: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -36008,11 +36348,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:36011: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:36351: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:36015: \$? = $ac_status" >&5
+   echo "$as_me:36355: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -37606,11 +37946,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37609: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:37949: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:37613: \$? = $ac_status" >&5
+   echo "$as_me:37953: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -37710,11 +38050,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:37713: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:38053: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:37717: \$? = $ac_status" >&5
+   echo "$as_me:38057: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -39942,11 +40282,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:39945: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40285: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:39949: \$? = $ac_status" >&5
+   echo "$as_me:40289: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40232,11 +40572,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40235: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40575: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:40239: \$? = $ac_status" >&5
+   echo "$as_me:40579: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -40336,11 +40676,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:40339: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:40679: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:40343: \$? = $ac_status" >&5
+   echo "$as_me:40683: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -43575,6 +43915,13 @@ $as_echo "$as_me: error: conditional \"FFTW\" was never defined.
 Usually this means the macro was only invoked conditionally." >&2;}
    { (exit 1); exit 1; }; }
 fi
+if test -z "${MPI_TRUE}" && test -z "${MPI_FALSE}"; then
+  { { $as_echo "$as_me:$LINENO: error: conditional \"MPI\" was never defined.
+Usually this means the macro was only invoked conditionally." >&5
+$as_echo "$as_me: error: conditional \"MPI\" was never defined.
+Usually this means the macro was only invoked conditionally." >&2;}
+   { (exit 1); exit 1; }; }
+fi
 if test -z "${PVM_TRUE}" && test -z "${PVM_FALSE}"; then
   { { $as_echo "$as_me:$LINENO: error: conditional \"PVM\" was never defined.
 Usually this means the macro was only invoked conditionally." >&5
@@ -44882,28 +45229,27 @@ $as_echo "$as_me: executing $ac_file commands" >&6;}
 
 
   case $ac_file$ac_mode in
-    "depfiles":C) test x"$AMDEP_TRUE" != x"" || {
-  # Autoconf 2.62 quotes --file arguments for eval, but not when files
-  # are listed without --file.  Let's play safe and only enable the eval
-  # if we detect the quoting.
-  case $CONFIG_FILES in
-  *\'*) eval set x "$CONFIG_FILES" ;;
-  *)   set x $CONFIG_FILES ;;
-  esac
-  shift
-  for mf
-  do
-    # Strip MF so we end up with the name of the file.
-    mf=`echo "$mf" | sed -e 's/:.*$//'`
-    # Check whether this is an Automake generated Makefile or not.
-    # We used to match only the files named `Makefile.in', but
-    # some people rename them; so instead we look at the file content.
-    # Grep'ing the first line is not enough: some people post-process
-    # each Makefile.in and add a new line on top of each file to say so.
-    # Grep'ing the whole file is not good either: AIX grep has a line
-    # limit of 2048, but all sed's we know have understand at least 4000.
-    if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
-      dirpart=`$as_dirname -- "$mf" ||
+    "depfiles":C) test x"$AMDEP_TRUE" != x"" || # Autoconf 2.62 quotes --file arguments for eval, but not when files
+# are listed without --file.  Let's play safe and only enable the eval
+# if we detect the quoting.
+case $CONFIG_FILES in
+*\'*) eval set x "$CONFIG_FILES" ;;
+*)   set x $CONFIG_FILES ;;
+esac
+shift
+for mf
+do
+  # Strip MF so we end up with the name of the file.
+  mf=`echo "$mf" | sed -e 's/:.*$//'`
+  # Check whether this is an Automake generated Makefile or not.
+  # We used to match only the files named `Makefile.in', but
+  # some people rename them; so instead we look at the file content.
+  # Grep'ing the first line is not enough: some people post-process
+  # each Makefile.in and add a new line on top of each file to say so.
+  # Grep'ing the whole file is not good either: AIX grep has a line
+  # limit of 2048, but all sed's we know have understand at least 4000.
+  if sed -n 's,^#.*generated by automake.*,X,p' "$mf" | grep X >/dev/null 2>&1; then
+    dirpart=`$as_dirname -- "$mf" ||
 $as_expr X"$mf" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$mf" : 'X\(//\)[^/]' \| \
 	 X"$mf" : 'X\(//\)$' \| \
@@ -44926,28 +45272,28 @@ $as_echo X"$mf" |
 	    q
 	  }
 	  s/.*/./; q'`
-    else
-      continue
-    fi
-    # Extract the definition of DEPDIR, am__include, and am__quote
-    # from the Makefile without running `make'.
-    DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
-    test -z "$DEPDIR" && continue
-    am__include=`sed -n 's/^am__include = //p' < "$mf"`
-    test -z "am__include" && continue
-    am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
-    # When using ansi2knr, U may be empty or an underscore; expand it
-    U=`sed -n 's/^U = //p' < "$mf"`
-    # Find all dependency output files, they are included files with
-    # $(DEPDIR) in their names.  We invoke sed twice because it is the
-    # simplest approach to changing $(DEPDIR) to its actual value in the
-    # expansion.
-    for file in `sed -n "
-      s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
-	 sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
-      # Make sure the directory exists.
-      test -f "$dirpart/$file" && continue
-      fdir=`$as_dirname -- "$file" ||
+  else
+    continue
+  fi
+  # Extract the definition of DEPDIR, am__include, and am__quote
+  # from the Makefile without running `make'.
+  DEPDIR=`sed -n 's/^DEPDIR = //p' < "$mf"`
+  test -z "$DEPDIR" && continue
+  am__include=`sed -n 's/^am__include = //p' < "$mf"`
+  test -z "am__include" && continue
+  am__quote=`sed -n 's/^am__quote = //p' < "$mf"`
+  # When using ansi2knr, U may be empty or an underscore; expand it
+  U=`sed -n 's/^U = //p' < "$mf"`
+  # Find all dependency output files, they are included files with
+  # $(DEPDIR) in their names.  We invoke sed twice because it is the
+  # simplest approach to changing $(DEPDIR) to its actual value in the
+  # expansion.
+  for file in `sed -n "
+    s/^$am__include $am__quote\(.*(DEPDIR).*\)$am__quote"'$/\1/p' <"$mf" | \
+       sed -e 's/\$(DEPDIR)/'"$DEPDIR"'/g' -e 's/\$U/'"$U"'/g'`; do
+    # Make sure the directory exists.
+    test -f "$dirpart/$file" && continue
+    fdir=`$as_dirname -- "$file" ||
 $as_expr X"$file" : 'X\(.*[^/]\)//*[^/][^/]*/*$' \| \
 	 X"$file" : 'X\(//\)[^/]' \| \
 	 X"$file" : 'X\(//\)$' \| \
@@ -44970,7 +45316,7 @@ $as_echo X"$file" |
 	    q
 	  }
 	  s/.*/./; q'`
-      { as_dir=$dirpart/$fdir
+    { as_dir=$dirpart/$fdir
   case $as_dir in #(
   -*) as_dir=./$as_dir;;
   esac
@@ -45011,11 +45357,10 @@ $as_echo X"$as_dir" |
   } || test -d "$as_dir" || { { $as_echo "$as_me:$LINENO: error: cannot create directory $as_dir" >&5
 $as_echo "$as_me: error: cannot create directory $as_dir" >&2;}
    { (exit 1); exit 1; }; }; }
-      # echo "creating $dirpart/$file"
-      echo '# dummy' > "$dirpart/$file"
-    done
+    # echo "creating $dirpart/$file"
+    echo '# dummy' > "$dirpart/$file"
   done
-}
+done
  ;;
     "modules/core/includes/stack.h":C) if ! $CPP $stack_h_cpp_flags - < $srcdir/modules/core/includes/stack.h.in |\
               $GREP -v '^#' > $srcdir/modules/core/includes/stack.h ; then
@@ -45209,14 +45554,14 @@ echo ""
 #   echo "Not using MPI"
 #fi
 
-#if test "$with_openmpi" != "no"; then
-#   echo "OpenMPI Configuration:"
-#   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
-#   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
-#   echo "OpenMPI F77 Compiler ... = $MPIF77"
-#else
-#   echo "Not using MPI"
-#fi
+if test "$with_openmpi" != "no"; then
+   echo "OpenMPI Configuration:"
+   echo "OpenMPI LIBS ........... = $OPENMPI_LIBS"
+   echo "OpenMPI C Compiler ..... = $OPENMPI_CC"
+   echo "OpenMPI F77 Compiler ... = $MPIF77"
+else
+   echo "Not using MPI"
+fi
 
 echo ""
 if test $BUILD_LOCALIZATION_ENABLE != no; then
