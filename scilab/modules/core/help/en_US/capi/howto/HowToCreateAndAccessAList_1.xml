@@ -9,7 +9,9 @@
           xmlns:db="http://docbook.org/ns/docbook">
   <refnamediv>
     <refname>How to create and access a list</refname>
-    <refpurpose>How to create and access a list using the C API</refpurpose>
+
+    <refpurpose>How to create and access a list using the C gateway
+    functions</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -18,14 +20,15 @@
     <para>The goal is to get a [mt]list, to get some elements stored in that
     this and to send a new [mt]list using a function written in C.</para>
 
-    <para>For this, we will wrote 2 C gateway function in which we will
+    <para>For this, we will wrote two C gateway function in which we will
     retrieve the [mt]list, and we will create a new [mt]list.</para>
   </refsection>
 
   <refsection>
     <title>The C function - access to a [mt]list</title>
 
-    <para>This example is available in example/print_list.</para>
+    <para>This example is available in
+    SCI/modules/core/example/print_list.</para>
 
     <para>Let's initialize a mlist in Scilab.</para>
 
@@ -117,8 +120,6 @@ ldflags = "";
 cflags  = "";
 fflags  = "";
 
-// do not modify below 
-// ----------------------------------------------
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
   </programlisting>
 
@@ -159,7 +160,8 @@ print_list(A);
   <refsection>
     <title>The C function - creation of a [mt]list</title>
 
-    <para>This example is available in example/create_list.</para>
+    <para>This example is available in
+    SCI/modules/core/example/create_list.</para>
 
     <para>We now write a simple example to test our new function to create a
     [mt]list.</para>
@@ -272,8 +274,6 @@ ldflags = "";
 cflags  = "";
 fflags  = "";
 
-// do not modify below 
-// ----------------------------------------------
 ilib_build(ilib_name,table,files,libs,'Makelib',ldflags,cflags,fflags);
   </programlisting>
 

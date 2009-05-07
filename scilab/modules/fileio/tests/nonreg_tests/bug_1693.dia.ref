@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 1693 -->
 //
 // <-- Bugzilla URL -->
@@ -14,7 +15,7 @@
 // ...
 // ================== Test 1 ==================
 cd('\');
-if MSDOS
+if MSDOS 
 	if pwd() <> 'C:\' then bugmes();quit;end
 else
 	if pwd() <> '/' then bugmes();quit;end

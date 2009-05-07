@@ -11,7 +11,7 @@
     <refname>CreateVar</refname>
 
     <refpurpose>a C gateway function which allows to create a new Scilab
-    variable</refpurpose>
+    parameter</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -28,7 +28,8 @@
         <term>StackPos</term>
 
         <listitem>
-          <para>The rank of the variable to be created (input argument)</para>
+          <para>The rank of the parameter to be created (input
+          argument)</para>
         </listitem>
       </varlistentry>
 
@@ -37,7 +38,7 @@
 
         <listitem>
           <para>The <link linkend="ScilabCTypes">Scilab C Type</link> of the
-          variable to be created (input argument).</para>
+          parameter to be created (input argument).</para>
 
           <itemizedlist>
             <listitem>
@@ -125,7 +126,7 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position in the Scilab memory of the created variable
+          <para>the position in the Scilab memory of the created parameter
           (output argument)</para>
         </listitem>
       </varlistentry>
@@ -136,7 +137,7 @@
     <title>Description</title>
 
     <para>A C gateway function which allows to create a new Scilab
-    variable</para>
+    parameter</para>
   </refsection>
 
   <refsection>

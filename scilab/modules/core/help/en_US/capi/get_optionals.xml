@@ -9,7 +9,7 @@
   <refnamediv>
     <refname>get_optionals</refname>
 
-    <refpurpose>C interface function which initialize the list of optional
+    <refpurpose>C gateway function which initialize the list of optional
     parameters</refpurpose>
   </refnamediv>
 
@@ -27,7 +27,7 @@
         <term>fname</term>
 
         <listitem>
-          <para>the name passed to the C interface. The name of the calling
+          <para>the name passed to the C gateway. The name of the calling
           function (of type char *) (input parameter)</para>
         </listitem>
       </varlistentry>
@@ -64,7 +64,7 @@ typedef struct rhs_opts__ {
   <refsection>
     <title>Description</title>
 
-    <para>C interface function which initialize the list of optional
+    <para>A C gateway function which initialize the list of optional
     parameters. You must include stack-c.h to benefit from this
     function.</para>
   </refsection>
@@ -73,7 +73,7 @@ typedef struct rhs_opts__ {
     <title>Examples</title>
 
     <para>A more complete example is available in the directory
-    example/optional_parameters.</para>
+    SCI/modules/core/example/optional_parameters.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -124,15 +124,25 @@ int sci_optional_parameters(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckDims">CheckDims</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>

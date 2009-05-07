@@ -4,6 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- JVM MANDATORY -->
+
 cd(TMPDIR);
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
@@ -18,6 +21,7 @@ tab_ref = [
 "حريات وحقوق",
 "프로그램",
 "תוכנית"];
+
 lang_name = ["Simplified Chinese",
         "Cyrillic",
         "Japanese",
@@ -25,6 +29,7 @@ lang_name = ["Simplified Chinese",
         "Arabish",
         "Vietanmien",
         "Hebreu"];
+
 for i = 1 : size(tab_ref,'*')
 	dz = "dir_" + tab_ref(i);
 	p = cd(dz);
@@ -34,7 +39,7 @@ for i = 1 : size(tab_ref,'*')
 	mclose(fd1);
 	
 	ref_str = 'str_' + tab_ref(i) + ' : ' + lang_name(i);
-	if (r1 <> ref_str) then bugmes();quit;end
+	if (r1 <> ref_str) then pause,end
 	
 	cd(TMPDIR);
 	
@@ -43,6 +48,6 @@ for i = 1 : size(tab_ref,'*')
 	r2 = mgetl(fd2);
 	mclose(fd2);
 	
-	if (r2 <> ref_str) then bugmes();quit;end
+	if (r2 <> ref_str) then pause,end
 	
 end

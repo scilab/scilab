@@ -4,23 +4,30 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
+// <-- JVM MANDATORY -->
+
 cd(TMPDIR);
+
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
 else
 	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");
 end
+
 tab_ref = [
 "世界您好",
 "азеазея",
 "ハロー・ワールド",
+"เฮลโลเวิลด์",
 "حريات وحقوق",
 "תוכנית"];
-ref =1:20;
+
+cd(SCI);
+
 for i = 1 : size(tab_ref,'*')
   pathnam = TMPDIR + filesep() + 'dir_' + tab_ref(i);
-  filenam = pathnam + filesep() + 'file_' + tab_ref(i) + '.mat';
-  fprintfMat(filenam,ref,'%f');
-  r = fscanfMat(filenam);
-  if or (r <> ref) then bugmes();quit;end
+  filenam = pathnam + filesep() + 'file_' + tab_ref(i);
+  if deletefile(filenam) <> %t then pause,end
+  if ls(pathnam) <> [] then pause,end
 end

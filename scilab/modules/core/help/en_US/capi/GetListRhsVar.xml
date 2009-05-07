@@ -10,8 +10,8 @@
   <refnamediv>
     <refname>GetListRhsVar</refname>
 
-    <refpurpose>a C interface function which allows to access a parameter
-    stored in a [mt]list transmitted to a Scilab function</refpurpose>
+    <refpurpose>a C gateway function which allows to access a parameter stored
+    in a [mt]list transmitted to a Scilab function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -37,7 +37,7 @@
         <term>ListPos</term>
 
         <listitem>
-          <para>the rank in the list of the variable to be accessed (input
+          <para>the rank in the list of the parameter to be accessed (input
           parameter)</para>
         </listitem>
       </varlistentry>
@@ -46,7 +46,7 @@
         <term>Type</term>
 
         <listitem>
-          <para>the Scilab type of the variable to be accessed (input
+          <para>the Scilab type of the parameter to be accessed (input
           parameter). Can be (see Scilab C Type for more informations):</para>
 
           <itemizedlist>
@@ -117,7 +117,7 @@
         <term>m_rows</term>
 
         <listitem>
-          <para>the number of lines of the accessed variable (output
+          <para>the number of lines of the accessed parameter (output
           parameter)</para>
         </listitem>
       </varlistentry>
@@ -126,7 +126,7 @@
         <term>n_cols</term>
 
         <listitem>
-          <para>the number of columns of the accessed variable (output
+          <para>the number of columns of the accessed parameter (output
           parameter)</para>
         </listitem>
       </varlistentry>
@@ -135,7 +135,7 @@
         <term>l_stack_pos</term>
 
         <listitem>
-          <para>the position on the stack of the accessed variable (output
+          <para>the position on the stack of the accessed parameter (output
           parameter)</para>
         </listitem>
       </varlistentry>
@@ -145,8 +145,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>A C interface function which allows to access a parameter stored in
-    a [mt]list transmitted to a Scilab function</para>
+    <para>A C gateway function which allows to access a parameter stored in a
+    [mt]list transmitted to a Scilab function</para>
   </refsection>
 
   <refsection>
@@ -196,8 +196,8 @@ int sci_print_list(char * fname)
 }
  </programlisting>
 
-    <para>This example is available in example/print_list.</para>
-
+    <para>This example is available in
+    SCI/modules/core/example/print_list.</para>
   </refsection>
 
   <refsection>

@@ -9,9 +9,9 @@
   <refnamediv>
     <refname>Scierror</refname>
 
-    <refpurpose>C function to display errors to the user (same profil as the
-    printf function) and returns an integer value specifying an error
-    level</refpurpose>
+    <refpurpose>C gateway function which displays an error message to the user
+    (same profil as the printf function) and returns an integer value
+    specifying an error level</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -67,11 +67,11 @@
   <refsection>
     <title>Description</title>
 
-    <para>Scierror is a C function to display errors to the user (same profil
-    as the printf function) and returns an integer value specifying an error
-    level. You must include Scierror.h to benefit from this function. This
-    header is pr ovided in the output_stream module (this directory should be
-    included by default).</para>
+    <para>Scierror is a C gateway function which displays an error message to
+    the user (same profil as the printf function) and returns an integer value
+    specifying an error level. You must include Scierror.h to benefit from
+    this function. This header is provided in the output_stream module (this
+    directory should be included by default).</para>
   </refsection>
 
   <refsection>

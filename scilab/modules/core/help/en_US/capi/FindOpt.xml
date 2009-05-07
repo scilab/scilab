@@ -9,7 +9,7 @@
   <refnamediv>
     <refname>FindOpt</refname>
 
-    <refpurpose>C interface function find the position of an optional argument
+    <refpurpose>C gateway function find the position of an optional argument
     given its name</refpurpose>
   </refnamediv>
 
@@ -63,15 +63,16 @@ typedef struct rhs_opts__ {
   <refsection>
     <title>Description</title>
 
-    <para>C interface function find the position of an optional argument given
-    its name. You must include stack-c.h to benefit from this function.</para>
+    <para>A C gateway function which find the position of an optional argument
+    given its name. You must include stack-c.h to benefit from this
+    function.</para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
     <para>A more complete example is available in the directory
-    example/optional_parameters.</para>
+    SCI/modules/core/example/optional_parameters.</para>
 
     <programlisting role="example"> 
 #include &lt;stack-c.h&gt;
@@ -122,15 +123,25 @@ int sci_optional_parameters(char * fname)
 
     <simplelist type="inline">
       <member><link linkend="CheckDims">CheckDims</link></member>
+
       <member><link linkend="CheckRow">CheckRow</link></member>
+
       <member><link linkend="CheckScalar">CheckScalar</link></member>
+
       <member><link linkend="CheckVector">CheckVector</link></member>
+
       <member><link linkend="OverLoad">CheckOverLoad</link></member>
+
       <member><link linkend="CheckDimProp">CheckDimProp</link></member>
+
       <member><link linkend="CheckLength">CheckLength</link></member>
+
       <member><link linkend="CheckSameDims">CheckSameDims</link></member>
+
       <member><link linkend="CheckSquare">CheckSquare</link></member>
-      <member><link linkend="HowToCheckParameters">How to check parameters</link></member>
+
+      <member><link linkend="HowToCheckParameters">How to check
+      parameters</link></member>
     </simplelist>
   </refsection>
 </refentry>

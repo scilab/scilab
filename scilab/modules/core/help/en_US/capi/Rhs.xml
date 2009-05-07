@@ -9,8 +9,8 @@
   <refnamediv>
     <refname>Rhs</refname>
 
-    <refpurpose>A C macro which provides the number of input arguments present
-    in the calling Scilab function</refpurpose>
+    <refpurpose>A C gateway function which provides the number of input
+    arguments present in the calling Scilab function</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -37,7 +37,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>Rhs provides a C macro which provides the number of input arguments
+    <para>A C gateway function which provides the number of input arguments
     present in the calling Scilab function. You must include stack-c.h to
     benefit from this function.</para>
 

@@ -10,8 +10,9 @@
   <refnamediv>
     <refname>LhsVar</refname>
 
-    <refpurpose>a C macro which specifies which variables created inside the C
-    gateway will be returned as an output argument into Scilab.</refpurpose>
+    <refpurpose>a C gateway function which specifies which parameters created
+    inside the C gateway will be returned as an output argument into
+    Scilab.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -36,7 +37,7 @@
         <term>RankVar</term>
 
         <listitem>
-          <para>the rank of the variable created inside the C gateway to be
+          <para>the rank of the parameter created inside the C gateway to be
           returned as an Scilab output argument</para>
         </listitem>
       </varlistentry>
@@ -46,8 +47,8 @@
   <refsection>
     <title>Description</title>
 
-    <para>A C macro which specifies which variables created inside the C
-    interface will be returned as an output argumen into Scilab.</para>
+    <para>A C gateway function which specifies which variables created inside
+    the C interface will be returned as an output argumen into Scilab.</para>
   </refsection>
 
   <refsection>
@@ -65,7 +66,7 @@
       </listitem>
     </itemizedlist>
 
-    <para>We create an intermediate Scilab variable which will handle an
+    <para>We create an intermediate Scilab parameter which will handle an
     integer but will neither be used nor returned as an output
     argument.</para>
 
@@ -91,12 +92,12 @@ int sci_mysizedouble(char * fname)
   CreateVar(3, MATRIX_OF_INTEGER_DATATYPE, &amp;m_nop,             &amp;n_nop,             &amp;l_nop);
   CreateVar(4, MATRIX_OF_INTEGER_DATATYPE, &amp;m_out_columns_row, &amp;n_out_columns_col, &amp;l_out_columns_pos);
 
-  *istk(l_out_lines_pos)   = m_in_row; // TODO please describe
-  *istk(l_nop)             = 1; // TODO please describe
-  *istk(l_out_columns_pos) = n_in_col; // TODO please describe
+  *istk(l_out_lines_pos)   = m_in_row; // the out_lines_pos parameter handles the number of lines of the matrix sent as argument
+  *istk(l_nop)             = 1; // store a mere value, but will neither be used nor returned to Scilab
+  *istk(l_out_columns_pos) = n_in_col; // the out_columns_pos parameter handles the number of columns of the matrix sent as argument
 
-  LhsVar(1) = 2; // TODO Why 2 ?
-  LhsVar(2) = 4; // TODO Why 4 ?
+  LhsVar(1) = 2; // We set the parameter 2 as an output argument
+  LhsVar(2) = 4; // We set the parameter 4 as an output argument
 
   return 0;
 }

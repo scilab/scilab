@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM MANDATORY -->
 cd(TMPDIR);
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
@@ -20,13 +21,10 @@ tab_ref = [
 "프로그램",
 "תוכנית"];
 for i = 1 : size(tab_ref,'*')
-	sz = "dir_" + tab_ref(i);
-	cd(sz);
-	createdir('sub_' + sz);
-	cd('sub_' + sz);
-	r = fullpath('../file_' + tab_ref(i));
-	if r <> TMPDIR + filesep() + sz + filesep() + 'file_' + tab_ref(i) then bugmes();quit;end
-	cd '../';
-	removedir('sub_' + sz);
+	dz = "dir_" + tab_ref(i);
+	p = cd(dz);
+	fz = "file_" + tab_ref(i);
+	fullfz = TMPDIR + filesep() + dz + filesep() + fz;
+	if getlongpathname(getshortpathname(fullfz)) <> fullfz then bugmes();quit;end
 	cd(TMPDIR);
 end
