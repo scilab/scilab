@@ -5,7 +5,9 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-cd(TMPDIR);
+// <-- JVM MANDATORY -->
+
+chdir(TMPDIR);
 
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
@@ -19,13 +21,19 @@ tab_ref = [
 "ハロー・ワールド",
 "เฮลโลเวิลด์",
 "حريات وحقوق",
+"프로그램",
+"프로그램",
 "תוכנית"];
 
-cd(SCI);
-
 for i = 1 : size(tab_ref,'*')
-  pathnam = TMPDIR + filesep() + 'dir_' + tab_ref(i);
-  filenam = pathnam + filesep() + 'file_' + tab_ref(i);
-  if deletefile(filenam) <> %t then pause,end
-  if ls(pathnam) <> [] then pause,end
+	sz = "dir_" + tab_ref(i);
+	a = chdir(sz);
+	if(a <> %T) then
+		pause
+	end
+	b = pwd();
+	if(b <> (TMPDIR + filesep() + sz)) then
+		pause
+	end
+	cd(TMPDIR);
 end

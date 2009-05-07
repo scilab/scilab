@@ -1,11 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2009 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-cd(TMPDIR);
+// <-- JVM MANDATORY -->
+
+tmp = cd(TMPDIR);
 
 if MSDOS then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
@@ -24,10 +26,8 @@ tab_ref = [
 "תוכנית"];
 
 for i = 1 : size(tab_ref,'*')
-	dz = "dir_" + tab_ref(i);
-	p = cd(dz);
-	fz = "file_" + tab_ref(i);
-	fullfz = TMPDIR + filesep() + dz + filesep() + fz;
-	if getlongpathname(getshortpathname(fullfz)) <> fullfz then pause,end
+	sz = "dir_" + tab_ref(i);
+	a = cd(sz);
+	if (a <> (tmp + filesep() + sz)) then pause, end
 	cd(TMPDIR);
 end
