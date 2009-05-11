@@ -339,6 +339,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\boolean_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\callDynamicGateway.c"
 				>
 			</File>
@@ -944,6 +948,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\boolean_api.h"
+				>
+			</File>
+			<File
 				RelativePath=".\callDynamicGateway.h"
 				>
 			</File>
@@ -1024,11 +1032,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File

@@ -81,4 +81,15 @@ readNamedMatrixOfPoly
 getVarAddressFromName
 getSparseMatrix
 getComplexSparseMatrix
+createSparseMatrix
+createComplexSparseMatrix
+createNamedSparseMatrix
+createNamedComplexSparseMatrix
+readNamedSparseMatrix
+readNamedComplexSparseMatrix
+getMatrixOfBoolean
+allocMatrixOfBoolean
+createMatrixOfBoolean
+createNamedMatrixOfBoolean
+readNamedMatrixOfBoolean
 ;

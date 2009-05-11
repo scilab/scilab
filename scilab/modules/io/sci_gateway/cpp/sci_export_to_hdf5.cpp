@@ -63,27 +63,6 @@ int iTab;
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
-	int i								= 0;
-	int *piAddr					= NULL;
-	int iRows						= 0;
-	int iCols						= 0;
-
-	int iTotalItem			= 0;
-	int* piNbItemRow		= NULL;
-	int* piColPos				= NULL;
-
-
-	double *pdblReal		= NULL;
-	double *pdblImg			= NULL;
-
-	Rhs = Max(Rhs,0);
-
-	getVarAddressFromNumber(1, &piAddr);
-
-	getComplexSparseMatrix(piAddr, &iRows, &iCols, &iTotalItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-
-
-	//LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 	return 0;
 }
