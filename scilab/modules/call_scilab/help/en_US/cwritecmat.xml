@@ -125,8 +125,10 @@
     <title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link linkend="ComplexManagement">Complex Management</link>, <link linkend="creadcmat">creadcmat</link></member>
+      <member><link linkend="SendScilabJob">SendScilabJob</link>, 
+<link linkend="StartScilab">StartScilab</link>, 
+<link linkend="ComplexManagement_callscilab">Complex Management</link>, 
+<link linkend="creadcmat">creadcmat</link></member>
     </simplelist>
   </refsection>
 

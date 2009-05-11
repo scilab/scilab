@@ -142,7 +142,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritemat">cwritemat</link>, <link
-      linkend="MatrixManagement">Matrix Management</link></member>
+      linkend="MatrixManagement_callscilab">Matrix Management</link></member>
     </simplelist>
   </refsection>
 

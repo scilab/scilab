@@ -131,7 +131,7 @@
     <simplelist type="inline">
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="MatrixManagement">Matrix Management</link>, <link
+      linkend="MatrixManagement_callscilab">Matrix Management</link>, <link
       linkend="creadmat">creadmat</link></member>
     </simplelist>
   </refsection>

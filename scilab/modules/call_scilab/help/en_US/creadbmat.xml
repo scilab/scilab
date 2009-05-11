@@ -139,7 +139,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritebmat">cwritebmat</link>, <link
-      linkend="BooleanManagement">Boolean Management</link></member>
+      linkend="BooleanManagement_callscilab">Boolean Management</link></member>
     </simplelist>
   </refsection>
 

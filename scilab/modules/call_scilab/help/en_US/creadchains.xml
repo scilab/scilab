@@ -127,7 +127,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritechain">cwritechain</link>,
-      <link linkend="StringManagement">String Management</link>
+      <link linkend="StringManagement_callscilab">String Management</link>
 </member>
     </simplelist>
   </refsection>
