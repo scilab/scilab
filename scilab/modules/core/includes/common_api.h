@@ -24,7 +24,6 @@
  */
 int getVarAddressFromNumber(int _iVar, int** _piAddress);
 
-
 /**
  * Get memory address of a variable from the variable name
  * @param[in] _pstName variable name
@@ -56,14 +55,6 @@ int isVarComplex(int* _piAddress);
  * @return if the operation successed (0) or not ( !0 )
  */
 int getVarDimension(int* _piAddress, int* _piRows, int* _piCols);
-
-/**
- * Get variable address from Rhs value ( gateway )
- * @param[in] _iVar variable number from gateway
- * @param[out] _piAddress return variable pointer from stack
- * @return if the operation successed (0) or not ( !0 )
- */
-int getVarAddressFromNumber(int _iVar, int** _piAddress);
 
 /**
  * check if a variable is a matrix form ( row x col )
