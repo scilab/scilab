@@ -446,14 +446,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_oldload.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_oldsave.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_rat.c"
 				>
 			</File>

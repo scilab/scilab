@@ -17,7 +17,6 @@
 /*--------------------------------------------------------------------------*/
 int gw_io(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_oldload)(char *fname,unsigned long fname_len);
 int C2F(sci_read)(char *fname,unsigned long fname_len);
 int C2F(sci_getf)(char *fname,unsigned long fname_len);
 int C2F(sci_exec)(char *fname,unsigned long fname_len);
@@ -40,7 +39,6 @@ int C2F(sci_write4b)(char *fname,unsigned long fname_len);
 int C2F(sci_save)(char *fname,unsigned long fname_len);
 int C2F(sci_load)(char *fname,unsigned long fname_len);
 int C2F(sci_mgetl)(char *fname,unsigned long fname_len);
-int C2F(sci_fileinfo)(char *fname,unsigned long fname_len);
 int C2F(sci_getio)(char *fname,unsigned long fname_len);
 int C2F(sci_setenv)(char *fname,unsigned long fname_len);
 int C2F(intexecstr)(char *fname,unsigned long fname_len);
@@ -52,11 +50,7 @@ int C2F(intsave)(void);
 int C2F(intdiary)(void);
 int C2F(intdeff)(void);
 int C2F(intfile)(void);
-int C2F(intlib)(void);
 int C2F(intmgetl)(void);
-int C2F(oldload)(void);
-int C2F(oldsave)(void);
-int C2F(intprint)(void);
 int C2F(intrat)(void);
 int C2F(intread)(void);
 int C2F(intread4b)(void);
