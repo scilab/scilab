@@ -9,11 +9,12 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*--------------------------------------------------------------------------*/
 #include "gw_io.h"
 #include "gw_output_stream.h" /* sci_disp */
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -47,59 +48,69 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_io(void)
 {  
-	 /* Recursion */
-	 if (C2F(recu).rstk[C2F(recu).pt-1] / 100 == 9)
-	 {
-		switch ((int)(C2F(recu).rstk[C2F(recu).pt-1] - 901))
+	/* Recursion from a function */
+	if ( isRecursionCallToFunction() )
+	{
+		switch ( getRecursionFunctionToCall() )
 		{
-			case 1: 
-			{
-				C2F(intexec)("exec",(unsigned long)strlen("exec"));
-				return 0;
-			}
-			case 2: 
-			{
-				C2F(intexecstr)("execstr",(unsigned long)strlen("execstr"));
-				return 0;
-			}
-			case 3: 
-			{
-				C2F(intgetf)(); 
-				return 0;
-			}
-			case 4:  
-			{
-				C2F(intsave)(); 
-				return 0;
-			}
-			case 5:
-			{
-				C2F(sci_load)("load",(unsigned long)strlen("load"));
-			}
-			case 6: 
-			{
-				return 0;
-			}
-			case 7:
-			{
-				#define disp_fname "disp"
-				sci_disp(disp_fname,strlen(disp_fname));
-				return 0;
-			}
-			case 8: 
-			{
-				C2F(intexec)("exec",(unsigned long)strlen("exec"));
-				return 0;
-			}
+			case RECURSION_CALL_EXEC1:
+				{
+					C2F(intexec)("exec",(unsigned long)strlen("exec"));
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_EXECSTR:
+				{
+					C2F(intexecstr)("execstr",(unsigned long)strlen("execstr"));
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_GETF:
+				{
+					C2F(intgetf)(); 
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_SAVE:
+				{
+					C2F(intsave)(); 
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_LOAD:
+				{
+					C2F(sci_load)("load",(unsigned long)strlen("load"));
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_COMP:
+				{
+					/* NOT CALLED IN THIS MODULE */
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_DISP:
+				{
+					#define disp_fname "disp"
+					sci_disp(disp_fname,strlen(disp_fname));
+					return 0;
+				}
+				break;
+			case RECURSION_CALL_EXEC2:
+				{
+					C2F(intexec)("exec",(unsigned long)strlen("exec"));
+					return 0;
+				}
+				break;
 			default:
-				return 0;
+				break;
 		}
 	}
-	 else
-	 {
+	else
+	{
 		Rhs = Max(0, Rhs);
 		callFunctionFromGateway(Tab);
-	 }
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

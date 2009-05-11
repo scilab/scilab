@@ -86,7 +86,8 @@ src/c/double_api.c \
 src/c/int_api.c \
 src/c/poly_api.c \
 src/c/sparse_api.c \
-src/c/string_api.c
+src/c/string_api.c \
+src/c/recursionFunction.c
 
 
 
@@ -423,6 +424,7 @@ includes/setPrecisionFPU.h \
 includes/LaunchScilabSignal.h \
 includes/getos.h \
 includes/mode_exec.h \
-includes/transposeMatrix.h
+includes/transposeMatrix.h \
+includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

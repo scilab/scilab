@@ -579,6 +579,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\recursionFunction.c"
+				>
+			</File>
+			<File
 				RelativePath=".\returnanan.c"
 				>
 			</File>
@@ -1020,11 +1024,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fromjava.h"
+				RelativePath="..\..\includes\fromjava.h"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\fromjava.h"
+				RelativePath=".\fromjava.h"
 				>
 			</File>
 			<File
@@ -1201,6 +1205,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\realmain.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\recursionFunction.h"
 				>
 			</File>
 			<File

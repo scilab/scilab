@@ -5,6 +5,8 @@ EXPORTS
 ;
 ;core
 ;
+getRecursionFunctionToCall
+isRecursionCallToFunction
 IsAFile 
 com_
 recu_
