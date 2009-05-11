@@ -18,7 +18,7 @@ libscijvm_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 
 pkglib_LTLIBRARIES = libscijvm.la
 
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) -lpthread -ldl $(XML_LIBS)
+libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(JAVA_JNI_LIBS) -lpthread $(XML_LIBS)
 
 if IS_MACOSX 
 libscijvm_la_LDFLAGS += -framework JavaVM
