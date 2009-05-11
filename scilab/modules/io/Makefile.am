@@ -17,7 +17,6 @@ src/fortran/writebuf.f
 GATEWAY_C_SOURCES = sci_gateway/c/sci_execstr.c \
 sci_gateway/c/sci_read4b.c \
 sci_gateway/c/sci_deff.c \
-sci_gateway/c/sci_lib.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
@@ -54,7 +53,6 @@ sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intdeff.f \
-sci_gateway/fortran/intlib.f \
 sci_gateway/fortran/intread.f \
 sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \

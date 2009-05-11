@@ -419,10 +419,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intmgetl.c"
 				>
 			</File>
@@ -540,10 +536,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intgetf.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlib.f"
 				>
 			</File>
 			<File

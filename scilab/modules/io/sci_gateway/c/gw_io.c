@@ -22,7 +22,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_read),"read"},
 {C2F(sci_getf),"getf"},
 {C2F(sci_exec),"exec"},
-{C2F(sci_lib),"lib"},
+{C2F(sci_getio),"getio"},
 {C2F(sci_diary),"diary"},
 {C2F(sci_oldsave),"oldsave"},
 {C2F(sci_write),"write"},
@@ -41,7 +41,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_save),"save"},
 {C2F(sci_load),"load"},
 {C2F(sci_mgetl),"mgetl"},
-{C2F(sci_getio),"getio"},
 {C2F(sci_setenv),"setenv"},
 {sci_export_to_hdf5,"export_to_hdf5"}
 };

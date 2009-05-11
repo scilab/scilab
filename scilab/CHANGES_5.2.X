@@ -28,6 +28,8 @@ Source reorganisation:
 
 * disp moved in output_stream module.
 
+* lib moved in functions module.
+
 Input/Output functions:
 =======================
 

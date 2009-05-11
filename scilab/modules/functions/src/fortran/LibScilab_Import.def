@@ -1,0 +1,18 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+; core
+com_
+iop_
+cha1_
+stack_
+namstr_
+putid_
+cvname_
+clunit_
+vstk_
+
+; elementary_functions
+isort_
+iset_

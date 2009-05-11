@@ -21,7 +21,7 @@ int C2F(sci_oldload)(char *fname,unsigned long fname_len);
 int C2F(sci_read)(char *fname,unsigned long fname_len);
 int C2F(sci_getf)(char *fname,unsigned long fname_len);
 int C2F(sci_exec)(char *fname,unsigned long fname_len);
-int C2F(sci_lib)(char *fname,unsigned long fname_len);
+
 int C2F(sci_diary)(char *fname,unsigned long fname_len);
 int C2F(sci_oldsave)(char *fname,unsigned long fname_len);
 int C2F(sci_write)(char *fname,unsigned long fname_len);
