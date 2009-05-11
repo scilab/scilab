@@ -12,6 +12,22 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
+* Series of patches applied (see bug #4506) by Dan McMahill which fixes some
+  minor compile time problems under NetBSD:
+  		- adds some missing $host to the 64 bit list.  
+		- added a needed compiler flag for alpha-*-netbsd
+		- added autoconf check for term.h header
+		- added autoconf checks for gettext.
+		- added autoconf check for dlopen in -ldl 
+		  (on some systems, we don't need -ldl because dlopen is in libc).  
+		  Don't hardcode linking with -ldl but rely on this new check.
+		- added correct getrlimit() argument for NetBSD and DragonFly
+		- avoid pulling in an OSF1 specific header on NetBSD/alpha
+		- added missing newline at the end of a file
+		- added missing XML LIBS and CFLAGS
+
+
+
 Source reorganisation:
 ======================
 
