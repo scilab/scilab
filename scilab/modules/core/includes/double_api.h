@@ -73,7 +73,7 @@ int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, i
 int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int** _piAddress);
 
 /**
- * Get double variable data
+ * Create double variable data
  * @param[in] _iVar variable number
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column
