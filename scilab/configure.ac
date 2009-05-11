@@ -443,7 +443,7 @@ esac
 #### 64 bits detection
 IS_64_BITS_CPU=false
 case "$host" in
-         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu | alpha-*-netbsd* | x86_64-*-netbsd* | sparc64-*-netbsd*)
                 IS_64_BITS_CPU=true
 	;;
 esac
@@ -507,10 +507,16 @@ case "$CC" in
      CFLAGS="$CFLAGS -Dfreebsd"
 	 LDFLAGS="$LDFLAGS -lm"
 	 ;;
+
+  alpha-*-netbsd*)
+    CFLAGS="$CFLAGS -Dnetbsd -mieee"
+    FFLAGS="$FFLAGS -Dnetbsd -mieee"
+	;;
+
   *-*-netbsd*)
     CFLAGS="$CFLAGS -Dnetbsd"
-
 	;;
+
   *-*-darwin*)
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
@@ -801,7 +807,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -823,6 +829,9 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 #######################
 ## MISC Test
 #######################
+
+# gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
+AM_GNU_GETTEXT([external])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -853,6 +862,11 @@ else
 fi
 AC_SUBST(TERMCAP_LIB)
 
+##################
+## other libraries
+##################
+
+AC_CHECK_LIB(dl, dlopen)
 
 
 #################
