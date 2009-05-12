@@ -269,11 +269,11 @@ int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, in
 	
 	if(_iComplex == 1)
 	{
-		getComplexSparseMatrix(piAddr, _piRows, _piCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		getComplexSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	}
 	else
 	{
-		getSparseMatrix(piAddr, _piRows, _piCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		getSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal);
 	}
 
 	if(_piNbItemRow == NULL)
