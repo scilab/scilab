@@ -29,6 +29,6 @@
 -->
 
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
-<GATEWAY name="metanet">
-<PRIMITIVE gatewayId="14" primitiveId="1" primitiveName="lib" />
+<GATEWAY name="functions">
+<PRIMITIVE gatewayId="31" primitiveId="1" primitiveName="lib" />
 </GATEWAY>

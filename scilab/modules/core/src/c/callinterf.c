@@ -44,7 +44,7 @@ static OpTab Interfaces[] = {
 	/* 11  */ {gw_dynamic_optimization},
 	/* 12  */ {gw_differential_equations1},
 	/* 13  */ {gw_core},
-	/* 14  */ {gw_functions},
+	/* 14  */ {gw_user}, /* RESERVED (see callinter.h) */
 	/* 15  */ {gw_dynamic_metanet},
 	/* 16  */ {gw_polynomials},
 	/* 17  */ {gw_data_structures1},
@@ -54,14 +54,14 @@ static OpTab Interfaces[] = {
 	/* 21  */ {gw_string},
 	/* 22  */ {gw_dynamic_symbolic},
 	/* 23  */ {gw_boolean},
-	/* 24  */ {gw_user2},
+	/* 24  */ {gw_user2}, /* RESERVED (see callinter.h) */
 	/* 25  */ {gw_gui},
 	/* 26  */ {gw_differential_equations2},
 	/* 27  */ {gw_sparse},
 	/* 28  */ {gw_slicot},
 	/* 29  */ {gw_differential_equations3},
 	/* 30  */ {gw_differential_equations4},
-	/* 31  */ {gw_user2},/* free position may be used */
+	/* 31  */ {gw_functions},
 	/* 32  */ {gw_differential_equations6},
 	/* 33  */ {gw_output_stream},
 	/* 34  */ {gw_fileio},
