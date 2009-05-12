@@ -13,7 +13,6 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
-#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -22,7 +21,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_warning),"warning"},
 {C2F(sci_argn),"argn"},
 {C2F(sci_getvariablesonstack),"getvariablesonstack"},
-{C2F(sci_comp),"comp"},
+{C2F(sci_readgateway),"readgateway"},
 {C2F(sci_getscilabmode),"getscilabmode"},
 {C2F(sci_mode),"mode"},
 {C2F(sci_type),"type"},
@@ -71,26 +70,12 @@ static gw_generic_table Tab[]=
 {C2F(sci_librarieslist),"librarieslist"},
 {C2F(sci_libraryinfo),"libraryinfo"},
 {C2F(sci_getdebuginfo),"getdebuginfo"},
-{C2F(sci_readgateway),"readgateway"},
 {C2F(sci_exit),"exit"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_core(void)
 {  
 	Rhs = Max(0, Rhs);
-
-	/**
-	* recursion from sci_deff
-	*/
-	if ( isRecursionCallToFunction() )
-	{
-		if (getRecursionGatewayToCall() == GW_CORE_ID )
-		{
-			/* We call "comp" */
-			Fin = 6;
-		}
-	}
-
 	callFunctionFromGateway(Tab);
 	return 0;
 }

@@ -36,7 +36,7 @@ int getRecursionGatewayToCall(void)
 		{
 		case RECURSION_CALL_COMP:
 			/* see comp (sci_comp.f) */
-			gw = GW_CORE_ID; /* gw_core */
+			gw = GW_FUNCTIONS_ID; /* gw_functions */
 			break;
 		case RECURSION_CALL_EXEC1:
 			/* see exec (intexec.f) */

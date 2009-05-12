@@ -374,6 +374,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_comp.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_lib.c"
 				>
 			</File>

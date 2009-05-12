@@ -12,6 +12,14 @@ putid_
 cvname_
 clunit_
 vstk_
+objvide_
+stackp_
+errgst_
+recu_
+ref2val_
+checkrhs_
+checklhs_
+getscalar_
 
 ; elementary_functions
 isort_

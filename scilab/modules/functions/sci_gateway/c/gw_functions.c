@@ -15,15 +15,30 @@
 #include "gw_functions.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
-	{C2F(sci_lib),"lib"}
+	{C2F(sci_lib),"lib"},
+	{C2F(sci_comp),"comp"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_functions(void)
 {  
 	Rhs = Max(0, Rhs);
+
+	/**
+	* recursion from sci_deff
+	*/
+	if ( isRecursionCallToFunction() )
+	{
+		if (getRecursionGatewayToCall() == GW_FUNCTIONS_ID )
+		{
+			/* We call "comp" */
+			Fin = 2;
+		}
+	}
+	
 	callFunctionFromGateway(Tab);
 	return 0;
 }

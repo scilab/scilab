@@ -404,6 +404,10 @@
 				RelativePath="..\..\sci_gateway\fortran\intlib.c"
 				>
 			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_comp.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -422,6 +426,10 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intlib.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\sci_comp.f"
 				>
 			</File>
 		</Filter>

@@ -232,7 +232,6 @@ sci_gateway/c/sci_return.c \
 sci_gateway/c/sci_exists.c \
 sci_gateway/c/sci_getmd5.c \
 sci_gateway/c/sci_clear.c \
-sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_clearfun.c \
 sci_gateway/c/sci_setbpt.c \
 sci_gateway/c/sci_getmodules.c \
@@ -278,7 +277,6 @@ sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
-sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_setbpt.f \
 sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \

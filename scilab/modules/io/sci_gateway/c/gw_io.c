@@ -79,12 +79,6 @@ int gw_io(void)
 					return 0;
 				}
 				break;
-			case RECURSION_CALL_COMP:
-				{
-					/* NOT CALLED IN THIS MODULE */
-					return 0;
-				}
-				break;
 			case RECURSION_CALL_EXEC2:
 				{
 					C2F(intexec)("exec",(unsigned long)strlen("exec"));

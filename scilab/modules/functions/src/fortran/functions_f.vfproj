@@ -80,7 +80,8 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\fortran\intlib.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_comp.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\sci_gateway\functions_gateway.xml"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>

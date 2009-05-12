@@ -8,9 +8,12 @@ FUNCTIONS__C_SOURCES =
 FUNCTIONS__FORTRAN_SOURCES = 
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_functions.c \
-sci_gateway/c/sci_lib.c
+sci_gateway/c/sci_lib.c \
+sci_gateway/c/sci_comp.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intlib.f \
+sci_gateway/fortran/sci_comp.f
+
 
 libscifunctions_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \

@@ -627,10 +627,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_comp.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_debug.c"
 				>
 			</File>

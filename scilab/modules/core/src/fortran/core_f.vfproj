@@ -149,7 +149,6 @@ cd .."/></Configuration></Configurations>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_argn.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_clear.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_clearglobal.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_comp.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_debug.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_delbpt.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_dispbpt.f"/>

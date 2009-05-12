@@ -1871,7 +1871,7 @@ int C2F(callscifun)(char *string,unsigned long string_len)
 int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
 {
   int cx26 = 26;
-  int ix1, ix, k, intop,  ir, lw;
+  int ix1, ix, k, intop, lw;
   int imode,ireftop;
 
   if ( intersci_push() == 0 )
@@ -2134,7 +2134,7 @@ int C2F(getopcode)(char *string,unsigned long string_len)
 int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
 {
   int srhs, slhs;
-  int ix, k, intop, ir, lw, pt0;
+  int ix, k, intop, lw, pt0;
   int imode,ireftop;
   intop = Top;
 

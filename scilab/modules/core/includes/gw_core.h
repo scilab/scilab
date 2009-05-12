@@ -20,7 +20,6 @@ int C2F(sci_debug)(char *fname,unsigned long fname_len);
 int C2F(sci_who)(char *fname,unsigned long fname_len);
 int C2F(sci_warning)(char *fname,unsigned long fname_len);
 int C2F(sci_argn)(char *fname,unsigned long fname_len);
-int C2F(sci_comp)(char *fname,unsigned long fname_len);
 int C2F(sci_mode)(char *fname,unsigned long fname_len);
 int C2F(sci_type)(char *fname,unsigned long fname_len);
 int C2F(sci_error)(char *fname,unsigned long fname_len);
