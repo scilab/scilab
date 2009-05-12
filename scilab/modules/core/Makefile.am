@@ -86,6 +86,7 @@ src/c/double_api.c \
 src/c/int_api.c \
 src/c/poly_api.c \
 src/c/sparse_api.c \
+src/c/boolean_sparse_api.c \
 src/c/string_api.c \
 src/c/recursionFunction.c
 
@@ -425,6 +426,15 @@ includes/LaunchScilabSignal.h \
 includes/getos.h \
 includes/mode_exec.h \
 includes/transposeMatrix.h \
+includes/boolean_api.h \
+includes/double_api.h \
+includes/sparse_api.h \
+includes/boolean_sparse_api.h \
+includes/int_api.h \
+includes/string_api.h \
+includes/common_api.h \
+includes/poly_api.h \
+includes/variable_api.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am
