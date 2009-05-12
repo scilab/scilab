@@ -16,6 +16,8 @@
 #include "logger.h"
 #include "MALLOC.h"
 
+//#define SYSLOG_ENABLE 1
+
 #ifndef _MSC_VER
 static int _LOGGER_mode = _LOGGER_SYSLOG;
 static int _LOGGER_syslog_mode = LOG_MAIL|LOG_INFO;
@@ -113,7 +115,7 @@ int LOGGER_set_logfile( char *lfname )
 	_LOGGER_outf = fopen(lfname,"a");
 	if (!_LOGGER_outf)
 	{
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && defined(SYSLOG_ENABLE)
 		syslog(1,_("LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"),lfname,strerror(errno));
 #else
 		fprintf(stderr, _("LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"), lfname, strerror(errno));
@@ -322,14 +324,15 @@ int LOGGER_log( char *format, ...)
 
 	/* Send the output to the appropriate output destination*/
 	switch (_LOGGER_mode) {
+		case _LOGGER_SYSLOG:
+#if !defined(_MSC_VER) && defined(SYSLOG_ENABLE)
+			syslog(_LOGGER_syslog_mode,"%s",output);
+			break;
+#endif
 		case _LOGGER_STDERR:
 			fprintf(stderr,"%s%s",output, lineend );
 			break;
-		case _LOGGER_SYSLOG:
-			#ifndef _MSC_VER
-			syslog(_LOGGER_syslog_mode,"%s",output);
-			#endif
-			break;
+
 		case _LOGGER_STDOUT:
 			fprintf(stdout,"%s%s",output, lineend);
 			fflush(stdout);
