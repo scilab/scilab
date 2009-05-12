@@ -28,26 +28,59 @@ c	  recursion on gateway
       GW_IO_ID = 5
       GW_USER_ID = 14
       GW_USER2_ID = 24   
-      GW_FUNCTIONS = 31   
+      GW_FUNCTIONS_ID = 31
+      
+      RECURSION_CALL_COMP = 1
+      RECURSION_CALL_EXEC1 = 2
+      RECURSION_CALL_EXECSTR = 3
+      RECURSION_CALL_GETF = 4
+      RECURSION_CALL_SAVE = 5
+      RECURSION_CALL_LOAD = 6
+      RECURSION_CALL_DEFF = 7
+      RECURSION_CALL_DISP = 8
+      RECURSION_CALL_EXEC2 = 9
+         
       if(int(rstk(pt)/100).eq.9) then
          ir=rstk(pt)-900
-         if(ir.eq.1) then
-c     .     back to gw_core
-            k = GW_CORE_ID
-         elseif(ir.ge.2.and.ir.le.9) then
-c     .     back to gw_io
-            k = GW_IO_ID
-         elseif(ir.eq.10) then
-c     .     end of overloaded function
-            goto 96
-         elseif(ir.gt.40) then
-c     .     back to gw_user2
-            k = GW_USER2_ID
-         elseif(ir.gt.20) then
-c     .     back to gw_user
-            k = GW_USER_ID
+		 if (RECURSION_CALL_COMP .eq. ir) then
+c            see comp (sci_comp.f)
+             k = GW_CORE_ID
+		 else if (RECURSION_CALL_EXEC1 .eq. ir) then
+c            see exec (intexec.f)
+             k = GW_IO_ID
+         else if (RECURSION_CALL_EXECSTR .eq. ir) then
+c            see execstr (intexecstr.f)
+             k = GW_IO_ID
+         else if (RECURSION_CALL_GETF .eq. ir) then
+c            see getf (intgetf.f)
+             k = GW_IO_ID
+         else if (RECURSION_CALL_SAVE .eq. ir) then
+c            see save (newsave.f)
+             k = GW_IO_ID
+         else if (RECURSION_CALL_LOAD .eq. ir) then
+c            see load (newsave.f)
+             k = GW_IO_ID 
+         else if (RECURSION_CALL_DEFF .eq. ir) then
+c            see deff (intdeff.f)
+c            call comp by fun & fin
+             k = GW_IO_ID
+         else if (RECURSION_CALL_DISP .eq. ir) then
+c            see disp (intdisp.f)
+             k = GW_IO_ID
+         else if (RECURSION_CALL_EXEC2 .eq. ir) then
+c            see exec (intexec.f)
+             k = GW_IO_ID
+         else if (ir .eq. 10) then 
+c            end of overloaded function
+             goto 96
+		 else if(ir.gt.40) then
+c            back to gw_user2
+             k = GW_USER2_ID
+         else if(ir.gt.20) then
+c            back to gw_user
+             k = GW_USER_ID
          else
-            goto 89
+             goto 89
          endif
          goto 95
       endif
