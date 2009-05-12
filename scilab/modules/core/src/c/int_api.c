@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - INRIA - Antoine ELIAS
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,6 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
+ * However, the API (profile of the functions in the header files) will be 
+ * still available and supported in Scilab 6.
  */
 
 #include "common_api.h"
@@ -18,11 +20,11 @@
 #include "stack-c.h"
 
 //integer
-int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData);
-int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData);
-int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData);
-int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData);
-int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
+static int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData);
+static int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData);
+static int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData);
+static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData);
+static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
 
 int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision)
 {
@@ -55,7 +57,7 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
 	return getCommonMatrixOfInteger(_piAddress, SCI_INT32, _piRows, _piCols, _piData32);
 }
 
-int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
+static int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
 {
 	int iPrec		= 0;
 	int iRet		= 0;
@@ -226,7 +228,7 @@ int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piDat
 	return 1;
 }
 
-int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData)
+static int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
@@ -244,7 +246,7 @@ int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int 
 	return 0;
 }
 
-int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData)
+static int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData)
 {
 	_piAddress[0]		= sci_ints;
 	_piAddress[1]		= Min(_iRows, _iRows * _iCols);
@@ -277,7 +279,7 @@ int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int 
 	return -1;
 }
 
-int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData)
+static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -372,7 +374,7 @@ int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int*
 	return 1;
 }
 
-int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
+static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
 {
 	int iVarID[nsiz];
 	int* piAddr				= NULL;

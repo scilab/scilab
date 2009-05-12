@@ -343,6 +343,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\boolean_sparse_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\callDynamicGateway.c"
 				>
 			</File>
@@ -949,6 +953,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\boolean_api.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\boolean_sparse_api.h"
 				>
 			</File>
 			<File

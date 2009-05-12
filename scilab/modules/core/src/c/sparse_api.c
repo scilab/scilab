@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - INRIA - Antoine ELIAS
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -9,6 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
+ * However, the API (profile of the functions in the header files) will be 
+ * still available and supported in Scilab 6.
  */
 
 #include "common_api.h"
@@ -19,12 +21,12 @@
 #include "stack-c.h"
 
 //internal sparse functions
-int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
-int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress);
-int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize);
-int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress);
-int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
-int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
+static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress);
+static int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize);
+static int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress);
+static int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
+static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg);
 
 int getSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)
 {
@@ -36,7 +38,7 @@ int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 	return getCommonSparseMatrix(_piAddress, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
+static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
 	int i							= 0;
 	int iPos					= 0;
@@ -88,7 +90,7 @@ int allocComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
 	return allocCommonSparseMatrix(_iVar, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, _piAddress);
 }
 
-int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress)
+static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int** _piAddress)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
@@ -107,7 +109,7 @@ int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, in
 	return 0;
 }
 
-int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize)
+static int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize)
 {
 	if(_piAddress == NULL)
 	{
@@ -144,7 +146,7 @@ int createComplexSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, i
 	return createCommonSparseMatrix(_iVar, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, _piAddress);
 }
 
-int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress)
+static int createCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg, int** _piAddress)
 {
 	int* piNbItemRow	= NULL;
 	int* piColPos			= NULL;
@@ -178,7 +180,7 @@ int createNamedComplexSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
 	return createCommonNamedSparseMatrix(_pstName, _iNameLen, 1, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -236,7 +238,7 @@ int readNamedComplexSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, in
 	return readCommonNamedSparseMatrix(_pstName, _iNameLen, 1, _piRows, _piCols, _piNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg);
 }
 
-int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
+static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
@@ -269,11 +271,11 @@ int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, in
 	
 	if(_iComplex == 1)
 	{
-		getComplexSparseMatrix(piAddr, _piRows, _piCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
+		getComplexSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
 	}
 	else
 	{
-		getSparseMatrix(piAddr, _piRows, _piCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+		getSparseMatrix(piAddr, _piRows, _piCols, _piNbItem, &piNbItemRow, &piColPos, &pdblReal);
 	}
 
 	if(_piNbItemRow == NULL)
