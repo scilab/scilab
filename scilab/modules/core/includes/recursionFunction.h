@@ -19,6 +19,7 @@
 * see also callinter.h (fortran part)
 */
 
+#include "machine.h"
 #include "BOOL.h"
 
 typedef enum { 
@@ -31,7 +32,8 @@ typedef enum {
 	RECURSION_CALL_LOAD = 6,
 	RECURSION_CALL_DEFF = 7,
 	RECURSION_CALL_DISP = 8,
-	RECURSION_CALL_EXEC2 = 9
+	RECURSION_CALL_EXEC2 = 9,
+	RECURSION_OVERLOAD = 10
 } recursion_function_called;
 
 #define GW_IO_ID 5
@@ -39,7 +41,9 @@ typedef enum {
 #define GW_USER_ID 14
 #define GW_USER2_ID 24
 #define GW_FUNCTIONS_ID 31
+#define GW_OUTPUT_STREAM_ID 33
 #define ERROR_GW_ID -1
+#define END_OVERLOAD -2
 
 /**
 * check if there a recursion call from a function
@@ -48,10 +52,24 @@ typedef enum {
 BOOL isRecursionCallToFunction(void);
 
 /**
+* check if there a recursion call from a function (fortran)
+* @param[out] 0 (FALSE) or 1 (TRUE)
+* @return 0
+*/
+int C2F(isrecursioncalltofunction)(int *bok);
+
+/**
 * Get Gateway ID from a recursion call
-* return a gateway ID or ERROR_GW_ID
+* @return a gateway ID or ERROR_GW_ID
 */
 int getRecursionGatewayToCall(void);
+
+/**
+* Get Gateway ID from a recursion call (fortran)
+* @param[out] gateway ID or ERROR_GW_ID
+* @return 0
+*/
+int C2F(getrecursiongatewaytocall)(int *gw);
 
 /**
 * get Function ID from a recursion call 

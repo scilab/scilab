@@ -27,6 +27,8 @@ recu_
 parse_
 scistring_
 putlhsvar_
+getrecursiongatewaytocall_
+isrecursioncalltofunction_
 ;
 ;elementary_fucntions
 dgefa_

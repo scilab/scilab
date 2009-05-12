@@ -24,66 +24,22 @@ c     .     test if we are under errcatch('stop') mode (imode=3)
       if(err.gt.0) goto 97
 c     
 c	  recursion on gateway
-      GW_CORE_ID = 13
-      GW_IO_ID = 5
-      GW_USER_ID = 14
-      GW_USER2_ID = 24   
-      GW_FUNCTIONS_ID = 31
-      
-      RECURSION_CALL_COMP = 1
-      RECURSION_CALL_EXEC1 = 2
-      RECURSION_CALL_EXECSTR = 3
-      RECURSION_CALL_GETF = 4
-      RECURSION_CALL_SAVE = 5
-      RECURSION_CALL_LOAD = 6
-      RECURSION_CALL_DEFF = 7
-      RECURSION_CALL_DISP = 8
-      RECURSION_CALL_EXEC2 = 9
-         
-      if(int(rstk(pt)/100).eq.9) then
-         ir=rstk(pt)-900
-		 if (RECURSION_CALL_COMP .eq. ir) then
-c            see comp (sci_comp.f)
-             k = GW_CORE_ID
-		 else if (RECURSION_CALL_EXEC1 .eq. ir) then
-c            see exec (intexec.f)
-             k = GW_IO_ID
-         else if (RECURSION_CALL_EXECSTR .eq. ir) then
-c            see execstr (intexecstr.f)
-             k = GW_IO_ID
-         else if (RECURSION_CALL_GETF .eq. ir) then
-c            see getf (intgetf.f)
-             k = GW_IO_ID
-         else if (RECURSION_CALL_SAVE .eq. ir) then
-c            see save (newsave.f)
-             k = GW_IO_ID
-         else if (RECURSION_CALL_LOAD .eq. ir) then
-c            see load (newsave.f)
-             k = GW_IO_ID 
-         else if (RECURSION_CALL_DEFF .eq. ir) then
-c            see deff (intdeff.f)
-c            call comp by fun & fin
-             k = GW_IO_ID
-         else if (RECURSION_CALL_DISP .eq. ir) then
-c            see disp (intdisp.f)
-             k = GW_IO_ID
-         else if (RECURSION_CALL_EXEC2 .eq. ir) then
-c            see exec (intexec.f)
-             k = GW_IO_ID
-         else if (ir .eq. 10) then 
-c            end of overloaded function
-             goto 96
-		 else if(ir.gt.40) then
-c            back to gw_user2
-             k = GW_USER2_ID
-         else if(ir.gt.20) then
-c            back to gw_user
-             k = GW_USER_ID
-         else
-             goto 89
-         endif
-         goto 95
-      endif
+      END_OVERLOAD = -1
+      ERROR_GW_ID = -2
+
+	  call isrecursioncalltofunction(bok)
+	  if (bok .eq. 1) then
+		call getrecursiongatewaytocall(gw)
+		if (gw .eq. END_OVERLOAD) then
+		  goto 96
+		elseif (gw .eq. ERROR_GW_ID) then
+		  goto 89
+		else
+		  k = gw
+		endif
+		goto 95
+	  endif
+
 c
  89   if(top.lt.rhs ) then
          call error(22)

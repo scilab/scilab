@@ -11,7 +11,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_io.h"
-#include "gw_output_stream.h" /* sci_disp */
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
@@ -83,13 +82,6 @@ int gw_io(void)
 			case RECURSION_CALL_COMP:
 				{
 					/* NOT CALLED IN THIS MODULE */
-					return 0;
-				}
-				break;
-			case RECURSION_CALL_DISP:
-				{
-					#define disp_fname "disp"
-					sci_disp(disp_fname,strlen(disp_fname));
 					return 0;
 				}
 				break;

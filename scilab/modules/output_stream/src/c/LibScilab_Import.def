@@ -33,4 +33,6 @@ callFunctionFromGateway
 getmatdims_
 overload_
 vartype_ 
+getRecursionFunctionToCall
+isRecursionCallToFunction
 ;

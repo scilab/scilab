@@ -65,11 +65,15 @@ int getRecursionGatewayToCall(void)
 			break;
 		case RECURSION_CALL_DISP:
 			/* see disp (intdisp.f) */
-			gw = GW_IO_ID; /* gw_io */
+			gw = GW_OUTPUT_STREAM_ID; /* gw_output_stream */
 			break;
 		case RECURSION_CALL_EXEC2:
 			/* see exec (intexec.f) */
 			gw = GW_IO_ID; /* gw_io */
+			break;
+		case RECURSION_OVERLOAD:
+			/* overloaded function  */
+			gw = END_OVERLOAD;
 			break;
 		default:
 			{
@@ -80,10 +84,6 @@ int getRecursionGatewayToCall(void)
 				else if (ir > 40)
 				{
 					gw = GW_USER2_ID; /* gw_user2 */
-				}
-				else
-				{
-					/* overloaded function  */
 				}
 			}
 			break;
@@ -110,5 +110,17 @@ recursion_function_called getRecursionFunctionToCall(void)
 		}
 	}
 	return function_number;
+}
+/*--------------------------------------------------------------------------*/
+int C2F(getrecursiongatewaytocall)(int *gw)
+{
+	*gw = getRecursionGatewayToCall();
+	return 0;
+}
+/*--------------------------------------------------------------------------*/
+int C2F(isrecursioncalltofunction)(int *bok)
+{
+	*bok = isRecursionCallToFunction();
+	return 0;
 }
 /*--------------------------------------------------------------------------*/

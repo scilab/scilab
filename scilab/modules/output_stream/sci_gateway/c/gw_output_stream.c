@@ -14,6 +14,7 @@
 #include "gw_output_stream.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={ 
 	{sci_print, "print"},
@@ -25,7 +26,21 @@ static gw_generic_table Tab[]={
 int gw_output_stream(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+
+	/* Recursion from disp */
+	if ( isRecursionCallToFunction() )
+	{
+		if ( getRecursionFunctionToCall() == RECURSION_CALL_DISP)
+		{
+			#define disp_fname "disp"
+			sci_disp(disp_fname,strlen(disp_fname));
+			return 0;
+		}
+	}
+	else
+	{
+		callFunctionFromGateway(Tab);
+	}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
