@@ -20,7 +20,9 @@ ref2val_
 checkrhs_
 checklhs_
 getscalar_
-
+getfun_
+cremat_
 ; elementary_functions
 isort_
 iset_
+unsfdcopy_

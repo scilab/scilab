@@ -37,7 +37,6 @@ typedef enum {
 } recursion_function_called;
 
 #define GW_IO_ID 5
-#define GW_CORE_ID 13
 #define GW_USER_ID 14
 #define GW_USER2_ID 24
 #define GW_FUNCTIONS_ID 31

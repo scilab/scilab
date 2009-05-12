@@ -394,10 +394,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_deff.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_diary.c"
 				>
 			</File>

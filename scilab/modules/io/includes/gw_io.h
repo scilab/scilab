@@ -20,11 +20,9 @@ int gw_io(void);
 int C2F(sci_read)(char *fname,unsigned long fname_len);
 int C2F(sci_getf)(char *fname,unsigned long fname_len);
 int C2F(sci_exec)(char *fname,unsigned long fname_len);
-
 int C2F(sci_diary)(char *fname,unsigned long fname_len);
 int C2F(sci_oldsave)(char *fname,unsigned long fname_len);
 int C2F(sci_write)(char *fname,unsigned long fname_len);
-int C2F(sci_deff)(char *fname,unsigned long fname_len);
 int C2F(sci_rat)(char *fname,unsigned long fname_len);
 int C2F(sci_file)(char *fname,unsigned long fname_len);
 int C2F(sci_host)(char *fname,unsigned long fname_len);
@@ -48,7 +46,6 @@ int C2F(intexec) (char *fname,unsigned long fname_len);
 int C2F(intgetf)(void);
 int C2F(intsave)(void);
 int C2F(intdiary)(void);
-int C2F(intdeff)(void);
 int C2F(intfile)(void);
 int C2F(intmgetl)(void);
 int C2F(intrat)(void);
@@ -58,7 +55,6 @@ int C2F(intreadb)(void);
 int C2F(intwrite)(void);
 int C2F(intwrite4b)(void);
 int C2F(intwritb)(void);
-
 int sci_export_to_hdf5(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */

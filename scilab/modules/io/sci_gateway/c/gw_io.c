@@ -26,7 +26,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
-{C2F(sci_deff),"deff"},
+{sci_export_to_hdf5,"export_to_hdf5"},
 {C2F(sci_file),"file"},
 {C2F(sci_host),"host"},
 {C2F(sci_unix),"unix"},
@@ -38,8 +38,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_read4b),"read4b"},
 {C2F(sci_write4b),"write4b"},
 {C2F(sci_save),"save"},
-{C2F(sci_load),"load"},
-{sci_export_to_hdf5,"export_to_hdf5"}
+{C2F(sci_load),"load"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_io(void)

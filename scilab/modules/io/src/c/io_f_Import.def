@@ -10,7 +10,6 @@ intsave_
 intgetf_
 intexecstr_
 intexec_
-intdeff_
 intfile_
 intmgetl_
 intrat_

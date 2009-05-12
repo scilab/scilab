@@ -60,8 +60,7 @@ int getRecursionGatewayToCall(void)
 			break;
 		case RECURSION_CALL_DEFF:
 			/* see deff (intdeff.f) */
-			/* call comp by fun & fin */
-			gw = GW_IO_ID; /* gw_io */
+			gw = GW_FUNCTIONS_ID; /* gw_functions */
 			break;
 		case RECURSION_CALL_DISP:
 			/* see disp (intdisp.f) */

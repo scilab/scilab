@@ -7,4 +7,5 @@ com_
 callFunctionFromGateway
 getRecursionGatewayToCall
 isRecursionCallToFunction
+getRecursionFunctionToCall
 ;

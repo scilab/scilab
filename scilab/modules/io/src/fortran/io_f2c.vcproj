@@ -399,10 +399,6 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intdeff.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\intexec.c"
 				>
 			</File>
@@ -514,10 +510,6 @@
 		<Filter
 			Name="Fortran files"
 			>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intdeff.f"
-				>
-			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intexec.f"
 				>

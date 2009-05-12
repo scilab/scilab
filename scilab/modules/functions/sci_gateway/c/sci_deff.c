@@ -10,7 +10,9 @@
  *
  */
 
-#include "gw_io.h"
+#include "gw_functions.h"
+/*--------------------------------------------------------------------------*/
+extern int C2F(intdeff)();
 /*--------------------------------------------------------------------------*/
 int C2F(sci_deff)(char *fname,unsigned long fname_len)
 {

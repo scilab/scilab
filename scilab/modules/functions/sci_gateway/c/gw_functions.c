@@ -20,7 +20,8 @@
 static gw_generic_table Tab[]=
 {
 	{C2F(sci_lib),"lib"},
-	{C2F(sci_comp),"comp"}
+	{C2F(sci_comp),"comp"},
+	{C2F(sci_deff),"deff"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_functions(void)
@@ -36,6 +37,18 @@ int gw_functions(void)
 		{
 			/* We call "comp" */
 			Fin = 2;
+		}
+		else
+		{
+			switch ( getRecursionFunctionToCall() )
+			{
+				case RECURSION_CALL_DEFF:
+					#define deff_fname "deff"
+					C2F(sci_deff)(deff_fname,strlen(deff_fname));
+					return 0;
+				default:
+					return 0;
+			}
 		}
 	}
 	

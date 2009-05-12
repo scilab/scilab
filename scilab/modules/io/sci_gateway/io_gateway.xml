@@ -44,7 +44,7 @@
 <PRIMITIVE gatewayId="5" primitiveId="7" primitiveName="mgetl" />
 <PRIMITIVE gatewayId="5" primitiveId="8" primitiveName="write" />
 <PRIMITIVE gatewayId="5" primitiveId="9" primitiveName="rat" />
-<PRIMITIVE gatewayId="5" primitiveId="10" primitiveName="deff" />
+<PRIMITIVE gatewayId="5" primitiveId="10" primitiveName="export_to_hdf5" />
 <PRIMITIVE gatewayId="5" primitiveId="11" primitiveName="file" />
 <PRIMITIVE gatewayId="5" primitiveId="12" primitiveName="host" />
 <PRIMITIVE gatewayId="5" primitiveId="13" primitiveName="unix" />
@@ -57,5 +57,5 @@
 <PRIMITIVE gatewayId="5" primitiveId="20" primitiveName="write4b" />
 <PRIMITIVE gatewayId="5" primitiveId="21" primitiveName="save" />
 <PRIMITIVE gatewayId="5" primitiveId="22" primitiveName="load" />
-<PRIMITIVE gatewayId="5" primitiveId="23" primitiveName="export_to_hdf5" />
+
 </GATEWAY>
