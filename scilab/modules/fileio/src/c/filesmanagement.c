@@ -11,6 +11,7 @@
  */
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "PATH_MAX.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
@@ -19,6 +20,7 @@
 #include "strdup_windows.h"
 #endif
 #include "fullpath.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
 	FILE *ftformat;
@@ -254,11 +256,7 @@ int GetIdFromFilename(char *filename)
 	{
 		char fullpath[PATH_MAX*4];
 		int i=0;
-		#ifdef _MSC_VER
-		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
-		#else
-		if( realpath( filename,fullpath ) == NULL )
-		#endif
+		if( get_full_path( fullpath, filename, PATH_MAX*4 ) == NULL )
 		{
 			/* if we are a problem */
 			strcpy(fullpath,filename);

@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #ifndef _MSC_VER
 #include <sys/param.h>
+#include <limits.h>
 #endif
 #include "fullpath.h"
 #include "charEncoding.h"
