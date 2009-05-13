@@ -1,20 +1,19 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Allan CORNET
- * ...
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2007 - INRIA - Allan CORNET
+* ...
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 #include <sys/param.h>
 #endif
-#include <limits.h>
 #include <stdlib.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
@@ -24,6 +23,10 @@
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
+#ifndef _MSC_VER
+#define _fullpath(a,r,l)        realpath(r,a)
+#endif
+/*--------------------------------------------------------------------------*/
 int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 {
 	Rhs=Max(Rhs,0);
@@ -32,25 +35,37 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-		static int l1,n1,m1;
+#ifdef _MSC_VER
+		 char *relPath = NULL;
+		char fullpath[PATH_MAX*4];
+#else
 		char relPath[PATH_MAX];
-		char szTemp[bsiz];
 		char *fullpath=NULL;
+#endif
+		static int l1,n1,m1;
+		char szTemp[bsiz];
 		
+
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
-		strcpy(relPath,UTFToLocale(cstk(l1), szTemp));
 #ifdef _MSC_VER
+		relPath = UTFToLocale(cstk(l1), szTemp);
+
 		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
 #else
-		fullpath=realpath( relPath, NULL );
+		strcpy(relPath,UTFToLocale(cstk(l1), szTemp));
+		fullpath = realpath( relPath, NULL );
 		if (fullpath != NULL )
 #endif
 		{
 			char *Output=NULL;
 			Output=(char*)MALLOC((strlen(fullpath)+1)*sizeof(char));
 			strcpy(Output,fullpath);
+
+			#ifndef _MSC_VER
 			FREE(fullpath);
+			#endif
+
 			n1=1;
 			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 			LhsVar(1) = Rhs+1;
