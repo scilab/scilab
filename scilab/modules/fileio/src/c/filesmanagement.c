@@ -14,16 +14,13 @@
 #endif
 #include <string.h>
 #include <stdlib.h>
+#include <errno.h>
 #include "PATH_MAX.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
 #include "MALLOC.h"
 #ifdef _MSC_VER
 #include "strdup_windows.h"
-#endif
-/*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-#define _fullpath(a,r,l) realpath(r,a)
 #endif
 /*--------------------------------------------------------------------------*/
 typedef struct {
@@ -120,11 +117,11 @@ char* GetFileNameOpenedInScilab(int Id)
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/
-BOOL SetFileNameOpenedInScilab(int Id,char *name)
+BOOL SetFileNameOpenedInScilab(int Id, char *name)
 {
 	BOOL bOK=FALSE;
 	char *ptrName=NULL;
-	char fullpath[PATH_MAX*4];
+	char *fullpath=NULL;
 
 	/* A exception for Id 5 and 6 */
 	/* no filename */
@@ -138,9 +135,15 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 	}
 	else
 	{
-		if( _fullpath( fullpath, name, PATH_MAX*4 ) != NULL )
+#ifdef _MSC_VER
+		if( _fullpath( fullpath, name, PATH_MAX ) != NULL )
+#else
+		  fullpath=realpath( name, NULL );
+		  if (fullpath != NULL )
+#endif
 		{
 			ptrName = strdup(fullpath);
+			FREE(fullpath);
 			if (ptrName)
 			{
 				bOK=TRUE;
@@ -148,11 +151,12 @@ BOOL SetFileNameOpenedInScilab(int Id,char *name)
 		}
 		else
 		{
-			ptrName = strdup(name);
-			if (ptrName)
-			{
-				bOK=TRUE;
-			}
+		  fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),name,strerror(errno));
+		  ptrName = strdup(name);
+		  if (ptrName)
+		    {
+		      bOK=TRUE;
+		    }
 		}
 	}
 	ScilabFileList[Id].ftname = ptrName;
@@ -234,22 +238,30 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 {
 	if (ScilabFileList)
 	{
-		char fullpath[PATH_MAX*4];
+	  char *fullpath=NULL;
 		int i=0;
-
-		if( _fullpath( fullpath, filename, PATH_MAX*4 ) == NULL )
+#ifdef _MSC_VER
+		if( _fullpath( fullpath, filename, PATH_MAX ) == NULL )
+#else
+		  fullpath = realpath( filename, NULL);
+		  if( fullpath == NULL )
+#endif
 		{
-			/* if we are a problem */
-			strcpy(fullpath,filename);
+                  fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),filename, strerror(errno));
+		  /* if we have a problem */
+		  strcpy(fullpath,filename);
 		}
 
 		for (i=0;i<CurrentMaxFiles;i++)
 		{
 			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
 			{
-				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
+			  if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) {
+			    return TRUE;
+			  }
 			}
 		}
+		FREE(fullpath);
 	}
 	return FALSE;
 }

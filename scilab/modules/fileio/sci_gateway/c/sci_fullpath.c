@@ -14,6 +14,7 @@
 #ifndef _MSC_VER
 #include <sys/param.h>
 #endif
+#include <limits.h>
 #include <stdlib.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
@@ -22,10 +23,6 @@
 #include "localization.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
-/*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-#define _fullpath(a,r,l)        realpath(r,a)
-#endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 {
@@ -36,20 +33,24 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 	if (GetType(1) == sci_strings)
 	{
 		static int l1,n1,m1;
-		char *relPath = NULL;
+		char relPath[PATH_MAX];
 		char szTemp[bsiz];
-		char fullpath[PATH_MAX*4];
+		char *fullpath=NULL;
 		
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
-		relPath = UTFToLocale(cstk(l1), szTemp);
-
-		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
+		strcpy(relPath,UTFToLocale(cstk(l1), szTemp));
+#ifdef _MSC_VER
+		if( _fullpath( fullpath, relPath, MAXPATHLEN ) != NULL )
+#else
+		  fullpath=realpath( relPath, NULL );
+		if (fullpath != NULL )
+#endif
 		{
 			char *Output=NULL;
 			Output=(char*)MALLOC((strlen(fullpath)+1)*sizeof(char));
 			strcpy(Output,fullpath);
-
+			FREE(fullpath);
 			n1=1;
 			CreateVarFromPtr( Rhs+1,STRING_DATATYPE,(m1=(int)strlen(Output), &m1),&n1,&Output);
 			LhsVar(1) = Rhs+1;
