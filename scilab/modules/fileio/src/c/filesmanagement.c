@@ -122,7 +122,6 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 {
 	BOOL bOK=FALSE;
 	char *ptrName=NULL;
-	char *fullpath=NULL;
 
 	/* A exception for Id 5 and 6 */
 	/* no filename */
@@ -137,14 +136,18 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 	else
 	{
 #ifdef _MSC_VER
+		char fullpath[PATH_MAX*4];
 		if( _fullpath( fullpath, name, PATH_MAX ) != NULL )
 #else
-		  fullpath=realpath( name, NULL );
-		  if (fullpath != NULL )
+		char *fullpath=NULL;
+		fullpath=realpath( name, NULL );
+		if (fullpath != NULL )
 #endif
 		{
 			ptrName = strdup(fullpath);
+#ifndef _MSC_VER
 			FREE(fullpath);
+#endif
 			if (ptrName)
 			{
 				bOK=TRUE;
@@ -239,16 +242,17 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 {
 	if (ScilabFileList)
 	{
-	  char *fullpath=NULL;
 		int i=0;
 #ifdef _MSC_VER
+		char fullpath[PATH_MAX*4];
 		if( _fullpath( fullpath, filename, PATH_MAX ) == NULL )
 #else
-		  fullpath = realpath( filename, NULL);
-		  if( fullpath == NULL )
+		char *fullpath=NULL;
+		fullpath = realpath( filename, NULL);
+		if( fullpath == NULL )
 #endif
 		{
-                  fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),filename, strerror(errno));
+          fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),filename, strerror(errno));
 		  /* if we have a problem */
 		  strcpy(fullpath,filename);
 		}
@@ -257,12 +261,12 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		{
 			if ( (ScilabFileList[i].ftformat) && ScilabFileList[i].ftname)
 			{
-			  if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) {
-			    return TRUE;
-			  }
+				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
 			}
 		}
+#ifdef _MSC_VER
 		FREE(fullpath);
+#endif
 	}
 	return FALSE;
 }
