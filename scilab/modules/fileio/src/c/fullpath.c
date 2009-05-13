@@ -42,7 +42,8 @@ char * get_full_path(char * _FullPath, const char * _Path, size_t _SizeInBytes)
 
 	return _FullPath;
 #else
-	return realpath(_Path,NULL);
+	char *rp = realpath(_Path,_FullPath);
+	return _FullPath;
 #endif
 
 }
