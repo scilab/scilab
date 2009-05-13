@@ -155,7 +155,10 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 		}
 		else
 		{
-		  fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),name,strerror(errno));
+			/* Commented since some files calls this function without 
+			   checking it existence 
+			   fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),name,strerror(errno));
+			*/
 		  ptrName = strdup(name);
 		  if (ptrName)
 		    {
@@ -252,9 +255,12 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 		if( fullpath == NULL )
 #endif
 		{
+			/* Commented since some files calls this function without 
+			   checking it existence 
           fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),filename, strerror(errno));
+			*/
 		  /* if we have a problem */
-		  strcpy(fullpath,filename);
+		  fullpath=filename;
 		}
 
 		for (i=0;i<CurrentMaxFiles;i++)
@@ -264,7 +270,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
 			}
 		}
-#ifdef _MSC_VER
+#ifndef _MSC_VER
 		FREE(fullpath);
 #endif
 	}
