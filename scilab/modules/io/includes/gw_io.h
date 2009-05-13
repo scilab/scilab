@@ -18,7 +18,6 @@
 int gw_io(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_read)(char *fname,unsigned long fname_len);
-int C2F(sci_exec)(char *fname,unsigned long fname_len);
 int C2F(sci_diary)(char *fname,unsigned long fname_len);
 int C2F(sci_oldsave)(char *fname,unsigned long fname_len);
 int C2F(sci_write)(char *fname,unsigned long fname_len);
@@ -28,7 +27,6 @@ int C2F(sci_host)(char *fname,unsigned long fname_len);
 int C2F(sci_unix)(char *fname,unsigned long fname_len);
 int C2F(sci_readb)(char *fname,unsigned long fname_len);
 int C2F(sci_writb)(char *fname,unsigned long fname_len);
-int C2F(sci_execstr)(char *fname,unsigned long fname_len);
 int C2F(sci_getpid)(char *fname,unsigned long fname_len);
 int C2F(sci_getenv)(char *fname,unsigned long fname_len);
 int C2F(sci_read4b)(char *fname,unsigned long fname_len);
@@ -38,10 +36,10 @@ int C2F(sci_load)(char *fname,unsigned long fname_len);
 int C2F(sci_mgetl)(char *fname,unsigned long fname_len);
 int C2F(sci_getio)(char *fname,unsigned long fname_len);
 int C2F(sci_setenv)(char *fname,unsigned long fname_len);
-int C2F(intexecstr)(char *fname,unsigned long fname_len);
+int sci_export_to_hdf5(char *fname,unsigned long fname_len);
+
 int C2F(intgetenv)(char *fname,unsigned long fname_len);
 int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
-int C2F(intexec) (char *fname,unsigned long fname_len);
 int C2F(intsave)(void);
 int C2F(intdiary)(void);
 int C2F(intfile)(void);
@@ -53,7 +51,7 @@ int C2F(intreadb)(void);
 int C2F(intwrite)(void);
 int C2F(intwrite4b)(void);
 int C2F(intwritb)(void);
-int sci_export_to_hdf5(char *fname,unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_IO_H__ */
 /*--------------------------------------------------------------------------*/

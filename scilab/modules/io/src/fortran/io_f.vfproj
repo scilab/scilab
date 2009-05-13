@@ -76,8 +76,6 @@ lib /DEF:&quot;$(InputDir)output_stream_f_Import.def&quot; /SUBSYSTEM:WINDOWS /M
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\..\sci_gateway\fortran\intexec.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\intexecstr.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intfile.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intmgetl.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\intrat.f"/>

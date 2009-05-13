@@ -23,6 +23,8 @@ getscalar_
 getfun_
 cremat_
 eptover_
+checkval_
+getsmat_
 ; elementary_functions
 isort_
 iset_

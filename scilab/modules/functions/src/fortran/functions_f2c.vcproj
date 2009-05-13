@@ -405,6 +405,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\fortran\intexec.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\intexecstr.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\fortran\intgetf.c"
 				>
 			</File>
@@ -430,6 +438,14 @@
 			>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\intdeff.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\intexec.f"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\fortran\intexecstr.f"
 				>
 			</File>
 			<File

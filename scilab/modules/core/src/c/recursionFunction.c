@@ -36,15 +36,15 @@ int getRecursionGatewayToCall(void)
 		{
 		case RECURSION_CALL_COMP:
 			/* see comp (sci_comp.f) */
-			gw = GW_CORE_ID; /* gw_functions */
+			gw = GW_CORE_ID; /* gw_core */
 			break;
 		case RECURSION_CALL_EXEC1:
 			/* see exec (intexec.f) */
-			gw = GW_IO_ID; /* gw_io */
+			gw = GW_FUNCTIONS_ID; /* gw_functions */
 			break;
 		case RECURSION_CALL_EXECSTR:
 			/* see execstr (intexecstr.f) */
-			gw = GW_IO_ID; /* gw_io */
+			gw = GW_FUNCTIONS_ID; /* gw_functions */
 			break;
 		case RECURSION_CALL_GETF:
 			/* see getf (intgetf.f) */
@@ -68,7 +68,7 @@ int getRecursionGatewayToCall(void)
 			break;
 		case RECURSION_CALL_EXEC2:
 			/* see exec (intexec.f) */
-			gw = GW_IO_ID; /* gw_io */
+			gw = GW_FUNCTIONS_ID; /* gw_functions */
 			break;
 		case RECURSION_OVERLOAD:
 			/* overloaded function  */

@@ -26,7 +26,7 @@ c
       sadr(l)=(l/2)+1
 c     
       if (ddt .eq. 4) then
-         call writebufio(buf,fin)
+         call writebufexec(buf,fin)
          call basout(io,wte,' intexec '//buf(1:4))
       endif
 c     
@@ -200,3 +200,14 @@ c     restore error recovery modes
 c
  999  return
       end
+c     ====================================        
+c     required by f2c :(
+c     ====================================        
+      subroutine writebufexec(buffer,line)
+      
+      character*(*) buffer
+      integer  line
+      write(buffer(1:4),'(i4)') line
+      
+      end
+c     ====================================        

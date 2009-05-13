@@ -10,7 +10,9 @@
  *
  */
 
-#include "gw_io.h"
+#include "gw_functions.h"
+/*--------------------------------------------------------------------------*/
+extern int C2F(intexecstr)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_execstr)(char *fname,unsigned long fname_len)
 {

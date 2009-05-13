@@ -22,6 +22,8 @@ int gw_functions(void);
 int C2F(sci_lib)(char *fname,unsigned long fname_len);
 int C2F(sci_deff)(char *fname,unsigned long fname_len);
 int C2F(sci_getf)(char *fname,unsigned long fname_len);
+int C2F(sci_exec)(char *fname,unsigned long fname_len);
+int C2F(sci_execstr)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

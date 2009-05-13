@@ -14,14 +14,12 @@ src/fortran/newsave.f \
 src/fortran/v2cunit.f \
 src/fortran/writebuf.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_execstr.c \
-sci_gateway/c/sci_read4b.c \
+GATEWAY_C_SOURCES = sci_gateway/c/sci_read4b.c \
 sci_gateway/c/sci_getio.c \
 sci_gateway/c/sci_readb.c \
 sci_gateway/c/sci_host.c \
 sci_gateway/c/sci_file.c \
 sci_gateway/c/intsetenv.c \
-sci_gateway/c/sci_exec.c \
 sci_gateway/c/sci_rat.c \
 sci_gateway/c/sci_getenv.c \
 sci_gateway/c/sci_write.c \
@@ -37,17 +35,14 @@ sci_gateway/c/sci_load.c \
 sci_gateway/c/sci_unix.c \
 sci_gateway/c/sci_save.c
 
-
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp 
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
-sci_gateway/fortran/intexec.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \
 sci_gateway/fortran/intread4b.f \
 sci_gateway/fortran/intread.f \
-sci_gateway/fortran/intexecstr.f \
 sci_gateway/fortran/intreadb.f \
 sci_gateway/fortran/intfile.f
 
