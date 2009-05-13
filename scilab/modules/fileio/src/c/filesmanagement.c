@@ -270,7 +270,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
 			}
 		}
-#ifndef _MSC_VER
+#ifdef _MSC_VER
 		FREE(fullpath);
 #endif
 	}
