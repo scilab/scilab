@@ -52,7 +52,7 @@
 /* 28 */						#include "../../cacsd/includes/gw_slicot.h"
 /* 29 */						#include "../../differential_equations/includes/gw_differential_equations3.h"
 /* 30 */						#include "../../differential_equations/includes/gw_differential_equations4.h"
-/* 31 */     					#include "../../functions/includes/gw_functions.h"	
+/* 31 */     					#include "dynamic_gateways.h"	/* functions */
 /* 32 */						#include "../../differential_equations/includes/gw_differential_equations6.h"
 /* 33 */                        #include "../../output_stream/includes/gw_output_stream.h"
 /* 34 */						#include "../../fileio/includes/gw_fileio.h"
@@ -82,7 +82,7 @@
 /* 58 */						#include "dynamic_gateways.h" /* UMFPACK */
 /* 59 */						#include "dynamic_gateways.h" /* matio */
 /* 60 */						#include "dynamic_gateways.h" /* helptools */
-/* 61 */						#include "../../call_scilab/includes/gw_call_scilab.h" /* call_scilab */
+/* 61 */						#include "../../call_scilab/includes/gw_call_scilab.h"
 
 /*-------------------------------------
  * long jump to stop interface computation

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe CHANCELIER
+ * Copyright (C) DIGITEO - 2009
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -61,7 +62,7 @@ static OpTab Interfaces[] = {
 	/* 28  */ {gw_slicot},
 	/* 29  */ {gw_differential_equations3},
 	/* 30  */ {gw_differential_equations4},
-	/* 31  */ {gw_functions},
+	/* 31  */ {gw_dynamic_functions},
 	/* 32  */ {gw_differential_equations6},
 	/* 33  */ {gw_output_stream},
 	/* 34  */ {gw_fileio},

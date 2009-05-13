@@ -14,6 +14,8 @@ Compilation:
 
 * lapack 3.2 used on Windows
 
+* functions module is loaded dynamically by Scilab.
+
 Source reorganisation:
 ======================
 
