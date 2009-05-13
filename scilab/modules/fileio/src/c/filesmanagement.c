@@ -15,6 +15,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
+#include "localization.h"
 #include "PATH_MAX.h"
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
