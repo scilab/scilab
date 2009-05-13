@@ -41,9 +41,9 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 		/* Bug 3089 */
 		strcpy(relPath,UTFToLocale(cstk(l1), szTemp));
 #ifdef _MSC_VER
-		if( _fullpath( fullpath, relPath, MAXPATHLEN ) != NULL )
+		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
 #else
-		  fullpath=realpath( relPath, NULL );
+		fullpath=realpath( relPath, NULL );
 		if (fullpath != NULL )
 #endif
 		{
