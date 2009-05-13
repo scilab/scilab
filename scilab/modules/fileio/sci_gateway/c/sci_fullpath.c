@@ -37,10 +37,6 @@ int sci_fullpath(char *fname,unsigned long fname_len)
 		/* Bug 3089 */
 		relPath = cstk(l1);
 
-#ifdef _MSC_VER
-#else
-#endif
-
 		if( get_full_path( fullpath, relPath, PATH_MAX*4 ) != NULL )
 		{
 			char *Output=NULL;

@@ -178,7 +178,7 @@ mfile2sci(TMPDIR+'/rot90.m',TMPDIR)
 // Show the new code
 write(%io(2),read(TMPDIR+'/rot90.sci',-1,1,'(a)'))
 // get it into scilab
-getf(TMPDIR+'/rot90.sci')
+exec(TMPDIR+'/rot90.sci')
 // Execute it
 m=rand(4,2);rot90(m,1)
  

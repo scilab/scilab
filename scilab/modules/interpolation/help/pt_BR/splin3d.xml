@@ -125,7 +125,7 @@ er = max(abs(vp_exact - vp_interp))
 //            mesmo exemplo com interpolação trilinear)
 // =============================================================================
 
-getf("SCI/modules/interpolation/demos/interp_demo.sci")
+exec("SCI/modules/interpolation/demos/interp_demo.sci")
 func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
 deff("v=f(x,y,z)",func);
 n = 5; 
