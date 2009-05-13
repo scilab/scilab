@@ -57,7 +57,7 @@
           <para>Start Scilab under the debugguer gdb (Unix/linux only).</para>
 
           <para>Define the variable SCILAB_GDB_OPT to add custom options to
-          gdb. </para>
+          gdb.</para>
         </listitem>
       </varlistentry>
 
@@ -73,7 +73,7 @@
         <term>-profiling</term>
 
         <listitem>
-          <para>Start Scilab under valgrind (Unix/linux only). </para>
+          <para>Start Scilab under valgrind (Unix/linux only).</para>
 
           <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
           to valgrind (and override the existing valgrind options).</para>
@@ -84,7 +84,7 @@
         <term>-profiling-visu</term>
 
         <listitem>
-          <para>Start Scilab under callgrind (Unix/linux only). </para>
+          <para>Start Scilab under callgrind (Unix/linux only).</para>
 
           <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
           to callgrind (and override the existing callgrind options).</para>
@@ -162,7 +162,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-mem N</term>
 
         <listitem>
-          <para>:set the initial stacksize, for use with -ns option. Without
+          <para>Set the initial stacksize, for use with -ns option. Without
           -ns option the initial stacksize is set by scilab.start
           script.</para>
         </listitem>
@@ -172,7 +172,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-nb</term>
 
         <listitem>
-          <para>:if this option is present then the scilab welcome banner is
+          <para>If this option is present then the scilab welcome banner is
           not displayed.</para>
         </listitem>
       </varlistentry>
@@ -181,7 +181,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-ns</term>
 
         <listitem>
-          <para>:if this option is present the startup file
+          <para>If this option is present the startup file
           <literal>SCI/etc/scilab.start</literal> and the user startup files
           <literal>SCIHOME/.scilab</literal>,
           <literal>SCIHOME/scilab.ini</literal> are not executed.</para>
@@ -195,7 +195,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-nouserstartup</term>
 
         <listitem>
-          <para>:if this option is present the user startup files
+          <para>If this option is present the user startup files
           <literal>SCIHOME/.scilab</literal>,
           <literal>SCIHOME/scilab.ini</literal> are not executed.</para>
         </listitem>
@@ -205,7 +205,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-nw</term>
 
         <listitem>
-          <para>:if this option is present then scilab is not run in an
+          <para>If this option is present then scilab is not run in an
           specific window.</para>
         </listitem>
       </varlistentry>
@@ -214,7 +214,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-nwni</term>
 
         <listitem>
-          <para>:if this option is present then scilab is not run in an
+          <para>If this option is present then scilab is not run in an
           specific window and does not accept user interaction. This option
           may be used with -f or -e options.</para>
         </listitem>
@@ -224,7 +224,7 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>--texmacs</term>
 
         <listitem>
-          <para>:This option is reserved for TeXMacs.</para>
+          <para>This option is reserved for TeXMacs.</para>
         </listitem>
       </varlistentry>
 
@@ -232,9 +232,29 @@ scilab -link  C/interf.o C/evol.o C/bib.a
         <term>-version</term>
 
         <listitem>
-          <para>:This option print product version and exit.</para>
+          <para>This option print product version and exit.</para>
         </listitem>
       </varlistentry>
     </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+# Let's start Scilab in profiling mode without attaching a gdb one a SIGSEGV is meet.
+# We are under Bash shell
+export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
+scilab -profiling
+
+# Let's start Scilab in debug mode without stopping after each SIGSEGV
+# First, we write a small command file
+echo "handle SIGSEGV nostop" &gt; debug.txt
+# Now set the custom option
+# We are under Bash shell
+export SCILAB_GDB_OPT="--command=debug.txt"
+# Start Scilab in debug mode
+scilab -debug
+  </programlisting>
   </refsection>
 </refentry>
