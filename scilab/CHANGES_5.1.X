@@ -26,7 +26,7 @@ Compilation:
 		- added missing newline at the end of a file
 		- added missing XML LIBS and CFLAGS
 
-
+* automake version changed (1.10.1 => 1.10.2)
 
 Source reorganisation:
 ======================
@@ -58,6 +58,10 @@ Bug fixes:
  * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
  * bug 2042 fixed - copy function altered axes properties.
+
+ * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
+   	   			  	Debian Etch, Centos 4.X and some other old operating 
+					systems
 
  * bug 3264 fixed - More explicit message when too many files have been
 		    	  	opened.
