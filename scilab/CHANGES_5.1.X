@@ -61,7 +61,7 @@ Bug fixes:
 
  * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
    	   			  	Debian Etch, Centos 4.X and some other old operating 
-					systems
+					systems)
 
  * bug 3264 fixed - More explicit message when too many files have been
 		    	  	opened.
