@@ -20,37 +20,33 @@
 static gw_generic_table Tab[]=
 {
 	{C2F(sci_lib),"lib"},
-	{C2F(sci_comp),"comp"},
-	{C2F(sci_deff),"deff"}
+	{C2F(sci_deff),"deff"},
+	{C2F(sci_getf),"getf"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_functions(void)
 {  
 	Rhs = Max(0, Rhs);
 
-	/**
-	* recursion from sci_deff
-	*/
 	if ( isRecursionCallToFunction() )
 	{
-		if (getRecursionGatewayToCall() == GW_FUNCTIONS_ID )
+		switch ( getRecursionFunctionToCall() )
 		{
-			/* We call "comp" */
-			Fin = 2;
-		}
-		else
-		{
-			switch ( getRecursionFunctionToCall() )
-			{
-				case RECURSION_CALL_DEFF:
-					#define deff_fname "deff"
-					C2F(sci_deff)(deff_fname,strlen(deff_fname));
+			case RECURSION_CALL_DEFF:
+				#define deff_fname "deff"
+				C2F(sci_deff)(deff_fname,strlen(deff_fname));
 					return 0;
+
+				case RECURSION_CALL_GETF:
+					#define getf_fname "getf"
+					C2F(sci_getf)(deff_fname,strlen(getf_fname));
+					return 0;
+
 				default:
 					return 0;
 			}
 		}
-	}
+	
 	
 	callFunctionFromGateway(Tab);
 	return 0;

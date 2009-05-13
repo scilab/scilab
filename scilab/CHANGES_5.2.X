@@ -28,7 +28,7 @@ Source reorganisation:
 
 * disp moved in output_stream module.
 
-* lib,comp,deff moved in functions module.
+* lib,deff,getf moved in functions module.
 
 * oldsave, oldload functions (only used with macros of scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.

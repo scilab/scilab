@@ -418,10 +418,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_getf.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_getio.c"
 				>
 			</File>

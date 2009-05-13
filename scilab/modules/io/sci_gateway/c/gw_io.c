@@ -19,7 +19,7 @@ static gw_generic_table Tab[]=
 {
 {C2F(sci_setenv),"setenv"},
 {C2F(sci_read),"read"},
-{C2F(sci_getf),"getf"},
+{C2F(sci_getenv),"getenv"},
 {C2F(sci_exec),"exec"},
 {C2F(sci_getio),"getio"},
 {C2F(sci_diary),"diary"},
@@ -34,7 +34,6 @@ static gw_generic_table Tab[]=
 {C2F(sci_writb),"writb"},
 {C2F(sci_execstr),"execstr"},
 {C2F(sci_getpid),"getpid"},
-{C2F(sci_getenv),"getenv"},
 {C2F(sci_read4b),"read4b"},
 {C2F(sci_write4b),"write4b"},
 {C2F(sci_save),"save"},
@@ -57,12 +56,6 @@ int gw_io(void)
 			case RECURSION_CALL_EXECSTR:
 				{
 					C2F(intexecstr)("execstr",(unsigned long)strlen("execstr"));
-					return 0;
-				}
-				break;
-			case RECURSION_CALL_GETF:
-				{
-					C2F(intgetf)(); 
 					return 0;
 				}
 				break;

@@ -35,7 +35,6 @@ sci_gateway/c/sci_getpid.c \
 sci_gateway/c/sci_write4b.c \
 sci_gateway/c/sci_load.c \
 sci_gateway/c/sci_unix.c \
-sci_gateway/c/sci_getf.c \
 sci_gateway/c/sci_save.c
 
 
@@ -43,7 +42,6 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/intwrite4b.f \
 sci_gateway/fortran/intexec.f \
-sci_gateway/fortran/intgetf.f \
 sci_gateway/fortran/intrat.f \
 sci_gateway/fortran/intwritb.f \
 sci_gateway/fortran/intwrite.f \

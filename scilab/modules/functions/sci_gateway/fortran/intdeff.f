@@ -69,8 +69,8 @@ c
          endif
          lhs=1
 c     *call* comp
-         fun=31
-         fin=2
+         fun=13
+         fin=06
       else
          call stackp(idstk(1,top),0)
          top=top-1

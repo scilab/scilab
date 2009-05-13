@@ -18,7 +18,6 @@
 int gw_io(void);
 /*--------------------------------------------------------------------------*/
 int C2F(sci_read)(char *fname,unsigned long fname_len);
-int C2F(sci_getf)(char *fname,unsigned long fname_len);
 int C2F(sci_exec)(char *fname,unsigned long fname_len);
 int C2F(sci_diary)(char *fname,unsigned long fname_len);
 int C2F(sci_oldsave)(char *fname,unsigned long fname_len);
@@ -43,7 +42,6 @@ int C2F(intexecstr)(char *fname,unsigned long fname_len);
 int C2F(intgetenv)(char *fname,unsigned long fname_len);
 int C2F(intload) (int *id1, int *k1); /* FORTRAN subroutine */
 int C2F(intexec) (char *fname,unsigned long fname_len);
-int C2F(intgetf)(void);
 int C2F(intsave)(void);
 int C2F(intdiary)(void);
 int C2F(intfile)(void);

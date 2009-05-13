@@ -22,6 +22,7 @@ checklhs_
 getscalar_
 getfun_
 cremat_
+eptover_
 ; elementary_functions
 isort_
 iset_

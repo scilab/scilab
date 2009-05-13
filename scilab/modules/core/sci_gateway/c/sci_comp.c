@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "gw_functions.h"
+#include "gw_core.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
  extern int C2F(intcomp)(void); /* fortran */

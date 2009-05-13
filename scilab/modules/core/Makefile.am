@@ -259,6 +259,7 @@ sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
+sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
@@ -285,6 +286,7 @@ sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_debug.f \
+sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \

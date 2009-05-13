@@ -7,7 +7,6 @@ EXPORTS
 ; --------------------------------------- 
 intload_
 intsave_
-intgetf_
 intexecstr_
 intexec_
 intfile_

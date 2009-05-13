@@ -31,6 +31,6 @@
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
 <GATEWAY name="functions">
 <PRIMITIVE gatewayId="31" primitiveId="1" primitiveName="lib" />
-<PRIMITIVE gatewayId="31" primitiveId="2" primitiveName="comp" />
-<PRIMITIVE gatewayId="31" primitiveId="3" primitiveName="deff" />
+<PRIMITIVE gatewayId="31" primitiveId="2" primitiveName="deff" />
+<PRIMITIVE gatewayId="31" primitiveId="3" primitiveName="getf" />
 </GATEWAY>

@@ -10,7 +10,9 @@
  *
  */
 
-#include "gw_io.h"
+#include "gw_functions.h"
+/*--------------------------------------------------------------------------*/
+extern int C2F(intgetf)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getf)(char *fname,unsigned long fname_len)
 {
