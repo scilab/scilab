@@ -204,8 +204,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/c/sci_librarieslist.c \
 	sci_gateway/c/sci_libraryinfo.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
-	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_exit.c \
-	sci_gateway/fortran/sci_errclear.f \
+	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_comp.c \
+	sci_gateway/c/sci_exit.c sci_gateway/fortran/sci_errclear.f \
 	sci_gateway/fortran/sci_funcprot.f \
 	sci_gateway/fortran/sci_global.f \
 	sci_gateway/fortran/sci_mtlb_mode.f \
@@ -226,6 +226,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/fortran/sci_delbpt.f sci_gateway/fortran/where.f \
 	sci_gateway/fortran/sci_iserror.f \
 	sci_gateway/fortran/sci_type.f sci_gateway/fortran/sci_debug.f \
+	sci_gateway/fortran/sci_comp.f \
 	sci_gateway/fortran/sci_isglobal.f
 @USE_DYNAMIC_STACK_TRUE@am__objects_1 = libscicore_la-scimem64.lo
 am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
@@ -327,14 +328,15 @@ am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_librarieslist.lo \
 	libscicore_la-sci_libraryinfo.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
-	libscicore_la-sci_readgateway.lo libscicore_la-sci_exit.lo
+	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo \
+	libscicore_la-sci_exit.lo
 am__objects_6 = sci_errclear.lo sci_funcprot.lo sci_global.lo \
 	sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
 	sci_macrovar.lo sci_funptr.lo sci_exists.lo sci_errcatch.lo \
 	sci_clear.lo sci_argn.lo sci_setbpt.lo sci_typnam.lo \
 	sci_clearglobal.lo sci_delbpt.lo where.lo sci_iserror.lo \
-	sci_type.lo sci_debug.lo sci_isglobal.lo
+	sci_type.lo sci_debug.lo sci_comp.lo sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
@@ -719,6 +721,7 @@ sci_gateway/c/sci_librarieslist.c \
 sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
+sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_errclear.f \
@@ -745,6 +748,7 @@ sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
 sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_debug.f \
+sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
@@ -1079,6 +1083,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_clear.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_clearfun.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_clearglobal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_comp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_debug.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_delbpt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_dispbpt.Plo@am__quote@
@@ -2149,6 +2154,13 @@ libscicore_la-sci_readgateway.lo: sci_gateway/c/sci_readgateway.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_readgateway.lo `test -f 'sci_gateway/c/sci_readgateway.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readgateway.c
 
+libscicore_la-sci_comp.lo: sci_gateway/c/sci_comp.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_comp.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_comp.Tpo -c -o libscicore_la-sci_comp.lo `test -f 'sci_gateway/c/sci_comp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_comp.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_comp.Tpo $(DEPDIR)/libscicore_la-sci_comp.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_comp.c' object='libscicore_la-sci_comp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_comp.lo `test -f 'sci_gateway/c/sci_comp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_comp.c
+
 libscicore_la-sci_exit.lo: sci_gateway/c/sci_exit.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_exit.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_exit.Tpo -c -o libscicore_la-sci_exit.lo `test -f 'sci_gateway/c/sci_exit.c' || echo '$(srcdir)/'`sci_gateway/c/sci_exit.c
 @am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-sci_exit.Tpo $(DEPDIR)/libscicore_la-sci_exit.Plo
@@ -2536,6 +2548,9 @@ sci_type.lo: sci_gateway/fortran/sci_type.f
 
 sci_debug.lo: sci_gateway/fortran/sci_debug.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_debug.lo `test -f 'sci_gateway/fortran/sci_debug.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_debug.f
+
+sci_comp.lo: sci_gateway/fortran/sci_comp.f
+	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_comp.lo `test -f 'sci_gateway/fortran/sci_comp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_comp.f
 
 sci_isglobal.lo: sci_gateway/fortran/sci_isglobal.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_isglobal.lo `test -f 'sci_gateway/fortran/sci_isglobal.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_isglobal.f

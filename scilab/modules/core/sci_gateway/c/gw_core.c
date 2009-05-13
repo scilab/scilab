@@ -14,7 +14,6 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
-#include "gw_functions.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
