@@ -164,6 +164,8 @@ Bug fixes:
 
 * bug 4474 fixed - help of 'fort' is obsolete.
 
+* bug 4474 fixed - addinter help has no example.
+
 * bug 4489 fixed - oldsave and oldload removed.
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
