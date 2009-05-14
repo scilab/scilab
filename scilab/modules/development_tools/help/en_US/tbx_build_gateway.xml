@@ -75,6 +75,12 @@
           <para>character string. The path of the Makefile file without extension.</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>ismex</term>
+        <listitem>
+          <para>Internal variable to specify if we are working with mex or not.</para>
+        </listitem>
+      </varlistentry>      
     </variablelist>
   </refsection>
   <refsection>

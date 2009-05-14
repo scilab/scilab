@@ -166,6 +166,8 @@ Bug fixes:
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
 
+* bug 4496 fixed - in tbx_build_gateway help page, ismex parameter is not documented.
+
 * bug 4497 fixed - xmltoformat gets stuck in directories beginning with '.'.
 
 * bug 4498 fixed - merror() returns weird strings if called before opening files.
