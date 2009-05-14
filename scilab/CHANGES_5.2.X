@@ -77,7 +77,6 @@ Dynamic link:
  - add a example to call a scilab macro from a C interface
    (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
 
-
 Online Help :
 =============
 
@@ -176,3 +175,5 @@ Bug fixes:
 * bug 4500 fixed - basename('') returns a error
 
 * bug 4501 fixed - mput() no more allowed integer types as first input argument.
+
+* bug 4516 fixed - ilib_for_link does not use ilib_gen_loader but a internal function.
