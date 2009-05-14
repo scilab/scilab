@@ -33,7 +33,7 @@ int gw_output_stream(void)
 		if ( getRecursionFunctionToCall() == RECURSION_CALL_DISP)
 		{
 			#define disp_fname "disp"
-			sci_disp(disp_fname,strlen(disp_fname));
+			sci_disp(disp_fname,(unsigned long)strlen(disp_fname));
 			return 0;
 		}
 	}

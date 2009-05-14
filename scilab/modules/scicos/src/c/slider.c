@@ -106,20 +106,21 @@ static void block_draw_rect_3(double r[],double percent)
 #define REMOVE_REC_DRIVER() /*char old_rec[4]; int rem_flag ; rem_flag = scig_driverX11(old_rec); */
 #define RESTORE_DRIVER() /*if (rem_flag == 1) C2F(SetDriver)(old_rec,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
 
-static int scig_driverX11(char *old) 
-{
-	/* disabled */
-	/* TO DO : new graphics version */
-  /*GetDriver1(old,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
-  if ( old[0] == 'R' )
-    {
-		/* disabled */
-		/* TO DO : new graphics version */
-      /*C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
-      return 1;
-    }
-  return 0;
-}
+
+//static int scig_driverX11(char *old) 
+//{
+//	/* disabled */
+//	/* TO DO : new graphics version */
+//  /*GetDriver1(old,PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
+//  if ( old[0] == 'R' )
+//    {
+//		/* disabled */
+//		/* TO DO : new graphics version */
+//      /*C2F(SetDriver)("X11",PI0,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0);*/
+//      return 1;
+//    }
+//  return 0;
+//}
 
 /*----------------------------------------------------
  * changes the current window to win 
@@ -146,7 +147,8 @@ static int set_block_win( int win)
 
 static int set_slider_color( int color)
 {
-  static int verbose = 0, cur=0,narg;
+  static int cur = 0;
+  /* static int verbose = 0, cur=0,narg; */
   /*
   C2F(dr)("xget","color",&verbose,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
   if ( cur != color ) 

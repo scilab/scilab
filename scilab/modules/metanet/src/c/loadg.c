@@ -17,6 +17,7 @@
 #include "loadg.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "Scierror.h"
 
 static int CompString(char **s1,char **s2)
 {

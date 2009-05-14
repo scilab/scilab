@@ -36,22 +36,22 @@ int gw_functions(void)
 		{
 			case RECURSION_CALL_DEFF:
 				#define deff_fname "deff"
-				C2F(sci_deff)(deff_fname,strlen(deff_fname));
+				C2F(sci_deff)(deff_fname,(unsigned long)strlen(deff_fname));
 				return 0;
 
 			case RECURSION_CALL_GETF:
 				#define getf_fname "getf"
-				C2F(sci_getf)(deff_fname,strlen(getf_fname));
+				C2F(sci_getf)(deff_fname,(unsigned long)strlen(getf_fname));
 				return 0;
 
 			case RECURSION_CALL_EXEC1: case RECURSION_CALL_EXEC2:
 				#define exec_fname "exec"
-				C2F(sci_exec)(exec_fname,strlen(exec_fname));
+				C2F(sci_exec)(exec_fname,(unsigned long)strlen(exec_fname));
 				return 0;
 
 			case RECURSION_CALL_EXECSTR:
 				#define execstr_fname "execstr"
-				C2F(sci_execstr)(execstr_fname,strlen(execstr_fname));
+				C2F(sci_execstr)(execstr_fname,(unsigned long)strlen(execstr_fname));
 				return 0;
 
 			default:
