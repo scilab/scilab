@@ -162,6 +162,8 @@ Bug fixes:
 
 * bug 4467 fixed - getshortpathname,getlongpathname do not manage string matrix as input
 
+* bug 4474 fixed - help of 'fort' is obsolete.
+
 * bug 4489 fixed - oldsave and oldload removed.
 
 * bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.

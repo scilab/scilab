@@ -134,31 +134,6 @@
       </varlistentry>
 
       <varlistentry>
-        <term>scilab -link &lt;objects&gt;</term>
-
-        <listitem>
-          <para>Is used to produce a local <literal>scilex</literal>
-          (executable code of Scilab) linked with the additional files given
-          by the user in <literal>&lt;objects&gt;</literal>. This command also
-          produces a <literal>scilab</literal> script, which when called will
-          ran the new generated scilex file.</para>
-
-          <para>For example:</para>
-
-          <programlisting> 
-scilab -link  C/interf.o C/evol.o C/bib.a
- </programlisting>
-
-          <para>will create a new <literal>scilex</literal> file in which the
-          default <literal>interf.o</literal> file will be replaced by
-          <literal>C/interf.o</literal>.</para>
-
-          <para><literal>-link</literal> option cannot be used with any of the
-          other options.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>-mem N</term>
 
         <listitem>
