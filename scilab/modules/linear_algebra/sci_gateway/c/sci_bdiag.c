@@ -10,11 +10,10 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+#include "MALLOC.h"
 #include "stack-c.h"
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
-#include "MALLOC.h"
 #include "localization.h"
 #include "core_math.h" /* for Abs  macro */
 
@@ -30,6 +29,7 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
   int ret= 0;
   double* pDataReal[2]={NULL, NULL};
   double* pDataImg[2]={NULL, NULL};
+ 
   int iCols[2]={0, 0}, iRows[2]= {0, 0};
   int i;
 
@@ -104,6 +104,9 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 	      {
 		double* lxr;
 		double* lxi;
+		double* le;
+		int* lib;
+		double* lw;
 		int stackAllocError= 0;
 		if(iIsComplex(1))
 		  {
@@ -115,9 +118,9 @@ int C2F(intbdiagr)(char *fname, long unsigned int fname_len)
 		    lxi=lxr+iCols[0]*iCols[0];
 		  }
 	      /* allocating the two memory buffers in one place as the original code did */
-	      double* le= (double*)MALLOC( 2*iCols[0] * sizeof(double) ); 
-	      int* lib= (int*)MALLOC(iCols[0] * sizeof(int));
-	      double* lw= (double*)MALLOC(iCols[0] * sizeof(double));
+	      le= (double*) MALLOC( 2*iCols[0] * sizeof(double) ); 
+	      lib= (int*) MALLOC(iCols[0] * sizeof(int));
+	      lw= (double*)MALLOC(iCols[0] * sizeof(double));
 	      if(le && lib && lw && !stackAllocError)
 		{
 		  int fail;
