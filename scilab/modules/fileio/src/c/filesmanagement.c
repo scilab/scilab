@@ -260,7 +260,11 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
           fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),filename, strerror(errno));
 			*/
 		  /* if we have a problem */
-		  fullpath=filename;
+#ifndef _MSC_VER
+		fullpath = filename;
+#else
+		strcpy(fullpath,filename);
+#endif
 		}
 
 		for (i=0;i<CurrentMaxFiles;i++)
