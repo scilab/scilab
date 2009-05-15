@@ -1565,7 +1565,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
 
   if ok then
     //load the gui function
-    getf(rpat+'/'+rdnom+'_c.sci');
+    exec(rpat+'/'+rdnom+'_c.sci');
     //Change diagram superblock to new generated block
     XX=update_block(XX);
     execstr(rdnom+'_c=resume('+rdnom+'_c)')

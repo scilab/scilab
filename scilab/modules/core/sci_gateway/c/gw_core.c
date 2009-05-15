@@ -13,6 +13,7 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {
@@ -78,15 +79,18 @@ int gw_core(void)
 {  
 	Rhs = Max(0, Rhs);
 
-	/**
-	* recursion from intdeff
-	* TODO : need more comment
-	*/
-	if ( C2F(recu).rstk[C2F(recu).pt-1] == 901) 
+	/* recursion */
+	/* getf, deff, exec, execstr (functions module) call comp by "recursion" */
+    /* comp can not be in same gateway that others of functions module */
+	if ( isRecursionCallToFunction() )
 	{
-		Fin = 6;
+		if ( (getRecursionGatewayToCall() == GW_CORE_ID ) &&
+			 (getRecursionFunctionToCall() == RECURSION_CALL_COMP) )
+		{
+			Fin = 6;
+		}
 	}
-
+	
 	callFunctionFromGateway(Tab);
 	return 0;
 }

@@ -42,12 +42,13 @@ int C2F(putvar) (int *number, char *namex, unsigned long name_len );
  * @param _iVar the matrix
  * @return 1 if is complex 0 otherwise
  */
-int iIsComplex(int _iVar);
+//int iIsComplex(int _iVar);
 void GetRhsPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal);
 void GetRhsCPolyVar(int _iVarNum, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, int* _piReal, int *_piImg);
 void GetRhsSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal);
 void GetRhsCSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow, int* _piReal, int* _piImg);
 void GetRhsBooleanSparseVar(int _iVarNum, int* _piRows, int* _piCols, int* _piTotalElem, int* _piElemByRow, int* _piColByRow);
+void GetRhsStringVar(int _iVarNum, int* _piRows, int* _piCols, int* _piLen, char* _pstData);
 
 void CreatePolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData);
 void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCols, int *_piPow, double* _pdblRealData, double* _pdblImgData);
@@ -158,8 +159,10 @@ int IsKindOfList(int* _piNode);
 void vCloseNode(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
 
-//Internal fonctions to retrieve varaibles information from pointer ( real memory address )
+//Fonctions to retrieve variables information from pointer ( real memory address )
 int iGetStringFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piLen, int** _piString);
+
+int* iGetAddressFromItemPos(int *_piParent, int _iItemPos);
 
 
 //Internal fonctions to retrieve varaibles information from Address ( old "il" )

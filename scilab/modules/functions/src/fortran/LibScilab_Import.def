@@ -1,0 +1,31 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+; core
+com_
+iop_
+cha1_
+stack_
+namstr_
+putid_
+cvname_
+clunit_
+vstk_
+objvide_
+stackp_
+errgst_
+recu_
+ref2val_
+checkrhs_
+checklhs_
+getscalar_
+getfun_
+cremat_
+eptover_
+checkval_
+getsmat_
+; elementary_functions
+isort_
+iset_
+unsfdcopy_

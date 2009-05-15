@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>primes</refname>
 
-    <refpurpose>função dos primos</refpurpose>
+    <refpurpose>funÃ§Ã£o dos primos</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>[y]=primes(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para>Dado um real <literal>x</literal>, <literal>primes(x)</literal>
-    retorna em um vetor <literal>y</literal> todos os números primos entre 1 e
-    <literal>x</literal>. Se <literal>x&lt;2 </literal>então,
+    retorna em um vetor <literal>y</literal> todos os nÃºmeros primos entre 1 e
+    <literal>x</literal>. Se <literal>x&lt;2 </literal>entÃ£o,
     <literal>primes(x)</literal> retorna uma matriz vazia.</para>
   </refsection>
 
@@ -75,7 +75,7 @@ y=primes(x)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="factor">factor</link></member>

@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/development_tools/help/fr_FR";
-add_help_chapter("Outils de développement",path,%T);
+add_help_chapter("Outils de dÃ©veloppement",path,%T);
 clear path add_help_chapter;

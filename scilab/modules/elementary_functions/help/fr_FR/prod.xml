@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="prod" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=prod(x)
 y=prod(x,'r') ou y=prod(x,1)
@@ -26,14 +26,14 @@ y=prod(x,'m')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)</para>
+          <para>vecteur ou matrice (rÃ©elle ou complexe)</para>
         </listitem>
       </varlistentry>
 
@@ -51,7 +51,7 @@ y=prod(x,'m')</synopsis>
     <title>Description</title>
 
     <para>Pour un vecteur ou une matrice <literal>x</literal>,
-    <literal>y=prod(x)</literal> renvoie un scalaire <literal>y</literal> égal
+    <literal>y=prod(x)</literal> renvoie un scalaire <literal>y</literal> Ã©gal
     au produit des termes de <literal>x</literal>.</para>
 
     <para><literal>y=prod(x,'r')</literal> (ou <literal>y=prod(x,1)</literal>)
@@ -67,7 +67,7 @@ y=prod(x,'m')</synopsis>
     prod(x(i,j),j=1,n)</literal>)).</para>
 
     <para><literal>y=prod(x,'m')</literal> effectue le produit suivant la
-    première dimension plus grande que 1 (compatibilité avec Matlab).</para>
+    premiÃ¨re dimension plus grande que 1 (compatibilitÃ© avec Matlab).</para>
   </refsection>
 
   <refsection>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,12 +24,12 @@
   <refnamediv>
     <refname>spcompack</refname>
 
-    <refpurpose>converte uma representação de adjacência comprimida em
-    representação de adjacência padrão</refpurpose>
+    <refpurpose>converte uma representaÃ§Ã£o de adjacÃªncia comprimida em
+    representaÃ§Ã£o de adjacÃªncia padrÃ£o</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -67,12 +67,12 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <programlisting>
 
-A função utilitária spcompak é usada para converter uma representação de adjacência
-comprimida em uma representação de adjacência padrão.
+A funÃ§Ã£o utilitÃ¡ria spcompak Ã© usada para converter uma representaÃ§Ã£o de adjacÃªncia
+comprimida em uma representaÃ§Ã£o de adjacÃªncia padrÃ£o.
 
    
     </programlisting>
@@ -83,7 +83,7 @@ comprimida em uma representação de adjacência padrão.
 
     <programlisting role="example">
 
-// A é a matriz esparsa:
+// A Ã© a matriz esparsa:
 A=[1,0,0,0,0,0,0;
    0,1,0,0,0,0,0;
    0,0,1,0,0,0,0;
@@ -92,29 +92,29 @@ A=[1,0,0,0,0,0,0;
    0,0,1,1,0,1,0;
    0,0,1,1,0,1,1];
 A=sparse(A);
-//Para esta matriz a representação padrão de adjacência é dada por:
+//Para esta matriz a representaÃ§Ã£o padrÃ£o de adjacÃªncia Ã© dada por:
 xadj=[1,2,3,8,12,13,15,16];
 adjncy=[1, 2, 3,4,5,6,7, 4,5,6,7, 5, 6,7, 7];
 //(ver sp2adj).
-// Incrementos no vetor xadj dão o número de entradas não nulas em cada coluna
-// i.e., há 2-1=1 entrada na coluna 1
-//    há 3-2=1 entrada na coluna 2
-//    há 8-3=5 entradas na coluna 3
+// Incrementos no vetor xadj dÃ£o o nÃºmero de entradas nÃ£o nulas em cada coluna
+// i.e., hÃ¡ 2-1=1 entrada na coluna 1
+//    hÃ¡ 3-2=1 entrada na coluna 2
+//    hÃ¡ 8-3=5 entradas na coluna 3
 //              12-8=4                      4
 //etc.
-//O índice de linha dessas entradas é dado pelo vetor adjncy
+//O Ã­ndice de linha dessas entradas Ã© dado pelo vetor adjncy
 // por exemplo, 
 // adjncy (3:7)=adjncy(xadj(3):xadj(4)-1)=[3,4,5,6,7] 
-// diz que as 5=xadj(4)-xadj(3) entradas na coluna 3 têm índices de linha
+// diz que as 5=xadj(4)-xadj(3) entradas na coluna 3 tÃªm Ã­ndices de linha
 // 3,4,5,6,7.
-//Na representação compacta, as seqüências repetidas em adjncy
-//são eliminadas.
-//Aqui em adjncy, as seqüências 4,5,6,7  e 7 são eliminadas.
-//A estrutura padrão (xadj,adjncy) toma a forma comprimida (lindx,xlindx)
+//Na representaÃ§Ã£o compacta, as seqÃ¼Ãªncias repetidas em adjncy
+//sÃ£o eliminadas.
+//Aqui em adjncy, as seqÃ¼Ãªncias 4,5,6,7  e 7 sÃ£o eliminadas.
+//A estrutura padrÃ£o (xadj,adjncy) toma a forma comprimida (lindx,xlindx)
 lindx=[1, 2, 3,4,5,6,7, 5, 6,7];
 xlindx=[1,2,3,8,9,11];
-//(colunas 4 e 7 de A são eliminadas).
-//A pode ser reconstruída de (xadj,xlindx,lindx).
+//(colunas 4 e 7 de A sÃ£o eliminadas).
+//A pode ser reconstruÃ­da de (xadj,xlindx,lindx).
 [xadj,adjncy,anz]= sp2adj(A);
 adjncy-spcompack(xadj,xlindx,lindx)
 
@@ -122,7 +122,7 @@ adjncy-spcompack(xadj,xlindx,lindx)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="sp2adj">sp2adj</link></member>

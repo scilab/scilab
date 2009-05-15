@@ -144,15 +144,15 @@ endfunction
 function r=check_set_ports()
   r=%f
   funcprot(0)
-  getf('SCI/modules/scicos/macros/scicos_scicos/setvalue.sci')
+  exec('SCI/modules/scicos/macros/scicos_scicos/setvalue.sci')
   getvalue=setvalue;
   alreadyran=%f;  %scicos_prob=%f
   for i=1:nb
     if and(Blocs(i)~=["SUPER_f" "func_block" "scifunc_block" "GENERAL_f" "SOM_f" "CURV_f" "LOOKUP_f"]) then 
       if Blocs(i)=='fortran_block'|Blocs(i)=='c_block' then
-	getf('SCI/modules/scicos_blocks/macros/'+Blocs(i)+'.sci')
+	exec('SCI/modules/scicos_blocks/macros/'+Blocs(i)+'.sci')
       else
-	getf('SCI/modules/scicos_blocks/macros/'+Blocs(i)+'.sci')
+	exec('SCI/modules/scicos_blocks/macros/'+Blocs(i)+'.sci')
       end
       execstr('gui='+Blocs(i))
       o=gui('define');

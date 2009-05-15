@@ -447,10 +447,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dspdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dspe2.c"
 				>
 			</File>
@@ -811,10 +807,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wspdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\wspe2.c"
 				>
 			</File>
@@ -928,10 +920,6 @@
 			</File>
 			<File
 				RelativePath=".\dspcsp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dspdsp.f"
 				>
 			</File>
 			<File
@@ -1292,10 +1280,6 @@
 			</File>
 			<File
 				RelativePath=".\wspcsp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wspdsp.f"
 				>
 			</File>
 			<File

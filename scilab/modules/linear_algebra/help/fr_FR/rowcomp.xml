@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,37 +19,37 @@
     <refpurpose> compression de lignes, image  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[W,rk]=colcomp(A [,flag [,tol]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice réelle ou complexe</para>
+          <para>matrice rÃ©elle ou complexe</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>chaîne de caractères optionnelle qui peut prendre les valeurs
+          <para>chaÃ®ne de caractÃ¨res optionnelle qui peut prendre les valeurs
 	    <literal>'svd'</literal> ou <literal>'qr'</literal>.  La valeur par
-	    défaut est  <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
+	    dÃ©faut est  <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
-          <para>nombre réel non négatif. La valeur par
-	    défaut est  <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
+          <para>nombre rÃ©el non nÃ©gatif. La valeur par
+	    dÃ©faut est  <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>W  </term>
         <listitem>
-          <para>matrice carrée régulière (matrice de changement de base) </para>
+          <para>matrice carrÃ©e rÃ©guliÃ¨re (matrice de changement de base) </para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -62,29 +62,29 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Compression des colonnes de <literal>A</literal>. <literal>Ac = W*A</literal> est à
-      lignes compressées, c'est à dire
-      <literal>Ac=[Af;0]</literal> et les lignes de <literal>Af</literal> sont linéairement
-      indépendantes.</para>
-    <para><literal>flag</literal> et <literal>tol</literal> sont des paramètres optionnels :
+    <para>Compression des colonnes de <literal>A</literal>. <literal>Ac = W*A</literal> est Ã 
+      lignes compressÃ©es, c'est Ã  dire
+      <literal>Ac=[Af;0]</literal> et les lignes de <literal>Af</literal> sont linÃ©airement
+      indÃ©pendantes.</para>
+    <para><literal>flag</literal> et <literal>tol</literal> sont des paramÃ¨tres optionnels :
       <literal>flag = 'qr'</literal> ou <literal>'svd'</literal>
-      (<literal>'svd'</literal> par défaut). </para>
-    <para><literal>tol</literal> = paramètre de tolérance (de l'ordre de
-      <literal>%eps</literal> par défaut).</para>
-    <para>Les <literal>rk</literal> premières colonnes de <literal>W'</literal> forment
+      (<literal>'svd'</literal> par dÃ©faut). </para>
+    <para><literal>tol</literal> = paramÃ¨tre de tolÃ©rance (de l'ordre de
+      <literal>%eps</literal> par dÃ©faut).</para>
+    <para>Les <literal>rk</literal> premiÃ¨res colonnes de <literal>W'</literal> forment
       une base de l'image de <literal>A</literal>. </para>
-    <para> Un vecteur non nul <literal>x</literal> appartient à Im(<literal>A</literal>) si
-      <literal>W*x</literal> est à lignes compressées en accord avec <literal>Ac</literal>
-      c'est à dire que la norme de ses dernières composantes est  nulle (à
-      la précision machine) par rapport à ses rk premières composantes.</para>
+    <para> Un vecteur non nul <literal>x</literal> appartient Ã  Im(<literal>A</literal>) si
+      <literal>W*x</literal> est Ã  lignes compressÃ©es en accord avec <literal>Ac</literal>
+      c'est Ã  dire que la norme de ses derniÃ¨res composantes est  nulle (Ã 
+      la prÃ©cision machine) par rapport Ã  ses rk premiÃ¨res composantes.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-    A=rand(5,2)*rand(2,4);          // 4 vecteurs colonne dont 2 indépendants
+    A=rand(5,2)*rand(2,4);          // 4 vecteurs colonne dont 2 indÃ©pendants
     [X,dim]=rowcomp(A);Xp=X';
     svd([Xp(:,1:dim),A])            // Im(A) = Im(Xp(:,1:dim)
-    x=A*rand(4,1);                  // x appartient à Im(A)
+    x=A*rand(4,1);                  // x appartient Ã  Im(A)
     y=X*x  
     norm(y(dim+1:$))/norm(y(1:dim)) // la norme est petite
     ]]></programlisting>
@@ -108,8 +108,8 @@
     <para>F. D.; INRIA  </para>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
-    <para>La fonction <literal>rowcomp</literal> est basée sur les décompositions
+    <title>Fonctions UtilisÃ©es</title>
+    <para>La fonction <literal>rowcomp</literal> est basÃ©e sur les dÃ©compositions
       <link linkend="svd">svd</link> ou <link linkend="qr">qr</link>.</para>
   </refsection>
 </refentry>

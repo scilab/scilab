@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xnumb">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,16 +8,16 @@
     <refpurpose> dessine des nombres  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xnumb(x,y,nums,[box,angle])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x,y,nums  </term>
         <listitem>
-          <para>vecteurs de même taille.
+          <para>vecteurs de mÃªme taille.
 </para>
         </listitem>
       </varlistentry>
@@ -31,7 +31,7 @@
       <varlistentry>
         <term>angle  </term>
         <listitem>
-          <para>vecteur optionnel de même taille que <literal>x</literal>
+          <para>vecteur optionnel de mÃªme taille que <literal>x</literal>
 </para>
         </listitem>
       </varlistentry>
@@ -40,9 +40,9 @@
   <refsection>
     <title>Description</title>
     <para><literal>xnumb</literal> dessine les nombres <literal>nums(i)</literal>
-    aux positions <literal>x(i),y(i)</literal> dans l'échelle courante.
-    Si <literal>box</literal> vaut 1, une boîte est dessinée autour des nombres. 
-    Si <literal>angle</literal> est donné, il donne la direction pour le dessin de la chaîne de caractères.
+    aux positions <literal>x(i),y(i)</literal> dans l'Ã©chelle courante.
+    Si <literal>box</literal> vaut 1, une boÃ®te est dessinÃ©e autour des nombres. 
+    Si <literal>angle</literal> est donnÃ©, il donne la direction pour le dessin de la chaÃ®ne de caractÃ¨res.
   </para>
   </refsection>
   <refsection>

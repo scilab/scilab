@@ -27,6 +27,7 @@
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "Scierror.h"
+#include "prompt.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -254,6 +255,7 @@ int C2F(parse)(void)
 
   C2F(getlin)(&job, &c__1);
 
+  ClearTemporaryPrompt();
   //C2F(tksynchro)(&c_n1);
 
 

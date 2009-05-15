@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="evstr">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>evstr</refname>
-    <refpurpose> évaluation d'une expression  </refpurpose>
+    <refpurpose> Ã©valuation d'une expression  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>H=evstr(Z)
 [H,ierr]=evstr(Z)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>Z  </term>
         <listitem>
-          <para>matrice de chaînes de caractères <literal>M</literal> ou
+          <para>matrice de chaÃ®nes de caractÃ¨res <literal>M</literal> ou
 	    <literal>list(M,Subexp)</literal>
 	  </para>
           <variablelist>
             <varlistentry>
               <term>M  </term>
               <listitem>
-                <para>matrice de chaînes de caractères
+                <para>matrice de chaÃ®nes de caractÃ¨res
 		</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>Subexp  </term>
               <listitem>
-                <para>vecteur de chaînes de caractères
+                <para>vecteur de chaÃ®nes de caractÃ¨res
 		</para>
               </listitem>
             </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>ierr  </term>
         <listitem>
-          <para>entier, 0 ou numéro de l'erreur
+          <para>entier, 0 ou numÃ©ro de l'erreur
 	  </para>
         </listitem>
       </varlistentry>
@@ -58,23 +58,23 @@
   <refsection>
     <title>Description</title>
     <para>
-      Renvoie le résultat de l'évaluation de la matrice de chaînes de
-      caractères <literal>M</literal>. Chaque élément de la matrice doit être une
+      Renvoie le rÃ©sultat de l'Ã©valuation de la matrice de chaÃ®nes de
+      caractÃ¨res <literal>M</literal>. Chaque Ã©lÃ©ment de la matrice doit Ãªtre une
       expression Scilab valide.
     </para>
     <para>
-      Si l'évaluation d'un terme de <literal>M</literal> conduit à une
-      erreur, la syntaxe habituelle <literal>H=evstr(M)</literal>, déclenche le
+      Si l'Ã©valuation d'un terme de <literal>M</literal> conduit Ã  une
+      erreur, la syntaxe habituelle <literal>H=evstr(M)</literal>, dÃ©clenche le
       message d'erreur.
       Dans la syntaxe <literal>[H,ierr]=evstr(M)</literal> aucun message
-      d'erreur n'est produit, mais le numéro de l'erreur est
-      renvoyé dans <literal>ierr</literal>.
+      d'erreur n'est produit, mais le numÃ©ro de l'erreur est
+      renvoyÃ© dans <literal>ierr</literal>.
     </para>
     <para>
       Si <literal>Z</literal> est une liste, <literal>Subexp</literal> est un vecteur de
-      chaînes de caractères  qui définit des sous-expressions qui sont évaluées
-      avant <literal>M</literal>. Ces sous-expressions doivent être référencées par
-      l'expression <literal>%(k)</literal> dans <literal>M</literal>, où
+      chaÃ®nes de caractÃ¨res  qui dÃ©finit des sous-expressions qui sont Ã©valuÃ©es
+      avant <literal>M</literal>. Ces sous-expressions doivent Ãªtre rÃ©fÃ©rencÃ©es par
+      l'expression <literal>%(k)</literal> dans <literal>M</literal>, oÃ¹
       <literal>k</literal> est la position de la sous-expression dans la liste
       <literal>Subexp</literal>.
     </para>

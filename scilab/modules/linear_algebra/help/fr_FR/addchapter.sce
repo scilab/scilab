@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/linear_algebra/help/fr_FR";
-add_help_chapter("Algèbre Lineaire",path,%T);
+add_help_chapter("AlgÃ¨bre Lineaire",path,%T);
 clear path add_help_chapter;

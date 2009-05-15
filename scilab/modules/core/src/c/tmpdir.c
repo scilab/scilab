@@ -33,7 +33,6 @@ extern  char  *getenv();
 #include "strdup_windows.h"
 #endif
 #include "MALLOC.h" /* MALLOC */
-#include "prompt.h"
 #include "tmpdir.h"
 #include "localization.h"
 #include "charEncoding.h"
@@ -78,8 +77,8 @@ void createScilabTMPDIR(void)
 				}
 				#else
 				{
-					GetTempPath(PATH_MAX,wcTmpDirDefault);
-					strcpy(wctmp_dir,wcTmpDirDefault);
+					GetTempPathW(PATH_MAX,wcTmpDirDefault);
+					wcscpy(wctmp_dir,wcTmpDirDefault);
 					wctmp_dir[wcslen(wctmp_dir)-1]='\0'; /* Remove last \ */
 				}
 				#endif

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="logspace" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,25 +14,25 @@
     <refname>logspace</refname>
 
     <refpurpose>vecteur de valeurs logarithmiquement
-    équidistantes.</refpurpose>
+    Ã©quidistantes.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>logspace(d1,d2, [n])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>d1,d2</term>
 
         <listitem>
-          <para>scalaire réel ou complexe (une signification particulière est
-          donnée à la valeur <literal>%pi</literal>)</para>
+          <para>scalaire rÃ©el ou complexe (une signification particuliÃ¨re est
+          donnÃ©e Ã  la valeur <literal>%pi</literal>)</para>
         </listitem>
       </varlistentry>
 
@@ -40,7 +40,7 @@
         <term>n</term>
 
         <listitem>
-          <para>entier (nombre de valeurs, 50 par défaut)</para>
+          <para>entier (nombre de valeurs, 50 par dÃ©faut)</para>
         </listitem>
       </varlistentry>
 
@@ -48,7 +48,7 @@
         <term>v</term>
 
         <listitem>
-          <para>vecteur ligne réel ou complexe</para>
+          <para>vecteur ligne rÃ©el ou complexe</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -58,7 +58,7 @@
     <title>Description</title>
 
     <para>Renvoie un vecteur ligne <literal>n</literal> de valeurs
-    logarithmiquement équidistantes entre <literal>10^d1</literal> et
+    logarithmiquement Ã©quidistantes entre <literal>10^d1</literal> et
     <literal>10^d2</literal>. Si <literal>d2=%pi</literal> alors les valeurs
     sont comprises entre <literal>10^d1</literal> et
     <literal>pi</literal>.</para>

@@ -31,7 +31,6 @@ clunit_
 getfun_
 stackp_
 eptover_
-fmttyp_
 checkrhs_
 checklhs_
 eqid_
@@ -43,7 +42,6 @@ putid_
 depfun_
 depexec_
 cvname_
-print_
 savlod_
 dbasin_
 basin_

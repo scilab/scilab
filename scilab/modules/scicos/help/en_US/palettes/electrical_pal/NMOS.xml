@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -120,13 +120,13 @@ resistance is included (to avoid numerical difficulties).
       <tr>
         <td align="left">W [m]</td>
         <td align="left">L [m]</td>
-        <td align="left">Beta [1/V²]</td>
+        <td align="left">Beta [1/VÂ²]</td>
         <td align="left">Vt [V]</td>
         <td align="left">K2</td>
         <td align="left">K5</td>
         <td align="left">DW [m]</td>
         <td align="left">DL[m]</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">12.e-6</td>
@@ -170,7 +170,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.7311</td>
         <td align="left">-5.4e-6</td>
         <td align="left">-4.e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">20.e-6</td>
@@ -181,7 +181,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.7311</td>
         <td align="left">-2.5e-6</td>
         <td align="left">-1.5e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">30.e-6</td>
@@ -192,7 +192,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.878</td>
         <td align="left">-3.4e-6</td>
         <td align="left">-1.74e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">30.e-6</td>
@@ -203,7 +203,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.72</td>
         <td align="left">0</td>
         <td align="left">-3.9e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">50.e-6</td>
@@ -247,7 +247,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.71</td>
         <td align="left">-.8e-6</td>
         <td align="left">-.2e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">20.e-6</td>
@@ -258,7 +258,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.71</td>
         <td align="left">-.8e-6</td>
         <td align="left">-.2e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">20.e-6</td>
@@ -269,7 +269,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.8</td>
         <td align="left">-.3e-6</td>
         <td align="left">-.2e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">20.e-6</td>
@@ -280,7 +280,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.8</td>
         <td align="left">-.3e-6</td>
         <td align="left">-.2e-6</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
       <tr>
         <td align="left">12.e-6</td>
@@ -324,7 +324,7 @@ resistance is included (to avoid numerical difficulties).
         <td align="left">.66</td>
         <td align="left">0</td>
         <td align="left">0</td>
-        <td align="left"> </td>
+        <td align="left">Â </td>
       </tr>
     </informaltable>
   </refsection>

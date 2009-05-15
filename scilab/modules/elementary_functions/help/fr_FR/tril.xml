@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="tril" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,17 +13,17 @@
   <refnamediv>
     <refname>tril</refname>
 
-    <refpurpose>partie triangulaire inférieure d'une matrice</refpurpose>
+    <refpurpose>partie triangulaire infÃ©rieure d'une matrice</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>tril(x [,k])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -38,7 +38,7 @@
         <term>k</term>
 
         <listitem>
-          <para>entier (0 par défaut)</para>
+          <para>entier (0 par dÃ©faut)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -47,9 +47,9 @@
   <refsection>
     <title>Description</title>
 
-    <para>Partie triangulaire inférieure d'une matrice.
-    <literal>tril(x,k)</literal> est composée des termes sous une diagonale :
-    k&gt;0 (diagonale supérieure) et k&lt;0 (diagonale sous la diagonale
+    <para>Partie triangulaire infÃ©rieure d'une matrice.
+    <literal>tril(x,k)</literal> est composÃ©e des termes sous une diagonale :
+    k&gt;0 (diagonale supÃ©rieure) et k&lt;0 (diagonale sous la diagonale
     principale).</para>
   </refsection>
 

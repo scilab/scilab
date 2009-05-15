@@ -14,14 +14,31 @@ Compilation:
 
 * lapack 3.2 used on Windows
 
+* functions module is loaded dynamically by Scilab.
+
 Source reorganisation:
 ======================
 
 * Makefile.incl.mak (Windows, dynamic link) moved from SCI directory to
   SCI/modules/src/scripts
+  
+* newest, get_absolute_file_path, getrelativefilename moved from io to fileio.
+
+* bug 3668 fixed - formatnumber.f, dmdsp.f, ... moved in output_stream module.
+
+* printf, msprintf, mprintf, print moved in output_stream module.
+
+* disp moved in output_stream module.
+
+* bug 3668 fixed - lib, deff, getf, exec, execstr moved in functions module.
+
+* oldsave, oldload functions (only used with macros of scilab 2.4) are removed
+  Replaces oldsave, oldload by save and load in your code.
 
 Input/Output functions:
 =======================
+
+ - Input arguments of fprintf are checked 
 
  - Rewrite :
     + getenv
@@ -30,7 +47,7 @@ Input/Output functions:
 Core functions:
 ===============
 
- - Request 505 : Add error code capability to exit.
+ - Request 505 : Add error code capability to exit (SEP #19).
 
  - Rewrite :
      + mode
@@ -40,7 +57,10 @@ fileio functions:
 =================
   - Input arguments of functions are checked 
     (mclearerr, mclose, merror, mget, mgetstr, meof, mopen, mput, mputstr, mseek, mtell)
-
+    
+  - fileinfo manages column vector of strings (SEP #25)
+  
+  - basename uses fileparts
 
 Dynamic link:
 =============
@@ -48,11 +68,20 @@ Dynamic link:
  - Windows : temporary files (objects) are generated in a intermediate subdirectory (Release or Debug)
    ilib_for_link and ilib_gen_Make (with Visual studio) use a same makefile template.
    (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC)
+  
+ - ilib_for_link and ilib_gen_Make with lcc-win32 use a same makefile template.
+   (SCI/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.LCC)
 
  - ilib_verbose (SEP #17) Set level of display returned by dynamic link functions.
  
  - add a example to call a scilab macro from a C interface
    (see SCI/modules/dynamic_link/examples/interfaces/call_scilab_function directory)
+
+
+Online Help :
+=============
+
+ - Sub-Chapters are now allowed (See SEP #24)
 
 char encoding bugs :
 ====================
@@ -63,6 +92,8 @@ char encoding bugs :
              contains accented characters.
 
 * bug 3666 fixed - 'input' returns accented characters.
+
+* bug 3701 fixed - "Error during call to UTFToLocale: No such file or directory" on Windows.
 
 * bug 3839 fixed - strrev() doesn't work correctly if the string to be reversed
                    includes some accentuated characters.
@@ -128,3 +159,20 @@ Bug fixes:
 
 * bug 4433 fixed - problem using optim. On some examples, the optim function makes scilab hangs.
 
+* bug 4461 fixed - redefines prompt not displayed in a diary.
+
+* bug 4467 fixed - getshortpathname,getlongpathname do not manage string matrix as input
+
+* bug 4489 fixed - oldsave and oldload removed.
+
+* bug 4492 fixed - output_stream_gateway.xml was not include in windows binary.
+
+* bug 4497 fixed - xmltoformat gets stuck in directories beginning with '.'.
+
+* bug 4498 fixed - merror() returns weird strings if called before opening files.
+
+* bug 4499 fixed - basename returns a wrong value if file or a directory starts with a dot
+
+* bug 4500 fixed - basename('') returns a error
+
+* bug 4501 fixed - mput() no more allowed integer types as first input argument.

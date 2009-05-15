@@ -17,6 +17,7 @@
 #include "core_math.h" /* Min Max */
 #include "sciprint.h"
 #include "localization.h"
+#include "warningmode.h"
 /*--------------------------------------------------------------------------*/
 void C2F(mclose) (int *fd, double *res)
 {   
@@ -70,13 +71,19 @@ void C2F(mclose) (int *fd, double *res)
 				else
 				{
 					*res = 0.0;
-					sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"),"mclose",fd1);
+					if (getWarningMode()) 
+					{
+						sciprint(_("%s: Cannot close file whose descriptor is %d: File is not active.\n"),"mclose",fd1);
+					}
 				}
 			}
 			else 
 			{
 				*res = -1.0;
-				sciprint(_("%s: Cannot close file whose descriptor is %d: No file to close.\n"),"mclose",fd1);
+				if (getWarningMode()) 
+				{
+					sciprint(_("%s: Cannot close file whose descriptor is %d: No file to close.\n"),"mclose",fd1);
+				}
 			}
 		}
 	}

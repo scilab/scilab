@@ -38,14 +38,18 @@ int sci_merror(char *fname,unsigned long fname_len)
 
 	if (Rhs == 0)
 	{
+		char *errmsg = NULL;
+
 		int ierr = 0;
 
 		C2F(merror)(&fd, &ierr);
 
+		CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
+		*stk(lr) = (double)ierr;
+		LhsVar(1) = Rhs + 1;
+
 		if (Lhs == 2)
 		{
-			char *errmsg = NULL;
-
 			if (ierr == 0)
 			{
 				errmsg = strdup("");
@@ -54,22 +58,17 @@ int sci_merror(char *fname,unsigned long fname_len)
 			{
 				errmsg = strdup(strerror(ierr));
 			}
-
 			if (errmsg)
 			{
 				n1 = 1;
 				CreateVarFromPtr(Rhs + 2,STRING_DATATYPE,(m1 = (int)strlen(errmsg), &m1),&n1,&errmsg);
 				LhsVar(2) = Rhs + 2;
-
 				FREE(errmsg);
 				errmsg = NULL;
 			}
 		}
 
-		CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
-		*stk(lr) = (double)ierr;
-		LhsVar(1) = Rhs + 1;
-		PutLhsVar();
+		C2F(putlhsvar)();
 		return 0;
 	}
 
@@ -86,6 +85,10 @@ int sci_merror(char *fname,unsigned long fname_len)
 				{
 					int ierr = 0;
 					C2F(merror)(&fd, &ierr);
+
+					CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
+					*stk(lr) = (double)ierr;
+					LhsVar(1) = Rhs + 1;
 
 					if (Lhs == 2)
 					{
@@ -110,11 +113,7 @@ int sci_merror(char *fname,unsigned long fname_len)
 							errmsg = NULL;
 						}
 					}
-
-					CreateVar(Rhs + 1, MATRIX_OF_DOUBLE_DATATYPE,&one,&one,&lr);
-					*stk(lr) = (double)ierr;
-					LhsVar(1) = Rhs + 1;
-					PutLhsVar();
+					C2F(putlhsvar)();
 				}
 				else
 				{

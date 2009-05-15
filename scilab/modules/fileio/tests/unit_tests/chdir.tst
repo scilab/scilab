@@ -5,13 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-chdir(TMPDIR);
+// <-- JVM NOT MANDATORY -->
 
-if MSDOS then
-	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
-else
-	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");
-end
+a = chdir(TMPDIR);
+if ~a then pause, end
 
-a = chdir("dir_азеазея");
-if(a <> %T) then pause, end
+b = chdir(SCI);
+if ~b then pause, end
+
+wm = warning('query');
+warning('off');
+c = chdir(pathconvert(SCI+"/nowhere"));
+warning(wm);
+
+if c then pause, end

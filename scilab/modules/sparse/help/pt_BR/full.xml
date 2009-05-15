@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>full</refname>
 
-    <refpurpose>conversão de matriz esparsa para cheia (completa)</refpurpose>
+    <refpurpose>conversÃ£o de matriz esparsa para cheia (completa)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>X=full(sp)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,11 +56,11 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>X=full(sp)</literal> converte a matriz esparsa
-    <literal>sp</literal> em sua representação cheia (completa). (Se
-    <literal>sp</literal> já é cheia, então <literal>X</literal> é igual a
+    <literal>sp</literal> em sua representaÃ§Ã£o cheia (completa). (Se
+    <literal>sp</literal> jÃ¡ Ã© cheia, entÃ£o <literal>X</literal> Ã© igual a
     <literal>sp</literal>).</para>
   </refsection>
 
@@ -76,7 +76,7 @@ A=full(sp)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>

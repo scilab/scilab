@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/matio/help/"+getdefaultlanguage();
-add_help_chapter("Entrada/SaÌda de Arquivos Matlab Bin·rios",path,%T);
+add_help_chapter("Entrada/Sa√≠da de Arquivos Matlab Bin√°rios",path,%T);
 clear path add_help_chapter;

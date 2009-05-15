@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,49 +16,49 @@
   </info>
   <refnamediv>
     <refname>mtlb_cumsum</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab cumsum</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab cumsum</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>cumsum</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>cumsum</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec un argument d'entrée (<literal>cumsum(A)</literal>) : La fonction <literal>cumsum</literal> de Matlab
-	traite les valeurs suivant la première dimension qui n'est pas 1 comme des vecteurs alors
+        Avec un argument d'entrÃ©e (<literal>cumsum(A)</literal>) : La fonction <literal>cumsum</literal> de Matlab
+	traite les valeurs suivant la premiÃ¨re dimension qui n'est pas 1 comme des vecteurs alors
 	que Scilab traite toutes les valeurs de A.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec deux arguments d'entrée (<literal>cumsum(A,dim)</literal>) : Matlab tolère une valeur de
-	<literal>dim</literal> supérieure au nombre de dimensions de A alors que Scilab renvoie un
+        Avec deux arguments d'entrÃ©e (<literal>cumsum(A,dim)</literal>) : Matlab tolÃ¨re une valeur de
+	<literal>dim</literal> supÃ©rieure au nombre de dimensions de A alors que Scilab renvoie un
 	message d'erreur dans ce cas.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>R = mtlb_cumsum(A,[,dim])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>cumsum(A,[,dim])</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les opérandes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_cumsum</literal> :
+    La fonction <literal>R = mtlb_cumsum(A,[,dim])</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>cumsum(A,[,dim])</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les opÃ©randes pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_cumsum</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Si <literal>dim</literal> est inférieure ou égale au nombre de dimensiopns de A 
-        <literal>R = mtlb_cumsum(A,dim)</literal> peut être remplacé par <literal>R = cumsum(A,dim)</literal>
+        Si <literal>dim</literal> est infÃ©rieure ou Ã©gale au nombre de dimensiopns de A 
+        <literal>R = mtlb_cumsum(A,dim)</literal> peut Ãªtre remplacÃ© par <literal>R = cumsum(A,dim)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        Si <literal>dim</literal> est supérieure au nombre de dimensiopns de A 
-        <literal>R = mtlb_cumsum(A,dim)</literal> peut être remplacé par <literal>R = A</literal>
+        Si <literal>dim</literal> est supÃ©rieure au nombre de dimensiopns de A 
+        <literal>R = mtlb_cumsum(A,dim)</literal> peut Ãªtre remplacÃ© par <literal>R = A</literal>
 	</para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_cumsum</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_cumsum</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

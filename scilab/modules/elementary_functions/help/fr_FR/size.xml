@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="size" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,14 +17,14 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=size(x [,sel])
 [nr,nc]=size(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -49,7 +49,7 @@
         <term>sel</term>
 
         <listitem>
-          <para>un entier ou une chaîne de caractères</para>
+          <para>un entier ou une chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
 
@@ -68,17 +68,17 @@
 
     <variablelist>
       <varlistentry>
-        <term>Appliquée à :</term>
+        <term>AppliquÃ©e Ã  :</term>
 
         <listitem>
-          <para>une matrice (constante, polynomiale, de chaînes de caractères,
-          booléenne, rationnelle) <literal>x</literal>, avec un seul argument
+          <para>une matrice (constante, polynomiale, de chaÃ®nes de caractÃ¨res,
+          boolÃ©enne, rationnelle) <literal>x</literal>, avec un seul argument
           en sortie, <literal>size</literal> renvoie un vecteur
           <literal>1</literal>x<literal>2</literal> [nombre de lignes, nombre
-          de colonnes]. Appelée avec deux arguments en sortie, size renvoie
+          de colonnes]. AppelÃ©e avec deux arguments en sortie, size renvoie
           <literal>nr,nc</literal> = [nombre de lignes, nombre de colonnes].
-          <literal>sel</literal> peut être utilisé pour indiquer la dimension
-          désirée</para>
+          <literal>sel</literal> peut Ãªtre utilisÃ© pour indiquer la dimension
+          dÃ©sirÃ©e</para>
 
           <variablelist>
             <varlistentry>
@@ -110,41 +110,41 @@
       </varlistentry>
 
       <varlistentry>
-        <term>Appliquée à :</term>
+        <term>AppliquÃ©e Ã  :</term>
 
         <listitem>
-          <para>une liste, size en renvoie le nombre d'éléments. Dans ce cas
-          seule la syntaxe <literal>y=size(x)</literal> peut être
-          utilisée.</para>
+          <para>une liste, size en renvoie le nombre d'Ã©lÃ©ments. Dans ce cas
+          seule la syntaxe <literal>y=size(x)</literal> peut Ãªtre
+          utilisÃ©e.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Appliquée à :</term>
+        <term>AppliquÃ©e Ã  :</term>
 
         <listitem>
-          <para>un système dynamique linéaire, <literal>y=size(x)</literal>
+          <para>un systÃ¨me dynamique linÃ©aire, <literal>y=size(x)</literal>
           renvoie le vecteur ligne <literal>y</literal> = [nombre de sorties,
-          nombre d'entrées] c'est à dire les dimensions de la matrice de
+          nombre d'entrÃ©es] c'est Ã  dire les dimensions de la matrice de
           transfert correspondante. La syntaxe
           <literal>[nr,nc]=size(x)</literal> est aussi valide (avec
           <literal>(nr,nc)=(y(1),y(2)</literal>). Si <literal>x</literal> est
-          un système dynamique linéaire donnée par sa représentation d'état,
+          un systÃ¨me dynamique linÃ©aire donnÃ©e par sa reprÃ©sentation d'Ã©tat,
           alors <literal> [nr,nc,nx]=size(x) </literal> renvoie de plus
           <literal>nx</literal> la dimension de la matrice
           <literal>A</literal> de <literal>x</literal> (la dimension de
-          l'état).</para>
+          l'Ã©tat).</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
-        <term>Appliquée à :</term>
+        <term>AppliquÃ©e Ã  :</term>
 
         <listitem>
           <para>une hypermatrice, <literal> y=size(x) </literal> renvoie le
           vecteur de ses dimensions. La syntaxe <literal>
-          [n1,n2,...nn]=size(x) </literal> est aussi acceptée. <literal>
-          ni=size(x,i) </literal> renvoie la ième dimension et
+          [n1,n2,...nn]=size(x) </literal> est aussi acceptÃ©e. <literal>
+          ni=size(x,i) </literal> renvoie la iÃ¨me dimension et
           <literal>size(x,'*') </literal> renvoie le produit des
           dimensions.</para>
         </listitem>

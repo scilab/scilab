@@ -12,11 +12,8 @@
 // list of  : filename , module
 
 listmacrostoload = ['fileparts','fileio';
-  'getshell','core';
   'pathconvert','fileio';
   'listfiles','fileio'
-  'unix_g','io';
-  'OS_Version','core';
   '%c_a_c','overloading';
   'basename','fileio';
   'mputl','fileio';
