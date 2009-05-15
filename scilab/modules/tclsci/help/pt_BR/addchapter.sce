@@ -6,6 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+
 path = SCI+"/modules/tclsci/help/pt_BR";
 add_help_chapter("Interfaces com Tcl/Tk",path,%T);
 clear path add_help_chapter;

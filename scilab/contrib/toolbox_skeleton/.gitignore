@@ -1,5 +1,5 @@
 #
-# Generated files
+# Generated files (Windows)
 #
 *.dll
 *.def
@@ -10,3 +10,10 @@ master_help.xml
 loader_gateway.sce
 skeleton_*.c
 scilab_*_help
+#
+# Generated files (Linux)
+#
+libskeleton_c.c
+libskeleton_cpp.c
+libskeleton_fortran.c
+*.so

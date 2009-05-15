@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>linsolve</refname>
-    <refpurpose> solveur d'équation linéaire  </refpurpose>
+    <refpurpose> solveur d'Ã©quation linÃ©aire  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[x0,kerA]=linsolve(A,b [,x0])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>une matrice réelle <literal>na x ma</literal> (éventuellement creuse)
+          <para>une matrice rÃ©elle <literal>na x ma</literal> (Ã©ventuellement creuse)
 </para>
         </listitem>
       </varlistentry>
@@ -42,14 +42,14 @@
       <varlistentry>
         <term>x0  </term>
         <listitem>
-          <para>un vecteur réel
+          <para>un vecteur rÃ©el
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>kerA  </term>
         <listitem>
-          <para>une matrice réelle <literal>ma x k </literal>
+          <para>une matrice rÃ©elle <literal>ma x k </literal>
 </para>
         </listitem>
       </varlistentry>
@@ -59,11 +59,11 @@
     <title>Description</title>
     <para><literal>linsolve</literal> donne toutes les solutions de <literal> A*x+b=0</literal>.
   </para>
-    <para><literal>x0</literal> est une solution particulière (s'il en existe une) et <literal>kerA</literal> est le noyau de <literal>A</literal>. Tout vecteur de la forme <literal>x=x0+kerA*w</literal> avec <literal>w</literal> quelconque vérifie
+    <para><literal>x0</literal> est une solution particuliÃ¨re (s'il en existe une) et <literal>kerA</literal> est le noyau de <literal>A</literal>. Tout vecteur de la forme <literal>x=x0+kerA*w</literal> avec <literal>w</literal> quelconque vÃ©rifie
     <literal> A*x+b=0</literal>.
   </para>
     <para>
-    Si un <literal>x0</literal> compatible est donné en entrée, <literal>x0</literal> est renvoyé. Dans le cas contraire un <literal>x0</literal> compatible, s'il en existe un, est renvoyé.
+    Si un <literal>x0</literal> compatible est donnÃ© en entrÃ©e, <literal>x0</literal> est renvoyÃ©. Dans le cas contraire un <literal>x0</literal> compatible, s'il en existe un, est renvoyÃ©.
   </para>
   </refsection>
   <refsection>

@@ -329,8 +329,8 @@ c     if special compilation mode skip  commands
          return
       endif
       fun=34
-c     if you modify pwd position in core gateway , you need change fin      
-      fin=34
+c     if you modify pwd position in fileio gateway , you need change fin      
+      fin=31
       rhs=0
       return
 C     
@@ -495,8 +495,8 @@ c     . add an third argument to deff, to notify that it is called by function
          rhs=3
          lhs=1
 c         *call* deff
-         fun=5
-         fin=11
+         fun=31
+         fin=2
          go to 999
       endif
 

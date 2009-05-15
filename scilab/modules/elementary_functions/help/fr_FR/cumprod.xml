@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="cumprod" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=cumprod(x)
 y=cumprod(x,'r') ou y=cumprod(x,1)
@@ -26,14 +26,14 @@ y=cumprod(x,'m')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)</para>
+          <para>vecteur ou matrice (rÃ©elle ou complexe)</para>
         </listitem>
       </varlistentry>
 
@@ -41,7 +41,7 @@ y=cumprod(x,'m')</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>vecteur ou matrice (réelle ou complexe)</para>
+          <para>vecteur ou matrice (rÃ©elle ou complexe)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -52,13 +52,13 @@ y=cumprod(x,'m')</synopsis>
 
     <para>Pour un vecteur <literal>x</literal>,
     <literal>y=cumprod(x)</literal> renvoie dans <literal>y</literal> le
-    produit cumulatif de tous les éléments de <literal>x</literal>. Si
-    <literal>x</literal> est une matrice, elle est considérée comme un vecteur
-    (les colonnes sont mises bout à bout).</para>
+    produit cumulatif de tous les Ã©lÃ©ments de <literal>x</literal>. Si
+    <literal>x</literal> est une matrice, elle est considÃ©rÃ©e comme un vecteur
+    (les colonnes sont mises bout Ã  bout).</para>
 
     <para><literal>y=cumprod(x,'c')</literal> (ou
     <literal>y=cumprod(x,2)</literal>) renvoie dans <literal>y</literal> le
-    produit cumulatif des éléments des lignes de <literal>x</literal>:
+    produit cumulatif des Ã©lÃ©ments des lignes de <literal>x</literal>:
     <literal> y(i,:)=cumprod(x(i,:))</literal>.</para>
 
     <para><literal>y=cumprod(x,'r')</literal> (ou
@@ -67,7 +67,7 @@ y=cumprod(x,'m')</synopsis>
     y(:,i)=cumprod(x(:,i))</literal>.</para>
 
     <para><literal>y=cumprod(x,'m')</literal> effectue le produit cumulatif
-    selon la première dimension plus grande que 1 (compatibilité avec
+    selon la premiÃ¨re dimension plus grande que 1 (compatibilitÃ© avec
     Matlab).</para>
   </refsection>
 

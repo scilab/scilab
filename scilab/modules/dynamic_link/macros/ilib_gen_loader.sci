@@ -95,5 +95,9 @@ function ilib_gen_loader(name,tables,libs)
   mfprintf(fd,"// ------------------------------------------------------\n");
   mclose(fd);
   
+  if ilib_verbose() > 1 then
+    disp(mgetl('loader.sce'));
+  end
+  
 endfunction
 //==========================================

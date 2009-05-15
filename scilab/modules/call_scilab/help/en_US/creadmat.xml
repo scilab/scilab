@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
@@ -36,7 +36,7 @@
   <refsection>
     <title>Parameters</title>
 
-    <para><variablelist>
+    <variablelist>
         <varlistentry>
           <term>name</term>
 
@@ -85,7 +85,7 @@
             ability to be called from fortran</para>
           </listitem>
         </varlistentry>
-      </variablelist></para>
+      </variablelist>
   </refsection>
 
   <refsection>
@@ -110,19 +110,19 @@
 		char variableToBeRetrievedB[] = "B";
 
 		/* First, retrieve the size of the matrix */
-		C2F(cmatptr)(variableToBeRetrievedB, &rowB_, &colB_, &lp_, strlen(variableToBeRetrievedB));
+		C2F(cmatptr)(variableToBeRetrievedB, &amp;rowB_, &amp;colB_, &amp;lp_, strlen(variableToBeRetrievedB));
 
 		/* Alloc the memory */
 		matrixOfDoubleB = (double*)malloc((rowB_*colB_)*sizeof(double));
 
 		/* Load the matrix */
-		C2F(creadmat)(variableToBeRetrievedB,&rowB_,&colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
+		C2F(creadmat)(variableToBeRetrievedB,&amp;rowB_,&amp;colB_,matrixOfDoubleB,strlen(variableToBeRetrievedB) );
 
 		printf("\n");
 		printf("Display from B formated (size: %d, %d):\n",rowB_, colB_);
-		for(j = 0 ; j < rowB_ ; j++)
+		for(j = 0 ; j &lt; rowB_ ; j++)
 			{
-				for(i = 0 ; i < colB_ ; i++)
+				for(i = 0 ; i &lt; colB_ ; i++)
 					{
 						/* Display the formated matrix ... the way the user
 						 * expect */
@@ -142,7 +142,7 @@
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
       linkend="cwritemat">cwritemat</link>, <link
-      linkend="MatrixManagement">MatrixManagement</link></member>
+      linkend="MatrixManagement_callscilab">Matrix Management</link></member>
     </simplelist>
   </refsection>
 

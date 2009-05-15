@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> fermeture transitive   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = trans_closure(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -44,7 +44,7 @@
   <refsection>
     <title>Description</title>
     <para><literal>trans_closure</literal> renvoie sous forme d'un nouveau graphe <literal>g1</literal> la fermeture transitive
-    du graphe <literal>g</literal>. Ce graphe doit être orienté et connecté.
+    du graphe <literal>g</literal>. Ce graphe doit Ãªtre orientÃ© et connectÃ©.
     Si <literal>&lt;name&gt;</literal> est le nom du graphe <literal>g</literal>, 
     <literal>&lt;name&gt;_trans_closure</literal> est le nom de la fermeture transitive.
   </para>

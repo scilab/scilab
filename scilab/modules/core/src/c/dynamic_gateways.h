@@ -12,6 +12,14 @@
 #ifndef __DYNAMIC_GATEWAYS_H__
 #define __DYNAMIC_GATEWAYS_H__
 
+
+/**
+* functions gateway
+* functions is loaded dynamically at runtime
+* load gw_functions in SCI/modules/functions/sci_gateway/gw_functions.c
+*/
+int gw_dynamic_functions(void);
+
 /**
 * interpolation gateway
 * interpolation is loaded dynamically at runtime

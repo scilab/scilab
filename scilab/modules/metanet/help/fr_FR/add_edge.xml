@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,26 +16,26 @@
   </info>
   <refnamediv>
     <refname>add_edge</refname>
-    <refpurpose> ajoute une arête ou un arc entre deux sommets  </refpurpose>
+    <refpurpose> ajoute une arÃªte ou un arc entre deux sommets  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = add_edge(i,j,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéro du sommet origine
+          <para>entier, numÃ©ro du sommet origine
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j  </term>
         <listitem>
-          <para>entier, numéro du sommet extrémité
+          <para>entier, numÃ©ro du sommet extrÃ©mitÃ©
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>g1  </term>
         <listitem>
-          <para>nouveau graphe avec la nouvelle arête (liste)
+          <para>nouveau graphe avec la nouvelle arÃªte (liste)
 </para>
         </listitem>
       </varlistentry>
@@ -57,8 +57,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>add_edge</literal> renvoie le graphe <literal>g1</literal> avec une nouvelle arête du numéro de sommet 
-    <literal>i</literal> au numéro de sommet <literal>j</literal>. Si le graphe est orienté, l'arête est un arc. Le nombre d'arêtes plus 1 est pris comme nom de la nouvelle arête.
+    <para><literal>add_edge</literal> renvoie le graphe <literal>g1</literal> avec une nouvelle arÃªte du numÃ©ro de sommet 
+    <literal>i</literal> au numÃ©ro de sommet <literal>j</literal>. Si le graphe est orientÃ©, l'arÃªte est un arc. Le nombre d'arÃªtes plus 1 est pris comme nom de la nouvelle arÃªte.
   </para>
   </refsection>
   <refsection>

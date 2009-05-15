@@ -17,21 +17,32 @@ function bOK = VCtoLCCLib()
 		DirCur = pwd();
 		
 	  bOK = [bOK , ExportAtlasLibrary('blasplus', WSCI+'\bin')];
-		bOK = [bOK , Exportalibrary('LibScilab', WSCI+'\bin')];
-		bOK = [bOK , Exportalibrary('libf2c', WSCI+'\bin')];
-		bOK = [bOK , Exportalibrary('lapack', WSCI+'\bin')];
+	  
 		if with_module('scicos') then
 		  bOK = [bOK , Exportalibrary('scicos', WSCI+'\bin')];
 		  bOK = [bOK , Exportalibrary('scicos_f', WSCI+'\bin')];
 		  bOK = [bOK , Exportalibrary('scicos_blocks', WSCI+'\bin')];
 		  bOK = [bOK , Exportalibrary('scicos_blocks_f', WSCI+'\bin')];
 		end
-		bOK = [bOK , Exportalibrary('intersci', WSCI+'\bin')];
-		bOK = [bOK , Exportalibrary('dynamic_link', WSCI+'\bin')];
-		bOK = [bOK , Exportalibrary('scioutput_stream', WSCI+'\bin')];
-	  bOK = [bOK , Exportalibrary('MALLOC', WSCI+'\bin')];
-	  bOK = [bOK , Exportalibrary('libintl', WSCI+'\bin')];
 		
+		bOK = [bOK , Exportalibrary('call_scilab', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('lapack', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('dynamic_link', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('dynamic_link_f', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('integer', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('intersci', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('libf2c', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('libintl', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('libjvm', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('LibScilab', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('linpack_f', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('MALLOC', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('optimization_f', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('scicompletion', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('scilocalization', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('output_stream', WSCI+'\bin')];
+    bOK = [bOK , Exportalibrary('time', WSCI+'\bin')];
+
 		chdir(DirCur);
 		
 		if and(bOK == %T) then
@@ -90,7 +101,7 @@ function  bOK = ExportAtlasLibrary(libraryname, pathlib)
 	  mprintf('\n');
 	  mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
 	end
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then
 	  bOK=%F;	
@@ -148,7 +159,7 @@ function bOK = Exportalibrary(libraryname, pathlib)
 	  mprintf('\n');
 	  mprintf(gettext('Build %s.lib (Please waiting).\n'),libraryname);
 	end
-	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'lcc.lib""';
+	command = 'buildLib ""'+TMPDIR+filesep()+libraryname+'.exp""'+' ""'+destPath+filesep()+libraryname+'.lib""';
 	ierr = unix(command);
 	if ierr <> 0 then
 	  bOK=%F;	

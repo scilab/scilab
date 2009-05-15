@@ -156,7 +156,7 @@ void C2F(affup2)( double * winNum,
   /* For now we got the index of the block coupound within the axes children */
   /* Get the text handle */
   sciPointObj * pText = getAffichTextObject((int) *winNum, ((int) *textIndex) - 1);
-  StringMatrix * mat = sciGetText(pText);
+  /* StringMatrix * mat = sciGetText(pText); */
 
   /* Second step draw the object */
   sciDrawObj(pText);

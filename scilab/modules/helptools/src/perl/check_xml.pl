@@ -9,11 +9,11 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-
-
 use strict;
 use Cwd;
 use File::Basename;
+use XML::Simple;
+use Data::Dumper;
 
 # Current directory
 my $directory           = getcwd();
@@ -33,7 +33,8 @@ my $sci_modules_dir = $directory;
 $sci_modules_dir =~ s/\/helptools\/src\/perl//g;
 
 # schema path
-my $rng             = $sci_modules_dir.'/helptools/schema/scilab.rng';
+my $rng          = $sci_modules_dir.'/helptools/schema/scilab.rng';
+#my $rng             = $sci_modules_dir.'/helptools/schema/docbook.rng';
 
 # tmp file
 my $tmp             = $directory.'/tmp.txt';
@@ -41,12 +42,18 @@ my $tmp             = $directory.'/tmp.txt';
 # log file
 my $log             = $directory.'/log.txt';
 
+# XML list
+my %xmllist;
+my %idlist;
+
 # stats
 my $nb_bad_file      = 0;
 my %bad_file_list;
 
-my $lang;
-
+my %languages;
+#$languages{'fr_FR'} = 1;
+$languages{'en_US'} = 1;
+#$languages{'pt_BR'} = 1;
 
 # Initialisation du fichier de log
 unless( open(LOG,'> '.$log) )
@@ -66,86 +73,76 @@ else
 	%modules = get_module_list();
 }
 
-$lang = 'en_US';
+# ==============================================================================
+# First step : get the XML list
+# ==============================================================================
 
 foreach my $module (sort keys %modules)
 {
-	print "=================================================================\n";
-	print $module."\n";
-	print "=================================================================\n";
-	
-	my %xml_list = get_xml_list($module,$lang);
-	
-	foreach my $xmlfile (sort keys %xml_list)
+	foreach my $language (sort keys %languages)
 	{
-		print ' - '.$xmlfile;
-		for( my $i =length($xmlfile) ; $i < 40 ; $i++ )
+		my $this_directory = $sci_modules_dir.'/'.$module.'/help/'.$language;
+		
+		if( -d $this_directory )
 		{
-			print '.';
+			get_xml_list($this_directory,$language);
 		}
-		
-		print '['.$lang.'].....';
-		
-		my $nb_error = valid($module,$lang,$xmlfile);
-		
-		if( $nb_error == 0)
-		{
-			print 'OK !';
-		}
-		else
-		{
-			print "\t".$nb_error.' ERRORS';
-		}
-		
-		print "\n";
 	}
 }
 
-$lang = 'fr_FR';
+# ==============================================================================
+# Second step : valid each XML file
+# ==============================================================================
 
-foreach my $module (sort keys %modules)
+my $xmllist_size = 0;
+
+foreach my $xmlfile (sort keys %xmllist)
 {
-	print "=================================================================\n";
-	print $module."\n";
-	print "=================================================================\n";
-	
-	my %xml_list = get_xml_list($module,$lang);
-	
-	foreach my $xmlfile (sort keys %xml_list)
-	{
-		print ' - '.$xmlfile;
-		for( my $i =length($xmlfile) ; $i < 40 ; $i++ )
-		{
-			print '.';
-		}
-		
-		print '['.$lang.'].....';
-		
-		my $nb_error = valid($module,$lang,$xmlfile);
-		
-		if( $nb_error == 0)
-		{
-			print 'OK !';
-		}
-		else
-		{
-			print "\t".$nb_error.' ERRORS';
-		}
-		
-		print "\n";
-	}
+	$xmllist_size++;
 }
 
-close(LOG);
+my $count = 0;
+
+foreach my $xmlfile (sort keys %xmllist)
+{
+	$count++;
+	
+	my $xmlfile_print = 'SCI/modules'.substr($xmlfile,length($sci_modules_dir));
+	
+	printf('%04d/%04d - %s ',$count,$xmllist_size,$xmlfile_print);
+	
+	for( my $i =length($xmlfile) ; $i < 120 ; $i++ )
+	{
+		print '.';
+	}
+	
+	my $nb_error  = valid($xmlfile);
+	$nb_error    += get_id_list($xmlfile,$xmllist{$xmlfile});
+	
+	if( $nb_error == 0)
+	{
+		print 'OK !';
+	}
+	else
+	{
+		print "\t".$nb_error.' ERRORS';
+	}
+	
+	print "\n";
+}
+
+# ==============================================================================
+# Third step : Summary
+# ==============================================================================
 
 print "\n\n";
-my $count = 0;
+$count = 0;
 
 foreach my $bad_file (sort keys %bad_file_list)
 {
 	$count++;
 	printf(" %02d",$count);
-	print ' - '.$bad_file;
+	print ' - '.$bad_file.' ';
 	for( my $i =length($bad_file) ; $i < 100 ; $i++ )
 	{
 		print '.';
@@ -187,23 +184,38 @@ sub get_module_list
 
 sub get_xml_list
 {
-	my %list;
-	my $module   = $_[0];
+	my $dir      = $_[0];
 	my $language = $_[1];
+	my @list_dir;
 	
-	unless( chdir($sci_modules_dir.'/'.$module.'/help/'.$language) )
+	my $current_directory;
+	
+	# On enregistre le répertoire dans lequel on se situe à l'entrée de la fonction
+	my $previous_directory = getcwd();
+	
+	chdir($dir);
+	
+	@list_dir = <*>;
+	
+	foreach my $list_dir (@list_dir)
 	{
-		return %list;
+		$current_directory = getcwd();
+		
+		if( (-d $list_dir) && ( ! ($list_dir =~ m/^scilab_[a-z][a-z]_[A-Z][A-Z]_help$/ )) )
+		{
+			get_xml_list($current_directory.'/'.$list_dir,$language);
+		}
+		
+		if( (-f $list_dir)
+		   && ($list_dir =~ m/\.xml$/)
+		   && ($list_dir ne 'master.xml')
+		   && ($list_dir ne 'master_help.xml') )
+		{
+			$xmllist{$current_directory.'/'.$list_dir} = $language;
+		}
 	}
 	
-	my @xmlfiles = <*.xml>;
-	
-	foreach my $xmlfile (@xmlfiles)
-	{
-		$list{$xmlfile} = 1;
-	}
-	
-	return %list;
+	chdir($previous_directory);
 }
 
 # ==============================================================================
@@ -212,15 +224,10 @@ sub get_xml_list
 
 sub valid
 {
-	my $module   = $_[0];
-	my $language = $_[1];
-	my $xmlfile  = $_[2];
-	
-	# xml file path
-	my $xmlfile_path = $sci_modules_dir.'/'.$module.'/help/'.$language.'/'.$xmlfile;
+	my $xmlfile  = $_[0];
 	
 	# construction de la commande
-	my $cmd  = 'xmllint --noout --relaxng '.$rng.' '.$xmlfile_path.' ';
+	my $cmd  = 'xmllint --noout --relaxng '.$rng.' '.$xmlfile.' ';
 	$cmd    .= '> '.$tmp.' 2>&1';
 	
 	# Lancement de la commande
@@ -240,7 +247,7 @@ sub valid
 	
 	while(<TMP>)
 	{
-		if( $_ eq $xmlfile_path.' validates'."\n" )
+		if( $_ eq $xmlfile.' validates'."\n" )
 		{
 			$nb_error  = 0;
 			$error_str = '';
@@ -262,10 +269,10 @@ sub valid
 	if( $nb_error > 0 )
 	{
 		$nb_bad_file++;;
-		$bad_file_list{$xmlfile_path} = $nb_error;
+		$bad_file_list{$xmlfile} = $nb_error;
 		
 		print LOG "=================================================================\n";
-		print LOG $sci_modules_dir.'/'.$module.'/help/'.$language.'/'.$xmlfile."\n";
+		print LOG $xmlfile."\n";
 		print LOG "=================================================================\n";
 		print LOG $error_str;
 	}
@@ -281,4 +288,179 @@ sub del_tmp_file
 {
 	unlink($tmp);
 	unlink($log);
+}
+
+# ==============================================================================
+# get_id_list
+# ==============================================================================
+
+sub get_id_list
+{
+	my $xmlfile  = $_[0];
+	my $language = $_[1];
+	
+	my $xml_ref  = XMLin($xmlfile);
+	my %xml_hash = %$xml_ref;
+	
+	my $nb_error  = 0;
+	my $error_str = '';
+	
+	my %list = ();
+	
+	# First step : get the list
+	# ==========================================================================
+	
+	# xml:id of this refentry
+	
+	if( exists($xml_hash{'xml:id'}) )
+	{
+		$list{$xml_hash{'xml:id'}} = 1;
+	}
+	
+	# Other xml:id of this refentry
+	
+	if( exists($xml_hash{'refnamediv'}) )
+	{
+		my $refnamediv_ref = $xml_hash{'refnamediv'};
+		
+		# One refnamediv in this XML file
+		if( (ref($refnamediv_ref) eq 'HASH') && exists($refnamediv_ref->{'xml:id'}) )
+		{
+			$list{$refnamediv_ref->{'xml:id'}} = 1;
+		}
+		
+		# Several refnamediv in this XML file
+		elsif( ref($refnamediv_ref) eq 'ARRAY' )
+		{
+			my @refnamediv_tab = @$refnamediv_ref;
+			
+			foreach my $refnamediv (@refnamediv_tab)
+			{
+				my %refnamediv_hash = %$refnamediv;
+				
+				if(exists($refnamediv->{'xml:id'}) )
+				{
+					$list{$refnamediv->{'xml:id'}} = 1;
+				}
+			}
+		}
+	}
+	
+	# Second step : Check
+	# ==========================================================================
+	
+	foreach my $id (sort keys %list)
+	{
+		my $final_id = $language.'_'.$id;
+		
+		if( exists($idlist{$final_id}) )
+		{
+			# ERROR
+			
+			if( exists($bad_file_list{$xmlfile}) )
+			{
+				$bad_file_list{$xmlfile} = $bad_file_list{$xmlfile} + 1;
+			}
+			else
+			{
+				$nb_bad_file++;;
+				$bad_file_list{$xmlfile} = 1;
+			}
+			
+			print LOG "=================================================================\n";
+			print LOG $xmlfile."\n";
+			print LOG "=================================================================\n";
+			print LOG 'The xml:id "'.$id.'" is already used in the file "'.$idlist{$final_id}.'"'."\n";
+			
+			$nb_error++;
+		}
+		else
+		{
+			$idlist{$final_id} = $xmlfile;
+		}
+	}
+	
+	return $nb_error;
+}
+# ==============================================================================
+# check_links
+# ==============================================================================
+
+sub check_links
+{
+	my $xmlfile  = $_[0];
+	my $language = $_[1];
+	
+	my %links    = ();
+	
+	my $nb_error = 0;
+	
+	my $xml_ref  = XMLin($xmlfile);
+	get_links($xml_ref,\%links);
+	
+	foreach my $link (sort keys %links)
+	{
+		if( ! exists($idlist{$language.'_'.$link}) )
+		{
+			# ERROR
+			
+			if( exists($bad_file_list{$xmlfile}) )
+			{
+				$bad_file_list{$xmlfile} = $bad_file_list{$xmlfile} + 1;
+			}
+			else
+			{
+				$nb_bad_file++;;
+				$bad_file_list{$xmlfile} = 1;
+			}
+			
+			print LOG "=================================================================\n";
+			print LOG $xmlfile."\n";
+			print LOG "=================================================================\n";
+			print LOG 'The id "'.$link.'" hasn\'t been found'."\n";
+			
+			$nb_error++;
+		}
+	}
+	
+	return $nb_error;
+}
+
+# ==============================================================================
+# get_links
+# ==============================================================================
+
+sub get_links
+{
+	my $ref        = $_[0];
+	my $links_ref  = $_[1];
+	
+	if( ref($ref) eq 'HASH' )
+	{
+		if( exists($ref->{'link'}) )
+		{
+			my $linkref = $ref->{'link'};
+			
+			if( (ref($linkref) eq 'HASH') && exists($linkref->{'linkend'}) )
+			{
+				$links_ref->{$linkref->{'linkend'}} = 1;
+			}
+		}
+		
+		my %ref_hash = %$ref;
+		
+		foreach my $item (keys %ref_hash)
+		{
+			get_links($ref_hash{$item},$links_ref);
+		}
+	}
+	elsif( ref($ref) eq 'ARRAY' )
+	{
+		my @ref_tab = @$ref;
+		
+		foreach my $item (@ref_tab)
+		{
+			get_links($item,$links_ref);
+		}
+	}
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="isinf" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,26 +13,26 @@
   <refnamediv>
     <refname>isinf</refname>
 
-    <refpurpose>vérifie si des composantes "Inf" (infinies) sont
-    présentes.</refpurpose>
+    <refpurpose>vÃ©rifie si des composantes "Inf" (infinies) sont
+    prÃ©sentes.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>r=isinf(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice complexe ou réelle. r : vecteur ou matrice
-          de booléens.</para>
+          <para>vecteur ou matrice complexe ou rÃ©elle. r : vecteur ou matrice
+          de boolÃ©ens.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -42,7 +42,7 @@
     <title>Description</title>
 
     <para><literal>isinf(x)</literal> renvoie un vecteur ou une matrice de
-    booléens contenant des composantes égales à %T (vrai) correspondant aux
+    boolÃ©ens contenant des composantes Ã©gales Ã  %T (vrai) correspondant aux
     composantes "Inf" (infinies) de <literal>x</literal> et %F (faux) pour les
     autres.</para>
   </refsection>

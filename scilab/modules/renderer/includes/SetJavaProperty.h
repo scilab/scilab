@@ -20,6 +20,7 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
@@ -31,28 +32,28 @@ extern "C" {
  *               RGB of each color.
  * @param nbColor number of color in the new colormap
  */
-void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor ) ;
+RENDERER_IMPEXP void sciSetJavaColormap( sciPointObj * pFigure, const double rgbMat[], int nbColor ) ;
 
 /**
  * Set the size of a figure object
  * @return indicates if the size could be successfully modified
  */
-int sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
+RENDERER_IMPEXP int sciSetJavaFigureSize( sciPointObj * pFigure, const int size[2] ) ;
 
 /**
  * Set the size of a window enclosing a figure.
  */
-void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] ) ;
+RENDERER_IMPEXP void sciSetJavaWindowSize( sciPointObj * pFigure, const int size[2] ) ;
 
 /**
  * Set the position in pixels of a window enclosing a figure.
  */
-void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
+RENDERER_IMPEXP void sciSetJavaWindowPosition( sciPointObj * pFigure, const int pos[2] ) ;
 
 /**
  * Set the message displayed by a figure.
  */
-void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
+RENDERER_IMPEXP void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
 
 /**
  * Modify the quality of antialiasing or disable it.
@@ -61,59 +62,59 @@ void sciSetJavaInfoMessage( sciPointObj * pFigure, const char * infoMessage ) ;
  * specify the number of pass for antialiasing.
  * @param quality positive integer.
  */
-void sciSetJavaAntialiasingQuality( sciPointObj * pFigure, int quality ) ;
+RENDERER_IMPEXP void sciSetJavaAntialiasingQuality( sciPointObj * pFigure, int quality ) ;
 
 /**
  * Zoom a subwin object with the specified rectangle in pixels
  * @return TRUE if the axes box has been zoomed, FALSE otherwise
  */
-BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
+RENDERER_IMPEXP BOOL sciJavaZoomRect(sciPointObj * pSubwin, int posX, int posY, int width, int height);
 
 /**
  * Register a text object in order to it after any other object later.
  */
-void sciJavaAddTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin);
+RENDERER_IMPEXP void sciJavaAddTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin);
 
 /**
  * Remove a text object in order to it after any other object later.
  */
-void sciJavaRemoveTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin);
+RENDERER_IMPEXP void sciJavaRemoveTextToDraw(sciPointObj * pText, sciPointObj * parentSubwin);
 
 /**
  * Set the auto_resize mode of a figure
  */
-void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode);
+RENDERER_IMPEXP void sciSetJavaAutoResizeMode(sciPointObj * pFigure, BOOL resizeMode);
 
 /**
  * Set the position and size of the viewport on the canvas
  * @param viewport [x,y,w,h] array
  */
-void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4]);
+RENDERER_IMPEXP void sciSetJavaViewport(sciPointObj * pFigure, const int viewport[4]);
 
 /**
  * Set the background color of canvas
  */
-void sciSetJavaBackground(sciPointObj * pFigure, int backColor);
+RENDERER_IMPEXP void sciSetJavaBackground(sciPointObj * pFigure, int backColor);
 
 /**
  * Force a window to be be single buffered
  */
-void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer);
+RENDERER_IMPEXP void sciSetJavaUseSingleBuffer(sciPointObj * pFigure, BOOL useSingleBuffer);
 
 /**
  * Set the title of a figure.
  */
-void sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;
+RENDERER_IMPEXP void sciSetJavaTitle( sciPointObj * pFigure, const char * title ) ;
 
 /**
  * Update subwin size and scale
  */
-void sciJavaUpdateSubwinScale(sciPointObj * pSubwin);
+RENDERER_IMPEXP void sciJavaUpdateSubwinScale(sciPointObj * pSubwin);
 
 /**
  * Update bounding box of a text objectr if needed
  */
-void sciJavaUpdateTextBoundingBox(sciPointObj * pText);
+RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(sciPointObj * pText);
 
 #ifdef __cplusplus
 }

@@ -452,7 +452,7 @@ esac
 #### 64 bits detection
 IS_64_BITS_CPU=false
 case "$host" in
-         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu | alpha-*-netbsd* | x86_64-*-netbsd* | sparc64-*-netbsd*)
                 IS_64_BITS_CPU=true
 	;;
 esac
@@ -514,12 +514,18 @@ case "$CC" in
 	;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
-	 LDFLAGS="$LDFLAGS -m"
+	 LDFLAGS="$LDFLAGS -lm"
 	 ;;
+
+  alpha-*-netbsd*)
+    CFLAGS="$CFLAGS -Dnetbsd -mieee"
+    FFLAGS="$FFLAGS -Dnetbsd -mieee"
+	;;
+
   *-*-netbsd*)
     CFLAGS="$CFLAGS -Dnetbsd"
-
 	;;
+
   *-*-darwin*)
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
@@ -802,7 +808,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[!finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -834,7 +840,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -856,6 +862,9 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 #######################
 ## MISC Test
 #######################
+
+# gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
+AM_GNU_GETTEXT([external])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -886,6 +895,11 @@ else
 fi
 AC_SUBST(TERMCAP_LIB)
 
+##################
+## other libraries
+##################
+
+AC_CHECK_LIB(dl, dlopen)
 
 
 #################
@@ -931,7 +945,7 @@ fi
 
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML,  test "$with_ocaml" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
 AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
@@ -1515,10 +1529,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else 
    echo "Not using Scicos"
 fi

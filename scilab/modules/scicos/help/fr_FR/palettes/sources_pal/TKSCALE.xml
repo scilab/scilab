@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_TKSCALE">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_TKSCALE">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_TKSCALE">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_TKSCALE">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,13 +98,13 @@
   <refsection id="Description_TKSCALE">
     <title>Description</title>
     <para>
-Ce bloc génère une sortie constante par morceaux dont la valeur est définie interactivement par un widget TK au cours de la simulation. La valeur de sortie est égale à la valeure entière affichée sur le widget divisée par le paramètre de normalisation. On peut augmenter la précisition de la sortie en augmentant proportionnellement tous les parmètres du bloc.  
+Ce bloc gÃ©nÃ¨re une sortie constante par morceaux dont la valeur est dÃ©finie interactivement par un widget TK au cours de la simulation. La valeur de sortie est Ã©gale Ã  la valeure entiÃ¨re affichÃ©e sur le widget divisÃ©e par le paramÃ¨tre de normalisation. On peut augmenter la prÃ©cisition de la sortie en augmentant proportionnellement tous les parmÃ¨tres du bloc.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_TKSCALE">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_TKSCALE">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -120,27 +120,27 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
         <para>
           <emphasis role="bold">Min value</emphasis>
         </para>
-        <para> Un entier indiquant la borne inf de l'échelle.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Un entier indiquant la borne inf de l'Ã©chelle.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Max value</emphasis>
         </para>
-        <para> Un entier indiquant la borne sup de l'échelle.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Un entier indiquant la borne sup de l'Ã©chelle.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Normalization</emphasis>
         </para>
-        <para> La sortie du bloc est la valeur de l'échelle divisée par ce facteur de normalisation.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> La sortie du bloc est la valeur de l'Ã©chelle divisÃ©e par ce facteur de normalisation.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_TKSCALE">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_TKSCALE">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -149,33 +149,33 @@ Ce bloc génère une sortie constante par morceaux dont la valeur est définie inte
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

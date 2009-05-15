@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>add_node</refname>
-    <refpurpose> ajoute un sommet déconnecté à un graphe  </refpurpose>
+    <refpurpose> ajoute un sommet dÃ©connectÃ© Ã  un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = add_node(g,[xy,name])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -35,7 +35,7 @@
       <varlistentry>
         <term>xy  </term>
         <listitem>
-          <para>vecteur ligne optionnel des coordonnées du nouveau sommet
+          <para>vecteur ligne optionnel des coordonnÃ©es du nouveau sommet
 </para>
         </listitem>
       </varlistentry>
@@ -57,16 +57,16 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>add_node</literal> ajoute un sommet déconnecté à un graphe <literal>g</literal> et renvoie le 
+    <para><literal>add_node</literal> ajoute un sommet dÃ©connectÃ© Ã  un graphe <literal>g</literal> et renvoie le 
     nouveau graphe <literal>g1</literal>.
   </para>
     <para>
-    Les coordonnées du nouveau sommet sont éventuellement précisées dans un vecteur ligne <literal>xy</literal>. Si les sommets du graphe <literal>g</literal> n'ont pas de coordonnées, (les éléments <literal>node_x</literal> et <literal>node_y</literal> sont égaux à <literal>[]</literal>) donner <literal>xy</literal> n'a aucun effet. Si les sommets 
-    du graphe <literal>g</literal> ont des coordonnées et que <literal>xy</literal> n'est pas donné, le 
-    nouveau sommet a <literal>(0,0)</literal> comme coordonnées.
+    Les coordonnÃ©es du nouveau sommet sont Ã©ventuellement prÃ©cisÃ©es dans un vecteur ligne <literal>xy</literal>. Si les sommets du graphe <literal>g</literal> n'ont pas de coordonnÃ©es, (les Ã©lÃ©ments <literal>node_x</literal> et <literal>node_y</literal> sont Ã©gaux Ã  <literal>[]</literal>) donner <literal>xy</literal> n'a aucun effet. Si les sommets 
+    du graphe <literal>g</literal> ont des coordonnÃ©es et que <literal>xy</literal> n'est pas donnÃ©, le 
+    nouveau sommet a <literal>(0,0)</literal> comme coordonnÃ©es.
   </para>
     <para>
-    Si <literal>name</literal> est donné, il est le nom du nouveau sommet, sinon le nombre
+    Si <literal>name</literal> est donnÃ©, il est le nom du nouveau sommet, sinon le nombre
     de sommets plus 1 est pris comme nouveau nom.
   </para>
   </refsection>

@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="relocate_handle">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>relocate_handle</refname>
-    <refpurpose>D�place un handle ࠠ
-  l'int�rieur de la hi�rarchie graphique.</refpurpose>
+    <refpurpose>Déplace un handle à  
+  l'intérieur de la hiérarchie graphique.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>S�quence d'appel</title>
+    <title>Séquence d'appel</title>
     <synopsis>relocate_handle( movedHandles, parent )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Param�tres</title>
+    <title>Paramètres</title>
     <variablelist>
       <varlistentry>
         <term>movedHandles</term>
         <listitem>
-          <para>Vecteur contenant les handles d�plac�s.</para>
+          <para>Vecteur contenant les handles déplacés.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -31,23 +31,23 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>La routine <emphasis role="bold">relocate_handle</emphasis> permet de d�placer des handles
-    graphiques ࠠ partir de leurs emplacements actuels vers un autre dans
-    la hierarchie graphique. Les entit�s d�plac�es sont relog�es sous le
-    handle <emphasis role="bold">parent</emphasis> sp�cifi�.</para>
+    <para>La routine <emphasis role="bold">relocate_handle</emphasis> permet de déplacer des handles
+    graphiques à   partir de leurs emplacements actuels vers un autre dans
+    la hierarchie graphique. Les entités déplacées sont relogées sous le
+    handle <emphasis role="bold">parent</emphasis> spécifié.</para>
     <para>Comme tous les handles graphiques ne sont pas compatibles entre eux, il
-    existe des restrictions quant ࠠ l'utilisation de la routine . Il est
-    par exemple impossible de d�placer une handle axes comme enfant d'une
-    polyline. Pour plus d'information ࠠ ce sujet, on peut se reporter
-    ࠠ la page <link linkend="graphics_entities">graphics_entities</link>.</para>
-    <para>Cette routine est particuli�rement utile pour d�placer un objet d'un
-    axe ࠠ un autre ou pour d�placer des axes entre fen�tre.</para>
+    existe des restrictions quant à   l'utilisation de la routine . Il est
+    par exemple impossible de déplacer une handle axes comme enfant d'une
+    polyline. Pour plus d'information à   ce sujet, on peut se reporter
+    à   la page <link linkend="graphics_entities">graphics_entities</link>.</para>
+    <para>Cette routine est particulièrement utile pour déplacer un objet d'un
+    axe à   un autre ou pour déplacer des axes entre fenêtre.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[x = 0:10 ;
 
-// construction d'une premi�re polyline
+// construction d'une première polyline
 plot(x,x^2) ;
 axes1 = gca() ;
 poly1 = gce() ;
@@ -57,9 +57,9 @@ scf() ;
 plot( x,x )  ;
 axes2 = gca() ;
 poly2 = gce()  ;
-poly2bis = copy( poly2 ) ; // copie de la polyline pour la d�placer ensuite
+poly2bis = copy( poly2 ) ; // copie de la polyline pour la déplacer ensuite
 
-// les deux polylines se retrouvent dans le m�me axe.
+// les deux polylines se retrouvent dans le même axe.
 relocate_handle( poly2bis, axes1 ) ;
 
 ]]></programlisting>

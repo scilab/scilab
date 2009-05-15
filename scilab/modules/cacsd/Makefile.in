@@ -123,7 +123,7 @@ am__objects_1 = libscicacsd_la-jacl2.lo libscicacsd_la-onface.lo \
 	libscicacsd_la-dqrsl.lo libscicacsd_la-storl2.lo \
 	libscicacsd_la-dqrsm.lo libscicacsd_la-calsca.lo \
 	libscicacsd_la-qitz.lo libscicacsd_la-front.lo \
-	libscicacsd_la-calcsc.lo libscicacsd_la-wgefa.lo
+	libscicacsd_la-wgefa.lo
 am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
 	libscicacsd_la-tb01wd.lo libscicacsd_la-ib01py.lo \
 	libscicacsd_la-mb01rx.lo libscicacsd_la-ib01md.lo \
@@ -279,8 +279,11 @@ FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -290,6 +293,8 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INTLLIBS = @INTLLIBS@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -309,11 +314,15 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -323,6 +332,8 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
+MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
@@ -343,6 +354,7 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
+POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
@@ -372,10 +384,13 @@ TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -595,7 +610,6 @@ src/fortran/dqrsm.f \
 src/fortran/calsca.f \
 src/fortran/qitz.f \
 src/fortran/front.f \
-src/fortran/calcsc.f \
 src/fortran/wgefa.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_arl2.c \
@@ -1140,9 +1154,6 @@ libscicacsd_la-qitz.lo: src/fortran/qitz.f
 
 libscicacsd_la-front.lo: src/fortran/front.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
-
-libscicacsd_la-calcsc.lo: src/fortran/calcsc.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-calcsc.lo `test -f 'src/fortran/calcsc.f' || echo '$(srcdir)/'`src/fortran/calcsc.f
 
 libscicacsd_la-wgefa.lo: src/fortran/wgefa.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wgefa.lo `test -f 'src/fortran/wgefa.f' || echo '$(srcdir)/'`src/fortran/wgefa.f

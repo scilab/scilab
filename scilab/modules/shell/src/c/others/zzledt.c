@@ -33,7 +33,6 @@
 #include "localization.h"
 #include "scilabmode.h"
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
 #include "ConsoleRead.h"
@@ -271,7 +270,7 @@ char *TermReadAndProcess(void)
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
 
-  char *buffer;
+  char *buffer = NULL;
 
   tmpPrompt = GetTemporaryPrompt(); /* Input function has been used ? */
   GetCurrentPrompt(Sci_Prompt);
@@ -308,7 +307,6 @@ char *TermReadAndProcess(void)
       if(tmpPrompt!=NULL)
         {
           printf("%s",tmpPrompt);
-          ClearTemporaryPrompt();
         }
       else
         {
@@ -685,7 +683,6 @@ static void displayPrompt(char *wk_buf)
 	if (tmpPrompt!=NULL)
 	{
 		sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
-		ClearTemporaryPrompt();
 	}
 	else
 	{

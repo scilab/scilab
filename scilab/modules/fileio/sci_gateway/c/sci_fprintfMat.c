@@ -14,11 +14,12 @@
 #include "MALLOC.h"
 #include "stack-c.h"
 #include "gw_fileio.h"
-#include "fileio.h"
+#include "scanf_functions.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+#include "StringConvert.h"
 /*--------------------------------------------------------------------------*/
 int sci_fprintfMat(char *fname,unsigned long fname_len)
 {

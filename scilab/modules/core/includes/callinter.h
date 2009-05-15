@@ -23,29 +23,23 @@ c     .     test if we are under errcatch('stop') mode (imode=3)
       endif
       if(err.gt.0) goto 97
 c     
+c	  recursion on gateway
+      END_OVERLOAD = -1
+      ERROR_GW_ID = -2
 
-      if(int(rstk(pt)/100).eq.9) then
-         ir=rstk(pt)-900
-         if(ir.eq.1) then
-c     .     back to matsys
-            k=13
-         elseif(ir.ge.2.and.ir.le.9) then
-c     .     back to matio
-            k=5
-         elseif(ir.eq.10) then
-c     .     end of overloaded function
-            goto 96
-         elseif(ir.gt.40) then
-c     .     back to gw_user2
-            k=24
-         elseif(ir.gt.20) then
-c     .     back to gw_user
-            k=14
-         else
-            goto 89
-         endif
-         goto 95
-      endif
+	  call isrecursioncalltofunction(bok)
+	  if (bok .eq. 1) then
+		call getrecursiongatewaytocall(gw)
+		if (gw .eq. END_OVERLOAD) then
+		  goto 96
+		elseif (gw .eq. ERROR_GW_ID) then
+		  goto 89
+		else
+		  k = gw
+		endif
+		goto 95
+	  endif
+
 c
  89   if(top.lt.rhs ) then
          call error(22)

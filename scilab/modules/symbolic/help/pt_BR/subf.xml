@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>subf</refname>
 
-    <refpurpose>subtração simbólica</refpurpose>
+    <refpurpose>subtraÃ§Ã£o simbÃ³lica</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>["c"]=subf("a","b")</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,11 +48,11 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para>Retorna o string <literal>c</literal>=<literal>"a-b"</literal>.
-    Simplificações triviais como <literal>subf("0","a")</literal> ou
-    <literal>subf("1","2")</literal> são realizadas.</para>
+    SimplificaÃ§Ãµes triviais como <literal>subf("0","a")</literal> ou
+    <literal>subf("1","2")</literal> sÃ£o realizadas.</para>
   </refsection>
 
   <refsection>
@@ -68,7 +68,7 @@ subf('a','0')
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="mulf">mulf</link></member>

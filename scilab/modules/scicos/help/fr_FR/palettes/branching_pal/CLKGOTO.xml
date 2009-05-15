@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CLKGOTO">
   <refnamediv>
     <refname>CLKGOTO</refname>
-    <refpurpose>Transmetteur de donnée pour un bloc CLKFROM</refpurpose>
+    <refpurpose>Transmetteur de donnÃ©e pour un bloc CLKFROM</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CLKGOTO">Transmetteur de donnée pour un bloc CLKFROM</link>
+          <link linkend="CLKGOTO">Transmetteur de donnÃ©e pour un bloc CLKFROM</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_CLKGOTO">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_CLKGOTO">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_CLKGOTO">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_CLKGOTO">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -103,8 +103,8 @@ This block is used to connect events ports. For more information on how it works
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_CLKGOTO">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_CLKGOTO">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,19 +121,19 @@ This block is used to connect events ports. For more information on how it works
           <emphasis role="bold">Tag</emphasis>
         </para>
         <para> This parameter identifies the Goto block whose scope is defined in this block.</para>
-        <para> Propriétés : Type 'str' de taille -1. </para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Tag Visibility (1=Local 2=Scoped 3=Global)</emphasis>
         </para>
         <para> This parameter idetifies the visibility of the block. It can be local(1), scoped(2) or global(3).</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_CLKGOTO">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_CLKGOTO">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -142,25 +142,25 @@ This block is used to connect events ports. For more information on how it works
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
@@ -183,7 +183,7 @@ This block is used to connect events ports. For more information on how it works
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="GOTO">GOTO - GOTO Transmetteur de données vers un bloc FROM (Bloc Scicos)</link>
+          <link linkend="GOTO">GOTO - GOTO Transmetteur de donnÃ©es vers un bloc FROM (Bloc Scicos)</link>
         </para>
       </listitem>
     </itemizedlist>

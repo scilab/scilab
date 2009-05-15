@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-getf(SCI+'/modules/optimization/tests/unit_tests/bvode_tst.sci')
+exec(SCI+'/modules/differential_equations/tests/unit_tests/bvode_tst.sci');
 
 
 [z,zf]=col1();

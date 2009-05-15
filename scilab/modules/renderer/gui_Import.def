@@ -3,7 +3,7 @@ LIBRARY    scigui.dll
 
 EXPORTS
 ;--------------------------
-; elementary_functions
+; gui
 ;--------------------------
 newFigure
 

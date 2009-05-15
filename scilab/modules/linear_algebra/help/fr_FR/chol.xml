@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> Factorisation de Cholesky  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[R]=chol(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice réelle ou complexe
+          <para>matrice rÃ©elle ou complexe
 	  </para>
         </listitem>
       </varlistentry>
@@ -37,10 +37,10 @@
   <refsection>
     <title>Description</title>
     <para>
-      Si <literal>X</literal> est hermitienne (symétrique dans le cas réel) définie positive, alors <literal>R = chol(X)</literal> renvoie une matrice triangulaire supérieure <literal>R</literal> telle que <literal>R'*R = X</literal>.
+      Si <literal>X</literal> est hermitienne (symÃ©trique dans le cas rÃ©el) dÃ©finie positive, alors <literal>R = chol(X)</literal> renvoie une matrice triangulaire supÃ©rieure <literal>R</literal> telle que <literal>R'*R = X</literal>.
     </para>
-    <para><literal>chol(X)</literal> utilise uniquement la partie triangulaire supérieure de <literal>X</literal> dont la
-      partie triangulaire inférieure est supposée être la transposée (transposée conjuguée dans le cas complexe).
+    <para><literal>chol(X)</literal> utilise uniquement la partie triangulaire supÃ©rieure de <literal>X</literal> dont la
+      partie triangulaire infÃ©rieure est supposÃ©e Ãªtre la transposÃ©e (transposÃ©e conjuguÃ©e dans le cas complexe).
     </para>
   </refsection>
   <refsection>
@@ -73,10 +73,10 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
+    <title>Fonctions UtilisÃ©es</title>
     <para>
-      La décomposition de Cholesky est basée sur les routines Lapack
-      DPOTRF pour les matrices réelles et  ZPOTRF pour le cas complexe.
+      La dÃ©composition de Cholesky est basÃ©e sur les routines Lapack
+      DPOTRF pour les matrices rÃ©elles et  ZPOTRF pour le cas complexe.
     </para>
   </refsection>
 </refentry>

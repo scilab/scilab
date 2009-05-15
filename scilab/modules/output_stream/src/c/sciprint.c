@@ -12,7 +12,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "../../fileio/includes/diary.h"
 #include "stack-def.h" /* bsiz */
 #include "scilabmode.h"
@@ -30,15 +29,6 @@
 /* sciprint uses scivprint */
 /* scivprint uses printf_scilab */
 /*--------------------------------------------------------------------------*/ 
-/*
-* Print
-* works as sciprint
-* difference is that the argument list is a pointer to a list of arguments
-* @param fmt Format of the format string
-* @param [in] args
-*/
-static int scivprint(char *fmt,va_list args);
-/*--------------------------------------------------------------------------*/ 
 /**
 * print a string 
 * @param[in] buffer to disp
@@ -54,7 +44,7 @@ void sciprint(char *fmt,...)
 	va_end (ap);
 }
 /*--------------------------------------------------------------------------*/ 
-static int scivprint(char *fmt,va_list args) 
+int scivprint(char *fmt,va_list args) 
 {
 	static char s_buf[MAXPRINTF];
 	int count=0;
@@ -68,19 +58,6 @@ static int scivprint(char *fmt,va_list args)
 	printf_scilab(s_buf);
 	
 	va_end(savedargs);
-
-	return count;
-}
-/*--------------------------------------------------------------------------*/ 
-/* as sciprint but with an added first argument which is ignored (used in do_printf) */
-int sciprint2 (int iv, char *fmt,...)
-{
-	int count = 0;
-	va_list ap;
-
-	va_start(ap,fmt);
-	count = scivprint(fmt, ap);
-	va_end (ap);
 
 	return count;
 }
@@ -104,8 +81,8 @@ static void printf_scilab(char *buffer)
 
 		if ( getdiary() ) 
 		{
-			int lstr = (int)strlen(buffer);
-			diary(buffer,&lstr,FALSE);
+			// diary output line
+			diary(buffer,FALSE);
 		}
 	}
 }

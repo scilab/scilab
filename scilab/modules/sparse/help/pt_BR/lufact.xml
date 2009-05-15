@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>lufact</refname>
 
-    <refpurpose>fatoração LU esparsa</refpurpose>
+    <refpurpose>fatoraÃ§Ã£o LU esparsa</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>[hand,rk]=lufact(A,prec)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -73,18 +73,18 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>[hand,rk]=lufact(A)</literal> realiza a fatoração LU da
+    <para><literal>[hand,rk]=lufact(A)</literal> realiza a fatoraÃ§Ã£o LU da
     matriz esparsa <literal>A</literal>. <literal>hand</literal> (sem
-    exibição) é usado por <literal>lusolve</literal> (para resolver sistemas
+    exibiÃ§Ã£o) Ã© usado por <literal>lusolve</literal> (para resolver sistemas
     lineares) e <literal>luget</literal> (para retirar os fatores).
     <literal>hand</literal> deve ser limpo pelo comando:
     <literal>ludel(hand)</literal>;</para>
 
-    <para>A matriz A não precisa ser de posto cheio, mas deve ser quadrada
-    (desde que A é assumida como sendo esparsa, pode-se adicionar 0, se
-    necessário, para quadrá-la). </para>
+    <para>A matriz A nÃ£o precisa ser de posto cheio, mas deve ser quadrada
+    (desde que A Ã© assumida como sendo esparsa, pode-se adicionar 0, se
+    necessÃ¡rio, para quadrÃ¡-la). </para>
 
     <variablelist>
       <varlistentry>
@@ -92,10 +92,10 @@
 
         <listitem>
           <para>a magnitude absoluta que um elemento deve ter para ser
-          considerado um candidato a pivô, exceto como último recurso. Este
-          número deve ser posto de modo a ser significantemente menor que o
+          considerado um candidato a pivÃ´, exceto como Ãºltimo recurso. Este
+          nÃºmero deve ser posto de modo a ser significantemente menor que o
           menor elemento da diagonal que se espera estar localizado na matriz.
-          O valor padrão é <literal>%eps</literal>.</para>
+          O valor padrÃ£o Ã© <literal>%eps</literal>.</para>
         </listitem>
       </varlistentry>
 
@@ -103,30 +103,30 @@
         <term>reps :</term>
 
         <listitem>
-          <para>Este número determina qual será o limiar relativo do pivô.
-          Deve estar entre 0 e 1. Se for 1, então o método de pivoteamento
-          torna-se pivotação completa, que é muito lento e tende a completar a
-          matriz. Se o número acertado é próximo de 0, o método de
+          <para>Este nÃºmero determina qual serÃ¡ o limiar relativo do pivÃ´.
+          Deve estar entre 0 e 1. Se for 1, entÃ£o o mÃ©todo de pivoteamento
+          torna-se pivotaÃ§Ã£o completa, que Ã© muito lento e tende a completar a
+          matriz. Se o nÃºmero acertado Ã© prÃ³ximo de 0, o mÃ©todo de
           pivoteamento torna-se estritamente de Markowitz, sem limiar. O
-          limiar de pivô é usado para eliminar candidatos a pivô que poderiam
+          limiar de pivÃ´ Ã© usado para eliminar candidatos a pivÃ´ que poderiam
           causar crescimento excessivo de elementos se fossem usados.
-          Crescimento de elementos é a causa dos erros de arredondamento.
+          Crescimento de elementos Ã© a causa dos erros de arredondamento.
           Crescimento de elementos ocorre mesmo em matrizes bem condicionadas.
-          Definir o reps como um número grande reduzirá o crescimento de
-          elementos e os erros de arredondamento, mas colocá-lo muito grande
-          aumentará muito o tempo de execução e resultará num grande número de
-          preenchimentos. Se isto ocorrer, a precisão pode ficar prejudicada
-          por causa do grande número de operações requeridas na matriz devido
-          ao grande número de preenchimentos. 0.001 parece um bom valor, e é o
-          valor default. O default é escolhido fornecendo-se um valor maior
+          Definir o reps como um nÃºmero grande reduzirÃ¡ o crescimento de
+          elementos e os erros de arredondamento, mas colocÃ¡-lo muito grande
+          aumentarÃ¡ muito o tempo de execuÃ§Ã£o e resultarÃ¡ num grande nÃºmero de
+          preenchimentos. Se isto ocorrer, a precisÃ£o pode ficar prejudicada
+          por causa do grande nÃºmero de operaÃ§Ãµes requeridas na matriz devido
+          ao grande nÃºmero de preenchimentos. 0.001 parece um bom valor, e Ã© o
+          valor default. O default Ã© escolhido fornecendo-se um valor maior
           que 1 ou menor que ou igual a 0. Este valor deve ser aumentado e a
           matriz resolvida se o crescimento for excessivo. Mudar o limiar do
-          pivô não melhora o desempenho em matrizes onde o crescimento é
-          baixo, como é geralmente o caso de matrizes mal-condicionadas. reps
+          pivÃ´ nÃ£o melhora o desempenho em matrizes onde o crescimento Ã©
+          baixo, como Ã© geralmente o caso de matrizes mal-condicionadas. reps
           foi escolhido para uso com matrizes quase diagonalmente dominantes
-          como uma matriz de admissão de nó e nó modificado. Para estas
-          matrizes, geralmente o melhor é usar pivotação diagonal. Para
-          matrizes sem uma diagonal forte, geralmente é melhor usar um limiar
+          como uma matriz de admissÃ£o de nÃ³ e nÃ³ modificado. Para estas
+          matrizes, geralmente o melhor Ã© usar pivotaÃ§Ã£o diagonal. Para
+          matrizes sem uma diagonal forte, geralmente Ã© melhor usar um limiar
           maior, como 0.01 ou 0.1.</para>
         </listitem>
       </varlistentry>
@@ -147,7 +147,7 @@ ludel(h)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="sparse">sparse</link></member>
