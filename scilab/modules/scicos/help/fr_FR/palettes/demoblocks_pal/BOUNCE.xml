@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="BOUNCE">
   <refnamediv>
     <refname>BOUNCE</refname>
-    <refpurpose>Générateur de coordonnées de balles</refpurpose>
+    <refpurpose>GÃ©nÃ©rateur de coordonnÃ©es de balles</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BOUNCE">Générateur de coordonnées de balles</link>
+          <link linkend="BOUNCE">GÃ©nÃ©rateur de coordonnÃ©es de balles</link>
         </para>
       </listitem>
       <listitem>
@@ -53,12 +53,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_BOUNCE">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_BOUNCE">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_BOUNCE">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_BOUNCE">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -85,8 +85,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Boîtededialogue_BOUNCE">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_BOUNCE">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -102,69 +102,69 @@
         <para>
           <emphasis role="bold">Mass</emphasis>
         </para>
-        <para> La description du paramètre 1.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Radius</emphasis>
         </para>
-        <para> La description du paramètre 2.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 2.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">[xmin,xmax,ymin,ymax]</emphasis>
         </para>
-        <para> La description du paramètre 3.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 3.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">xpos</emphasis>
         </para>
-        <para> La description du paramètre 4.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 4.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">xdpos</emphasis>
         </para>
-        <para> La description du paramètre 5.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 5.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">ypos</emphasis>
         </para>
-        <para> La description du paramètre 6.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 6.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">ydpos</emphasis>
         </para>
-        <para> La description du paramètre 7.</para>
-        <para> Propriétés : Type 'vec' de taille -1. </para>
+        <para> La description du paramÃ¨tre 7.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille -1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">g (gravity)</emphasis>
         </para>
-        <para> La description du paramètre 8.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> La description du paramÃ¨tre 8.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">C (aerodynamic coeff</emphasis>
         </para>
-        <para> La description du paramètre 9.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> La description du paramÃ¨tre 9.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_BOUNCE">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_BOUNCE">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> oui</para>
@@ -173,14 +173,14 @@
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> oui</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> oui</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [2,1] / type 1</emphasis>
@@ -190,19 +190,19 @@
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>unix_s</refname>
-    <refpurpose>exécution d'une commande Unix ou DOS, pas de sortie  </refpurpose>
+    <refpurpose>exÃ©cution d'une commande Unix ou DOS, pas de sortie  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>unix_s(command-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>command-name</term>
         <listitem>
-          <para>chaîne de caractères</para>
+          <para>chaÃ®ne de caractÃ¨res</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -36,8 +36,8 @@
   <refsection>
     <title>Description</title>
     <para>
-		Envoie la chaîne <literal>command-name</literal> à l'interpréteur de commande
-		(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs ne sont pas reportées (redirection vers /dev/null sous Unix); notez que la *dernière erreur uniquement* est signalée quand <literal>command-name</literal> est une suite de commandes séparées par des ";".
+		Envoie la chaÃ®ne <literal>command-name</literal> Ã  l'interprÃ©teur de commande
+		(sh sous Unix, ou command.com sous DOS). La sortie standard et les erreurs ne sont pas reportÃ©es (redirection vers /dev/null sous Unix); notez que la *derniÃ¨re erreur uniquement* est signalÃ©e quand <literal>command-name</literal> est une suite de commandes sÃ©parÃ©es par des ";".
 	</para>
   </refsection>
   <refsection>

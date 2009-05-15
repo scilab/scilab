@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/special_functions/help/pt_BR";
-add_help_chapter("Funções Especiais",path,%T);
+add_help_chapter("FunÃ§Ãµes Especiais",path,%T);
 clear path add_help_chapter;

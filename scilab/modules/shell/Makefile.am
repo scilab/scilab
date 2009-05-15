@@ -15,7 +15,10 @@ src/c/others/zzledt.c \
 src/c/others/gotoxy_nw.c \
 src/c/others/clrscr_nw.c \
 src/c/InitializeShell.c \
-src/c/TerminateShell.c 
+src/c/TerminateShell.c \
+src/c/prompt.c \
+src/c/promptecho.c
+
 
 if IS_MACOSX
 SHELL_C_SOURCES += src/c/others/initMacOSXEnv.c
@@ -37,7 +40,6 @@ libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) -I$(srcdir)/includes/ -I$(srcdir)
 libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-Iincludes/ \
 			-Isrc/c/ \
-			-Isrc/c/others/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/console/includes/ \
 			-I$(top_srcdir)/modules/history_manager/includes/ \
@@ -46,7 +48,8 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/completion/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/fileio/src/c/
+			-I$(top_srcdir)/modules/fileio/src/c/ \
+			-I$(top_srcdir)/modules/fileio/includes/
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -88,7 +91,10 @@ includes/TerminateShell.h \
 includes/more.h \
 includes/PutChar.h \
 includes/tohome.h \
-includes/zzledt.h
+includes/zzledt.h \
+includes/prompt.h \
+includes/promptecho.h
+
 
 if GUI
 

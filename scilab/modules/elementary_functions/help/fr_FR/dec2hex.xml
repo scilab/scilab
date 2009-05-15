@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO
@@ -25,17 +25,17 @@
   <refnamediv>
     <refname>dec2hex</refname>
 
-    <refpurpose>représentation hexadécimale d'un entier</refpurpose>
+    <refpurpose>reprÃ©sentation hexadÃ©cimale d'un entier</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>h=dec2hex(d)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -50,7 +50,7 @@
         <term>h</term>
 
         <listitem>
-          <para>matrice de chaînes de caractères</para>
+          <para>matrice de chaÃ®nes de caractÃ¨res</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,7 +59,7 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>dec2hex(x)</literal> renvoie la représentation hexadécimale
+    <para><literal>dec2hex(x)</literal> renvoie la reprÃ©sentation hexadÃ©cimale
     d'une matrice d'entiers.</para>
   </refsection>
 

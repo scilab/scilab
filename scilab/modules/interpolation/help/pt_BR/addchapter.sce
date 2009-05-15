@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/interpolation/help/pt_BR";
-add_help_chapter("Interpolação",path,%T);
+add_help_chapter("InterpolaÃ§Ã£o",path,%T);
 clear path add_help_chapter;

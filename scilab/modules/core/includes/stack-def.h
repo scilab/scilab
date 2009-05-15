@@ -386,5 +386,16 @@ typedef struct {
 
 IMPORT BASBRK_struct C2F(basbrk);
 
+/** 
+* simpmd : rational fraction simplification mode
+* used in polynomials and inisci.f (core)
+*/
+typedef struct {
+	int simpmd;
+} CSIMP_struct;
+
+IMPORT CSIMP_struct C2F(csimp);
+
+
 #endif /** STACK_DEF  **/
 

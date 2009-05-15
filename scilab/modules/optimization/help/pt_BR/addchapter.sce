@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/optimization/help/pt_BR";
-add_help_chapter("Otimização e Simulação",path,%T);
+add_help_chapter("OtimizaÃ§Ã£o e SimulaÃ§Ã£o",path,%T);
 clear path add_help_chapter;

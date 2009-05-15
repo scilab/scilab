@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="numer">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>numer</refname>
-    <refpurpose> numérateurs d'une matrice rationnelle  </refpurpose>
+    <refpurpose> numÃ©rateurs d'une matrice rationnelle  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>num=numer(R)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>R  </term>
@@ -24,7 +24,7 @@
       <varlistentry>
         <term>num  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -32,8 +32,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>num=numer(R)</literal> renvoie le numérateur <literal>num</literal> d'une matrice rationnelle <literal>R</literal> (<literal>R</literal> peut aussi être une matrice constante ou une matrice de polynômes).
-    <literal>numer(R)</literal> est équivalent à <literal>R(2)</literal>, <literal>R('num')</literal> ou <literal>R.num</literal>
+    <para><literal>num=numer(R)</literal> renvoie le numÃ©rateur <literal>num</literal> d'une matrice rationnelle <literal>R</literal> (<literal>R</literal> peut aussi Ãªtre une matrice constante ou une matrice de polynÃ´mes).
+    <literal>numer(R)</literal> est Ã©quivalent Ã  <literal>R(2)</literal>, <literal>R('num')</literal> ou <literal>R.num</literal>
   </para>
   </refsection>
   <refsection>

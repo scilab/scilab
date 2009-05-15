@@ -2,3 +2,4 @@
 #generated .def files (windows)
 #
 src/c/output_stream.def
+src/fortran/output_stream_f.def

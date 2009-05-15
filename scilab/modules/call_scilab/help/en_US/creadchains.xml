@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009  - DIGITEO - Sylvestre LEDRU
@@ -36,7 +36,7 @@
   <refsection>
     <title>Parameters</title>
 
-    <para><variablelist>
+	<variablelist>
         <varlistentry>
           <term>name</term>
 
@@ -90,7 +90,7 @@
             ability to be called from fortran</para>
           </listitem>
         </varlistentry>
-      </variablelist></para>
+      </variablelist>
   </refsection>
 
   <refsection>
@@ -126,7 +126,9 @@
     <simplelist type="inline">
       <member><link linkend="SendScilabJob">SendScilabJob</link>, <link
       linkend="StartScilab">StartScilab</link>, <link
-      linkend="cwritechain">cwritechain</link></member>
+      linkend="cwritechain">cwritechain</link>,
+      <link linkend="StringManagement_callscilab">String Management</link>
+</member>
     </simplelist>
   </refsection>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2007 - INRIA - Vincent COUVERT
@@ -16,17 +16,17 @@
   </info>
   <refnamediv>
     <refname>tohome</refname>
-    <refpurpose>Déplace le curseur en haut à gauche de la fenêtre de commande</refpurpose>
+    <refpurpose>DÃ©place le curseur en haut Ã  gauche de la fenÃªtre de commande</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>tohome()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
-    <para><literal>tohome()</literal> déplace le curseur en haut à gauche de la fenêtre de commande et efface l'écran.</para>
-    <para>Vous pouvez utiliser la barre de défilement pour voir l'historique des fonctions.</para>
-    <para>Notez que <literal>tohome()</literal> ne peut être utilisé sous Windows quand Scilab est utilisé en mode sans fenêtre.</para>
+    <para><literal>tohome()</literal> dÃ©place le curseur en haut Ã  gauche de la fenÃªtre de commande et efface l'Ã©cran.</para>
+    <para>Vous pouvez utiliser la barre de dÃ©filement pour voir l'historique des fonctions.</para>
+    <para>Notez que <literal>tohome()</literal> ne peut Ãªtre utilisÃ© sous Windows quand Scilab est utilisÃ© en mode sans fenÃªtre.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

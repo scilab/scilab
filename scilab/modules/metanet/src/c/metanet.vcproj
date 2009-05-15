@@ -419,6 +419,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\files.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\gw_metanet.h"
 				>
 			</File>

@@ -11,15 +11,15 @@
  *
  */
 
-#ifndef __GW_SPREADSHEET__
-#define __GW_SPREADSHEET__
+#ifndef __GW_SPREADSHEET_H__
+#define __GW_SPREADSHEET_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
+#include "dynlib_spreadsheet.h"
 /*--------------------------------------------------------------------------*/ 
-int gw_spreadsheet(void);
+SPREADSHEET_IMPEXP int gw_spreadsheet(void);
 /*--------------------------------------------------------------------------*/ 
-int C2F(sci_xls_read)(char *fname,unsigned long fname_len);
-int C2F(sci_xls_open)(char *fname,unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_xls_read(char *fname,unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_xls_open(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/ 
-#endif /*  __GW_SPREADSHEET__ */
+#endif /*  __GW_SPREADSHEET_H__ */
 /*--------------------------------------------------------------------------*/

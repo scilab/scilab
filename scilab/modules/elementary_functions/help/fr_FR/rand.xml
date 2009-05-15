@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="rand" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,11 +13,11 @@
   <refnamediv>
     <refname>rand</refname>
 
-    <refpurpose>générateur de nombres aléatoires</refpurpose>
+    <refpurpose>gÃ©nÃ©rateur de nombres alÃ©atoires</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>rand(m1,m2,.. [,key])
 rand(x [, key])
@@ -30,7 +30,7 @@ rand("info")
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -45,8 +45,8 @@ rand("info")
         <term>key</term>
 
         <listitem>
-          <para>chaîne de caractères, <literal>"uniform"</literal> ou
-          <literal>"normal"</literal> ("uniform" par défaut)</para>
+          <para>chaÃ®ne de caractÃ¨res, <literal>"uniform"</literal> ou
+          <literal>"normal"</literal> ("uniform" par dÃ©faut)</para>
         </listitem>
       </varlistentry>
 
@@ -64,11 +64,11 @@ rand("info")
   <refsection>
     <title>Description</title>
 
-    <para>Générateur de nombres aléatoires.</para>
+    <para>GÃ©nÃ©rateur de nombres alÃ©atoires.</para>
 
     <para>Sans l'argument <literal>key</literal> la syntaxe ci-dessous produit
-    une matrice aléatoire dont chaque élément est la réalisation d'une
-    variable aléatoire suivant une loi donnée (par défaut uniforme sur
+    une matrice alÃ©atoire dont chaque Ã©lÃ©ment est la rÃ©alisation d'une
+    variable alÃ©atoire suivant une loi donnÃ©e (par dÃ©faut uniforme sur
     [0,1]).</para>
 
     <variablelist>
@@ -76,7 +76,7 @@ rand("info")
         <term>rand(m1,m2)</term>
 
         <listitem>
-          <para>est une matrice aléatoire de dimensions <literal>m1</literal>
+          <para>est une matrice alÃ©atoire de dimensions <literal>m1</literal>
           x <literal>m2</literal>.</para>
         </listitem>
       </varlistentry>
@@ -85,7 +85,7 @@ rand("info")
         <term>rand(m1,m2,..,mn)</term>
 
         <listitem>
-          <para>est une matrice aléatoire de dimensions <literal>m1</literal>
+          <para>est une matrice alÃ©atoire de dimensions <literal>m1</literal>
           x <literal>m2</literal>,.. x <literal>mn</literal>.</para>
         </listitem>
       </varlistentry>
@@ -94,22 +94,22 @@ rand("info")
         <term>rand(a)</term>
 
         <listitem>
-          <para>est une matrice aléatoire de mêmes dimensions que a.
+          <para>est une matrice alÃ©atoire de mÃªmes dimensions que a.
           <literal>rand(a)</literal> est complexe si <literal>a</literal> est
           une matrice complexe.</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>S'il est présent, l'argument <literal>key</literal> permet de
-    spécifier la loi suivie par défaut par la variable aléatoire.</para>
+    <para>S'il est prÃ©sent, l'argument <literal>key</literal> permet de
+    spÃ©cifier la loi suivie par dÃ©faut par la variable alÃ©atoire.</para>
 
     <variablelist>
       <varlistentry>
         <term>rand('uniform')</term>
 
         <listitem>
-          <para>La loi par défaut est uniforme sur l'intervalle [0,1].</para>
+          <para>La loi par dÃ©faut est uniforme sur l'intervalle [0,1].</para>
         </listitem>
       </varlistentry>
 
@@ -117,7 +117,7 @@ rand("info")
         <term>rand('normal')</term>
 
         <listitem>
-          <para>La loi par défaut est une loi normale centrée réduite (moyenne
+          <para>La loi par dÃ©faut est une loi normale centrÃ©e rÃ©duite (moyenne
           0, variance 1).</para>
         </listitem>
       </varlistentry>
@@ -126,21 +126,21 @@ rand("info")
         <term>str=rand('info')</term>
 
         <listitem>
-          <para>renvoie 'uniform' ou 'normal' suivant la loi définie par
-          défaut (voir ci-dessus).</para>
+          <para>renvoie 'uniform' ou 'normal' suivant la loi dÃ©finie par
+          dÃ©faut (voir ci-dessus).</para>
         </listitem>
       </varlistentry>
     </variablelist>
 
-    <para>Il est possible de réinitialiser l'état interne du générateur
-    aléatoire (spécifié par un entier de l'intervalle [0,2^31-1]) ):</para>
+    <para>Il est possible de rÃ©initialiser l'Ã©tat interne du gÃ©nÃ©rateur
+    alÃ©atoire (spÃ©cifiÃ© par un entier de l'intervalle [0,2^31-1]) ):</para>
 
     <variablelist>
       <varlistentry>
         <term>rand('seed')</term>
 
         <listitem>
-          <para>Renvoie la valeur courante de l'état interne.</para>
+          <para>Renvoie la valeur courante de l'Ã©tat interne.</para>
         </listitem>
       </varlistentry>
 
@@ -148,8 +148,8 @@ rand("info")
         <term>rand('seed',n)</term>
 
         <listitem>
-          <para>Impose la valeur <literal>n</literal> pour l'état interne (par
-          défaut l'état est initialisé à <literal>n=0</literal> au premier
+          <para>Impose la valeur <literal>n</literal> pour l'Ã©tat interne (par
+          dÃ©faut l'Ã©tat est initialisÃ© Ã  <literal>n=0</literal> au premier
           appel).</para>
         </listitem>
       </varlistentry>
@@ -159,7 +159,7 @@ rand("info")
   <refsection>
     <title>Remarque</title>
 
-    <para>Il est conseillé d'utiliser plutôt la fonction <link
+    <para>Il est conseillÃ© d'utiliser plutÃ´t la fonction <link
     linkend="grand">grand</link> qui permet aussi de simuler les lois les plus
     classiques (binomiale, poisson, ....).</para>
   </refsection>

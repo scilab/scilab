@@ -95,7 +95,7 @@ libscitime_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscitime_la-realtime.lo libscitime_la-timer.lo \
-	libscitime_la-getdate.lo libscitime_la-InversionMatrixInt.lo
+	libscitime_la-getdate.lo
 am__objects_2 = libscitime_la-sci_realtime.lo \
 	libscitime_la-sci_timer.lo libscitime_la-sci_calendar.lo \
 	libscitime_la-sci_xpause.lo libscitime_la-sci_sleep.lo \
@@ -171,8 +171,11 @@ FFTW_ENABLE = @FFTW_ENABLE@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
+GMSGFMT = @GMSGFMT@
+GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
@@ -182,6 +185,8 @@ INSTALL_DATA = @INSTALL_DATA@
 INSTALL_PROGRAM = @INSTALL_PROGRAM@
 INSTALL_SCRIPT = @INSTALL_SCRIPT@
 INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
+INTLLIBS = @INTLLIBS@
+INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
@@ -201,11 +206,15 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 LAPACK_LIBS = @LAPACK_LIBS@
 LDFLAGS = @LDFLAGS@
+LIBICONV = @LIBICONV@
+LIBINTL = @LIBINTL@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LIBTOOL = @LIBTOOL@
 LN_S = @LN_S@
 LOOKS = @LOOKS@
+LTLIBICONV = @LTLIBICONV@
+LTLIBINTL = @LTLIBINTL@
 LTLIBOBJS = @LTLIBOBJS@
 MAINT = @MAINT@
 MAKEINFO = @MAKEINFO@
@@ -215,6 +224,8 @@ MATIO_LIBS = @MATIO_LIBS@
 MKDIR_P = @MKDIR_P@
 MSGCAT = @MSGCAT@
 MSGFMT = @MSGFMT@
+MSGFMT_015 = @MSGFMT_015@
+MSGMERGE = @MSGMERGE@
 NM = @NM@
 NMEDIT = @NMEDIT@
 OBJEXT = @OBJEXT@
@@ -235,6 +246,7 @@ PCRE_CONFIG = @PCRE_CONFIG@
 PCRE_LIBS = @PCRE_LIBS@
 PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
+POSUB = @POSUB@
 POW_LIB = @POW_LIB@
 PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
@@ -264,10 +276,13 @@ TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
+USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
 XGETTEXT = @XGETTEXT@
+XGETTEXT_015 = @XGETTEXT_015@
+XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
 XMKMF = @XMKMF@
 XMLGRAPHICS_COMMONS = @XMLGRAPHICS_COMMONS@
 XML_APIS_EXT = @XML_APIS_EXT@
@@ -336,8 +351,7 @@ top_srcdir = @top_srcdir@
 ### SOURCES ###
 TIME_C_SOURCES = src/c/realtime.c \
 src/c/timer.c \
-src/c/getdate.c \
-src/c/InversionMatrixInt.c
+src/c/getdate.c 
 
 GATEWAY_C_SOURCES = sci_gateway/c/sci_realtime.c \
 sci_gateway/c/sci_timer.c \
@@ -379,12 +393,9 @@ libscitime_la_sci_gateway_DATA = sci_gateway/time_gateway.xml
 #### time : include files ####
 libscitime_la_includedir = $(pkgincludedir)/time
 libscitime_la_include_HEADERS = includes/gw_time.h \
-includes/sci_getdate.h \
-includes/sci_timer.h \
-includes/sci_realtime.h \
-includes/sci_xpause.h \
-includes/sci_sleep.h \
-includes/sci_calendar.h
+includes/dynlib_time.h \
+includes/realtime.h \
+includes/timer.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -518,7 +529,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-InversionMatrixInt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-getdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-gw_time.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-realtime.Plo@am__quote@
@@ -571,13 +581,6 @@ libscitime_la-getdate.lo: src/c/getdate.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getdate.c' object='libscitime_la-getdate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -c -o libscitime_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
-
-libscitime_la-InversionMatrixInt.lo: src/c/InversionMatrixInt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -MT libscitime_la-InversionMatrixInt.lo -MD -MP -MF $(DEPDIR)/libscitime_la-InversionMatrixInt.Tpo -c -o libscitime_la-InversionMatrixInt.lo `test -f 'src/c/InversionMatrixInt.c' || echo '$(srcdir)/'`src/c/InversionMatrixInt.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscitime_la-InversionMatrixInt.Tpo $(DEPDIR)/libscitime_la-InversionMatrixInt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InversionMatrixInt.c' object='libscitime_la-InversionMatrixInt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -c -o libscitime_la-InversionMatrixInt.lo `test -f 'src/c/InversionMatrixInt.c' || echo '$(srcdir)/'`src/c/InversionMatrixInt.c
 
 libscitime_la-sci_realtime.lo: sci_gateway/c/sci_realtime.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_realtime.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_realtime.Tpo -c -o libscitime_la-sci_realtime.lo `test -f 'sci_gateway/c/sci_realtime.c' || echo '$(srcdir)/'`sci_gateway/c/sci_realtime.c

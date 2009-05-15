@@ -4,7 +4,6 @@
 EXPORTS
 
 ; core
- blktit_
  callFunctionFromGateway
  vstk_
  stack_

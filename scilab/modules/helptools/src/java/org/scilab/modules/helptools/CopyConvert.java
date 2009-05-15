@@ -96,7 +96,7 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
     // -----------------------------------------------------------------------
 
     public void run(File inFile, File outFile)
-        throws SAXParseException, IOException {
+        throws SAXParseException, SAXException, IOException {
         outFile = outFile.getCanonicalFile();
         outDir = outFile.getParentFile();
         if (!outDir.isDirectory() && !outDir.mkdirs()) {
@@ -133,8 +133,11 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
                 throw new IOException("Error writing '" + outFile + "'");
 			}
 		} catch (SAXException e){
-			throw new SAXParseException(
-                "Cannot parse " + inFile + " " + Helpers.reason(e),locator);
+			if (locator!=null){
+				throw new SAXParseException("Cannot parse " + inFile + " " + Helpers.reason(e),locator);
+			}else{
+				throw new SAXException("Cannot parse " + inFile + " " + Helpers.reason(e));
+			}
         } finally {
             out.close();
         }

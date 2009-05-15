@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="isdef" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>isdef</refname>
 
-    <refpurpose>vérifie si une variable existe</refpurpose>
+    <refpurpose>vÃ©rifie si une variable existe</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>isdef(name [,where])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>name</term>
 
         <listitem>
-          <para>chaîne de caractères.</para>
+          <para>chaÃ®ne de caractÃ¨res.</para>
         </listitem>
       </varlistentry>
 
@@ -38,7 +38,7 @@
         <term>where</term>
 
         <listitem>
-          <para>une chaîne de caractères optionnelle valant par défaut
+          <para>une chaÃ®ne de caractÃ¨res optionnelle valant par dÃ©faut
           <literal>'all'</literal></para>
         </listitem>
       </varlistentry>
@@ -49,18 +49,18 @@
     <title>Description</title>
 
     <para><literal>isdef(name)</literal> renvoie <literal>%T</literal> (vrai)
-    si la variable nommée <literal>name</literal> existe et
+    si la variable nommÃ©e <literal>name</literal> existe et
     <literal>%F</literal> (faux) sinon.</para>
 
     <para>Mise en garde : une fonction utilisant <literal>isdef</literal> peut
-    renvoyer un résultat dépendant de l'environnement courant !</para>
+    renvoyer un rÃ©sultat dÃ©pendant de l'environnement courant !</para>
 
     <para><literal>isdef(name,'local')</literal> renvoie <literal>%T</literal>
-    si la variable nommée <literal>name</literal> existe dans l'environnement
+    si la variable nommÃ©e <literal>name</literal> existe dans l'environnement
     local de la fonction courante et <literal>%F</literal> sinon.</para>
 
     <para><literal>isdef(name,'nolocal')</literal> renvoie
-    <literal>%T</literal> si la variable nommée <literal>name</literal> existe
+    <literal>%T</literal> si la variable nommÃ©e <literal>name</literal> existe
     dans l'environnement appelant (y compris le niveau global) de la fonction
     courante et <literal>%F</literal> sinon.</para>
   </refsection>

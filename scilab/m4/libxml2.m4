@@ -39,11 +39,13 @@ else
 fi
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
-
 		
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
 XML_VERSION=`$XML_CONFIG --version`
+
+CFLAGS="$CFLAGS $XML_FLAGS"
+LIBS="$LIBS $XML_LIBS"
 
 AC_CHECK_LIB([xml2], [xmlReaderForFile],
                [],

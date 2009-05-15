@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -28,13 +28,13 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>Y=mtlb_sparse(X)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -56,21 +56,21 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para><literal>Y=mtlb_sparse(X)</literal> é usado para converter
+    <para><literal>Y=mtlb_sparse(X)</literal> Ã© usado para converter
     <literal>X</literal>, uma matriz esparsa Scilab, para formato Matlab.
-    <literal>Y</literal> é uma variável de tipo 7, i.e.,
-    <literal>type(Y)</literal> é igual a 7. Esta função deve ser usada em
+    <literal>Y</literal> Ã© uma variÃ¡vel de tipo 7, i.e.,
+    <literal>type(Y)</literal> Ã© igual a 7. Esta funÃ§Ã£o deve ser usada em
     mexfiles (um mexfile Matlab contendo matrizes esparsas pode ser usado
     apenas se as matrizes esparsas do Scilab forem convertidas para este
-    formato). As funções <literal>full</literal> e <literal>spget</literal>
+    formato). As funÃ§Ãµes <literal>full</literal> e <literal>spget</literal>
     funcionam com este formato.</para>
 
-    <para>Outras operações e funções usando este formato podem ficar
-    sobrecarregadas com funções do Scilab usando o prefixo "%msp". Por
-    exemplo, a função <literal>%msp_p(x)</literal> (ver diretório
-    SCIDIR/macros/percent) é usada para exibir tais objetos "tipo 7".</para>
+    <para>Outras operaÃ§Ãµes e funÃ§Ãµes usando este formato podem ficar
+    sobrecarregadas com funÃ§Ãµes do Scilab usando o prefixo "%msp". Por
+    exemplo, a funÃ§Ã£o <literal>%msp_p(x)</literal> (ver diretÃ³rio
+    SCIDIR/macros/percent) Ã© usada para exibir tais objetos "tipo 7".</para>
   </refsection>
 
   <refsection>
@@ -85,7 +85,7 @@ Y, full(Y), [ij,v,mn]=spget(Y)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="full">full</link></member>

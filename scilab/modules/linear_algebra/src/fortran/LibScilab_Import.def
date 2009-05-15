@@ -25,6 +25,8 @@ createcvar_
 scifunction_
 parse_
 callinterf_
+getrecursiongatewaytocall_
+isrecursioncalltofunction_
 ;
 ;core_f
 ;

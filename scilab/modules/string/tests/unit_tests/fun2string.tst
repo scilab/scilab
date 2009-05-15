@@ -105,14 +105,14 @@ ref=["function []=foo()";
      "endfunction"];
 if or(fun2string(foo,'foo')<>ref) then pause,end
 
-// with getf
+// with exec
 // ------------
 ref=["function []=foo()";
      "  y = 1";
      "  z = 3;";
      "endfunction"];
 mputl(ref,TMPDIR+'/foo.sci');
-getf(TMPDIR+'/foo.sci')
+exec(TMPDIR+'/foo.sci')
 if or(fun2string(foo,'foo')<>ref) then pause,end
 
 // with nested functions

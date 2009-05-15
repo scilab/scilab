@@ -42,7 +42,7 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	vector<string> StructList;
+	vector < string > StructList;
 	int *piCurrentItem = NULL;
 	string szCurLevel = "";
 

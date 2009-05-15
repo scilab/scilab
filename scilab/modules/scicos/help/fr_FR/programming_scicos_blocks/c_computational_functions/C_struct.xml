@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -417,7 +417,7 @@ Then we have two object parameters, one is an 32-bit integer matrix with two row
 </para>
         <para>
 At the C computational function level, the instructions ,
-                     , ,  will respectively return the
+                     ,Â ,  will respectively return the
                      values 2,1,2,3 and the instructions ,  the values 11 and
                      84.
 </para>
@@ -551,7 +551,7 @@ Then we have two discrete object states, one is an 32-bit integer matrix with tw
 </para>
         <para>
 At the C computational function level, the instructions ,
-                     , ,  will respectively return the
+                     ,Â ,  will respectively return the
                      values 2,1,2,3 and the instructions ,  the values 11 and
                      84.
 </para>

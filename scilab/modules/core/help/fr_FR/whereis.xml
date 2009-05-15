@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="whereis">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,15 +8,15 @@
     <refpurpose> nom de la librairie contenant une fonction  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[librname]=whereis(function-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie une chaîne de caractères contenant le nom de la librairie contenant
+    Renvoie une chaÃ®ne de caractÃ¨res contenant le nom de la librairie contenant
     la fonction <literal>function-name</literal>. 
-    Le chemin d'accès à la librairie peut être obtenu avec la fonction <literal>"librname"</literal>.
+    Le chemin d'accÃ¨s Ã  la librairie peut Ãªtre obtenu avec la fonction <literal>"librname"</literal>.
   </para>
   </refsection>
   <refsection>

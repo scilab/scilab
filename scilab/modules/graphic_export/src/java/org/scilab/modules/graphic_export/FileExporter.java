@@ -55,7 +55,10 @@ public class FileExporter {
 		
 		ExportRenderer export;		
 		export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
-				
+		
+		// To be sure that their is a GLContext active for export
+		exportedFig.openGraphicCanvas();
+		
 		exportedFig.getRenderingTarget().addGLEventListener(export);
 		exportedFig.drawCanvas();
 		exportedFig.getRenderingTarget().removeGLEventListener(export);

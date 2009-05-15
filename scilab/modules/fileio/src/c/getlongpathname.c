@@ -14,6 +14,9 @@
 #include "getlongpathname.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 	#ifndef MAX_PATH_LONG
@@ -34,7 +37,7 @@ char *getlongpathname(char *shortpathname,BOOL *convertok)
 		int length = GetLongPathNameW(wshortpathname, NULL, 0);
 		if (length <= 0 ) length = MAX_PATH_LONG;
 
-		wLongName = (wchar_t*)MALLOC(length * sizeof(wchar_t));
+		wLongName = (wchar_t*)MALLOC((length + 1) * sizeof(wchar_t));
 
 		if (wLongName)
 		{
@@ -47,8 +50,7 @@ char *getlongpathname(char *shortpathname,BOOL *convertok)
 			else
 			{
 				/* FAILED */
-				LongName = (char*)MALLOC((length)*sizeof(char));
-				strcpy(LongName, shortpathname);
+				LongName = strdup(shortpathname);
 				*convertok = FALSE;
 			}
 			if (wLongName) {FREE(wLongName);wLongName = NULL;}
@@ -56,6 +58,7 @@ char *getlongpathname(char *shortpathname,BOOL *convertok)
 		else
 		{
 			/* FAILED */
+			LongName = strdup(shortpathname);
 			*convertok = FALSE;
 		}
 		if (wshortpathname) { FREE(wshortpathname); wshortpathname = NULL;}

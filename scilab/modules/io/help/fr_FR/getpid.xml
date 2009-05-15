@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -16,16 +16,16 @@
   </info>
   <refnamediv>
     <refname>getpid</refname>
-    <refpurpose> renvoie le numéro de processus de Scilab  </refpurpose>
+    <refpurpose> renvoie le numÃ©ro de processus de Scilab  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>id=getpid()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-    Renvoie le numéro de processus de Scilab sous forme d'un entier.
+    Renvoie le numÃ©ro de processus de Scilab sous forme d'un entier.
   </para>
   </refsection>
   <refsection>

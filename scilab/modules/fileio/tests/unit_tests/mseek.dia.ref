@@ -8,7 +8,7 @@ file3=TMPDIR + '/test3.bin';
 fd1= mopen(file3,'wb');
 for i=1:10
   mput(i,'d');
-end
+end 
 mseek(0);
 mput(678,'d');
 mseek(0,fd1,'end');

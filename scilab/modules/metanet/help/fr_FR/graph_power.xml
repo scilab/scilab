@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>graph_power</refname>
-    <refpurpose> puissance k-ième d'un 1-graphe orienté  </refpurpose>
+    <refpurpose> puissance k-iÃ¨me d'un 1-graphe orientÃ©  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = graph_power(g,k)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -50,14 +50,14 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>graph_power</literal> calcule le graphe orienté <literal>g1</literal> qui est la puissance 
-    k-ième du 1-graphe orienté <literal>g</literal>.
+    <para><literal>graph_power</literal> calcule le graphe orientÃ© <literal>g1</literal> qui est la puissance 
+    k-iÃ¨me du 1-graphe orientÃ© <literal>g</literal>.
     Il y a un arc entre deux sommets dans <literal>g1</literal> s'il existe un chemin entre 
     ces sommets de longueur au plus k dans <literal>g</literal>.
     <literal>graph_power(g,1)</literal> est le graphe <literal>g</literal>.
   </para>
     <para>
-    Si un tel graphe n'existe pas, un vecteur vide est renvoyé.
+    Si un tel graphe n'existe pas, un vecteur vide est renvoyÃ©.
   </para>
   </refsection>
   <refsection>

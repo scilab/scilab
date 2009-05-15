@@ -2,7 +2,6 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Allan CORNET
 * Copyright (C) 2009 - DIGITEO - Allan CORNET
-* ...
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -35,7 +34,7 @@ int sci_mput(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/*  checking variable res */
-	if (GetType(1) == sci_matrix)
+	if ( (GetType(1) == sci_matrix) || (GetType(1) == sci_ints) )
 	{
 		GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
 	}

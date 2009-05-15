@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="example_1_function_1">
   <info>
     <pubdate>01-08-2006</pubdate>
@@ -18,7 +18,7 @@
         <term>b</term>
         <listitem>
           <para>
-            Description du param�tre "b"
+            Description du paramètre "b"
          </para>
         </listitem>
       </varlistentry>
@@ -26,7 +26,7 @@
         <term>c</term>
         <listitem>
           <para>
-            Description du param�tre "c"
+            Description du paramètre "c"
          </para>
         </listitem>
       </varlistentry>
@@ -34,7 +34,7 @@
         <term>a</term>
         <listitem>
           <para>
-            Description du param�tre "a"
+            Description du paramètre "a"
          </para>
         </listitem>
       </varlistentry>
@@ -45,11 +45,189 @@
     <itemizedlist>
       <listitem>
         <para>
-          Description d�taill�e de la fonction "example_1_function_1"
+          Description détaillée de la fonction "example_1_function_1"
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection>
+    <title>Exemple d'inclusion d'images</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/plot3d.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  
+  <refsection>
+    <title>Exemple d'inclusion de MathML</title>
+    <para>
+      <informalequation>
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../mml/quadratic.mml" />
+          </imageobject>
+        </mediaobject>
+      </informalequation>
+    </para>
+  </refsection>
+  
+  <refsection>
+    <title>Example of MathML inclusion : Inline</title>
+    <para>
+      <informalequation>
+        <mediaobject>
+          <imageobject>
+            <imagedata>
+              <mml:math>
+                <mml:semantics>
+                  <mml:mrow>
+                    <mml:mrow>
+                      <mml:mfenced mml:close="∣" mml:open="∣">
+                        <mml:msub>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+
+                            <mml:mrow>
+                              <mml:mi>z</mml:mi>
+
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mi>v</mml:mi>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                <mml:mi>z</mml:mi>
+                              </mml:mrow>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+
+                          <mml:mrow>
+                            <mml:mi mml:fontstyle="italic">ltol</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mi>j</mml:mi>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:msub>
+                      </mml:mfenced>
+
+                      <mml:mo mml:stretchy="false">≤</mml:mo>
+
+                      <mml:mi mml:fontstyle="italic">tol</mml:mi>
+                    </mml:mrow>
+
+                    <mml:mrow>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+
+                          <mml:mi>j</mml:mi>
+
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">⋅</mml:mo>
+
+                        <mml:mfenced mml:close="∣" mml:open="∣">
+                          <mml:msub>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mi>z</mml:mi>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mi>u</mml:mi>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mrow>
+                              <mml:mi mml:fontstyle="italic">ltol</mml:mi>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>j</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+                          </mml:msub>
+                        </mml:mfenced>
+                      </mml:mrow>
+
+                      <mml:mo mml:stretchy="false">+</mml:mo>
+
+                      <mml:mi mml:fontstyle="italic">tol</mml:mi>
+                    </mml:mrow>
+
+                    <mml:mrow>
+                      <mml:mo mml:stretchy="false">(</mml:mo>
+
+                      <mml:mi>j</mml:mi>
+
+                      <mml:mo mml:stretchy="false">)</mml:mo>
+                    </mml:mrow>
+
+                    <mml:mi>,</mml:mi>
+
+                    <mml:mi mml:fontstyle="normal">for</mml:mi>
+
+                    <mml:mrow>
+                      <mml:mi>j</mml:mi>
+
+                      <mml:mo mml:stretchy="false">=</mml:mo>
+
+                      <mml:mn>1</mml:mn>
+                    </mml:mrow>
+
+                    <mml:mi mml:fontstyle="normal">:</mml:mi>
+
+                    <mml:mi mml:fontstyle="normal">ntol</mml:mi>
+                  </mml:mrow>
+
+                  <mml:annotation
+                  mml:encoding="StarMath 5.0">abs(z(v)-z(u))_{ltol(j)}
+                  &lt;= tol(j) cdot abs(z(u))_{ltol(j)} + tol(j), for
+                  j=1:ntol</mml:annotation>
+                </mml:semantics>
+              </mml:math>
+            </imagedata>
+          </imageobject>
+        </mediaobject>
+      </informalequation>
+    </para>
+  </refsection>
+  
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[

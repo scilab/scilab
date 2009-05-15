@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>rdivf</refname>
 
-    <refpurpose>divisão simbólica direita-esquerda</refpurpose>
+    <refpurpose>divisÃ£o simbÃ³lica direita-esquerda</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>["r"]=ldivf("d","c")</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -48,10 +48,10 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Retorna o string <literal>"c/d"</literal> Simplificações triviais
-    tais como <literal>"c/1" = "c"</literal> são realizadas.</para>
+    <para>Retorna o string <literal>"c/d"</literal> SimplificaÃ§Ãµes triviais
+    tais como <literal>"c/1" = "c"</literal> sÃ£o realizadas.</para>
   </refsection>
 
   <refsection>
@@ -67,7 +67,7 @@ ldivf('a','0')
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="ldivf">ldivf</link></member>

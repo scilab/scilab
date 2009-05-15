@@ -65,8 +65,11 @@ IMPORT_EXPORT_MALLOC_DLL unsigned long GetLargestFreeMemoryRegion(void)
 	unsigned long largestSize, freeMem;
 
 	/* HP-UX Use RLIMIT_AIO_MEM instead of RLIMIT_MEMLOCK */
+/* FIXME -- this should be an autoconf test to see which RLIMIT_foo is defined */
 #ifdef solaris
 getrlimit(RLIMIT_VMEM,&rlim);
+#elif defined(__NetBSD__) || defined(__DragonFly__)
+getrlimit(RLIMIT_RSS,&rlim);
 #else	
 getrlimit(RLIMIT_AS, &rlim);
 #endif

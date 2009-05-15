@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="signm" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -19,7 +19,7 @@
   <refsection>
     <title>Description</title>
 
-    <para>Pour les matrices symétriques et hermitiennes
+    <para>Pour les matrices symÃ©triques et hermitiennes
     <literal>X=signm(A)</literal> calcule la fonction signe matriciel.</para>
   </refsection>
 

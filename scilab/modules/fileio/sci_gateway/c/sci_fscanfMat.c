@@ -10,15 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "MALLOC.h"
-#include "fileio.h"
 #include "gw_fileio.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "scanf_functions.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "cluni0.h"
 #include "freeArrayOfString.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
+#include "StringConvert.h"
+#include "NumTokens.h"
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 /*--------------------------------------------------------------------------*/

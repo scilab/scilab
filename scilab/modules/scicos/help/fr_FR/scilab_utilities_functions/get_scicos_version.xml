@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -27,7 +27,7 @@
     <refpurpose>Retourne la version courante de Scicos</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>scicos_ver = get_scicos_version</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_get_scicos_version">
@@ -43,7 +43,7 @@
   <refsection id="Description_get_scicos_version">
     <title>Description</title>
     <para>
-Cette fonction retourne le numéro de version courant de Scicos.  
+Cette fonction retourne le numÃ©ro de version courant de Scicos.  
 </para>
     <para>
 </para>
@@ -51,11 +51,11 @@ Cette fonction retourne le numéro de version courant de Scicos.
 scicos_ver = get_scicos_version
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_get_scicos_version">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_get_scicos_version">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scicos_ver :</emphasis> une chaîne de caractère indiquant le numéro de version.</para>
+        <para><emphasis role="bold">scicos_ver :</emphasis> une chaÃ®ne de caractÃ¨re indiquant le numÃ©ro de version.</para>
       </listitem>
     </itemizedlist>
   </refsection>

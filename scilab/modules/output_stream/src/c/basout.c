@@ -22,6 +22,8 @@
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
 /*--------------------------------------------------------------------------*/ 
+extern int C2F(basouttofile)();
+/*--------------------------------------------------------------------------*/ 
 #define bufferformat "%s\n"
 /*--------------------------------------------------------------------------*/ 
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
@@ -84,7 +86,20 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 	} 
 	else
 	{
-		diary(string, &nbcharacters,TRUE);
+		if (*lunit == -2)
+		{
+			// it write a INPUT command line in diary
+		}
+
+		if (*lunit == C2F(iop).wio)
+		{
+			string[nbcharacters] = '\0';
+			diary(string,TRUE);
+		}
+		else
+		{
+			 C2F(basouttofile)(lunit, string,nbcharacters);
+		}
 	}
 	return 0;
 } 

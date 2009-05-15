@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="rat" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,21 +17,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[N,D]=rat(x [,tol])
 y=rat(x [,tol])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>vecteur ou matrice réelle</para>
+          <para>vecteur ou matrice rÃ©elle</para>
         </listitem>
       </varlistentry>
 
@@ -55,7 +55,7 @@ y=rat(x [,tol])</synopsis>
         <term>y</term>
 
         <listitem>
-          <para>vecteur ou matrice réelle</para>
+          <para>vecteur ou matrice rÃ©elle</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -64,12 +64,12 @@ y=rat(x [,tol])</synopsis>
   <refsection>
     <title>Description</title>
 
-    <para><literal>[N,D] = rat(x,tol)</literal> renvoie deux matrices entières
+    <para><literal>[N,D] = rat(x,tol)</literal> renvoie deux matrices entiÃ¨res
     telles que <literal>N./D</literal> est proche de <literal>x</literal> au
-    sens où <literal>abs(N./D - X) &lt;= tol*abs(x)</literal>. Les
+    sens oÃ¹ <literal>abs(N./D - X) &lt;= tol*abs(x)</literal>. Les
     approximations rationnelles sont obtenues par troncature d'un
-    développement en fraction continue. <literal>tol =
-    1.e-6*norm(X,1)</literal> est la valeur de la tolérance par défaut.
+    dÃ©veloppement en fraction continue. <literal>tol =
+    1.e-6*norm(X,1)</literal> est la valeur de la tolÃ©rance par dÃ©faut.
     <literal>y = rat(x,tol)</literal> renvoie le quotient
     <literal>N./D</literal></para>
   </refsection>

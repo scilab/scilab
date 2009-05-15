@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,10 +24,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="lincos">
   <refnamediv>
     <refname>lincos</refname>
-    <refpurpose>Construit par linéarisation un modèle linéaire d'équations d'état à partir d'un système dynamique décrit par un diagramme scicos</refpurpose>
+    <refpurpose>Construit par linÃ©arisation un modÃ¨le linÃ©aire d'Ã©quations d'Ã©tat Ã  partir d'un systÃ¨me dynamique dÃ©crit par un diagramme scicos</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_lincos">
@@ -54,23 +54,23 @@ The output is a Scilab data structure of type continuous-time state-space linear
 sys= lincos(scs_m [,x0,u0 [,param] ])
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_lincos">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_lincos">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scs_m :</emphasis> une structure de donnée scicos.</para>
+        <para><emphasis role="bold">scs_m :</emphasis> une structure de donnÃ©e scicos.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">x0 :</emphasis> un vecteur colonne. La valeur de l'état continu autour de laquelle la linéarisation est effectuée (par défaut 0).</para>
+        <para><emphasis role="bold">x0 :</emphasis> un vecteur colonne. La valeur de l'Ã©tat continu autour de laquelle la linÃ©arisation est effectuÃ©e (par dÃ©faut 0).</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">u0 :</emphasis> un vecteur colonne. La valeur de l'entrée autour de laquelle la linéarisation est effectuée (par défaut 0).</para>
+        <para><emphasis role="bold">u0 :</emphasis> un vecteur colonne. La valeur de l'entrÃ©e autour de laquelle la linÃ©arisation est effectuÃ©e (par dÃ©faut 0).</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">param :</emphasis> param: une liste avec deux éléments (par defaut list(1.d-6,0)) param(1): un scalaire. Définit un niveau de perturbation pour la linéarisation; la variation suivante est utilisée : del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): un scalaire. Un temps t.</para>
+        <para><emphasis role="bold">param :</emphasis> param: une liste avec deux Ã©lÃ©ments (par defaut list(1.d-6,0)) param(1): un scalaire. DÃ©finit un niveau de perturbation pour la linÃ©arisation; la variation suivante est utilisÃ©e : del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. param(2): un scalaire. Un temps t.</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">sys :</emphasis> un système définit dans un espace d'état en temporel.</para>
+        <para><emphasis role="bold">sys :</emphasis> un systÃ¨me dÃ©finit dans un espace d'Ã©tat en temporel.</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -87,12 +87,12 @@ sys= lincos(scs_m [,x0,u0 [,param] ])
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="steadycos">steadycos - Trouve un régime établi d'un système dynamique décrit par un diagramme scicos (Fonction Scilab)</link>
+          <link linkend="steadycos">steadycos - Trouve un rÃ©gime Ã©tabli d'un systÃ¨me dynamique dÃ©crit par un diagramme scicos (Fonction Scilab)</link>
         </para>
       </listitem>
       <listitem>
         <para>
-          <link linkend="scicos_simulate">scicos_simulate - Fonction pour éxécuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
+          <link linkend="scicos_simulate">scicos_simulate - Fonction pour Ã©xÃ©cuter une simulation scicos en ligne de commmande (Fonction Scilab)</link>
         </para>
       </listitem>
     </itemizedlist>
