@@ -176,3 +176,6 @@ Bug fixes:
 * bug 4500 fixed - basename('') returns a error
 
 * bug 4501 fixed - mput() no more allowed integer types as first input argument.
+
+* bug 4507 fixed - Depending on the fortran runtime libraries a dummy main
+  	  	   		   definition may be needed.
