@@ -90,6 +90,11 @@ Online Help :
 char encoding bugs :
 ====================
 
+* bug 2627 fixed - Scilab 5 console retrieve input strings in UTF-8 format and Scilab doesn't
+manage this format but ISO-8859.
+
+* bug 3228 fixed - ascii function broken for extended set (example : ascii('é')).
+
 * bug 3433 fixed - length with a UTF string returns a incorrect size
 
 * bug 3472 fixed - Dropping files in the Scilab shell doesn't work when the path
