@@ -35,6 +35,10 @@ Source reorganisation:
 * oldsave, oldload functions (only used with macros of scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.
 
+toolbox_skeleton:
+=================
+ - examples of gateways functions (c_sum, f_sum, cpp_find) rewritten with new API.
+
 Input/Output functions:
 =======================
 
