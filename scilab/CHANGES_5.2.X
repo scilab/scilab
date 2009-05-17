@@ -121,6 +121,8 @@ char encoding bugs :
 Bug fixes:
 ==========
 
+* bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
+
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
 
