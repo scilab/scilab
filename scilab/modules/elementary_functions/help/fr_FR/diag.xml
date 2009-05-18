@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="diag" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,18 +13,18 @@
   <refnamediv>
     <refname>diag</refname>
 
-    <refpurpose>extraction de diagonale ou construction d'une matrice à partir
+    <refpurpose>extraction de diagonale ou construction d'une matrice Ã  partir
     d'une diagonale.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[y]=diag(vm, [k])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -39,7 +39,7 @@
         <term>k</term>
 
         <listitem>
-          <para>entier (valeur par défaut 0)</para>
+          <para>entier (valeur par dÃ©faut 0)</para>
         </listitem>
       </varlistentry>
 
@@ -62,14 +62,14 @@
 
     <para><literal>diag(vm,k)</literal> est une matrice
     <literal>(n+abs(k))x(n+abs(k))</literal> avec les composantes de
-    <literal>vm</literal> sur la kième diagonale. <literal>k=0</literal>
-    correspond à la diagonale principale <literal>k&gt;0</literal> correspond
-    aux diagonales supérieures et <literal>k&lt;0</literal> aux diagonales
-    inférieures.</para>
+    <literal>vm</literal> sur la kiÃ¨me diagonale. <literal>k=0</literal>
+    correspond Ã  la diagonale principale <literal>k&gt;0</literal> correspond
+    aux diagonales supÃ©rieures et <literal>k&lt;0</literal> aux diagonales
+    infÃ©rieures.</para>
 
     <para>Pour une matrice <literal>vm</literal>,
     <literal>diag(vm,k)</literal> est le vecteur colonne dont les composantes
-    sont les termes de la kième diagonale de <literal>vm</literal>.
+    sont les termes de la kiÃ¨me diagonale de <literal>vm</literal>.
     <literal>diag(vm)</literal> est la diagonale principale de
     <literal>vm</literal>. <literal>diag(diag(x))</literal> est une matrice
     diagonale.</para>
@@ -77,13 +77,13 @@
     <para>Si <literal>vm</literal> est une matrice creuse
     <literal>diag(vm,k)</literal> renvoie une matrice creuse.</para>
 
-    <para>Pour construire un système linéaire diagonal, utilisez
+    <para>Pour construire un systÃ¨me linÃ©aire diagonal, utilisez
     <literal>sysdiag</literal>.</para>
 
     <para>Notez que <literal>eye(A).*A</literal> renvoie une matrice diagonale
     avec les termes diagonaux de <literal>A</literal>. Ceci est valide pour
-    tout type de matrice (constante, polynomiale, rationnelle, système
-    dynamique linéaire, ...).</para>
+    tout type de matrice (constante, polynomiale, rationnelle, systÃ¨me
+    dynamique linÃ©aire, ...).</para>
   </refsection>
 
   <refsection>

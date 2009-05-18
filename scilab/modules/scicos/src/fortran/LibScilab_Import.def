@@ -27,6 +27,8 @@ recu_
 parse_
 scistring_
 putlhsvar_
+getrecursiongatewaytocall_
+isrecursioncalltofunction_
 ;
 ;elementary_fucntions
 dgefa_
@@ -60,8 +62,4 @@ xerrwv_
 lsr001_
 lsa001_
 ls0001_
-;
-; polynomials_f
-wprxc_
-;
 ;

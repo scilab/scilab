@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="scaling">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,11 +8,11 @@
     <refpurpose> transformation affine d'un ensemble de points  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xy1=scaling(xy,factor,[orig])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xy1  </term>
@@ -31,14 +31,14 @@
       <varlistentry>
         <term>factor  </term>
         <listitem>
-          <para>réel, coefficient de la transformation linéaire
+          <para>rÃ©el, coefficient de la transformation linÃ©aire
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>orig  </term>
         <listitem>
-          <para>vecteur de décalage; [0;0] par défaut.
+          <para>vecteur de dÃ©calage; [0;0] par dÃ©faut.
 </para>
         </listitem>
       </varlistentry>
@@ -46,8 +46,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>scaling</literal> applique une transformation affine sur les points définis par
-    les coordonnées <literal>xy</literal> :
+    <para><literal>scaling</literal> applique une transformation affine sur les points dÃ©finis par
+    les coordonnÃ©es <literal>xy</literal> :
   </para>
     <para><literal>xy1(:,i) = factor * xy(:,i) + orig</literal>.
   </para>

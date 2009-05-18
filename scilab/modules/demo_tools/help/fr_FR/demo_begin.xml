@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,20 +16,20 @@
   </info>
   <refnamediv>
     <refname>demo_begin</refname>
-    <refpurpose>Commence une démonstration</refpurpose>
+    <refpurpose>Commence une dÃ©monstration</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>demo_begin()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-		La fonction demo_begin() sert à commencer une démonstration.
-		Elle place le script et les valeurs en mode de non affichage à la console,
+		La fonction demo_begin() sert Ã  commencer une dÃ©monstration.
+		Elle place le script et les valeurs en mode de non affichage Ã  la console,
 		enregistre les variables de l'environnement dans un fichier temporaire et
 		sauvegarde la largeur de la console.
-		Elle doit être utilisée avec la function demo_end.
+		Elle doit Ãªtre utilisÃ©e avec la function demo_end.
 		</para>
   </refsection>
   <refsection>

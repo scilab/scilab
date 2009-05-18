@@ -39,6 +39,17 @@
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
 
+/*
+ * see http://www.gnu.org/software/autoconf/manual/autoconf.html and
+ * search for F77_DUMMY_MAIN
+ */
+#ifdef F77_DUMMY_MAIN
+#  ifdef __cplusplus
+extern "C"
+#  endif
+int F77_DUMMY_MAIN() { return 1; }
+#endif
+
 int main(int argc, char **argv)
 {
   int i;
@@ -92,6 +103,9 @@ fpsetmask(0);
 	  setCommandLineArgs(argv, argc);
   }
 #endif
+
+  setCommandLineArgs(argv, argc);
+	  
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
   {

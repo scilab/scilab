@@ -22,9 +22,7 @@ function TextChildren(a)
 	for k=1:size(children, 1)
 		handle = children(k);
 		if(handle.type == "Text") then
-			if(handle.clip_state <> "off") then
-				pause;
-			end
+		  if(handle.clip_state <> "off") then bugmes();quit;end
 		end
         TextChildren(children(k));
 	end	

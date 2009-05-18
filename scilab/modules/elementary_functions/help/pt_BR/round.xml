@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,17 +24,17 @@
   <refnamediv>
     <refname>round</refname>
 
-    <refpurpose>arredondamento para inteiro mais próximo</refpurpose>
+    <refpurpose>arredondamento para inteiro mais prÃ³ximo</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>y=round(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -50,17 +50,17 @@
 
         <listitem>
           <para>matriz de inteiros ou complexos (com partes reais e
-          imaginárias inteiras )</para>
+          imaginÃ¡rias inteiras )</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>round(x)</literal> arredonda os elementos de
-    <literal>x</literal> para os inteiros mais próximos.</para>
+    <literal>x</literal> para os inteiros mais prÃ³ximos.</para>
   </refsection>
 
   <refsection>
@@ -77,7 +77,7 @@ x=rand()*10^20;round(x)-x
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="int">int</link></member>

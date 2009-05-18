@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>degree</refname>
 
-    <refpurpose>grau da matriz de polinômios</refpurpose>
+    <refpurpose>grau da matriz de polinÃ´mios</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title> Seqüência de Chamamento </title>
+    <title> SeqÃ¼Ãªncia de Chamamento </title>
 
     <synopsis>[D]=degree(M)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
         <term>M</term>
 
         <listitem>
-          <para>matriz de polinômios </para>
+          <para>matriz de polinÃ´mios </para>
         </listitem>
       </varlistentry>
 
@@ -56,14 +56,14 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para>Retorna a matriz de graus mais elevados de
     <literal>M</literal>.</para>
   </refsection>
 
   <refsection>
-    <title> Ver Também </title>
+    <title> Ver TambÃ©m </title>
 
     <simplelist type="inline">
       <member><link linkend="poly">poly</link></member>

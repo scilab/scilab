@@ -11,8 +11,6 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "sci_getdate.h"
-
 #include <time.h>
 #include <locale.h>
 #include <stdio.h>
@@ -24,13 +22,15 @@
 #else
 #include <sys/time.h>
 #endif
+#include "gw_time.h"
+#include "stack-c.h"
 #include "MALLOC.h"
 #include "getdate.h"
-#include "InversionMatrixInt.h"
+#include "transposeMatrix.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_getdate)(char *fname,unsigned long fname_len)
+int sci_getdate(char *fname,unsigned long fname_len)
 {
 	static int l1,n1,m1;
 	int i=0;
@@ -124,7 +124,7 @@ int C2F(sci_getdate)(char *fname,unsigned long fname_len)
 				m1=l/10;
 				n1=10;
 				DATEARRAYtmp=DATEARRAY;
-				DATEARRAY=InversionMatrixInt(n1,m1,DATEARRAY);
+				DATEARRAY = transposeMatrixInt(n1,m1,DATEARRAY);
 				CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &m1, &n1 ,&DATEARRAY);
 
 				LhsVar(1)=Rhs+1;

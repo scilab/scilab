@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,62 +16,62 @@
   </info>
   <refnamediv>
     <refname>mtlb_sum</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab sum</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab sum</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>sum</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>sum</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        En cas d'appel avec un paramètre d'entrée : La fonction Matlab <literal>sum</literal> traite
-	les valeurs en suivant la première dimension qui n'est pas 1 alors que la fonction Scilab
-	<literal>sum</literal> traite toutes les valeurs de l'entrée.
+        En cas d'appel avec un paramÃ¨tre d'entrÃ©e : La fonction Matlab <literal>sum</literal> traite
+	les valeurs en suivant la premiÃ¨re dimension qui n'est pas 1 alors que la fonction Scilab
+	<literal>sum</literal> traite toutes les valeurs de l'entrÃ©e.
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec deux paramètres d'entrée : La fonction Matlab <literal>sum</literal> peut être
-	utilisée avec le second paramètre donnant une dimension du premier paramètre qui n'existe pas
+        En cas d'appel avec deux paramÃ¨tres d'entrÃ©e : La fonction Matlab <literal>sum</literal> peut Ãªtre
+	utilisÃ©e avec le second paramÃ¨tre donnant une dimension du premier paramÃ¨tre qui n'existe pas
 	alors que la fonction Scilab <literal>sum</literal> retourne un message d'erreur.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>mtlb_sum(A[,dim])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>sum(A[,dim])</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_sum</literal> :
+    La fonction <literal>mtlb_sum(A[,dim])</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>sum(A[,dim])</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_sum</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est une matrice vide, un scalaire ou un vecteur,
-        <literal>mtlb_sum(A)</literal> peut être remplacé par <literal>sum(A)</literal>
+        En cas d'appel avec un paramÃ¨tre d'entrÃ©e, si <literal>A</literal> est une matrice vide, un scalaire ou un vecteur,
+        <literal>mtlb_sum(A)</literal> peut Ãªtre remplacÃ© par <literal>sum(A)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est une matrice non-vide,
-        <literal>mtlb_sum(A)</literal> peut être remplacé par <literal>sum(A,1)</literal>
+        En cas d'appel avec un paramÃ¨tre d'entrÃ©e, si <literal>A</literal> est une matrice non-vide,
+        <literal>mtlb_sum(A)</literal> peut Ãªtre remplacÃ© par <literal>sum(A,1)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec un paramètre d'entrée, si <literal>A</literal> est hypermatrice,
-        <literal>mtlb_sum(A)</literal> peut être remplacé par <literal>sum(A,firstnonsingleton(A))</literal>
+        En cas d'appel avec un paramÃ¨tre d'entrÃ©e, si <literal>A</literal> est hypermatrice,
+        <literal>mtlb_sum(A)</literal> peut Ãªtre remplacÃ© par <literal>sum(A,firstnonsingleton(A))</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-        En cas d'appel avec deux paramètres d'entrée, si <literal>dim</literal> est inférieure au nombre
+        En cas d'appel avec deux paramÃ¨tres d'entrÃ©e, si <literal>dim</literal> est infÃ©rieure au nombre
 	de dimensions de <literal>A</literal> 
-        <literal>mtlb_sum(A,dim)</literal> peut être remplacé par <literal>sum(A,dim)</literal>
+        <literal>mtlb_sum(A,dim)</literal> peut Ãªtre remplacÃ© par <literal>sum(A,dim)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_sum</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_sum</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

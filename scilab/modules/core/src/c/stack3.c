@@ -966,6 +966,34 @@ void CreateCPolyVarFromPtr(int _iNewVal, int** _piVarName, int _iRows, int _iCol
 		*Lstk(Top - Rhs + _iNewVal + 1) = sadr(iAddrData) + iArraySum(_piPow, 0, _iRows * _iCols) + iIndex;
 }
 
+void GetRhsStringVar(int _iVarNum, int* _piRows, int* _piCols, int* _piLen, char* _pstData)
+{
+	int iAddrBase		= iadr(*Lstk(Top - Rhs + _iVarNum));
+	int iValType		= *istk(iAddrBase);
+	int iAddrData		= 0;
+	if(iValType < 0)
+	{
+		iAddrBase		= iadr(*istk(iAddrBase + 1));
+		iValType		= *istk(iAddrBase);
+	}
+
+	iGetStringFromAddress(iAddrBase, _piRows, _piCols, _piLen, &iAddrData);
+
+	if(iAddrData == 0)
+	{
+		return;
+	}
+
+	if(_pstData == NULL)
+	{
+		return;
+	}
+	code2str(&_pstData, (int*) cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
+	
+	C2F(intersci).ntypes[_iVarNum - 1] = '$' ;
+	C2F(intersci).iwhere[_iVarNum - 1] = *Lstk(_iVarNum);
+}
+
 void CreateSparseVarFromPtr(int _iNewVal, int _iRows, int _iCols, int _iTotalElem, int* _piElemByRow, int* _piColByRow, double* _pdblRealData)
 {
 	CreateCSparseVarFromPtr(_iNewVal, _iRows, _iCols, _iTotalElem, _piElemByRow, _piColByRow, _pdblRealData, NULL);
@@ -2401,3 +2429,67 @@ int *GetLengthStringMatrixByName(char *name_, int *m, int *n)
 	}
 	return lenghtMatrix;
 }
+
+/*Nouveau début, FAIRE DU TRI DANS TOUT CE MERDIER TONIO !!!!!!!*/
+
+int iGetDoubleFromPointer(int* _piAddr, int *_piRows, int *_piCols, double** _pdblReal)
+{
+	return 0;
+}
+
+int iGetComplexDoubleFromPointer(int* _piAddr, int *_piRows, int *_piCols, double** _pdblReal, double** _pdblImg)
+{
+	return 0;
+}
+
+int iGetPolyFromPointer(int* _piAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, double** _pdblReal)
+{
+	return 0;
+}
+
+int iGetComplexPolyFromPointer(int* _piAddr, int** _piVarName, int* _piRows, int* _piCols, int* _piPow, double** _pdblReal, double** _pdblImg)
+{
+	return 0;
+}
+
+int iGetBooleanFromPointer(int* _piAddr, int *_piRows, int *_piCols, int** _piBool)
+{
+	return 0;
+}
+
+int iGetSparseFromPointer(int* _piAddr, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal)
+{
+	return 0;
+}
+
+int iGetComplexSparseFromPointer(int* _piAddr, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal, double **_pdblImg)
+{
+	return 0;
+}
+
+int iGetBooleanSparseFromPointer(int* _piAddr, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, int** _piBool)
+{
+	return 0;
+}
+
+int iGetMatlabSparseFromPointer(int* _piAddr, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal)
+{
+	return 0;
+}
+
+int iGetComplexMatlabSparseFromPointer(int* _piAddr, int *_piRows, int *_piCols, int* _piTotalElem, int* _piElemByRow, double **_pdblReal, double **_pdblImg)
+{
+	return 0;
+}
+
+int iGetIntFromPointer(int* _piAddr, int *_piRows, int *_piCols, int *_piPrecision, int** _piInt)
+{
+	return 0;
+}
+
+int iGetHandleFromPointer(int* _piAddr, int *_piRows, int *_piCols, int** _piHandle)
+{
+	return 0;
+}
+
+

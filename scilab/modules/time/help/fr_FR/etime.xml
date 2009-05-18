@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>etime</refname>
-    <refpurpose>Temps écoulé</refpurpose>
+    <refpurpose>Temps Ã©coulÃ©</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>e = etime(t2,t1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>t2</term>
@@ -51,8 +51,8 @@
       <varlistentry>
         <term>t1 et t2 contenant 10 valeurs</term>
         <listitem>
-          <para> : <literal>t2</literal> et <literal>t1</literal> doivent avoir le format retourné par <literal>getdate</literal>. 
-				Dans ce cas, leurs troisièmes, quatrièmes et cinquièmes valeurs sont ignorées.</para>
+          <para> : <literal>t2</literal> et <literal>t1</literal> doivent avoir le format retournÃ© par <literal>getdate</literal>. 
+				Dans ce cas, leurs troisiÃ¨mes, quatriÃ¨mes et cinquiÃ¨mes valeurs sont ignorÃ©es.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -63,8 +63,8 @@
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>t2</literal> et <literal>t1</literal> doivent être de même taille.</para>
-    <para><literal>t2</literal> et <literal>t1</literal> peuvent être des matrices dont chaque ligne contient un format précisé ci-dessus (toutes les lignes du même format).</para>
+    <para><literal>t2</literal> et <literal>t1</literal> doivent Ãªtre de mÃªme taille.</para>
+    <para><literal>t2</literal> et <literal>t1</literal> peuvent Ãªtre des matrices dont chaque ligne contient un format prÃ©cisÃ© ci-dessus (toutes les lignes du mÃªme format).</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

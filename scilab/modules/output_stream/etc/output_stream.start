@@ -10,9 +10,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // ====================================================================
 //Load  functions libraries
-//load("SCI/modules/output_stream/macros/lib");
+load("SCI/modules/output_stream/macros/lib");
 // ====================================================================
 //add help chapter
-//add_module_help_chapter("output_stream");
-//clear add_module_help_chapter;
+add_module_help_chapter("output_stream");
+clear add_module_help_chapter;
 // ====================================================================

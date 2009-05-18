@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="tlist">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>tlist</refname>
-    <refpurpose> Objet Scilab. Définition d'une liste typée  </refpurpose>
+    <refpurpose> Objet Scilab. DÃ©finition d'une liste typÃ©e  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>tlist(typ,a1,....an )</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>typ  </term>
         <listitem>
-          <para>chaîne de caractères ou matrice de chaînes de caractères
+          <para>chaÃ®ne de caractÃ¨res ou matrice de chaÃ®nes de caractÃ¨res
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ai  </term>
         <listitem>
-          <para>objet Scilab (<literal>matrice, liste, chaîne...</literal>).
+          <para>objet Scilab (<literal>matrice, liste, chaÃ®ne...</literal>).
 </para>
         </listitem>
       </varlistentry>
@@ -33,23 +33,23 @@
   <refsection>
     <title>Description</title>
     <para>
-    Crée une <literal>liste typée</literal> avec les éléments <literal>ai</literal>. L'argument <literal>typ</literal>
-    spécifie le nom du type. L'utilisateur peut redéfinir
-    les opérateurs et primitives de Scilab pour ces nouveaux objets à l'aide de fonctions Scilab (voir <literal>overloading</literal>). La seule différence entre les listes typées et les listes (voir <literal>list</literal>)
-    est la valeur numérique du type (16 au lieu de 15).
+    CrÃ©e une <literal>liste typÃ©e</literal> avec les Ã©lÃ©ments <literal>ai</literal>. L'argument <literal>typ</literal>
+    spÃ©cifie le nom du type. L'utilisateur peut redÃ©finir
+    les opÃ©rateurs et primitives de Scilab pour ces nouveaux objets Ã  l'aide de fonctions Scilab (voir <literal>overloading</literal>). La seule diffÃ©rence entre les listes typÃ©es et les listes (voir <literal>list</literal>)
+    est la valeur numÃ©rique du type (16 au lieu de 15).
   </para>
-    <para><literal>typ(1)</literal> spécifie le nom du type (cette chaîne de caractères est utilisée dans les noms des fonctions surchargeant les opérateurs et primitives).
-  </para>
-    <para>
-    S'il est spécifié, <literal>typ(i)</literal> donne le nom formel de l'élément <literal>i+1</literal> (voir plus bas dans les exemples).
+    <para><literal>typ(1)</literal> spÃ©cifie le nom du type (cette chaÃ®ne de caractÃ¨res est utilisÃ©e dans les noms des fonctions surchargeant les opÃ©rateurs et primitives).
   </para>
     <para>
-    Les opérations standard sur les listes fonctionnent similairement pour les listes typées (tlist). 
+    S'il est spÃ©cifiÃ©, <literal>typ(i)</literal> donne le nom formel de l'Ã©lÃ©ment <literal>i+1</literal> (voir plus bas dans les exemples).
+  </para>
+    <para>
+    Les opÃ©rations standard sur les listes fonctionnent similairement pour les listes typÃ©es (tlist). 
   </para>
     <para>
      extraction 
     : <literal>[x,y,z...]=l(v)</literal> ou <literal>v</literal> est un vecteur d'indices; 
-    <literal>[x,y,z]=l(:)</literal> extrait tous les éléments.
+    <literal>[x,y,z]=l(:)</literal> extrait tous les Ã©lÃ©ments.
   </para>
     <para>
       insertion
@@ -57,34 +57,34 @@
   </para>
     <para>
      suppression
-    : <literal>l(i)=null()</literal> supprime le i-ème élément de la <literal>tlist l</literal>.
+    : <literal>l(i)=null()</literal> supprime le i-Ã¨me Ã©lÃ©ment de la <literal>tlist l</literal>.
   </para>
     <para>
      affichage
   </para>
     <para>
-    De plus si les composantes <literal>typ(2:n+1)</literal> sont spécifiées, les éléments peuvent être désignés par leur noms formels.
+    De plus si les composantes <literal>typ(2:n+1)</literal> sont spÃ©cifiÃ©es, les Ã©lÃ©ments peuvent Ãªtre dÃ©signÃ©s par leur noms formels.
   </para>
     <para>
-    Voici quelques exemples d'utilisation des liste typées :
+    Voici quelques exemples d'utilisation des liste typÃ©es :
   </para>
     <para>
-    Dans Scilab, les systèmes dynamiques linéaires sont définis par une liste typée :
-    le quadruplet <literal>[A,B,C,D]</literal> est représenté par la tlist
+    Dans Scilab, les systÃ¨mes dynamiques linÃ©aires sont dÃ©finis par une liste typÃ©e :
+    le quadruplet <literal>[A,B,C,D]</literal> est reprÃ©sentÃ© par la tlist
     <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal> 
-    et cette tlist spécifique est créée par la fonction <literal>syslin</literal>.
+    et cette tlist spÃ©cifique est crÃ©Ã©e par la fonction <literal>syslin</literal>.
   </para>
     <para>
-    Sys(2), Sys('A') ou Sys.A est la matrice d'état et Sys('dt') ou Sys.dt est le domaine temporel.
+    Sys(2), Sys('A') ou Sys.A est la matrice d'Ã©tat et Sys('dt') ou Sys.dt est le domaine temporel.
   </para>
     <para>
-    Une matrice rationnelle <literal>H</literal> est représentée par la tlist
-    <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> où <literal>Num</literal> et <literal>Den</literal> sont deux
-    matrices polynomiales et un système dynamique linéaire (en temps continu) peut être créé sous la forme d'une
+    Une matrice rationnelle <literal>H</literal> est reprÃ©sentÃ©e par la tlist
+    <literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal> oÃ¹ <literal>Num</literal> et <literal>Den</literal> sont deux
+    matrices polynomiales et un systÃ¨me dynamique linÃ©aire (en temps continu) peut Ãªtre crÃ©Ã© sous la forme d'une
     matrice de transfert <literal>H</literal> par <literal>syslin('c',H)</literal>.
   </para>
     <para>
-    H(2), H('num') ou H.num est le numérateur de la matrice de transfert
+    H(2), H('num') ou H.num est le numÃ©rateur de la matrice de transfert
   </para>
   </refsection>
   <refsection>

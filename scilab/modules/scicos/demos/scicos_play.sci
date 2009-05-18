@@ -56,7 +56,7 @@ names=[
     'do_exit'
     'x_matrix']
 for k=1:size(names,'r')
-  getf(get_function_path(names(k)))
+  exec(get_function_path(names(k)))
 end
 
 
@@ -150,7 +150,7 @@ deff('Comment_()',..
 
 
 
-getf('SCI/demos/scicos/dialogs_play.sci')
+exec('SCI/demos/scicos/dialogs_play.sci')
 execstr('tk_getfile=xgetfile')
 execstr('tk_savefile=xgetfile')
 tk_getcolor=getcolor

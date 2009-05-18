@@ -1,30 +1,30 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rowcompr">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>rowcompr</refname>
-    <refpurpose> compression de lignes d'une matrice de polynômes  </refpurpose>
+    <refpurpose> compression de lignes d'une matrice de polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[X,rk,Ac]=rowcompr(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Y  </term>
         <listitem>
-          <para>matrice carrée de polynômes (base unimodulaire à gauche)
+          <para>matrice carrÃ©e de polynÃ´mes (base unimodulaire Ã  gauche)
 </para>
         </listitem>
       </varlistentry>
@@ -39,7 +39,7 @@
         <term>Ac  </term>
         <listitem>
           <para>
-    : <literal>Ac=X*A</literal>, matrice de polynômes
+    : <literal>Ac=X*A</literal>, matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -48,13 +48,13 @@
   <refsection>
     <title>Description</title>
     <para>
-    Compression de lignes de la matrice de polynômes <literal>A </literal>.
+    Compression de lignes de la matrice de polynÃ´mes <literal>A </literal>.
   </para>
-    <para><literal>X</literal> est une base de polynômes unimodulaire à gauche qui compresse les lignes
+    <para><literal>X</literal> est une base de polynÃ´mes unimodulaire Ã  gauche qui compresse les lignes
     de <literal>A</literal>. <literal>rk</literal> est le rang normal de A.
   </para>
     <para>
-    Attention : élimination des termes "petits" (à utiliser avec précaution).
+    Attention : Ã©limination des termes "petits" (Ã  utiliser avec prÃ©caution).
   </para>
   </refsection>
   <refsection>

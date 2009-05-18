@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> Factorisation de Cholesky creuse  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[R,P] = spchol(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice creuse réelle ou complexe
+          <para>matrice creuse rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>[R,P] = spchol(X)</literal> produit une matrice triangulaire inférieure <literal>R</literal> telle que <literal>P*R*R'*P' = X</literal>.
+    <para><literal>[R,P] = spchol(X)</literal> produit une matrice triangulaire infÃ©rieure <literal>R</literal> telle que <literal>P*R*R'*P' = X</literal>.
   </para>
   </refsection>
   <refsection>

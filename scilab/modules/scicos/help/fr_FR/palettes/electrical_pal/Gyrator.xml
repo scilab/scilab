@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Gyrator">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Gyrator">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Gyrator">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Gyrator">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Gyrator">Modèle Modelica</link>
+              <link linkend="Gyrator">ModÃ¨le Modelica</link>
             </para>
           </listitem>
           <listitem>
@@ -90,7 +90,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -103,8 +103,8 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Gyrator">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Gyrator">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,23 +121,23 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
           <emphasis role="bold">G1</emphasis>
         </para>
         <para> Gyration conductance (-i2/v1) .</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">G2</emphasis>
         </para>
         <para> Gyration conductance (i1/v2).</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Gyrator">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Gyrator">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -176,25 +176,25 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'G1'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'G1'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'G2'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'G2'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -214,8 +214,8 @@ A gyrator is a two-port element defined by the following equations:  i1 =  G2 * 
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_Gyrator">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_Gyrator">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/Gyrator.mo</para>

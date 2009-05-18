@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,37 +19,37 @@
     <refpurpose> noyau  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>W=kernel(A [,tol,[,flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice réelle ou complexe (pleine ou creuse)
+          <para>matrice rÃ©elle ou complexe (pleine ou creuse)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>chaîne de caractères
+          <para>chaÃ®ne de caractÃ¨res
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>tol  </term>
         <listitem>
-          <para>nombre réel
+          <para>nombre rÃ©el
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>W  </term>
         <listitem>
-          <para>matrice régulière
+          <para>matrice rÃ©guliÃ¨re
 </para>
         </listitem>
       </varlistentry>
@@ -57,12 +57,12 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>W=kernel(A)</literal> calcule le noyau de <literal>A</literal>. Les colonnes de <literal>W</literal> forment une base du noyau de <literal>A</literal>. Si A est régulière, alors W=[].
+    <para><literal>W=kernel(A)</literal> calcule le noyau de <literal>A</literal>. Les colonnes de <literal>W</literal> forment une base du noyau de <literal>A</literal>. Si A est rÃ©guliÃ¨re, alors W=[].
   </para>
-    <para><literal>flag</literal> et <literal>tol</literal> sont des paramètres optionnels : <literal>flag = 'qr'</literal> 
-    or <literal>'svd'</literal> (<literal>'svd'</literal> par défaut).
+    <para><literal>flag</literal> et <literal>tol</literal> sont des paramÃ¨tres optionnels : <literal>flag = 'qr'</literal> 
+    or <literal>'svd'</literal> (<literal>'svd'</literal> par dÃ©faut).
   </para>
-    <para><literal>tol</literal> = paramètre de tolérance (de l'ordre de <literal>%eps</literal> par défaut).
+    <para><literal>tol</literal> = paramÃ¨tre de tolÃ©rance (de l'ordre de <literal>%eps</literal> par dÃ©faut).
   </para>
   </refsection>
   <refsection>

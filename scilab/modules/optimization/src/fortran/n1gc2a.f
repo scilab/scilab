@@ -60,13 +60,15 @@ c memuti est ici le nombre de places memoire utilisees pour stocker h
       memuti=m * memsup
       nrzuti=memuti+4*n
       if (imp .gt. 1) then
-        write(bufstr,2) m,nrzuti
+        write(bufstr,2) m
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        write(bufstr,3) nrzuti
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
       endif
 1     format(40h     methode de quasi-newton. nrz utile=,i7)
-2     format(38h     methode du gradient conjugue avec,i3,
-     / 14h mises a jour.,11h nrz utile=,i7)
+2     format(38h     methode du gradient conjugue avec,i3)
+3     format(14h mises a jour.,11h nrz utile=,i7)
 c
 c  ***********************************************
 c  phase ii:initialisations propres a l'optimiseur

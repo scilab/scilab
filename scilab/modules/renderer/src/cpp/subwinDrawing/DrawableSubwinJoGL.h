@@ -20,6 +20,11 @@
 #include "DrawableObjectJoGL.h"
 #include "DrawableSubwinJavaMapper.hxx"
 
+#ifdef _MSC_VER
+#pragma warning(once : 4250)
+#endif
+
+
 namespace sciGraphics
 {
 

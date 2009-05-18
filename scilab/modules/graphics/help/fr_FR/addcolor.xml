@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="addcolor">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>addcolor</refname>
-    <refpurpose> ajoute de nouvelles couleurs à la table des couleurs courante  </refpurpose>
+    <refpurpose> ajoute de nouvelles couleurs Ã  la table des couleurs courante  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>new=addcolor(c)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>new  </term>
@@ -24,7 +24,7 @@
       <varlistentry>
         <term>c  </term>
         <listitem>
-          <para>matrice à trois colonnes. Définition des composantes RVB des nouvelles couleurs 
+          <para>matrice Ã  trois colonnes. DÃ©finition des composantes RVB des nouvelles couleurs 
 </para>
         </listitem>
       </varlistentry>
@@ -32,17 +32,17 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>addcolor</literal> ajoute de nouvelles couleurs données dans l'argument <literal>c</literal>. 
-    <literal>c</literal> est une matrice à trois colonnes.
+    <para><literal>addcolor</literal> ajoute de nouvelles couleurs donnÃ©es dans l'argument <literal>c</literal>. 
+    <literal>c</literal> est une matrice Ã  trois colonnes.
     <literal>[R V B]</literal> <literal>R</literal> est la composante rouge, <literal>V</literal> est la composante verte,
-    <literal>B</literal> est la composante bleue. Chaque terme de <literal>c</literal> est un nombre positif inférieur
-    ou égal à un.
+    <literal>B</literal> est la composante bleue. Chaque terme de <literal>c</literal> est un nombre positif infÃ©rieur
+    ou Ã©gal Ã  un.
   </para>
     <para>
-    Les indices des nouvelles couleurs sont renvoyés dans <literal>new</literal>.
+    Les indices des nouvelles couleurs sont renvoyÃ©s dans <literal>new</literal>.
   </para>
     <para>
-    Si une couleur dans <literal>c</literal> est déjà présente dans la table des couleurs courante, elle n'est pas ajoutée. 
+    Si une couleur dans <literal>c</literal> est dÃ©jÃ  prÃ©sente dans la table des couleurs courante, elle n'est pas ajoutÃ©e. 
   </para>
   </refsection>
   <refsection>

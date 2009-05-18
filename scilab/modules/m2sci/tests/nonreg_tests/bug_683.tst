@@ -43,8 +43,8 @@ mfile2sci(MFILE2,TMPDIR);
 SCIFILE1=TMPDIR+"/test_cell1.sci";
 SCIFILE2=TMPDIR+"/test_cell2.sci";
 
-getf(SCIFILE1);
-getf(SCIFILE2);
+exec(SCIFILE1);
+exec(SCIFILE2);
 
 // Exec functions
 [ce1,ce2] = test_cell1(23);

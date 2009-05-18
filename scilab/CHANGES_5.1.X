@@ -6,18 +6,41 @@ Compilation:
 
 * "make check" now builds also call_scilab examples
 
+* --enable-debug-java add two options to the JVM args (-verbose:jni and
+  -Xcheck:jni) in order to provide more feedbacks on debug
+  Note that this should be used into a binary since it is expensive
+
+* C++ => Java connector updated (using GIWS -
+  http://www.scilab.org/giws/ version 1.0.2)
+
+* Series of patches applied (see bug #4506) by Dan McMahill which fixes some
+  minor compile time problems under NetBSD:
+  		- adds some missing $host to the 64 bit list.
+		- added a needed compiler flag for alpha-*-netbsd
+		- added autoconf check for term.h header
+		- added autoconf checks for gettext.
+		- added autoconf check for dlopen in -ldl
+		  (on some systems, we don't need -ldl because dlopen is in libc).
+		  Don't hardcode linking with -ldl but rely on this new check.
+		- added correct getrlimit() argument for NetBSD and DragonFly
+		- avoid pulling in an OSF1 specific header on NetBSD/alpha
+		- added missing newline at the end of a file
+		- added missing XML LIBS and CFLAGS
+
+* automake version changed (1.10.1 => 1.10.2)
+
 Source reorganisation:
 ======================
 
 * Some function profiles in stack3.h provided to manage named named variable
   have been moved in CallScilab.h (please note that we haven't changed the ABI
   and the symbols remain in the core library)
-  The goal of this modification is to separate functions dealing with the 
+  The goal of this modification is to separate functions dealing with the
   call_scilab API and the internal API used in the gateways.
 
 * In call_scilab:
   * C2F(readmat) is obsolete. Please use C2F(creadmat) instead (same profile)
-  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead 
+  * C2F(readchain) is obsolete. Please use C2F(creadchain) instead
     (same profile)
   * C2F(matptr) is obsolete. Please use C2F(cmatptr) instead (same profile)
 
@@ -26,24 +49,71 @@ Help & Tests:
 
 * Documentation and examples about call_scilab (BooleanManagement call_scilab compile_and_run_call_scilab creadbmat creadchains creadmat cwritebmat cwritechain cwritemat DisableInteractiveMode GetLastJob MatrixManagement ScilabHaveAGraph SendScilabJobs SendScilabJob StartScilab StringManagement TerminateScilab) added
 
+* Javasci FAQ page added
+
+* Online help XML files have been converted into UTF-8
+
 Bug fixes:
 ==========
 
- * bug 3264 fixed - More explicit message when too many files have been 
-		    opened.
+ * bug 1885 fixed - histplot should start from %eps rather than 0 to avoid logarithmic trouble.
 
- * bug 4369 fixed - Help for text_properties: For the clip_state attribut, the second 
-                    possible value was 'clipgrf' instead of 'cliprf'.
+ * bug 2042 fixed - copy function altered axes properties.
+
+ * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
+   	   			  	Debian Etch, Centos 4.X and some other old operating
+					systems)
+
+ * bug 3264 fixed - More explicit message when too many files have been
+		    	  	opened.
+
+ * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
+
+ * bug 4101 fixed - -ns option wasn't clearly explaining that it is
+			disabling many Scilab features
+
+ * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under
+   	   			  	PowerPC
+
+ * bug 4298 fixed - ilib_for_link fails with lcc-win32 (Windows).
+
+ * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
+   	   			  	the second possible value was 'clipgrf' instead of 'cliprf'.
+
+ * bug 4374 fixed - Error calling scipad on a given filename.
 
  * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
                     links to this page exist in the documentation.
 
- * bug 4386 fixed - Dynamic link: link('show') displays only one library if 
+ * bug 4386 fixed - Dynamic link: link('show') displays only one library if
                     we have only one symbol.
 
+ * bug 4391 fixed - make install-html (when the option --with-install-help-xml
+   	   			  	is added to the configure) wasn't installing MathML sources
+
  * bug 4403 fixed - ieeefp.h wasn't included under Solaris in evaluate_expr.c
- 
+
  * bug 4414 fixed - Complex grayplots are not saved correctly in scilab 5.1
+
+ * bug 4426 fixed - uigetfile() - File name is cut when we are in the root directory.
+
+ * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
+
+ * bug 4437 fixed - Exporting an empty figure crashes Scilab.
+
+ * bug 4439 fixed - Unexpected complex conjugates when using cat.
+
+ * bug 4459 fixed - grayplot does not always plot map containing %nan.
+
+ * bug 4463 fixed - Creating an one-colored Sgrayplot generate some exceptions and does not plot anything.
+
+ * bug 4466 fixed - .' operator defined for strings and booleans
+
+ * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
+                    and not a filename (linux)
+
+ * bug 4479 fixed - A few minor bugs were causing the configure to fail under
+		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
@@ -85,7 +155,7 @@ Source reorganisation:
 Help & Tests:
 =============
 
-* Some equations in the documentation converted to the MathML format 
+* Some equations in the documentation converted to the MathML format
   (bugs #4180 & #4182)
 
 * Page "Compile and run with Javasci" added
@@ -98,7 +168,7 @@ Help & Tests:
 
 * Unit tests for the completion (GUI & NW/NWNI modes)
 
-* Minor improvements in the documentation of the ilib_* functions and 
+* Minor improvements in the documentation of the ilib_* functions and
   fprintf
 
 * Unitary tests for isfield() function has been added
@@ -114,7 +184,7 @@ Enhancement:
   present, the second input argument of test_run is no more the list of tests to
   launch but the list of tests to skip.
   For example, test_run("time",["bug_1506" "bug_793"],"skip_tests");
-  
+
 * test_run() : The following tags have been added :
   - <-- WINDOWS ONLY --> If the operating system isn't Windows, the test is skipped.
   - <-- UNIX ONLY -->    If the operating system isn't an unix OS, the test is skipped.
@@ -137,27 +207,27 @@ Internal API:
 Scilab / Scipad synchronisation bugs:
 =====================================
 
-A critical bug present in Scilab 5.0.X and 5.1.0 has been fixed. 
+A critical bug present in Scilab 5.0.X and 5.1.0 has been fixed.
 It has been reported a numerous number of time:
 
 * bug 2578 fixed - Calling input function within Scipad.
 
 * bug 3345 fixed - From SciPad editor ending Scilab with exit is not correct.
 
-* bug 3394 fixed - A malformed script originating from the editor window hangs 
+* bug 3394 fixed - A malformed script originating from the editor window hangs
   	  	   		   Scilab and the editor.
 
-* bug 3553 fixed - System crash executing tk_getfile() from within scipad by 
+* bug 3553 fixed - System crash executing tk_getfile() from within scipad by
   	  	   		   CTRL+L.
 
-* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function 
+* bug 3643 fixed - Scilab spec function is the equivalent of Matlab function
                    (mtlb_eig is now obsolete).
                    
 * bug 3839 fixed - strrev doesn't work correctly if the string to be reversed includes some accentuated characters.
 
 * bug 3944 fixed - ilib_mex_build() wasn't using the content of the  
 
-* bug 3705 fixed - During execution of any Scipad sequence, entering abort 
+* bug 3705 fixed - During execution of any Scipad sequence, entering abort
                    after the prompt hang up both Scipad and Console.
 
 * bug 3778 fixed - Calling TK gui from Scipad.
@@ -168,7 +238,7 @@ It has been reported a numerous number of time:
 
 * bug 4178 fixed - Scilab crash when using "legend" via Scipad.
 
-* bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load 
+* bug 4196 fixed - Scipad and Scilab crashing when using menu "Execute->load
   	  	   		   into Scilab".
 
 * bug 4204 fixed - Strange error message when using usecanvas(%F).
@@ -182,7 +252,7 @@ Bug fixes:
 
 * bug 3240 fixed - msprintf error in plotprofile.
 
-* bug 3587 fixed - gsort is not stable: It does not preserve the relative order 
+* bug 3587 fixed - gsort is not stable: It does not preserve the relative order
   	  	   		   of equal values creates problem with function unique.
 
 * bug 3852 fixed - Line wrapping problem in help browser
@@ -212,7 +282,7 @@ Bug fixes:
 
 * bug 4120 fixed - amell returns wrong value on Scilab x64 (Windows)
 
-* bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C 
+* bug 4123 fixed - %i_prod crashs scilab (Windows release mode built with F2C
   	  	   		   only)
 
 * bug 4128 fixed - 'win' argument of the event_handler function did not work
@@ -225,10 +295,10 @@ Bug fixes:
                    
 * bug 4141 fixed - ascii doesn't support extended ascii values in the range of [128-255].
 
-* bug 4242 fixed - Copyright added (INRIA code) 
+* bug 4242 fixed - Copyright added (INRIA code)
 		   on modules/linear_algebra/src/fortran/doldqr.f
 
-* bug 4150 fixed - user startup executed twice if you change directory to 
+* bug 4150 fixed - user startup executed twice if you change directory to
   	  	   		   SCIHOME in this file.
 
 * bug 4159 fixed - coshlt was defined twice on windows
@@ -241,16 +311,16 @@ Bug fixes:
 
 * bug 4179 fixed - The dec2hex "see also" part was missing in the help page.
 
-* bug 4192 fixed - When doing a getd in a directory where there are no .sci 
+* bug 4192 fixed - When doing a getd in a directory where there are no .sci
   	  	   		   files, getd displayed a error message not clear at all.
 
 * bug 4197 fixed - inaccurate floating point results computed by norm with
                    large/small vector matrices.
 
-* bug 4197 fixed - When warning messages are disabled, a blank line is printed 
+* bug 4197 fixed - When warning messages are disabled, a blank line is printed
   	  	   		   out.
 
-* bug 4199 fixed - Missing information in findobj help page + findobj did not 
+* bug 4199 fixed - Missing information in findobj help page + findobj did not
   	  	   		   find figures.
 
 * bug 4201 fixed - Confusing error message in datafit
@@ -261,7 +331,7 @@ Bug fixes:
 
 * bug 4235 fixed - error.h renamed
 
-* bug 4238 fixed - waitbar and progressionbar won't close when clicking on the X 
+* bug 4238 fixed - waitbar and progressionbar won't close when clicking on the X
                    in the upper-right corner of the window.
 
 * bug 4245 fixed - The icon of the progressionbar is a java icon.
@@ -271,10 +341,10 @@ Bug fixes:
 
 * bug 4250 fixed - The online help of intx function was badly located
 
-* bug 4258 fixed - Configure script does not contain the correct detection 
+* bug 4258 fixed - Configure script does not contain the correct detection
   	  	   		   code for the JNI libraries under Solaris SPARC.
 
-* bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions 
+* bug 4266 fixed - ones, rand, zeros functions do not remove highest dimensions
   	  	   		   equal to 1
 
 * bug 4269 fixed - Fix a bashim in the macros of detection of swig (causing
@@ -283,26 +353,28 @@ Bug fixes:
 * bug 4270 fixed - The module tclsci wasn't really desactivated when using
   	  	   		   the option --without-tk
 
-* bug 4274 fixed - Open dialog invoked from Toolbar to select file to open with Scipad 
-                   has wrong "Scilab SCI files" filter instead of "All Scilab files" 
+* bug 4274 fixed - Open dialog invoked from Toolbar to select file to open with Scipad
+                   has wrong "Scilab SCI files" filter instead of "All Scilab files"
                    like dialog invoked from File -> Open a file...
 
-* bug 4282 fixed - When doing a symlink of scilab script, when calling this 
+* bug 4282 fixed - When doing a symlink of scilab script, when calling this
   	  	   		   script, it changes the PWD
 
 * bug 4284 fixed - The online help of isfield() was missing.
 
 * bug 4295 fixed - mdelete no more works with "*.extension" as input (wildcard).
 
-* bug 4297 fixed - A spelling mistake was causing in some cases with the pfss function
+* bug 4297 fixed - A spelling mistake was causing in some cases with the
+  	  	   		   pfss function
 
-* bug 4299 fixed - getmemory is reporting bad total memory on system with a lot of memory (> 3Go)
+* bug 4299 fixed - getmemory is reporting bad total memory on system with
+  	    	  	   a lot of memory (> 3Go)
 
 * bug 4301 fixed - Better reporting at the end of the configure
 
 * bug 4302 fixed - Do not build the helptool module when --disable-build-help
   	  	   		   is used
-		   
+
 * bug 4309 fixed - Under Scilab5 the dashed lines are not well displayed. They
   	  	   		   are reinitialized for each segment.
 
@@ -312,7 +384,7 @@ Bug fixes:
 
 * bug 4316 fixed - mfprintf(0,'string') does not redirect stderr as fprintf(0,...)
 
-* bug 4321 fixed - strcat with 3 input parameters crashs if input type 
+* bug 4321 fixed - strcat with 3 input parameters crashs if input type
   	  	   		   parameters are wrong.
 
 * bug 4325 fixed - set("auto_clear","off") crashes Scilab.

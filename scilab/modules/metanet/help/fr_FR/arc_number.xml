@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,11 +19,11 @@
     <refpurpose> nombre d'arcs d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>ma = arc_number(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -44,8 +44,8 @@
   <refsection>
     <title>Description</title>
     <para><literal>arc_number</literal> renvoie le nombre <literal>ma</literal> d'arcs du graphe.
-    Si le graphe est orienté, il s'agit du nombre d'arêtes.
-    Si le graphe est non-orienté, il est égal à deux fois le nombre d'arêtes.
+    Si le graphe est orientÃ©, il s'agit du nombre d'arÃªtes.
+    Si le graphe est non-orientÃ©, il est Ã©gal Ã  deux fois le nombre d'arÃªtes.
   </para>
   </refsection>
   <refsection>

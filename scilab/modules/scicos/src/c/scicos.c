@@ -48,6 +48,7 @@
 #include "core_math.h"
 #include "dynamic_menus.h"
 #include "syncexec.h"
+#include "realtime.h"
 
 #include "math_graphics.h"
 #include "MALLOC.h"  /* malloc */
@@ -197,8 +198,6 @@ extern  int C2F(cvstr)();
 extern  int C2F(dset)();
 extern  int C2F(dcopy)();
 extern  int C2F(iset)();
-extern  int C2F(realtime)();
-extern  int C2F(realtimeinit)();
 extern  int C2F(sxevents)();
 extern  int C2F(stimer)();
 extern  int C2F(xscion)();
@@ -2218,7 +2217,7 @@ void cossimdaskr(told)
 	    if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
             {
 	      if (flagr>=0) {
-		sciprint("**** SUNDIALS.IDA succesfully initialized *****/r/n" );
+		sciprint("**** SUNDIALS.IDA succesffully initialized *****/r/n" );
 	      }
 	      else{
 		sciprint("**** SUNDIALS.IDA failed to initialize ->try again *****/r/n" );

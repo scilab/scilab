@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,10 +16,10 @@
   </info>
   <refnamediv>
     <refname>glist</refname>
-    <refpurpose> création d'un graphe  </refpurpose>
+    <refpurpose> crÃ©ation d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g = glist(a1, ... ,a34)</synopsis>
   </refsynopsisdiv>
   <refsection>
@@ -34,9 +34,9 @@
               'edge_weight','default_node_diam','default_node_border',..
               'default_edge_width','default_edge_hi_width',..
               'default_font_size','node_label','edge_label'],a1, ... ,a34)</literal>
-    Il s'agit d'une fonction de bas niveau pour créer un graphe. Aucune 
-    vérification n'est faite.
-    Pour créer un graphe de façon plus standard, utiliser <literal>make_graph</literal>.
+    Il s'agit d'une fonction de bas niveau pour crÃ©er un graphe. Aucune 
+    vÃ©rification n'est faite.
+    Pour crÃ©er un graphe de faÃ§on plus standard, utiliser <literal>make_graph</literal>.
   </para>
   </refsection>
   <refsection>

@@ -191,7 +191,7 @@ EOF
 AC_DEFUN([AC_JAVA_DETECT_JVM], [
 	AC_MSG_CHECKING([JAVA_HOME variable]) 
 	# check if JAVA_HOME is set. If it is the case, try to use if first
-	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" == "x"; then
+	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" = "x"; then
 		if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
 		    AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
     		    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
@@ -422,6 +422,12 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
        # Sun
           machine=sparc
           ;;
+	    powerpc|ppc64)
+	  	  machine=ppc
+		  ;;
+		  s390x) # s390 arch can also returns s390x
+		  machine=s390
+		  ;;
     esac
 
     # Check for known JDK installation layouts
@@ -442,6 +448,15 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
                 D=$ac_java_jvm_dir/jre/lib/$machine/client
+		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+			# Try the server directory
+			D=$ac_java_jvm_dir/jre/lib/$machine/server
+			if test ! -f $D/libjvm.so; then
+				AC_MSG_ERROR([Could not find libjvm.so in
+				jre/lib/$machine/client/ or in jre/lib/$machine/server/.
+				Please report to http://bugzilla.scilab.org/])
+			fi
+		fi
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
@@ -773,7 +788,7 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
     done
     if test "$found_jar" = "no"; then
       AC_MSG_RESULT([no])
-	  if test "$4" == "yes"; then
+	  if test "$4" = "yes"; then
  		AC_MSG_WARN([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
 	  else
 		  AC_MSG_ERROR([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])

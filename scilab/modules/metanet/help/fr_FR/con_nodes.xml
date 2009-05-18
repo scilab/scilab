@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> ensemble de sommets d'une composante connexe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>ns = con_nodes(i,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéro de la composante connexe
+          <para>entier, numÃ©ro de la composante connexe
 </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>ns  </term>
         <listitem>
-          <para>vecteur ligne, numéros des sommets de la composante connexe
+          <para>vecteur ligne, numÃ©ros des sommets de la composante connexe
 </para>
         </listitem>
       </varlistentry>
@@ -50,10 +50,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>con_nodes</literal> renvoie le vecteur ligne <literal>ns</literal> des numéros des
-    sommets appartenant à la composante connexe numéro <literal>i</literal>.
-    Si <literal>i</literal> n'est pas le numéro d'une composante connexe, le vecteur vide
-    <literal>[]</literal> est renvoyé.
+    <para><literal>con_nodes</literal> renvoie le vecteur ligne <literal>ns</literal> des numÃ©ros des
+    sommets appartenant Ã  la composante connexe numÃ©ro <literal>i</literal>.
+    Si <literal>i</literal> n'est pas le numÃ©ro d'une composante connexe, le vecteur vide
+    <literal>[]</literal> est renvoyÃ©.
   </para>
   </refsection>
   <refsection>

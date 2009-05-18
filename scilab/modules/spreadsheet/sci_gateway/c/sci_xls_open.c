@@ -26,14 +26,13 @@
 #include "../../../fileio/includes/mopen.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetenvB.h"
 #include "tmpdir.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 static char *xls_basename (char *name);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_xls_open)(char *fname,unsigned long fname_len)
+int sci_xls_open(char *fname,unsigned long fname_len)
 {
 #undef IN
 	#define max_char_xls_open 256

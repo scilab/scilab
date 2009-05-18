@@ -645,9 +645,12 @@ void grds(double *xminv,double *xmaxv,double *gr, int *nticks,double *thewidth, 
   
   
   
-  nlow= round(*xminv/ width2);
+  /* nlow= round(*xminv/ width2); */
+	/* Don't use round because the (int) cast may overflow */
+	nlow = floor(*xminv / width2 + 0.5);
   low=nlow* width2;
-  nup = round(*xmaxv/ width2);
+  //nup = round(*xmaxv/ width2);
+	nup = floor(*xmaxv / width2 + 0.5);
   up = nup * width2;
   
   if ( low > *xminv )

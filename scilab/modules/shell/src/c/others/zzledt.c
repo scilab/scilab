@@ -33,7 +33,6 @@
 #include "localization.h"
 #include "scilabmode.h"
 #include "sciprint.h"
-#include "sciprint_nd.h"
 #include "HistoryManager.h"
 #include "MALLOC.h"
 #include "ConsoleRead.h"
@@ -131,9 +130,9 @@ static struct termio arg;
 #define RIGHT_ARROW           0x014d
 #define SEARCH_BACKWARD       0x015e
 #define SEARCH_FORWARD        0x0160
-#define HOME                  0x0001  /* control-A */
-#define ENDS                  0x0005  /* control-E */
-#define LDEL                  0x0015  /* control-U */
+#define CTRL_A                0x0001  /* control-A */
+#define CTRL_E                0x0005  /* control-E */
+#define CTRL_U                0x0015  /* control-U */
 #define INS                   0x0014  /* control-T */
 #define DEL                   0x007f
 #define BS                    0x0008  /* control-H */
@@ -271,7 +270,7 @@ char *TermReadAndProcess(void)
   int character_count;
   char wk_buf[WK_BUF_SIZE + 1];
 
-  char *buffer;
+  char *buffer = NULL;
 
   tmpPrompt = GetTemporaryPrompt(); /* Input function has been used ? */
   GetCurrentPrompt(Sci_Prompt);
@@ -301,12 +300,13 @@ char *TermReadAndProcess(void)
   set_cbreak();
   enable_keypad_mode();
 #endif
+
+  /* Display the Scilab prompt */
   if(sendprompt)
     {
       if(tmpPrompt!=NULL)
         {
           printf("%s",tmpPrompt);
-          ClearTemporaryPrompt();
         }
       else
         {
@@ -382,12 +382,12 @@ char *TermReadAndProcess(void)
 	      }
 	      break;
 
-	    case HOME:
+	    case CTRL_A:
 	      backspace(cursor); /* move to beginning of the line */
 	      cursor = 0;
 	      break;
 
-	    case ENDS:  /* move to end of line */
+	    case CTRL_E:  /* move to end of line */
 	      while(cursor < cursor_max)
 		{
 		  putchar(wk_buf[cursor++]);
@@ -504,7 +504,7 @@ char *TermReadAndProcess(void)
 #endif
 	      break;
 
-	    case LDEL: /* clear line buffer */
+	    case CTRL_U: /* clear line buffer */
 	      backspace(cursor);
 	      erase_nchar(cursor_max);
 	      wk_buf[0] = NUL;
@@ -683,7 +683,6 @@ static void displayPrompt(char *wk_buf)
 	if (tmpPrompt!=NULL)
 	{
 		sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
-		ClearTemporaryPrompt();
 	}
 	else
 	{
@@ -1020,11 +1019,14 @@ static void strip_blank(char *source)
     *p = NUL;
   }
 }
-/***********************************************************************
- * get single character with no echo
- * if interrupt is true, gchar_no_echo escape if an event arises
- **********************************************************************/
 
+/**
+ * get single character with no echo
+ * this is the function which retrieves the input from the user in nw
+ * and nwni modes
+ * if interrupt is true, gchar_no_echo escape if an event arises
+ * @return the number of the key (or the combinaison)
+ */
 static int gchar_no_echo(void)
 {
   int i;

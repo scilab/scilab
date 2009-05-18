@@ -17,8 +17,8 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/ 
 static gw_generic_table Tab[]={
-	{C2F(sci_xls_open),"xls_open"},
-	{C2F(sci_xls_read),"xls_read"}
+	{sci_xls_open,"xls_open"},
+	{sci_xls_read,"xls_read"}
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_spreadsheet(void)

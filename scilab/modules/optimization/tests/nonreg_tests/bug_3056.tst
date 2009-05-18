@@ -64,10 +64,9 @@ gn_1 = list();
 fn_1($+1) = f_tmp;
 gn_1($+1) = df_tmp
 
-to_record = %T;
+to_record = %f;
 
-//[fopt,xopt,gopt]=optim(myf,x0,algo='gc','ar',nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=2);
-[fopt,xopt,gopt]=optim(myf,x0,algo="nd","ar",nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=2);
+[fopt,xopt,gopt]=optim(myf,x0,algo="nd","ar",nap=20,iter=10,epsg=1e-1,epsf=1e-1,epsx=[1e-2;1e-2],imp=0);
 
 list_to_plot = xn_1;
 xn_1 = list();

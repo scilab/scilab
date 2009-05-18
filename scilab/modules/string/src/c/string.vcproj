@@ -422,6 +422,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\NumTokens.c"
+				>
+			</File>
+			<File
 				RelativePath=".\partfunction.c"
 				>
 			</File>
@@ -471,6 +475,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_length.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_NumTokens.c"
 				>
 			</File>
 			<File
@@ -570,7 +578,15 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scistrtostr.c"
+				>
+			</File>
+			<File
 				RelativePath=".\setScilabCharactersCodes.c"
+				>
+			</File>
+			<File
+				RelativePath=".\StringConvert.c"
 				>
 			</File>
 			<File
@@ -647,6 +663,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\NumTokens.h"
+				>
+			</File>
+			<File
 				RelativePath=".\partfunction.h"
 				>
 			</File>
@@ -659,11 +679,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\scistrtostr.h"
+				>
+			</File>
+			<File
 				RelativePath=".\setScilabCharactersCodes.h"
 				>
 			</File>
 			<File
 				RelativePath="..\..\includes\stricmp.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\StringConvert.h"
 				>
 			</File>
 			<File

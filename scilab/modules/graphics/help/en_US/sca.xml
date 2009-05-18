@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Serge Steer
@@ -58,7 +58,7 @@ plot(x,sinh(x))
 sca(a1); //make first axes current
 plot(t,asinh(t),'g')
 legend(['acosh','asinh'])
-sca(a2); //make secoçnd axes current
+sca(a2); //make secoÃ§nd axes current
 legend('sinh')
  
   ]]></programlisting>

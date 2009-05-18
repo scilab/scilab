@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -24,24 +24,24 @@
   <refnamediv>
     <refname>sylv</refname>
 
-    <refpurpose>equação de Sylvester </refpurpose>
+    <refpurpose>equaÃ§Ã£o de Sylvester </refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>sylv(A,B,C,flag)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
         <term>A,B,C</term>
 
         <listitem>
-          <para>três matrizes de reais de dimensões apropriadas</para>
+          <para>trÃªs matrizes de reais de dimensÃµes apropriadas</para>
         </listitem>
       </varlistentry>
 
@@ -57,10 +57,10 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para><literal>X = sylv(A,B,C,'c')</literal> computa <literal>X</literal>,
-    solução da equação de "tempo contínuo" de Sylvester.</para>
+    soluÃ§Ã£o da equaÃ§Ã£o de "tempo contÃ­nuo" de Sylvester.</para>
 
     <programlisting>
 
@@ -69,7 +69,7 @@ A*X+X*B=C
     </programlisting>
 
     <para><literal>X=sylv(A,B,C,'d')</literal> computa <literal>X</literal>,
-    solução da equação de "tempo discreto" de Sylvester.</para>
+    soluÃ§Ã£o da equaÃ§Ã£o de "tempo discreto" de Sylvester.</para>
 
     <programlisting>
 
@@ -93,7 +93,7 @@ norm(A*X*B-X-C)
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="lyap">lyap</link></member>

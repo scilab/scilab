@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="locate">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>locate</refname>
-    <refpurpose> sélection avec la souris d'un ensemble de points   </refpurpose>
+    <refpurpose> sÃ©lection avec la souris d'un ensemble de points   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>x=locate([n,flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x  </term>
         <listitem>
-          <para>matrice de taille (2,n1). n1=n si le paramètre n est donné.
+          <para>matrice de taille (2,n1). n1=n si le paramÃ¨tre n est donnÃ©.
 </para>
         </listitem>
       </varlistentry>
@@ -32,20 +32,20 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>locate</literal> est utilisée pour récupérer les coordonnées d'un ou plusieurs 
-    points sélectionnés avec la souris dans une fenêtre graphique. Les coordonnées 
-    sont données dans l'échelle graphique courante. 
+    <para><literal>locate</literal> est utilisÃ©e pour rÃ©cupÃ©rer les coordonnÃ©es d'un ou plusieurs 
+    points sÃ©lectionnÃ©s avec la souris dans une fenÃªtre graphique. Les coordonnÃ©es 
+    sont donnÃ©es dans l'Ã©chelle graphique courante. 
   </para>
     <para>
-    Si n&gt;0, n points sont sélectionnés et leurs coordonnées sont renvoyées dans 
+    Si n&gt;0, n points sont sÃ©lectionnÃ©s et leurs coordonnÃ©es sont renvoyÃ©es dans 
     la matrice <literal>x</literal>.
   </para>
     <para>
-    Si n&lt;=0, les points sont sélectionnés jusqu'à ce que l'on presse le bouton de gauche de la souris. Le dernier point sélectionné (avec le bouton de gauche) n'est dans ce cas pas renvoyé.
-    x=locate() est identique à <literal>x=locate(-1)</literal>.
+    Si n&lt;=0, les points sont sÃ©lectionnÃ©s jusqu'Ã  ce que l'on presse le bouton de gauche de la souris. Le dernier point sÃ©lectionnÃ© (avec le bouton de gauche) n'est dans ce cas pas renvoyÃ©.
+    x=locate() est identique Ã  <literal>x=locate(-1)</literal>.
   </para>
     <para>
-    Si <literal>flag=1</literal> une croix est dessinée aux points sélectionnés.
+    Si <literal>flag=1</literal> une croix est dessinÃ©e aux points sÃ©lectionnÃ©s.
   </para>
   </refsection>
   <refsection>
