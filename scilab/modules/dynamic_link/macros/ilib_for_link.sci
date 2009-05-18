@@ -38,6 +38,11 @@ function libn = ilib_for_link(names, ..
   
   ilib_gen_loader(names,flag,loadername,libs,libname);
   
+  // bug 4515 - unlink previous function with same name
+  n = size(names,'*');
+  for i = 1:n
+    execstr("[bOK,ilib] = c_link(''" + names(i) + "'');if (bOK) then ulink(ilib),end", names(i));
+  end
   
   // generate a Makefile
   if ( ilib_verbose() <> 0 ) then

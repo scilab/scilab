@@ -203,4 +203,6 @@ Bug fixes:
 
 * bug 4522 fixed - The Tcl interpreter initialization code makes use of some unitialized variables.
 
+* bug 4515 fixed - linking and loading some external functions already used crashs scilab.
+
 * bug 4525 fixed - scilab.sln and scilab_f2c.sln do not apply same dependencies on libraries (windows).
