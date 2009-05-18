@@ -35,6 +35,10 @@ Source reorganisation:
 * oldsave, oldload functions (only used with macros of scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.
 
+toolbox_skeleton:
+=================
+ - examples of gateways functions (c_sum, f_sum, cpp_find) rewritten with new API.
+
 Input/Output functions:
 =======================
 
@@ -85,6 +89,11 @@ Online Help :
 char encoding bugs :
 ====================
 
+* bug 2627 fixed - Scilab 5 console retrieve input strings in UTF-8 format and Scilab doesn't
+manage this format but ISO-8859.
+
+* bug 3228 fixed - ascii function broken for extended set (example : ascii('é')).
+
 * bug 3433 fixed - length with a UTF string returns a incorrect size
 
 * bug 3472 fixed - Dropping files in the Scilab shell doesn't work when the path
@@ -115,6 +124,8 @@ char encoding bugs :
 
 Bug fixes:
 ==========
+
+* bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
@@ -181,5 +192,8 @@ Bug fixes:
 * bug 4500 fixed - basename('') returns a error
 
 * bug 4501 fixed - mput() no more allowed integer types as first input argument.
+
+* bug 4507 fixed - Depending on the fortran runtime libraries a dummy main
+  	  	   		   definition may be needed.
 
 * bug 4516 fixed - ilib_for_link does not use ilib_gen_loader but a internal function.
