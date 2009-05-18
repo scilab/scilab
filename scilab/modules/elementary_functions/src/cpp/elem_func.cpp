@@ -16,7 +16,13 @@ using namespace types;
 
 bool ElemFuncModule::Load()
 {
-	symbol::Context::getInstance()->AddFunction(new Function("cos", &sci_cos, "elementary_function"));
-	symbol::Context::getInstance()->AddFunction(new Function("sin", &sci_sin, "elementary_function"));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("cos", &sci_cos, "elementary_function"));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("sin", &sci_sin, "elementary_function"));
+  symbol::Context::getInstance()->AddFunction(Function::createFunction("blouno", &sci_blouno, "elementary_function"));
 	return true;
+}
+
+Function::ReturnValue sci_blouno() {
+  printf("sci_blouno() !!!\n");
+ return Function::AllGood;
 }

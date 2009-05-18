@@ -211,7 +211,7 @@ namespace ast
 
 			int iRetVal = 0;
 			//out->push_back(execVar->result_get());
-			Function::ReturnValue Ret = pF->m_pFunc(in, &iRetVal, out);
+			Function::ReturnValue Ret = pF->call(in, &iRetVal, out);
 			if(Ret == Function::AllGood)
 			{
 				result_set(out.front());

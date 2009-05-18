@@ -15,10 +15,21 @@
 
 namespace types
 {
+  Function::Function *Function::createFunction(std::string _szName, GW_FUNC _pFunc, std::string _szModule)
+  {
+    return new Function::Function(_szName, _pFunc, _szModule);
+  }
+
+  Function::Function *Function::createFunction(std::string _szName, OLDGW_FUNC _pFunc, std::string _szModule)
+  {
+    return new WrapFunction::WrapFunction(_szName, _pFunc, _szModule);
+  }
+
+
 	Function::Function(std::string _szName, GW_FUNC _pFunc, std::string _szModule)
 	{
-		m_szName		= _szName;
-		m_pFunc			= _pFunc;
+		m_szName	= _szName;
+		m_pFunc		= _pFunc;
 		m_szModule	= _szModule;
 	}
 
@@ -33,6 +44,11 @@ namespace types
 	{ 
 		return this; 
 	}
+
+  Function::ReturnValue Function::call(typed_list &in, int* _piRetCount, typed_list &out)
+  {
+    return this->m_pFunc(in, _piRetCount, out);
+  }
 
 	/*--------------*/
 	/*		whoIAm		*/
