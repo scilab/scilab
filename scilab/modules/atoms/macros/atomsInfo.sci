@@ -13,82 +13,56 @@
 
 // Display of the toolbox information
 
-function atomsInfo(name,version)
-
-	rhs = argn(2);
+function desc = atomsInfo(name)
+	
+	rhs  = argn(2);
+	
+	// Check number of input arguments
+	// =========================================================================
 	
 	if rhs < 1 | rhs > 2 then
 		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsInfo",1,2));
 	end
 	
+	// Check input arguments dimensions
+	// =========================================================================
+	
+	if size(name,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsInfo",1));
+	end
+	
+	if rhs>1 & size(version,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsInfo",2));
+	end
+	
+	// Default value for version
+	// =========================================================================
+	if rhs<2 then
+		version = [];
+	end
+	
 	// we remove the special characters
+	// =========================================================================
 	normalized_name = atomsNormalizeName(name);
 	
 	// We try to find the information locally
 	// =========================================================================
-	atoms_directories        = atomsToolboxDirectory();
-	this_toolbox_directory   = "";
-	this_toolbox_DESCRIPTION = "";
 	
-	for k=1:size(atoms_directories,"*")
-		check_directory = pathconvert(atoms_directories(k)+"/"+normalized_name);
-		check_file      = check_directory+"DESCRIPTION";
-		if fileinfo(check_file) <> [] then
-			this_toolbox_directory   = check_directory;
-			this_toolbox_DESCRIPTION = check_file;
-			break;
-		end
-	end
-	
-	if this_toolbox_DESCRIPTION <> "" then
-		desc = atomsReadDesc(nameToolbox);
-		disp(gettext("This toolbox is present locally."));
-		disp(desc);
-		disp(functionTool);
-		
-		// Ok, we have done the job : return
-		return;
+	if atomsIsInstalled(name,version) then
+		desc = atomsReadDesc( pathconvert(atomsGetInstalledPath(name,version)+"/DESCRIPTION",%F) );
 	end
 	
 	// We try to find the information on the net
 	// =========================================================================
 	
-	disp(_("Search for toolbox versions available on the web"))
 	
-	listDesc = atomsReadDesc("");
-	versions = "";
-	[n, m]   = size(listDesc("Toolbox"));
 	
-	for i=1:n
-		if listDesc("Toolbox")(i) == nameToolbox
-			// To avoid version redundancy
-			[a, b] = size(versions)
-			
-			if find(versions == listDesc("Version")(i))
-				continue;
-			end
-			
-			versions(a+1)        = listDesc("Version")(i)
-			desc                 = atomsListDescription()
-			[listeObl, listeOpt] = constant()
-			[o, p]               = size(listeOpt)
-			[n, m]               = size(listeObl)
-			for j=1:m
-				desc(listeObl(j)) = listDesc(listeObl(j))(i)
-			end
-			for j=1:p
-				desc(listeOpt(j)) = listDesc(listeOpt(j))(i)
-			end
-			
-			disp(desc);
-		end
-	end
 	
-	// if no version was found
-	// =========================================================================
-	[a, b] = size(versions)
-	if a == 1 then
-		disp("none")
-	end
+
+
+
+
+
+
 
 endfunction

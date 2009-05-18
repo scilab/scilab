@@ -15,6 +15,10 @@ function result = atomsInstall(packages,allusers)
 	
 	result = %F;
 	
+	// Get scilab version (needed for later)
+	// =========================================================================
+	sciversion = strcat(string(getversion('scilab')) + ".");
+	
 	// Check input parameters
 	// =========================================================================
 	
@@ -59,7 +63,13 @@ function result = atomsInstall(packages,allusers)
 	
 	atomsGetTOOLBOXES(%T);
 	
-	// Loop on packages
+	// Loop on packages and get the following informations :
+	// - package name
+	// - package version
+	// - status
+	//  + Update
+	//  + New Installation
+	//  + The most recent version is already installed
 	// =========================================================================
 	
 	for i=1:size(packages,"*")
@@ -76,8 +86,8 @@ function result = atomsInstall(packages,allusers)
 			version = "0";
 		else
 			// A version is specified
-			space = regexp(package,"/\s/");
-			name  = part(package,[1:space-1]);
+			space   = regexp(package,"/\s/");
+			name    = part(package,[1:space-1]);
 			version = part(package,[space+1:length(package)]);
 		end
 		
@@ -100,9 +110,33 @@ function result = atomsInstall(packages,allusers)
 			package_versions(i) = atomsGetMRVersion(package_names(i));
 		end
 		
+		// Check if the package is already installed
+		if atomsIsInstalled(package_names(i),package_versions(i),%T) then
+			error(msprintf(gettext("%s: The package %s is already installed.\n"),"atomsInstall",package_full_name));
+		end
+		
+		// Check if the wanted version is compatible with the current scilab version.
+		this_package_details = atomsToolboxDetails(package_names(i),package_versions(i));
+		if ~ atomsIsCompatible(this_package_details("ScilabVersion")) then
+			error(msprintf(gettext("%s: The package %s is not compatible with the current scilab version.\n"),"atomsInstall",package_full_name));
+		end
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// Register the successfully installed package
+		atomsInstallRegister(package_names(i),package_versions(i));
 	end
 	
-
+	
 	
 
 // 	global conflictingList

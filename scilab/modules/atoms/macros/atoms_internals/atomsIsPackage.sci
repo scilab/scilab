@@ -9,7 +9,7 @@
 
 // Internal function
 
-// Return the most recent version of each package specified as first input argument
+// Return true if the package is a valid package or not
 
 function result = atomsIsPackage(package_names,package_versions)
 	
