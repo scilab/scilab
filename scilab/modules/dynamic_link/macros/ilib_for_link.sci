@@ -38,6 +38,7 @@ function libn = ilib_for_link(names, ..
   
   ilib_gen_loader(names,flag,loadername,libs,libname);
   
+  
   // generate a Makefile
   if ( ilib_verbose() <> 0 ) then
     mprintf(gettext("   Generate a Makefile\n"));
@@ -60,6 +61,12 @@ function libn = ilib_for_link(names, ..
   end
   if (libname == "") then libname = names(1);end
   libn = ilib_compile('lib' + libname, makename, files);
+  
+  if ( ilib_verbose() <> 0 ) then
+    mprintf(_("   Generate a cleaner file\n"));
+  end
+  ilib_gen_cleaner(makename,loadername,libn);
+
   
 endfunction
 //==========================================

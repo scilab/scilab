@@ -31,7 +31,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   if ( ilib_verbose() <> 0 ) then
     mprintf(_("   Generate a gateway file\n"));
   end    
-  ilib_gen_gateway(ilib_name,table);
+  file_gw_name = ilib_gen_gateway(ilib_name,table);
   
   // generate a loader file
   if ( ilib_verbose() <> 0 ) then
@@ -63,7 +63,12 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
     mprintf(_("   Running the makefile\n"));
   end
   
-  ilib_compile(ilib_name,makename,files);
+  libn = ilib_compile(ilib_name,makename,files);
+  
+  if ( ilib_verbose() <> 0 ) then
+    mprintf(_("   Generate a cleaner file\n"));
+  end
+  ilib_gen_cleaner(makename,'loader.sce',[libn;file_gw_name]);
   
 endfunction
 //==========================================
