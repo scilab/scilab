@@ -53,6 +53,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   end
   
   if ~MSDOS then // Needs to copy the libfoo.c which contains important stuff
+    files = files(:)';
     files = [files,ilib_name + '.c'];
   end
 
