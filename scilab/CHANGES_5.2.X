@@ -200,3 +200,5 @@ Bug fixes:
   	  	   		   definition may be needed.
 
 * bug 4516 fixed - ilib_for_link does not use ilib_gen_loader but a internal function.
+
+* bug 4525 fixed - scilab.sln and scilab_f2c.sln do not apply same dependencies on libraries (windows).
