@@ -99,12 +99,12 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		super.setAcceptAllFileFilterUsed(false);		
 		
 		//image filter
-		FileMasque[] fm = new FileMasque[data.length];
+		FileMask[] fm = new FileMask[data.length];
 		
 		this.figureId = figureId;
 		
 		for (int i = 0; i < data.length; i++) {
-			fm[i] = new FileMasque(data[i][1].toString(), data[i][0].toString());
+			fm[i] = new FileMask(data[i][1].toString(), data[i][0].toString());
 		}
 		
 		for (int i = 0; i < fm.length; i++) {
