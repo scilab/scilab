@@ -87,37 +87,33 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
 "$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib"
 #==================================================
-.c.obj	:
+.c{$(DIR_OBJ)}.obj	:
 	@echo ------------- Compile file $< --------------
-	-mkdir $(DIR_OBJ)
-
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	$(CC) $(CFLAGS) $< 
 
-.cxx.obj	:
+.cxx{$(DIR_OBJ)}.obj	:
 	@echo ------------- Compile file $< --------------
-	-mkdir $(DIR_OBJ)
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
+	@$(CC) $(CFLAGS) /EHsc $< 
 
-	@$(CC) $(CFLAGS) /EHsc $*.cxx 
-
-.cpp.obj	:
+.cpp{$(DIR_OBJ)}.obj	:
 	@echo ------------- Compile file $< --------------
-	-mkdir $(DIR_OBJ)
-
-	@$(CC) $(CFLAGS) /EHsc $*.cpp
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
+	@$(CC) $(CFLAGS) /EHsc $<
 
 # default rule for Fortran 77 & 90 Compilation 
 
 !IF "$(USE_F2C)" == "YES"
 
-.f.obj	:
+.f{$(DIR_OBJ)}.obj	:
 	@echo ----------- Compile file $*.f (using f2c) -------------
 !IF "$(F2C_IMPORT_COMMON)" == "YES"	
 	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
 !ELSE	
 	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
 !ENDIF
-	-mkdir $(DIR_OBJ)
-
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(CC) $(CFLAGS) $*.c 
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 
@@ -127,10 +123,9 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 	
 !ELSE 
 
-.f.obj	:
+.f{$(DIR_OBJ)}.obj	:
 	@echo -----------Compile file $*.f  (using $(FC)) -------------
-	-mkdir $(DIR_OBJ)
-
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 	
 !ENDIF
@@ -141,10 +136,9 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 	@echo F2C cannot build .f90 file
 !ELSE 
 
-.f90.obj	:
+.f90{$(DIR_OBJ)}.obj	:
 	@echo -----------Compile file $*.f90  (using $(FC)) -------------
-	-mkdir $(DIR_OBJ)
-
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 	
 !ENDIF
@@ -159,6 +153,7 @@ clean::
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
   -del "$(DIR_OBJ)\*.pdb"
 !ENDIF
+  -rmdir "$(DIR_OBJ)"
 #==================================================
 distclean::  
   -del *.bak 
@@ -166,5 +161,6 @@ distclean::
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
   -del "$(DIR_OBJ)\*.pdb"
 !ENDIF
+  -rmdir "$(DIR_OBJ)"
 #==================================================
 
