@@ -399,6 +399,7 @@ fi
 						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
 						;;
 				esac
+				;;
 			"ia64")
 				proc="ia64"
 				;;
