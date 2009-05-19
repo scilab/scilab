@@ -22,6 +22,14 @@ function versions_out = atomsVersionSort( versions_in , direction )
 		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsVersionSort",2));
 	end
 	
+	// if versions_in == [], no need to continue
+	// =========================================================================
+	
+	if versions_in == [] then
+		versions_out = [];
+		return;
+	end
+	
 	// Check input parameters type
 	// =========================================================================
 	
@@ -69,5 +77,9 @@ function versions_out = atomsVersionSort( versions_in , direction )
 			end
 		end
 	end
+	
+	// Return a colum vector
+	// =========================================================================
+	versions_out = matrix(versions_out,-1,1);
 	
 endfunction

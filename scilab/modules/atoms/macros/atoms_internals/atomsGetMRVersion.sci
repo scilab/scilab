@@ -48,7 +48,7 @@ function versions = atomsGetMRVersion(packages)
 		package_versions          = allpackages(packages(i));
 		package_versions_tab      = getfield(1,package_versions);
 		package_versions_tab(1:2) = [];
-		package_versions_tab      = atomsVersionSort(package_versions_tab);
+		package_versions_tab      = atomsVersionSort( package_versions_tab , "DESC" );
 		versions(i)               = package_versions_tab(1);
 		
 	end

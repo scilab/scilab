@@ -35,10 +35,18 @@ function result = atomsIsCompatible(version_str)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsIsCompatible",1));
 	end
 	
+	// If version_str == 'any', no need to continue
+	// =========================================================================
+	
+	if version_str == "any" then
+		result = %T;
+		return;
+	end
+	
 	// Check input parameters value
 	// =========================================================================
 	
-	if regexp(version_str,"/^(>=|<=|==|=)\s/","o") == [] then
+	if regexp(version_str,"/^(>=|<=|=|==|~)\s/","o") == [] then
 		error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version/dependency.\n"),"atomsIsCompatible",1));
 	end
 	
@@ -51,7 +59,11 @@ function result = atomsIsCompatible(version_str)
 	// =========================================================================
 	operator_length  = regexp(version_str,"/\s/","o");
 	dep_operator     = part(version_str,1:operator_length-1);
-	dep_version      = part(version_str,operator_length+1:length(version_str));
+	if dep_operator == "~" then
+		result = %T;
+		return;
+	end
+	dep_version      = stripblanks(part(version_str,operator_length+1:length(version_str)));
 	
 	// Compare sciversion and the specified version
 	// =========================================================================
