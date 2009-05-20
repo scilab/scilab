@@ -25,9 +25,6 @@ static int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int 
 
 int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	int i							= 0;
-	int iPos					= 0;
-
 	if(	_piAddress == NULL || getVarType(_piAddress) != sci_boolean_sparse)
 	{
 		return 1;
@@ -57,7 +54,6 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int *piAddr			= NULL;
-	int	iTotalSize	= 0;
 	int iPos				= 0;
 
 	getVarAddressFromNumber(iNewPos, _piAddress);

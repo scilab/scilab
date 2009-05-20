@@ -63,6 +63,44 @@ int iTab;
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
+	int* piAddr				= NULL;
+	int iRows					= 0;
+	int iCols					= 0;
+	int iVar1					= 0;
+	int iVar2					= 0;
+	int	iNbItem				= 0;
+	int* piAddrList1	= NULL;
+	int* piAddrList11	= NULL;
+	int* piAddrList12	= NULL;
+
+	int* piAddrList2	= NULL;
+	int* piAddrList21	= NULL;
+	int* piAddrList22	= NULL;
+	double* pdblReal	= NULL;
+	double* pdblImg		= NULL;
+	double* pdblReal2	= NULL;
+	double* pdblImg2	= NULL;
+
+	Rhs = Max(Rhs, 0);
+
+	iVar1 = Rhs + 1;
+	iVar2 = Rhs + 2;
+
+	getVarAddressFromNumber(1, &piAddr);
+
+	getMatrixOfDoubleInList(1, piAddr, 1, &iRows, &iCols, &pdblReal);
+
+	createNamedList("toto", 4, 1, &piAddr);
+	createMatrixOfDoubleInNamedList("toto", 4, piAddr, 1, iRows, iCols, pdblReal);
+
+	readNamedList("toto", 4, &iNbItem, &piAddr);
+	readMatrixOfDoubleInNamedList("toto", 4, piAddr, 1, &iRows, &iCols, pdblReal2);
+	pdblReal2 = (double*)MALLOC(sizeof(double) * iRows * iCols);
+	readMatrixOfDoubleInNamedList("toto", 4, piAddr, 1, &iRows, &iCols, pdblReal2);
+
+	createList(iVar1, iNbItem, &piAddr);
+	createMatrixOfDoubleInList(iVar1, piAddr, iNbItem, iRows, iCols, pdblReal2);
+	LhsVar(1) = iVar1;
 	PutLhsVar();
 	return 0;
 }
@@ -108,6 +146,8 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 
 	//LhsVar(1) = Rhs + 1;
 	//PutLhsVar();
+	//return 0;
+//}
 
 bool export_data(int* _piVar)
 {
