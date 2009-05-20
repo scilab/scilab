@@ -107,24 +107,24 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 !IF "$(USE_F2C)" == "YES"
 
 .f{$(DIR_OBJ)}.obj	:
-	@echo ----------- Compile file $*.f (using f2c) -------------
+	@echo ----------- Compile file $< (using f2c) -------------
 !IF "$(F2C_IMPORT_COMMON)" == "YES"	
-	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
+	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $< 2>NUL
 !ELSE	
-	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
+	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $< 2>NUL
 !ENDIF
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
-	@$(CC) $(CFLAGS) $*.c 
+	@$(CC) $(CFLAGS) $<
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 
 !ELSE
-	-del $*.c 
+	-del $< 
 !ENDIF
 	
 !ELSE 
 
 .f{$(DIR_OBJ)}.obj	:
-	@echo -----------Compile file $*.f  (using $(FC)) -------------
+	@echo -----------Compile file $<  (using $(FC)) -------------
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 	
@@ -137,7 +137,7 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 !ELSE 
 
 .f90{$(DIR_OBJ)}.obj	:
-	@echo -----------Compile file $*.f90  (using $(FC)) -------------
+	@echo -----------Compile file $<  (using $(FC)) -------------
 	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 	
