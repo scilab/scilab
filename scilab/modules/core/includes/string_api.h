@@ -12,6 +12,7 @@
 #ifndef __STRING_API__
 #define __STRING_API__
 
+#include <wchar.h>
 /*****************************/
 /*   string matrix functions   */
 /*****************************/
