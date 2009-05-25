@@ -125,8 +125,6 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, 
 
 static int fillMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int** _piAddress, int* _piTotalLen)
 {
-	int iAddr				= *Lstk(_iVar);
-
 	int* piOffset = NULL;
 	int* piAddr		= NULL;
 	int* piData		= NULL;
@@ -167,8 +165,6 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iZero					= 0;
-	int iOne					= 1;
 	int iRet					= 0;
 	int *piAddr				= NULL;
 
@@ -199,9 +195,6 @@ int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _p
 {
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
-	char** pstData		= NULL;
-	int iSize					= 0;
-	int iOne					= 1;
 
 	//get variable id from name
 	C2F(str2name)(_pstName, iVarID, _iNameLen);

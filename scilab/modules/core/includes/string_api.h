@@ -12,6 +12,7 @@
 #ifndef __STRING_API__
 #define __STRING_API__
 
+#include <wchar.h>
 /*****************************/
 /*   string matrix functions   */
 /*****************************/
@@ -26,6 +27,17 @@
  * @return if the operation successed (0) or not ( !0 )
  */
 int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+/**
+ * Get double variable data
+ * @param[in] _piAddress variable address
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _piLength return strings length
+ * @param[out] _pstStrings return array of wide char
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, wchar_t** _pwstStrings);
 
 /**
  * Get double variable data

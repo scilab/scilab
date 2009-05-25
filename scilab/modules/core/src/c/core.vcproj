@@ -547,6 +547,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\list_api.c"
+				>
+			</File>
+			<File
 				RelativePath=".\LoadFunctionsTab.c"
 				>
 			</File>
@@ -1124,6 +1128,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\internal_double_api.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\intmacr2tree.h"
 				>
 			</File>
@@ -1145,6 +1153,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\librarieslist.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\list_api.h"
 				>
 			</File>
 			<File

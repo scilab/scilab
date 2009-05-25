@@ -81,6 +81,7 @@ src/c/getos.c \
 src/c/mode_exec.c \
 src/c/predef.c \
 src/c/transposeMatrix.c \
+src/c/recursionFunction.c \
 src/c/common_api.c \
 src/c/double_api.c \
 src/c/int_api.c \
@@ -88,7 +89,7 @@ src/c/poly_api.c \
 src/c/sparse_api.c \
 src/c/boolean_sparse_api.c \
 src/c/string_api.c \
-src/c/recursionFunction.c
+src/c/list_api.c
 
 
 

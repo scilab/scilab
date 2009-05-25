@@ -242,7 +242,6 @@ static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComp
 {
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
-	int iNbItem				= 0;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 
