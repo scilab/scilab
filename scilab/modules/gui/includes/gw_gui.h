@@ -51,6 +51,7 @@ int sci_printsetupbox(char *fname,unsigned long l);
 int sci_toprint(char *fname,unsigned long l);
 int sci_uigetfile( char * fname, unsigned long fname_len ) ;
 int sci_usecanvas(char *fname,unsigned long l);
+int sci_uiputfile( char * fname, unsigned long fname_len ) ;
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_GUI__ */
 /*--------------------------------------------------------------------------*/

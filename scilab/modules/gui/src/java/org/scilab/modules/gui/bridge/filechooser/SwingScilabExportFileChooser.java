@@ -136,7 +136,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		
 		JFrame frame = new JFrame();	
 		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
-		int selection = super.showOpenDialog(frame);		
+		int selection = super.showSaveDialog(frame);		
 		
 		if (selection == JFileChooser.APPROVE_OPTION) {		
 			javax.swing.filechooser.FileFilter ft = super.getFileFilter();
