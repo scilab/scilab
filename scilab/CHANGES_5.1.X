@@ -10,17 +10,17 @@ Compilation:
   -Xcheck:jni) in order to provide more feedbacks on debug
   Note that this should be used into a binary since it is expensive
 
-* C++ => Java connector updated (using GIWS -
+* C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
 * Series of patches applied (see bug #4506) by Dan McMahill which fixes some
   minor compile time problems under NetBSD:
-  		- adds some missing $host to the 64 bit list.
+  		- adds some missing $host to the 64 bit list.  
 		- added a needed compiler flag for alpha-*-netbsd
 		- added autoconf check for term.h header
 		- added autoconf checks for gettext.
-		- added autoconf check for dlopen in -ldl
-		  (on some systems, we don't need -ldl because dlopen is in libc).
+		- added autoconf check for dlopen in -ldl 
+		  (on some systems, we don't need -ldl because dlopen is in libc).  
 		  Don't hardcode linking with -ldl but rely on this new check.
 		- added correct getrlimit() argument for NetBSD and DragonFly
 		- avoid pulling in an OSF1 specific header on NetBSD/alpha
@@ -61,7 +61,7 @@ Bug fixes:
  * bug 2042 fixed - copy function altered axes properties.
 
  * bug 3131 fixed - a glibc >= 2.4 was mandatory (causing Scilab to fail under
-   	   			  	Debian Etch, Centos 4.X and some other old operating
+   	   			  	Debian Etch, Centos 4.X and some other old operating 
 					systems)
 
  * bug 3264 fixed - More explicit message when too many files have been
@@ -69,18 +69,16 @@ Bug fixes:
 
  * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
 
- * bug 4101 fixed - -ns option wasn't clearly explaining that it is
+ * bug 4101 fixed - -ns option wasn't clearly explaining that it is 
 			disabling many Scilab features
 
  * bug 4232 fixed - Fix a problem in the Java detection with GNU/Linux under
    	   			  	PowerPC
 
- * bug 4298 fixed - ilib_for_link fails with lcc-win32 (Windows).
+ * bug 4298 fixed - ilib_for_link fails with lcc-win32 (Windows). 	   			  	
 
  * bug 4369 fixed - Help for text_properties: For the clip_state attribut,
    	   			  	the second possible value was 'clipgrf' instead of 'cliprf'.
-
- * bug 4374 fixed - Error calling scipad on a given filename.
 
  * bug 4385 fixed - the param3d_properties page has been removed, but a lot of
                     links to this page exist in the documentation.
@@ -98,22 +96,24 @@ Bug fixes:
  * bug 4426 fixed - uigetfile() - File name is cut when we are in the root directory.
 
  * bug 4428 fixed - function compute_initial_temp cannot handle functions with several arguments
-
+ 
  * bug 4437 fixed - Exporting an empty figure crashes Scilab.
 
  * bug 4439 fixed - Unexpected complex conjugates when using cat.
 
  * bug 4459 fixed - grayplot does not always plot map containing %nan.
-
+ 
  * bug 4463 fixed - Creating an one-colored Sgrayplot generate some exceptions and does not plot anything.
 
  * bug 4466 fixed - .' operator defined for strings and booleans
-
+ 
  * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
                     and not a filename (linux)
 
  * bug 4479 fixed - A few minor bugs were causing the configure to fail under
 		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
+
+ * bug 4542 fixed - A unexpected interpretor warning 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
