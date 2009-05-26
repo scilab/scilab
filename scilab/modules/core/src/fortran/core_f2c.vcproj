@@ -728,14 +728,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_type.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_typnam.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_useascommand.c"
 				>
 			</File>
@@ -1245,14 +1237,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_setbpt.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_type.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_typnam.f"
 				>
 			</File>
 			<File

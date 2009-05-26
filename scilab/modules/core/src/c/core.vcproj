@@ -927,6 +927,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\typename.c"
+				>
+			</File>
+			<File
 				RelativePath=".\version.c"
 				>
 			</File>
@@ -1345,6 +1349,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\transposeMatrix.h"
+				>
+			</File>
+			<File
+				RelativePath=".\typename.h"
 				>
 			</File>
 			<File

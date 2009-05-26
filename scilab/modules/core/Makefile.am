@@ -89,7 +89,8 @@ src/c/poly_api.c \
 src/c/sparse_api.c \
 src/c/boolean_sparse_api.c \
 src/c/string_api.c \
-src/c/list_api.c
+src/c/list_api.c \
+src/c/typename.c
 
 
 
@@ -261,7 +262,8 @@ sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
-sci_gateway/c/sci_exit.c
+sci_gateway/c/sci_exit.c \
+sci_gateway/c/sci_typename.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_funcprot.f \
@@ -280,12 +282,10 @@ sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
-sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f
