@@ -90,8 +90,8 @@ src/c/sparse_api.c \
 src/c/boolean_sparse_api.c \
 src/c/string_api.c \
 src/c/list_api.c \
-src/c/typename.c
-
+src/c/typename.c \
+src/c/initypenames.c
 
 
 if USE_DYNAMIC_STACK

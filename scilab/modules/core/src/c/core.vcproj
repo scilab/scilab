@@ -515,6 +515,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\inittypenames.c"
+				>
+			</File>
+			<File
 				RelativePath=".\int_api.c"
 				>
 			</File>
@@ -1125,6 +1129,10 @@
 			</File>
 			<File
 				RelativePath=".\InitScilab.h"
+				>
+			</File>
+			<File
+				RelativePath=".\inittypenames.h"
 				>
 			</File>
 			<File
