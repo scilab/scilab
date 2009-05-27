@@ -23,7 +23,7 @@
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
+#ifdef __APPLE__
 #define _fullpath(a,r,l)        realpath(r,a)
 #endif
 /*--------------------------------------------------------------------------*/
@@ -35,7 +35,7 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 
 	if (GetType(1) == sci_strings)
 	{
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__APPLE__)
 		 char *relPath = NULL;
 		char fullpath[PATH_MAX*4];
 #else
@@ -48,7 +48,7 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 
 		GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
 		/* Bug 3089 */
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__APPLE__)
 		relPath = UTFToLocale(cstk(l1), szTemp);
 
 		if( _fullpath( fullpath, relPath, PATH_MAX*4 ) != NULL )
@@ -62,7 +62,7 @@ int C2F(sci_fullpath)(char *fname,unsigned long fname_len)
 			Output=(char*)MALLOC((strlen(fullpath)+1)*sizeof(char));
 			strcpy(Output,fullpath);
 
-			#ifndef _MSC_VER
+			#if !defined(_MSC_VER) && !defined(__APPLE__)
 			FREE(fullpath);
 			#endif
 

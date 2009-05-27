@@ -24,6 +24,10 @@
 #include "strdup_windows.h"
 #endif
 /*--------------------------------------------------------------------------*/
+#ifdef __APPLE__
+#define _fullpath(a,r,l)        realpath(r,a)
+#endif
+/*--------------------------------------------------------------------------*/
 typedef struct {
 	FILE *ftformat;
 	int ftswap; /* swap status for each file */
@@ -135,7 +139,7 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 	}
 	else
 	{
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__APPLE__)
 		char fullpath[PATH_MAX*4];
 		if( _fullpath( fullpath, name, PATH_MAX ) != NULL )
 #else
@@ -145,7 +149,7 @@ BOOL SetFileNameOpenedInScilab(int Id, char *name)
 #endif
 		{
 			ptrName = strdup(fullpath);
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && !defined(__APPLE__)
 			FREE(fullpath);
 #endif
 			if (ptrName)
@@ -246,7 +250,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 	if (ScilabFileList)
 	{
 		int i=0;
-#ifdef _MSC_VER
+#if defined(_MSC_VER) || defined(__APPLE__)
 		char fullpath[PATH_MAX*4];
 		if( _fullpath( fullpath, filename, PATH_MAX ) == NULL )
 #else
@@ -260,7 +264,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
           fprintf(stderr, _("An error occurred while trying to retrieve the realpath of %s: %s\n"),filename, strerror(errno));
 			*/
 		  /* if we have a problem */
-#ifndef _MSC_VER
+#if !defined(_MSC_VER) && !defined(__APPLE__)
 		fullpath = filename;
 #else
 		strcpy(fullpath,filename);
@@ -274,7 +278,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 				if (strcmp(ScilabFileList[i].ftname,fullpath) == 0) return TRUE;
 			}
 		}
-#ifdef _MSC_VER
+#if !defined(_MSC_VER) && !defined(__APPLE__)
 		FREE(fullpath);
 #endif
 	}
