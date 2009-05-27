@@ -81,3 +81,7 @@ Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
+; hdf5 libraries
+Source: bin\szlibdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\hdf5_cppdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
