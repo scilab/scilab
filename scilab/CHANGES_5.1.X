@@ -112,6 +112,8 @@ Bug fixes:
  * bug 4479 fixed - A few minor bugs were causing the configure to fail under
 		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
+ * bug 4508 fixed - Can't create a file when saving a figure under MacOSX.
+
  * bug 4542 fixed - A unexpected interpretor warning 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
