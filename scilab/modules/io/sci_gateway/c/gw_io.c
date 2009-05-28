@@ -15,7 +15,7 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-#define IO_TAB_SIZE 19
+#define IO_TAB_SIZE 18
 static gw_generic_table Tab[IO_TAB_SIZE]=
 {
 {C2F(sci_setenv),"setenv"},
@@ -25,7 +25,6 @@ static gw_generic_table Tab[IO_TAB_SIZE]=
 {C2F(sci_diary),"diary"},
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
-{C2F(sci_rat),"rat"},
 {C2F(sci_rat),"rat"},
 {C2F(sci_file),"file"},
 {C2F(sci_host),"host"},
