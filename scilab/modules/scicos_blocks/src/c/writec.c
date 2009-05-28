@@ -22,6 +22,7 @@
 #include <string.h>
 #include "sciprint.h"
 #include "machine.h"
+#include "charEncoding.h"
 
 extern  int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
 void mput2  (FILE *fa, int swap, double *res, int n, char *type, int *ierr);
@@ -82,7 +83,7 @@ double *inptr[],*outptr[],*t;
   else if (*flag==4) {
     F2C(cvstr)(&(ipar[1]),&(ipar[7]),str,&job,(unsigned long)strlen(str));
     str[ipar[1]] = '\0';
-    fd = fopen(str,"wb");
+	wcfopen(fd,str,"wb");
     if (!fd ) {
       sciprint("Could not open the file!\n");
       *flag = -3;

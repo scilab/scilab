@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,26 +16,26 @@
   </info>
   <refnamediv>
     <refname>split_edge</refname>
-    <refpurpose> divise une arête en insérant un sommet  </refpurpose>
+    <refpurpose> divise une arÃªte en insÃ©rant un sommet  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>g1 = split_edge(i,j,g,name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéro du sommet origine
+          <para>entier, numÃ©ro du sommet origine
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j  </term>
         <listitem>
-          <para>entier, numéro du sommet extrémité
+          <para>entier, numÃ©ro du sommet extrÃ©mitÃ©
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>name  </term>
         <listitem>
-          <para>nom optionnel du sommet ajouté
+          <para>nom optionnel du sommet ajoutÃ©
 </para>
         </listitem>
       </varlistentry>
@@ -64,11 +64,11 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>split_edge</literal> renvoie le graphe <literal>g1</literal>, l'arête allant du sommet
-    <literal>i</literal> au sommet <literal>j</literal> ayant été divisée : un nouveau sommet est créé
+    <para><literal>split_edge</literal> renvoie le graphe <literal>g1</literal>, l'arÃªte allant du sommet
+    <literal>i</literal> au sommet <literal>j</literal> ayant Ã©tÃ© divisÃ©e : un nouveau sommet est crÃ©Ã©
     au milieu de ces deux sommets. Ce nouveau sommet
-    est connecté aux sommets <literal>i</literal> et <literal>j</literal>.
-    Si <literal>name</literal> est donné, il définit le nom du nouveau sommet, sinon le nombre total de sommets
+    est connectÃ© aux sommets <literal>i</literal> et <literal>j</literal>.
+    Si <literal>name</literal> est donnÃ©, il dÃ©finit le nom du nouveau sommet, sinon le nombre total de sommets
     plus 1 est pris comme nouveau nom.
   </para>
   </refsection>

@@ -27,6 +27,8 @@ funs_
 allowptr_
 parse_
 ftob_
+getrecursiongatewaytocall_
+isrecursioncalltofunction_
 
 ;elementary_functions
 ddif_

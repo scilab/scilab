@@ -140,4 +140,13 @@ public class ScilabFileChooser implements FileChooser {
 	public int getFilterIndex() {
 		return ScilabBridge.getFilterIndex(this);
 	}
+	
+	/**
+	 * Set the dialog type (save or open a file ?)
+	 * @param dialogType the dialog type
+	 */
+	public void setUiDialogType(int dialogType) {
+		ScilabBridge.setUiDialogType(this, dialogType);
+	}
+
 }

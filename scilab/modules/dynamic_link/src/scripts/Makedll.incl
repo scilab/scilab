@@ -5,7 +5,7 @@ SCIIMPLIB="$(SCIDIR)/bin/LibScilab.lib"
 
 all :: $(LIBRARY).dll
 
-$(LIBRARY).dll: $(OBJS)
+$(LIBRARY).dll: $(OBJS_WITH_PATH)
 	@echo Creation of dll $(LIBRARY).dll and import lib from ...
 	@echo $(OBJS)
 	$(DUMPEXTS) -o "$*.def" "$*.dll" $(OBJS_WITH_PATH)

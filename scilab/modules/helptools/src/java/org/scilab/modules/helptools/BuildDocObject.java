@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.xml.sax.SAXParseException;
+import org.xml.sax.SAXException;
 
 import com.icl.saxon.StyleSheet; /* saxon */
 
@@ -208,6 +209,11 @@ public class BuildDocObject extends StyleSheet {
 			System.err.println("Public ID: "+e.getPublicId());
 			System.err.println("System Id: "+ e.getSystemId());
             return null;
+        } catch (SAXException e) {
+           System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
+					  + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
+		   return null;
+
         } catch (IOException e) {
            System.err.println(CANNOT_COPY_CONVERT + masterXML + TO_WITH_QUOTES
         		   + masterXMLTransformed + COLON_WITH_QUOTES + Helpers.reason(e));
@@ -264,13 +270,13 @@ public class BuildDocObject extends StyleSheet {
 		if (sourceDocProcessed == null) {
 		    throw new FileNotFoundException("Unable to parse generated master file.");
 		}
-		
+
 		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
 			/* PDF & postscript take other args */
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}
-
+		args.add("-t");
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);

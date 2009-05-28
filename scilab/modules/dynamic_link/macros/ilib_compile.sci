@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 // Copyright (C) ENPC
+// Copyright (C) DIGITEO - 2009
 // 
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -48,23 +49,31 @@ function libn = ilib_compile(lib_name,makename,files, ..
 
   if path<> '';  chdir(path);  end 
   
+   
   // first try to build each file step by step 
   if MSDOS then
     //** ----------- Windows section  -----------------
+    msgs_make = '';
     nf = size(files,'*');
     
     for i=1:nf
       if ( ilib_verbose() <> 0 ) then
         mprintf(_("   Compilation of ") + string(files1(i)) +'\n');
       end
-      unix_s(make_command+makename + ' '+ files(i)); 
     end
     
     // then the shared library 
     if ( ilib_verbose() <> 0 ) then
       mprintf(_("   Building shared library (be patient)\n"));
     end
-    unix_s(make_command + makename + ' '+ lib_name); 
+    
+    // TO DO : Check if it is always needed ...
+    if ilib_verbose() > 1 then
+      msg = unix_g(make_command + makename + ' all'); 
+      disp(msg);
+    else
+      unix_s(make_command + makename + ' all'); 
+    end
    
   else
     //** ---------- Linux section ---------------------  

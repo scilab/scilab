@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="lex_sort" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -18,21 +18,21 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
 </synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>M,N</term>
 
         <listitem>
-          <para>matrices réelles</para>
+          <para>matrices rÃ©elles</para>
         </listitem>
       </varlistentry>
 
@@ -49,26 +49,26 @@
   <refsection>
     <title>Description</title>
 
-    <para>la fonction <literal>lex_sort</literal> est désormais obsolete elle
-    peut être remplacée par les fonctions <link linkend="gsort">gsort</link>
+    <para>la fonction <literal>lex_sort</literal> est dÃ©sormais obsolete elle
+    peut Ãªtre remplacÃ©e par les fonctions <link linkend="gsort">gsort</link>
     et <link linkend="unique">unique</link>.</para>
 
     <para><literal>N=lex_sort(M)</literal> trie les lignes de la matrice
-    <literal>M</literal> dans l'ordre croissant. Si nécessaire l'argument de
+    <literal>M</literal> dans l'ordre croissant. Si nÃ©cessaire l'argument de
     sortie <literal>k</literal> permet de retrouver l'ordre du tri :
     <literal>[N,k]=lex_sort(M)</literal> renvoie <literal>k</literal> tel que
-    <literal>N</literal> est égal à <literal>M(k,:)</literal> .</para>
+    <literal>N</literal> est Ã©gal Ã  <literal>M(k,:)</literal> .</para>
 
-    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produit le même
-    résultat que la suite d'instructions suivante :</para>
+    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produit le mÃªme
+    rÃ©sultat que la suite d'instructions suivante :</para>
 
     <programlisting> 
 [N,k]=lex_sort(M(:,sel) [,'unique']);
 N=M(k,:)
    </programlisting>
 
-    <para>La chaîne de caractères <literal>'unique'</literal> doit être
-    utilisée si on ne veut retenir que les lignes uniques dans le résultat.
+    <para>La chaÃ®ne de caractÃ¨res <literal>'unique'</literal> doit Ãªtre
+    utilisÃ©e si on ne veut retenir que les lignes uniques dans le rÃ©sultat.
     Noter que <literal>lex_sort(M,sel,'unique')</literal> ne retient que les
     lignes de M telles que M(:,sel) est unique.</para>
   </refsection>

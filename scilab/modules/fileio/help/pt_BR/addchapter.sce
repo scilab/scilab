@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/fileio/help/pt_BR";
-add_help_chapter("Arquivos : funções de Entrada/Saída",path,%T);
+add_help_chapter("Arquivos : funÃ§Ãµes de Entrada/SaÃ­da",path,%T);
 clear path add_help_chapter;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>is_handle_valid</refname>
-    <refpurpose>Vérifie si un ensemble de handles graphiques est valide.</refpurpose>
+    <refpurpose>VÃ©rifie si un ensemble de handles graphiques est valide.</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>isValid = is_handle_valid(h)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -34,16 +34,16 @@
       <varlistentry>
         <term>isValid</term>
         <listitem>
-	  <para>Matrice de booléens de même taille que <literal>h</literal></para>
+	  <para>Matrice de boolÃ©ens de mÃªme taille que <literal>h</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> La function <literal>is_handle_valid</literal> vérifie si un ensemble de handles graphiques est valide.
-      Un handle considéré comme valide s'il n'a pas été détruit.
-      Le résultat est la matrice de booléens <literal>isValid</literal>.
+    <para> La function <literal>is_handle_valid</literal> vÃ©rifie si un ensemble de handles graphiques est valide.
+      Un handle considÃ©rÃ© comme valide s'il n'a pas Ã©tÃ© dÃ©truit.
+      Le rÃ©sultat est la matrice de boolÃ©ens <literal>isValid</literal>.
       <literal>isValid(i,j)</literal> est vrai si <literal>h(i,j)</literal> est valide
       et faux sinon.
     </para>
@@ -51,20 +51,20 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
-    // Vérification de la validité des objets courants
+    // VÃ©rification de la validitÃ© des objets courants
     is_handle_valid([gcf(), gca(), gce()])
 
-    // création de 11 polylines
+    // crÃ©ation de 11 polylines
     plot([0:10; 0:10; 0:10], [0:10; 0:0.5:5; 0:2:20]);
     
-    // Vérification de la validité des polylines
+    // VÃ©rification de la validitÃ© des polylines
     axes = gca();
     polylines = axes.children(1).children
     is_handle_valid(polylines)
     
     // destruction de quelques polylines
     delete(polylines(3:7));
-    // Affichage de la validité
+    // Affichage de la validitÃ©
     is_handle_valid(polylines)
 
   ]]></programlisting>

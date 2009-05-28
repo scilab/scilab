@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="elseif" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -14,11 +14,11 @@
     <refname>elseif</refname>
 
     <refpurpose>palavra-chave usada na estrutura "if-then-else" (significa
-    "senão, se...")</refpurpose>
+    "senÃ£o, se...")</refpurpose>
   </refnamediv>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
     <para>Ver <literal>if,then,else</literal> .</para>
   </refsection>

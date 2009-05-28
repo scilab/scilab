@@ -48,7 +48,7 @@ c
       bcount=0
  10   continue
       psym=sym
-      call getsym
+      call getsym1(1)
       if(strcnt.eq.0) then
 c     
          if (sym .eq. eol) then
@@ -116,7 +116,7 @@ c
             qcount=0
  14         qcount=qcount+1
             if(abs(char1).ne.quote) goto 15
-            call getsym
+            call getsym1(1)
             goto 14
  15         continue
             if(2*int(qcount/2).ne.qcount)  strcnt=0

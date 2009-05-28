@@ -92,8 +92,7 @@ c
          endif
          call sfact1(stk(lr),n-1,stk(lw),maxit,ierr)
          if(ierr.eq.2) then
-            write(buf,82) n-1
- 82         format('No real solution: degree ',i2,' entry is negative!')
+            call writebufstfacta(buf,n-1)
             call error(999)
             return
          else if(ierr.eq.1) then
@@ -101,7 +100,7 @@ c
             return
          else if(ierr.lt.0) then
 c     convergence incomplete
-            write(buf(1:4),'(i3)') ierr
+            call writebufstfacta(buf,ierr)
             call msgs(22,0)
          endif
          lstk(top+1)=lr+n

@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/demo_tools/help/pt_BR";
-add_help_chapter("Ferramentas de Demonstração",path,%T);
+add_help_chapter("Ferramentas de DemonstraÃ§Ã£o",path,%T);
 clear path add_help_chapter;

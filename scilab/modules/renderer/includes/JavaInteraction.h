@@ -23,6 +23,7 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "ObjectStructure.h"
 #include "BOOL.h"
 
@@ -36,43 +37,43 @@ extern "C" {
  *                     the rubber box
  * @param[out] usedButton Scilab code of the button used to terminate the rubber box
  */
-void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
+RENDERER_IMPEXP void javaRubberBox(sciPointObj * pFigure, BOOL isClick, const int initialRect[4], int endRect[4], int * usedButton);
 
 /**
  * Perform an interactive zoom of the figure using a rectangular selection.
  * @param pFigure figure to zoom.
  */
-void interactiveJavaZoom(sciPointObj * pFigure);
+RENDERER_IMPEXP void interactiveJavaZoom(sciPointObj * pFigure);
 
 /**
  * Perform an interactive zoom of the subwin using a rectangular selection.
  * @param pSubwin subwin to zoom.
  */
-void interactiveJavaSubwinZoom(sciPointObj * pSubwin);
+RENDERER_IMPEXP void interactiveJavaSubwinZoom(sciPointObj * pSubwin);
 
 /**
  * Perform an interactive rotation of a subwin contained in the figure.
  * @param pFigure figure corresponding to the canvas
  */
-void interactiveJavaRotation(sciPointObj * pFigure);
+RENDERER_IMPEXP void interactiveJavaRotation(sciPointObj * pFigure);
 
 /**
  * Perform an interactive rotation of a subwin with the mouse.
  * @param pSubwin subwin to rotate
  */
-void interactiveJavaSubwinRotation(sciPointObj * pSubwin);
+RENDERER_IMPEXP void interactiveJavaSubwinRotation(sciPointObj * pSubwin);
 
 /**
  * Unzoom a subwindow
  * @param pSubwin subwin to unzoom
  */
-void javaUnzoomSubwin(sciPointObj * pSubwin);
+RENDERER_IMPEXP void javaUnzoomSubwin(sciPointObj * pSubwin);
 
 /**
  * Put the figure in top of other windows.
  * @pram pFigure figure corresponding to the window
  */
-void javaShowWindow(sciPointObj * pFigure);
+RENDERER_IMPEXP void javaShowWindow(sciPointObj * pFigure);
 
 #ifdef __cplusplus
 }

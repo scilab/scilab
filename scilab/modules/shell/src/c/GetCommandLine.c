@@ -25,11 +25,11 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
-#include "charEncoding.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "stack-def.h"
+#include "diary.h"
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
@@ -40,7 +40,7 @@
 
 
 /*--------------------------------------------------------------------------*/
-static char Sci_Prompt[10];
+static char Sci_Prompt[PROMPT_SIZE_MAX];
 static char* tmpPrompt = NULL;
 static char * __CommandLine;
 /*--------------------------------------------------------------------------*/
@@ -74,7 +74,6 @@ static void getCommandLine(void)
       if (tmpPrompt != NULL)
         {
           SetConsolePrompt(tmpPrompt);
-          ClearTemporaryPrompt();
         }
       else
         {
@@ -87,8 +86,7 @@ static void getCommandLine(void)
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-			char szTempUTF[bsiz];
-      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
+      __CommandLine = TermReadAndProcess();
     }
 }
 

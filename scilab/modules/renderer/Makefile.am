@@ -398,7 +398,8 @@ includes/GraphicSynchronizerInterface.h \
 includes/SetJavaProperty.h \
 includes/JavaInteraction.h \
 includes/RendererFontManager.h \
-includes/rendererBasicAlgos.h
+includes/rendererBasicAlgos.h \
+includes/dynlib_renderer.h
 
 
 

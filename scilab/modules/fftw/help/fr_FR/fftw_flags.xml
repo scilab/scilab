@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fftw_flags">
   <info>
     <pubdate>October 2006</pubdate>
   </info>
   <refnamediv>
     <refname>fftw_flags</refname>
-    <refpurpose>choix de la méthode de calcul pour la fonction fftw</refpurpose>
+    <refpurpose>choix de la mÃ©thode de calcul pour la fonction fftw</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>[x1;x2;...]</term>
         <listitem>
-          <para>Matrice de chaînes de caractères ou bien d'entiers. Sert à sélectionner la méthode de calcul de la fonction fftw.</para>
+          <para>Matrice de chaÃ®nes de caractÃ¨res ou bien d'entiers. Sert Ã  sÃ©lectionner la mÃ©thode de calcul de la fonction fftw.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>Entier. Donne sous forme d'entier la méthode courante utilisée par la fonction fftw.</para>
+          <para>Entier. Donne sous forme d'entier la mÃ©thode courante utilisÃ©e par la fonction fftw.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>S</term>
         <listitem>
-          <para>Matrice de chaînes de caractères. Donne sous forme de chaînes de caractères la méthode utilisée par fftw.</para>
+          <para>Matrice de chaÃ®nes de caractÃ¨res. Donne sous forme de chaÃ®nes de caractÃ¨res la mÃ©thode utilisÃ©e par fftw.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -37,11 +37,11 @@
   <refsection>
     <title>Description</title>
     <para>
-    Cette fonction permet de sélectionner le paramètre <literal>unsigned flags</literal> de la fonction <literal>fftw_plan_guru_split_dft</literal>
-    qui est utilisée dans l'interface scilab de la fonction fftw. La valeur par défault est FFTW_ESTIMATE.
+    Cette fonction permet de sÃ©lectionner le paramÃ¨tre <literal>unsigned flags</literal> de la fonction <literal>fftw_plan_guru_split_dft</literal>
+    qui est utilisÃ©e dans l'interface scilab de la fonction fftw. La valeur par dÃ©fault est FFTW_ESTIMATE.
     </para>
     <para>
-    Les entrées possibles sont :
+    Les entrÃ©es possibles sont :
     </para>
     <itemizedlist>
       <listitem>
@@ -112,7 +112,7 @@
       </listitem>
     </itemizedlist>
     <para>
-     Rmq : Lors de l'utilisation des méthodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit être appélée au moins deux fois.
+     Rmq : Lors de l'utilisation des mÃ©thodes FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE la fonction fftw doit Ãªtre appÃ©lÃ©e au moins deux fois.
      (le premier appel est pour l'initalisation, le second et les autres pour le calcul)
    </para>
   </refsection>
@@ -120,13 +120,13 @@
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[
 
- //retourne sous forme entière la valeur du flag
+ //retourne sous forme entiÃ¨re la valeur du flag
  fftw_flags()
 
- //changement de méthode
+ //changement de mÃ©thode
  fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
 
- //changement de méthode de affichage des flags (sous forme d'entiers et de chaînes)
+ //changement de mÃ©thode de affichage des flags (sous forme d'entiers et de chaÃ®nes)
  [a,S]=fftw_flags("FFTW_PATIENT")
  
   ]]></programlisting>

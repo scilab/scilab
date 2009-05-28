@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,20 +16,20 @@
   </info>
   <refnamediv>
     <refname>sva</refname>
-    <refpurpose> approximation de valeurs singulières  </refpurpose>
+    <refpurpose> approximation de valeurs singuliÃ¨res  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[U,s,V]=sva(A,k)
 [U,s,V]=sva(A,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice réelle ou complexe
+          <para>matrice rÃ©elle ou complexe
 </para>
         </listitem>
       </varlistentry>
@@ -43,7 +43,7 @@
       <varlistentry>
         <term>tol  </term>
         <listitem>
-          <para>nombre réel positif
+          <para>nombre rÃ©el positif
 </para>
         </listitem>
       </varlistentry>
@@ -52,17 +52,17 @@
   <refsection>
     <title>Description</title>
     <para>
-    Approximation de valeurs singulières.
+    Approximation de valeurs singuliÃ¨res.
   </para>
     <para><literal>[U,S,V]=sva(A,k)</literal> avec <literal>k</literal> un entier
     &gt;=1, renvoie <literal>U,S</literal> et <literal>V</literal> telles que
     <literal>B=U*S*V'</literal> est la meilleure approximation au sens
     l_2 de <literal>A</literal> avec rang(<literal>B</literal>)=<literal>k</literal>.
   </para>
-    <para><literal>[U,S,V]=sva(A,tol)</literal> où <literal>tol</literal> est un réel
+    <para><literal>[U,S,V]=sva(A,tol)</literal> oÃ¹ <literal>tol</literal> est un rÃ©el
     positif, renvoie <literal>U,S</literal> et <literal>V</literal> tels que
     <literal>B=U*S*V'</literal> et la norme l_2 de <literal>A-B</literal> est
-    inférieure à <literal>tol</literal>.
+    infÃ©rieure Ã  <literal>tol</literal>.
   </para>
   </refsection>
   <refsection>

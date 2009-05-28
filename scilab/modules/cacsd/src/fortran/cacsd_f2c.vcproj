@@ -344,10 +344,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\calcsc.c"
-				>
-			</File>
-			<File
 				RelativePath=".\calsca.c"
 				>
 			</File>
@@ -657,10 +653,6 @@
 			</File>
 			<File
 				RelativePath=".\arl2a.f"
-				>
-			</File>
-			<File
-				RelativePath=".\calcsc.f"
 				>
 			</File>
 			<File

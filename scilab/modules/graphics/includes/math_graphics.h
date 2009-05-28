@@ -56,7 +56,7 @@
 #define linint(x) ((int)  floor(x + 0.5 )) 
 #define inint(x) ((int) floor(x + 0.5 ))  
 
-#if (defined(sun) && defined(SYSV)) 
+#if (defined(sun) || defined(SYSV)) 
 #include <ieeefp.h>
 #endif
 

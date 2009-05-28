@@ -80,16 +80,19 @@ AC_CANONICAL_HOST
 AC_ARG_ENABLE(debug,
    AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
 
-AC_ARG_ENABLE(debugC,
+AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
 
-AC_ARG_ENABLE(debugCXX,
+AC_ARG_ENABLE(debug-CXX,
    AC_HELP_STRING([--enable-debug-CXX],[Do not optimize and print warning messages (C++ code)]))
 
-AC_ARG_ENABLE(debugFortran,
+AC_ARG_ENABLE(debug-java,
+   AC_HELP_STRING([--enable-debug-java],[Print warning messages and line numbers (Java code)]))
+
+AC_ARG_ENABLE(debug-fortran,
    AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
-AC_ARG_ENABLE(debugLinker,
+AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
 
 AC_ARG_ENABLE(stopOnWarning,
@@ -285,8 +288,6 @@ else
    enable_debug_CXX=no
 fi
 
-
-
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -451,7 +452,7 @@ esac
 #### 64 bits detection
 IS_64_BITS_CPU=false
 case "$host" in
-         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu | alpha-*-netbsd* | x86_64-*-netbsd* | sparc64-*-netbsd*)
                 IS_64_BITS_CPU=true
 	;;
 esac
@@ -513,12 +514,18 @@ case "$CC" in
 	;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
-	 LDFLAGS="$LDFLAGS -m"
+	 LDFLAGS="$LDFLAGS -lm"
 	 ;;
+
+  alpha-*-netbsd*)
+    CFLAGS="$CFLAGS -Dnetbsd -mieee"
+    FFLAGS="$FFLAGS -Dnetbsd -mieee"
+	;;
+
   *-*-netbsd*)
     CFLAGS="$CFLAGS -Dnetbsd"
-
 	;;
+
   *-*-darwin*)
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
@@ -693,6 +700,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
     AC_SUBST(JAVA_HOME)
 
 
+    if test "$enable_debug_java" = yes; then
+	   JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
+	   <option value='-Xcheck:jni'/>"
+	   AC_SUBST(JAVA_DEBUG_OPTIONS)
+	fi
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
@@ -796,7 +808,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -828,7 +840,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -850,6 +862,9 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 #######################
 ## MISC Test
 #######################
+
+# gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
+AM_GNU_GETTEXT([external])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -880,6 +895,11 @@ else
 fi
 AC_SUBST(TERMCAP_LIB)
 
+##################
+## other libraries
+##################
+
+AC_CHECK_LIB(dl, dlopen)
 
 
 #################
@@ -925,7 +945,7 @@ fi
 
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML,  test "$with_ocaml" != no)		
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
 AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
@@ -1476,6 +1496,7 @@ echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_l
 echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
 echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
 echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java	$enable_debug_java"
 echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning	$enable_stop_on_warning"
 
@@ -1508,10 +1529,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else 
    echo "Not using Scicos"
 fi

@@ -11,5 +11,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // ====================================================================
 // delete help chapter
-//del_help_chapter("output_stream",%T);
+del_help_chapter("output_stream",%T);
 // ====================================================================

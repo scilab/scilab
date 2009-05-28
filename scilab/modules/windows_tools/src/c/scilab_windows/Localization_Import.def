@@ -3,4 +3,4 @@ LIBRARY    scilocalization.dll
 
 EXPORTS
 ;
-getLocaleUserInfo
+wide_string_to_UTF8

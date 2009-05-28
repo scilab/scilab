@@ -37,6 +37,7 @@ CC_OPTIONS = $(CC_COMMON) -W3 -Gd $(CC__OPTIMISATION_MODE) /Fo"$(DIR_OBJ)/" /Fd"
 # include options 
 INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/core/includes" \
+-I"$(SCIDIR)/modules/call_scilab/includes" \
 -I"$(SCIDIR)/modules/output_stream/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
@@ -45,6 +46,7 @@ INCLUDES=-I"$(SCIDIR)/libs/MALLOC/includes" \
 -I"$(SCIDIR)/modules/mexlib/includes" \
 -I"$(SCIDIR)/modules/localization/includes" \
 -I"$(SCIDIR)/modules/jvm/includes" \
+-I"$(SCIDIR)/modules/time/includes" \
 -I"$(SCIDIR)/libs/intl"
 
 
@@ -79,55 +81,51 @@ RCVARS=-r -DWIN32
 SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 "$(SCIDIR1)/bin/libf2c.lib" "$(SCIDIR1)/bin/lapack.lib" \
 "$(SCIDIR1)/bin/scicos.lib" "$(SCIDIR1)/bin/intersci.lib" \
-"$(SCIDIR1)/bin/scioutput_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
+"$(SCIDIR1)/bin/output_stream.lib" "$(SCIDIR1)/bin/dynamic_link.lib" \
 "$(SCIDIR1)/bin/integer.lib" "$(SCIDIR1)/bin/optimization_f.lib" \
 "$(SCIDIR1)/bin/libjvm.lib" "$(SCIDIR1)/bin/scilocalization.lib" \
-"$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib"
+"$(SCIDIR1)/bin/libintl.lib" "$(SCIDIR1)/bin/linpack_f.lib" \
+"$(SCIDIR1)/bin/call_scilab.lib" "$(SCIDIR1)/bin/time.lib"
 #==================================================
-.c.obj	:
+.c{$(DIR_OBJ)}.obj	:
 	@echo ------------- Compile file $< --------------
-	-mkdir $(DIR_OBJ)
-
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	$(CC) $(CFLAGS) $< 
 
-.cxx.obj	:
+.cxx{$(DIR_OBJ)}.obj	:
 	@echo ------------- Compile file $< --------------
-	-mkdir $(DIR_OBJ)
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
+	@$(CC) $(CFLAGS) /EHsc $< 
 
-	@$(CC) $(CFLAGS) /EHsc $*.cxx 
-
-.cpp.obj	:
+.cpp{$(DIR_OBJ)}.obj	:
 	@echo ------------- Compile file $< --------------
-	-mkdir $(DIR_OBJ)
-
-	@$(CC) $(CFLAGS) /EHsc $*.cpp
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
+	@$(CC) $(CFLAGS) /EHsc $<
 
 # default rule for Fortran 77 & 90 Compilation 
 
 !IF "$(USE_F2C)" == "YES"
 
-.f.obj	:
-	@echo ----------- Compile file $*.f (using f2c) -------------
+.f{$(DIR_OBJ)}.obj	:
+	@echo ----------- Compile file $< (using f2c) -------------
 !IF "$(F2C_IMPORT_COMMON)" == "YES"	
-	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
+	@"$(SCIDIR1)/bin/f2c.exe" -E -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $< 2>NUL
 !ELSE	
-	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $*.f 2>NUL
+	@"$(SCIDIR1)/bin/f2c.exe" -I"$(SCIDIR1)/modules/core/includes" $(FFLAGS) $< 2>NUL
 !ENDIF
-	-mkdir $(DIR_OBJ)
-
-	@$(CC) $(CFLAGS) $*.c 
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
+	@$(CC) $(CFLAGS) $<
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
 
 !ELSE
-	-del $*.c 
+	-del $< 
 !ENDIF
 	
 !ELSE 
 
-.f.obj	:
-	@echo -----------Compile file $*.f  (using $(FC)) -------------
-	-mkdir $(DIR_OBJ)
-
+.f{$(DIR_OBJ)}.obj	:
+	@echo -----------Compile file $<  (using $(FC)) -------------
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 	
 !ENDIF
@@ -138,10 +136,9 @@ SCILAB_LIBS="$(SCIDIR1)/bin/MALLOC.lib" "$(SCIDIR1)/bin/blasplus.lib" \
 	@echo F2C cannot build .f90 file
 !ELSE 
 
-.f90.obj	:
-	@echo -----------Compile file $*.f90  (using $(FC)) -------------
-	-mkdir $(DIR_OBJ)
-
+.f90{$(DIR_OBJ)}.obj	:
+	@echo -----------Compile file $<  (using $(FC)) -------------
+	-IF NOT EXIST  $(DIR_OBJ) mkdir $(DIR_OBJ)
 	@$(FC) $(FFLAGS) $<
 	
 !ENDIF
@@ -156,6 +153,7 @@ clean::
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
   -del "$(DIR_OBJ)\*.pdb"
 !ENDIF
+  -rmdir "$(DIR_OBJ)"
 #==================================================
 distclean::  
   -del *.bak 
@@ -163,5 +161,6 @@ distclean::
 !IF "$(DEBUG_SCILAB_DYNAMIC_LINK)" == "YES"
   -del "$(DIR_OBJ)\*.pdb"
 !ENDIF
+  -rmdir "$(DIR_OBJ)"
 #==================================================
 

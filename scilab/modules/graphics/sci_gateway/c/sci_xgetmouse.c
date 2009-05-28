@@ -98,7 +98,7 @@ int sci_xgetmouse( char *fname,unsigned long fname_len )
   // Display a warning if a flag has been given (obsolete use)
   if (displayWarning)
     {
-      sciprint(_("%s: Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionnality will be permanently removed in Scilab 5.1.\n"),fname);
+      sciprint(_("%s: Using xgetmouse with a flag to avoid the event queue to be cleared is obsolete.\nThis functionality will be permanently removed in Scilab 5.1.\n"),fname);
     }
 
   // Call Java to get mouse information

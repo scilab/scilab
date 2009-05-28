@@ -33,6 +33,7 @@ ilib_build('bug',['ex2c_1','intex2c'],files,[]);
    ilib_gen_Make: Copy libbug.c to TMPDIR
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
+   Generate a cleaner file   
 // load the shared library
 exec loader.sce
  

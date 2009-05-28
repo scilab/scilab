@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="curblock">
   <refnamediv>
     <refname>curblock</refname>
-    <refpurpose>Retourne l'actuel bloc scicos appelé pendant la simulation</refpurpose>
+    <refpurpose>Retourne l'actuel bloc scicos appelÃ© pendant la simulation</refpurpose>
   </refnamediv>
   <refsection id="Module_curblock">
     <title>Module</title>
@@ -39,11 +39,11 @@
 blk=curblock()
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_curblock">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_curblock">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">blk :</emphasis> le numéro du bloc courant dans la structure compilée.</para>
+        <para><emphasis role="bold">blk :</emphasis> le numÃ©ro du bloc courant dans la structure compilÃ©e.</para>
       </listitem>
     </itemizedlist>
   </refsection>

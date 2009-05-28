@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2004 - INRIA - Vincent COUVERT 
@@ -16,51 +16,51 @@
   </info>
   <refnamediv>
     <refname>mtlb_size</refname>
-    <refpurpose>Fonction d'émulation de la fonction Matlab size</refpurpose>
+    <refpurpose>Fonction d'Ã©mulation de la fonction Matlab size</refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>
-    <para>Dans plusieurs cas particuliers, la fonction <literal>size</literal> se comporte différemment dans Matlab et dans Scilab :</para>
+    <para>Dans plusieurs cas particuliers, la fonction <literal>size</literal> se comporte diffÃ©remment dans Matlab et dans Scilab :</para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec deux paramètres d'entrée : La fonction Matlab <literal>size</literal> peut être
-	utilisée avec le second paramètre donnant donnant une dimension du premier paramètre
+        Avec deux paramÃ¨tres d'entrÃ©e : La fonction Matlab <literal>size</literal> peut Ãªtre
+	utilisÃ©e avec le second paramÃ¨tre donnant donnant une dimension du premier paramÃ¨tre
 	qui n'existe pas (retourne 1 dans ce cas) mais pas la fonction Scilab.
         </para>
       </listitem>
       <listitem>
         <para>
-        Avec plus d'une paramètre de sortie : si le nombre de paramètres de sortie est plus
-	petit que le nombre de dimension, la dernière sortie est égale au produit de toutes
+        Avec plus d'une paramÃ¨tre de sortie : si le nombre de paramÃ¨tres de sortie est plus
+	petit que le nombre de dimension, la derniÃ¨re sortie est Ã©gale au produit de toutes
 	les dimensions restantes dans Matlab mais pas dans Scilab. Si le nombre de sorties
-	est plus grand que le nombre de dimensions, toutes les sorties correspondant à une
-	dimension qui n'existe pas sont égales à 1 en Matlab mais Scilab retourne une erreur dans ce cas.
+	est plus grand que le nombre de dimensions, toutes les sorties correspondant Ã  une
+	dimension qui n'existe pas sont Ã©gales Ã  1 en Matlab mais Scilab retourne une erreur dans ce cas.
         </para>
       </listitem>
     </itemizedlist>
     <para>
-    La fonction <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> est utilisée par
-    <literal>mfile2sci</literal> pour remplacer <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> quand il n'était pas
-    possible de savoir ce qu'étaient les paramètres d'entrée pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
-    déterminer la sémantique correcte pendant l'exécution. Pour obtenir un code plus performant
-    on peut remplacer les appels à <literal>mtlb_size</literal> :
+    La fonction <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> est utilisÃ©e par
+    <literal>mfile2sci</literal> pour remplacer <literal>[d1,[d2,...]] = mtlb_size(X[,dim])</literal> quand il n'Ã©tait pas
+    possible de savoir ce qu'Ã©taient les paramÃ¨tres d'entrÃ©e pendant la conversion d'un code Matlab vers Scilab. Cette fonction va
+    dÃ©terminer la sÃ©mantique correcte pendant l'exÃ©cution. Pour obtenir un code plus performant
+    on peut remplacer les appels Ã  <literal>mtlb_size</literal> :
     </para>
     <itemizedlist>
       <listitem>
         <para>
-        Avec deux paramètres d'entrée : si <literal>dim</literal> correspond à une dimension de <literal>X</literal> qui existe
-        <literal>mtlb_size(X,dim)</literal> peut être remplacé par <literal>size(X,dim)</literal>
+        Avec deux paramÃ¨tres d'entrÃ©e : si <literal>dim</literal> correspond Ã  une dimension de <literal>X</literal> qui existe
+        <literal>mtlb_size(X,dim)</literal> peut Ãªtre remplacÃ© par <literal>size(X,dim)</literal>
         </para>
       </listitem>
       <listitem>
         <para>
-	Avec plus d'un paramètre de sortie : si le nombre des sorties est égal au nombre de dimensions de <literal>X</literal>
-	<literal>[d1,[d2,...]] = mtlb_size(X)</literal> peut être remplacé par <literal>[d1,[d2,...]] = size(X)</literal>
+	Avec plus d'un paramÃ¨tre de sortie : si le nombre des sorties est Ã©gal au nombre de dimensions de <literal>X</literal>
+	<literal>[d1,[d2,...]] = mtlb_size(X)</literal> peut Ãªtre remplacÃ© par <literal>[d1,[d2,...]] = size(X)</literal>
         </para>
       </listitem>
     </itemizedlist>
-    <para>Attention : <literal>mtlb_size</literal> ne doit pas être utilisée pour une programmation manuelle.</para>
+    <para>Attention : <literal>mtlb_size</literal> ne doit pas Ãªtre utilisÃ©e pour une programmation manuelle.</para>
   </refsection>
   <refsection>
     <title>Auteurs</title>

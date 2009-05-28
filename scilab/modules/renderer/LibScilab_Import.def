@@ -3,7 +3,7 @@ LIBRARY    LibScilab.dll
 
 EXPORTS
 ;--------------------------
-; elementary_functions
+; core
 ;--------------------------
 callFunctionFromGateway
 

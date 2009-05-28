@@ -50,9 +50,9 @@ elseif res_path==[] then
   sci_equiv=default_trad(mtlb_expr)  
 else
   sci_tmpfile =pathconvert(TMPDIR)+pathconvert(fnam)+"sci_"+funname+".sci"
-  tmpierr=execstr("getf(sci_tmpfile)","errcatch");errclear();
+  tmpierr=execstr("exec(sci_tmpfile)","errcatch");errclear();
   sci_file=res_path+"sci_"+funname+".sci"
-  ierr=execstr("getf(sci_file)","errcatch");errclear(); 
+  ierr=execstr("exec(sci_file)","errcatch");errclear(); 
   if tmpierr==0 then 
     execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)");  
   // If a translation function exists
@@ -76,7 +76,7 @@ else
         res=mfile2sci(path,res_path,%F,%T)
       end
       if res==1 then
-        getf(sci_file)
+        exec(sci_file)
 	ierr=execstr("[sci_equiv]=sci_"+mtlb_expr.name+"(mtlb_expr)","errcatch");
 	if ierr<>0 then
 	  error(msprintf(gettext("Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."),mtlb_expr.name));

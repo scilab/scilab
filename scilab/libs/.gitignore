@@ -11,10 +11,6 @@ matio
 pcre
 umfpack
 zlib
+hdf5
 *.lib
 
-#
-# F2C conversion
-#
-lapack/*.c
-blas/*.c

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="spones" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
@@ -41,9 +41,9 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>sp=spones(A)</literal> génère une matrice creuse de même
-    structure que <literal>A</literal>, mais où les termes non-nuls ont été
-    remplacés par la valeur 1.</para>
+    <para><literal>sp=spones(A)</literal> gÃ©nÃ¨re une matrice creuse de mÃªme
+    structure que <literal>A</literal>, mais oÃ¹ les termes non-nuls ont Ã©tÃ©
+    remplacÃ©s par la valeur 1.</para>
   </refsection>
 
   <refsection>

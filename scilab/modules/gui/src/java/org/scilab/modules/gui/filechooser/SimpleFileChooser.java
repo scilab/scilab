@@ -78,4 +78,9 @@ public interface SimpleFileChooser {
 	 */
 	int getFilterIndex();
 	
+	/**
+	 * Set the dialog type (save or open a file ?)
+	 * @param dialogType the dialog type
+	 */
+	void setUiDialogType(int dialogType);
 }

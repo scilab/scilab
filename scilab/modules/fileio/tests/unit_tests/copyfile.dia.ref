@@ -5,27 +5,41 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // =============================================================================
 // Date   : 13/12/2007
 //
 // Unitary tests for copyfile function
 // =============================================================================
 // TEST 1 : copyfile
+tab_ref = [
+"世界您好",
+"азеазея",
+"ハロー・ワールド",
+"เฮลโลเวิลด์",
+"حريات وحقوق",
+"프로그램",
+"프로그램",
+"תוכנית"];
 cd TMPDIR;
 mkdir test_copyfile_source;
 mkdir test_copyfile_target;
 cd('test_copyfile_source');
-mputl('I am a dummy String', 'dummyFile.dummy');
-lsResult = ls("dummyFile.dummy");
-if lsResult == [] then bugmes();quit;end
-r = copyfile(TMPDIR+'/test_copyfile_source/dummyFile.dummy',TMPDIR+'/test_copyfile_target/dummyFile.dummy');
-if r <> 1 then bugmes();quit;end
-lsResult = ls(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
-if lsResult == [] then bugmes();quit;end
-mdelete(TMPDIR+'/test_copyfile_source/dummyFile.dummy');
-mdelete(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
-rmdir(TMPDIR+'/test_copyfile_source');
-rmdir(TMPDIR+'/test_copyfile_target');
+for i = 1 : size(tab_ref,"*")
+	filename = tab_ref(i) + '.orig';
+	mputl('I am a dummy String : ' + tab_ref(i), filename);
+	if fileinfo(filename) == [] then bugmes();quit;end
+end
+for i = 1 : size(tab_ref,"*")
+	orig = tab_ref(i) + '.orig';
+	dest = tab_ref(i) + '.dest';
+	r = copyfile(TMPDIR+'/test_copyfile_source/' + orig, TMPDIR+'/test_copyfile_target/' + dest);
+	if r <> 1 then bugmes();quit;end
+	if fileinfo(TMPDIR+'/test_copyfile_target/' + dest) == [] then bugmes();quit;end
+end
+cd TMPDIR;
+rmdir('test_copyfile_source', 's');
+rmdir('test_copyfile_target', 's');
 // =============================================================================
 cd TMPDIR;
 dir1="test dir with space";

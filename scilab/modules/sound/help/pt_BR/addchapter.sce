@@ -8,5 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/sound/help/pt_BR";
-add_help_chapter("Manipulação de Arquivos de Som",path,%T);
+add_help_chapter("ManipulaÃ§Ã£o de Arquivos de Som",path,%T);
 clear path add_help_chapter;

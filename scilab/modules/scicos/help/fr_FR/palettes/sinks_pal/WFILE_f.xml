@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_WFILE_f">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_WFILE_f">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_WFILE_f">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_WFILE_f">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,20 +98,21 @@
   <refsection id="Description_WFILE_f">
     <title>Description</title>
     <para>
-Ce bloc permet à l'utilisateur de sauvegarder des données dans un fichier.
-Ces données peuvent être formatées ou binaires.
-Chaque appel au bloc correspond à un enregistrement.
-Chaque enregistrement à la forme suivante :  
- où  est la valeur du temps lorsque le bloc est appelé et  est la 
- valeur d'entrée.
+Ce bloc permet Ã  l'utilisateur de sauvegarder des donnÃ©es dans un fichier.
+Ces donnÃ©es peuvent Ãªtre formatÃ©es ou binaires.
+Chaque appel au bloc correspond Ã  un enregistrement.
+Chaque enregistrement Ã  la forme suivante :  
+ oÃ¹  est la valeur du temps lorsque le bloc est appelÃ© et  est la 
+ valeur d'entrÃ©e.
 </para>
+<para>Ce bloc ne gere pas les noms de fichier au format UTF.</para>
     <para>
 Ce bloc fonctionne de paire avec le bloc .
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_WFILE_f">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_WFILE_f">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -127,34 +128,34 @@ Ce bloc fonctionne de paire avec le bloc .
         <para>
           <emphasis role="bold">Input size</emphasis>
         </para>
-        <para> un scalaire. Cela fixe la taille de l'entrée.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> un scalaire. Cela fixe la taille de l'entrÃ©e.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Output file name</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le chemin du fichier.</para>
-        <para> Propriétés : Type 'str' de taille 1. </para>
+        <para> une chaÃ®ne de caractÃ¨res dÃ©finissant le chemin du fichier.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Output Format</emphasis>
         </para>
-        <para> une chaîne de caractères définissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramètre est renseigné alors il doit être encadrer par des paranthèses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="../../../images/WFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
-        <para> Propriétés : Type 'str' de taille 1. </para>
+        <para> une chaÃ®ne de caractÃ¨res dÃ©finissant le format d'enregistrement (de type fortran ou bien vide pour aucun format). Si ce paramÃ¨tre est renseignÃ© alors il doit Ãªtre encadrer par des paranthÃ¨ses. Par exemple :<inlinemediaobject><imageobject><imagedata fileref="../../../images/WFILE_f_img7_fr.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Buffer size</emphasis>
         </para>
-        <para> Pour améliorer l'efficacité de la lecture, il est possible d'enregistrer les données d'entrée dans un buffer. Les données sont alors délivrées à chaque appel du bloc lorsque le buffer est rempli.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> Pour amÃ©liorer l'efficacitÃ© de la lecture, il est possible d'enregistrer les donnÃ©es d'entrÃ©e dans un buffer. Les donnÃ©es sont alors dÃ©livrÃ©es Ã  chaque appel du bloc lorsque le buffer est rempli.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_WFILE_f">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_WFILE_f">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -163,33 +164,33 @@ Ce bloc fonctionne de paire avec le bloc .
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

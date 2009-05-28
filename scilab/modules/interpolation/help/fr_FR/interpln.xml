@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2006 - INRIA - Serge STEER 
@@ -16,19 +16,19 @@
   </info>
   <refnamediv>
     <refname>interpln</refname>
-    <refpurpose> interpolation linéaire  </refpurpose>
+    <refpurpose> interpolation linÃ©aire  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[y]=interpln(xyd,x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xyd  </term>
         <listitem>
-          <para>matrice à deux lignes (coordonnées x et y des points)
+          <para>matrice Ã  deux lignes (coordonnÃ©es x et y des points)
 </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>y  </term>
         <listitem>
-          <para>vecteur des ordonnées
+          <para>vecteur des ordonnÃ©es
 </para>
         </listitem>
       </varlistentry>
@@ -51,7 +51,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    étant donné <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnées correspondantes, calculées par interpolation linéaire.
+    Ã©tant donnÃ© <literal>xyd</literal> un ensemble de points dans le plan avec des abscisses croissantes et <literal>x</literal> un ensemble d'abscisses, cette fonction renvoie dans <literal>y</literal> les ordonnÃ©es correspondantes, calculÃ©es par interpolation linÃ©aire.
   </para>
   </refsection>
   <refsection>

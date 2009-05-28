@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> ensemble de sommets d'une composante fortement connexe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>ns = strong_con_nodes(i,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéro de la composante fortement connexe
+          <para>entier, numÃ©ro de la composante fortement connexe
 </para>
         </listitem>
       </varlistentry>
@@ -42,7 +42,7 @@
       <varlistentry>
         <term>ns  </term>
         <listitem>
-          <para>vecteur ligne, numéros des sommets de la composante fortement connexe
+          <para>vecteur ligne, numÃ©ros des sommets de la composante fortement connexe
 </para>
         </listitem>
       </varlistentry>
@@ -50,8 +50,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>strong_con_nodes</literal> renvoie le vecteur ligne <literal>ns</literal> des numéros des
-    sommets appartenant à la composante fortement connexe numéro <literal>i</literal>.
+    <para><literal>strong_con_nodes</literal> renvoie le vecteur ligne <literal>ns</literal> des numÃ©ros des
+    sommets appartenant Ã  la composante fortement connexe numÃ©ro <literal>i</literal>.
   </para>
   </refsection>
   <refsection>
@@ -69,7 +69,7 @@ nodecolor=0*ones(1,n); nodecolor(ncomp)=11*ones(ncomp);
 g('node_color')=nodecolor;
 nodediam=20*ones(1,n); nodediam(ncomp)=40*ones(ncomp);
 g('node_diam')=nodediam;
-messagebox('Ensemble des sommets de la composante fortement connexe numéro 3',"modal");
+messagebox('Ensemble des sommets de la composante fortement connexe numÃ©ro 3',"modal");
 show_graph(g);
  ]]></programlisting>
   </refsection>

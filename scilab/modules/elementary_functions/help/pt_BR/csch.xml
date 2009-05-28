@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Ajouter ici d'éventuels commentaires sur le fichier XML
+ * Ajouter ici d'Ã©ventuels commentaires sur le fichier XML
 -->
 <refentry version="5.0-subset Scilab" xml:id="csch" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -16,18 +16,18 @@
   <refnamediv>
     <refname>csch</refname>
 
-    <refpurpose>computa a cossecante hipertbólica do argumento elemento a
+    <refpurpose>computa a cossecante hipertbÃ³lica do argumento elemento a
     elemento</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
 
     <synopsis>y = csch(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parâmetros</title>
+    <title>ParÃ¢metros</title>
 
     <variablelist>
       <varlistentry>
@@ -42,7 +42,7 @@
         <term>y</term>
 
         <listitem>
-          <para>array de reais ou complexos com as mesmas dimensões que
+          <para>array de reais ou complexos com as mesmas dimensÃµes que
           <literal>x</literal>.</para>
         </listitem>
       </varlistentry>
@@ -50,10 +50,10 @@
   </refsection>
 
   <refsection>
-    <title>Descrição</title>
+    <title>DescriÃ§Ã£o</title>
 
-    <para>Computa a cossecante hipertbólica do argumento elemento a elemento.
-    Para dados reais, os resultados são reais</para>
+    <para>Computa a cossecante hipertbÃ³lica do argumento elemento a elemento.
+    Para dados reais, os resultados sÃ£o reais</para>
   </refsection>
 
   <refsection>
@@ -66,7 +66,7 @@
   </refsection>
 
   <refsection>
-    <title>Ver Também</title>
+    <title>Ver TambÃ©m</title>
 
     <simplelist type="inline">
       <member><link linkend="csc">csc</link></member>

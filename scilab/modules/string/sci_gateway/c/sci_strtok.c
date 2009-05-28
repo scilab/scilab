@@ -25,7 +25,7 @@
 static BOOL previousCallToStrtok = FALSE;
 static char *previousStrToken = NULL;
 /*----------------------------------------------------------------------------*/
-int C2F(sci_strtok)(char *fname,unsigned long fname_len)
+int sci_strtok(char *fname,unsigned long fname_len)
 {
 	char **Input_strings1 = NULL;
 	char **Input_strings2 = NULL;

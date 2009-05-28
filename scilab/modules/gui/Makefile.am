@@ -148,7 +148,8 @@ src/jni/Jxgetmouse.giws.xml \
 src/jni/SwingScilabMenu.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
-src/jni/Juigetfile.giws.xml
+src/jni/Juigetfile.giws.xml \
+src/jni/ScilabDisplayTree.giws.xml
 
 
 if GIWS
@@ -190,7 +191,8 @@ sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
 sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
-sci_gateway/cpp/sci_displaytree.cpp
+sci_gateway/cpp/sci_displaytree.cpp \
+sci_gateway/cpp/sci_uiputfile.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/c/xsci/ \

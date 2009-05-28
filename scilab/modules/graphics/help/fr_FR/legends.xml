@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="legends">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>legends</refname>
-    <refpurpose>dessine des légendes de courbes
+    <refpurpose>dessine des lÃ©gendes de courbes
   2D</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>legends(strings,style,&lt;opt_args&gt;)
 legends(strings,style,xy)
 </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>strings</term>
         <listitem>
-          <para>vecteur de chaînes de caractères, strings(i) est la légende de
-          la ième courbe</para>
+          <para>vecteur de chaÃ®nes de caractÃ¨res, strings(i) est la lÃ©gende de
+          la iÃ¨me courbe</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>style :</term>
         <listitem>
           <para>vecteur ligne entier de taille n (les styles de dessin de chaque
-          courbe, troisième paramètre de plot2d) ou une matrice d'entiers 2 x
-          n, style(1,k) contenant le style pour la k-ième courbe et style(2,k)
+          courbe, troisiÃ¨me paramÃ¨tre de plot2d) ou une matrice d'entiers 2 x
+          n, style(1,k) contenant le style pour la k-iÃ¨me courbe et style(2,k)
           contient le style de ligne (si style(1,k)&gt;0) ou la couleur du
           marqueur (si style(1,k)&lt;0).</para>
         </listitem>
@@ -44,45 +44,45 @@ legends(strings,style,xy)
             <varlistentry>
               <term>opt</term>
               <listitem>
-                <para>determine la position des légendes. Ce paramètre peut être un vecteur
-                [x,y] spécifiant les coordonnées du point supérieur gauche de la boîte
-                contenant les légendes. Il peut aussi prendre l'une des valeurs suivantes:</para>
+                <para>determine la position des lÃ©gendes. Ce paramÃ¨tre peut Ãªtre un vecteur
+                [x,y] spÃ©cifiant les coordonnÃ©es du point supÃ©rieur gauche de la boÃ®te
+                contenant les lÃ©gendes. Il peut aussi prendre l'une des valeurs suivantes:</para>
                 <variablelist>
                   <varlistentry>
                     <term>1 or "ur"</term>
                     <listitem>
-                      <para>les légendes sont positionnées dans le coin supérieur droit.</para>
+                      <para>les lÃ©gendes sont positionnÃ©es dans le coin supÃ©rieur droit.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>2 or "ul"</term>
                     <listitem>
-                      <para>les légendes sont positionnées dans le coin supérieur gauche.</para>
+                      <para>les lÃ©gendes sont positionnÃ©es dans le coin supÃ©rieur gauche.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>3 or "ll"</term>
                     <listitem>
-                      <para>les légendes sont positionnées dans le coin inférieur gauche.</para>
+                      <para>les lÃ©gendes sont positionnÃ©es dans le coin infÃ©rieur gauche.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>4 or "lr"</term>
                     <listitem>
-                      <para>les légendes sont positionnées dans le coin inférieur droit.</para>
+                      <para>les lÃ©gendes sont positionnÃ©es dans le coin infÃ©rieur droit.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>5 or "?"</term>
                     <listitem>
-                      <para>placement intéractif avec la souris.</para>
+                      <para>placement intÃ©ractif avec la souris.</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>6 or "below"</term>
                     <listitem>
-                      <para>les légendes sont positionnées en dessous du graphique
-                      (qui est alors réduit pour laisser de la place aux légendes).</para>
+                      <para>les lÃ©gendes sont positionnÃ©es en dessous du graphique
+                      (qui est alors rÃ©duit pour laisser de la place aux lÃ©gendes).</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -91,15 +91,15 @@ legends(strings,style,xy)
             <varlistentry>
               <term>with_box</term>
               <listitem>
-                <para>booléen (%t par défaut) qui détermine la présence du cadre
-                des légendes.</para>
+                <para>boolÃ©en (%t par dÃ©faut) qui dÃ©termine la prÃ©sence du cadre
+                des lÃ©gendes.</para>
               </listitem>
             </varlistentry>
             <varlistentry>
               <term>font_size</term>
               <listitem>
-                <para>entier (1 par défaut) précisant la taille de la fonte utilisée pour
-                les légendes.</para>
+                <para>entier (1 par dÃ©faut) prÃ©cisant la taille de la fonte utilisÃ©e pour
+                les lÃ©gendes.</para>
               </listitem>
             </varlistentry>
           </variablelist>
@@ -109,11 +109,11 @@ legends(strings,style,xy)
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Dessine des légendes sur le dessin courant à partir des chaînes de
-    caractères données.</para>
-    <para>En cas de placement interactif (opt=5) déplacer la boîte de la légende
+    <para>Dessine des lÃ©gendes sur le dessin courant Ã  partir des chaÃ®nes de
+    caractÃ¨res donnÃ©es.</para>
+    <para>En cas de placement interactif (opt=5) dÃ©placer la boÃ®te de la lÃ©gende
     avec la souris et presser bouton de gauche pour la fixer.</para>
-    <para>Cette fonction permet de placer les légendes avec plus de liberté que
+    <para>Cette fonction permet de placer les lÃ©gendes avec plus de libertÃ© que
     l'argument leg de plot2d.</para>
     <para/>
   </refsection>

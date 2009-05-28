@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2007-11-26 15:01+0100\n"
-"PO-Revision-Date: 2009-03-31 00:35+0000\n"
+"PO-Revision-Date: 2009-04-06 23:56+0000\n"
 "Last-Translator: Federico Vera <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2009-03-31 22:37+0000\n"
+"X-Launchpad-Export-Date: 2009-04-13 08:53+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
@@ -31,12 +31,12 @@ msgstr "La prueba %s no está disponible desde el módulo %s"
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
-"%s: Error en primer argumento de entrada: Se esperaba un archivo con "
+"%s: Error en el primer argumento de entrada: Se esperaba un archivo con "
 "extensión .dia."
 
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
-msgstr "Falló la prueba se ENCONTRO UN ERROR mientras se ejecutaba %s"
+msgstr "Falló la prueba se ENCONTRÓ UN ERROR mientras se ejecutaba %s"
 
 #, c-format
 msgid "Test Failed. See : fc /L /N  %s"
@@ -47,7 +47,7 @@ msgid "Test Failed. See : diff -wu  %s"
 msgstr "Falló la prueba. Vea:  diff -wu  %s"
 
 msgid "Test passed"
-msgstr "Paso la prueba"
+msgstr "Pasó la prueba"
 
 #, c-format
 msgid "%s: Wrong size for input argument."
@@ -67,4 +67,4 @@ msgstr "El archivo de referencia (%s) no existe"
 
 #, c-format
 msgid "No variable %s_ref in reference file"
-msgstr "No variable %s_ref in reference file"
+msgstr "No hay variable %s_ref en el archivo de referencia"

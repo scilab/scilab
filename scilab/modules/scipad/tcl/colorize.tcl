@@ -4,7 +4,7 @@
 #  Copyright (C) 2003-2006 - Weizmann Institute of Science, Enrico Segre
 #  Copyright (C) 2004-2008 - Francois Vogel
 #
-#  Localization files ( in tcl/msg_files/) are copyright of the 
+#  Localization files ( in tcl/msg_files/) are copyright of the
 #  individual authors, listed in the header of each file
 #
 # This program is free software; you can redistribute it and/or modify
@@ -29,12 +29,12 @@
 # There are two relevant arrays used for colorization and keyword
 # matching: chset and words.
 #
-# words contains elements addressed as words($MODE.$TAG.$INITIAL). 
-# $MODE by now is always scilab,
-# $TAG is one of {comm intfun predef libfun scicos userfun}
-# $INITIAL is a single character, a valid scilab name initial.
-# Each element is a Tcl list containing all the words of the given $TAG
-# beginning with $INITIAL (not all possible INITIALs need to be present,
+# words contains elements addressed as words(MODE.TAG.INITIAL).
+# MODE by now is always scilab,
+# TAG is one of {comm intfun predef libfun scicos userfun}
+# INITIAL is a single character, a valid scilab name initial.
+# Each element is a tcl list containing all the words of the given TAG
+# beginning with INITIAL (not all possible INITIALs need to be present,
 # if there are no keywords beginning with that letter).
 # The script dynamickeywords.sce actually orders them alphabetically.
 # This is not exploited by the colorize procs, nor for autocompletion.
@@ -49,8 +49,8 @@
 # This is required for the goto function feature, in order not to
 # confuse functions with the same name defined more than once (in a
 # single buffer or among opened buffers)
-# 
-# chset contains elements addressed as chset($MODE.$TAG). Each element there
+#
+# chset contains elements addressed as chset(MODE.TAG). Each element there
 # is a string of all the represented initials of the keywords in class
 # $MODE.$TAG. Also this is presently alphabetically sorted, though the fact
 # is not exploited.
@@ -68,8 +68,8 @@
 
 proc load_words {} {
     global words chset intmacdir
-# empty initialization of the keyword arrays, for the 
-#  detached invocation of scipad (and for early-bird colorization requests)    
+# empty initialization of the keyword arrays, for the
+#  detached invocation of scipad (and for early-bird colorization requests)
     set chset(scilab.command) {}
     set chset(scilab.intfun) {}
     set chset(scilab.predef) {}
@@ -94,9 +94,9 @@ proc load_words {} {
 # old code to load a word file with additional keywords: maybe someday it will
 # turn useful...
 #     set type {}
-#     set col {} 
+#     set col {}
 #     set f [open $intmacdir/words r]
-#     while {[gets $f line] > 0} { 
+#     while {[gets $f line] > 0} {
 #         if {[lindex $line 0] == {#MODE}} {
 #             set type [lindex $line 1]
 #         } elseif {[lindex $line 0] == {#TAG}} {
@@ -108,7 +108,7 @@ proc load_words {} {
 #             set words($type.$col.$ch) $line
 #         }
 #     }
-#     close $f    
+#     close $f
 
     set chset(scilab.userfun) {}
 
@@ -131,7 +131,7 @@ proc remalltags {w begin ende} {
     $w tag remove scicos $begin $ende
     $w tag remove rem2 $begin $ende
     $w tag remove xmltag $begin $ende
-    $w tag remove textquoted $begin $ende  
+    $w tag remove textquoted $begin $ende
     # tag userfun is deleted in proc docolorizeuserfun
 }
 
@@ -176,7 +176,7 @@ proc colorize {w cpos iend} {
     set searchedstr [$w get $cpos $iend]
 
     # TAGS:
-    # order matters here - for instance textquoted has to be after operator, 
+    # order matters here - for instance textquoted has to be after operator,
     # so operators are not colorized within strings
 
     # punctuation
@@ -191,7 +191,7 @@ proc colorize {w cpos iend} {
     colorizetag $w {[\[\]]} bracket $searchedstr $cpos
 
     # braces
-    #ES: why at all call ":" a "brace"? 
+    #ES: why at all call ":" a "brace"?
     colorizetag $w {[\{\}:]} brace $searchedstr $cpos
 
     # operators
@@ -864,7 +864,7 @@ proc changelanguage {newlanguage} {
                 foreach {dispname peerid} [removepeerid $listoffile("$ta",displayedname)] {}
                 set dispname [string replace $dispname "end-2" end $ext]
                 set dispname [appendpeerid $dispname $peerid]
-                set listoffile("$ta",displayedname) $dispname                    
+                set listoffile("$ta",displayedname) $dispname
                 set listoffile("$ta",fullname) \
                         [string replace $listoffile("$ta",fullname) "end-2" end $ext]
                 # update the windows menu label
@@ -900,8 +900,8 @@ proc schememenus {textarea} {
     global Shift_F8 Shift_F9 Shift_F11 Shift_F12
     global watch watchwinicons watchwinstepicons
     global MenuEntryId
-    set dm $pad.filemenu.debug
-    set dms $pad.filemenu.debug.step
+#    set dm $pad.filemenu.debug
+#    set dms $pad.filemenu.debug.step
     if {$listoffile("$textarea",language) == "scilab"} {
         #enable "Load into scilab"
         $pad.filemenu.exec entryconfigure $MenuEntryId($pad.filemenu.exec.[mcra "&Load into Scilab"]) -state normal
@@ -921,16 +921,16 @@ proc schememenus {textarea} {
         binddisable $pad execfile
         bind $pad <F5> {}
         #disable all the Debug menues entries
-        for {set i 1} {$i<=[$dm index last]} {incr i} {
-            if {[$dm type $i] == "command" || [$dm type $i] == "cascade"} {
-                $dm entryconfigure $i -state disabled
-            }
-        }
-        for {set i 1} {$i<=[$dms index last]} {incr i} {
-            if {[$dms type $i] == "command" || [$dms type $i] == "cascade"} {
-                $dms entryconfigure $i -state disabled
-            }
-        }
+#        for {set i 1} {$i<=[$dm index last]} {incr i} {
+#            if {[$dm type $i] == "command" || [$dm type $i] == "cascade"} {
+#                $dm entryconfigure $i -state disabled
+#            }
+#        }
+#        for {set i 1} {$i<=[$dms index last]} {incr i} {
+#            if {[$dms type $i] == "command" || [$dms type $i] == "cascade"} {
+#                $dms entryconfigure $i -state disabled
+#            }
+#        }
         # remove debugger bindings
         pbind all $Shift_F9 {}
         bind all <F9> {}
@@ -949,17 +949,17 @@ proc schememenus {textarea} {
         if {[istoplevelopen watch]} {
             set wi $watchwinicons
             set wis $watchwinstepicons
-            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
-            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
-            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
-            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "&Edit breakpoints"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "&Configure execution..."])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "Go to next b&reakpoint"])] configure -state disabled
+#            [lindex $wis $MenuEntryId($dms.[mcra "Step &into"])] configure -state disabled
+#            [lindex $wis $MenuEntryId($dms.[mcra "Step o&ver"])] configure -state disabled
+#            [lindex $wis $MenuEntryId($dms.[mcra "Step &out"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "Run to re&turn point"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "Run to c&ursor"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "G&o on ignoring any breakpoint"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "&Break"])] configure -state disabled
+#            [lindex $wi $MenuEntryId($dm.[mcra "Cance&l debug"])] configure -state disabled
         }
         #disable "create help skeleton" and "help from sci"
         $pad.filemenu.files entryconfigure $MenuEntryId($pad.filemenu.files.[mcra "Create help s&keleton..."]) -state disabled

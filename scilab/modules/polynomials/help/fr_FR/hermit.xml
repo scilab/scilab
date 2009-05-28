@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hermit">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,30 +8,30 @@
     <refpurpose> forme d'Hermite  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Ar,U]=hermit(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice de polynômes
+          <para>matrice de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Ar  </term>
         <listitem>
-          <para>matrice triangulaire de polynômes
+          <para>matrice triangulaire de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U  </term>
         <listitem>
-          <para>matrice unimodulaire de polynômes
+          <para>matrice unimodulaire de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -47,7 +47,7 @@
     La variable de sortie est <literal>Ar=A*U</literal>.
   </para>
     <para>
-    Attention : version expérimentale
+    Attention : version expÃ©rimentale
   </para>
   </refsection>
   <refsection>

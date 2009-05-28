@@ -45,7 +45,6 @@ c     ippty: interfaces properties
       integer byptr(mxbyptr),nbyptr
       common /ippty/ byptr,nbyptr
 
-c     integer graphicsmodels
       logical first
       double precision dlamch
       integer k,l,mode(2),vsizg,stacksize
@@ -88,10 +87,6 @@ c     -------------------
 
 c     initialization C environment
       call initscilab
-
-c     .  dynamic linking initialization
-c     .  ------------------------------
-      nlink=0
 c     
 c     .  scilab function protection mode
 c     .  ------------------------------
@@ -128,8 +123,6 @@ c     .  wte = unit number for terminal output
          wte=9999
       endif
       wio = 0
-c     .  hio =unit for history output (no more used)
-      hio = 0
 c     
       rio=rte
 c     
@@ -161,7 +154,7 @@ c     .  scicos initial debug mode
 c      
 c     .  initial type names
 c     .  ------------------
-      call settypnames()
+      call inittypenames()
       if(err.gt.0) then
          ierr=err
          return

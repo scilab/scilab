@@ -30,6 +30,9 @@ extern "C"
 #include "displaytree.hxx"
 #include "ScilabDisplayTree.hxx"
 
+#ifdef _MSC_VER
+#define strdup _strdup
+#endif
 using namespace std;
 /*--------------------------------------------------------------------------*/
 int sci_displaytree(char *fname,unsigned long fname_len)
@@ -39,9 +42,10 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 	CheckLhs(1,1);
 
-	vector<string> StructList;
+	vector < string > StructList;
 	int *piCurrentItem = NULL;
 	string szCurLevel = "";
+
 
 	iGetListItemType(1, piCurrentItem, &iItemCount, NULL);
 	int *piItemType = (int*)MALLOC(iItemCount * sizeof(int));
@@ -137,7 +141,7 @@ int sci_displaytree(char *fname,unsigned long fname_len)
 	}
 	
 	//Java
-	org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, struct_size);
+	org_scilab_modules_gui_tree::ScilabDisplayTree::scilabDisplayTree(getScilabJavaVM(), tab, (int)struct_size);
 
 	//Free
 	for(i = 0; i < struct_size; ++i)

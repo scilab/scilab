@@ -37,7 +37,6 @@
 #pragma comment(lib,"../../libs/special_functions_f.lib")
 #pragma comment(lib,"../../libs/elementary_functions_f.lib")
 #pragma comment(lib,"../../libs/core_f.lib")
-#pragma comment(lib,"../../libs/polynomials_f.lib")
 #pragma comment(lib,"../../libs/cacsd_f.lib")
 /*-----------------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
