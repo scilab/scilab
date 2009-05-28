@@ -22,6 +22,9 @@ extern "C"
 	#include "localization.h"
 	#include "sciprint.h"
 	#include "variable_api.h"
+	#ifdef _MSC_VER
+	#include "strdup_windows.h"
+	#endif
 }
 
 bool export_data(int *_piVar, char* _pstName);
