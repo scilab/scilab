@@ -50,4 +50,11 @@ getMatrixOfDoubleInList
 getListInList
 readNamedList
 readMatrixOfDoubleInNamedList
+getMatrixOfStringInList
+createMatrixOfStringInList
+createMatrixOfStringInNamedList
+createListInNamedList
+iAllocMatrixOfBoolean
+iArraySum
+GetRhsStringVar
 ;

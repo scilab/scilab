@@ -41,17 +41,6 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piL
 
 /**
  * Get double variable data
- * @param[in] _piAddress variable address
- * @param[out] _piRows return number of row 
- * @param[out] _piCols return number of column
- * @param[out] _piLength return cumulative strings length
- * @param[out] _pstStrings return array of char
- * @return if the operation successed (0) or not ( !0 )
- */
-int getMatrixOfStringCumulativeLength(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char* _pstStrings);
-
-/**
- * Get double variable data
  * @param[in] _iVar variable number
  * @param[in] _iRows Number of row
  * @param[in] _iCols Number of column

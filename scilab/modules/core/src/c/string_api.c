@@ -21,9 +21,7 @@
 #include "CallScilab.h"
 #include "stack-c.h"
 #include "code2str.h"
-
-//local string functions
-static int fillMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int** _piAddress, int* _piTotalLen);
+#include "internal_string_api.h"
 
 
 /*******************************/
@@ -75,55 +73,27 @@ int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLengt
 	return 0;
 }
 
-int getMatrixOfStringCumulativeLength(int* _piAddress, int* _piRows, int* _piCols, int* _piLength, char* _pstStrings)
-{
-	int i = 0;
-	int *piOffset = NULL;
-	int *piData		= NULL;
-
-	if(	_piAddress == NULL || getVarType(_piAddress) != sci_strings)
-	{
-		return 1;
-	}
-	
-	getVarDimension(_piAddress, _piRows, _piCols);
-
-	if(_piLength == NULL)
-	{
-		return 0;
-	}
-
-	piOffset = _piAddress + 4;
-
-	//cummulative length
-	for(i = 0 ; i < *_piRows * *_piCols + 1; i++)
-	{
-		_piLength[i] = piOffset[i];
-	}
-
-	if(_pstStrings == NULL)
-	{
-		return 0;
-	}
-
-	piData = piOffset + *_piRows * *_piCols + 1;
-	code2str(&_pstStrings, piData, iArraySum(_piLength, 0, *_piRows * *_piCols));
-	return 0;
-}
-
 int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int** _piAddress)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int iTotalLen		= 0;
+	int *piAddr			= NULL;
 
-	fillMatrixOfString(iNewPos, _iRows, _iCols, _pstStrings, _piAddress, &iTotalLen);
+	int iRet = getVarAddressFromNumber(iNewPos, &piAddr);
+	if(iRet != 0)
+	{
+		return 1;
+	}
+
+	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
+	*_piAddress = piAddr;
 	updateInterSCI(_iVar, '$', iAddr, iAddr + 5 + _iRows * _iCols);
 	updateLstk(iNewPos, iAddr + 5 + _iRows * _iCols, iTotalLen);
 	return 0;
 }
 
-static int fillMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int** _piAddress, int* _piTotalLen)
+int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
 {
 	int* piOffset = NULL;
 	int* piAddr		= NULL;
@@ -131,18 +101,12 @@ static int fillMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStri
 	int i					= 0;
 	int iOffset		= 0;
 
-	int iRet = getVarAddressFromNumber(_iVar, &piAddr);
-	if(iRet != 0)
-	{
-		return 1;
-	}
+	_piAddress[0]	= sci_strings;
+	_piAddress[1] = _iRows;
+	_piAddress[2] = _iCols;
+	_piAddress[3] = 0; //always 0
 
-	piAddr[0]	= sci_strings;
-	piAddr[1] = _iRows;
-	piAddr[2] = _iCols;
-	piAddr[3] = 0; //always 0
-
-	piOffset	= piAddr + 4;
+	piOffset	= _piAddress + 4;
 	piOffset[0] = 1; //Always 1
 	piData		= piOffset + _iRows * _iCols + 1;
 
@@ -155,8 +119,7 @@ static int fillMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStri
 		piOffset[i + 1] = piOffset[i] + iLen;
 	}
 
-	*_piAddress		= piAddr;
-	*_piTotalLen	= piOffset[_iRows * _iCols - 1];
+	*_piTotalLen	= piOffset[_iRows * _iCols] - 1;
 	return 0;
 }
 
@@ -177,7 +140,7 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 
 
 	//write matrix information
-	fillMatrixOfString(Top, _iRows, _iCols, _pstStrings, &piAddr, &iTotalLen);
+	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
 
 	//update "variable index"
 	updateLstk(Top, *Lstk(Top) + 5, iTotalLen);

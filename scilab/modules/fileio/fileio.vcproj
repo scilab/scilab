@@ -549,6 +549,42 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\cpp\sci_export_to_hdf5.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="2"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="2"
+					/>
+				</FileConfiguration>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_fileext.c"
 				>
 			</File>
@@ -599,6 +635,18 @@
 			<File
 				RelativePath=".\sci_gateway\c\sci_getshortpathname.c"
 				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\cpp\sci_import_from_hdf5.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|x64"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						CompileAs="2"
+					/>
+				</FileConfiguration>
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_isdir.c"

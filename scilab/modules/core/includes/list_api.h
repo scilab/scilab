@@ -217,6 +217,42 @@ int createTListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, in
 int createMListInList(int _iVar, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
 /**
+ * create a list in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length
+ * @param[in] _piParent pointer on the parent
+ * @param[in] _iItemPos position of the new list in the parent
+ * @param[in] _iNbItem number of item
+ * @param[out] _piAddress return list address
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+
+/**
+ * create a tlist in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length
+ * @param[in] _piParent pointer on the parent
+ * @param[in] _iItemPos position of the new list in the parent
+ * @param[in] _iNbItem number of item
+ * @param[out] _piAddress return list address
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createTListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+
+/**
+ * create a mlist in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length
+ * @param[in] _piParent pointer on the parent
+ * @param[in] _iItemPos position of the new list in the parent
+ * @param[in] _iNbItem number of item
+ * @param[out] _piAddress return list address
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
+
+/**
  * Get double variable data
  * @param[in] _iVar variable number
  * @param[in] _piParent pointer on the parent
@@ -344,6 +380,63 @@ int readMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent,
  * @return if the operation successed (0) or not ( !0 )
  */
 int readComplexMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
+
+/*********************
+ * Strings functions *
+ *********************/
+
+/**
+ * Get string variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _piLength return strings length
+ * @param[out] _pstStrings return array of char
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+/**
+ * Create string variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _pstStrings array of strings ( null terminated )
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int** _piAddress);
+
+/**
+ * Write string variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNamelen variable name length
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _pstStrings array of strings ( null terminated )
+ * @param[out] _piAddress return pointer on new variable
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings);
+
+/**
+ * Read string variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNamelen variable name length
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _pstStrings array of strings ( null terminated )
+ * @param[out] _piAddress return pointer on new variable
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int readMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
 
 #endif /* __LIST_API__ */
 
