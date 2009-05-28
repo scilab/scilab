@@ -30,12 +30,12 @@ void destroyRendererString(char * string)
 /*--------------------------------------------------------------------------*/
 /* It must be moved in SCI_GATEWAY directory */
 /* NOT in renderer in GRAPHICS */
-void callFunctionFromGatewayWithExceptions(gw_generic_table * tab)
+void callFunctionFromGatewayWithExceptions(gw_generic_table * tab, int sizetab)
 {
 	try
 	{
 		// Exception might be generated in the renderer module.
-		callFunctionFromGateway(tab);
+		callFunctionFromGateway(tab,sizetab);
 	}
 	catch (std::exception & e)
 	{

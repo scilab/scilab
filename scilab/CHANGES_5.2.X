@@ -135,6 +135,8 @@ Bug fixes:
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
 
+* bug 3580 fixed - a gateway declaration containing a false primitive ID or gateway ID crashs scilab.
+
 * bug 3772 fixed - input argument of 'predef' was not correctly checked.
 
 * bug 3773 fixed - 'ans' was protected with predef('all').
@@ -203,7 +205,7 @@ Bug fixes:
 * bug 4501 fixed - mput() no more allowed integer types as first input argument.
 
 * bug 4507 fixed - Depending on the fortran runtime libraries a dummy main
-  	  	   		   definition may be needed.
+                   definition may be needed.
 
 * bug 4516 fixed - ilib_for_link does not use ilib_gen_loader but a internal function.
 

@@ -19,7 +19,8 @@
 #include "callFunctionFromGateway.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table  Tab[]=
+#define JVM_TAB_SIZE 5
+static gw_generic_table  Tab[JVM_TAB_SIZE]=
 {
 	{C2F(sci_with_embedded_jre),"with_embedded_jre"},
 	{C2F(sci_system_setproperty),"system_setproperty"},
@@ -34,7 +35,7 @@ int gw_jvm(void)
 
 	if ( (getScilabMode() != SCILAB_NWNI) )
 	{
-		callFunctionFromGateway(Tab);	
+		callFunctionFromGateway(Tab,JVM_TAB_SIZE);	
 	}
 	else
 	{

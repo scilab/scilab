@@ -16,7 +16,9 @@
 #include "callFunctionFromGateway.h"
 #include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={ 
+#define OUTPUT_STREAM_TAB_SIZE 4
+static gw_generic_table Tab[OUTPUT_STREAM_TAB_SIZE]=
+{ 
 	{sci_print, "print"},
 	{sci_mprintf, "mprintf"},
 	{sci_msprintf, "msprintf"},
@@ -39,7 +41,7 @@ int gw_output_stream(void)
 	}
 	else
 	{
-		callFunctionFromGateway(Tab);
+		callFunctionFromGateway(Tab,OUTPUT_STREAM_TAB_SIZE);
 	}
 	return 0;
 }

@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_dialog)(char *fname,unsigned long fname_len)
+int sci_x_dialog(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
 
