@@ -279,7 +279,7 @@ BOOL IsAlreadyOpenedInScilab(char *filename)
 			}
 		}
 #if !defined(_MSC_VER) && !defined(__APPLE__)
-		FREE(fullpath);
+		/* FREE(fullpath); */
 #endif
 	}
 	return FALSE;
