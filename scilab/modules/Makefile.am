@@ -175,7 +175,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/string/libscistring.la
+	$(top_builddir)/modules/string/libscistring.la \
+	$(top_builddir)/modules/functions/libscifunctions.la 
 
 OTHER_LIBS = $(top_builddir)/modules/fftw/libscifftw.la \
 $(top_builddir)/modules/umfpack/libsciumfpack.la \

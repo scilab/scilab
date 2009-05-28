@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Inductor">
   <refnamediv>
     <refname>Inductor</refname>
-    <refpurpose>Inductance électrique</refpurpose>
+    <refpurpose>Inductance Ã©lectrique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Inductor">Inductance électrique</link>
+          <link linkend="Inductor">Inductance Ã©lectrique</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Inductor">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Inductor">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Inductor">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Inductor">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Inductor">Modèle Modelica</link>
+              <link linkend="Inductor">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -93,10 +93,10 @@
   <refsection id="Description_Inductor">
     <title>Description</title>
     <para>
-Une bobine est un composant électrique qui peut stocker l'énergie
-dans des circuits électriques.  Le rapport entre la tension  aux
-borne d'une bobine d'inductance  et le courant  passant à
-travers le composant est donné par :
+Une bobine est un composant Ã©lectrique qui peut stocker l'Ã©nergie
+dans des circuits Ã©lectriques.  Le rapport entre la tension  aux
+borne d'une bobine d'inductance  et le courant  passant Ã 
+travers le composant est donnÃ© par :
 </para>
     <para>
 </para>
@@ -108,16 +108,16 @@ travers le composant est donné par :
       </inlinemediaobject>
     </para>
     <para>
-Des inductances peuvent également être utilisées pour distinguer les
- signaux haute fréquence des signaux de basse fréquence et ceci
+Des inductances peuvent Ã©galement Ãªtre utilisÃ©es pour distinguer les
+ signaux haute frÃ©quence des signaux de basse frÃ©quence et ceci
  rend les inductances utiles dans la conception des filtres. Une
- inductance présente une forte impédance pour les signaux haute
- fréquence et est passante pour les signaux DC.
+ inductance prÃ©sente une forte impÃ©dance pour les signaux haute
+ frÃ©quence et est passante pour les signaux DC.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Inductor">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Inductor">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -134,16 +134,16 @@ Des inductances peuvent également être utilisées pour distinguer les
           <emphasis role="bold">L (H)</emphasis>
         </para>
         <para> Inductance</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Inductor">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Inductor">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -173,15 +173,15 @@ Des inductances peuvent également être utilisées pour distinguer les
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'L'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'L'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.00001
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.00001
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -201,8 +201,8 @@ Des inductances peuvent également être utilisées pour distinguer les
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_Inductor">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_Inductor">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/Inductor.mo</para>

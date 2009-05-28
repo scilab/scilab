@@ -59,6 +59,8 @@ int sci_is_handle_valid(char *fname,unsigned long fname_len)
   }
 
   LhsVar(1) = Rhs + 1;
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

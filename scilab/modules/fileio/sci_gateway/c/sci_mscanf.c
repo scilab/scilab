@@ -17,7 +17,8 @@
 #include "do_xxprintf.h"
 #include "gw_fileio.h"
 #include "localization.h"
-#include "fileio.h"
+#include "scanf_functions.h"
+#include "StringConvert.h"
 #include "xscion.h"
 #include "../../../shell/includes/zzledt.h"
 #include "../../../shell/includes/GetCommandLine.h" /* getConsoleInputLine */

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xrects">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,11 +8,11 @@
     <refpurpose> dessine ou remplit un ensemble de rectangles  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xrects(rects,[fill])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>rects  </term>
@@ -33,14 +33,14 @@
   <refsection>
     <title>Description</title>
     <para><literal>xrects</literal> dessine ou remplit un ensemble de rectangles. 
-    Chaque colonne de <literal>rects</literal> décrit un 
-    rectangle (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur:
+    Chaque colonne de <literal>rects</literal> dÃ©crit un 
+    rectangle (point en haut Ã  gauche, largeur, hauteur) en coordonnÃ©es utilisateur:
     <literal>rects=[x1 y1 w1 h1;x2 y2 w2 h2;...]'</literal>.
   </para>
-    <para><literal>fill(i)</literal> définit le motif utilisé pour dessiner ou remplir le rectangle i:
+    <para><literal>fill(i)</literal> dÃ©finit le motif utilisÃ© pour dessiner ou remplir le rectangle i:
   </para>
     <para>
-    si <literal>fill(i)&lt;0</literal>, le rectangle <literal>i</literal> est dessiné avec la couleur
+    si <literal>fill(i)&lt;0</literal>, le rectangle <literal>i</literal> est dessinÃ© avec la couleur
     <literal>-fill(i)</literal>.
   </para>
     <para>
@@ -48,7 +48,7 @@
     <literal>fill(i)</literal>.
   </para>
     <para>
-    si <literal>fill(i)=0</literal>, le rectangle <literal>i</literal> est dessiné avec le style de ligne courant.
+    si <literal>fill(i)=0</literal>, le rectangle <literal>i</literal> est dessinÃ© avec le style de ligne courant.
   </para>
   <para>ATTENTION : notez que la valeur de la hauteur est positive en allant vers la bas.</para>
   </refsection>

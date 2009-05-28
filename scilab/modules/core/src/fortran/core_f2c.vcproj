@@ -432,18 +432,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dldsp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dmdsp.c"
-				>
-			</File>
-			<File
-				RelativePath=".\dmdspf.c"
-				>
-			</File>
-			<File
 				RelativePath=".\dtosci.c"
 				>
 			</File>
@@ -480,23 +468,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fmttyp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\folhp.c"
 				>
 			</File>
 			<File
-				RelativePath=".\formatnumber.c"
-				>
-			</File>
-			<File
 				RelativePath=".\ftob.c"
-				>
-			</File>
-			<File
-				RelativePath=".\functionsforbasout.c"
 				>
 			</File>
 			<File
@@ -596,10 +572,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lspdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\lst2vars.c"
 				>
 			</File>
@@ -652,19 +624,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\print.c"
-				>
-			</File>
-			<File
-				RelativePath=".\prntid.c"
-				>
-			</File>
-			<File
 				RelativePath=".\prompt.c"
-				>
-			</File>
-			<File
-				RelativePath=".\promptecho.c"
 				>
 			</File>
 			<File
@@ -768,14 +728,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_type.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_typnam.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_useascommand.c"
 				>
 			</File>
@@ -868,10 +820,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\wmdsp.c"
-				>
-			</File>
-			<File
 				RelativePath=".\xerbla.c"
 				>
 			</File>
@@ -881,6 +829,10 @@
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\includes\callinter.h"
+				>
+			</File>
 			<File
 				RelativePath="..\..\includes\stack.h"
 				>
@@ -992,50 +944,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\dldsp.f"
-				>
-			</File>
-			<File
-				RelativePath=".\dmdsp.f"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Debug|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|x64"
-					>
-					<Tool
-						Name="f2c rule"
-						CommandLine="cd &quot;$(InputDir)&quot;&#x0D;&#x0A;&quot;$(SolutionDir)bin\f2c.exe&quot; -E -I..\..\..\core\includes -I..\..\..\..\core\includes &quot;$(InputFileName)&quot; 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath=".\dmdspf.f"
-				>
-			</File>
-			<File
 				RelativePath=".\dtosci.f"
 				>
 			</File>
@@ -1072,23 +980,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\fmttyp.f"
-				>
-			</File>
-			<File
 				RelativePath=".\folhp.f"
 				>
 			</File>
 			<File
-				RelativePath=".\formatnumber.f"
-				>
-			</File>
-			<File
 				RelativePath=".\ftob.f"
-				>
-			</File>
-			<File
-				RelativePath=".\functionsforbasout.f"
 				>
 			</File>
 			<File
@@ -1188,10 +1084,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\lspdsp.f"
-				>
-			</File>
-			<File
 				RelativePath=".\lst2vars.f"
 				>
 			</File>
@@ -1244,19 +1136,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\print.f"
-				>
-			</File>
-			<File
-				RelativePath=".\prntid.f"
-				>
-			</File>
-			<File
 				RelativePath=".\prompt.f"
-				>
-			</File>
-			<File
-				RelativePath=".\promptecho.f"
 				>
 			</File>
 			<File
@@ -1360,14 +1240,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_type.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_typnam.f"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\fortran\sci_useascommand.f"
 				>
 			</File>
@@ -1457,10 +1329,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\fortran\where.f"
-				>
-			</File>
-			<File
-				RelativePath=".\wmdsp.f"
 				>
 			</File>
 			<File

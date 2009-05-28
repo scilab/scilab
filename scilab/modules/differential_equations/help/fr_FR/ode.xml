@@ -1,75 +1,75 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="ode">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>ode</refname>
-    <refpurpose> solveur d'équations différentielles ordinaires  </refpurpose>
+    <refpurpose> solveur d'Ã©quations diffÃ©rentielles ordinaires  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>y=ode(y0,t0,t,f)
 [y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
 [y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
 y=ode("discrete",y0,k0,kvect,f)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>y0  </term>
         <listitem>
-          <para>vecteur ou matrice réelle (conditions initiales).
+          <para>vecteur ou matrice rÃ©elle (conditions initiales).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t0  </term>
         <listitem>
-          <para>réel (instant initial).
+          <para>rÃ©el (instant initial).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>t  </term>
         <listitem>
-          <para>vecteur réel (instants où la solution est renvoyée).
+          <para>vecteur rÃ©el (instants oÃ¹ la solution est renvoyÃ©e).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>f  </term>
         <listitem>
-          <para>fonction externe (fonction Scilab ou chaîne de caractères ou liste).
+          <para>fonction externe (fonction Scilab ou chaÃ®ne de caractÃ¨res ou liste).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>type  </term>
         <listitem>
-          <para>une des chaînes de caractères : <literal>"adams" "stiff" "rk" "rkf" "fix" "discrete" "roots"</literal>
+          <para>une des chaÃ®nes de caractÃ¨res : <literal>"adams" "stiff" "rk" "rkf" "fix" "discrete" "roots"</literal>
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>rtol,atol  </term>
         <listitem>
-          <para>constantes ou vecteurs réels de même taille que <literal>y</literal>.
+          <para>constantes ou vecteurs rÃ©els de mÃªme taille que <literal>y</literal>.
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>jac  </term>
         <listitem>
-          <para>fonction externe (fonction Scilab, chaîne de caractères ou liste).
+          <para>fonction externe (fonction Scilab, chaÃ®ne de caractÃ¨res ou liste).
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>w,iw  </term>
         <listitem>
-          <para>vecteurs réels
+          <para>vecteurs rÃ©els
 	  </para>
         </listitem>
       </varlistentry>
@@ -83,7 +83,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
       <varlistentry>
         <term>g  </term>
         <listitem>
-          <para>fonction externe (fonction Scilab, chaîne de caractères ou liste).
+          <para>fonction externe (fonction Scilab, chaÃ®ne de caractÃ¨res ou liste).
 	  </para>
         </listitem>
       </varlistentry>
@@ -98,20 +98,20 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>ode</literal> est la fonction utilisée pour approcher la solution
-      d'une équation différentielle ordinaire (EDO) explicite du premier
-      ordre en temps, définie par :
+    <para><literal>ode</literal> est la fonction utilisÃ©e pour approcher la solution
+      d'une Ã©quation diffÃ©rentielle ordinaire (EDO) explicite du premier
+      ordre en temps, dÃ©finie par :
       dy/dt=f(t,y) , y(t0)=y0.
       Il s'agit d'une interface vers diverses librairies, en particulier ODEPACK.
-      Le type du problème et la méthode utilisée dépendent de la valeur du
-      premier argument optionnel <literal>type</literal> qui peut être égal à :
+      Le type du problÃ¨me et la mÃ©thode utilisÃ©e dÃ©pendent de la valeur du
+      premier argument optionnel <literal>type</literal> qui peut Ãªtre Ã©gal Ã  :
     </para>
     <variablelist>
       <varlistentry>
         <term>&lt;aucun&gt; :</term>
         <listitem>
           <para>
-	  le solveur <literal>lsoda</literal> du package ODEPACK est utilisé par défaut. Il choisit automatiquement entre un schéma prédicteur-correcteur d'Adams et un schéma adapté au systèmes raides (stiff) de type "Backward Differentiation Formula" (BDF). Initialement le schéma adapté aux système non raides est choisi puis la méthode adaptée est ensuite choisie dynamiquement. 
+	  le solveur <literal>lsoda</literal> du package ODEPACK est utilisÃ© par dÃ©faut. Il choisit automatiquement entre un schÃ©ma prÃ©dicteur-correcteur d'Adams et un schÃ©ma adaptÃ© au systÃ¨mes raides (stiff) de type "Backward Differentiation Formula" (BDF). Initialement le schÃ©ma adaptÃ© aux systÃ¨me non raides est choisi puis la mÃ©thode adaptÃ©e est ensuite choisie dynamiquement. 
 	</para>
         </listitem>
       </varlistentry>
@@ -119,7 +119,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"adams" :</term>
         <listitem>
           <para>
-	  Problèmes non raides. Le solveur <literal>lsode</literal> du package ODEPACK est utilisé (schéma d'Adams).
+	  ProblÃ¨mes non raides. Le solveur <literal>lsode</literal> du package ODEPACK est utilisÃ© (schÃ©ma d'Adams).
 	</para>
         </listitem>
       </varlistentry>
@@ -127,7 +127,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"stiff" :</term>
         <listitem>
           <para>
-	  Pour les systèmes raides. Le solveur <literal>lsode</literal> du package ODEPACK est utilisé avec le schéma BDF.
+	  Pour les systÃ¨mes raides. Le solveur <literal>lsode</literal> du package ODEPACK est utilisÃ© avec le schÃ©ma BDF.
 	</para>
         </listitem>
       </varlistentry>
@@ -135,7 +135,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"rk" :</term>
         <listitem>
           <para>
-	  Schéma de Runge-Kutta adaptatif d'ordre 4 (RK4).
+	  SchÃ©ma de Runge-Kutta adaptatif d'ordre 4 (RK4).
 	</para>
         </listitem>
       </varlistentry>
@@ -143,7 +143,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"rkf" :</term>
         <listitem>
           <para>
-	  Formules de Shampine et Watts basées sur les paires de Runge-Kutta Fehlberg d'ordre 4 et 5 (RKF45). Bien pour les problèmes non raides ou moyennement raides, lorsque le calcul du second membre n'est pas trop coûteux. Cette méthode est à éviter si l'on recherche une très grande précision.
+	  Formules de Shampine et Watts basÃ©es sur les paires de Runge-Kutta Fehlberg d'ordre 4 et 5 (RKF45). Bien pour les problÃ¨mes non raides ou moyennement raides, lorsque le calcul du second membre n'est pas trop coÃ»teux. Cette mÃ©thode est Ã  Ã©viter si l'on recherche une trÃ¨s grande prÃ©cision.
 	</para>
         </listitem>
       </varlistentry>
@@ -151,7 +151,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"fix":</term>
         <listitem>
           <para>
-	  Identique à "rkf", mais l'interface est simplifiée, i.e. uniquement <literal>rtol</literal> et <literal>atol</literal>  sont communiqués au solveur. 
+	  Identique Ã  "rkf", mais l'interface est simplifiÃ©e, i.e. uniquement <literal>rtol</literal> et <literal>atol</literal>  sont communiquÃ©s au solveur. 
 	</para>
         </listitem>
       </varlistentry>
@@ -159,7 +159,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"root":</term>
         <listitem>
           <para>
-	  Solveur d'EDO avec recherche de racines.  Le solveur <literal>lsodar</literal> du package ODEPACK est utilisé. C'est une variante de <literal>lsoda</literal> permettant la recherche d'une racine d'une fonction vectorielle donnée. Voir ode_root pour plus de détails.
+	  Solveur d'EDO avec recherche de racines.  Le solveur <literal>lsodar</literal> du package ODEPACK est utilisÃ©. C'est une variante de <literal>lsoda</literal> permettant la recherche d'une racine d'une fonction vectorielle donnÃ©e. Voir ode_root pour plus de dÃ©tails.
 	</para>
         </listitem>
       </varlistentry>
@@ -167,86 +167,86 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
         <term>"discrete":</term>
         <listitem>
           <para>
-	  Simulation en temps discret. Voir ode_discrete pour plus de détails.
+	  Simulation en temps discret. Voir ode_discrete pour plus de dÃ©tails.
 	</para>
         </listitem>
       </varlistentry>
     </variablelist>
     <para>
-      Ici on ne décrit l'usage de <literal>ode</literal> que pour des EDO explicites.
+      Ici on ne dÃ©crit l'usage de <literal>ode</literal> que pour des EDO explicites.
     </para>
     <itemizedlist>
       <listitem>
         <para>L'appel le plus simple de <literal>ode</literal> est du type :
       <literal>y=ode(y0,t0,t,f)</literal>
-      où <literal>y0</literal> est le vecteur des conditions initiales, <literal>t0</literal> est le temps initial, et <literal>t</literal> est le vecteur des instants où l'on veut une approximation de la solution. 
-      <literal>y</literal> est calculée et <literal>y</literal>  est la matrice 
+      oÃ¹ <literal>y0</literal> est le vecteur des conditions initiales, <literal>t0</literal> est le temps initial, et <literal>t</literal> est le vecteur des instants oÃ¹ l'on veut une approximation de la solution. 
+      <literal>y</literal> est calculÃ©e et <literal>y</literal>  est la matrice 
       <literal>y=[y(t(1)),y(t(2)),...]</literal>.    </para>
         <para>
-      Le paramètre d'entrée <literal>f</literal> de <literal>ode</literal> défini le
-	  membre de droite de léquation différentielle du premier ordre
-	  dy/dt=f(t,y). C'est un external qui peut être :
+      Le paramÃ¨tre d'entrÃ©e <literal>f</literal> de <literal>ode</literal> dÃ©fini le
+	  membre de droite de lÃ©quation diffÃ©rentielle du premier ordre
+	  dy/dt=f(t,y). C'est un external qui peut Ãªtre :
     </para>
         <itemizedlist>
           <listitem>
             <para>
-	      Soit  une fonction Scilab, sa syntaxe doit être  <literal>ydot = f(t,y)</literal> 
-	      où <literal>t</literal> est un scalaire (le temps), <literal>y</literal> un vecteur
-	      (l'état).
-	      Cette fonction renvoie le second membre de l'équation
-	      différentielle dy/dt=f(t,y).
+	      Soit  une fonction Scilab, sa syntaxe doit Ãªtre  <literal>ydot = f(t,y)</literal> 
+	      oÃ¹ <literal>t</literal> est un scalaire (le temps), <literal>y</literal> un vecteur
+	      (l'Ã©tat).
+	      Cette fonction renvoie le second membre de l'Ã©quation
+	      diffÃ©rentielle dy/dt=f(t,y).
 	    </para>
           </listitem>
           <listitem>
             <para>
-	      Soit  une chaîne de caractères, elle désigne le nom d'une subroutine Fortran
-	      ou une procédure C, i.e. si <literal>ode(y0,t0,t,"fex")</literal> est la
-	      commande, alors la procedure <literal>fex</literal> est appelée.  </para>
-            <para>Si c'est une subroutine Fortran, sa liste d'appel doit être</para>
+	      Soit  une chaÃ®ne de caractÃ¨res, elle dÃ©signe le nom d'une subroutine Fortran
+	      ou une procÃ©dure C, i.e. si <literal>ode(y0,t0,t,"fex")</literal> est la
+	      commande, alors la procedure <literal>fex</literal> est appelÃ©e.  </para>
+            <para>Si c'est une subroutine Fortran, sa liste d'appel doit Ãªtre</para>
             <programlisting><![CDATA[
 	      subroutine fex(n,t,y,ydot) 
 	      integer n
 	      double precision t,y(*),ydot(*)
 	      ]]></programlisting>
-            <para> Si c'est une fonction C son prototype doit être:</para>
+            <para> Si c'est une fonction C son prototype doit Ãªtre:</para>
             <programlisting><![CDATA[
 	      void fex(int *n,double *t,double *y,double *ydot)
 	      ]]></programlisting>
-            <para>Cet external peut être compilé par l'utilitaire
-	      <link linkend="ilib_for_link">ilib_for_link</link> et chargé dynamiquement par la
+            <para>Cet external peut Ãªtre compilÃ© par l'utilitaire
+	      <link linkend="ilib_for_link">ilib_for_link</link> et chargÃ© dynamiquement par la
 	      fonction <link linkend="link">link</link>. </para>
           </listitem>
           <listitem>
             <para>
 	      Soit une liste  avec la structure suivante <literal>list(vrai_f,u1,u2,...un)</literal>
-	    où <literal>vrai_f</literal> est une fonction avec la syntaxe 
+	    oÃ¹ <literal>vrai_f</literal> est une fonction avec la syntaxe 
 		<literal>ydot = vrai_f(t,y,u1,u2,...,un)</literal></para>
             <para>
-	      Cette syntaxe permet de passer des paramètres sous forme
-	      d'arguments supplémentaires de <literal>vrai_f</literal>.
+	      Cette syntaxe permet de passer des paramÃ¨tres sous forme
+	      d'arguments supplÃ©mentaires de <literal>vrai_f</literal>.
 
 	    </para>
           </listitem>
         </itemizedlist>
         <para>
 	  La fonction <literal>f</literal> peut renvoyer une matrice <literal>p x q</literal> au lieu d'un vecteur. 
-	  Dans ce cas, on résout le système d'EDO <literal>n=p+q</literal> 
-	  <literal>dY/dt=F(t,Y)</literal> où <literal>Y</literal> est une matrice <literal>p x q</literal>.
-	  La condition initiale <literal>Y0</literal> doit aussi être une matrice
-	  <literal>p x q</literal> matrix et le résultat renvoyé par <literal>ode</literal>
-	  est la matrice:  <literal>p x q(T+1)</literal> égale à <literal>[Y(t_0),Y(t_1),...,Y(t_T)]</literal>.
+	  Dans ce cas, on rÃ©sout le systÃ¨me d'EDO <literal>n=p+q</literal> 
+	  <literal>dY/dt=F(t,Y)</literal> oÃ¹ <literal>Y</literal> est une matrice <literal>p x q</literal>.
+	  La condition initiale <literal>Y0</literal> doit aussi Ãªtre une matrice
+	  <literal>p x q</literal> matrix et le rÃ©sultat renvoyÃ© par <literal>ode</literal>
+	  est la matrice:  <literal>p x q(T+1)</literal> Ã©gale Ã  <literal>[Y(t_0),Y(t_1),...,Y(t_T)]</literal>.
 	</para>
       </listitem>
       <listitem>
         <para>
-	  Des paramètres optionnels contrôlent la tolérance du schéma :
+	  Des paramÃ¨tres optionnels contrÃ´lent la tolÃ©rance du schÃ©ma :
 	  <literal>rtol</literal> et <literal>atol</literal> 
-	  sont des valeurs seuil sur les erreurs estimées (relative et absolue) 
-	  L'erreur estimée sur <literal>y(i)</literal> est <literal>rtol(i)*abs(y(i))+atol(i)</literal>
+	  sont des valeurs seuil sur les erreurs estimÃ©es (relative et absolue) 
+	  L'erreur estimÃ©e sur <literal>y(i)</literal> est <literal>rtol(i)*abs(y(i))+atol(i)</literal>
    	</para>
         <para>
 	  Si <literal>rtol</literal> et/ou <literal>atol</literal> sont des constantes <literal>rtol(i)</literal> et/ou 
-	  <literal>atol(i)</literal> prennent ces valeurs. Les valeurs par défaut de
+	  <literal>atol(i)</literal> prennent ces valeurs. Les valeurs par dÃ©faut de
 	  <literal>rtol</literal> et <literal>atol</literal>
 	  sont respectivement <literal>rtol=1.d-5</literal> et
 	  <literal>atol=1.d-7</literal> pour la plupart des solveurs et
@@ -256,23 +256,23 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
       </listitem>
       <listitem>
         <para>
-	  Pour les problèmes raides, il est recommandé de fournir la jacobienne du second membre
+	  Pour les problÃ¨mes raides, il est recommandÃ© de fournir la jacobienne du second membre
 	  sous forme de l'argument optionnel <literal>jac</literal>. Le
-	  paramètre <literal>jac</literal> de <literal>ode</literal> est par exemple une
-	  fonction Scilab, dont la syntaxe est imposée, ou le nom d'une
-	  subroutine Fortran ou C (chaîne de caractères) ou une liste.
+	  paramÃ¨tre <literal>jac</literal> de <literal>ode</literal> est par exemple une
+	  fonction Scilab, dont la syntaxe est imposÃ©e, ou le nom d'une
+	  subroutine Fortran ou C (chaÃ®ne de caractÃ¨res) ou une liste.
 	</para>
         <para>
-	  Si <literal>jac</literal> est une fonction Scilab sa syntaxe doit être
+	  Si <literal>jac</literal> est une fonction Scilab sa syntaxe doit Ãªtre
 	  <literal>J=jac(t,y)</literal> 
 	</para>
         <para>
-	  où <literal>t</literal> est un scalaire (le temps) et <literal>y</literal> un vecteur (l'état).
+	  oÃ¹ <literal>t</literal> est un scalaire (le temps) et <literal>y</literal> un vecteur (l'Ã©tat).
 	  La matrice <literal>J</literal> doit renvoyer df/dx i.e. 
-	  <literal>J(k,i) = dfk /dxi</literal> avec <literal>fk</literal> = k-ième composante de f.
+	  <literal>J(k,i) = dfk /dxi</literal> avec <literal>fk</literal> = k-iÃ¨me composante de f.
 	</para>
         <para>
-	  Si <literal>f</literal> est une chaîne de caractères, elle désigne le nom d'une subroutine Fortran
+	  Si <literal>f</literal> est une chaÃ®ne de caractÃ¨res, elle dÃ©signe le nom d'une subroutine Fortran
 	  ou C. </para>
         <para>En Fortran, Cette routine doit avoir la liste d'appel suivante : </para>
         <programlisting><![CDATA[
@@ -280,31 +280,31 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
 	      integer n,ml,mu,nrpd
 	      double precision t,y(*),J(*)
 	      ]]></programlisting>
-        <para> Si c'est une fonction C son prototype doit être:</para>
+        <para> Si c'est une fonction C son prototype doit Ãªtre:</para>
         <programlisting><![CDATA[
 	      void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
 	      ]]></programlisting>
-        <para> Dans la plupart des cas il n'est pas nécessaire
+        <para> Dans la plupart des cas il n'est pas nÃ©cessaire
 	  d'utiliser <literal>ml</literal>, <literal>mu</literal> et
-	  <literal>nrpd</literal>, qui sont relatif aà la possibilité de stockage
+	  <literal>nrpd</literal>, qui sont relatif aÃ  la possibilitÃ© de stockage
 	  "bande" du Jacobien </para>
         <para>
-      Si <literal>jac</literal> est une liste, les mêmes conventions que pour <literal>f</literal> s'appliquent.
+      Si <literal>jac</literal> est une liste, les mÃªmes conventions que pour <literal>f</literal> s'appliquent.
     </para>
       </listitem>
       <listitem>
         <para>
       Les arguments optionnels <literal>w</literal> et <literal>iw</literal> sont 
-      des vecteurs ou le solveur stocke des informations sur son état(voir
-	  <link linkend="ode_optional_output">ode_optional_output</link> pour plus de détails) . Lorsque ces
-	  paramêtres sont utilisés comme argument d'entrée, ils permettent de
-	  redémarrer l'intégration au point où elle
-	  s'était arrêtée à la sortie d'un apple précédent à  <literal>ode</literal>.
+      des vecteurs ou le solveur stocke des informations sur son Ã©tat(voir
+	  <link linkend="ode_optional_output">ode_optional_output</link> pour plus de dÃ©tails) . Lorsque ces
+	  paramÃªtres sont utilisÃ©s comme argument d'entrÃ©e, ils permettent de
+	  redÃ©marrer l'intÃ©gration au point oÃ¹ elle
+	  s'Ã©tait arrÃªtÃ©e Ã  la sortie d'un apple prÃ©cÃ©dent Ã   <literal>ode</literal>.
     </para>
       </listitem>
       <listitem>
         <para>
-      Plus d'options peuvent être passées aux solveurs d'ODEPACK en utilisant la variable
+      Plus d'options peuvent Ãªtre passÃ©es aux solveurs d'ODEPACK en utilisant la variable
       <literal>%ODEOPTIONS</literal>. Voir <link linkend="odeoptions">odeoptions</link>.
     </para>
       </listitem>
@@ -343,7 +343,7 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
     A=[1 1;0 2];B=[1;1];omega=5;
     ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
 
-    // ----------Integration de l'équation différentielle de Riccati (état matriciel)
+    // ----------Integration de l'Ã©quation diffÃ©rentielle de Riccati (Ã©tat matriciel)
     // Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
     // Solution at t=[1,2] 
     function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
@@ -351,13 +351,13 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
     t0=0;t=0:0.1:%pi;
     X=ode(eye(A),0,t,ric)
     //
-    // ---------- Calcul de exp(A)  (état matriciel)
+    // ---------- Calcul de exp(A)  (Ã©tat matriciel)
     A=[1,1;0,2];
     function xdot=f(t,x),xdot=A*x;,endfunction 
     ode(eye(A),0,1,f)
     ode("adams",eye(A),0,1,f)
 
-    // ----------  Calcul de exp(A)  (état matriciel, cas raide, jacobien fourni)
+    // ----------  Calcul de exp(A)  (Ã©tat matriciel, cas raide, jacobien fourni)
     A=[10,0;0,-1];
     function xdot=f(t,x),xdot=A*x,endfunction 
     function J=Jacobian(t,y),J=A,endfunction 
@@ -415,8 +415,8 @@ y=ode("discrete",y0,k0,kvect,f)</synopsis>
     acm-signum newsletter, vol. 15, no. 4 (1980), pp. 10-11.</para>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
-    <para>Les sous programmes associés se trouvent dans le repertoire  routines/integ:
+    <title>Fonctions UtilisÃ©es</title>
+    <para>Les sous programmes associÃ©s se trouvent dans le repertoire  routines/integ:
       lsode.f lsoda.f lsodar.f
     </para>
   </refsection>

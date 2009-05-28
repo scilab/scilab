@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xrpoly">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>xrpoly</refname>
-    <refpurpose>  dessine un polygone régulier  </refpurpose>
+    <refpurpose>  dessine un polygone rÃ©gulier  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>orig  </term>
@@ -38,7 +38,7 @@
       <varlistentry>
         <term>theta  </term>
         <listitem>
-          <para>réel, angle en radians (0 par défaut).
+          <para>rÃ©el, angle en radians (0 par dÃ©faut).
 </para>
         </listitem>
       </varlistentry>
@@ -46,10 +46,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xrpoly</literal> dessine un polygone régulier à <literal>n</literal> faces contenu dans le disque de 
-    diamètre <literal>r</literal> et avec l'origine au point <literal>orig</literal>. 
-    <literal>theta</literal>  spécifie un angle de rotation en radians. Cette fonction utilise
-    l'échelle graphique courante. 
+    <para><literal>xrpoly</literal> dessine un polygone rÃ©gulier Ã  <literal>n</literal> faces contenu dans le disque de 
+    diamÃ¨tre <literal>r</literal> et avec l'origine au point <literal>orig</literal>. 
+    <literal>theta</literal>  spÃ©cifie un angle de rotation en radians. Cette fonction utilise
+    l'Ã©chelle graphique courante. 
   </para>
   </refsection>
   <refsection>

@@ -64,14 +64,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n sound.dll %%f &gt;nul&#x0D;&#x0A;copy *.def soundtmp.def &gt;nul&#x0D;&#x0A;copy ..\sound_header.def+soundtmp.def  ..\sound.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="sound.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -146,14 +146,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n sound.dll %%f &gt;nul&#x0D;&#x0A;copy *.def soundtmp.def &gt;nul&#x0D;&#x0A;copy ..\sound_header.def+soundtmp.def  ..\sound.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="sound.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				RandomizedBaseAddress="1"
@@ -231,14 +231,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n sound.dll %%f &gt;nul&#x0D;&#x0A;copy *.def soundtmp.def &gt;nul&#x0D;&#x0A;copy ..\sound_header.def+soundtmp.def  ..\sound.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="sound.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -321,14 +321,14 @@
 			<Tool
 				Name="VCPreLinkEventTool"
 				Description="Make dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;cd $(IntDir) &gt;nul&#x0D;&#x0A;for %%f in (*.obj) do  ..\..\..\bin\dumpexts -o %%~nf.def -n sound.dll %%f &gt;nul&#x0D;&#x0A;copy *.def soundtmp.def &gt;nul&#x0D;&#x0A;copy ..\sound_header.def+soundtmp.def  ..\sound.def &gt;nul&#x0D;&#x0A;del *.def &gt;nul&#x0D;&#x0A;cd .. &gt;nul&#x0D;&#x0A;"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib"
 				OutputFile="../../bin/$(ProjectName).dll"
 				LinkIncremental="1"
-				ModuleDefinitionFile="sound.def"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -394,6 +394,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath=".\includes\dynlib_sound.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\gw_sound.h"
 				>
 			</File>
@@ -423,10 +427,6 @@
 		<Filter
 			Name="Libraries Dependencies"
 			>
-			<File
-				RelativePath=".\sound_header.def"
-				>
-			</File>
 			<Filter
 				Name="Imports"
 				>

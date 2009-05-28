@@ -16,13 +16,13 @@
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={
-    {C2F(sci_getdate),"getdate"},
-	{C2F(sci_calendar),"Calendar"},
-	{C2F(sci_timer),"timer"},
-	{C2F(sci_sleep),"sleep"},
-	{C2F(sci_xpause),"xpause"},
-	{C2F(sci_realtimeinit),"realtimeinit"},
-	{C2F(sci_realtime),"realtime"},
+    {sci_getdate,"getdate"},
+	{sci_calendar,"Calendar"},
+	{sci_timer,"timer"},
+	{sci_sleep,"sleep"},
+	{sci_xpause,"xpause"},
+	{sci_realtimeinit,"realtimeinit"},
+	{sci_realtime,"realtime"},
 };
 /*--------------------------------------------------------------------------*/ 
 int gw_time(void)

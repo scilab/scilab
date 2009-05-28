@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="Diode">
   <refnamediv>
     <refname>Diode</refname>
-    <refpurpose>Diode électrique</refpurpose>
+    <refpurpose>Diode Ã©lectrique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Diode">Diode électrique</link>
+          <link linkend="Diode">Diode Ã©lectrique</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Diode">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Diode">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Diode">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Diode">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="Diode">Modèle Modelica</link>
+              <link linkend="Diode">ModÃ¨le Modelica</link>
             </para>
           </listitem>
         </itemizedlist>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -93,8 +93,8 @@
   <refsection id="Description_Diode">
     <title>Description</title>
     <para>
-Ce composant consiste en une diode simple mise en parallèle avec une résistance
-ohmique . Le courant qui passe dans la diode est défini en
+Ce composant consiste en une diode simple mise en parallÃ¨le avec une rÃ©sistance
+ohmique . Le courant qui passe dans la diode est dÃ©fini en
 fonction de la tension aux bornes de le diode, ,
 </para>
     <para>
@@ -107,15 +107,15 @@ fonction de la tension aux bornes de le diode, ,
       </inlinemediaobject>
     </para>
     <para>
-où  et  sont le courant de saturation et la tension
-équivalente de la température, respectivement. Si la valeur de 
-atteint une certaine limite (), la courbe caractéristique de
-la diode devient linéaire pour éviter un dépassement numérique.
+oÃ¹  et  sont le courant de saturation et la tension
+Ã©quivalente de la tempÃ©rature, respectivement. Si la valeur de 
+atteint une certaine limite (), la courbe caractÃ©ristique de
+la diode devient linÃ©aire pour Ã©viter un dÃ©passement numÃ©rique.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Diode">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Diode">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -132,37 +132,37 @@ la diode devient linéaire pour éviter un dépassement numérique.
           <emphasis role="bold">Saturation cuurent (A)</emphasis>
         </para>
         <para> Courant de saturation</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Voltage equivalent to temperature (Volt)</emphasis>
         </para>
-        <para> Tension équivalente de la température</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> Tension Ã©quivalente de la tempÃ©rature</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Max exponent for linear continuation</emphasis>
         </para>
         <para> Exposant maximum</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">R (ohm)</emphasis>
         </para>
         <para> La resistance parallele</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Diode">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Diode">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -192,45 +192,45 @@ la diode devient linéaire pour éviter un dépassement numérique.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Ids'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Ids'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.000001
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.000001
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Vt'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Vt'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 0.04
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 0.04
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'Maxexp'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'Maxexp'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 15
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 15
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
           </listitem>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'R'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'R'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1.000E+08
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1.000E+08
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -250,8 +250,8 @@ la diode devient linéaire pour éviter un dépassement numérique.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_Diode">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_Diode">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/Diode.mo</para>

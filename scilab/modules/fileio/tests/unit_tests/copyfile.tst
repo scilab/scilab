@@ -15,25 +15,40 @@
 // =============================================================================
 // TEST 1 : copyfile
 
+tab_ref = [
+"世界您好",
+"азеазея",
+"ハロー・ワールド",
+"เฮลโลเวิลด์",
+"حريات وحقوق",
+"프로그램",
+"프로그램",
+"תוכנית"];
+
+
 cd TMPDIR;
 mkdir test_copyfile_source;
 mkdir test_copyfile_target;
-
 cd('test_copyfile_source');
-mputl('I am a dummy String', 'dummyFile.dummy');
-lsResult = ls("dummyFile.dummy");
-if lsResult == [] then pause,end
 
-r = copyfile(TMPDIR+'/test_copyfile_source/dummyFile.dummy',TMPDIR+'/test_copyfile_target/dummyFile.dummy');
-if r <> 1 then pause,end
+for i = 1 : size(tab_ref,"*")
+	filename = tab_ref(i) + '.orig';
+	mputl('I am a dummy String : ' + tab_ref(i), filename);
+	if fileinfo(filename) == [] then pause,end
+end
 
-lsResult = ls(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
-if lsResult == [] then pause,end
-mdelete(TMPDIR+'/test_copyfile_source/dummyFile.dummy');
-mdelete(TMPDIR+'/test_copyfile_target/dummyFile.dummy');
+for i = 1 : size(tab_ref,"*")
+	orig = tab_ref(i) + '.orig';
+	dest = tab_ref(i) + '.dest';
+	r = copyfile(TMPDIR+'/test_copyfile_source/' + orig, TMPDIR+'/test_copyfile_target/' + dest);
+	if r <> 1 then pause,end
+	if fileinfo(TMPDIR+'/test_copyfile_target/' + dest) == [] then pause,end
+end
 
-rmdir(TMPDIR+'/test_copyfile_source');
-rmdir(TMPDIR+'/test_copyfile_target');
+cd TMPDIR;
+rmdir('test_copyfile_source', 's');
+rmdir('test_copyfile_target', 's');
+
 // =============================================================================
 
 cd TMPDIR;

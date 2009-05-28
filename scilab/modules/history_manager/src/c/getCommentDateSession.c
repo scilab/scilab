@@ -21,6 +21,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 #define string_begin_session _("// Begin Session : ")
 #define string_end_session   _("// End Session   : ")
@@ -40,35 +41,49 @@ char *getCommentDateSession(BOOL BeginSession)
 
 	time_str = ASCIItime(localtime(&timer));
 
-	if (BeginSession)
+	if (time_str)
 	{
-		line = (char*)MALLOC(sizeof(char)*(strlen(string_begin_session)+strlen(time_str)+1));
-		if (line) sprintf(line,"%s%s",string_begin_session,time_str);
+		if (BeginSession)
+		{
+			line = (char*)MALLOC(sizeof(char)*(strlen(string_begin_session)+strlen(time_str)+1));
+			if (line) sprintf(line, "%s%s", string_begin_session, time_str);
+		}
+		else
+		{
+			line = (char*)MALLOC(sizeof(char)*(strlen(string_end_session)+strlen(time_str)+1));
+			if (line) sprintf(line, "%s%s", string_end_session, time_str);
+		}
+		FREE(time_str);
+		time_str = NULL;
 	}
-	else
-	{
-		line = (char*)MALLOC(sizeof(char)*(strlen(string_end_session)+strlen(time_str)+1));
-		if (line) sprintf(line,"%s%s",string_end_session,time_str);
-	}
+	
 	return line;
 }
 /*------------------------------------------------------------------------*/
 static char *ASCIItime(const struct tm *timeptr)
 {
-
 	int i = 0;
 	char **wday_name = getDays();
 	char **mon_name = getMonths();
-	static char result[27];
+	char *result = NULL;
 
 	if ( (wday_name) && (mon_name) )
 	{
-		sprintf(result, "%.3s %.3s%3d %.2d:%.2d:%.2d %d",
-				wday_name[timeptr->tm_wday],
-				mon_name[timeptr->tm_mon],
-				timeptr->tm_mday, timeptr->tm_hour,
-				timeptr->tm_min, timeptr->tm_sec,
-				1900 + timeptr->tm_year);
+		#define FORMAT_TIME "%s %s%3d %.2d:%.2d:%.2d %d"
+		int len_result = (int) strlen(wday_name[timeptr->tm_wday]) +
+				(int) strlen(mon_name[timeptr->tm_mon]) +
+				(int) strlen(FORMAT_TIME);
+
+		result = (char*)MALLOC(sizeof(char)*(len_result + 1));
+		if (result)
+		{
+			sprintf(result, FORMAT_TIME,
+					wday_name[timeptr->tm_wday],
+					mon_name[timeptr->tm_mon],
+					timeptr->tm_mday, timeptr->tm_hour,
+					timeptr->tm_min, timeptr->tm_sec,
+					1900 + timeptr->tm_year);
+		}
 	}
 	else
 	{
@@ -76,25 +91,8 @@ static char *ASCIItime(const struct tm *timeptr)
 	}
 	
 	/* free pointers */
-	if (wday_name)
-	{
-		for (i = 0;i< MAX_wday;i++) 
-		{
-			if (wday_name[i]) { FREE(wday_name[i]); wday_name[i] = NULL;}
-		}
-		FREE(wday_name);
-		wday_name = NULL;
-	}
-	
-	if (mon_name)
-	{
-		for (i = 0;i< MAX_mon;i++) 
-		{
-			if (mon_name[i]) { FREE(mon_name[i]); mon_name[i] = NULL;}
-		}
-		FREE(mon_name);
-		mon_name = NULL;
-	}
+	freeArrayOfString(wday_name, MAX_wday);
+	freeArrayOfString(mon_name, MAX_mon);
 
 	return result;
 }

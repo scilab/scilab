@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="example_1_function_6">
+  <info>
+    <pubdate>01-08-2006</pubdate>
+  </info>
+  <refnamediv>
+    <refname>example_1_function_6</refname>
+    <refpurpose>"example_1_function_6" description</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>a = example_1_function_6(b,c)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>
+            "b" parameter description
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>
+            "c" parameter description
+         </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>
+            "a" parameter description
+         </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          example_1_function_6 full description
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    
+// Comments
+b = 2;
+c = 3;
+a = example_1_function_6(b,c);
+    
+  ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="example_1_function_1">example_1_function_1</link>
+      </member>
+      <member>
+        <link linkend="example_1_function_2">example_1_function_2</link>
+      </member>
+      <member>
+        <link linkend="example_1_function_3">example_1_function_3</link>
+      </member>
+      <member>
+        <link linkend="example_1_function_4">example_1_function_4</link>
+      </member>
+      <member>
+        <link linkend="example_1_function_5">example_1_function_5</link>
+      </member>
+      <member>
+        <link linkend="example_1_function_7">example_1_function_7</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>
+      Scilab Team
+    </member>
+    </simplelist>
+  </refsection>
+</refentry>

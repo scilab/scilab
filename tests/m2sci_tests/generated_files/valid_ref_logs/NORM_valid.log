@@ -1,4 +1,3 @@
-****** Beginning of validation of NORM.dia.ref ******
 *** TEST 1 PASSED ***
 
 *** TEST 2 PASSED ***
@@ -309,96 +308,96 @@
 
 *** TEST 155 PASSED ***
 
-*** TEST 156 PASSED ***
+TEST 156: Scilab/Matlab property does not match for res156: Complex/Real
+*** TEST 156 FAILED ***
 
-*** TEST 157 PASSED ***
+*** TEST 157 FAILED ***
 
-*** TEST 158 PASSED ***
+*** TEST 158 FAILED ***
 
-*** TEST 159 PASSED ***
+*** TEST 159 FAILED ***
 
-*** TEST 160 PASSED ***
+*** TEST 160 FAILED ***
 
-*** TEST 161 PASSED ***
+*** TEST 161 FAILED ***
 
-*** TEST 162 PASSED ***
+*** TEST 162 FAILED ***
 
-*** TEST 163 PASSED ***
+*** TEST 163 FAILED ***
 
-*** TEST 164 PASSED ***
+*** TEST 164 FAILED ***
 
-*** TEST 165 PASSED ***
+*** TEST 165 FAILED ***
 
-*** TEST 166 PASSED ***
+*** TEST 166 FAILED ***
 
-*** TEST 167 PASSED ***
+*** TEST 167 FAILED ***
 
-*** TEST 168 PASSED ***
+*** TEST 168 FAILED ***
 
-*** TEST 169 PASSED ***
+*** TEST 169 FAILED ***
 
-*** TEST 170 PASSED ***
+*** TEST 170 FAILED ***
 
-*** TEST 171 PASSED ***
+*** TEST 171 FAILED ***
 
-*** TEST 172 PASSED ***
+*** TEST 172 FAILED ***
 
-*** TEST 173 PASSED ***
+*** TEST 173 FAILED ***
 
-*** TEST 174 PASSED ***
+*** TEST 174 FAILED ***
 
-*** TEST 175 PASSED ***
+*** TEST 175 FAILED ***
 
-*** TEST 176 PASSED ***
+*** TEST 176 FAILED ***
 
-*** TEST 177 PASSED ***
+*** TEST 177 FAILED ***
 
-*** TEST 178 PASSED ***
+*** TEST 178 FAILED ***
 
-*** TEST 179 PASSED ***
+*** TEST 179 FAILED ***
 
-*** TEST 180 PASSED ***
+*** TEST 180 FAILED ***
 
-*** TEST 181 PASSED ***
+*** TEST 181 FAILED ***
 
-*** TEST 182 PASSED ***
+*** TEST 182 FAILED ***
 
-*** TEST 183 PASSED ***
+*** TEST 183 FAILED ***
 
-*** TEST 184 PASSED ***
+*** TEST 184 FAILED ***
 
-*** TEST 185 PASSED ***
+*** TEST 185 FAILED ***
 
-*** TEST 186 PASSED ***
+*** TEST 186 FAILED ***
 
-*** TEST 187 PASSED ***
+*** TEST 187 FAILED ***
 
-*** TEST 188 PASSED ***
+*** TEST 188 FAILED ***
 
-*** TEST 189 PASSED ***
+*** TEST 189 FAILED ***
 
-*** TEST 190 PASSED ***
+*** TEST 190 FAILED ***
 
-*** TEST 191 PASSED ***
+*** TEST 191 FAILED ***
 
-*** TEST 192 PASSED ***
+*** TEST 192 FAILED ***
 
-*** TEST 193 PASSED ***
+*** TEST 193 FAILED ***
 
-*** TEST 194 PASSED ***
+*** TEST 194 FAILED ***
 
-*** TEST 195 PASSED ***
+*** TEST 195 FAILED ***
 
-*** TEST 196 PASSED ***
+*** TEST 196 FAILED ***
 
-*** TEST 197 PASSED ***
+*** TEST 197 FAILED ***
 
-*** TEST 198 PASSED ***
+*** TEST 198 FAILED ***
 
-*** TEST 199 PASSED ***
+*** TEST 199 FAILED ***
 
-*** TEST 200 PASSED ***
+*** TEST 200 FAILED ***
 
-*** TEST 201 PASSED ***
+*** TEST 201 FAILED ***
 
-****** End of validation of NORM.dia.ref ******

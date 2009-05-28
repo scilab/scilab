@@ -10,11 +10,14 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
- 
+#include <errno.h>
+#include "PATH_MAX.h"
 #include "defs.h"
 #include "hashtable_metanet.h"
 #include "loadg.h"
 #include "localization.h"
+#include "charEncoding.h"
+#include "Scierror.h"
 
 static int CompString(char **s1,char **s2)
 {
@@ -45,7 +48,7 @@ void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, 
   int i,s;
   ENTRY node;
   ENTRY *found=NULL;
-  char dir[1024];
+  char dir[PATH_MAX];
   char *pname=NULL;
   char **lar=NULL;
 
@@ -60,8 +63,12 @@ void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, 
   }
 #endif
   if (my_dirname(path) == NULL){ 
-  getcwd(dir, (int) strlen(dir));}
-  else {
+    if (getcwd(dir, PATH_MAX)==NULL)
+      {
+	Scierror(999,_("Could not get current working directory: %s\n"),strerror(errno));
+	return;
+      }
+  } else {
     strcpy(dir,my_dirname(path));
   }
 #ifndef _MSC_VER
@@ -98,7 +105,7 @@ void C2F(loadg)(char *path, int *lpath, char **name, int *lname, int *directed, 
   strcat(fname,"/");
   strcat(fname,*name);
   strcat(fname,".graph");
-  fg = fopen(fname,"r");
+  wcfopen(fg,fname,"r");
   if (fg == 0)
   {
     sprintf(description,_("Unable to open file \"%s/%s.graph\""),dir,*name);

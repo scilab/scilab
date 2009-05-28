@@ -56,7 +56,9 @@ static gw_generic_table Tab[]=
 	{sci_printsetupbox,"printsetupbox"},
 	{sci_toprint,"toprint"},
 	{sci_uigetfile,"uigetfile"},
-	{sci_usecanvas,"usecanvas"}
+	{sci_usecanvas,"usecanvas"},
+	{sci_displaytree,"displaytree"},
+	{sci_uiputfile,"uiputfile"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)

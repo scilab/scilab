@@ -7,17 +7,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function [res,err] = get_param(list_name,param_name,param_default)
+function [result,err] = get_param(list_name,param_name,param_default)
 [nargout,nargin] = argn();
 if ~isdef('param_default','local') then
   param_default = [];
 end
 
-res = param_default;
+result = param_default;
 
 if typeof(list_name)=='plist' then
   if is_param(list_name,param_name) then
-    res = list_name(param_name);
+    result = list_name(param_name);
     if nargout==2 then 
       err = %F; 
     end

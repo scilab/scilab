@@ -14,6 +14,8 @@
 #include "scirun.h"
 #include "callinterf.h"
 #include "stack-c.h"
+#include "Scierror.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(parse)(void);
 extern int C2F(isbyref)(int *);
@@ -59,43 +61,25 @@ int C2F(scirun)(char *startupCode, long int startupCode_len)
       goto L60;
     }
 	
-  /* @TODO : why / 100 ? why -1 ? what is 9 ? */
-  if (C2F(recu).rstk[C2F(recu).pt - 1] / 100 == 9) 
-    {
-      ir = C2F(recu).rstk[C2F(recu).pt - 1] - 900;
+  if ( isRecursionCallToFunction() )
+  {
+	  int gw = getRecursionGatewayToCall();
+	  if (gw == END_OVERLOAD)
+	  {
+		  --C2F(recu).pt;
+		  goto L90;
+	  } 
+	  else if (gw == ERROR_GW_ID)
+	  {
+		  goto L89;
+	  }
+	  else
+	  {
+		  k = gw;
+	  }
+	  goto L95;
+  }
 
-      if (ir == 1) 
-	{
-	  /* back to gw_core */
-	  k = 13;
-	} 
-      else if (ir >= 2 && ir <= 9) 
-	{
-	  /* back to gw_io */
-	  k = 5;
-	}
-      else if (ir == 10) 
-	{
-	  /* end of overloaded function */
-	  --C2F(recu).pt;
-	  goto L90;
-	}
-      else if (ir > 40) 
-	{
-	  /* back to gw_user2 */
-	  k = 24;
-	}
-      else if (ir > 20) 
-	{
-	  /* back to gw_user */
-	  k = 14;
-	}
-      else
-	{
-	  goto L89;
-	}
-      goto L95;
-    }
 
  L89:
   if (Top < Rhs) 

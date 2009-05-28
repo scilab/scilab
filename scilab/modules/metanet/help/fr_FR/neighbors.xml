@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>neighbors</refname>
-    <refpurpose> sommets voisins connectés à un sommet  </refpurpose>
+    <refpurpose> sommets voisins connectÃ©s Ã  un sommet  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>a = neighbors(i,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
@@ -50,8 +50,8 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>neighbors</literal> renvoie les numéros des sommets connectés avec le sommet i pour le 
-    graphe <literal>g</literal> (orienté ou non).
+    <para><literal>neighbors</literal> renvoie les numÃ©ros des sommets connectÃ©s avec le sommet i pour le 
+    graphe <literal>g</literal> (orientÃ© ou non).
   </para>
   </refsection>
   <refsection>

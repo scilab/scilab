@@ -33,6 +33,7 @@ ilib_for_link('ext1c','fun1.o',[],"c")
    Running the Makefile
    Compilation of fun1
    Building shared library (be patient)
+   Generate a cleaner file
  ans  =
  
  libext1c.dll   
@@ -48,7 +49,8 @@ exec loader.sce
  
 ext1c_path = get_absolute_file_path('loader.sce');
  
- 
+// ulink previous function with same name
+ [bOK,ilib] = c_link('ext1c');if (bOK) then ulink(ilib),end 
 link(ext1c_path+'libext1c.dll',['ext1c'],'c');
 Shared archive loaded.
 Link done.

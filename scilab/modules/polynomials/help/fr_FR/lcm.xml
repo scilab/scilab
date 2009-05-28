@@ -1,38 +1,38 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="lcm">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>lcm</refname>
-    <refpurpose> Plus petit commun multiple (PPCM) de polynômes
+    <refpurpose> Plus petit commun multiple (PPCM) de polynÃ´mes
   ou d'entiers</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[pp,fact]=lcm(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>p  </term>
         <listitem>
-          <para>vecteur de polynômes ou d'entiers (type égal à 8)
+          <para>vecteur de polynÃ´mes ou d'entiers (type Ã©gal Ã  8)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fact  </term>
         <listitem>
-          <para>vecteur de polynômes ou d'entiers
+          <para>vecteur de polynÃ´mes ou d'entiers
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pp  </term>
         <listitem>
-          <para>polynôme ou un entier
+          <para>polynÃ´me ou un entier
 </para>
         </listitem>
       </varlistentry>
@@ -41,7 +41,7 @@
   <refsection>
     <title>Description</title>
     <para><literal>pp=lcm(p)</literal> calcule le PPCM <literal>pp</literal>  du vecteur
-      <literal>p</literal> au sens des polynômes ou des entiers.
+      <literal>p</literal> au sens des polynÃ´mes ou des entiers.
   </para>
     <para><literal>[pp,fact]=lcm(p)</literal> calcule de plus le vecteur <literal>fact</literal> tel que :
   </para>

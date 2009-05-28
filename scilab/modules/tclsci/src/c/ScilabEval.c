@@ -35,7 +35,7 @@
 /*--------------------------------------------------------------------------*/
 int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONST char ** argv)
 {
-  int ns,ierr,seq = 0;
+  int ns,ierr = 0,seq = 0;
   char *command;
 
   char *comm[arbitrary_max_queued_callbacks];
@@ -48,7 +48,6 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
       int argc=1;
       char *msg=_("TCL_EvalScilabCmd %s");
 
- 
       sciprint_full(msg,argv[1]);
 
       while (argv[++argc]) sciprint(" %s",argv[argc]);
@@ -68,10 +67,10 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 
       if ( (argv[2] != (char *)0) && (strncmp(argv[2],"sync",4)==0) )
 	{
-	  /* sync or sync seq 
+	  /* sync or sync seq
 	   * TODO : Scilab is supposed to be busy there. Add mutex lock...
-	   * C2F(tksynchro)(&c_n1);  
-	   * set sciprompt to -1 (scilab busy) 
+	   * C2F(tksynchro)(&c_n1);
+	   * set sciprompt to -1 (scilab busy)
 	   */
 	  seq= ( (argv[3] != (char *)0) && (strncmp(argv[3],"seq",3)==0) );
 	  ns=(int)strlen(command);
@@ -81,7 +80,15 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	      sciprint_full(msg,command);
 	      sciprint("\n");
 	    }
-	  syncexec(command,&ns,&ierr,&seq,ns);
+
+	  /*
+	  Was : syncexec(command,&ns,&ierr,&seq,ns);
+	  So far as Tcl has it's own thread now mixing global values
+	  and threads within parse makes Scilab crash often.
+	  */
+	  StorePrioritaryCommandWithFlag(command, seq);
+	  ierr = 0;
+
 	  if (C2F(iop).ddt==-1)
 	    {
 	      char *msg=_("Execution ends for %s");
@@ -111,7 +118,7 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 	  for (nc = 0 ; nc <= ncomm ; nc++ )
 	    {
 	      // TODO : Scilab is supposed to be busy there. Add mutex lock...
-	      // C2F(tksynchro)(&c_n1);  // set sciprompt to -1 (scilab busy) 
+	      // C2F(tksynchro)(&c_n1);  // set sciprompt to -1 (scilab busy)
 	      if (C2F(iop).ddt==-1)
 		{
 		  if (seqf[nc]==0)
@@ -128,7 +135,12 @@ int TCL_EvalScilabCmd(ClientData clientData,Tcl_Interp * theinterp,int objc,CONS
 		    }
 		}
 	      ns=(int)strlen(comm[nc]);
-	      syncexec(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
+	  /*
+	  Was : syncexec(comm[nc],&ns,&ierr,&(seqf[nc]),ns);
+	  So far as Tcl has it's own thread now mixing global values
+	  and threads within parse makes Scilab crash often.
+	  */
+	  StorePrioritaryCommandWithFlag(comm[nc], seqf[nc]);
 	     if (C2F(iop).ddt==-1)
 		{
 		  char *msg=_("Flushed execution ends for %s");

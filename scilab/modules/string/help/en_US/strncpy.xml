@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -15,7 +15,7 @@
     <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
   </info>
   <refnamediv>
-    <refname>strncmp</refname>
+    <refname>strncpy</refname>
     <refpurpose> Copy characters from strings</refpurpose>
   </refnamediv>
   <refsynopsisdiv>

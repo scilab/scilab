@@ -21,11 +21,15 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
+#ifndef _MSC_VER
+#define iswascii(x) isascii(wctob(x))
+#endif
 /*----------------------------------------------------------------------------*/
 static int isasciiStrings(char *fname);
 static int isasciiMatrix(char *fname);
 /*----------------------------------------------------------------------------*/
-int C2F(sci_isascii)(char *fname,unsigned long fname_len)
+int sci_isascii(char *fname,unsigned long fname_len)
 {
 	CheckRhs(1,1);
 	CheckLhs(0,1);
@@ -88,7 +92,19 @@ static int isasciiStrings(char *fname)
 	GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&Row_Num,&Col_Num,&Input_StringMatrix);
 
 	Length_Output_Matrix = 0;
-	for (x = 0;x < Row_Num*Col_Num;x++) Length_Output_Matrix = Length_Output_Matrix + (int)strlen(Input_StringMatrix[x]);
+	for (x = 0;x < Row_Num*Col_Num;x++) 
+	{
+		wchar_t* wcInput = to_wide_string(Input_StringMatrix[x]);
+		if (wcInput)
+		{
+			Length_Output_Matrix = Length_Output_Matrix + (int)wcslen(wcInput);
+			FREE(wcInput); wcInput = NULL;
+		}
+		else
+		{
+			Length_Output_Matrix = Length_Output_Matrix + (int)strlen(Input_StringMatrix[x]);
+		}
+	}
 
 	if (Length_Output_Matrix != 0) 
 	{
@@ -105,11 +121,25 @@ static int isasciiStrings(char *fname)
 
 	for (x = 0; x < Row_Num*Col_Num; x++) 
 	{
-		for (y = 0;y < (int)strlen(Input_StringMatrix[x]); y++)
+		wchar_t* wcInput = to_wide_string(Input_StringMatrix[x]);
+		if (wcInput)
 		{
-			if (isascii(Input_StringMatrix[x][y])) Output_BooleanMatrix[nbOutput_IntMatrix] = (int)TRUE;
-			else Output_BooleanMatrix[nbOutput_IntMatrix] = (int)FALSE; 
-			nbOutput_IntMatrix++;
+			for (y = 0;y < (int)wcslen(wcInput); y++)
+			{
+				if (iswascii(wcInput[y])) Output_BooleanMatrix[nbOutput_IntMatrix] = (int)TRUE;
+				else Output_BooleanMatrix[nbOutput_IntMatrix] = (int)FALSE; 
+				nbOutput_IntMatrix++;
+			}
+			FREE(wcInput); wcInput = NULL;
+		}
+		else
+		{
+			for (y = 0;y < (int)strlen(Input_StringMatrix[x]); y++)
+			{
+				if (isascii(Input_StringMatrix[x][y])) Output_BooleanMatrix[nbOutput_IntMatrix] = (int)TRUE;
+				else Output_BooleanMatrix[nbOutput_IntMatrix] = (int)FALSE; 
+				nbOutput_IntMatrix++;
+			}
 		}
 	}
 

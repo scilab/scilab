@@ -11,11 +11,15 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "sci_sleep.h"
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
+#include "gw_time.h"
+#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_sleep)(char *fname,unsigned long fname_len)
+int sci_sleep(char *fname,unsigned long fname_len)
 {
 	int m1,n1,l1,sec=0;
 

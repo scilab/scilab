@@ -1,120 +1,154 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="syslin">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="syslin" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>syslin</refname>
-    <refpurpose> définition d'un système dynamique linéaire  </refpurpose>
+
+    <refpurpose>dÃ©finition d'un systÃ¨me dynamique linÃ©aire</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
+
     <synopsis>[sl]=syslin(dom,A,B,C [,D [,x0] ])
 [sl]=syslin(dom,N,D)
 [sl]=syslin(dom,H)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
+
     <variablelist>
       <varlistentry>
-        <term>dom  </term>
+        <term>dom</term>
+
         <listitem>
-          <para>chaîne de caractères (<literal>'c'</literal>, <literal>'d'</literal>), ou <literal>[]</literal> ou un scalaire.
-</para>
+          <para>chaÃ®ne de caractÃ¨res (<literal>'c'</literal>,
+          <literal>'d'</literal>), ou <literal>[]</literal> ou un
+          scalaire.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>A,B,C,D  </term>
+        <term>A,B,C,D</term>
+
         <listitem>
-          <para>matrices de la représentation d'état (<literal>D</literal> est optionnelle, matrice nulle par défaut). Pour les systèmes impropres <literal>D</literal> est une matrice polynomiale.
-</para>
+          <para>matrices de la reprÃ©sentation d'Ã©tat (<literal>D</literal> est
+          optionnelle, matrice nulle par dÃ©faut). Pour les systÃ¨mes impropres
+          <literal>D</literal> est une matrice polynomiale.</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>x0  </term>
+        <term>x0</term>
+
         <listitem>
-          <para>vecteur (état initial, vecteur nul par défaut)
-</para>
+          <para>vecteur (Ã©tat initial, vecteur nul par dÃ©faut)</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>N, D  </term>
+        <term>N, D</term>
+
         <listitem>
-          <para>matrices polynomiales
-</para>
+          <para>matrices polynomiales</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>H  </term>
+        <term>H</term>
+
         <listitem>
-          <para>matrice rationnelle
-</para>
+          <para>matrice rationnelle</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
-        <term>sl  </term>
+        <term>sl</term>
+
         <listitem>
-          <para>tlist (liste de type "<literal>syslin</literal>") représentant le système dynamique
-</para>
+          <para>tlist (liste de type "<literal>syslin</literal>") reprÃ©sentant
+          le systÃ¨me dynamique</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>syslin</literal> définit un système dynamique linéaire en temps que liste typée, et vérifie la consistance des données.
-  </para>
-    <para><literal>dom</literal> spécifie le domaine temporel :
-  </para>
-    <para><literal>dom='c'</literal> pour un système à temps continu, <literal>dom='d'</literal> pour un système à temps discret,
-    <literal>n</literal> pour un système échantillonné à la période <literal>n</literal> (en secondes).
-  </para>
-    <para><literal>dom=[]</literal> si le domaine temporel n'est pas défini
-  </para>
-    <para>
-    Représentation d'état :
-  </para>
-    <programlisting><![CDATA[
+
+    <para><literal>syslin</literal> dÃ©finit un systÃ¨me dynamique linÃ©aire en
+    temps que liste typÃ©e, et vÃ©rifie la consistance des donnÃ©es.</para>
+
+    <para><literal>dom</literal> spÃ©cifie le domaine temporel :</para>
+
+    <para><literal>dom='c'</literal> pour un systÃ¨me Ã  temps continu,
+    <literal>dom='d'</literal> pour un systÃ¨me Ã  temps discret,
+    <literal>n</literal> pour un systÃ¨me Ã©chantillonnÃ© Ã  la pÃ©riode
+    <literal>n</literal> (en secondes).</para>
+
+    <para><literal>dom=[]</literal> si le domaine temporel n'est pas
+    dÃ©fini</para>
+
+    <para>ReprÃ©sentation d'Ã©tat :</para>
+
+    <programlisting> 
 sl=syslin(dom,A,B,C [,D [,x0] ])
-   ]]></programlisting>
-    <para>
-    représente le système :
-  </para>
-    <programlisting><![CDATA[
-      s x  = A*x + B*u
-        y  = C*x + D*u
-      x(0) = x0
-   ]]></programlisting>
-    <para>
-    La sortie de <literal>syslin</literal> est une liste de la forme suivante : 
-    <literal>
-    sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom)
-    </literal>
-    Notez que <literal>D</literal> peut être une matrice polynomiale (systèmes impropres).
-  </para>
-    <para>
-    Représentation sous forme de matrice de transfert :
-  </para>
-    <programlisting><![CDATA[
+ </programlisting>
+
+    <para>reprÃ©sente le systÃ¨me :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/syslin_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>La sortie de <literal>syslin</literal> est une liste de la forme
+    suivante : <literal>
+    sl=tlist(['lss','A','B','C','D','X0','dt'],A,B,C,D,x0,dom) </literal>
+    Notez que <literal>D</literal> peut Ãªtre une matrice polynomiale (systÃ¨mes
+    impropres).</para>
+
+    <para>ReprÃ©sentation sous forme de matrice de transfert :</para>
+
+    <programlisting> 
 sl=syslin(dom,N,D) 
 sl=syslin(dom,H)
-   ]]></programlisting>
-    <para>
-    La sortie de <literal>syslin</literal> est une liste de la forme :  
-    <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> ou <literal>sl=tlist(['r','num','den','dt'],H(2),H(3),dom)</literal>.
-  </para>
-    <para>
-    Les systèmes linéaires obtenus en sortie de <literal>syslin</literal> peuvent être manipulés comme des matrices usuelles (concaténation, extraction, transposition, multiplication, etc.) dans les deux types de représentation (représentation d'état ou matrice de transfert).
-  </para>
-    <para>
-    La plupart des fonctions de la librairie de contrôle acceptent les listes de type <literal>syslin</literal> en argument au lieu des quatre matrices de la représentation d'état.
-  </para>
+   </programlisting>
+
+    <para>La sortie de <literal>syslin</literal> est une liste de la forme :
+    <literal>sl=tlist(['r','num','den','dt'],N,D,dom)</literal> ou
+    <literal>sl=tlist(['r','num','den','dt'],H(2),H(3),dom)</literal>.</para>
+
+    <para>Les systÃ¨mes linÃ©aires obtenus en sortie de
+    <literal>syslin</literal> peuvent Ãªtre manipulÃ©s comme des matrices
+    usuelles (concatÃ©nation, extraction, transposition, multiplication, etc.)
+    dans les deux types de reprÃ©sentation (reprÃ©sentation d'Ã©tat ou matrice de
+    transfert).</para>
+
+    <para>La plupart des fonctions de la librairie de contrÃ´le acceptent les
+    listes de type <literal>syslin</literal> en argument au lieu des quatre
+    matrices de la reprÃ©sentation d'Ã©tat.</para>
   </refsection>
+
   <refsection>
     <title>Exemples</title>
-    <programlisting role="example"><![CDATA[
+
+    <programlisting role="example"> 
 A=[0,1;0,0];B=[1;1];C=[1,1];
-S1=syslin('c',A,B,C)   // Définition du système
+S1=syslin('c',A,B,C)   // DÃ©finition du systÃ¨me
 S1.A    // La matrice A
 S1.X0, S1.dt // affichage de X0 et du domaine temporel
 s=poly(0,'s');
@@ -128,35 +162,28 @@ ss2tf(S1)-S1bis
 S1bis+S2bis
 S1*S2bis
 size(S1)
- ]]></programlisting>
+ </programlisting>
   </refsection>
+
   <refsection>
     <title>Voir Aussi</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="tlist">tlist</link>
-      </member>
-      <member>
-        <link linkend="lsslist">lsslist</link>
-      </member>
-      <member>
-        <link linkend="rlist">rlist</link>
-      </member>
-      <member>
-        <link linkend="ssrand">ssrand</link>
-      </member>
-      <member>
-        <link linkend="ss2tf">ss2tf</link>
-      </member>
-      <member>
-        <link linkend="tf2ss">tf2ss</link>
-      </member>
-      <member>
-        <link linkend="dscr">dscr</link>
-      </member>
-      <member>
-        <link linkend="abcd">abcd</link>
-      </member>
+      <member><link linkend="tlist">tlist</link></member>
+
+      <member><link linkend="lsslist">lsslist</link></member>
+
+      <member><link linkend="rlist">rlist</link></member>
+
+      <member><link linkend="ssrand">ssrand</link></member>
+
+      <member><link linkend="ss2tf">ss2tf</link></member>
+
+      <member><link linkend="tf2ss">tf2ss</link></member>
+
+      <member><link linkend="dscr">dscr</link></member>
+
+      <member><link linkend="abcd">abcd</link></member>
     </simplelist>
   </refsection>
 </refentry>

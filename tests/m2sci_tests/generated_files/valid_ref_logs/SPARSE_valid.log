@@ -1,11 +1,10 @@
-****** Beginning of validation of SPARSE.dia.ref ******
-TEST 1: Scilab returns Double and Matlab returns Sparse for res1
+TEST 1: Scilab/Matlab type does not match for res1: Double/Sparse
 *** TEST 1 PASSED ***
 
-TEST 2: Scilab returns Double and Matlab returns Sparse for res2
+TEST 2: Scilab/Matlab type does not match for res2: Double/Sparse
 *** TEST 2 PASSED ***
 
-TEST 3: Scilab returns Double and Matlab returns Sparse for res3
+TEST 3: Scilab/Matlab type does not match for res3: Double/Sparse
 *** TEST 3 PASSED ***
 
 *** TEST 4 PASSED ***
@@ -142,4 +141,3 @@ TEST 3: Scilab returns Double and Matlab returns Sparse for res3
 
 *** TEST 70 PASSED ***
 
-****** End of validation of SPARSE.dia.ref ******

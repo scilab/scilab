@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
     * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
     * Copyright (C) 2002-2007 - INRIA - Vincent COUVERT
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>clc</refname>
-    <refpurpose>Efface la fenêtre de commande</refpurpose>
+    <refpurpose>Efface la fenÃªtre de commande</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>clc([nblines])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>nblines</term>
@@ -35,10 +35,10 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>clc()</literal> efface toutes les entrées et sorties de la fenêtre de commande.</para>
-    <para>Après avoir utilisé <literal>clc()</literal>, vous ne pouvez pas utiliser la barre de défilement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.</para>
-    <para><literal>clc(nblines)</literal> efface <literal>nblines</literal> au dessus de la ligne courante du curseur et déplace le curseur jusqu'à cette ligne.</para>
-    <para>Notez que <literal>clc([nblines])</literal> ne peut être utilisé sous Unix/Linux quand Scilab est utilisé en mode sans fenêtre.</para>
+    <para><literal>clc()</literal> efface toutes les entrÃ©es et sorties de la fenÃªtre de commande.</para>
+    <para>AprÃ¨s avoir utilisÃ© <literal>clc()</literal>, vous ne pouvez pas utiliser la barre de dÃ©filement pour voir l'historique des fonctions, mais vous pouvez encore utiliser le clavier pour rappeler les instructions de l'historique des commandes.</para>
+    <para><literal>clc(nblines)</literal> efface <literal>nblines</literal> au dessus de la ligne courante du curseur et dÃ©place le curseur jusqu'Ã  cette ligne.</para>
+    <para>Notez que <literal>clc([nblines])</literal> ne peut Ãªtre utilisÃ© sous Unix/Linux quand Scilab est utilisÃ© en mode sans fenÃªtre.</para>
   </refsection>
   <refsection>
     <title>Voir Aussi</title>

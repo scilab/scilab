@@ -56,23 +56,27 @@ int main (int argc, char **argv)
 
 	if ( FindNW == 0 )
 	{
-		char *nwparam=NULL;
-		nwparam=(char*)MALLOC((strlen(ARG_NW)+1)*sizeof(char));
+		/* -nw added as first argument and not last */
+		char *nwparam = NULL;
+		nwparam = (char*)MALLOC((strlen(ARG_NW)+1)*sizeof(char));
 		strcpy_s(nwparam,(strlen(ARG_NW)+1),ARG_NW);
-		for (i=0;i<argc;i++)
+
+		argvbis[0] = argv[0];
+		argvbis[1] = nwparam;
+
+		for (i = 1; i<argc; i++)
 		{
-			argvbis[i]=argv[i];
+			argvbis[i+1] = argv[i];
 		}
-		argvbis[argc]=nwparam;
-		argcbis=argc+1;
+		argcbis = argc+1;
 	}
 	else
 	{
-		for (i=0;i<argc;i++)
+		for (i = 0; i < argc; i++)
 		{
-			argvbis[i]=argv[i];
+			argvbis[i] = argv[i];
 		}
-		argcbis=argc;
+		argcbis = argc;
 	}
 
 	/* Disable system errors msgbox */

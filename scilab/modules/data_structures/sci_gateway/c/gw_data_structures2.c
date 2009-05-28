@@ -15,6 +15,7 @@
 #include "gw_data_structures2.h"
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
+#include "Scierror.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]=
 {

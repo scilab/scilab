@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TrigFun">
   <refnamediv>
     <refname>TrigFun</refname>
-    <refpurpose>Fonction trigonométrique</refpurpose>
+    <refpurpose>Fonction trigonomÃ©trique</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="TrigFun">Fonction trigonométrique</link>
+          <link linkend="TrigFun">Fonction trigonomÃ©trique</link>
         </para>
       </listitem>
       <listitem>
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_TrigFun">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_TrigFun">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_TrigFun">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_TrigFun">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -85,7 +85,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Non_linear_pal">Non_linear - Palette Non-linéaire</link>
+          <link linkend="Non_linear_pal">Non_linear - Palette Non-linÃ©aire</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -101,8 +101,8 @@ function on the input or inputs.
 
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_TrigFun">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_TrigFun">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -118,13 +118,13 @@ function on the input or inputs.
         <para>
           <emphasis role="bold">Function</emphasis>
         </para>
-        <para> La fonction trigonométrique à utiliser.</para>
-        <para> Propriétés : Type 'str' de taille 1</para>
+        <para> La fonction trigonomÃ©trique Ã  utiliser.</para>
+        <para> PropriÃ©tÃ©s : Type 'str' de taille 1</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_TrigFun">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_TrigFun">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -133,14 +133,14 @@ function on the input or inputs.
         <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">entrée régulières:</emphasis>
+          <emphasis role="bold">entrÃ©e rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
@@ -148,26 +148,26 @@ function on the input or inputs.
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [-1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

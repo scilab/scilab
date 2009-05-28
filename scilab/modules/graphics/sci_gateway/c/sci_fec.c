@@ -17,8 +17,8 @@
 /*------------------------------------------------------------------------*/
 
 #include "sci_fec.h"
-#include "sci_demo.h"
 #include "stack-c.h"
+#include "sci_demo.h"
 #include "GetCommandArg.h"
 #include "BuildObjects.h"
 #include "sciCall.h"
@@ -53,31 +53,43 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   if (Rhs <= 0)
   {
-    sci_demo (fname," exec(\"SCI/modules/graphics/demos/fec/fec.ex1\");",FALSE);
-    return 0;
+		sci_demo(fname, fname_len);
+		return 0;
   }
 
   CheckRhs(4,12);
 
-  if ( get_optionals(fname,opts) == 0) return 0;
-  if ( FirstOpt() < 5) {
-    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
-      fname,1, 5); 
+  if ( get_optionals(fname,opts) == 0) 
+  {
+	  C2F(putlhsvar)();
+	  return 0;
+  }
+
+  if ( FirstOpt() < 5) 
+  {
+    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),fname,1, 5); 
     return -1;
   }
+
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l1);
   GetRhsVar(2,MATRIX_OF_DOUBLE_DATATYPE,&m2,&n2,&l2);
   CheckSameDims(1,2,m1,n1,m2,n2);
 
   GetRhsVar(3,MATRIX_OF_DOUBLE_DATATYPE,&m3,&n3,&l3);
-  if (n3 != 5) {
+  if (n3 != 5) 
+  {
     Scierror(999,_("%s: Wrong number of columns for input argument #%d: %d expected.\n"),fname,3,5);
     return 0;
   }
 
   GetRhsVar(4,MATRIX_OF_DOUBLE_DATATYPE,&m4,&n4,&l4);
 
-  if (m1 * n1 == 0 || m3 == 0) { LhsVar(1)=0;     return 0;} 
+  if (m1 * n1 == 0 || m3 == 0) 
+  { 
+	  LhsVar(1) = 0;
+	  C2F(putlhsvar)();
+	  return 0;
+  } 
 
   GetStrf(fname,5,opts,&strf);
   GetLegend(fname,6,opts,&legend);
@@ -109,7 +121,9 @@ int sci_fec(char *fname,unsigned long fname_len)
 
   Objfec (stk(l1),stk(l2),stk(l3),stk(l4),&mn1,&m3,strf,legend,rect,nax,zminmax,colminmax,colOut,withMesh,flagNax);
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
   return 0;
 }
 

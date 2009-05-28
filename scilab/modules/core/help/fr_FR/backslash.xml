@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="backslash">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>backslash (\)</refname>
-    <refpurpose> division matricielle à gauche  </refpurpose>
+    <refpurpose> division matricielle Ã  gauche  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>x=A\b</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			L'anti-slash représente la division matricielle à gauche. 
+			L'anti-slash reprÃ©sente la division matricielle Ã  gauche. 
 			<literal>x=A\b</literal> est une solution de <literal>A*x=b</literal>.
 		</para>
     <para>
-			Si <literal>A</literal> est carrée et régulière <literal>x=A\b</literal> (unique) est équivalent mathématiquement à <literal>x=inv(A)*b</literal> (dont le calcul est par contre beaucoup plus coûteux).
+			Si <literal>A</literal> est carrÃ©e et rÃ©guliÃ¨re <literal>x=A\b</literal> (unique) est Ã©quivalent mathÃ©matiquement Ã  <literal>x=inv(A)*b</literal> (dont le calcul est par contre beaucoup plus coÃ»teux).
 		</para>
     <para>
-			Si <literal>A</literal> n'est pas carrée, <literal>x</literal> est une solution au sens des moindres carrés, c'est à dire que <literal>norm(A*x-b)</literal> est minimale (norme euclidienne). Si <literal>A</literal> est de rang maximal (colonnes linéairement indépendantes), la solution au sens des moindres carrés, <literal>x=A\b</literal>, est unique (le vecteur <literal>x</literal> minimisant <literal>norm(A*x-b)</literal> est unique).
-			Si <literal>A</literal> n'est pas de rang maximal, cette solution n'est pas unique, et <literal>x=A\b</literal>, en général, n'est pas la solution de norme minimale (la solution de norme minimale est <literal>x=pinv(A)*b</literal>). 
+			Si <literal>A</literal> n'est pas carrÃ©e, <literal>x</literal> est une solution au sens des moindres carrÃ©s, c'est Ã  dire que <literal>norm(A*x-b)</literal> est minimale (norme euclidienne). Si <literal>A</literal> est de rang maximal (colonnes linÃ©airement indÃ©pendantes), la solution au sens des moindres carrÃ©s, <literal>x=A\b</literal>, est unique (le vecteur <literal>x</literal> minimisant <literal>norm(A*x-b)</literal> est unique).
+			Si <literal>A</literal> n'est pas de rang maximal, cette solution n'est pas unique, et <literal>x=A\b</literal>, en gÃ©nÃ©ral, n'est pas la solution de norme minimale (la solution de norme minimale est <literal>x=pinv(A)*b</literal>). 
 		</para>
-    <para><literal>A.\B</literal>  est la matrice dont le terme <literal>(i,j)</literal> est égal à   <literal>A(i,j)\B(i,j)</literal>.
-			Si <literal>A</literal> (ou <literal>B</literal>) est un scalaire <literal>A.\B</literal> est équivalent à  <literal>A*ones(B).\B</literal> (or <literal>A.\(B*ones(A))</literal>
+    <para><literal>A.\B</literal>  est la matrice dont le terme <literal>(i,j)</literal> est Ã©gal Ã    <literal>A(i,j)\B(i,j)</literal>.
+			Si <literal>A</literal> (ou <literal>B</literal>) est un scalaire <literal>A.\B</literal> est Ã©quivalent Ã   <literal>A*ones(B).\B</literal> (or <literal>A.\(B*ones(A))</literal>
 		</para>
-    <para><literal>A\.B</literal>  est un opérateur dont la signification n'est pas prédéfinie. il peut être utilisé pour définir de nouveaux opérateurs (voir "overloading") avec la même priorité que * ou /.
+    <para><literal>A\.B</literal>  est un opÃ©rateur dont la signification n'est pas prÃ©dÃ©finie. il peut Ãªtre utilisÃ© pour dÃ©finir de nouveaux opÃ©rateurs (voir "overloading") avec la mÃªme prioritÃ© que * ou /.
 		</para>
   </refsection>
   <refsection>

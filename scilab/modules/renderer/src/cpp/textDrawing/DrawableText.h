@@ -40,6 +40,11 @@ public:
    */
   virtual void getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2]) = 0;
 
+	/**
+   * Get the bounding box of the displayed text in pixels with more precision.
+   */
+	virtual void getScreenBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3]) = 0;
+
   /**
    * To know if there is really some text to display.
    * Useful for labels objects which display text.

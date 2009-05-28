@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>nodes_degrees</refname>
-    <refpurpose> degrés des sommets d'un graphe  </refpurpose>
+    <refpurpose> degrÃ©s des sommets d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[outdegree,indegree] = graph_degree(g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -35,14 +35,14 @@
       <varlistentry>
         <term>outdegree  </term>
         <listitem>
-          <para>vecteur ligne des degrés entrants des sommets
+          <para>vecteur ligne des degrÃ©s entrants des sommets
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>indegree  </term>
         <listitem>
-          <para>vecteur ligne des degrés sortants des sommets
+          <para>vecteur ligne des degrÃ©s sortants des sommets
 </para>
         </listitem>
       </varlistentry>
@@ -50,7 +50,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>nodes_degrees</literal> renvoie les 2 vecteurs lignes des degrés entrants et sortants 
+    <para><literal>nodes_degrees</literal> renvoie les 2 vecteurs lignes des degrÃ©s entrants et sortants 
     des sommets du graphe <literal>g</literal>.
   </para>
   </refsection>

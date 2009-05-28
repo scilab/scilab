@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -10,54 +10,72 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="atanm">
+<refentry version="5.0-subset Scilab" xml:id="atanm" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
+
   <refnamediv>
     <refname>atanm</refname>
-    <refpurpose> square matrix tangent inverse</refpurpose>
+
+    <refpurpose>square matrix tangent inverse</refpurpose>
   </refnamediv>
+
   <refsynopsisdiv>
     <title>Calling Sequence</title>
+
     <synopsis>[t]=atanm(x)</synopsis>
   </refsynopsisdiv>
+
   <refsection>
     <title>Parameters</title>
+
     <variablelist>
       <varlistentry>
         <term>x</term>
+
         <listitem>
           <para>real or complex square matrix</para>
         </listitem>
       </varlistentry>
+
       <varlistentry>
         <term>t</term>
+
         <listitem>
           <para>real or complex square matrix</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
+
   <refsection>
     <title>Description</title>
-    <para><literal>atanm(x)</literal> is the matrix arctangent of the matrix x.
-    Result may be not reliable if <literal>x</literal> is not symmetric.</para>
+
+    <para><literal>atanm(x)</literal> is the matrix arctangent of the matrix
+    x. Result may be not reliable if <literal>x</literal> is not
+    symmetric.</para>
   </refsection>
+
   <refsection>
     <title>Examples</title>
-    <programlisting role="example"><![CDATA[
 
+    <programlisting role="example"> 
 tanm(atanm([1,2;3,4]))
- 
-  ]]></programlisting>
+   </programlisting>
   </refsection>
+
   <refsection>
     <title>See Also</title>
+
     <simplelist type="inline">
-      <member>
-        <link linkend="atan">atan</link>
-      </member>
+      <member><link linkend="atan">atan</link></member>
     </simplelist>
   </refsection>
 </refentry>

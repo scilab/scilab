@@ -29,7 +29,7 @@ else
 end
 
 // Compilation
-getf(fun);
+exec(fun);
 var=who('get');
 indvar=find(var==funname);
 funvect=var(indvar(1):-1:1);

@@ -8,9 +8,15 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intsimpmd(id)
       INCLUDE 'stack.h'
+
+Cc (DLL Import Intel Fortran)     
+cDEC$ IF DEFINED (FORDLL)
+cDEC$ ATTRIBUTES DLLIMPORT:: /csimp/
+cDEC$ ENDIF      
       integer iadr, sadr
       integer id(nsiz)
       integer simpmd
+      
       common/csimp/ simpmd
 c
       iadr(l)=l+l-1

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -24,10 +24,10 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="scicos_debug">
   <refnamediv>
     <refname>scicos_debug</refname>
-    <refpurpose>Définit le niveau de débogage de scicos</refpurpose>
+    <refpurpose>DÃ©finit le niveau de dÃ©bogage de scicos</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>scicos_debug(level) level=scicos_debug()</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_scicos_debug">
@@ -43,10 +43,10 @@
   <refsection id="Description_scicos_debug">
     <title>Description</title>
     <para>
-Cette fonction sert à paramétrer le niveau de débogage de la simulation scicos.  
+Cette fonction sert Ã  paramÃ©trer le niveau de dÃ©bogage de la simulation scicos.  
 </para>
     <para>
-Elle peut être utilisée soit en mode "Calc" dans l'éditeur Scicos ou en tant qu'instruction dans un bloc scilab et encore dans une fonction d'interfaçage.  
+Elle peut Ãªtre utilisÃ©e soit en mode "Calc" dans l'Ã©diteur Scicos ou en tant qu'instruction dans un bloc scilab et encore dans une fonction d'interfaÃ§age.  
 </para>
     <para>
 </para>
@@ -55,30 +55,30 @@ scicos_debug(level)
 level=scicos_debug()
 ]]></programlisting>
   </refsection>
-  <refsection id="Paramètres_scicos_debug">
-    <title>Paramètres</title>
+  <refsection id="ParamÃ¨tres_scicos_debug">
+    <title>ParamÃ¨tres</title>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">level :</emphasis> retourne/définit le niveau de débogage de la simulation scicos.</para>
+        <para><emphasis role="bold">level :</emphasis> retourne/dÃ©finit le niveau de dÃ©bogage de la simulation scicos.</para>
         <itemizedlist>
           <listitem>
             <para><emphasis role="bold">0 :</emphasis>
-   pas de débogage.
+   pas de dÃ©bogage.
 </para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">1 :</emphasis>
-   debogage léger et informations affichées dans la console Scilab.
+   debogage lÃ©ger et informations affichÃ©es dans la console Scilab.
 </para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">2 :</emphasis>
-   debogage fort : plus d'informations affichées dans la console Scilab et éxécution du bloc "debug" si celui ci est présent dans le diagramme.
+   debogage fort : plus d'informations affichÃ©es dans la console Scilab et Ã©xÃ©cution du bloc "debug" si celui ci est prÃ©sent dans le diagramme.
 </para>
           </listitem>
           <listitem>
             <para><emphasis role="bold">3 :</emphasis>
-   debogage silencieux : pas d'informations affichées dans la console Scilab et éxécution du bloc "debug" si celui ci est présent dans le diagramme.
+   debogage silencieux : pas d'informations affichÃ©es dans la console Scilab et Ã©xÃ©cution du bloc "debug" si celui ci est prÃ©sent dans le diagramme.
 </para>
           </listitem>
         </itemizedlist>

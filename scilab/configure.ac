@@ -1,7 +1,16 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007/2008
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
 dnl Process this file with autoconf to produce a configure script.
 
 
@@ -71,16 +80,19 @@ AC_CANONICAL_HOST
 AC_ARG_ENABLE(debug,
    AC_HELP_STRING([--enable-debug],[Do not optimize and print warning messages (C/C++/Fortran code)]))
 
-AC_ARG_ENABLE(debugC,
+AC_ARG_ENABLE(debug-C,
    AC_HELP_STRING([--enable-debug-C],[Do not optimize and print warning messages (C code)]))
 
-AC_ARG_ENABLE(debugCXX,
+AC_ARG_ENABLE(debug-CXX,
    AC_HELP_STRING([--enable-debug-CXX],[Do not optimize and print warning messages (C++ code)]))
 
-AC_ARG_ENABLE(debugFortran,
+AC_ARG_ENABLE(debug-java,
+   AC_HELP_STRING([--enable-debug-java],[Print warning messages and line numbers (Java code)]))
+
+AC_ARG_ENABLE(debug-fortran,
    AC_HELP_STRING([--enable-debug-fortran],[Do not optimize and print warning messages (Fortran code)]))
 
-AC_ARG_ENABLE(debugLinker,
+AC_ARG_ENABLE(debug-linker,
    AC_HELP_STRING([--enable-debug-linker],[Print warning messages from the linker (ld)]))
 
 AC_ARG_ENABLE(stopOnWarning,
@@ -276,8 +288,6 @@ else
    enable_debug_CXX=no
 fi
 
-
-
 if test "x${prefix}" = "xNONE"; then
   prefix="${ac_default_prefix}"
 fi
@@ -442,7 +452,7 @@ esac
 #### 64 bits detection
 IS_64_BITS_CPU=false
 case "$host" in
-         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu)
+         x86_64-*-linux-gnu | x86_64-linux-gnu | ia64-*-linux-gnu | alpha-*-linux-gnu | alpha-*-netbsd* | x86_64-*-netbsd* | sparc64-*-netbsd*)
                 IS_64_BITS_CPU=true
 	;;
 esac
@@ -504,12 +514,18 @@ case "$CC" in
 	;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
-	 LDFLAGS="$LDFLAGS -m"
+	 LDFLAGS="$LDFLAGS -lm"
 	 ;;
+
+  alpha-*-netbsd*)
+    CFLAGS="$CFLAGS -Dnetbsd -mieee"
+    FFLAGS="$FFLAGS -Dnetbsd -mieee"
+	;;
+
   *-*-netbsd*)
     CFLAGS="$CFLAGS -Dnetbsd"
-
 	;;
+
   *-*-darwin*)
 	 CFLAGS=" $CFLAGS -I/sw/include "
 	 CPPFLAGS=" $CPPFLAGS -I/sw/include "
@@ -684,6 +700,11 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
     AC_SUBST(JAVA_HOME)
 
 
+    if test "$enable_debug_java" = yes; then
+	   JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
+	   <option value='-Xcheck:jni'/>"
+	   AC_SUBST(JAVA_DEBUG_OPTIONS)
+	fi
 
 	if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 		SWIG_PROG()
@@ -700,11 +721,35 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 	fi
 fi
 
+JAVA_ENABLE=yes
+
+if test -z "$JAVAC"; then
+   JAVA_ENABLE=no
+fi
+
+AC_SUBST(JAVA_ENABLE)
+
 AM_CONDITIONAL(NEED_JAVA, test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no)
 AM_CONDITIONAL(GUI, test "$with_gui" != no)
 AM_CONDITIONAL(JAVASCI, test "$with_javasci" != no)
 AM_CONDITIONAL(SWIG, test "$enable_build_swig" != no -a "$enable_build_swig" != "")
 AM_CONDITIONAL(GIWS, test "$enable_build_giws" != no  -a "$enable_build_giws" != "")
+
+##############################################################
+## GUI module
+##############################################################
+
+GUI_ENABLE=no
+
+if test "$JAVA_ENABLE" != no; then
+   GUI_ENABLE=yes
+fi
+
+if test "$with_gui" != no; then
+   GUI_ENABLE=yes
+fi
+
+AC_SUBST(GUI_ENABLE)
 
 ##############################################################
 ## test for functions in standard C library and C math library
@@ -763,7 +808,7 @@ AC_CHECK_FUNC([exp10],,[
 ### If isinf exists or not (used to not be the case under Solaris)
 ### See bug #4164
 AC_CHECK_FUNC([isinf],,[
-		AC_DEFINE([isinf(x)],[return !finite(x) && x==x;],[Provide a macro to do isinf])
+		AC_DEFINE([isinf(x)],[(!finite(x) && x==x)],[Provide a macro to do isinf])
 ])
 
 LDFLAGS="$save_LDFLAGS"
@@ -795,7 +840,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h termio.h termios.h wchar.h wctype.h time.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -817,6 +862,9 @@ AC_CHECK_MEMBERS([struct stat.st_rdev])
 #######################
 ## MISC Test
 #######################
+
+# gettext.  See http://www.gnu.org/software/hello/manual/gettext/AM_005fGNU_005fGETTEXT.html
+AM_GNU_GETTEXT([external])
 
 # function closedir used in modules/metanet/src/c/files.c
 AC_FUNC_CLOSEDIR_VOID
@@ -847,6 +895,11 @@ else
 fi
 AC_SUBST(TERMCAP_LIB)
 
+##################
+## other libraries
+##################
+
+AC_CHECK_LIB(dl, dlopen)
 
 
 #################
@@ -861,7 +914,8 @@ AC_ARG_WITH(ocaml,
 
 
 SCICOS_ENABLE=no
-if test "$with_scicos" != no -a "$with_gui" != no; then
+
+if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
    AC_DEFINE([WITH_SCICOS], [], [With SCICOS])
 
    save_LIBS="$LIBS"
@@ -883,10 +937,16 @@ if test "$with_scicos" != no -a "$with_gui" != no; then
 		fi
 		SCICOS_ENABLE=yes
 fi
+
+
+
+
+
+
 AC_SUBST(SCICOS_ENABLE)
 
-AM_CONDITIONAL(OCAML, test "$with_ocaml" != no)		
-AM_CONDITIONAL(SCICOS, test "$with_scicos" != no -a "$with_gui" != no)
+AM_CONDITIONAL(OCAML, test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no)
+AM_CONDITIONAL(SCICOS, test "$SCICOS_ENABLE" != no)
 
 
 #################
@@ -945,7 +1005,7 @@ AC_LIBXML2()
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE"
+ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES"
 
 AC_ARG_ENABLE(build-localization,
 		AC_HELP_STRING([--disable-build-localization],[Disable the localization build])
@@ -1010,13 +1070,12 @@ AM_CONDITIONAL(UMFPACK, test "$with_umfpack" != no)
 #######################
 
 AC_PCRE()
-	  	 
- #############################################
+
 #################
 ## Tcl/Tk library
 #################
 
-WITH_TKSCI=0
+WITH_TKSCI=no
 if test "$with_tk" != no; then
 
 	# check user arguments
@@ -1059,7 +1118,7 @@ if test "$with_tk" != no; then
 	AC_CHECK_TCLTK
 
 	# set variables
-	if test $WITH_TKSCI = 1; then
+	if test "$WITH_TKSCI" = yes; then
 		AC_DEFINE([WITH_TK], [], [With TK])
 	else
 		AC_MSG_ERROR([TCL/TK not found. Use --without-tk or specify the librairies and include paths manually])
@@ -1070,7 +1129,8 @@ if test "$with_tk" != no; then
 	AC_SUBST(TK_INC_PATH)
 
 fi
-AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = 1)
+AC_SUBST(WITH_TKSCI)
+AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = yes)
 
 #################
 ## MATIO LIBRARY (MAT File I/O Library)
@@ -1124,19 +1184,28 @@ AM_CONDITIONAL(MATIO, test "$with_matio" != no)
 ## Documentation management #
 #############################
 
+HELP_ENABLE=yes
+
 AC_ARG_ENABLE(build-help,
 		AC_HELP_STRING([--disable-build-help],[Disable the help build])
 		)
-HELP_ENABLE=no
 
 if test "$enable_build_help" != no; then
     AC_DOCBOOK()
-	HELP_ENABLE=yes
+else
+    HELP_ENABLE=no
+fi
 
-fi 
+if test "$JAVA_ENABLE" = no; then
+    HELP_ENABLE=no
+fi
+
+AC_SUBST(HELP_ENABLE)
+
 AM_CONDITIONAL(BUILD_HELP, test $HELP_ENABLE = yes)
 
 ## Install XML help files ###
+
 AC_ARG_WITH(install-help-xml,
 		AC_HELP_STRING([--with-install-help-xml],[make install will install XML files])
 		)
@@ -1146,6 +1215,53 @@ if test "$with_install_help_xml" != no -a "$with_install_help_xml" != ""; then
 fi 
 AM_CONDITIONAL(INSTALL_HELP_XML, test "$HELP_INSTALL_ENABLE" != "")
 
+##############################################################
+## Javasci module
+##############################################################
+
+JAVASCI_ENABLE=yes
+
+if test "$JAVA_ENABLE" = no -o "$JAVASCI" = no; then
+   JAVASCI_ENABLE=no
+fi
+
+AC_SUBST(JAVASCI_ENABLE)
+
+##############################################################
+## Scipad module
+##############################################################
+
+SCIPAD_ENABLE=yes
+
+if test "$WITH_TKSCI" = no -o "$GUI_ENABLE" = no; then
+   SCIPAD_ENABLE=no
+fi
+
+AC_SUBST(SCIPAD_ENABLE)
+
+##############################################################
+## demo_tools module
+##############################################################
+
+DEMOTOOLS_ENABLE=yes
+
+if test "$GUI_ENABLE" = no; then
+   DEMOTOOLS_ENABLE=yes
+fi
+
+AC_SUBST(DEMOTOOLS_ENABLE)
+
+##############################################################
+## graphics/renderer/graphic_export module
+##############################################################
+
+GRAPHICS_ENABLE=yes
+
+if test "$GUI_ENABLE" = no; then
+   GRAPHICS_ENABLE=no
+fi
+
+AC_SUBST(GRAPHICS_ENABLE)
 
 #########################
 ## libtool
@@ -1380,6 +1496,7 @@ echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld		$lt_cv_prog_gnu_l
 echo "Enable debug ..........      --enable-debug=$enable_debug	$enable_debug"
 echo "Enable debug C.........      --enable-debug-C=$enable_debug_C	$enable_debug_C"
 echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX	$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java	$enable_debug_java"
 echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran	$enable_debug_fortran"
 echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning	$enable_stop_on_warning"
 
@@ -1391,19 +1508,19 @@ echo "GNU Fortran 77 (--with-g77) ...... =		$with_g77"
 echo "GNU Fortran 95 (--with-gfortran) . =		$with_gfortran"
 echo ""
 echo "Options:"
-echo "Use PVM (--with-pvm) ............................. = $with_pvm"
+echo "Use PVM (--without-pvm) .......................... = $with_pvm"
 echo "PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
 echo "PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
+echo "Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
 echo "Do not use TCL/TK (--without-tk) ................. = $with_tk"
-echo "Do not compile with Ocaml (--without-ocaml) ...... = $with_ocaml"
 echo "TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
 echo "TK include (--with-tk-include) ................... = $USER_TK_INC_PATH"
 echo "TK library (--with-tk-library) ................... = $USER_TK_LIB_PATH"
 echo "Install XML Help (--with-install-help-xml) ....... = $with_install_help_xml"
 echo "Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
-echo "Use FFTW (--with-fftw) ........................... = $with_fftw"
-echo "Don't use MATIO (--without-matio) ................ = $without_matio"
+echo "Use FFTW (--without-fftw) ........................ = $with_fftw"
+echo "Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then
@@ -1412,10 +1529,14 @@ else
 if test $SCICOS_ENABLE = yes; then
    echo "Scicos enable"
    echo ""
+if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
    echo "Ocaml Configuration (for Modelica compiler):"
    echo "OCAMLC ............. = $OCAMLC"
    echo "OCAMLOPT ........... = $OCAMLOPT"
    echo "OCAMLDEP ........... = $OCAMLDEP"
+else
+	echo "Will not build Modelica compiler"
+fi
 else 
    echo "Not using Scicos"
 fi
@@ -1617,5 +1738,4 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
-echo "
-"
+echo ""

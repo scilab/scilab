@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="feval">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>feval</refname>
-    <refpurpose> évaluation multiple d'une fonction  </refpurpose>
+    <refpurpose> Ã©valuation multiple d'une fonction  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[z]=feval(x,y,f)
 [z]=feval(x,f)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>x,y  </term>
@@ -25,7 +25,7 @@
       <varlistentry>
         <term>f  </term>
         <listitem>
-          <para>fonction, ou chaîne de caractères pour les appels Fortran ou C
+          <para>fonction, ou chaÃ®ne de caractÃ¨res pour les appels Fortran ou C
 </para>
         </listitem>
       </varlistentry>
@@ -41,7 +41,7 @@
         <term>z=feval(x,f)</term>
         <listitem>
           <para>
-    renvoie le vecteur <literal>z</literal> défini par <literal>z(i)=f(x(i)</literal>
+    renvoie le vecteur <literal>z</literal> dÃ©fini par <literal>z(i)=f(x(i)</literal>
 </para>
         </listitem>
       </varlistentry>
@@ -55,9 +55,9 @@
         </listitem>
       </varlistentry>
     </variablelist>
-    <para><literal>f</literal> est un "external" (fonction ou routine Fortran ou C) acceptant un ou deux arguments d'entrée supposés réels.
-    Le résultat renvoyé par <literal>f</literal> peut par contre être réel ou complexe. 
-    Dans le cas d'un appel Fortran ou C, la fonction <literal> 'f' </literal> doit être définie dans la fonction <literal>ffevalf</literal> (voir dans le dossier <literal>SCIDIR/routines/default</literal>)
+    <para><literal>f</literal> est un "external" (fonction ou routine Fortran ou C) acceptant un ou deux arguments d'entrÃ©e supposÃ©s rÃ©els.
+    Le rÃ©sultat renvoyÃ© par <literal>f</literal> peut par contre Ãªtre rÃ©el ou complexe. 
+    Dans le cas d'un appel Fortran ou C, la fonction <literal> 'f' </literal> doit Ãªtre dÃ©finie dans la fonction <literal>ffevalf</literal> (voir dans le dossier <literal>SCIDIR/routines/default</literal>)
   </para>
   </refsection>
   <refsection>

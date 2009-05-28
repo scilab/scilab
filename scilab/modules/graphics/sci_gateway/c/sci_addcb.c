@@ -62,7 +62,10 @@ int sci_addcb(char *fname,unsigned long fname_len)
     Scierror(999,_("%s: The handle is not or no more valid.\n"),fname);
     return 0;
   }
-  LhsVar(1)=0;
+
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
+
   return 0;
 }
 /*--------------------------------------------------------------------------*/

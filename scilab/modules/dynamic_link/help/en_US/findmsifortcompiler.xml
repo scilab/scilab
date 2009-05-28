@@ -42,7 +42,7 @@
         <term>ifortv</term>
 
         <listitem>
-          <para>returns 'ifort90','ifort10','unknown'</para>
+          <para>returns 'ifort90','ifort10','ifort11','unknown'</para>
         </listitem>
       </varlistentry>
     </variablelist>

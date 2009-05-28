@@ -47,4 +47,11 @@ int StoreCommandWithFlag (char *command, int flag);
  */
 int GetCommand (char *str);
 
+/**
+* try to execute a command or add it to the _BEGINNING_ of command queue
+* flag = 0 : the command is not shown in scilab window
+* flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
+*/
+int StorePrioritaryCommandWithFlag (char *command,int flag);
+
 #endif /* __DYNAMIC_MENUS_H__ */

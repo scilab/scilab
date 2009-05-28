@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) ENPC - Jean-Philippe Chancelier
@@ -19,19 +19,19 @@
     <refpurpose>Initialisation d'un pilote graphique</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>
     xinit(fileName)
     xinit()
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>fileName</term>
         <listitem>
-          <para>chaîne de caractères: nom du fichier d'export.</para>
+          <para>chaÃ®ne de caractÃ¨res: nom du fichier d'export.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -39,11 +39,11 @@
   <refsection>
     <title>Description</title>
     <para>
-	    Pour les pilotes Postscript, Xfig, Gif ou PPM <literal>fileName</literal> doit être spécifié. Il determine
-	      le nom du fichier où tous les ordres graphiques sont enregistrés.
+	    Pour les pilotes Postscript, Xfig, Gif ou PPM <literal>fileName</literal> doit Ãªtre spÃ©cifiÃ©. Il determine
+	      le nom du fichier oÃ¹ tous les ordres graphiques sont enregistrÃ©s.
   </para>
-  <para>Pour les pilotes écrans (X11 ou Rec), <literal>xinit</literal> doit être appelé sans argument. Dans ce cas,
-	une fenêtre graphique vide est ouverte.</para>
+  <para>Pour les pilotes Ã©crans (X11 ou Rec), <literal>xinit</literal> doit Ãªtre appelÃ© sans argument. Dans ce cas,
+	une fenÃªtre graphique vide est ouverte.</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

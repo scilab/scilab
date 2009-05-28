@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?> 
+<?xml version="1.0" encoding="UTF-8"?> 
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -93,8 +93,10 @@
       <varlistentry>
         <term>thickness: </term>
         <listitem>
-          <para>This field contains the line <literal>thickness</literal> property. It's
-        value should be positive integer.</para>
+          <para>This property is a positive real specifying the line width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

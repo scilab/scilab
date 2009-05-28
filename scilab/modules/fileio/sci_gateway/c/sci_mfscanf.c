@@ -14,7 +14,8 @@
 #include "stack-c.h"
 #include "do_xxprintf.h"
 #include "do_xxscanf.h"
-#include "fileio.h"
+#include "scanf_functions.h"
+#include "StringConvert.h"
 #include "gw_fileio.h"
 #include "filesmanagement.h"
 #include "Scierror.h"
@@ -56,15 +57,34 @@ int sci_fscanf(char *fname,unsigned long fname_len)
 	GetRhsVar(iarg,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 	GetRhsVar(iarg+1,STRING_DATATYPE,&m2,&n2,&l2);/* format */
 
-	param1=*istk(l1);
+	param1 = *istk(l1);
 	StringConvert(cstk(l2));  /* conversion */
-	if ((f= GetFileOpenedInScilab(param1)) == (FILE *)0)
+
+	switch (param1)
 	{
-		Scierror(999,_("%s: Wrong file descriptor: %d.\n"),fname,*istk(l1));
+	case 0:
+		// stderr
+		f = (FILE *)0;
+		break;
+	case 5:
+		f = stdin;
+		break;
+	case 6:
+		// stdout
+		f = (FILE *)0;
+		break;
+	default:
+		f = GetFileOpenedInScilab(param1);
+		break;
+	}
+
+	if (f == (FILE *)0)
+	{
+		Scierror(999,_("%s: Wrong file descriptor: %d.\n"),fname,param1);
 		return 0;
 	}
 
-	nrow=maxrow;
+	nrow = maxrow;
 	rowcount = -1;
 
 	while (1)

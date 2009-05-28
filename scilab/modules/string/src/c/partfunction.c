@@ -16,6 +16,7 @@
 #include "MALLOC.h"
 #include "partfunction.h"
 #include "freeArrayOfString.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
@@ -24,35 +25,35 @@ char **partfunction(char** stringInput,int m,int n,int *vectInput,int row)
 	char **parts = NULL;
 	int mn = m * n;
 
+	int i = 0;
+
 	parts = (char**)MALLOC(sizeof(char*)*(mn));
-	if (parts)
+
+	for (i = 0;i < mn; i++)
 	{
-		int i = 0;
-		for (i = 0;i < mn; i++)
+		int j = 0;
+		int lengthstringInput = 0;
+		wchar_t *wcInput = to_wide_string(stringInput[i]);
+		wchar_t *wcOutput = NULL;
+		if (wcInput) lengthstringInput = (int)wcslen(wcInput);
+
+		wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t)*((row)+1));
+
+		for (j = 0;j < row; j++)
 		{
-			int j = 0;
-			int lengthstringInput = (int)strlen(stringInput[i]);
-
-			parts[i] = (char*)MALLOC(sizeof(char)*((row)+1));
-			if (parts[i] == NULL)
+			if ( vectInput[j] > lengthstringInput )
 			{
-				freeArrayOfString(parts,mn);
-				return NULL;
+				wcOutput[j] = L' ';
 			}
-
-			for (j = 0;j < row; j++)
+			else
 			{
-				if ( vectInput[j] > lengthstringInput )
-				{
-					parts[i][j] = BLANK_CHAR;
-				}
-				else
-				{
-					parts[i][j] = stringInput[i][vectInput[j]-1];
-				}
+				wcOutput[j] = wcInput[vectInput[j]-1];
 			}
-			parts[i][j] ='\0';
 		}
+		wcOutput[j] ='\0';
+		parts[i] = wide_string_to_UTF8(wcOutput);
+		if (wcOutput) {FREE(wcOutput); wcOutput = NULL;}
+		if (wcInput) {FREE(wcInput); wcInput = NULL;}
 	}
 	return parts;
 }

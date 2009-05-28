@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -104,7 +104,8 @@ record has the following form:
  where   is the value
 of time when block is called and  is the ith input value. 
 </para>
-    <para>
+<para>This block does not manage UTF filename.</para>
+<para>
 The pair block is .  
 
 </para>

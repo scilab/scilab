@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,15 +16,15 @@
   </info>
   <refnamediv>
     <refname>chain_struct</refname>
-    <refpurpose> structure chaînée à partir d'une liste d'adjacence d'un graphe  </refpurpose>
+    <refpurpose> structure chaÃ®nÃ©e Ã  partir d'une liste d'adjacence d'un graphe  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[fe,che,fn,chn] = chain_struct(g)
 [fe,che,fn,chn] = chain_struct(lp,la,ls)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>g  </term>
@@ -43,42 +43,42 @@
       <varlistentry>
         <term>la  </term>
         <listitem>
-          <para>vecteur ligne, tableau d'arcs de la description du graphe sous forme de  liste d'adjacence (sa taille est le nombre d'arêtes du graphe) 
+          <para>vecteur ligne, tableau d'arcs de la description du graphe sous forme de  liste d'adjacence (sa taille est le nombre d'arÃªtes du graphe) 
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>ls  </term>
         <listitem>
-          <para>vecteur ligne, tableau de sommets de la description du graphe sous forme  de liste d'adjacence (sa taille est le nombre d'arêtes du graphe)
+          <para>vecteur ligne, tableau de sommets de la description du graphe sous forme  de liste d'adjacence (sa taille est le nombre d'arÃªtes du graphe)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fe  </term>
         <listitem>
-          <para>vecteur ligne des numéros des premières arêtes partant des sommets (sa taille est le nombre de sommets du graphe)
+          <para>vecteur ligne des numÃ©ros des premiÃ¨res arÃªtes partant des sommets (sa taille est le nombre de sommets du graphe)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>che  </term>
         <listitem>
-          <para>vecteur ligne des numéros des arêtes chaînées (sa taille est le nombre d'arêtes du graphe)
+          <para>vecteur ligne des numÃ©ros des arÃªtes chaÃ®nÃ©es (sa taille est le nombre d'arÃªtes du graphe)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fn  </term>
         <listitem>
-          <para>vecteur ligne des numéros des premiers sommets atteints par les arêtes  de  <literal>fe</literal> (sa taille est le nombre de sommets du graphe)
+          <para>vecteur ligne des numÃ©ros des premiers sommets atteints par les arÃªtes  de  <literal>fe</literal> (sa taille est le nombre de sommets du graphe)
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>chn  </term>
         <listitem>
-          <para>vecteur ligne des sommets atteints par les arêtes de <literal>che</literal>
+          <para>vecteur ligne des sommets atteints par les arÃªtes de <literal>che</literal>
 </para>
         </listitem>
       </varlistentry>
@@ -87,25 +87,25 @@
   <refsection>
     <title>Description</title>
     <para><literal>chain_struct</literal> calcule les vecteurs lignes de la description par 
-    structure chaînée d'arêtes du graphe <literal>g</literal>.
+    structure chaÃ®nÃ©e d'arÃªtes du graphe <literal>g</literal>.
     Il est aussi possible de donner directement <literal>chain_struct</literal>, la liste 
     d'adjacence du graphe. Ceci est plus efficace si la liste d'adjacence est 
-    déjà disponible puisque <literal>chain_struct</literal> l'utilise pour faire les 
+    dÃ©jÃ  disponible puisque <literal>chain_struct</literal> l'utilise pour faire les 
     calculs.
   </para>
     <para>
-    Les vecteurs <literal>fe</literal>, <literal>che</literal>, <literal>fn</literal> et <literal>chn</literal> décrivent la
-    structure chaînée de la manière suivante :
+    Les vecteurs <literal>fe</literal>, <literal>che</literal>, <literal>fn</literal> et <literal>chn</literal> dÃ©crivent la
+    structure chaÃ®nÃ©e de la maniÃ¨re suivante :
   </para>
-    <para><literal>fe(i))</literal> est le numéro de la première arête partant du sommet i,
+    <para><literal>fe(i))</literal> est le numÃ©ro de la premiÃ¨re arÃªte partant du sommet i,
   </para>
-    <para><literal>che(fe(i))</literal> est le numéro de la deuxième arête partant du sommet i, 
-    <literal>che(che(fe(i)))</literal> est le numéro de la troisième arête partant du 
-    sommet i et ainsi de suite jusqu'à ce que la valeur soit égale à 0.
+    <para><literal>che(fe(i))</literal> est le numÃ©ro de la deuxiÃ¨me arÃªte partant du sommet i, 
+    <literal>che(che(fe(i)))</literal> est le numÃ©ro de la troisiÃ¨me arÃªte partant du 
+    sommet i et ainsi de suite jusqu'Ã  ce que la valeur soit Ã©gale Ã  0.
   </para>
-    <para><literal>fn(i)</literal> est le numéro du premier sommet atteint à partir du sommet i
+    <para><literal>fn(i)</literal> est le numÃ©ro du premier sommet atteint Ã  partir du sommet i
   </para>
-    <para><literal>ch(i)</literal> est le numéro du sommet atteint par l'arête <literal>che(i)</literal>.
+    <para><literal>ch(i)</literal> est le numÃ©ro du sommet atteint par l'arÃªte <literal>che(i)</literal>.
   </para>
   </refsection>
   <refsection>

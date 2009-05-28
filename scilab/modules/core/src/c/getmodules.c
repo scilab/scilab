@@ -27,6 +27,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/ 
 static struct MODULESLIST *ScilabModules=NULL;
 /*--------------------------------------------------------------------------*/ 
@@ -141,7 +142,7 @@ static BOOL AppendModules(char *xmlfilename)
 	BOOL bOK = FALSE;
 	if ( FileExist(xmlfilename) )
 	{
-		char *encoding=GetXmlFileEncoding(xmlfilename);
+		char *encoding = GetXmlFileEncoding(xmlfilename);
 
 		/* Don't care about line return / empty line */
 		xmlKeepBlanksDefault(0);
@@ -155,7 +156,15 @@ static BOOL AppendModules(char *xmlfilename)
 			int activate=0;
 
 			int indice=0;
-			doc = xmlParseFile (xmlfilename);
+			BOOL bConvert = FALSE;
+			char *shortxmlfilename = getshortpathname(xmlfilename,&bConvert);
+
+			if (shortxmlfilename)
+			{
+				doc = xmlParseFile (shortxmlfilename);
+				FREE(shortxmlfilename);
+				shortxmlfilename = NULL;
+			}
 
 			if (doc == NULL) 
 			{

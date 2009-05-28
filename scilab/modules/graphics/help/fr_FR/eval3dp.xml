@@ -1,23 +1,23 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="eval3dp">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>eval3dp</refname>
-    <refpurpose> calcule les facettes d'une surface 3D paramétrique  </refpurpose>
+    <refpurpose> calcule les facettes d'une surface 3D paramÃ©trique  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Xf,Yf,Zf]=eval3dp(fun,p1,p2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>Xf,Yf,Zf  </term>
         <listitem>
-          <para>matrices de taille (4,n-1*m-1). <literal>Xf(:,i)</literal> ,<literal>Yf(:,i)</literal> et <literal>Zf(:,i)</literal>  sont respectivement les coordonnées sur les axes x,y, et z des 4 points de la facette numéro i.
+          <para>matrices de taille (4,n-1*m-1). <literal>Xf(:,i)</literal> ,<literal>Yf(:,i)</literal> et <literal>Zf(:,i)</literal>  sont respectivement les coordonnÃ©es sur les axes x,y, et z des 4 points de la facette numÃ©ro i.
 </para>
         </listitem>
       </varlistentry>
@@ -46,9 +46,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>eval3dp</literal> calcule la représentation sous forme de facettes à 4 points de la surface 
-    définie par la fonction <literal>fun</literal>. <literal>fun(p1,p2)</literal> calcule les coordonnées 
-    x,y et z des points correspondant sur la surface paramétrique définie par
+    <para><literal>eval3dp</literal> calcule la reprÃ©sentation sous forme de facettes Ã  4 points de la surface 
+    dÃ©finie par la fonction <literal>fun</literal>. <literal>fun(p1,p2)</literal> calcule les coordonnÃ©es 
+    x,y et z des points correspondant sur la surface paramÃ©trique dÃ©finie par
     [x(i),y(i),z(i)]=fun(p1(i),p2(i)). 
   </para>
   </refsection>

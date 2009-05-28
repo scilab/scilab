@@ -56,6 +56,7 @@ libn=ilib_for_link('dgesvtst','dgesvtst.o',[],'f');
    Running the Makefile
    Compilation of dgesvtst
    Building shared library (be patient)
+   Generate a cleaner file   
 exec loader.sce;
 Shared archive loaded.
 Link done.

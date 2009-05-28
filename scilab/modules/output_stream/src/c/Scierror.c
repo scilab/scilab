@@ -36,7 +36,7 @@ int  Scierror(int iv,char *fmt,...)
 #else
 	retval = vsprintf(s_buf,fmt, ap );
 #endif
-	if (retval == -1) s_buf[bsiz-1]='\0';
+	if (retval < 0) s_buf[bsiz-1]='\0';
 
 	lstr = (int) strlen(s_buf);
 	va_end(ap);

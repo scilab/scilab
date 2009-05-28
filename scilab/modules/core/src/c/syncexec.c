@@ -16,6 +16,8 @@
 #include "core_math.h"
 #include "parse.h"
 #include "stack-def.h" /* C2F(basbrk) */
+#include "Scierror.h"
+#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 #define Pt (C2F(recu).pt)
 /*--------------------------------------------------------------------------*/
@@ -70,25 +72,20 @@ L60:
 		goto L200;
 	}
 
-	if (Rstk[Pt] / 100 == 9) {
-		ir = Rstk[Pt] - 900;
-		if (ir == 1) {
-			/* back to matsys */
-			k = 13;
-		} else if (ir >= 2 && ir <= 9) {
-			/* back to matio */
-			k = 5;
-		} else if (ir == 10) {
-			/* end of overloaded function */
+	if ( isRecursionCallToFunction() )
+	{
+		int gw = getRecursionGatewayToCall();
+		if (gw == END_OVERLOAD)
+		{
 			goto L96;
-		} else if (ir > 40) {
-			/* back to gw_user2 */
-			k = 24;
-		} else if (ir > 20) {
-			/* back to gw_user */
-			k = 14;
-		} else {
+		} 
+		else if (gw == ERROR_GW_ID)
+		{
 			goto L89;
+		}
+		else
+		{
+			k = gw;
 		}
 		goto L95;
 	}

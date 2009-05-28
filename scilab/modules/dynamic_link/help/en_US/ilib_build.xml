@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - 
@@ -46,7 +46,7 @@
       <varlistentry>
         <term>libs</term>
         <listitem>
-          <para>string matrix giving extra libraries needed for shred library creation</para>
+          <para>string matrix giving extra libraries needed for shared library creation</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -83,11 +83,13 @@
     into Scilab with <literal>addinter</literal></para>
     <para>
     Many examples are provided in <literal>SCI/modules/dynamic_link/examples</literal>
-    directory.</para>
+    directory. They are all released into the public domain.</para>
 	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
+	<para><emphasis role="bold">Languages handle by this function are: C, C++, Fortran and Fortran 90.</emphasis></para>
   </refsection>
+
   <refsection>
-    <title>Examples</title>
+    <title>Examples (C code)</title>
     <programlisting role="example"><![CDATA[
 
 //Here with give a complete example on adding new primitive to Scilab
@@ -134,6 +136,87 @@ scifun1(33)
  
   ]]></programlisting>
   </refsection>
+
+  <refsection>
+    <title>Examples (C++ code)</title>
+    <programlisting role="example"><![CDATA[
+
+i=['#include <string>'
+'extern ""C"" {'
+'#include ""stack-c.h""'
+'int sci_cppfind(char *fname) {'
+'  int m1 = 0, n1 = 0, l1;'
+'  char *inputString1, *inputString2;'
+'  int m2 = 0, n2 = 0, l2;'
+'  int m3 = 0, n3 = 0;'
+'  double *position = NULL; /* Where we will store the position */'
+'  CheckRhs(2,2); /* Check the number of input argument */'
+'  CheckLhs(1,1); /* Check the number of output argument */'
+'  GetRhsVar(1, ""c"", &m1, &n1, &l1); /* Retrieve the first input argument */'
+'  inputString1=cstk(l1);'
+'  GetRhsVar(2, ""c"", &m2, &n2, &l2); /* Retrieve the second input argument */'
+'  inputString2=cstk(l2);'
+'  std::string myMessage (inputString1);'
+'  std::string search (inputString2);'
+'  m3=1;n3=1;'
+'  position = new double[1];'
+'  if (myMessage.find(search) != std::string::npos) {'
+'    position[0] = myMessage.find(search); /* The actual operation */'
+'  } else {'
+'    position[0] = -1; /* Substring not found */'
+'  }'
+'  CreateVarFromPtr(Rhs+1,""d"",&m3,&n3,&position); /* Create the output argument */'
+'  LhsVar(1) = Rhs+1;'
+'  delete[] position;'
+'  return 0;'
+'}'
+'}'];
+
+mputl(i,'sci_cppfind.cxx');
+
+//creating the shared library (a gateway, a Makefile and a loader are 
+//generated. 
+
+files=['sci_cppfind.cxx'];
+ilib_build('foo',['cppfind','sci_cppfind'],files,[]);
+
+// load the shared library 
+
+exec loader.sce 
+
+// Small test to see if the function is actually working.
+if cppfind("my very long string","long") <> 8 pause, end
+if cppfind("my very long string","very") <> 3 pause, end
+if cppfind("my very long string","short") <> -1 pause, end
+ 
+  ]]></programlisting>
+  </refsection>
+
+
+  <refsection>
+    <title>Examples (Fortran 90 code)</title>
+    <programlisting role="example"><![CDATA[
+
+sourcecode=['subroutine incrdoublef90(x,y)'
+    '  implicit none'
+    '  double precision, intent(in) :: x'
+    '  double precision, intent(out) :: y'
+    '  y=x+1'
+    'end subroutine incrdoublef90'];
+mputl(sourcecode,'incrdoublef90.f90');
+libpath=ilib_for_link('incrdoublef90','incrdoublef90.f90',[],'f');
+exec loader.sce 
+n=1.;
+m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
+if abs(m-2.)>%eps then pause,end
+n=2.;
+m=call("incrdoublef90",n,1,"d","out",[1,1],2,"d");
+if abs(m-3.)>%eps then pause,end
+
+  ]]></programlisting>
+  </refsection>
+
+
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">

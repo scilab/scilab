@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2005 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - Dan McMahill (Fix of bug 4299 and 4312)
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,8 +15,18 @@
 @sa http://nixdoc.net/man-pages/Tru64/man2/getsysinfo.2.html
 @sa http://www.opensource.apple.com/darwinsource/projects/other/gccfast-1621.1/libiberty/physmem.c
 @sa http://lists.gnu.org/archive/html/bug-gnulib/2003-08/msg00102.html
+@sa http://netbsd.gw.com/cgi-bin/man-cgi?sysctl+3+NetBSD-4.0
+@sa http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/math/scilab/patches/patch-aj?annotate=1.9
 */
 #include "getmemory.h"
+
+#if defined(__NetBSD__) || defined(__DragonFly__)
+#include <sys/param.h>
+#include <sys/sysctl.h>
+#define ARRAY_SIZE(a) (sizeof (a) / sizeof ((a)[0]))
+#define PAGESHIFT_UNDEF -100
+#endif
+
 #include <stdio.h>
 #define kooctet 1024
 int getfreememory(void)
@@ -113,9 +124,45 @@ int getfreememory(void)
        fall back to inaccurate sysconf() */
     return (sysconf(_SC_AVPHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
   }
+#elif defined(__NetBSD__) || defined(__DragonFly__)
+  { /* This works on *bsd.  */
+    int mib[2];
+    struct uvmexp_sysctl uvmexp;
+    long freemem;
+    size_t lenu = sizeof uvmexp;
+    unsigned int pagesize;
+    static int pageshift = PAGESHIFT_UNDEF;
+    size_t lenp = sizeof pagesize;
+
+    mib[0] = CTL_HW;
+    if (pageshift == PAGESHIFT_UNDEF) {
+        /* Figure out the page size */
+        mib[1] = HW_PAGESIZE;
+        if (sysctl (mib, ARRAY_SIZE (mib), &pagesize, &lenp, NULL, 0) != 0 || lenp != sizeof (pagesize) ) {
+            /* sysctl failed -- what to do?? */
+	    return 0;
+        }
+	pageshift = 0;
+        while (pagesize > 1) {
+	    pageshift++;
+	    pagesize >>= 1;
+	}
+
+	/* convert to kB */
+	pageshift -= 10;
+    }
+
+    mib[0] = CTL_VM;
+    mib[1] = VM_UVMEXP2;
+    if ( (sysctl (mib, ARRAY_SIZE (mib), &uvmexp, &lenu, NULL, 0) == 0) && (lenu == sizeof (uvmexp)) ) {
+       return  (uvmexp.free << pageshift);
+    }
+
+    return 0;
+  }
 #else
-  /* BSD, Solaris and others assumed*/
-  return (sysconf(_SC_AVPHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+  /* Solaris and others assumed*/
+  return (sysconf(_SC_AVPHYS_PAGES)/kooctet)*sysconf(_SC_PAGESIZE);
 #endif
 }
 /*--------------------------------------------------------------------------*/ 
@@ -133,8 +180,8 @@ int getmemorysize()
     pstat_getstatic(&pst, sizeof(pst), (size_t) 1, 0);
     return (int)((pst.physical_memory)/kooctet);
   }
-#elif defined(__APPLE__) 
-  {
+#elif defined(__APPLE__) || defined(__NetBSD__) || defined(__DragonFly__)
+  { /* this works on *bsd and darwin */
     size_t len;
     int total;
     int mib[2];
@@ -163,7 +210,7 @@ int getmemorysize()
    }
 #else
   /* Linux ,Solaris and others */
-  return (sysconf(_SC_PHYS_PAGES)*sysconf(_SC_PAGESIZE))/kooctet;
+  return (sysconf(_SC_PHYS_PAGES)/kooctet)*sysconf(_SC_PAGESIZE);
 #endif
 }
 /*--------------------------------------------------------------------------*/
