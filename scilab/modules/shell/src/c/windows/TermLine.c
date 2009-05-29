@@ -377,7 +377,7 @@ char *getCurrentLine(void)
 	reallocLineBuffer();
 
 	cur_line[max_pos + 1] = '\0';
-	line = strdup_windows(cur_line);
+	line = _strdup(cur_line);
 	if (line) OemToChar(cur_line, line);
 	return line;
 }

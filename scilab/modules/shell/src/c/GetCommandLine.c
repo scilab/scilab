@@ -68,7 +68,7 @@ static void getCommandLine(void)
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
-  FREE(__CommandLine);
+  free(__CommandLine);
   
   if (getScilabMode() == SCILAB_STD)
     {
@@ -195,7 +195,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
-  FREE(__CommandLine);
+  free(__CommandLine);
   __CommandLine = strdup("");
 
   if (ismenu() == 0)
