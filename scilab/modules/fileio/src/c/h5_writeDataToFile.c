@@ -82,6 +82,7 @@ static int writeString(int file, char* dataSetName, char *data)
    */
   status = H5Dclose (dset);
   status = H5Sclose (space);
+  return status;
 }
 
 int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int cols)
@@ -159,7 +160,6 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
   status = H5Dclose (dset);
   status = H5Sclose (space);
 
-	free(wdata);
   free(groupName);
 
   return status;
