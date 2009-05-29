@@ -42,7 +42,7 @@
 /*--------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
 static char* tmpPrompt = NULL;
-static char * __CommandLine;
+static char * __CommandLine = NULL;
 /*--------------------------------------------------------------------------*/
 
 IMPORT_SIGNAL __threadSignal		LaunchScilab;
@@ -65,6 +65,7 @@ static BOOL initialized = FALSE;
  **********************************************************************/
 static void getCommandLine(void)
 {
+  char *locCmdLine;
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
@@ -81,12 +82,17 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
+      FREE(__CommandLine);
       __CommandLine = ConsoleRead();
     }
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      __CommandLine = TermReadAndProcess();
+      char szTempUTF[bsiz];
+      locCmdLine = TermReadAndProcess();
+      FREE(__CommandLine);
+      __CommandLine = strdup(localeToUTF(locCmdLine, szTempUTF));
+      FREE(locCmdLine);
     }
 }
 
@@ -188,6 +194,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
+  FREE(__CommandLine);
   __CommandLine = strdup("");
 
   if (ismenu() == 0)
