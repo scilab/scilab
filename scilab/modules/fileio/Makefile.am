@@ -43,9 +43,9 @@ src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
-src/c/getrelativefilename.c 
+src/c/getrelativefilename.c
 
-GATEWAY_CPP_SOURCES = \ 
+GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp
 
@@ -88,7 +88,12 @@ sci_gateway/c/sci_mtell.c \
 sci_gateway/c/sci_fileinfo.c \
 sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
-sci_gateway/c/sci_getrelativefilename.c 
+sci_gateway/c/sci_getrelativefilename.c
+
+libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -153,6 +158,6 @@ includes/mseek.h \
 includes/deleteafile.h \
 includes/readline.h \
 includes/cluni0.h \
-includes/scicurdir.h 
+includes/scicurdir.h
 
 include $(top_srcdir)/Makefile.incl.am

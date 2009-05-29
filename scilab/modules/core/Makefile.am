@@ -88,6 +88,7 @@ src/c/int_api.c \
 src/c/poly_api.c \
 src/c/sparse_api.c \
 src/c/boolean_sparse_api.c \
+src/c/boolean_api.c \
 src/c/string_api.c \
 src/c/list_api.c \
 src/c/typename.c \
@@ -197,7 +198,7 @@ src/fortran/itosci.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f 
+src/fortran/isinstring.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -262,7 +263,7 @@ sci_gateway/c/sci_libraryinfo.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
-sci_gateway/c/sci_exit.c 
+sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
 sci_gateway/fortran/sci_funcprot.f \

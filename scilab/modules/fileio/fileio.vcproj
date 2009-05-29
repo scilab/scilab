@@ -556,7 +556,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -564,7 +564,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -572,7 +572,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -580,7 +580,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -644,7 +644,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 			</File>
