@@ -159,6 +159,7 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
   status = H5Dclose (dset);
   status = H5Sclose (space);
 
+	free(wdata);
   free(groupName);
 
   return status;
