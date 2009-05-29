@@ -20,12 +20,15 @@
 #include "common_api.h"
 #include "list_api.h"
 #include "internal_double_api.h"
+#include "internal_string_api.h"
+#include "string_api.h"
 
 
 //internal functions
 static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAddress);
 static int createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
 static int createCommonNamedList(char* _pstName, int _iNameLen, int _iListType, int _iNbItem, int** _piAddress);
+static int createCommonListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress);
 static int getCommonListInList(int _iVar, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
 static int getCommomListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iListType, int** _piAddress);
 static int readCommonNamedList(char* _pstName, int _iNameLen, int _iListType, int* _piNbItem, int** _piAddress);
@@ -42,6 +45,8 @@ static int fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemP
 static int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 static int readCommonMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
 static int	allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr);
+
+int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
 
 int getListItemNumber(int* _piAddress, int* _piNbItem)
 {
@@ -289,6 +294,10 @@ int getCommomListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int 
 	return 0;
 }
 
+/*********************
+ * Double functions *
+ *********************/
+
 int getMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double** _pdblReal)
 {
 	return getCommonMatrixOfDoubleInList(_iVar, _piParent,_iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
@@ -373,6 +382,7 @@ static int fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemP
 	piOffset						= _piParent + 2;
 	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + _iRows * _iCols * (_iComplex + 1) + 2;
 
+	piEnd	=	piChildAddr + 4 + (_iRows * _iCols * (_iComplex + 1) * (sizeof(double) / sizeof(int)));
 	if(_iItemPos == iNbItem)
 	{
 		updateOffset(_iVar, _piParent, _iItemPos, piEnd);
@@ -447,7 +457,6 @@ int createComplexMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _
 
 int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
-	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
 	int iRet					= 0;
@@ -457,11 +466,13 @@ int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _p
 	double *pdblImg		= NULL;
 	int* piEnd				= NULL;
 
-  C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
 	iRet = getVarAddressFromNumber(Top, &piAddr);
-
+	if(iRet)
+	{
+		return 1;
+	}
 
 	iRet = fillCommonMatrixOfDoubleInList(Top, _piParent, _iItemPos, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(iRet)
@@ -477,10 +488,6 @@ int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _p
 
 	piEnd = (int*) (pdblReal + _iRows * _iCols * (_iComplex + 1));
 	closeList(Top, _piParent, _iItemPos, piEnd);
-
-	Rhs = 0;
-	//Add name in stack reference list
-	createNamedVariable(iVarID);
 
 	Top = iSaveTop;
   Rhs = iSaveRhs;
@@ -537,6 +544,35 @@ static int createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int 
 	return 0;
 }
 
+int createListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+{
+	return createCommonListInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, sci_list, _iNbItem, _piAddress);
+}
+
+int createTListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+{
+	return createCommonListInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, sci_tlist, _iNbItem, _piAddress);
+}
+
+int createMListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress)
+{
+	return createCommonListInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, sci_mlist, _iNbItem, _piAddress);
+}
+
+int createCommonListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iListType, int _iNbItem, int** _piAddress)
+{
+	int iRet					= 0;
+	int iTotalLen			= 0;
+
+	iRet = createCommonListInList(Top, _piParent, _iItemPos, _iListType, _iNbItem, _piAddress);
+	if(iRet)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+
 int readMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, double* _pdblReal)
 {
 	return readCommonMatrixOfDoubleInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, 0, _piRows, _piCols, _pdblReal, NULL);
@@ -578,6 +614,133 @@ static int readCommonMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, in
 	}
 	return 0;
 }
+
+
+/*********************
+ * Strings functions *
+ *********************/
+
+int getMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+{
+	int iRet			= 0;
+	int* piAddr		= NULL;
+
+	iRet = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
+	if(iRet)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+
+int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int** _piAddress)
+{
+	int iRet				= 0;
+	int iNbItem			= 0;
+	int iTotalLen		= 0;
+	int iNewPos			= Top - Rhs + _iVar;
+
+	int* piAddr			= NULL;
+	int* piEnd			= NULL;
+
+	fillCommonMatrixOfStringInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
+
+	piEnd = piAddr + iTotalLen;
+	closeList(iNewPos, _piParent, _iItemPos, piEnd);
+	return 0;
+}
+
+int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
+{
+	int iRet				= 0;
+	int iNbItem			= 0;
+
+	int* piAddr			= NULL;
+	int* piOffset		= NULL;
+	int* piEnd			= NULL;
+
+	//Does item can be added in the list
+	getListItemNumber(_piParent, &iNbItem);
+	if(iNbItem < _iItemPos)
+	{
+		return 1;
+	}
+
+	iRet = allocCommonItemInList(_piParent, _iItemPos, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, _piTotalLen);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	*_piTotalLen				+= 4 + _iRows * _iCols + 1 + 1;//+ 1 for scale on double precision
+	piOffset						= _piParent + 2;
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + (*_piTotalLen / 2);
+
+	piEnd = piAddr + *_piTotalLen;
+	if(_iItemPos == iNbItem)
+	{
+		updateOffset(_iVar, _piParent, _iItemPos, piEnd);
+	}
+		return 0;
+}
+
+int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)
+{
+	int iRet					= 0;
+	int iTotalLen			= 0;
+	int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+
+	int* piItemAddr		= NULL;
+	int* piEnd				= NULL;
+
+	Top = Top + Nbvars + 1;
+
+	iRet = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = fillCommonMatrixOfStringInList(Top, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piEnd = piItemAddr + iTotalLen;
+	closeList(Top, _piParent, _iItemPos, piEnd);
+
+	Top = iSaveTop;
+  Rhs = iSaveRhs;
+
+	
+	return 0;
+}
+
+int readMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
+{
+	return 0;
+}
+
+
+
+
+
+
 
 
 

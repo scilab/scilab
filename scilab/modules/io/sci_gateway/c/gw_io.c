@@ -25,7 +25,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_mgetl),"mgetl"},
 {C2F(sci_write),"write"},
 {C2F(sci_rat),"rat"},
-{sci_export_to_hdf5,"export_to_hdf5"},
+{C2F(sci_rat),"rat"},
 {C2F(sci_file),"file"},
 {C2F(sci_host),"host"},
 {C2F(sci_unix),"unix"},

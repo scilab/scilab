@@ -45,6 +45,10 @@ src/c/fullpath.c \
 src/c/fileinfo.c \
 src/c/getrelativefilename.c 
 
+GATEWAY_CPP_SOURCES = \ 
+sci_gateway/cpp/sci_export_to_hdf5.cpp \
+sci_gateway/cpp/sci_import_from_hdf5.cpp
+
 
 
 GATEWAY_SOURCES = \
@@ -98,7 +102,7 @@ pkglib_LTLIBRARIES = libscifileio.la
 
 libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
-libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
+libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
