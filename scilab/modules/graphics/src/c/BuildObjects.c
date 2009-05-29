@@ -2463,10 +2463,16 @@ sciPointObj * createFirstSubwin(sciPointObj * pFigure)
 void createDefaultRelationShip(sciPointObj * pObj)
 {
 	/* Create a new relationship structure */
-	sciRelationShip * relationShip = MALLOC(sizeof(sciRelationShip));
-	if (relationShip == NULL || sciGetEntityType(pObj) == SCI_LABEL)
+	sciRelationShip * relationShip = NULL;
+	if(sciGetEntityType(pObj) == SCI_LABEL)
 	{
 		/* labels have their relationShip stored in their text objects */
+		return;
+	}
+	
+	relationShip = MALLOC(sizeof(sciRelationShip));
+	if (relationShip == NULL)
+	{
 		return;
 	}
 

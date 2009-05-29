@@ -43,7 +43,9 @@ src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
-src/c/getrelativefilename.c
+src/c/getrelativefilename.c \
+src/c/h5_fileManagement.c \
+src/c/h5_writeDataToFile.c 
 
 GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/sci_export_to_hdf5.cpp \
@@ -101,11 +103,12 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/localization/includes
+				-I$(top_srcdir)/modules/localization/includes \
+				$(HDF5_FLAGS)
 
 pkglib_LTLIBRARIES = libscifileio.la
 
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 
@@ -114,7 +117,11 @@ CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+				$(top_builddir)/modules/string/libscistring.la \
+				$(top_builddir)/libs/MALLOC/libscimalloc.la \
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/libs/libst/libscilibst.la
 #### Target ######
 modulename=fileio
 

@@ -64,7 +64,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/libhdf5.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -119,7 +119,9 @@ am__objects_1 = libscifileio_la-FileExist.lo \
 	libscifileio_la-isDrive.lo libscifileio_la-removedir.lo \
 	libscifileio_la-cluni0.lo libscifileio_la-scicurdir.lo \
 	libscifileio_la-fullpath.lo libscifileio_la-fileinfo.lo \
-	libscifileio_la-getrelativefilename.lo
+	libscifileio_la-getrelativefilename.lo \
+	libscifileio_la-h5_fileManagement.lo \
+	libscifileio_la-h5_writeDataToFile.lo
 am__objects_2 = libscifileio_la-gw_fileio.lo \
 	libscifileio_la-sci_mfprintf.lo libscifileio_la-sci_mscanf.lo \
 	libscifileio_la-sci_msscanf.lo libscifileio_la-sci_mfscanf.lo \
@@ -237,6 +239,8 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_FLAGS = @HDF5_FLAGS@
+HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -445,7 +449,9 @@ src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
-src/c/getrelativefilename.c
+src/c/getrelativefilename.c \
+src/c/h5_fileManagement.c \
+src/c/h5_writeDataToFile.c 
 
 GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/sci_export_to_hdf5.cpp \
@@ -501,10 +507,11 @@ libscifileio_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/io/includes \
 				-I$(top_srcdir)/modules/string/includes \
-				-I$(top_srcdir)/modules/localization/includes
+				-I$(top_srcdir)/modules/localization/includes \
+				$(HDF5_FLAGS)
 
 pkglib_LTLIBRARIES = libscifileio.la
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
@@ -512,7 +519,12 @@ CHECK_SRC = $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD = $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libscifileio_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+				$(top_builddir)/modules/string/libscistring.la \
+				$(top_builddir)/libs/MALLOC/libscimalloc.la \
+				$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+				$(top_builddir)/libs/libst/libscilibst.la
+
 #### Target ######
 modulename = fileio
 
@@ -711,6 +723,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-getrelativefilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-getshortpathname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-gw_fileio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-h5_fileManagement.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-h5_writeDataToFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-isDrive.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-isdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifileio_la-mclearerr.Plo@am__quote@
@@ -1076,6 +1090,20 @@ libscifileio_la-getrelativefilename.lo: src/c/getrelativefilename.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getrelativefilename.c' object='libscifileio_la-getrelativefilename.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-getrelativefilename.lo `test -f 'src/c/getrelativefilename.c' || echo '$(srcdir)/'`src/c/getrelativefilename.c
+
+libscifileio_la-h5_fileManagement.lo: src/c/h5_fileManagement.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-h5_fileManagement.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-h5_fileManagement.Tpo -c -o libscifileio_la-h5_fileManagement.lo `test -f 'src/c/h5_fileManagement.c' || echo '$(srcdir)/'`src/c/h5_fileManagement.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-h5_fileManagement.Tpo $(DEPDIR)/libscifileio_la-h5_fileManagement.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/h5_fileManagement.c' object='libscifileio_la-h5_fileManagement.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-h5_fileManagement.lo `test -f 'src/c/h5_fileManagement.c' || echo '$(srcdir)/'`src/c/h5_fileManagement.c
+
+libscifileio_la-h5_writeDataToFile.lo: src/c/h5_writeDataToFile.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-h5_writeDataToFile.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-h5_writeDataToFile.Tpo -c -o libscifileio_la-h5_writeDataToFile.lo `test -f 'src/c/h5_writeDataToFile.c' || echo '$(srcdir)/'`src/c/h5_writeDataToFile.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscifileio_la-h5_writeDataToFile.Tpo $(DEPDIR)/libscifileio_la-h5_writeDataToFile.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/h5_writeDataToFile.c' object='libscifileio_la-h5_writeDataToFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -c -o libscifileio_la-h5_writeDataToFile.lo `test -f 'src/c/h5_writeDataToFile.c' || echo '$(srcdir)/'`src/c/h5_writeDataToFile.c
 
 libscifileio_la-gw_fileio.lo: sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifileio_la_CFLAGS) $(CFLAGS) -MT libscifileio_la-gw_fileio.lo -MD -MP -MF $(DEPDIR)/libscifileio_la-gw_fileio.Tpo -c -o libscifileio_la-gw_fileio.lo `test -f 'sci_gateway/c/gw_fileio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fileio.c
