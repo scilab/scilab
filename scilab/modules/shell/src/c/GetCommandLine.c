@@ -65,10 +65,11 @@ static BOOL initialized = FALSE;
  **********************************************************************/
 static void getCommandLine(void)
 {
-  char *locCmdLine;
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
+  FREE(__CommandLine);
+  
   if (getScilabMode() == SCILAB_STD)
     {
       /* Send new prompt to Java Console, do not display it */
@@ -82,17 +83,12 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
-      FREE(__CommandLine);
       __CommandLine = ConsoleRead();
     }
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      char szTempUTF[bsiz];
-      locCmdLine = TermReadAndProcess();
-      FREE(__CommandLine);
-      __CommandLine = strdup(localeToUTF(locCmdLine, szTempUTF));
-      FREE(locCmdLine);
+      __CommandLine = TermReadAndProcess();
     }
 }
 
