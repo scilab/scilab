@@ -170,7 +170,7 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
   hsize_t     dims[2] = {rows, cols};
   herr_t      status;
   hid_t       filetype, memtype, space, dset;
-  int	      i, j = 0;
+  int	      i =0, j = 0;
   double      *__data;
 
   __data = (double*)malloc(sizeof(double) * rows * cols);
