@@ -4,9 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- JVM NOT MANDATORY -->
-
 // <-- Non-regression test for bug 4548 -->
 //
 // <-- Bugzilla URL -->
@@ -14,7 +12,6 @@
 //
 // <-- Short Description -->
 // 
-
 ilib_verbose(0);
 chdir(TMPDIR);
 src = ['      subroutine intsifdec()'
@@ -57,8 +54,6 @@ src = ['      subroutine intsifdec()'
 '      return'
 '      end'
 ''];
-
-
 mputl(src,'intsifdec.f');
 files=['intsifdec.f'];
 if MSDOS then
