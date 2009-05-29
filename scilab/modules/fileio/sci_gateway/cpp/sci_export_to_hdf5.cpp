@@ -54,7 +54,9 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	int iRows						= 0;
 	int iCols						= 0;
 
-	int* piAddr					= NULL;
+	int* piAddr2				= NULL;
+	int* piAddr3				= NULL;
+	int* piAddrReturn		= NULL;
 	char *pstVarName		= NULL;
 	char *pstFilename		= NULL;
 
@@ -62,42 +64,42 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 
 	/*get input data*/
 	getVarAddressFromNumber(1, &piVar);
+	getVarAddressFromNumber(2, &piAddr2);
+	getVarAddressFromNumber(3, &piAddr3);
 
-	if(GetType(2) != sci_strings)
+	if(getVarType(piAddr2) != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
 		return 0;
 	}
 
-	if(GetType(3) != sci_strings)
+	if(getVarType(piAddr3) != sci_strings)
 	{
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
 		return 0;
 	}
 
 	//get variable name
-	getVarAddressFromNumber(2, &piAddr);
-	getVarDimension(piAddr, &iRows, &iCols);
+	getVarDimension(piAddr2, &iRows, &iCols);
 	if(iRows != 1 || iCols != 1)
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 	}
 
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
+	getMatrixOfString(piAddr2, &iRows, &iCols, &iLen, NULL);
 	pstVarName = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
+	getMatrixOfString(piAddr2, &iRows, &iCols, &iLen, &pstVarName);
 
 	//get filename
-	getVarAddressFromNumber(3, &piAddr);
-	getVarDimension(piAddr, &iRows, &iCols);
+	getVarDimension(piAddr3, &iRows, &iCols);
 	if(iRows != 1 || iCols != 1)
 	{
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 	}
 
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
+	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, NULL);
 	pstFilename = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));//1 for null termination
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstFilename);
+	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, &pstFilename);
 
 	iTab = 0;
 
@@ -111,7 +113,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	closeHDF5File(iH5File);
 
 	int *piReturn = NULL;
-	allocMatrixOfBoolean(Rhs + 1, 1, 1, &piReturn, &piAddr);
+	allocMatrixOfBoolean(Rhs + 1, 1, 1, &piReturn, &piAddrReturn);
 	if(bExport == true)
 	{
 		piReturn[0] = 1;
