@@ -53,7 +53,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -137,7 +137,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -223,7 +223,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -314,7 +314,7 @@
 				WarningLevel="3"
 				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
-				CompileAs="1"
+				CompileAs="0"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -556,7 +556,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -564,7 +564,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -572,7 +572,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -580,7 +580,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 			</File>
@@ -644,7 +644,7 @@
 					>
 					<Tool
 						Name="VCCLCompilerTool"
-						CompileAs="2"
+						CompileAs="0"
 					/>
 				</FileConfiguration>
 			</File>
