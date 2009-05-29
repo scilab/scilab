@@ -20,7 +20,6 @@
 #include "TermConsole.h"
 #include "localization.h"
 #include "MALLOC.h"
-#include "strdup_windows.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 /*--------------------------------------------------------------------------*/
@@ -378,7 +377,7 @@ char *getCurrentLine(void)
 	reallocLineBuffer();
 
 	cur_line[max_pos + 1] = '\0';
-	line = strdup_windows(cur_line);
+	line = _strdup(cur_line);
 	if (line) OemToChar(cur_line, line);
 	return line;
 }

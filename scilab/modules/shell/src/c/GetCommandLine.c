@@ -65,10 +65,10 @@ static BOOL initialized = FALSE;
  **********************************************************************/
 static void getCommandLine(void)
 {
-  char *locCmdLine;
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
+  free(__CommandLine);
   if (getScilabMode() == SCILAB_STD)
     {
       /* Send new prompt to Java Console, do not display it */
@@ -83,17 +83,14 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
-      FREE(__CommandLine);
+
       __CommandLine = ConsoleRead();
     }
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      char szTempUTF[bsiz];
-      locCmdLine = TermReadAndProcess();
-      FREE(__CommandLine);
-      __CommandLine = strdup(localeToUTF(locCmdLine, szTempUTF));
-      FREE(locCmdLine);
+      __CommandLine = TermReadAndProcess();;
+
     }
 }
 
@@ -195,7 +192,9 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
-  FREE(__CommandLine);
+#ifndef _MSC_VER
+  free(__CommandLine);
+#endif
   __CommandLine = strdup("");
 
   if (ismenu() == 0)
