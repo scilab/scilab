@@ -246,6 +246,11 @@ int DestroyFigure (sciPointObj * pthis)
     FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   }
   
+  if (pFIGURE_FEATURE(pthis)->name != NULL)
+  {
+    FREE( pFIGURE_FEATURE(pthis)->name ) ;
+  }
+  
 	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   pFIGURE_FEATURE(pthis)->pModelData = NULL;
@@ -698,6 +703,8 @@ void destroyGraphicStringArray(char ** strArray, int nbStrings)
 /*--------------------------------------------------------------------------------*/
 void destroyRelationShip(sciPointObj * pObj)
 {
+	/* Don't destroy relationShip for labels since the relationShip of a label
+	is contained in (and destroyed with) its text attribute (see ConstructLabel) */
 	if (pObj->relationShip != NULL && sciGetEntityType(pObj) != SCI_LABEL)
 	{
 		FREE(pObj->relationShip);
