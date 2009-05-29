@@ -18,10 +18,14 @@
 #include "TermConsole.h"
 #include "diary.h"
 /*--------------------------------------------------------------------------*/
+static char *returnedline = NULL;
+/*--------------------------------------------------------------------------*/
 char * TermReadAndProcess(void)
 {
-	char *returnedline = NULL;
 	static char save_prompt[PROMPT_SIZE_MAX];
+
+	/* free previous line */
+	if (returnedline) {FREE(returnedline);returnedline = NULL;}
 
     if (GetTemporaryPrompt() != NULL) /* Input function is used */
     {

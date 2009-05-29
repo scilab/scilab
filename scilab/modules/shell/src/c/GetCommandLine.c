@@ -68,7 +68,7 @@ static void getCommandLine(void)
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
-  free(__CommandLine);
+  FREE(__CommandLine);
   
   if (getScilabMode() == SCILAB_STD)
     {
@@ -159,11 +159,6 @@ static void *watchGetCommandLine(void *in) {
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
-
-#ifdef _MSC_VER
-#define DO_NOT_BUILD_THIS 1
-#endif
-
 #ifdef DO_NOT_BUILD_THIS
 	/* Desactivated since it is breaking Scilab GUI when not launched from a tty */
 
@@ -195,7 +190,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
-  free(__CommandLine);
+  FREE(__CommandLine);
   __CommandLine = strdup("");
 
   if (ismenu() == 0)
