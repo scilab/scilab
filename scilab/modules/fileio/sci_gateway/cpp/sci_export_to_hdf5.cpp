@@ -1,18 +1,17 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - INRIA - Antoine ELIAS
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 extern "C"
 {
-	#include <hdf5.h>
 	#include <string.h>
 	#include <stdio.h>
 	#include "gw_fileio.h"
@@ -236,7 +235,7 @@ bool export_list(int *_piVar, char* _pstName)
 		char* pstName	= NULL;
 		pstName				= (char*)MALLOC((
 			(int)log10((double)(i+1)) + 4) * sizeof(char)); //1 for null termination, 1 for round value, 2 for '#' characters
-		sprintf(pstName, "#%d#", i); 
+		sprintf(pstName, "#%d#", i);
 
 		char *pstPathName	= NULL;
 		pstPathName				= (char*)MALLOC((strlen(pstGroupName) + strlen(pstName) + 4) * sizeof(char)); //1 for null termination, 1 for separator, 2 for '#' characters
@@ -280,7 +279,7 @@ bool export_double(int *_piVar, char* _pstName)
 	{
 		getMatrixOfDouble(_piVar, &iRows, &iCols, &pdblReal);
 	}
- 
+
 	char pstMsg[256];
 	sprintf(pstMsg, "%s (double matrix : %d x %d)", _pstName, iRows, iCols);
 	print_type(pstMsg);
@@ -335,7 +334,7 @@ bool export_strings(int *_piVar, char* _pstName)
 	int iCols				= 0;
 	int* piLen			= NULL;
 	char** pstData	= NULL;
-	
+
 
 	getMatrixOfString(_piVar, &iRows, &iCols, NULL, NULL);
 	piLen = (int*)MALLOC(iRows * iCols * sizeof(int));
