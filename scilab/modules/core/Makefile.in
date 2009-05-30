@@ -135,8 +135,8 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/double_api.c src/c/int_api.c src/c/poly_api.c \
 	src/c/sparse_api.c src/c/boolean_sparse_api.c \
 	src/c/boolean_api.c src/c/string_api.c src/c/list_api.c \
-	src/c/typename.c src/c/inittypenames.c src/c/scimem64.c \
-	src/fortran/algebre.f src/fortran/clunit.f \
+	src/c/typename.c src/c/inittypenames.c src/c/funcprot.c \
+	src/c/scimem64.c src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
@@ -218,7 +218,6 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/fortran/sci_intppty.f \
 	sci_gateway/fortran/sci_ieee.f \
 	sci_gateway/fortran/sci_macrovar.f \
-	sci_gateway/fortran/sci_funptr.f \
 	sci_gateway/fortran/sci_exists.f \
 	sci_gateway/fortran/sci_errcatch.f \
 	sci_gateway/fortran/sci_clear.f sci_gateway/fortran/sci_argn.f \
@@ -278,7 +277,8 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-boolean_sparse_api.lo \
 	libscicore_la-boolean_api.lo libscicore_la-string_api.lo \
 	libscicore_la-list_api.lo libscicore_la-typename.lo \
-	libscicore_la-inittypenames.lo $(am__objects_1)
+	libscicore_la-inittypenames.lo libscicore_la-funcprot.lo \
+	$(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
 am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo isany.lo \
 	hmcreate.lo nextj.lo setgetmode.lo showstack.lo misops.lo \
@@ -335,9 +335,9 @@ am__objects_5 = libscicore_la-sci_stacksize.lo \
 am__objects_6 = sci_errclear.lo sci_funcprot.lo sci_global.lo \
 	sci_mtlb_mode.lo sci_resume.lo sci_dispbpt.lo \
 	sci_useascommand.lo sci_whereis.lo sci_intppty.lo sci_ieee.lo \
-	sci_macrovar.lo sci_funptr.lo sci_exists.lo sci_errcatch.lo \
-	sci_clear.lo sci_argn.lo sci_setbpt.lo sci_clearglobal.lo \
-	sci_delbpt.lo where.lo sci_iserror.lo sci_debug.lo sci_comp.lo \
+	sci_macrovar.lo sci_exists.lo sci_errcatch.lo sci_clear.lo \
+	sci_argn.lo sci_setbpt.lo sci_clearglobal.lo sci_delbpt.lo \
+	where.lo sci_iserror.lo sci_debug.lo sci_comp.lo \
 	sci_isglobal.lo
 am_libscicore_la_OBJECTS = $(am__objects_2) $(am__objects_4) \
 	$(am__objects_5) $(am__objects_6)
@@ -629,7 +629,8 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/double_api.c src/c/int_api.c src/c/poly_api.c \
 	src/c/sparse_api.c src/c/boolean_sparse_api.c \
 	src/c/boolean_api.c src/c/string_api.c src/c/list_api.c \
-	src/c/typename.c src/c/inittypenames.c $(am__append_1)
+	src/c/typename.c src/c/inittypenames.c src/c/funcprot.c \
+	$(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
 	src/fortran/getlin.f src/fortran/allowptr.f \
 	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -741,7 +742,6 @@ sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
@@ -1048,6 +1048,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-dynamic_gateways.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-expr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-freeArrayOfString.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-funcprot.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getcommandlineargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getdynamicdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-getmemory.Plo@am__quote@
@@ -1776,6 +1777,13 @@ libscicore_la-inittypenames.lo: src/c/inittypenames.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/inittypenames.c' object='libscicore_la-inittypenames.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-inittypenames.lo `test -f 'src/c/inittypenames.c' || echo '$(srcdir)/'`src/c/inittypenames.c
+
+libscicore_la-funcprot.lo: src/c/funcprot.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-funcprot.lo -MD -MP -MF $(DEPDIR)/libscicore_la-funcprot.Tpo -c -o libscicore_la-funcprot.lo `test -f 'src/c/funcprot.c' || echo '$(srcdir)/'`src/c/funcprot.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libscicore_la-funcprot.Tpo $(DEPDIR)/libscicore_la-funcprot.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/funcprot.c' object='libscicore_la-funcprot.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-funcprot.lo `test -f 'src/c/funcprot.c' || echo '$(srcdir)/'`src/c/funcprot.c
 
 libscicore_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_la-scimem64.Tpo -c -o libscicore_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
@@ -2545,9 +2553,6 @@ sci_ieee.lo: sci_gateway/fortran/sci_ieee.f
 
 sci_macrovar.lo: sci_gateway/fortran/sci_macrovar.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_macrovar.lo `test -f 'sci_gateway/fortran/sci_macrovar.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_macrovar.f
-
-sci_funptr.lo: sci_gateway/fortran/sci_funptr.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_funptr.lo `test -f 'sci_gateway/fortran/sci_funptr.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_funptr.f
 
 sci_exists.lo: sci_gateway/fortran/sci_exists.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_exists.lo `test -f 'sci_gateway/fortran/sci_exists.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_exists.f
