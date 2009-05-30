@@ -411,6 +411,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\funcprot.c"
+				>
+			</File>
+			<File
 				RelativePath=".\Funtab.c"
 				>
 			</File>
@@ -1041,6 +1045,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\freeArrayOfString.h"
+				>
+			</File>
+			<File
+				RelativePath=".\funcprot.h"
 				>
 			</File>
 			<File

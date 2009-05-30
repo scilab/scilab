@@ -92,7 +92,8 @@ src/c/boolean_api.c \
 src/c/string_api.c \
 src/c/list_api.c \
 src/c/typename.c \
-src/c/inittypenames.c
+src/c/inittypenames.c \
+src/c/funcprot.c
 
 
 if USE_DYNAMIC_STACK
@@ -276,7 +277,6 @@ sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
