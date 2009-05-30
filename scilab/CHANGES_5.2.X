@@ -130,6 +130,8 @@ manage this format but ISO-8859.
 Bug fixes:
 ==========
 
+* bug 1412 fixed - A(3,3)=%s,A(:)=%z causes scilab to hang
+
 * bug 1776 fixed - funcprot accepts non-integer arguments
 
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
