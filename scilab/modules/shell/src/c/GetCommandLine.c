@@ -30,10 +30,12 @@
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
 #include "stack-def.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
-#define strdup _strdup
 #else
 #define IMPORT_SIGNAL extern
 #endif
@@ -68,7 +70,8 @@ static void getCommandLine(void)
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
-  free(__CommandLine);
+  if (__CommandLine) {FREE(__CommandLine); __CommandLine = NULL;}
+
   if (getScilabMode() == SCILAB_STD)
     {
       /* Send new prompt to Java Console, do not display it */
@@ -83,14 +86,12 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
-
-      __CommandLine = ConsoleRead();
+      __CommandLine = strdup(ConsoleRead());
     }
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-      __CommandLine = TermReadAndProcess();;
-
+      __CommandLine = TermReadAndProcess();
     }
 }
 
@@ -192,9 +193,8 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
-#ifndef _MSC_VER
-  free(__CommandLine);
-#endif
+
+  if (__CommandLine) { FREE(__CommandLine); __CommandLine = NULL;}
   __CommandLine = strdup("");
 
   if (ismenu() == 0)

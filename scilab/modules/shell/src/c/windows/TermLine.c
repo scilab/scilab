@@ -22,6 +22,7 @@
 #include "MALLOC.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */	
@@ -377,7 +378,7 @@ char *getCurrentLine(void)
 	reallocLineBuffer();
 
 	cur_line[max_pos + 1] = '\0';
-	line = _strdup(cur_line);
+	line = strdup(cur_line);
 	if (line) OemToChar(cur_line, line);
 	return line;
 }
