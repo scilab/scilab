@@ -37,7 +37,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 		LogFilename  = buildFilename(pathThisExe, LOG_FILENAME);
 		if (LogFilename)
 		{
-			#if defined(_MSC_VER) && defined(_WIN64)
+			#ifdef _WIN64
 			{
 				wchar_t* strtime = getTimeString();
 				AppendMessageToLog(strtime, LogFilename);
@@ -49,7 +49,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 				free(pathThisExe); pathThisExe = NULL;
 				return ierr;
 			}
-			#endif
+			#else
 
 			wchar_t* AtlasSpecFilename = buildFilename(pathThisExe, ATLASSPEC_FILENAME);
 
@@ -154,6 +154,7 @@ int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine
 			}
 
 			free(LogFilename); LogFilename = NULL;
+			#endif /* _WIN64 */
 		}
 		else
 		{
