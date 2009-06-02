@@ -11,6 +11,7 @@
  */
 
 #include "GetMatlabVariable.h"
+#include "freeArrayOfString.h"
 
 matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
 {
@@ -61,6 +62,7 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
   /* OTHERS LIST ENTRIES: ALL STRUCT VALUES */
   if ((structEntries = (matvar_t **) MALLOC (sizeof(matvar_t*)*(prodDims*nbFields+1))) == NULL)
     {
+      freeArrayOfString(fieldNames, nbRow * nbFields);
       Scierror(999, _("%s: No more memory.\n"), "GetStructVariable");
       return NULL;
     }
@@ -92,5 +94,6 @@ matvar_t *GetStructVariable(int stkPos, const char *name, int matfile_version)
     }
   structEntries[prodDims*nbFields] = NULL;
 
+  freeArrayOfString(fieldNames, nbRow * nbFields);
   return Mat_VarCreate(name, MAT_C_STRUCT, MAT_T_STRUCT, dimensionsVariable->rank, dimensionsVariable->data, structEntries, 0);
 }
