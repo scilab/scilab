@@ -57,6 +57,11 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 
 		getMatrixOfDouble(piAddressVarOne,&m1,&n1,&pdVarOne);
 
+		if(m1 < 0 || n1 < 0)
+		{
+			printf("iRows : %d iCols : %d\n", m1, n1);
+		}
+
 		/* BUG BIZARRE with genlib m1 = -3 and n1 = -1 */
 		if ((m1 > 0) && (n1 > 0))
 		{

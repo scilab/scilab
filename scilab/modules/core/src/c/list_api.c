@@ -18,6 +18,7 @@
 #include "CallScilab.h"
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "list_api.h"
 #include "internal_double_api.h"
 #include "internal_string_api.h"
@@ -129,7 +130,7 @@ static int createCommonNamedList(char* _pstName, int _iNameLen, int _iListType, 
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 	fillCommonList(piAddr, _iListType, _iNbItem);
 
 	Rhs = 0;
@@ -152,7 +153,7 @@ static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAd
 	int iAddr				= *Lstk(iNewPos);
 	int* piOffset		= NULL;
 
-	int iRet = getVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getCommonVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet)
 	{
 		return 1;
@@ -468,7 +469,7 @@ int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _p
 
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 	if(iRet)
 	{
 		return 1;

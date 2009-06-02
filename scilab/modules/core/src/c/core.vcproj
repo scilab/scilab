@@ -1148,6 +1148,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\internal_common_api.h"
+				>
+			</File>
+			<File
 				RelativePath=".\internal_double_api.h"
 				>
 			</File>

@@ -14,6 +14,7 @@
  */
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "int_api.h"
 
 #include "CallScilab.h"
@@ -149,7 +150,7 @@ int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _piData8, in
 	int *piAddr		= NULL;
 	char *piData8	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iRet = getVarAddressFromNumber(_iVar, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -173,7 +174,7 @@ int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _piData16,
 	int *piAddr			= NULL;
 	short *piData16	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iRet = getVarAddressFromNumber(_iVar, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -197,7 +198,7 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
 	int *piAddr		= NULL;
 	int *piData32	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iRet = getVarAddressFromNumber(_iVar, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -289,7 +290,7 @@ static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _
 	C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfInteger(piAddr, _iPrecision, _iRows, _iCols, &piData);
@@ -332,7 +333,7 @@ int getNamedMatrixOfIntegerPrecision(char* _pstName, int _iNameLen, int* _piPrec
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	getCommonVarAddressFromNumber(Fin, &piAddr);
 
 	//check variable type
 	if(piAddr[0] != sci_ints)
@@ -389,7 +390,7 @@ static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iP
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	getCommonVarAddressFromNumber(Fin, &piAddr);
 	
 	getCommonMatrixOfInteger(piAddr, _iPrecision, _piRows, _piCols, &piData);
 

@@ -16,6 +16,7 @@
 #include <string.h>
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "string_api.h"
 
 #include "CallScilab.h"
@@ -80,7 +81,7 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, 
 	int iTotalLen		= 0;
 	int *piAddr			= NULL;
 
-	int iRet = getVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getCommonVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -136,7 +137,7 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 
 
 	//write matrix information
@@ -177,7 +178,7 @@ int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _p
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	getCommonVarAddressFromNumber(Fin, &piAddr);
 	
 	return getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
 }

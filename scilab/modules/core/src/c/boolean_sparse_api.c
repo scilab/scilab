@@ -14,6 +14,7 @@
  */
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "boolean_sparse_api.h"
 
 //#include <string.h>
@@ -118,7 +119,7 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 
 	fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 

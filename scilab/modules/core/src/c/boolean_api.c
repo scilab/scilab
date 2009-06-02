@@ -15,6 +15,7 @@
 
 #include "common_api.h"
 #include "double_api.h"
+#include "internal_common_api.h"
 
 #include "CallScilab.h"
 #include "stack-c.h"
@@ -48,7 +49,7 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	int iRet = getVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getCommonVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;

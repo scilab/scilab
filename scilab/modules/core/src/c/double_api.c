@@ -14,6 +14,7 @@
  */
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "double_api.h"
 #include "internal_double_api.h"
 
@@ -72,7 +73,7 @@ int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, i
 	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iRet = getVarAddressFromNumber(_iVar, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -113,7 +114,7 @@ int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, 
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	getVarAddressFromNumber(iNewPos, _piAddress);
+	getCommonVarAddressFromNumber(iNewPos, _piAddress);
 	fillCommonMatrixOfDouble(*_piAddress, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
 	updateLstk(iNewPos, iAddr + 4, _iRows * _iCols * (_iComplex + 1) * 2);
@@ -204,7 +205,7 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
