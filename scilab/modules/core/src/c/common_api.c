@@ -47,7 +47,6 @@ int getCommonVarAddressFromNumber(int _iVar, int** _piAddress)
 	int iValType	= *istk(iAddr);
 	if(iValType < 0)
 	{
-		printf("Reference variable\n");
 		iAddr				= iadr(*istk(iAddr + 1));
 	}
 
