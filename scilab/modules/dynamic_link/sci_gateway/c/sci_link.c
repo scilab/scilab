@@ -33,6 +33,7 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 
 	char **subname = NULL;
 	int sizesubname = 0;
+	int m2 = 0, n2 = 0;
 
 	char *param3flag = NULL;
 
@@ -74,9 +75,11 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 				{
 					SharedLibraryName =(char*)MALLOC(sizeof(char)*(strlen(strings[0])+1));
 					strcpy(SharedLibraryName,strings[0]);
+					freeArrayOfString(strings, m1*n1);
 				}
 				else
 				{
+					freeArrayOfString(strings, m1*n1);
 					Scierror(999,_("%s : Wrong type for input argument #%d: %s\n"),fname,1,_("Unique dynamic library name expected."));
 					return 0;
 				}
@@ -97,7 +100,6 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 		{
 			if (VarType(2) == sci_strings)
 			{
-				int m2 = 0, n2 = 0;
 				GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&subname);
 				if ( ((m2 == 1) && (n2 >= 1)) || ((m2 >= 1) && (n2 == 1)) )
 				{
@@ -154,6 +156,11 @@ int C2F(sci_link)(char *fname,unsigned long fname_len)
 		else
 		{
 			dl_genErrorMessage(fname, ierr, SharedLibraryName);
+		}
+		
+		if (Rhs >= 2)
+		{
+			freeArrayOfString(subname,m2*n2);
 		}
 
 		if (SharedLibraryName) { FREE(SharedLibraryName); SharedLibraryName=NULL;}
