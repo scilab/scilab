@@ -13,11 +13,11 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3664
 //
 // <-- Short Description -->
-//  an error occurs when a change directory operation implies a directory name with french accent letter ('ι' for example).
+//  an error occurs when a change directory operation implies a directory name with french accent letter ('Γ©' for example).
 
 curdir = pwd();
-mkdir(TMPDIR,'cιdιωΰ');
-if cd(TMPDIR + filesep() + 'cιdιωΰ') <> TMPDIR + filesep() + 'cιdιωΰ' then pause,end
+mkdir(TMPDIR,'cΓ©dΓ©ΓΉΓ ');
+if cd(TMPDIR + filesep() + 'cΓ©dΓ©ΓΉΓ ') <> TMPDIR + filesep() + 'cΓ©dΓ©ΓΉΓ ' then pause,end
 cd(curdir);
 
-if chdir(TMPDIR + filesep() + 'cιdιωΰ') <> %T then pause,end
+if chdir(TMPDIR + filesep() + 'cΓ©dΓ©ΓΉΓ ') <> %T then pause,end
