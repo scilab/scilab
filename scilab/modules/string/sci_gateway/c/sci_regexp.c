@@ -60,28 +60,18 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
     CheckRhs(1,3);
     CheckLhs(1,3);
 
-    if (VarType(1) == sci_matrix)
-    {
-        int m1 = 0;
-        int n1 = 0;
-
-        GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&Str);
-        if ((m1 == 0) && (n1 == 0))
-        {
-            int l = 0;
-            CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&m1,&n1,&l);
-            LhsVar(1) = Rhs+1 ;
-            C2F(putlhsvar)();
-            return 0;
-        }
-    }
-    else
+    if (VarType(1) == sci_strings)
     {
         int m1 = 0;
         int n1 = 0;
 
         GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Str);
         mn = m1*n1;
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname,1);
+        return 0;
     }
 
 
