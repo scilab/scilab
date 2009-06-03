@@ -20,6 +20,8 @@
 */
 #include "scicos_block4.h"
 #include <math.h>
+#include "machine.h"
+
 extern double C2F(urand)();
 void rndblkz_m(scicos_block *block,int flag)
 {

@@ -21,6 +21,7 @@
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
+#include "machine.h"
 #include "intcscicos.h"
 #include "scoMisc.h"
 #undef Top

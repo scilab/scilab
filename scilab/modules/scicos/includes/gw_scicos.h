@@ -61,6 +61,13 @@ int C2F(sci_permutobj)(char *fname,unsigned long fname_len);
 int C2F(sci_end_scicosim)(char *fname,unsigned long fname_len);
 int sci_haltscicos(char *fname,unsigned long fname_len);
 int sci_coserror(char *fname, unsigned long fname_len);
+
+/* it wat in a separate gateway */
+int sci_data2sig(char *fname,unsigned long fname_len);
+int sci_sig2data(char *fname,unsigned long fname_len);
+int sci_model2blk(char *fname,unsigned long fname_len);
+int sci_callblk(char *fname,unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SCICOS__ */
 /*--------------------------------------------------------------------------*/

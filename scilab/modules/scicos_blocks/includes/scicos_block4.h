@@ -1,26 +1,6 @@
-/*  Scicos
-*
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 2 of the License, or
-* (at your option) any later version.
-*
-* This program is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with this program; if not, write to the Free Software
-* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
-*
-* See the file ./license.txt
-*/
-#ifndef __SCICOS_BLOCK_H__
-#define __SCICOS_BLOCK_H__
-#include "machine.h"
+#ifndef __SCICOS_BLOCK4_H__
+#define __SCICOS_BLOCK4_H__
+
 #ifdef __STDC__
 	#include <stdlib.h>
 #else
@@ -32,6 +12,57 @@
 #ifndef NULL
 	#define NULL 0
 #endif
+
+typedef void (*voidg)();
+
+/* scicos_block structure definition 
+ * WARNING: take care that this sructure is 
+ * not the same as the one in scicos_block.h 
+ * i.e same name but inptr and outptr are void **
+ */
+typedef struct {
+   int nevprt;
+   voidg funpt ;
+   int type;
+   int scsptr;
+   int nz;
+   double *z;
+   int noz;
+   int *ozsz;
+   int *oztyp;
+   void **ozptr;
+   int nx;
+   double *x;
+   double *xd;
+   double *res;
+   int *xprop;
+   int nin;
+   int *insz;
+   void **inptr;
+   int nout;
+   int *outsz;
+   void **outptr;
+   int nevout;
+   double *evout;
+   int nrpar;
+   double *rpar;
+   int nipar;
+   int *ipar;
+   int nopar;
+   int *oparsz;
+   int *opartyp;
+   void **oparptr;
+   int ng;
+   double *g;
+   int ztyp;
+   int *jroot;
+   char *label;
+   void **work;
+   int nmode;
+   int *mode;
+ } scicos_block;
+
+
 
 /* define scicos flag number */
 /**
@@ -69,64 +100,41 @@
 */
 #define ReInitialization 6
 
-/* define voidg type */
-typedef void (*voidg)();
-
-/* scicos_block structure definition */
-typedef struct {
-  int nevprt;
-  voidg funpt ;
-  int type;
-  int scsptr;
-  int nz;
-  double *z;
-  int noz;
-  int *ozsz;
-  int *oztyp;
-  void **ozptr;
-  int nx;
-  double *x;
-  double *xd;
-  double *res;
-  int nin;
-  int *insz;
-  void **inptr;
-  int nout;
-  int *outsz;
-  void **outptr;
-  int nevout;
-  double *evout;
-  int nrpar;
-  double *rpar;
-  int nipar;
-  int *ipar;
-  int nopar;
-  int *oparsz;
-  int *opartyp;
-  void **oparptr;
-  int ng;
-  double *g;
-  int ztyp;
-  int *jroot;
-  char *label;
-  void **work;
-  int nmode;
-  int *mode;
-} scicos_block;
-
 /* utility function for block declaration */
 void do_cold_restart();
 int get_phase_simulation();
 double get_scicos_time();
 int get_block_number();
 void set_block_error(int);
+int get_block_error(void);
 void end_scicos_sim();
 void set_pointer_xproperty(int* pointer);
+int* get_pointer_xproperty();
+int get_npointer_xproperty();
 void * scicos_malloc(size_t);
 void scicos_free(void *p);
-double Get_Jacobian_parameter(void);
+double Get_Jacobian_cj(void);
+double Get_Jacobian_ci(void);
 double Get_Scicos_SQUR(void);
 void Set_Jacobian_flag(int flag);
+
+int Convert_number (char *, double *);
+void homotopy(double *);
+int hfjac_(double *, double *, int *);
+int rhojac_(double *, double *,double *,double *, int *, double *,int *);
+int rho_( double *, double *,double *,double *,double *, int *);
+int fx_( double *, double *);
+int read_xml_initial_states(int ,const char * , char **, double *);
+int write_xml_states(int,const char *, char **, double *);
+double pow_(double , double );
+double exp_(double ); 
+double log_(double ); 
+
+#ifdef __STDC__
+ void Coserror(char *fmt,...);
+#else
+ void Coserror();
+#endif
 
 /* define min max for win32 */
 #ifndef WIN32
@@ -202,46 +210,52 @@ extern int s_cmp();
   * 34 - GetWorkPtrs(blk)
   * 35 - GetNstate(blk)
   * 36 - GetState(blk)
-  * 37 - GetNdstate(blk)
-  * 38 - GetDstate(blk)
+  * 37 - GetDerState(blk))
+  * 38 - GetResState(blk)
+  * 39 - GetXpropPtrs(blk)
   *
-  * 39 - GetNevIn(blk)
-  * 41 - GetNevOut(blk)
-  * 42 - GetNevOutPtrs(blk)
+  * 40 - GetNdstate(blk)
+  * 41 - GetDstate(blk)
   *
-  * 43 - GetNopar(blk)
-  * 44 - GetOparType(blk,x)
-  * 45 - GetOparSize(blk,x,y)
-  * 46 - GetOparPtrs(blk,x)
-  * 47 - GetRealOparPtrs(blk,x)
-  * 48 - GetImagOparPtrs(blk,x)
-  * 49 - Getint8OparPtrs(blk,x)
-  * 50 - Getint16OparPtrs(blk,x)
-  * 51 - Getint32OparPtrs(blk,x)
-  * 52 - Getuint8OparPtrs(blk,x)
-  * 53 - Getuint16OparPtrs(blk,x)
-  * 54 - Getuint32OparPtrs(blk,x)
-  * 55 - GetNoz(blk)
-  * 56 - GetOzType(blk,x)
-  * 57 - GetOzSize(blk,x,y)
-  * 58 - GetOzPtrs(blk,x)
-  * 59 - GetRealOzPtrs(blk,x)
-  * 60 - GetImagOzPtrs(blk,x)
-  * 61 - Getint8OzPtrs(blk,x)
-  * 62 - Getint16OzPtrs(blk,x)
-  * 63 - Getint32OzPtrs(blk,x)
-  * 64 - Getuint8OzPtrs(blk,x)
-  * 65 - Getuint16OzPtrs(blk,x)
-  * 66 - Getuint32OzPtrs(blk,x)
-  * 67 - GetSizeOfOz(blk,x)
-  * 68 - GetSizeOfOpar(blk,x)
-  * 69 - GetSizeOfOut(blk,x)
-  * 70 - GetSizeOfIn(blk,x)
+  * 42 - GetNevIn(blk)
+  * 43 - GetNevOut(blk)
+  * 44 - GetNevOutPtrs(blk)
   *
-  * 71 - GetNg(blk)
-  * 72 - GetGPtrs(blk)
-  * 73 - GetNmode(blk)
-  * 74 - GetModePtrs(blk)
+  * 45 - GetNopar(blk)
+  * 46 - GetOparType(blk,x)
+  * 47 - GetOparSize(blk,x,y)
+  * 48 - GetOparPtrs(blk,x)
+  * 49 - GetRealOparPtrs(blk,x)
+  * 50 - GetImagOparPtrs(blk,x)
+  * 51 - Getint8OparPtrs(blk,x)
+  * 52 - Getint16OparPtrs(blk,x)
+  * 53 - Getint32OparPtrs(blk,x)
+  * 54 - Getuint8OparPtrs(blk,x)
+  * 55 - Getuint16OparPtrs(blk,x)
+  * 56 - Getuint32OparPtrs(blk,x)
+  * 57 - GetNoz(blk)
+  * 58 - GetOzType(blk,x)
+  * 59 - GetOzSize(blk,x,y)
+  * 60 - GetOzPtrs(blk,x)
+  * 61 - GetRealOzPtrs(blk,x)
+  * 62 - GetImagOzPtrs(blk,x)
+  * 63 - Getint8OzPtrs(blk,x)
+  * 64 - Getint16OzPtrs(blk,x)
+  * 65 - Getint32OzPtrs(blk,x)
+  * 66 - Getuint8OzPtrs(blk,x)
+  * 67 - Getuint16OzPtrs(blk,x)
+  * 68 - Getuint32OzPtrs(blk,x)
+  * 69 - GetSizeOfOz(blk,x)
+  * 70 - GetSizeOfOpar(blk,x)
+  * 71 - GetSizeOfOut(blk,x)
+  * 72 - GetSizeOfIn(blk,x)
+  *
+  * 73 - GetNg(blk)
+  * 74 - GetGPtrs(blk)
+  * 75 - GetJrootPtrs(blk)
+  * 76 - GetNmode(blk)
+  * 77 - GetModePtrs(blk)
+  * 78 - GetLabelPtrs(blk)
   */
 
 /**
@@ -401,12 +415,12 @@ extern int s_cmp();
 #define Getuint32OutPortPtrs(blk,x) (SCSUINT32_COP *) GetOutPortPtrs(blk,x)
 
 /**
-   \brief Get number of int parameters.
+   \brief Get number of integer parameters.
 */
 #define GetNipar(blk) (blk->nipar)
 
 /**
-   \brief Get pointer of the int parameters register
+   \brief Get pointer of the integer parameters register
 */
 #define GetIparPtrs(blk) (blk->ipar)
 
@@ -434,6 +448,21 @@ extern int s_cmp();
    \brief Get pointer of the continuous state register.
 */
 #define GetState(blk) (blk->x)
+
+/**
+   \brief Get pointer of the derivative continuous state register.
+*/
+#define GetDerState(blk) (blk->xd)
+
+/**
+   \brief Get pointer of the residual continuous state register.
+*/
+#define GetResState(blk) (blk->res)
+
+/**
+   \brief Get pointer of continuous state properties register.
+*/
+#define GetXpropPtrs(blk) (blk->xprop)
 
 /**
    \brief Get number of discrete state.
@@ -642,6 +671,11 @@ extern int s_cmp();
 #define GetGPtrs(blk) (blk->g)
 
 /**
+   \brief Get pointer of the direction of the zero crossing register.
+*/
+#define GetJrootPtrs(blk) (blk->jroot)
+
+/**
    \brief Get number of modes.
 */
 #define GetNmode(blk) (blk->nmode)
@@ -650,5 +684,27 @@ extern int s_cmp();
    \brief Get pointer of the mode register.
 */
 #define GetModePtrs(blk) (blk->mode)
+
+/**
+   \brief Get pointer of the block label
+*/
+#define GetLabelPtrs(blk) (blk->label)
+
+#if _MSC_VER
+#ifdef min
+#undef min
+#endif 
+#ifdef max 
+#undef max
+#endif 
+#endif 
+
+#ifndef max
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+#endif 
+#ifndef min
+#define min(a,b) ((a) <= (b) ? (a) : (b))
+#endif
+
 
 #endif /* __SCICOS_BLOCK_H__ */

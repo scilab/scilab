@@ -398,6 +398,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\intcutilcos.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_buildouttb.c"
 				>
 			</File>

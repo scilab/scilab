@@ -18,9 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include <memory.h>
-#include "scicos_block.h"
 #include "MALLOC.h"
+#include "machine.h"
+#include "scicos_block.h"
 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
