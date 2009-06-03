@@ -45,6 +45,7 @@ int C2F(sci_warning)(char *fname,unsigned long fname_len)
 				{
 					setWarningMode(TRUE);
 				}
+				freeArrayOfString(Input_Strings,1);
 			}
 			else
 			{

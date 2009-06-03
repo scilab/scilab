@@ -26,6 +26,7 @@
 #include "axesScale.h"
 #include "getPropertyAssignedValue.h"
 #include "CurrentObjectsManagement.h"
+#include "freeArrayOfString.h"
 
 #define DEFAULT_ANGLE 0.0
 
@@ -143,31 +144,32 @@ int sci_stringbox( char * fname, unsigned long fname_len )
     text = getStringMatrixFromStack(stackPointer);
 
     /* Second and third argument should be scalars */
-    if (getScalarFromStack(2, fname, &xPos) < 0) { return 0; }
-    if (getScalarFromStack(3, fname, &yPos) < 0) { return 0; }
+    if (getScalarFromStack(2, fname, &xPos) < 0) { freeArrayOfString(text, textNbRow*textNbCol); return 0; }
+    if (getScalarFromStack(3, fname, &yPos) < 0) { freeArrayOfString(text, textNbRow*textNbCol); return 0; }
 
     if (Rhs >= 4)
     {
       /* angle is defined */
-      if (getScalarFromStack(4, fname, &angle) < 0) { return 0; }
+      if (getScalarFromStack(4, fname, &angle) < 0) { freeArrayOfString(text, textNbRow*textNbCol); return 0; }
     }
 
     if (Rhs >= 5)
     {
       double fontIdD;
       /* font style is defined */
-      if (getScalarFromStack(5, fname, &fontIdD) < 0) { return 0; }
+      if (getScalarFromStack(5, fname, &fontIdD) < 0) { freeArrayOfString(text, textNbRow*textNbCol); return 0; }
       fontId = (int) fontIdD;
     }
 
     if (Rhs >= 6)
     {
       /* font size is defined */
-      if (getScalarFromStack(6, fname, &fontSize) < 0) { return 0; }
+      if (getScalarFromStack(6, fname, &fontSize) < 0) { freeArrayOfString(text, textNbRow*textNbCol); return 0; }
     }
 
     /* compute the box */
     getTextBoundingBox(text, textNbRow, textNbCol, xPos, yPos, angle, fontId, fontSize, corners);
+    freeArrayOfString(text, textNbRow*textNbCol);
   }
   
 
