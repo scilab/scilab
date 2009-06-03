@@ -123,9 +123,12 @@ void sciblk4(Blocks,flag)
   double *le111;
 
   int *il_xd, *il_res, *il_out, *il_outptr;
+  int *il_xprop;
+
   int *il_z, *il_oz, *il_ozptr, *il_x;
   int *il_mode, *il_evout, *il_g;
   double *l_mode;
+  double *l_xprop;
 
   /* variable for output typed port */
   int nout;
@@ -511,9 +514,14 @@ void sciblk4(Blocks,flag)
    *******************************************/
    case 7 :
    {
-     /* nothing to do
-      * (only used for implicit block with set_pointer_xproperty) 
-      */
+	   if (Blocks[0].nx != 0) {
+		   /* 40 - x */
+		   il_xprop = (int *) listentry(header,40);
+		   l_xprop = (double *)(il_xprop + 4);
+		   for (nv=0;nv<Blocks[0].nx;nv++) {
+			   Blocks[0].xprop[nv]=(int) l_xprop[nv];
+		   }
+	   }
    }
    break;
 
