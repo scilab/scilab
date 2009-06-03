@@ -116,6 +116,7 @@ static int sci_strcat_three_rhs(char *fname)
 		if ( Row_Three*Col_Three != 0) typ = cstk(l3)[0];
 		if (typ != COL && typ != ROW ) 
 		{
+			freeArrayOfString(Input_String_One,mn);
 			Scierror(999,_("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"),fname,3,"c","r");
 			return 0;
 		}
@@ -154,6 +155,7 @@ static int sci_strcat_three_rhs(char *fname)
 				/* return a column matrix */ 
 				if ( (Output_String = (char**)MALLOC((Row_One+1)*sizeof(char *)))==NULL) 
 				{
+					freeArrayOfString(Input_String_One,mn);
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				}
@@ -169,17 +171,13 @@ static int sci_strcat_three_rhs(char *fname)
 					Output_String[i]=(char*)MALLOC((nchars+1)*sizeof(char));
 					if ( Output_String[i] == NULL) 
 					{
+						freeArrayOfString(Output_String,i);
+						freeArrayOfString(Input_String_One,mn);
 						Scierror(999,_("%s: No more memory.\n"),fname);
 						return 0;
 					} 
 					/* fill the string */
 					strcpy(Output_String[i],Input_String_One[i]);
-
-					if ( Output_String[i] == NULL) 
-					{
-						Scierror(999,_("%s: No more memory.\n"),fname);
-						return 0;
-					} 
 
 					for ( j = 1 ; j < Col_One ; j++ ) 
 					{
@@ -205,6 +203,7 @@ static int sci_strcat_three_rhs(char *fname)
 				/* return a row matrix */ 
 				if ( (Output_String = MALLOC((Col_One+1)*sizeof(char *)))==NULL) 
 				{
+					freeArrayOfString(Input_String_One,mn);
 					Scierror(999,_("%s: No more memory.\n"),fname);
 					return 0;
 				}
@@ -223,6 +222,8 @@ static int sci_strcat_three_rhs(char *fname)
 
 					if ( Output_String[j] == NULL) 
 					{
+						freeArrayOfString(Output_String,j);
+						freeArrayOfString(Input_String_One,mn);
 						Scierror(999,_("%s: No more memory.\n"),fname);
 						return 0;
 					} 

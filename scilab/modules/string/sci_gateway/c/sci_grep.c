@@ -200,6 +200,8 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 	{
 		if ( strlen(Strings_Input_Two[i]) == 0)
 		{
+			freeArrayOfString(Strings_Input_One,m1n1);
+			freeArrayOfString(Strings_Input_Two,m2n2);
 			Scierror(249,_("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"),fname,2);
 			return 0;
 		}

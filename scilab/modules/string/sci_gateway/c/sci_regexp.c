@@ -144,6 +144,8 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                     {
                         if (answer != NO_MATCH)
                         {
+                            freeArrayOfString(Str, mn);
+                            freeArrayOfString(Str2, mn2);
                             pcre_error(fname,answer);
                             return 0;
                         }
@@ -155,6 +157,8 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
             }
             else
             {
+                freeArrayOfString(Str, mn);
+                freeArrayOfString(Str2, mn2);
                 Scierror(999, _("%s: No more memory.\n"),fname);
                 return 0;
             }
@@ -201,6 +205,8 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
                 {
                     if (answer != NO_MATCH)
                     {
+                        freeArrayOfString(Str, mn);
+                        freeArrayOfString(Str2, mn2);
                         pcre_error(fname,answer);
                         return 0;
                     }
@@ -209,6 +215,8 @@ int C2F(sci_regexp)(char *fname,unsigned long fname_len)
         }
 		else
 		{
+                        freeArrayOfString(Str, mn);
+                        freeArrayOfString(Str2, mn2);
 			Scierror(999,_("%s: Wrong type for input argument #%d: '%s' expected.\n"),fname,3,"o");
 			return 0;
 		}

@@ -68,6 +68,7 @@ int C2F(sci_tokens)(char *fname,unsigned long fname_len)
 						{
 							if ( (int)strlen(Delimiters[i]) > 1)
 							{
+								freeArrayOfString(Delimiters,mn_Two);
 								freeArrayOfString(Input_Strings,mn_One);
 								Scierror(999,_("%s: Wrong type for input argument #%d: A character or a vector of single characters expected.\n"),fname,2);
 								return 0;

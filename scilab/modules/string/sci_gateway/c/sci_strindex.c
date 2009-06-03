@@ -183,6 +183,8 @@ int C2F(sci_strindex)(char *fname,unsigned long fname_len)
 				{
 					if (w != NO_MATCH)
 					{
+						freeArrayOfString(Strings_Input1,m1n1);
+						freeArrayOfString(Strings_Input2,m2n2);
 						pcre_error(fname,w);
 						return 0;
 					}
