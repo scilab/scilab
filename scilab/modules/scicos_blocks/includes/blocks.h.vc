@@ -77,7 +77,6 @@ extern void F2C(intrp2)(ARGS_scicos);
 extern void F2C(intrpl)(ARGS_scicos);
 extern void F2C(fsv)(ARGS_scicos);
 extern void F2C(memo)(ARGS_scicos);
-extern void F2C(diffblk)(ARGS_scicos);
 extern void absblk(ARGS_scicos);
 extern void andlog(ARGS_scicos);
 extern void bidon(ARGS_scicos);
@@ -377,8 +376,26 @@ extern void fromws_c(ARGS_scicos);
 extern void mathermit_m(ARGS_scicos);
 extern void scicosexit(ARGS_scicos);
 extern void automat(ARGS_scicos);
- 
-OpTab tabsim[] ={
+
+/* blocked with scilab 5.2 */
+extern void lookup_c (ARGS_scicos);
+extern void tablex2d_c (ARGS_scicos);
+extern void matbyscal (ARGS_scicos);
+extern void matbyscal_s (ARGS_scicos);
+extern void matbyscal_e (ARGS_scicos);
+extern void matmul2_s (ARGS_scicos);
+extern void matmul2_e (ARGS_scicos);
+extern void constraint_c (ARGS_scicos);
+extern void lookup2d (ARGS_scicos);
+extern void diffblk_c (ARGS_scicos);
+extern void foriterator (ARGS_scicos);
+extern void assignment (ARGS_scicos);
+extern void whileiterator (ARGS_scicos);
+
+#define SIZE_TAB_BLOCK_LIST 368
+int ntabsim = SIZE_TAB_BLOCK_LIST ;
+
+OpTab tabsim[SIZE_TAB_BLOCK_LIST] ={
 {"absblk",(ScicosF) absblk},
 {"absolute_value",(ScicosF) absolute_value},
 {"acos_blk",(ScicosF) acos_blk},
@@ -388,6 +405,7 @@ OpTab tabsim[] ={
 {"andlog",(ScicosF) andlog},
 {"asin_blk",(ScicosF) asin_blk},
 {"asinh_blk",(ScicosF) asinh_blk},
+{"assignment",(ScicosF) assignment},
 {"atan_blk",(ScicosF) atan_blk},
 {"atanh_blk",(ScicosF) atanh_blk},
 {"automat",(ScicosF) automat},
@@ -409,7 +427,7 @@ OpTab tabsim[] ={
 {"cmat3d",(ScicosF) cmat3d},
 {"cmatview",(ScicosF) cmatview},
 {"cmscope",(ScicosF) cmscope},
-/* {"constraint_c",(ScicosF) constraint_c}, */
+{"constraint_c",(ScicosF) constraint_c},
 {"convert",(ScicosF) convert},
 {"cos_blk",(ScicosF) cos_blk},
 {"cosblk",(ScicosF) cosblk},
@@ -443,7 +461,7 @@ OpTab tabsim[] ={
 {"delayv",(ScicosF) F2C(delayv)},
 {"demux",(ScicosF) F2C(demux)},
 {"deriv",(ScicosF) deriv},
-{"diffblk",(ScicosF) F2C(diffblk)},
+{"diffblk_c",(ScicosF) diffblk_c},
 {"dlradp",(ScicosF) F2C(dlradp)},
 {"dollar4_m",(ScicosF) dollar4_m},
 {"dollar4",(ScicosF) dollar4},
@@ -501,6 +519,7 @@ OpTab tabsim[] ={
 {"exttriu",(ScicosF) exttriu},
 {"exttriuz",(ScicosF) exttriuz},
 {"forblk",(ScicosF) F2C(forblk)},
+{"foriterator",(ScicosF) foriterator},
 {"fromws_c",(ScicosF) fromws_c},
 {"fsv",(ScicosF) F2C(fsv)},
 {"gainblk_i16e",(ScicosF) gainblk_i16e},
@@ -548,10 +567,15 @@ OpTab tabsim[] ={
 {"logicalop_ui32",(ScicosF) logicalop_ui32},
 {"logicalop_ui8",(ScicosF) logicalop_ui8},
 {"logic",(ScicosF) logic},
+{"lookup2d",(ScicosF) lookup2d},
+{"lookup_c",(ScicosF) lookup_c},
 {"lookup",(ScicosF) F2C(lookup)},
 {"lsplit",(ScicosF) F2C(lsplit)},
 {"lusat",(ScicosF) F2C(lusat)},
 {"mat_bksl",(ScicosF) mat_bksl},
+{"matbyscal_e",(ScicosF) matbyscal_e},
+{"matbyscal",(ScicosF) matbyscal},
+{"matbyscal_s",(ScicosF) matbyscal_s},
 {"mat_cath",(ScicosF) mat_cath},
 {"mat_catv",(ScicosF) mat_catv},
 {"mat_det",(ScicosF) mat_det},
@@ -561,7 +585,9 @@ OpTab tabsim[] ={
 {"mathermit_m",(ScicosF) mathermit_m},
 {"mat_inv",(ScicosF) mat_inv},
 {"mat_lu",(ScicosF) mat_lu},
+{"matmul2_e",(ScicosF) matmul2_e},
 {"matmul2_m",(ScicosF) matmul2_m},
+{"matmul2_s",(ScicosF) matmul2_s},
 {"matmul_i16e",(ScicosF) matmul_i16e},
 {"matmul_i16n",(ScicosF) matmul_i16n},
 {"matmul_i16s",(ScicosF) matmul_i16s},
@@ -718,6 +744,7 @@ OpTab tabsim[] ={
 {"switch2_m",(ScicosF) switch2_m},
 {"switch2",(ScicosF) switch2},
 {"switchn",(ScicosF) switchn},
+{"tablex2d_c",(ScicosF) tablex2d_c},
 {"tanblk",(ScicosF) F2C(tanblk)},
 {"tan_blk",(ScicosF) tan_blk},
 {"tanh_blk",(ScicosF) tanh_blk},
@@ -730,13 +757,13 @@ OpTab tabsim[] ={
 {"tows_c",(ScicosF) tows_c},
 {"trash",(ScicosF) F2C(trash)},
 {"variable_delay",(ScicosF) variable_delay},
+{"whileiterator",(ScicosF) whileiterator},
 {"writeau",(ScicosF) writeau},
 {"writec",(ScicosF) writec},
 {"writef",(ScicosF) F2C(writef)},
 {"zcross2",(ScicosF) zcross2},
 {"zcross",(ScicosF) F2C(zcross)},
 {(char *) 0, (ScicosF) 0}};
- 
-int ntabsim= 356 ;
+
 #endif 
 /***********************************/

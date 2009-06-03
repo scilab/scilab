@@ -318,7 +318,19 @@ src/c/tows_c.c \
 src/c/variable_delay.c \
 src/c/writeau.c \
 src/c/writec.c \
-src/c/zcross2.c
+src/c/zcross2.c \
+src/c/assignment.c \
+src/c/constraint_c.c \
+src/c/diffblk_c.c \
+src/c/foriterator.c \
+src/c/lookup2d.c \
+src/c/lookup_c.c \
+src/c/matbyscal_e.c \
+src/c/matbyscal_s.c \
+src/c/matmul2_e.c \
+src/c/matmul2_s.c \
+src/c/tablex2d_c.c
+src/c/whileiterator.c
 
 NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \
 src/c/scoSetProperty.c \

@@ -406,6 +406,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\assignment.c"
+				>
+			</File>
+			<File
 				RelativePath=".\atan_blk.c"
 				>
 			</File>
@@ -487,6 +491,10 @@
 			</File>
 			<File
 				RelativePath=".\cmscope.c"
+				>
+			</File>
+			<File
+				RelativePath=".\constraint_c.c"
 				>
 			</File>
 			<File
@@ -599,6 +607,10 @@
 			</File>
 			<File
 				RelativePath=".\deriv.c"
+				>
+			</File>
+			<File
+				RelativePath=".\diffblk_c.c"
 				>
 			</File>
 			<File
@@ -814,6 +826,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\foriterator.c"
+				>
+			</File>
+			<File
 				RelativePath=".\fromws_c.c"
 				>
 			</File>
@@ -950,6 +966,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\lookup2d.c"
+				>
+			</File>
+			<File
+				RelativePath=".\lookup_c.c"
+				>
+			</File>
+			<File
 				RelativePath=".\m_frequ.c"
 				>
 			</File>
@@ -1030,11 +1054,31 @@
 				>
 			</File>
 			<File
+				RelativePath=".\matbyscal.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matbyscal_e.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matbyscal_s.c"
+				>
+			</File>
+			<File
 				RelativePath=".\mathermit_m.c"
 				>
 			</File>
 			<File
+				RelativePath=".\matmul2_e.c"
+				>
+			</File>
+			<File
 				RelativePath=".\matmul2_m.c"
+				>
+			</File>
+			<File
+				RelativePath=".\matmul2_s.c"
 				>
 			</File>
 			<File
@@ -1554,6 +1598,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\tablex2d_c.c"
+				>
+			</File>
+			<File
 				RelativePath=".\tan_blk.c"
 				>
 			</File>
@@ -1579,6 +1627,10 @@
 			</File>
 			<File
 				RelativePath=".\variable_delay.c"
+				>
+			</File>
+			<File
+				RelativePath=".\whileiterator.c"
 				>
 			</File>
 			<File
