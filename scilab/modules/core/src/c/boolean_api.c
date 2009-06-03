@@ -15,6 +15,7 @@
 
 #include "common_api.h"
 #include "double_api.h"
+#include "internal_common_api.h"
 
 #include "CallScilab.h"
 #include "stack-c.h"
@@ -45,11 +46,10 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
 int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int** _piAddress)
 {
 	int *piAddr	= NULL;
-	int* piBool	= NULL;
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	int iRet = getVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getCommonVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -67,8 +67,8 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
 static int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool)
 {
 	_piAddress[0]	= sci_boolean;
-	_piAddress[1] = Min(_iRows, _iRows * _iCols);;
-	_piAddress[2] = Min(_iCols, _iRows * _iCols);;
+	_piAddress[1] = Min(_iRows, _iRows * _iCols);
+	_piAddress[2] = Min(_iCols, _iRows * _iCols);
 
 	*_piBool		= _piAddress + 3;
 	return 0;

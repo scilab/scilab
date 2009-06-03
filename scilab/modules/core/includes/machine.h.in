@@ -128,6 +128,9 @@
 /* Define to 1 if you have the `dl' library (-ldl). */
 #undef HAVE_LIBDL
 
+/* Define to 1 if you have the `hdf5' library (-lhdf5). */
+#undef HAVE_LIBHDF5
+
 /* Define to 1 if you have the <libintl.h> header file. */
 #undef HAVE_LIBINTL_H
 
@@ -365,6 +368,12 @@
 
 /* Define to the value of ${prefix}, as a string. */
 #undef INSTALLPREFIX
+
+/* libHDF5 flags */
+#undef LIBHDF5_FLAGS
+
+/* libHDF5 library */
+#undef LIBHDF5_LIBS
 
 /* libXML2 flags */
 #undef LIBXML_FLAGS

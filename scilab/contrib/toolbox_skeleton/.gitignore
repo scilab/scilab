@@ -1,13 +1,18 @@
 #
+# Generated files (common)
+#
+loader.sce
+cleaner.sce
+loader_gateway.sce
+cleaner_gateway.sce
+#
 # Generated files (Windows)
 #
 *.dll
 *.def
 *.obj
 Makelib.mak
-loader.sce
 master_help.xml
-loader_gateway.sce
 skeleton_*.c
 scilab_*_help
 #

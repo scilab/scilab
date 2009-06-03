@@ -74,7 +74,7 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/libhdf5.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -145,7 +145,7 @@ am__objects_4 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_getinstalledlookandfeels.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
-	libscigui_la-sci_displaytree.lo
+	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo
 am__objects_5 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
@@ -309,6 +309,8 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_FLAGS = @HDF5_FLAGS@
+HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
 INSTALL_DATA = @INSTALL_DATA@
@@ -709,7 +711,8 @@ sci_gateway/cpp/sci_getinstalledlookandfeels.cpp \
 sci_gateway/cpp/sci_getlookandfeel.cpp \
 sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
-sci_gateway/cpp/sci_displaytree.cpp
+sci_gateway/cpp/sci_displaytree.cpp \
+sci_gateway/cpp/sci_uiputfile.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
 	-I$(srcdir)/includes/ \
@@ -1092,6 +1095,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uigetfont.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uimenu.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiputfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_uiwait.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_unsetmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_usecanvas.Plo@am__quote@
@@ -1473,6 +1477,13 @@ libscigui_la-sci_displaytree.lo: sci_gateway/cpp/sci_displaytree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_displaytree.cpp' object='libscigui_la-sci_displaytree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_displaytree.lo `test -f 'sci_gateway/cpp/sci_displaytree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_displaytree.cpp
+
+libscigui_la-sci_uiputfile.lo: sci_gateway/cpp/sci_uiputfile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_uiputfile.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uiputfile.Tpo -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
+@am__fastdepCXX_TRUE@	mv -f $(DEPDIR)/libscigui_la-sci_uiputfile.Tpo $(DEPDIR)/libscigui_la-sci_uiputfile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uiputfile.cpp' object='libscigui_la-sci_uiputfile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
 
 libscigui_la-InitUIMenu.lo: src/cpp/InitUIMenu.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-InitUIMenu.lo -MD -MP -MF $(DEPDIR)/libscigui_la-InitUIMenu.Tpo -c -o libscigui_la-InitUIMenu.lo `test -f 'src/cpp/InitUIMenu.cpp' || echo '$(srcdir)/'`src/cpp/InitUIMenu.cpp

@@ -1072,6 +1072,9 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     return NULL;
   }
 
+  /* allocatePolyline created a "fake" relationship, destroy it */
+  FREE(pobj->relationShip);
+  
   if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
   {
     FREE(pobj->pfeatures);
@@ -2463,10 +2466,16 @@ sciPointObj * createFirstSubwin(sciPointObj * pFigure)
 void createDefaultRelationShip(sciPointObj * pObj)
 {
 	/* Create a new relationship structure */
-	sciRelationShip * relationShip = MALLOC(sizeof(sciRelationShip));
-	if (relationShip == NULL || sciGetEntityType(pObj) == SCI_LABEL)
+	sciRelationShip * relationShip = NULL;
+	if(sciGetEntityType(pObj) == SCI_LABEL)
 	{
 		/* labels have their relationShip stored in their text objects */
+		return;
+	}
+	
+	relationShip = MALLOC(sizeof(sciRelationShip));
+	if (relationShip == NULL)
+	{
 		return;
 	}
 

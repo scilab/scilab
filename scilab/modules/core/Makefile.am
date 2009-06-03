@@ -81,15 +81,19 @@ src/c/getos.c \
 src/c/mode_exec.c \
 src/c/predef.c \
 src/c/transposeMatrix.c \
+src/c/recursionFunction.c \
 src/c/common_api.c \
 src/c/double_api.c \
 src/c/int_api.c \
 src/c/poly_api.c \
 src/c/sparse_api.c \
 src/c/boolean_sparse_api.c \
+src/c/boolean_api.c \
 src/c/string_api.c \
-src/c/recursionFunction.c
-
+src/c/list_api.c \
+src/c/typename.c \
+src/c/inittypenames.c \
+src/c/funcprot.c
 
 
 if USE_DYNAMIC_STACK
@@ -195,7 +199,7 @@ src/fortran/itosci.f \
 src/fortran/stackr2d.f \
 src/fortran/stacki2d.f \
 src/fortran/stackc2i.f \
-src/fortran/isinstring.f 
+src/fortran/isinstring.f
 
 if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
@@ -263,7 +267,6 @@ sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_funcprot.f \
 sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
@@ -273,18 +276,15 @@ sci_gateway/fortran/sci_whereis.f \
 sci_gateway/fortran/sci_intppty.f \
 sci_gateway/fortran/sci_ieee.f \
 sci_gateway/fortran/sci_macrovar.f \
-sci_gateway/fortran/sci_funptr.f \
 sci_gateway/fortran/sci_exists.f \
 sci_gateway/fortran/sci_errcatch.f \
 sci_gateway/fortran/sci_clear.f \
 sci_gateway/fortran/sci_argn.f \
 sci_gateway/fortran/sci_setbpt.f \
-sci_gateway/fortran/sci_typnam.f \
 sci_gateway/fortran/sci_clearglobal.f \
 sci_gateway/fortran/sci_delbpt.f \
 sci_gateway/fortran/where.f \
 sci_gateway/fortran/sci_iserror.f \
-sci_gateway/fortran/sci_type.f \
 sci_gateway/fortran/sci_debug.f \
 sci_gateway/fortran/sci_comp.f \
 sci_gateway/fortran/sci_isglobal.f

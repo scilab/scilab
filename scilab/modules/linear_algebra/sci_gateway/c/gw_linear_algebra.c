@@ -21,7 +21,8 @@ static int C2F(intvoid)(char *fname, unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[]={
+#define LINEAR_ALGEBRA_TAB_SIZE 6
+static gw_generic_table Tab[LINEAR_ALGEBRA_TAB_SIZE]={
   {C2F(inthess),"hess"},
   {C2F(intschur),"schur"},
   {C2F(inteig),"spec"},
@@ -33,7 +34,7 @@ static gw_generic_table Tab[]={
 int gw_linear_algebra(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,LINEAR_ALGEBRA_TAB_SIZE);
 	C2F(putlhsvar)();
 	return 0;
 }

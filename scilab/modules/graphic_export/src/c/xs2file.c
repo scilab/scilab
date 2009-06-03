@@ -76,6 +76,7 @@ int xs2file(char * fname, ExportFileType fileType )
 		{
 			Scierror(999, "%s: Figure with figure_id %d does not exist.\n",fname, figurenum);
 			LhsVar(1) = 0;
+			C2F(putlhsvar)();
 			return 0;
 		}
 		/* get file name */
@@ -179,6 +180,7 @@ int xs2file(char * fname, ExportFileType fileType )
 	}
 
 	LhsVar(1) = 0;
+	C2F(putlhsvar)();
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

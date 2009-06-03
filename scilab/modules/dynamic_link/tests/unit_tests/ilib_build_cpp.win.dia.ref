@@ -48,6 +48,7 @@ ilib_build('foo',['cppfind','sci_cppfind'],files,[]);
    Running the makefile
    Compilation of sci_cppfind.cxx
    Building shared library (be patient)
+   Generate a cleaner file   
 // load the shared library
 exec loader.sce
  

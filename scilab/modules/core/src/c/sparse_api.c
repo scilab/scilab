@@ -14,6 +14,7 @@
  */
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "sparse_api.h"
 
 #include "MALLOC.h"
@@ -98,7 +99,7 @@ static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iC
 	int	iTotalSize	= 0;
 	int iPos				= 0;
 
-	getVarAddressFromNumber(iNewPos, _piAddress);
+	getCommonVarAddressFromNumber(iNewPos, _piAddress);
 	fillCommonSparseMatrix(*_piAddress, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
 	iPos	= iAddr + 5;//4 for header + 1 for NbItem
@@ -199,7 +200,7 @@ static int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iCo
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
 
 	fillCommonSparseMatrix(piAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalSize);
 
@@ -242,7 +243,6 @@ static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComp
 {
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
-	int iNbItem				= 0;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 
@@ -267,7 +267,7 @@ static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComp
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	getCommonVarAddressFromNumber(Fin, &piAddr);
 	
 	if(_iComplex == 1)
 	{

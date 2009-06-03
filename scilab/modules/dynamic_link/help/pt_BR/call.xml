@@ -53,7 +53,7 @@
         <term>xi</term>
 
         <listitem>
-          <para>real matrix or string </para>
+          <para>real matrix or string</para>
         </listitem>
       </varlistentry>
 
@@ -61,7 +61,7 @@
         <term>pxi, pyi</term>
 
         <listitem>
-          <para>inteiro </para>
+          <para>inteiro</para>
         </listitem>
       </varlistentry>
 
@@ -81,21 +81,13 @@
 
     <para>Chamada interativa ao programa do usuário FORTRAN (ou C) do Scilab.
     A rotina deve estar previamente linkada ("ligada") ao Scilab. Este link
-    pode ser feito: </para>
+    pode ser feito:</para>
 
     <itemizedlist>
       <listitem>
         <para>Com o comando "<literal>link</literal>" do Scilab (linkagem
         "suave" ("soft") incremental) durante a sessão Scilab. (ver
         <literal>link</literal>)</para>
-      </listitem>
-
-      <listitem>
-        <para>Por re-linkagem "forçosa" ("hard"), escrevendo a rotina dentro
-        da rotina Scilab <literal>default/Ex-fort.f</literal>, adicionando o
-        ponto de entrada no arquivo <literal>default/Flist</literal> e então
-        re-linkando o Scilab com o comando <literal>make bin/scilex</literal>
-        no diretório principal do Scilab.</para>
       </listitem>
     </itemizedlist>
 
@@ -106,14 +98,14 @@
     rotina FORTRAN (ou C) sem modificação do código, mas a sintaxe é mais
     complexa e o código interpretado mais devagar.</para>
 
-    <para>O significado de cada parâmetro é descrito abaixo: </para>
+    <para>O significado de cada parâmetro é descrito abaixo:</para>
 
     <variablelist>
       <varlistentry>
         <term>"ident"</term>
 
         <listitem>
-          <para>é o nome da subrotina chamada. </para>
+          <para>é o nome da subrotina chamada.</para>
         </listitem>
       </varlistentry>
 
@@ -142,7 +134,7 @@
           <para>são seus tipos (<literal>"r"</literal>,
           <literal>"i"</literal>, <literal>"d"</literal> e
           <literal>"c"</literal> para ponto flutuante real , inteiro, dupla
-          precisão e strings) </para>
+          precisão e strings)</para>
         </listitem>
       </varlistentry>
 
@@ -153,7 +145,7 @@
           <para>é a palavra-chave usada para separar variáveis de entrada das
           variáveis de saída. Quando esta palavra-chave está presente, ela
           indica que a forma longa será usada e quando não está presente,
-          indica que a forma curta será usada. </para>
+          indica que a forma curta será usada.</para>
         </listitem>
       </varlistentry>
 
@@ -163,7 +155,7 @@
         <listitem>
           <para>são os tamanhos (número de linhas e colunas. Para argumentos
           'c',<literal> m1*n1</literal> é o número de caracteres) das
-          variáveis de saída e </para>
+          variáveis de saída e</para>
         </listitem>
       </varlistentry>
 
@@ -196,21 +188,12 @@
     coincide com uma variável de entrada e são especificadas as dimensões da
     variável de saída, <literal>[myl,nyl]</literal> deve satisfazer a condição
     de compatibilidade <literal>mxk*nxk &gt;= myl*nyl</literal>.</para>
-
-    <para>No caso da sintaxe curta,
-    <literal>[y1,....,yk]=call("ident",x1,...,xn)</literal>, os parâmetros de
-    entrada <literal>xi</literal>'s e o nome <literal>"ident"</literal> são
-    enviados para a rotina de interface <literal>Ex-fort</literal>. Esta
-    rotina de interface é, então, muito semelhante a uma interface (ver código
-    fonte no diretório <literal>SCIDIR/default/Ex-fort.f</literal>).</para>
   </refsection>
 
   <refsection>
     <title>Exemplos</title>
 
-    <programlisting role="example">
-    
-    //Exemplo 1 com um código C simples
+    <programlisting role="example">    //Exemplo 1 com um código C simples
     f1=['#include &lt;math.h&gt;'
         'void fooc(c,a,b,m,n)'
          'double a[],*b,c[];'
@@ -267,11 +250,7 @@
     //usando a nova primitiva
     a=[1,2,3;4,5,6];b= %pi;
     [m,n]=size(a);
-    c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
-
-
- 
-  </programlisting>
+    c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");  </programlisting>
   </refsection>
 
   <refsection>

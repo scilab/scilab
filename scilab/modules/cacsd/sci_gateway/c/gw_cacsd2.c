@@ -21,7 +21,8 @@ static int C2F(sci_xxxx)(char *fname,unsigned long fname_len)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define CACSD2_TAB_SIZE 6
+static gw_generic_table Tab[CACSD2_TAB_SIZE]=
 {
 	{C2F(sci_xxxx),"xxxx"}, /* not used */
 	{C2F(sci_ppol),"ppol"},
@@ -33,7 +34,7 @@ static gw_generic_table Tab[]=
 /*--------------------------------------------------------------------------*/
 int gw_cacsd2(void)
 {  
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,CACSD2_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
