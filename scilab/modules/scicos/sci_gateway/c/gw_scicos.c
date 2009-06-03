@@ -27,7 +27,7 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-#define SCICOS_TAB_SIZE 27
+#define SCICOS_TAB_SIZE 28
 static gw_generic_table Tab[SCICOS_TAB_SIZE]={
 {C2F(sci_var2vec),"var2vec"},
 {C2F(sci_vec2var),"vec2var"},
@@ -55,7 +55,8 @@ static gw_generic_table Tab[SCICOS_TAB_SIZE]={
 {C2F(sci_buildouttb),"buildouttb"},
 {C2F(sci_permutobj),"permutobj"},
 {C2F(sci_end_scicosim),"end_scicosim"},
-{sci_haltscicos, "sci_haltscicos"},
+{sci_coserror, "coserror"},
+{sci_haltscicos, "sci_haltscicos"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_scicos(void)

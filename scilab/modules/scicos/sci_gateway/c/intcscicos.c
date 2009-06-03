@@ -63,6 +63,7 @@ extern void Objstring(char *fname,
 /* variable defined in scicos.c */
 extern CURBLK_struct C2F(curblk);
 struct {int isrun;} C2F(cosim); /* declaration of cosim -valable partout- */
+struct {char buf[4096];} coserr;    /* declaration of coserr -valable partout- */
 
 /* TO DO new graphics function */
 /*

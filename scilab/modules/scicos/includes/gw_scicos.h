@@ -42,6 +42,7 @@ int C2F(sci_sci_tree3)(char *fname,unsigned long fname_len);
 int C2F(sci_sci_tree4)(char *fname,unsigned long fname_len);
 int C2F(sci_curblock)(char *fname,unsigned long fname_len);
 
+
 int C2F(sci_scicos_time)(char *fname,unsigned long fname_len);
 int C2F(sci_duplicate)(char *fname,unsigned long fname_len);
 int C2F(sci_diffobjs)(char *fname,unsigned long fname_len);
@@ -59,6 +60,7 @@ int C2F(sci_buildouttb)(char *fname,unsigned long fname_len);
 int C2F(sci_permutobj)(char *fname,unsigned long fname_len);
 int C2F(sci_end_scicosim)(char *fname,unsigned long fname_len);
 int sci_haltscicos(char *fname,unsigned long fname_len);
+int sci_coserror(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SCICOS__ */
 /*--------------------------------------------------------------------------*/

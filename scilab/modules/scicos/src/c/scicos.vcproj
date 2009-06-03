@@ -402,6 +402,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_coserror.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_ctree2.c"
 				>
 			</File>
