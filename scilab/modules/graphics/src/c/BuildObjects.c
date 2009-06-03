@@ -1072,6 +1072,9 @@ ConstructPolyline (sciPointObj * pparentsubwin, double *pvecx, double *pvecy, do
     return NULL;
   }
 
+  /* allocatePolyline created a "fake" relationship, destroy it */
+  FREE(pobj->relationShip);
+  
   if (sciStandardBuildOperations(pobj, pparentsubwin) == NULL)
   {
     FREE(pobj->pfeatures);

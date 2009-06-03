@@ -29,6 +29,7 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 #include "DrawObjects.h"
+#include "freeArrayOfString.h"
 
 /*------------------------------------------------------------------------*/
 int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
@@ -37,6 +38,7 @@ int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
   sciSubWindow * ppSubWin  = NULL ;
   int            nbTicsRow = 0    ;
   int            nbTicsCol = 0    ;
+  char        ** labels    = NULL ; 
 
   if ( !isParameterTlist( valueType ) )
   {
@@ -93,7 +95,16 @@ int set_z_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType
 
   /*  labels */
 
-  ppSubWin->axes.u_zlabels = createCopyStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol ) ;
+  labels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+  if( nbTicsCol * nbTicsRow )
+  {
+    ppSubWin->axes.u_zlabels = createStringArrayCopy( labels,  nbTicsCol * nbTicsRow );
+  }
+  else
+  {
+    ppSubWin->axes.u_zlabels = NULL;
+  }
+  freeArrayOfString( labels, nbTicsRow * nbTicsCol );
 
   ppSubWin->axes.u_nzgrads = nbTicsRow * nbTicsCol ;
   ppSubWin->axes.auto_ticks[2] = FALSE ;
