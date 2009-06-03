@@ -52,7 +52,7 @@ src/fortran/scitoi.f \
 src/fortran/scifunc.f
 
 GATEWAY_C_SOURCES = sci_gateway/c/intcscicos.c \
-sci_gateway/c/intcutilcos.c
+sci_gateway/c/intcutilcos.c \
 sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
 sci_gateway/c/sci_ctree2.c \

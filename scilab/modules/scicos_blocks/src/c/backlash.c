@@ -21,7 +21,7 @@
 #include "scicos_block.h"
 #include <math.h>
 
-#if _MSC_VER
+#ifndef NULL
 #define NULL    0
 #endif
 

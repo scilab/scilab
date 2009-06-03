@@ -329,7 +329,7 @@ src/c/matbyscal_e.c \
 src/c/matbyscal_s.c \
 src/c/matmul2_e.c \
 src/c/matmul2_s.c \
-src/c/tablex2d_c.c
+src/c/tablex2d_c.c \
 src/c/whileiterator.c
 
 NON_BLOCK_C_SOURCES =  src/c/scoGetProperty.c \

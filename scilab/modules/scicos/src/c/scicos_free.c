@@ -18,13 +18,11 @@
 *
 * See the file ./license.txt
 */
+
 #include "MALLOC.h"
 #include "scicos_block.h"
 
 
-#ifndef NULL
-	#define NULL 0
-#endif
 #define SCICOS_FREE(x) FREE((char *) x);
 
 void scicos_free(void *p)
