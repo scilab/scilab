@@ -409,10 +409,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\constraint.c"
-				>
-			</File>
-			<File
 				RelativePath=".\csslti.c"
 				>
 			</File>
@@ -662,10 +658,6 @@
 			</File>
 			<File
 				RelativePath=".\affich2.f"
-				>
-			</File>
-			<File
-				RelativePath=".\constraint.f"
 				>
 			</File>
 			<File

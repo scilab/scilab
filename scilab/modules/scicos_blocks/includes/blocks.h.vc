@@ -78,7 +78,6 @@ extern void F2C(intrpl)(ARGS_scicos);
 extern void F2C(fsv)(ARGS_scicos);
 extern void F2C(memo)(ARGS_scicos);
 extern void F2C(diffblk)(ARGS_scicos);
-extern void F2C(constraint)(ARGS_scicos);
 extern void absblk(ARGS_scicos);
 extern void andlog(ARGS_scicos);
 extern void bidon(ARGS_scicos);
@@ -410,7 +409,7 @@ OpTab tabsim[] ={
 {"cmat3d",(ScicosF) cmat3d},
 {"cmatview",(ScicosF) cmatview},
 {"cmscope",(ScicosF) cmscope},
-{"constraint",(ScicosF) F2C(constraint)},
+/* {"constraint_c",(ScicosF) constraint_c}, */
 {"convert",(ScicosF) convert},
 {"cos_blk",(ScicosF) cos_blk},
 {"cosblk",(ScicosF) cosblk},
