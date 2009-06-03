@@ -17,13 +17,11 @@ dnl * what are linking flags
 AC_DEFUN([AC_LIBHDF5], [
 
 AC_ARG_WITH(libhdf5,
-		AC_HELP_STRING([--with-libhdf5=PREFIX],[Set the path to your libhdf5 installation]),
-		[with_libhdf5=$withval],
-		[with_libhdf5='yes']
-		)
+	AC_HELP_STRING([--with-hdf5],[Compile with the HDF5 library]))	
 
-#if test "$with_libhdf5" != 'yes' -a "$with_libhdf5" != 'no'; then
-#fi
+HDF5_ENABLE=no
+
+if test "$with_hdf5" == 'yes'; then
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
 		
@@ -37,13 +35,6 @@ AC_CHECK_LIB([hdf5], [H5Dopen],
                [],
                [AC_MSG_ERROR([libhdf5: library missing. (Cannot find symbol H5Dopen). Check if libhdf5 is installed and if the version is correct])]
                )
-#AC_CHECK_HEADERS([libxml/xmlreader.h])
-#AC_CHECK_HEADERS([libxml/parser.h])
-#AC_CHECK_HEADERS([libxml/tree.h])
-
-#AC_CHECK_HEADERS([libxml/xpath.h])
-#AC_CHECK_HEADERS([libxml/xpathInternals.h])
-
 CFLAGS=$saved_cflags
 LIBS="$saved_LIBS"
 
@@ -52,6 +43,14 @@ AC_SUBST(HDF5_LIBS)
 
 AC_DEFINE_UNQUOTED([LIBHDF5_FLAGS],["$HDF5_FLAGS"],[libHDF5 flags])
 AC_DEFINE_UNQUOTED([LIBHDF5_LIBS],["$HDF5_LIBS"],[libHDF5 library])
+
+AC_DEFINE([WITH_HDF5], [], [With the HDF5 library])
+HDF5_ENABLE=yes
+
+fi
+
+AC_SUBST(HDF5_ENABLE)
+AM_CONDITIONAL(HDF5, test "$with_hdf5" == yes)
 
 # Gets compilation and library flags
 ])

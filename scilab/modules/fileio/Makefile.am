@@ -43,14 +43,21 @@ src/c/cluni0.c \
 src/c/scicurdir.c \
 src/c/fullpath.c \
 src/c/fileinfo.c \
-src/c/getrelativefilename.c \
-src/c/h5_fileManagement.c \
-src/c/h5_writeDataToFile.c 
+src/c/getrelativefilename.c
+
+if HDF5
+FILEIO_SOURCES += src/c/h5_fileManagement.c \
+src/c/h5_writeDataToFile.c \
+src/c/h5_readDataFromFile.c
 
 GATEWAY_CPP_SOURCES = \
 sci_gateway/cpp/sci_export_to_hdf5.cpp \
 sci_gateway/cpp/sci_import_from_hdf5.cpp
+else
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_no_hdf5.cpp
 
+endif
 
 
 GATEWAY_SOURCES = \
