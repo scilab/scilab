@@ -12,11 +12,14 @@
 
 #include <hdf5.h>
 #include <malloc.h>
+#include <math.h>
 #include "h5_writeDataToFile.h"
+
 
 #define SCILAB_CLASS	"SCILAB_Class"
 #define DOUBLE		"double"
 #define STRING		"string"
+#define LIST			"list"
 
 
 static void addAttribute(int dataSetId, char *name, char *value)
@@ -89,12 +92,13 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
 {
   hsize_t     dims[2] = {rows, cols};
   herr_t      status;
-  hid_t       filetype, memtype, space, dset, group;
+  hid_t       space, dset, group;
   hobj_ref_t  *wdata; 
 
   char	      *groupName = (char *) malloc((strlen(dataSetName) + 3) * sizeof(char));
   char        *pstName = NULL;
   char        *pstPathName = NULL;
+	char				*pstSlash			= NULL;
   
   int	      i, j = 0;
 
@@ -103,6 +107,11 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
 
   /* Generate groupname #<dataSetName># */
   sprintf(groupName, "#%s#", dataSetName);
+	pstSlash			= strstr(groupName, "/");
+	if(pstSlash != NULL)
+	{
+		pstSlash[0]					= '_';
+	}
 
   /*
    * First create a group to store all referenced objects.
@@ -114,26 +123,26 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
    * Now create each String as a dedicated DataSet.
    */
   for (i = 0 ; i < rows ; ++i)
-    {
-      for ( j = 0 ; j < cols ; ++j)
-	{ 
-	  pstName = (char*)malloc(((int)log10((double)(i+1)) + 4) * sizeof(char)); 
-	  //1 for null termination, 1 for round value, 2 for '#' characters
-	  sprintf(pstName, "#%d#", i + rows * j);
-	  pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char)); 
-	  //1 for null termination, 1 for separator, 2 for '#' characters
-	  sprintf(pstPathName, "%s/%s", groupName, pstName);
-	  
-	  // Write the string to ref
-	  writeString(file, pstPathName, data[i + rows * j]);
-	  
-	  // create the ref
-	  status = H5Rcreate (&wdata[i * cols + j], file, pstPathName, H5R_OBJECT, -1);
+	{
+		for ( j = 0 ; j < cols ; ++j)
+		{ 
+			pstName = (char*)malloc(((int)log10((double)(i+1)) + 4) * sizeof(char)); 
+			//1 for null termination, 1 for round value, 2 for '#' characters
+			sprintf(pstName, "#%d#", i + rows * j);
+			pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char)); 
+			//1 for null termination, 1 for separator, 2 for '#' characters
+			sprintf(pstPathName, "%s/%s", groupName, pstName);
 
-	  free(pstName);
-	  free(pstPathName);
+			// Write the string to ref
+			writeString(file, pstPathName, data[i + rows * j]);
+
+			// create the ref
+			status = H5Rcreate (&wdata[i * cols + j], file, pstPathName, H5R_OBJECT, -1);
+
+			free(pstName);
+			free(pstPathName);
+		}
 	}
-    }
 
 
   /*
@@ -170,7 +179,7 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
 {
   hsize_t     dims[2] = {rows, cols};
   herr_t      status;
-  hid_t       filetype, memtype, space, dset;
+  hid_t       space, dset;
   int	      i =0, j = 0;
   double      *__data;
 
@@ -211,6 +220,79 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
   free(__data);
 
   return status;
+}
+
+//create a group and create hobj_ref_t array
+void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
+{
+  herr_t      status				= 0;
+  hid_t       group					= 0;
+
+	char	      *groupName		= (char *) malloc((strlen(pstDatasetName) + 3) * sizeof(char));
+  char        *pstName			= NULL;
+  char        *pstPathName	= NULL;
+  hobj_ref_t* pobjArray			= NULL;
+
+  /* Generate groupname #<dataSetName># */
+  sprintf(groupName, "#%s#", pstDatasetName);
+
+  /*
+   * First create a group to store all referenced objects.
+   */
+  group = H5Gcreate(_iFile, groupName, H5P_DEFAULT);
+  status = H5Gclose(group);
+
+	if(_iNbItem <= 0)
+	{
+		return NULL;
+	}
+
+	pobjArray = malloc(sizeof(hobj_ref_t) * _iNbItem);
+	if(pobjArray == NULL)
+	{
+		return NULL;
+	}
+
+	return pobjArray;
+}
+
+int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName)
+{
+	hobj_ref_t* pobjArray = (hobj_ref_t*)_pvList;
+	return H5Rcreate(&pobjArray[_iPos], _iFile, _pstItemName, H5R_OBJECT, -1);
+}
+
+int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem)
+{
+	herr_t			status = 0;
+  hsize_t     dims[1] = {_iNbItem};
+  hid_t       space, dset;
+  /*
+   * Create dataspace.  Setting maximum size to NULL sets the maximum
+   * size to be the current size.
+   */
+  space = H5Screate_simple (1, dims, NULL);
+  
+  /*
+   * Create the dataset and write the array data to it.
+   */
+  dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+  status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+  		     (hobj_ref_t*)_pvList);
+
+  /*
+   * Add attribute SCILAB_Class = string to dataset
+   */
+  addAttribute(dset, SCILAB_CLASS, LIST);
+
+  /*
+   * Close and release resources.
+   */
+  status = H5Dclose (dset);
+  status = H5Sclose (space);
+
+	free(_pvList);
+	return status;
 }
 
 /* int readDoubleMatrix(int file, char* dataSetName, double **data, int *rows, int *cols) */
