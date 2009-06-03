@@ -406,6 +406,18 @@
 				>
 			</File>
 			<File
+				RelativePath=".\kinsol.c"
+				>
+			</File>
+			<File
+				RelativePath=".\kinsol_dense.c"
+				>
+			</File>
+			<File
+				RelativePath=".\kinsol_io.c"
+				>
+			</File>
+			<File
 				RelativePath=".\nvector_serial.c"
 				>
 			</File>
@@ -460,6 +472,22 @@
 			</File>
 			<File
 				RelativePath=".\ida_impl.h"
+				>
+			</File>
+			<File
+				RelativePath=".\kinsol.h"
+				>
+			</File>
+			<File
+				RelativePath=".\kinsol_dense.h"
+				>
+			</File>
+			<File
+				RelativePath=".\kinsol_dense_impl.h"
+				>
+			</File>
+			<File
+				RelativePath=".\kinsol_impl.h"
 				>
 			</File>
 			<File

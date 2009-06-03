@@ -175,7 +175,10 @@ src/scicos_sundials/ida_io.c \
 src/scicos_sundials/cvode_io.c \
 src/scicos_sundials/sundials_smalldense.c \
 src/scicos_sundials/sundials_math.c \
-src/scicos_sundials/ida.c
+src/scicos_sundials/ida.c \
+src/scicos_sundials/kinsol_io.c \
+src/scicos_sundials/kinsol_dense.c \
+src/scicos_sundials/kinsol.c
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
