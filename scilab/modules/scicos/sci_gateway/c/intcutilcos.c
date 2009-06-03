@@ -26,6 +26,7 @@
 #include <stdio.h>
 
 #include "stack-c.h"
+#include "MALLOC.h"
 //#include "mex.h"
 #include "scicos_block4.h"
 #include "scicos.h"
