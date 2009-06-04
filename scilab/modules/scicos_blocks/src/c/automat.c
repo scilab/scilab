@@ -42,7 +42,7 @@ void automat(scicos_block *block,int flag)
 
   int* Mode;
   int  NMode, NX, Minitial,i,j,k,Mi,Mf,indice;
-  int* property;
+  int* property=GetXpropPtrs(block);
   int* iparXp;
   int* iparCx;
   double* rparX0;
@@ -56,9 +56,8 @@ void automat(scicos_block *block,int flag)
 
 
   if (flag ==4){/*----------------------------------------------------------*/
-    if ((*work=scicos_malloc(sizeof(int)*(2+NX)))== NULL ) {set_block_error(-16); return; }
+    if ((*work=scicos_malloc(sizeof(int)*(2)))== NULL ) {set_block_error(-16); return; }
     Mode=*work;
-    property=Mode+2;
     Mode[0]=Minitial;/*Current Mode;*/
     Mode[1]=Minitial;/* Previous Mode*/
     for (i=0;i<NX;i++) property[i]=0; /* xproperties*/
@@ -87,12 +86,10 @@ void automat(scicos_block *block,int flag)
 
   }else if (flag==7){/*----------------------------------------------------------*/
     Mode=*work;
-    property=Mode+2;
     Mi=Mode[0];
     for (i=0;i<NX;i++)
       property[i] = iparXp[(Mi-1)*NX+i];
 
-    set_pointer_xproperty(property);
   }else if (flag==9){/*----------------------------------------------------------*/
     Mode=*work;
     Mi=Mode[0];
