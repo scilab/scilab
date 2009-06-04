@@ -82,8 +82,6 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 						int used=0;
 
 						C2F(getstackinfo)(&currentstacksize,&used);
-printf("%d %ld\n", MEMSTACKSIZE, MEMSTACKSIZE);
-printf("%d %ld\n", currentstacksize, currentstacksize);
 
 						if (MEMSTACKSIZE != currentstacksize)
 						{
