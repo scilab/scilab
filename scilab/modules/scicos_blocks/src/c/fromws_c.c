@@ -50,9 +50,9 @@ extern void C2F(mopen)();
 extern int C2F(cluni0)(char *name, char *nams, int *ln, long int name_len,long int nams_len);
 extern void C2F(mclose)(int *fd, double *res);
 extern void sciprint(char *fmt,...);
-int Mytridiagldltsolve(double *d, double * l, double * b, int n);
-int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
-/*int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);*/
+int Mytridiagldltsolve(double *dA, double * lA, double * B, int N);
+int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k);
+
 
 /* function to check and extract data coming from an hypermat */
 int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType);
@@ -166,8 +166,11 @@ void fromws_c(scicos_block *block,int flag)
    C2F(mopen)(&fd,env,status,&swap,&res,&ierr);
 
    if (ierr!=0) {
+	   /*
      sciprint("The '%s' variable does not exist.\n",str);
      set_block_error(-3);
+	 */
+	 Coserror("The '%s' variable does not exist.\n",str);
      return;
    }
 
@@ -176,14 +179,16 @@ void fromws_c(scicos_block *block,int flag)
    C2F(mgetnc) (&fd, &Ydim[6], (j=1,&j), fmti, &ierr);     /* read sci type */
    if (Ydim[6]==17) {
      if (!Ishm(&fd,&Ytype,&nPoints,&mY,&nY,&YsubType)) {
-       sciprint("Invalid variable type.\n");
-       set_block_error(-3); 
+		 Coserror("Invalid variable type.\n");
+       /*sciprint("Invalid variable type.\n");
+       set_block_error(-3); */
        C2F(mclose)(&fd,&res);
        return;
      }
      if (!((Ytype==1) || (Ytype==8))) {
-       sciprint("Invalid variable type.\n");
-       set_block_error(-3);
+	   Coserror("Invalid variable type.\n");
+       /*sciprint("Invalid variable type.\n");
+       set_block_error(-3);*/
        C2F(mclose)(&fd,&res);
        return;
      }
@@ -197,18 +202,19 @@ void fromws_c(scicos_block *block,int flag)
      YsubType = Ydim[9]; /* subtype          */
    }
    else {
-    sciprint("Invalid variable type.\n");
-    set_block_error(-3);
+    Coserror("Invalid variable type.\n");
+    /*sciprint("Invalid variable type.\n");
+    set_block_error(-3);*/
     C2F(mclose)(&fd,&res);
     return;
    }
 
    /* check dimension for output port and variable */
    if ((mY!=my)||(nY!=ny)) {
-     sciprint("Data dimensions are inconsistent:\n\r Variable size=[%d,%d] \n\r"
-              "Block output size=[%d,%d].\n",mY,nY,my,ny);
-     set_block_error(-3);
-     C2F(mclose)(&fd,&res);
+	   Coserror("Data dimensions are inconsistent:\n\r Variable size=[%d,%d] \n\r"
+		   "Block output size=[%d,%d].\n",mY,nY,my,ny);
+	   /*set_block_error(-3);*/
+	   C2F(mclose)(&fd,&res);
      return;
    }
 
@@ -217,16 +223,16 @@ void fromws_c(scicos_block *block,int flag)
      switch (YsubType)
      {
      case 0: if (ytype!=10) {
-               sciprint("Output should be of Real type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of Real type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
              break;
 
      case 1: if (ytype!=11) {
-               sciprint("Output should be of complex type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of complex type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
@@ -245,40 +251,40 @@ void fromws_c(scicos_block *block,int flag)
              break;
 
      case 2: if (ytype!=82) {
-               sciprint("Output should be of int16 type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of int16 type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
              break;
 
      case 4: if (ytype!=84) {
-               sciprint("Output should be of int32 type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of int32 type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
              break;
 
      case 11:if (ytype!=811) {
-               sciprint("Output should be of uint8 type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of uint8 type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
              break;
 
      case 12:if (ytype!=812) {
-               sciprint("Output should be of uint16 type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of uint16 type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
              break;
 
      case 14:if (ytype!=814) {
-               sciprint("Output should be of uint32 type.\n");
-               set_block_error(-3);
+		 Coserror("Output should be of uint32 type.\n");
+		 /*set_block_error(-3);*/
                C2F(mclose)(&fd,&res);
                return;
              }
@@ -408,8 +414,8 @@ void fromws_c(scicos_block *block,int flag)
    C2F(mgetnc) (&fd, &Ydim[7], (j=3,&j), fmti, &ierr);  /* read sci header */
 
    if (nPoints!=Ydim[7]) {
-     sciprint("The size of the Time(%d) and Data(%d) vectors are inconsistent.\n",Ydim[7],nPoints);
-     set_block_error(-3);
+	   Coserror("The Time vector type is not ""double"".\n"); 
+	   /*set_block_error(-3);*/
      *(block->work)=NULL;
      scicos_free(ptr->work);
      scicos_free(ptr);
@@ -445,8 +451,8 @@ void fromws_c(scicos_block *block,int flag)
    /* check for an increasing time data */
    for(j = 0; j < nPoints-1; j++) {
      if(ptr_T[j] > ptr_T[j+1]) {
-       sciprint("The time vector should be an increasing vector.\n");
-       set_block_error(-3);
+		 Coserror("The time vector should be an increasing vector.\n");
+		 /*set_block_error(-3);*/
        *(block->work)=NULL;
        scicos_free(ptr->workt);
        scicos_free(ptr->work);
@@ -479,8 +485,9 @@ void fromws_c(scicos_block *block,int flag)
      }
 
      if((spline=(double *) scicos_malloc((3*nPoints-2)*sizeof(double)))==NULL) {
-       sciprint("Allocation problem in spline.\n");
-       set_block_error(-16);
+
+		 Coserror("Allocation problem in spline.\n");
+		 /*set_block_error(-16);*/
        *(block->work)=NULL;
        scicos_free(ptr->D);
        scicos_free(ptr->workt);
@@ -1236,7 +1243,7 @@ int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
      (ptr_i[28]!=3)  || \
      (ptr_i[29]!=4))
   {
-   sciprint("Error in hypermat scilab coding.\n");
+   Coserror("Invalid variable type : error in hypermat scilab coding.\n");
    return 0;
   }
 
@@ -1248,7 +1255,7 @@ int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
  if ((ptr_i[34]!=ptr_i[30]*ptr_i[31]*ptr_i[32]) || \
      (ptr_i[35]!=1))
   {
-   sciprint("Error in hypermat scilab coding.\n");
+   Coserror("Invalid variable type : error in hypermat scilab coding.\n");
    return 0;
   }
 
@@ -1258,54 +1265,42 @@ int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
  return 1;
 }
 
-int Mytridiagldltsolve(double *d, double * l, double * b, int n)
+int Mytridiagldltsolve(double *dA, double * lA, double * B, int N)
 {
+	double Temp;
+	int j;
 
-  /* variable declaration */
-  double temp;
-  int i;
+	for (j = 1; j <= N-1; ++j) {
+		Temp = lA[j-1];
+		lA[j-1] /= dA[j-1];
+		B[j] -= lA[j-1] * B[j-1];
+		dA[j] -= Temp * lA[j-1];
+	} 
 
-  --b;
-  --l;
-  --d;
+	B[N-1] /= dA[N-1];
+	for (j = N - 2; j >= 0; --j) {
+		B[j] = - lA[j] * B[j + 1] + B[j] / dA[j];
+	}
 
-  for (i = 2; i <= n; ++i) {
-    temp = l[i - 1];
-    l[i - 1] /= d[i - 1];
-    d[i] -= temp * l[i - 1];
-    b[i] -= l[i - 1] * b[i - 1];
-  }
-  b[n] /= d[n];
-
-  for (i = n - 1; i >= 1; --i) {
-    b[i] = b[i] / d[i] - l[i] * b[i + 1];
-  }
-
-  return 0;
+	return 0;
 }
 
-int Myevalhermite2(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
+
+int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k)
 {
-  /* variable declaration */
-  double tmxa, p, c2, c3, dx;
+	double Temp, p, p2, p3, D;
+	Temp = *t - *x1;
+	D = 1.0 / (*x2 - *x1);
+	p = (*y2 - *y1) * D;
+	p2 = (p - *d1) * D;
+	p3 = (*d2 - p + (*d1 - p)) * (D * D);
+	*z = p2 + p3 * (*t - *x2);
+	*dz = *z + p3 * Temp;
+	*ddz = (*dz + p3 * Temp) * 2.;
+	*dddz = p3 * 6.0;
+	*z = *d1 + *z * Temp;
+	*dz = *z + *dz * Temp;
+	*z = *y1 + *z * Temp;
+	return 0; 
+}  
 
-  /* if (old_i != *i) {*/
-  /*   compute the following Newton form : */
-  /*    h(t) = ya + da*(t-xa) + c2*(t-xa)^2 + c3*(t-xa)^2*(t-xb) */
-    dx = 1. / (*xb - *xa);
-     p = (*yb - *ya) * dx;
-    c2 = (p - *da) * dx;
-    c3 = (*db - p + (*da - p)) * (dx * dx);
-  /*        }         old_i = *i;*/
-
-  /*   eval h(t), h'(t), h"(t) and h"'(t), by a generalised Horner 's scheme */
-  tmxa = *t - *xa;
-  *h = c2 + c3 * (*t - *xb);
-  *dh = *h + c3 * tmxa;
-  *ddh = (*dh + c3 * tmxa) * 2.;
-  *dddh = c3 * 6.;
-  *h = *da + *h * tmxa;
-  *dh = *h + *dh * tmxa;
-  *h = *ya + *h * tmxa;
-  return 0;
-} /* evalhermite_ */
