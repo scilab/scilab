@@ -22,28 +22,30 @@
 # include "machine.h"
 #include <stdio.h>
 
+
+extern void matz_cath();
+
 void mat_cath(scicos_block *block,int flag)
 {
- double *u;
- double *y;
- int mu,nu;
- int i,j,ij,k,bk;
- 
- mu =GetInPortRows(block,1);
- y=GetRealOutPortPtrs(block,1);
-if ((flag==1) || (flag==6))
-   {for(j=0;j<mu;j++)
-        {k=j;
-	 for (bk=1;bk<GetNin(block)+1;bk++) 
-   	     {u=GetRealInPortPtrs(block,bk);
-	     nu=GetInPortCols(block,bk);
-     	     for(i=0;i<nu;i++)
-		{ij=j+i*mu;
-	 	 y[k]=u[ij];
- 		 k+= mu;
+	int mu,nu,nin,so,pointerposition,ot,i;
+	ot=GetOutType(block,1);
+	mu =GetInPortRows(block,1);
+	if (ot== SCSCOMPLEX_N){
+		matz_cath(block,flag);
+	} 
+	else{
+		void *u,*y;
+		y=GetOutPortPtrs(block,1);
+		nin=GetNin(block);
+		if ((flag==1) || (flag==6)) {
+			pointerposition=0;
+			for (i=0;i<nin;i++) { 
+				u=GetInPortPtrs(block,i+1);
+				nu=GetInPortCols(block,i+1);
+				so=GetSizeOfIn(block,i+1);
+				memcpy((int*)y+pointerposition,u,mu*nu*so);
+				pointerposition=pointerposition+mu*nu*so;
+			}
 		}
- 	     }
 	}
-    }
 }
-
