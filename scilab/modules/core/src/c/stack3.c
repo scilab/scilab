@@ -1746,7 +1746,7 @@ int iGetListItemSparse(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 	return 0;
 }
 
-int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char** _pszData)
+int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData)
 {
 	int iAddrData	= 0;
 	int iAddrItem	= iGetAddressFromItemNumber(_iVar, _iItemNumber);
@@ -1756,7 +1756,7 @@ int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 	if(iAddrData == 0 || _pszData == NULL)
 		return 0;
 
-	code2str(_pszData, (int*) cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
+	code2str(&_pszData, (int*) cstk(iAddrData), iArraySum(_piLen, 0, *_piRows * *_piCols));
 	return 0;
 }
 
@@ -1802,7 +1802,7 @@ int* iGetListItemList(int _iVar, int* _piParentList, int _iItemPos)
 }
 
 //Get SubItem String
-int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char** _pszData)
+int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData)
 {
 	int *piString = NULL;
 	int* piItemAdd = iGetListItemPointerFromItemNumber(_iVar, _piParentList, _iItemNumber);
@@ -1819,7 +1819,7 @@ int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *
 		return 0;
 	}
 
-	code2str(_pszData, piString, iArraySum(_piLen, 0, *_piRows * *_piCols));
+	code2str(&_pszData, piString, iArraySum(_piLen, 0, *_piRows * *_piCols));
 	{
 		return 0;
 	}

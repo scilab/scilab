@@ -100,10 +100,10 @@ int iGetListItemDouble(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, 
 /* Does Item Complex */
 int iIsComplexItemElem(int _iVar, int _iItemNumber);
 /* Get Item String */
-int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char** _pszData);
+int iGetListItemString(int _iVar, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
 /* Get SubItem String */
-int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char** _pszData);
+int iGetListSubItemString(int _iVar, int* _piParentList, int _iItemNumber, int *_piRows, int *_piCols, int *_piLen, char* _pszData);
 
 /*Create List*/
 /* Reserved VarNum for List */
