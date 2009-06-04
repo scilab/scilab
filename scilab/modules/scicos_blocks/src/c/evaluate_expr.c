@@ -66,7 +66,7 @@ void evaluate_expr(scicos_block *block,int flag)
   static double stack [1000];
   static int count,bottom,nzcr,i,phase; 
   int j;  
-  if (flag==1||flag==9){
+  if (flag==1||flag==6||flag==9){
     phase=get_phase_simulation();
     bottom=-1;
     count=-1;
@@ -521,6 +521,7 @@ void evaluate_expr(scicos_block *block,int flag)
     #else
      if(isinf(stack[bottom])||isnan(stack[bottom])){
     #endif
+	  if (flag==6) return;
       set_block_error(-2);
       return;
     }else{
