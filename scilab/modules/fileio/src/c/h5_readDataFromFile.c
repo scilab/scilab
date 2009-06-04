@@ -11,6 +11,7 @@
  */
 
 #include <hdf5.h>
+#include <stdio.h>
 #include "stack-c.h"
 #include "h5_attributeConstants.h"
 
