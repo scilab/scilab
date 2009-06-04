@@ -53,8 +53,8 @@ void selector_m(scicos_block *block,int flag)
       {
        mu=GetInPortRows(block,1);
        nu=GetInPortCols(block,1);
-       u=GetRealInPortPtrs(block,1);
-       y=GetRealOutPortPtrs(block,ic);
+	   u=GetInPortPtrs(block,1);
+	   y=GetOutPortPtrs(block,ic);
        so=GetSizeOfIn(block,1);
        memcpy(y,u,mu*nu*so);
        }
