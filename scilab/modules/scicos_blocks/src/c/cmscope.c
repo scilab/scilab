@@ -59,6 +59,7 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   int * number_of_curves_by_subwin;
   int number_of_subwin;
   int nbr_total_curves;
+  char *label;
 
 
   rpar = GetRparPtrs(block);
@@ -71,6 +72,7 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   win_pos[1] = ipar[4];
   win_dim[0] = ipar[5];
   win_dim[1] = ipar[6];
+  label = GetLabelPtrs(block);
   nbr_total_curves = 0;
   //Don't forget malloc for 'type *'
   number_of_curves_by_subwin = (int*)scicos_malloc(number_of_subwin*sizeof(int));
@@ -129,7 +131,7 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, xmin, xmax, ymin, ymax, NULL, NULL);
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"t","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
 
   /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
   /* 	scoAddPolylineLineStyle(*pScopeMemory,colors); */

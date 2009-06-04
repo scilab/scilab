@@ -62,6 +62,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   int number_of_curves_by_subwin;
   int dimension = 2;
   int nbr_curves;
+  char *label;
 
   ipar = GetIparPtrs(block);
   nipar = GetNipar(block);
@@ -82,6 +83,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   xmax = rpar[1];
   ymin = rpar[2];
   ymax = rpar[3]; 
+  label = GetLabelPtrs(block);
   number_of_subwin = 1;
 
   /* If only one element to draw*/
@@ -186,7 +188,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
     }
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 }
 

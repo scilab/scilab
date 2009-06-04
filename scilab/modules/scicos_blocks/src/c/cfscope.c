@@ -57,6 +57,7 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   int nbr_of_curves;
   int color_flag;
   int * colors;
+  char *label;
 
   rpar = GetRparPtrs(block);
   ipar = GetIparPtrs(block);
@@ -68,6 +69,7 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   period = rpar[3];
   ymin  = rpar[1];
   ymax = rpar[2];
+  label = GetLabelPtrs(block);
 
   dimension = 2;
   win_pos[0] = ipar[11];
@@ -101,7 +103,7 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, NULL, NULL);
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"t","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
       
   /*Add a couple of polyline : one for the shortdraw and one for the longdraw*/
       scoAddCoupleOfPolylines(*pScopeMemory,colors);

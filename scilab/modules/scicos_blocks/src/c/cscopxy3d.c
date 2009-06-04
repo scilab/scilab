@@ -57,6 +57,7 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
   int dimension = 3;
   int i;
   int size=0;
+  char *label;
   scoGraphicalObject ShortDraw;
   scoGraphicalObject LongDraw;
 
@@ -66,6 +67,7 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
   win = ipar[0];
   color_number = ipar[1];
   buffer_size = ipar[2];
+  label = GetLabelPtrs(block);
   color = (int*)scicos_malloc(color_number*sizeof(int));
   line_size = (int*)scicos_malloc(color_number*sizeof(int));
   for(i = 0 ; i < color_number ; i++)
@@ -103,7 +105,7 @@ void cscopxy3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int first
     {
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->alpha = alpha;
       pSUBWIN_FEATURE(scoGetPointerAxes(*pScopeMemory,0))->theta = theta;	
-      scoAddTitlesScope(*pScopeMemory,"x","y","z");
+      scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
       
 	
       for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(*pScopeMemory,0) ; i++)

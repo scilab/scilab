@@ -912,14 +912,11 @@ void scoAddRectangleForLongDraw(ScopeMemory * pScopeMemory, int i, int j, double
   scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 }
 
-void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
+void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char * y, char * z)
 {
   extern int get_block_number();
   int i;
   int nxname;
-  int kfun;
-  char buf[40];
-  int i__1;
   char ** title=NULL;
   char * x_title=NULL;
   char * y_title;
@@ -967,22 +964,22 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * x, char * y, char * z)
   scicos_free(title);
 
   /* Code for naming the window*/
-  nxname = 40;
-  kfun = get_block_number();
-  C2F(getlabel)(&kfun, buf, &nxname);
-  if(nxname > 39)
-    {
-      nxname = 39;
-    }
-  i__1 = nxname;
-  *(buf+i__1) = *"\000";
-  if((nxname == 1 && *(unsigned char *)buf == ' ') || (nxname ==0))
+  if (label != NULL)
+  {
+	nxname = strlen(label);
+	if (nxname > 39) 
+	{
+		nxname = 39;
+	}
+  }
+  *(label + nxname) = *"\000";
+  if((nxname == 1 && *(unsigned char *)label == ' ') || (nxname ==0))
     {
       /*do nothing*/
     }
   else
     {
-      sciSetName(scoGetPointerScopeWindow(pScopeMemory), buf);
+      sciSetName(scoGetPointerScopeWindow(pScopeMemory), label);
     }
   /*End of code for naming window */
   sciSetUsedWindow(scoGetWindowID(pScopeMemory));

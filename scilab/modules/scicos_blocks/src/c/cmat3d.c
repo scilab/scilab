@@ -56,6 +56,7 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
   int size_mat;
   int size_in_x;
   int size_in_y;
+  char *label;
   scoGraphicalObject pShortDraw;
 
   /*Retrieve parameters from the scicos_model() which has been created thanks to the interfacing function*/
@@ -95,6 +96,7 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
   zmin = ipar[0];
   zmax = ipar[1];
   number_of_curves_by_subwin = 1;
+  label = GetLabelPtrs(block);
 
   /*Allocating memory for scope only if the window has to be created and not redraw*/
   if(firstdraw == 1)
@@ -138,7 +140,7 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
 	      pSURFACE_FEATURE(pShortDraw)->pvecy[i] = ymin + i*h_y;
 	    } 
 	}
-      scoAddTitlesScope(*pScopeMemory,"x","y","z");
+      scoAddTitlesScope(*pScopeMemory,label,"x","y","z");
     }
   /*Dont forget to free your scicos_malloc or MALLOC*/
   scicos_free(mat);

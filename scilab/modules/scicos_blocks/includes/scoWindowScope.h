@@ -242,11 +242,12 @@ void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory);
 /**
    \brief Add Titles and Backgound on the scope
    \param pScopeMemory a pointer on a ScopeMemory
+   \param label a string to be printed on the title of the graphic window
    \param x a string to be printed on x
    \param y a string to be printed on y
    \param z a string to be printed on z (can be NULL)
  */
-void scoAddTitlesScope(ScopeMemory * pScopeMemory,char * x, char * y, char * z);
+void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char * y, char * z);
 
 /**
    \brief Draw a Scope libe ANIMXY or ANIMXY3D

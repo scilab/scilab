@@ -57,6 +57,7 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   int number_of_curves_by_subwin;
   double xmin, xmax, ymin, ymax;
   int win_pos[2], win_dim[2];
+  char *label;
 
   /* Initialization */
   ipar =  GetIparPtrs(block);
@@ -65,6 +66,7 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   rpar = GetRparPtrs(block);
   period = rpar[0];
   nipar = GetNipar(block);
+  label = GetLabelPtrs(block);
   nbr_colors = nipar-6;
   colors=(int*)scicos_malloc(nbr_colors*sizeof(int));
   for( i = 2 ; i < nbr_colors+2 ; i++)
@@ -97,7 +99,7 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   scoInitOfWindow(*pScopeMemory, dimension, win, win_pos, win_dim, &xmin, &xmax, &ymin, &ymax, NULL, NULL);
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
-      scoAddTitlesScope(*pScopeMemory,"t","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"t","y",NULL);
       scoAddCoupleOfSegments(*pScopeMemory,colors);
     }
   scicos_free(colors);

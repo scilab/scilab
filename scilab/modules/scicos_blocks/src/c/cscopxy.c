@@ -57,6 +57,7 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   int number_of_curves_by_subwin;
   int dimension = 2;
   int i;
+  char *label;
   scoGraphicalObject ShortDraw;
   scoGraphicalObject LongDraw;
 
@@ -78,6 +79,7 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
   xmax = rpar[1];
   ymin = rpar[2];
   ymax = rpar[3];
+  label = GetLabelPtrs(block);
 
   number_of_subwin = 1;
   number_of_curves_by_subwin = ipar[10]; //it is a trick to recognize the type of scope, not sure it is a good way because normally a curve is the combination of a short and a longdraw
@@ -104,7 +106,7 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	  sciSetLineWidth(LongDraw, line_size);
 	  sciSetMarkSize(LongDraw, line_size);
 	}
-      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 
 	/* use only single buffering to be sure to draw on the screen */

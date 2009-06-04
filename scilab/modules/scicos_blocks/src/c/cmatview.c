@@ -54,6 +54,7 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   int number_of_subwin;
   double * mat;
   int size_mat;
+  char *label;
 
   rpar = GetRparPtrs(block);
   ipar = GetIparPtrs(block);
@@ -75,6 +76,7 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   ymin = 0;
 
   number_of_curves_by_subwin = 1;
+  label = GetLabelPtrs(block);
 
   /*Allocating memory*/
 
@@ -88,7 +90,7 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   if(scoGetScopeActivation(*pScopeMemory) == 1)
     {
       sciSetColormap(scoGetPointerScopeWindow(*pScopeMemory), mat , size_mat/3, 3);
-      scoAddTitlesScope(*pScopeMemory,"x","y",NULL);
+      scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
       scoAddGrayplotForShortDraw(*pScopeMemory,0,0,GetInPortSize(block,1,1),GetInPortSize(block,1,2));
     }
   scicos_free(mat);
