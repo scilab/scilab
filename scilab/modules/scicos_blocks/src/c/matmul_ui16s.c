@@ -42,9 +42,10 @@ void matmul_ui16s(scicos_block *block,int flag)
        for (l=0;l<nu2;l++)
 	    {for(j=0;j<mu1;j++)
 	        {D=0;
+	         jl=j+l*mu1;
 	        for(i=0;i<nu1;i++)
 		   {ji=j+i*mu1;
-		    jl=j+l*mu1;
+		    
 		    il=i+l*nu1;
 		    C=(double)(u1[ji])*(double)(u2[il]);
 		    D=D + C;}
