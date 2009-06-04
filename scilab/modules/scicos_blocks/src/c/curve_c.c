@@ -78,7 +78,7 @@ void curve_c(scicos_block *block,int flag)
               ind=*block->work;
               t=get_scicos_time();
 	      if (Periodic==1) {
-		t=t-(ind[3]-1)*T;
+			  if (ind[3] > 0) t = t-(ind[3]-1)*T;
 	      }
 
 	      inow=nPoints-1;
