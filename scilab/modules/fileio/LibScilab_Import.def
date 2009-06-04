@@ -44,3 +44,10 @@ getVarDimension
 allocMatrixOfBoolean
 getListItemAddress
 getListItemNumber
+getScilabTypeFromDataSet
+getDataSetId
+createMatrixOfDouble
+readDoubleMatrix
+getDataSetDims
+createMatrixOfString
+readStringMatrix
