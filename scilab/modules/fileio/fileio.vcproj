@@ -469,6 +469,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\h5_readDataFromFile.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\h5_writeDataToFile.c"
 				>
 			</File>
