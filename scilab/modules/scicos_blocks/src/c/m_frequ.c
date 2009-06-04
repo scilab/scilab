@@ -47,10 +47,9 @@ void m_frequ(scicos_block *block,int flag)
                 set_block_error(-16);
                 return;
               }
-              counter=*block->work;
-              if (*icount!=0) (*counter)=(int)mat[0];
-              else *counter=0;
-              (*(counter+1))=*icount;
+			  counter=*block->work;
+			  *counter=*icount;
+			  (*(counter+1))=0;
               break;
              }
 
