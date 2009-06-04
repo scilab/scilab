@@ -24,7 +24,7 @@
 
 void  switch2_m(scicos_block *block,int flag)
 {
-  int i,phase,ipar,mu,nu,so;
+  int i = 0,phase = 0,ipar = 0,mu = 0,nu = 0,so = 0;
   int *iparptrs;
   double *rpar;
   double *u2;

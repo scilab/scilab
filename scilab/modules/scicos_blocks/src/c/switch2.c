@@ -23,7 +23,7 @@
 
 void  switch2(scicos_block *block,int flag)
 {
-  int i,j,phase;
+  int i = 0,j = 0,phase = 0;
   if (flag == 1) {
     phase=get_phase_simulation();
     if (phase==1||block->ng==0){
