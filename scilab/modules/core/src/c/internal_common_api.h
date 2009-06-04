@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - INRIA - Antoine ELIAS
+ * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +12,7 @@
 #ifndef __INTERNAL_COMMON_API__
 #define __INTERNAL_COMMON_API__
 
-int getCommonVarAddressFromNumber(int _iVar, int** _piAddress);
+int getNewVarAddressFromNumber(int _iVar, int** _piAddress);
 
 #endif /* __INTERNAL_COMMON_API__ */
 

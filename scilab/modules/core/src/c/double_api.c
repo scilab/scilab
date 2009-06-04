@@ -73,13 +73,7 @@ int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, i
 	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
 
-	int iRet = getVarAddressFromNumber(_iVar, &piAddr);
-	if(iRet != 0)
-	{
-		return 1;
-	}
-
-	iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL, &piAddr);
+	int iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -114,10 +108,10 @@ int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, 
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	getCommonVarAddressFromNumber(iNewPos, _piAddress);
+	getNewVarAddressFromNumber(iNewPos, _piAddress);
 	fillCommonMatrixOfDouble(*_piAddress, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
-	updateLstk(iNewPos, iAddr + 4, _iRows * _iCols * (_iComplex + 1) * 2);
+	updateLstk(iNewPos, iAddr + 4, _iRows * _iCols * (_iComplex + 1));
 	return 0;
 }
 
@@ -205,7 +199,7 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromNumber(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
