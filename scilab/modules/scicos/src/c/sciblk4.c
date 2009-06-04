@@ -154,7 +154,7 @@ void sciblk4(Blocks,flag)
   /****************************
    * create scilab tlist Blocks
    ****************************/
-  if((createblklist(&Blocks[0], &ierr,(i=-1),kfun))==0) goto err;
+  if((createblklist(&Blocks[0], &ierr,(i=-1),funtyp[kfun-1]))==0) goto err;
 
   /* * flag * */
   C2F(itosci)(&flag,(i=1,&i),(j=1,&j));
