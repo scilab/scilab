@@ -18,6 +18,8 @@
 @sa http://netbsd.gw.com/cgi-bin/man-cgi?sysctl+3+NetBSD-4.0
 @sa http://cvsweb.netbsd.org/bsdweb.cgi/pkgsrc/math/scilab/patches/patch-aj?annotate=1.9
 */
+#include <stdio.h>
+
 #include "getmemory.h"
 
 #if defined(__NetBSD__) || defined(__DragonFly__)
@@ -90,6 +92,8 @@ int getfreememory(void)
       /* Read Cached, Buffers and MemFree from /proc/meminfo */
       while(fscanf(fp, "%8s %lld %3s\n", field, &data, unit) != EOF)
       {
+	// YC
+	printf("field = %s data = %d unit = %s\n", field, data, unit);
         if(!strncmp("MemFree:", field, 8))
           free = data;
         else if(!strncmp("Buffers:", field, 8))
