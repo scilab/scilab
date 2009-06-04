@@ -31,6 +31,7 @@
 
 #include "SetPropertyStatus.h"
 #include "GetScreenProperty.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sciGet(sciPointObj *pobj,char *marker);
 /*--------------------------------------------------------------------------*/
@@ -74,11 +75,13 @@ int sci_get(char *fname,unsigned long fname_len)
 
 				if (m1*n1 != 1)
 				{
+					freeArrayOfString(stkAdr, m1 * n1);
 					Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "get",2);
 					return SET_PROPERTY_ERROR;
 				}
 
 				status = GetScreenProperty(stkAdr[0]);
+				freeArrayOfString(stkAdr, m1 * n1);
 
 				if(status != SET_PROPERTY_SUCCEED) /* Return property */
 				{
