@@ -126,9 +126,10 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
 	{
 		for ( j = 0 ; j < cols ; ++j)
 		{ 
-			pstName = (char*)malloc(((int)log10((double)(i+1)) + 4) * sizeof(char)); 
+			pstName = (char*)malloc(((int)log10((double)(i + rows * j + 1)) + 4) * sizeof(char)); 
 			//1 for null termination, 1 for round value, 2 for '#' characters
 			sprintf(pstName, "#%d#", i + rows * j);
+
 			pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char)); 
 			//1 for null termination, 1 for separator, 2 for '#' characters
 			sprintf(pstPathName, "%s/%s", groupName, pstName);
