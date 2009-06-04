@@ -19,8 +19,8 @@
 * See the file ./license.txt
 */
 #include <math.h>
-#include "scicos_block.h"
 #include "MALLOC.h"
+#include "scicos_block.h"
 
 #if _MSC_VER
 #define max(a,b) ((a) >= (b) ? (a) : (b))
