@@ -27,7 +27,8 @@
 
 void ratelimiter(scicos_block *block,int flag)
 {/*  rpar[0]=rising rate limit, rpar[1]=falling rate limit */
-  double* pw,rate,t;
+  double* pw;
+  double rate = 0. , t = 0.;
   if (flag == 4){/* the workspace is used to store previous values */
     if ((*block->work=
 	 scicos_malloc(sizeof(double)*4))== NULL ) {
