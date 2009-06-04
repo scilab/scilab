@@ -99,7 +99,7 @@ static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iC
 	int	iTotalSize	= 0;
 	int iPos				= 0;
 
-	getCommonVarAddressFromNumber(iNewPos, _piAddress);
+	getNewVarAddressFromNumber(iNewPos, _piAddress);
 	fillCommonSparseMatrix(*_piAddress, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
 	iPos	= iAddr + 5;//4 for header + 1 for NbItem
@@ -200,7 +200,7 @@ static int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iCo
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromNumber(Top, &piAddr);
 
 	fillCommonSparseMatrix(piAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalSize);
 
@@ -267,7 +267,8 @@ static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComp
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getCommonVarAddressFromNumber(Fin, &piAddr);
+	//WARNING check in VarType can be negative
+	getNewVarAddressFromNumber(Fin, &piAddr);
 	
 	if(_iComplex == 1)
 	{

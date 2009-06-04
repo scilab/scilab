@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2009 - INRIA - Antoine ELIAS
+* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -103,7 +103,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, &pstFilename);
 
 	//open hdf5 file
-	int iH5File = openHDF5File(pstFilename); 
+	int iH5File = createHDF5File(pstFilename); 
 
 	// export data
 	bool bExport = export_data(iH5File, piVar, pstVarName);

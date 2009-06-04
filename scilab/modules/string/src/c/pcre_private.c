@@ -740,6 +740,7 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
 							(*pcre_free)((void *)tables);
 							setlocale(LC_CTYPE, "C");
 						}
+						if (back_p) FREE(back_p);
 						return PCRE_FINISHED_OK;
 					}
 				}
@@ -826,9 +827,9 @@ pcre_error_code pcre_private(char *INPUT_LINE,char *INPUT_PAT,int *Output_Start,
         }
 	}  /* End of loop for /g and /G */
 
+	FREE(back_p);
     continue;
     }    /* End of loop for data lines */
-	FREE(back_p);
   }
 	
 	FREE(buffer);

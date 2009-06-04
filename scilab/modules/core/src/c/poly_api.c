@@ -142,7 +142,7 @@ static int createCommonMatrixOfPoly(int _iVar, int _iComplex, char* _pstVarName,
 	int iAddr					= *Lstk(iNewPos);
 	int iTotalLen			= 0;
 
-	int iRet = getCommonVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -238,7 +238,7 @@ static int createCommonNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, c
 	C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getCommonVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromNumber(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfPoly(piAddr, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
@@ -293,7 +293,8 @@ static int readCommonNamedMatrixOfPoly(char* _pstName, int _iNameLen, int _iComp
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getCommonVarAddressFromNumber(Fin, &piAddr);
+	//WARNING check in VarType can be negative
+	getNewVarAddressFromNumber(Fin, &piAddr);
 	
 	if(_iComplex == 1)
 	{

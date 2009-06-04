@@ -90,6 +90,7 @@ int sci_part(char *fname,unsigned long fname_len)
 	
 	if ( !( (m2 == 1 && n2 > 0) || (m2 > 0 && n2 == 1) ) )
 	{
+		freeArrayOfString(Input_StringMatrix,m1n1);
 		Scierror(89,_("%s: Wrong size for input argument #%d.\n"),fname,2);
 		return 0;
 	}
