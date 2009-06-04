@@ -33,7 +33,7 @@ int sci_get_absolute_file_path(char *fname,unsigned long fname_len)
 
 	if (GetType(1) != sci_strings)
 	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname);
+		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname,1);
 		return 0;
 	}
 	else
@@ -114,7 +114,8 @@ int sci_get_absolute_file_path(char *fname,unsigned long fname_len)
 		}
 		else
 		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname);
+			freeArrayOfString(parametersIN,m1*n1);
+			Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"),fname,1);
 		}
 	}
 	return 0;

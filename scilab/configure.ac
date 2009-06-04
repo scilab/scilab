@@ -1679,9 +1679,13 @@ echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
 
 echo "" 
-echo "HDF5 configuration:"
-echo "  HDF5_FLAGS .......... = $HDF5_FLAGS"
-echo "  HDF5_LIBS ........... = $HDF5_LIBS"
+if test $HDF5_ENABLE = yes;  then
+   echo "HDF5 configuration:"
+   echo "  HDF5_FLAGS .......... = $HDF5_FLAGS"
+   echo "  HDF5_LIBS ........... = $HDF5_LIBS"
+else
+   echo "Not using HDF5"
+fi
 
 echo "" 
 echo "PCRE configuration:"

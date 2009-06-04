@@ -1,32 +1,32 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - INRIA - Antoine ELIAS
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - INRIA - Antoine ELIAS
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 extern "C"
 {
-	#include <string.h>
-	#include <stdio.h>
-	#include "gw_fileio.h"
-	#include "stack-c.h"
-	#include "MALLOC.h"
-	#include "Scierror.h"
-	#include "localization.h"
-	#include "sciprint.h"
-	#include "variable_api.h"
-	#include "h5_fileManagement.h"
-	#include "h5_writeDataToFile.h"
+#include <string.h>
+#include <stdio.h>
+#include "gw_fileio.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "variable_api.h"
+#include "h5_fileManagement.h"
+#include "h5_writeDataToFile.h"
 }
 
 bool export_data(int _iH5File, int *_piVar, char* _pstName);
-bool export_list(int *_piVar, char* _pstName);
+bool export_list(int _iH5File, int *_piVar, char* _pstName);
 bool export_double(int _iH5File, int *_piVar, char* _pstName);
 bool export_poly(int *_piVar, char* _pstName);
 bool export_boolean(int *_piVar, char* _pstName);
@@ -42,7 +42,8 @@ bool export_lib(int *_piVar, char* _pstName);
 bool export_lufact_pointer(int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
-int iTab;
+
+
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 {
@@ -100,8 +101,6 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, NULL);
 	pstFilename = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));//1 for null termination
 	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, &pstFilename);
-
-	iTab = 0;
 
 	//open hdf5 file
 	int iH5File = openHDF5File(pstFilename); 
@@ -198,7 +197,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 	case sci_tlist :
 	case sci_mlist :
 		{
-			bReturn = export_list(_piVar, _pstName);
+			bReturn = export_list(_iH5File, _piVar, _pstName);
 			break;
 		}
 	case sci_lufact_pointer :
@@ -210,14 +209,13 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 	return bReturn;
 }
 
-bool export_list(int *_piVar, char* _pstName)
+bool export_list(int _iH5File, int *_piVar, char* _pstName)
 {
 	bool bReturn = false;
 	int iItemNumber = 0;
 	getListItemNumber(_piVar, &iItemNumber);
 
-	//open list
-	//create groupe
+	//create groupe name
 	char* pstGroupName	= strdup(_pstName);
 	char* pstSlash			= strstr(pstGroupName, "/");
 	if(pstSlash != NULL)
@@ -229,7 +227,8 @@ bool export_list(int *_piVar, char* _pstName)
 	sprintf(pstMsg, "%s (list of %d items)", pstGroupName, iItemNumber);
 	print_type(pstMsg);
 
-	iTab++;
+	//open list
+	void *pvList = openList(_iH5File, pstGroupName, iItemNumber);
 	for(int i = 0 ; i < iItemNumber ; i++)
 	{
 		int *piNewVar = NULL;
@@ -241,27 +240,24 @@ bool export_list(int *_piVar, char* _pstName)
 		}
 
 		char* pstName	= NULL;
-		pstName				= (char*)MALLOC((
-			(int)log10((double)(i+1)) + 4) * sizeof(char)); //1 for null termination, 1 for round value, 2 for '#' characters
+		pstName				= (char*)MALLOC(((int)log10((double)(i+1)) + 4) * sizeof(char)); //1 for null termination, 1 for round value, 2 for '#' characters
 		sprintf(pstName, "#%d#", i);
 
 		char *pstPathName	= NULL;
 		pstPathName				= (char*)MALLOC((strlen(pstGroupName) + strlen(pstName) + 4) * sizeof(char)); //1 for null termination, 1 for separator, 2 for '#' characters
 
 		sprintf(pstPathName, "#%s#/%s", pstGroupName, pstName);
-		//bReturn				= export_data(piNewVar, pstPathName);
+		bReturn				= export_data(_iH5File, piNewVar, pstPathName);
+		addItemInList(_iH5File, pvList, i, pstPathName);
 
-//		print_type(pstGroupName);
 		FREE(pstName);
 		FREE(pstPathName);
-		//create ref
-		//add ref in list
 		if(bReturn == false)
 			return false;
 	}
+	closeList(_iH5File, pvList, _pstName, iItemNumber);
 	free(pstGroupName);
 	//close list
-	iTab--;
 	return true;
 }
 
@@ -395,13 +391,7 @@ bool export_lufact_pointer(int *_piVar, char* _pstName)
 
 void print_type(char* _pstType)
 {
-	char szOut[128] = {0};
-	for(int i = 0 ; i < iTab ; i++)
-	{
-		strcat(szOut, "\t");
-	}
-	strcat(szOut, _pstType);
-	sciprint("%s\n", szOut);
+
 }
 
 /*--------------------------------------------------------------------------*/

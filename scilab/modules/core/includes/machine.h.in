@@ -454,6 +454,9 @@
 /* With the JAVA stuff (GUI, Console, JOGL...) */
 #undef WITH_GUI
 
+/* With the HDF5 library */
+#undef WITH_HDF5
+
 /* With the MATIO library */
 #undef WITH_MATIO
 

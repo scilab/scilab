@@ -17,6 +17,8 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
 
 int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int cols);
 
-int writeList(int file, char* dataSetName, void *data, int nbElems);
+void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
+int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
+int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem);
 
 #endif /* !__H5_WRITEDATATOFILE_H__ */
