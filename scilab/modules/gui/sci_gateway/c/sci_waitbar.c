@@ -17,6 +17,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 #include "HandleManagement.h"
+#include "freeArrayOfString.h"
 
 #include "InitWaitBar.h"
 /*--------------------------------------------------------------------------*/
@@ -75,6 +76,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
       else if (messageAdr != 0)
         {
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
         }
     }
   else if (Rhs==2)
@@ -97,6 +99,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
           setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
        }
       else if (VarType(1) == sci_matrix && VarType(2) == sci_handles) /* waitbar(x,winId) */
         {
@@ -136,6 +139,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
           waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
         }
       else
         {
@@ -175,12 +179,14 @@ int sci_waitbar(char *fname,unsigned long fname_len)
           GetRhsVar(3, GRAPHICAL_HANDLE_DATATYPE, &nbRow, &nbCol, &handleAdr);
           if (nbRow*nbCol != 1)
             {
+              freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
               Scierror(999, _("%s: Wrong size for input argument #%d: A '%s' handle expected.\n"), fname, 3, "Waitbar");
               return FALSE;
             }
         }
       else
         {
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
           Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle expected.\n"), fname, 3, "Waitbar");
           return FALSE;
         }
@@ -191,6 +197,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
       setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
       setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+      freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
     }
 
   if (Lhs == 1)
