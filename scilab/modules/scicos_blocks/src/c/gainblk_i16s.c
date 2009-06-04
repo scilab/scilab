@@ -51,9 +51,10 @@ void gainblk_i16s(scicos_block *block,int flag)
      for (l=0;l<ny;l++)
 	 {for (j=0;j<my;j++)
 	      {D=0;
+	       jl=j+l*my;
 	       for (i=0;i<mu;i++)
 		   {ji=j+i*my;
-		    jl=j+l*my;
+		    
 		    il=i+l*mu;
 		    C=(double)(opar[ji])*(double)(u[il]);
 		    D=D + C;}
