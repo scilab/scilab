@@ -55,7 +55,9 @@ void mat_sing(scicos_block *block,int flag)
  nu=GetInPortCols(block,1);
  u=GetRealInPortPtrs(block,1);
  y=GetRealOutPortPtrs(block,1);
- lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu)-4); 
+ /* for lapack 3.1 (2006)*/
+ lwork=max(3*min(mu,nu)+max(mu,nu),5*min(mu,nu));
+ lwork=max(1,lwork); 
              /*init : initialization*/
 if (flag==4)
    {if((*(block->work)=(mat_sing_struct*) scicos_malloc(sizeof(mat_sing_struct)))==NULL)
