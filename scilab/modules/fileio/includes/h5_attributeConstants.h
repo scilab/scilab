@@ -10,13 +10,15 @@
  * 
  */
 
-#ifndef __H5_FILEMANAGEMENT_H__
-#define __H5_FILEMANAGEMENT_H__
+#ifndef __H5_ATTRIBUTECONSTATS_H__
+#define __H5_ATTRIBUTECONSTATS_H__
 
-int createHDF5File(char *name);
+#define SCILAB_CLASS			"SCILAB_Class"
+#define SCILAB_CLASS_DOUBLE		"double"
+#define SCILAB_CLASS_STRING		"string"
+#define SCILAB_CLASS_LIST		"list"
+#define SCILAB_CLASS_TLIST		"tlist"
+#define SCILAB_CLASS_MLIST		"mlist"
 
-int openHDF5File(char *name);
 
-void closeHDF5File(int file);
-
-#endif /* !__H5_FILEMANAGEMENT_H__ */
+#endif /* !__H5_ATTRIBUTECONSTATS_H__ */

@@ -103,7 +103,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, &pstFilename);
 
 	//open hdf5 file
-	int iH5File = openHDF5File(pstFilename); 
+	int iH5File = createHDF5File(pstFilename); 
 
 	// export data
 	bool bExport = export_data(iH5File, piVar, pstVarName);

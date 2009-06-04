@@ -14,12 +14,7 @@
 #include <malloc.h>
 #include <math.h>
 #include "h5_writeDataToFile.h"
-
-
-#define SCILAB_CLASS	"SCILAB_Class"
-#define DOUBLE		"double"
-#define STRING		"string"
-#define LIST			"list"
+#include "h5_attributeConstants.h"
 
 
 static void addAttribute(int dataSetId, char *name, char *value)
@@ -78,7 +73,7 @@ static int writeString(int file, char* dataSetName, char *data)
  /*
    * Add attribute SCILAB_Class = string to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, STRING);
+  addAttribute(dset, SCILAB_CLASS, SCILAB_CLASS_STRING);
 
   /*
    * Close and release resources.
@@ -162,7 +157,7 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
   /*
    * Add attribute SCILAB_Class = string to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, STRING);
+  addAttribute(dset, SCILAB_CLASS, SCILAB_CLASS_STRING);
 
   /*
    * Close and release resources.
@@ -181,12 +176,12 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
   hsize_t     dims[2] = {rows, cols};
   herr_t      status;
   hid_t       space, dset;
-  int	      i =0, j = 0;
+  int	      i = 0, j = 0;
   double      *__data;
 
   __data = (double*)malloc(sizeof(double) * rows * cols);
 
-  for (i = i ; i < rows ; ++i)
+  for (i = 0 ; i < rows ; ++i)
     {
       for (j = 0 ; j < cols ; ++j)  
 	{
@@ -210,7 +205,7 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
   /*
    * Add attribute SCILAB_Class = double to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, DOUBLE);
+  addAttribute(dset, SCILAB_CLASS, SCILAB_CLASS_DOUBLE);
 
   /*
    * Close and release resources.
@@ -284,7 +279,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem)
   /*
    * Add attribute SCILAB_Class = string to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, LIST);
+  addAttribute(dset, SCILAB_CLASS,  SCILAB_CLASS_LIST);
 
   /*
    * Close and release resources.

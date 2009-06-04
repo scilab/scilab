@@ -13,7 +13,7 @@
 #include <hdf5.h>
 #include "h5_fileManagement.h"
 
-int openHDF5File(char *name) 
+int createHDF5File(char *name) 
 {
   hid_t       file;
   /*
@@ -21,6 +21,18 @@ int openHDF5File(char *name)
    */
   file = H5Fcreate(name, H5F_ACC_TRUNC, H5P_DEFAULT, H5P_DEFAULT);
   
+  return file;
+}
+
+int openHDF5File(char *name) 
+{
+  hid_t           file;
+  
+  /*
+   * Open file.
+   */
+  file = H5Fopen (name, H5F_ACC_RDONLY, H5P_DEFAULT);
+
   return file;
 }
 
