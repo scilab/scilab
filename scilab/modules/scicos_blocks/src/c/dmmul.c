@@ -70,6 +70,9 @@ int dmmul(double *a, int *na, double *b, int *nb, double *c__,
 	return 0;
 } /* dmmul */
 
+extern long int lsame(char *, char *);
+extern int xerbla(char *, int *);
+
 int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
 	  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
 	  int *ldc)
@@ -81,9 +84,8 @@ int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha,
   static long int nota, notb;
   static double temp;
   static int i, j, l, ncola;
-  long int lsame(char *, char *);
   static int nrowa, nrowb;  
-  int xerbla(char *, int *);
+
   
   /*     .. Scalar Arguments .. */
   /*     .. Array Arguments .. */

@@ -332,11 +332,11 @@ C2F(clearscicosimport)()
  * 08/02/07, Alan : update
  */
 
-int getscicosvarsfromimport(what,v,nv,mv)
-char *what;   /* data structure selection -see import.h for definition-*/
-void **v;     /* Pointer to the beginning of the imported data */
-int *nv;      /* size 1 of the imported data */
-int *mv;      /* size 1 of the imported data */
+int getscicosvarsfromimport(char *what,void **v,int *nv,int *mv)
+/*char *what;   data structure selection -see import.h for definition-*/
+/*void **v;     Pointer to the beginning of the imported data */
+/*int *nv;      size 1 of the imported data */
+/*int *mv; size 1 of the imported data */
 {
     /*variable declaration*/
     int nx,nz,noz,nmod,nblk,nlnk,nsubs,nevts,ng;
@@ -803,10 +803,8 @@ int *mv;      /* size 1 of the imported data */
 }
 
 /* Used in some scicos block */
-void C2F(getlabel)(kfun,label,n)
-       int *n, *kfun;  /* length of the label 
-                              as input n gives the max length expected*/
-char *label;
+void C2F(getlabel)(int *kfun, char *label,int *n)
+/*int *n, *kfun;  length of the label as input n gives the max length expected*/
 {
     int k;
     int job=1;
@@ -820,9 +818,7 @@ char *label;
 }
 
 /*never used, never interfaced */
-void C2F(getblockbylabel)(kfun,label,n)
-       int *n, *kfun;  /* length of the label */
-char **label;
+void C2F(getblockbylabel)(int *kfun, char **label, int *n)
 {
     int k,i,i0,nblk,n1;
     int job=0;
@@ -847,9 +843,7 @@ char **label;
 }
 
 /*never used, never interfaced */
-int C2F(getsciblockbylabel)(kfun,label,n)
-       int *n, *kfun;  /* length of the label */
-       int label[];
+int C2F(getsciblockbylabel)(int*kfun,int label[],int *n)
 {
     int k,i,i0,nblk,n1;
     if (scicos_imp.x==(double *)NULL){
@@ -873,9 +867,7 @@ int C2F(getsciblockbylabel)(kfun,label,n)
     return 0;
 }
 
-int C2F(getscilabel)(kfun,label,n)
-       int *n, *kfun;  /* length of the label */
-       int label[];
+int C2F(getscilabel)(int *kfun, int label[], int *n)
 {
     int k,i;
     int *u,*y;
@@ -906,10 +898,7 @@ int C2F(getcurblock)()
  * Only first element of matrix is delivred and converted to double data.
  *
  */
-void C2F(getouttb)(nsize,nvec,outtc)
-int *nsize,*nvec;
-double *outtc;
-
+void C2F(getouttb)(int *nsize,int *nvec,double *outtc)
 {
   /* declaration of ptr for typed port */
   void **outtbptr;            /*to store outtbptr*/

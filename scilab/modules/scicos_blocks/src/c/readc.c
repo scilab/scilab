@@ -28,11 +28,10 @@ extern  int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
 extern void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
 
-int worldsize(type)
-char type[4];
+int worldsize(char type[4])
 {
   char c;
-  int wsz;
+  int wsz = 0;
 
   c=type[0];
   if (c=='u') c=type[1];

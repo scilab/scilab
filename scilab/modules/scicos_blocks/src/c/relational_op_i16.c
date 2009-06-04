@@ -23,9 +23,9 @@
 
 void relational_op_i16(scicos_block *block,int flag)
 {
-  short *u1,*u2,*y;
-  int *ipar;
-  int k,i,m,n;
+  short *u1 = NULL, *u2 = NULL,*y = NULL;
+  int *ipar  = NULL;
+  int k = 0,i = 0,m = 0,n = 0;
   m=GetInPortRows(block,1);
   n=GetInPortCols(block,1);
   u1=Getint16InPortPtrs(block,1);
@@ -34,7 +34,7 @@ void relational_op_i16(scicos_block *block,int flag)
   ipar=GetIparPtrs(block);
   if (flag==1)
   {if ((block->ng!=0)&(get_phase_simulation()==2)) 
-	{for(i=0;i<m*n;i++) *(y+i)=block->mode[i]-1;}
+	{for(i=0;i<m*n;i++) *(y+i) = (short)block->mode[i]-1;}
    else{
 	for(i=0;i<m*n;i++) y[i]=0;
 	k=ipar[0];

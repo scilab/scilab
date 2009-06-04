@@ -118,13 +118,13 @@ void fromws_c(scicos_block *block,int flag)
   int ytype, my, ny;
 
   /* generic pointer */
-  SCSREAL_COP *y_d,*y_cd,*ptr_d, *ptr_T, *ptr_D;
-  SCSINT8_COP *y_c,*ptr_c;
-  SCSUINT8_COP *y_uc, *ptr_uc;
-  SCSINT16_COP *y_s,*ptr_s;
-  SCSUINT16_COP *y_us,*ptr_us;
-  SCSINT32_COP *y_l,*ptr_l;
-  SCSUINT32_COP *y_ul,*ptr_ul;
+  SCSREAL_COP *y_d = NULL,*y_cd = NULL,*ptr_d = NULL, *ptr_T = NULL, *ptr_D = NULL;
+  SCSINT8_COP *y_c = NULL,*ptr_c = NULL;
+  SCSUINT8_COP *y_uc = NULL, *ptr_uc = NULL;
+  SCSINT16_COP *y_s = NULL,*ptr_s = NULL;
+  SCSUINT16_COP *y_us = NULL,*ptr_us = NULL;
+  SCSINT32_COP *y_l = NULL,*ptr_l = NULL;
+  SCSUINT32_COP *y_ul = NULL,*ptr_ul = NULL;
 
   /* the struct ptr of that block */
   fromwork_struct *ptr;

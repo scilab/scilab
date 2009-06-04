@@ -43,8 +43,8 @@ void Inver(int* vect, int nb)
 
 
 /************************* function tree2 *********************************/
-int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
-     int *vect,nb,*depu,*depuptr,*outoin,*outoinptr,*ord,*nord,*ok;
+int ctree2(int *vect,int nb,int *depu,int *depuptr,int *outoin,int *outoinptr,int *ord,int *nord,int *ok)
+     
 {
   int fini=0,i,j,k,m,ii;
   
@@ -99,8 +99,7 @@ int ctree2(vect, nb, depu, depuptr,outoin, outoinptr, ord, nord, ok)
 
 /* ===========================================   fin de tree2 ======================================== */ 
 /* ********************************************** function tree3 ***************************************** */
-int ctree3(vec, nb, depu,depuptr, typl, bexe, boptr, blnk, blptr,ord, nord, ok)
-     int *vec,nb,*depu,*depuptr,*typl,*bexe,*boptr,*blnk,*blptr,*ord,*nord,*ok;
+int ctree3(int *vec,int nb, int *depu, int*depuptr, int *typl, int*bexe,int*boptr,int*blnk,int*blptr,int*ord,int*nord,int*ok)
 {
   int fini=0,i,j,m,nkk,kk;
   

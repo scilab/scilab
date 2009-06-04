@@ -33,9 +33,11 @@
 #include "sciprint.h"
 #include "HandleManagement.h"
 
+extern void set_block_error(int err);
+
 void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 {
-  extern void set_block_error(int err);
+  
   scoGraphicalObject pScopeWindow;
   scoInteger win_id;
 

@@ -19,8 +19,9 @@
 * See the file ./license.txt
 */
 #include <memory.h>
-#include "scicos_block4.h"
 #include<stdio.h>
+#include "scicos_block4.h"
+
 
 void cstblk4_m(scicos_block *block,int flag)
 { 

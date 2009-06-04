@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+# include <math.h>
 # include "scicos_block4.h"
 # include "machine.h"
-# include <math.h>
+
 
 void shift_u8_RA(scicos_block *block,int flag)
 {

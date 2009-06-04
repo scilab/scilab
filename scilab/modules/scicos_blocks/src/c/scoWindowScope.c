@@ -59,11 +59,12 @@ scoInteger scoGetUserData(scoGraphicalObject pTemp)
   return pFIGURE_FEATURE(pTemp)->user_data[0];
 }
 
+extern int get_block_number();
 
 void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int * win_pos, int * win_dim, double * xmin, double * xmax, double * ymin, double * ymax, double * zmin, double * zmax)
 {
   int i;
-  extern int get_block_number();
+  
   int block_number = get_block_number();
   int user_data = -1;
   scoGraphicalObject pTemp;
@@ -179,7 +180,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 
 void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 {
-  scoGraphicalObject pLongDraw;
+  scoGraphicalObject pLongDraw = NULL;
   scoGraphicalObject pShortDraw;
   scoGraphicalObject pAxes;
 
@@ -345,17 +346,17 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 {
   int c__1 = 1;
-  int i,j;
-  int NbrPtsShort,NbrPtsLong,inc;
-  int NbrPtsToCopy;
-  int current_period_counter;
-  int NumCurvInSubWin;
-  int NumSubWin ;
-  int NumCurvTotal;
-  int ShortDrawTableIndex;  
-  scoGraphicalObject pLongDraw;
-  scoGraphicalObject pShortDraw;
-  scoGraphicalObject *pShortDrawTable;
+  int i = 0,j = 0;
+  int NbrPtsShort = 0,NbrPtsLong = 0,inc = 0;
+  int NbrPtsToCopy = 0;
+  int current_period_counter = 0;
+  int NumCurvInSubWin = 0;
+  int NumSubWin = 0 ;
+  int NumCurvTotal = 0;
+  int ShortDrawTableIndex = 0;  
+  scoGraphicalObject pLongDraw = NULL;
+  scoGraphicalObject pShortDraw = NULL;
+  scoGraphicalObject *pShortDrawTable = NULL;
 
   double d_current_real_time ; //** the current real time as  double (52 bit) data structure
   double last_update_time , delta_time, refresh_time;
@@ -912,11 +913,13 @@ void scoAddRectangleForLongDraw(ScopeMemory * pScopeMemory, int i, int j, double
   scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 }
 
+extern int get_block_number();
+
 void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char * y, char * z)
 {
-  extern int get_block_number();
-  int i;
-  int nxname;
+
+  int i = 0;
+  int nxname = 0;
   char ** title=NULL;
   char * x_title=NULL;
   char * y_title;

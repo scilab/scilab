@@ -21,6 +21,7 @@
 /* Table of constant values */
 
 static int c__1 = 1;
+extern double ddot();
 
 int dmmul1(double *a, int *na, double *b, int *nb, double *c__, 
 	   int *nc, int *l, int *m, int *n)
@@ -29,7 +30,7 @@ int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
   int i__1, i__2;
   
   /* Local variables */
-  double ddot();
+
   static int i__, j, ib, ic;
   
   /* !but */

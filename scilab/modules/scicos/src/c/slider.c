@@ -36,65 +36,65 @@ extern int C2F(dr)(char x0[],char x1[],int *x2,int *x3,int *x4,int *x5,int *x6,
 			int *x7,double *dx1,double *dx2,double *dx3,double *dx4,
 			int lx0, int lx1) ;
 */
-static void block_draw_rect_1(double r[],double percent)
-{
-/*
-  int verbose=0;
-  static int in=6;
-  double w = r[2]*percent;
-  double x = r[0];
-*/
-  /* disabled */
-  /* TO DO : new graphics version */
+//static void block_draw_rect_1(double r[],double percent)
+//{
+///*
+//  int verbose=0;
+//  static int in=6;
+//  double w = r[2]*percent;
+//  double x = r[0];
+//*/
+//  /* disabled */
+//  /* TO DO : new graphics version */
+//
+//  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  C2F(dr1)("xfrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&x,r+1,&w,r+3,0L,0L);
+//  if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  */
+//}
 
-  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr1)("xfrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&x,r+1,&w,r+3,0L,0L);
-  if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  */
-}
-
-static void block_draw_rect_2(double r[],double percent)
-{
-/*
-  int verbose=0;*/
-  /* int flag =0;  double ang=0.0;  char foo[24]; */
-/*static int in=6;
-  double x = r[0]+ r[2]*percent-2;
-  double w = 4;*/
-  /* disabled */
-  /* TO DO : new graphics version */
-  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  C2F(dr1)("xfrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&x,r+1,&w,r+3,0L,0L);
-  /* sprintf(foo,"%5.3f",percent);
-     C2F(dr1)("xstring",foo,PI0,PI0,PI0,&flag,PI0,PI0,r,r+1,&ang,PD0,0L,0L);
-  */
-
-  /* disabled */
-  /* TO DO : new graphics version */
-  /*if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
-}
+//static void block_draw_rect_2(double r[],double percent)
+//{
+///*
+//  int verbose=0;*/
+//  /* int flag =0;  double ang=0.0;  char foo[24]; */
+///*static int in=6;
+//  double x = r[0]+ r[2]*percent-2;
+//  double w = 4;*/
+//  /* disabled */
+//  /* TO DO : new graphics version */
+//  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  C2F(dr1)("xfrect","v",PI0,PI0,PI0,PI0,PI0,PI0,&x,r+1,&w,r+3,0L,0L);
+//  /* sprintf(foo,"%5.3f",percent);
+//     C2F(dr1)("xstring",foo,PI0,PI0,PI0,&flag,PI0,PI0,r,r+1,&ang,PD0,0L,0L);
+//  */
+//
+//  /* disabled */
+//  /* TO DO : new graphics version */
+//  /*if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);*/
+//}
 
 
-static void block_draw_rect_3(double r[],double percent)
-{
-	/*
-  int verbose=0;
-  int flag =0;  double ang=0.0;
-  static int in=6;
-  double x = r[0] + (1.0/10)*r[2];
-  double y = r[1] - r[3] + 2 ;
-  */
-  /* disabled */
-  /* TO DO : new graphics version */
-  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  sprintf(foo,"%5.3f",percent);
-  C2F(dr1)("xstring",foo,PI0,PI0,PI0,&flag,PI0,PI0,&x,&y,&ang,PD0,0L,0L);
-  if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  */
-}
+//static void block_draw_rect_3(double r[],double percent)
+//{
+//	/*
+//  int verbose=0;
+//  int flag =0;  double ang=0.0;
+//  static int in=6;
+//  double x = r[0] + (1.0/10)*r[2];
+//  double y = r[1] - r[3] + 2 ;
+//  */
+//  /* disabled */
+//  /* TO DO : new graphics version */
+//  /*C2F(dr)("xget","alufunction",&verbose,&alumode,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  if ( alumode != in ) C2F(dr1)("xset","alufunction",&in,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  sprintf(foo,"%5.3f",percent);
+//  C2F(dr1)("xstring",foo,PI0,PI0,PI0,&flag,PI0,PI0,&x,&y,&ang,PD0,0L,0L);
+//  if ( alumode != in ) C2F(dr1)("xset","alufunction",&alumode,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  */
+//}
 
 
 
@@ -130,12 +130,12 @@ static void block_draw_rect_3(double r[],double percent)
 static int set_block_win( int win)
 {
   static int cur = 0;
-  /* TO DO : rewrite with new graphics functions */
-  /*
-  C2F(dr)("xget","window",&verbose,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  if ( cur != win ) 
-    C2F(dr)("xset","window",&win,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
-  */
+//  /* TO DO : rewrite with new graphics functions */
+//  /*
+//  C2F(dr)("xget","window",&verbose,&cur,&narg,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  if ( cur != win ) 
+//    C2F(dr)("xset","window",&win,PI0,PI0,PI0,PI0,PI0,PD0,PD0,PD0,PD0,0L,0L);
+//  */
   return cur ;
 }
 
@@ -197,16 +197,16 @@ void slider(int *flag, int *nevprt, double *t, double *xd,
 	  switch (ipar[0]) 
 	    {
 	    case 1 : 
-	      block_draw_rect_1(z+2,z[0]);
-	      block_draw_rect_1(z+2,percent);
+//	      block_draw_rect_1(z+2,z[0]);
+//	      block_draw_rect_1(z+2,percent);
 	      break;
 	    case 2 :
-	      block_draw_rect_2(z+2,z[0]);
-	      block_draw_rect_2(z+2,percent);
+//	      block_draw_rect_2(z+2,z[0]);
+//	      block_draw_rect_2(z+2,percent);
 	      break;
 	    case 3 :
-	      block_draw_rect_3(z+2,z[0]);
-	      block_draw_rect_3(z+2,percent);
+//	      block_draw_rect_3(z+2,z[0]);
+//	      block_draw_rect_3(z+2,percent);
 	      break;
 	    }
 	  curcolor=set_slider_color(curcolor);
@@ -236,13 +236,13 @@ void slider(int *flag, int *nevprt, double *t, double *xd,
       switch (ipar[0]) 
 	{
 	case 1 : 
-	  block_draw_rect_1(z+2,z[0]);
+//	  block_draw_rect_1(z+2,z[0]);
 	  break;
 	case 2 :
-	  block_draw_rect_2(z+2,z[0]);
+//	  block_draw_rect_2(z+2,z[0]);
 	  break;
 	case 3 :
-	  block_draw_rect_3(z+2,z[0]);
+//	  block_draw_rect_3(z+2,z[0]);
 	  break;
 
 	}

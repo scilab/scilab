@@ -1194,7 +1194,7 @@ void cossim(double *told)
 	int *jroot,*zcros;
 	realtype reltol, abstol;
 	N_Vector y=NULL;
-	void *cvode_mem;
+	void *cvode_mem = NULL;
 	int flag, flagr;
 	int cnt=0;
 
@@ -1638,7 +1638,7 @@ void cossimdaskr(double *told)
 	int *Mode_save;
 	int Mode_change=0;
 
-	int flag, flagr; 
+	int flag, flagr = 0; 
 	N_Vector   yy=NULL, yp=NULL;
 	realtype reltol, abstol; 
 	int Discrete_Jump;
@@ -1650,7 +1650,7 @@ void cossimdaskr(double *told)
 
 	void *ida_mem=NULL;
 	UserData data=NULL;
-	IDAMem copy_IDA_mem;
+	IDAMem copy_IDA_mem = NULL;
 	int maxnj,maxnit;
 	/*-------------------- Analytical Jacobian memory allocation ----------*/
 	int  Jn, Jnx, Jno, Jni, Jactaille;
@@ -4354,8 +4354,7 @@ void FREE_blocks()
 } /* FREE_blocks */
 
 /* Subroutine funnum */
-int C2F(funnum)(fname)
-char * fname;
+int C2F(funnum)(char * fname)
 {
 	int i=0,ln;
 	int loc=-1;
@@ -4369,10 +4368,8 @@ char * fname;
 	return(0);
 }/* funnum */
 
-static int scicos_setmode(W,x,told,jroot,ttol)
+static int scicos_setmode(double *W,double *x,double *told,int *jroot,double ttol)
 /* work space W needs to be ng+*neq*2 */
-double *W,*x,*told,ttol;
-int *jroot;
 {
 	int k,j,jj,diff,ii;
 	double ttmp;
@@ -4936,8 +4933,7 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 }
 /*-----------------------*/
 /*----------------------------------------------------*/
-int fx_(x, residual) /* used for homotopy*/
-double *x, *residual;
+int C2F(fx)(double *x,double *residual) /* used for homotopy*/
 {
 	double  *xdot, t;
 	xdot=x+*neq;
@@ -4949,9 +4945,7 @@ double *x, *residual;
 	return (*ierr);
 } 
 /*----------------------------------------------------*/
-int rho_(a, L, x, rho, rpar, ipar)  /* used for homotopy*/
-double *a, *L,*x,*rho,*rpar;
-int *ipar;
+int rho_(double *a,double *L,double *x,double *rho,double *rpar,int *ipar)  /* used for homotopy*/
 {
 	int i,N;
 	N=*neq;
@@ -4962,11 +4956,7 @@ int *ipar;
 	return 0;
 }
 /*----------------------------------------------------*/
-int rhojac_(a, lambda, x, jac, col, rpar, ipar)  /* used for homotopy*/
-double *a, *lambda, *x, *jac;
-int *col;
-double *rpar;
-int *ipar;
+int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double *rpar,int *ipar)  /* used for homotopy*/
 {/* MATRIX [d_RHO/d_LAMBDA, d_RHO/d_X_col] */
 	int j,N;
 	double *work;

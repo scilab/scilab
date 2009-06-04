@@ -1,6 +1,15 @@
 #ifndef __SCICOS_BLOCK_H__
 #define __SCICOS_BLOCK_H__
 
+/**
+* Add header of scicos_malloc
+* scicos_free HERE
+* to do modify dynamic link with scicos
+*/
+
+extern void * scicos_malloc();
+extern void scicos_free(void *p);
+
 typedef void (*voidg)();
 
 typedef struct {   
@@ -52,8 +61,6 @@ double get_scicos_time();
 int get_block_number();
 void set_block_error(int);
 void set_pointer_xproperty(int* pointer);
-void * scicos_malloc(size_t );
-void scicos_free(void *p);
 double Get_Jacobian_cj(void);
 double Get_Jacobian_ci(void);
 double Get_Scicos_SQUR(void);

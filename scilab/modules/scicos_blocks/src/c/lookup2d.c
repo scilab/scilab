@@ -50,9 +50,9 @@ void lookup2d(scicos_block *block,int flag)
 
 double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, double x, double y)
 {
-  int i,j,im,jm;
-  double fq11,fq12,fq21,fq22,w,w1,w2,z;
-  double x1,x2,x3,y1,y2,y3,z1,z2,z3,A,B,C,D;
+  int i = 0,j = 0,im = 0,jm = 0;
+  double fq11 = 0.,fq12 = 0.,fq21 = 0.,fq22 = 0.,w = 0.,w1 = 0.,w2 = 0.,z = 0.;
+  double x1 = 0.,x2 = 0.,x3 = 0.,y1 = 0.,y2 = 0.,y3 = 0.,z1 = 0.,z2 = 0.,z3 = 0.,A = 0.,B = 0.,C = 0.,D = 0.;
   i=indexfinder2(x, nx, X); 
   j=indexfinder2(y, ny, Y);  
 

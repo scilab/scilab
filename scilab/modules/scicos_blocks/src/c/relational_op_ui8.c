@@ -34,7 +34,7 @@ void relational_op_ui8(scicos_block *block,int flag)
   ipar=GetIparPtrs(block);
   if (flag==1)
   {if ((block->ng!=0)&(get_phase_simulation()==2)) 
-	{for(i=0;i<m*n;i++) *(y+i)=block->mode[i]-1;}
+	{for(i=0;i<m*n;i++) *(y+i)=(unsigned char)block->mode[i]-1;}
    else{
 	for(i=0;i<m*n;i++) y[i]=0;
 	k=ipar[0];

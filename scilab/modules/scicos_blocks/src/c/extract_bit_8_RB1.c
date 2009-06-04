@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <math.h>
+#include "scicos_block4.h"
+
 
 void extract_bit_8_RB1(scicos_block *block,int flag)
 {

@@ -119,10 +119,8 @@ int MlistGetFieldNumber(int *ptr, const char *string)
   return retval;
 }
 
-int intendscicosim(fname,fname_len)
+int intendscicosim(char *fname,unsigned long fname_len)
      /* termine la simulation */
-     char *fname;
-     unsigned long fname_len;
 {
   int isrun = C2F(cosim).isrun;
 
@@ -136,10 +134,8 @@ int intendscicosim(fname,fname_len)
   return 0;
 }
 
-int inttimescicos(fname,fname_len)
-     /* renvoi le temps de simulation t=get_scicos_time() */
-     char *fname;
-     unsigned long fname_len;
+int inttimescicos(char *fname,unsigned long fname_len)
+/* renvoi le temps de simulation t=get_scicos_time() */
 {
   int un,l1;
   CheckRhs(-1,0);
@@ -150,16 +146,13 @@ int inttimescicos(fname,fname_len)
   return 0;
 }
 
-int intduplicate(fname,fname_len)
+int intduplicate(char *fname, unsigned long fname_len)
 
      /* v=duplicate(u,count) 
       * returns v=[u(1)*ones(count(1),1);
       *            u(2)*ones(count(2),1);
       *            ...
       */
-
-     char *fname;
-     unsigned long fname_len;
 {
   int m1,m2,m3,n1,n2,n3,l1,l2,l3,n;
   CheckRhs(2,2);
@@ -186,10 +179,8 @@ int intduplicate(fname,fname_len)
   return 0;
 }
 
-int intdiffobjs(fname,fname_len)
+int intdiffobjs(char *fname, unsigned long fname_len)
      /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
-     char *fname;
-     unsigned long fname_len;
 {
   int un,l3,k;
   int size1;int size2;
@@ -218,10 +209,8 @@ int intdiffobjs(fname,fname_len)
   return 0;
 }
 
-int inttree2(fname,fname_len)
+int inttree2(char *fname, unsigned long fname_len)
      /* [ord,ok]=ctree2(vec,outoin,outoinptr,dep_u,dep_uptr) */
-     char *fname;
-     unsigned long fname_len;
 {
   int un=1,ipvec,nvec,mvec,noin,moin,ipoin,noinr,moinr,ipoinr;
   int ndep,mdep,ipdep,ndepuptr,mdepuptr,ipdepuptr,ipord,ipok,n,nord;
@@ -248,10 +237,8 @@ int inttree2(fname,fname_len)
   return 0;
 }
 
-int inttree3(fname,fname_len)
+int inttree3(char *fname, unsigned long fname_len)
      /* [r2,ok2]=ctree3(vec,dd,dep_uptr,typ_l,bexe,boptr,blnk,blptr)*/
-     char *fname;
-     unsigned long fname_len;
 {
   int un=1,ipvec,nvec,mvec,ntyp,mtyp,iptyp,nbex,mbex,ipbex;
   int ndep,mdep,ipdep,ndepuptr,mdepuptr,ipdepuptr,ipord,ipok,n,nord;
@@ -314,11 +301,9 @@ int inttree4(char *fname,unsigned long fname_len)
   return 0;
 }
 
-int intxproperty(fname,fname_len)
+int intxproperty(char *fname,unsigned long fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
       *	(-1: algebriques, +1 differentielles) */
-     char *fname;
-     unsigned long fname_len;
 {
   int un;
   int* pointer_xproperty;
@@ -339,10 +324,8 @@ int intxproperty(fname,fname_len)
   return 0;
 }
 
-int intphasesim(fname,fname_len)
+int intphasesim(char *fname, unsigned long fname_len)
      /* renvoi la phase de simulation phase=get_phase_simulation() */
-     char *fname;
-     unsigned long fname_len;
 { 
   int un,l1;
   int isrun = C2F(cosim).isrun;
@@ -360,11 +343,9 @@ int intphasesim(fname,fname_len)
   return 0;
 }
 
-int intsetxproperty(fname,fname_len)
+int intsetxproperty(char *fname, unsigned long fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
       *	(-1: algebriques, +1 differentielles) */
-     char *fname;
-     unsigned long fname_len;
 {
   int un,l1,m1;
   int isrun = C2F(cosim).isrun;
@@ -381,10 +362,8 @@ int intsetxproperty(fname,fname_len)
   return 0;
 }
 
-int intsetblockerror(fname,fname_len)
+int intsetblockerror(char *fname, unsigned long fname_len)
      /* renvoi une erreur */
-     char *fname;
-     unsigned long fname_len;
 {
   int un,l1;
   int isrun = C2F(cosim).isrun;
@@ -402,9 +381,7 @@ int intsetblockerror(fname,fname_len)
   return 0;
 }
 
-void  duplicata(n,v,w,ww,nw)
-     double *v,*w,*ww;
-     int *n,*nw;
+void  duplicata(int *n,double *v,double *w,double *ww,int *nw)
 {
   int i,j,k;
   k=0;
@@ -417,9 +394,7 @@ void  duplicata(n,v,w,ww,nw)
   *nw=k;
 }
 
-void  comp_size(v,nw,n)
-     double *v;
-     int *nw,n;
+void  comp_size(double *v,int *nw,int n)
 {
   int i;
   *nw=0;
@@ -547,13 +522,17 @@ void  comp_size(v,nw,n)
      FREE(l_pointi)
 
 /* prototype */
+
+/*********************************************
+* external structure and function declaration
+*********************************************/
+/*declaration of funnum (in scicos.c)*/
+extern int C2F(funnum)(char *fname);
+
 int intscicosimc(char *fname,unsigned long fname_len)
 {
- /*********************************************
-  * external structure and function declaration
-  *********************************************/
- /*declaration of funnum (in scicos.c)*/
- extern int C2F(funnum)(char *fname);
+ 
+ 
 
  /************************************
   * variables and constants d?inition
@@ -3362,13 +3341,13 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
   double *x,*xd,*g;         /* ptr for x, xd and g for scicos_blocks               */
   int *funtyp;              /* ptr for funtyp */
 
-  int ierr;       /* error flag                                */
-  int errc;       /* error flag for ceateblklst                */
+  int ierr = 0;       /* error flag                                */
+  int errc = 0;       /* error flag for ceateblklst                */
   int ptr_pos = 0;    /* to store position in scilab string object */
-  int Topsave;    /* to save the Top position                  */
+  int Topsave = 0;    /* to save the Top position                  */
 
-  int sz_str;     /* local variabe to store size of string */
-  int i,j,k;      /* local counter variable                */
+  int sz_str = 0;     /* local variabe to store size of string */
+  int i = 0,j = 0,k = 0;      /* local counter variable                */
 
   /* number of entries -please update me-                        */
   static int nentries=69;
@@ -3865,24 +3844,24 @@ int intcurblkc(char *fname,unsigned long fname_len)
 
 int intbuildouttb(char *fname,unsigned long fname_len)
 {
- static int l1, m1,   n1;
- static int l2, m2,   n2;
- static int l3, n3=1;
+ static int l1 = 0, m1 = 0,   n1 = 0;
+ static int l2 = 0, m2 = 0,   n2 = 0;
+ static int l3 = 0, n3 = 1;
  SciIntMat M1,M2,M3;
 
- int n_lnksz,n_lnktyp;
+ int n_lnksz = 0, n_lnktyp = 0;
  int *lnksz=NULL,*lnktyp=NULL;
 
- double *ptr_d;
- double *ptr_dc;
- int *ptr_i;
- short *ptr_s;
- char *ptr_c;
- int *ptr_ui;
- short *ptr_us;
- char *ptr_uc;
+ double *ptr_d = NULL;
+ double *ptr_dc = NULL;
+ int *ptr_i = NULL;
+ short *ptr_s = NULL;
+ char *ptr_c = NULL;
+ int *ptr_ui = NULL;
+ short *ptr_us = NULL;
+ char *ptr_uc = NULL;
 
- int nm,i,j,ierr=0;
+ int nm = 0,i = 0,j = 0,ierr = 0;
 
  static int minlhs=1, maxlhs=1, minrhs=2, maxrhs=2;
 

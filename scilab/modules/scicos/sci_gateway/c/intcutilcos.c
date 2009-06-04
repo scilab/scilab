@@ -103,20 +103,20 @@ int extractblklist(int *il, scicos_block *Blocks, int *ierr);
  */
 int sci_data2sig(char *fname, unsigned long fname_len)
 {
-  int m1,n1,it;
-  int p1=0;
-  int *il1;
-  int m1h,n1h;
-  int *ilh1;
-  int m2h,n2h;
+  int m1 = 0,n1 = 0,it = 0;
+  int p1 = 0;
+  int *il1 = NULL;
+  int m1h = 0,n1h = 0;
+  int *ilh1 = NULL;
+  int m2h = 0,n2h = 0;
   int *ilh2=NULL;
   int *ilh3=NULL;
-  int m2,n2,it2;
-  int *il2;
-  int il,l;
-  int l_tmp;
+  int m2 = 0,n2 = 0,it2 = 0;
+  int *il2 = NULL;
+  int il = 0, l = 0;
+  int l_tmp = 0;
 
-  int i,j,TopSave;
+  int i = 0, j = 0, TopSave = 0;
 
   char *str_stlst[]={"st","dims","values","time"};
   char *str_hmlst[]={"hm","dims","entries"};
@@ -2404,15 +2404,15 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
    */
 
   /* variables for scilab stack */
-  int *ilh;
-  int mh,nh;
-  int *ilh2;
-  int mh2,nh2;
-  int len_str;
+  int *ilh = NULL;
+  int mh = 0, nh = 0;
+  int *ilh2 = NULL;
+  int mh2 = 0, nh2 = 0;
+  int len_str = 0;
 
   /* local counter variables */
-  int n;
-  int i,j;
+  int n = 0;
+  int i = 0, j = 0;
 
   *ierr = 0;
 

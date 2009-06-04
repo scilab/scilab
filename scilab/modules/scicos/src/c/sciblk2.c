@@ -33,13 +33,8 @@ extern void C2F(ltopadj)();
 extern void C2F(scifunc)();
 extern void C2F(mklist)();
 
-void 
-sciblk2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
-	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
-
-int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
-double x[],xd[],z[],tvec[],rpar[];
-double *inptr[],*outptr[],*t;
+void  sciblk2(int *flag, int *nevprt, double *t, double xd[], double x[], int *nx, double z[], int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
+	       int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout)
 
 {
     int k;

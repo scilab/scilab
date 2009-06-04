@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <math.h>
+#include "scicos_block4.h"
+
 
 void bit_clear_8(scicos_block *block,int flag)
 {
