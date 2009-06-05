@@ -23,4 +23,8 @@ int readDoubleMatrix(int _iDataSetId, double *_pdblData, int _iRows, int _iCols)
 
 int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols);
 
+int getListItemReferences(int _iDatasetId, void** _piItemRef);
+
+int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _piItemDataset);
+
 #endif /* !__H5_READDATATOFILE_H__ */

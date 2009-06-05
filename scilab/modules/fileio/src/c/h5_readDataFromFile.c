@@ -54,7 +54,7 @@ static herr_t op_func (hid_t loc_id, const char *name, void *operator_data)
 /*
 ** WARNING : this function returns an allocated value that must be freed.
 */
-static char *readAttribute(int _iDataSetId, char *_pstName)
+static char *readAttribute(int _iDatasetId, char *_pstName)
 {
   hid_t		iAttributeId;
   hid_t		iFileType, memtype, iSpace;
@@ -65,7 +65,7 @@ static char *readAttribute(int _iDataSetId, char *_pstName)
   char		*pstValue;
 
   
-  iAttributeId = H5Aopen_name(_iDataSetId, _pstName);
+  iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
   /*
    * Get the datatype and its size.
    */
@@ -84,7 +84,7 @@ static char *readAttribute(int _iDataSetId, char *_pstName)
   /*
    * Allocate space for string data.
    */
-  pstValue = (char *) malloc (dims[0] * iDim * sizeof (char));
+  pstValue = (char *) malloc ((dims[0] * iDim + 1 ) * sizeof (char));
 
   /*
    * Create the memory datatype.
@@ -115,7 +115,7 @@ int getDataSetId(int  _iFile)
 }
 
 
-int getDataSetDims(int _iDataSetId, int *_piRows, int *_piCols)
+int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 {
   hsize_t	lDims[2];
   hid_t		space;
@@ -123,15 +123,15 @@ int getDataSetDims(int _iDataSetId, int *_piRows, int *_piCols)
    * Get dataspace and dimensions of the dataset. This is a
    * two dimensional dataset.
    */
- space = H5Dget_space (_iDataSetId);
+ space = H5Dget_space (_iDatasetId);
  H5Sget_simple_extent_dims (space , lDims, NULL);
- *_piRows = lDims[0];
- *_piCols = lDims[1];
+ *_piRows = (int)lDims[0];
+ *_piCols = (int)lDims[1];
 
  return 0;
 }
 
-int readDoubleMatrix(int _iDataSetId, double *_pdblData, int _iRows, int _iCols)
+int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols)
 {
  herr_t      status;
  double      *pdblLocalData;
@@ -141,24 +141,24 @@ int readDoubleMatrix(int _iDataSetId, double *_pdblData, int _iRows, int _iCols)
   /*
   * Read the data.
   */
- status = H5Dread(_iDataSetId, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+ status = H5Dread(_iDatasetId, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		  pdblLocalData);
  
  for (i = 0 ; i < _iRows ; ++i)
    {
      for (j = 0 ; j < _iCols ; ++j)  
        {
-	 _pdblData[i * _iCols + j] = pdblLocalData[i + _iRows * j];
+	 _pdblData[i + _iRows * j] = pdblLocalData[i * _iCols + j];
        }
    }
- status = H5Dclose(_iDataSetId);
+ status = H5Dclose(_iDatasetId);
 
  free(pdblLocalData);
 
  return status;
 }
 
-static int readString(int _iDataSetId, char **_pstData)
+static int readString(int _iDatasetId, char **_pstData)
 {
   hid_t		iFileType, memtype, iSpace;
   herr_t	status;
@@ -168,7 +168,7 @@ static int readString(int _iDataSetId, char **_pstData)
   /*
    * Get the datatype and its size.
    */
-  iFileType = H5Dget_type (_iDataSetId);
+  iFileType = H5Dget_type (_iDatasetId);
   iDim = H5Tget_size (iFileType);
   iDim++;                         /* Make room for null terminator */
   
@@ -177,13 +177,13 @@ static int readString(int _iDataSetId, char **_pstData)
    * two dimensional attribute so the dynamic allocation must be done
    * in steps.
    */
-  iSpace = H5Dget_space (_iDataSetId);
+  iSpace = H5Dget_space (_iDatasetId);
   H5Sget_simple_extent_dims (iSpace, dims, NULL);
 
   /*
    * Allocate space for string data.
    */
-  *_pstData = (char *) malloc (dims[0] * iDim * sizeof (char));
+  *_pstData = (char *) malloc ((dims[0] * iDim + 1) * sizeof (char));
 
   /*
    * Create the memory datatype.
@@ -194,12 +194,12 @@ static int readString(int _iDataSetId, char **_pstData)
   /*
    * Read the data.
    */
-  status = H5Dread (_iDataSetId, memtype, H5S_ALL, H5S_ALL, H5P_DEFAULT, *_pstData);
+  status = H5Dread (_iDatasetId, memtype, H5S_ALL, H5S_ALL, H5P_DEFAULT, *_pstData);
   
   return 0;
 }
 
-int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols)
+int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols)
 {
   hid_t		obj;
   hobj_ref_t	*rdata = (hobj_ref_t *) malloc (_iRows * _iCols * sizeof (hobj_ref_t));
@@ -209,7 +209,7 @@ int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols)
   /*
    * Read the data.
    */
-  status = H5Dread (_iDataSetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+  status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		    rdata);
   for (i = 0 ; i < _iRows ; i++) 
     {
@@ -218,7 +218,7 @@ int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols)
 	  /*
 	   * Open the referenced object, get its name and type.
 	   */
-	  obj = H5Rdereference (_iDataSetId, H5R_OBJECT, &rdata[i * _iCols + j]);
+	  obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &rdata[i * _iCols + j]);
 	  readString(obj, &_pstData[i + j * _iRows]);
 	}
     }
@@ -228,44 +228,72 @@ int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols)
   return 0;
 }
 
-int getScilabTypeFromDataSet(int _iDataSetId)
+int getScilabTypeFromDataSet(int _iDatasetId)
 {
-  hid_t iAttributeId;
-  char *pstScilabClass = readAttribute(_iDataSetId, SCILAB_CLASS);
+  char *pstScilabClass = readAttribute(_iDatasetId, SCILAB_CLASS);
 
   /* HDF5 Float type + SCILAB_Class = double <=> double */
-  if (H5Tget_class(H5Dget_type(_iDataSetId)) == H5T_FLOAT
+  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_FLOAT
       && strcmp(pstScilabClass, SCILAB_CLASS_DOUBLE) == 0) {
     free(pstScilabClass);
     return sci_matrix;
   }
   
   /* HDF5 Reference type + SCILAB_Class = string <=> strings */
-  if (H5Tget_class(H5Dget_type(_iDataSetId)) == H5T_REFERENCE
+  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
       && strcmp(pstScilabClass, SCILAB_CLASS_STRING) == 0) {
     free(pstScilabClass);
     return sci_strings;
   }
 
   /* HDF5 Reference type + SCILAB_Class = list <=> list */
-  if (H5Tget_class(H5Dget_type(_iDataSetId)) == H5T_REFERENCE
+  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
       && strcmp(pstScilabClass, SCILAB_CLASS_LIST) == 0) {
     free(pstScilabClass);
     return sci_list;
   }
 
     /* HDF5 Reference type + SCILAB_Class = tlist <=> tlist */
-  if (H5Tget_class(H5Dget_type(_iDataSetId)) == H5T_REFERENCE
+  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
       && strcmp(pstScilabClass, SCILAB_CLASS_TLIST) == 0) {
     free(pstScilabClass);
     return sci_tlist;
   }
 
   /* HDF5 Reference type + SCILAB_Class = string <=> MLIST */
-  if (H5Tget_class(H5Dget_type(_iDataSetId)) == H5T_REFERENCE
+  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
       && strcmp(pstScilabClass, SCILAB_CLASS_MLIST) == 0) {
     free(pstScilabClass);
     return sci_mlist;
   }
   return -1;
+}
+
+
+int getListItemReferences(int _iDatasetId, void** _piItemRef)
+{
+	int iRows					= 0;
+	int iCols					= 0;
+  herr_t status			= 0;
+	hobj_ref_t *poRef	= NULL;
+
+	getDataSetDims(_iDatasetId, &iRows, &iCols);
+
+	poRef = (hobj_ref_t *) malloc (iRows * iCols * sizeof (hobj_ref_t));
+
+  status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, poRef);
+	*_piItemRef = (void*)poRef;
+	return 0;
+}
+
+int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _piItemDataset)
+{
+	hobj_ref_t poRef	= ((hobj_ref_t*)_piItemRef)[_iItemPos];
+  *_piItemDataset = H5Rdereference (_iDatasetId, H5R_OBJECT, &poRef);
+
+	if(*_piItemDataset == 0)
+	{
+		return 1;
+	}
+	return 0;
 }

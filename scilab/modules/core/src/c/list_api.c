@@ -643,17 +643,27 @@ int getMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int* _piRo
 
 int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int** _piAddress)
 {
-	int iRet				= 0;
-	int iNbItem			= 0;
-	int iTotalLen		= 0;
-	int iNewPos			= Top - Rhs + _iVar;
+	int iRet					= 0;
+	int iNbItem				= 0;
+	int iTotalLen			= 0;
+	int iNewPos				= Top - Rhs + _iVar;
 
-	int* piAddr			= NULL;
-	int* piEnd			= NULL;
+	int* piItemAddr		= NULL;
+	int* piEnd				= NULL;
 
-	fillCommonMatrixOfStringInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
+	iRet = getListItemAddress(_piParent, _iItemPos, &piItemAddr);
+	if(iRet)
+	{
+		return 1;
+	}
 
-	piEnd = piAddr + iTotalLen;
+	iRet = fillCommonMatrixOfStringInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _pstStrings, &iTotalLen);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piEnd = piItemAddr + iTotalLen;
 	closeList(iNewPos, _piParent, _iItemPos, piEnd);
 	return 0;
 }
