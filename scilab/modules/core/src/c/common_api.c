@@ -38,7 +38,7 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 
 int getVarAddressFromNumber(int _iVar, int** _piAddress)
 {
-	int iAddr			= iadr(*Lstk(_iVar));
+	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
 	int iValType	= *istk(iAddr);
 	if(iValType < 0)
 	{
