@@ -228,3 +228,6 @@ Bug fixes:
 * bug 4547 fixed - examples of javasci with graphics are no more interactive.
 
 * bug 4548 fixed - with intel fortran, file unit opened in a external dll are not shared.
+
+* bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
+
