@@ -43,6 +43,9 @@ bool export_lufact_pointer(int *_piVar, char* _pstName);
 
 void print_type(char* _pstType);
 
+#ifdef _MSC_VER
+#define strdup _strdup
+#endif
 
 /*--------------------------------------------------------------------------*/
 int sci_export_to_hdf5(char *fname,unsigned long fname_len)

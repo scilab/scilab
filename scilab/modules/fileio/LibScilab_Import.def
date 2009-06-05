@@ -51,3 +51,7 @@ readDoubleMatrix
 getDataSetDims
 createMatrixOfString
 readStringMatrix
+createMatrixOfDoubleInList
+createMatrixOfStringInList
+createListInList
+createList
