@@ -1,34 +1,34 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 extern "C"
 {
-	#include <string.h>
-	#include "gw_fileio.h"
-	#include "stack-c.h"
-	#include "MALLOC.h"
-	#include "Scierror.h"
-	#include "localization.h"
-	#include "sciprint.h"
-	#include "variable_api.h"
-	#include "../../call_scilab/includes/CallScilab.h"
-	#include "h5_fileManagement.h"
-	#include "h5_readDataFromFile.h"
+#include <string.h>
+#include "gw_fileio.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "Scierror.h"
+#include "localization.h"
+#include "sciprint.h"
+#include "variable_api.h"
+#include "../../call_scilab/includes/CallScilab.h"
+#include "h5_fileManagement.h"
+#include "h5_readDataFromFile.h"
 }
 
-int	import_data(int _iFile, int* _piAddress);
-int import_double(int _iFile, int* _piAddress);
-int import_string(int _iFile, int* _piAddress);
-int import_list(int _iFile, int _iVarType, int* _piAddress);
+int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress);
+int import_double(int _iDatasetId, int _iItemPos, int* _piAddress);
+int import_string(int _iDatasetId, int _iItemPos, int* _piAddress);
+int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
@@ -49,7 +49,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
 		return 0;
 	}
-	
+
 	getVarDimension(piAddr, &iRows, &iCols);
 	if(iRows != 1 || iCols != 1)
 	{
@@ -62,9 +62,10 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
 	//open hdf5 file
 	int iFile = openHDF5File(pstVarName);
-	
+	int iDataSetId = getDataSetId(iFile);
+
 	//import all data
-	import_data(iFile, NULL);
+	import_data(iDataSetId, 0, NULL);
 
 	//close the file
 	closeHDF5File(iFile);
@@ -74,82 +75,129 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	return 0;
 }
 
-int	import_data(int _iFile, int* _piAddress)
+int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress)
 {
-  int iDataSetId = getDataSetId(_iFile);
-
 	//get var type
-  int iVarType = getScilabTypeFromDataSet(iDataSetId);
+	int iVarType = getScilabTypeFromDataSet(_iDatasetId);
 	switch(iVarType)
 	{
 	case sci_matrix :
 		{
-			import_double(iDataSetId, _piAddress);
+			import_double(_iDatasetId, _iItemPos, _piAddress);
 			break;
 		}
 	case sci_strings :
 		{
-			import_string(iDataSetId, _piAddress);
+			import_string(_iDatasetId, _iItemPos, _piAddress);
 			break;
 		}
 	case sci_list :
 	case sci_tlist :
 	case sci_mlist :
 		{
-			import_list(iDataSetId, iVarType, _piAddress);
+			import_list(_iDatasetId, iVarType, _iItemPos, _piAddress);
 			break;
 		}
 	}
 	return 0;
 }
 
-int import_double(int _iFile, int* _piAddress)
+int import_double(int _iDatasetId, int _iItemPos, int* _piAddress)
 {
-  int	iRows, iCols;
-  getDataSetDims(_iFile, &iRows, &iCols);
-  
-  double *pdblData = (double *) malloc(iRows * iCols * sizeof(double));
-  readDoubleMatrix(_iFile, pdblData, iRows, iCols);
+	int	iRows, iCols;
+	getDataSetDims(_iDatasetId, &iRows, &iCols);
 
-  if(_piAddress == NULL)
-    {
-      int *piAddr;
-      //createMatrixOfDouble
-      createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblData, &piAddr);
-    }
-  else //if not null this variable is in a list
-    {
-      
-    }
+	double *pdblData = (double *) malloc(iRows * iCols * sizeof(double));
+	readDoubleMatrix(_iDatasetId, pdblData, iRows, iCols);
 
-  return 0;
+	if(_piAddress == NULL)
+	{
+		int *piAddr;
+		//createMatrixOfDouble
+		createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblData, &piAddr);
+	}
+	else //if not null this variable is in a list
+	{
+		createMatrixOfDoubleInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pdblData);
+	}
+
+	free(pdblData);
+	return 0;
 }
 
-int import_string(int _iFile, int* _piAddress)
+int import_string(int _iDatasetId, int _iItemPos, int* _piAddress)
 {
-  int	iRows, iCols;
-  getDataSetDims(_iFile, &iRows, &iCols);
-  
-  char **pstData = (char **) malloc(iRows * iCols * sizeof(char*));
+	int i = 0;
+	int	iRows, iCols;
+	getDataSetDims(_iDatasetId, &iRows, &iCols);
 
-  readStringMatrix(_iFile, pstData, iRows, iCols);
+	char **pstData = (char **) malloc(iRows * iCols * sizeof(char*));
 
-   if(_piAddress == NULL)
-    {
-      int *piAddr; 
-      createMatrixOfString(Rhs + 1, iRows, iCols, pstData, &piAddr);
-    }
-   else //if not null this variable is in a list
-     {
-       
-     }
-  return 0;
+	readStringMatrix(_iDatasetId, pstData, iRows, iCols);
+
+	if(_piAddress == NULL)
+	{
+		int *piAddr; 
+		createMatrixOfString(Rhs + 1, iRows, iCols, pstData, &piAddr);
+	}
+	else //if not null this variable is in a list
+	{
+		int *piAddr; 
+		createMatrixOfStringInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pstData, &piAddr);
+	}
+
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pstData[i]);
+	}
+	free(pstData);
+	return 0;
 }
 
-int import_list(int _iFile, int _iVarType, int* _piAddress)
+int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 {
-  //printf("--== Calling import List ==--\n");
-  return 0;
+	int i							= 0;
+	int	iRows					= 0;
+	int iCols					= 0;
+	int status				= 0;
+	int* piListAddr		= NULL;
+
+	void* piItemRef		= NULL;
+
+	status = getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(status)
+	{
+		return 1;
+	}
+
+	status = getListItemReferences(_iDatasetId, &piItemRef);
+	if(status)
+	{
+		return 1;
+	}
+
+	if(_piAddress == 0)
+	{
+		createList(Rhs + 1, iRows * iCols, &piListAddr);
+	}
+	else //if not null this variable is in a list
+	{
+		createListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+	}
+
+
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		int iItemDataset = 0;
+		getListItemDataset(_iDatasetId, piItemRef, i, &iItemDataset);
+		if(iItemDataset == 0)
+		{
+			return 1;
+		}
+		import_data(iItemDataset, i + 1, piListAddr);
+	}
+
+	return 0;
 }
 
 /*--------------------------------------------------------------------------*/
