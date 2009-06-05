@@ -11,7 +11,7 @@
  */
 
 #include <hdf5.h>
-#include <stdio.h>
+#include <stdlib.h>
 #include "stack-c.h"
 #include "h5_attributeConstants.h"
 
@@ -84,7 +84,7 @@ static char *readAttribute(int _iDatasetId, char *_pstName)
   /*
    * Allocate space for string data.
    */
-  pstValue = (char *) malloc ((dims[0] * iDim + 1 ) * sizeof (char));
+  pstValue = (char *) malloc ( (size_t)((dims[0] * iDim + 1 ) * sizeof (char)));
 
   /*
    * Create the memory datatype.
@@ -183,7 +183,7 @@ static int readString(int _iDatasetId, char **_pstData)
   /*
    * Allocate space for string data.
    */
-  *_pstData = (char *) malloc ((dims[0] * iDim + 1) * sizeof (char));
+  *_pstData = (char *) malloc ( (size_t)((dims[0] * iDim + 1) * sizeof (char)));
 
   /*
    * Create the memory datatype.
