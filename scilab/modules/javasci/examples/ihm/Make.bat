@@ -11,8 +11,8 @@ rem http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 set SCILAB_ROOT=../../../..
 set PATH=%SCILAB_ROOT%/bin;%PATH%
 set JAVAC="%SCILAB_ROOT%/java/jdk/bin/javac.exe"
-if NOT EXIST %JAVAC% set %JAVAC%=javac.exe
-set CLASSPATH=%SCILAB_ROOT%/java/jar/modules/javasci.jar;%CLASSPATH%
+if NOT EXIST %JAVAC% set JAVAC=javac.exe
+set CLASSPATH=%SCILAB_ROOT%/modules/javasci/jar/javasci.jar;%SCILAB_ROOT%/modules/javasci/jar/build/classes;%CLASSPATH%
 
 rem build examples
 

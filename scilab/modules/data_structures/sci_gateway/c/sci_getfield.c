@@ -11,10 +11,9 @@
  */
 
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-extern int C2F(intgetfield)();
-
-int C2F(sci_getfield)(char *fname,unsigned long fname_len);
+#include "gw_data_structures1.h"
+/*--------------------------------------------------------------------------*/
+extern int C2F(intgetfield)(); /* fortran */
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getfield)(char *fname,unsigned long fname_len)
 {

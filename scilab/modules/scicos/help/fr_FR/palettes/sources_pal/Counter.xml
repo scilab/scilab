@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_Counter">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_Counter">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_Counter">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_Counter">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -103,13 +103,13 @@
   <refsection id="Description_Counter">
     <title>Description</title>
     <para>
-Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou d'un maximum vers un minimun.  
+Ce bloc, suivant la loi choisie, compte Ã  partir d'un minimum vers un maximum ou d'un maximum vers un minimun.  
 </para>
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_Counter">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_Counter">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -126,26 +126,26 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
           <emphasis role="bold">Minimum</emphasis>
         </para>
         <para> La valeur minimale du compteur.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Maximum</emphasis>
         </para>
         <para> La valeur maximale du compteur.</para>
-        <para> Propriétés : Type 'vec' de taille 1. </para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1. </para>
       </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Rule (1=Increment 2=Decrement)</emphasis>
         </para>
-        <para> La loi de comptage. Si ce paramètre est égal à 1, le compteur s'incrémente de la valeur minimale vers la valeur maximale. Sinon, si ce paramètre est égal à 2, alors le compteur diminue sa valeur du maximum vers le minimum.</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> La loi de comptage. Si ce paramÃ¨tre est Ã©gal Ã  1, le compteur s'incrÃ©mente de la valeur minimale vers la valeur maximale. Sinon, si ce paramÃ¨tre est Ã©gal Ã  2, alors le compteur diminue sa valeur du maximum vers le minimum.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_Counter">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_Counter">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">toujours actif:</emphasis> non</para>
@@ -154,33 +154,33 @@ Ce bloc, suivant la loi choisie, compte à partir d'un minimum vers un maximum ou
         <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">détection de passage à zéro:</emphasis> non</para>
+        <para><emphasis role="bold">dÃ©tection de passage Ã  zÃ©ro:</emphasis> non</para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">mode:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">sorties régulières:</emphasis>
+          <emphasis role="bold">sorties rÃ©guliÃ¨res:</emphasis>
         </para>
         <para>
           <emphasis role="bold">- port 1 : taille [1,1] / type 1</emphasis>
         </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des entrées évènementielles:</emphasis> 1</para>
+        <para><emphasis role="bold">nombre des entrÃ©es Ã©vÃ¨nementielles:</emphasis> 1</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">nombre des sorties évènementielles:</emphasis> 0</para>
+        <para><emphasis role="bold">nombre des sorties Ã©vÃ¨nementielles:</emphasis> 0</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état continu:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat continu:</emphasis> non</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état discret:</emphasis> oui</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat discret:</emphasis> oui</para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">possède un état objet:</emphasis> non</para>
+        <para><emphasis role="bold">possÃ¨de un Ã©tat objet:</emphasis> non</para>
       </listitem>
       <listitem>
         <para>

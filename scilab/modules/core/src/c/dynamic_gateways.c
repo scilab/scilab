@@ -222,7 +222,7 @@ int gw_dynamic_statistics(void)
 							  &ptr_gw_statistics);
 }
 /*--------------------------------------------------------------------------*/
-/* statistics module */
+/* signal_processing module */
 #define SIGNAL_PROCESSING_MODULE_NAME "signal_processing"
 static DynLibHandle hSignal_processingLib = NULL;
 static PROC_GATEWAY ptr_gw_signal_processing = NULL;
@@ -236,5 +236,21 @@ int gw_dynamic_signal_processing(void)
 							  &gatewayname_signal_processing,
 							  &hSignal_processingLib,
 							  &ptr_gw_signal_processing);
+}
+/*--------------------------------------------------------------------------*/
+/* functions module */
+#define FUNCTIONS_MODULE_NAME "functions"
+static DynLibHandle hFunctionsLib = NULL;
+static PROC_GATEWAY ptr_gw_functions = NULL;
+static char* dynlibname_functions = NULL;
+static char* gatewayname_functions = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_functions(void)
+{
+	return gw_dynamic_generic(FUNCTIONS_MODULE_NAME,
+		&dynlibname_functions,
+		&gatewayname_functions,
+		&hFunctionsLib,
+		&ptr_gw_functions);
 }
 /*--------------------------------------------------------------------------*/

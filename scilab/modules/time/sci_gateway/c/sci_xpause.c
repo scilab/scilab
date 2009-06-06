@@ -11,17 +11,20 @@
  */
 
 /*--------------------------------------------------------------------------*/
-
+#ifdef _MSC_VER
+#include <Windows.h>
+#endif
 #ifdef HAVE_USLEEP
 #include <unistd.h>
 #endif
-#include "sci_xpause.h"
+#include "gw_time.h"
+#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_xpause)(char *fname,unsigned long fname_len)
+int sci_xpause(char *fname,unsigned long fname_len)
 {
-	int m1,n1,l1,sec=0;
+	int m1 = 0,n1 = 0,l1 = 0,sec = 0;
 
 	CheckLhs(0,1);
 	CheckRhs(1,1);

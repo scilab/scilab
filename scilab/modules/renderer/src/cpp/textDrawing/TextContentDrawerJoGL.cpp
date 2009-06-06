@@ -45,7 +45,7 @@ void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corne
 {
   // get pixel bounding in 3D
   double corners[4][3];
-  getPixelBoundingBox(corners[0], corners[1], corners[2], corners[3]);
+  getScreenBoundingBox(corners[0], corners[1], corners[2], corners[3]);
 
   // convert it to 2D
   Camera * cam = getSubwinDrawer(sciGetParentSubwin(m_pDrawed->getDrawedObject()))->getCamera();
@@ -55,20 +55,54 @@ void TextContentDrawerJoGL::getBoundingRectangle(double corner1[3], double corne
   cam->getSceneCoordinates(corners[3], corner4);
 }
 /*---------------------------------------------------------------------------------*/
-void TextContentDrawerJoGL::getScreenBoundingBox(int corner1[2], int corner2[2], int corner3[2], int corner4[2])
+void TextContentDrawerJoGL::getScreenBoundingBox(double corner1[3], double corner2[2], double corner3[2], double corner4[2])
 {
-  // get pixel bounding in 3D
-  double corners[4][3];
-  getPixelBoundingBox(corners[0], corners[1], corners[2], corners[3]);
+  // just update parent figure to avoid problems with OpenGL
+	getTextContentDrawerJavaMapper()->initializeDrawing(sciGetNum(sciGetParentFigure(m_pDrawed->getDrawedObject())));
 
-  // keep only the first 2 values
-  for (int i = 0; i < 2; i++)
+  try
   {
-    corner1[i] = (int) corners[0][i];
-    corner2[i] = (int) corners[1][i];
-    corner3[i] = (int) corners[2][i];
-    corner4[i] = (int) corners[3][i];
+    setDrawerParameters();
   }
+  catch (const std::exception & e)
+  {
+    sciprint(_("%s: No more memory.\n"), "TextContentDrawerJoGL::getPixelBoundingBox");
+    return;
+  }
+
+  // get text center
+  double textCenterPix[3];
+  getTextDisplayPos(textCenterPix);
+
+  // convert it to pixels
+  Camera * cam = getSubwinDrawer(sciGetParentSubwin(m_pDrawed->getDrawedObject()))->getCamera();
+  cam->getPixelCoordinatesRaw(textCenterPix, textCenterPix);
+
+  // we need to convert form OpenGL coordinates to Java ones
+  int viewport[4];
+  cam->getViewport(viewport);
+  textCenterPix[1] = viewport[1] - textCenterPix[1];
+
+  // we got an array of size 12
+  double * rect = getTextContentDrawerJavaMapper()->getScreenBoundingBox(textCenterPix[0], textCenterPix[1], textCenterPix[2]);
+
+  corner1[0] = rect[0];
+  corner1[1] = viewport[1] - rect[1]; // we need to convert form OpenGL coordinates to Java ones
+  corner1[2] = rect[2];
+
+  corner2[0] = rect[3];
+  corner2[1] = viewport[1] - rect[4]; // we need to convert form OpenGL coordinates to Java ones
+  corner2[2] = rect[5];
+
+  corner3[0] = rect[6];
+  corner3[1] = viewport[1] - rect[7]; // we need to convert form OpenGL coordinates to Java ones
+  corner3[2] = rect[8];
+
+  corner4[0] = rect[9];
+  corner4[1] = viewport[1] - rect[10]; // we need to convert form OpenGL coordinates to Java ones
+  corner4[2] = rect[11];
+
+  delete[] rect;
 }
 /*---------------------------------------------------------------------------------*/
 void TextContentDrawerJoGL::drawTextContent(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
@@ -222,56 +256,6 @@ void TextContentDrawerJoGL::getUserSizePix(double & boxWidthPix, double & boxHei
 
   // convert the user lengths to pixel ones.
   getPixelLength(sciGetParentSubwin(pObj), textPos, boxWidth, boxHeight, boxWidthPix, boxHeightPix);
-}
-/*---------------------------------------------------------------------------------*/
-void TextContentDrawerJoGL::getPixelBoundingBox(double corner1[3], double corner2[3], double corner3[3], double corner4[3])
-{
-  // just update parent figure to avoid problems with OpenGL
-	getTextContentDrawerJavaMapper()->initializeDrawing(sciGetNum(sciGetParentFigure(m_pDrawed->getDrawedObject())));
-
-  try
-  {
-    setDrawerParameters();
-  }
-  catch (const std::exception & e)
-  {
-    sciprint(_("%s: No more memory.\n"), "TextContentDrawerJoGL::getPixelBoundingBox");
-    return;
-  }
-
-  // get text center
-  double textCenterPix[3];
-  getTextDisplayPos(textCenterPix);
-
-  // convert it to pixels
-  Camera * cam = getSubwinDrawer(sciGetParentSubwin(m_pDrawed->getDrawedObject()))->getCamera();
-  cam->getPixelCoordinatesRaw(textCenterPix, textCenterPix);
-
-  // we need to convert form OpenGL coordinates to Java ones
-  int viewport[4];
-  cam->getViewport(viewport);
-  textCenterPix[1] = viewport[1] - textCenterPix[1];
-
-  // we got an array of size 12
-  double * rect = getTextContentDrawerJavaMapper()->getScreenBoundingBox(textCenterPix[0], textCenterPix[1], textCenterPix[2]);
-
-  corner1[0] = rect[0];
-  corner1[1] = viewport[1] - rect[1]; // we need to convert form OpenGL coordinates to Java ones
-  corner1[2] = rect[2];
-
-  corner2[0] = rect[3];
-  corner2[1] = viewport[1] - rect[4]; // we need to convert form OpenGL coordinates to Java ones
-  corner2[2] = rect[5];
-
-  corner3[0] = rect[6];
-  corner3[1] = viewport[1] - rect[7]; // we need to convert form OpenGL coordinates to Java ones
-  corner3[2] = rect[8];
-
-  corner4[0] = rect[9];
-  corner4[1] = viewport[1] - rect[10]; // we need to convert form OpenGL coordinates to Java ones
-  corner4[2] = rect[11];
-
-  delete[] rect;
 }
 /*---------------------------------------------------------------------------------*/
 TextContentDrawerJavaMapper * TextContentDrawerJoGL::getTextContentDrawerJavaMapper(void)

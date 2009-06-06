@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,17 +16,17 @@
   </info>
   <refnamediv>
     <refname>demo_compiler</refname>
-    <refpurpose> teste la présence d'un compilateur </refpurpose>
+    <refpurpose> teste la prÃ©sence d'un compilateur </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>status = demo_compiler()</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Description</title>
     <para>
-			La fonction demo_compiler interroge l'ordinateur pour savoir s'il possède un 
-			compilateur C. Elle renvoie un booléen corresdondant à la présence ou non du
+			La fonction demo_compiler interroge l'ordinateur pour savoir s'il possÃ¨de un 
+			compilateur C. Elle renvoie un boolÃ©en corresdondant Ã  la prÃ©sence ou non du
 			compilateur.
 		</para>
   </refsection>

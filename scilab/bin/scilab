@@ -68,11 +68,11 @@ start_electric_fence() {
 
 start_debug() {
 	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" "$@"
-		  "$SCI"/libtool --mode=execute gdb --args "$SCILABBIN" "$@"
+		  echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+		  "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
 	  else
-		  echo "Running debug of Scilab [gdb]  : " gdb --args "$SCILABBIN" "$@"
-		  gdb --args "$SCILABBIN" "$@"
+		  echo "Running debug of Scilab [gdb]  : " gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+		  gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
 	  fi
 }
 
@@ -87,7 +87,7 @@ start_debug_kdbg() {
 }
 
 start_profiling() {
-	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=6 --demangle=no --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --suppressions=$SCI/tools/profiling/valgrind.supp"
+	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=6 --demangle=no --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
 	  if test -n "$DEVENV"; then
 		  echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
 		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
@@ -99,7 +99,7 @@ start_profiling() {
 }
 
 start_profiling_visu() {
-	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes"
+	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes $SCILAB_VALGRIND_OPT"
 #--dump-instr=yes 
 	if test -n "$DEVENV"; then
 		echo "Running profiling visualization of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
@@ -152,7 +152,7 @@ detect_type_of_scilab
 
 detect_scilab_path() {
 
-	OLDPWD=`pwd`
+LOCALOLDPWD=`pwd`
 
 # Use scilab-bin in the current dir if it exists
 # If not, then start resolving symlinks until we find scilab-bin
@@ -400,6 +400,23 @@ fi
 						;;
 				esac
 				;;
+			"ia64")
+				proc="ia64"
+				;;
+		    "ppc"|"powerpc"|"ppc64")
+				proc="ppc"
+				;;
+			"alpha")  
+				proc="alpha"
+				;;
+			"s390"|"s390x")
+				proc="s390"
+				;;
+			*)
+				echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
+				echo "Fallback on the model <${MODEL}> found by uname -m"
+				proc=$MODEL
+				;;
 			*win32* | *WIN32* | *CYGWIN_NT*)
 				proc="win32"
 				JAVA_SHLIB="jvm.dll"
@@ -462,7 +479,7 @@ if test $SCIVERBOSE -ne 0; then
 fi
 
 # Returns to the original path
-cd "$OLDPWD"
+cd "$LOCALOLDPWD"
 
 #if test "$DISPLAY" = ""; then
 #  DISPLAY="unix:0.0"
@@ -521,9 +538,14 @@ do_help()
 	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
 	echo     "      -d Display      : equivalent to display Display."
 	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+	echo     "                        define the variable SCILAB_GDB_OPT to add custom options to gdb."
 	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
 	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom options to"
+	echo     "                        valgrind (and override the existing valgrind options)."
 	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom options to"
+	echo     "                        callgrind (and override the existing callgrind options)."
 	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
 	echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
 	echo     "                        -e and -f options are mutually exclusive."
@@ -532,7 +554,7 @@ do_help()
 	echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
 	echo     "      -mem N          : set the initial stacksize, for use with -ns option."
 	echo     "      -nb             : do not display the Scilab banner at starting time."
-	echo     "      -ns             : do not execute scilab.start startup file."
+	echo     "      -ns             : do not execute scilab.start startup file. This option will disable many features in Scilab (Only use if you know what you are doing)."
 	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
 	echo     "      -nw             : start Scilab without specialized Scilab Window."
 	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This option disables the need of Java."

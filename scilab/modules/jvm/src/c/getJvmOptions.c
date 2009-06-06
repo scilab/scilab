@@ -26,6 +26,8 @@
 #endif
 #include "strsubst.h"
 #include "getos.h"
+#include "getshortpathname.h"
+#include "BOOL.h"
 /*--------------------------------------------------------------------------*/
 JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_JavaVMOption)
 {
@@ -45,8 +47,16 @@ JavaVMOption * getJvmOptions(char *SCI_PATH,char *filename_xml_conf,int *size_Ja
 			char *jvm_option_string = NULL;
 
 			int indice = 0;
-
-			doc = xmlParseFile (filename_xml_conf);
+			{
+				BOOL bConvert = FALSE;
+				char *shortfilename_xml_conf = getshortpathname(filename_xml_conf,&bConvert);
+				if (shortfilename_xml_conf)
+				{
+					doc = xmlParseFile (shortfilename_xml_conf);
+					FREE(shortfilename_xml_conf);
+					shortfilename_xml_conf = NULL;
+				}
+			}
 
 			if (doc == NULL)
 			{

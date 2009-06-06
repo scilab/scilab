@@ -127,7 +127,6 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
       sciPointObj * zoomedObject = getZoomedObject(fname);
       if (zoomedObject == NULL)
       {
-        LhsVar(1)=0; 
         return -1;
       }
       sciInteractiveZoom(zoomedObject);
@@ -143,21 +142,18 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
         {
           /* error on rectangle bounds */
           Scierror(999, _("%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"), fname, 1);
-          LhsVar(1)=0; 
           return -1;
         }
       }
       else
       {
         /* error on rectagle definition */
-        LhsVar(1)=0; 
         return -1;
       }
     }
     else
     {
       Scierror(999, _("%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"), fname, 1);
-      LhsVar(1)=0; 
       return 0;
     }
   }
@@ -171,14 +167,12 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
     if (GetType(1) != sci_handles || GetType(2) != sci_matrix)
     {
       Scierror(999, _("%s: Wrong type for input arguments: Handle or vector of double expected.\n"), fname);
-      LhsVar(1)=0; 
       return -1;
     }
 
     zoomedObject = getZoomedObject(fname);
     if (zoomedObject == NULL || !getZoomRect(fname, 2, rect))
     {
-      LhsVar(1)=0; 
       return -1;
     }
 
@@ -186,12 +180,12 @@ int sci_zoom_rect(char *fname,unsigned long fname_len)
     {
       /* error on rectangle bounds */
       Scierror(999, _("%s: Error on input argument #%d: Specified bounds are not correct.\n"), fname, 1);
-      LhsVar(1)=0; 
       return -1;
     }
   }
 
   LhsVar(1)=0; 
+	C2F(putlhsvar)();
   return 0;
 } 
 /*--------------------------------------------------------------------------*/

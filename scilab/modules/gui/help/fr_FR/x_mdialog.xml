@@ -1,77 +1,77 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="x_mdialog">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>x_mdialog</refname>
-    <refpurpose>boîte de dialogue pour la saisie de
-  paramètres</refpurpose>
+    <refpurpose>boÃ®te de dialogue pour la saisie de
+  paramÃ¨tres</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>result=x_mdialog(title,labels,default_inputs_vector)
 result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>title</term>
         <listitem>
-          <para>vecteur colonne de chaînes de caractères. Titre général</para>
+          <para>vecteur colonne de chaÃ®nes de caractÃ¨res. Titre gÃ©nÃ©ral</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labels</term>
         <listitem>
-          <para>n vecteurs colonnes de chaînes de caractères,
-          <literal>labels(i)</literal> est l'intitulé du i-ème paramètre à  
+          <para>n vecteurs colonnes de chaÃ®nes de caractÃ¨res,
+          <literal>labels(i)</literal> est l'intitulÃ© du i-Ã¨me paramÃ¨tre Ã Â Â 
           saisir</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>default_input_vector</term>
         <listitem>
-          <para>n vecteurs colonnes de chaînes de caractères,
-          <literal>default_input_vector(i)</literal> la valeur initiale du i-ème
-          paramètre</para>
+          <para>n vecteurs colonnes de chaÃ®nes de caractÃ¨res,
+          <literal>default_input_vector(i)</literal> la valeur initiale du i-Ã¨me
+          paramÃ¨tre</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labelsv</term>
         <listitem>
-          <para>vecteur de n chaînes de caractères, <literal>labelsv(i)</literal>
-          est la légende de la i-ème ligne de la matrice de paramètres</para>
+          <para>vecteur de n chaÃ®nes de caractÃ¨res, <literal>labelsv(i)</literal>
+          est la lÃ©gende de la i-Ã¨me ligne de la matrice de paramÃ¨tres</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>labelsh</term>
         <listitem>
-          <para>vecteur de m chaînes de caractères, <literal>labelsh(j)</literal>
-          est la légende de la j-ième colonne de la matrice de paramètres</para>
+          <para>vecteur de m chaÃ®nes de caractÃ¨res, <literal>labelsh(j)</literal>
+          est la lÃ©gende de la j-iÃ¨me colonne de la matrice de paramÃ¨tres</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>default_input_matrix</term>
         <listitem>
-          <para>matrice n x m de chaînes de caractères,
+          <para>matrice n x m de chaÃ®nes de caractÃ¨res,
           <literal>default_input_matrix(i,j)</literal> est la valeur initiale du
-          terme (i,j) de la matrice à   saisir</para>
+          terme (i,j) de la matrice Ã Â Â  saisir</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>result</term>
         <listitem>
-          <para>matrice n x m de chaînes de caractères si le bouton "Ok" a été
-          pressé ou [] si c'est le bouton "Cancel".</para>
+          <para>matrice n x m de chaÃ®nes de caractÃ¨res si le bouton "Ok" a Ã©tÃ©
+          pressÃ© ou [] si c'est le bouton "Cancel".</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para>Boîte de dialogue pour la saisie de paramètres</para>
+    <para>BoÃ®te de dialogue pour la saisie de paramÃ¨tres</para>
   </refsection>
   <refsection>
     <title>Exemples</title>

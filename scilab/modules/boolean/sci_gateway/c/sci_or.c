@@ -12,6 +12,7 @@
 
 #include <string.h>
 #include "stack-c.h"
+#include "Scierror.h"
 #include "vect_or.h"
 /*--------------------------------------------------------------------------*/
 int C2F(intor)(char *fname,unsigned long l);

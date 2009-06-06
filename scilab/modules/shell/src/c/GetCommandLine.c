@@ -9,14 +9,13 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include <stdio.h>
+#include <string.h>
 #ifdef _MSC_VER
 #include <io.h>
 #define isatty	_isatty
 #define fileno	_fileno
 #endif
-#include <stdio.h>
-#include <string.h>
-#include "stack-def.h"
 #include "Thread_Wrapper.h" /* Thread should be first for Windows */
 #include "BOOL.h"
 #include "ConsoleRead.h"
@@ -26,29 +25,26 @@
 #include "prompt.h"
 #include "HistoryManager.h"
 #include "dynamic_menus.h" /* for ismenu() */
-#include "charEncoding.h"
 #include "zzledt.h"
 #include "GetCommandLine.h"
-#if _MSC_VER
 #include "TermReadAndProcess.h"
+#include "stack-def.h"
+#include "diary.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
 #endif
 
 #ifdef _MSC_VER
 #define IMPORT_SIGNAL __declspec(dllimport)
-#define strdup _strdup
 #else
 #define IMPORT_SIGNAL extern
 #endif
-#define WK_BUF_SIZE 520
 
-#define NUL '\0'
 
 /*--------------------------------------------------------------------------*/
-static char Sci_Prompt[10];
+static char Sci_Prompt[PROMPT_SIZE_MAX];
 static char* tmpPrompt = NULL;
-
-static char * __CommandLine;
-
+static char * __CommandLine = NULL;
 /*--------------------------------------------------------------------------*/
 
 IMPORT_SIGNAL __threadSignal		LaunchScilab;
@@ -74,13 +70,14 @@ static void getCommandLine(void)
   tmpPrompt = GetTemporaryPrompt();
   GetCurrentPrompt(Sci_Prompt);
 
+  if (__CommandLine) {FREE(__CommandLine); __CommandLine = NULL;}
+
   if (getScilabMode() == SCILAB_STD)
     {
       /* Send new prompt to Java Console, do not display it */
       if (tmpPrompt != NULL)
         {
           SetConsolePrompt(tmpPrompt);
-          ClearTemporaryPrompt();
         }
       else
         {
@@ -88,13 +85,12 @@ static void getCommandLine(void)
         }
       setSearchedTokenInScilabHistory(NULL);
       /* Call Java Console to get a string */
-      __CommandLine = ConsoleRead();
+      __CommandLine = strdup(ConsoleRead());
     }
   else
     {
       /* Call Term Management for NW and NWNI to get a string */
-			char szTempUTF[bsiz];
-      __CommandLine = localeToUTF(TermReadAndProcess(), szTempUTF);
+      __CommandLine = TermReadAndProcess();
     }
 }
 
@@ -165,18 +161,30 @@ static void *watchGetCommandLine(void *in) {
 void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 		 int *menusflag,int * modex,long int dummy1)
 {
+#ifdef DO_NOT_BUILD_THIS
+	/* Desactivated since it is breaking Scilab GUI when not launched from a tty */
 
-	if(!isatty(fileno(stdin))) { /* if not an interactive terminal */
+	/* if not an interactive terminal */
+#ifdef _MSC_VER
+	/* if file descriptor returned is -2 stdin is not associated with an intput stream */
+	/* example : echo plot3d | scilex -nw -e */
+	if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) )
+#else
+	if ( !isatty(fileno(stdin)) )
+#endif
+	{
 		/* read a line into the buffer, but not too
 		* big */
 		*eof = (fgets(buffer, *buf_size, stdin) == NULL);
-		*len_line = strlen(buffer);
+		*len_line = (int)strlen(buffer);
 		/* remove newline character if there */
-		if(buffer[*len_line - 1] == '\n') {
+		if(buffer[*len_line - 1] == '\n') 
+		{
 			(*len_line)--;
 		}
 		return;
 	}
+#endif
 
   if(!initialized)
     {
@@ -184,6 +192,8 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
     }
 
   __LockSignal(&ReadyForLaunch);
+
+  if (__CommandLine) { FREE(__CommandLine); __CommandLine = NULL;}
   __CommandLine = strdup("");
 
   if (ismenu() == 0)

@@ -10,15 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "MALLOC.h"
-#include "fileio.h"
 #include "gw_fileio.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "scanf_functions.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "cluni0.h"
 #include "freeArrayOfString.h"
-#include "charEncoding.h"
 #include "PATH_MAX.h"
+#include "charEncoding.h"
+#include "StringConvert.h"
+#include "NumTokens.h"
 /*--------------------------------------------------------------------------*/
 #define INFOSIZE 1024
 /*--------------------------------------------------------------------------*/
@@ -39,7 +42,6 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 	char *Format = NULL;
 	
 	char *shortcut_path = NULL;	// filename process
-	char szTemp[bsiz];
 	char *real_path     = NULL; //       "
 	long int lout = 0;          //       "
 	int out_n = 0;              //       "
@@ -76,14 +78,22 @@ int sci_fscanfMat(char *fname,unsigned long fname_len)
 	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);/* file name */
 
 	/* BUG 3714 */
-	shortcut_path = UTFToLocale(cstk(l1), szTemp);
+	shortcut_path = cstk(l1);
 
 	lout          = PATH_MAX + FILENAME_MAX;
 	real_path     = (char*)MALLOC(sizeof(char*)*lout);
 	
 	C2F(cluni0)( shortcut_path, real_path, &out_n, (long)strlen(shortcut_path), lout);
 
-	if (( f = fopen(real_path,"r")) == (FILE *)0)
+	#if _MSC_VER
+	#define MODEFD "rt"
+	#else
+	#define MODEFD "r"
+	#endif
+
+	wcfopen(f , real_path, MODEFD);
+
+	if ( f  == (FILE *)0)
 	{
 		Scierror(999,_("%s: Cannot open file '%s'.\n"),fname,shortcut_path);
 		return 0;

@@ -9,5 +9,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 path = SCI+"/modules/fileio/help/fr_FR";
-add_help_chapter("Entrées/Sorties [fichiers]",path,%T);
+add_help_chapter("EntrÃ©es/Sorties [fichiers]",path,%T);
 clear path add_help_chapter;

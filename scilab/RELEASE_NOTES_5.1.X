@@ -31,12 +31,6 @@ There are some known issues with the Mac OS X version:
 
 	* The merge of windows provided by the docking system does not work
 
-	* Because of a Mac OS X bug, Scilab is not using the typical
-	Mac OS X Screen Menu Bar.
-	See: http://bugzilla.scilab.org/show_bug.cgi?id=4074
-	If you want to use it, uncomment the line about useScreenMenuBar in
-	share/scilab/modules/jvm/etc/jvm_options.xml
-
 	* Due to internal constraints, during the load of Scilab, it is normal
 	to see the icon changing for a second.
 

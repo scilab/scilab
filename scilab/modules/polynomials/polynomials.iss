@@ -18,6 +18,9 @@
 ;
 #define POLYNOMIALS "polynomials"
 ;
+Source: bin\polynomials.dll; DestDir: {app}\bin; Components: {#COMPN_POLY}
+Source: bin\polynomials_f.dll; DestDir: {app}\bin; Components: {#COMPN_POLY}
+;
 Source: modules\{#POLYNOMIALS}\VERSION.xml; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\readme.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\license.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}

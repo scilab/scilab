@@ -1,37 +1,37 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="hrmt">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
     <refname>hrmt</refname>
-    <refpurpose> PGDC de plusieurs polynômes  </refpurpose>
+    <refpurpose> PGDC de plusieurs polynÃ´mes  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[pg,U]=hrmt(v)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>v  </term>
         <listitem>
-          <para>vecteur ligne de polynômes
+          <para>vecteur ligne de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>pg  </term>
         <listitem>
-          <para>polynôme
+          <para>polynÃ´me
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>U  </term>
         <listitem>
-          <para>matrice unimodulaire de polynômes
+          <para>matrice unimodulaire de polynÃ´mes
 </para>
         </listitem>
       </varlistentry>
@@ -40,7 +40,7 @@
   <refsection>
     <title>Description</title>
     <para><literal>[pg,U]=hrmt(v)</literal> renvoie une matrice unimodulaire <literal>U</literal> et <literal>pg</literal> = PGDC de la ligne de 
-    polynômes <literal>v</literal> tels que <literal>v*U = [pg,0]</literal>.
+    polynÃ´mes <literal>v</literal> tels que <literal>v*U = [pg,0]</literal>.
   </para>
   </refsection>
   <refsection>

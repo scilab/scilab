@@ -303,8 +303,8 @@ function save_graphichandle(h,fd)
     mput(ascii(part(h.mark_size_unit,1)),characterFormat,fd) // mark_size_unit
     mput(h.mark_foreground,'il',fd) // mark_foreground
     mput(h.mark_background,'il',fd) // mark_background
-    mput(h.color_mode,characterFormat,fd) // color_mode
-    mput(h.color_flag,characterFormat,fd) // color_flag
+    mput(h.color_mode,'il',fd) // color_mode
+    mput(h.color_flag,'il',fd) // color_flag
     x=h.data.x;sz=size(x)
     mput(sz,'il',fd) // data.x
     mput(x,'dl',fd)
@@ -339,8 +339,8 @@ function save_graphichandle(h,fd)
     mput(ascii(part(h.mark_size_unit,1)),characterFormat,fd) // mark_size_unit
     mput(h.mark_foreground,'il',fd) // mark_foreground
     mput(h.mark_background,'il',fd) // mark_background
-    mput(h.color_mode,characterFormat,fd) // color_mode
-    mput(h.color_flag,characterFormat,fd) // color_flag
+    mput(h.color_mode,'il',fd) // color_mode
+    mput(h.color_flag,'il',fd) // color_flag
     x=h.data.x;sz=size(x)
     mput(sz,'il',fd) // data.x
     mput(x,'dl',fd)

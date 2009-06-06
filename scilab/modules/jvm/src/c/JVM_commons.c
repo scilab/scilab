@@ -16,6 +16,10 @@
 #include "JVM_commons.h"
 #include "dynamiclibrary.h"
 #include "localization.h"
+#include "getshortpathname.h"
+#include "BOOL.h"
+#include "MALLOC.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/ 
 static DynLibHandle hLibJVM = NULL;
 /*--------------------------------------------------------------------------*/ 
@@ -62,8 +66,17 @@ BOOL FreeDynLibJVM(void)
 /*--------------------------------------------------------------------------*/ 
 BOOL LoadFuntionsJVM(char *filedynlib)
 {
-
+	#ifdef _MSC_VER
+	wchar_t * wcfiledynlib = to_wide_string(filedynlib);
+	if (wcfiledynlib)
+	{
+		hLibJVM = LoadDynLibraryW(wcfiledynlib); 
+		FREE(wcfiledynlib);
+		wcfiledynlib = NULL;
+	}
+	#else
 	hLibJVM = LoadDynLibrary(filedynlib); 
+	#endif
 	
 	if (hLibJVM)
 	{

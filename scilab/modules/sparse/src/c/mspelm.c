@@ -11,6 +11,7 @@
  */
 
 #include "stack-c.h"
+#include "Scierror.h"
 #include "../../elementary_functions/includes/elementary_functions.h"
 #include "../../elementary_functions/includes/int2db.h"
 #include "basout.h"

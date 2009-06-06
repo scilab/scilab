@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -58,12 +58,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_IdealTransformer">Boîte de dialogue</xref>
+              <xref linkend="BoÃ®tededialogue_IdealTransformer">BoÃ®te de dialogue</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Propriétéspardéfaut_IdealTransformer">Propriétés par défaut</xref>
+              <xref linkend="PropriÃ©tÃ©spardÃ©faut_IdealTransformer">PropriÃ©tÃ©s par dÃ©faut</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,7 +73,7 @@
           </listitem>
           <listitem>
             <para>
-              <link linkend="IdealTransformer">Modèle Modelica</link>
+              <link linkend="IdealTransformer">ModÃ¨le Modelica</link>
             </para>
           </listitem>
           <listitem>
@@ -90,7 +90,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils des composants électriques</link>
+          <link linkend="Electrical_pal">Electrical.cosf - BoÃ®te Ã  outils des composants Ã©lectriques</link>
         </para>
       </listitem>
     </itemizedlist>
@@ -103,8 +103,8 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
     <para>
 </para>
   </refsection>
-  <refsection id="Boîtededialogue_IdealTransformer">
-    <title>Boîte de dialogue</title>
+  <refsection id="BoÃ®tededialogue_IdealTransformer">
+    <title>BoÃ®te de dialogue</title>
     <para>
       <inlinemediaobject>
         <imageobject>
@@ -121,16 +121,16 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
           <emphasis role="bold">N</emphasis>
         </para>
         <para> Turns ratio (N1/N2)</para>
-        <para> Propriétés : Type 'vec' de taille 1.</para>
+        <para> PropriÃ©tÃ©s : Type 'vec' de taille 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Propriétéspardéfaut_IdealTransformer">
-    <title>Propriétés par défaut</title>
+  <refsection id="PropriÃ©tÃ©spardÃ©faut_IdealTransformer">
+    <title>PropriÃ©tÃ©s par dÃ©faut</title>
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Entrées :</emphasis>
+          <emphasis role="bold">EntrÃ©es :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
@@ -169,15 +169,15 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Paramètres :</emphasis>
+          <emphasis role="bold">ParamÃ¨tres :</emphasis>
         </para>
         <itemizedlist>
           <listitem>
-            <para><emphasis role="bold">Nom du paramètre Modelica :</emphasis> 'N'
+            <para><emphasis role="bold">Nom du paramÃ¨tre Modelica :</emphasis> 'N'
 </para>
-            <para><emphasis role="bold">Valeur par défaut :</emphasis> 1
+            <para><emphasis role="bold">Valeur par dÃ©faut :</emphasis> 1
 </para>
-            <para><emphasis role="bold">Variable d'état :</emphasis> non.
+            <para><emphasis role="bold">Variable d'Ã©tat :</emphasis> non.
 
 
 </para>
@@ -197,8 +197,8 @@ The ideal transformer is an ideal two-port resistive circuit element which is ch
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="ModèleModelica_IdealTransformer">
-    <title>Modèle Modelica</title>
+  <refsection id="ModÃ¨leModelica_IdealTransformer">
+    <title>ModÃ¨le Modelica</title>
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Electrical/IdealTransformer.mo</para>

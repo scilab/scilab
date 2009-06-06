@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="logm" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -13,24 +13,24 @@
   <refnamediv>
     <refname>logm</refname>
 
-    <refpurpose>logarithme matriciel d'une matrice carrée</refpurpose>
+    <refpurpose>logarithme matriciel d'une matrice carrÃ©e</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>y=logm(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
 
     <variablelist>
       <varlistentry>
         <term>x</term>
 
         <listitem>
-          <para>matrice carrée</para>
+          <para>matrice carrÃ©e</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -40,10 +40,10 @@
     <title>Description</title>
 
     <para><literal>logm(x)</literal> est le logarithme matriciel de
-    <literal>x</literal>. Le résultat est complexe si <literal>x</literal>
-    n'est pas positive ou définie positive. Si <literal>x</literal> est une
-    matrice symétrique, le calcul est fait en utilisant la forme de Schur.
-    Sinon, <literal>x</literal> est supposée diagonalisable. On a
+    <literal>x</literal>. Le rÃ©sultat est complexe si <literal>x</literal>
+    n'est pas positive ou dÃ©finie positive. Si <literal>x</literal> est une
+    matrice symÃ©trique, le calcul est fait en utilisant la forme de Schur.
+    Sinon, <literal>x</literal> est supposÃ©e diagonalisable. On a
     <literal>expm(logm(x))=x.</literal></para>
   </refsection>
 

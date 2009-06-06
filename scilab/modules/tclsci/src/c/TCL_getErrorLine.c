@@ -16,14 +16,19 @@
 int TCL_getErrorLine(Tcl_Interp *interp)
 {
 #ifdef TCL_MAJOR_VERSION
-#ifdef TCL_MINOR_VERSION
-#if TCL_MAJOR_VERSION >= 8
-#if TCL_MINOR_VERSION >= 6
-    return Tcl_GetErrorLine(interp);
-#endif
-#endif
-#endif
-#endif
+	#ifdef TCL_MINOR_VERSION
+		#if TCL_MAJOR_VERSION >= 8
+			#if TCL_MINOR_VERSION >= 6
+				return Tcl_GetErrorLine(interp);
+			#else
+				/* 8.5 */
+				return interp->errorLine;
+			#endif
+		#endif
+	#else
+		return interp->errorLine;
+	#endif
+#else
 /* USE_INTERP_ERRORLINE does normally not need to be defined
    since it's only used by Tcl >= 8.6 to restore access to
    interp->errorLine, but I define it anyway in case one of the
@@ -31,5 +36,6 @@ int TCL_getErrorLine(Tcl_Interp *interp)
 */
 #define USE_INTERP_ERRORLINE
     return interp->errorLine;
+#endif
 }
 /*--------------------------------------------------------------------------*/

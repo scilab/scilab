@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
  * 
@@ -152,9 +152,9 @@ The truth table of this block is
       </tr>
       <tr>
         <td align="center">-&gt; This case is to avoid</td>
-        <td align="center"> </td>
-        <td align="center"> </td>
-        <td align="center"> </td>
+        <td align="center">Â </td>
+        <td align="center">Â </td>
+        <td align="center">Â </td>
       </tr>
     </informaltable>
   </refsection>

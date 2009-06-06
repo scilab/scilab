@@ -121,6 +121,7 @@ c
       character var2*3
       dimension x(n),xn(n),gn(n),d(n),binf(n),bsup(n),izs(*)
       double precision dzs(*)
+      character bufstr*(4096)
       real rzs(*)
 c
       indrl=1
@@ -166,7 +167,10 @@ c     calcul de tproj:plus petit point de discontinuite de h'(t)
       icop=i
 7     continue
 c
-      if (imp.ge.3) write (io,14050) tproj,tmax,hp
+      if (imp.ge.3) then
+        write (bufstr,14050) tproj,tmax,hp
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 14050 format (' rlbd tp=',e11.4,
      &        ' tmax=',e11.4,' dh0/dt=',e11.4 )
 15000 format (a3,' t=',e11.4,' h=',e11.4,' dh/dt=',e11.4,
@@ -191,7 +195,10 @@ c     calcul de xn,de fn et de gn
       call simul (indic,n,xn,fn,gn,izs,rzs,dzs)
       nap=nap+1
       if (indic.lt.0) then
-         if (imp.ge.3) write (io,16000) indic,t
+         if (imp.ge.3) then
+           write (bufstr,16000) indic,t
+           call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+           endif
          if (nap.ge.napmax) go to 1000
          t=tg+(t-tg)/4.0d+0
          tmax=t
@@ -260,7 +267,10 @@ c      calcul du pas saturant toutes les bornes:tmaxp
       end if
 c
 c     toutes les variables sont saturees
-      if (imp.ge.3) write (io,3330) tmaxp
+      if (imp.ge.3) then
+        write (bufstr,3330) tmaxp
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 3330   format ('toutes les variables sont saturees:tmaxp= ',e11.4)
       t=tmaxp
       if (fn.lt.f+amf*hp*tmaxp)  then
@@ -460,8 +470,10 @@ c        dans le cas quadratique prendre extrp plus grand
 785   t=text
       var2='e  '
 800   f11=fn-f
-      if (imp.ge.3.and.indic.gt.0)
-     &    write (io,15000)var2,ta1,f11,hpn,h1,t1
+      if (imp.ge.3.and.indic.gt.0) then
+        write (bufstr,15000)var2,ta1,f11,hpn,h1,t1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
 c
 c      test sur deltat
       if(abs(ta1-t).ge.1.0d+2*zero) go to 200
@@ -510,6 +522,9 @@ c
       h1=(fn-fa1)/t1
       hp=hpd
       f0=f-f0
-      if (imp.ge.3) write (io,15020)t,f0,hpd,h1,t1
+      if (imp.ge.3) then
+        write (bufstr,15020)t,f0,hpd,h1,t1
+        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+        endif
       return
       end

@@ -202,3 +202,72 @@ static void cleanFortranString(char *fortanbuffer)
 	}
 }
 /*--------------------------------------------------------------------------*/
+BOOL existVariableNamedOnStack(char *varname)
+{
+	if (existLocalVariableNamedOnStack(varname) || 
+		existGlobalVariableNamedOnStack(varname) )
+	{
+		return TRUE;
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+BOOL existLocalVariableNamedOnStack(char *varname)
+{
+	if (varname)
+	{
+		int LocalSize = 0;
+		int Lused = 0;
+		int Ltotal = 0;
+		int i = 0;
+
+		C2F(getvariablesinfo)(&Ltotal,&Lused);
+
+		for( i = 0; i < Lused; i++)
+		{
+			char *varOnStack = getLocalNamefromId(i);
+			if (varOnStack)
+			{
+				if (strcmp(varname, varOnStack) == 0)
+				{
+					FREE(varOnStack);
+					varOnStack = NULL;
+					return TRUE;
+				}
+				FREE(varOnStack);
+				varOnStack = NULL;
+			}
+		}
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+BOOL existGlobalVariableNamedOnStack(char *varname)
+{
+	if (varname)
+	{
+		int GlobalSize = 0;
+		int Gused = 0;
+		int Gtotal = 0;
+		int i = 0;
+
+		C2F(getgvariablesinfo)(&Gtotal,&Gused);
+		for( i = 0; i < Gused; i++)
+		{
+			char *varOnStack = getGlobalNamefromId(i);
+			if (varOnStack)
+			{
+				if (strcmp(varname, varOnStack) == 0)
+				{
+					FREE(varOnStack);
+					varOnStack = NULL;
+					return TRUE;
+				}
+				FREE(varOnStack);
+				varOnStack = NULL;
+			}
+		}
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/

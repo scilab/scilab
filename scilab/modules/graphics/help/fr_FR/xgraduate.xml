@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xgraduate">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
@@ -8,16 +8,16 @@
     <refpurpose> graduation des axes   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[xi,xa,np1,np2,kMinr,kMaxr,ar]=xgraduate(xmi,xma)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>xmi,xma  </term>
         <listitem>
-          <para>scalaire réel
+          <para>scalaire rÃ©el
 </para>
         </listitem>
       </varlistentry>
@@ -25,7 +25,7 @@
         <term>xi, xa, kMinr, kMaxr, ar  </term>
         <listitem>
           <para>
-    :scalaires réels
+    :scalaires rÃ©els
 </para>
         </listitem>
       </varlistentry>
@@ -40,9 +40,9 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>xgraduate</literal> renvoie les graduations des axes utilisées par les routines de dessin. Elle renvoie un intervalle <literal>[xi,xa]</literal> contenant l'intervalle donné <literal>[xmi,xma]</literal> avec xi et xa tels que  
+    <para><literal>xgraduate</literal> renvoie les graduations des axes utilisÃ©es par les routines de dessin. Elle renvoie un intervalle <literal>[xi,xa]</literal> contenant l'intervalle donnÃ© <literal>[xmi,xma]</literal> avec xi et xa tels que  
   </para>
-    <para><literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> et l'intervalle peut être divise en <literal>np2</literal> intervalles et chaque intervalle est divisé en
+    <para><literal>xi= kMinr*10^ar</literal>, <literal>xa=kMaxr*10^ar</literal> et l'intervalle peut Ãªtre divise en <literal>np2</literal> intervalles et chaque intervalle est divisÃ© en
     <literal>np1</literal> sous-intervalles.
   </para>
   </refsection>

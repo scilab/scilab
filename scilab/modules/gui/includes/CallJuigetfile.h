@@ -4,6 +4,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - DIGITEO - Sylvestre KOUMAR
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,6 +14,7 @@
  *
  */
 
+/** uigetfile **/
 void CallJuigetfile(char **mask, char **description, int maskSize, char *initialDirectory, char *titleBox, bool multipleSelection);
 
 void CallJuigetfileWithoutInput();
@@ -23,6 +25,16 @@ void CallJuigetfileWithMaskAndInitialdirectory(char **mask, char **description, 
 
 void CallJuigetfileWithoutMultipleSelection(char **mask, char **description, int maskSize, char *initialDirectory, char * titleBox);
 
+/** uiputfile **/
+void CallJuiputfileWithoutInput();
+
+void CallJuiputfileOnlyWithMask(char **mask, char **description, int maskSize);
+
+void CallJuiputfileWithMaskAndInitialdirectory(char **mask, char **description, int maskSize, char *initialDirectory);
+
+void CallJuiputfileWithoutMultipleSelection(char **mask, char **description, int maskSize, char *initialDirectory, char * titleBox);
+
+/** generic functions **/
 char **getJuigetfileSelection(void);
 
 char **getJuigetfileSelectionFileNames(void);
@@ -37,6 +49,7 @@ int getJuigetfileFilterIndex(void);
 
 char *getJuigetfileMenuCallback(void);
 
+/** uigetdir **/
 void CallJuigetfileForDirectoryWithoutInput();
 
 void CallJuigetfileForDirectoryWithInitialdirectory(char *initialDirectory);

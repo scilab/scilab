@@ -1,388 +1,283 @@
-/*************************************************************************************************/
-/* Allan CORNET */
-/* INRIA 2006   */
-/*************************************************************************************************/
-
-#include <windows.h>
-#include <stdio.h>
-
-#define KeyCpuIdentifer "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0"
-#define LenLine 255
-#define LogName "SetupAtlas.log"
-#define LineMaxSize 512
-#define MaxCPU 64
-#define DefaultDllName "ATLAS_PIII.DLL"
-
-char ArrayLinesCPU[MaxCPU][LineMaxSize]; /* 64 cpus max in atlas.spec*/
-int NbrLinesCPU=0;
-
-char *GetWhereIsThisExe(void);
-/*************************************************************************************************/
-BOOL AppendMessageToLog(char *Message)
+/*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2009 - DIGITEO - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
+/*--------------------------------------------------------------------------*/
+#include <Windows.h>
+#include "writeLog.h"
+#include "getCpuInfos.h"
+#include "readBlasSpec.h"
+#include "copyBlasFile.h"
+#include "GetPathOfThisExe.h"
+/*--------------------------------------------------------------------------*/
+#pragma comment(lib,"../../bin/libxml2.lib")
+/*--------------------------------------------------------------------------*/
+#define LOG_FILENAME L"SetupAtlas.log"
+#define ATLASSPEC_FILENAME L"Atlas.spec"
+/*--------------------------------------------------------------------------*/
+static wchar_t *LogFilename = NULL;
+static wchar_t msgtolog[512];
+static wchar_t *buildFilename(wchar_t *destpath,wchar_t *filename);
+static wchar_t *getCpuDllFilename(struct cpu_struct**CPUS_SPEC,int sizeCPUS_SPEC);
+static BOOL freeCpuStruct(struct cpu_struct**CPUS_SPEC,int sizeCPUS_SPEC);
+/*--------------------------------------------------------------------------*/
+int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
 {
-	BOOL bOK=FALSE;
-	FILE *pFile;
-	char *Path=NULL;
-	char PathAndFilename[MAX_PATH];
-
-	Path=GetWhereIsThisExe();
-	wsprintf(PathAndFilename,"%s%s",Path,LogName);
-	free(Path);
-	Path=NULL;
-
-	pFile=fopen(PathAndFilename,"at");
-	if (pFile)
+	int ierr = 1;
+	wchar_t *pathThisExe = GetPathOfThisExe();
+	if (pathThisExe)
 	{
-		fprintf(pFile,"%s\n",Message);
-		fclose(pFile);
-		bOK=TRUE;
-	}
-
-	return bOK;
-}
-/*************************************************************************************************/
-char * GetRegKeyIdentifier(void)
-{
-	HKEY key;
-	DWORD result;
-	char *LineIdentifier;
-	ULONG length = LenLine,Type;
-	
-  	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyCpuIdentifer, 0, KEY_QUERY_VALUE , &key);
-
-	LineIdentifier=(char*)malloc(sizeof(char)*length);
-
-	if ( RegQueryValueEx(key, "Identifier", 0, &Type, (LPBYTE)LineIdentifier, &length) !=  ERROR_SUCCESS )
-	{
-		wsprintf(LineIdentifier,"ERROR");
-	}
-
-	if( Type != REG_SZ )
-    {
-       wsprintf(LineIdentifier,"ERROR");
-    }
-
-	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
-	
-	return (char *)LineIdentifier;
-}
-/*************************************************************************************************/
-char *GetRegKeyVendorIdentifier(void)
-{
-	HKEY key;
-	DWORD result;
-	ULONG length = LenLine,Type;
-
-	char *LineVendorIdentifier;
-
-	result=RegOpenKeyEx(HKEY_LOCAL_MACHINE, KeyCpuIdentifer, 0, KEY_QUERY_VALUE , &key);
-
-	LineVendorIdentifier=(char*)malloc(sizeof(char)*length);
-
-	if ( RegQueryValueEx(key, "VendorIdentifier", 0, &Type, (LPBYTE)LineVendorIdentifier, &length) !=  ERROR_SUCCESS )
-	{
-		wsprintf(LineVendorIdentifier,"ERROR");
-	}
-
-	if( Type != REG_SZ )
-    {
-       wsprintf(LineVendorIdentifier,"ERROR");
-    }
-
-	if ( result == ERROR_SUCCESS ) RegCloseKey(key);
-	
-	return (char *)LineVendorIdentifier;
-}
-/*************************************************************************************************/
-char * GetWhereIsThisExe(void)
-{
-	LPSTR tail;
-	char *fullfilename=NULL;
-	fullfilename=(char*)malloc(sizeof(char)*MAX_PATH);
-
-	GetModuleFileName(GetModuleHandle(NULL),fullfilename,MAX_PATH);
-
-	if ((tail = strrchr (fullfilename, '\\')) != (LPSTR) NULL)
-    {
-      tail++;
-      *tail = '\0';
-    }
-  	
-	return (char*)fullfilename;
-}
-/*************************************************************************************************/
-BOOL FileExist(char *filename)
-{
-     BOOL retour=FALSE;	
-	
-     WIN32_FIND_DATA FindFileData;
-     HANDLE handle = FindFirstFile (filename, &FindFileData);
-     if (handle != INVALID_HANDLE_VALUE)
-     {
-         FindClose (handle);
-         retour=TRUE;
-     }
-     else retour=FALSE;
-
-     return retour;
-}
-/*************************************************************************************************/
-BOOL LoadArrayCPUFromFile(char *path)
-{
-	#define ATLASSPEC "atlas.spec"
-	BOOL vOK=FALSE;
-	char *fullfilename=NULL;
-    FILE *pFile;
-
-    fullfilename=(char*)malloc(sizeof(char)*(strlen(path)+strlen(ATLASSPEC)+2));
-	wsprintf(fullfilename,"%s\\%s",path,ATLASSPEC);
-	if (FileExist(fullfilename))
-	{
-		char Line[LineMaxSize];
-		int nbrLines=0;
-		pFile=fopen(fullfilename,"rt");
-		while (fgets(Line, LineMaxSize,pFile))
+		LogFilename  = buildFilename(pathThisExe, LOG_FILENAME);
+		if (LogFilename)
 		{
-			if (nbrLines >= MaxCPU)
+			#ifdef _WIN64
 			{
-				AppendMessageToLog("See LoadArrayCPUFromFile function in SetupAtlas.c");
-				return FALSE;
+				wchar_t* strtime = getTimeString();
+				AppendMessageToLog(strtime, LogFilename);
+				free(strtime); strtime = NULL;
+				AppendMessageToLog(L"**************************************************", LogFilename);
+				AppendMessageToLog(L"*            ONLY WITH X86 VERSION               *", LogFilename);
+				AppendMessageToLog(L"**************************************************", LogFilename);
+				free(LogFilename); LogFilename = NULL;
+				free(pathThisExe); pathThisExe = NULL;
+				return ierr;
 			}
-			Line[strlen(Line)-1]='\0';
-			wsprintf(ArrayLinesCPU[nbrLines],"%s",Line);
-			nbrLines++;
-			NbrLinesCPU=nbrLines;
-		}
-		fclose(pFile);
-		vOK=TRUE;
-	}
+			#else
 
-	free(fullfilename);
-	fullfilename=NULL;
-	
-	return vOK;
+			wchar_t* AtlasSpecFilename = buildFilename(pathThisExe, ATLASSPEC_FILENAME);
 
-}
-/*************************************************************************************************/
-char *GetLocalCPU(void)
-{
-	char *CPUString=NULL;
-	char *Vendor=NULL;
-	char *Identifier=NULL;
-
-	Identifier=GetRegKeyIdentifier();
-	Vendor=GetRegKeyVendorIdentifier();
-	CPUString=(char *)malloc(sizeof(char)*LineMaxSize);
-
-	if ( (strcmp(Identifier,"ERROR")!=0) && (strcmp(Vendor,"ERROR")!=0) )
-	{
-		wsprintf(CPUString,"%s %s",Vendor,Identifier);
-	}
-	else wsprintf(CPUString,"ERROR");
-	
-	return (char*)CPUString;
-}
-/*************************************************************************************************/
-BOOL GetInfoCPUfromLine(char * line,BOOL FromFile,char *Vendor,int *Family,int *Model,int *Step,char *DLLName)
-{
-	BOOL vOK=FALSE;
-	
-	char Architecture[32];
-	char wFamily[32];
-	char wModel[32];
-	char wStep[32];
-	char wRemark[32];
-
-	if (FromFile)
-	{
-		char F[32],M[32];
-		
-		sscanf(line,"%s %s %s %s %s %s %s",Vendor,wFamily,F,wModel,M,DLLName,wRemark);
-
-		if (strcmp(F,"*")==0)
-		{
-			*Family=-1;
-		}
-		else *Family=(int)strtol(F, (char **)NULL, 10);
-
-		if (strcmp(M,"*")==0)
-		{
-			*Model=-1;
-		}
-		else *Model=(int)strtol(M, (char **)NULL, 10);
-		
-		*Step=-1;
-		
-		if ( (strcmp(wFamily,"Family")==0) &&
-			 (strcmp(wModel,"Model")==0) )
-		{
-			vOK=TRUE;
-		}
-	}
-	else
-	{
-		char F[32],M[32],S[32];
-
-		sscanf(line,"%s %s %s %s %s %s %s %s",
-			         Vendor,Architecture,wFamily,F,wModel,M,wStep,S);
-
-		*Family=(int)strtol(F, (char **)NULL, 10);
-		*Model=(int)strtol(M, (char **)NULL, 10);
-		*Step=(int)strtol(S, (char **)NULL, 10);
-
-		if ( (strcmp(wFamily,"Family")==0) &&
-			 (strcmp(wModel,"Model")==0) &&
-			 (strcmp(wStep,"Stepping")==0) )
-		{
-			vOK=TRUE;
-		}
-		wsprintf(DLLName,"EMPTY");
-	}
-	
-	return vOK;
-}
-/*************************************************************************************************/
-char *GetDLLFilenameAtlas(void)
-{
-	#define PathAtlas  "Atlas" 
-	char *PathOfThisExe=NULL;
-	char *FilenameAtlasDLL=NULL;
-	BOOL FindCPU=FALSE;
-
-	FilenameAtlasDLL=malloc(sizeof(char)*MAX_PATH);
-	wsprintf(FilenameAtlasDLL,"%s",DefaultDllName);
-
-	PathOfThisExe=GetWhereIsThisExe();
-
-	if ( LoadArrayCPUFromFile(PathOfThisExe) )
-	{
-		char *LocalCPU=NULL;
-		char LocalVendor[32];
-		char LocalFilenameNotUse[32];
-		int LocalFamily,LocalModel,LocalStep;
-		
-		LocalCPU=GetLocalCPU();
-		AppendMessageToLog(LocalCPU);
-		GetInfoCPUfromLine(LocalCPU,FALSE,LocalVendor,&LocalFamily,&LocalModel,&LocalStep,LocalFilenameNotUse);
-        if ( strcmp(LocalCPU,"ERROR")!=0 )
-		{
-			int i=0;
-			for (i=0;i<NbrLinesCPU;i++)
+			if (AtlasSpecFilename)
 			{
-				int F,M,S;
-				char Vendor[32];
-				char Filename[MAX_PATH];
+				int  sizeArray = 0;
+				struct cpu_struct **CPUS_SPEC = readBlasSpec(AtlasSpecFilename,&sizeArray);
 
-				if ( GetInfoCPUfromLine(ArrayLinesCPU[i],TRUE,Vendor,&F,&M,&S,Filename) )
+				if (CPUS_SPEC)
 				{
-					if ( (!FindCPU) && (strcmp(LocalVendor,Vendor)==0) )
+					int i = 0;
+					wchar_t * blasdllname = getCpuDllFilename(CPUS_SPEC, sizeArray);
+					if (blasdllname)
 					{
-						if ( LocalFamily == F )
+						int err = copyBlasFile(blasdllname);
+
+						wchar_t* strtime = getTimeString();
+						AppendMessageToLog(strtime, LogFilename);
+						free(strtime); strtime = NULL;
+
+						AppendMessageToLog(L"**************************************************", LogFilename);
+						switch (err)
 						{
-							if ( (LocalModel == M) || (M == -1) || (LocalModel == -1) )
-							{
-								FindCPU=TRUE;
-								wsprintf(FilenameAtlasDLL,"%s",Filename);
-								AppendMessageToLog(ArrayLinesCPU[i]);
-							}
+						case COPY_NO_RIGHT_TO_WRITE:
+							wcscpy(msgtolog, L"NO RIGHT TO WRITE: ");
+							wcscat(msgtolog, blasdllname);
+							AppendMessageToLog(msgtolog, LogFilename);
+							ierr = 1;
+							break;
+						case COPY_OK:
+							wcscpy(msgtolog, L"COPY OK OF: ");
+							wcscat(msgtolog, blasdllname);
+							AppendMessageToLog(msgtolog, LogFilename);
+							ierr = 0;
+							break;
+						case COPY_FILE_SRC_NOT_EXISTS:
+							wcscpy(msgtolog, L"FILE NOT EXIST: ");
+							wcscat(msgtolog, blasdllname);
+							AppendMessageToLog(msgtolog, LogFilename);
+							ierr = 1;
+							break;
+						case COPY_DESTINATION_NOT_EXISTS:
+							wcscpy(msgtolog, L"DESTINATION NOT EXIST");
+							AppendMessageToLog(msgtolog, LogFilename);
+							ierr = 1;
+							break;
+						case COPY_FILE_FAILED:
+							wcscpy(msgtolog, L"COPY FAILED");
+							AppendMessageToLog(msgtolog, LogFilename);
+							ierr = 1;
+							break;
+						default:
+							wcscpy(msgtolog, L"UNKNOW ERROR");
+							AppendMessageToLog(msgtolog, LogFilename);
+							ierr = 1;
+							break;
 						}
+						AppendMessageToLog(L"**************************************************", LogFilename);
+
+						free(blasdllname); blasdllname = NULL;
 					}
+					else
+					{
+						wchar_t* strtime = getTimeString();
+						AppendMessageToLog(strtime, LogFilename);
+						free(strtime); strtime = NULL;
+
+						AppendMessageToLog(L"**************************************************", LogFilename);
+						wcscpy(msgtolog, L"IMPOSSIBLE TO FIND A OPTIMIZED DLL");
+						AppendMessageToLog(msgtolog, LogFilename);
+						AppendMessageToLog(L"**************************************************", LogFilename);
+						ierr = 1;
+					}
+
+					freeCpuStruct(CPUS_SPEC, sizeArray);
 				}
 				else
 				{
-					AppendMessageToLog("Error in Atlas.spec");
+					wchar_t* strtime = getTimeString();
+					AppendMessageToLog(strtime, LogFilename);
+					free(strtime); strtime = NULL;
+
+					AppendMessageToLog(L"**************************************************", LogFilename);
+					wcscpy(msgtolog, L"IMPOSSIBLE TO READ ATLAS.SPEC");
+					AppendMessageToLog(msgtolog, LogFilename);
+					AppendMessageToLog(L"**************************************************", LogFilename);
+					ierr = 1;
 				}
+				free(AtlasSpecFilename); AtlasSpecFilename = NULL;
 			}
+			else
+			{
+				wchar_t* strtime = getTimeString();
+				AppendMessageToLog(strtime, LogFilename);
+				free(strtime); strtime = NULL;
+
+				AppendMessageToLog(L"**************************************************", LogFilename);
+				wcscpy(msgtolog, L"INCORRECT FILENAME ATLAS.SPEC");
+				AppendMessageToLog(msgtolog, LogFilename);
+				AppendMessageToLog(L"**************************************************", LogFilename);
+				ierr = 1;
+			}
+
+			free(LogFilename); LogFilename = NULL;
+			#endif /* _WIN64 */
 		}
 		else
 		{
-			AppendMessageToLog("Error Detection CPU from Registry key.");
+			wchar_t* strtime = getTimeString();
+			AppendMessageToLog(strtime, LogFilename);
+			free(strtime); strtime = NULL;
+
+			AppendMessageToLog(L"**************************************************",LOG_FILENAME);
+			AppendMessageToLog(L"*        ERROR CREATES LOG FILENAME              *",LOG_FILENAME);
+			AppendMessageToLog(L"**************************************************",LOG_FILENAME);
+			ierr = 1;
 		}
-		free(LocalCPU);
-		LocalCPU=NULL;
-	}
-	
-	if (!FindCPU)
-	{
-		AppendMessageToLog("Use default Atlas library for Pentium");
-	}
 
-	free(PathOfThisExe);
-	PathOfThisExe=NULL;
-
-	return (char*)FilenameAtlasDLL;
-}
-/*************************************************************************************************/
-BOOL CopyAtlas(char *AtlasSourceFilename)
-{
-	#define PathAtlas	  "Atlas"
-	#define AtlasFilename "blasplus.dll"
-	BOOL bOK=FALSE;
-	char *PathOfThisExe=NULL;
-	char *FullDestinationFilenameAtlas=NULL;
-	char *FullSourceFilenameAtlas=NULL;
-
-	PathOfThisExe=GetWhereIsThisExe();
-
-	FullSourceFilenameAtlas=malloc( sizeof(char) * (strlen(PathOfThisExe)+strlen(PathAtlas)+strlen(AtlasSourceFilename)+2) );
-	wsprintf(FullSourceFilenameAtlas,"%s%s\\%s",PathOfThisExe,PathAtlas,AtlasSourceFilename);
-	AppendMessageToLog(FullSourceFilenameAtlas);
-
-	FullDestinationFilenameAtlas=malloc( sizeof(char) * (strlen(PathOfThisExe)+strlen(AtlasSourceFilename)+2) );
-	wsprintf(FullDestinationFilenameAtlas,"%s%s",PathOfThisExe,AtlasFilename);
-	AppendMessageToLog(FullDestinationFilenameAtlas);
-
-	if ( FileExist(FullSourceFilenameAtlas) )
-	{
-		if ( !CopyFile(FullSourceFilenameAtlas,FullDestinationFilenameAtlas,FALSE) )
-		{
-			char msg[512];
-
-			wsprintf(msg,"Impossible to copy %s.",FullDestinationFilenameAtlas);
-			// MessageBox(NULL,msg,"Error",MB_ICONWARNING|MB_OK);
-			AppendMessageToLog(msg);
-		}
-		else bOK=TRUE;
+		free(pathThisExe); pathThisExe = NULL;
 	}
 	else
 	{
-		char msg[512];
-		wsprintf(msg,"File %s not found.",FullSourceFilenameAtlas);
-		// MessageBox(NULL,msg,"Error",MB_ICONWARNING|MB_OK);
-		AppendMessageToLog(msg);
+		wchar_t* strtime = getTimeString();
+		AppendMessageToLog(strtime, LogFilename);
+		free(strtime); strtime = NULL;
+
+		AppendMessageToLog(L"**************************************************",LOG_FILENAME);
+		AppendMessageToLog(L"*        ERROR CURRENT PATH NOT FOUND            *",LOG_FILENAME);
+		AppendMessageToLog(L"**************************************************",LOG_FILENAME);
+		ierr = 1;
 	}
 
-	if (FullDestinationFilenameAtlas)
-	{
-		free(FullDestinationFilenameAtlas);
-		FullDestinationFilenameAtlas=NULL;
-	}
-
-	if (FullSourceFilenameAtlas)
-	{
-		free(FullSourceFilenameAtlas);
-		FullSourceFilenameAtlas=NULL;
-	}
-
-	free(PathOfThisExe);
-	PathOfThisExe=NULL;
-
-	return bOK;
+	return ierr;
 }
-/*************************************************************************************************/
-int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow)
+/*--------------------------------------------------------------------------*/
+wchar_t *buildFilename(wchar_t *destpath,wchar_t *filename)
 {
-	char *DLLFilename=NULL;
-
-	AppendMessageToLog("**************************************************");
-	DLLFilename=GetDLLFilenameAtlas();
-	AppendMessageToLog(DLLFilename);
-	if ( CopyAtlas(DLLFilename) ) AppendMessageToLog("Copy file OK");
-	else AppendMessageToLog("Copy file Not OK");
-	AppendMessageToLog("**************************************************");
-
-	free(DLLFilename);
-	DLLFilename=NULL;
-	return 0;
+	wchar_t *fullfilename = NULL;
+	if (destpath && filename)
+	{
+		int len = (int)(wcslen(destpath) + wcslen(filename) + wcslen(L"\\") + 1);
+		fullfilename = (wchar_t *) calloc(len, sizeof(wchar_t));
+		if (fullfilename)
+		{
+			wcscpy(fullfilename, destpath);
+			wcscat(fullfilename, L"\\");
+			wcscat(fullfilename, filename);
+		}
+	}
+	return fullfilename;
 }
-/*************************************************************************************************/
+/*--------------------------------------------------------------------------*/
+wchar_t *getCpuDllFilename(struct cpu_struct **CPUS_SPEC, int sizeCPUS_SPEC)
+{
+	int i = 0;
+
+	wchar_t *CurrentCpuManufacturer = getCpuVendor();
+	int CurrentCpuFamily = getCpuFamily();
+	int CurrentCpuModel = getCpuModel();
+
+	wchar_t* strtime = getTimeString();
+	AppendMessageToLog(strtime, LogFilename);
+	free(strtime); strtime = NULL;
+
+	wsprintfW(msgtolog, L"Vendor %s Family %d Model %d",
+				CurrentCpuManufacturer,
+				CurrentCpuFamily,
+				CurrentCpuModel);
+	AppendMessageToLog(L"**************************************************", LogFilename);
+	AppendMessageToLog(L"CPU DETECTION:", LogFilename);
+	AppendMessageToLog(msgtolog, LogFilename);
+	AppendMessageToLog(L"**************************************************", LogFilename);
+
+	for (i = 0; i < sizeCPUS_SPEC; i++)
+	{
+		if (wcscmp(CPUS_SPEC[i]->cpu_vendor, CurrentCpuManufacturer) == 0)
+		{
+			if (CPUS_SPEC[i]->cpu_family == CurrentCpuFamily)
+			{
+				if (CPUS_SPEC[i]->cpu_model == CurrentCpuModel)
+				{
+					return _wcsdup(CPUS_SPEC[i]->dll_filename);
+				}
+				else
+				{
+					if (CPUS_SPEC[i]->cpu_model == 0)
+					{
+						return _wcsdup(CPUS_SPEC[i]->dll_filename);
+					}
+				}
+			}
+		}
+	}
+	return NULL;
+}
+/*--------------------------------------------------------------------------*/
+static BOOL freeCpuStruct(struct cpu_struct** CPUS_SPEC, int sizeCPUS_SPEC)
+{
+	int i = 0;
+	if (CPUS_SPEC)
+	{
+		for (i = 0; i < sizeCPUS_SPEC; i++)
+		{
+			if (CPUS_SPEC[i])
+			{
+				if (CPUS_SPEC[i]->comments)
+				{
+					free(CPUS_SPEC[i]->comments);
+					CPUS_SPEC[i]->comments = NULL;
+				}
+				if (CPUS_SPEC[i]->cpu_vendor)
+				{
+					free(CPUS_SPEC[i]->cpu_vendor);
+					CPUS_SPEC[i]->cpu_vendor = NULL;
+				}
+				if (CPUS_SPEC[i]->dll_filename)
+				{
+					free(CPUS_SPEC[i]->dll_filename);
+					CPUS_SPEC[i]->dll_filename = NULL;
+				}
+				free(CPUS_SPEC[i]);
+				CPUS_SPEC[i] = NULL;
+			}
+		}
+		free(CPUS_SPEC);
+		CPUS_SPEC = NULL;
+		return TRUE;
+	}
+	return FALSE;
+}
+/*--------------------------------------------------------------------------*/

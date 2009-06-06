@@ -26,6 +26,8 @@ if MSDOS then
     if (findmsifortcompiler()<>'unknown') then
       configure_msifort();
       clear configure_msifort
+    else
+      setenv('USE_F2C','YES');  
     end
     clear findmsifortcompiler
   else

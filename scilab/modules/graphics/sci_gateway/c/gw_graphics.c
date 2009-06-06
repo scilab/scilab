@@ -90,7 +90,8 @@
 /*--------------------------------------------------------------------------*/ 
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/ 
-static gw_generic_table Tab[]={
+#define GRAPHICS_TAB_SIZE 72
+static gw_generic_table Tab[GRAPHICS_TAB_SIZE]={
 	{sci_champ,"champ"},	
 	{sci_champ1,"champ1"},
 	{sci_fec,"fec"},
@@ -178,8 +179,7 @@ int gw_graphics(void)
 			loadOnUseClassPath("graphics");
 			loadedDep = TRUE;
 		}
-		callFunctionFromGatewayWithExceptions(Tab);
-		C2F(putlhsvar)();
+		callFunctionFromGatewayWithExceptions(Tab,GRAPHICS_TAB_SIZE);
 	}
 	else
 	{

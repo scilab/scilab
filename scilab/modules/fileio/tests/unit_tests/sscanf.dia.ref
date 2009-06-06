@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 n = 50;
 nstr = strcat(string(1:n),' ');
 fstr = strcat(strsubst(string(ones(1,n)),'1','%d'), ' ');
@@ -86,7 +87,7 @@ if sscanf('123','%5x')<>291 then bugmes();quit;end
 if sscanf('123','%c')<>'1' then bugmes();quit;end
 if sscanf('     123','%c')<>' ' then bugmes();quit;end
 if sscanf('123','%0c')<>'1' then bugmes();quit;end
-//test des format complexes
+//test des format complexes 
 if sscanf('123 4','%*s%s')<>'4' then bugmes();quit;end
 if sscanf('123 4','123%e')<>4 then bugmes();quit;end
 [a,b,c]=sscanf('xxxxx 4 test 23.45','xxxxx%i%s%e')

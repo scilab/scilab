@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -164,6 +164,13 @@
 x=ssrand(3,2,4);[ny,nu]=size(x)
 [ny,nu]=size(ss2tf(x))
 [ny,nu,nx]=size(x)
+
+// Returns the number of rows
+n=size(rand(3,2),"r")
+// Returns the number of columns
+m=size(rand(3,2),"c")
+// Returns the product of the dimensions
+nm=size(rand(3,2),"*")
    </programlisting>
   </refsection>
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
@@ -19,16 +19,16 @@
     <refpurpose> factorisation LU d'une matrice creuse  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[hand,rk]=lufact(A,prec)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice réelle carrée creuse
+          <para>matrice rÃ©elle carrÃ©e creuse
 </para>
         </listitem>
       </varlistentry>
@@ -49,7 +49,7 @@
       <varlistentry>
         <term>prec  </term>
         <listitem>
-          <para>vecteur à 2 composantes <literal>prec=[eps,reps]</literal> (tolérances absolue et relative).
+          <para>vecteur Ã  2 composantes <literal>prec=[eps,reps]</literal> (tolÃ©rances absolue et relative).
 </para>
         </listitem>
       </varlistentry>
@@ -58,19 +58,19 @@
   <refsection>
     <title>Description</title>
     <para><literal>[hand,rk]=lufact(A)</literal> calcule la factorisation LU d'une matrice creuse <literal>A</literal>.
-    <literal>hand</literal> (variable non affichable) est utilisé par <literal>lusolve</literal> (pour la résolution d'un système linéaire Ax=B) et <literal>luget</literal> (pour récupérer L et U à partir du pointeur <literal>hand</literal>).
-    <literal>hand</literal> doit être détruit après utilisation (par luget ou lusolve) : <literal>ludel(hand)</literal>;
+    <literal>hand</literal> (variable non affichable) est utilisÃ© par <literal>lusolve</literal> (pour la rÃ©solution d'un systÃ¨me linÃ©aire Ax=B) et <literal>luget</literal> (pour rÃ©cupÃ©rer L et U Ã  partir du pointeur <literal>hand</literal>).
+    <literal>hand</literal> doit Ãªtre dÃ©truit aprÃ¨s utilisation (par luget ou lusolve) : <literal>ludel(hand)</literal>;
   </para>
     <para>
-    La matrice A n'est pas obligatoirement de rang plein mais doit être carrée
-    (puisque A est supposée creuse on peut lui ajouter des lignes ou des colonnes nulles pour la rendre carrée).
+    La matrice A n'est pas obligatoirement de rang plein mais doit Ãªtre carrÃ©e
+    (puisque A est supposÃ©e creuse on peut lui ajouter des lignes ou des colonnes nulles pour la rendre carrÃ©e).
   </para>
     <variablelist>
       <varlistentry>
         <term>eps :</term>
         <listitem>
           <para>
-    La valeur absolue qu'un élément de A doit avoir pour être utilisé comme pivot,  sauf éventuellement en dernier recours. Ce nombre doit être significativement plus petit que le plus petit élément diagonal attendu dans la matrice. La valeur par défaut est <literal>%eps</literal>.
+    La valeur absolue qu'un Ã©lÃ©ment de A doit avoir pour Ãªtre utilisÃ© comme pivot,  sauf Ã©ventuellement en dernier recours. Ce nombre doit Ãªtre significativement plus petit que le plus petit Ã©lÃ©ment diagonal attendu dans la matrice. La valeur par dÃ©faut est <literal>%eps</literal>.
 </para>
         </listitem>
       </varlistentry>
@@ -78,7 +78,7 @@
         <term>reps :</term>
         <listitem>
           <para>
-    Ce nombre donne le seuil relatif pour les pivots. Il doit être compris entre zéro et un. S'il vaut un, la méthode se comporte comme un pivot total, qui est très lent et qui a tendance à remplir la matrice. S'il est proche de zéro,  la méthode de pivotage est de type Markowitz stricte sans utilisation de seuil.  Ce seuil est utilisé pour éliminer les pivots qui causeraient une croissance excessive des termes de la matrice. La croissance des éléments est source d'erreurs d'arrondi, et peut avoir lieu même si la matrice est bien conditionnée. Prendre reps grand réduit cette croissance excessive, et donc les erreurs d'arrondi, mais le prendre trop grand risque d'augmenter le temps d'exécution, ainsi que le remplissage de la matrice. La précision peut donc ainsi être dégradée à cause du nombre élevé d'opérations à effectuer à cause du remplissage. Une valeur correcte semble être 0.001 qui est la valeur par défaut (cette valeur par défaut est aussi utilisée si reps&gt;1 ou reps&lt;0). Cette valeur doit être augmentée et la factorisation doit être recommencée si la croissance s'avère trop importante. Changer le seuil sur les pivots n'améliore pas les performances pour les matrices où la croissance est faible, comme c'est souvent le cas pour les matrices mal conditionnées. La valeur par défaut de reps a été choisie pour un usage de lufact avec des matrices à diagonale à peu près dominante (matrices provenant de problèmes de type éléments finis). Pour ces matrices un pivotage diagonal donne les meilleurs résultats.  Pour les matrices à diagonale non dominante, on obtient de meilleurs résultats en prenant un seuil plus élevé, comme 0.01 ou 0.1.
+    Ce nombre donne le seuil relatif pour les pivots. Il doit Ãªtre compris entre zÃ©ro et un. S'il vaut un, la mÃ©thode se comporte comme un pivot total, qui est trÃ¨s lent et qui a tendance Ã  remplir la matrice. S'il est proche de zÃ©ro,  la mÃ©thode de pivotage est de type Markowitz stricte sans utilisation de seuil.  Ce seuil est utilisÃ© pour Ã©liminer les pivots qui causeraient une croissance excessive des termes de la matrice. La croissance des Ã©lÃ©ments est source d'erreurs d'arrondi, et peut avoir lieu mÃªme si la matrice est bien conditionnÃ©e. Prendre reps grand rÃ©duit cette croissance excessive, et donc les erreurs d'arrondi, mais le prendre trop grand risque d'augmenter le temps d'exÃ©cution, ainsi que le remplissage de la matrice. La prÃ©cision peut donc ainsi Ãªtre dÃ©gradÃ©e Ã  cause du nombre Ã©levÃ© d'opÃ©rations Ã  effectuer Ã  cause du remplissage. Une valeur correcte semble Ãªtre 0.001 qui est la valeur par dÃ©faut (cette valeur par dÃ©faut est aussi utilisÃ©e si reps&gt;1 ou reps&lt;0). Cette valeur doit Ãªtre augmentÃ©e et la factorisation doit Ãªtre recommencÃ©e si la croissance s'avÃ¨re trop importante. Changer le seuil sur les pivots n'amÃ©liore pas les performances pour les matrices oÃ¹ la croissance est faible, comme c'est souvent le cas pour les matrices mal conditionnÃ©es. La valeur par dÃ©faut de reps a Ã©tÃ© choisie pour un usage de lufact avec des matrices Ã  diagonale Ã  peu prÃ¨s dominante (matrices provenant de problÃ¨mes de type Ã©lÃ©ments finis). Pour ces matrices un pivotage diagonal donne les meilleurs rÃ©sultats.  Pour les matrices Ã  diagonale non dominante, on obtient de meilleurs rÃ©sultats en prenant un seuil plus Ã©levÃ©, comme 0.01 ou 0.1.
 </para>
         </listitem>
       </varlistentry>

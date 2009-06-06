@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -19,37 +19,37 @@
     <refpurpose> projection sur des sous-espaces propres   </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[Q,M]=pbig(A,thres,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
         <listitem>
-          <para>matrice réelle carrée
+          <para>matrice rÃ©elle carrÃ©e
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>thres  </term>
         <listitem>
-          <para>nombre réel
+          <para>nombre rÃ©el
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>chaîne de caractères (<literal>'c'</literal> ou <literal>'d'</literal>)
+          <para>chaÃ®ne de caractÃ¨res (<literal>'c'</literal> ou <literal>'d'</literal>)
 	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>Q,M  </term>
         <listitem>
-          <para>matrices réelles
+          <para>matrices rÃ©elles
 	  </para>
         </listitem>
       </varlistentry>
@@ -58,20 +58,20 @@
   <refsection>
     <title>Description</title>
     <para>
-      Projection sur des sous-espaces propres de A associés aux valeurs
-      propres avec partie réelle &gt;= <literal>thres</literal>
+      Projection sur des sous-espaces propres de A associÃ©s aux valeurs
+      propres avec partie rÃ©elle &gt;= <literal>thres</literal>
       (<literal>flag='c'</literal>) ou avec module &gt;=
       <literal>thres</literal> (<literal>flag='d'</literal>).
     </para>
     <para>
-      La projection est définie par <literal>Q*M</literal>, où <literal>Q</literal>
+      La projection est dÃ©finie par <literal>Q*M</literal>, oÃ¹ <literal>Q</literal>
       est de rang maximal, les lignes de <literal>M</literal> sont
-      linéairement indépendantes et <literal>M*Q=eye</literal>.
+      linÃ©airement indÃ©pendantes et <literal>M*Q=eye</literal>.
     </para>
     <para>
       Si <literal>flag='c'</literal>, les valeurs propres de
       <literal>M*A*Q</literal> = valeurs propres de <literal>A</literal> avec partie
-      réelle &gt;= <literal>thres</literal>.
+      rÃ©elle &gt;= <literal>thres</literal>.
     </para>
     <para>
       Si <literal>flag='d'</literal>, les valeurs propres de
@@ -83,7 +83,7 @@
       factorisation de rang maximal (<literal>fullrf</literal>) de
       <literal>eye()-Q*M</literal> alors les valeurs propres de
       <literal>M1*A*Q1</literal> = valeurs propres de <literal>A</literal> avec
-      partie réelle &lt; <literal>thres</literal>.
+      partie rÃ©elle &lt; <literal>thres</literal>.
     </para>
     <para>
       Si <literal>flag='d'</literal> et si <literal>[Q1,M1]</literal> =
@@ -125,8 +125,8 @@
     <para>F. Delebecque, INRIA (1988); ;   </para>
   </refsection>
   <refsection>
-    <title>Fonctions Utilisées</title>
-    <para><literal>pbig</literal> est basée sur la forme de Schur ordonnée
+    <title>Fonctions UtilisÃ©es</title>
+    <para><literal>pbig</literal> est basÃ©e sur la forme de Schur ordonnÃ©e
     (fonction Scilab <literal>schur</literal>).</para>
   </refsection>
 </refentry>

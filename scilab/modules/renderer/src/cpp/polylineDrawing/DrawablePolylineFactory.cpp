@@ -106,7 +106,7 @@ void DrawablePolylineFactory::setStrategies( ConcreteDrawablePolyline * polyline
   }
 
   // lines are drawn after filling to be drawn above in 2D
-  if (sciGetIsLine(pPolyline))
+	if (sciGetIsDisplayingLines(pPolyline))
   {
     polyline->addDrawingStrategy(new PolylineLineDrawerJoGL(polyline));
   }

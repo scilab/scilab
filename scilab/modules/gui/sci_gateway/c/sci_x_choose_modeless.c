@@ -16,8 +16,9 @@
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
+int sci_x_choose_modeless(char *fname,unsigned long fname_len)
 {
   int nbRow = 0, nbCol = 0;
   int nbRowItems = 0, nbColItems = 0;
@@ -51,6 +52,7 @@ int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
     }
   else
     {
+      freeArrayOfString(itemsAdr, nbColItems*nbRowItems);
       Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), fname, 2);
       return FALSE;
     }
@@ -67,6 +69,9 @@ int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
   /* Modality */
   setMessageBoxModal(messageBoxID, FALSE);
     
+  freeArrayOfString(itemsAdr, nbColItems*nbRowItems);
+  freeArrayOfString(messageAdr, nbCol*nbRow);
+    
   if (Rhs == 3)
     {
       if (VarType(3) ==  sci_strings)
@@ -74,6 +79,7 @@ int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
           GetRhsVar(3,MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&buttonLabelAdr);
           if (nbRow*nbCol != 1)
           {
+            freeArrayOfString(buttonLabelAdr, nbRow*nbCol);
             Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
             return FALSE;
           }
@@ -85,6 +91,7 @@ int C2F(sci_x_choose_modeless)(char *fname,unsigned long fname_len)
         }
 
       setMessageBoxButtonsLabels(messageBoxID, getStringMatrixFromStack((size_t)buttonLabelAdr), nbCol*nbRow);
+      freeArrayOfString(buttonLabelAdr, nbRow*nbCol);
     }
 
   /* Display it and wait for a user input */

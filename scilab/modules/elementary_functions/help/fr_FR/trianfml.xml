@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <refentry version="5.0-subset Scilab" xml:id="trianfml" xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -17,7 +17,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
 
     <synopsis>[f [,sexp]]=trianfml(f [,sexp])</synopsis>
   </refsynopsisdiv>
@@ -26,9 +26,9 @@
     <title>Description</title>
 
     <para>Triangularisation symbolique de la matrice <literal>f</literal>. La
-    triangularisation est faite par manipulations élémentaires de lignes et de
+    triangularisation est faite par manipulations Ã©lÃ©mentaires de lignes et de
     colonnes. <literal>sexp</literal> est un ensemble d'expressions communes
-    stockées par l'algorithme.</para>
+    stockÃ©es par l'algorithme.</para>
   </refsection>
 
   <refsection>

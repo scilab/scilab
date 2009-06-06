@@ -21,7 +21,8 @@
 	#ifdef strdup
 	#undef strdup
 	#endif
-	#define strdup strdup_windows
+	#define strdup	strdup_windows
+	#define wstrdup wstrdup_windows
 
 	/**
 	* Duplicate strings
@@ -33,6 +34,7 @@
 	{
 #endif
 		char *strdup_windows(const char *strSource);
+		wchar_t *wstrdup_windows(const wchar_t *strSource);
 #ifdef __cplusplus
 	};
 #endif

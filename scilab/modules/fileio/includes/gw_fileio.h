@@ -13,8 +13,6 @@
 #ifndef __GW_FILEIO_H__
 #define __GW_FILEIO_H__
 /*--------------------------------------------------------------------------*/ 
-#include "machine.h"
-/*--------------------------------------------------------------------------*/ 
 int gw_fileio(void);
 /*--------------------------------------------------------------------------*/ 
 int sci_meof(char *fname,unsigned long fname_len);
@@ -29,14 +27,11 @@ int sci_mseek(char *fname,unsigned long fname_len);
 int sci_mtell(char *fname,unsigned long fname_len);
 int sci_mclearerr(char *fname,unsigned long fname_len);
 int sci_fscanfMat(char *fname,unsigned long fname_len);
-int sci_sprintf(char *fname,unsigned long fname_len);
-int sci_numTokens(char *fname,unsigned long fname_len);
-int sci_fprintf(char *fname,unsigned long fname_len);
+int sci_mfprintf(char *fname,unsigned long fname_len);
 int sci_scanf(char *fname,unsigned long fname_len);
 int sci_fprintfMat(char *fname,unsigned long fname_len);
 int sci_sscanf(char *fname,unsigned long fname_len);
 int sci_fscanf(char *fname,unsigned long fname_len);
-int sci_printf(char *fname,unsigned long fname_len);
 int sci_findfiles(char *fname,unsigned long fname_len);
 int sci_maxfiles(char *fname,unsigned long fname_len);
 int sci_getdrives(char *fname,unsigned long fname_len);
@@ -52,6 +47,13 @@ int sci_createdir(char *fname,unsigned long fname_len);
 int sci_removedir(char *fname,unsigned long fname_len);
 int sci_chdir(char *fname,unsigned long fname_len);
 int sci_getcwd(char *fname,unsigned long fname_len);
+int sci_fileinfo(char *fname,unsigned long fname_len);
+int sci_newest(char *fname,unsigned long fname_len);
+int sci_getrelativefilename(char *fname, unsigned long l);
+int sci_get_absolute_file_path(char *fname,unsigned long fname_len);
+int sci_export_to_hdf5(char *fname,unsigned long fname_len);
+int sci_import_from_hdf5(char *fname,unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/ 
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

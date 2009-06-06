@@ -39,6 +39,17 @@
 #define MIN_STACKSIZE 8000000
 /*--------------------------------------------------------------------------*/
 
+/*
+ * see http://www.gnu.org/software/autoconf/manual/autoconf.html and
+ * search for F77_DUMMY_MAIN
+ */
+#ifdef F77_DUMMY_MAIN
+#  ifdef __cplusplus
+extern "C"
+#  endif
+int F77_DUMMY_MAIN() { return 1; }
+#endif
+
 int main(int argc, char **argv)
 {
   int i;
@@ -67,13 +78,17 @@ fpsetmask(0);
   setScilabMode(SCILAB_STD);
 #endif
 
+#ifdef DO_NOT_BUILD_THIS
+  //Desactivated since it is breaking Scilab GUI when not launched from a tty
   if(!isatty(fileno(stdin))) { 
+
 	  /* if not an interactive terminal 
 	   * then, we are disabling the banner 
 	   * Since the banner is disabled in the scilab script checking 
 	   * with the function sciargs is -nb is present, I add this argument
 	   * by hand
 	   */
+
 	char** pNewArgv = (char**)malloc((argc + 1) * sizeof(char*));
 
 	for(i = 0 ; i < argc ; i++)
@@ -84,12 +99,13 @@ fpsetmask(0);
 	pNewArgv[i] = (char*)malloc((strlen("-nb") + 1) * sizeof(char));
 	strcpy(pNewArgv[i],"-nb");
 	setCommandLineArgs(pNewArgv, argc+1);
-
   }else{
 	  setCommandLineArgs(argv, argc);
   }
+#endif
 
-
+  setCommandLineArgs(argv, argc);
+	  
   /* scanning options */
   for ( i=1 ; i < argc ; i++)
   {

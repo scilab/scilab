@@ -4,19 +4,14 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
 // <-- JVM NOT MANDATORY -->
-
-//===============================
+//======================================================================================== 
 // unit tests regexp
-//===============================
-
+//======================================================================================== 
 lf = ascii(10);
-
 if regexp('abc','/abc/','o') <>  1 then pause,end
 ierr = execstr("regexp(''abc'',''/abc/'',''r'');","errcatch");
 if ierr <> 999 then pause,end
-
 t = 'aaa aab aac aad aae';
 pattern = '/aa/';
 [start_pos, end_pos, match_str] = regexp(t,pattern,'o');
@@ -24,7 +19,7 @@ if size(start_pos,'*') <> 1 then pause,end
 if size(end_pos,'*') <> 1 then pause,end
 if start_pos <> 1 then pause,end
 if end_pos <> 2 then pause,end
-
+//======================================================================================== 
 if regexp('abc'                                     ,'/abc/'                                 ) <>  1   then pause,end
 if regexp('xbc'                                     ,'/abc/'                                 ) <>  []  then pause,end
 if regexp('axc'                                     ,'/abc/'                                 ) <>  []  then pause,end
@@ -313,7 +308,7 @@ if regexp('aaab'                                    ,'/(?>a+)b/'                
 if regexp('abc'                                     ,'/[a[:]b[:c]/'                          ) <>  1   then pause,end
 if regexp('abc'                                     ,'/[a[:]b[:c]/'                          ) <>  1   then pause,end
 if regexp('((abc(ade)ufh()()x'                      ,'/((?>[^()]+)|\([^()]*\))+/'            ) <>  3   then pause,end
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//======================================================================================== 
 if regexp('a'+lf+'b'+lf                             ,'/a\Z/'                                 ) <>  []  then pause,end
 if regexp('a'+lf+'b'+lf                             ,'/a\z/'                                 ) <>  []  then pause,end
 if regexp('a'+lf+'b'+lf                             ,'/a$/'                                  ) <>  []  then pause,end
@@ -485,7 +480,7 @@ if regexp('......abef'                              ,'/.*a(?!(b|cd)*e).*f/'     
 if regexp('fools'                                   ,'/(foo|fool|x.|money|parted)$/'         ) <>  []  then pause,end
 if regexp('fools'                                   ,'/(x.|foo|fool|x.|money|parted|y.)$/'   ) <>  []  then pause,end
 if regexp('fools'                                   ,'/(foo|fool|money|parted)$/'            ) <>  []  then pause,end
-
+//======================================================================================== 
 if regexp('scilab-5.0'            ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
 if regexp('scilab-5.0.1'          ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
 if regexp('scilab-5.0-alpha-1'    ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
@@ -493,3 +488,141 @@ if regexp('scilab-5.0-alpha1'     ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-
 if regexp('scilab-5.0-rc1'        ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> 1  then pause,end
 if regexp('scilab-5.0-rc-1'       ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> [] then pause,end
 if regexp('scilab-SE-trunk-27490' ,'/^scilab-[5-9].[0-9](.[0-9])?(-(alpha-|beta-|rc)([0-9])?)?$/') <> [] then pause,end
+//======================================================================================== 
+// Chinese
+str = '世界您好';
+[s,e,m] = regexp(str,'/您好$/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/^世界/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/世界$/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/您好$/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/^您好/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/界您/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/界_您/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+//======================================================================================== 
+// Russian
+str = 'привет мир';
+[s,e,m] = regexp(str,'/^привет/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/привет$/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/мир$/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/^мир/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/вет\sм/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/вет_м/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+//======================================================================================== 
+// Cyrilic
+str = 'АБВГДЄЖЅЗИІКЛМНОПҀРСТѸФХѠЦЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ';
+
+[s,e,m] = regexp(str,'/^АБВГДЄЖЅЗИІКЛМНОПҀР/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/АБВГДЄЖЅЗИІКЛМНОПҀР$/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ$/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/^ЧШЩЪЪІЬѢЮѦѨѪѬѮѰѲѴѤ/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/ИІКЛМНОПҀРСТѸФХѠЦЧШЩЪ/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/ИІКЛМНОПҀ_РСТѸФХѠЦЧШЩЪ/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+//======================================================================================== 
+// Japanese
+str = '丑丞串乃之乎也云亘亙些亦亥亨亮仔伊伎伍伽佃佑伶侃侑俄侠俣俐侶倭俺倶倦倖偲僅傭儲允兎兜其冥冴冶凄凌凜凛凧凪凰凱函刹劉劫勁勃';
+
+[s,e,m] = regexp(str,'/^丑丞串乃之乎也云亘亙些亦/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/丑丞串乃之乎也云亘亙些亦$/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/凰凱函刹劉劫勁勃$/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/^凰凱函刹劉劫勁勃/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/亨亮仔伊伎伍伽佃佑伶侃/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/亨亮仔伊_伎伍伽佃佑伶侃/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+//======================================================================================== 
+// Thaï
+str = 'มกระดุกกระดิก';
+[s,e,m] = regexp(str,'/^มกระดุกกร/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/มกระดุกกร$/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/กกระดิก$/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/^กกระดิก/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+
+[s,e,m] = regexp(str,'/ดุกก/');
+if part(str,s:e) <> m then pause,end
+
+[s,e,m] = regexp(str,'/ดุก_ก/');
+if s <> [] then pause,end
+if e <> [] then pause,end
+if m <> '' then pause,end
+//======================================================================================== 
+
+ 

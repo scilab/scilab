@@ -29,8 +29,9 @@ typedef struct functions_table_struct {
 * call a function associated to a number "Fin-1"
 * in Tab
 * @param Tab gw_generic_table
+* @param sizeTab size of Tab
 */
-void callFunctionFromGateway(gw_generic_table *Tab);
+void callFunctionFromGateway(gw_generic_table *Tab,int sizeTab);
 
 #endif /* __CALLFUNCTIONFROMGATEWAY_H__ */
 /*--------------------------------------------------------------------------*/

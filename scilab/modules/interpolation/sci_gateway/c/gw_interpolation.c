@@ -15,7 +15,8 @@
 #include "callFunctionFromGateway.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]={ 
+#define INTERPOLATION_TAB_SIZE 11
+static gw_generic_table Tab[INTERPOLATION_TAB_SIZE]={ 
   {intsplin,           "splin"},
   {intlsq_splin,       "lsq_splin"},
   {intinterp1,          "interp"},
@@ -32,7 +33,7 @@ static gw_generic_table Tab[]={
 int gw_interpolation(void)
 {
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,INTERPOLATION_TAB_SIZE);
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

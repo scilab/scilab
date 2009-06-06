@@ -1,7 +1,28 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+#
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA   - 2006 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# 
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at    
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
+
+
+#### target ####
+modulename=graphics
+
+#### graphics : Conf files ####
+libscigraphics_la_rootdir = $(mydatadir)
+libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+
+#### graphics : init scripts ####
+libscigraphics_la_etcdir = $(mydatadir)/etc
+libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
+
+
 
 # the module Doublylinkedlist  is included here... of course, it is not
 # used in the mode without gui but It causes some silly problems with includes
@@ -12,6 +33,7 @@ libscigraphics_la_CFLAGS = -I$(top_srcdir)/libs/doublylinkedlist/includes \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/fileio/includes/ \
 	-I$(top_srcdir)/modules/string/includes/
+
 
 GRAPHICS_C_SOURCES = src/c/GetCommandArg.c \
 src/c/WindowList.c \
@@ -415,20 +437,11 @@ libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(
 
 
 
-#### graphics : Conf files ####
-libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
-
-
-####�graphics : init scripts ####
-libscigraphics_la_etcdir = $(mydatadir)/etc
-libscigraphics_la_etc_DATA = etc/graphics.quit etc/graphics.start
-
-####�graphics : gateway declaration ####
+#### graphics : gateway declaration ####
 libscigraphics_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscigraphics_la_sci_gateway_DATA = sci_gateway/graphics_gateway.xml
 
-####�graphics : include files ####
+#### graphics : include files ####
 libscigraphics_la_includedir=$(pkgincludedir)/graphics
 libscigraphics_la_include_HEADERS = includes/sci_xdel.h \
 includes/sci_winsid.h \
@@ -524,8 +537,6 @@ includes/Contour.h \
 includes/getDictionaryGetProperties.h \
 includes/getDictionarySetProperties.h \
 includes/GrayPlot.h \
-includes/sci_xload.h \
-includes/sci_xsave.h \
 includes/TerminateGraphics.h \
 includes/sci_rubberbox.h \
 includes/sci_rotate_axes.h \
@@ -572,24 +583,29 @@ tcl/ged/images/rectangle.gif \
 tcl/ged/images/segs.gif \
 tcl/ged/images/text.gif
 
-
-USEANT=1
-
 libscigraphics_disable_la_SOURCES = src/nographics/nographics.c
 
 libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes 				-I$(top_srcdir)/modules/renderer/includes/  	-Iincludes/ -I$(top_srcdir)/libs/doublylinkedlist/includes
 
 libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
 
+libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes
+
+# endif
+
 pkglib_LTLIBRARIES = libscigraphics-disable.la
 
 if GUI
-pkglib_LTLIBRARIES += libscigraphics.la 
+pkglib_LTLIBRARIES += libscigraphics.la
 endif
 
 libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 
-modulename=graphics
+
+if GUI
+USEANT=1
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am
  

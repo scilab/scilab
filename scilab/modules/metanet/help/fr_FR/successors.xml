@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,14 +16,14 @@
   </info>
   <refnamediv>
     <refname>successors</refname>
-    <refpurpose> sommets extrémités des arcs sortant d'un sommet donné  </refpurpose>
+    <refpurpose> sommets extrÃ©mitÃ©s des arcs sortant d'un sommet donnÃ©  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>a = successors(i,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
@@ -50,7 +50,7 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>successors</literal> renvoie le vecteur ligne des numéros des sommets extrémités des arcs sortants du sommet i pour un graphe orienté <literal>g</literal> .
+    <para><literal>successors</literal> renvoie le vecteur ligne des numÃ©ros des sommets extrÃ©mitÃ©s des arcs sortants du sommet i pour un graphe orientÃ© <literal>g</literal> .
   </para>
   </refsection>
   <refsection>

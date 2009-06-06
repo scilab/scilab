@@ -14,7 +14,8 @@
 #include "stack-c.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define COMPLETION_TAB_SIZE 1
+static gw_generic_table Tab[COMPLETION_TAB_SIZE]=
 {
 {C2F(sci_completion),"completion"}
 };
@@ -22,7 +23,7 @@ static gw_generic_table Tab[]=
 int gw_completion(void)
 {  
 	Rhs = Max(0, Rhs);
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,COMPLETION_TAB_SIZE);
 
 	return 0;
 }

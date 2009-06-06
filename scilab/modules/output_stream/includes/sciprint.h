@@ -24,32 +24,15 @@
  */
 void sciprint(char *fmt,...) ;
 
-/*
-* Print
-* works as sciprint
+
+/**
+* Print: works as sciprint
 * difference is that the argument list is a pointer to a list of arguments
 * @param fmt Format of the format string
-* @param [in] args
-*/
-void scivprint(char *fmt,va_list args);
+* @param[in] fmt
+* @param[in] va_list
+* @return nb characters
+*/int scivprint(char *fmt,va_list args);
 
-/**
- * Print
- * works as sciprint but with an added first argument which is 
- * ignored (used in do_printf) 
- * @see sciprint
- * @param iv
- * @param fmt Format of the format string
- * @param ...
- * @return the number of characters printed
- */
-int sciprint2(int iv,char *fmt,...);
-
-/**
-* print a string 
-* @param[in] buffer to disp
-* @param[in] TRUE or FALSE if we use diary
-*/
-void printf_scilab(char *buffer,BOOL withDiary);
 #endif /* __SCIPRINT_H__ */
 /*--------------------------------------------------------------------------*/ 

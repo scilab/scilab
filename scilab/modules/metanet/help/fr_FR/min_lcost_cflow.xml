@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
@@ -16,26 +16,26 @@
   </info>
   <refnamediv>
     <refname>min_lcost_cflow</refname>
-    <refpurpose> flot contraint de coût linéaire minimum  </refpurpose>
+    <refpurpose> flot contraint de coÃ»t linÃ©aire minimum  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
-    <title>Séquence d'appel</title>
+    <title>SÃ©quence d'appel</title>
     <synopsis>[c,phi,v,flag] = min_lcost_cflow(i,j,cv,g)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Paramètres</title>
+    <title>ParamÃ¨tres</title>
     <variablelist>
       <varlistentry>
         <term>i  </term>
         <listitem>
-          <para>entier, numéros des sommets sources
+          <para>entier, numÃ©ros des sommets sources
 </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>j  </term>
         <listitem>
-          <para>entier, numéros des sommets puits
+          <para>entier, numÃ©ros des sommets puits
 </para>
         </listitem>
       </varlistentry>
@@ -56,7 +56,7 @@
       <varlistentry>
         <term>c  </term>
         <listitem>
-          <para>valeur du coût
+          <para>valeur du coÃ»t
 </para>
         </listitem>
       </varlistentry>
@@ -77,7 +77,7 @@
       <varlistentry>
         <term>flag  </term>
         <listitem>
-          <para>problème soluble ou pas (0 ou 1)
+          <para>problÃ¨me soluble ou pas (0 ou 1)
 </para>
         </listitem>
       </varlistentry>
@@ -85,32 +85,32 @@
   </refsection>
   <refsection>
     <title>Description</title>
-    <para><literal>min_lcost_cflow</literal> calcule flot de coût linéaire minimum dans un réseau 
+    <para><literal>min_lcost_cflow</literal> calcule flot de coÃ»t linÃ©aire minimum dans un rÃ©seau 
     <literal>g</literal>, avec les valeurs des flots des sommets sources <literal>i</literal> aux
-    puits <literal>j</literal> contraints à valoir <literal>cv</literal>.
+    puits <literal>j</literal> contraints Ã  valoir <literal>cv</literal>.
   </para>
     <para>
-    Elle renvoie le coût total du flot sur les arcs <literal>c</literal> et
+    Elle renvoie le coÃ»t total du flot sur les arcs <literal>c</literal> et
     le vecteur ligne des flots sur les arcs <literal>phi</literal> et les valeurs des flots 
-    <literal>v</literal> sur les arcs virtuels des sources aux puits. Si <literal>v</literal> est plus petit que <literal>cv</literal>, un message est affiché, mais le calcul est fait quand même. Dans ce cas<literal>flag</literal> est égal à 0, sinon il est égal à 1.
+    <literal>v</literal> sur les arcs virtuels des sources aux puits. Si <literal>v</literal> est plus petit que <literal>cv</literal>, un message est affichÃ©, mais le calcul est fait quand mÃªme. Dans ce cas<literal>flag</literal> est Ã©gal Ã  0, sinon il est Ã©gal Ã  1.
   </para>
     <para>
-    es bornes sur les flots sont données par les éléments <literal>edge_min_cap</literal> et
+    es bornes sur les flots sont donnÃ©es par les Ã©lÃ©ments <literal>edge_min_cap</literal> et
     <literal>edge_max_cap</literal> du graphe. 
-    La valeur de la capacité minimum doit être égal à zéro. Les valeurs des capacités maximum doivent être entières et positives.
-    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas données (vecteur vide <literal>[]</literal>), elles sont supposées nulles sur chaque arête.
+    La valeur de la capacitÃ© minimum doit Ãªtre Ã©gal Ã  zÃ©ro. Les valeurs des capacitÃ©s maximum doivent Ãªtre entiÃ¨res et positives.
+    Si les valeurs <literal>edge_min_cap</literal> ou <literal>edge_max_cap</literal> ne sont pas donnÃ©es (vecteur vide <literal>[]</literal>), elles sont supposÃ©es nulles sur chaque arÃªte.
   </para>
     <para>
-    Les coûts sur les arêtes sont donnés par les éléments <literal>edge_cost</literal> du graphe.
-    Les coûts doivent être positifs.
+    Les coÃ»ts sur les arÃªtes sont donnÃ©s par les Ã©lÃ©ments <literal>edge_cost</literal> du graphe.
+    Les coÃ»ts doivent Ãªtre positifs.
   </para>
     <para>
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnÃ©e (vecteur vide <literal>[]</literal>), 
+    elle est supposÃ© nulle sur chaque arÃªte.
   </para>
     <para>
-    Si la valeur de <literal>edge_cost</literal> n'est pas donnée (vecteur vide <literal>[]</literal>), 
-    elle est supposé nulle sur chaque arête.
+    Si la valeur de <literal>edge_cost</literal> n'est pas donnÃ©e (vecteur vide <literal>[]</literal>), 
+    elle est supposÃ© nulle sur chaque arÃªte.
   </para>
     <para>
     Cette fonction utilise l'algorithme de Busacker et Goven.

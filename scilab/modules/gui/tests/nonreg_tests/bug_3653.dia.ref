@@ -17,10 +17,6 @@ m=uimenu(f,"label","test");
 a=gca();
 delete(a);
 menu = findobj("label","test");
-if isempty(menu) then
-  pause
-end
-if menu.type<>"uimenu" then
-  pause
-end
+if isempty(menu) then bugmes();quit;end
+if menu.type<>"uimenu" then bugmes();quit;end
 delete(f);

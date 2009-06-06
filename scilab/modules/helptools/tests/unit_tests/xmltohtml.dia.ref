@@ -21,7 +21,7 @@ Copie les fichiers manquant à partir de SCI/modules/helptools/examples/example_
 
 Construit le document principal dans SCI/modules/helptools/examples/example_1/help/fr_FR
 
-Building the manual file [html] in SCI/modules/helptools/examples/example_1/help/fr_FR. (Please wait building ... this can take a while)
+Construction du fichier manuel [html] dans SCI/modules/helptools/examples/example_1/help/fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
 
 Supprime les fichiers copiés de SCI/modules/helptools/examples/example_1/help/fr_FR/../en_US
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
@@ -57,7 +57,7 @@ Copie les fichiers manquant à partir de SCI/modules/helptools/examples/example_
 
 Construit le document principal dans SCI/modules/helptools/examples/example_2/help/fr_FR
 
-Building the manual file [html] in SCI/modules/helptools/examples/example_2/help/fr_FR. (Please wait building ... this can take a while)
+Construction du fichier manuel [html] dans SCI/modules/helptools/examples/example_2/help/fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
 
 Supprime les fichiers copiés de SCI/modules/helptools/examples/example_2/help/fr_FR/../en_US
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");
@@ -93,7 +93,7 @@ Copie les fichiers manquant à partir de SCI/modules/helptools/examples/example_
 
 Construit le document principal dans SCI/modules/helptools/examples/example_3/help/fr_FR
 
-Building the manual file [html] in SCI/modules/helptools/examples/example_3/help/fr_FR. (Please wait building ... this can take a while)
+Construction du fichier manuel [html] dans SCI/modules/helptools/examples/example_3/help/fr_FR. (Veuillez patienter ... cela peut prendre un certain temps)
 
 Supprime les fichiers copiés de SCI/modules/helptools/examples/example_3/help/fr_FR/../en_US
 html_info =  fileinfo(my_module_path+"/html/fr_FR/index.html");

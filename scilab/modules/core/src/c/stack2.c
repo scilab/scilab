@@ -37,6 +37,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "callinterf.h"
+#include "CallScilab.h"
+#include "recursionFunction.h"
 
 #ifdef _MSC_VER
 #define abs(x) ((x) >= 0 ? (x) : -(x)) /* pour abs  C2F(mvfromto) line 2689 */
@@ -1869,7 +1871,7 @@ int C2F(callscifun)(char *string,unsigned long string_len)
 int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
 {
   int cx26 = 26;
-  int ix1, ix, k, intop,  ir, lw;
+  int ix1, ix, k, intop, lw;
   int imode,ireftop;
 
   if ( intersci_push() == 0 )
@@ -1913,28 +1915,39 @@ int C2F(scifunction)(int *number,int *ptr,int *mlhs,int *mrhs)
   }
   if (Err > 0)  goto L97;
 
-  if (C2F(recu).rstk[C2F(recu).pt - 1] / 100 == 9) {
-    ir = C2F(recu).rstk[C2F(recu).pt - 1] - 900;
-  
-    if (ir == 1) {
-      /* back to matsys */
-      k = 13;
-    } else if (ir >= 2 && ir <= 9) {
-      /* back to matio */
-      k = 5;
-    } else if (ir == 10) {
-      /* end of overloaded function */
-      goto L96;
-    } else if (ir > 40) {
-      /* back to matus2 */
-      k = 24;
-    } else if (ir > 20) {
-      /* back to matusr */
-      k = 14;
-    } else {
-      goto L89;
-    }
-    goto L95;
+  if ( isRecursionCallToFunction() )
+  {
+	  int gw = getRecursionGatewayToCall();
+	  if (gw == END_OVERLOAD)
+	  {
+		  goto L96;
+	  } 
+	  else if (gw == ERROR_GW_ID)
+	  {
+		  goto L89;
+	  }
+	  else
+	  {
+		  k = gw;
+	  }
+	  goto L95;
+  }
+  if ( isRecursionCallToFunction() )
+  {
+	  int gw = getRecursionGatewayToCall();
+	  if (gw == END_OVERLOAD)
+	  {
+		  goto L96;
+	  } 
+	  else if (gw == ERROR_GW_ID)
+	  {
+		  goto L89;
+	  }
+	  else
+	  {
+		  k = gw;
+	  }
+	  goto L95;
   }
 
  L89:
@@ -2121,7 +2134,7 @@ int C2F(getopcode)(char *string,unsigned long string_len)
 int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
 {
   int srhs, slhs;
-  int ix, k, intop, ir, lw, pt0;
+  int ix, k, intop, lw, pt0;
   int imode,ireftop;
   intop = Top;
 
@@ -2154,28 +2167,24 @@ int C2F(scibuiltin)(int *number,int *ifun,int *ifin,int *mlhs,int *mrhs)
   }
   if (Err > 0) goto L97;
 
-  if (C2F(recu).rstk[C2F(recu).pt - 1] / 100 == 9) {
-    ir = C2F(recu).rstk[C2F(recu).pt - 1] - 900;
-    if (ir == 1) {
-      /* back to matsys */
-      k = 13;
-    } else if (ir >= 2 && ir <= 9) {
-      /* back to matio */
-      k = 5;
-    } else if (ir == 10) {
-      /* end of overloaded function */
-      goto L96;
-    } else if (ir > 40) {
-      /* back to matus2 */
-      k = 24;
-    } else if (ir > 20) {
-      /* back to matusr */
-      k = 14;
-    } else {
-      goto L89;
-    }
-    goto L95;
+  if ( isRecursionCallToFunction() )
+  {
+	  int gw = getRecursionGatewayToCall();
+	  if (gw == END_OVERLOAD)
+	  {
+		  goto L96;
+	  } 
+	  else if (gw == ERROR_GW_ID)
+	  {
+		  goto L89;
+	  }
+	  else
+	  {
+		  k = gw;
+	  }
+	  goto L95;
   }
+
 
  L89:
   if (Top < Rhs) {

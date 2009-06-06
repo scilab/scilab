@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,11 +13,20 @@
 #include "gw_core.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(inttype)(void);
-/*--------------------------------------------------------------------------*/
 int C2F(sci_type)(char *fname,unsigned long fname_len)
 {
-	C2F(inttype)();
+	int iType = 0;
+	int l = 0, lc = 0;
+	int one = 1;
+	int zero = 0;
+
+	CheckRhs(1,1);
+	CheckLhs(1,2); 
+	
+	iType = GetType(1);
+	if (! C2F(cremat)(fname, &Top, &zero, &one, &one, &l, &lc, fname_len)) return 0;
+	*stk(l) = (double) iType;
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

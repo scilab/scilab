@@ -16,6 +16,11 @@
 
 #include "gl2ps/gl2ps.h"
 
+extern "C" {
+#include "charEncoding.h"
+#include "MALLOC.h"
+}
+
 FILE * curExportFile = NULL;
 
 int sci_gl2psBeginPage(const char *title, const char *producer, 
@@ -34,7 +39,8 @@ int sci_gl2psBeginPage(const char *title, const char *producer,
 		colorMap[i][3] = colormap_a[i];
 	}
 
-	curExportFile = fopen(filename, "wb");
+	wcfopen(curExportFile , (char*)filename, "wb");
+
 	int returnStatus = gl2psBeginPage(title, producer, viewport, format, sort,
 									  options, colormode, colorsize, colorMap, nr, ng, nb, buffersize, curExportFile, filename);
 

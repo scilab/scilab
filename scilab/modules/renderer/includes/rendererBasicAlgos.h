@@ -18,17 +18,18 @@
 extern "C" {
 #endif
 
+#include "dynlib_renderer.h"
 #include "callFunctionFromGateway.h"
 
 /**
  * Destroy a character string allocated by c++ new.
  */
-void destroyRendererString(char * string);
+RENDERER_IMPEXP void destroyRendererString(char * string);
 
 /**
  * Call gateway and retrieve all exceptions.
  */
-void callFunctionFromGatewayWithExceptions(gw_generic_table * tab);
+RENDERER_IMPEXP void callFunctionFromGatewayWithExceptions(gw_generic_table * tab, int sizetab);
 
 #ifdef __cplusplus
 }

@@ -18,7 +18,7 @@
 #include "CallScilab.h" /* Provide functions to call Scilab engine */
 
 /**
-/* 
+ * 
  * Initialisation of Scilab 
  */
 /*#ifndef SCI 

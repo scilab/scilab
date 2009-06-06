@@ -19,6 +19,11 @@
 #include "DrawableSubwin.h"
 #include "CameraJavaMapper.hxx"
 
+#ifdef _MSC_VER
+#pragma warning(once : 4250)
+#endif
+
+
 namespace sciGraphics
 {
 

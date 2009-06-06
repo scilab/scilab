@@ -12,11 +12,13 @@
 function [res]=G_make(files,objects_or_dll)
 
   if ~haveacompiler() then
-  	error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'G_make'))
+    error(msprintf(gettext('%s: A Fortran or C compiler is required.\n'),'G_make'))
   end
 
-  if MSDOS then // WINDOWS
+  msg = '';
   
+  if MSDOS then // WINDOWS
+
     if typeof(objects_or_dll)<>'string' then 
       error(sprintf(gettext('%s: Wrong type for input argument #%d: String expected.'),'G_make',2));
       return;
@@ -27,22 +29,41 @@ function [res]=G_make(files,objects_or_dll)
     OBJ = ptmp + ftmp;
     
     if with_lcc() == %T then
-      host('make -f Makefile.lcc '+OBJ);
+      if ilib_verbose() > 1 then
+        msg = unix_g('make -f Makefile.lcc '+OBJ);
+      else
+        host('make -f Makefile.lcc '+OBJ);
+      end
     else
       // scilab uses Visual Studio C++ 
-      host('nmake /Y /nologo /f Makefile.mak '+OBJ);
+      if ilib_verbose() > 1 then
+        msg = unix_g('nmake /Y /nologo /f Makefile.mak '+OBJ);
+      else
+        host('nmake /Y /nologo /f Makefile.mak '+OBJ);
+      end
+      
     end
     
-    res=[OBJ];
+    res = [OBJ];
     
   else // LINUX
   
-    mk=[]
-    for x=files(:)', if strindex(x,'-l')==[], mk=mk+' '+x ; end ;end 
-    host('make '+ mk);
-    res=files ;
+    mk = [];
+    for x = files(:)', if strindex(x,'-l')==[], mk=mk+' '+x ; end ;end 
+    
+    if ilib_verbose() > 1 then
+      msg = unix_g('make '+ mk);
+    else
+      host('make '+ mk);
+    end
+    
+    res = files ;
     
   end 
+  
+  if ilib_verbose() > 1 then
+    disp(msg);
+  end
   
 endfunction
 //==========================================

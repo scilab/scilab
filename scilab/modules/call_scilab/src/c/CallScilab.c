@@ -163,20 +163,14 @@ BOOL TerminateScilab(char *ScilabQuit)
 	return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-/*
-  Where is this function called ????
-  What's that shit...
+/**
+* function called javasci
 */
 void ScilabDoOneEvent(void)
 {
 	if ( getScilabMode() != SCILAB_NWNI )
 	{
-	  //ScilabEventsLoop();
-
-		while(ismenu()==1 )
-		{
-			C2F(scirun)("quit;",(int)strlen("quit;"));
-		}
+		C2F(scirun)("quit;",(int)strlen("quit;"));
 	}
 }
 /*--------------------------------------------------------------------------*/

@@ -57,7 +57,11 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   CheckRhs(minrhs,maxrhs+nopt) ;
   CheckLhs(minlhs,maxlhs) ;
 
-  if ( get_optionals(fname,opts) == 0) return 0;
+  if ( get_optionals(fname,opts) == 0)
+	{
+		/* error */
+		return 0;
+	}
   if ( opts[0].position != -1 ) 
   { 
     CheckLength(opts[0].position,opts[0].m,1);
@@ -117,9 +121,9 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   else 
   {
     static double x_def[1];
-		sciPointObj * currentSubwin = sciGetCurrentSubWin();
-		double bounds[6];
-		sciGetDataBounds(currentSubwin, bounds);
+	sciPointObj * currentSubwin = sciGetCurrentSubWin();
+	double bounds[6];
+	sciGetDataBounds(currentSubwin, bounds);
     nx = 1;
     x = x_def ;
     if ( dir == 'l' ) 
@@ -136,9 +140,9 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   else 
   {
     static double y_def[1];
-		sciPointObj * currentSubwin = sciGetCurrentSubWin();
-		double bounds[6];
-		sciGetDataBounds(currentSubwin, bounds);
+	sciPointObj * currentSubwin = sciGetCurrentSubWin();
+	double bounds[6];
+	sciGetDataBounds(currentSubwin, bounds);
     ny = 1;
     y = y_def ;
     if ( dir == 'd' ) 
@@ -153,17 +157,26 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   case 'r' :
     if ( check_xy(fname,dir,3,opts[9].position,opts[9].m,opts[9].n,opts[9].l,
       opts[10].position,opts[10].m,opts[10].n,opts[10].l,&ntics)==0) 
+	{
+	  C2F(putlhsvar)();
       return 0;
+	}
     break;
   case 'i' :
     if ( check_xy(fname,dir,4,opts[9].position,opts[9].m,opts[9].n,opts[9].l,
       opts[10].position,opts[10].m,opts[10].n,opts[10].l,&ntics)==0) 
+	{
+	  C2F(putlhsvar)();
       return 0;
+	}
     break;
   case 'v' :
     if ( check_xy(fname,dir,-1,opts[9].position,opts[9].m,opts[9].n,opts[9].l,
       opts[10].position,opts[10].m,opts[10].n,opts[10].l,&ntics)==0) 
+	{
+	  C2F(putlhsvar)();
       return 0;
+	}
     break;
   default :
     Scierror(999,_("%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"), fname,"tics",dir,"r","v","i");
@@ -180,7 +193,8 @@ int sci_drawaxis( char * fname, unsigned long fname_len )
   Objdrawaxis(dir,tics,x,&nx,y,&ny,val,sub_int,format,fontsize,textcolor,ticscolor,'n',seg_flag,nb_tics_labels);
 
 
-  LhsVar(1)=0;
+  LhsVar(1) = 0;
+  C2F(putlhsvar)();
   return 0;
 }
 
