@@ -25,7 +25,7 @@
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ClipBoard)(char *fname,unsigned long l)
+int sci_ClipBoard(char *fname,unsigned long l)
 {
   static int l1,n1,m1;
   char *param1=NULL,*param2=NULL;

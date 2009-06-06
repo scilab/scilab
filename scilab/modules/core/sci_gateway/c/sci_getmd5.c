@@ -134,6 +134,7 @@ int C2F(sci_getmd5) (char *fname,unsigned long fname_len)
 
 					if (Output_Matrix[i] == NULL)
 					{
+						freeArrayOfString(Input_Matrix,m1*n1);
 						freeArrayOfString(Output_Matrix,i);
 						Scierror(999,("%s: No more memory.\n"),fname);
 						return 0;

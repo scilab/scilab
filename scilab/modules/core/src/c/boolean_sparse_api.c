@@ -14,6 +14,7 @@
  */
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "boolean_sparse_api.h"
 
 //#include <string.h>
@@ -25,9 +26,6 @@ static int fillBooleanSparseMatrix(int *_piAddress, int _iRows, int _iCols, int 
 
 int getBooleanSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
-	int i							= 0;
-	int iPos					= 0;
-
 	if(	_piAddress == NULL || getVarType(_piAddress) != sci_boolean_sparse)
 	{
 		return 1;
@@ -57,10 +55,9 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 	int *piAddr			= NULL;
-	int	iTotalSize	= 0;
 	int iPos				= 0;
 
-	getVarAddressFromNumber(iNewPos, _piAddress);
+	getNewVarAddressFromNumber(iNewPos, _piAddress);
 	fillBooleanSparseMatrix(*_piAddress, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 
 	iPos	= iAddr + 5;//4 for header + 1 for NbItem
@@ -122,7 +119,7 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromNumber(Top, &piAddr);
 
 	fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 

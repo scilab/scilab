@@ -17,6 +17,7 @@
 
 #include "CallScilab.h"
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "stack-c.h"
 
 int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
@@ -37,11 +38,27 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 
 int getVarAddressFromNumber(int _iVar, int** _piAddress)
 {
-	int iAddr = iadr(*Lstk(_iVar));
-	*_piAddress = istk(iAddr);
+	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
+	int iValType	= *istk(iAddr);
+	if(iValType < 0)
+	{
+		iAddr				= iadr(*istk(iAddr + 1));
+	}
+
+	*_piAddress		= istk(iAddr);
+	intersci_.ntypes[_iVar - 1] = '$' ;
 	return 0;
 }
 
+int getNewVarAddressFromNumber(int _iVar, int** _piAddress)
+{
+	int iAddr			= iadr(*Lstk(_iVar));
+	int iValType	= *istk(iAddr);
+	*_piAddress		= istk(iAddr);
+	intersci_.ntypes[_iVar - 1] = '$' ;
+
+	return 0;
+}
 int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
 {
 	int iVarID[nsiz];
@@ -65,7 +82,8 @@ int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	//WARNING check in VarType can be negative
+	getNewVarAddressFromNumber(Fin, &piAddr);
 
 	*_piAddress = piAddr;
 	return 0;

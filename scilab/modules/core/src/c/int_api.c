@@ -14,6 +14,7 @@
  */
 
 #include "common_api.h"
+#include "internal_common_api.h"
 #include "int_api.h"
 
 #include "CallScilab.h"
@@ -44,17 +45,17 @@ int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision)
 
 int getMatrixOfInteger8(int* _piAddress, int* _piRows, int* _piCols, char** _piData8)
 {
-	return getCommonMatrixOfInteger(_piAddress, SCI_INT8, _piRows, _piCols, _piData8);
+	return getCommonMatrixOfInteger(_piAddress, SCI_INT8, _piRows, _piCols, (void**)_piData8);
 }
 
 int getMatrixOfInteger16(int* _piAddress, int* _piRows, int* _piCols, short** _piData16)
 {
-	return getCommonMatrixOfInteger(_piAddress, SCI_INT16, _piRows, _piCols, _piData16);
+	return getCommonMatrixOfInteger(_piAddress, SCI_INT16, _piRows, _piCols, (void**)_piData16);
 }
 
 int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piData32)
 {
-	return getCommonMatrixOfInteger(_piAddress, SCI_INT32, _piRows, _piCols, _piData32);
+	return getCommonMatrixOfInteger(_piAddress, SCI_INT32, _piRows, _piCols, (void**)_piData32);
 }
 
 static int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
@@ -84,8 +85,6 @@ int createMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char* _piData8, in
 {
 	char *piData8	= NULL;
 	int * piAddr	= NULL;
-
-	int iOne			= 1;
 	int iSize			= _iRows * _iCols;
 
 	int iRet = allocMatrixOfInteger8(_iVar, _iRows, _iCols, &piData8, &piAddr);
@@ -102,8 +101,6 @@ int createMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short* _piData16,
 {
 	short *piData16	= NULL;
 	int * piAddr	= NULL;
-
-	int iOne			= 1;
 	int iSize			= _iRows * _iCols;
 
 	int iRet = allocMatrixOfInteger16(_iVar, _iRows, _iCols, &piData16, &piAddr);
@@ -120,8 +117,6 @@ int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32, i
 {
 	int *piData32	= NULL;
 	int * piAddr	= NULL;
-
-	int iOne			= 1;
 	int iSize			= _iRows * _iCols;
 
 	int iRet = allocMatrixOfInteger32(_iVar, _iRows, _iCols, &piData32, &piAddr);
@@ -138,8 +133,6 @@ int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _piDat
 {
 	long long  *piData64	= NULL;
 	int * piAddr					= NULL;
-
-	int iOne							= 1;
 	int iSize							= _iRows * _iCols;
 
 	int iRet = allocMatrixOfInteger64(_iVar, _iRows, _iCols, &piData64, &piAddr);
@@ -157,14 +150,14 @@ int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _piData8, in
 	int *piAddr		= NULL;
 	char *piData8	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iNewPos = Top - Rhs + _iVar;
+	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
 	}
 
 	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT8, _iRows, _iCols, (void*)&piData8);
-	
 	if(iRet != 0)
 	{
 		return 1;
@@ -181,14 +174,14 @@ int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _piData16,
 	int *piAddr			= NULL;
 	short *piData16	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iNewPos = Top - Rhs + _iVar;
+	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
 	}
 
 	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT16, _iRows, _iCols, (void*)&piData16);
-	
 	if(iRet != 0)
 	{
 		return 1;
@@ -205,14 +198,14 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
 	int *piAddr		= NULL;
 	int *piData32	= NULL;
 
-	int iRet = getVarAddressFromNumber(Top - Rhs + _iVar, &piAddr);
+	int iNewPos = Top - Rhs + _iVar;
+	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
 	}
 
 	iRet = allocCommonMatrixOfInteger(_iVar, piAddr, SCI_INT32, _iRows, _iCols, (void*)&piData32);
-	
 	if(iRet != 0)
 	{
 		return 1;
@@ -220,6 +213,7 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
 
 	*_piAddress = piAddr;
 	*_piData32	= piData32;
+
 	return 0;
 }
 
@@ -284,8 +278,6 @@ static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iZero					= 0;
-	int iOne					= 1;
 	int iRet					= 0;
 	int *piAddr				= NULL;
 	void *piData			= NULL;
@@ -299,7 +291,7 @@ static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _
 	C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromNumber(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfInteger(piAddr, _iPrecision, _iRows, _iCols, &piData);
@@ -342,7 +334,8 @@ int getNamedMatrixOfIntegerPrecision(char* _pstName, int _iNameLen, int* _piPrec
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	//WARNING check in VarType can be negative
+	getNewVarAddressFromNumber(Fin, &piAddr);
 
 	//check variable type
 	if(piAddr[0] != sci_ints)
@@ -379,7 +372,6 @@ static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iP
 	int iVarID[nsiz];
 	int* piAddr				= NULL;
 	int iSize					= 0;
-	int iOne					= 1;
 	void* piData			= NULL;
 
 	//get variable id from name
@@ -400,7 +392,8 @@ static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iP
 		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
 
 	//get variable address
-	getVarAddressFromNumber(Fin, &piAddr);
+	//WARNING check in VarType can be negative
+	getNewVarAddressFromNumber(Fin, &piAddr);
 	
 	getCommonMatrixOfInteger(piAddr, _iPrecision, _piRows, _piCols, &piData);
 

@@ -22,26 +22,27 @@
 /*--------------------------------------------------------------------------*/
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
-static gw_generic_table Tab[]=
+#define GUI_TAB_SIZE 35
+static gw_generic_table Tab[GUI_TAB_SIZE]=
 {
-	{C2F(sci_x_dialog),"x_dialog"},
-	{C2F(sci_x_choose),"x_choose"},
-	{C2F(sci_x_mdialog),"x_mdialog"},
-	{C2F(sci_x_choice),"xchoicesi"},
+	{sci_x_dialog,"x_dialog"},
+	{sci_x_choose,"x_choose"},
+	{sci_x_mdialog,"x_mdialog"},
+	{sci_x_choice,"xchoicesi"},
 	{sci_delmenu,"delmenu"},
 	{sci_setmenu,"setmenu"},
 	{sci_unsetmenu,"unsetmenu"},
- 	{C2F(sci_raise_window),"raise_window"},
+ 	{sci_raise_window,"raise_window"},
 	{sci_getlookandfeel,"getlookandfeel"},
 	{sci_getinstalledlookandfeels,"getinstalledlookandfeels"},
 	{sci_setlookandfeel,"setlookandfeel"},
-	{C2F(sci_ClipBoard),"ClipBoard"},
+	{sci_ClipBoard,"ClipBoard"},
 	{sci_toolbar,"toolbar"},
 	{sci_uigetdir,"uigetdir"},
 	{sci_uicontrol,"uicontrol"},
 	{sci_uimenu,"uimenu"},
 	{sci_mpopup,"uipopup"},
-	{C2F(sci_x_choose_modeless),"x_choose_modeless"},
+	{sci_x_choose_modeless,"x_choose_modeless"},
 	{sci_uicontextmenu,"uicontextmenu"},
 	{sci_uiwait,"uiwait"},
 	{sci_messagebox,"messagebox"},
@@ -57,7 +58,8 @@ static gw_generic_table Tab[]=
 	{sci_toprint,"toprint"},
 	{sci_uigetfile,"uigetfile"},
 	{sci_usecanvas,"usecanvas"},
-	{sci_displaytree,"displaytree"}
+	{sci_displaytree,"displaytree"},
+	{sci_uiputfile,"uiputfile"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_gui(void)
@@ -88,7 +90,7 @@ int gw_gui(void)
           }
 
 
-	callFunctionFromGateway(Tab);
+	callFunctionFromGateway(Tab,GUI_TAB_SIZE);
 
 	return 0;
 }

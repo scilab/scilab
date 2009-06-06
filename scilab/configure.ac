@@ -1002,6 +1002,14 @@ AM_CONDITIONAL(PVM, test "$with_pvm" != no)
 AC_LIBXML2()
 
 #######################
+## Test for libhdf5
+#######################
+
+AC_LIBHDF5()
+
+
+
+#######################
 ## Test for gettext
 #######################
 
@@ -1670,6 +1678,15 @@ echo "XML configuration:"
 echo "  XML_FLAGS .......... = $XML_FLAGS"
 echo "  XML_LIBS ........... = $XML_LIBS"
 echo "  XML_VERSION ........ = $XML_VERSION"
+
+echo "" 
+if test $HDF5_ENABLE = yes;  then
+   echo "HDF5 configuration:"
+   echo "  HDF5_FLAGS .......... = $HDF5_FLAGS"
+   echo "  HDF5_LIBS ........... = $HDF5_LIBS"
+else
+   echo "Not using HDF5"
+fi
 
 echo "" 
 echo "PCRE configuration:"

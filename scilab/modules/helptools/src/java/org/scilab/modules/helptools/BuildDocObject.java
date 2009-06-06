@@ -270,13 +270,13 @@ public class BuildDocObject extends StyleSheet {
 		if (sourceDocProcessed == null) {
 		    throw new FileNotFoundException("Unable to parse generated master file.");
 		}
-		
+
 		if (format.equalsIgnoreCase(PDF_FORMAT) || format.equalsIgnoreCase(POSTSCRIPT_FORMAT)) {
 			/* PDF & postscript take other args */
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}
-
+		args.add("-t");
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);

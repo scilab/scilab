@@ -24,6 +24,7 @@
 #include "strdup_windows.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */	

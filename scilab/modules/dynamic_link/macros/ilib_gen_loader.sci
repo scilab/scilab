@@ -126,11 +126,17 @@ function ilib_4_link_gen_loader(names, flag, loadername, libs, libname)
       end
   end  
   
+  // bug 4515 - unlink previous function with same name
+  names = names(:)';
+  n = size(names,'*');
+  mfprintf(fd,"// ulink previous function with same name\n");
+  for i = 1:n
+    mfprintf(fd,"[bOK,ilib] = c_link(''%s'');if (bOK) then ulink(ilib),end\n", names(i));
+  end
+
   //** second "link" : user defined functions  
   mfprintf(fd,"link(%s_path+''lib%s%s'',[",shortlibname_path,libname,lib_suf);
   
-  names = names(:)';
-  n = size(names,'*');
   for i=1:n
     mfprintf(fd,"''%s''",names(i))
     if i <>n ; mfprintf(fd,","); else mfprintf(fd,"],");end
