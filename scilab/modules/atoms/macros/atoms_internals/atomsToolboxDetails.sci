@@ -53,4 +53,16 @@ function details = atomsToolboxDetails(name,version)
 	package_versions = packages(name);
 	details          = package_versions(version);
 	
+	// Check if this version is installed
+	// =========================================================================
+	
+	if atomsIsInstalled(name,version) then
+		
+		installedDetails = atomsGetInstalledDetails(name,version);
+		details("installAlluser") = installedDetails(3);
+		details("installPath")    = installedDetails(4);
+		details("installStatus")  = installedDetails(5);
+		
+	end
+	
 endfunction

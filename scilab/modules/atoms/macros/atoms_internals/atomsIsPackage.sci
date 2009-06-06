@@ -49,24 +49,20 @@ function result = atomsIsPackage(package_names,package_versions)
 		result(i) = %F;
 		
 		if rhs == 1 then
-			version = "0";
+			version = "";
 		else
 			version = package_versions(i);
 		end
 		
 		// 1st case : just test the name, not the version
-		if version == "0" then
-			if isfield(allpackages,package_names(i)) then
-				result(i) = %T;
-			end
+		if isempty(version) & isfield(allpackages,package_names(i)) then
+			result(i) = %T;
 		
 		// 2nd case : Check a specific version
-		else
-			if isfield(allpackages,package_names(i)) then
-				this_package = allpackages(package_names(i));
-				if isfield(this_package,version) then
-					result(i) = %T;
-				end
+		elseif isfield(allpackages,package_names(i)) then
+			this_package = allpackages(package_names(i));
+			if isfield(this_package,version) then
+				result(i) = %T;
 			end
 		end
 		

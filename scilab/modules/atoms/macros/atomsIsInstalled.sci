@@ -29,7 +29,7 @@ function res = atomsIsInstalled(name,version,allusers)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsInstalled",1));
 	end
 	
-	if rhs>1 & version<>[] & type(version)<>10  then
+	if rhs>1 &  (~isempty(version)) & type(version)<>10  then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsInstalled",2));
 	end
 	
@@ -64,9 +64,9 @@ function res = atomsIsInstalled(name,version,allusers)
 	
 	for i=1:size(name,"*")
 		
-		if version == [] then
+		if isempty(version) then
 			// Just check the name
-			res(i) = or(packages == name(i));
+			res(i) = or(packages(:,1) == name(i));
 		
 		else
 			// Filter on names

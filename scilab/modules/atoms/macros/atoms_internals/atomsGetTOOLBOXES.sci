@@ -16,6 +16,26 @@ function packages = atomsGetTOOLBOXES(update)
 	// Initialize
 	packages = struct();
 	
+	// Operating system detection
+	// =========================================================================
+	
+	if ~MSDOS then
+		OSNAME = unix_g('uname');
+		MACOSX = (strcmpi(OSNAME,"darwin") == 0);
+		LINUX  = (strcmpi(OSNAME,"linux") == 0);
+	else
+		MACOSX = %F;
+		LINUX  = %F;
+	end
+	
+	if MSDOS then
+		OSNAME = "windows";
+	elseif LINUX then
+		OSNAME = "linux";
+	elseif MACOSX then
+		OSNAME = "macosx";
+	end
+	
 	// Check input parameters
 	// =========================================================================
 	
@@ -44,7 +64,7 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		for i=1:size(mirrors,"*")
 			
-			url            = mirrors(i)+"/TOOLBOXES";
+			url            = mirrors(i)+"/TOOLBOXES/"+OSNAME;
 			file_out       = pathconvert(TMPDIR+"/atoms/"+sprintf("TOOLBOXES_%d",nb_TOOLBOXES),%f);
 			
 			if( fileinfo(file_out) <> [] ) then

@@ -14,8 +14,8 @@ function res = atomsAUWriteAccess()
 	res = %F;
 	
 	try
-		mputl("dummy",pathconvert(SCI+"/.atoms/dummy",%F));
-		mdelete(pathconvert(SCI+"/.atoms/dummy",%F));
+		mputl("dummy",pathconvert(SCI+"/contrib/dummy",%F));
+		mdelete(pathconvert(SCI+"/contrib/dummy",%F));
 		res = %T;
 	catch
 	end

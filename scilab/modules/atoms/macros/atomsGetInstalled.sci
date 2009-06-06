@@ -9,6 +9,14 @@
 
 // End user function
 
+// Return a 4xn string matrix :
+// 
+// !toolbox2          0.1  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.1  A  !
+// !                                                                                                          !
+// !toolbox2          0.2  user     /home/pmarecha/.Scilab/scilab-branch-atoms/atoms/contrib/toolbox2/0.2  A  !
+// !                                                                                                          !
+// !toolbox_skeleton  1.3  alluser  /home/pmarecha/work/atoms/scilab/contrib/toolbox_skeleton/1.3          I  !
+
 function packages = atomsGetInstalled(allusers)
 	
 	rhs      = argn(2);
@@ -58,19 +66,21 @@ function packages = atomsGetInstalled(allusers)
 		
 		// Loop on each URL specified as first input argument
 		for j=1:size(installed,"*")
+            current_status       = part(installed(j),1:1);
+            installed(j)         = part(installed(j),5:length(installed(j)));
 			current_name_length  = regexp(installed(j),"/\s-\s/","o");
 			current_name         = part(installed(j),1:current_name_length-1);
 			current_version      = part(installed(j),current_name_length+3:length(installed(j)));
 			
 			if installed_files(i,2) == "user" then
 				// user
-				current_path  = pathconvert(SCIHOME+"/atoms/contrib/"+current_name+"/"+current_version,%F); 
+				current_path  = pathconvert(SCIHOME+"/atoms/"+current_name+"/"+current_version,%F); 
 			else
 				// all users
 				current_path = pathconvert(SCI+"/contrib/"+current_name+"/"+current_version,%F);
 			end
 			
-			packages = [ packages ; current_name current_version installed_files(i,2) current_path];
+			packages = [ packages ; current_name current_version installed_files(i,2) current_path current_status];
 		end
 	end
 	

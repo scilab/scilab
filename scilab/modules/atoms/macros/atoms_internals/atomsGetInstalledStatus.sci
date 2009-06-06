@@ -9,45 +9,56 @@
 
 // Liste des versions installée de la toolbox "name"
 
-function res = atomsGetInstalledVers(name,allusers)
+function res = atomsGetInstalledStatus(name,version)
 	
 	rhs = argn(2);
 	
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledVers",1,2));
+	if rhs < 1 | rhs > 3 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledStatus",2,3));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsGetInstalledVers",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledStatus",1));
 	end
 	
-	if size(name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A Single String expected.\n"),"atomsGetInstalledVers",1));
+	if type(version)<>10  then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsGetInstalledStatus",2));
 	end
 	
-	// allusers management
+	// Check input parameters dimensions
 	// =========================================================================
 	
-	if rhs < 2 then
-		allusers = %T;
+	if or( size(name,"*") <> size(version,"*"))  then
+		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsGetInstalledStatus",1,2));
 	end
 	
 	// Get the list of installed packages
 	// =========================================================================
-	packages = atomsGetInstalled(allusers);
+	packages = atomsGetInstalled();
 	
-	// Filter on names
+	// Loop on name
 	// =========================================================================
-	res = packages(find(packages(:,1) == name),2);
 	
-	// Descending Sort 
-	// =========================================================================
-	res = atomsVersionSort( res , "DESC" );
+	for i=1:size(name,"*")
+		
+		// Filter on names
+		packages_filtered = packages( find(packages(:,1) == name(i)) , : );
+		
+		// Filter on versions
+		packages_filtered = packages( find(packages(:,2) == version(i)) , 5 );
+		
+		if ~ isempty(packages_filtered) then
+			res(i) = packages_filtered(1);
+		else
+			res(i) = "";
+		end
+		
+	end
 	
 endfunction

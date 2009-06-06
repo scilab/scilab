@@ -8,6 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // Delete an atoms package from the list of available package
+// This function has an impact on the following files :
+//  -> ATOMSDIR/installed
+//  -> ATOMSDIR/installed_deps
 
 function nbDel = atomsInstallUnregister(name,version,allusers)
 	
@@ -67,6 +70,8 @@ function nbDel = atomsInstallUnregister(name,version,allusers)
 	// the "allusers" value and the existence of the latter
 	// =========================================================================
 	
+	// installed files
+	
 	atoms_files = [];
 	
 	if fileinfo( pathconvert(SCIHOME+"/atoms/installed",%F) )<> [] then
@@ -75,6 +80,18 @@ function nbDel = atomsInstallUnregister(name,version,allusers)
 	
 	if allusers & (fileinfo( pathconvert(SCI+"/.atoms/installed",%F) )<>[]) then
 		atoms_files = [ atoms_files ; pathconvert(SCI+"/.atoms/installed",%F) ];
+	end
+	
+	// installed_deps files
+	
+	atoms_files_deps = [];
+	
+	if fileinfo( pathconvert(SCIHOME+"/atoms/installed_deps",%F) )<> [] then
+		atoms_files_deps = [ atoms_files_deps ; pathconvert(SCIHOME+"/atoms/installed_deps",%F) ];
+	end
+	
+	if allusers & (fileinfo( pathconvert(SCI+"/.atoms/installed_deps",%F) )<>[]) then
+		atoms_files_deps = [ atoms_files_deps ; pathconvert(SCI+"/.atoms/installed_deps",%F) ];
 	end
 	
 	// Loop on each installed file specified as first input argument
@@ -87,10 +104,11 @@ function nbDel = atomsInstallUnregister(name,version,allusers)
 		
 		// Loop on each URL specified as first input argument
 		for j=1:size(name,"*")
-			indice = find( installed == name(j)+" - "+version(j) );
+			indice = grep(installed,"/^[AI]\s-\s"+name(j)+"\s-\s"+version(j)+"$/","r");
+			
 			if indice <> [] then
-				installed(indice) = [];
 				nbDel = nbDel + 1;
+				installed(indice) = [];
 			end
 		end
 		
@@ -99,6 +117,50 @@ function nbDel = atomsInstallUnregister(name,version,allusers)
 		else
 			// Apply changes on this file
 			mputl(installed,atoms_files(i));
+		end
+	end
+	
+	// Loop on each installed file specified as first input argument
+	// =========================================================================
+	
+	for i=1:size(atoms_files_deps,"*")
+		
+		found = 0;
+		
+		// Get the installed package list in this file
+		installed_deps_in  = mgetl(atoms_files_deps(i));
+		installed_deps_out = [];
+		
+		// Loop on each URL specified as first input argument
+		for j=1:size(name,"*")
+			
+			// Loop on each lines of the installed_deps file
+			for k=1:size(installed_deps_in,"*")
+				
+				if installed_deps_in(k) == "["+name(j)+" - "+version(j)+"]" then
+					found = 1;
+				end
+				
+				if found == 1 then
+					continue;
+				end
+				
+				if regexp(installed_deps_in(k),"/^\[(.)*\]$/","o") <> [] then
+					found = 0;
+				end
+				
+				if found == 0 then
+					installed_deps_out = [ installed_deps_out , installed_deps_in(k) ];
+				end
+			end
+			
+		end
+		
+		if installed_deps_out == [] then
+			mdelete(atoms_files_deps(i));
+		else
+			// Apply changes on this file
+			mputl(installed_deps_out,atoms_files_deps(i));
 		end
 	end
 	
