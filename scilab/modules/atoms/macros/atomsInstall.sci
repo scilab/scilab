@@ -114,7 +114,7 @@ function result = atomsInstall(packages,allusers)
 			else
 				package_full_name = package_names(i)+" - "+package_versions(i);
 			end
-			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstall",1,package_full_name));
+			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstall",package_full_name));
 		end
 		
 		// Build the depencency tree
@@ -165,13 +165,13 @@ function result = atomsInstall(packages,allusers)
 	
 	for i=1:size(mandatory_packages,"*")
 		
-		if ~ this_package_details("to_install") then
-			continue;
-		end
-		
 		this_package_details = dependency_tree(mandatory_packages(i));
 		this_package_name    = this_package_details("Toolbox");
 		this_package_version = this_package_details("Version");
+		
+		if ~ this_package_details("to_install") then
+			continue;
+		end
 		
 		// Define the path of the directory where will be installed this toolbox
 		// =====================================================================

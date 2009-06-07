@@ -79,6 +79,12 @@ function description_out = atomsReadTOOLBOXES(file_in,description_in)
 			continue;
 		end
 		
+		// Last line of the file : register the latest toolbox
+		if i == size(TOOLBOXES,"*") then
+			this_toolbox(current_toolbox("Version")) = current_toolbox;
+			description_out(current_toolbox("Toolbox")) = this_toolbox;
+		end
+		
 		// Third case : Blank line
 		if length(TOOLBOXES(i)) == 0 then
 			continue;
@@ -88,9 +94,10 @@ function description_out = atomsReadTOOLBOXES(file_in,description_in)
 		if regexp(TOOLBOXES(i),"/^\/\//","o") == 1 then
 			continue;
 		end
-		
+				
 		// Else Error
 		error(msprintf(gettext("%s: The TOOLBOXES file ("+file_in+") is not well formated at line %d\n"),"atomsReadTOOLBOXES",i));
+		
 	end
 	
 endfunction

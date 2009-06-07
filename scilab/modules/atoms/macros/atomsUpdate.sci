@@ -15,6 +15,8 @@
 
 function result = atomsUpdate(name,allusers)
 	
+	result = [];
+	
 	// Check input parameters
 	// =========================================================================
 	
@@ -56,7 +58,7 @@ function result = atomsUpdate(name,allusers)
 	// Check if all specified toolboxes are effectively installed
 	// =========================================================================
 	
-	for i=1:size(name,"*") then
+	for i=1:size(name,"*")
 		if ~ atomsIsInstalled(name(i)) then
 			error(msprintf(gettext("%s: ''%s'' isn''t installed.\n"),"atomsUpdate",name(i)));
 		end
@@ -87,7 +89,7 @@ function result = atomsUpdate(name,allusers)
 	// Loop on name
 	// =========================================================================
 	
-	for i=1:size(name,"*") then
+	for i=1:size(name,"*")
 		
 		this_package_versions = atomsGetInstalledVers(name(i),allusers);
 		this_package_MRV_ins  = this_package_versions(1);   // Most Recent Version Installed
@@ -98,7 +100,7 @@ function result = atomsUpdate(name,allusers)
 			continue;
 		end
 		
-		atomsInstall(name(i),this_package_MRV_ava,allusers);
+		atomsInstall(name(i)+" "+this_package_MRV_ava,allusers);
 		
 	end
 	
