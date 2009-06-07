@@ -77,12 +77,6 @@ function result = atomsInstall(packages,allusers)
 		end
 	end
 	
-	// We are installing new package, so we have a net connection
-	// => update the package list
-	// =========================================================================
-	
-	atomsGetTOOLBOXES(%T);
-	
 	// Loop on packages and to build the dependency tree
 	// =========================================================================
 	

@@ -1,6 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
-// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
@@ -79,12 +77,6 @@ function result = atomsUpdate(name,allusers)
 		package_installed = atomsGetInstalled();
 		name              = package_installed(:,1);
 	end
-	
-	// We are installing new package, so we have a net connection
-	// => update the package list
-	// =========================================================================
-	
-	atomsGetTOOLBOXES(%T);
 	
 	// Loop on name
 	// =========================================================================
