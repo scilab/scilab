@@ -193,6 +193,9 @@ function scs_m = moveblock(scs_m,k,xc,yc)
       if nl>=4 then
 	x1=xl(1:4)
 	y1=yl(1:4)
+	      if nl>4 then
+          tobedrawn_out=[tobedrawn_out i]
+        end
       elseif nl==3 then
 	// 3 points link add one point at the begining
 	x1=xl([1 1:3])
@@ -203,8 +206,13 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	y1=[yl(1);yl(1)+(yl(2)-yl(1))/2;yl(1)+(yl(2)-yl(1))/2;yl(2)]
       else
 	// oblique 2 points link add 2 points in the middle
-	x1=[xl(1);xl(1)+(xl(2)-xl(1))/2;xl(1)+(xl(2)-xl(1))/2;xl(2)]
-	y1=[yl(1);yl(1);yl(2);yl(2)]
+	if abs(xl(2)-xl(1))>abs(yl(2)-yl(1)) then
+     x1=[xl(1);xl(1)+(xl(2)-xl(1))/2;xl(1)+(xl(2)-xl(1))/2;xl(2)]
+     y1=[yl(1);yl(1);yl(2);yl(2)]
+  else
+     x1=[xl(1);xl(1);xl(2);xl(2)]
+     y1=[yl(1);yl(1)+(yl(2)-yl(1))/2;yl(1)+(yl(2)-yl(1))/2;yl(2)]
+        end
       end
       //set allowed (x or y) move for each points of build movable segments
       if nl==3 then
@@ -253,13 +261,23 @@ function scs_m = moveblock(scs_m,k,xc,yc)
 	y1=[yl(2);yl(2);yl(1);yl(1)]
       end
       if nl==3 then
-	if x1(2)==x1(3) then 
-	  mx=[mx,[1;1;1;0]]
-	  my=[my,[1;1;0;0]]
-	else
-	  mx=[mx,[1;1;0;0]]
-	  my=[my,[1;1;1;0]]
-	end
+        if nl==2 then
+          if abs(xl(2)-xl(1))>abs(yl(2)-yl(1)) then
+            mx=[mx,[1;0;0;0]]
+            my=[my,[1;1;0;0]]
+          else
+            mx=[mx,[1;1;0;0]]
+            my=[my,[1;0;0;0]]
+          end
+        else
+          if x1(1)==x1(2) then
+            mx=[mx,[1;1;0;0]]
+            my=[my,[1;0;0;0]]
+          else
+            mx=[mx,[1;0;0;0]]
+            my=[my,[1;1;0;0]]
+          end
+        end
       else
 	if x1(1)==x1(2) then
 	  mx=[mx,[1;1;0;0]]
