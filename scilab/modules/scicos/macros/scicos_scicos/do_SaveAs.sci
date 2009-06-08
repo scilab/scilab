@@ -20,9 +20,13 @@
 //
 
 function [scs_m, edited] = do_SaveAs()
+//
+// Copyright INRIA
 
-  msg = ["Use .cos extension for binary and .cosf for ASCII file"];
-  fname = savefile('*.cos*', getcwd(), msg) //** alias of uigetfile
+  fname=scs_m.props.title(1);
+
+  tit = ["Use .cos extension for binary and .cosf for ascii file"];
+  fname = savefile(['*.cos*';'*.xml'],emptystr(),tit,fname)
 
   if fname==emptystr() then
     return ; //** EXIT point 
@@ -43,8 +47,12 @@ function [scs_m, edited] = do_SaveAs()
    case "" then
      ok = %t
      frmt = 'unformatted'
-     fname = fname+".cos"
-     ext = 'cos'
+     fname=fname+".cos"
+     ext='cos'
+
+   case "xml" then
+    ok = %t
+    frmt = 'xmlformatted'
   else
     message("Only *.cos binary or cosf ascii files allowed");
     return //** EXIT Point 
@@ -79,10 +87,22 @@ function [scs_m, edited] = do_SaveAs()
 
   scs_m;
   scs_m.props.title = [name, path] // Change the title
+  if pal_mode then
+    scs_m.objs(1).graphics.id=name
+    scs_m.objs(1).model.rpar.props.title=[name, path] // Change the title
+  end
   
   // save
   if ext=="cos" then
     save(u,scs_m,%cpr)
+  elseif ext=="xml" then
+    [ok,t]=cos2xml(scs_m,'',%f)
+    if ~ok then 
+      message("Error in xml format")
+      file('close',u)
+      return
+    end
+    mputl(t,u);
   else
   
     ierr = cos2cosf(u,do_purge(scs_m));
@@ -94,6 +114,8 @@ function [scs_m, edited] = do_SaveAs()
   end
   
   file('close',u)
+
+  //** disp("... SaveAs debug"); pause 
   
   //** if the current window is list of the phisically existing Scilab windows list winsid()
   if or(curwin==winsid()) then
@@ -105,5 +127,4 @@ function [scs_m, edited] = do_SaveAs()
     scicos_pal = update_scicos_pal(path,scs_m.props.title(1),fname),
     scicos_pal = resume(scicos_pal)
   end
-
 endfunction

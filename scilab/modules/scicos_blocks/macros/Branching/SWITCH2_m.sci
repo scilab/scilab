@@ -53,7 +53,7 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
 	model.nmode=0
 	model.nzcross=0
       end
-      if ((ot<1)|(ot>8)) message("Datatype is not supported");ok=%f;end
+      if ((ot<1)|(ot>8))&(ot<>-1) message("Datatype is not supported");ok=%f;end
       if ok then
 	it(1)=ot;
 	it(2)=1;

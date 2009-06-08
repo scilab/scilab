@@ -20,6 +20,7 @@
 //
 
 function [x,y,typ]=PDE(job,arg1,arg2)
+// développé par EADS-CCR
 // fonction graphic du bloc, elle permet le dessin et l'initialisation du bloc                //
 // Reference: "Scicos user guid", http://www.scicos.org                                       //
 //--------------------------------------------------------------------------------------------//
@@ -78,7 +79,7 @@ case 'set' then
       label(3)=lab;
       rdnom=stripblanks(rdnom);     
       if rdnom==emptystr() then 
-        ok1=%f;messagebox('sorry C file name not defined',"modal","error");
+        ok1=%f;x_message('sorry C file name not defined');
       end
       if ok1 then break,end
     end
@@ -97,7 +98,7 @@ case 'set' then
         elseif (signe == 0) then,
           delta=0;
         else
-          messagebox(['le discriminant n''est pas constant,'; 'Vous devez choisir son signe dans l''IHM'],"modal","error");
+          x_message(['le discriminant n''est pas constant,'; 'Vous devez choisir son signe dans l''IHM']);
           return;
         end
       else
@@ -106,7 +107,7 @@ case 'set' then
       if (delta==[]) then, delta=0; end        
       type_meth=arbre_decision(delta); 
     end
-    // a voir si c'est � rajouter pour ne pas regenerer dans le cas d'eval
+    // a voir si c'est à rajouter pour ne pas regenerer dans le cas d'eval
     //if ~ok then
 	     [flag_type,rdnom,DF_type,tt]=translate(CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,type_meth,degre,a_domaine,..
 	      b_domaine,Nbr_maillage,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,a6,b6,a7,b7,rdnom,mesures);
@@ -155,11 +156,12 @@ case 'set' then
     end
      
     // Ecriture, compilation et linkage du code
-    if (fun(3) == "clickin") then 
+    // if (fun(3) == "clickin") then  
+      // always ulink and link 
       [ok1]=CFORTREDP(rdnom,tt);
       if ~ok1 then break,end
-    end
-    
+    //end
+ 
     if ~ok then
   	   [model,graphics,ok]=check_io(model,graphics,ones(k,1),out(:),[],[])
     end

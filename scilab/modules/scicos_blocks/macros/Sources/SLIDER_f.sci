@@ -19,7 +19,8 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=SLIDER_f(job,arg1,arg2)
+function [x,y,typ] = SLIDER_f(job,arg1,arg2)
+//
 x=[];y=[];typ=[]
 select job
 case 'plot' then

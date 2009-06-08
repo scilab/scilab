@@ -27,7 +27,7 @@ end
 i=Select(1)
 o=scs_m.objs(i)
 if typeof(o)=='Block' then
-   if o.model.sim=='csuper' & o.model.ipar==1 then  
+   if o.model.sim=='csuper' & isequal(o.model.ipar,1)  then  
       o.model.sim='super'
       o.model.ipar=[] 
       o.gui='SUPER_f'

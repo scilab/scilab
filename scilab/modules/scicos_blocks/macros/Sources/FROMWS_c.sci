@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [x,y,typ]=FROMWS_c(job,arg1,arg2)
+function [x,y,typ] = FROMWS_c(job,arg1,arg2)
 x=[];y=[];typ=[];
 select job
 case 'plot' then
@@ -43,17 +43,17 @@ case 'set' then
        list('str',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     if ~(Method==0 | Method==1| Method==2| Method==3) then 
-      messagebox('Interpolation method should be chosen in [0,1,2,3]',"modal","error");
+      x_message('Interpolation method should be chosen in [0,1,2,3]');
       ok=%f;
     end
 
     if ~(ZC==0 | ZC==1) then 
-      messagebox('Zero crossing should be either 0 or 1',"modal","error");
+      x_message('Zero crossing should be either 0 or 1');
       ok=%f;
     end
 
     if ~(OutEnd==0 | OutEnd==1| OutEnd==2) then 
-      messagebox('Output at end option should be either 0 or 1',"modal","error");
+      x_message('Output at end option should be either 0 or 1');
       ok=%f;
     end
 

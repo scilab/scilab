@@ -28,18 +28,18 @@ function [path]=findinlistcmd(L,v,oper,path)
   for k=1:size(L)
     l=L(k)
     if or(type(l)==(15:17)) then
-      findinlist(l,v,[path,k])
+      findinlistcmd(l,v,oper,[path,k])
     else
       if oper=='=' then
-	if isequal(l,v) then
+	if and(l(:)==v) then
 	  paths($+1)=[path k]
 	end
       elseif oper=='>' then
-	if l > v then 
+	if or(l(:) > v) then 
 	  paths($+1)=[path k]
 	end
       elseif oper=='<' then
-	if l < v then 
+	if or(l(:) < v) then 
 	  paths($+1)=[path k]
 	end
       else
@@ -48,3 +48,4 @@ function [path]=findinlistcmd(L,v,oper,path)
   end
   if firstlevel then path=paths,clearglobal paths,end
 endfunction
+

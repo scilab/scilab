@@ -20,6 +20,7 @@
 //
 
 function [x,y,typ]=TEXT_f(job,arg1,arg2)
+// Copyright INRIA
 //** 22-23 Aug 2006: some carefull adjustements for the fonts
 //**                 inside the new graphics datastructure  
 x=[]; y=[]; typ=[];
@@ -48,21 +49,32 @@ case 'plot' then //normal  position
   gh_winpal.font_style = model.ipar(1) ; 
   gh_winpal.font_size  = model.ipar(2) ;
   
-   
+  //@@ compute bbox
+  rect = stringbox(model.rpar, graphics.orig(1), graphics.orig(2));
+
+  w=(rect(1,3)-rect(1,2)) * %zoom;
+  h=(rect(2,2)-rect(2,4)) * %zoom/1.4 * 1.2;
+
   //** special case for Windows 
   if MSDOS then
     //** xset('pattern',scs_m.props.options.Background(1))
     gh_winpal.font_color = scs_m.props.options.Background(1) ;
     
-    xstring(graphics.orig(1),graphics.orig(2),model.rpar)
+    //@@ fill txt_index in a box
+    xstringb(rect(1,1),rect(2,1), model.rpar, w, h,'fill') ;
+
+    //xstring(graphics.orig(1),graphics.orig(2),model.rpar)
   end
   
   //** set the new parameters 
   //** xset('pattern', default_color(1))  ;
   gh_winpal.font_color = default_color(1) ;
   
+  //@@ fill txt_index in a box
+  xstringb(rect(1,1),rect(2,1), model.rpar, w, h,'fill') ;
+
   //** print the string 
-  xstring(graphics.orig(1), graphics.orig(2), model.rpar)
+  //xstring(graphics.orig(1), graphics.orig(2), model.rpar)
   
   //** restore the old settings 
   //** xset('font',oldfont(1),oldfont(2))

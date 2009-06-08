@@ -41,6 +41,11 @@ function [mod,scs_m]=do_label(%pt,scs_m)
   end
   
   o = scs_m.objs(K)
+  // avoid error with links
+  if typeof(o)<>'Block' then 
+    message("No label can be placed on Links.")  
+    return,
+  end
   model = o.model
   lab = model.label
   [ok,lab] = getvalue('Give block label','label',list('str',1),lab)
