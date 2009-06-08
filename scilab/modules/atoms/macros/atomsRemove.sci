@@ -9,9 +9,9 @@
 
 // End user function
 
-// Uninstallation of a toolbox
+// Remove a toolbox
 
-function result = atomsUninstall(packages,allusers)
+function result = atomsRemove(packages,allusers)
 	
 	result = %F;
 	
@@ -25,11 +25,11 @@ function result = atomsUninstall(packages,allusers)
 	rhs = argn(2);
 	
 	if rhs < 1 | rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsUninstall",1,2))
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsRemove",1,2))
 	end
 	
 	if type(packages) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsUninstall",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRemove",1));
 	end
 	
 	packages = stripblanks(packages);
@@ -69,12 +69,12 @@ function result = atomsUninstall(packages,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsUninstall",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemove",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsUninstall",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,pathconvert(SCI+"/.atoms")));
 		end
 	end 
 	
@@ -185,7 +185,7 @@ function result = atomsUninstall(packages,allusers)
 		if (grep(this_package_directory,pathconvert(SCI)) == []) & ..
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
-			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuse to delete this directory.\n"),"atomsUninstall",packagesToUninstall(1,1),packagesToUninstall(1,2)));
+			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuse to delete this directory.\n"),"atomsRemove",packagesToUninstall(1,1),packagesToUninstall(1,2)));
 		end
 		
 		uninstall_status = rmdir(this_package_directory,"s");
@@ -193,7 +193,7 @@ function result = atomsUninstall(packages,allusers)
 		if uninstall_status<>1 then
 			error(msprintf( ..
 				gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
-				"atomsUninstall", ..
+				"atomsRemove", ..
 				this_package_name, ..
 				this_package_version, ..
 				this_package_directory));
@@ -209,7 +209,7 @@ function result = atomsUninstall(packages,allusers)
 			if stat<>1 then
 				error(msprintf( ..
 					gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
-					"atomsUninstall", ..
+					"atomsRemove", ..
 					this_package_name, ..
 					this_package_version, ..
 					this_package_root_dir));
