@@ -19,10 +19,12 @@
 // See the file ../license.txt
 //
 
-function ierr=cos2cosf(u,scs_m,count)
+function ierr = cos2cosf(u,scs_m,count)
+
 //write scilab instructions whose evaluation 
 //returns the  value of scicos data structure scs_m.
 //in the opened file associated with logical unit u
+
 [lhs,rhs]=argn(0)
 ierr=0;
 if rhs<3 then 
@@ -87,7 +89,7 @@ for k=1:lstsize(scs_m.objs)
   if typeof(o)=='Block' then
     lhs=lname+'.objs('+string(k)+')='
 
-    if o.model.sim=='super'| o.model.sim=='csuper' then  //Super blocks
+    if o.model.sim=='super'| o.model.sim=='csuper'| o.model.sim(1)=='asuper' then  //Super blocks
       cos2cosf(u,o.model.rpar,count);//model.rpar
     end
     //////////////////
@@ -128,7 +130,7 @@ for k=1:lstsize(scs_m.objs)
     fields=getfield(1,o.model);
     for i=1:lstsize(o.model)-1
       field_nam=fields(i+1);
-      if field_nam=='rpar'&(o.model.sim=='super'| o.model.sim=='csuper') then
+      if field_nam=='rpar'&(o.model.sim=='super'| o.model.sim=='csuper'| o.model.sim(1)=='asuper') then
         tt2='scs_m_'+string(count+1);
       else
         tt2=sci2exp(getfield(i+1,o.model),lmax);

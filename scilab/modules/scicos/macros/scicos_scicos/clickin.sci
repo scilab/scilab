@@ -163,9 +163,10 @@ if typeof(o)=="Block" then
     if edited then
       o = o_n ;
     end
-
-
-
+  //**-------------------- atomic superblock (asuper) -----------------------------  
+  elseif (o.model.sim(1)=="asuper") then
+  	 message(['This is an atomic superblock';..
+	 	   'To edite it, you must first remove the atomicity']);
   //**--------------------- Standard block -------------------------------
   else
 
@@ -263,6 +264,42 @@ if typeof(o)=="Block" then
 	if or(eq.model<>eqn.model)|or(eq.inputs<>eqn.inputs)|or(eq.outputs<>eqn.outputs) then
 	  needcompile=4
 	end
+
+	//## if a parameters have change in a modelica block then force
+        //## the recompilation
+        if ~isequal(eq.parameters,eqn.parameters) then
+          param_name   = eq.parameters(1);
+          param_name_n = eqn.parameters(1);
+
+          if ~isequal(param_name,param_name_n) then
+            needcompile=4
+          else
+	    for i=1:length(model.equations.parameters(2))
+              if or((eq.parameters(2)(i))<> (eqn.parameters(2)(i))) then
+                needcompile=0
+		
+		  XML=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imf_init.xml';     
+		  XML=pathconvert(XML,%f,%t);    
+		  XMLTMP=TMPDIR+'/'+stripblanks(scs_m.props.title(1))+'_imSim.xml'
+		  XMLTMP=pathconvert(XMLTMP,%f,%t);
+		  if MSDOS then 
+		    cmnd='del /F '+XML+' '+XMLTMP;
+		    if execstr('unix_s(cmnd)','errcatch')<>0 then
+		      x_message(['Unable to delete the XML file']);
+		    end
+		  else
+		    cmnd='rm -f '+XML+' '+XMLTMP
+		    if execstr('unix_s(cmnd)','errcatch')<>0 then
+		      x_message(['Unable to delete the XML file']);
+		    end
+		  end     
+   		
+                break;
+              end
+            end
+          end
+        end
+
 
         if (size(o.model.sim)>1) then
 	  if (o.model.sim(2)==30004) then // only if it is the Modelica generic block

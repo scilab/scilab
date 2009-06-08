@@ -128,7 +128,12 @@ function [scs_m, fct] = do_addnew(scs_m)
   //**------ Al@n's update 2 ---------/////////////
   // update blk !
 
-  o_new=scicos_block();
+  if typeof(blk)=='Text' then
+    o_new = mlist(['Text','graphics','model','void','gui'],...
+                    scicos_graphics(),scicos_model(),' ','TEXT_f')
+  else
+    o_new=scicos_block();
+  end
   T = getfield(1,blk);
 
   for k=2:size(T,2)
@@ -194,18 +199,16 @@ function [scs_m, fct] = do_addnew(scs_m)
 
     scs_m_super = blk.model.rpar;
 
-    //check version
-    current_version = get_scicos_version()
-    scicos_ver = find_scicos_version(scs_m_super)
+    [ierr,scicos_ver,scs_m_super]=update_version(scs_m_super)
 
-    //do version
-    if scicos_ver<>current_version then
-      ierr=execstr('scs_m_super=do_version(scs_m_super,scicos_ver)','errcatch')
-      if ierr<>0 then
-        message("Can''t import block in scicos, sorry (problem in version)")
-        fct=[]
-        return
-      end
+    if ierr<>0 then
+      message("Can''t import block in scicos, sorry (problem in version)")
+      fct=[]
+      return
+    end
+
+    //## if we have do a convertion
+    if scicos_ver<>get_scicos_version() then
       blk.model.rpar = scs_m_super;
 
       //check name
@@ -315,7 +318,7 @@ function [scs_m, fct] = do_addnew(scs_m)
 //**-----------------------------------------------------------------
 //** ---> main loop that move the empty box until you click
   rep(3)=-1 ;
-  while rep(3)==-1 , //move loop
+  while rep(3)<=-1 , //move loop
 
     // get new position
     rep = xgetmouse([%t,%t]); //** 
