@@ -38,7 +38,7 @@ function details = atomsToolboxDetails(name,version)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsToolboxDetails",1));
 	end
 	
-	if size(version,"*")<>1  then
+	if size(version,"*") <> 1 then
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsToolboxDetails",2));
 	end
 	
