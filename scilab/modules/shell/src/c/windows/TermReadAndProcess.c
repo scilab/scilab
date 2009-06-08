@@ -16,28 +16,22 @@
 #include "MALLOC.h"
 #include "prompt.h"
 #include "TermConsole.h"
-#include "diary.h"
-/*--------------------------------------------------------------------------*/
-static char *returnedline = NULL;
 /*--------------------------------------------------------------------------*/
 char * TermReadAndProcess(void)
 {
+	char *line = NULL;
 	static char save_prompt[PROMPT_SIZE_MAX];
 
-	/* free previous line */
-	if (returnedline) {FREE(returnedline);returnedline = NULL;}
-
-    if (GetTemporaryPrompt() != NULL) /* Input function is used */
-    {
-		returnedline = TerminalGetString(GetTemporaryPrompt());
+	if (GetTemporaryPrompt() != NULL) /* Input function is used */
+	{
+		line = TerminalGetString(GetTemporaryPrompt());
 	}
 	else
 	{
 		GetCurrentPrompt(save_prompt);
-		returnedline = TerminalGetString(save_prompt);
+		line = TerminalGetString(save_prompt);
 	}
 	strcpy(save_prompt,"");
-
-	return returnedline;
+	return line;
 }
 /*--------------------------------------------------------------------------*/
