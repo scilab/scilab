@@ -1102,7 +1102,7 @@ with_pvm
 with_pvm_include
 with_pvm_library
 with_libxml2
-with_libhdf5
+with_hdf5
 enable_build_localization
 with_blas_library
 with_lapack_library
@@ -22033,9 +22033,9 @@ _ACEOF
 
 
 
-# Check whether --with-libhdf5 was given.
-if test "${with_libhdf5+set}" = set; then
-  withval=$with_libhdf5;
+# Check whether --with-hdf5 was given.
+if test "${with_hdf5+set}" = set; then
+  withval=$with_hdf5;
 fi
 
 

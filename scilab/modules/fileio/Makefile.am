@@ -45,21 +45,6 @@ src/c/fullpath.c \
 src/c/fileinfo.c \
 src/c/getrelativefilename.c
 
-if HDF5
-FILEIO_SOURCES += src/c/h5_fileManagement.c \
-src/c/h5_writeDataToFile.c \
-src/c/h5_readDataFromFile.c
-
-GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/sci_export_to_hdf5.cpp \
-sci_gateway/cpp/sci_import_from_hdf5.cpp
-else
-GATEWAY_CPP_SOURCES = \
-sci_gateway/cpp/sci_no_hdf5.cpp
-
-endif
-
-
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
 sci_gateway/c/sci_mfprintf.c \
@@ -99,10 +84,29 @@ sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c
 
+if HDF5
+FILEIO_SOURCES += src/c/h5_fileManagement.c \
+src/c/h5_writeDataToFile.c \
+src/c/h5_readDataFromFile.c
+
+#GATEWAY_SOURCES += \
+#sci_gateway/c/sci_import_from_hdf5.c
+
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_export_to_hdf5.cpp \
+sci_gateway/cpp/sci_import_from_hdf5.cpp 
+else
+GATEWAY_CPP_SOURCES = \
+sci_gateway/cpp/sci_no_hdf5.cpp
+
+endif
+
+
 libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				$(HDF5_FLAGS)
 
 libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \

@@ -26,7 +26,7 @@ extern "C"
 }
 
 bool export_data(int _iH5File, int *_piVar, char* _pstName);
-bool export_list(int _iH5File, int *_piVar, char* _pstName);
+bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
 bool export_double(int _iH5File, int *_piVar, char* _pstName);
 bool export_poly(int *_piVar, char* _pstName);
 bool export_boolean(int *_piVar, char* _pstName);
@@ -200,7 +200,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 	case sci_tlist :
 	case sci_mlist :
 		{
-			bReturn = export_list(_iH5File, _piVar, _pstName);
+			bReturn = export_list(_iH5File, _piVar, _pstName, iType);
 			break;
 		}
 	case sci_lufact_pointer :
@@ -212,7 +212,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 	return bReturn;
 }
 
-bool export_list(int _iH5File, int *_piVar, char* _pstName)
+bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 {
 	bool bReturn = false;
 	int iItemNumber = 0;
@@ -258,7 +258,7 @@ bool export_list(int _iH5File, int *_piVar, char* _pstName)
 		if(bReturn == false)
 			return false;
 	}
-	closeList(_iH5File, pvList, _pstName, iItemNumber);
+	closeList(_iH5File, pvList, _pstName, iItemNumber, _iVarType);
 	free(pstGroupName);
 	//close list
 	return true;
