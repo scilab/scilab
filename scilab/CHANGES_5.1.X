@@ -115,6 +115,8 @@ Bug fixes:
  * bug 4508 fixed - Can't create a file when saving a figure under MacOSX.
 
  * bug 4542 fixed - A unexpected interpretor warning 
+
+ * bug 4546 fixed - Error message added for linpro function (moved to an external function).
  
  * bug 4551 fixed - menus can return a error in GUI mode (error 2 Invalid factor)
 
