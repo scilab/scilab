@@ -12,6 +12,7 @@
 
 extern "C"
 {
+#include <hdf5.h>
 #include <string.h>
 #include "gw_fileio.h"
 #include "stack-c.h"
@@ -162,7 +163,7 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 	int status				= 0;
 	int* piListAddr		= NULL;
 
-	void* piItemRef		= NULL;
+	hobj_ref_t* piItemRef		= NULL;
 
 	status = getDataSetDims(_iDatasetId, &iRows, &iCols);
 	if(status)
@@ -178,11 +179,37 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 
 	if(_piAddress == 0)
 	{
-		createList(Rhs + 1, iRows * iCols, &piListAddr);
+		switch(_iVarType)
+		{
+		case sci_list : 
+			createList(Rhs + 1, iRows * iCols, &piListAddr);
+			break;
+		case sci_tlist :
+			createTList(Rhs + 1, iRows * iCols, &piListAddr);
+			break;
+		case sci_mlist :
+			createMList(Rhs + 1, iRows * iCols, &piListAddr);
+			break;
+		default :
+			return 1;
+		}
 	}
 	else //if not null this variable is in a list
 	{
-		createListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+		switch(_iVarType)
+		{
+		case sci_list : 
+			createListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			break;
+		case sci_tlist :
+			createTListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			break;
+		case sci_mlist :
+			createMListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			break;
+		default :
+			return 1;
+		}
 	}
 
 
@@ -197,6 +224,7 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 		import_data(iItemDataset, i + 1, piListAddr);
 	}
 
+	free(piItemRef);
 	return 0;
 }
 

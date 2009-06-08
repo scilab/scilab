@@ -54,7 +54,7 @@ static herr_t op_func (hid_t loc_id, const char *name, void *operator_data)
 /*
 ** WARNING : this function returns an allocated value that must be freed.
 */
-static char *readAttribute(int _iDatasetId, char *_pstName)
+static char *readAttribute(int _iDatasetId, const char *_pstName)
 {
   hid_t		iAttributeId;
   hid_t		iFileType, memtype, iSpace;
@@ -230,59 +230,52 @@ int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols)
 
 int getScilabTypeFromDataSet(int _iDatasetId)
 {
-  char *pstScilabClass = readAttribute(_iDatasetId, SCILAB_CLASS);
+	int iVarType					= 0;
+  char *pstScilabClass	= readAttribute(_iDatasetId, g_SCILAB_CLASS);
 
   /* HDF5 Float type + SCILAB_Class = double <=> double */
   if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_FLOAT
-      && strcmp(pstScilabClass, SCILAB_CLASS_DOUBLE) == 0) {
-    free(pstScilabClass);
-    return sci_matrix;
+      && strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
+	{
+    iVarType = sci_matrix;
   }
-  
-  /* HDF5 Reference type + SCILAB_Class = string <=> strings */
-  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
-      && strcmp(pstScilabClass, SCILAB_CLASS_STRING) == 0) {
-    free(pstScilabClass);
-    return sci_strings;
+	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = string <=> strings */
+      && strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0) 
+	{
+			iVarType = sci_strings;
+  }
+	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = list <=> list */
+      && strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
+	{
+    iVarType = sci_list;
+  }
+	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = tlist <=> tlist */
+      && strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0) 
+	{
+    iVarType = sci_tlist;
+  }
+	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = string <=> MLIST */
+      && strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0) 
+	{
+    iVarType = sci_mlist;
   }
 
-  /* HDF5 Reference type + SCILAB_Class = list <=> list */
-  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
-      && strcmp(pstScilabClass, SCILAB_CLASS_LIST) == 0) {
-    free(pstScilabClass);
-    return sci_list;
-  }
-
-    /* HDF5 Reference type + SCILAB_Class = tlist <=> tlist */
-  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
-      && strcmp(pstScilabClass, SCILAB_CLASS_TLIST) == 0) {
-    free(pstScilabClass);
-    return sci_tlist;
-  }
-
-  /* HDF5 Reference type + SCILAB_Class = string <=> MLIST */
-  if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE
-      && strcmp(pstScilabClass, SCILAB_CLASS_MLIST) == 0) {
-    free(pstScilabClass);
-    return sci_mlist;
-  }
-  return -1;
+	free(pstScilabClass);
+  return iVarType;
 }
 
 
-int getListItemReferences(int _iDatasetId, void** _piItemRef)
+int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef)
 {
 	int iRows					= 0;
 	int iCols					= 0;
   herr_t status			= 0;
-	hobj_ref_t *poRef	= NULL;
 
 	getDataSetDims(_iDatasetId, &iRows, &iCols);
 
-	poRef = (hobj_ref_t *) malloc (iRows * iCols * sizeof (hobj_ref_t));
+	*_piItemRef = (hobj_ref_t *) malloc (iRows * iCols * sizeof (hobj_ref_t));
 
-  status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, poRef);
-	*_piItemRef = (void*)poRef;
+  status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, *_piItemRef);
 	return 0;
 }
 
