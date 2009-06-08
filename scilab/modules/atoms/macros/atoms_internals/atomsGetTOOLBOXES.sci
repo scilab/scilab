@@ -49,9 +49,15 @@ function packages = atomsGetTOOLBOXES(update)
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetTOOLBOXES",1));
 	end
 	
-	// If necessary, loop on available mirrors and download TOOLBOXES files
+	// packages file path definition
+	// =========================================================================
 	
-	if (fileinfo(pathconvert(SCIHOME+"/.atoms/packages",%F)) == []) | (rhs == 1 & update) then
+	packages_path = pathconvert(SCIHOME+"/.atoms/packages",%F);
+	
+	// If necessary, loop on available mirrors and download TOOLBOXES files
+	// =========================================================================
+	
+	if (fileinfo(packages_path) == []) | (rhs == 1 & update) then
 		
 		nb_TOOLBOXES = 0;
 		TOOLBOXES    = []; // Liste des paths des fichiers TOOLBOXES
@@ -88,6 +94,7 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		for i=1:size(TOOLBOXES,"*")
 			packages = atomsReadTOOLBOXES( TOOLBOXES(i) , packages );
+			mdelete(TOOLBOXES(i));
 		end
 		
 		// Save the "packages" variable in a file
@@ -96,13 +103,13 @@ function packages = atomsGetTOOLBOXES(update)
 			mkdir(pathconvert(SCIHOME+"/.atoms"));
 		end
 		
-		save(pathconvert(SCIHOME+"/.atoms/packages",%F),packages)
+		save(packages_path,packages)
 		
 	else
 		
 		// Just load from file
-		load(pathconvert(SCIHOME+"/.atoms/packages",%F),"packages");
-
+		load(packages_path,"packages");
+	
 	end
 	
 endfunction

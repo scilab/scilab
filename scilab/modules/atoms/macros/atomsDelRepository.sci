@@ -88,7 +88,17 @@ function nbDel = atomsDelRepository(url,allusers)
 		else
 			// Apply changes on this file
 			mputl(repositories,atoms_files(i));
+		
+			
 		end
+	end
+	
+	// Delete the packages file (created by atomsGetTOOLBOXES) to force reload
+	// the different distant TOOLBOXES files
+	// =========================================================================
+	
+	if nbDel > 0 then
+		mdelete(pathconvert(SCIHOME+"/.atoms/packages",%F));
 	end
 	
 endfunction

@@ -51,7 +51,7 @@ function res = atomsGetInstalledStatus(name,version)
 		packages_filtered = packages( find(packages(:,1) == name(i)) , : );
 		
 		// Filter on versions
-		packages_filtered = packages( find(packages(:,2) == version(i)) , 5 );
+		packages_filtered = packages_filtered( find(packages_filtered(:,2) == version(i)) , 5 );
 		
 		if ~ isempty(packages_filtered) then
 			res(i) = packages_filtered(1);

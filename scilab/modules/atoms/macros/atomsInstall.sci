@@ -77,6 +77,25 @@ function result = atomsInstall(packages,allusers)
 		end
 	end
 	
+	// Define the "archives" directory path
+	// Create it if it's not exist
+	// =========================================================================
+	
+	if allusers then
+		archives_directory = pathconvert(SCI+"/contrib/archives");
+	else
+		archives_directory = pathconvert(SCIHOME+"/atoms/archives");
+	end
+	
+	if ~ isdir( archives_directory ) then
+		status = mkdir( archives_directory );
+		if status <> 1 then
+			error(msprintf( ..
+				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+				archives_directory));
+		end
+	end
+	
 	// Loop on packages and to build the dependency tree
 	// =========================================================================
 	
@@ -286,6 +305,17 @@ function result = atomsInstall(packages,allusers)
 		end
 		
 		atomsInstallRegister(this_package_name,this_package_version,this_package_status,allusers);
+		
+		// Move the archive file (.tar.gz or .zip file) to the archive directory
+		// =====================================================================
+		
+		stat = copyfile( fileout , archives_directory );
+		
+		if stat <> 1 then
+			error(msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",fileout,archives_directory));
+		end
+		
+		mdelete( fileout );
 		
 	end
 	

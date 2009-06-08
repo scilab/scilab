@@ -185,7 +185,7 @@ function result = atomsUninstall(packages,allusers)
 		if (grep(this_package_directory,pathconvert(SCI)) == []) & ..
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
-			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security resaon, ATOMS refuse to delete this directory.\n"),"atomsUninstall",packagesToUninstall(1,1),packagesToUninstall(1,2)));
+			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuse to delete this directory.\n"),"atomsUninstall",packagesToUninstall(1,1),packagesToUninstall(1,2)));
 		end
 		
 		uninstall_status = rmdir(this_package_directory,"s");
@@ -199,6 +199,25 @@ function result = atomsUninstall(packages,allusers)
 				this_package_directory));
 		end
 		
+		// Check if the parent directory (directory name == toolbox name ) is empty 
+		// If yes, detete it
+		// =====================================================================
+		this_package_root_dir = part(this_package_directory,1:length(pathconvert(this_package_directory)) - length(this_package_version) - 1 );
+		
+		if isdir(this_package_root_dir) & listfiles(this_package_root_dir)==[] then
+			stat = rmdir(this_package_root_dir);
+			if stat<>1 then
+				error(msprintf( ..
+					gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
+					"atomsUninstall", ..
+					this_package_name, ..
+					this_package_version, ..
+					this_package_root_dir));
+			end
+		end
+		
+		// Remove this toolbox from the list of installed packages
+		// =====================================================================
 		atomsInstallUnregister(this_package_name,this_package_version,allusers);
 		
 	end

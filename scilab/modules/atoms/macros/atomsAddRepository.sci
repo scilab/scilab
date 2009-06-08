@@ -101,7 +101,13 @@ function nbAdd = atomsAddRepository(url,allusers)
 	// =========================================================================
 	
 	if nbAdd > 0 then
+		
 		mputl(repositories, atoms_directory+"repositories");
+		
+		// Delete the packages file (created by atomsGetTOOLBOXES) to force reload
+		// the different distant TOOLBOXES files
+		mdelete(pathconvert(SCIHOME+"/.atoms/packages",%F));
+		
 	end
 	
 endfunction
