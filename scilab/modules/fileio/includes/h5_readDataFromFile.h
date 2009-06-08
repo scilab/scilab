@@ -13,6 +13,8 @@
 #ifndef __H5_READDATATOFILE_H__
 #define __H5_READDATATOFILE_H__
 
+#include <hdf5.h>
+
 int getDataSetId(int  _iFile);
 
 int getDataSetDims(int _iDataSetId, int *_piRows, int *_piCols);
@@ -23,7 +25,7 @@ int readDoubleMatrix(int _iDataSetId, double *_pdblData, int _iRows, int _iCols)
 
 int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols);
 
-int getListItemReferences(int _iDatasetId, void** _piItemRef);
+int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
 
 int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _piItemDataset);
 

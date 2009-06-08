@@ -16,7 +16,7 @@ dnl * what are the compilation flags
 dnl * what are linking flags
 AC_DEFUN([AC_LIBHDF5], [
 
-AC_ARG_WITH(libhdf5,
+AC_ARG_WITH(hdf5,
 	AC_HELP_STRING([--with-hdf5],[Compile with the HDF5 library]))	
 
 HDF5_ENABLE=no
