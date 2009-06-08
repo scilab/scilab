@@ -46,7 +46,7 @@ function nbAdd = atomsAddAutoload(name,version,allusers)
 	// =========================================================================
 	
 	if rhs == 2 then
-		// By default, The toolbox is installed for all users (if we have write access of course !)
+		// By default, The toolbox is autoloaded for all users (if we have write access of course !)
 		if atomsAUWriteAccess() then
 			allusers = %T; 
 		else
@@ -82,7 +82,7 @@ function nbAdd = atomsAddAutoload(name,version,allusers)
 		mkdir(atoms_directory);
 	end
 	
-	// Does the SCIHOME/atoms/installed exist, if yes load it
+	// Does the SCIHOME/atoms/autoloaded exist, if yes load it
 	// =========================================================================
 	
 	if fileinfo(atoms_directory+"autoloaded") <> [] then

@@ -16,8 +16,8 @@ function details = atomsToolboxDetails(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsToolboxDetails",2,3));
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsToolboxDetails",1,2));
 	end
 	
 	// Check input parameters type

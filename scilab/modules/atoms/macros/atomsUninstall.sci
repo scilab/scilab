@@ -220,6 +220,10 @@ function result = atomsUninstall(packages,allusers)
 		// =====================================================================
 		atomsInstallUnregister(this_package_name,this_package_version,allusers);
 		
+		// Remove this toolbox from the list of autoloaded packages
+		// =====================================================================
+		atomsDelAutoload(this_package_name,this_package_version);
+		
 	end
 	
 	result = %T;

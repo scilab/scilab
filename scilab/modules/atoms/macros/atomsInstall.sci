@@ -306,6 +306,13 @@ function result = atomsInstall(packages,allusers)
 		
 		atomsInstallRegister(this_package_name,this_package_version,this_package_status,allusers);
 		
+		// Autoload the toolbox unless precised
+		// =====================================================================
+		
+		if ~ (atomsGetConfig("autoload") == "False") then
+			atomsAddAutoload(this_package_name,this_package_version,allusers);
+		end
+		
 		// Move the archive file (.tar.gz or .zip file) to the archive directory
 		// =====================================================================
 		
