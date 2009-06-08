@@ -119,14 +119,22 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 {
   hsize_t	lDims[2];
   hid_t		space;
+  int		ndims;
   /*
    * Get dataspace and dimensions of the dataset. This is a
    * two dimensional dataset.
    */
  space = H5Dget_space (_iDatasetId);
- H5Sget_simple_extent_dims (space , lDims, NULL);
+ ndims = H5Sget_simple_extent_dims (space , lDims, NULL);
  *_piRows = (int)lDims[0];
- *_piCols = (int)lDims[1];
+ if (ndims == 1) 
+   {
+     *_piCols = 1;
+   }
+ else 
+   {
+     *_piCols = (int)lDims[1];
+   }
 
  return 0;
 }
@@ -272,6 +280,8 @@ int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef)
   herr_t status			= 0;
 
 	getDataSetDims(_iDatasetId, &iRows, &iCols);
+
+	printf("[DEBUG] *_piItemRef = %d x %d \n", iRows, iCols);
 
 	*_piItemRef = (hobj_ref_t *) malloc (iRows * iCols * sizeof (hobj_ref_t));
 
