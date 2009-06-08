@@ -38,5 +38,9 @@ function r = with_modelica_compiler()
   catch
     r = %f
   end
+  
+  // TEMP. WORKAROUND SINCE WE DONT HAVE MODELICA
+  
+  r = %f
 endfunction
 
