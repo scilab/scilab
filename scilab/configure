@@ -21258,12 +21258,12 @@ LIBS="$saved_LIBS"
 
 
 cat >>confdefs.h <<_ACEOF
-#define LIBHDF5_CFLAGS "$HDF5_CFLAGS"
+#define HDF5_CFLAGS "$HDF5_CFLAGS"
 _ACEOF
 
 
 cat >>confdefs.h <<_ACEOF
-#define LIBHDF5_LIBS "$HDF5_LIBS"
+#define HDF5_LIBS "$HDF5_LIBS"
 _ACEOF
 
 
