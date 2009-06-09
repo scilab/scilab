@@ -19,10 +19,10 @@ AC_DEFUN([AC_HDF5], [
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
 		
-HDF5_FLAGS="-I/usr/lib/openmpi/include"
+HDF5_CFLAGS="-I/usr/lib/openmpi/include"
 HDF5_LIBS="-lhdf5"
 
-CFLAGS="$CFLAGS $HDF5_FLAGS"
+CFLAGS="$CFLAGS $HDF5_CFLAGS"
 LIBS="$LIBS $HDF5_LIBS"
 
 AC_CHECK_LIB([hdf5], [H5Dopen],
