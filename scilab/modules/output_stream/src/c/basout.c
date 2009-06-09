@@ -18,13 +18,10 @@
 #include "basout.h"
 #include "../../../fileio/includes/diary.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 #include "../../../shell/includes/more.h"
 #include "../../../shell/includes/scilines.h"
 /*--------------------------------------------------------------------------*/ 
-extern int C2F(basouttofile)();
-/*--------------------------------------------------------------------------*/ 
-#define bufferformat "%s\n"
+extern int C2F(basouttofile)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/ 
 int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 {
@@ -40,8 +37,6 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 
 	if (*lunit == C2F(iop).wte)
 	{
-		char *buffer = NULL;
-
 		/* Display on the standard output */
 
 		/* We haven't called this function before ... Then we call it and 
@@ -74,14 +69,14 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 			}
 		}
 
-		buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+strlen(bufferformat)+1));
-		if (buffer)
+		if (string)
 		{
-			strncpy(buffer,string,nbcharacters);
-			buffer[nbcharacters]='\0';
-			sciprint(bufferformat,buffer);
-			FREE(buffer);
-			buffer = NULL;
+			if (nbcharacters > 1)
+			{
+				string[nbcharacters] = '\0';
+				sciprint("%s",string);
+			}
+			sciprint("\n");
 		}
 	} 
 	else
@@ -98,9 +93,10 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 		}
 		else
 		{
-			 C2F(basouttofile)(lunit, string,nbcharacters);
+			C2F(basouttofile)(lunit, string,nbcharacters);
 		}
 	}
 	return 0;
 } 
 /*--------------------------------------------------------------------------*/ 
+
