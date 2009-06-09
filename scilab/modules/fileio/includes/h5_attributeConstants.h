@@ -13,12 +13,19 @@
 #ifndef __H5_ATTRIBUTECONSTATS_H__
 #define __H5_ATTRIBUTECONSTATS_H__
 
-#define SCILAB_CLASS			"SCILAB_Class"
-#define SCILAB_CLASS_DOUBLE		"double"
-#define SCILAB_CLASS_STRING		"string"
-#define SCILAB_CLASS_LIST		"list"
-#define SCILAB_CLASS_TLIST		"tlist"
-#define SCILAB_CLASS_MLIST		"mlist"
+//#define SCILAB_CLASS			"SCILAB_Class"
+//#define SCILAB_CLASS_DOUBLE		"double"
+//#define SCILAB_CLASS_STRING		"string"
+//#define SCILAB_CLASS_LIST		"list"
+//#define SCILAB_CLASS_TLIST		"tlist"
+//#define SCILAB_CLASS_MLIST		"mlist"
+
+static const char g_SCILAB_CLASS[]				=	"SCILAB_Class";
+static const char g_SCILAB_CLASS_DOUBLE[]	=	"double";
+static const char g_SCILAB_CLASS_STRING[]	=	"string";
+static const char g_SCILAB_CLASS_LIST[]		=	"list";
+static const char g_SCILAB_CLASS_TLIST[]	=	"tlist";
+static const char g_SCILAB_CLASS_MLIST[]	=	"mlist";
 
 
 #endif /* !__H5_ATTRIBUTECONSTATS_H__ */

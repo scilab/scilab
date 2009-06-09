@@ -11,13 +11,14 @@
  */
 
 #include <hdf5.h>
+#include "stack-c.h"
 #include <malloc.h>
 #include <math.h>
 #include "h5_writeDataToFile.h"
 #include "h5_attributeConstants.h"
 
 
-static void addAttribute(int dataSetId, char *name, char *value)
+static void addAttribute(int dataSetId, const char *name, const char *value)
 {
   hsize_t     attributeDims[1] = {1};
   hid_t       attributeTypeId, attributeSpace, attr;
@@ -73,7 +74,7 @@ static int writeString(int file, char* dataSetName, char *data)
  /*
    * Add attribute SCILAB_Class = string to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, SCILAB_CLASS_STRING);
+  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
 
   /*
    * Close and release resources.
@@ -157,7 +158,7 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
   /*
    * Add attribute SCILAB_Class = string to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, SCILAB_CLASS_STRING);
+  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
 
   /*
    * Close and release resources.
@@ -205,7 +206,7 @@ int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int c
   /*
    * Add attribute SCILAB_Class = double to dataset
    */
-  addAttribute(dset, SCILAB_CLASS, SCILAB_CLASS_DOUBLE);
+  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
 
   /*
    * Close and release resources.
@@ -258,11 +259,13 @@ int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName)
 	return H5Rcreate(&pobjArray[_iPos], _iFile, _pstItemName, H5R_OBJECT, -1);
 }
 
-int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem)
+int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType)
 {
-	herr_t			status = 0;
-  hsize_t     dims[1] = {_iNbItem};
-  hid_t       space, dset;
+	herr_t status					= 0;
+  hsize_t dims[1]				= {_iNbItem};
+  hid_t space						= 0;
+	hid_t dset						= 0;
+	const char* pcstClass	= NULL;
   /*
    * Create dataspace.  Setting maximum size to NULL sets the maximum
    * size to be the current size.
@@ -279,7 +282,22 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem)
   /*
    * Add attribute SCILAB_Class = string to dataset
    */
-  addAttribute(dset, SCILAB_CLASS,  SCILAB_CLASS_LIST);
+
+	switch(_iVarType)
+	{
+	case sci_list : 
+		pcstClass = g_SCILAB_CLASS_LIST;
+		break;
+	case sci_tlist : 
+		pcstClass = g_SCILAB_CLASS_TLIST;
+		break;
+	case sci_mlist : 
+		pcstClass = g_SCILAB_CLASS_MLIST;
+		break;
+	default : 
+		return 1;
+	}
+  addAttribute(dset, g_SCILAB_CLASS,  pcstClass);
 
   /*
    * Close and release resources.

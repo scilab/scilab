@@ -33,7 +33,7 @@
 	wfilename = to_wide_string(x);\
 	wmode = to_wide_string(y);\
 	if(wfilename == NULL || wmode == NULL){fp = 0;}\
-	fp = _wfopen(wfilename, wmode);\
+	else {fp = _wfopen(wfilename, wmode);}\
 	if(wfilename != NULL){FREE(wfilename);}\
 	if(wmode != NULL){FREE(wmode);} \
 }

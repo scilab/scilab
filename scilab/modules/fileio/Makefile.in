@@ -470,13 +470,6 @@ FILEIO_SOURCES = src/c/FileExist.c src/c/scanf_functions.c \
 	src/c/isdir.c src/c/isDrive.c src/c/removedir.c src/c/cluni0.c \
 	src/c/scicurdir.c src/c/fullpath.c src/c/fileinfo.c \
 	src/c/getrelativefilename.c $(am__append_1)
-@HDF5_FALSE@GATEWAY_CPP_SOURCES = \
-@HDF5_FALSE@sci_gateway/cpp/sci_no_hdf5.cpp
-
-@HDF5_TRUE@GATEWAY_CPP_SOURCES = \
-@HDF5_TRUE@sci_gateway/cpp/sci_export_to_hdf5.cpp \
-@HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp
-
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
 sci_gateway/c/sci_mfprintf.c \
@@ -516,10 +509,21 @@ sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
 sci_gateway/c/sci_getrelativefilename.c
 
+@HDF5_FALSE@GATEWAY_CPP_SOURCES = \
+@HDF5_FALSE@sci_gateway/cpp/sci_no_hdf5.cpp
+
+
+#GATEWAY_SOURCES += \
+#sci_gateway/c/sci_import_from_hdf5.c
+@HDF5_TRUE@GATEWAY_CPP_SOURCES = \
+@HDF5_TRUE@sci_gateway/cpp/sci_export_to_hdf5.cpp \
+@HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp 
+
 libscifileio_la_CXXFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes
+				-I$(top_srcdir)/modules/output_stream/includes \
+				$(HDF5_FLAGS)
 
 libscifileio_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
