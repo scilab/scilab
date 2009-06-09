@@ -35,6 +35,11 @@ Source reorganisation:
 * oldsave, oldload functions (only used with macros of scilab 2.4) are removed
   Replaces oldsave, oldload by save and load in your code.
 
+* libs/MALLOC/src/malloc.c is no longer build (used to be built for 64 
+bits archs). Note that if Scilab is built on a 64 bits and triggers a 
+seg fault on startup, uncomment the related line in 
+libs/MALLOC/Makefile.am and launch autoreconf.
+
 toolbox_skeleton:
 =================
  - examples of gateways functions (c_sum, f_sum, cpp_find) rewritten with new API.
