@@ -66,7 +66,9 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
  * @param[out] _piData64 return pointer on 64 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
+#ifdef __YASP__
 int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _piData64);
+#endif
 
 /**
  * Get integer variable data
@@ -110,8 +112,9 @@ int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
+#ifdef __YASP__
 int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _piData64, int** _piAddress);
-
+#endif
 /**
  * Get integer variable data
  * @param[in] _iVar variable number
@@ -154,8 +157,9 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
+#ifdef __YASP__
 int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piData64, int **_piAddress);
-
+#endif
 /**
  * Get integer variable data
  * @param[in] _pstName variable name
@@ -202,8 +206,9 @@ int createNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int _iRows, int 
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
+#ifdef __YASP__
 int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int _iCols, long long* _piData64);
-
+#endif
 /**
  * Get integer precision ( 8, 16, 32, 64 )
  * @param[in] _pstName variable name
@@ -251,6 +256,7 @@ int readNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int* _piRows, int*
  * @param[out] _piData64 return array of integer 64 bits
  * @return if the operation successed (0) or not ( !0 )
  */
+#ifdef __YASP__
 int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, long long* _piData64);
-
+#endif
 #endif /* __INT_API__ */
