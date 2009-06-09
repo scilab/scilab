@@ -435,6 +435,7 @@ includes/string_api.h \
 includes/common_api.h \
 includes/poly_api.h \
 includes/variable_api.h \
+includes/list_api.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am
