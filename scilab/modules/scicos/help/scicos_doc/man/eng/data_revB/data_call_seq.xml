@@ -77,6 +77,13 @@
   </CALLING_SEQUENCE>
 </FILE>
 
+<FILE name='ModelicaBlocks' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
 <FILE name='Multiwindow' type='XML'>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>
@@ -99,6 +106,28 @@
   </CALLING_SEQUENCE>
 </FILE>
 
+<FILE name='callblk' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+      [blk]=callblk(blk,flag,time)
+   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='coserror' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+    Coserror(errmsg)
+   </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='create_gif' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>create_gif([TXT,path])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
 <FILE name='create_palette' type='XML'>
   <CALLING_SEQUENCE>
   <CALLING_SEQUENCE_ITEM>[routines,IntFunc] = create_palette(Path)</CALLING_SEQUENCE_ITEM>
@@ -110,6 +139,14 @@
     <CALLING_SEQUENCE_ITEM>
       blk=curblock()
     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='data2sig' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+    B=data2sig(A[,step])
+   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 
@@ -148,6 +185,14 @@
 <FILE name='lincos' type='XML'>
   <CALLING_SEQUENCE>
     <CALLING_SEQUENCE_ITEM>sys= lincos(scs_m [,x0,u0 [,param] ])</CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='model2blk' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+    [blk] = model2blk(model)
+   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 
@@ -288,6 +333,14 @@
     <CALLING_SEQUENCE_ITEM>
       set_xproperty(xprop)
     </CALLING_SEQUENCE_ITEM>
+  </CALLING_SEQUENCE>
+</FILE>
+
+<FILE name='sig2data' type='XML'>
+  <CALLING_SEQUENCE>
+  <CALLING_SEQUENCE_ITEM>
+    [x[,t]]=sig2data(B)
+   </CALLING_SEQUENCE_ITEM>
   </CALLING_SEQUENCE>
 </FILE>
 

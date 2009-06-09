@@ -29,6 +29,10 @@
 	dial_width_html=340pt
 </FILE>
 
+<FILE name='BOUNCE' type='SPECIALDESC'>
+	dial_width_html=260pt
+</FILE>
+
 <FILE name='BPLATFORM' type='SPECIALDESC'>
 	dial_width_html=240pt
 </FILE>
@@ -101,6 +105,10 @@
 	dial_width_html=240pt
 </FILE>
 
+<FILE name='CONSTRAINT2_c' type='SPECIALDESC'>
+	dial_width_html=320pt
+</FILE>
+
 <FILE name='CONST_f' type='SPECIALDESC'>
 	dial_width_html=240pt
 </FILE>
@@ -109,12 +117,12 @@
 	dial_width_html=240pt
 </FILE>
 
-<FILE name='CUMSUM' type='SPECIALDESC'>
-	dial_width_html=360pt
-</FILE>
-
 <FILE name='CONVERT' type='SPECIALDESC'>
 	dial_width_html=350pt
+</FILE>
+
+<FILE name='CUMSUM' type='SPECIALDESC'>
+	dial_width_html=360pt
 </FILE>
 
 <FILE name='Capacitor' type='SPECIALDESC'>
@@ -139,8 +147,8 @@
 	super_width_html=260pt
 </FILE>
 
-<FILE name='DIFF_f' type='SPECIALDESC'>
-	dial_width_html=260pt
+<FILE name='DIFF_c' type='SPECIALDESC'>
+	dial_width_html=240pt
 </FILE>
 
 <FILE name='DLATCH' type='SPECIALDESC'>
@@ -243,6 +251,10 @@
 
 <FILE name='GENSQR_f' type='SPECIALDESC'>
 	dial_width_html=240pt
+</FILE>
+
+<FILE name='GEN_SQR' type='SPECIALDESC'>
+	dial_width_html=320pt
 </FILE>
 
 <FILE name='GotoTagVisibility' type='SPECIALDESC'>
@@ -352,6 +364,11 @@ txt_param=[''
 	dial_width_html=220pt
 </FILE>
 
+<FILE name='Modelica_pal' type='SPECIALDESC'>
+	ud_margin_html=0.6
+	scs_diagr_height_pal_html=75pt
+</FILE>
+
 <FILE name='NRMSOM_f' type='SPECIALDESC'>
 	lr_margin_html=3
 	dial_width_html=260pt
@@ -370,6 +387,11 @@ txt_param=[''
 <FILE name='PDE' type='SPECIALDESC'>
 	scale_blk_html=1.2
 	dial_width_html=290pt
+</FILE>
+
+<FILE name='PENDULUM_ANIM' type='SPECIALDESC'>
+	scale_blk_html=0.9
+	dial_width_html=260pt
 </FILE>
 
 <FILE name='PID' type='SPECIALDESC'>
@@ -417,6 +439,10 @@ txt_param=[''
 
 <FILE name='RELATIONALOP' type='SPECIALDESC'>
 	dial_width_html=360pt
+</FILE>
+
+<FILE name='RELAY_f' type='SPECIALDESC'>
+	dial_width_html=260pt
 </FILE>
 
 <FILE name='RFILE' type='SPECIALDESC'>

@@ -134,6 +134,12 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='CBLOCK4' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='CCS' type='XML'>
 <EXAMPLE>
 
@@ -270,9 +276,16 @@
 </EXAMPLE>
 </FILE>
 
-<FILE name='CONSTRAINT_f' type='XML'>
-<EXAMPLE>
-</EXAMPLE>
+<FILE name='CONSTRAINT2_c' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
+<FILE name='CONSTRAINT_c' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='CONST_f' type='XML'>
@@ -418,8 +431,6 @@
 <FILE name='DERIV' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
@@ -429,10 +440,16 @@
 </EXAMPLE>
 </FILE>
 
-<FILE name='DIFF_f' type='XML'>
-<EXAMPLE>
+<FILE name='DIFF_c' type='XML'>
+  <EXAMPLE>
 
-</EXAMPLE>
+  </EXAMPLE>
+</FILE>
+
+<FILE name='DIFF_f' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='DLATCH' type='XML'>
@@ -647,10 +664,14 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='Flowmeter' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='GAINBLK' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -676,17 +697,19 @@
 <FILE name='GENSIN_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='GENSQR_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
+</FILE>
+
+<FILE name='GEN_SQR' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='GOTO' type='XML'>
@@ -719,6 +742,12 @@
 
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='Ground_g' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
@@ -869,6 +898,18 @@
 
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='LOOKUP2D' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
+<FILE name='LOOKUP_c' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='LOOKUP_f' type='XML'>
@@ -1064,6 +1105,11 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='MPBLOCK' type='XML'>
+  <EXAMPLE>
+  </EXAMPLE>
+</FILE>
+
 <FILE name='MUX' type='XML'>
 <EXAMPLE>
 
@@ -1096,6 +1142,11 @@
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='ModelicaBlocks' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='Modulo_Count' type='XML'>
@@ -1156,10 +1207,22 @@
   </EXAMPLE>
 </FILE>
 
+<FILE name='PAL_f' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='PDE' type='XML'>
 <EXAMPLE>
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='PENDULUM_ANIM' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='PID' type='XML'>
@@ -1210,6 +1273,12 @@
 
 
 </EXAMPLE>
+</FILE>
+
+<FILE name='PULSE_SC' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
 </FILE>
 
 <FILE name='PerteDP' type='XML'>
@@ -1648,18 +1717,20 @@
 </EXAMPLE>
 </FILE>
 
+<FILE name='VirtualCLK0' type='XML'>
+  <EXAMPLE>
+
+  </EXAMPLE>
+</FILE>
+
 <FILE name='VoltageSensor' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
 
 <FILE name='VsourceAC' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -1673,15 +1744,11 @@
 <FILE name='WFILE_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='WRITEAU_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -1689,15 +1756,11 @@
 <FILE name='WRITEC_f' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='ZCROSS_f' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -1715,9 +1778,45 @@
 <FILE name='c_block' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
+</FILE>
+
+<FILE name='callblk' type='XML'>
+  <EXAMPLE>
+//Use of scope of fibo.cosf in Scilab
+//15/07/08, AL
+
+load SCI/macros/scicos/lib;
+exec('SCI/demos/scicos/fibo.cosf',-1);
+[ierr,scicos_ver,scs_m]=update_version(scs_m);
+
+omod=scs_m.objs(10).model; //scope is the obj(10)
+omod.in=1; //update in (because -1)
+bl=model2blk(omod); //get a computational blk struct
+
+// init
+bl=callblk(bl,4,0);
+// run
+Tfin=120;
+for i=0:1:Tfin*100
+  t=i/100;
+  //update regular input
+  bl.inptr(1)=0.55+cos(2*%pi/(15)*t)/10;
+  bl=callblk(bl,2,t); //calblk with flag=2
+end
+// finish
+bl=callblk(bl,5,t);
+  </EXAMPLE>
+</FILE>
+
+<FILE name='coserror' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
+</FILE>
+
+<FILE name='create_gif' type='XML'>
+  <EXAMPLE>
+ </EXAMPLE>
 </FILE>
 
 <FILE name='create_palette' type='XML'>
@@ -1731,6 +1830,22 @@
 ]]></EXAMPLE>
 </FILE>
 
+<FILE name='data2sig' type='XML'>
+  <EXAMPLE>
+  -->a(:,:,4)=([7 8 9;10 11 12]);
+  -->b=data2sig(a,0.1)
+  b  =
+    values: [2x3x4 hypermat]
+    time: [4x1 constant]
+  -->b.time
+  ans  =
+     0.
+     0.1.
+     0.2.
+     0.3.
+  </EXAMPLE>
+</FILE>
+
 <FILE name='data_type' type='XML'>
   <EXAMPLE><![CDATA[
   ]]></EXAMPLE>
@@ -1739,15 +1854,11 @@
 <FILE name='fortran_block' type='XML'>
 <EXAMPLE>
 
-
-
 </EXAMPLE>
 </FILE>
 
 <FILE name='freq_div' type='XML'>
 <EXAMPLE>
-
-
 
 </EXAMPLE>
 </FILE>
@@ -1797,6 +1908,11 @@
 <FILE name='lincos' type='XML'>
 <EXAMPLE>
 </EXAMPLE>
+</FILE>
+
+<FILE name='model2blk' type='XML'>
+  <EXAMPLE><![CDATA[
+  ]]></EXAMPLE>
 </FILE>
 
 <FILE name='phase_simulation' type='XML'>
@@ -1931,6 +2047,46 @@
   ]]></EXAMPLE>
 </FILE>
 
+<FILE name='sig2data' type='XML'>
+  <EXAMPLE>
+  -->a(:,:,4)=([7 8 9;10 11 12]);
+  -->b=data2sig(a,0.1)
+  b  =
+    values: [2x3x4 hypermat]
+    time: [4x1 constant]
+  -->b.time
+  ans  =
+     0.
+     0.1.
+     0.2.
+     0.3.
+
+  -->[x,t]=sig2data(b)
+  t  =
+   0.
+    0.1
+    0.2
+    0.3
+  x  =
+(:,:,1)
+
+   0.    0.    0.
+   0.    0.    0.
+(:,:,2)
+
+    0.    0.    0.
+    0.    0.    0.
+(:,:,3)
+
+    0.    0.    0.
+    0.    0.    0.
+(:,:,4)
+
+    7.     8.     9.
+    10.    11.    12.
+  </EXAMPLE>
+</FILE>
+
 <FILE name='steadycos' type='XML'>
 <EXAMPLE>
 
@@ -2021,4 +2177,5 @@
 </FILE>
 
 
-</DATA>
+</DATA> 
+ 

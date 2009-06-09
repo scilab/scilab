@@ -153,37 +153,36 @@ Multi-conference on Systems and Control, Singapore.
 <FILE name='About_scicos' type='LATEX'>
  \subsection{About Scicos...}
 
-  Scicos 4.2 have been developed in the Metalau Project-Team very close
-  to the Scilab consortium at INRIA unit of Rocquencourt.
+ Scicos is currently developed by the Scicos team (A. Layec, M. Najafi, F. Nassif)
+ headed by R. Nikoukhah in the METALAU project team at INRIA, unit of Rocquencourt.
 
-  The main contributers of that version are :
+ The main contributers of Scicos 4.x familly are :
 
-  {\bf Designers :} \\
-  \begin{itemize}
-       \item {\bf Fady Nassif} (INRIA) \\
-          Matrix/integer blocks set.\\
-          Simulink behavior (SampleClk/Goto-from blocks set.)
+ \begin{itemize}
+     \item {\bf Fady Nassif} (INRIA) \\
+         Matrix/integer blocks set.\\
+         SampleClk/Goto From/atomic blocks...
 
-       \item {\bf Masoud Najafi} (INRIA) \\
-          Modelica implementation. \\
-          Simulator Sundials implementation.
+     \item {\bf Masoud Najafi} (INRIA) \\
+         Modelica implementation. \\
+         Simulator design.
 
-       \item {\bf Simone Mannori} (INRIA) \\
-          New graphic editor design.
+     \item {\bf Ramine Nikoukhah} (INRIA) \\
+         Compiler algorithm.\\
+         Multi-windows graphical editor behavior.
 
-       \item {\bf Alan Layec} (INRIA) \\
-          Matrix typed data implementation.\\
-          Core of C code generator.\\
-          Html documentation.
+     \item {\bf Alan Layec} (INRIA) \\
+         Matrix typed data implementation.\\
+         C code generator.\\
+         HTML documentation.
 
-       \item {\bf Benoit Bayol} (Student) \\
-          New graphic scope blocks set.
+     \item {\bf Simone Mannori/Serge Steer} (INRIA) \\
+         New graphic editor design.
 
+     \item {\bf Benoit Bayol} (Student) \\
+         New graphic scope blocks set.
  \end{itemize}
 
-  {\bf Guru : Serge Steer} (INRIA)
-
-  {\bf Mentor : Ramine Nikoukhah} (INRIA)
 </FILE>
 
 <FILE name='BACKLASH' type='LATEX'>
@@ -297,6 +296,11 @@ for the management of the data driven by the regular links.
 </FILE>
 
 <FILE name='CBLOCK' type='LATEX'>
+This block creates skeleton of the C-computing function. It also
+creates library file and object files.  
+</FILE>
+
+<FILE name='CBLOCK4' type='LATEX'>
 This block creates skeleton of the C-computing function. It also
 creates library file and object files.  
 </FILE>
@@ -521,8 +525,58 @@ amount of time and the range of input values displayed.
 This block is a constant value generator.
 </FILE>
 
-<FILE name='CONSTRAINT_f' type='LATEX'>
- Defines implicit algebraic relations.
+<FILE name='CONSTRAINT2_c' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+The Algebraic-differential Constraint block constrains the input signal f(x',x) to
+zero and outputs an algebraic state x and a derivative of the state x'. The block outputs the value
+necessary to produce a zero at the input. The output must affect the
+input through some direct feedback path, i.e., the feedback path
+should only contains blocks with direct feedthrough (without internal
+states). This enables the user to specify  equations for fully
+implicit index-1 differential/algebraic systems (DAEs), i.e., F(x',x)=0.
+    </P>
+    <P>
+By default, the initial values of the state vector and the derivative
+of the state vector which is used as initial guess values are zero. If
+the solver cannot converge towards the solution at the beginning of
+the integration, the user can help the solver by providing an initial
+guess that is close to the solution value. If f(x',x) has several
+solutions, the initial guess helps the solver to select the desired
+solution.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='CONSTRAINT_c' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+The Algebraic Constraint block constrains the input signal f(x) to
+zero and outputs an algebraic state x. The block outputs the value
+necessary to produce a zero at the input. The output must affect the
+input through some direct feedback path, i.e., the feedback path
+should only contains blocks with direct feedthrough (without internal
+states). This enables the user to specify algebraic equations for index-1
+differential/algebraic systems (DAEs).
+    </P>
+    <P>
+By default, the initial value of the state which is used as initial
+guess values is zero. If the solver cannot converge towards the
+solution at the beginning of
+the integration, the user can help the solver by providing an initial guess
+that is close to the solution value. If  f(x) has
+several solutions, the initial guess helps the solver to select the
+desired solution.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='CONST_f' type='LATEX'>
@@ -1332,7 +1386,7 @@ typedef struct {
 
 \begin{itemize}
  \item {\bf block->nevprt :} Integer that gives the event input port number by which the block has been activated.
-                      This number is a binary coding. For i.e, if block have two event inputs ports,
+                      This number is a binary coding. For i.e, if block has two event inputs ports,
                       {\tt block->nevptr} can take the value 1 if the block has been called by its first
                       event input port, the value 2 if it has been called by the second event input port and 3
                       if it is called by the same event on both input port 1 and 2.\\
@@ -1532,7 +1586,7 @@ typedef struct {
                      double *A; \\
                      double *B; \\
                      double cumsum;\\
-                     int i;�\\
+                     int i; \\
                      ...\\
                      void mycomputfunc(scicos\_block *block,int flag)\\
                      \{\\
@@ -1708,7 +1762,7 @@ typedef struct {
                      columns and the second is a vector of complex numbers that can be understand as a matrix
                      of size 1,3.\\
                      At the C computational function level, the instructions {\tt block->oparsz[0]},
-                     {\tt block->oparsz[1]},�{\tt block->oparsz[2]}, {\tt block->oparsz[3]} will respectively return the
+                     {\tt block->oparsz[1]}, {\tt block->oparsz[2]}, {\tt block->oparsz[3]} will respectively return the
                      values 2,1,2,3 and the instructions {\tt block->opartyp[0]}, {\tt block->opartyp[1]} the values 11 and
                      84.\\
                      {\tt block->oparptr} will contain then two pointers, and should be viewed as arrays contained data of
@@ -2042,7 +2096,7 @@ typedef struct {
                      columns and the second is a vector of complex numbers that can be understand as a matrix
                      of size 1,3.\\
                      At the C computational function level, the instructions {\tt block->ozsz[0]},
-                     {\tt block->ozsz[1]},�{\tt block->ozsz[2]}, {\tt block->ozsz[3]} will respectively return the
+                     {\tt block->ozsz[1]}, {\tt block->ozsz[2]}, {\tt block->ozsz[3]} will respectively return the
                      values 2,1,2,3 and the instructions {\tt block->oztyp[0]}, {\tt block->oztyp[1]} the values 11 and
                      84.\\
                      {\tt block->ozptr} will contain then two pointers, and should be viewed as arrays contained data of
@@ -2218,7 +2272,7 @@ used in very exceptional situations.
 
 \item {\bf int get\_block\_number();}\\
       That function returns an integer : the block index in the compiled structure. Each
-      block in the simulated diagram have a single index, and blocks are numbered from
+      block in the simulated diagram has a single index, and blocks are numbered from
       1 to nblk (the total number of blocks in the compiled structure).
 
 \item {\bf void set\_block\_error(int);}\\
@@ -2522,16 +2576,51 @@ Q&
 \end{tabular}
 </FILE>
 
+<FILE name='DIFF_c' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    The implicit Derivative block provides the derivative of its
+    input. This block imposes the algebraic constraint (x=u) on the
+    solver, where u is the block input and x is the internal
+    state. The solver varies the internal states to make state x
+    follow the input's variations.  The solver computes the
+    derivatives of the state which is made available at the block
+    output. The solver uses multi-order multi-step BDF (backward
+    differentiation formula ) method to estimate the derivative. The
+    accuracy of this method is higher than "du/dt" block which uses
+    order 1 method. In order to increase the accuracy of the
+    derivative, the user can reduce the error tolerances.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='DIFF_f' type='XML'>
-<DESCRIPTION>
-<DESCRIPTION_INDENT>
-<DESCRIPTION_ITEM>
-<P>
-Add here a paragraph of the function description
-</P>
-</DESCRIPTION_ITEM>
-</DESCRIPTION_INDENT>
-</DESCRIPTION>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    This is an old block. Please use \htmladdnormallink{DIFF_c}{DIFF_c.htm}.
+    </P>
+    <P>
+    The implicit Derivative block provides the derivative of its
+    input. This block imposes the algebraic constraint (x=u) on the
+    solver, where u is the block input and x is the internal
+    state. The solver varies the internal states to make state x
+    follow the input's variations.  The solver computes the
+    derivatives of the state which is made available at the block
+    output. The solver uses multi-order multi-step BDF (backward
+    differentiation formula ) method to estimate the derivative. The
+    accuracy of this method is higher than "du/dt" block which uses
+    order 1 method. In order to increase the accuracy of the
+    derivative, the user can reduce the error tolerances.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='DLATCH' type='LATEX'>
@@ -2964,6 +3053,18 @@ Add here a paragraph of the function description
 </DESCRIPTION>
 </FILE>
 
+<FILE name='Flowmeter' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='GAINBLK' type='XML'>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
@@ -3019,6 +3120,18 @@ This block is a sine wave generator: $M*\sin(F*t+P) $
 This block is a square wave generator: output takes values  -M  and  M
 . Every time an event is received on the input event port, the output
 switches from  -M  to  M , or  M  to  -M .    
+</FILE>
+
+<FILE name='GEN_SQR' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    This block is a square wave generator. The output switches between the Minimum value and the maximum value periodicly. The value of the fourth parameter of this block defines the period of the signal. The period of the switching is equal to the period of the signal divided by 2.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='GOTO' type='XML'>
@@ -3111,6 +3224,18 @@ The Ground element is a single port component providing a reference
 voltage in electrical circuits. The potential at the ground node is
 zero. Every electrical circuit has to contain at least one ground
 element.
+</FILE>
+
+<FILE name='Ground_g' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    This block outputs a scalar value equal to 0. The outpu of the block inherit its type from the block at which it is connected.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='Gyrator' type='XML'>
@@ -3386,6 +3511,53 @@ its inputs. An input value is TRUE (1) if it is nonzero and FALSE (0)
 if it is zero. 
 </FILE>
 
+<FILE name='LOOKUP2D' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+
+The 2-D Lookup Table block realizes an approximation of a function
+z=f(x,y) given x, y, z data points. The first input port corresponds
+to the first table dimension, x. The Row index input values parameter
+is a 1-by-m vector of x data points, the Column index input values
+parameter is a 1-by-n vector of y data points.  The table data
+parameter should be an m-by-n matrix of z data points. Both the row
+and column vectors must be strictly monotonically increasing (i.e.,
+the value of the next element in the vector is greater than the value
+of the preceding element).
+  </P>
+  <P>
+The block generates output based on the input values using one of
+these methods selected from the Lookup method parameter list.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='LOOKUP_c' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Lookup Table block realizes a non-linear function defined using a
+graphical editor.  This block computes an approximation to some
+function y=f(x) given data vectors x and y.
+      </P>
+<P> The table is defined by specifying the Vector of input values
+ parameter as a 1-by-n vector and the Table data parameter as a 1-by-n
+ vector. The block generates output based on the input values using
+ one of  methods selected from the Lookup method parameter list.
+ The length of the x and y data vectors provided to this block must be
+ identical. Furthermore, the x data vector must be strictly
+ monotonically increasing.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='LOOKUP_f' type='LATEX'>
 This block realizes a non-linear function defined using a graphical
 editor.    
@@ -3393,6 +3565,18 @@ editor.
 
 <FILE name='Linear_pal' type='LATEX'>
 That palette contains basic linear operators and sub-systems.
+</FILE>
+
+<FILE name='Lookup_Tables_pal' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    That palette contains various lookup table (LUT) blocks with graphical editor.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='Lorentz_diagr' type='LATEX'>
@@ -3850,6 +4034,18 @@ Add here a paragraph of the function description
 </DESCRIPTION>
 </FILE>
 
+<FILE name='MPBLOCK' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='MUX' type='LATEX'>
 Given  $n$  vector valued inputs this block merges inputs in an single
 output vector. So  $y=[u_1;u_2;\cdots;u_n]$ , where  $u_i$  are
@@ -3928,6 +4124,89 @@ do simple and complex matrix operations.
 <DESCRIPTION>
 
 </DESCRIPTION>
+</FILE>
+
+<FILE name='ModelicaBlocks' type='LATEX'>
+\subsection{Modelica Blocks in Scicos}
+First method: Using a \htmladdnormallink{Modelica generic block}{MBLOCK.htm}
+(available in the \htmladdnormallink{Others}{Others_pal.htm} palette).
+Using this block, you do not need writing the  interfacing 
+function for the block, just define the input/output variable names and 
+variable types and then write the Modelica program.
+
+Second method: Beside your Modelica program, you need to define an
+interfacing function for your block. In the interfacing function, the
+name of the joint Modelica model, input/output variable names,
+input/output types (explicit or implicit), as well as the dialog box
+for modifying the the block parameters in Scicos can be defined.
+Several examples of Modelica blocks are available in
+\htmladdnormallink{Electrical}{Electrical_pal.htm} and
+\htmladdnormallink{Thermo-Hydraulics}{ThermoHydraulics_pal.htm} palettes.
+
+Remind that, once the interfacng function built, it should be loaded in Scilab, by
+executing this command in Scilab:
+
+{\tt getf("myblock.sci");}
+
+You can load your block using "add new block" item in the
+"Edit" menu of Scicos.
+
+\subsection{Modelica Libraries in Scicos}
+The Modelica model corresponding to the Scicos block is defined inside a 
+Modelica package. The directory where Modelica packages are located 
+should be declared with the {\bf "modelica\_libs"} variable. e.g., if
+you have defined your Modelica fiels in the MyModelicalibs, you should
+execute this command in Scilab to inform the Modelica compiler about
+the location of Modelica libraries:
+
+{\tt modelica\_libs=[modelica\_libs,'MyModelicalibs']}
+
+The Modelica compiler looks for all Modelica files in the directories 
+given by {\bf "modelica\_libs"} and use them for compile the main Modelica 
+model generated by Scicos.
+
+\subsection{External Functions}
+You can define and use external functions in your Modelica
+model. External functions can be written in C or Fortran languages.
+In order to use an external function in a Modeli model, the Modelica function prototype defining
+inputs and output of the external function, the header file (*.h) of
+the external function, and a *.DLL (Windows) or *.SO (Unix) library
+are required.
+
+\subsubsection{Example of a Modelica function prototype:}
+\begin{verbatim}
+function Optimal
+   input Real x;
+   input Real y;
+   output Real Optimal_out;
+external;
+end Optimal;
+\end{verbatim}
+
+\subsubsection{Example of a header file (Optimal.h):}
+\begin{verbatim}
+#include "Maths.h"
+double Optimal(double x,double y);
+\end{verbatim}
+
+The modelica compiler looks for required external libraries in the
+directories gievn by {\bf "modelica\_libs"}. The user can place the
+Modelica model, the header file, and the libraries in a directory e.g.,
+Mylibs and then in Scilab execute the command:
+
+{\tt modelica\_libs=[modelica\_libs,'Mylibs']}
+</FILE>
+
+<FILE name='Modelica_pal' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Add here a paragraph of the function description
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='Modulo_Count' type='LATEX'>
@@ -4043,7 +4322,7 @@ resistance is included (to avoid numerical difficulties).
 
 \begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{2cm}|p{3.5cm}|}
 \hline
- W [m] & L [m] &  Beta [1/V�]& Vt [V] &  K2 & K5 & DW [m]& DL[m] & \\
+ W [m] & L [m] &  Beta [1/V²]& Vt [V] &  K2 & K5 & DW [m]& DL[m] & \\
 \hline
   12.e-6&  4.e-6&  .062    &   -4.5   &   .24 &     .61  &   -1.2e-6 &    -.9e-6 & depletion\\
   60.e-6&  3.e-6&  .048    &     .1   &  .08  &    .68   &  -1.2e-6  &   -.9e-6  & enhancement\\
@@ -4130,6 +4409,19 @@ are possible (norator).
 </DESCRIPTION>
 </FILE>
 
+<FILE name='PAL_f' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    That block is a container for blocks and palettes. It does nothing concerning the
+    simulation and doesn't have any input/output.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='PDE' type='LATEX'>
 This block is an implementation of several numerical schemes (Finite Elements (1st and 2nd order),
 Finite Differences (1st and 2nd order), Finite Volumes (1st order)) to solve mono dimensional 
@@ -4138,6 +4430,12 @@ The mathematical framwork was restricts in PDEs linear scalars with maximum orde
 The goal is to provide engineers and physicists with an easy to use toolbox in SCICOS that will let them
 graphically describe the PDE to be solved. A decision system selects the most efficient numerical scheme
 depending on the type of the PDE and runs the solvers.
+</FILE>
+
+<FILE name='PENDULUM_ANIM' type='XML'>
+  <DESCRIPTION>
+
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='PID' type='XML'>
@@ -4171,7 +4469,7 @@ Some typical parameter sets are:
 
 \begin{tabular}{ |c|c|c|c|c|c|c|c|}
 \hline
- W [m]&L[m]&Beta [1/V�]& Vt [V]& K2 & K5&  DW [m]& DL [m] \\
+ W [m]&L[m]&Beta [1/V²]& Vt [V]& K2 & K5&  DW [m]& DL [m] \\
 \hline
   50.e-6 &8.e-6 &.0085    &-.15 &   .41  &   .839  & -3.8e-6  & -4.0e-6  \\
   20.e-6 &6.e-6 &.0105    &-1.0 &    .41 &    .839 &  -2.5e-6 &  -2.1e-6 \\
@@ -4220,6 +4518,18 @@ operations to be performed on the inputs.
 
 <FILE name='PROD_f' type='LATEX'>
 The output is the element wise product of the inputs.   
+</FILE>
+
+<FILE name='PULSE_SC' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    This block is a Pulse Generator. It generates a pulse at a rate of 1/P where P is the period of the signal (third parameter of the block). The Phase delay gives the value (in time) of the first event. The Phase delay known also as Offset must be less than the Frequency*(1-(Pulse_Width/100)). The second parameter of the block gives the Pulse width.The amplitude of the pulse is given by the fourth parameter.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='PerteDP' type='LATEX'>
@@ -4339,7 +4649,7 @@ It performs logical comparison of its two inputs.
 
 <FILE name='RELAY_f' type='LATEX'>
 This block routes one of the regular inputs to the unique regular
-output. the choice of which input is to be routed is done, initially
+output. The choice of which input is to be routed is done, initially
 by the "initial connected input" parameter. Then, every time an input
 event arrives on the i-th input event port, the i-th regular input
 port is routed to the regular output.   
@@ -4960,6 +5270,18 @@ mass density of fluid.
 \]
 </FILE>
 
+<FILE name='VirtualCLK0' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    This block is considered a virtual block by the compilor. It is used in a SuperBlock (subsystem) to trigger the always active blocks (ex: the sinus generator) in the SuperBlock and in the level below. The blocks will be virtually connected to the input of the VirtualCLK0.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='VoltageSensor' type='LATEX'>
 This component is used to measure the voltage difference between two
 nodes in an electrical circuit. The output signal is the difference
@@ -5009,16 +5331,144 @@ An output event is generated when all inputs (if more than one) cross
 zero simultaneously.    
 </FILE>
 
-<FILE name='block_type' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='block_type' type='LATEX'>
+Scicos has the possibility to handle and to call many different sorts of blocks.
+Some blocks in Scicos palettes are special and are only used
+internally by Scicos, such as synchro blocks and the Debug block, but
+most blocks are regular blocks which the user can get inspired by to
+construct new blocks.
+The following table gives the known Scicos
+block types, and is followed by the report of the type of the computational function
+with its associated calling sequence by block type.
+
+\begin{table}[!ht]
+\begin{tabular}{|p{2cm}||p{11cm}||p{3cm}||p{3cm}|}
+\hline
+{\bf Type}&
+{\bf Description}&
+{\bf Function type}&
+{\bf Simulator call}\\
+\hline
+\hline
+-2&
+Event select block (synchro block).&
+-&
+Never called.\\
+\hline
+-1&
+If Then Else block (synchro block).&
+-&
+Never called.\\
+\hline
+0&
+C, Fortran or Scilab block. Calling sequence fixed. Obsolete.&
+Type 0.&
+Type 0.\\
+\hline
+1&
+C or Fortran block. Varying calling sequence. Obsolete.&
+Type 1.&
+Type 1.\\
+\hline
+2&
+C block. Calling sequence fixed. Obsolete.&
+Type 2.&
+Type 2.\\
+\hline
+3&
+Scilab block. Calling sequence fixed. Used but obsolete.&
+Type 3.&
+Type 2.\\
+\hline
+4&
+C block. Calling sequence fixed. In use.&
+Type 4.&
+Type 4.\\
+\hline
+5&
+Scilab block. Calling sequence fixed. In use.&
+Type 5.&
+Type 4.\\
+\hline
+1001&
+Fortran block. Dynamically linked. Obsolete.&
+Type 1.&
+Type 1.\\
+\hline
+2001&
+C block. Dynamically linked. Obsolete.&
+Type 1.&
+Type 1.\\
+\hline
+2004&
+C block. Dynamically linked. In use.&
+Type 4.&
+Type 4.\\
+\hline
+10001&
+Implicit C or Fortran block. Obsolete.&
+Type 10001.&
+Type 10001.\\
+\hline
+10002&
+Implicit C block. Obsolete.&
+Type 10002.&
+Type 10002.\\
+\hline
+10004&
+Implicit C block. In use.&
+Type 10004.&
+Type 4.\\
+\hline
+10005&
+Implicit Scilab block. In use.&
+Type 10005.&
+Type 4.\\
+\hline
+30004&
+Generic Modelica block. Dynamically linked. In use.&
+Type 10004.&
+Type 4.\\
+\hline
+99&
+Debug block.&
+Type 5.&
+Type 4.\\
+\hline
+\end{tabular}
+%   \caption{Scicos block type}
+\end{table}
+\noindent
+Note that even if type 0, 1 and 2  are obsolete, they are still supported
+in Scicos; some blocks in the standard palettes of Scicos are still of
+these types. Block type 3 is still used by scifunc block (Scilab
+block) but users should prefer the type 5 when constructing a
+computational function in Scilab because it takes full advantage of new data
+structures. In fact it has all the the functionalities implemented for
+block type 4. 
+
+\begin{itemize}
+\item{\textbf{Calling sequence of computational function type 0}}\\
+void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,u,nu,y,ny)
+\item{\textbf{Calling sequence of computational function type 1}}\\
+void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,u1,nu1,u2,nu2,...,y1,ny1,y2,ny2,...)
+\item{\textbf{Calling sequence of computational function type 10001 (type 1 implicit)}}\\
+void myfun(flag,nevrt,t,res,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,u1,nu1,u2,nu2,...,y1,ny1,y2,ny2,...)
+\item{\textbf{Calling sequence of computational function type 2}}\\
+void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
+\item{\textbf{Calling sequence of computational function type 2 (zero crossing)}}\\
+void myfun(flag,nevrt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout,g,ng)
+\item{\textbf{Calling sequence of computational function type 10002 (type 2 implicit)}}\\
+void myfun(flag,nevrt,t,res,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
+\item{\textbf{Calling sequence of computational function type 10002 (type 2 implicit with zero crossing)}}\\
+void myfun(flag,nevrt,t,res,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,ipar,nipar,inptr,insz,nin,outptr,outsz,nout,g,ng)
+\item{\textbf{Calling sequence of computational function type 3}}\\
+\null [x,y,z,tvec,xd]=myfun(flag,nevprt,t,x,z,rpar,ipar,u)
+\item{\textbf{Calling sequence of computational function type 4}}\\
+void myfun(scicos\_block *block,int flag)
+\item{\textbf{Calling sequence of computational function type 5}}\\
+\null [block]=myfun(block,flag)
+\end{itemize}
 </FILE>
 
 <FILE name='buildouttb' type='LATEX'>
@@ -5028,6 +5478,56 @@ Build an initialized outtb list.
 <FILE name='c_block' type='LATEX'>
 This block creates skeleton of the C computing function. Also it
 creates library file and object files.  
+</FILE>
+
+<FILE name='callblk' type='LATEX'>
+This function allows to call a computational function from a Scicos \htmladdnormallink{block}{sci_struct.htm}
+structure. The fields of that structure must be properly informed before use it with {\bf callblk}.\\
+A simplified flowchart of how work {\bf callblk} is shown in the following figure:
+\begin{figure}[!h]
+ \begin{center}
+  \scalebox{0.65}{\input{orgcallblk.pstex_t}}
+ \end{center}
+\end{figure}
+
+From the input structure {\bf blk\_in}, a C scicos\_blocks structure is allocated and informed, the pointer
+of the comptational function is found, and the computational function is then called with the C structure
+and the parameter {\bf flag}. Finally an output scilab structure {\bf blk\_out} is created with the values
+contained in the C structure.\\
+{\bf callblk} can be used to do prototypes of code generator and simulator in Scilab language.
+
+</FILE>
+
+<FILE name='coserror' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Function to set a specific error message during the simulation for the current block.
+    If it is used, then after the execution of the computational function of the block,
+    the simulator will end and will return the error message specified in argument.
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
+<FILE name='create_gif' type='XML'>
+  <DESCRIPTION>
+     <DESCRIPTION_INDENT>
+     <DESCRIPTION_ITEM>
+     <P>
+     Creates gif files of icon size from scicos blocks. The list of
+     block names can be provided in TXT. path contains the path to the
+     directory where the gif files are to be stored. Background color
+     is set to transparent using "convert" is available on the system.
+     If the function is called with no argument, gif files of standard
+     scicos library blocks are generated and placed in
+     SCI+'/macros/scicos/scicos_doc/man/gif_icons'.
+     </P>
+     </DESCRIPTION_ITEM>
+     </DESCRIPTION_INDENT>
+  </DESCRIPTION>
 </FILE>
 
 <FILE name='create_palette' type='XML'>
@@ -5054,16 +5554,79 @@ creates library file and object files.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='data_type' type='XML'>
+<FILE name='data2sig' type='XML'>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
     <DESCRIPTION_ITEM>
     <P>
-    Add here a paragraph of the function description
+    Put data in a 'scicos' signal structure.
+    If A is a vector, then it will be understand
+    as a scalar that evolves along time.
+    If A is a matrix, then it will be understand
+    as a vector that evolves along time.
+    If A is an hypermatrix, then it will be understand
+    as a matrix that evolves along time.
     </P>
     </DESCRIPTION_ITEM>
     </DESCRIPTION_INDENT>
   </DESCRIPTION>
+</FILE>
+
+<FILE name='data_type' type='LATEX'>
+  \begin{table}[!ht]
+  \begin{center}
+  \begin{tabular}{|p{5cm}|p{5cm}||p{5cm}|p{5cm}|}
+    \hline
+    {\bf Editor Type}&
+    {\bf Editor Number}&
+    {\bf C Type}&
+    {\bf C Number}\\
+    \hline
+    \hline
+    real&
+    1&
+    double&
+    10\\
+    \hline
+    complex&
+    2&
+    double&
+    11\\
+    \hline
+    int32&
+    3&
+    long&
+    84\\
+    \hline
+    int16&
+    4&
+    short&
+    82\\
+    \hline
+    int8&
+    5&
+    char&
+    81\\
+    \hline
+    uint32&
+    6&
+    unsigned long&
+    814\\
+    \hline
+    uint16&
+    7&
+    unsigned short&
+    812\\
+    \hline
+    uint8&
+    8&
+    unsigned char&
+    811\\
+    \hline
+   \end{tabular}
+   %\caption{Editor/C data type number correspondence table}\label{tab1}
+  \end{center}
+  \end{table}
 </FILE>
 
 <FILE name='fortran_block' type='LATEX'>
@@ -5165,6 +5728,15 @@ linked before simulation.
   </DESCRIPTION>
 </FILE>
 
+<FILE name='model2blk' type='LATEX'>
+    This function is used to create a \htmladdnormallink{scicos block}{sci_struct.htm}
+    simulation data structure from a \htmladdnormallink{scicos\_model}{scicos_model.htm}
+    data structure of a Scicos block. The model must be properly informed before
+    calling model2blk.\\
+    That function could be used before a call to the simulation
+    function via \htmladdnormallink{callblk}{callblk.htm}.
+</FILE>
+
 <FILE name='phase_simulation' type='XML'>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
@@ -5212,7 +5784,7 @@ endfunction\\
 When the simulator is calling such a computational function, it build a scilab structure (in the previous exemple this is the named {\tt block} rhs/lhs arguments) from his own internal C reprensation of a block structure (see \htmladdnormallink{C\_struct} {C_struct.htm} for more details about the C structure of scicos
 blocks).
 
-That scilab structure is a scilab typed list variable that have the following fields :
+That scilab structure is a scilab typed list variable that has the following fields :
 
 {\tt
 !scicos\_block  nevprt  funpt  type  scsptr  nz  z  noz  ozsz  oztyp  !\\
@@ -5631,6 +6203,20 @@ is slower. For more information see Scicos reference manual.
   </DESCRIPTION>
 </FILE>
 
+<FILE name='sig2data' type='XML'>
+  <DESCRIPTION>
+    <DESCRIPTION_INDENT>
+    <DESCRIPTION_ITEM>
+    <P>
+    Extract data from a 'scicos' signal structure.
+    x will be the field B.values
+    t will be the field B.time
+    </P>
+    </DESCRIPTION_ITEM>
+    </DESCRIPTION_INDENT>
+  </DESCRIPTION>
+</FILE>
+
 <FILE name='steadycos' type='XML'>
   <DESCRIPTION>
     <DESCRIPTION_INDENT>
@@ -5646,16 +6232,64 @@ is slower. For more information see Scicos reference manual.
   </DESCRIPTION>
 </FILE>
 
-<FILE name='use_flag' type='XML'>
-  <DESCRIPTION>
-    <DESCRIPTION_INDENT>
-    <DESCRIPTION_ITEM>
-    <P>
-    Add here a paragraph of the function description
-    </P>
-    </DESCRIPTION_ITEM>
-    </DESCRIPTION_INDENT>
-  </DESCRIPTION>
+<FILE name='use_flag' type='LATEX'>
+During the simulation, the compuational functions will be called with a given flag
+that corresponds to the task to be realized and with the event number by which it has been activated.
+
+\begin{itemize}
+\item{\bf Flag 4: Initialization}
+This is done only once in the initialization phase for all blocks.
+Input event numbers are not used in that case.
+Outputs and states can be initialized.
+Some blocks use also this flag to open files, to do allocation and initialization of the field {\tt block->work} or initialize
+graphic windows.
+
+\item{\bf Flag 6: Initialization, fixed-point computation}
+Flag 6 is used to set constraints that must be satisfied at the initial
+time. Scicos uses a fixed point computation scheme to force the
+constraints so the blocks are called more than once with flag 6 at
+time 0. 
+This is a special initialization technique for example to find the steady state of a system before running the simulation.
+Input event numbers are not used in this case.
+
+\item{\bf Flag 1: Output computation}
+The output computation can be performed many times in one time step of
+the simulation in particular when the diagram contains blocks
+that use both discrete and continuous states and zero crossing surfaces.
+In the current version of Scicos all blocks are called with flag = 1 at least once in every simulation time step,
+even if they don't have any outputs.
+
+\item{\bf Flag 2: Discrete state computation}
+If blocks use states, this flag is when the state registers 
+{\tt block->x}, {\tt block->z}, {\tt block->oz}, {\tt block->work}
+must be set during discrete activation (with {\tt block->nevptr}$\geq$0)
+but also to compute {\tt block->x} in the case of activation due to an
+internal zero crossing, in which case the input event number {\tt block->nevptr} will be -1.
+
+\item{\bf Flag 0: Continuous state derivative computation}
+This flag is used when the derivative {\tt block->xd} or residual {\tt
+block->res} of the continuous state needs to be set.
+Only blocks that use continuous state are called with flag=0.
+
+\item{\bf Flag 3: Output event computation}
+Output event computation is done for blocks with output event register
+during discrete activation but also zero crossing activation.
+Note that in this latter case, the input event number {\tt block->nevptr} will be -1.
+
+\item{\bf Flag 9: Modes and zero crossing computation}
+Flag 9 is used to evaluate the function of zero crossings {\tt
+block->g} and to set the modes, {\tt block->mode}.
+
+\item{\bf Flag 5: Ending}
+All blocks are called with flag = 5 before the end of the simulation or when the simulator aborts the simulation in case
+an error occurs during the simulation. Input event numbers are not used in that case.
+
+\item{\bf Flag 7: Properties of the continuous state variables}
+Set the properties of the continuous state variables. Used for the description of DAE system (also internally used and generated by Scicos/Modelica implementation).
+
+\item{\bf Flag 10: Jacobian computation}
+Computation of Jacobian matrix of the system (internally used and generated by Scicos/Modelica implementation).
+\end{itemize}
 </FILE>
 
 <FILE name='var2vec' type='XML'>
