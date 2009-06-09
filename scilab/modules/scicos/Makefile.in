@@ -455,6 +455,7 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
+TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -729,7 +730,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@libsciscicos_la_cosfdir = $(mydatadir)
 @SCICOS_TRUE@nobase_libsciscicos_la_cosf_DATA = macros/scicos_scicos/Branching.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/DemoBlocks.cosf \
-@SCICOS_TRUE@macros/scicos_scicos/Electrical.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/Events.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/Integer.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/Linear.cosf \
@@ -739,9 +739,10 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@macros/scicos_scicos/Others.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/Sinks.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/Sources.cosf \
-@SCICOS_TRUE@macros/scicos_scicos/ThermoHydraulics.cosf \
 @SCICOS_TRUE@macros/scicos_scicos/Threshold.cosf
 
+#macros/scicos_scicos/Electrical.cosf \
+#macros/scicos_scicos/ThermoHydraulics.cosf
 
 #### scicos : MACROS ####
 @SCICOS_TRUE@MACROSDIRSEXT = macros/scicos_auto \
