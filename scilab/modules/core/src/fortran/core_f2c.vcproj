@@ -844,10 +844,6 @@
 			Name="Fortran Files"
 			>
 			<File
-				RelativePath=".\algebre.f"
-				>
-			</File>
-			<File
 				RelativePath=".\allops.f"
 				>
 			</File>
