@@ -19,11 +19,16 @@ AC_DEFUN([AC_HDF5], [
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
 		
-HDF5_CFLAGS="-I/usr/lib/openmpi/include"
+HDF5_CFLAGS=""
 HDF5_LIBS="-lhdf5"
 
 CFLAGS="$CFLAGS $HDF5_CFLAGS"
 LIBS="$LIBS $HDF5_LIBS"
+
+AC_CHECK_HEADER([hdf5.h],
+                [HDF5_CFLAGS="$CFLAGS"],
+                [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])]
+        )
 
 AC_CHECK_LIB([hdf5], [H5Dopen],
                [],
