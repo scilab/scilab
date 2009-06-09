@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [scs_m,edited]=do_rename(scs_m)
+function [scs_m,edited]=do_rename(scs_m, pal_mode)
   if pal_mode then
     mess='Enter the new palette name'
   else

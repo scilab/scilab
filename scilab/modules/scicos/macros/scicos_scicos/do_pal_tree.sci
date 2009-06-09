@@ -22,7 +22,8 @@
 
 function scs_m = do_pal_tree(scicos_pal)
 
-  scs_m = scicos_diagram(version=get_scicos_version());
+  //scs_m = scicos_diagram(version=get_scicos_version());
+  scs_m = get_new_scs_m();
   scs_m.props.title(1) = 'Palettes';
   sup = SUPER_f('define');
 
@@ -53,7 +54,8 @@ function scs_m = charge(pal)
 if ok & size(scs_m.objs)>0 then
   scs_m.props.title(1)=pal(1)
 else
-  scs_m= scicos_diagram(version=get_scicos_version())
+  //scs_m= scicos_diagram(version=get_scicos_version())
+  scs_m = get_new_scs_m();
   scs_m.props.title(1)='error loading '+pal(1)
 end
 endfunction

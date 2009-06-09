@@ -37,8 +37,8 @@ select needcompile
       if ok then
 	%state0=%cpr.state
 	needcompile=0
+	return;
       end
-      return;
     end
     %cpr.state=state,%cpr.sim=sim
   end
@@ -83,8 +83,8 @@ select needcompile
     else // modelica block
       //build a fake bllst(k) only for in and out fields
       m=scicos_model();
-      m.in=ones(1,sim.inpptr(k+1)-sim.inpptr(k))
-      m.out=ones(1,sim.outptr(k+1)-sim.outptr(k))
+      m.in=ones(sim.inpptr(k+1)-sim.inpptr(k),1)
+      m.out=ones(sim.outptr(k+1)-sim.outptr(k),1)
       bllst(k)=m;
     end
   end

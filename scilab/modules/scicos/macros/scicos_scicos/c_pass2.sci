@@ -1150,7 +1150,7 @@ endfunction
 function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
           ozptr,typ_mod,rpptr,ipptr,opptr,xc0,xcd0,xd0,oxd0,rpar,..
           ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
-          bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l)
+          blnk,blptr,ok]=extract_info(bllst,connectmat)
   ok=%t
   nbl=length(bllst)
   clkptr=zeros(nbl+1,1);clkptr(1)=1
@@ -1196,9 +1196,9 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     end
     if funtyp(i,1)>999&funtyp(i,1)<10000 then
       if ~c_link(funs(i)) then
-	messagebox(['A C or Fortran block is used but not linked';
+	x_message(['A C or Fortran block is used but not linked';
 		   'You can save your compiled diagram and load it';
-		   'This will automatically link the C or Fortran function'],"modal","info");
+		   'This will automatically link the C or Fortran function'])
       end
     end
     inpnum=ll.in;outnum=ll.out;cinpnum=ll.evtin;coutnum=ll.evtout;
@@ -1237,7 +1237,8 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         else
           ozptr(i+1)=ozptr(i);
         end
-      elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004))  //C blocks : extract
+      elseif ((funtyp(i,1)==4)    | (funtyp(i,1)==10004) |...
+              (funtyp(i,1)==2004) | (funtyp(i,1)==12004))  //C blocks : extract
         ozsz=lstsize(ll.odstate);
         if ozsz>0 then
           for j=1:ozsz, oxd0($+1)=ll.odstate(j), end;
@@ -1257,7 +1258,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     typ_mod(i)=ll.nmode;
     if typ_mod(i)<0 then
       message('Number of modes in block '+string(i)+'cannot b"+...
-	      " e determined')
+	      "e determined')
       ok=%f
     end
 
@@ -1287,7 +1288,8 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         else
          opptr(i+1)=opptr(i);
         end
-     elseif ((funtyp(i,1)==4) | (funtyp(i,1)==10004)) then //C blocks : extract
+     elseif ((funtyp(i,1)==4)    | (funtyp(i,1)==10004) |...
+             (funtyp(i,1)==2004) | (funtyp(i,1)==12004)) then //C blocks : extract
        oparsz=lstsize(ll.opar);
        if oparsz>0 then
          for j=1:oparsz, opar($+1)=ll.opar(j), end;
@@ -1307,7 +1309,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     typ_z(i)=ll.nzcross
     if typ_z(i)<0 then
       message('Number of zero crossings in block '+string(i)+'cannot b"+...
-	      " e determined')
+	      "e determined')
       ok=%f
     end
     typ_x(i)=ll.state<>[]|ll.blocktype=='x' // some blocks like delay
@@ -1316,7 +1318,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
 				
     typ_m(i)=ll.blocktype=='m'
     //
-    if ~typ_l(i)&ll.evtout<>[] then  
+    if ll.evtout<>[] then  
       ll11=ll.firing
       prt=find(ll11>=zeros(ll11))
       nprt=prod(size(prt))
@@ -1330,20 +1332,6 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     end
   end
 
-  clkconnect=clkconnect(find(clkconnect(:,1)<>0),:);
-
-  con=clkptr(clkconnect(:,1))+clkconnect(:,2)-1;
-  [junk,ind]=sort(-con);con=-junk;
-  clkconnect=clkconnect(ind,:);
-  //
-  bclkconnect=clkconnect(:,[1 3]);
-  boptr=1;
-  bexe=[];
-  for i=1:nbl
-    r=bclkconnect(find(bclkconnect(:,1)==i),2);
-    bexe=[bexe;r];
-    boptr=[boptr;boptr($)+size(r,1)];
-  end
   //
  
   blptr=1;

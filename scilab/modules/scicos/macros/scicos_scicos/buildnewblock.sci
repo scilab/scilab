@@ -23,7 +23,8 @@
 // See the file ../license.txt
 //
 
-function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cflags)
+function [ok] = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,cflags)
+//function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cflags)
 
 //** buildnewblock : generates Makefiles for
 //                   the generated C code of a Scicos block,
@@ -33,6 +34,9 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
 //         blknam : a prefix
 //
 //         files : files to be compiled
+//
+//         filesint : files to be compiled and included in
+//                    the interfacing of standalone code
 //
 //         filestan : files to be compiled and included in
 //                    the standalone code
@@ -54,10 +58,11 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
 
   if rhs <= 1 then files    = blknam, end
   if rhs <= 2 then filestan = '', end
-  if rhs <= 3 then libs     = '', end
-  if rhs <= 4 then rpat     = TMPDIR, end
-  if rhs <= 5 then ldflags  = '', end
-  if rhs <= 6 then cflags   = '', end
+  if rhs <= 3 then filesint = '', end //##
+  if rhs <= 4 then libs     = '', end
+  if rhs <= 5 then rpat     = TMPDIR, end
+  if rhs <= 6 then ldflags  = '', end
+  if rhs <= 7 then cflags   = '', end
 
   
   if MSDOS then
@@ -129,6 +134,52 @@ function [ok] = buildnewblock(blknam, files, filestan, libs, rpat, ldflags, cfla
       message(["sorry link problem";lasterror()]);
       return;
     end
+
+    //## generate makefile for interfacing function of the standalone
+   if filesint<>'' then
+     //## def name of interf func and
+     //## name of interf librabry derived from name of superblock
+     l_blknam=length(blknam)
+     l_blknam=(l_blknam>17)*17 + (l_blknam<=17)*l_blknam
+     blknamint='int'+part(blknam,1:l_blknam)
+     Makename=rpat+'/'+'Makefile_'+blknamint;
+
+     //## generate txt of makefile of the Makefile
+     [Makename2,txt]=gen_make(blknamint,filesint,'',libs,Makename,ldflags,cflags);
+
+     //## write text of the Makefile in the file called Makename
+     ierr=execstr('mputl(txt,Makename2)','errcatch')
+     if ierr<>0 then
+       x_message(['Can''t write '+Makename2;lasterror()])
+       ok=%f
+       return
+     end
+
+     //## unlink if necessary
+     //## with addinter, this is the interfacing function of table
+     //## that is used as reference
+     [a,b]=c_link(blknamint+'_sci');
+     while a
+       ulink(b);
+       [a,b]=c_link(blknamint+'_sci');
+     end
+
+     //## compile Makefile
+     ierr=execstr('libn=ilib_compile(''lib''+blknamint,Makename)','errcatch')
+     if ierr<>0 then
+       ok=%f;
+       chdir(oldpath);
+       x_message(['sorry compiling problem';lasterror()]);
+       return;
+     end
+
+     //##add scilab interfacing function
+     txt='addinter(libn,blknamint+''_sci'',blknam);'
+     execstr(txt);
+
+     //## if succes then with_int becomes true
+     with_int=%t;
+  end
 
     //** generate text of the loader file
     [txt] = gen_loader(blknam,for_link)
