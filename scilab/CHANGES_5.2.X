@@ -175,7 +175,11 @@ Bug fixes:
                    
 * bug 4307 fixed - %io has no help file.                   
 
+* bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
+
 * bug 4360 fixed - The reference of bug_3954.tst was missing.
+
+* bug 4364 fixed - stacksize('max') + stacksize(required_mem) doesn't work
 
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.

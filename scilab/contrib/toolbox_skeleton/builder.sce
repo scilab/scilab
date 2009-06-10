@@ -7,10 +7,14 @@
 mode(-1);
 lines(0);
 try
- getversion('scilab');
+ v = getversion('scilab');
 catch
- error(gettext('Scilab 5.0 or more is required.'));  
+ error(gettext('Scilab 5.2 or more is required.'));  
 end;
+if v(2) < 2 then
+ // new API in scilab 5.2
+ error(gettext('Scilab 5.2 or more is required.'));  
+end
 // ====================================================================
 if ~with_module('development_tools') then
   error(msprintf(gettext('%s module not installed."),'development_tools'));
