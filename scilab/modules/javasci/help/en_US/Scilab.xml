@@ -52,6 +52,8 @@
         <para><emphasis><literal>public static boolean Exec(String
         job)</literal></emphasis> - Execute a job in scilab. return true if
         there is no error.</para>
+		<para>Note that the given expression must be consistent by itself. Then, a serie of <literal>Exec</literal> defining a function will not work. Please consider calling it with a single string instruction or using a temporary file with the method <literal>ExecuteScilabScript</literal>.</para>
+		<para>For example: <literal>Scilab.Exec("function foo(); disp('bar'); endfunction");</literal> will work when <literal>Scilab.Exec("function foo();"); Scilab.Exec("disp('bar');"); Scilab.Exec("endfunction;");</literal> will not work since each statement being processed independently</para>
       </listitem>
 
       <listitem>
