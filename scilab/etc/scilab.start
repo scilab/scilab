@@ -19,7 +19,8 @@ clear  // erase all variables
 clearglobal();
 
 // Set stack size   ===================================================
-defaultstacksize = 5000000;
+stacksize('min');
+defaultstacksize = 15000000;
 old = stacksize()
 params = sciargs();
 nparam = find(params=='-mem');
