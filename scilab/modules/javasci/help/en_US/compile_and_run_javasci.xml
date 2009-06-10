@@ -131,16 +131,16 @@
 
         <itemizedlist>
           <listitem>
-            <para>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/
-            java -cp modules/javasci/jar/javasci.jar:. BasicExample</para>
+            <para><literal>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/
+            java -cp modules/javasci/jar/javasci.jar:. BasicExample</literal></para>
           </listitem>
         </itemizedlist>
 
         <itemizedlist>
           <listitem>
-            <para>SCI=/path/to/scilab/ java
+            <para><literal>SCI=/path/to/scilab/ java
             -Djava.library.path=/path/to/libjavasci/ -cp
-            modules/javasci/jar/javasci.jar:. BasicExample</para>
+            modules/javasci/jar/javasci.jar:. BasicExample</literal></para>
           </listitem>
         </itemizedlist>
 
@@ -150,17 +150,17 @@
       <listitem>
         <para>Windows:</para>
 
-        <para>set SCI=c:\program files\scilab-5.1</para>
+        <para><literal>set SCI=c:\program files\scilab-5.1</literal></para>
 
-        <para>set PATH="%SCI%\bin";%PATH%</para>
+        <para><literal>set PATH="%SCI%\bin";%PATH%</literal></para>
 
-        <para>D:\java -cp "%SCI%\modules\javasci\jar\javasci.jar";.
-        BasicExample</para>
+        <para><literal>D:\java -cp "%SCI%\modules\javasci\jar\javasci.jar";.
+        BasicExample</literal></para>
       </listitem>
     </itemizedlist>
 
-    <para>optional options to launch java : -Djava.compiler=JIT
-    -Xmx256m</para>
+    <para>optional options to launch java : <literal>-Djava.compiler=JIT
+    -Xmx256m</literal></para>
 
     <para>(With these arguments , you launch javasci with same initial options
     that standard scilab).</para>
