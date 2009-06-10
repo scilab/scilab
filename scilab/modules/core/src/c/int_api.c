@@ -129,6 +129,7 @@ int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32, i
 	return 0;
 }
 
+#ifdef __YASP__
 int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _piData64, int** _piAddress)
 {
 	long long  *piData64	= NULL;
@@ -144,6 +145,7 @@ int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _piDat
 	memcpy(piData64, _piData64, sizeof(long long) * iSize);
 	return 0;
 }
+#endif
 
 int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _piData8, int **_piAddress)
 {
@@ -217,10 +219,12 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
 	return 0;
 }
 
+#ifdef __YASP__
 int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piData64, int **_piAddress)
 {
 	return 1;
 }
+#endif
 
 static int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData)
 {
@@ -268,10 +272,12 @@ int createNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int _iRows, int 
 	return createCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT32, _iRows, _iCols, _piData32);
 }
 
+#ifdef __YASP__
 int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int _iCols, long long* _piData64)
 {
 	return -1;
 }
+#endif
 
 static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData)
 {
@@ -362,10 +368,12 @@ int readNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int* _piRows, int*
 	return readCommonNamedMatrixOfInteger(_pstName, _iNameLen, SCI_INT32, _piRows, _piCols, _piData32);
 }
 
+#ifdef __YASP__
 int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, long long* _piData64)
 {
 	return 1;
 }
+#endif
 
 static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
 {

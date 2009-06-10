@@ -73,9 +73,9 @@ subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/intel_compiler.m4 \
-	$(top_srcdir)/m4/java.m4 $(top_srcdir)/m4/lib-ld.m4 \
-	$(top_srcdir)/m4/libhdf5.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
+	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
+	$(top_srcdir)/m4/intel_compiler.m4 $(top_srcdir)/m4/java.m4 \
+	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libs_by_debian.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
 	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
@@ -136,9 +136,9 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/sparse_api.c src/c/boolean_sparse_api.c \
 	src/c/boolean_api.c src/c/string_api.c src/c/list_api.c \
 	src/c/typename.c src/c/inittypenames.c src/c/funcprot.c \
-	src/c/scimem64.c src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
+	src/c/scimem64.c src/fortran/clunit.f src/fortran/getlin.f \
+	src/fortran/allowptr.f src/fortran/isany.f \
+	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
 	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
@@ -279,24 +279,24 @@ am__objects_2 = libscicore_la-inffic.lo libscicore_la-cs2st.lo \
 	libscicore_la-inittypenames.lo libscicore_la-funcprot.lo \
 	$(am__objects_1)
 @USE_DYNAMIC_STACK_TRUE@am__objects_3 = relocstack.lo
-am__objects_4 = algebre.lo clunit.lo getlin.lo allowptr.lo isany.lo \
-	hmcreate.lo nextj.lo setgetmode.lo showstack.lo misops.lo \
-	iseye.lo chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo \
-	cmdstr.lo logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo \
-	folhp.lo cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo \
-	prompt.lo intstr.lo createref.lo btof.lo matzs.lo getnum.lo \
-	btofm.lo getsym.lo findequal.lo stackg.lo find.lo israt.lo \
-	setlnb.lo mrknmd.lo stackgl.lo allops.lo mname.lo command.lo \
-	ref2val.lo namstr.lo stack.lo isbrk.lo majmin.lo xerbla.lo \
-	dtosci.lo bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo \
-	cvdm.lo tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo \
-	mklist.lo sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo \
-	ptover.lo getfunction.lo stackp.lo dbasin.lo macro.lo \
-	extlarg.lo getstr.lo cvwm.lo storeglobal.lo lst2vars.lo \
-	basnms.lo matc.lo ptrback.lo getch.lo ftob.lo seteol.lo \
-	basin.lo clause.lo compcl.lo termf.lo expsum.lo eqid.lo \
-	copyvar.lo putid.lo itosci.lo stackr2d.lo stacki2d.lo \
-	stackc2i.lo isinstring.lo $(am__objects_3)
+am__objects_4 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
+	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
+	chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo cmdstr.lo \
+	logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo \
+	cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo prompt.lo \
+	intstr.lo createref.lo btof.lo matzs.lo getnum.lo btofm.lo \
+	getsym.lo findequal.lo stackg.lo find.lo israt.lo setlnb.lo \
+	mrknmd.lo stackgl.lo allops.lo mname.lo command.lo ref2val.lo \
+	namstr.lo stack.lo isbrk.lo majmin.lo xerbla.lo dtosci.lo \
+	bexec.lo varfunptr.lo getfun.lo savlod.lo error.lo cvdm.lo \
+	tradsl.lo mkindx.lo whatln.lo errmgr.lo defmat.lo mklist.lo \
+	sigbas.lo indxg.lo matz.lo istrue.lo inisci.lo ptover.lo \
+	getfunction.lo stackp.lo dbasin.lo macro.lo extlarg.lo \
+	getstr.lo cvwm.lo storeglobal.lo lst2vars.lo basnms.lo matc.lo \
+	ptrback.lo getch.lo ftob.lo seteol.lo basin.lo clause.lo \
+	compcl.lo termf.lo expsum.lo eqid.lo copyvar.lo putid.lo \
+	itosci.lo stackr2d.lo stacki2d.lo stackc2i.lo isinstring.lo \
+	$(am__objects_3)
 am__objects_5 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_resume.lo libscicore_la-sci_mtlb_mode.lo \
 	libscicore_la-sci_banner.lo libscicore_la-sci_where.lo \
@@ -425,8 +425,8 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_ENABLE = @HDF5_ENABLE@
-HDF5_FLAGS = @HDF5_FLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
 INSTALL = @INSTALL@
@@ -521,7 +521,6 @@ SWIG_JAVA = @SWIG_JAVA@
 SWIG_RUNTIME_LIBS_DIR = @SWIG_RUNTIME_LIBS_DIR@
 TCLTK_LIBS = @TCLTK_LIBS@
 TCL_INC_PATH = @TCL_INC_PATH@
-TERMCAP_LIB = @TERMCAP_LIB@
 TK_INC_PATH = @TK_INC_PATH@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
@@ -630,9 +629,9 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/tmpdir.c \
 	src/c/boolean_api.c src/c/string_api.c src/c/list_api.c \
 	src/c/typename.c src/c/inittypenames.c src/c/funcprot.c \
 	$(am__append_1)
-CORE_FORTRAN_SOURCES = src/fortran/algebre.f src/fortran/clunit.f \
-	src/fortran/getlin.f src/fortran/allowptr.f \
-	src/fortran/isany.f src/fortran/hmcreate.f src/fortran/nextj.f \
+CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
+	src/fortran/allowptr.f src/fortran/isany.f \
+	src/fortran/hmcreate.f src/fortran/nextj.f \
 	src/fortran/setgetmode.f src/fortran/showstack.f \
 	src/fortran/misops.f src/fortran/iseye.f src/fortran/chkvar.f \
 	src/fortran/setippty.f src/fortran/compil.f \
@@ -886,6 +885,7 @@ includes/string_api.h \
 includes/common_api.h \
 includes/poly_api.h \
 includes/variable_api.h \
+includes/list_api.h \
 includes/recursionFunction.h
 
 
@@ -2218,9 +2218,6 @@ libscicore_la-sci_exit.lo: sci_gateway/c/sci_exit.c
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-algebre.lo: src/fortran/algebre.f
-	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o algebre.lo `test -f 'src/fortran/algebre.f' || echo '$(srcdir)/'`src/fortran/algebre.f
 
 clunit.lo: src/fortran/clunit.f
 	$(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o clunit.lo `test -f 'src/fortran/clunit.f' || echo '$(srcdir)/'`src/fortran/clunit.f

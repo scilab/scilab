@@ -101,8 +101,7 @@ CORE_C_SOURCES += src/c/scimem64.c
 endif
 
 
-CORE_FORTRAN_SOURCES = src/fortran/algebre.f \
-src/fortran/clunit.f \
+CORE_FORTRAN_SOURCES = src/fortran/clunit.f \
 src/fortran/getlin.f \
 src/fortran/allowptr.f \
 src/fortran/isany.f \
@@ -435,6 +434,7 @@ includes/string_api.h \
 includes/common_api.h \
 includes/poly_api.h \
 includes/variable_api.h \
+includes/list_api.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

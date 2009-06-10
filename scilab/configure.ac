@@ -965,6 +965,24 @@ fi
 AC_SUBST(FFTW_ENABLE)
 AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
+
+#################
+## HDF5
+#################
+
+AC_ARG_WITH(hdf5,
+	AC_HELP_STRING([--with-hdf5],[Compile with the HDF5 library]))	
+
+HDF5_ENABLE=no
+
+if test "$with_hdf5" != no; then
+   AC_HDF5()
+   HDF5_ENABLE=yes
+fi
+
+AC_SUBST(HDF5_ENABLE)
+AM_CONDITIONAL(HDF5, test "$with_hdf5" != no)
+
 #################
 ## MPI
 #################
@@ -1000,14 +1018,6 @@ AM_CONDITIONAL(PVM, test "$with_pvm" != no)
 #######################
 
 AC_LIBXML2()
-
-#######################
-## Test for libhdf5
-#######################
-
-AC_LIBHDF5()
-
-
 
 #######################
 ## Test for gettext
@@ -1682,8 +1692,8 @@ echo "  XML_VERSION ........ = $XML_VERSION"
 echo "" 
 if test $HDF5_ENABLE = yes;  then
    echo "HDF5 configuration:"
-   echo "  HDF5_FLAGS .......... = $HDF5_FLAGS"
-   echo "  HDF5_LIBS ........... = $HDF5_LIBS"
+   echo "  HDF5 CFLAGS ......... = $HDF5_CFLAGS"
+   echo "  HDF5 LIBS ........... = $HDF5_LIBS"
 else
    echo "Not using HDF5"
 fi
