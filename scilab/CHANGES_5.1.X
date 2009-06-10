@@ -12,7 +12,7 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
-* Series of patches applied (see bug #4506) by Dan McMahill which fixes some
+* Patches applied (see bug #4506 & #4517) by Dan McMahill which fixes some
   minor compile time problems under NetBSD:
   		- adds some missing $host to the 64 bit list.  
 		- added a needed compiler flag for alpha-*-netbsd
@@ -25,6 +25,20 @@ Compilation:
 		- avoid pulling in an OSF1 specific header on NetBSD/alpha
 		- added missing newline at the end of a file
 		- added missing XML LIBS and CFLAGS
+		- adds LTLIBINTL to the list of common objects needed for linking the top level binary.
+		- adds checks for term.h and termcap.h headers.  
+		- adds check for -lpthread
+		- reworks the checks for curses a little bit to search for 
+		  curses.h and -lcurses first followed by ncurses.h and 
+		  -lncurses.   
+		- use configure results to protect the inclusion of curses.h, 
+		  ncurses.h, term.h, and termcap.h.
+		- add __DragonFly__ to a few conditional lines.
+		- remove the static declaration of BC to match what was found
+		  in a header file.
+		- adds missing enable_keypad_mode()
+		- use configure results to protect the inclusion of curses.h, 
+		  ncurses.h, term.h, and termcap.h.
 
 * automake version changed (1.10.1 => 1.10.2)
 
