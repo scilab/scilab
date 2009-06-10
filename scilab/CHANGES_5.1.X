@@ -114,6 +114,8 @@ Bug fixes:
 
  * bug 4508 fixed - Can't create a file when saving a figure under MacOSX.
 
+ * bug 4514 fixed - valgrind.supp wasn't installed
+
  * bug 4542 fixed - A unexpected interpretor warning 
 
  * bug 4546 fixed - Error message added for linpro function (moved to an external function).
