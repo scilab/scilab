@@ -128,6 +128,9 @@ icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
 
+valgrinddir=$(pkgdatadir)/tools/profiling
+valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
+
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
