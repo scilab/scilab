@@ -33,99 +33,116 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
-	int* piAddress		= NULL;
-	
-	Rhs = Max(Rhs, 0);
-	int iAddr			= iadr(*Lstk(Rhs + 1));
-	int iValType	= *istk(iAddr);
-	piAddress		= istk(iAddr);
-	intersci_.ntypes[Rhs + 1 - 1] = '$' ;
 
-	piAddress[ 0] = 15;
-	piAddress[ 1] = 2;
-	piAddress[ 2] = 1;
-	piAddress[ 3] = 8;
-	piAddress[ 4] = 11;
-	piAddress[ 5] = 0;
+	//int iFirst				= *Lstk(1);
+	//int iSecond				= *Lstk(2);
+	//int* piAddress		= NULL;
+	int iBool					= 1;
+	int* piAddr				= NULL;
+	//
+	//Rhs = Max(Rhs, 0);
+	//int iAddr			= iadr(*Lstk(Rhs + 1));
+	//int iValType	= *istk(iAddr);
+	//piAddress		= istk(iAddr);
+	//intersci_.ntypes[Rhs + 1 - 1] = '$' ;
 
-	piAddress[ 6] = 15;
-	piAddress[ 7] = 1;
-	piAddress[ 8] = 1;
-	piAddress[ 9] = 9;
+	//piAddress[ 0] = sci_boolean;
+	//piAddress[ 1] = 1;
+	//piAddress[ 2] = 1;
+	//piAddress[ 3] = 1;
 
-	piAddress[10] = 15;
-	piAddress[11] = 1;
-	piAddress[12] = 1;
-	piAddress[13] = 4;
+	//piAddress[ 0] = 15;
+	//piAddress[ 1] = 2;
+	//piAddress[ 2] = 1;
+	//piAddress[ 3] = 8;
 
-	piAddress[14] = 1;
-	piAddress[15] = 1;
-	piAddress[16] = 1;
-	piAddress[17] = 0;
+	//piAddress[ 4] = 11;
+	//piAddress[ 5] = 0;
 
-	piAddress[18] = 0;
-	piAddress[19] = 0x3FF00000;
+	//piAddress[ 6] = 15;
+	//piAddress[ 7] = 1;
+	//piAddress[ 8] = 1;
+	//piAddress[ 9] = 9;
 
-	piAddress[20] = 1;
-	piAddress[21] = 1;
-	piAddress[22] = 1;
-	piAddress[23] = 0;
+	//piAddress[10] = 15;
+	//piAddress[11] = 1;
+	//piAddress[12] = 1;
+	//piAddress[13] = 4;
 
-	piAddress[24] = 0;
-	piAddress[25] = 0x3FF00000;
+	//piAddress[14] = 1;
+	//piAddress[15] = 1;
+	//piAddress[16] = 1;
+	//piAddress[17] = 0;
 
-	intersci_.ntypes[Rhs + 1 - 1]	= '$';
-	intersci_.iwhere[Rhs + 1 - 1]	= iAddr;
-	intersci_.lad[Rhs + 1 - 1]		= sadr(iAddr + 6);
-	*Lstk(Rhs + 1 + 1) = sadr(iAddr + 6) + 10;
+	//piAddress[18] = 0;
+	//piAddress[19] = 0x3FF00000;
 
+	//piAddress[20] = 1;
+	//piAddress[21] = 1;
+	//piAddress[22] = 1;
+	//piAddress[23] = 0;
+
+	//piAddress[24] = 0;
+	//piAddress[25] = 0x3FF00000;
+
+	//intersci_.ntypes[Rhs + 1 - 1]	= '$';
+	//intersci_.iwhere[Rhs + 1 - 1]	= iAddr;
+	//intersci_.lad[Rhs + 1 - 1]		= sadr(iAddr + 3);
+	//*Lstk(Rhs + 1 + 1) = sadr(iAddr + 3) + 1;
+
+	int iFirst				= *Lstk(1);
+	int iSecond				= *Lstk(2);
+	int piBool[] = {1,0,0,1};
+	createMatrixOfBoolean(Rhs + 1, 2, 2, piBool, &piAddr);
+	iFirst				= *Lstk(Rhs + 1);
+	iSecond				= *Lstk(Rhs + 2);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 	return 0;
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+	//CheckRhs(1,1);
+	//CheckLhs(1,1);
 
-	int iRows						= 0;
-	int iCols						= 0;
-	int iLen						= 0;
-	int* piAddr					= NULL;
-	char *pstVarName		= NULL;
+	//int iRows						= 0;
+	//int iCols						= 0;
+	//int iLen						= 0;
+	//int* piAddr					= NULL;
+	//char *pstVarName		= NULL;
 
 
-	getVarAddressFromNumber(1, &piAddr);
+	//getVarAddressFromNumber(1, &piAddr);
 
-	if(getVarType(piAddr) != sci_strings)
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
-		return 0;
-	}
+	//if(getVarType(piAddr) != sci_strings)
+	//{
+	//	Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
+	//	return 0;
+	//}
 
-	getVarDimension(piAddr, &iRows, &iCols);
-	if(iRows != 1 || iCols != 1)
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
-	}
+	//getVarDimension(piAddr, &iRows, &iCols);
+	//if(iRows != 1 || iCols != 1)
+	//{
+	//	Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
+	//}
 
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
-	pstVarName = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
+	//getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
+	//pstVarName = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));
+	//getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
 
-	//open hdf5 file
-	int iFile = openHDF5File(pstVarName);
-	int iDataSetId = getDataSetId(iFile);
+	////open hdf5 file
+	//int iFile = openHDF5File(pstVarName);
+	//int iDataSetId = getDataSetId(iFile);
 
-	//import all data
-	import_data(iDataSetId, 0, NULL);
+	////import all data
+	//import_data(iDataSetId, 0, NULL);
 
-	//close the file
-	closeHDF5File(iFile);
+	////close the file
+	//closeHDF5File(iFile);
 
-	int iBool = 1;
-	createMatrixOfBoolean(Rhs + 2, 1, 1, &iBool, &piAddr);
-	LhsVar(1) = Rhs + 1;
-	LhsVar(2) = Rhs + 2;
-	PutLhsVar();
-	return 0;
+	//int iBool = 1;
+	//createMatrixOfBoolean(Rhs + 2, 1, 1, &iBool, &piAddr);
+	//LhsVar(1) = Rhs + 1;
+	//LhsVar(2) = Rhs + 2;
+	//PutLhsVar();
+	//return 0;
 }
 
 int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress)
