@@ -15,6 +15,8 @@
 /*--------------------------------------------------------------------------*/
 /* For more information: http://www.gnu.org/software/termutils/manual/termcap-1.3/html_chapter/termcap_4.html */
 
+#include "machine.h"
+
 #include <errno.h>
 #include <string.h>
 #include <signal.h> /* for SIGINT */
@@ -23,9 +25,20 @@
 #include <sys/ioctl.h>
 #include <stdio.h>
 #include <ctype.h>
-#include <curses.h>
-#include <term.h>
 
+#if defined(HAVE_CURSES_H)
+#  include <curses.h>
+#elif defined(HAVE_NCURSES_H)
+#  include <ncurses.h>
+#endif
+
+#ifdef HAVE_TERMCAP_H
+#include <termcap.h>
+#endif
+
+#ifdef HAVE_TERM_H
+#include <term.h>
+#endif
 
 #include "MALLOC.h"
 #include "completion.h"
@@ -82,7 +95,8 @@
 #define TERMCAP
 #endif
 
-#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__)
+
+#if !defined(linux) && !defined(netbsd) && !defined(freebsd) && !defined(__APPLE__) && !defined(__DragonFly__)
 #ifdef  __alpha
 #define B42UNIX
 #endif
@@ -93,7 +107,7 @@
 #define TERMCAP
 #endif
 
-#if defined(netbsd) || defined(freebsd)
+#if defined(netbsd) || defined(freebsd) || defined(__DragonFly__)
 #define TERMCAP
 #endif
 /*--------------------------------------------------------------------------*/
@@ -228,7 +242,7 @@ static char strings[128];   /* place to store output strings from termcap file *
 static char *KS=NULL;            /* enable keypad */
 static char *KE=NULL;            /* disable keypad */
 static char *CE=NULL;            /* clear to end of line */
-static char *BC=NULL;            /* backspace */
+char *BC=NULL;            /* backspace */
 static char *IM=NULL;            /* start insert mode */
 static char *IC=NULL;            /* insert character */
 static char *EI=NULL;            /* end insert mode */
@@ -1244,6 +1258,7 @@ static void disable_keypad_mode()
  *we need references to thoses function if using KEYPAD but not Having TERMCAP
  ***********************************************************************/
 
+static void enable_keypad_mode(){}
 static void disable_keypad_mode(){}
 #endif
 
