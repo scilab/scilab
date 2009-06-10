@@ -894,6 +894,7 @@ fi
 
 AC_CHECK_LIB(dl, dlopen)
 
+AC_SEARCH_LIBS([pthread_join],[pthread])
 
 #################
 ## SCICOS
