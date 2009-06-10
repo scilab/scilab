@@ -58,8 +58,8 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
 	fillMatrixOfBoolean(piAddr, _iRows, _iCols, _piBool);
 	*_piAddress	= piAddr;
 
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 3);
-	updateLstk(iNewPos, iAddr + 3, _iRows * _iCols);
+	updateInterSCI(_iVar, '$', iAddr, iAddr + sadr(3));
+	updateLstk(iNewPos, iAddr + sadr(3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
 
 	return 0;
 }
