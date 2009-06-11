@@ -33,69 +33,59 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
+	int* piAddr = NULL;
+	int i1 = *Lstk(2) - *Lstk(1);
+	sciprint("1 -- diff : %d\n", i1);
 
-	//int iFirst				= *Lstk(1);
-	//int iSecond				= *Lstk(2);
-	//int* piAddress		= NULL;
-	int iBool					= 1;
-	int* piAddr				= NULL;
-	//
-	//Rhs = Max(Rhs, 0);
-	//int iAddr			= iadr(*Lstk(Rhs + 1));
-	//int iValType	= *istk(iAddr);
-	//piAddress		= istk(iAddr);
-	//intersci_.ntypes[Rhs + 1 - 1] = '$' ;
+	//double pdblData[] = {1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8};
 
-	//piAddress[ 0] = sci_boolean;
-	//piAddress[ 1] = 1;
-	//piAddress[ 2] = 1;
-	//piAddress[ 3] = 1;
+	//createMatrixOfDouble(Rhs + 1, 8, 8, pdblData, &piAddr);
 
-	//piAddress[ 0] = 15;
-	//piAddress[ 1] = 2;
-	//piAddress[ 2] = 1;
-	//piAddress[ 3] = 8;
+	//int piBool[] = {1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0};
 
-	//piAddress[ 4] = 11;
-	//piAddress[ 5] = 0;
+	//createMatrixOfBoolean(Rhs + 1, 8, 8, piBool, &piAddr);
 
-	//piAddress[ 6] = 15;
-	//piAddress[ 7] = 1;
-	//piAddress[ 8] = 1;
-	//piAddress[ 9] = 9;
+	//char **pstData = NULL;
+	//pstData = (char**)malloc(sizeof(char*) * 8);
+	//for(int i = 0 ; i < 8 ; i++)
+	//{
+	//	pstData[i] = (char*)malloc(sizeof(char) * 9);
+	//	strcpy(pstData[i], "12345678");
+	//}
+	//createMatrixOfString(Rhs + 1, 8, 1, pstData, &piAddr);
 
-	//piAddress[10] = 15;
-	//piAddress[11] = 1;
-	//piAddress[12] = 1;
-	//piAddress[13] = 4;
+	int* piAddrRoot			= NULL;
+	createList(Rhs + 1, 2, &piAddrRoot);
 
-	//piAddress[14] = 1;
-	//piAddress[15] = 1;
-	//piAddress[16] = 1;
-	//piAddress[17] = 0;
+	int* piAddr1				= NULL;
+	createListInList(Rhs + 1, piAddrRoot, 1, 1, &piAddr1);
 
-	//piAddress[18] = 0;
-	//piAddress[19] = 0x3FF00000;
+	int* piAddr11				= NULL;
+	createListInList(Rhs + 1, piAddr1, 1, 1, &piAddr11);
 
-	//piAddress[20] = 1;
-	//piAddress[21] = 1;
-	//piAddress[22] = 1;
-	//piAddress[23] = 0;
+	int* piAddr111			= NULL;
+	double iVal					= 1;
+	createMatrixOfDoubleInList(Rhs + 1, piAddr11, 1, 1, 1, &iVal);
 
-	//piAddress[24] = 0;
-	//piAddress[25] = 0x3FF00000;
+	createMatrixOfDoubleInList(Rhs + 1, piAddrRoot, 2, 1, 1, &iVal);
 
-	//intersci_.ntypes[Rhs + 1 - 1]	= '$';
-	//intersci_.iwhere[Rhs + 1 - 1]	= iAddr;
-	//intersci_.lad[Rhs + 1 - 1]		= sadr(iAddr + 3);
-	//*Lstk(Rhs + 1 + 1) = sadr(iAddr + 3) + 1;
+	int i2 = *Lstk(Rhs + 2) - *Lstk(Rhs + 1);
+	sciprint("2 -- diff : %d\n", i2);
 
-	int iFirst				= *Lstk(1);
-	int iSecond				= *Lstk(2);
-	int piBool[] = {1,0,0,1};
-	createMatrixOfBoolean(Rhs + 1, 2, 2, piBool, &piAddr);
-	iFirst				= *Lstk(Rhs + 1);
-	iSecond				= *Lstk(Rhs + 2);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 	return 0;

@@ -89,8 +89,8 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, 
 
 	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
 	*_piAddress = piAddr;
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 5 + _iRows * _iCols);
-	updateLstk(iNewPos, iAddr + 5 + _iRows * _iCols, iTotalLen);
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 5 + _iRows * _iCols));
+	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols), iTotalLen / (sizeof(double) / sizeof(int)));
 	return 0;
 }
 
@@ -144,7 +144,8 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
 
 	//update "variable index"
-	updateLstk(Top, *Lstk(Top) + 5, iTotalLen);
+	
+	updateLstk(Top, sadr(iadr(*Lstk(Top)) + 5 + _iRows * _iCols), iTotalLen);
 
 	Rhs = 0;
 	//Add name in stack reference list

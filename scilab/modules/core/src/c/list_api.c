@@ -166,7 +166,7 @@ static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAd
 	}
 
 	*_piAddress	= piAddr;
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 2 + _iNbItem + 1);
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 2 + _iNbItem + 1 + !(_iNbItem % 2)));
 	return 0;
 }
 
@@ -806,13 +806,15 @@ static void updateOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_pi
 static void closeList(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
 	//Get Root address;
-	int *piRoot = istk(iadr(*Lstk(_iVar)));
-	int iAddr				= *Lstk(_iVar);
+	int *piRoot				= istk(iadr(*Lstk(_iVar)));
+	int iAddr					= *Lstk(_iVar);
+	int iAddr2				= iadr(*Lstk(_iVar));
 
-	int iScale = (int)(_piEnd - piRoot);
+	int iOffsetData		=	2 + piRoot[1] + 1 + !(piRoot[1] % 2);
+	int iScale				= (int)(_piEnd - (piRoot + iOffsetData));
 	int iDoubleSclale = iScale / 2;
 
-	updateLstk(_iVar, iAddr + 2 + piRoot[1] + 1 + !(piRoot[1] % 2), iDoubleSclale);
+	updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
 }
 
 static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _piParent)

@@ -58,8 +58,8 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
 	fillMatrixOfBoolean(piAddr, _iRows, _iCols, _piBool);
 	*_piAddress	= piAddr;
 
-	updateInterSCI(_iVar, '$', iAddr, iAddr + sadr(3));
-	updateLstk(iNewPos, iAddr + sadr(3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 3));
+	updateLstk(iNewPos, sadr(iadr(iAddr) + 3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
 
 	return 0;
 }
@@ -106,7 +106,7 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _i
 	//copy data in stack
 	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
 
-	updateLstk(Top, *Lstk(Top) + 3, _iRows * _iCols);
+	updateLstk(Top, *Lstk(Top) + sadr(3), (_iRows * _iCols) / (sizeof(double)/sizeof(int)));
 
 	Rhs = 0;
 	//Add name in stack reference list
