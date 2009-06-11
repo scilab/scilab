@@ -390,6 +390,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\gw_dynamic_link.c"
 				>
 			</File>
@@ -436,6 +440,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\addinter.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_gateway.h"
 				>
 			</File>
 			<File

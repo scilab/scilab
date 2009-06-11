@@ -7,7 +7,9 @@ DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
 src/c/dynamic_link.c \
 src/c/dl_genErrorMessage.c \
 src/c/AddFunctionInTable.c \
-src/c/ilib_verbose.c
+src/c/ilib_verbose.c \
+src/c/sci_gateway.c
+
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \
 sci_gateway/c/sci_getdynlibext.c \
@@ -60,6 +62,7 @@ libscidynamic_link_la_includedir=$(pkgincludedir)/dynamic_link
 libscidynamic_link_la_include_HEADERS = includes/AddFunctionInTable.h \
 includes/addinter.h \
 includes/dynamic_link.h \
+includes/sci_gateway.h \
 includes/gw_dynamic_link.h \
 includes/ilib_verbose.h 
 
