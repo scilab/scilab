@@ -663,7 +663,7 @@ int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iR
 		return 1;
 	}
 
-	piEnd = piItemAddr + iTotalLen;
+	piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2);
 	closeList(iNewPos, _piParent, _iItemPos, piEnd);
 	return 0;
 }
@@ -696,11 +696,10 @@ int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int
 		return 1;
 	}
 
-	*_piTotalLen				+= 4 + _iRows * _iCols + 1 + 1;//+ 1 for scale on double precision
 	piOffset						= _piParent + 2;
-	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + (*_piTotalLen / 2);
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + (*_piTotalLen + 5 + _iRows * _iCols + !((_iRows * _iCols) %2)) / 2;
 
-	piEnd = piAddr + *_piTotalLen;
+	piEnd = piAddr + (*_piTotalLen + 5 + _iRows * _iCols + !((_iRows * _iCols) %2));
 	if(_iItemPos == iNbItem)
 	{
 		updateOffset(_iVar, _piParent, _iItemPos, piEnd);
@@ -732,7 +731,7 @@ int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParen
 		return 1;
 	}
 
-	piEnd = piItemAddr + iTotalLen;
+	piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols;
 	closeList(Top, _piParent, _iItemPos, piEnd);
 
 	Top = iSaveTop;
