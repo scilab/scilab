@@ -80,31 +80,31 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 					{
 						unsigned long currentstacksize=0;
 						unsigned long used=0;
-						/* First, we do a stacksize('min') */
-						{
-							unsigned long ptr=0;
-							unsigned long memstacktotal=0;
-							unsigned long memstackused=0;
-							unsigned long newminstack=0;
+/* 						/\* First, we do a stacksize('min') *\/ */
+/* 						{ */
+/* 							unsigned long ptr=0; */
+/* 							unsigned long memstacktotal=0; */
+/* 							unsigned long memstackused=0; */
+/* 							unsigned long newminstack=0; */
 
-							C2F(getstackinfo)((int *)&memstacktotal,(int *)&memstackused);
+/* 							C2F(getstackinfo)((int *)&memstacktotal,(int *)&memstackused); */
 
-							if (memstackused<MIN_STACKSIZE)
-							{
-								newminstack = MIN_STACKSIZE;
-							}
-							else
-							{
-								/* Add 3000 security for the stack */
-								newminstack = memstackused+3000;
-							}
+/* 							if (memstackused<MIN_STACKSIZE) */
+/* 							{ */
+/* 								newminstack = MIN_STACKSIZE; */
+/* 							} */
+/* 							else */
+/* 							{ */
+/* 								/\* Add 3000 security for the stack *\/ */
+/* 								newminstack = memstackused+3000; */
+/* 							} */
 
-							C2F(scimem)((int *)&newminstack,(int *)&ptr);
-							if (ptr)
-							{
-								C2F(adjuststacksize)(&newminstack,&ptr);
-							}
-						}
+/* 							C2F(scimem)((int *)&newminstack,(int *)&ptr); */
+/* 							if (ptr) */
+/* 							{ */
+/* 								C2F(adjuststacksize)(&newminstack,&ptr); */
+/* 							} */
+/* 						} */
 
 						/* Now, we adjust the stacksize to the required value */
 						C2F(getstackinfo)((int *)&currentstacksize,(int *)&used);
