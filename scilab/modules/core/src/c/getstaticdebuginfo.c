@@ -101,6 +101,15 @@ char **getStaticDebugInfo(int *sizeArray)
 #ifdef UMFPACK_VERSION
 		{"UMFPACK version",UMFPACK_VERSION},
 #endif
+#ifdef UMFPACK_VERSION
+		{"UMFPACK version",UMFPACK_VERSION},
+#endif
+#endif
+#ifndef _LP64
+		{"Compiler Architecture","X86"},
+#endif
+#ifdef _LP64
+		{"Compiler Architecture","X64"},
 #endif
 	};
 
