@@ -20,6 +20,7 @@
 #include "ExceptionMessage.h"
 #endif
 #include "../../../mexlib/includes/mex.h"
+#include "../../../dynamic_link/includes/sci_gateway.h"
 #include "sci_rankqr.h"
 #include "sci_contr.h"
 #include "gw_slicot.h"
