@@ -60,3 +60,4 @@ createTListInList
 createMList
 createTList
 createMatrixOfInteger32
+createMatrixOfBoolean

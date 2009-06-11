@@ -840,7 +840,7 @@ AC_FUNC_STRTOD
 
 AC_CHECK_HEADERS([limits.h values.h])
 
-AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termio.h termios.h wchar.h wctype.h time.h])
+AC_CHECK_HEADERS([fcntl.h float.h libintl.h locale.h malloc.h netdb.h netinet/in.h nlist.h sgtty.h stddef.h sys/file.h sys/ioctl.h sys/param.h sys/socket.h sys/time.h sys/timeb.h sys/utsname.h syslog.h term.h termcap.h termio.h termios.h wchar.h wctype.h time.h])
 
 # check header dirent
 AC_HEADER_DIRENT
@@ -883,17 +883,43 @@ AC_STRUCT_ST_BLOCKS
 ## termcap library
 ##################
 
+# some systems may have a system curses implementation as well as ncurses
+# installed.  We need to be consistent in making sure we get the correct
+# library to go with the correct header and also provide a way for the user
+# to have some control over which is picked when both are available.
+#
+# For now, just check for -lcurses and then -lncurses.  The user control
+# may need to be revisited
+
 TERMCAP_LIB=no
-AC_CHECK_LIB(ncurses,main,[TERMCAP_LIB=-lncurses])
-if test "$TERMCAP_LIB" = no; then
-  AC_CHECK_LIB(curses,main,[TERMCAP_LIB=-lcurses])
+
+# Various observations:
+#
+#  ncurses 
+#    - installs ncurses.h and possibly curses.h as a link to ncurses.h
+#    - installs -lncurses.
+#    - need to include term.h for tgetent() but tgetent() is in -lncurses.a
+#
+# curses as found in NetBSD-4 and NetBSD-5
+#    - installs curses.h
+#    - need to include termcap.h and link with -ltermcap for tgetent()
+#
+
+AC_CHECK_LIB([curses],[main])
+if test $ac_cv_lib_curses_main = no ; then
+	AC_CHECK_LIB([ncurses],[main])
 fi
-if test "$TERMCAP_LIB" != no; then
+
+# make sure we have what we need for tgetent
+AC_SEARCH_LIBS([tgetent],[termcap])
+
+AC_CHECK_HEADERS([ncurses.h curses.h])
+
+if test "x$ac_cv_lib_curses_main" = "xyes" -o "x$ac_cv_lib_ncurses_main" = "xyes" ; then
   AC_DEFINE([HAVE_TERMCAP],[],[Have Term Cap])
 else
  AC_MSG_ERROR([No termcap library detected. Please install ncurses dev library (or termcap library)])
 fi
-AC_SUBST(TERMCAP_LIB)
 
 ##################
 ## other libraries
@@ -901,6 +927,7 @@ AC_SUBST(TERMCAP_LIB)
 
 AC_CHECK_LIB(dl, dlopen)
 
+AC_SEARCH_LIBS([pthread_join],[pthread])
 
 #################
 ## SCICOS

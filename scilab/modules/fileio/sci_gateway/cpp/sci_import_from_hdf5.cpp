@@ -33,47 +33,106 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+	int* piAddr = NULL;
+	int i1 = *Lstk(2) - *Lstk(1);
+	sciprint("1 -- diff : %d\n", i1);
 
-	int iRows						= 0;
-	int iCols						= 0;
-	int iLen						= 0;
-	int* piAddr					= NULL;
-	char *pstVarName		= NULL;
+	//double pdblData[] = {1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8};
 
+	//createMatrixOfDouble(Rhs + 1, 8, 8, pdblData, &piAddr);
 
-	getVarAddressFromNumber(1, &piAddr);
+	//int piBool[] = {1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0};
 
-	if(getVarType(piAddr) != sci_strings)
-	{
-		Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
-		return 0;
-	}
+	//createMatrixOfBoolean(Rhs + 1, 8, 8, piBool, &piAddr);
 
-	getVarDimension(piAddr, &iRows, &iCols);
-	if(iRows != 1 || iCols != 1)
-	{
-		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
-	}
+	//char **pstData = NULL;
+	//pstData = (char**)malloc(sizeof(char*) * 8);
+	//for(int i = 0 ; i < 8 ; i++)
+	//{
+	//	pstData[i] = (char*)malloc(sizeof(char) * 9);
+	//	strcpy(pstData[i], "12345678");
+	//}
+	//createMatrixOfString(Rhs + 1, 8, 1, pstData, &piAddr);
 
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
-	pstVarName = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));
-	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
+	int* piAddrRoot			= NULL;
+	createList(Rhs + 1, 2, &piAddrRoot);
 
-	//open hdf5 file
-	int iFile = openHDF5File(pstVarName);
-	int iDataSetId = getDataSetId(iFile);
+	int* piAddr1				= NULL;
+	createListInList(Rhs + 1, piAddrRoot, 1, 1, &piAddr1);
 
-	//import all data
-	import_data(iDataSetId, 0, NULL);
+	int* piAddr11				= NULL;
+	createListInList(Rhs + 1, piAddr1, 1, 1, &piAddr11);
 
-	//close the file
-	closeHDF5File(iFile);
+	int* piAddr111			= NULL;
+	double iVal					= 1;
+	createMatrixOfDoubleInList(Rhs + 1, piAddr11, 1, 1, 1, &iVal);
+
+	createMatrixOfDoubleInList(Rhs + 1, piAddrRoot, 2, 1, 1, &iVal);
+
+	int i2 = *Lstk(Rhs + 2) - *Lstk(Rhs + 1);
+	sciprint("2 -- diff : %d\n", i2);
 
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 	return 0;
+	//CheckRhs(1,1);
+	//CheckLhs(1,1);
+
+	//int iRows						= 0;
+	//int iCols						= 0;
+	//int iLen						= 0;
+	//int* piAddr					= NULL;
+	//char *pstVarName		= NULL;
+
+
+	//getVarAddressFromNumber(1, &piAddr);
+
+	//if(getVarType(piAddr) != sci_strings)
+	//{
+	//	Scierror(999,_("%s: Wrong type for input argument #%d: A string.\n"),fname, 2);
+	//	return 0;
+	//}
+
+	//getVarDimension(piAddr, &iRows, &iCols);
+	//if(iRows != 1 || iCols != 1)
+	//{
+	//	Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
+	//}
+
+	//getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
+	//pstVarName = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));
+	//getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
+
+	////open hdf5 file
+	//int iFile = openHDF5File(pstVarName);
+	//int iDataSetId = getDataSetId(iFile);
+
+	////import all data
+	//import_data(iDataSetId, 0, NULL);
+
+	////close the file
+	//closeHDF5File(iFile);
+
+	//int iBool = 1;
+	//createMatrixOfBoolean(Rhs + 2, 1, 1, &iBool, &piAddr);
+	//LhsVar(1) = Rhs + 1;
+	//LhsVar(2) = Rhs + 2;
+	//PutLhsVar();
+	//return 0;
 }
 
 int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress)

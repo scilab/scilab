@@ -17,7 +17,6 @@
 #include "LaunchScilabSignal.h"
 #include "localization.h"
 #include "isdir.h"
-#include "isdir.h"
 #include "setgetSCIpath.h"
 #include "scilabDefaults.h"
 #include "tmpdir.h"
