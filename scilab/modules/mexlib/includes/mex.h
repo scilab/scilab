@@ -40,7 +40,6 @@ typedef int (*GatefuncH) (int nlhs,mxArray *plhs[],int nrhs,
 typedef int (*FGatefuncH) (int *nlhs,mxArray *plhs[],int *nrhs,
                                  mxArray *prhs[]);
 
-typedef int (*GatefuncS) (char *fname, int l);
 typedef int (*Myinterfun) (char *, GatefuncH F);
 
 typedef int (*GT) ();
@@ -220,7 +219,6 @@ void mxSetIr(mxArray *array_ptr, int *ir_data);
 void mxSetNzmax(mxArray *array_ptr, int nzmax);
 void mxSetCell(mxArray *pa, int i, mxArray *value);
 
-int sci_gateway(char *fname, GatefuncS F);
 mxArray *mexGetArray(char *name, char *workspace);
 
 mxArray *mexGetVariable(const char *workspace, const char *name);
