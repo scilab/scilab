@@ -33,7 +33,6 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 		{
 			if (string[i] == 0) string[i] = ' ';
 		}
-		if (string[nbcharacters] != 0 )  string[nbcharacters] = 0;
 	}
 
 	if (*lunit == C2F(iop).wte)
@@ -69,10 +68,21 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 				++C2F(iop).lct[0];
 			}
 		}
-
 		if (string)
 		{
-			sciprint("%s\n", string);
+			if (nbcharacters > 1)
+			{
+				if (string[nbcharacters] != 0 )  string[nbcharacters] = 0;
+				sciprint("%s\n", string);
+			}
+			else if (nbcharacters == 1)
+			{
+				sciprint("%c\n", string[0]);
+			}
+			else
+			{
+				sciprint("\n");
+			}
 		}
 		else sciprint("\n");
 	} 
