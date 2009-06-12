@@ -60,6 +60,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
     end 
     [gate,names] = new_names(table); 
     t = [ '#include <mex.h> ';
+          '#include <sci_gateway.h>';
 	        'static int direct_gateway(char *fname,void F(void)) { F();return 0;};'
 	        'extern Gatefunc ' + names(:) + ';';
 	        'static GenericTable Tab[]={';

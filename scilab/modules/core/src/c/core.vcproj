@@ -687,6 +687,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\mexlib\src\c\sci_gateway.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_getdebuginfo.c"
 				>
 			</File>
@@ -1261,6 +1265,10 @@
 			</File>
 			<File
 				RelativePath=".\run.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\mexlib\includes\sci_gateway.h"
 				>
 			</File>
 			<File
