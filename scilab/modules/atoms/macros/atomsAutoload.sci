@@ -45,7 +45,7 @@ function result = atomsAutoload()
 		end
 		
 		exec( loader_file );
-		
+		pause
 	end
 	
 endfunction

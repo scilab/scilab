@@ -16,8 +16,10 @@ function packages = atomsGetTOOLBOXES(update)
 	// Initialize
 	packages = struct();
 	
-	// Operating system detection
+	// Operating system detection + archi
 	// =========================================================================
+	
+	// Operating system
 	
 	if ~MSDOS then
 		OSNAME = unix_g('uname');
@@ -28,12 +30,14 @@ function packages = atomsGetTOOLBOXES(update)
 		LINUX  = %F;
 	end
 	
-	if MSDOS then
-		OSNAME = "windows";
-	elseif LINUX then
-		OSNAME = "linux";
-	elseif MACOSX then
-		OSNAME = "macosx";
+	// Architecture
+	[dynamic_info,static_info] = getdebuginfo();
+	arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
+	
+	if ~isempty(arch_info) & (regexp(arch_info,"/\sX64$/","o") <> []) then
+		ARCH = "64";
+	else
+		ARCH = "32";
 	end
 	
 	// Check input parameters
@@ -70,7 +74,7 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		for i=1:size(mirrors,"*")
 			
-			url            = mirrors(i)+"/TOOLBOXES/"+OSNAME;
+			url            = mirrors(i)+"/TOOLBOXES/"+OSNAME+"/"+ARCH;
 			file_out       = pathconvert(TMPDIR+"/atoms/"+sprintf("TOOLBOXES_%d",nb_TOOLBOXES),%f);
 			
 			if( fileinfo(file_out) <> [] ) then
