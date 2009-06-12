@@ -120,13 +120,14 @@ Bug fixes:
 
  * bug 4466 fixed - .' operator defined for strings and booleans
  
- * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
-                    and not a filename (linux)
+ * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing
+   	   			  	directory as input argument and not a filename (linux)
 
  * bug 4479 fixed - A few minor bugs were causing the configure to fail under
 		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
- * bug 4508 fixed - Can't create a file when saving a figure under MacOSX.
+ * bug 4508 fixed - Can't create a file when saving/exporting a figure under
+   	   		MacOSX.
 
  * bug 4514 fixed - valgrind.supp wasn't installed
 
