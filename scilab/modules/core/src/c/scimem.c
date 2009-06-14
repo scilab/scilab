@@ -35,7 +35,10 @@ int C2F(scimem)(int *n, int *ptr)
   if (*n > 0)
   {
 	/* add 1 for alignment problems */
-    p1 = (char *) SCISTACKMALLOC(((unsigned long) sizeof(double)) * (*n + 1));
+	/* YC: the last +2 is to overcome a problem with adjuststack. */
+	/* YC: Which appears on OpenSolaris and on mandriva + EEEPC. */
+	/* YC: To be corrected. Thanks Jonathan */  
+    p1 = (char *) SCISTACKMALLOC(((unsigned long) sizeof(double)) * (*n + 1 + 2));
 		  
     if (p1 != NULL) 
 	{
@@ -67,7 +70,8 @@ int C2F(scigmem)(int *n, int *ptr)
   if (*n > 0)
   {
     /* add 1 for alignment problems */
-    p1 = (char *) SCISTACKMALLOC((unsigned)sizeof(double) * (*n + 1));
+    /* YC: Same comment as above */   
+    p1 = (char *) SCISTACKMALLOC((unsigned)sizeof(double) * (*n + 1 + 2));
     if (p1 != NULL) 
 	{
 		the_gps = the_gp;
