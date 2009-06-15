@@ -146,7 +146,6 @@ includes/scicos_malloc.h
 libsciscicos_la_cosfdir=$(mydatadir)
 nobase_libsciscicos_la_cosf_DATA = macros/scicos_scicos/Branching.cosf \
 macros/scicos_scicos/DemoBlocks.cosf \
-macros/scicos_scicos/Electrical.cosf \
 macros/scicos_scicos/Events.cosf \
 macros/scicos_scicos/Integer.cosf \
 macros/scicos_scicos/Linear.cosf \
@@ -156,8 +155,9 @@ macros/scicos_scicos/OldBlocks.cosf \
 macros/scicos_scicos/Others.cosf \
 macros/scicos_scicos/Sinks.cosf \
 macros/scicos_scicos/Sources.cosf \
-macros/scicos_scicos/ThermoHydraulics.cosf \
 macros/scicos_scicos/Threshold.cosf
+#macros/scicos_scicos/Electrical.cosf \
+#macros/scicos_scicos/ThermoHydraulics.cosf
 
 #### scicos : MACROS ####
 MACROSDIRSEXT= macros/scicos_auto \
