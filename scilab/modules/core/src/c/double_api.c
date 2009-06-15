@@ -110,8 +110,8 @@ int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, 
 
 	getNewVarAddressFromNumber(iNewPos, _piAddress);
 	fillCommonMatrixOfDouble(*_piAddress, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 4);
-	updateLstk(iNewPos, iAddr + 4, _iRows * _iCols * (_iComplex + 1));
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
+	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
 	return 0;
 }
 
@@ -212,7 +212,7 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
 	}
 
 	//update "variable index"
-	updateLstk(Top, *Lstk(Top) + 4, iSize * (_iComplex + 1) * 2);
+	updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (_iComplex + 1) * 2);
 
 	Rhs = 0;
 	//Add name in stack reference list

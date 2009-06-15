@@ -13,7 +13,7 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
-* Series of patches applied (see bug #4506) by Dan McMahill which fixes some
+* Patches applied (see bug #4506 & #4517) by Dan McMahill which fixes some
   minor compile time problems under NetBSD:
   		- adds some missing $host to the 64 bit list.  
 		- added a needed compiler flag for alpha-*-netbsd
@@ -26,6 +26,20 @@ Compilation:
 		- avoid pulling in an OSF1 specific header on NetBSD/alpha
 		- added missing newline at the end of a file
 		- added missing XML LIBS and CFLAGS
+		- adds LTLIBINTL to the list of common objects needed for linking the top level binary.
+		- adds checks for term.h and termcap.h headers.  
+		- adds check for -lpthread
+		- reworks the checks for curses a little bit to search for 
+		  curses.h and -lcurses first followed by ncurses.h and 
+		  -lncurses.   
+		- use configure results to protect the inclusion of curses.h, 
+		  ncurses.h, term.h, and termcap.h.
+		- add __DragonFly__ to a few conditional lines.
+		- remove the static declaration of BC to match what was found
+		  in a header file.
+		- adds missing enable_keypad_mode()
+		- use configure results to protect the inclusion of curses.h, 
+		  ncurses.h, term.h, and termcap.h.
 
 * automake version changed (1.10.1 => 1.10.2)
 
@@ -52,6 +66,8 @@ Help & Tests:
 * Javasci FAQ page added
 
 * Online help XML files have been converted into UTF-8
+
+* Documentation of rpem function modified (XML)
 
 Bug fixes:
 ==========
@@ -115,7 +131,11 @@ Bug fixes:
 
  * bug 4508 fixed - Can't create a file when saving a figure under MacOSX.
 
+ * bug 4514 fixed - valgrind.supp wasn't installed
+
  * bug 4542 fixed - A unexpected interpretor warning 
+
+ * bug 4546 fixed - Error message added for linpro function (moved to an external function).
  
  * bug 4551 fixed - menus can return a error in GUI mode (error 2 Invalid factor)
 

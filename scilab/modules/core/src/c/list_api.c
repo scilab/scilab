@@ -166,7 +166,7 @@ static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAd
 	}
 
 	*_piAddress	= piAddr;
-	updateInterSCI(_iVar, '$', iAddr, iAddr + 2 + _iNbItem + 1);
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 2 + _iNbItem + 1 + !(_iNbItem % 2)));
 	return 0;
 }
 
@@ -663,7 +663,7 @@ int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iR
 		return 1;
 	}
 
-	piEnd = piItemAddr + iTotalLen;
+	piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols + !((iTotalLen + _iRows * _iCols) % 2);
 	closeList(iNewPos, _piParent, _iItemPos, piEnd);
 	return 0;
 }
@@ -696,11 +696,10 @@ int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int
 		return 1;
 	}
 
-	*_piTotalLen				+= 4 + _iRows * _iCols + 1 + 1;//+ 1 for scale on double precision
 	piOffset						= _piParent + 2;
-	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + (*_piTotalLen / 2);
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + (*_piTotalLen + 5 + _iRows * _iCols + !((*_piTotalLen + _iRows * _iCols) %2)) / 2;
 
-	piEnd = piAddr + *_piTotalLen;
+	piEnd = piAddr + (*_piTotalLen + 5 + _iRows * _iCols + !((_iRows * _iCols) %2));
 	if(_iItemPos == iNbItem)
 	{
 		updateOffset(_iVar, _piParent, _iItemPos, piEnd);
@@ -732,7 +731,7 @@ int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParen
 		return 1;
 	}
 
-	piEnd = piItemAddr + iTotalLen;
+	piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols;
 	closeList(Top, _piParent, _iItemPos, piEnd);
 
 	Top = iSaveTop;
@@ -806,13 +805,15 @@ static void updateOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_pi
 static void closeList(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
 {
 	//Get Root address;
-	int *piRoot = istk(iadr(*Lstk(_iVar)));
-	int iAddr				= *Lstk(_iVar);
+	int *piRoot				= istk(iadr(*Lstk(_iVar)));
+	int iAddr					= *Lstk(_iVar);
+	int iAddr2				= iadr(*Lstk(_iVar));
 
-	int iScale = (int)(_piEnd - piRoot);
-	int iDoubleSclale = iScale / 2;
+	int iOffsetData		=	2 + piRoot[1] + 1 + !(piRoot[1] % 2);
+	int iScale				= (int)(_piEnd - (piRoot + iOffsetData));
+	int iDoubleSclale = (iScale + 1)/ 2;
 
-	updateLstk(_iVar, iAddr + 2 + piRoot[1] + 1 + !(piRoot[1] % 2), iDoubleSclale);
+	updateLstk(_iVar, sadr(iadr(iAddr) + iOffsetData), iDoubleSclale);
 }
 
 static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _piParent)

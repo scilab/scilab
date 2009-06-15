@@ -97,16 +97,16 @@ static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iC
 	int iAddr				= *Lstk(iNewPos);
 	int *piAddr			= NULL;
 	int	iTotalSize	= 0;
-	int iPos				= 0;
+	int iOffset			= 0;
 
 	getNewVarAddressFromNumber(iNewPos, _piAddress);
 	fillCommonSparseMatrix(*_piAddress, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
-	iPos	= iAddr + 5;//4 for header + 1 for NbItem
-	iPos += _iRows + _iNbItem;
+	iOffset	= 5;//4 for header + 1 for NbItem
+	iOffset		+= _iRows + _iNbItem + !((_iRows + _iNbItem) % 2);
 
-	updateInterSCI(_iVar, '$', iAddr, iPos);
-	updateLstk(iNewPos, iPos, _iNbItem * (_iComplex + 1) * 2);
+	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + iOffset));
+	updateLstk(iNewPos, sadr(iadr(iAddr) + iOffset), iTotalSize);
 	return 0;
 }
 
@@ -126,14 +126,14 @@ static int fillCommonSparseMatrix(int *_piAddress, int _iComplex, int _iRows, in
 
 	*_piNbItemRow	= _piAddress + 5;//4 for header + 1 for NbItem
 	*_piColPos		= *_piNbItemRow + _iRows;
-	*_pdblReal		= (double*)(*_piColPos + _iNbItem);
+	*_pdblReal		= (double*)(*_piColPos + _iNbItem + !((_iRows + _iNbItem) % 2));
 
 	if(_iComplex == 1)
 	{
 		*_pdblImg			= *_pdblReal + _iNbItem;
 	}
 
-	*_piTotalSize	= _iNbItem * (_iComplex + 1) * 2;
+	*_piTotalSize	= _iNbItem * (_iComplex + 1);
 	return 0;
 }
 

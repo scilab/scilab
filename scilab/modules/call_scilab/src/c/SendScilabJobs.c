@@ -48,8 +48,7 @@ int SendScilabJob(char *job)
 		/* @TODO: potential security issue. check the size */
 		strcpy(command,job);
 		SetLastJob(command);
-
-		/* Creation of a temp variable in Scilab */
+		/* Creation of a temp variable in Scilab which contains the command */
 		if (!C2F(cwritechain)("TMP_EXEC_STRING",&lencommand,(char*)command,(int)strlen("TMP_EXEC_STRING"),(int)strlen(command)) )
 		{
 			/* Problem */
@@ -63,6 +62,7 @@ int SendScilabJob(char *job)
 		{
 			int m = 0, n = 0, lp = 0;
 
+			/* Run the command within an execstr */
 			C2F(scirun)(ScirunCommand,(long int)strlen(ScirunCommand));
 
 			/* get error code from scilab */

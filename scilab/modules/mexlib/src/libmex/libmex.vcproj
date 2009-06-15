@@ -372,6 +372,10 @@
 				RelativePath="..\c\mexlib.c"
 				>
 			</File>
+			<File
+				RelativePath="..\c\sci_gateway.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -380,6 +384,10 @@
 			>
 			<File
 				RelativePath="..\..\includes\mex.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\sci_gateway.h"
 				>
 			</File>
 		</Filter>

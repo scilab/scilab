@@ -41,7 +41,8 @@ COMMON_LIBS = $(top_builddir)/modules/shell/libscishell.la \
 $(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/completion/libscicompletion.la \
 $(top_builddir)/modules/localization/libscilocalization.la \
-$(top_builddir)/modules/io/libsciio.la
+$(top_builddir)/modules/io/libsciio.la \
+$(LTLIBINTL)
 
 SCILAB_LIB=$(top_builddir)/modules/libscilab.la
 SCILAB_CLI_LIB=$(top_builddir)/modules/libscilab-cli.la
@@ -127,6 +128,9 @@ icons/puffin_48.xpm \
 icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
+
+valgrinddir=$(pkgdatadir)/tools/profiling
+valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
@@ -297,6 +301,11 @@ pkgconfig_DATA = scilab.pc
 CALL_SCILAB_CFLAGS_COMMON = -I$(top_srcdir)/modules/call_scilab/includes/ -I$(top_srcdir)/modules/core/includes/
 CALL_SCILAB_LDADD_COMMON = $(top_builddir)/modules/libscilab.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/call_scilab/libscicall_scilab.la
 
+# These binaries are built here and not in the call_scilab module because 
+# we do need libscilab.so to exist before building these files
+# To build them, just launch "make check-am"
+# To run them, see the help of call Scilab in particular 
+# "Compile and run with Call Scilab"
 check_PROGRAMS = call_scilab_c_simple call_scilab_c call_scilab_c_getlastjob call_scilab_c_DisableInteractiveMode call_scilab_readwriteboolean call_scilab_readwritecomplexmatrix call_scilab_readwritematrix call_scilab_readwritestring
 
 call_scilab_c_SOURCES = $(top_srcdir)/modules/call_scilab/examples/call_scilab/c/common/myprog.c

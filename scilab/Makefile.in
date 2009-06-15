@@ -100,7 +100,8 @@ CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
 	"$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" \
-	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"
+	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)" \
+	"$(DESTDIR)$(valgrinddir)"
 binPROGRAMS_INSTALL = $(INSTALL_PROGRAM)
 PROGRAMS = $(bin_PROGRAMS)
 am_call_scilab_c_OBJECTS = call_scilab_c-myprog.$(OBJEXT)
@@ -243,7 +244,9 @@ iconsDATA_INSTALL = $(INSTALL_DATA)
 infofilesDATA_INSTALL = $(INSTALL_DATA)
 pkgconfigDATA_INSTALL = $(INSTALL_DATA)
 rootDATA_INSTALL = $(INSTALL_DATA)
-DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) $(root_DATA)
+valgrindDATA_INSTALL = $(INSTALL_DATA)
+DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) $(root_DATA) \
+	$(valgrind_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 ETAGS = etags
@@ -553,6 +556,8 @@ icons/puffin.png \
 icons/puffin.icns \
 icons/scilab.icns
 
+valgrinddir = $(pkgdatadir)/tools/profiling
+valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
 # Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
 @IS_MACOSX_TRUE@MACOSX = 1
@@ -1021,6 +1026,23 @@ uninstall-rootDATA:
 	  echo " rm -f '$(DESTDIR)$(rootdir)/$$f'"; \
 	  rm -f "$(DESTDIR)$(rootdir)/$$f"; \
 	done
+install-valgrindDATA: $(valgrind_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(valgrinddir)" || $(MKDIR_P) "$(DESTDIR)$(valgrinddir)"
+	@list='$(valgrind_DATA)'; for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  f=$(am__strip_dir) \
+	  echo " $(valgrindDATA_INSTALL) '$$d$$p' '$(DESTDIR)$(valgrinddir)/$$f'"; \
+	  $(valgrindDATA_INSTALL) "$$d$$p" "$(DESTDIR)$(valgrinddir)/$$f"; \
+	done
+
+uninstall-valgrindDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(valgrind_DATA)'; for p in $$list; do \
+	  f=$(am__strip_dir) \
+	  echo " rm -f '$(DESTDIR)$(valgrinddir)/$$f'"; \
+	  rm -f "$(DESTDIR)$(valgrinddir)/$$f"; \
+	done
 
 # This directory's subdirectories are mostly independent; you can cd
 # into them and run `make' without going through this Makefile.
@@ -1308,7 +1330,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)" "$(DESTDIR)$(valgrinddir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -1359,7 +1381,8 @@ info: info-recursive
 info-am:
 
 install-data-am: install-data-local install-iconsDATA \
-	install-infofilesDATA install-pkgconfigDATA install-rootDATA
+	install-infofilesDATA install-pkgconfigDATA install-rootDATA \
+	install-valgrindDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1399,7 +1422,8 @@ ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	uninstall-iconsDATA uninstall-infofilesDATA \
-	uninstall-pkgconfigDATA uninstall-rootDATA
+	uninstall-pkgconfigDATA uninstall-rootDATA \
+	uninstall-valgrindDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) install-am \
 	install-strip
@@ -1418,14 +1442,14 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	install-html-am install-iconsDATA install-info install-info-am \
 	install-infofilesDATA install-man install-pdf install-pdf-am \
 	install-pkgconfigDATA install-ps install-ps-am \
-	install-rootDATA install-strip installcheck installcheck-am \
-	installdirs installdirs-am maintainer-clean \
-	maintainer-clean-generic mostlyclean mostlyclean-compile \
-	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
-	tags tags-recursive uninstall uninstall-am \
+	install-rootDATA install-strip install-valgrindDATA \
+	installcheck installcheck-am installdirs installdirs-am \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
 	uninstall-binPROGRAMS uninstall-binSCRIPTS uninstall-iconsDATA \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
-	uninstall-rootDATA
+	uninstall-rootDATA uninstall-valgrindDATA
 
 
 # Don't do it for scilab_cli_bin. We want to be able to call it without 

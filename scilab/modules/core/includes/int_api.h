@@ -66,7 +66,7 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
  * @param[out] _piData64 return pointer on 64 bits integer
  * @return if the operation successed (0) or not ( !0 )
  */
-#ifdef __YASP__
+#ifdef __SCILAB_INT64__
 int getMatrixOfInteger64(int* _piAddress, int* _piRows, int* _piCols, long long** _piData64);
 #endif
 
@@ -112,7 +112,7 @@ int createMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int* _piData32, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-#ifdef __YASP__
+#ifdef __SCILAB_INT64__
 int createMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long* _piData64, int** _piAddress);
 #endif
 /**
@@ -157,7 +157,7 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-#ifdef __YASP__
+#ifdef __SCILAB_INT64__
 int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piData64, int **_piAddress);
 #endif
 /**
@@ -206,7 +206,7 @@ int createNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int _iRows, int 
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-#ifdef __YASP__
+#ifdef __SCILAB_INT64__
 int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int _iCols, long long* _piData64);
 #endif
 /**
@@ -256,7 +256,7 @@ int readNamedMatrixOfInteger32(char* _pstName, int _iNameLen, int* _piRows, int*
  * @param[out] _piData64 return array of integer 64 bits
  * @return if the operation successed (0) or not ( !0 )
  */
-#ifdef __YASP__
+#ifdef __SCILAB_INT64__
 int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, long long* _piData64);
 #endif
 #endif /* __INT_API__ */

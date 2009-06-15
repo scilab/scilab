@@ -95,6 +95,8 @@ Online Help :
 =============
 
  - Sub-Chapters are now allowed (See SEP #24)
+ - xmltochm exports help to chm format (Windows)
+
 
 char encoding bugs :
 ====================
@@ -146,6 +148,8 @@ Bug fixes:
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
 
+* bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
+
 * bug 3580 fixed - a gateway declaration containing a false primitive ID or gateway ID crashs scilab.
 
 * bug 3772 fixed - input argument of 'predef' was not correctly checked.
@@ -175,7 +179,13 @@ Bug fixes:
                    
 * bug 4307 fixed - %io has no help file.                   
 
+* bug 4330 fixed - stacksize('max') + stacksize(required_mem) doesn't work
+
+* bug 4358 fixed - changing defaultstacksize in scilab.start doesn't work
+
 * bug 4360 fixed - The reference of bug_3954.tst was missing.
+
+* bug 4364 fixed - stacksize('max') + stacksize(required_mem) doesn't work
 
 * bug 4379 fixed - If the thickness property (of plot3d for example) is set to 0,
                    the lines/edges should disappear.

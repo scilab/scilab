@@ -26,6 +26,12 @@ extern "C"
 #include "h5_readDataFromFile.h"
 }
 
+#define PRINT_DEBUG
+int iTab = 0;
+
+
+void print_tree(char* _pstMsg);
+
 int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress);
 int import_double(int _iDatasetId, int _iItemPos, int* _piAddress);
 int import_string(int _iDatasetId, int _iItemPos, int* _piAddress);
@@ -33,8 +39,137 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
-	CheckRhs(1,1);
-	CheckLhs(1,1);
+	int i1 = *Lstk(Rhs) - *Lstk(Rhs - 1);
+	sciprint("1 -- diff : %d\n", i1);
+
+	//int* piAddr = NULL;
+	//double pdblData[] = {1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8,
+	//											1,2,3,4,5,6,7,8};
+
+	//createMatrixOfDouble(Rhs + 1, 8, 8, pdblData, &piAddr);
+
+	//int piBool[] = {1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0,
+	//								1,0,1,0,1,0,1,0};
+
+	//int* piAddr = NULL;
+	//createMatrixOfBoolean(Rhs + 1, 8, 8, piBool, &piAddr);
+
+	//char **pstData = NULL;
+	//pstData = (char**)malloc(sizeof(char*) * 8);
+	//for(int i = 0 ; i < 8 ; i++)
+	//{
+	//	pstData[i] = (char*)malloc(sizeof(char) * 9);
+	//	strcpy(pstData[i], "12345678");
+	//}
+	//createMatrixOfString(Rhs + 1, 8, 1, pstData, &piAddr);
+
+	//int* piAddrRoot			= NULL;
+	//createList(Rhs + 1, 2, &piAddrRoot);
+
+	//int* piAddr1				= NULL;
+	//createListInList(Rhs + 1, piAddrRoot, 1, 1, &piAddr1);
+
+	//int* piAddr11				= NULL;
+	//createListInList(Rhs + 1, piAddr1, 1, 1, &piAddr11);
+
+	//int* piAddr111			= NULL;
+	//double iVal					= 1;
+	//createMatrixOfDoubleInList(Rhs + 1, piAddr11, 1, 1, 1, &iVal);
+
+	//createMatrixOfDoubleInList(Rhs + 1, piAddrRoot, 2, 1, 1, &iVal);
+
+	//int* piAddr					= NULL;
+
+	//int iRows						= 0;
+	//int iCols						= 0;
+
+	//int iNbItem					= 0;
+	//int* piNbItemRow		= NULL;
+	//int* piColPos				= NULL;
+
+	//double* pdblReal		= NULL;
+
+	//getVarAddressFromNumber(1, &piAddr);
+	//getSparseMatrix(piAddr, &iRows, &iCols, &iNbItem, &piNbItemRow, &piColPos, &pdblReal);
+
+	//double *pdblReal2  = NULL;
+	//pdblReal2 = (double*)malloc(sizeof(double) * iNbItem);
+
+	//for(int i = 0 ; i < iNbItem ; i++)
+	//{
+	//	pdblReal2[i] = pdblReal[i] * 2;
+	//}
+
+	//createSparseMatrix(Rhs + 1, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal2, &piAddr);
+
+	//char** pstA = (char**)malloc(sizeof(char*) * 4);
+	//for(int i = 0 ; i < 4 ; i++)
+	//{
+	//	pstA[i] = (char*)malloc(sizeof(char) * 5);
+	//	strcpy(pstA[i], "1234");
+	//}
+
+	//double* pdblB = (double*)malloc(sizeof(double) * 4);
+	//for(int i = 0 ; i < 4 ; i++)
+	//{
+	//	pdblB[i] = i + 1;
+	//}
+
+	//int* piListRoot				= NULL;
+	//createList(Rhs + 1, 3, &piListRoot);
+
+	//	int *piAddr1				= NULL;
+	//	createMatrixOfStringInList(Rhs + 1, piListRoot, 1, 2, 2, pstA, &piAddr1);
+	//	//createMatrixOfDoubleInList(Rhs + 1, piListRoot, 1, 2, 2, pdblB);
+
+	//	int* piList2				= NULL;
+	//	createListInList(Rhs + 1, piListRoot, 2, 2, &piList2);
+
+	//		//createMatrixOfDoubleInList(Rhs + 1, piList2, 1, 2, 2, pdblB);
+	//		int *piAddr21			= NULL;
+	//		createMatrixOfStringInList(Rhs + 1, piList2, 1, 2, 2, pstA, &piAddr21);
+	//		//int *piAddr22			= NULL;
+	//		//createMatrixOfStringInList(Rhs + 1, piList2, 2, 2, 2, pstA, &piAddr22);
+	//		createMatrixOfDoubleInList(Rhs + 1, piList2, 2, 2, 2, pdblB);
+
+	//	int* piList3				= NULL;
+	//	createListInList(Rhs + 1, piListRoot, 3, 1, &piList3);
+
+	//		int* piList31			= NULL;
+	//		createListInList(Rhs + 1, piList3, 1, 2, &piList31);
+
+	//			//createMatrixOfDoubleInList(Rhs + 1, piList31, 1, 2, 2, pdblB);
+	//			int *piAddr311	= NULL;
+	//			createMatrixOfStringInList(Rhs + 1, piList31, 1, 2, 2, pstA, &piAddr311);
+	//			//int *piAddr312	= NULL;
+	//			//createMatrixOfStringInList(Rhs + 1, piList31, 2, 2, 2, pstA, &piAddr312);
+	//			createMatrixOfDoubleInList(Rhs + 1, piList31, 2, 2, 2, pdblB);
+
+	//int i2 = *Lstk(Rhs + 2) - *Lstk(Rhs + 1);
+	//sciprint("2 -- diff : %d\n", i2);
+
+	//LhsVar(1) = Rhs + 1;
+	//PutLhsVar();
+	//return 0;
+	//CheckRhs(1,1);
+	//CheckLhs(1,1);
+
+	int* piAddr3				= NULL;
+	getVarAddressFromNumber(3, &piAddr3);
+	int* piAddr4				= NULL;
+	getVarAddressFromNumber(Rhs + 1, &piAddr4);
 
 	int iRows						= 0;
 	int iCols						= 0;
@@ -58,7 +193,7 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	}
 
 	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, NULL);
-	pstVarName = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));
+	pstVarName = (char*)MALLOC((iLen + 1) * sizeof(char));
 	getMatrixOfString(piAddr, &iRows, &iCols, &iLen, &pstVarName);
 
 	//open hdf5 file
@@ -71,6 +206,10 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	//close the file
 	closeHDF5File(iFile);
 
+	int i2 = *Lstk(Rhs + 2) - *Lstk(Rhs + 1);
+	sciprint("2 -- diff : %d\n", i2);
+
+	FREE(pstVarName);
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 	return 0;
@@ -122,6 +261,10 @@ int import_double(int _iDatasetId, int _iItemPos, int* _piAddress)
 		createMatrixOfDoubleInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pdblData);
 	}
 
+	char pstMsg[512];
+	sprintf(pstMsg, "double (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
+
 	free(pdblData);
 	return 0;
 }
@@ -147,6 +290,10 @@ int import_string(int _iDatasetId, int _iItemPos, int* _piAddress)
 		createMatrixOfStringInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pstData, &piAddr);
 	}
 
+	char pstMsg[512];
+	sprintf(pstMsg, "string (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
+
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
 		free(pstData[i]);
@@ -170,6 +317,10 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 	{
 		return 1;
 	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "list (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
 
 	status = getListItemReferences(_iDatasetId, &piItemRef);
 	if(status)
@@ -212,7 +363,7 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 		}
 	}
 
-
+	iTab++;
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
 		int iItemDataset = 0;
@@ -223,9 +374,21 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 		}
 		import_data(iItemDataset, i + 1, piListAddr);
 	}
+	iTab--;
 
-	free(piItemRef);
+	deleteListItemReferences(_iDatasetId, piItemRef);
+
 	return 0;
 }
 
+void print_tree(char* _pstMsg)
+{
+#ifdef PRINT_DEBUG
+	for(int i = 0 ; i < iTab ; i++)
+	{
+		sciprint("\t");
+	}
+	sciprint("%s\n", _pstMsg);
+#endif
+}
 /*--------------------------------------------------------------------------*/
