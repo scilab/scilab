@@ -66,6 +66,8 @@ Help & Tests:
 
 * Online help XML files have been converted into UTF-8
 
+* Documentation of rpem function modified (XML)
+
 Bug fixes:
 ==========
 
