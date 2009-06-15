@@ -8,4 +8,12 @@ callFunctionFromGateway
 getRecursionGatewayToCall
 isRecursionCallToFunction
 getRecursionFunctionToCall
+getMatrixOfString
+getVarType
+getVarAddressFromNumber
+checklhs_
+checkrhs_
+createMatrixOfString
+intersci_
+putlhsvar_
 ;
