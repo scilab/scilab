@@ -138,6 +138,7 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 		*_piCols = (int)lDims[1];
 	}
 	
+	H5Sclose(space);
 	return 0;
 }
 
