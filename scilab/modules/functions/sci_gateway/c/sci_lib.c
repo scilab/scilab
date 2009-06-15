@@ -1,15 +1,15 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2009 - DIGITEO - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Allan CORNET
+* Copyright (C) 2009 - DIGITEO - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 /*--------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "gw_functions.h"
@@ -59,7 +59,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 
 	if ( (pStVarOne[strlen(pStVarOne)-1] != '/') && 
-		 (pStVarOne[strlen(pStVarOne)-1] != '\\') )
+		(pStVarOne[strlen(pStVarOne)-1] != '\\') )
 	{
 		pStVarOne = (char*)REALLOC(pStVarOne, (strlen(pStVarOne) + 1) * sizeof(char));
 		if (pStVarOne)

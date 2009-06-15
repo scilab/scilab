@@ -8,7 +8,7 @@ c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine intlib(lendirlib, libdir)
       INCLUDE 'stack.h'
-      character(*) libdir
+      character (*) libdir
       integer lendirlib
       integer percen,mode(2),id(nlgh)
       integer iadr,sadr
@@ -19,6 +19,7 @@ c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c     
+
 c     path  du repertoire
       il=iadr(lstk(top))
       n=lendirlib
