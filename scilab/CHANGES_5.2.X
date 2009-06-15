@@ -95,6 +95,8 @@ Online Help :
 =============
 
  - Sub-Chapters are now allowed (See SEP #24)
+ - xmltochm exports help to chm format (Windows)
+
 
 char encoding bugs :
 ====================
