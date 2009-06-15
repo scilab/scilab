@@ -58,8 +58,8 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	/* get string One */
 	getMatrixOfString(piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
 
-	if ( (pStVarOne[strlen(pStVarOne)] != '/') && 
-		 (pStVarOne[strlen(pStVarOne)] != '\\') )
+	if ( (pStVarOne[strlen(pStVarOne)-1] != '/') && 
+		 (pStVarOne[strlen(pStVarOne)-1] != '\\') )
 	{
 		pStVarOne = (char*)REALLOC(pStVarOne, (strlen(pStVarOne) + 1) * sizeof(char));
 		if (pStVarOne)

@@ -21,19 +21,21 @@ c
 c     
 c     path  du repertoire
       il=iadr(lstk(top))
-      n=istk(il+5)-1
-      call icopy(n,istk(il+6),1,istk(il+2),1)
-      istk(il+1)=n
+      n=lendirlib
+      call cvstr(lendirlib,istk(il+2),libdir,0)
+
+      istk(il+1)=lendirlib
       istk(il)=14
-      il0=il+2+n
+      il0=il+2+lendirlib
       ilc=il0+1
       iln=ilc+nclas+1
 c     
 c     ouverture du fichier names
-      buf=libdir(1:lendirlib)//'names'
+      call cvstr(n,istk(il+2),buf,1)
+      buf=libdir(1:n)//'names'
       mode(1)=-1
       lunit=0
-      len = lendirlib + 5
+      len = n + 5
       call getshortpathname(buf(1:len),len)
       call clunit(lunit,buf(1:len),mode)
       if(err.gt.0) then
