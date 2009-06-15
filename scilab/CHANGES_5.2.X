@@ -148,6 +148,8 @@ Bug fixes:
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
 
+* bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
+
 * bug 3580 fixed - a gateway declaration containing a false primitive ID or gateway ID crashs scilab.
 
 * bug 3772 fixed - input argument of 'predef' was not correctly checked.
