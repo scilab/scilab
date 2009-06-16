@@ -33,6 +33,10 @@ function result = atomsAutoload()
 	
 	packages = atomsGetAutoload();
 	
+	// Get the list of lib
+	// =========================================================================
+	libs_before = librarieslist();
+	
 	// Loop on packages
 	// =========================================================================
 	
@@ -45,7 +49,20 @@ function result = atomsAutoload()
 		end
 		
 		exec( loader_file );
-		pause
+	end
+	
+	// Get the list of lib
+	// =========================================================================
+	libs_after = librarieslist();
+	
+	// Loop on libs_after
+	// =========================================================================
+	for i=1:size(libs_after,"*")
+		
+		if find(libs_after(i) == libs_before) == [] then
+			resume_cmd = msprintf("%s = resume(%s);",libs_after(i),libs_after(i));
+			execstr(resume_cmd,"errcatch");
+		end
 	end
 	
 endfunction
