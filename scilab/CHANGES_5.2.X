@@ -207,6 +207,8 @@ Bug fixes:
 
 * bug 4467 fixed - getshortpathname,getlongpathname do not manage string matrix as input
 
+* bug 4468 fixed - pathconvert(<path>,%F) should remove last trailing separator.
+
 * bug 4474 fixed - help of 'fort' is obsolete.
 
 * bug 4474 fixed - addinter help has no example.
