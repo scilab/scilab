@@ -254,3 +254,4 @@ Bug fixes:
 
 * bug 4584 fixed - On Windows , home value was wrong
 
+* bug 4585 fixed - Scilab fails to build with intel C++ compiler 11.0.074 on Windows
