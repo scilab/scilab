@@ -250,3 +250,5 @@ Bug fixes:
 
 * bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
 
+* bug 4584 fixed - On Windows , home value was wrong
+

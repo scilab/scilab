@@ -39,8 +39,6 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 
 	BOOL bMalloc = FALSE;
 	wchar_t *wvar = to_wide_string(var);
-	//wchar_t wbuf[bsiz];
-
 	wchar_t *wbuf = _wgetenv(wvar);
 
 	*ierr = 0;
@@ -70,19 +68,6 @@ void C2F(getenvc)(int *ierr,char *var,char *buf,int *buflen,int *iflag)
 	{
 		FREE(wbuf);
 	}
-
-	/*
-	if (GetEnvironmentVariable(var, buf,(DWORD)*buflen) == 0)
-	{
-	if ( *iflag == 1 ) sciprint(_("Undefined environment variable %s.\n"),var);
-	*ierr=1;
-	}
-	else
-	{
-	*buflen = (int)strlen(buf);
-	*ierr=0;
-	}
-	*/
 #else
 	char *locale = NULL;
 	locale=getenv(var);
