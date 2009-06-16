@@ -29,4 +29,6 @@ int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
 
 int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _piItemDataset);
 
+int deleteListItemReferences(int _iDatasetId, void* _piItemRef);
+
 #endif /* !__H5_READDATATOFILE_H__ */

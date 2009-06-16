@@ -95,6 +95,8 @@ Online Help :
 =============
 
  - Sub-Chapters are now allowed (See SEP #24)
+ - xmltochm exports help to chm format (Windows)
+
 
 char encoding bugs :
 ====================
@@ -145,6 +147,8 @@ Bug fixes:
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
                    timer()
+
+* bug 3533 fixed - lib(dir_path) doesn't work if the final slash is missing in dir_path.
 
 * bug 3580 fixed - a gateway declaration containing a false primitive ID or gateway ID crashs scilab.
 
@@ -203,6 +207,8 @@ Bug fixes:
 
 * bug 4467 fixed - getshortpathname,getlongpathname do not manage string matrix as input
 
+* bug 4468 fixed - pathconvert(<path>,%F) should remove last trailing separator.
+
 * bug 4474 fixed - help of 'fort' is obsolete.
 
 * bug 4474 fixed - addinter help has no example.
@@ -245,4 +251,6 @@ Bug fixes:
 * bug 4548 fixed - with intel fortran, file unit opened in a external dll are not shared.
 
 * bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
+
+* bug 4584 fixed - On Windows , home value was wrong
 

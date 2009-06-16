@@ -25,6 +25,9 @@ extern "C"
 #include "h5_writeDataToFile.h"
 }
 
+#define PRINT_DEBUG
+int iLevel = 0;
+
 bool export_data(int _iH5File, int *_piVar, char* _pstName);
 bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
 bool export_double(int _iH5File, int *_piVar, char* _pstName);
@@ -105,6 +108,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	pstFilename = (char*)MALLOC((iRows * iCols + 1) * sizeof(char));//1 for null termination
 	getMatrixOfString(piAddr3, &iRows, &iCols, &iLen, &pstFilename);
 
+	iLevel = 0;
 	//open hdf5 file
 	int iH5File = createHDF5File(pstFilename); 
 
@@ -227,9 +231,10 @@ bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 	}
 
 	char pstMsg[256];
-	sprintf(pstMsg, "%s (list of %d items)", pstGroupName, iItemNumber);
+	sprintf(pstMsg, "list (%d)", iItemNumber);
 	print_type(pstMsg);
 
+	iLevel++;
 	//open list
 	void *pvList = openList(_iH5File, pstGroupName, iItemNumber);
 	for(int i = 0 ; i < iItemNumber ; i++)
@@ -258,6 +263,7 @@ bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType)
 		if(bReturn == false)
 			return false;
 	}
+	iLevel--;
 	closeList(_iH5File, pvList, _pstName, iItemNumber, _iVarType);
 	free(pstGroupName);
 	//close list
@@ -288,8 +294,8 @@ bool export_double(int _iH5File, int *_piVar, char* _pstName)
 		writeDoubleMatrix(_iH5File, _pstName, pdblReal, iRows, iCols);
 	}
 
-	char pstMsg[256];
-	sprintf(pstMsg, "%s (double matrix : %d x %d)", _pstName, iRows, iCols);
+	char pstMsg[512];
+	sprintf(pstMsg, "double (%d x %d)", iRows, iCols);
 	print_type(pstMsg);
 	return true;
 }
@@ -356,8 +362,8 @@ bool export_strings(int _iH5File, int *_piVar, char* _pstName)
 
 	writeStringMatrix(_iH5File, _pstName, pstData, iRows, iCols);
 
-	char pstMsg[256];
-	sprintf(pstMsg, "%s (string matrix : %d x %d)", _pstName, iRows, iCols);
+	char pstMsg[512];
+	sprintf(pstMsg, "string (%d x %d)", iRows, iCols);
 	print_type(pstMsg);
 
 	for(int i = 0 ; i < iRows * iCols ; i++)
@@ -394,7 +400,13 @@ bool export_lufact_pointer(int *_piVar, char* _pstName)
 
 void print_type(char* _pstType)
 {
-
+#ifdef PRINT_DEBUG
+	for(int i = 0 ; i < iLevel ; i++)
+	{
+		sciprint("\t");
+	}
+	sciprint("%s\n", _pstType);
+#endif
 }
 
 /*--------------------------------------------------------------------------*/

@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include "stack-def.h"
 #include "basout.h"
+#include "MALLOC.h"
 #include "../../../fileio/includes/diary.h"
 #include "sciprint.h"
 #include "../../../shell/includes/more.h"
@@ -33,7 +34,6 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 		{
 			if (string[i] == 0) string[i] = ' ';
 		}
-		if (string[nbcharacters] != 0 )  string[nbcharacters] = 0;
 	}
 
 	if (*lunit == C2F(iop).wte)
@@ -72,7 +72,35 @@ int C2F(basout)(int *io, int *lunit, char *string,long int nbcharacters)
 
 		if (string)
 		{
-			sciprint("%s\n", string);
+			if (nbcharacters > 1)
+			{
+				/* on linux , q=[] crashs with previous version 
+				  in printf.f line 102 
+				  call basout(io,lunit,'     []')
+				  if we do basout(io,lunit,'     []',7) it works ...
+				  temp workaround , we returns to old version with a allocation
+				*/
+				char *buffer = (char *)MALLOC(sizeof(char)*(nbcharacters+1));
+				if (buffer)
+				{
+					strncpy(buffer,string,nbcharacters);
+					buffer[nbcharacters]='\0';
+					sciprint("%s\n",buffer);
+					FREE(buffer); buffer = NULL;
+				}
+				else
+				{
+					sciprint("\n");
+				}
+			}
+			else if (nbcharacters == 1)
+			{
+				sciprint("%c\n", string[0]);
+			}
+			else
+			{
+				sciprint("\n");
+			}
 		}
 		else sciprint("\n");
 	} 

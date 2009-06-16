@@ -46,12 +46,12 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 
 	if (Rhs == 0)
 	{
-		unsigned long *paramoutINT=NULL;
-		unsigned long total=0;
-		unsigned long used=0;
-		paramoutINT=(unsigned long *)MALLOC(sizeof(unsigned long)*2);
+		int *paramoutINT=NULL;
+		int total=0;
+		int used=0;
+		paramoutINT=(int *)MALLOC(sizeof(int)*2);
 
-		C2F(getstackinfo)((int *)&total,(int *)&used);
+		C2F(getstackinfo)(&total,&used);
 		paramoutINT[0]=total;
 		paramoutINT[1]=used;
 
@@ -76,44 +76,46 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 				/* add 1 for alignment problems */
 				if ( is_a_valid_size_for_scilab_stack(MEMSTACKSIZE + 1) )
 				{
-					if ( (MEMSTACKSIZE>=MIN_STACKSIZE) && ((unsigned long)MEMSTACKSIZE<=get_max_memory_for_scilab_stack()) )
+					if ( (MEMSTACKSIZE>=MIN_STACKSIZE) && (MEMSTACKSIZE<=get_max_memory_for_scilab_stack()) )
 					{
-						unsigned long currentstacksize=0;
-						unsigned long used=0;
-/* 						/\* First, we do a stacksize('min') *\/ */
-/* 						{ */
-/* 							unsigned long ptr=0; */
-/* 							unsigned long memstacktotal=0; */
-/* 							unsigned long memstackused=0; */
-/* 							unsigned long newminstack=0; */
+						int currentstacksize=0;
+						int used=0;
+						/* First, we do a stacksize('min') */
+						{
+							unsigned long ptr=0;
+							int memstacktotal=0;
+							int memstackused=0;
+							int newminstack=0;
 
-/* 							C2F(getstackinfo)((int *)&memstacktotal,(int *)&memstackused); */
+							C2F(getstackinfo)(&memstacktotal,&memstackused);
 
-/* 							if (memstackused<MIN_STACKSIZE) */
-/* 							{ */
-/* 								newminstack = MIN_STACKSIZE; */
-/* 							} */
-/* 							else */
-/* 							{ */
-/* 								/\* Add 3000 security for the stack *\/ */
-/* 								newminstack = memstackused+3000; */
-/* 							} */
+							if (memstackused<MIN_STACKSIZE)
+							{
+								newminstack = MIN_STACKSIZE;
+							}
+							else
+							{
+								/* Add 3000 security for the stack */
+								newminstack = memstackused+3000;
+							}
 
-/* 							C2F(scimem)((int *)&newminstack,(int *)&ptr); */
-/* 							if (ptr) */
-/* 							{ */
-/* 								C2F(adjuststacksize)(&newminstack,&ptr); */
-/* 							} */
-/* 						} */
+							C2F(scimem)(&newminstack,&ptr);
+							if (ptr)
+							{
+								LhsVar(1) = 0;
+								C2F(putlhsvar)();
+								C2F(adjuststacksize)(&newminstack,&ptr);
+							}
+						}
 
 						/* Now, we adjust the stacksize to the required value */
-						C2F(getstackinfo)((int *)&currentstacksize,(int *)&used);
+						C2F(getstackinfo)(&currentstacksize,&used);
 
 						if (MEMSTACKSIZE != currentstacksize)
 						{
-							unsigned long ptr;
+							unsigned long ptr=0;
 
-							C2F(scimem)( (int *)&MEMSTACKSIZE,(int *)&ptr);
+							C2F(scimem)(&MEMSTACKSIZE,&ptr);
 							if (ptr) 
 								{
 									LhsVar(1) = 0;
@@ -168,18 +170,46 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 				{
 					unsigned long ptr=0;
 
-					unsigned long memstacktotal=0;
-					unsigned long memstackused=0;
-					unsigned long memgstacktotal=0;
-					unsigned long memgstackused=0;
+					int memstacktotal=0;
+					int memstackused=0;
+					int memgstacktotal=0;
+					int memgstackused=0;
 
-					unsigned long newmaxstack=0;
+					int newmaxstack=0;
 
 					unsigned long memmaxavailablebyscilab=get_max_memory_for_scilab_stack();
 					unsigned long maxmemfree=(GetLargestFreeMemoryRegion())/sizeof(double);
+					
+					/* First, we do a stacksize('min') */
+					{
+					          int ptr=0;
+						  int memstacktotal=0;
+						  int memstackused=0;
+						  int newminstack=0;
+						  
+						  C2F(getstackinfo)(&memstacktotal,&memstackused);
+						  
+						  if (memstackused<MIN_STACKSIZE)
+						    {
+						             newminstack = MIN_STACKSIZE;
+						    }
+						  else
+						    {
+						             /* Add 3000 security for the stack */
+						             newminstack = memstackused+3000;
+						    }
+						  
+						  C2F(scimem)(&newminstack,&ptr);
+						  if (ptr)
+						    {
+						             LhsVar(1) = 0;
+						             C2F(putlhsvar)();
+						             C2F(adjuststacksize)(&newminstack,&ptr);
+						    }
+					}
 
-					C2F(getstackinfo)((int *)&memstacktotal,(int *)&memstackused);
-					C2F(getgstackinfo)((int *)&memgstacktotal,(int *)&memgstackused);
+					C2F(getstackinfo)(&memstacktotal,&memstackused);
+					C2F(getgstackinfo)(&memgstacktotal,&memgstackused);
 
 					if (maxmemfree <= (unsigned long)memstacktotal)
 					{
@@ -200,7 +230,7 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 						newmaxstack = MIN_STACKSIZE;
 					}
 
-					C2F(scimem)((int *)&newmaxstack,(int *)&ptr);
+					C2F(scimem)(&newmaxstack,&ptr);
 					if (ptr)
 					{
 						LhsVar(1) = 0;
@@ -217,11 +247,11 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 				else if ( strcmp("min",param) == 0 )
 				{
 					unsigned long ptr=0;
-					unsigned long memstacktotal=0;
-					unsigned long memstackused=0;
-					unsigned long newminstack=0;
+					int memstacktotal=0;
+					int memstackused=0;
+					int newminstack=0;
 
-					C2F(getstackinfo)((int *)&memstacktotal,(int *)&memstackused);
+					C2F(getstackinfo)(&memstacktotal,&memstackused);
 
 					if (memstackused<MIN_STACKSIZE)
 					{
@@ -233,12 +263,12 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 						newminstack = memstackused+3000;
 					}
 
-					C2F(scimem)((int *)&newminstack,(int *)&ptr);
+					C2F(scimem)(&newminstack,&ptr);
+
 					if (ptr)
 					{
 						LhsVar(1) = 0;
 						C2F(putlhsvar)();
-
 						C2F(adjuststacksize)(&newminstack,&ptr);
 						return 0;
 					}
