@@ -186,6 +186,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("\"generate.toc= \"");
+			specificArgs.add("use.id.as.filename=1");
 			this.styleDoc = docbookPath + "/javahelp/javahelp.xsl";
 		}
 		this.format = format;

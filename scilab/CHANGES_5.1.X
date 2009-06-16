@@ -67,8 +67,6 @@ Help & Tests:
 
 * Online help XML files have been converted into UTF-8
 
-* Documentation of rpem function modified (XML)
-
 Bug fixes:
 ==========
 
@@ -138,6 +136,9 @@ Bug fixes:
  * bug 4546 fixed - Error message added for linpro function (moved to an external function).
  
  * bug 4551 fixed - menus can return a error in GUI mode (error 2 Invalid factor)
+
+ * bug 4580 fixed - rpem documentation made more accurate
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
