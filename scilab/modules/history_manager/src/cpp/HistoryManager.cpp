@@ -27,6 +27,7 @@ extern "C"
 	#include "inffic.h"
 	#include "InitializeHistoryManager.h"
 	#include "TerminateHistoryManager.h"
+	#include "freeArrayOfString.h"
 };
 /*------------------------------------------------------------------------*/
 #define MAXBUF	1024
@@ -201,21 +202,7 @@ int getSizeAllLinesOfScilabHistory(void)
 
 	if (ScilabHistory) lines = ScilabHistory->getAllLines(&nbElements);
 
-	if (lines)
-	{
-		int i = 0;
-
-		for (i=0;i < nbElements;i++)
-		{
-			if (lines[i])
-			{
-				FREE(lines[i]);
-				lines[i]=NULL;
-			}
-		}
-		FREE(lines);
-		lines=NULL;
-	}
+	freeArrayOfString(lines, nbElements);
 
 	return nbElements;
 }

@@ -23,6 +23,7 @@ extern "C"
 #include "variable_api.h"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
+#include "freeArrayOfString.h"
 }
 
 #define PRINT_DEBUG
@@ -366,11 +367,7 @@ bool export_strings(int _iH5File, int *_piVar, char* _pstName)
 	sprintf(pstMsg, "string (%d x %d)", iRows, iCols);
 	print_type(pstMsg);
 
-	for(int i = 0 ; i < iRows * iCols ; i++)
-	{
-		FREE(pstData[i]);
-	}
-	FREE(pstData);
+	freeArrayOfString(pstData, iRows * iCols);
 	return true;
 }
 

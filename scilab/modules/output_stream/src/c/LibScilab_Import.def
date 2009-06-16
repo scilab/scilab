@@ -35,4 +35,5 @@ overload_
 vartype_ 
 getRecursionFunctionToCall
 isRecursionCallToFunction
+freeArrayOfString
 ;
