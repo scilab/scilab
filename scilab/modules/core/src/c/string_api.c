@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
@@ -39,7 +39,7 @@ int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLengt
 	{
 		return 1;
 	}
-	
+
 	getVarDimension(_piAddress, _piRows, _piCols);
 
 	if(_piLength == NULL)
@@ -90,7 +90,7 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, 
 	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
 	*_piAddress = piAddr;
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 5 + _iRows * _iCols));
-	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols), iTotalLen / (sizeof(double) / sizeof(int)));
+	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2)), (iTotalLen + 1) / (sizeof(double) / sizeof(int)));
 	return 0;
 }
 
@@ -144,7 +144,7 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
 
 	//update "variable index"
-	
+
 	updateLstk(Top, sadr(iadr(*Lstk(Top)) + 5 + _iRows * _iCols), iTotalLen);
 
 	Rhs = 0;
@@ -166,7 +166,7 @@ int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _p
 
 	//define scope of search
   Fin = -1;
-	//search variable 
+	//search variable
   C2F(stackg)(iVarID);
 
 	if (Err > 0 || Fin == 0)
@@ -181,7 +181,7 @@ int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _p
 	//get variable address
 	//WARNING check in VarType can be negative
 	getNewVarAddressFromNumber(Fin, &piAddr);
-	
+
 	return getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
 }
 /*--------------------------------------------------------------------------*/
