@@ -824,6 +824,7 @@ static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _pi
 		for(iIndex = 0 ; iIndex < iItem ; iIndex++)
 		{
 			int *piChild = NULL;
+			int iRet = 0;
 			getListItemAddress(_piStart, iIndex + 1, &piChild);
 			if(piChild == _piToFind)
 			{
@@ -835,7 +836,6 @@ static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _pi
 				return 1;
 			}
 
-			int iRet = 0;
 			iRet = getParentList(piChild, _piToFind, _piDepth, _piParent);
 			if(iRet != 0)
 			{//find a child
