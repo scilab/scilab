@@ -96,6 +96,12 @@ write('foo',A)
     <title>See Also</title>
     <simplelist type="inline">
       <member>
+        <link linkend="read">read</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
         <link linkend="file">file</link>
       </member>
       <member>
@@ -103,9 +109,6 @@ write('foo',A)
       </member>
       <member>
         <link linkend="writb">writb</link>
-      </member>
-      <member>
-        <link linkend="read">read</link>
       </member>
       <member>
         <link linkend="print">print</link>

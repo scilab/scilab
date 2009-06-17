@@ -111,13 +111,16 @@ read(%io(1),1,1,'(a)')  // waits for user's input
     <title>See Also</title>
     <simplelist type="inline">
       <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="write">load</link>
+      </member>
+      <member>
         <link linkend="file">file</link>
       </member>
       <member>
         <link linkend="readb">readb</link>
-      </member>
-      <member>
-        <link linkend="write">write</link>
       </member>
       <member>
         <link linkend="x_dialog">x_dialog</link>
