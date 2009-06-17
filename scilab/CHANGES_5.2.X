@@ -165,6 +165,8 @@ Bug fixes:
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
+* bug 4110 fixed - Demos order differs between Linux and Windows versions
+
 * bug 4181 fixed - remove the AdCommunications help page
 
 * bug 4262 fixed - lines returns incorrect values.
