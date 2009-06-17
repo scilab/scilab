@@ -297,7 +297,7 @@ public class BuildDocObject extends StyleSheet {
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}
-		args.add("-t");
+		//args.add("-t");
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);

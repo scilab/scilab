@@ -13,6 +13,7 @@
 #include "stack-c.h"
 #include "librarieslist.h"
 #include "MALLOC.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_librarieslist)(char *fname,unsigned long fname_len)
 {
@@ -35,22 +36,10 @@ int C2F(sci_librarieslist)(char *fname,unsigned long fname_len)
 		int m = 0, n = 0, l = 0;
 		CreateVarFromPtr(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&n,&m,&l);
 	}
+
 	LhsVar(1) = Rhs+1;
 
-	if (libraries)
-	{
-		int i = 0;
-		for (i=0;i < sizelibraries;i++) 
-		{ 
-			if (libraries[i])
-			{
-				FREE(libraries[i]);
-				libraries[i]=NULL; 
-			}
-		}
-		FREE(libraries);
-		libraries = NULL; 
-	}
+	freeArrayOfString(libraries, sizelibraries);
 	
 	C2F(putlhsvar)();
 	return 0;

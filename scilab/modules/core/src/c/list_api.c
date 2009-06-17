@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
@@ -181,7 +181,7 @@ int fillCommonList(int* _piAddress, int _iListType, int _iNbItem)
 	piOffset		= _piAddress + 2;
 	piOffset[0]	= 1; //always
 
-	for(i = 0 ; i < _iNbItem ; i++)
+	for(i = 0 ; i < _iNbItem; i++)
 	{//initialize item offset
 		piOffset[i + 1] = -1;
 	}
@@ -342,7 +342,7 @@ static int allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItem
 {
 	int iNewPos				= Top - Rhs + _iVar;
 	int* piEnd				= NULL;
-	
+
 	fillCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 
 	piEnd = (int*) (*_pdblReal + _iRows * _iCols * (_iComplex + 1));
@@ -367,6 +367,7 @@ static int fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemP
 	{
 		return 1;
 	}
+
 
 	iRet = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
 	if(iRet)
@@ -428,7 +429,7 @@ int createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, i
 	double *pdblImg		= NULL;
 
 	int iRet = 0;
-	
+
 	iRet = allocCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(iRet)
 	{
@@ -521,7 +522,7 @@ static int createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int 
 	int* piOffset			= NULL;
 	//int* piAddr				= NULL;
 	int* piChildAddr	= NULL;
-	
+
 	//Does item can be added in the list
 	getListItemNumber(_piParent, &iNbItem);
 	if(iNbItem < _iItemPos)
@@ -737,7 +738,7 @@ int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParen
 	Top = iSaveTop;
   Rhs = iSaveRhs;
 
-	
+
 	return 0;
 }
 
@@ -745,16 +746,6 @@ int readMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent,
 {
 	return 0;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -768,29 +759,34 @@ static void updateOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_pi
 	int iNewPos				= Top - Rhs + _iVar;
 	int *piRoot				= istk(iadr(*Lstk(iNewPos)));
 	int iDepth				= 1; //we are already in a list
+	int iMaxDepth			= 0; //we are already in a list
 	int iLastChild		= 0;
 	int **piParent			= NULL;
 	int iItemPos			= 0;
 
 	getParentList(piRoot, _piCurrentNode, &iDepth, NULL);
 	piParent = (int**)MALLOC(sizeof(int*) * iDepth);
+	iMaxDepth = iDepth;
 	iDepth = 1;
 	piParent[0] = piRoot;
 	getParentList(piRoot, _piCurrentNode, &iDepth, piParent);
-	for(i = iDepth - 2 ; i >= 0 ; i--)
+	for(i = iMaxDepth - 2 ; i >= 0 ; i--)
 	{
 		int j					=	0;
 		int iItem			= piParent[i][1];
 		int *piOffset = piParent[i] + 2;
 		int *piData		= piOffset + iItem + 1 + !(iItem % 2);
 
-		//chek only if the last item is the good one
+		//for all nodes
 		for(j = 0 ; j < iItem ; j++)
 		{
 			int* piItem = piData + ((piOffset[j] - 1) * 2);
+
 			if(piItem == piParent[i + 1])
 			{
-				piOffset[j + 1] = piOffset[j] + ((int)(_piEnd - piItem) + 1) / 2;
+				int iOffset = 0;
+				iOffset		= piOffset[j] + (int)((_piEnd - piItem + 1) / 2);
+				piOffset[j + 1] = iOffset;
 			}
 			//else
 			//{
@@ -800,6 +796,8 @@ static void updateOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_pi
 			//}
 		}
 	}
+
+	FREE(piParent);
 }
 
 static void closeList(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
@@ -826,25 +824,29 @@ static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _pi
 		for(iIndex = 0 ; iIndex < iItem ; iIndex++)
 		{
 			int *piChild = NULL;
+			int iRet = 0;
 			getListItemAddress(_piStart, iIndex + 1, &piChild);
-			if(_piParent != NULL)
-			{
-				_piParent[*_piDepth - 1] = piChild;
-			}
-
 			if(piChild == _piToFind)
 			{
+				if(_piParent != NULL)
+				{
+					_piParent[*_piDepth - 1] = piChild;
+					*_piDepth -= 1;
+				}
 				return 1;
 			}
-			else
-			{
-				int iRet = 0;
-				iRet = getParentList(piChild, _piToFind, _piDepth, _piParent);
-				if(iRet != 0)
-				{//find a child
-					return 1;
+
+			iRet = getParentList(piChild, _piToFind, _piDepth, _piParent);
+			if(iRet != 0)
+			{//find a child
+				if(_piParent != NULL)
+				{
+					_piParent[*_piDepth - 1] = piChild;
+					*_piDepth -= 1;
 				}
+				return 1;
 			}
+
 		}
 		*_piDepth -= 1;
 	}

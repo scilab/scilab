@@ -165,6 +165,8 @@ Bug fixes:
 
 * bug 4090 fixed - draw does not work any more while inside drawlater/drawnow scope.
 
+* bug 4110 fixed - Demos order differs between Linux and Windows versions
+
 * bug 4181 fixed - remove the AdCommunications help page
 
 * bug 4262 fixed - lines returns incorrect values.
@@ -254,3 +256,4 @@ Bug fixes:
 
 * bug 4584 fixed - On Windows , home value was wrong
 
+* bug 4585 fixed - Scilab fails to build with intel C++ compiler 11.0.074 on Windows

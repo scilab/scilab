@@ -44,6 +44,7 @@
 #include "get_ticks_utils.h"
 #include "BuildObjects.h"
 #include "HandleManagement.h"
+#include "freeArrayOfString.h"
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
@@ -687,12 +688,7 @@ void destroyGraphicPointer(void * pointer)
  */
 void destroyGraphicStringArray(char ** strArray, int nbStrings)
 {
-  int i;
-  for (i = 0; i < nbStrings; i++)
-  {
-    FREE(strArray[i]);
-  }
-  FREE(strArray);
+	freeArrayOfString(strArray,nbStrings);
 }
 /*--------------------------------------------------------------------------------*/
 void destroyRelationShip(sciPointObj * pObj)
