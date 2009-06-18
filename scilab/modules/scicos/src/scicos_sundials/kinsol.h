@@ -62,6 +62,8 @@ extern "C" {
 #define KIN_REPTD_SYSFUNC_ERR   -15
 #define KIN_NAN_ERR             -16
 
+/* disables fprintf output */
+#define	NO_FPRINTF_OUTPUT 1
 
   /*
    * -----------------------------------------------------------------

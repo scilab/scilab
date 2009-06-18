@@ -1816,7 +1816,8 @@ void KINInfoHandler(const char *module, const char *function,
   /* data points to kin_mem here */
 
   kin_mem = (KINMem) data;
-  
+
+
 #ifndef NO_FPRINTF_OUTPUT
   fprintf(infofp,"\n[%s] %s\n",module, function);
   fprintf(infofp,"   %s\n",msg);
@@ -1915,5 +1916,7 @@ void KINErrHandler(int error_code, const char *module,
 
   return;
 }
- 
+
+
+ 
  
