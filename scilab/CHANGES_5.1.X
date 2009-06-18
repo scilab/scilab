@@ -82,6 +82,8 @@ Bug fixes:
  * bug 3264 fixed - More explicit message when too many files have been
 		    	  	opened.
 
+ * bug 3422 fixed - the keyword for history search was not updatable
+
  * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
 
  * bug 3612 fixed - history manager doesn't work at startup
