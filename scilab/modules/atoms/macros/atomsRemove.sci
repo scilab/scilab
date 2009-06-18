@@ -154,7 +154,7 @@ function result = atomsRemove(packages,allusers)
 				
 				// If this dependence is automatically installed, add it to the
 				// list of package to uninstall
-				packagesToUninstall_B = [ packagesToUninstall_B ; atomsGetInstalledDetails(this_package_deps(k,1) , this_package_deps(k,2)) ];
+				packagesToUninstall_B = [ packagesToUninstall_B ; atomsGetInstalledDetails(this_package_parent_deps(k,1) , this_package_parent_deps(k,2)) ];
 				
 			end
 			

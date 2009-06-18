@@ -30,6 +30,14 @@ function packages = atomsGetTOOLBOXES(update)
 		LINUX  = %F;
 	end
 	
+	if MSDOS then
+		OSNAME = "windows";
+	elseif LINUX then
+		OSNAME = "linux";
+	elseif MACOSX then
+		OSNAME = "macosx";
+	end
+	
 	// Architecture
 	[dynamic_info,static_info] = getdebuginfo();
 	arch_info  = static_info(grep(static_info,"/^Compiler Architecture:/","r"))
