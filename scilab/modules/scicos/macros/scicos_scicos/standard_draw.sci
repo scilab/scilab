@@ -170,7 +170,7 @@ function standard_draw (o, frame, draw_ports, up)
 //** --------------------------------------------------------------------------------------------------------------
 
 //** --------------------------------- draw gr_i ---------------------------------
-  o_size=size(gh_curwin.children.children)
+  o_size=size(gh_axes.children)
   deff('c=scs_color(c)',' ') ; //** on line function definition
   gr_i = [gr_i]; //** simple but not simpler :)
   model = o.model
