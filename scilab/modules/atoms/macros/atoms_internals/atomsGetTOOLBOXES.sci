@@ -90,7 +90,7 @@ function packages = atomsGetTOOLBOXES(update)
 			end
 			
             if MSDOS then
-                download_cmd = pathconvert(SCI+"/tools/curl/curl.exe",%F)+" -s "+url + " -O " + file_out;
+                download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url + " -O " + file_out;
             else
                 download_cmd = "wget "+url + " -O " + file_out;
             end

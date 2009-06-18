@@ -217,7 +217,7 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		
         if MSDOS then
-            download_cmd = pathconvert(SCI+"/tools/curl/curl.exe",%F)+" -s "+url + " -O " + file_out;
+            download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url + " -O " + file_out;
         else
             download_cmd = "wget "+url + " -O " + file_out;
         end
@@ -246,26 +246,33 @@ function result = atomsInstall(packages,allusers)
 		// get the list of directories before unarchive
 		dir_list_before = atomsListDir();
 		
-		if regexp(fileout,"/\.tar\.gz$/","o") <> [] then
-			
-			[rep,stat,err] = unix_g("tar xzf "+ fileout + " -C "+ atoms_directory );
-			
-			if stat ~= 0 then
-				disp("tar xzf "+ fileout + " -C "+ atoms_directory);
-				disp(err);
-			end
+		if ( LINUX | MACOSX ) & regexp(fileout,"/\.tar\.gz$/","o") <> [] then
+            
+            extract_cmd = "tar xzf "+ fileout + " -C """+ atoms_directory + """";
 			
 		elseif regexp(fileout,"/\.zip$/","o") <> [] then
 			
-			[rep,stat,err] = unix_g("unzip "+ fileout);
+            if MSDOS then
+                extract_cmd = """" + pathconvert(SCI+"/tools/zip/unzip.exe",%F) + """";
+            else
+                extract_cmd = "unzip";
+            end
 			
-			if stat ~= 0 then
-				disp("unzip "+ fileout);
-				disp(err);
-			end
-			
-		end
+            extract_cmd = extract_cmd + " -q " + fileout + " -d """ + atoms_directory + """";
+            
+		else
+            error(msprintf(gettext("%s: internal error, the archive ""%s"" cannot be extracted on this operating system.\n"),"atomsInstall",fileout));
+        
+        end
 		
+        [rep,stat,err] = unix_g(extract_cmd);
+        
+        if stat ~= 0 then
+            disp(extract_cmd);
+            disp(err);
+            error(msprintf(gettext("%s: internal error, the extraction of the archive ""%s"" has failed.\n"),"atomsInstall",fileout));
+        end
+        
 		// get the list of directories after unarchive
 		dir_list_after = atomsListDir();
 		
