@@ -83,6 +83,8 @@ Bug fixes:
 
  * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
 
+ * bug 3612 fixed - history manager doesn't work at startup
+
  * bug 4101 fixed - -ns option wasn't clearly explaining that it is 
 			disabling many Scilab features
 
