@@ -14,6 +14,7 @@
 
 @SET_MAKE@
 
+# -*- Makefile -*-
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006
@@ -325,8 +326,8 @@ PCRE_VERSION = @PCRE_VERSION@
 PKG_CONFIG = @PKG_CONFIG@
 POSUB = @POSUB@
 POW_LIB = @POW_LIB@
-PVMARCH = @PVMARCH@
 PVMGETARCH = @PVMGETARCH@
+PVM_ARCH = @PVM_ARCH@
 PVM_ENABLE = @PVM_ENABLE@
 PVM_INCLUDE = @PVM_INCLUDE@
 PVM_LIB = @PVM_LIB@
@@ -469,11 +470,17 @@ top_srcdir = @top_srcdir@
 @PVM_TRUE@sci_gateway/c/sci_pvm_exit.c
 
 @PVM_FALSE@libscipvm_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/includes/
-@PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  -I$(top_srcdir)/modules/output_stream/includes/
+@PVM_TRUE@libscipvm_la_CFLAGS = -I$(srcdir)/includes/ \
+@PVM_TRUE@	-I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  \
+@PVM_TRUE@	-I$(top_srcdir)/modules/output_stream/includes/ \
+@PVM_TRUE@	-I$(top_srcdir)/modules/io/includes/ \
+@PVM_TRUE@	-I$(top_srcdir)/modules/fileio/includes/ \
+@PVM_TRUE@	$(PVM_INCLUDE)
+
 @PVM_FALSE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_TRUE@pkglib_LTLIBRARIES = libscipvm.la
 @PVM_FALSE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
-@PVM_TRUE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB) lgpvm3
+@PVM_TRUE@libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
 @PVM_FALSE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 @PVM_TRUE@libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
