@@ -86,18 +86,13 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   
   [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
 			   typ_l,typ_zx,outoin,outoinptr,clkptr)
- mprintf('ll1\n')
   [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,typ_r,..
 				 typ_l,outoin,outoinptr,tblock,typ_cons,clkptr)
-
- mprintf('ll2\n')
 
 
   [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
    dep_uptr,corinv,clkptr,cliptr,critev,ok]=paksazi2(typ_l,clkconnect,..
 	connectmat,bllst,dep_t,dep_u,dep_uptr,corinv,clkptr,cliptr,critev)
- mprintf('ll3\n')
-
 
   if ~ok then 
     cpr=list()
@@ -110,7 +105,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   end
 
   if show_trace then disp('c_pass31:'+string(timer())),end
- mprintf('ll4\n')
 
   //extract various info from bllst
   [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
@@ -136,7 +130,6 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   if show_trace then disp('c_pass50:'+string(timer())),end
   
   [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
- mprintf('ll7\n')
 
   clkconnect=[];exe_cons=[]
 
