@@ -25,7 +25,7 @@ import com.artenum.rosetta.interfaces.core.HistoryManager;
  */
 public class SciHistoryManager implements HistoryManager {
 
-	private boolean isInHistory = true;
+	private boolean isInHistory = false;
 
 	/**
 	 * Constructor
