@@ -12,8 +12,8 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
-* Patches applied (see bug #4506 & #4517) by Dan McMahill which fixes some
-  minor compile time problems under NetBSD:
+* Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill which fixes 
+  some minor compile time problems under NetBSD:
   		- adds some missing $host to the 64 bit list.  
 		- added a needed compiler flag for alpha-*-netbsd
 		- added autoconf check for term.h header
@@ -39,6 +39,7 @@ Compilation:
 		- adds missing enable_keypad_mode()
 		- use configure results to protect the inclusion of curses.h, 
 		  ncurses.h, term.h, and termcap.h.
+		- Large amounts of cleanup of the PVM configure code
 
 * automake version changed (1.10.1 => 1.10.2)
 
