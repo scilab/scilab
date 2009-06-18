@@ -89,13 +89,19 @@ function packages = atomsGetTOOLBOXES(update)
 				mdelete(file_out);
 			end
 			
-			[rep,stat,err] = unix_g("wget "+url + " -O " + file_out)
+            if MSDOS then
+                download_cmd = pathconvert(SCI+"/tools/curl/curl.exe",%F)+" -s "+url + " -O " + file_out;
+            else
+                download_cmd = "wget "+url + " -O " + file_out;
+            end
+            
+			[rep,stat,err] = unix_g(download_cmd)
 			if stat == 0 then
 				// Download successfull
 				nb_TOOLBOXES = nb_TOOLBOXES + 1;
 				TOOLBOXES    = [ TOOLBOXES ; file_out ];
 			else
-				disp("wget "+url + " -O " + file_out);
+				disp(download_cmd);
 				disp(err);
 			end
 		end

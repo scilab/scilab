@@ -216,10 +216,16 @@ function result = atomsInstall(packages,allusers)
 		// Get the package
 		// =====================================================================
 		
-		[rep,stat,err] = unix_g("wget "+filein + " -O " + fileout)
+        if MSDOS then
+            download_cmd = pathconvert(SCI+"/tools/curl/curl.exe",%F)+" -s "+url + " -O " + file_out;
+        else
+            download_cmd = "wget "+url + " -O " + file_out;
+        end
+        
+		[rep,stat,err] = unix_g(download_cmd)
 		
 		if stat ~= 0 then
-			disp("wget "+ filein + " -O " + fileout);
+			disp(download_cmd);
 			disp(err);
 		end
 		
