@@ -1,3 +1,4 @@
+# -*- Makefile -*-
 ##########
 ### Sylvestre Ledru <sylvestre.ledru@inria.fr>
 ### INRIA - Scilab 2006
@@ -50,11 +51,16 @@ sci_gateway/c/sci_pvm_config.c \
 sci_gateway/c/sci_pvm_recv_var.c \
 sci_gateway/c/sci_pvm_exit.c
 
-libscipvm_la_CFLAGS=  -I$(srcdir)/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  -I$(top_srcdir)/modules/output_stream/includes/
+libscipvm_la_CFLAGS=  -I$(srcdir)/includes/ \
+	-I$(top_srcdir)/libs/MALLOC/includes/ -I$(srcdir)/src/c/  \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/io/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	$(PVM_INCLUDE)
 
 pkglib_LTLIBRARIES = libscipvm.la
 
-libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB) lgpvm3
+libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
