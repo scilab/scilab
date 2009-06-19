@@ -19,10 +19,12 @@
 
 #include "common_api.h"
 #include "internal_common_api.h"
-#include "list_api.h"
 #include "internal_double_api.h"
 #include "internal_string_api.h"
+#include "internal_boolean_api.h"
+#include "list_api.h"
 #include "string_api.h"
+#include "boolean_api.h"
 
 
 //internal functions
@@ -36,7 +38,7 @@ static int readCommonNamedList(char* _pstName, int _iNameLen, int _iListType, in
 static int fillCommonList(int* _piAddress, int _iListType, int _iNbItem);
 static int isKindOfList(int* _piNode);
 static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _piParent);
-static void closeList(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
+static void closeList(int _iVar, int *_piEnd);
 static void updateOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd);
 
 static int allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
@@ -45,7 +47,9 @@ static int createCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iIte
 static int fillCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 static int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iComplex, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 static int readCommonMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, double* _pdblReal, double* _pdblImg);
-static int	allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr);
+static int allocCommonItemInList(int* _piParent, int _iItemPos, int** _piChildAddr);
+static int fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
+
 
 int fillCommonMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen);
 
@@ -167,6 +171,8 @@ static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAd
 
 	*_piAddress	= piAddr;
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 2 + _iNbItem + 1 + !(_iNbItem % 2)));
+	closeList(iNewPos, piAddr + 2 + _iNbItem + 1 + !(_iNbItem % 2));
+
 	return 0;
 }
 
@@ -346,7 +352,7 @@ static int allocCommonMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItem
 	fillCommonMatrixOfDoubleInList(_iVar, _piParent, _iItemPos, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 
 	piEnd = (int*) (*_pdblReal + _iRows * _iCols * (_iComplex + 1));
-	closeList(iNewPos, _piParent, _iItemPos, piEnd);
+	closeList(iNewPos, piEnd);
 	return 0;
 }
 
@@ -489,7 +495,7 @@ int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _p
 	}
 
 	piEnd = (int*) (pdblReal + _iRows * _iCols * (_iComplex + 1));
-	closeList(Top, _piParent, _iItemPos, piEnd);
+	closeList(Top, piEnd);
 
 	Top = iSaveTop;
   Rhs = iSaveRhs;
@@ -543,6 +549,17 @@ static int createCommonListInList(int _iVar, int* _piParent, int _iItemPos, int 
 	}
 
 	*_piAddress = piChildAddr;
+	closeList(iNewPos, piChildAddr + 2 + _iNbItem + 1 + !(_iNbItem % 2));
+
+	if(_iNbItem == 0)
+	{//for empty list
+		int *piOffset				= _piParent + 2;
+		int* piEnd					= piChildAddr + 4;
+
+		piOffset[_iItemPos] = piOffset[_iItemPos - 1] + 2;
+		updateOffset(_iVar, _piParent, _iItemPos, piEnd);
+	}
+
 	return 0;
 }
 
@@ -642,7 +659,7 @@ int getMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int* _piRo
 }
 
 
-int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int** _piAddress)
+int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings)
 {
 	int iRet					= 0;
 	int iNbItem				= 0;
@@ -665,7 +682,7 @@ int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iR
 	}
 
 	piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols + !((iTotalLen + _iRows * _iCols) % 2);
-	closeList(iNewPos, _piParent, _iItemPos, piEnd);
+	closeList(iNewPos, piEnd);
 	return 0;
 }
 
@@ -733,7 +750,7 @@ int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParen
 	}
 
 	piEnd = piItemAddr + iTotalLen + 5 + _iRows * _iCols;
-	closeList(Top, _piParent, _iItemPos, piEnd);
+	closeList(Top, piEnd);
 
 	Top = iSaveTop;
   Rhs = iSaveRhs;
@@ -747,8 +764,96 @@ int readMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent,
 	return 0;
 }
 
+int getMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
+{
+	int iRet			= 0;
+	int* piAddr		= NULL;
+
+	iRet = getListItemAddress(_piParent, _iItemPos, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = getMatrixOfBoolean(piAddr, _piRows, _piCols, _piBool);
+	if(iRet)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+int createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
+{
+	int *piBool			= NULL;
+
+	int iRet = 0;
+
+	iRet = allocMatrixOfBooleanInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, &piBool);
+	if(iRet)
+	{
+		return 1;
+	}
+	if(_piBool != NULL)
+	{
+		memcpy(piBool, _piBool, _iRows * _iCols * sizeof(int));
+	}
+	return 0;
+}
+
+int allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
+{
+	int iNewPos				= Top - Rhs + _iVar;
+	int* piEnd				= NULL;
+
+	fillMatrixOfBoolInList(_iVar, _piParent, _iItemPos, _iRows, _iCols, _piBool);
+
+	piEnd = *_piBool + _iRows * _iCols;
+	closeList(iNewPos, piEnd);
+	return 0;
+}
+
+static int fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool)
+{
+	int i							= 0;
+	int iRet					= 0;
+	int iNbItem				= 0;
+	int iNewPos				= Top - Rhs + _iVar;
+	int iAddr					= *Lstk(iNewPos);
+	int* piEnd				= NULL;
+	int* piOffset			= NULL;
+	int* piChildAddr	= NULL;
+
+	//Does item can be added in the list
+	getListItemNumber(_piParent, &iNbItem);
+	if(iNbItem < _iItemPos)
+	{
+		return 1;
+	}
 
 
+	iRet = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = fillMatrixOfBoolean(piChildAddr, _iRows, _iCols, _piBool);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piOffset						= _piParent + 2;
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + ((3 + _iRows * _iCols + !((_iRows * _iCols) % 2)) / 2);
+
+	piEnd	=	piChildAddr + 3 + _iRows * _iCols + !((_iRows * _iCols) % 2);
+	if(_iItemPos == iNbItem)
+	{
+		updateOffset(_iVar, _piParent, _iItemPos, piEnd);
+	}
+	return 0;
+}
 
 
 //internal tool functions
@@ -800,7 +905,7 @@ static void updateOffset(int _iVar, int *_piCurrentNode, int _iItemPos, int *_pi
 	FREE(piParent);
 }
 
-static void closeList(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd)
+static void closeList(int _iVar, int *_piEnd)
 {
 	//Get Root address;
 	int *piRoot				= istk(iadr(*Lstk(_iVar)));
@@ -816,6 +921,7 @@ static void closeList(int _iVar, int *_piCurrentNode, int _iItemPos, int *_piEnd
 
 static int getParentList(int* _piStart, int* _piToFind, int* _piDepth, int** _piParent)
 {
+	int iRet = 0;
 	if(isKindOfList(_piStart))
 	{
 		int iItem	= _piStart[1];

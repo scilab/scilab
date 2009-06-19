@@ -38,12 +38,13 @@ void print_tree(char* _pstMsg);
 int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress);
 int import_double(int _iDatasetId, int _iItemPos, int* _piAddress);
 int import_string(int _iDatasetId, int _iItemPos, int* _piAddress);
+int import_boolean(int _iDatasetId, int _iVarType, int* _piAddress);
 int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
 
-	CheckRhs(1,1);
+	//CheckRhs(1,1);
 	CheckLhs(1,1);
 	int iRows						= 0;
 	int iCols						= 0;
@@ -51,6 +52,14 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	int* piAddr					= NULL;
 	char *pstVarName		= NULL;
 
+	/*debug only*/
+	int* piAddr2				= NULL;
+	if(Rhs > 1)
+	{
+		getVarAddressFromNumber(2, &piAddr2);
+	}
+	int* piAddrOut				= NULL;
+	getVarAddressFromNumber(Rhs + 1, &piAddrOut);
 
 	getVarAddressFromNumber(1, &piAddr);
 
@@ -110,22 +119,40 @@ int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress)
 			import_list(_iDatasetId, iVarType, _iItemPos, _piAddress);
 			break;
 		}
+	case sci_boolean :
+		{
+			import_boolean(_iDatasetId, _iItemPos, _piAddress);
+			break;
+		}
+	default : 
+		{
+			char pstMsg[512];
+			sprintf(pstMsg, "Unknow type : %d", iVarType);
+			print_tree(pstMsg);
+		}
 	}
 	return 0;
 }
 
 int import_double(int _iDatasetId, int _iItemPos, int* _piAddress)
 {
-	int	iRows, iCols;
+	double *pdblData = NULL;
+	int	iRows = 0;
+	int iCols = 0;
 	getDataSetDims(_iDatasetId, &iRows, &iCols);
 
-	double *pdblData = (double *) malloc(iRows * iCols * sizeof(double));
-	readDoubleMatrix(_iDatasetId, pdblData, iRows, iCols);
+
+	if(iRows * iCols != 0)
+	{
+		pdblData = (double *) malloc(iRows * iCols * sizeof(double));
+		readDoubleMatrix(_iDatasetId, pdblData, iRows, iCols);
+	}
+
+
 
 	if(_piAddress == NULL)
 	{
-		int *piAddr;
-		createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblData, &piAddr);
+		createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblData);
 	}
 	else //if not null this variable is in a list
 	{
@@ -136,7 +163,11 @@ int import_double(int _iDatasetId, int _iItemPos, int* _piAddress)
 	sprintf(pstMsg, "double (%d x %d)", iRows, iCols);
 	print_tree(pstMsg);
 
-	free(pdblData);
+	if(pdblData)
+	{
+		free(pdblData);
+	}
+
 	return 0;
 }
 
@@ -152,13 +183,11 @@ int import_string(int _iDatasetId, int _iItemPos, int* _piAddress)
 
 	if(_piAddress == NULL)
 	{
-		int *piAddr;
-		createMatrixOfString(Rhs + 1, iRows, iCols, pstData, &piAddr);
+		createMatrixOfString(Rhs + 1, iRows, iCols, pstData);
 	}
 	else //if not null this variable is in a list
 	{
-		int *piAddr;
-		createMatrixOfStringInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pstData, &piAddr);
+		createMatrixOfStringInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pstData);
 	}
 
 	char pstMsg[512];
@@ -170,6 +199,43 @@ int import_string(int _iDatasetId, int _iItemPos, int* _piAddress)
 		free(pstData[i]);
 	}
 	free(pstData);
+	return 0;
+}
+
+int import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress)
+{
+	int* piData = NULL;
+	int	iRows = 0;
+	int iCols = 0;
+	getDataSetDims(_iDatasetId, &iRows, &iCols);
+
+
+	if(iRows * iCols != 0)
+	{
+		piData = (int *) malloc(iRows * iCols * sizeof(int));
+		readBooleanMatrix(_iDatasetId, piData, iRows, iCols);
+	}
+
+
+
+	if(_piAddress == NULL)
+	{
+		createMatrixOfBoolean(Rhs + 1, iRows, iCols, piData);
+	}
+	else //if not null this variable is in a list
+	{
+		createMatrixOfBooleanInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, piData);
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "boolean (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
+
+	if(piData)
+	{
+		free(piData);
+	}
+
 	return 0;
 }
 
@@ -189,15 +255,24 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 		return 1;
 	}
 
+
+	if(iRows * iCols == 0)
+	{//special case for empty list
+		iRows = 0;
+		iCols = 0;
+	}
+	else
+	{
+		status = getListItemReferences(_iDatasetId, &piItemRef);
+		if(status)
+		{
+			return 1;
+		}
+	}
+
 	char pstMsg[512];
 	sprintf(pstMsg, "list (%d x %d)", iRows, iCols);
 	print_tree(pstMsg);
-
-	status = getListItemReferences(_iDatasetId, &piItemRef);
-	if(status)
-	{
-		return 1;
-	}
 
 	if(_piAddress == 0)
 	{
@@ -257,9 +332,9 @@ void print_tree(char* _pstMsg)
 #ifdef PRINT_DEBUG
 	for(int i = 0 ; i < iTab ; i++)
 	{
-		sciprint("\t");
+		printf("\t");
 	}
-	sciprint("%s\n", _pstMsg);
+	printf("%s\n", _pstMsg);
 #endif
 }
 /*--------------------------------------------------------------------------*/

@@ -17,13 +17,15 @@
 
 int getDataSetId(int  _iFile);
 
-int getDataSetDims(int _iDataSetId, int *_piRows, int *_piCols);
+int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols);
 
-int getScilabTypeFromDataSet(int _iDataSetId);
+int getScilabTypeFromDataSet(int _iDatasetId);
 
-int readDoubleMatrix(int _iDataSetId, double *_pdblData, int _iRows, int _iCols);
+int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols);
 
-int readStringMatrix(int _iDataSetId, char **_pstData, int _iRows, int _iCols);
+int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols);
+
+int readBooleanMatrix(int _iDatasetId, int* _piData, int _iRows, int _iCols);
 
 int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
 

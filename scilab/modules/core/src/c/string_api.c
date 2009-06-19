@@ -74,7 +74,7 @@ int getMatrixOfString(int* _piAddress, int* _piRows, int* _piCols, int* _piLengt
 	return 0;
 }
 
-int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int** _piAddress)
+int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
@@ -88,7 +88,6 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, 
 	}
 
 	fillMatrixOfString(piAddr, _iRows, _iCols, _pstStrings, &iTotalLen);
-	*_piAddress = piAddr;
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 5 + _iRows * _iCols));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 5 + _iRows * _iCols + !((_iRows * _iCols) % 2)), (iTotalLen + 1) / (sizeof(double) / sizeof(int)));
 	return 0;

@@ -58,7 +58,7 @@ int getComplexZMatrixOfDouble(int* _piAddress, int* _piRows, int* _piCols, doubl
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, int** _piAddress);
+int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal);
 
 /**
  * Get double variable data
@@ -70,7 +70,7 @@ int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int** _piAddress);
+int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create double variable data
@@ -81,7 +81,7 @@ int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdbl
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, int** _piAddress);
+int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal);
 
 /**
  * Get double variable data
@@ -93,7 +93,7 @@ int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, i
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int** _piAddress);
+int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg);
 
 /**
  * Get double variable data
