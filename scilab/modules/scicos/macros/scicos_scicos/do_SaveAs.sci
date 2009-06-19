@@ -24,9 +24,10 @@ function [scs_m, edited] = do_SaveAs()
 // Copyright INRIA
 
   fname=scs_m.props.title(1);
-
   tit = ["Use .cos extension for binary and .cosf for ascii file"];
-  fname = savefile(['*.cos*';'*.xml'],emptystr(),tit,fname)
+  //The Scilab5  savefile function does not allow to give a default file name
+  //fname = savefile(['*.cos*';'*.xml'],emptystr(),tit,fname)
+  fname = savefile(['*.cos*';'*.xml'],emptystr(),tit)
 
   if fname==emptystr() then
     return ; //** EXIT point 
