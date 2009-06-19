@@ -30,7 +30,7 @@ function warnobsolete(newFunctionName, scilabRemovedVersion)
   // Now show the warning
   
   if %modalWarning then
-    x_message(warnMessage,"modal");
+    messagebox(warnMessage,"modal");
   else
     warning(warnMessage);
   end
