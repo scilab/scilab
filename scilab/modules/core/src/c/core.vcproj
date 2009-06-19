@@ -527,10 +527,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\internal_boolean_api.c"
-				>
-			</File>
-			<File
 				RelativePath=".\intmacr2tree.c"
 				>
 			</File>

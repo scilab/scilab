@@ -62,6 +62,16 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool)
 	return 0;
 }
 
+int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool)
+{
+	_piAddress[0]	= sci_boolean;
+	_piAddress[1] = Min(_iRows, _iRows * _iCols);
+	_piAddress[2] = Min(_iCols, _iRows * _iCols);
+
+	*_piBool		= _piAddress + 3;
+	return 0;
+}
+
 int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool)
 {
 	int* piBool		= NULL;
