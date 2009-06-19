@@ -60,7 +60,9 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   else 
       //** conventional Open 
       if fname==[] then
-        fname = getfile(['*.cos*','*.xml']) ; 
+        fname = getfile(['*.xml','XML format (.xml)'
+			 '*.cosf','Scicos formatted files (.cosf)';
+			 '*.cos','Scicos binary files (.cos)']) ; 
       end
   end 
   %scicos_demo_mode = []; //** clear the variable  
