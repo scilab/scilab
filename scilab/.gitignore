@@ -107,6 +107,7 @@ modules/*/sci_gateway/fortran/*.c
 # others files (windows)
 #
 *.db
+*.manifest
 
 #
 # scilab/ specific files
