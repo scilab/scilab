@@ -155,6 +155,10 @@ function str = dep2str(dep)
 	
 	str = [];
 	
+	if isempty(dep) then
+		return;
+	end
+	
 	for i=1:size(dep,"*")
 		
 		this_dep = dep(i);
