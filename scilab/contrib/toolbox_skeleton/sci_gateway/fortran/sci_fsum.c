@@ -23,7 +23,6 @@ int sci_fsum(char *fname)
   double *pdVarTwo = NULL;
   
   int m_out = 0, n_out = 0;
-  int *piAddressOut = NULL;
   double dOut = 0.0;
 
   /* --> result = csum(3,8)
@@ -70,7 +69,7 @@ int sci_fsum(char *fname)
   
   /* create result on stack */
   m_out = 1;  n_out = 1;
-  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut, &piAddressOut);
+  createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
   LhsVar(1) = Rhs + 1; 
   
   return 0;

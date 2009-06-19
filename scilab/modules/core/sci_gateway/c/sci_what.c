@@ -21,6 +21,7 @@
 #ifdef _MSC_VER
 #include "strdup_windows.h"
 #endif
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static char **LocalFunctionsTab=NULL;
 static int SizeLocalFunctionsTab=0;
@@ -65,14 +66,9 @@ int C2F(sci_what)(char *fname,unsigned long fname_len)
 		CreateVarFromPtr(Rhs+2,MATRIX_OF_STRING_DATATYPE, &nrowCommands, &ncol, commandwords);
 		LhsVar(2)=Rhs+2;
 
-		for (i2=0;i2<nrowFunctions;i2++) { FREE(LocalFunctionsTab[i2]);LocalFunctionsTab[i2]=NULL; }
-		FREE(LocalFunctionsTab); LocalFunctionsTab = NULL;
+		freeArrayOfString(LocalFunctionsTab, nrowFunctions);
+		freeArrayOfString(commandwords, nrowCommands);
 
-		if (commandwords)
-		{
-			for (i2=0;i2<nrowCommands;i2++) { FREE(commandwords[i2]);commandwords[i2]=NULL; }
-			FREE(commandwords); commandwords = NULL;
-		}
 	}
 
 	C2F(putlhsvar)();
@@ -110,11 +106,7 @@ static void DispCommands(void)
 	}
 	sciprint("\n");
 
-	if (commandwords)
-	{
-		for (i=0;i<sizecommandwords;i++) { FREE(commandwords[i]);commandwords[i]=NULL; }
-		FREE(commandwords); commandwords = NULL;
-	}
+	freeArrayOfString(commandwords, sizecommandwords);
 }
 /*--------------------------------------------------------------------------*/
 static int IsACommand(char *primitive)
@@ -128,20 +120,12 @@ static int IsACommand(char *primitive)
 	{
 		if (strcmp(commandwords[i],primitive)==0)
 		{
-			if (commandwords)
-			{
-				for (i=0;i<sizecommandwords;i++) { FREE(commandwords[i]);commandwords[i]=NULL; }
-				FREE(commandwords); commandwords = NULL;
-			}
+			freeArrayOfString(commandwords, sizecommandwords);
 			return TRUE;
 		}
 	}
 
-	if (commandwords)
-	{
-		for (i=0;i<sizecommandwords;i++) { FREE(commandwords[i]);commandwords[i]=NULL; }
-		FREE(commandwords); commandwords = NULL;
-	}
+	freeArrayOfString(commandwords, sizecommandwords);
 
 	return bOK;
 }
@@ -181,19 +165,7 @@ static int CreateLocalFunctionsTab(void)
 			}
 		}
 
-		if (LocalFunctionsTabTmp)
-		{
-			for (i=0;i<SizeTab;i++)	
-			{ 
-				if (LocalFunctionsTabTmp[i])
-				{
-					FREE(LocalFunctionsTabTmp[i]);
-					LocalFunctionsTabTmp[i]=NULL;
-				}
-			}
-			FREE(LocalFunctionsTabTmp);
-			LocalFunctionsTabTmp=NULL;
-		}
+		freeArrayOfString(LocalFunctionsTabTmp, SizeTab);
 	}
 	else
 	{

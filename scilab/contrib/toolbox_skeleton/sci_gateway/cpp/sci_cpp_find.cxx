@@ -95,9 +95,8 @@ extern "C"
     
     /* create result on stack */
     int m_out = 1, n_out = 1;
-    int *piAddressOut = NULL;
     
-    createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut, &piAddressOut);
+    createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
     LhsVar(1) = Rhs + 1; 
 
     return 0;

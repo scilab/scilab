@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
@@ -46,7 +46,7 @@ int getVarAddressFromNumber(int _iVar, int** _piAddress)
 	}
 
 	*_piAddress		= istk(iAddr);
-	intersci_.ntypes[_iVar - 1] = '$' ;
+	//intersci_.ntypes[_iVar - 1] = '$' ;
 	return 0;
 }
 
@@ -55,7 +55,7 @@ int getNewVarAddressFromNumber(int _iVar, int** _piAddress)
 	int iAddr			= iadr(*Lstk(_iVar));
 	int iValType	= *istk(iAddr);
 	*_piAddress		= istk(iAddr);
-	intersci_.ntypes[_iVar - 1] = '$' ;
+	//intersci_.ntypes[_iVar - 1] = '$' ;
 
 	return 0;
 }
@@ -69,7 +69,7 @@ int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
 
 	//define scope of search
   Fin = -1;
-	//search variable 
+	//search variable
   C2F(stackg)(iVarID);
 
 	if (Err > 0 || Fin == 0)
@@ -152,7 +152,7 @@ int isVarMatrixType(int* _piAddress)
 	if(_piAddress != NULL)
 	{
 		int iType = getVarType(_piAddress);
-		
+
 		if(	iType == sci_matrix ||
 				iType == sci_poly ||
 				iType == sci_boolean ||

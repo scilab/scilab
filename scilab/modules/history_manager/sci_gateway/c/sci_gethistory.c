@@ -17,6 +17,7 @@
 #include "MALLOC.h"
 #include "HistoryManager.h"
 #include "Scierror.h"
+#include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int C2F(sci_gethistory)(char *fname,unsigned long fname_len)
 {
@@ -76,22 +77,8 @@ int C2F(sci_gethistory)(char *fname,unsigned long fname_len)
 			n = 1;
 
 			CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &m, &n, lines);
-			LhsVar(1) = Rhs+1;
-			if (lines)
-			{
-				int i = 0;
 
-				for (i=0;i < nblines;i++)
-				{
-					if (lines[i])
-					{
-						FREE(lines[i]);
-						lines[i]=NULL;
-					}
-				}
-				FREE(lines);
-				lines=NULL;
-			}
+			freeArrayOfString(lines, nblines);
 		}
 		else
 		{

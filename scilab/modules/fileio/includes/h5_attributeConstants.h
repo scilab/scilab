@@ -20,12 +20,21 @@
 //#define SCILAB_CLASS_TLIST		"tlist"
 //#define SCILAB_CLASS_MLIST		"mlist"
 
-static const char g_SCILAB_CLASS[]				=	"SCILAB_Class";
-static const char g_SCILAB_CLASS_DOUBLE[]	=	"double";
-static const char g_SCILAB_CLASS_STRING[]	=	"string";
-static const char g_SCILAB_CLASS_LIST[]		=	"list";
-static const char g_SCILAB_CLASS_TLIST[]	=	"tlist";
-static const char g_SCILAB_CLASS_MLIST[]	=	"mlist";
+static const char g_SCILAB_CLASS[]					=	"SCILAB_Class";
+static const char g_SCILAB_CLASS_EMPTY[]		=	"SCILAB_empty";
+
+
+static const char g_SCILAB_CLASS_DOUBLE[]		=	"double";
+static const char g_SCILAB_CLASS_STRING[]		=	"string";
+static const char g_SCILAB_CLASS_BOOLEAN[]	=	"boolean";
+static const char g_SCILAB_CLASS_INT8[]			=	"int8";
+static const char g_SCILAB_CLASS_INT16[]		=	"int16";
+static const char g_SCILAB_CLASS_INT32[]		=	"int32";
+static const char g_SCILAB_CLASS_INT64[]		=	"int64";
+static const char g_SCILAB_CLASS_POLY[]			=	"poly";
+static const char g_SCILAB_CLASS_LIST[]			=	"list";
+static const char g_SCILAB_CLASS_TLIST[]		=	"tlist";
+static const char g_SCILAB_CLASS_MLIST[]		=	"mlist";
 
 
 #endif /* !__H5_ATTRIBUTECONSTATS_H__ */

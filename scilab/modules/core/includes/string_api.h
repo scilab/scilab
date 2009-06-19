@@ -48,7 +48,7 @@ int getMatrixOfWideString(int* _piAddress, int* _piRows, int* _piCols, int* _piL
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings, int** _piAddress);
+int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Get double variable data

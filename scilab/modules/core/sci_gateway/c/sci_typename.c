@@ -146,14 +146,13 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	if (Lhs > 1)
 	{
 		int m_out2 = 0, n_out2 = 0;
-		int *piAddressOut2 = NULL;
 		char **TypesNames = NULL;
 
 		TypesNames = getAllTypesName(&numberOfTypes);
 		m_out2 = numberOfTypes;
 		n_out2 = 1;
 		
-		createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames, &piAddressOut2);
+		createMatrixOfString(Rhs + 2, m_out2, n_out2, TypesNames);
 		if (TypesNames) freeArrayOfString(TypesNames,numberOfTypes);
 		LhsVar(2) = Rhs + 2; 
 	}

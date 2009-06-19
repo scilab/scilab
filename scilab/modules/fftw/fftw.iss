@@ -10,6 +10,14 @@
 ;
 #define FFTW "fftw"
 ;
+#ifdef WITH_FFTW_LIBRARY
+Source: bin\fftw\libfftw3-3.dll; DestDir: {app}\bin\fftw; Components: {#COMPN_FFTW}
+Source: bin\fftw\COPYRIGHT; DestDir: {app}\bin\fftw; Components: {#COMPN_FFTW}
+Source: bin\fftw\COPYING; DestDir: {app}\bin\fftw; Components: {#COMPN_FFTW}
+#endif
+Source: bin\fftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: {#COMPN_FFTW}
+Source: bin\nofftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: not ({#COMPN_FFTW})
+;
 
 Source: modules\{#FFTW}\VERSION.xml; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\readme.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
@@ -35,9 +43,7 @@ Source: modules\{#FFTW}\macros\buildmacros.sce; DestDir: {app}\modules\{#FFTW}\m
 Source: modules\{#FFTW}\macros\buildmacros.bat; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 ;
-Source: bin\fftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: {#COMPN_FFTW}
-Source: bin\nofftw.dll; DestDir: {app}\bin; DestName: fftw.dll; Components: not ({#COMPN_FFTW})
-;
 Source: modules\{#FFTW}\tests\*.*; DestDir: {app}\modules\{#FFTW}\tests; Flags: recursesubdirs; Components: {#COMPN_FFTW} and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------
+;

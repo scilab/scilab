@@ -34,7 +34,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double dOut = (double) getfuncprot();
 
 		m_out = 1;  n_out = 1;
-		createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut, &piAddressOut);
+		createMatrixOfDouble(Rhs + 1, m_out, n_out, &dOut);
 		LhsVar(1) = Rhs + 1; 
 		C2F(putlhsvar)();
 	}

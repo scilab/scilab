@@ -186,6 +186,7 @@ public class BuildDocObject extends StyleSheet {
 			specificArgs.add(USE_EXTENSIONS_1);
 			specificArgs.add(GRAPHICSIZE_EXTENSION_0);
 			specificArgs.add("\"generate.toc= \"");
+			specificArgs.add("use.id.as.filename=1");
 			this.styleDoc = docbookPath + "/javahelp/javahelp.xsl";
 		}
 		this.format = format;
@@ -296,7 +297,7 @@ public class BuildDocObject extends StyleSheet {
 			args.add("-o");
 			args.add(Helpers.getTemporaryNameFo(outputDirectory));
 		}
-		args.add("-t");
+		//args.add("-t");
 		args.add(sourceDocProcessed);
 		args.add(this.styleDoc);
 		args.add("base.dir=" + this.outputDirectory);
