@@ -65,6 +65,7 @@ run.iss
 setup.iss
 tasks.iss
 types.iss
+isxdl.dll
 uninstalldelete.iss
 custommessages.iss
 en_US_scilab.isl
