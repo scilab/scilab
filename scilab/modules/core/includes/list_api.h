@@ -408,7 +408,7 @@ int getMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int* _piRo
  * @param[in] _pstStrings array of strings ( null terminated )
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings, int** _piAddress);
+int createMatrixOfStringInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char** _pstStrings);
 
 /**
  * Write string variable in a named list
@@ -437,6 +437,46 @@ int createMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParen
  * @return if the operation successed (0) or not ( !0 )
  */
 int readMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings);
+
+/*********************
+ * boolean functions *
+ *********************/
+
+/**
+ * Get boolean variable data from a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent pointer on the parent
+ * @param[in] _iItemPos position of the new list in the parent
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _piBool return pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool);
+
+/**
+ * Alloc boolean variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[out] _piBool return pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int** _piBool);
+
+/**
+ * create boolean variable in a list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piBool return pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
 
 #endif /* __LIST_API__ */
 

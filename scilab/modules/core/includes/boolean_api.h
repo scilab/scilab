@@ -33,7 +33,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int** _piAddress);
+int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool);
 
 /**
  * alloc boolean variable
@@ -44,7 +44,7 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
  * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool, int** _piAddress);
+int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool);
 
 /**
  * Create boolean named variable

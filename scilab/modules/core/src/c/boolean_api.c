@@ -16,12 +16,11 @@
 #include "common_api.h"
 #include "double_api.h"
 #include "internal_common_api.h"
+#include "internal_boolean_api.h"
 
 #include "CallScilab.h"
 #include "stack-c.h"
 
-//internal functions
-static int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool);
 
 /********************************/
 /*   boolean matrix functions   */
@@ -43,7 +42,7 @@ int getMatrixOfBoolean(int* _piAddress, int* _piRows, int* _piCols, int** _piBoo
 	return 0;
 }
 
-int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int** _piAddress)
+int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool)
 {
 	int *piAddr	= NULL;
 	int iNewPos			= Top - Rhs + _iVar;
@@ -56,7 +55,6 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
 	}
 
 	fillMatrixOfBoolean(piAddr, _iRows, _iCols, _piBool);
-	*_piAddress	= piAddr;
 
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 3));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 3), (_iRows * _iCols) / (sizeof(double) / sizeof(int)));
@@ -64,20 +62,10 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool, int**
 	return 0;
 }
 
-static int fillMatrixOfBoolean(int* _piAddress, int _iRows, int _iCols, int** _piBool)
-{
-	_piAddress[0]	= sci_boolean;
-	_piAddress[1] = Min(_iRows, _iRows * _iCols);
-	_piAddress[2] = Min(_iCols, _iRows * _iCols);
-
-	*_piBool		= _piAddress + 3;
-	return 0;
-}
-
-int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool, int** _piAddress)
+int createMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int* _piBool)
 {
 	int* piBool		= NULL;
-	int iRet = allocMatrixOfBoolean(_iVar, _iRows, _iCols, &piBool, _piAddress);
+	int iRet = allocMatrixOfBoolean(_iVar, _iRows, _iCols, &piBool);
 	if(iRet)
 	{
 		return 1;
