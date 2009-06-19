@@ -1,13 +1,13 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
-* 
+*
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-* 
+*
 */
 
 #include <hdf5.h>
@@ -32,14 +32,14 @@ static herr_t op_func (hid_t loc_id, const char *name, void *operator_data)
 	* through operator_data.
 	*/
 	status = H5Gget_objinfo (loc_id, name, 0, &statbuf);
-	switch (statbuf.type) 
+	switch (statbuf.type)
 	{
 	case H5G_GROUP :
 		// printf ("  Group: %s\n", name);
 		break;
 	case H5G_DATASET:
 		//printf ("  Dataset: %s\n", name);
-		*pDataSetId = H5Dopen(loc_id, name); 
+		*pDataSetId = H5Dopen(loc_id, name);
 		break;
 	case H5G_TYPE:
 		//printf ("  Datatype: %s\n", name);
@@ -108,14 +108,18 @@ static int isEmptyDataset(int _iDatasetId)
 {
 	int iRet							= 0;
 	char *pstScilabClass	= NULL;
-	pstScilabClass = readAttribute(_iDatasetId, g_SCILAB_CLASS_EMPTY);
-	if(pstScilabClass != NULL &&strcmp(pstScilabClass, "true") == 0)
+
+	if(H5Aget_num_attrs(_iDatasetId) > 1)
 	{
-		iRet = 1;
-	}
-	if(pstScilabClass)
-	{
-		free(pstScilabClass);
+		pstScilabClass = readAttribute(_iDatasetId, g_SCILAB_CLASS_EMPTY);
+		if(pstScilabClass != NULL &&strcmp(pstScilabClass, "true") == 0)
+		{
+			iRet = 1;
+		}
+		if(pstScilabClass)
+		{
+			free(pstScilabClass);
+		}
 	}
 	return iRet;
 }
@@ -153,15 +157,15 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 		space = H5Dget_space (_iDatasetId);
 		ndims = H5Sget_simple_extent_dims (space , lDims, NULL);
 		*_piRows = (int)lDims[0];
-		if (ndims == 1) 
+		if (ndims == 1)
 		{
 			*_piCols = 1;
 		}
-		else 
+		else
 		{
 			*_piCols = (int)lDims[1];
 		}
-		
+
 		H5Sclose(space);
 	}
 	return 0;
@@ -173,7 +177,7 @@ int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols)
 	double      *pdblLocalData;
 	int	     i = 0, j = 0;
 
-	pdblLocalData = (double*)malloc(sizeof(double) * _iRows * _iCols); 
+	pdblLocalData = (double*)malloc(sizeof(double) * _iRows * _iCols);
 	/*
 	* Read the data.
 	*/
@@ -182,7 +186,7 @@ int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols)
 
 	for (i = 0 ; i < _iRows ; ++i)
 	{
-		for (j = 0 ; j < _iCols ; ++j)  
+		for (j = 0 ; j < _iCols ; ++j)
 		{
 			_pdblData[i + _iRows * j] = pdblLocalData[i * _iCols + j];
 		}
@@ -201,7 +205,7 @@ int readBooleanMatrix(int _iDatasetId, int* _piData, int _iRows, int _iCols)
 	int i					= 0;
 	int j					= 0;
 
-	piData = (int*)malloc(sizeof(int) * _iRows * _iCols); 
+	piData = (int*)malloc(sizeof(int) * _iRows * _iCols);
 	/*
 	* Read the data.
 	*/
@@ -210,7 +214,7 @@ int readBooleanMatrix(int _iDatasetId, int* _piData, int _iRows, int _iCols)
 
 	for (i = 0 ; i < _iRows ; ++i)
 	{
-		for (j = 0 ; j < _iCols ; ++j)  
+		for (j = 0 ; j < _iCols ; ++j)
 		{
 			_piData[i + _iRows * j] = piData[i * _iCols + j];
 		}
@@ -276,7 +280,7 @@ int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols)
 	*/
 	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		rdata);
-	for (i = 0 ; i < _iRows ; i++) 
+	for (i = 0 ; i < _iRows ; i++)
 	{
 		for (j = 0 ; j < _iCols ; ++j)
 		{
@@ -306,11 +310,11 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 		iVarType = sci_matrix;
 	}
 	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = string <=> strings */
-		&& strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0) 
+		&& strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
 	{
 		iVarType = sci_strings;
 	}
-	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_INTEGER		
+	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_INTEGER
 		&& strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
 	{
 		iVarType = sci_boolean;
@@ -321,12 +325,12 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 		iVarType = sci_list;
 	}
 	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = tlist <=> tlist */
-		&& strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0) 
+		&& strcmp(pstScilabClass, g_SCILAB_CLASS_TLIST) == 0)
 	{
 		iVarType = sci_tlist;
 	}
 	else if (H5Tget_class(H5Dget_type(_iDatasetId)) == H5T_REFERENCE		/* HDF5 Reference type + SCILAB_Class = string <=> MLIST */
-		&& strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0) 
+		&& strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0)
 	{
 		iVarType = sci_mlist;
 	}
