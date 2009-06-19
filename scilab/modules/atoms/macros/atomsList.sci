@@ -30,7 +30,7 @@ function atomsList()
 	packages_list      = getfield(1,packages_struct);
 	packages_list(1:2) = [];
 	
-	packages_disp      = []
+	packages_disp      = [];
 	
 	// Loop on package list
 	// =========================================================================

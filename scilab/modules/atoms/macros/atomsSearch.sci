@@ -1,6 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Delphine GASC <delphine.gasc@scilab.org>
-// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
@@ -11,132 +9,78 @@
 
 // End user function
 
-// Research of a toolbox
+// Search
 
-function result = atomsSearch(keyword, typeSearch)
-  rhs = argn(2)
-
-  if (rhs == 2 | rhs == 1) then
-
-  // If there is no type
-  if rhs == 1
-    typeSearch = "all"
-  end
-  result = %f
-  listTool = []
-  // We shape
-  keyword = splitWord(keyword)
-  typeSearch = convstr(typeSearch,"l")
-  [a, b] = size(keyword)
-  global numberFunction
-  listDesc = atomsReadDesc("")
-  [n, m] = size(listDesc("Toolbox"))
-  // We check all toolboxes one by one
-  for i=1:n
-    // Different value case of typeSearch
-    if typeSearch == "all"
-      // Research in Description + Title + Toolbox + Category + Author
-      titleTool = convstr(listDesc("Title")(i),"l")
-      descTool = convstr(listDesc("Description")(i),"l")
-      nameTool = convstr(listDesc("Toolbox")(i),"l")
-      catTool = convstr(listDesc("Category")(i),"l")
-      authorTool = convstr(listDesc("Author")(i),"l")
-      functionTool = listDesc("Function")(i)
-      // Comparaison keyword and words (we research the key-word position in the word, if it's == [] the word is not found; in this case, it's useless to compare the other keywords)
-      toolFind = %t
-      for j=1:a
-        if strindex(titleTool, keyword(j)) == [] & strindex(descTool, keyword(j)) == [] & strindex(nameTool, keyword(j)) == [] & strindex(catTool, keyword(j)) == [] & strindex(authorTool, keyword(j)) == []
-          toolFind = %f
-          for k=1:numberFunction
-            if strindex(convstr(functionTool(string(k)), "l"), keyword(j)) <> []
-              toolFind = %t
-            end
-          end
-          if ~toolFind
-            break
-          end
-        end
-      end
-    elseif typeSearch == "author"
-      // Research in Author
-      authorTool = convstr(listDesc("Author")(i),"l")
-      // Comparaison keyword and words
-      toolFind = %t
-      for j=1:a
-        if strindex(authorTool, keyword(j)) == []
-          toolFind = %f
-          break
-        end
-      end
-    elseif typeSearch == "entity"
-      // Research in Entity
-      entityTool = convstr(listDesc("Entity")(i),"l")
-      // Comparaison keyword and words
-      toolFind = %t
-      for j=1:a
-        if strindex(entityTool, keyword(j)) == []
-          toolFind = %f
-          break
-        end
-      end 
-    elseif typeSearch == "function"
-      // Research in Function
-      functionTool = listDesc("Function")(i)
-      // Reading lines to lines of the functions
-      // Comparaison keyword and words
-      toolFind = %t
-      for j=1:a
-        for k=1:numberFunction
-          toolFind = %f
-          if strindex(convstr(functionTool(string(k)), "l"), keyword(j)) <> []
-            toolFind = %t
-            break
-          end
-        end
-      end 
-    else
-      atomsDisplayMessage(sprintf(_("The research field %s doesn''t exist"),typeSearch))
-      return result
-    end
-    // If we found the words
-    if toolFind
-      [n, m] = size(listTool)
-      // We check if the Toolbox suit to the scilab version
-      if atomsVerifVersionScilab(listDesc("ScilabVersion")(i))
-        listTool(n+1) = listDesc("Toolbox")(i) + " - " + listDesc("Title")(i)
-      else
-        listTool(n+1) = listDesc("Toolbox")(i) + " - " + listDesc("Title")(i) + " - Warning this toolbox (Version " + listDesc("Version")(i) + ") isn''t compatible with your version of scilab"
-      end
-      result = %t
-    end
-  end
-  if ~result
-    disp(_("No toolbox matches the research"))
-  else
-    listTool = unique(listTool)
-    [n, m] = size(listTool)
-    if n == 1
-      disp(_("The following toolbox matches the research:"))
-      disp(listTool)
-    else
-      disp(_("The following toolboxes match the research:"))
-      for i=1:n
-        disp("- " + listTool(i))
-      end
-    end
-  end
-  return result
-  else
-    error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsSearch",1,2))
-  end
-
-
-endfunction
-
-// We split the sentences on a words array
-function var = splitWord(var)
-  // We cross everything in small letter
-  var = convstr(var,"l")
-  // We split (error if the last character is a " ")
-  var = atomsSplitValue(var, " ")
+function packages_disp = atomsSearch( search , fields )
+	
+	rhs = argn(2);
+	
+	// Check number of input arguments
+	// =========================================================================
+	
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsSearch",1,2));
+	end
+	
+	// Check input parameters type
+	// =========================================================================
+	
+	if type(search) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsSearch",1));
+	end
+	
+	if (rhs>1) & (type(fields)<>10)  then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A single string expected.\n"),"atomsSearch",2));
+	end
+	
+	// Check input parameters dimensions
+	// =========================================================================
+	
+	if size(search,"*") <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsSearch",1));
+	end
+	
+	// Don't take into account the character cast
+	// =========================================================================
+	search = convstr(search,"l");
+	
+	// Get the list of available toolboxes
+	// =========================================================================
+	
+	packages_struct    = atomsGetTOOLBOXES();
+	
+	packages_list      = getfield(1,packages_struct);
+	packages_list(1:2) = [];
+	
+	packages_disp      = [];
+	
+	// Loop on package list
+	// =========================================================================
+	
+	for i=1:size(packages_list,"*")
+		
+		this_package_name = packages_list(i);
+		
+		// Get the list of versions compatibles with this version of Scilab
+		this_package_versions = atomsCompatibleVersions(packages_list(i));
+		
+		if isempty(this_package_versions) then
+			continue;
+		end
+		
+		// Use the Most Recent Version
+		this_package_version = this_package_versions(1);
+		
+		// Get the details of this toolbox
+		this_package_details = atomsToolboxDetails(this_package_name,this_package_version);
+		this_package_summary = this_package_details("Summary");
+		
+		if grep( convstr(this_package_name,"l") , search ) <> [] then
+			packages_disp = [ packages_disp ; this_package_name this_package_summary ];
+		elseif grep( convstr(this_package_summary,"l") , search ) <> [] then
+			packages_disp = [ packages_disp ; this_package_name this_package_summary ];
+		end
+		
+	end
+	
 endfunction
