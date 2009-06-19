@@ -10,6 +10,7 @@
  *
  */
 #include <stdio.h>
+#include <string.h>
 #include "CallScilab.h"
 #include "MALLOC.h"
 #include "scirun.h"
@@ -37,16 +38,14 @@ int SendScilabJob(char *job)
 	static char ScirunCommand[] = "Err=execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;";
 	static char ClearTmpVariables[] = "clear TMP_EXEC_STRING;clear Err;quit;";
 	
-	lencommand = (int)strlen(job);
-	command = MALLOC(sizeof(char)*(lencommand+1));
+	command = strdup(job);
+	lencommand = (int)strlen(command);
 
 	if (command)
 	{
 		/* clear prev. Err , TMP_EXEC_STRING scilab variables */
 		C2F(scirun)(ClearTmpVariables,(long int)strlen(ClearTmpVariables));
 
-		/* @TODO: potential security issue. check the size */
-		strcpy(command,job);
 		SetLastJob(command);
 		/* Creation of a temp variable in Scilab which contains the command */
 		if (!C2F(cwritechain)("TMP_EXEC_STRING",&lencommand,(char*)command,(int)strlen("TMP_EXEC_STRING"),(int)strlen(command)) )

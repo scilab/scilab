@@ -25,6 +25,9 @@
 #include "isdir.h"
 #include "MALLOC.h"
 #include "charEncoding.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 BOOL isdir(const char * path)
 {
@@ -37,14 +40,13 @@ BOOL isdir(const char * path)
 	if (isDrive(path)) return TRUE;
 	else
 	{
-		char *pathTmp = NULL;
+		char *pathTmp = strdup(path);
 		
-		pathTmp = MALLOC(sizeof(char)*((int)strlen(path)+1));
 		if (pathTmp)
 		{
 			wchar_t *pwTemp = NULL;
 			DWORD attr = 0;
-			strcpy(pathTmp,path);
+
 			if ( (pathTmp[strlen(pathTmp)-1]=='\\') || (pathTmp[strlen(pathTmp)-1]=='/') )
 			{
 				pathTmp[strlen(pathTmp)-1]='\0';
