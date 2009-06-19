@@ -75,6 +75,7 @@ function packages = atomsGetTOOLBOXES(update)
 		TOOLBOXES    = []; // Liste des paths des fichiers TOOLBOXES
 		
 		mirrors = atomsRepositories();
+		mirrors = mirrors(:,1);
 		
 		if ~isdir(pathconvert(TMPDIR+"/atoms")) then
 			mkdir(pathconvert(TMPDIR+"/atoms"));

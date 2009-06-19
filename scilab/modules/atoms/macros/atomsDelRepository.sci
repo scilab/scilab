@@ -7,12 +7,12 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Add an URL to the list of repositories, and returns
+// Remove an URL to the list of repositories, and returns
 
 function nbDel = atomsDelRepository(url,allusers)
 	
-	rhs                  = argn(2);
-	nbDel                = 0;
+	rhs   = argn(2);
+	nbDel = 0;
 	
 	// Check number of input arguments
 	// =========================================================================

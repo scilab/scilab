@@ -23,7 +23,10 @@ function repositories = atomsRepositories(level)
 	
 	if (rhs == 0) | ((rhs == 1) & (level == "official")) then
 		if fileinfo(official_repositories) <> [] then
-			repositories = [ repositories ; mgetl(official_repositories) ];
+			url_list = mgetl(official_repositories);
+			for i=1:size(url_list,"*")
+				repositories = [ repositories ; url_list(i)  "official" ];
+			end
 		end
 	end
 	
@@ -32,7 +35,10 @@ function repositories = atomsRepositories(level)
 	
 	if (rhs == 0) | ((rhs == 1) & (level == "allusers")) then
 		if fileinfo(allusers_repositories) <> [] then
-			repositories = [ repositories ; mgetl(allusers_repositories) ];
+			url_list = mgetl(allusers_repositories);
+			for i=1:size(url_list,"*")
+				repositories = [ repositories ; url_list(i)  "allusers" ];
+			end
 		end
 	end
 	
@@ -41,7 +47,10 @@ function repositories = atomsRepositories(level)
 	
 	if (rhs == 0) | ((rhs == 1) & (level == "user")) then
 		if fileinfo(user_repositories) <> [] then
-			repositories = [ repositories ; mgetl(user_repositories) ];
+			url_list = mgetl(user_repositories);
+			for i=1:size(url_list,"*")
+				repositories = [ repositories ; url_list(i)  "user" ];
+			end
 		end
 	end
 	
