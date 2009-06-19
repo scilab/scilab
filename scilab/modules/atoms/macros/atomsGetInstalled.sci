@@ -53,7 +53,7 @@ function packages = atomsGetInstalled(allusers)
 	end
 	
 	if allusers & (fileinfo(alluser_file)<>[]) then
-		installed_files = [ installed_files ; alluser_file "alluser"];
+		installed_files = [ installed_files ; alluser_file "allusers"];
 	end
 	
 	// Loop on each "installed" file specified as first input argument

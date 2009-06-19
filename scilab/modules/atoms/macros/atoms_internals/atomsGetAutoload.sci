@@ -45,7 +45,7 @@ function packages = atomsGetAutoload(allusers)
 	end
 	
 	if allusers & (fileinfo(alluser_file)<>[]) then
-		autoloaded_files = [ autoloaded_files ; alluser_file "alluser"];
+		autoloaded_files = [ autoloaded_files ; alluser_file "allusers"];
 	end
 	
 	// Loop on each "autoloaded" file specified as first input argument

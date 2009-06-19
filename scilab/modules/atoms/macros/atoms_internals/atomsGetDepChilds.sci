@@ -67,7 +67,7 @@ function packages = atomsGetDepChilds(name,version,allusers)
 	end
 	
 	if allusers & (fileinfo(alluser_file)<>[]) then
-		installed_deps_files = [ installed_deps_files ; alluser_file "alluser"];
+		installed_deps_files = [ installed_deps_files ; alluser_file "allusers"];
 	end
 	
 	// Loop on each "installed_deps" file specified as first input argument
