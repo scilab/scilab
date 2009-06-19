@@ -113,5 +113,5 @@ function [reg, rect, prt] = get_region22(xc, yc, win)
   rect = [ox,oy-h,w,h] ;
   scf(wins);
   reg = do_purge(reg)
-endfunction 
+endfunction 
  

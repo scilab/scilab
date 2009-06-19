@@ -48,5 +48,5 @@ function [libss,ok,cancel]=get_dynamic_lib_dir(tt,funam,flag)
     end
   end
   chdir(cur_wd);
-endfunction 
+endfunction 
  

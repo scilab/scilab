@@ -82,5 +82,5 @@ elseif or(int(o.model.sim(2)/1000)==[1,2]) then
     if ~ok then return; end
   end
 end
-endfunction 
+endfunction 
  

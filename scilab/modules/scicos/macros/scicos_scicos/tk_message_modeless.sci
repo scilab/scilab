@@ -96,5 +96,5 @@ function display_message_box(str_in)
   TCL_EvalStr('GetInfo '+InFile+' '+...
               string(max_l)+' '+string(max_h)+' '+...
               string(numx)+' '+string(numy));
-endfunction 
+endfunction 
  

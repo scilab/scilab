@@ -42,5 +42,5 @@ function p=tk_savefile_scicos(file_mask,path,Title,ini)
   TCL_EvalStr('set scifilepath [tk_getSaveFile'+arg+']')
   p=TCL_GetVar('scifilepath')
 endfunction
- 
+ 
  

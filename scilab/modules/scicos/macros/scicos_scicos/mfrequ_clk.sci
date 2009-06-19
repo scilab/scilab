@@ -101,5 +101,5 @@ function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
      off=offset;       // the offset is put in the variable off. used by the simulator.
      fir=off;          // program the event output of the block by the corresponding offset.
    end
-endfunction 
+endfunction 
  

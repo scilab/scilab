@@ -61,5 +61,5 @@ function [ok,modelicac,translator,xml2modelica]=Modelica_execs()
   if (fileinfo(xml2modelica)==[]) then x_message(['Scilab cannot find the XML to modelica convertor:';xml2modelica]);ok=%f;return;end
 
   endfunction
- 
+ 
  

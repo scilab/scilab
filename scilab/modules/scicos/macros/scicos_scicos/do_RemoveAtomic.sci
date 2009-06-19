@@ -42,5 +42,5 @@ if typeof(o)=='Block' then
 else
   message('Remove Atomic can only be affected to Atomic Super Blocks.');ok=%f; return 
 end
-endfunction 
+endfunction 
  
