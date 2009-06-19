@@ -17,7 +17,7 @@ function res = atomsGetInstalledDetails(name,version)
 	// Check number of input arguments
 	// =========================================================================
 	
-	if rhs < 1 | rhs > 3 then
+	if rhs < 2 | rhs > 3 then
 		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetInstalledStatus",2,3));
 	end
 	
