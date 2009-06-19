@@ -13,7 +13,7 @@
 
 function result = atomsInstall(packages,allusers)
 	
-	result = %F;
+	result = [];
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
@@ -52,6 +52,14 @@ function result = atomsInstall(packages,allusers)
 		OSNAME = "linux";
 	elseif MACOSX then
 		OSNAME = "macosx";
+	end
+	
+	// Verbose Mode ?
+	// =========================================================================
+	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
+		VERBOSE = %T;
+	else
+		VERBOSE = %F;
 	end
 	
 	// Install for all users or just for me ?
@@ -169,6 +177,12 @@ function result = atomsInstall(packages,allusers)
 			this_package_details("to_install") = %T;
 		end
 		
+		if VERBOSE & this_package_details("to_install") then
+			mprintf("\t%s (%s) will be installed\n",this_package_name,this_package_version);
+		elseif VERBOSE then
+			mprintf("\t%s (%s) is already installed and up-to-date\n",this_package_name,this_package_version);
+		end
+		
 		dependency_tree(mandatory_packages(i)) = this_package_details;
 		
 	end
@@ -184,6 +198,10 @@ function result = atomsInstall(packages,allusers)
 		
 		if ~ this_package_details("to_install") then
 			continue;
+		end
+		
+		if VERBOSE then
+			mprintf("\tInstalling %s (%s) ...",this_package_name,this_package_version);
 		end
 		
 		// Define the path of the directory where will be installed this toolbox
@@ -217,9 +235,9 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		
         if MSDOS then
-            download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url + " -O " + file_out;
+            download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+ filein + " -O " + fileout;
         else
-            download_cmd = "wget "+url + " -O " + file_out;
+            download_cmd = "wget "+ filein + " -O " + fileout;
         end
         
 		[rep,stat,err] = unix_g(download_cmd)
@@ -247,32 +265,32 @@ function result = atomsInstall(packages,allusers)
 		dir_list_before = atomsListDir();
 		
 		if ( LINUX | MACOSX ) & regexp(fileout,"/\.tar\.gz$/","o") <> [] then
-            
-            extract_cmd = "tar xzf "+ fileout + " -C """+ atoms_directory + """";
+			
+			extract_cmd = "tar xzf "+ fileout + " -C """+ atoms_directory + """";
 			
 		elseif regexp(fileout,"/\.zip$/","o") <> [] then
 			
-            if MSDOS then
-                extract_cmd = """" + pathconvert(SCI+"/tools/zip/unzip.exe",%F) + """";
-            else
-                extract_cmd = "unzip";
-            end
+			if MSDOS then
+				extract_cmd = """" + pathconvert(SCI+"/tools/zip/unzip.exe",%F) + """";
+			else
+				extract_cmd = "unzip";
+			end
 			
-            extract_cmd = extract_cmd + " -q " + fileout + " -d """ + atoms_directory + """";
-            
+			extract_cmd = extract_cmd + " -q " + fileout + " -d """ + atoms_directory + """";
+			
 		else
-            error(msprintf(gettext("%s: internal error, the archive ""%s"" cannot be extracted on this operating system.\n"),"atomsInstall",fileout));
-        
-        end
+			error(msprintf(gettext("%s: internal error, the archive ""%s"" cannot be extracted on this operating system.\n"),"atomsInstall",fileout));
 		
-        [rep,stat,err] = unix_g(extract_cmd);
-        
-        if stat ~= 0 then
-            disp(extract_cmd);
-            disp(err);
-            error(msprintf(gettext("%s: internal error, the extraction of the archive ""%s"" has failed.\n"),"atomsInstall",fileout));
-        end
-        
+		end
+		
+		[rep,stat,err] = unix_g(extract_cmd);
+		
+		if stat ~= 0 then
+			disp(extract_cmd);
+			disp(err);
+			error(msprintf(gettext("%s: internal error, the extraction of the archive ""%s"" has failed.\n"),"atomsInstall",fileout));
+		end
+		
 		// get the list of directories after unarchive
 		dir_list_after = atomsListDir();
 		
@@ -337,9 +355,18 @@ function result = atomsInstall(packages,allusers)
 		
 		mdelete( fileout );
 		
+		// Fill the result matrix
+		// =====================================================================
+		
+		result = [ result ; atomsGetInstalledDetails(this_package_name,this_package_version) ];
+		
+		// Sucess message if needed
+		// =====================================================================
+		
+		if VERBOSE then
+			mprintf(" success\n");
+		end
 	end
-	
-	result = dependency_tree;
 	
 endfunction
 

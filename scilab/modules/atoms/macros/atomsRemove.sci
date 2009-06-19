@@ -54,6 +54,14 @@ function result = atomsRemove(packages,allusers)
 		OSNAME = "macosx";
 	end
 	
+	// Verbose Mode ?
+	// =========================================================================
+	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
+		VERBOSE = %T;
+	else
+		VERBOSE = %F;
+	end
+	
 	// Apply changes for all users or just for me ?
 	// =========================================================================
 	
@@ -125,6 +133,10 @@ function result = atomsRemove(packages,allusers)
 			
 			packagesToUninstall_W = [ packagesToUninstall_W ; atomsGetInstalledDetails( package_names(i),this_package_versions(j)) ];
 			
+			if VERBOSE then
+				mprintf( "\t%s (%s) will be removed\n" , package_names(i) , this_package_versions(j) );
+			end
+			
 			// Establish the dependency list to uninstall
 			// =================================================================
 			
@@ -139,6 +151,10 @@ function result = atomsRemove(packages,allusers)
 				
 				if atomsGetInstalledStatus( this_package_child_deps(k,1) , this_package_child_deps(k,2) ) == "A" then
 					packagesToUninstall_D = [ packagesToUninstall_D ; atomsGetInstalledDetails(this_package_child_deps(k,1),this_package_child_deps(k,2)) ];
+					
+					if VERBOSE then
+						mprintf( "\t%s (%s) will be removed\n" , this_package_child_deps(k,1) , this_package_child_deps(k,2) );
+					end
 				end
 				
 			end
@@ -179,13 +195,18 @@ function result = atomsRemove(packages,allusers)
 		this_package_name      = packagesToUninstall(i,1);
 		this_package_version   = packagesToUninstall(i,2);
 		this_package_directory = packagesToUninstall(i,4);
+		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version);
+		
+		if VERBOSE then
+			mprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version );
+		end
 		
 		// Check if this_package_directory start with SCI or SCIHOME
 		
 		if (grep(this_package_directory,pathconvert(SCI)) == []) & ..
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
-			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuse to delete this directory.\n"),"atomsRemove",packagesToUninstall(1,1),packagesToUninstall(1,2)));
+			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",packagesToUninstall(1,1),packagesToUninstall(1,2)));
 		end
 		
 		uninstall_status = rmdir(this_package_directory,"s");
@@ -224,6 +245,15 @@ function result = atomsRemove(packages,allusers)
 		// =====================================================================
 		atomsDelAutoload(this_package_name,this_package_version);
 		
+		// Fill the result matrix
+		// =====================================================================
+		result = [ result ; this_package_insdet ];
+		
+		// Sucess message if needed
+		// =====================================================================
+		if VERBOSE then
+			mprintf(" success\n");
+		end
 	end
 	
 	result = %T;
