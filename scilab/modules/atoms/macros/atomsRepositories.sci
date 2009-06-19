@@ -7,12 +7,43 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Add an URL to the list of repositories, and returns
+// get the list of repositories
 
 function repositories = atomsRepositories(level)
 	
 	rhs           = argn(2);
 	repositories  = [];
+	
+	// Check number of input arguments
+	// =========================================================================
+	
+	if rhs > 1 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsRepositories",0,1));
+	end
+	
+	// Check input argument type (if any)
+	// =========================================================================
+	
+	if (rhs==1) & (type(level) <> 10) then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositories",1));
+	end
+	
+	// Check input argument dimension (if any)
+	// =========================================================================
+	
+	if (rhs==1) & (size(level,"*")<>1) then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositories",1));
+	end
+	
+	// Check input argument values (if any)
+	// =========================================================================
+	
+	if (rhs==1) & (and(level<>["user","allusers","official"])) then
+		error(msprintf(gettext("%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''official'' expected.\n"),"atomsRepositories",1));
+	end
+	
+	// Define the needed paths
+	// =========================================================================
 	
 	official_repositories = pathconvert(SCI+"/modules/atoms/etc/repositories",%F);
 	allusers_repositories = pathconvert(SCI+"/.atoms/repositories",%F);
