@@ -7,7 +7,17 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Returns true if a package is installed, false otherwise
+// End user function
+
+// Returns TRUE if a package is installed, FALSE otherwise
+
+// Input parameters :
+//   name     : matrix of strings
+//   version  : matrix of strings
+//   allusers : boolean
+
+// Output parameters :
+//   res      : matrix of boolean
 
 function res = atomsIsInstalled(name,version,allusers)
 	
