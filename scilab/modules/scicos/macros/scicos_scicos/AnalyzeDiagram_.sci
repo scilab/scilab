@@ -26,5 +26,5 @@ function AnalyzeDiagram_()
     do_analyze_diagram(%cpr)
   end
 endfunction
- 
+ 
  

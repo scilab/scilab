@@ -75,5 +75,5 @@ function  [ok]=Link_modelica_C(Cfile)
     if ~ok then return, end
 
   end
-endfunction 
+endfunction 
  
