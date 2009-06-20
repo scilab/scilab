@@ -16,6 +16,9 @@
 #include "system_getproperty.h"
 #include "getScilabJNIEnv.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 char * system_getproperty(char *property,char *defaultproperty)
 {
@@ -44,8 +47,7 @@ char * system_getproperty(char *property,char *defaultproperty)
 				strValue = (*currentENV)->GetStringUTFChars(currentENV,jstrValue, 0);
 				if (strValue)
 				{
-					retValue = (char*)MALLOC(sizeof(char)*(strlen(strValue)+1));
-					if (retValue) strcpy(retValue,strValue);
+					retValue = strdup(strValue);
 				}
 				(*currentENV)->ReleaseStringUTFChars(currentENV, jstrValue , strValue);
 			}

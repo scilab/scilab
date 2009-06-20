@@ -23,8 +23,7 @@ char *buildMainWindowTitle(void)
 	char *retTitle = NULL;
 
 	#ifndef _MSC_VER
-	retTitle = (char*)MALLOC(sizeof(char)*(strlen(SCI_VERSION_STRING)+1));
-	if (retTitle) strcpy(retTitle,SCI_VERSION_STRING);
+	retTitle = strdup(SCI_VERSION_STRING);
 	#else
 	retTitle = buildMainWindowTitle_Windows();
 	#endif

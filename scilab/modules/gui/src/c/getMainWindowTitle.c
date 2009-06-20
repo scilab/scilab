@@ -16,6 +16,9 @@
 #include "getScilabJNIEnv.h"
 #include "getScilabObject.h"
 #include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/ 
 char * getMainWindowTitle(void)
 {
@@ -50,8 +53,7 @@ char * getMainWindowTitle(void)
 								strValue = (*env)->GetStringUTFChars(env,jstr, 0);
 								if (strValue)
 								{
-									title = (char*)MALLOC(sizeof(char)*(strlen(strValue)+1));
-									if (title) strcpy(title,strValue);
+									title = strdup(strValue);
 								}
 								(*env)->ReleaseStringUTFChars(env, jstr , strValue);
 							}

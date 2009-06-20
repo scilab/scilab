@@ -71,7 +71,7 @@ int SetSci(void)
 {
 	int ierr,iflag=0;
 	int lbuf=PATH_MAX;
-	char *buf = MALLOC(PATH_MAX*sizeof(char));
+	char *buf = (char*)MALLOC(PATH_MAX*sizeof(char));
 	if (buf)
 	{
 		C2F(getenvc)(&ierr,"SCI",buf,&lbuf,&iflag);

@@ -14,31 +14,32 @@
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "scilabmode.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int C2F(sci_getscilabmode)(char *fname,unsigned long fname_len)
 {
-	static int n1,m1;
-	char *output=NULL ;
+	int n1 = 0, m1 = 0;
+	char *output = NULL ;
 
 	Rhs=Max(Rhs,0);
 	CheckRhs(0,0) ;
 	CheckLhs(1,1) ;
 
-	output=(char*)MALLOC((strlen("NWNI")+1)*sizeof(char));
-
 	switch (getScilabMode())
 	{
 		case SCILAB_API: default :
-			strcpy(output,"API");
+			output = strdup("API");
 		break;
 		case SCILAB_STD:
-			strcpy(output,"STD");
+			output = strdup("STD");
 		break;
 		case SCILAB_NW:
-			strcpy(output,"NW");
+			output = strdup("NW");
 		break;
 		case SCILAB_NWNI:
-			strcpy(output,"NWNI");
+			output = strdup("NWNI");
 		break;
 	}
 
@@ -48,8 +49,6 @@ int C2F(sci_getscilabmode)(char *fname,unsigned long fname_len)
 
 	LhsVar(1) = Rhs+1;
 	C2F(putlhsvar)();
-
-	//	if (output) {FREE(output);output=NULL;}
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
