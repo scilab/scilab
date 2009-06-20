@@ -13,9 +13,6 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
 public class GetNextAction extends AbstractConsoleAction {
 	private static final long serialVersionUID = 1L;
 	
-	public GetNextAction() {
-		System.out.print("DEBUG: constructor");
-	}
 	public void actionPerformed(ActionEvent e) {
 		String historyLine = null;
 
