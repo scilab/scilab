@@ -64,12 +64,15 @@ function packages = atomsGetTOOLBOXES(update)
 	// packages file path definition
 	// =========================================================================
 	
-	packages_path = pathconvert(SCIHOME+"/.atoms/packages",%F);
+	packages_path      = pathconvert(SCIHOME+"/.atoms/packages",%F);
+	packages_path_info = fileinfo(packages_path);
 	
 	// If necessary, loop on available mirrors and download TOOLBOXES files
 	// =========================================================================
 	
-	if (fileinfo(packages_path) == []) | (rhs == 1 & update) then
+	if (packages_path_info == []) ..
+		| (getdate("s") - packages_path_info(7) > 3600) ..
+		| (rhs == 1 & update) then
 		
 		nb_TOOLBOXES = 0;
 		TOOLBOXES    = []; // Liste des paths des fichiers TOOLBOXES
@@ -83,19 +86,19 @@ function packages = atomsGetTOOLBOXES(update)
 		
 		for i=1:size(mirrors,"*")
 			
-			url            = mirrors(i)+"/TOOLBOXES/"+OSNAME+"/"+ARCH;
+			url            = mirrors(i)+"/TOOLBOXES/"+ARCH+"/"+OSNAME;
 			file_out       = pathconvert(TMPDIR+"/atoms/"+sprintf("TOOLBOXES_%d",nb_TOOLBOXES),%f);
 			
 			if( fileinfo(file_out) <> [] ) then
 				mdelete(file_out);
 			end
 			
-            if MSDOS then
-                download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url + " -O " + file_out;
-            else
-                download_cmd = "wget "+url + " -O " + file_out;
-            end
-            
+			if MSDOS then
+				download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+url + " -O " + file_out;
+			else
+				download_cmd = "wget "+url + " -O " + file_out;
+			end
+			
 			[rep,stat,err] = unix_g(download_cmd)
 			if stat == 0 then
 				// Download successfull
