@@ -23,7 +23,7 @@
 # include "scicos_block4.h"
 # include "machine.h"
 
-extern int sciprint();
+#include "sciprint.h"
 
 void convert(scicos_block *block,int flag)
 {

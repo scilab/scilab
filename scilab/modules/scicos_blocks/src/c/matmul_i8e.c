@@ -22,8 +22,8 @@
 # include <stdio.h>
 # include "scicos_block4.h"
 # include "machine.h"
+#include "sciprint.h"
 
-extern int sciprint();
 void matmul_i8e(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)) {

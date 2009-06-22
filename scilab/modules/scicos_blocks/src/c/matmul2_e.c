@@ -21,7 +21,8 @@
 #include <math.h>
 #include <stdio.h>
 #include "scicos_block4.h"
-extern int sciprint();
+#include "sciprint.h"
+
 void matmul2_e(scicos_block *block,int flag)
 {
  if (flag==1){
