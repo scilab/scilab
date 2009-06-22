@@ -72,11 +72,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_LOOKUP2D">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Propriétéspardéfaut_LOOKUP2D">Propriétés par défaut</xref>
             </para>
           </listitem>
@@ -234,7 +229,7 @@ The block generates output based on the input values using one of these methods 
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/LOOKUP2D.sci<link linkend="LOOKUP2D_intfunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos_blocks/NonLinear/LOOKUP2D.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -242,7 +237,7 @@ The block generates output based on the input values using one of these methods 
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/lookup2d.c (Type 4)<link linkend="lookup2d_routcos">[voir code]</link> </para>
+        <para> SCI/routines/scicos/lookup2d.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -72,11 +72,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_LOOKUP_c">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Propriétéspardéfaut_LOOKUP_c">Propriétés par défaut</xref>
             </para>
           </listitem>
@@ -371,7 +366,7 @@ points.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/LOOKUP_c.sci<link linkend="LOOKUP_c_intfunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos_blocks/NonLinear/LOOKUP_c.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -379,7 +374,7 @@ points.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/lookup_c.c (Type 4)<link linkend="lookup_c_routcos">[voir code]</link> </para>
+        <para> SCI/routines/scicos/lookup_c.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

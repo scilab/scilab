@@ -67,11 +67,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_MPBLOCK">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <link linkend="MPBLOCK">Exemple</link>
             </para>
           </listitem>
@@ -85,38 +80,12 @@
               <xref linkend="Fonctiondinterface_MPBLOCK">Fonction d'interface</xref>
             </para>
           </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Voiraussi_MPBLOCK">Voir aussi</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Auteurs_MPBLOCK">Auteurs</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <link linkend="MPBLOCK">Bibliographie</link>
-            </para>
-          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection id="Description_MPBLOCK">
     <title>Description</title>
-    <para>
-  Ajoutez ici un paragraphe pour la description de la fonction  
-</para>
-    <para>
-
-
-
-</para>
-    <para>
-
-</para>
     <itemizedlist>
       <listitem>
         <para>
@@ -236,29 +205,8 @@ Exemple
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Misc/MPBLOCK.sci<link linkend="MPBLOCK_intfunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos_blocks/Misc/MPBLOCK.sci </para>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Voiraussi_MPBLOCK">
-    <title>Voir aussi</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="ajouterunlienici">ajouter un lien ici</link>
-        </para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Auteurs_MPBLOCK">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">entrez ici le nom des auteurs</emphasis> - Ajoutez ici les références des auteurs</para>
-    <para> Ajoutez ici les références des auteurs
- 
-</para>
-  </refsection>
-  <refsection id="Bibliographie_MPBLOCK">
-    <title>Bibliographie</title>
-    <para>Ajoutez ici la bibliographie si besoin</para>
   </refsection>
 </refentry>

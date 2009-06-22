@@ -116,7 +116,7 @@ Type : scilab list.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_cpr.sci<link linkend="scicos_cpr_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_cpr.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

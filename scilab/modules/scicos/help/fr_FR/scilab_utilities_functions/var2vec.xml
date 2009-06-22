@@ -24,12 +24,12 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="var2vec">
   <refnamediv>
     <refname>var2vec</refname>
+    <refpurpose>Séquence d'appel</refpurpose>
+  </refnamediv>
+  <refnamediv>
+    <refname>var2vec</refname>
     <refpurpose>Transforme une variable scilab en un vecteur de double</refpurpose>
   </refnamediv>
-  <refsynopsisdiv>
-    <title>Séquence d'appel</title>
-    <synopsis>[vec]=var2vec(var)</synopsis>
-  </refsynopsisdiv>
   <refsection id="Module_var2vec">
     <title>Module</title>
     <itemizedlist>
@@ -46,13 +46,12 @@
 Les fonctions var2vec / vec2var sont utilisées dans les fonctions d'interfaçages des blocs scilab pour donner la possibilité à l'utilisateur de manipuler des objets scilab avec le registre des paramètres réels (rpar) et avec le registre des états discrets (z).  
 </para>
     <para>
+
+
+
+
+
 </para>
-    <programlisting role="example"><![CDATA[
-[vec]=var2vec(var)
-]]></programlisting>
-  </refsection>
-  <refsection id="Paramètres_var2vec">
-    <title>Paramètres</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">var :</emphasis> Paramètre d'entrée. Peut-être tous types d'objet scilab.</para>

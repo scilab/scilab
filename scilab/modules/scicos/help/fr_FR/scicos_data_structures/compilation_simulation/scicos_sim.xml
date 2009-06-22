@@ -453,7 +453,7 @@ Type : vecteur colonne de nombre entiers.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_sim.sci<link linkend="scicos_sim_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_sim.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

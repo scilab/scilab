@@ -21,16 +21,16 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="get_scicos_version">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="coserror">
   <refnamediv>
-    <refname>get_scicos_version</refname>
+    <refname>coserror</refname>
     <refpurpose>Séquence d'appel</refpurpose>
   </refnamediv>
   <refnamediv>
-    <refname>get_scicos_version</refname>
-    <refpurpose>Retourne la version courante de Scicos</refpurpose>
+    <refname>coserror</refname>
+    <refpurpose>Interrompt la simulation et affiche un message d'erreur</refpurpose>
   </refnamediv>
-  <refsection id="Module_get_scicos_version">
+  <refsection id="Module_coserror">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,10 +40,10 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_get_scicos_version">
+  <refsection id="Description_coserror">
     <title>Description</title>
     <para>
-Cette fonction retourne le numéro de version courant de Scicos.  
+Cette fonction permet de définir un message d'erreur spécifique en cours de simulation pour le bloc courant. Si cette fonction est utilisée, alors à l'issue de l'éxecution de la fonction de calcul du bloc, le simulateur s'arrêtera et retournera le message d'erreur spécifié en argument.  
 </para>
     <para>
 
@@ -54,26 +54,21 @@ Cette fonction retourne le numéro de version courant de Scicos.
 </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scicos_ver :</emphasis> une chaîne de caractère indiquant le numéro de version.</para>
+        <para><emphasis role="bold">errmsg :</emphasis> une chaîne de caractères à afficher pour signaler l'erreur à l'utilisateur</para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Exemple_get_scicos_version">
-    <title>Exemple</title>
-    <programlisting role="example"><![CDATA[
-//Retourne la version de scicos 
-get_scicos_version()
-]]></programlisting>
-  </refsection>
-  <refsection id="Contenudufichier_get_scicos_version">
-    <title>Contenu du fichier</title>
+  <refsection id="Voiraussi_coserror">
+    <title>Voir aussi</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/util/get_scicos_version.sci</para>
+        <para>
+          <link linkend="set_blockerror">set_blockerror - Définit le numéro d'erreur de bloc (Fonction Scilab)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Auteurs_get_scicos_version">
+  <refsection id="Auteurs_coserror">
     <title>Auteurs</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>

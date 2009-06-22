@@ -104,7 +104,7 @@ Type : chaîne de caractères.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_diagram.sci<link linkend="scicos_diagram_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_diagram.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

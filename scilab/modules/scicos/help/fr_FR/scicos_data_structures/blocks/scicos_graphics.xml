@@ -229,7 +229,7 @@ Type : vecteur colonne de chaînes de caractères.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_graphics.sci<link linkend="scicos_graphics_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_graphics.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -26,12 +26,26 @@
     <refname>INTMUL</refname>
     <refpurpose>INTMUL Multiplication matricielle de nombre entiers</refpurpose>
   </refnamediv>
+  <refnamediv>
+    <refname>INTMUL</refname>
+    <refpurpose>Boîte de dialogue</refpurpose>
+  </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
           <imagedata fileref="../../../images/INTMUL_blk.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Block Screenshot</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../images/INTMUL_gui.gif" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -58,22 +72,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_INTMUL">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Propriétéspardéfaut_INTMUL">Propriétés par défaut</xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Fonctiondinterface_INTMUL">Fonction d'interface</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <xref linkend="Fonctiondecalcul_INTMUL">Fonction de calcul</xref>
             </para>
           </listitem>
           <listitem>
@@ -121,17 +125,10 @@ On overflow, the result can take different forms:
 The user can select one of these three forms by setting the "DO ON OVERFLOW" field to 0,1 or 2.  
 </para>
     <para>
+
+
+
 </para>
-  </refsection>
-  <refsection id="Boîtededialogue_INTMUL">
-    <title>Boîte de dialogue</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/INTMUL_gui.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
     <para>
 
 </para>
@@ -213,66 +210,7 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/IntegerOp/INTMUL.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Fonctiondecalcul_INTMUL">
-    <title>Fonction de calcul</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i32n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i16n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i8n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui32n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui16n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui8n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i32s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i16s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i8s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui32s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui16s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui8s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i32e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i16e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i8e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui32e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui16e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui8e.c</para>
+        <para> SCI/macros/scicos_blocks/IntegerOp/INTMUL.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

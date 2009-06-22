@@ -72,11 +72,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_INTRPLBLK_f">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Propriétéspardéfaut_INTRPLBLK_f">Propriétés par défaut</xref>
             </para>
           </listitem>
@@ -201,7 +196,7 @@ Les grandeurs  et  donnent respectivement les coordonnées
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/INTRPLBLK_f.sci<link linkend="INTRPLBLK_f_intfunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos_blocks/NonLinear/INTRPLBLK_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -209,7 +204,7 @@ Les grandeurs  et  donnent respectivement les coordonnées
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/intrpl.f (Type 0)<link linkend="intrpl_routcos">[voir code]</link> </para>
+        <para> SCI/routines/scicos/intrpl.f (Type 0)</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -72,11 +72,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_INTRP2BLK_f">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Propriétéspardéfaut_INTRP2BLK_f">Propriétés par défaut</xref>
             </para>
           </listitem>
@@ -213,7 +208,7 @@ sa valeur.
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/NonLinear/INTRP2BLK_f.sci<link linkend="INTRP2BLK_f_intfunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos_blocks/NonLinear/INTRP2BLK_f.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -221,7 +216,7 @@ sa valeur.
     <title>Fonction de calcul</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/routines/scicos/intrp2.f (Type 1)<link linkend="intrp2_routcos">[voir code]</link> </para>
+        <para> SCI/routines/scicos/intrp2.f (Type 1)</para>
       </listitem>
     </itemizedlist>
   </refsection>

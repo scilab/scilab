@@ -690,7 +690,7 @@ Type : liste scilab.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_model.sci<link linkend="scicos_model_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_model.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

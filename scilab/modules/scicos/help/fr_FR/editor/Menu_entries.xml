@@ -43,12 +43,6 @@
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">File:Rename</emphasis>
-        </para>
-        <para> This menu allows to change the diagram name. An editable dialog box opens. </para>
-      </listitem>
-      <listitem>
-        <para>
           <emphasis role="bold">File:Save (s)</emphasis>
         </para>
         <para> Select the save menu item to save the block diagram in a binary file already selected by a previous select the Save As menu item. If you select this menu item and you have never clicked on the Save As menu item, the diagram is saved in the current directory as "window_name".cos where "window_name" is the name of the window appearing on top of the window (usually Untitled or Super Block).
@@ -112,6 +106,12 @@ Replot is useful for 'cleaning' this memory.
       </listitem>
       <listitem>
         <para>
+          <emphasis role="bold">Diagram:Rename</emphasis>
+        </para>
+        <para> This menu allows to change the diagram name. An editable dialog box opens. </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis role="bold">Diagram:Purge</emphasis>
         </para>
         <para> Select the Purge menu item to get a clean data structure. If diagram has been hugely modified many deleted blocks may remain in the data structure. It may be useful to suppress then before saving. </para>
@@ -157,6 +157,12 @@ If you change the value of a symbolic Scicos parameters in
     <itemizedlist>
       <listitem>
         <para>
+          <emphasis role="bold">Palette:Pal Tree</emphasis>
+        </para>
+        <para> An alternative to Palettes menu for accessing palettes. </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis role="bold">Palette:Palettes</emphasis>
         </para>
         <para> Select the Palettes menu item to open a predefined palette. </para>
@@ -166,6 +172,14 @@ If you change the value of a symbolic Scicos parameters in
           <emphasis role="bold">Palette:Pal editor</emphasis>
         </para>
         <para> Pal editor allows you to define and reorder the list of palettes. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Palette:Region to Palette</emphasis>
+        </para>
+        <para> This menu allows to transform a rectangular region of the current diagram by a palette block. Click on a corner of the region, drag an click left to fix the region (left click cancels selection).
+Region is replaced by a palette block and links are deleted.
+  </para>
       </listitem>
       <listitem>
         <para>
@@ -183,12 +197,6 @@ If extension is ".cosf" an ASCII  formatted save is performed
  
 .scilab user file is updated if necessary.
   </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Palette:Pal Tree</emphasis>
-        </para>
-        <para> An alternative to Palettes menu for accessing palettes. </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -393,13 +401,24 @@ Normally, a new compilation is not needed if only
       </listitem>
       <listitem>
         <para>
+          <emphasis role="bold">Simulate:Modelica initialize</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis role="bold">Simulate:Eval</emphasis>
         </para>
-        <para> All dialogs user answers may be Scilab instructions. They are evaluated immediately and stored as character strings. Select this menu item to have them re-evaluated according to new values of underlying Scilab variables.
+        <para> Block parameters may be Scilab instructions. They are evaluated immediately and stored as character strings. Select this menu item to have them re-evaluated according to new values of Scilab variables.
 These underlying Scilab variables may be user global variables
        defined before Scicos was launch, They may also be defined in
-       by the Scicos context (see Context menu item).
+       the Scicos contexts (see Context menu item).
   </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Simulate:Analyze Diagram</emphasis>
+        </para>
+        <para> Simple analysis of the diagram. Not connected output ports are hilighted. Possible activation errors are detected. </para>
       </listitem>
       <listitem>
         <para>
@@ -422,6 +441,12 @@ You may interrupt the simulation by clicking on the
   <refsection id="Formatmenu_Menu_entries">
     <title>Format menu</title>
     <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Format:Set default action</emphasis>
+        </para>
+        <para> Set the default action : Free or Smart. </para>
+      </listitem>
       <listitem>
         <para>
           <emphasis role="bold">Format:Set grid</emphasis>
@@ -501,6 +526,12 @@ You may use the icon_editor menu to generate the Scilab
     <itemizedlist>
       <listitem>
         <para>
+          <emphasis role="bold">Tools:Activate Scilab Window</emphasis>
+        </para>
+        <para> This item activates the Scilab window without closing the Scicos diagram. You can use Scilab as usual and later return to editing your Scicos diagram. Note that if you activate the Scilab window with this menu without saving your diagram, if you leave Scilab without returning to Scicos, your diagram will be lost. </para>
+      </listitem>
+      <listitem>
+        <para>
           <emphasis role="bold">Tools:Create Mask</emphasis>
         </para>
         <para> This menu applies only to a Super Block, transforming it into a block that resembles a basic block with a standard dialog box. The block parameters are identifed automatically by searching all the symbolic parameters used in the definition of the block parameters inside the Super block that are not defined in the appropriate contexts within the Super Block; </para>
@@ -524,6 +555,18 @@ You may use the icon_editor menu to generate the Scilab
         <para> This operation can only be applied to a masked block (see Create Mask operation). The result, the interfacing function of this block, is saved in an .sci file, which can be placed in any diagram/palette using the Add New Block operation. The interfacing function is loaded autmatically for immediate use after the operation.
 Note that the resulting block is not a masked block; it is a compiled super block.
   </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Tools:Create Atomic</emphasis>
+        </para>
+        <para> This menu applies only to a Super Block, transforming it into an atomic superblock. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Tools:Remove Atomic</emphasis>
+        </para>
+        <para> This menu applies only to an already atomic superblock. It removes the atomicity and the Super Block within it can be recovered. Note that the icon of the Super Block remains the same as that of the atomic super block. </para>
       </listitem>
       <listitem>
         <para>
@@ -572,12 +615,6 @@ Given this information the code is generated, compiled and linked with
           <emphasis role="bold">Tools:Shortcuts</emphasis>
         </para>
         <para> Used to define personalized shortcuts. </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Tools:Activate Scilab Window</emphasis>
-        </para>
-        <para> This item activates the Scilab window without closing the Scicos diagram. You can use Scilab as usual and later return to editing your Scicos diagram. Note that if you activate the Scilab window with this menu without saving your diagram, if you leave Scilab without returning to Scicos, your diagram will be lost. </para>
       </listitem>
       <listitem>
         <para>

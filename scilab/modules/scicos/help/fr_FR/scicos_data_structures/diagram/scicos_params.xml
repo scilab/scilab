@@ -357,7 +357,7 @@ Type : Chaînes de caractères.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_params.sci<link linkend="scicos_params_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_params.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

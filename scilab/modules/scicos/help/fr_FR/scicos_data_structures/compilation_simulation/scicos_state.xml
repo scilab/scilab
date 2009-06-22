@@ -164,7 +164,7 @@ Type : liste scilab contenant des matrices.
     <title>Contenu du ficher</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos/scicos_state.sci<link linkend="scicos_state_scifunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos/scicos_state.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -72,11 +72,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Boîtededialogue_MBLOCK">Boîte de dialogue</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Propriétéspardéfaut_MBLOCK">Propriétés par défaut</xref>
             </para>
           </listitem>
@@ -278,7 +273,7 @@ Length value       =  [13.0 ; 12.1]
     <title>Fonction d'interface</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/macros/scicos_blocks/Misc/MBLOCK.sci<link linkend="MBLOCK_intfunc">[voir code]</link> </para>
+        <para> SCI/macros/scicos_blocks/Misc/MBLOCK.sci</para>
       </listitem>
     </itemizedlist>
   </refsection>

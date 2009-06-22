@@ -21,16 +21,16 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="get_scicos_version">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="phase_simulation">
   <refnamediv>
-    <refname>get_scicos_version</refname>
+    <refname>phase_simulation</refname>
     <refpurpose>Séquence d'appel</refpurpose>
   </refnamediv>
   <refnamediv>
-    <refname>get_scicos_version</refname>
-    <refpurpose>Retourne la version courante de Scicos</refpurpose>
+    <refname>phase_simulation</refname>
+    <refpurpose>Retourne la phase actuelle de simulation</refpurpose>
   </refnamediv>
-  <refsection id="Module_get_scicos_version">
+  <refsection id="Module_phase_simulation">
     <title>Module</title>
     <itemizedlist>
       <listitem>
@@ -40,10 +40,10 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_get_scicos_version">
+  <refsection id="Description_phase_simulation">
     <title>Description</title>
     <para>
-Cette fonction retourne le numéro de version courant de Scicos.  
+Cette fonction permet de savoir si le simulateur scicos est dans sa phase d'intégration temporelle.  
 </para>
     <para>
 
@@ -54,27 +54,20 @@ Cette fonction retourne le numéro de version courant de Scicos.
 </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">scicos_ver :</emphasis> une chaîne de caractère indiquant le numéro de version.</para>
+        <para><emphasis role="bold">psim :</emphasis> retourne la phase courante de la simulation.</para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">1 :</emphasis>
+   Le simulateur est sur un point temporel d'activation discrète.
+</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">2 :</emphasis>
+   Le simulateur est entrain de réaliser une intégration temporelle à temps continu.
+</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
-  </refsection>
-  <refsection id="Exemple_get_scicos_version">
-    <title>Exemple</title>
-    <programlisting role="example"><![CDATA[
-//Retourne la version de scicos 
-get_scicos_version()
-]]></programlisting>
-  </refsection>
-  <refsection id="Contenudufichier_get_scicos_version">
-    <title>Contenu du fichier</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/macros/util/get_scicos_version.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Auteurs_get_scicos_version">
-    <title>Auteurs</title>
-    <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
   </refsection>
 </refentry>
