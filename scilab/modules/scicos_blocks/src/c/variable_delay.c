@@ -21,13 +21,12 @@
 #include <math.h>
 #include "MALLOC.h"
 #include "scicos_block.h"
+#include "sciprint.h"
 
 #if _MSC_VER
 #define max(a,b) ((a) >= (b) ? (a) : (b))
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif
-
-extern void sciprint(char *fmt,...);
 
 void variable_delay(scicos_block *block,int flag)
 {/*  rpar[0]=max delay, rpar[1]=init value, ipar[0]=buffer length */

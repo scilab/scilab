@@ -20,7 +20,7 @@
 */
 #include <math.h>
 #include "scicos_block.h"
-
+#include "sciprint.h"
 
 extern void sciprint();
 

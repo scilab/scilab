@@ -32,7 +32,7 @@
  *    From workspace block
  */
 #include "stack-c.h"
-
+#include "sciprint.h"
 
 #if _MSC_VER
 #define NULL    0
@@ -52,7 +52,7 @@ extern int C2F(mgetnc)();
 extern void C2F(mopen)();
 extern int C2F(cluni0)(char *name, char *nams, int *ln, long int name_len,long int nams_len);
 extern void C2F(mclose)(int *fd, double *res);
-extern void sciprint(char *fmt,...);
+
 int Mytridiagldltsolve(double *dA, double * lA, double * B, int N);
 int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k);
 
