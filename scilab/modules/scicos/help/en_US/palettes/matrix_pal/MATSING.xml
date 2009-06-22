@@ -215,16 +215,7 @@ The equivalent function of this block in Scilab is "svd".
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_sing.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_svd.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_sing.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_svd.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_sing.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

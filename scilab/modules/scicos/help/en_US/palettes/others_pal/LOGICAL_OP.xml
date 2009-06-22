@@ -202,25 +202,7 @@ if it is zero.
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop_i32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop_i16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop_i8.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop_ui32.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop_ui16.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/logicalop_ui8.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

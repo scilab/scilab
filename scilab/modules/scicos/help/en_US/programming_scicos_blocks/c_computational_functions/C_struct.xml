@@ -278,7 +278,7 @@ Finally note that the regular output port registers must be only written for =1.
 </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">block-&gt;nevprt :</emphasis> Integer that gives the event input port number by which the block has been activated. This number is a binary coding. For i.e, if block have two event inputs ports, can take the value 1 if the block has been called by its first event input port, the value 2 if it has been called by the second event input port and 3 if it is called by the same event on both input port 1 and 2.</para>
+        <para><emphasis role="bold">block-&gt;nevprt :</emphasis> Integer that gives the event input port number by which the block has been activated. This number is a binary coding. For i.e, if block has two event inputs ports, can take the value 1 if the block has been called by its first event input port, the value 2 if it has been called by the second event input port and 3 if it is called by the same event on both input port 1 and 2.</para>
         <para> Note that can be -1 if the block is internally called.</para>
         <para> One can also retrieve this number by using the C macros . </para>
       </listitem>

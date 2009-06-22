@@ -133,7 +133,7 @@ The blocks of that palette doesn't have regular output ports.
       </listitem>
       <listitem>
         <para>
-          <link linkend="TOWS_c">TOWORK_c - Data to Scilab worspace</link>
+          <link linkend="TOWS_c">TOWS_c - Data to Scilab worspace</link>
         </para>
       </listitem>
       <listitem>

@@ -39,46 +39,47 @@
   <refsection id="AboutScicos_About_scicos">
     <title>About Scicos...</title>
     <para>
-Scicos 4.2 have been developed in the Metalau Project-Team very close
-  to the Scilab consortium at INRIA unit of Rocquencourt.
+Scicos is currently developed by the Scicos team (A. Layec, M. Najafi, F. Nassif)
+ headed by R. Nikoukhah in the METALAU project team at INRIA, unit of Rocquencourt.
 </para>
     <para>
-The main contributers of that version are :
+The main contributers of Scicos 4.x familly are :
 </para>
     <para>
-      <emphasis role="bold">Designers :</emphasis>
-    </para>
-    <para>  
+
 </para>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">Fady Nassif</emphasis> (INRIA)</para>
         <para> Matrix/integer blocks set.</para>
-        <para> Simulink behavior (SampleClk/Goto-from blocks set.) </para>
+        <para> SampleClk/Goto From/atomic blocks... </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Masoud Najafi</emphasis> (INRIA)</para>
         <para> Modelica implementation.</para>
-        <para> Simulator Sundials implementation. </para>
+        <para> Simulator design. </para>
       </listitem>
       <listitem>
-        <para><emphasis role="bold">Simone Mannori</emphasis> (INRIA)</para>
-        <para> New graphic editor design. </para>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> (INRIA)</para>
+        <para> Compiler algorithm.</para>
+        <para> Multi-windows graphical editor behavior. </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Alan Layec</emphasis> (INRIA)</para>
         <para> Matrix typed data implementation.</para>
-        <para> Core of C code generator.</para>
-        <para> Html documentation. </para>
+        <para> C code generator.</para>
+        <para> HTML documentation. </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Simone Mannori/Serge Steer</emphasis> (INRIA)</para>
+        <para> New graphic editor design. </para>
       </listitem>
       <listitem>
         <para><emphasis role="bold">Benoit Bayol</emphasis> (Student)</para>
-        <para> New graphic scope blocks set. </para>
+        <para> New graphic scope blocks set.</para>
       </listitem>
     </itemizedlist>
-    <para><emphasis role="bold">Guru : Serge Steer</emphasis> (INRIA)
-</para>
-    <para><emphasis role="bold">Mentor : Ramine Nikoukhah</emphasis> (INRIA)
+    <para>
 
 </para>
     <para>

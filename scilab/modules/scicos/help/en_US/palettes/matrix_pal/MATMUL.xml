@@ -219,16 +219,7 @@ y=[46 37 28 19;115 94 73 52]
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matzmul_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul2_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matzmul2_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/matmul_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

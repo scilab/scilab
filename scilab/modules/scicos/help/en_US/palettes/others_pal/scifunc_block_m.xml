@@ -245,7 +245,7 @@ is slower. For more information see Scicos reference manual.
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos/src/fortran/scifunc.f (Type 3)</para>
+        <para> SCI/modules/scicos_blocks/src/fortran/scifunc.f (Type 3)</para>
       </listitem>
     </itemizedlist>
   </refsection>

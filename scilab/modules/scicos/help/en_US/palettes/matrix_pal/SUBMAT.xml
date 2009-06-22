@@ -226,10 +226,7 @@ This block outputs a sub matrix of the input matrix. The output matrix will be d
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/submat.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/submatz.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/submat.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

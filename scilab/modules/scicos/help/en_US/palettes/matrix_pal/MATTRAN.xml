@@ -218,10 +218,7 @@ This Block transposes an MxN matrix to a NxM matrix. For complex data type it us
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mattran_m.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matztran_m.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mattran_m.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

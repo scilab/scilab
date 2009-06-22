@@ -78,6 +78,11 @@ That palette contains basic linear operators and sub-systems.
       </listitem>
       <listitem>
         <para>
+          <link linkend="DIFF_c">DIFF_c - Derivative block (implicit)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
           <link linkend="DLR">DLR - Discrete transfer function</link>
         </para>
       </listitem>

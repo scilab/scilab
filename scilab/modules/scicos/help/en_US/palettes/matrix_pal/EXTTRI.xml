@@ -78,11 +78,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_EXTTRI">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Seealso_EXTTRI">See also</xref>
             </para>
           </listitem>
@@ -218,29 +213,6 @@ B=[1 0 0;4 5 0;7 8 9;10 11 12]
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_EXTTRI">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/exttril.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/exttriu.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/extdiag.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/exttrilz.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/exttriuz.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/extdiagz.c</para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -116,7 +116,7 @@ for more details about the C structure of scicos
 blocks).
 </para>
     <para>
-That scilab structure is a scilab typed list variable that have the following fields :
+That scilab structure is a scilab typed list variable that has the following fields :
 </para>
     <para>
 

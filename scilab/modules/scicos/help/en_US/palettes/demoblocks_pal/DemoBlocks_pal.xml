@@ -72,6 +72,11 @@ diagrams of demonstration.
           <link linkend="BPLATFORM">BPLATFORM - Balls under a platform viewer</link>
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link linkend="PENDULUM_ANIM">PENDULUM_ANIM - Pendulum animated scope</link>
+        </para>
+      </listitem>
     </itemizedlist>
   </refsection>
 </refentry>

@@ -73,11 +73,6 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_INTMUL">Computational function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
               <xref linkend="Seealso_INTMUL">See also</xref>
             </para>
           </listitem>
@@ -214,65 +209,6 @@ The user can select one of these three forms by setting the "DO ON OVERFLOW" fie
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/IntegerOp/INTMUL.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_INTMUL">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i32n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i16n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i8n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui32n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui16n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui8n.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i32s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i16s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i8s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui32s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui16s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui8s.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i32e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i16e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_i8e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui32e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui16e.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matmul_ui8e.c</para>
       </listitem>
     </itemizedlist>
   </refsection>

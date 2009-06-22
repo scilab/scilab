@@ -216,10 +216,7 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_div.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_div.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_div.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>

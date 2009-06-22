@@ -196,10 +196,7 @@ The MATINV Block outputs the inverse of a square input matrix using the LU facto
     <title>Computational function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/mat_inv.c</para>
-      </listitem>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/matz_inv.c</para>
+        <para> SCI/modules/scicos_blocks/src/c/mat_inv.c (Type 4)</para>
       </listitem>
     </itemizedlist>
   </refsection>
