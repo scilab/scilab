@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <math.h>
+#include "scicos_block4.h"
+
 void matz_abs(scicos_block *block,int flag)
 {
   double *u1r;

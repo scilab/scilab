@@ -18,8 +18,8 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <math.h>
+#include "scicos_block4.h"
 #include "machine.h"
 
 extern double C2F(urand)();

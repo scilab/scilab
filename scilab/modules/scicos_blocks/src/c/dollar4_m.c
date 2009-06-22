@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <memory.h>
+#include "scicos_block4.h"
+
 
 typedef struct
 {         int s;

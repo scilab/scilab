@@ -18,11 +18,12 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
 # include <math.h>
 # include <stdio.h>
-extern int sciprint();
+# include "scicos_block4.h"
+# include "machine.h"
+#include "sciprint.h"
+
 void matmul_ui16e(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)) {

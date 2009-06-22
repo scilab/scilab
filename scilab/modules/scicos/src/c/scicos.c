@@ -65,7 +65,7 @@
 #include "ida_impl.h"
 #include "kinsol.h"
 #include "kinsol_dense.h"
-
+#include "cvstr.h"
 
 #include "ezxml.h"
 
@@ -202,8 +202,6 @@ extern void  sciblk2();
 extern void  sciblk4();
 extern void  GetDynFunc();
 extern void  C2F(iislink)();
-
-extern int C2F(cvstr)();
 extern int C2F(dset)();
 extern int C2F(dcopy)();
 extern int C2F(iset)();

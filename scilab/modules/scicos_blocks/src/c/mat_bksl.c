@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
 #include <stdio.h>
 #include <math.h>
+# include "scicos_block4.h"
+# include "machine.h"
 extern int C2F(dgetrf)();
 extern double C2F(dlamch)();
 extern double C2F(dlange)();

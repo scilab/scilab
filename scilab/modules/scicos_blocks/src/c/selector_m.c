@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <memory.h>
+#include "scicos_block4.h"
+
 
 void selector_m(scicos_block *block,int flag)
  {

@@ -18,10 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
 #include <math.h>
-
-extern void sciprint();
+#include "scicos_block.h"
+#include "sciprint.h"
 
 void edgetrig(scicos_block *block,int flag)
 {

@@ -18,20 +18,20 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
-#include "stack-c.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> /* getenv */
+#include "scicos_block4.h"
+#include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
-
+#include "cvstr.h"
 
 #if _MSC_VER
 #define NULL    0
 #endif
 
-extern int C2F(cvstr)();
+
 extern int C2F(cluni0)();
 extern int C2F(mclose)();
 

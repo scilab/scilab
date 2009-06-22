@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
 #include <math.h>
+#include "scicos_block.h"
+
 void deadband(scicos_block *block,int flag)
 {/* rpar[0]:upper limit,  rpar[1]:lower limit */
   if (flag==1){

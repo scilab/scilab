@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+# include <math.h>
 # include "scicos_block4.h"
 # include "machine.h"
-# include <math.h>
+
 
 void matmul_ui32s(scicos_block *block,int flag)
 {

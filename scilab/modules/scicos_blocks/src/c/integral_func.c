@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
 #include <math.h>
+#include "scicos_block.h"
+
 
 void  integral_func(scicos_block *block,int flag)
 {int i;

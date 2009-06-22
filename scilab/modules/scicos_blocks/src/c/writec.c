@@ -23,8 +23,9 @@
 #include "sciprint.h"
 #include "machine.h"
 #include "charEncoding.h"
+#include "cvstr.h"
 
-extern  int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
+
 void mput2  (FILE *fa, int swap, double *res, int n, char *type, int *ierr);
 
 void 

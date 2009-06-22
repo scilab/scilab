@@ -18,10 +18,11 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
 #include <stdio.h>
 #include <math.h>
+# include "scicos_block4.h"
+# include "machine.h"
+
 
 #if _MSC_VER
 #define NULL    0
