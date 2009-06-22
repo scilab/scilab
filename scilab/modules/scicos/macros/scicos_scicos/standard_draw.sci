@@ -25,7 +25,13 @@ function standard_draw (o, frame, draw_ports, up)
 //** This function is used to draw the object from the most of (but NOT all) the interface functions
 //**
 //** 21 Nov 2006 : some save/restore patch moved to upper level "drawobj.sci"
-//**
+//** 22 Jun 2009  (Serge Steer INRIA)
+//   -  gh_curwin.children use replaced by gh_axes to get the
+//      axes children because uimenu are now children of the figure
+//   -  use gh_blk for argument of dig_bound_compound  
+//   -  use of gh_text to set text properties of the indentifier (instead
+//      of modifying  the correponding axes properties
+  
   xf = 60 ; yf = 40 ;
 
   [lhs,rhs] = argn(0)
@@ -52,9 +58,6 @@ function standard_draw (o, frame, draw_ports, up)
   e = 4 ;
   With3D = options('3D')(1)
   //** ----------------------------------
-
-
-  gh_curwin = gh_current_window     ; //** get the handle of the current graphics window
 
   gr_i = o.graphics.gr_i
 
@@ -117,7 +120,7 @@ function standard_draw (o, frame, draw_ports, up)
   if exists('%scicos_with_grid') then
     if %scicos_with_grid then
       scs_m_i=[]; cpr_i=[] ; sflag=[] ;
-      win_id = gh_curwin.figure_id
+      win_id = gh_current_window.figure_id
 
       kc = find(win_id==windows(:,2))
 
@@ -140,29 +143,21 @@ function standard_draw (o, frame, draw_ports, up)
 
         // draw indexes
         if txt_index<>[] then
-          //** Save font state
-          axes_font_style = gh_axes.font_style ;
-          axes_font_size  = gh_axes.font_size  ;
-          //** axes_font_color = gh_axes.font_color ; //** optional
-
-          gh_axes.font_style = options.ID(1)(1) ;
-          gh_axes.font_size  = options.ID(1)(2) ;
-
+   
           //@@ compute bbox
           rect = stringbox(txt_index, orig(1), orig(2), 0,...
                            options.ID(1)(1), options.ID(1)(2));
 
-          w=(rect(1,3)-rect(1,2)) * %zoom;
+          w = (rect(1,3)-rect(1,2)) * %zoom;
           w = max(w, sz(1));
-          h=(rect(2,2)-rect(2,4)) * 1.3 * %zoom/1.4;
+          h = (rect(2,2)-rect(2,4)) * 1.3 * %zoom/1.4;
 
           //@@ fill txt_index in a box
           xstringb(orig(1) + sz(1) / 2 - w / 2, orig(2) + sz(2), txt_index , w, h,'fill') ;
-
-          //** Restore font state
-          gh_axes.font_style = axes_font_style ;
-          gh_axes.font_size  = axes_font_size  ;
-          //** gh_axes.font_color = axes_font_color ; //** optional
+	  gh_txt = gce();
+	  gh_txt.font_style = options.ID(1)(1) ;
+	  gh_txt.font_size  = options.ID(1)(2) ;
+ 
         end
       end
     end
@@ -193,19 +188,17 @@ function standard_draw (o, frame, draw_ports, up)
   // draw Identification
   if ident<>[] & ident<>'' then
 
-      //@@ that's for label, not for ident
-      //ident = '[' + stripblanks(ident) + ']'
-      //ident = '-' + stripblanks(ident) + '-'
-
+ 
       //@@ compute bbox of gr object
-      p_size=size(gh_curwin.children.children);
+
+      p_size=size(gh_axes.children);
       if p_size(1)-o_size(1)<>0 then
-        glue(gh_curwin.children.children(1:1:(p_size(1)-o_size(1))));
-        rect=dig_bound_compound(1)
+        gh_blk=glue(gh_axes.children(1:(p_size(1)-o_size(1))));
+        rect=dig_bound_compound(gh_blk)
         //@@ Alan,28/11/08 : I redraw all here because glue/unglue op change
         //@@                 some properties of objects in the compound
-        //unglue(gh_curwin.children.children(1))
-        delete(gh_curwin.children.children(1))
+        //unglue(gh_blk)
+        delete(gh_blk)
         exec_gr_i(gr_i) //@@ no test here : this have been done previously
       else
         rect=[orig(1) orig(2) orig(1)+sz(1) orig(2)+sz(2)]
@@ -221,48 +214,37 @@ function standard_draw (o, frame, draw_ports, up)
       //rect(1,3)=max(rect(1,3),orig(1)+sz(1))
       rect(1,4)=max(rect(1,4),orig(2)+sz(2))
 
-      gh_axes = gca(); //** get the Axes properties
-
-      //** Save font state
-      axes_font_style = gh_axes.font_style ;
-      axes_font_size  = gh_axes.font_size  ;
-      axes_font_color = gh_axes.font_color ; //** optional
-
-      gh_axes.font_style = options.ID(1)(1) ;
-      gh_axes.font_size  = options.ID(1)(2) ;
-      gh_axes.font_color = options.ID(1)(3) ; //@@
-
-      //@@ compute bbox
+       //@@ compute bbox
       rectstr = stringbox(ident, rect(1,1), rect(1,2), 0,...
                        options.ID(1)(1), options.ID(1)(2));
       w=(rectstr(1,3)-rectstr(1,2)) * %zoom;
       h=(rectstr(2,2)-rectstr(2,4)) * %zoom;
 
       //@@ fill ident in a box
-      xstringb(orig(1) + sz(1) / 2 - w / 2, rect(1,2) - (h*1.1) , ident , w, h,'fill') ;
-
+      xstringb(orig(1) + sz(1) / 2 - w / 2, rect(1,2) - (h*1.1) , ident , ...
+	       w, h,'fill') ;
+      //@@ Serge 22 Jun 2009
+      gh_text=gce();
+      gh_text.font_style = options.ID(1)(1) ;
+      gh_text.font_size  = options.ID(1)(2) ;
+      gh_text.font_foreground = options.ID(1)(3) ; //@@
+      
       //@@ set visible
-      if gh_curwin.children.children(1).type == 'Text' then
+      if gh_axes.children(1).type == 'Text' then
         if options.ID(1)(4)==0 then
-          gh_curwin.children.children(1).visible="off"
+          gh_axes.children(1).visible="off"
         else
-          gh_curwin.children.children(1).visible="on"
+          gh_axes.children(1).visible="on"
         end
       else //@@compound
-        for i=1:size(gh_curwin.children.children(1).children,1)
+        for i=1:size(gh_axes.children(1).children,1)
           if options.ID(1)(4)==0 then
-            gh_curwin.children.children(1).children(i).visible="off"
+            gh_axes.children(1).children(i).visible="off"
           else
-            gh_curwin.children.children(1).children(i).visible="on"
+            gh_axes.children(1).children(i).visible="on"
           end
         end
       end
-
-      //** Restore font state
-      gh_axes.font_style = axes_font_style ;
-      gh_axes.font_size  = axes_font_size  ;
-      gh_axes.font_color = axes_font_color ; //** optional
-
   end
 //** --------------------------- Identification End --------------------------------------------------------------
 

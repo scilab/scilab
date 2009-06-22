@@ -25,39 +25,35 @@
 //** output : rect
 //**
 //** 25/11/08, Alan
+//** 22/06/09, Serge Steer INRIA
+//  - input argument replaced by the compound handle
+//  - removed the useless unglue + glue instruction using the compuound
+//    children list
 // Copyright INRIA
-function [rect]=dig_bound_compound(blk)
-
-  gh_curwin=gh_curwin;
-  o_size = size(gh_curwin.children.children);
-
-  unglue(gh_curwin.children.children(blk))
-  p_size = size(gh_curwin.children.children); //** size after the unglue
-                                              //** objects unglued are
-                                              //** in the top positions
-  d_size =  p_size(1) - o_size(1);
+function [rect]=dig_bound_compound(gh_blk)
+//gh_blk handle on a compound object
 
   xmin = 100000;
   xmax = -xmin;
   ymin = xmin;
   ymax = -xmin;
-
-  for i=1:d_size+1
-     select gh_curwin.children.children(i).type
+  C=gh_blk.children
+  for i=1:size(C,'*')
+     select C(i).type
          case "Rectangle" then
             //disp('rectangle')
 
-            xmin=min(xmin,gh_curwin.children.children(i).data(1));
-            ymin=min(ymin,gh_curwin.children.children(i).data(2));
-            xmax=max(xmax,gh_curwin.children.children(i).data(3)+gh_curwin.children.children(i).data(1));
-            ymax=max(ymax,gh_curwin.children.children(i).data(4)+gh_curwin.children.children(i).data(2));
+            xmin=min(xmin,C(i).data(1));
+            ymin=min(ymin,C(i).data(2));
+            xmax=max(xmax,C(i).data(3)+C(i).data(1));
+            ymax=max(ymax,C(i).data(4)+C(i).data(2));
 
          case "Text" then
             //disp('text')
 
             //** get bounding box of text with no rotation
-            rectstr = stringbox(gh_curwin.children.children(i).text,gh_curwin.children.children(i).data(1),...
-                             gh_curwin.children.children(i).data(2))
+            rectstr = stringbox(C(i).text,C(i).data(1),...
+                             C(i).data(2))
 
             xmin=min(xmin,rectstr(1,1));
             ymin=min(ymin,rectstr(2,1));
@@ -67,15 +63,15 @@ function [rect]=dig_bound_compound(blk)
          case "Polyline" then
             //disp('polyline')
 
-            xmin=min(xmin,min(gh_curwin.children.children(i).data(:,1)));
-            ymin=min(ymin,min(gh_curwin.children.children(i).data(:,2)));
-            xmax=max(xmax,max(gh_curwin.children.children(i).data(:,1)));
-            ymax=max(ymax,max(gh_curwin.children.children(i).data(:,2)));
+            xmin=min(xmin,min(C(i).data(:,1)));
+            ymin=min(ymin,min(C(i).data(:,2)));
+            xmax=max(xmax,max(C(i).data(:,1)));
+            ymax=max(ymax,max(C(i).data(:,2)));
 
          case "Compound" then
             //disp('compound')
 
-            [rectcmpd]=dig_bound_compound(i)
+            [rectcmpd]=dig_bound_compound(C(i))
             xmin=min(xmin,rectcmpd(1,1));
             ymin=min(ymin,rectcmpd(1,2));
             xmax=max(xmax,rectcmpd(1,3));
@@ -84,23 +80,21 @@ function [rect]=dig_bound_compound(blk)
          case "Segs" then
             //disp('Segs')
 
-            xmin=min(xmin,min(gh_curwin.children.children(i).data(:,1)));
-            ymin=min(ymin,min(gh_curwin.children.children(i).data(:,2)));
-            xmax=max(xmax,max(gh_curwin.children.children(i).data(:,1)));
-            ymax=max(ymax,max(gh_curwin.children.children(i).data(:,2)));
+            xmin=min(xmin,min(C(i).data(:,1)));
+            ymin=min(ymin,min(C(i).data(:,2)));
+            xmax=max(xmax,max(C(i).data(:,1)));
+            ymax=max(ymax,max(C(i).data(:,2)));
 
          case "Arc" then
             //disp('Arc')
-
-            xmin=min(xmin,gh_curwin.children.children(i).data(1));
-            ymin=min(ymin,gh_curwin.children.children(i).data(2));
-            xmax=max(xmax,gh_curwin.children.children(i).data(3)+gh_curwin.children.children(i).data(1));
-            ymax=max(ymax,gh_curwin.children.children(i).data(4)+gh_curwin.children.children(i).data(2));
+	    
+            xmin=min(xmin,C(i).data(1));
+            ymin=min(ymin,C(i).data(2));
+            xmax=max(xmax,C(i).data(3)+C(i).data(1));
+            ymax=max(ymax,C(i).data(4)+C(i).data(2));
      end
   end
 
   rect=[xmin ymin xmax ymax]
-
-  glue(gh_curwin.children.children(d_size+1:-1:1));
 
 endfunction
