@@ -22,8 +22,6 @@
 #include "scicos_block.h"
 #include "sciprint.h"
 
-extern void sciprint();
-
 void edgetrig(scicos_block *block,int flag)
 {
   double z= block->z[0],u=block->inptr[0][0];
