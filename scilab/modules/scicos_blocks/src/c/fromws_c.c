@@ -33,6 +33,7 @@
  */
 #include "stack-c.h"
 #include "sciprint.h"
+#include "cvstr.h"
 
 #if _MSC_VER
 #define NULL    0
@@ -47,7 +48,7 @@
 #define TNm1      ptr->workt[nPoints-1]
 #define TP        (TNm1-0)
 
-extern int C2F(cvstr)(int *,int *,char *,int *,unsigned long int);
+
 extern int C2F(mgetnc)();
 extern void C2F(mopen)();
 extern int C2F(cluni0)(char *name, char *nams, int *ln, long int name_len,long int nams_len);
