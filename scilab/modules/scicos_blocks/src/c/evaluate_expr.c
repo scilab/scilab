@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
+
 #include <math.h>
 #if _MSC_VER
 #include <float.h>
@@ -28,6 +28,7 @@
 #include <ieeefp.h>
 #endif
 
+#include "scicos_block.h"
 #include "machine.h" /* isinf */
 
 #ifndef min

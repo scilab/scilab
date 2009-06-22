@@ -17,8 +17,10 @@
 * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 *
 * See the file ./license.txt
-*/#include "scicos_block.h"
+*/
 #include <stdio.h>
+#include "scicos_block.h"
+
 
 void invblk4(scicos_block *block,int flag)
 {

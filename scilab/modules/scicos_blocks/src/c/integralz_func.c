@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <math.h>
+#include "scicos_block4.h"
+
 
 void  integralz_func(scicos_block *block,int flag)
 {int i;

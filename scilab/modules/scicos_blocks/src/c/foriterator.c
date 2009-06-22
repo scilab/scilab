@@ -1,9 +1,5 @@
-#include "scicos_block4.h"
 #include <memory.h>
-/*typedef struct{
-  int so;
-  void **mem;
-  }foriter;*/
+#include "scicos_block4.h"
 
 void foriterator(scicos_block *block,int flag)
 { 

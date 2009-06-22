@@ -21,8 +21,7 @@
 #include <math.h>
 #include "scicos_block.h"
 
-void 
-bounce_ball(scicos_block *block,int flag)
+void bounce_ball(scicos_block *block,int flag)
 {
 
      int nevprt,nx,*ipar;

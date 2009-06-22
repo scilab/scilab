@@ -1,5 +1,6 @@
-#include "scicos_block4.h"
 #include <math.h>
+#include "scicos_block4.h"
+
 
 
 //  10/2007 --------

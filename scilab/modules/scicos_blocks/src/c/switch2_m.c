@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
 #include <math.h>
 #include <memory.h>
+#include "scicos_block4.h"
+
 
 void  switch2_m(scicos_block *block,int flag)
 {

@@ -18,16 +18,19 @@
 *
 * See the file ./license.txt
 */
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+
+
 #include "scicos_block4.h"
 /*    Masoud Najafi, Alan Layec September 2007 */
 /*    Copyright INRIA
  *    Scicos block simulator
  *    From workspace block
  */
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
 #include "stack-c.h"
 
 

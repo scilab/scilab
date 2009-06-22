@@ -19,8 +19,9 @@
 * See the file ./license.txt
 */
 #include <math.h>
-#include "scicos_block4.h"
 #include <stdio.h>
+#include "scicos_block4.h"
+
 extern int sciprint();
 void summation_i32e(scicos_block *block,int flag)
 {

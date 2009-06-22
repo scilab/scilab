@@ -25,9 +25,10 @@
    \date September 2006 - January 2007
    \brief Source code of all accessors for ScopeMemory structure
 */
+#include <stdlib.h>
 #include "HandleManagement.h" /* sciGetPointerFromHandle */
 #include "scoGetProperty.h"
-#include <stdlib.h>
+
 
 //** Added for real time functions 
 //**

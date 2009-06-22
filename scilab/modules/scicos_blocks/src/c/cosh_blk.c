@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
 #include <math.h>
+#include "scicos_block.h"
+
 
 void cosh_blk(scicos_block *block,int flag)
 {

@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+#include <math.h>
 #include "scicos_block4.h"
 #include "machine.h"
-#include <math.h>
+
 extern int C2F(wsqrt)();
 
 void matz_sqrt(scicos_block *block,int flag)

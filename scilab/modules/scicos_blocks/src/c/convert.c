@@ -18,10 +18,11 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
 # include <math.h>
 # include <memory.h>
+# include "scicos_block4.h"
+# include "machine.h"
+
 extern int sciprint();
 
 void convert(scicos_block *block,int flag)

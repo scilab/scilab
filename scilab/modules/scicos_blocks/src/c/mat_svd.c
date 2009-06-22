@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+#include <stdio.h>
 # include "scicos_block4.h"
 # include "machine.h"
-#include <stdio.h>
+
 extern int C2F(dgesvd)();
 extern int C2F(dlaset)();
 extern int C2F(dlacpy)();

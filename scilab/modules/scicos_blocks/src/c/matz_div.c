@@ -18,10 +18,11 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
 #include <stdio.h>
 #include <math.h>
+# include "scicos_block4.h"
+# include "machine.h"
+
 extern int C2F(zlacpy)();
 extern int C2F(zgetrf)();
 extern int C2F(mtran)();

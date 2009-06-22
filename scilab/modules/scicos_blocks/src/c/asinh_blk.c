@@ -18,13 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block.h"
 #include <math.h>
+#include "scicos_block.h"
+
 
 #if _MSC_VER
 extern double asinh(double x);
-extern double acosh(double x);
-extern double atanh(double x);
 #endif
 
 void asinh_blk(scicos_block *block,int flag)

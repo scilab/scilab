@@ -1,6 +1,6 @@
-#include "scicos_block4.h"
 #include <stdio.h>
 #include <memory.h>
+#include "scicos_block4.h"
 
 void assignment(scicos_block *block,int flag)
 {
