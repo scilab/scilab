@@ -10,74 +10,88 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "stack-c.h"
-#include "stack3.h"
+
+#include "common_api.h"
+#include "double_api.h"
+
+#include "stack-c.h" /* for Rhs */
+
 #include "gw_linear_algebra.h"
 #include "Scierror.h"
 #include "localization.h"
 
 #include "rcond.h"
 
+
 int C2F(intrcond)(char *fname,unsigned long fname_len)
 {
   int ret= 0;
   /*   rcond(A)  */
-  if ( (Rhs>=1) && (GetType(1)!=sci_matrix) )
+  int* adr1;
+  if(Rhs >=1)
     {
-      OverLoad(1);
-      return 0;
-    }
-  
-  CheckRhs(1,1);
-  CheckLhs(1,1);
-  {
-    double* pData;
-    double* pDataReal;
-    double* pDataImg;
-    int iRows, iCols;
-    int complexArg;
-    if( (complexArg= iIsComplex(1)) )
-      {
-	GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
-	/* c -> z */
-	pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
-	if(!pData)
+      getVarAddressFromNumber(1, &adr1);
+      if(getVarType(adr1) != sci_matrix)
+	{
+	  OverLoad(1);
+	  return 0;
+	}
+      else
+	{
+	  
+	  CheckRhs(1,1);
+	  CheckLhs(1,1);
 	  {
-	    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-	    ret = 1;
-	  }
-      }
-    else
-      {
-	GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
-      }
-    if( iRows != iCols)
-      {
-	Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
-	ret= 1;
-      }
-    else
-      {
-	double* pRcond;
-	int dim= iRows ? 1 : 0 ;
-	iAllocMatrixOfDouble(2, dim, dim, &pRcond);
-	if(iRows)
-	  {
-	    if( iRows == -1 )
+	    double* pData;
+	    double* pDataReal;
+	    double* pDataImg;
+	    int iRows, iCols;
+	    int complexArg;
+
+	    if( (complexArg= isVarComplex(adr1)) )
 	      {
-		*pRcond= 1.;
+
+		getComplexZMatrixOfDouble(adr1, &iRows, &iCols, ((doublecomplex**)&pData));
+		if(!pData)
+		  {
+		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+		    ret = 1;
+		  }
 	      }
 	    else
 	      {
-		ret= iRcondM(pData, iCols, complexArg, pRcond);
+		getMatrixOfDouble(adr1, &iRows, &iCols, &pData);
+	      }
+	    if( iRows != iCols)
+	      {
+		Scierror(20,_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), fname, 1);
+		ret= 1;
+	      }
+	    else
+	      {
+		double* pRcond;
+		int dim= iRows ? 1 : 0 ;
+		int* adrRcond;
+		allocMatrixOfDouble(2, dim, dim, &pRcond, &adrRcond);
+		if(iRows)
+		  {
+		    if( iRows == -1 )
+		      {
+			*pRcond= 1.;
+		      }
+		    else
+		      {
+			ret= iRcondM(pData, iCols, complexArg, pRcond);
+		      }
+		  }
+		LhsVar(1)= 2;
+	      }
+	    if(complexArg)
+	      {
+		vFreeDoubleComplexFromPointer((doublecomplex*)pData); /* /!\ TODO check correct free */
 	      }
 	  }
-	LhsVar(1)= 2;
-      }
-    if(complexArg)
-      {
-	 vFreeDoubleComplexFromPointer((doublecomplex*)pData);
-      }
-  }
+	}
+    }
   return ret;
 }
