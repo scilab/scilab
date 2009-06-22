@@ -68,48 +68,45 @@ int getCommonMatrixOfDouble(int* _piAddress, int _iComplex, int* _piRows, int* _
 	return 0;
 }
 
-int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, int** _piAddress)
+int allocMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal)
 {
-	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
 
-	int iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL, &piAddr);
+	int iRet = allocCommonMatrixOfDouble(_iVar, 0, _iRows, _iCols, &pdblReal, NULL);
 	if(iRet != 0)
 	{
 		return 1;
 	}
 
-	*_piAddress = piAddr;
 	*_pdblReal	= pdblReal;
 
 	return 0;
 }
 
-int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int** _piAddress)
+int allocComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
-	int *piAddr				= NULL;
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
 
-	int iRet = allocCommonMatrixOfDouble(_iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg, &piAddr);
+	int iRet = allocCommonMatrixOfDouble(_iVar, 1, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(iRet != 0)
 	{
 		return 1;
 	}
 
-	*_piAddress = piAddr;
 	*_pdblReal	= pdblReal;
 	*_pdblImg		= pdblImg;
 	return 0;
 }
 
-int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg, int** _piAddress)
+int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
+	int* piAddr			= NULL;
 
-	getNewVarAddressFromNumber(iNewPos, _piAddress);
-	fillCommonMatrixOfDouble(*_piAddress, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
+	getNewVarAddressFromNumber(iNewPos, &piAddr);
+	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
 	return 0;
@@ -136,15 +133,14 @@ int fillCommonMatrixOfDouble(int* _piAddress, int _iComplex, int _iRows, int _iC
 	return 0;
 }
 
-int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, int** _piAddress)
+int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal)
 {
 	double *pdblReal	= NULL;
-	int * piAddr			= NULL;
 
 	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 
-	int iRet = allocMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &piAddr);
+	int iRet = allocMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal);
 	if(iRet)
 	{
 		return 1;
@@ -154,16 +150,15 @@ int createMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, i
 	return 0;
 }
 
-int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg, int** _piAddress)
+int createComplexMatrixOfDouble(int _iVar, int _iRows, int _iCols, double* _pdblReal, double* _pdblImg)
 {
 	double *pdblReal	= NULL;
 	double *pdblImg		= NULL;
-	int * piAddr			= NULL;
 
 	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 
-	int iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg, &piAddr);
+	int iRet = allocComplexMatrixOfDouble(_iVar, _iRows, _iCols, &pdblReal, &pdblImg);
 	if(iRet)
 	{
 		return 1;

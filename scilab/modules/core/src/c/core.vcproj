@@ -1152,6 +1152,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\internal_boolean_api.h"
+				>
+			</File>
+			<File
 				RelativePath=".\internal_common_api.h"
 				>
 			</File>

@@ -80,8 +80,8 @@
 			<Action name="VALIDATE" className="org.scilab.modules.console.ValidationAction"/>
 			<Action name="COMPLETION" className="org.scilab.modules.console.CompletionAction"/>
 			<Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
-			<Action name="PREVIOUS_HISTORY_LINE" className="com.artenum.rosetta.core.action.GetPreviousAction"/>
-			<Action name="NEXT_HISTORY_LINE" className="com.artenum.rosetta.core.action.GetNextAction"/>
+			<Action name="PREVIOUS_HISTORY_LINE" className="org.scilab.modules.console.GetPreviousAction"/>
+			<Action name="NEXT_HISTORY_LINE" className="org.scilab.modules.console.GetNextAction"/>
 			<Action name="LINE_END" className="org.scilab.modules.console.LineEndAction"/>
 			<Action name="PREVIOUS_CHAR" className="org.scilab.modules.console.PreviousCharAction"/>
 			<Action name="NEXT_CHAR" className="org.scilab.modules.console.NextCharAction"/>

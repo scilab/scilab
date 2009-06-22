@@ -1591,7 +1591,7 @@ fi
 echo ""
 if test $PVM_ENABLE = yes; then
    echo "PVM Configuration:"
-   echo "PVM Architecture ... = $PVMARCH"
+   echo "PVM Architecture ... = $PVM_ARCH"
    echo "PVM INCLUDE ........ = $PVM_INCLUDE"
    echo "PVM LIBS ........... = $PVM_LIB"
 else

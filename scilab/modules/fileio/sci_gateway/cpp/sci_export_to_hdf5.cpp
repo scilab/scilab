@@ -26,14 +26,14 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 
-#define PRINT_DEBUG
+//#define PRINT_DEBUG
 int iLevel = 0;
 
 bool export_data(int _iH5File, int *_piVar, char* _pstName);
 bool export_list(int _iH5File, int *_piVar, char* _pstName, int _iVarType);
 bool export_double(int _iH5File, int *_piVar, char* _pstName);
 bool export_poly(int *_piVar, char* _pstName);
-bool export_boolean(int *_piVar, char* _pstName);
+bool export_boolean(int _iH5File, int *_piVar, char* _pstName);
 bool export_sparse(int *_piVar, char* _pstName);
 bool export_boolean_sparse(int *_piVar, char* _pstName);
 bool export_matlab_sparse(int *_piVar, char* _pstName);
@@ -120,7 +120,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	closeHDF5File(iH5File);
 
 	int *piReturn = NULL;
-	allocMatrixOfBoolean(Rhs + 1, 1, 1, &piReturn, &piAddrReturn);
+	allocMatrixOfBoolean(Rhs + 1, 1, 1, &piReturn);
 	if(bExport == true)
 	{
 		piReturn[0] = 1;
@@ -153,7 +153,7 @@ bool export_data(int _iH5File, int* _piVar, char* _pstName)
 		}
 	case sci_boolean :
 		{
-			bReturn = export_boolean(_piVar, _pstName);
+			bReturn = export_boolean(_iH5File, _piVar, _pstName);
 			break;
 		}
 	case sci_sparse :
@@ -307,9 +307,18 @@ bool export_poly(int *_piVar, char* _pstName)
 	return true;
 }
 
-bool export_boolean(int *_piVar, char* _pstName)
+bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 {
-	print_type(_pstName);
+	int iRows					= 0;
+	int iCols					= 0;
+	int *piData				= NULL;
+
+	getMatrixOfBoolean(_piVar, &iRows, &iCols, &piData);
+	writeBooleanMatrix(_iH5File, _pstName, piData, iRows, iCols);
+
+	char pstMsg[512];
+	sprintf(pstMsg, "double (%d x %d)", iRows, iCols);
+	print_type(pstMsg);
 	return true;
 }
 

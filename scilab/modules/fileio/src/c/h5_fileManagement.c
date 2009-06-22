@@ -38,5 +38,6 @@ int openHDF5File(char *name)
 
 void closeHDF5File(int file)
 {
+	H5Fflush(file, H5F_SCOPE_GLOBAL);
   H5Fclose(file);
 }

@@ -13,8 +13,8 @@ Compilation:
 * C++ => Java connector updated (using GIWS - 
   http://www.scilab.org/giws/ version 1.0.2)
 
-* Patches applied (see bug #4506 & #4517) by Dan McMahill which fixes some
-  minor compile time problems under NetBSD:
+* Patches applied (see bugs #4506, #4517 & #4588) by Dan McMahill which fixes 
+  some minor compile time problems under NetBSD:
   		- adds some missing $host to the 64 bit list.  
 		- added a needed compiler flag for alpha-*-netbsd
 		- added autoconf check for term.h header
@@ -40,6 +40,7 @@ Compilation:
 		- adds missing enable_keypad_mode()
 		- use configure results to protect the inclusion of curses.h, 
 		  ncurses.h, term.h, and termcap.h.
+		- Large amounts of cleanup of the PVM configure code
 
 * automake version changed (1.10.1 => 1.10.2)
 
@@ -81,7 +82,11 @@ Bug fixes:
  * bug 3264 fixed - More explicit message when too many files have been
 		    	  	opened.
 
+ * bug 3422 fixed - the keyword for history search was not updatable
+
  * bug 3488 fixed - dynamic link functions can now handle Fortran 90 code.
+
+ * bug 3612 fixed - history manager doesn't work at startup
 
  * bug 4101 fixed - -ns option wasn't clearly explaining that it is 
 			disabling many Scilab features
@@ -121,13 +126,14 @@ Bug fixes:
 
  * bug 4466 fixed - .' operator defined for strings and booleans
  
- * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing directory as input paramater
-                    and not a filename (linux)
+ * bug 4469 fixed - getmd5() & mopen hang if there are called with an existing
+   	   			  	directory as input argument and not a filename (linux)
 
  * bug 4479 fixed - A few minor bugs were causing the configure to fail under
 		    FreeBSD (Thanks to Otacílio de Araújo Ramos Neto)
 
- * bug 4508 fixed - Can't create a file when saving a figure under MacOSX.
+ * bug 4508 fixed - Can't create a file when saving/exporting a figure under
+   	   		MacOSX.
 
  * bug 4514 fixed - valgrind.supp wasn't installed
 
@@ -138,6 +144,8 @@ Bug fixes:
  * bug 4551 fixed - menus can return a error in GUI mode (error 2 Invalid factor)
 
  * bug 4580 fixed - rpem documentation made more accurate
+ 
+ * bug 4592 fixed - The ged entity picker produces an error if a menu has been added to the graphic window
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab

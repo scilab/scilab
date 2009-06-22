@@ -61,3 +61,5 @@ createMList
 createTList
 createMatrixOfInteger32
 createMatrixOfBoolean
+getMatrixOfBoolean
+createMatrixOfBooleanInList
