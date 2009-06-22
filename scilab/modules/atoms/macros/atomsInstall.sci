@@ -235,7 +235,7 @@ function result = atomsInstall(packages,allusers)
 		// =====================================================================
 		
         if MSDOS then
-            download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+ filein + " -O " + fileout;
+            download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F)+""" -s "+ filein + " -o " + fileout;
         else
             download_cmd = "wget "+ filein + " -O " + fileout;
         end
