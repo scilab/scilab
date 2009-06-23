@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
-
-
-
+/*--------------------------------------------------------------------------*/ 
 void relationalop(scicos_block *block,int flag)
 {
   int i;
@@ -133,3 +132,4 @@ void relationalop(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

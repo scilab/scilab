@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file scoMemoryScope.c
    \author Benoit Bayol
@@ -25,6 +26,7 @@
    \date September 2006 - January 2007
    \brief Source Code of all functions interacting with the memory of the computer for the ScopeMemory structure
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "scoBase.h"
 #include "scoMisc.h"
@@ -34,7 +36,7 @@
 #include "sciprint.h"
 #include "scicos_malloc.h"
 #include "scicos_free.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** This function use scicos_malloc on the whole structure and set up 0 for whole properties*/
 void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int number_of_subwin, int * number_of_curves_by_subwin)
 {
@@ -157,7 +159,7 @@ void scoInitScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory, int num
     }
   scoSetScopeActivation(*pScopeMemory,0); //Not activated by default
 }
-
+/*--------------------------------------------------------------------------*/ 
 //** 15/16 May 2008
 /* Some explanations about this garbled code: 
    - if you stop a Scicos simulation (intentionally or not) and 
@@ -244,7 +246,7 @@ void scoFreeScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory)
      }
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoRetrieveScopeMemory(void ** block_work, ScopeMemory ** pScopeMemory)
 {
   *pScopeMemory = (ScopeMemory*)*block_work;
@@ -278,3 +280,4 @@ void scoReallocLongDraw(scoGraphicalObject pLongDraw, int NbrPtsLong, int shortd
       break;
     }
 }
+/*--------------------------------------------------------------------------*/ 

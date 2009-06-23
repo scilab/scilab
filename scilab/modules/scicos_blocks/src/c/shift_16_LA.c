@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
-# include <math.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
+/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 void shift_16_LA(scicos_block *block,int flag)
 {
   short *u,*y; 
@@ -35,3 +34,4 @@ void shift_16_LA(scicos_block *block,int flag)
   ipar=GetIparPtrs(block);
   for (i=0;i<mu*nu;i++) y[i]=u[i]<<ipar[0];
 }
+/*--------------------------------------------------------------------------*/ 

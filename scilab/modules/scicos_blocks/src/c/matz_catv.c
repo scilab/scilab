@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 void matz_catv(scicos_block *block,int flag)
 {
  double *ur,*ui;
@@ -50,3 +49,4 @@ if ((flag==1) || (flag==6))
      }
 }
 }
+/*--------------------------------------------------------------------------*/ 

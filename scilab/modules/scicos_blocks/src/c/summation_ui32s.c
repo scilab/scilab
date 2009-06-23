@@ -18,11 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <stdio.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void summation_ui32s(scicos_block *block,int flag)
 {
  if((flag==1)|(flag==6)) {
@@ -69,3 +69,4 @@ void summation_ui32s(scicos_block *block,int flag)
    }
   }
 }
+/*--------------------------------------------------------------------------*/ 

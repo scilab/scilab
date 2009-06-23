@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h> 
 #include <string.h> 
@@ -25,10 +26,9 @@
 #include "machine.h"
 #include "charEncoding.h"
 #include "cvstr.h"
-
-extern void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
-void 
-readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+#include "mget.h"
+/*--------------------------------------------------------------------------*/ 
+void readau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
      /*
      ipar[1]   = lfil : file name length
@@ -196,4 +196,5 @@ double *inptr[],*outptr[],*t;
   }
   return;
 }
+/*--------------------------------------------------------------------------*/ 
 

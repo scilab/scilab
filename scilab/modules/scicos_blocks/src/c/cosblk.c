@@ -18,13 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
-
-#include "core_math.h"
-
 #include "scicos.h"
-
+/*--------------------------------------------------------------------------*/ 
 /*------------------------------------------------
  *     Scicos block simulator 
  *     A set of elementary blocks 
@@ -44,3 +42,5 @@ void cosblk (flag, nevprt, t, xd, x, nx, z, nz, tvec,
   int i ;
   for ( i=0; i < *nu ; i++)     y[i]= cos(u[i]);
 }
+/*--------------------------------------------------------------------------*/ 
+

@@ -18,12 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
+#include "MALLOC.h"
 #include "scicos_block4.h"
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 void m_frequ(scicos_block *block,int flag)
 {
   double *mat;
@@ -73,3 +71,4 @@ void m_frequ(scicos_block *block,int flag)
    default : break;
   }
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void bit_set_8(scicos_block *block,int flag)
 {
   int n,m,i;
@@ -34,3 +34,4 @@ void bit_set_8(scicos_block *block,int flag)
   m=GetInPortRows(block,1);
   for(i=0;i<m*n;i++) *(y+i)=((*(u+i))|(*opar));
 }
+/*--------------------------------------------------------------------------*/ 

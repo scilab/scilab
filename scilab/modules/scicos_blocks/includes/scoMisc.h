@@ -40,17 +40,6 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error);
 
 /**
  */
-extern int C2F(getlabel)();
-
-/**
- */
-extern int C2F(deletewin)();
-
-/**
- */
-
-/**
- */
 int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
               sciPointObj *pobj_2, sciPointObj *pparent_2);
 #endif

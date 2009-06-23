@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cmscope.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CMSCOPE is a typical scope which links its input to the simulation time
    \see CMSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -34,7 +36,7 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -148,7 +150,7 @@ void cmscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	/* use only single buffering to be sure to draw on the screen */
 	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cmscope(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -258,3 +260,4 @@ void cmscope(scicos_block * block, int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

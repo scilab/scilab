@@ -18,16 +18,22 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
 #include <stdio.h> /* printf */
 #endif
+#include "scicos_math.h"
+/*--------------------------------------------------------------------------*/ 
 /* Table of constant values */
-
 static double c_b4 = 1.;
 static double c_b5 = 0.;
-
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-int dgemm();
+/*--------------------------------------------------------------------------*/ 
+int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
+		  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
+		  int *ldc);
+long int lsame(char *, char *);
+int xerbla(char *, int *);
+/*--------------------------------------------------------------------------*/ 
 int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
 	  int *nc, int *l, int *m, int *n)
 {
@@ -69,10 +75,7 @@ int dmmul(double *a, int *na, double *b, int *nb, double *c__,
 	    c_b5, &c__[c_offset], nc);
 	return 0;
 } /* dmmul */
-
-extern long int lsame(char *, char *);
-extern int xerbla(char *, int *);
-
+/*--------------------------------------------------------------------------*/ 
 int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
 	  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
 	  int *ldc)
@@ -425,7 +428,7 @@ int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha,
   /*     End of DGEMM . */
   
 } /* dgemm */
-
+/*--------------------------------------------------------------------------*/ 
 long int lsame(char *ca, char *cb)
 {
   /* System generated locals */
@@ -529,7 +532,7 @@ long int lsame(char *ca, char *cb)
   
   return ret_val;
 } /* lsame */
-
+/*--------------------------------------------------------------------------*/ 
 int xerbla(char *srname, int *info)
 {
   
@@ -570,4 +573,4 @@ int xerbla(char *srname, int *info)
   /*     End of XERBLA */
   return 0; 
 } /* xerbla */
-
+/*--------------------------------------------------------------------------*/ 

@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cevscpe.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CEVSCPE is a scope that indicates when the clocks is activated
    \see CEVENTSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -35,7 +37,7 @@
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
 #include "SetJavaProperty.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -107,7 +109,7 @@ void cevscpe_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	/* use only single buffering to be sure to draw on the screen */
 	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cevscpe(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -209,3 +211,4 @@ void cevscpe(scicos_block * block, int flag)
 			}
 	}
 }
+/*--------------------------------------------------------------------------*/ 

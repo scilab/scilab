@@ -18,16 +18,15 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
 #include "sciprint.h"
 #include "charEncoding.h"
-
-void mput2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
-
-void 
-writeau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+#include "mput.h"
+/*--------------------------------------------------------------------------*/ 
+void writeau(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
 int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
 double x[],xd[],z[],tvec[],rpar[];
@@ -127,4 +126,4 @@ double *inptr[],*outptr[],*t;
   }
   return;
 }
-
+/*--------------------------------------------------------------------------*/ 

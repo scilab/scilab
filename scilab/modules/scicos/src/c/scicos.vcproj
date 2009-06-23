@@ -590,6 +590,10 @@
 				RelativePath="..\..\includes\scicos_malloc.h"
 				>
 			</File>
+			<File
+				RelativePath="..\..\includes\scicos_math.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

@@ -18,10 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-#include "scicos_block4.h"
 #include "sciprint.h"
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 void gainblk_ui32e(scicos_block *block,int flag)
 {
  if ((flag==1)|(flag==6)){
@@ -71,3 +72,4 @@ void gainblk_ui32e(scicos_block *block,int flag)
   }
  }
 }
+/*--------------------------------------------------------------------------*/ 

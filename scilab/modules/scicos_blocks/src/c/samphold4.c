@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
-
+/*--------------------------------------------------------------------------*/ 
 void samphold4(scicos_block *block,int flag)
 {
   /* c     Copyright INRIA
@@ -33,3 +34,4 @@ void samphold4(scicos_block *block,int flag)
       block->outptr[0][i]=block->inptr[0][i];
   }
 }
+/*--------------------------------------------------------------------------*/ 

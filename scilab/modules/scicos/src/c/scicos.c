@@ -66,8 +66,8 @@
 #include "kinsol.h"
 #include "kinsol_dense.h"
 #include "cvstr.h"
-
 #include "ezxml.h"
+#include "scicos_math.h"
 
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
@@ -84,15 +84,6 @@ typedef struct {
 				   when updating mode variables during initialization */
 } *UserData;
 
-
-#ifdef abs
-#undef abs
-#endif
-#define abs(x) ((x) >= 0 ? (x) : -(x))
-#ifndef WIN32
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
 
 #define freeall \
 	if (*neq>0) CVodeFree(&cvode_mem);\

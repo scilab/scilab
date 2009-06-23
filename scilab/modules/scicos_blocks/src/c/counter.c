@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void counter(scicos_block *block,int flag)
 {
   double *y,*z;
@@ -35,3 +35,4 @@ void counter(scicos_block *block,int flag)
   else if (flag==2) 
     {*z=(1+(int)*z)%(*(ipar+1)-*(ipar+2)+1);}
 } 
+/*--------------------------------------------------------------------------*/ 

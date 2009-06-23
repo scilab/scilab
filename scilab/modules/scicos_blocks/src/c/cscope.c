@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cscope.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CSCOPE is a typical scope which links its input to the simulation time but there is only one input instead of CMSCOPE
    \see CSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
@@ -35,7 +37,7 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "SetJavaProperty.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -112,7 +114,7 @@ void cscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
 	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cscope(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -211,3 +213,4 @@ void cscope(scicos_block * block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

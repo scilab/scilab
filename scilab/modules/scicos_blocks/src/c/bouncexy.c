@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file bouncexy.c
    \author Benoit Bayol
@@ -35,7 +36,7 @@
 #include "scicos_block4.h"
 #include "ObjectStructure.h"
 #include "DrawingBridge.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -122,7 +123,7 @@ void bouncexy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   scicos_free(size_balls);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void bouncexy(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -197,3 +198,4 @@ void bouncexy(scicos_block * block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

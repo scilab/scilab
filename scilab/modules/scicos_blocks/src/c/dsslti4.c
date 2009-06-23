@@ -18,14 +18,14 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
 #include "machine.h"
 #include "scicos_block.h"
-
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
-
+/*--------------------------------------------------------------------------*/ 
 void dsslti4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
@@ -80,5 +80,5 @@ void dsslti4(scicos_block *block,int flag)
     scicos_free(*block->work);
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
 

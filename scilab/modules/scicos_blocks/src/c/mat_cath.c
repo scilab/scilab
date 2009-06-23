@@ -18,14 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-
-extern void matz_cath();
-
+#include "scicos_block4.h"
+#include "matz_cath.h"
+/*--------------------------------------------------------------------------*/ 
 void mat_cath(scicos_block *block,int flag)
 {
 	int mu,nu,nin,so,pointerposition,ot,i;
@@ -50,3 +47,4 @@ void mat_cath(scicos_block *block,int flag)
 		}
 	}
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,16 +18,15 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
 #include "sciprint.h"
 #include "machine.h"
 #include "charEncoding.h"
 #include "cvstr.h"
-
-extern void mget2(FILE *fa, int swap, double *res, int n, char *type, int *ierr);
-
-
+#include "mget.h"
+/*--------------------------------------------------------------------------*/ 
 int worldsize(char type[4])
 {
   char c;
@@ -50,8 +49,8 @@ int worldsize(char type[4])
     }
   return wsz;
 }
-void 
-readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+/*--------------------------------------------------------------------------*/ 
+void readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
      /*
      ipar[1]   = lfil : file name length
@@ -202,4 +201,4 @@ double *inptr[],*outptr[],*t;
   }
   return;
 }
-
+/*--------------------------------------------------------------------------*/ 

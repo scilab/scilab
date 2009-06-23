@@ -18,12 +18,13 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-#include "scicos_block4.h"
 #include "machine.h"
-
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern double C2F(urand)();
+/*--------------------------------------------------------------------------*/ 
 void rndblk_m(scicos_block *block,int flag)
 {
   double *y;
@@ -63,4 +64,4 @@ void rndblk_m(scicos_block *block,int flag)
       {for (i=0;i<my*ny;i++) *(y+i)=*(rpar+i)+(*(rpar+i+my*ny))*(*(z+i+1));
       }
 }
-
+/*--------------------------------------------------------------------------*/ 

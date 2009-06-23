@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cmatview.c
    \author Benoit Bayol
@@ -26,9 +27,9 @@
    \brief CMATVIEW is a scope that connects a matrix to a grayplot. The values of the matrix are the values at the nodes
   \see CMATVIEW.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <stdlib.h>
-
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "scoMemoryScope.h"
@@ -37,7 +38,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -97,7 +98,7 @@ void cmatview_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstd
   scicos_free(mat);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cmatview(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -184,3 +185,4 @@ void cmatview(scicos_block * block, int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

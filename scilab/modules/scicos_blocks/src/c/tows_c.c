@@ -18,23 +18,22 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> /* getenv */
-#include "scicos_block4.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "sciprint.h"
 #include "cvstr.h"
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-
-extern int C2F(cluni0)();
-extern int C2F(mclose)();
-
+#include "mopen.h"
+#include "mput.h"
+#include "mclose.h"
+#include "cluni0.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
+extern int C2F(namstr)();
+/*--------------------------------------------------------------------------*/ 
 /*YAPASDETROUDANSLESLISTESDANSLESFICHERS*/
 /*ONLITPASPTR_I[8-9-10-11]*/
 #define codehm \
@@ -65,14 +64,7 @@ extern int C2F(mclose)();
 	ptr_i[37]  = nu; \
 	ptr_i[38]  = nu2; \
 	ptr_i[39]  = nz;
-
-
-extern int C2F(mputnc)();
-extern int C2F(namstr)();
-extern void C2F(mopen)();
-
-
-
+/*--------------------------------------------------------------------------*/ 
 static int id[nsiz];
 static char fmtd[3]  = {'d','l','\000'};
 static char fmti[3]  = {'i','l','\000'};
@@ -82,14 +74,14 @@ static char fmtc[3]  = {'c','l','\000'};
 static char fmtul[3] = {'u','l','\000'};
 static char fmtus[3] = {'u','s','\000'};
 static char fmtuc[3] = {'u','c','\000'};
-
+/*--------------------------------------------------------------------------*/ 
 static char *str_hmlst[]={"hm","dims","entries"};
-
+/*--------------------------------------------------------------------------*/ 
 #ifdef hppa
 #undef FILENAME_MAX
 #define FILENAME_MAX 4096
 #endif
-
+/*--------------------------------------------------------------------------*/ 
 /* work struct for that block */
 typedef struct {
 	int cnt;
@@ -97,7 +89,7 @@ typedef struct {
 	void *work;
 	void *workt;
 } towork_struct ;
-
+/*--------------------------------------------------------------------------*/ 
 void tows_c(scicos_block *block,int flag)
 /* Copyright INRIA */
 /* Put a typed vector in a scilab file.
@@ -1514,3 +1506,4 @@ void tows_c(scicos_block *block,int flag)
 		}
 	}
 }
+/*--------------------------------------------------------------------------*/ 

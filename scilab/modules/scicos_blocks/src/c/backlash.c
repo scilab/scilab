@@ -18,14 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "MALLOC.h"
 #include "scicos_block.h"
-
-
-#ifndef NULL
-#define NULL    0
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 void backlash(scicos_block *block,int flag)
 { 
   double* rw,t;
@@ -70,3 +67,4 @@ void backlash(scicos_block *block,int flag)
     }
   } 
 }
+/*--------------------------------------------------------------------------*/ 

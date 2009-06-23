@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+*  Copyright (C) DIGITEO - 2009 - Allan CORNET
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,20 +18,24 @@
 *
 * See the file ./license.txt
 */
+
+#ifndef __SCICOS_MATH_H__
+#define __SCICOS_MATH_H__
+
 /*--------------------------------------------------------------------------*/ 
-#include <math.h>
-#include "scicos_block4.h"
+#ifdef abs
+	#undef abs
+#endif
+#define abs(x) ((x) >= 0 ? (x) : -(x))
 /*--------------------------------------------------------------------------*/ 
-void shift_u8_RA(scicos_block *block,int flag)
-{
-  unsigned char *u,*y; 
-  int *ipar;
-  int mu,nu,i;
-  mu=GetInPortRows(block,1);
-  nu=GetInPortCols(block,1);
-  u=Getuint8InPortPtrs(block,1);
-  y=Getuint8OutPortPtrs(block,1);
-  ipar=GetIparPtrs(block);
-  for (i=0;i<mu*nu;i++) y[i]=u[i]>>(-ipar[0]);
-}
+#ifdef max
+	#undef max
+#endif
+#define max(a,b) ((a) >= (b) ? (a) : (b))
+
+#ifdef min
+	#undef min
+#endif
+#define min(a,b) ((a) <= (b) ? (a) : (b))
 /*--------------------------------------------------------------------------*/ 
+#endif /* __SCICOS_MATH_H__ */

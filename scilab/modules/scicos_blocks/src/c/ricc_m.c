@@ -18,25 +18,16 @@
 *
 * See the file ./license.txt
 */
-# include "scicos_block4.h"
-# include "machine.h"
+/*--------------------------------------------------------------------------*/ 
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(riccsl)();
 extern int C2F(riccms)();
 extern int C2F(ricdsl)();
 extern int C2F(ricdmf)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int *bwork;
           int *iwork;
@@ -47,6 +38,7 @@ typedef struct
 	  double *Rcond;
 	  double *Ferr;
 } ricc_struct ;
+/*--------------------------------------------------------------------------*/ 
 void ricc_m(scicos_block *block,int flag)
 {
  double *u1;
@@ -182,3 +174,4 @@ else
      for(i=0;i<nu*nu;i++) *(y+i)=*(ptr->LX+i);
     }
 }
+/*--------------------------------------------------------------------------*/ 

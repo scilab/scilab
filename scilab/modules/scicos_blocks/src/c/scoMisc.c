@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file scoMisc.c
    \author Benoit Bayol
@@ -25,16 +26,15 @@
    \date September 2006 - January 2007
    \brief Source Code for Misc function (not only for the sco lib)
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include "scoBase.h"
 #include "scoMisc.h"
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "sciprint.h"
 #include "HandleManagement.h"
-
-extern void set_block_error(int err);
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
 {
   
@@ -65,6 +65,7 @@ void scoScopeError(ScopeMemory * pScopeMemory, int code_error)
   set_block_error(-16);
 }
 
+/*--------------------------------------------------------------------------*/ 
 /* permut pobj_1/pobj_2 ptrs coming from
  * pparent_1/pparent_2 hdl(s)
  */
@@ -84,3 +85,4 @@ int permutobj(sciPointObj *pobj_1, sciPointObj *pparent_1,
 
  return 0;
 }
+/*--------------------------------------------------------------------------*/ 

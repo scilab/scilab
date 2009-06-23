@@ -18,6 +18,7 @@
  *
  * See the file ./license.txt
  */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file canimxy.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CANIMXY is a scope in 2D which draw its input as a XY scope, there is animation.
    \see CANIMXY.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -34,7 +36,7 @@
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -191,7 +193,7 @@ void canimxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void canimxy(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -275,3 +277,4 @@ void canimxy(scicos_block * block, int flag)
  
     }
 }
+/*--------------------------------------------------------------------------*/ 

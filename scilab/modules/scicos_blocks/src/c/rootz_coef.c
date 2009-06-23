@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(wprxc)();
+/*--------------------------------------------------------------------------*/ 
 void rootz_coef(scicos_block *block,int flag)
 {
   double *ur,*ui;
@@ -36,3 +38,4 @@ void rootz_coef(scicos_block *block,int flag)
   if (flag==1||flag==6)
   C2F(wprxc)(&mu,ur,ui,yr,yi);
 }
+/*--------------------------------------------------------------------------*/ 

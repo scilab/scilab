@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <memory.h>
 #include "scicos_block.h"
-
+/*--------------------------------------------------------------------------*/ 
 void cstblk4(scicos_block *block,int flag)
 { 
   /* Copyright INRIA
@@ -31,3 +32,4 @@ void cstblk4(scicos_block *block,int flag)
   
   memcpy(block->outptr[0],block->rpar,block->nrpar*sizeof(double));    
 }
+/*--------------------------------------------------------------------------*/ 

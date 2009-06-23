@@ -18,31 +18,22 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zgetrf)();
 extern int C2F(dlaswp)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int *ipiv;
           double *dwork;
 	  double *IL;
 	  double *IU;
 } mat_lu_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_lu(scicos_block *block,int flag)
 {
  double *ur;
@@ -148,3 +139,4 @@ else
  	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

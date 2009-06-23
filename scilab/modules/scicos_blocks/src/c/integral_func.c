@@ -18,12 +18,13 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void  integral_func(scicos_block *block,int flag)
-{int i;
+{
+	int i;
   if (flag==0){
     if(block->ng>0){
       for(i=0;i<block->nx;++i) {
@@ -65,3 +66,4 @@ void  integral_func(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

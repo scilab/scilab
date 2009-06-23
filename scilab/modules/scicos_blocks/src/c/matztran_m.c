@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(mtran)();
+/*--------------------------------------------------------------------------*/ 
 void matztran_m(scicos_block *block,int flag)
 {
   double *ur;
@@ -40,4 +42,5 @@ void matztran_m(scicos_block *block,int flag)
   C2F(mtran)(ur,&nu,yr,&mu,&nu,&mu);
   C2F(mtran)(ui,&nu,yi,&mu,&nu,&mu);
 }
+/*--------------------------------------------------------------------------*/ 
 

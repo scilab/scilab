@@ -18,15 +18,12 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
-
-void 
-zcross2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+/*--------------------------------------------------------------------------*/ 
+void zcross2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	ipar,nipar,u,nu,g,ng)
      int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,*nu,*ng;
      double x[],xd[],z[],tvec[],rpar[];
      double u[],g[],*t;
-     
 {
   
   int i,j;
@@ -61,4 +58,4 @@ zcross2(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
     }
   }
 }
-
+/*--------------------------------------------------------------------------*/ 

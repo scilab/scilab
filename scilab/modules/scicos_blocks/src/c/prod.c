@@ -18,12 +18,8 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
-
-/* Element wise product */
-
-void 
-prod(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+/*--------------------------------------------------------------------------*/ 
+void prod(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
      int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[];
      int *nin,outsz[],*nout;
@@ -47,3 +43,4 @@ prod(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

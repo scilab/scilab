@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
 #include "scicos_block.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void  absolute_value(scicos_block *block,int flag)
 {
   int i,j;
@@ -66,3 +65,4 @@ void  absolute_value(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

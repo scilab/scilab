@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 /* A swithcing mechansim for building hybrid automata */
 /* Masoud Najafi, 2007, INRIA */
 
@@ -137,4 +138,5 @@ void automat(scicos_block *block,int flag)
       x[i]=ui[i+NX]; /*reinitialize the states*/    
   }
 }
+/*--------------------------------------------------------------------------*/ 
 

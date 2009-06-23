@@ -18,28 +18,20 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
-
-
-//  10/2007 --------
-// Copyright INRIA
-
-
+/*--------------------------------------------------------------------------*/ 
 #define InterpExtrapBlin  1
 #define InterpEndValue    2
 #define InputNearest      3
 #define InputBelow        4
 #define InputAbove        5
 #define InterpExtraplin   6
-
-
+/*--------------------------------------------------------------------------*/ 
 double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, double x, double y);
 int indexfinder2(double x, int n, double *LT);
-
+/*--------------------------------------------------------------------------*/ 
 void lookup2d(scicos_block *block,int flag)
 {
   double *y, *u1, *u2;
@@ -69,7 +61,7 @@ void lookup2d(scicos_block *block,int flag)
    default : break;
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
 double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, double x, double y)
 {
   int i = 0,j = 0,im = 0,jm = 0;
@@ -151,7 +143,7 @@ double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, do
   }
   return z;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int indexfinder2(double x, int n, double *LT)
 {
   int i1, i2, i_mid;
@@ -169,4 +161,4 @@ int indexfinder2(double x, int n, double *LT)
   }	
   return i2;
 }	
-
+/*--------------------------------------------------------------------------*/ 

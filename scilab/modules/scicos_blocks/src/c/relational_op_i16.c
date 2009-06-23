@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 void relational_op_i16(scicos_block *block,int flag)
 {
   short *u1 = NULL, *u2 = NULL,*y = NULL;
@@ -101,3 +102,4 @@ void relational_op_i16(scicos_block *block,int flag)
   }
 
 }
+/*--------------------------------------------------------------------------*/ 
