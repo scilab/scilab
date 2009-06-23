@@ -303,7 +303,7 @@ DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
 am__libsciscicos_la_include_HEADERS_DIST = src/c/noscicos/resource.h \
 	includes/intcscicos.h includes/scicos.h includes/gw_scicos.h \
 	includes/scicos-def.h includes/scicos_free.h \
-	includes/scicos_malloc.h
+	includes/scicos_malloc.h includes/scicos_math.h
 libsciscicos_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_la_include_HEADERS)
 ETAGS = etags
@@ -677,6 +677,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 @SCICOS_TRUE@libsciscicos_la_CFLAGS = -I$(srcdir)/includes/ \
+@SCICOS_TRUE@			-I$(srcdir)/src/c/ \
 @SCICOS_TRUE@			-I$(srcdir)/src/scicos_sundials/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
@@ -722,7 +723,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@includes/gw_scicos.h \
 @SCICOS_TRUE@includes/scicos-def.h \
 @SCICOS_TRUE@includes/scicos_free.h \
-@SCICOS_TRUE@includes/scicos_malloc.h
+@SCICOS_TRUE@includes/scicos_malloc.h \
+@SCICOS_TRUE@includes/scicos_math.h
 
 
 #### scicos : cosf files ####

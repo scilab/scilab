@@ -98,6 +98,7 @@ sci_gateway/fortran/sci_vec2var.f
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
 libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/scicos_sundials/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
