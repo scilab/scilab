@@ -18,101 +18,25 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
-
 #include "stack-c.h"
 #include "scicos_block4.h"
 #include "Scierror.h"
-
+#include "sciblk4.h"
+#include "import.h"
+#include "intcscicos.h"
+/*--------------------------------------------------------------------------*/
 /* Define external function */
 extern int C2F(scierr)();
 extern void C2F(scifunc)();
 extern int *listentry(int *header, int i);
 extern void C2F(itosci)();
-extern int getscicosvarsfromimport(char *what,void *v,int *nv,int *mv);
-
-/* Define var2sci,sci2var,createblklist function */
-extern int var2sci(void *x,int n,int m,int typ_var); /*it's now in intcscicos.c*/
-extern int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int kfun); /*it's now in intcscicos.c*/
-int sci2var(void *x,void *y,int typ_var);
-
-/* sciblk4. Run scilab block type 5.
- *
- * Input parameters :
- * Blocks : Tlist
- *    - 1 : Blocks(1)      : !scicos_block nevprt funpt type   scsptr  nz
- *                            z            nx     x     xd     res     nin
- *                            insz         inptr  nout  outsz  outptr  nevout
- *                            evout        nrpar  rpar  nipar  ipar    ng
- *                            g            ztyp   jroot label  work    nmode
- *                            mode !
- *    - 2  : Blocks.nevprt  :
- *    - 3  : Blocks.funpt   :
- *    - 4  : Blocks.type    :
- *    - 5  : Blocks.scsptr  :
- *    - 6  : Blocks.nz      :
- *    - 7  : Blocks.z       :
- *    - 8  : Blocks.noz     :
- *    - 9  : Blocks.ozsz    :
- *    - 10 : Blocks.oztyp   :
- *    - 11 : Blocks.oz      :
- *    - 12 : Blocks.nx      :
- *    - 13 : Blocks.x       :
- *    - 14 : Blocks.xd      :
- *    - 15 : Blocks.res     :
- *    - 16 : Blocks.nin     :
- *    - 17 : Blocks.insz    :
- *    - 18 : Blocks.inptr   :
- *    - 19 : Blocks.nout    :
- *    - 20 : Blocks.outsz   :
- *    - 21 : Blocks.outptr  :
- *    - 22 : Blocks.nevout  :
- *    - 23 : Blocks.evout   :
- *    - 24 : Blocks.nrpar   :
- *    - 25 : Blocks.rpar    :
- *    - 26 : Blocks.nipar   :
- *    - 27 : Blocks.ipar    :
- *    - 28 : Blocks.nopar   :
- *    - 29 : Blocks.oparsz  :
- *    - 30 : Blocks.opartyp :
- *    - 31 : Blocks.opar    :
- *    - 32 : Blocks.ng      :
- *    - 33 : Blocks.g       :
- *    - 34 : Blocks.ztyp    :
- *    - 35 : Blocks.jroot   :
- *    - 36 : Blocks.label   :
- *    - 37 : Blocks.work    :
- *    - 38 : Blocks.nmode   :
- *    - 39 : Blocks.mode    :
- *
- * flag : integer
- *         0 : update continuous state
- *         1 : update output state
- *         2 : update state
- *         3 : update event output state
- *         4 : state initialisation
- *         5 : finish
- *         6 : output state initialisation
- *         7 : define property of continuous time states
- *         9 : zero crossing surface computation
- *        10 : Jacobian computation
- *
- * Output parameters :
- * Blocks : Scilab Tlist (updated blocks Scilab list)
- *
- * 08/06/06, Alan   : Rewritten from original code of sciblk4.c
- *                    of scicos 2.7.
- * 09/02/07, Alan   : Add oz as a discrete state
- *                    Update taking to account implicit/explicit call of simulator
- *                    for some output elements
- */
-
-/* prototype */
-void sciblk4(Blocks,flag)
-     scicos_block *Blocks;
-     int flag;
+/*--------------------------------------------------------------------------*/
+static int sci2var(void *x,void *y,int typ_var);
+/*--------------------------------------------------------------------------*/
+void sciblk4(scicos_block *Blocks, int flag)
 {
   /*counter and address variable declaration*/
   int i,j,k,topsave;
@@ -643,7 +567,7 @@ void sciblk4(Blocks,flag)
  */
 
 /* prototype */
-int sci2var(void *x,void *y, int typ_var)
+static int sci2var(void *x,void *y, int typ_var)
 {
  /************************************
   * variables and constants définition

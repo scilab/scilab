@@ -24,33 +24,32 @@
 
 #include <string.h>
 #include <stdio.h>
-
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "scicos_block4.h"
+#include "sciblk2.h"
 #include "scicos.h"
 #include "intcscicos.h"
 #include "Scierror.h"
 #include "cvstr.h"
-
+#include "sciblk4.h"
+/*--------------------------------------------------------------------------*/
 extern int C2F(mkmlist)();
 extern void str2sci(char** x,int n,int m);
 extern int *listentry(int *header, int i);
 extern int CopyVarFromlistentry(int lw, int *header, int i);
-
 extern int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp);
 extern void callf(double *t, scicos_block *block, int *flag);
 extern int C2F(funnum) (char *fname);
 extern int C2F(namstr)();
 extern void  GetDynFunc();
 extern void  F2C(sciblk)();
-extern void  sciblk2();
-extern void  sciblk4();
+
 extern int ntabsim;
 extern OpTab tabsim[];
-
+/*--------------------------------------------------------------------------*/
 int extractblklist(int *il, scicos_block *Blocks, int *ierr);
-
+/*--------------------------------------------------------------------------*/
 /*
  * int int intdata2sig(fname,fname_len)
  * int int intsig2data(fname,fname_len)
@@ -419,7 +418,7 @@ int sci_data2sig(char *fname, unsigned long fname_len)
 
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 /* [x[,t]]=sig2data(B)
  *
  * Extract data from a 'scicos' signal structure.
@@ -515,7 +514,7 @@ int sci_sig2data(char *fname, unsigned long fname_len)
 
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 /* intmodel2blk Build a scicos_block structure from
  * a scicos model
  *
@@ -2196,7 +2195,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 /* intcallblk  : Call a scicos block defined by
  * a scicos_block structure.
  *
@@ -2378,7 +2377,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 /* extractblklist : create a scicos_block C structure from
  * a scicos_block scilab structure.
  *
@@ -4465,3 +4464,4 @@ int extractblklist(int *il, scicos_block *Block, int *ierr)
 
  return 0;
 }
+/*--------------------------------------------------------------------------*/

@@ -18,9 +18,9 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
+/*--------------------------------------------------------------------------*/
 #include "machine.h"
-
+/*--------------------------------------------------------------------------*/
 extern int C2F(scierr)();
 extern void C2F(itosci)();
 extern void C2F(dtosci)();
@@ -32,7 +32,7 @@ extern void C2F(list2vars)();
 extern void C2F(ltopadj)();
 extern void C2F(scifunc)();
 extern int C2F(mklist)();
-
+/*--------------------------------------------------------------------------*/
 
 void 
 sciblk2i(flag,nevprt,t,residual,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,

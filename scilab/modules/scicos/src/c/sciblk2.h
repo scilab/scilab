@@ -1,6 +1,6 @@
 /*  Scicos
 *
-*  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+*  Copyright (C) DIGITEO - 2009 - Allan CORNET
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,12 +19,15 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include "MALLOC.h"  /* malloc */
-#include "scicos_block.h"
-/*--------------------------------------------------------------------------*/
-void * scicos_malloc(size_t size)
-{
-  if (size==0) return NULL;
-  return MALLOC(size);
-}
+#ifndef __SCIBLK2_H__
+#define __SCIBLK2_H__
+
+/**
+*
+*/
+void  sciblk2(int *flag, int *nevprt, double *t, double xd[], double x[], int *nx, double z[], int *nz,double tvec[],int *ntvec,double rpar[],int *nrpar,
+			  int ipar[],int *nipar,double *inptr[],int insz[],int *nin,double *outptr[],int outsz[],int *nout);
+
+
+#endif /* __SCIBLK2_H__ */
 /*--------------------------------------------------------------------------*/

@@ -594,6 +594,10 @@
 				RelativePath="..\..\includes\scicos_math.h"
 				>
 			</File>
+			<File
+				RelativePath=".\tree.h"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="localization"

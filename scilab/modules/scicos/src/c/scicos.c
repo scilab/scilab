@@ -33,11 +33,10 @@
 * CVODE (sundials) replaced LSODAR
 * IDA  (Sundials)  replaced DASKR
 */
-
+/*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-
 #include "dynamic_link.h"
 #include "scicos-def.h"
 #include "stack-def.h"
@@ -49,9 +48,18 @@
 #include "dynamic_menus.h"
 #include "syncexec.h"
 #include "realtime.h"
-
 #include "math_graphics.h"
-#include "MALLOC.h"  /* malloc */
+#include "MALLOC.h" 
+#include "cvstr.h"
+#include "ezxml.h"
+#include "xscion.h"
+#include "scicos_math.h"
+#include "sciblk2.h"
+#include "sciblk4.h"
+
+#if defined(linux) && defined(__i386__)
+#include "setPrecisionFPU.h"
+#endif
 
 /* Sundials includes */
 #include "cvode.h"           /* prototypes for CVODES fcts. and consts. */
@@ -65,15 +73,7 @@
 #include "ida_impl.h"
 #include "kinsol.h"
 #include "kinsol_dense.h"
-#include "cvstr.h"
-#include "ezxml.h"
-#include "scicos_math.h"
-
-#if defined(linux) && defined(__i386__)
-#include "setPrecisionFPU.h"
-#endif
-
-
+/*--------------------------------------------------------------------------*/
 typedef struct {
 	void *ida_mem;
 	N_Vector ewt;
@@ -84,6 +84,8 @@ typedef struct {
 				   when updating mode variables during initialization */
 } *UserData;
 
+IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
+/*--------------------------------------------------------------------------*/
 
 #define freeall \
 	if (*neq>0) CVodeFree(&cvode_mem);\
@@ -125,11 +127,7 @@ typedef struct {
 #define ONE   RCONST(1.0)
 #define ZERO  RCONST(0.0)
 #define T0    RCONST(0.0)   
-/* #define Ith(v,i)    NV_Ith_S(v,i-1)*/        /* Ith numbers components 1..NEQ */
-/* #define IJth(A,i,j) DENSE_ELEM(A,i-1,j-1)*/  /* IJth numbers rows,cols 1..NEQ */
-
-IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
-
+/*--------------------------------------------------------------------------*/
 static int check_flag(void *flagvalue, char *funcname, int opt);
 void cosini(double *);
 void cosend(double *);
@@ -189,18 +187,10 @@ double exp_(double );
 double log_(double ); 
 
 extern void  F2C(sciblk)();
-extern void  sciblk2();
-extern void  sciblk4();
-extern void  GetDynFunc();
-extern void  C2F(iislink)();
+
 extern int C2F(dset)();
 extern int C2F(dcopy)();
 extern int C2F(iset)();
-extern int C2F(xscion)();
-
-extern int scilab_timer_check();
-
-/*  */
 extern ScicosImport* getscicosimportptr();
 ScicosImport *scs_imp;
 
@@ -285,7 +275,7 @@ int TCritWarning;
 void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk);
 static int debug_block;
 
-/* Subroutine */
+/*--------------------------------------------------------------------------*/
 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 				void **work,int *zptr,int *modptr_in,
 				void **oz,int *ozsz,int *oztyp,int *ozptr,
@@ -839,7 +829,7 @@ default :
 	C2F(clearscicosimport)();
 	return 0;
 } /* scicos_ */
-
+/*--------------------------------------------------------------------------*/
 /* check_flag */
 static int check_flag(void *flagvalue, char *funcname, int opt)
 {
@@ -864,7 +854,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 	return(0);
 } /* check_flag */
 
-/* Subroutine cosini */
+/*--------------------------------------------------------------------------*/
 void cosini(double *told)
 {
 	static int flag__;
@@ -1164,7 +1154,7 @@ L30:
 	freeouttbptr;
 } /* cosini_ */
 
-/* Subroutine cossim */
+/*--------------------------------------------------------------------------*/
 void cossim(double *told)
 {
 	/* System generated locals */
@@ -1603,7 +1593,7 @@ L30:
 	freeall;
 } /* cossim_ */
 
-/* Subroutine cossimdaskr */
+/*--------------------------------------------------------------------------*/
 void cossimdaskr(double *told)
 {
 	/* Initialized data */
@@ -2376,7 +2366,7 @@ L30:
 	}
 	freeallx;
 } /* cossimdaskr_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine cosend */
 void cosend(double *told)
 {
@@ -2409,7 +2399,7 @@ void cosend(double *told)
 		return;
 	}
 } /* cosend_ */
-
+/*--------------------------------------------------------------------------*/
 /* callf */
 /*void callf(double *t,double *xtd,double *xt,double *residual,double *g,int *flag)*/
 void callf(double *t, scicos_block *block, int *flag)
@@ -2816,7 +2806,7 @@ default :
 		}
 	}
 } /* callf */
-
+/*--------------------------------------------------------------------------*/
 /* call_debug_scicos */
 void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
 {
@@ -2857,7 +2847,7 @@ void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
 
 	if (*flag<0) sciprint("Error in the Debug block \r\n");
 } /* call_debug_scicos */
-
+/*--------------------------------------------------------------------------*/
 /* simblk */
 int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 {
@@ -2889,7 +2879,7 @@ int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 	return (abs(*ierr)); /* ierr>0 recoverable error; ierr>0 unrecoverable error; ierr=0: ok*/
 
 } /* simblk */
-
+/*--------------------------------------------------------------------------*/
 /* grblk */
 int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 {
@@ -2916,7 +2906,7 @@ int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 
 	return 0;
 } /* grblk */
-
+/*--------------------------------------------------------------------------*/
 /* simblkdaskr */
 int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata)
 {
@@ -2976,7 +2966,7 @@ int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *
 
 	return (abs(*ierr)); /* ierr>0 recoverable error; ierr>0 unrecoverable error; ierr=0: ok*/
 }/* simblkdaskr */
-
+/*--------------------------------------------------------------------------*/
 /* grblkdaskr */
 int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data)
 {
@@ -3004,10 +2994,7 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 	C2F(ierode).iero = *ierr;
 	return (*ierr);
 }/* grblkdaskr */
-
-
-
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine addevs */
 void addevs(double t, int *evtnb, int *ierr1)
 {
@@ -3074,7 +3061,7 @@ L100:
 		evtspt[i] = *evtnb;
 	}
 } /* addevs */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine putevs */
 void putevs(double *t, int *evtnb, int *ierr1)
 {
@@ -3094,7 +3081,7 @@ void putevs(double *t, int *evtnb, int *ierr1)
 	evtspt[*evtnb] = *pointi;
 	*pointi = *evtnb;
 } /* putevs */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine idoit */
 void idoit(double *told)
 { /* initialisation (propagation of constant blocks outputs) */
@@ -3149,7 +3136,7 @@ void idoit(double *told)
 		}
 	}
 } /* idoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine doit */
 void doit(double *told)
 { /* propagation of blocks outputs on discrete activations */
@@ -3215,7 +3202,7 @@ void doit(double *told)
 		}
 	}
 } /* doit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine cdoit */
 void cdoit(double *told)
 { /* propagation of continuous blocks outputs */
@@ -3273,7 +3260,7 @@ void cdoit(double *told)
 		}
 	}
 } /* cdoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine ddoit */
 void ddoit(double *told)
 { /* update states & event out on discrete activations */
@@ -3377,7 +3364,7 @@ void ddoit(double *told)
 		}
 	}
 } /* ddoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine edoit */
 void edoit(double *told, int *kiwa)
 { /* update blocks output on discrete activations */
@@ -3450,7 +3437,7 @@ void edoit(double *told, int *kiwa)
 		}
 	}
 } /* edoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine odoit */
 void odoit(double *told, double *xt, double *xtd, double *residual)
 { /* update blocks derivative of continuous time block */
@@ -3567,7 +3554,7 @@ void odoit(double *told, double *xt, double *xtd, double *residual)
 		}
 	}
 } /* odoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine reinitdoit */
 void reinitdoit(double *told)
 { /* update blocks xproperties of continuous time block */
@@ -3668,7 +3655,7 @@ void reinitdoit(double *told)
 		}
 	}
 } /* reinitdoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine ozdoit */
 void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 { /* update blocks output of continuous time block on discrete activations */
@@ -3739,7 +3726,7 @@ void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 		}
 	}
 } /* ozdoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine zdoit */
 void zdoit(double *told, double *xt, double *xtd, double *g)
 { /* update blocks zcross of continuous time block  */
@@ -3882,7 +3869,7 @@ void zdoit(double *told, double *xt, double *xtd, double *g)
 		}
 	}
 } /* zdoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine Jdoit */
 void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job)
 { /* update blocks jacobian of continuous time block  */
@@ -4004,7 +3991,7 @@ void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job)
 		}
 	}
 } /* Jdoit_ */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine synchro_nev */
 int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 { /* synchro blocks computation  */
@@ -4127,7 +4114,7 @@ int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 	}
 	return i;
 } /* synchro_nev */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine synchro_g_nev */
 int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 { /* synchro blocks with zcross computation  */
@@ -4284,7 +4271,7 @@ int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 	}
 	return i;
 } /* synchro_g_nev */
-
+/*--------------------------------------------------------------------------*/
 /* FREE_blocks */
 void FREE_blocks()
 {
@@ -4341,7 +4328,7 @@ void FREE_blocks()
 
 	return;
 } /* FREE_blocks */
-
+/*--------------------------------------------------------------------------*/
 /* Subroutine funnum */
 int C2F(funnum)(char * fname)
 {
@@ -4408,18 +4395,18 @@ static int scicos_setmode(double *W,double *x,double *told,int *jroot,double tto
 	}
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int get_phase_simulation()
 {
 	return phase;
 }
-
+/*--------------------------------------------------------------------------*/
 void do_cold_restart()
 {
 	hot=0;
 	return;
 }
-
+/*--------------------------------------------------------------------------*/
 /* get_scicos_time : return the current
 * simulation time
 */
@@ -4427,7 +4414,7 @@ double get_scicos_time()
 {
 	return scicos_time;
 }
-
+/*--------------------------------------------------------------------------*/
 /* get_block_number : return the current
 * block number
 */
@@ -4435,7 +4422,7 @@ int get_block_number()
 {
 	return C2F(curblk).kfun;
 }
-
+/*--------------------------------------------------------------------------*/
 /* set_block_error : set an error number
 * for block_error
 */
@@ -4444,7 +4431,7 @@ void set_block_error(int err)
 	*block_error=err;
 	return;
 }
-
+/*--------------------------------------------------------------------------*/
 /* Coserror : copy an error message
 * in coserr.buf an set block_error to
 * -16
@@ -4478,7 +4465,7 @@ void Coserror(char *fmt,...)
 	/* coserror use error number 10 */
 	*block_error=-5;
 }
-
+/*--------------------------------------------------------------------------*/
 /* get_block_error : get the block error
 * number
 */
@@ -4486,25 +4473,25 @@ int get_block_error()
 {
 	return *block_error;
 }
-
+/*--------------------------------------------------------------------------*/
 void end_scicos_sim()
 {
 	C2F(coshlt).halt =2;
 	return;
 }
-
+/*--------------------------------------------------------------------------*/
 /* get_pointer_xproperty */
 int* get_pointer_xproperty()
 {
 	return &xprop[-1+xptr[C2F(curblk).kfun]];
 }
-
+/*--------------------------------------------------------------------------*/
 /* get_Npointer_xproperty */
 int get_npointer_xproperty()
 {
 	return Blocks[C2F(curblk).kfun-1].nx;
 }
-
+/*--------------------------------------------------------------------------*/
 /* set_pointer_xproperty */
 void set_pointer_xproperty(int* pointer)
 {
@@ -4514,51 +4501,48 @@ void set_pointer_xproperty(int* pointer)
 	}
 	return;
 }
-
+/*--------------------------------------------------------------------------*/
 /* Jacobian */
 void Set_Jacobian_flag(int flag)
 {
 	Jacobian_Flag=flag;
 	return;
 }
-
+/*--------------------------------------------------------------------------*/
 double Get_Jacobian_ci(void)
 {
 	return CI;
 }
+/*--------------------------------------------------------------------------*/
 double Get_Jacobian_cj(void)
 {
 	return CJ;
 }
-
+/*--------------------------------------------------------------------------*/
 double Get_Scicos_SQUR(void)
 {
 	return  SQuround;
 }
-
-
+/*--------------------------------------------------------------------------*/
 double exp_(double x) 
 {
 	double Limit=16;
 
 	if (x<Limit) {return exp(x);} else {return exp(Limit)*(x+1-Limit);};
 }
-
+/*--------------------------------------------------------------------------*/
 double log_(double x)
 {
 	double eps=1e-10;
 	if (abs(x)>eps) {return log(abs(x));} else {return (abs(x)/eps)+log(eps)-1;};
 
 }
-
+/*--------------------------------------------------------------------------*/
 double pow_(double x, double y)
 {
 	return exp_(y*log_(x));
 }
-
-
 /*-----------------------------------------------------------------------*/
-
 int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 			  N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
 			  N_Vector tempv1, N_Vector tempv2, N_Vector tempv3)
@@ -4774,23 +4758,7 @@ int ra,rb,ca,cb;
 		}
 		return;
 }
-/*----------------------------------------------------*/
-/* void DISP(A,ra ,ca,name)
-double *A;
-int ra,ca,*name;
-{
-int i,j;
-sciprint("\n\r");
-for (i=0;i<ca;i++)
-for (j=0;j<ra;j++){
-if (A[j+i*ra]!=0) 
-sciprint(" %s(%d,%d)=%g;",name,j+1,i+1,A[j+i*ra]);
-}; 
-}*/
-/* Jacobian*/
-
-
-/*----------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars){
 	ezxml_t model, elements;
 	int result,i;  
@@ -4819,7 +4787,7 @@ int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *s
 	ezxml_free(model);
 	return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int read_id(ezxml_t *elements,char *id,double *value){
 	char V1[100],V2[100];
 	int ok,i,ln; 
@@ -4843,8 +4811,7 @@ int read_id(ezxml_t *elements,char *id,double *value){
 		}
 	}
 }
-
-
+/*--------------------------------------------------------------------------*/
 int Convert_number (char *s, double *out)
 {
 	char *endp;
@@ -4867,8 +4834,7 @@ int Convert_number (char *s, double *out)
 		}
 	}
 }
-
-/*----------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 	ezxml_t model, elements;
 	int result,i, err=0;
@@ -4920,8 +4886,7 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 
 	return err;
 }
-/*-----------------------*/
-/*----------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int C2F(fx)(double *x,double *residual) /* used for homotopy*/
 {
 	double  *xdot, t;
@@ -4944,7 +4909,7 @@ int rho_(double *a,double *L,double *x,double *rho,double *rpar,int *ipar)  /* u
 		rho[i]+=(-1+ *L)*a[i];
 	return 0;
 }
-/*----------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double *rpar,int *ipar)  /* used for homotopy*/
 {/* MATRIX [d_RHO/d_LAMBDA, d_RHO/d_X_col] */
 	int j,N;
@@ -4979,8 +4944,8 @@ int rhojac_(double *a, double *lambda,double  *x, double  *jac, int *col,double 
 	}
 	return 0;
 }
-/*----------------------------------------------------*/
-int hfjac_(double *x, double *jac, int *col)
+/*--------------------------------------------------------------------------*/
+int C2F(hfjac)(double *x, double *jac, int *col)
 {
 	int N, j;
 	double *work;
@@ -5017,7 +4982,7 @@ int hfjac_(double *x, double *jac, int *col)
 	FREE(work);
 	return 0;
 } 
-/*----------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 {
 	double t,*xc, *xcdot, *residual;
@@ -5053,7 +5018,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 
 	return (abs(*ierr)); /* ierr>0 recoverable error; ierr>0 unrecoverable error; ierr=0: ok*/
 }
-/*---------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
 int CallKinsol(double *told)
 {
 	N_Vector y=NULL, yscale=NULL, fscale=NULL;
@@ -5172,5 +5137,5 @@ int CallKinsol(double *told)
 	freekinsol;
 	return status;
 } /* CallKinSol_ */ 
-
+/*--------------------------------------------------------------------------*/
 
