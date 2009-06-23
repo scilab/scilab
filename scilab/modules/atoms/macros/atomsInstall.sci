@@ -234,12 +234,12 @@ function result = atomsInstall(packages,allusers)
 		// Get the package
 		// =====================================================================
 		
-        if MSDOS then
-            download_cmd =  getshortpathname(pathconvert(SCI+"/tools/curl/curl.exe",%F)) +" -s "+ filein + " -o " + fileout;
-        else
-            download_cmd = "wget "+ filein + " -O " + fileout;
-        end
-        
+		if MSDOS then
+			download_cmd =  getshortpathname(pathconvert(SCI+"/tools/curl/curl.exe",%F)) +" -s """+ filein + """ -o """ + fileout + """";
+		else
+			download_cmd = "wget "+ filein + " -O " + fileout;
+		end
+		
 		[rep,stat,err] = unix_g(download_cmd)
 		
 		if stat ~= 0 then
@@ -276,7 +276,7 @@ function result = atomsInstall(packages,allusers)
 				extract_cmd = "unzip";
 			end
 			
-			extract_cmd = extract_cmd + " -q ''" + fileout + "'' -d ''" + atoms_directory+"''";
+			extract_cmd = extract_cmd + " -q """ + fileout + """ -d """ + pathconvert(atoms_directory,%F) +"""";
 			
 		else
 			error(msprintf(gettext("%s: internal error, the archive ""%s"" cannot be extracted on this operating system.\n"),"atomsInstall",fileout));
