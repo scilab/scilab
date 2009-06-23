@@ -258,4 +258,7 @@ Bug fixes:
 
 * bug 4585 fixed - Scilab fails to build with intel C++ compiler 11.0.074 on Windows
 
-* bug 4586 fixed - Function fieldnames added for getting tlist, mlist and struct field names (see SEP#24)
+* bug 4586 fixed - Function fieldnames added for getting tlist, mlist and struct field names (see SEP#28)
+
+* bug 4604 fixed - rmdir(<dir>,"s") doesn't work if it contains a hidden file (starting with a dot).
+
