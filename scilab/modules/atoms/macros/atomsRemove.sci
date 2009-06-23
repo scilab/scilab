@@ -13,7 +13,7 @@
 
 function result = atomsRemove(packages,allusers)
 	
-	result = %F;
+	result = [];
 	
 	// Get scilab version (needed for later)
 	// =========================================================================
