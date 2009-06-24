@@ -20,7 +20,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "variable_api.h"
+#include "api_variable.h"
 #include "h5_fileManagement.h"
 #include "h5_writeDataToFile.h"
 #include "freeArrayOfString.h"
@@ -328,7 +328,7 @@ bool export_boolean(int _iH5File, int *_piVar, char* _pstName)
 	writeBooleanMatrix(_iH5File, _pstName, piData, iRows, iCols);
 
 	char pstMsg[512];
-	sprintf(pstMsg, "double (%d x %d)", iRows, iCols);
+	sprintf(pstMsg, "bool (%d x %d)", iRows, iCols);
 	print_type(pstMsg);
 	return true;
 }
@@ -437,7 +437,7 @@ int extractVarNameList(int _iStart, int _iEnd, char** _pstNameList)
 		int iLen					= 0;
 		int* piAddr				= NULL;
 
-		getVarAddressFromPostion(i, &piAddr);
+		getVarAddressFromPosition(i, &piAddr);
 		//get filename
 		if(getVarType(piAddr) != sci_strings)
 		{

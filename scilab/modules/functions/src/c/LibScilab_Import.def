@@ -10,7 +10,7 @@ isRecursionCallToFunction
 getRecursionFunctionToCall
 getMatrixOfString
 getVarType
-getVarAddressFromNumber
+getVarAddressFromPosition
 checklhs_
 checkrhs_
 createMatrixOfString

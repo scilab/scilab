@@ -13,10 +13,10 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "double_api.h"
-#include "internal_double_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_double.h"
+#include "api_internal_double.h"
 
 //#include <string.h>
 #include "CallScilab.h"

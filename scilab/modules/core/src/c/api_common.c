@@ -16,8 +16,8 @@
 #include <string.h>
 
 #include "CallScilab.h"
-#include "common_api.h"
-#include "internal_common_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
 #include "stackinfo.h"
 
@@ -45,7 +45,7 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 	}
 }
 
-int getVarAddressFromPostion(int _iVar, int** _piAddress)
+int getVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
 	int iValType	= *istk(iAddr);

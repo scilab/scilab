@@ -20,7 +20,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "variable_api.h"
+#include "api_variable.h"
 #include "../../call_scilab/includes/CallScilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
@@ -56,13 +56,13 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	int* piAddr2				= NULL;
 	if(Rhs > 1)
 	{
-		getVarAddressFromPostion(2, &piAddr2);
+		getVarAddressFromPosition(2, &piAddr2);
 	}
 	int* piAddrOut				= NULL;
-	getVarAddressFromPostion(Rhs + 1, &piAddrOut);
+	getVarAddressFromPosition(Rhs + 1, &piAddrOut);
 
 	/* debug end */
-	getVarAddressFromPostion(1, &piAddr);
+	getVarAddressFromPosition(1, &piAddr);
 
 	if(getVarType(piAddr) != sci_strings)
 	{
@@ -293,11 +293,11 @@ bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 
 	if(_piAddress == NULL)
 	{
-		iRet			= createMatrixOfBoolean(Rhs + 1, iRows, iCols, piData);
+		iRet			= createNamedMatrixOfBoolean(_pstVarname, strlen(_pstVarname), iRows, iCols, piData);
 	}
 	else //if not null this variable is in a list
 	{
-		iRet			= createMatrixOfBooleanInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, piData);
+		iRet			= createMatrixOfBooleanInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
 	}
 
 	char pstMsg[512];
