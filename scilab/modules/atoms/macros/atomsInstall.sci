@@ -112,102 +112,32 @@ function result = atomsInstall(packages,allusers)
 		end
 	end
 	
-	// Loop on packages and to build the dependency tree
+	// Get the install list
 	// =========================================================================
+	[install_package_list,dependency_tree] = atomsInstallList(packages);
 	
-	dependency_tree = struct();
-	
-	for i=1:size(packages,"*")
-		
-		package = packages(i);
-		
-		if size(regexp(package,"/\s/") ,"*" ) > 1 then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: it must contain at most one space.\n"),"atomsInstall",1));
-		end
-		
-		if size(regexp(package,"/\s/") ,"*" ) == 0 then
-			// install the most recent version of the package
-			package_names(i)    = package;
-			package_versions(i) = "";
-		else
-			// A version is specified
-			space               = regexp(package,"/\s/");
-			package_names(i)    = part(package,[1:space-1]);
-			package_versions(i) = part(package,[space+1:length(package)]);
-		end
-		
-		// Ok, The syntax is correct, Now check if it's a valid package
-		if ~ atomsIsPackage(package_names(i),package_versions(i)) then
-			if isempty(package_versions(i)) then
-				package_full_name = package_names(i);
-			else
-				package_full_name = package_names(i)+" - "+package_versions(i);
-			end
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstall",package_full_name));
-		end
-		
-		// Build the depencency tree
-		tree = atomsDependencyTree(package_names(i),package_versions(i));
-		
-		if (type(dependency_tree) == 4) & (~ dependency_tree) then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstall",1));
-		end
-		
-		// Concatenate the tree with the existing one
-		dependency_tree = atomsCatTree( dependency_tree , tree );
-		
-	end
-	
-	// Now we have the list of package that have to be installed
-	// We have to check if
-	//  - each package is already installed
-	//  - If yes, Is it the most recent version
+	// Loop on install_package_list to print if a package has to be installed or not
 	// =========================================================================
-	
-	mandatory_packages      = getfield(1,dependency_tree);
-	mandatory_packages(1:2) = [];
-	
-	for i=1:size(mandatory_packages,"*")
-		
-		this_package_details = dependency_tree(mandatory_packages(i));
-		
-		this_package_name    = this_package_details("Toolbox");
-		this_package_version = this_package_details("Version");
-		
-		this_package_details("to_install") = %F; 
-		
-		if atomsIsInstalled(this_package_name) then
-			vers = atomsGetInstalledVers(mandatory_packages(i));
-			if atomsVersionCompare( vers(1) , this_package_version ) < 0 then
-				this_package_details("to_install") = %T;
+	if VERBOSE 
+		for i=1:size(install_package_list(:,1),"*")
+			if install_package_list(i,1) == "+" then
+				mprintf("\t%s (%s) will be installed\n",install_package_list(i,2),install_package_list(i,3));
+			elseif install_package_list(i,1) == "~" then
+				mprintf("\t%s (%s) is already installed and up-to-date\n",install_package_list(i,2),install_package_list(i,3));
 			end
-		else
-			this_package_details("to_install") = %T;
 		end
-		
-		if VERBOSE & this_package_details("to_install") then
-			mprintf("\t%s (%s) will be installed\n",this_package_name,this_package_version);
-		elseif VERBOSE then
-			mprintf("\t%s (%s) is already installed and up-to-date\n",this_package_name,this_package_version);
-		end
-		
-		dependency_tree(mandatory_packages(i)) = this_package_details;
-		
 	end
 	
 	// Now really install the packages
 	// =========================================================================
 	
-	for i=1:size(mandatory_packages,"*")
+	for i=1:size(install_package_list(:,1),"*")
 		
-		this_package_details = dependency_tree(mandatory_packages(i));
+		this_package_details = dependency_tree(install_package_list(i,2));
 		this_package_name    = this_package_details("Toolbox");
 		this_package_version = this_package_details("Version");
 		
-		if ~ this_package_details("to_install") then
+		if install_package_list(i,1) <> "+" then
 			continue;
 		end
 		
@@ -343,7 +273,7 @@ function result = atomsInstall(packages,allusers)
 		// Register the successfully installed package
 		// =====================================================================
 		
-		if find(package_names == this_package_name) == [] then
+		if grep(packages,"/$"+this_package_name+"\s/","r") == [] then
 			// Automaticaly installed
 			this_package_status = "A";
 		else
@@ -386,6 +316,7 @@ function result = atomsInstall(packages,allusers)
 	end
 	
 	// Go to the initial location
+	// =========================================================================
 	chdir(initialpath);
 	
 endfunction
