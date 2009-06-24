@@ -266,3 +266,5 @@ Bug fixes:
 * bug 4604 fixed - rmdir(<dir>,"s") doesn't work if it contains a hidden file (starting with a dot).
 
 * bug 4605 fixed - basename('') returns a error.
+
+* bug 4606 fixed - example of 'link' in help does not work
