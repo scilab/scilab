@@ -22,7 +22,7 @@
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarAddressFromPostion(int _iVar, int** _piAddress);
+int getVarAddressFromPosition(int _iVar, int** _piAddress);
 
 /**
  * Get memory address of a variable from the variable position

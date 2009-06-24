@@ -13,9 +13,9 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "boolean_sparse_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_boolean_sparse.h"
 
 //#include <string.h>
 #include "CallScilab.h"

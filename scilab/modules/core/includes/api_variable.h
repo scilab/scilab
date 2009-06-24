@@ -12,14 +12,14 @@
 #ifndef __VARIABLE_API__
 #define __VARIABLE_API__
 
-#include "common_api.h"
-#include "double_api.h"
-#include "string_api.h"
-#include "int_api.h"
-#include "poly_api.h"
-#include "sparse_api.h"
-#include "boolean_api.h"
-#include "boolean_sparse_api.h"
-#include "list_api.h"
+#include "api_common.h"
+#include "api_double.h"
+#include "api_string.h"
+#include "api_int.h"
+#include "api_poly.h"
+#include "api_sparse.h"
+#include "api_boolean.h"
+#include "api_boolean_sparse.h"
+#include "api_list.h"
 
 #endif /* __VARIABLE_API__ */

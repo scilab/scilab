@@ -17,15 +17,15 @@
 #include "stack-c.h"
 #include "CallScilab.h"
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "internal_double_api.h"
-#include "internal_string_api.h"
-#include "internal_boolean_api.h"
-#include "internal_poly_api.h"
-#include "list_api.h"
-#include "string_api.h"
-#include "boolean_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_internal_double.h"
+#include "api_internal_string.h"
+#include "api_internal_boolean.h"
+#include "api_internal_poly.h"
+#include "api_list.h"
+#include "api_string.h"
+#include "api_boolean.h"
 
 
 //internal functions
@@ -823,6 +823,10 @@ int readMatrixOfStringInNamedList(char* _pstName, int _iNameLen, int* _piParent,
 	return 0;
 }
 
+/*********************
+ * boolean functions *
+ *********************/
+
 int getMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int** _piBool)
 {
 	int iRet			= 0;
@@ -910,6 +914,55 @@ static int fillMatrixOfBoolInList(int _iVar, int* _piParent, int _iItemPos, int 
 
 	piOffset						= _piParent + 2;
 	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + ((3 + _iRows * _iCols + !((_iRows * _iCols) % 2)) / 2);
+
+	return 0;
+}
+
+int createMatrixOfBooleanInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool)
+{
+	int iVarID[nsiz];
+  int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+	int iRet					= 0;
+	int *piAddr				= NULL;
+	int* piBool				= NULL;
+	int* piEnd				= NULL;
+	int* piChildAddr	= NULL;
+
+  C2F(str2name)(_pstName, iVarID, _iNameLen);
+  Top = Top + Nbvars + 1;
+
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = fillMatrixOfBoolInList(Top, _piParent, _iItemPos, _iRows, _iCols, &piBool);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	memcpy(piBool, _piBool, sizeof(int) * _iRows * _iCols);
+
+	iRet = allocCommonItemInList(_piParent, _iItemPos, &piChildAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	piEnd = piChildAddr + 4 + (_iRows * _iCols) + ((_iRows * _iCols) % 2);
+	closeList(Top, piEnd);
+
+	if(_iItemPos == _piParent[1])
+	{
+		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		createNamedVariable(iVarID);
+	}
+
+	Top = iSaveTop;
+  Rhs = iSaveRhs;
 
 	return 0;
 }

@@ -13,10 +13,10 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "internal_poly_api.h"
-#include "poly_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_internal_poly.h"
+#include "api_poly.h"
 
 #include "MALLOC.h"
 #include "CallScilab.h"
@@ -261,33 +261,18 @@ int readNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, int* _piRows, in
 
 int readCommonNamedMatrixOfPoly(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	int iVarID[nsiz];
+	int iRet					= 0;
 	int* piAddr				= NULL;
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 	int iSize					= 0;
 	int iOne					= 1;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
-
-	//define scope of search
-  Fin = -1;
-	//search variable 
-  C2F(stackg)(iVarID);
-
-	if (Err > 0 || Fin == 0)
+	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	if(iRet)
 	{
 		return 1;
 	}
-
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
-
-	//get variable address
-	//WARNING check in VarType can be negative
-	getNewVarAddressFromPosition(Fin, &piAddr);
 	
 	if(_iComplex == 1)
 	{

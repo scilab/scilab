@@ -481,6 +481,19 @@ int allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iR
  */
 int createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
 
+/**
+ * create boolean variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piBool return pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfBooleanInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+
 /*************************
  * polynomials functions *
  *************************/
@@ -538,6 +551,7 @@ int createMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _ps
  * @return if the operation successed (0) or not ( !0 )
  */
 int createComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
 
 #endif /* __LIST_API__ */
 
