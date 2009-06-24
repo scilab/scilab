@@ -16,12 +16,11 @@
 //  rmdir(<dir>,"s") doesn't work if it contains a hidden file (starting with a dot).
 
 
-r = mkdir(TMPDIR+"\bug_rmdir");
+this_bug_dir  = pathconvert(TMPDIR+"/bug_rmdir",%F);
+this_bug_file = pathconvert(this_bug_dir+"/.bugtxt",%F);
+
+r = mkdir(this_bug_dir);
 if r <> 1 then pause,end
-mputl("some text",TMPDIR+"\bug_rmdir\.bugtxt");
-r = rmdir(TMPDIR+"\bug_rmdir","s")
+mputl("some text",this_bug_file);
+r = rmdir(this_bug_dir,"s");
 if r <> 1 then pause,end
-
-
-
-
