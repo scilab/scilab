@@ -139,7 +139,7 @@ static int createCommonNamedList(char* _pstName, int _iNameLen, int _iListType, 
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 	fillCommonList(piAddr, _iListType, _iNbItem);
 
 	piEnd = piAddr + 3 + _iNbItem + !(_iNbItem % 2);
@@ -169,7 +169,7 @@ static int createCommonList(int _iVar, int _iListType, int _iNbItem, int** _piAd
 	int iAddr				= *Lstk(iNewPos);
 	int* piOffset		= NULL;
 
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet)
 	{
 		return 1;
@@ -492,7 +492,7 @@ int createCommomMatrixOfDoubleInNamedList(char* _pstName, int _iNameLen, int* _p
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 	if(iRet)
 	{
 		return 1;

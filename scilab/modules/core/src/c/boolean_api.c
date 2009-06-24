@@ -48,7 +48,7 @@ int allocMatrixOfBoolean(int _iVar, int _iRows, int _iCols, int** _piBool)
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
 
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -97,7 +97,7 @@ int createNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int _iRows, int _i
 	C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 	//write matrix information
 	fillMatrixOfBoolean(piAddr, _iRows, _iCols, &piBool);
@@ -143,7 +143,7 @@ int readNamedMatrixOfBoolean(char* _pstName, int _iNameLen, int* _piRows, int* _
 
 	//get variable address
 	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
+	getNewVarAddressFromPosition(Fin, &piAddr);
 
 	iRet = getMatrixOfBoolean(piAddr, _piRows, _piCols, &piBool);
 	

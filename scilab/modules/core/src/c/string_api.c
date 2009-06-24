@@ -81,7 +81,7 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
 	int iTotalLen		= 0;
 	int *piAddr			= NULL;
 
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -136,7 +136,7 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 
 	//write matrix information
@@ -179,7 +179,7 @@ int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _p
 
 	//get variable address
 	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
+	getNewVarAddressFromPosition(Fin, &piAddr);
 
 	return getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
 }

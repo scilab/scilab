@@ -59,7 +59,7 @@ int getVarAddressFromPostion(int _iVar, int** _piAddress)
 	return 0;
 }
 
-int getVarNameFromPostion(int _iVar, char* _pstName)
+int getVarNameFromPosition(int _iVar, char* _pstName)
 {
 	int iNameLen				= 0;
 	int iJob1						= 1;
@@ -73,7 +73,7 @@ int getVarNameFromPostion(int _iVar, char* _pstName)
 	return 0;
 }
 
-int getNewVarAddressFromNumber(int _iVar, int** _piAddress)
+int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(_iVar));
 	int iValType	= *istk(iAddr);
@@ -106,7 +106,7 @@ int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
 
 	//get variable address
 	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
+	getNewVarAddressFromPosition(Fin, &piAddr);
 
 	*_piAddress = piAddr;
 	return 0;

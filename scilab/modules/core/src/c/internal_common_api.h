@@ -12,7 +12,7 @@
 #ifndef __INTERNAL_COMMON_API__
 #define __INTERNAL_COMMON_API__
 
-int getNewVarAddressFromNumber(int _iVar, int** _piAddress);
+int getNewVarAddressFromPosition(int _iVar, int** _piAddress);
 
 #endif /* __INTERNAL_COMMON_API__ */
 
