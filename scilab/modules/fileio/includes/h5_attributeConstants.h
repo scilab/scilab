@@ -22,6 +22,7 @@
 
 static const char g_SCILAB_CLASS[]					=	"SCILAB_Class";
 static const char g_SCILAB_CLASS_EMPTY[]		=	"SCILAB_empty";
+static const char g_SCILAB_CLASS_VARNAME[]	=	"SCILAB_varname";
 
 
 static const char g_SCILAB_CLASS_DOUBLE[]		=	"double";

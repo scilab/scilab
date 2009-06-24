@@ -57,10 +57,9 @@ int getComplexMatrixOfPoly(int* _piAddress, int* _piRows, int* _piCols, int* _pi
  * @param[in] _iCols Number of column
  * @param[in] _piNbCoef array of polynomials coefficients
  * @param[in] _pdblReal pointer on data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, int** _piAddress);
+int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
 
 /**
  * Get complex polynomial named variable data
@@ -71,10 +70,9 @@ int createMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int
  * @param[in] _piNbCoef array of polynomials coefficients
  * @param[in] _pdblReal pointer on real data
  * @param[in] _pdblImg pointer on imaginary data
- * @param[out] _piAddress return pointer on new variable
  * @return if the operation successed (0) or not ( !0 )
  */
-int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg, int** _piAddress);
+int createComplexMatrixOfPoly(int _iVar, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 
 /**
  * Create polynomial named variable

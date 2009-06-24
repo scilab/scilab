@@ -38,7 +38,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	getVarAddressFromNumber(1, &piAddressVarOne);
+	getVarAddressFromPostion(1, &piAddressVarOne);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

@@ -1164,6 +1164,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\internal_poly_api.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\intmacr2tree.h"
 				>
 			</File>

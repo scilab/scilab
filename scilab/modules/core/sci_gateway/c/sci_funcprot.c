@@ -46,7 +46,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double *pdVarOne = NULL;
 
 		/* get Address of inputs */
-		getVarAddressFromNumber(1, &piAddressVarOne);
+		getVarAddressFromPostion(1, &piAddressVarOne);
 
 		/* check input type */
 		if ( getVarType(piAddressVarOne) != sci_matrix )

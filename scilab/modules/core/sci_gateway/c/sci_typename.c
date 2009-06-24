@@ -55,8 +55,8 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	int *piAddressVarTwo = NULL;
 	double *pdVarTwo = NULL;
 
-	getVarAddressFromNumber(1, &piAddressVarOne);
-	getVarAddressFromNumber(2, &piAddressVarTwo);
+	getVarAddressFromPostion(1, &piAddressVarOne);
+	getVarAddressFromPostion(2, &piAddressVarTwo);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

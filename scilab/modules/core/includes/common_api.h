@@ -22,8 +22,15 @@
  * @param[out] _piAddress return variable address
  * @return if the operation successed (0) or not ( !0 )
  */
-int getVarAddressFromNumber(int _iVar, int** _piAddress);
+int getVarAddressFromPostion(int _iVar, int** _piAddress);
 
+/**
+ * Get memory address of a variable from the variable number
+ * @param[in] _iVar variable number
+ * @param[out] _pstName variable name
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getVarNameFromPostion(int _iVar, char* _pstName);
 /**
  * Get memory address of a variable from the variable name
  * @param[in] _pstName variable name
