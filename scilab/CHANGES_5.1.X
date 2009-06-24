@@ -146,7 +146,10 @@ Bug fixes:
  * bug 4580 fixed - rpem documentation made more accurate
  
  * bug 4592 fixed - The ged entity picker produces an error if a menu has been added to the graphic window
+
  * bug 4596 fixed - g_margin fails to return the gain margins in some cases.
+
+ * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval (+ some other problems fixed in mtlb_eval).
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab

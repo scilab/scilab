@@ -180,8 +180,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	    public void keyPressed (KeyEvent e) {
 	    	if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
 	    		if (console.getConfiguration().getHistoryManager().isInHistory()) {
-	    			console.getConfiguration().getInputParsingManager().reset();
-	    			console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
+	    			//console.getConfiguration().getInputParsingManager().reset();
+	    			//console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
 	    			console.getConfiguration().getHistoryManager().setInHistory(false);
 	    		}
 	    	}

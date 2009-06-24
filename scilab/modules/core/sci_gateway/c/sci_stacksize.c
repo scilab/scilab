@@ -183,8 +183,8 @@ int C2F(sci_stacksize)(char *fname,unsigned long fname_len)
 					/* First, we do a stacksize('min') */
 					{
 					          int ptr=0;
-						  int memstacktotal=0;
-						  int memstackused=0;
+						  unsigned long memstacktotal=0;
+						  unsigned long memstackused=0;
 						  int newminstack=0;
 						  
 						  C2F(getstackinfo)(&memstacktotal,&memstackused);
