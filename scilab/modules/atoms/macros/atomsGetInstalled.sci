@@ -66,8 +66,8 @@ function packages = atomsGetInstalled(allusers)
 		
 		// Loop on each URL specified as first input argument
 		for j=1:size(installed,"*")
-            current_status       = part(installed(j),1:1);
-            installed(j)         = part(installed(j),5:length(installed(j)));
+			current_status       = part(installed(j),1:1);
+			installed(j)         = part(installed(j),5:length(installed(j)));
 			current_name_length  = regexp(installed(j),"/\s-\s/","o");
 			current_name         = part(installed(j),1:current_name_length-1);
 			current_version      = part(installed(j),current_name_length+3:length(installed(j)));
