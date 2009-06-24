@@ -13,9 +13,6 @@ import com.artenum.rosetta.core.action.AbstractConsoleAction;
 public class GetNextAction extends AbstractConsoleAction {
 	private static final long serialVersionUID = 1L;
 	
-	public GetNextAction() {
-		System.out.print("DEBUG: constructor");
-	}
 	public void actionPerformed(ActionEvent e) {
 		String historyLine = null;
 
@@ -29,7 +26,7 @@ public class GetNextAction extends AbstractConsoleAction {
 
 		/* Search matching line in history if exists !! */
 		historyLine = configuration.getHistoryManager().getNextEntry(configuration.getHistoryManager().getTmpEntry());
-		
+
 		/* If nothing found in history, go back to edited line */
 		if(historyLine==null) {
 			historyLine = configuration.getHistoryManager().getTmpEntry();
