@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void extract_bit_32_LSB(scicos_block *block,int flag)
 {
    int i,maxim;
@@ -37,3 +37,4 @@ void extract_bit_32_LSB(scicos_block *block,int flag)
         ref=ref+n;}
    *y=(*u)&(ref);
 }
+/*--------------------------------------------------------------------------*/ 

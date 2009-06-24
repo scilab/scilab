@@ -26,7 +26,7 @@ public class GetNextAction extends AbstractConsoleAction {
 
 		/* Search matching line in history if exists !! */
 		historyLine = configuration.getHistoryManager().getNextEntry(configuration.getHistoryManager().getTmpEntry());
-		
+
 		/* If nothing found in history, go back to edited line */
 		if(historyLine==null) {
 			historyLine = configuration.getHistoryManager().getTmpEntry();

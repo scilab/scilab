@@ -18,14 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "MALLOC.h"
 #include "scicos_block.h"
-
-
-#ifndef NULL
-#define NULL    0
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 void ratelimiter(scicos_block *block,int flag)
 {/*  rpar[0]=rising rate limit, rpar[1]=falling rate limit */
   double* pw;
@@ -70,3 +67,4 @@ void ratelimiter(scicos_block *block,int flag)
     pw[3]=block->outptr[0][0];
   }
 }
+/*--------------------------------------------------------------------------*/ 

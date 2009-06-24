@@ -18,16 +18,15 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <memory.h>
-
-#include "scicos_block.h"
 #include "machine.h"
-
+#include "scicos_block.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
-
+/*--------------------------------------------------------------------------*/ 
 void tcslti4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
@@ -69,4 +68,5 @@ void tcslti4(scicos_block *block,int flag)
     C2F(dmmul1)(&rpar[lb],&nx,u1,&insz[0],xd,&nx,&nx,&insz[0],&un);
   }
 }
+/*--------------------------------------------------------------------------*/ 
 

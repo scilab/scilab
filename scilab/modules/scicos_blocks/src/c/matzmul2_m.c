@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 void matzmul2_m(scicos_block *block,int flag)
 {
   double *u1r;
@@ -44,3 +45,4 @@ void matzmul2_m(scicos_block *block,int flag)
 	{yr[i]=u1r[i]*u2r[i]-u1i[i]*u2i[i];
 	 yi[i]=u1r[i]*u2i[i]+u1i[i]*u2r[i];}
 }
+/*--------------------------------------------------------------------------*/ 

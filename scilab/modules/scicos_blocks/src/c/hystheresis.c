@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void  hystheresis(scicos_block *block,int flag)
 {
   if (flag==1){
@@ -58,3 +58,4 @@ void  hystheresis(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

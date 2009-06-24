@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 void matz_abs(scicos_block *block,int flag)
 {
   double *u1r;
@@ -39,4 +40,4 @@ void matz_abs(scicos_block *block,int flag)
 	{*(y1+i)=pow((pow(*(u1r+i),2)+pow(*(u1i+i),2)),0.5);
 	 *(y2+i)=atan2(*(u1i+i),*(u1r+i));}
 }
-
+/*--------------------------------------------------------------------------*/ 

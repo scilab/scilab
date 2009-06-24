@@ -18,13 +18,13 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-#include "machine.h"
-
+#include "machine.h" /* C2F */
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
-
+/*--------------------------------------------------------------------------*/ 
 void gainblk(scicos_block *block,int flag)
 {
   int i;
@@ -53,3 +53,4 @@ void gainblk(scicos_block *block,int flag)
     C2F(dmmul)(rpar,&ny,u,&nu,y,&ny,&ny,&nu,&my);
   }
 }
+/*--------------------------------------------------------------------------*/ 

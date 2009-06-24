@@ -1,31 +1,30 @@
-/* Copyright INRIA */
-
-/* 21/06/06, Alan : update import structure with
- * noord, nzord, ncord, nordptr, niord, iord, nmod, mod.
- * Rewrite getscicosvars
- *
- * 23-27/06/06, Alan : update import structure with blocks, ng, g.
- *
- * 29/06/06, Alan : update import struc. with t0,tf, Atol, ttol,rtol, deltat,
- * hmax. All is now ptr in this struct.
- *
- * 03/07/06, Alan : update import struc. with nelem, outtb_elem
- *
- * 13/11/06, Alan : fix bugs in getscicosvarsfromimport
- *
- * 08/02/07, Alan : Update with oz,opar
- *
- * 17/04/08, Alan : Update with nordclk,xprop
- */
+/*  Scicos
+*
+*  Copyright (C) INRIA - 
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 2 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License
+* along with this program; if not, write to the Free Software
+* Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+*
+* See the file ./license.txt
+*/
+/*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdio.h>
 #include "machine.h"
 #include "import.h"
 #include "cvstr.h"
-/*********************************************
- * external structure and function declaration
- *********************************************/
-
+/*--------------------------------------------------------------------------*/
 extern struct {int kfun;} C2F(curblk);
 
 ScicosImport scicos_imp={
@@ -104,6 +103,7 @@ ScicosImport scicos_imp={
 (double *)  NULL,      /* 73 - xd         */
 };
 
+/*--------------------------------------------------------------------------*/
 /* get scicos import ptr return the ptr
  * of the import structure
  */
@@ -111,7 +111,7 @@ ScicosImport* getscicosimportptr(void)
 {
  return &scicos_imp;
 }
-
+/*--------------------------------------------------------------------------*/
 void C2F(makescicosimport)(x,nx,xptr,zcptr,z,nz,zptr,
                            noz,oz,ozsz,oztyp,ozptr,
                            g,ng,mod,nmod,modptr,iz,izptr,
@@ -236,9 +236,8 @@ double *xd;
     scicos_imp.xprop=xprop;
     scicos_imp.xd=xd;
 }
-
-void
-C2F(clearscicosimport)()
+/*--------------------------------------------------------------------------*/
+void C2F(clearscicosimport)()
 {
     scicos_imp.x=(double *) NULL;
     scicos_imp.nx=(int *) NULL;
@@ -327,7 +326,7 @@ C2F(clearscicosimport)()
     scicos_imp.xprop=(int *) NULL;
     scicos_imp.xd=(double *) NULL;
 }
-
+/*--------------------------------------------------------------------------*/
 /* 20/06/06, Alan : review
  * 08/02/07, Alan : update
  */
@@ -801,7 +800,7 @@ int getscicosvarsfromimport(char *what,void **v,int *nv,int *mv)
     /* return TRUE_ */
     return 1;
 }
-
+/*--------------------------------------------------------------------------*/
 /* Used in some scicos block */
 void C2F(getlabel)(int *kfun, char *label,int *n)
 /*int *n, *kfun;  length of the label as input n gives the max length expected*/
@@ -841,7 +840,7 @@ void C2F(getblockbylabel)(int *kfun, char **label, int *n)
       }
     }
 }
-
+/*--------------------------------------------------------------------------*/
 /*never used, never interfaced */
 int C2F(getsciblockbylabel)(int*kfun,int label[],int *n)
 {
@@ -866,7 +865,7 @@ int C2F(getsciblockbylabel)(int*kfun,int label[],int *n)
     }
     return 0;
 }
-
+/*--------------------------------------------------------------------------*/
 int C2F(getscilabel)(int *kfun, int label[], int *n)
 {
     int k,i;
@@ -885,13 +884,12 @@ int C2F(getscilabel)(int *kfun, int label[], int *n)
 	}
     return(0);
 }
-
-/* */
+/*--------------------------------------------------------------------------*/
 int C2F(getcurblock)()
 {
   return(C2F(curblk).kfun);
 }
-
+/*--------------------------------------------------------------------------*/
 /* used in fscope
  *
  * 30/06/06, Alan : Rewritte to preserve compatibility with fscope.f.
@@ -1000,3 +998,4 @@ void C2F(getouttb)(int *nsize,int *nvec,double *outtc)
    }
   }
 }
+/*--------------------------------------------------------------------------*/

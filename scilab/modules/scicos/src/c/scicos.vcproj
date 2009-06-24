@@ -522,10 +522,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sciblk2i.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sciblk4.c"
 				>
 			</File>
@@ -588,6 +584,14 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\scicos_malloc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\scicos_math.h"
+				>
+			</File>
+			<File
+				RelativePath=".\tree.h"
 				>
 			</File>
 		</Filter>

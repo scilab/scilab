@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void logicalop_i32(scicos_block *block,int flag)
 {
   int i,m,n,nin,k,j,l;
@@ -258,3 +257,4 @@ void logicalop_i32(scicos_block *block,int flag)
 	     break;
 	}
 }
+/*--------------------------------------------------------------------------*/ 

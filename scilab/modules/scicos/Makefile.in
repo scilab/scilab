@@ -120,13 +120,13 @@ LTLIBRARIES = $(pkglib_LTLIBRARIES)
 @SCICOS_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 @SCICOS_TRUE@	$(top_builddir)/modules/arnoldi/libsciarnoldi.la
 am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
-	src/c/tree.c src/c/sciblk2i.c src/c/scicos_malloc.c \
-	src/c/import.c src/c/slider.c src/c/scicos.c \
-	src/c/scicos_free.c src/c/sciblk2.c src/c/scicosclip.c \
-	src/c/sciblk4.c src/c/ezxml.c src/fortran/scitovv.f \
-	src/fortran/vvtosci.f src/fortran/skipvars.f \
-	src/fortran/coselm.f src/fortran/scitod.f src/fortran/sctree.f \
-	src/fortran/scierr.f src/fortran/ftree2.f src/fortran/ftree3.f \
+	src/c/tree.c src/c/scicos_malloc.c src/c/import.c \
+	src/c/slider.c src/c/scicos.c src/c/scicos_free.c \
+	src/c/sciblk2.c src/c/scicosclip.c src/c/sciblk4.c \
+	src/c/ezxml.c src/fortran/scitovv.f src/fortran/vvtosci.f \
+	src/fortran/skipvars.f src/fortran/coselm.f \
+	src/fortran/scitod.f src/fortran/sctree.f src/fortran/scierr.f \
+	src/fortran/ftree2.f src/fortran/ftree3.f \
 	src/fortran/list2vars.f src/fortran/ftree4.f \
 	src/fortran/scitoi.f src/fortran/scifunc.f \
 	sci_gateway/c/intcscicos.c sci_gateway/c/intcutilcos.c \
@@ -159,7 +159,6 @@ am__libsciscicos_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	sci_gateway/fortran/sci_vec2var.f
 @SCICOS_FALSE@am__objects_1 = libsciscicos_la-noscicos.lo
 @SCICOS_TRUE@am__objects_2 = libsciscicos_la-tree.lo \
-@SCICOS_TRUE@	libsciscicos_la-sciblk2i.lo \
 @SCICOS_TRUE@	libsciscicos_la-scicos_malloc.lo \
 @SCICOS_TRUE@	libsciscicos_la-import.lo \
 @SCICOS_TRUE@	libsciscicos_la-slider.lo \
@@ -303,7 +302,7 @@ DATA = $(libsciscicos_la_etc_DATA) $(libsciscicos_la_help_en_US_DATA) \
 am__libsciscicos_la_include_HEADERS_DIST = src/c/noscicos/resource.h \
 	includes/intcscicos.h includes/scicos.h includes/gw_scicos.h \
 	includes/scicos-def.h includes/scicos_free.h \
-	includes/scicos_malloc.h
+	includes/scicos_malloc.h includes/scicos_math.h
 libsciscicos_la_includeHEADERS_INSTALL = $(INSTALL_HEADER)
 HEADERS = $(libsciscicos_la_include_HEADERS)
 ETAGS = etags
@@ -603,7 +602,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 # compiled first
 @SCICOS_TRUE@pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
 @SCICOS_TRUE@SCICOS_C_SOURCES = src/c/tree.c \
-@SCICOS_TRUE@src/c/sciblk2i.c \
 @SCICOS_TRUE@src/c/scicos_malloc.c \
 @SCICOS_TRUE@src/c/import.c \
 @SCICOS_TRUE@src/c/slider.c \
@@ -677,6 +675,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 @SCICOS_TRUE@libsciscicos_la_CFLAGS = -I$(srcdir)/includes/ \
+@SCICOS_TRUE@			-I$(srcdir)/src/c/ \
 @SCICOS_TRUE@			-I$(srcdir)/src/scicos_sundials/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @SCICOS_TRUE@			-I$(top_srcdir)/modules/output_stream/includes \
@@ -722,7 +721,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@includes/gw_scicos.h \
 @SCICOS_TRUE@includes/scicos-def.h \
 @SCICOS_TRUE@includes/scicos_free.h \
-@SCICOS_TRUE@includes/scicos_malloc.h
+@SCICOS_TRUE@includes/scicos_malloc.h \
+@SCICOS_TRUE@includes/scicos_math.h
 
 
 #### scicos : cosf files ####
@@ -959,7 +959,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_var2vec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sciblk2.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sciblk2i.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-sciblk4.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-scicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_la-scicos_free.Plo@am__quote@
@@ -1007,13 +1006,6 @@ libsciscicos_la-tree.lo: src/c/tree.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/tree.c' object='libsciscicos_la-tree.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-tree.lo `test -f 'src/c/tree.c' || echo '$(srcdir)/'`src/c/tree.c
-
-libsciscicos_la-sciblk2i.lo: src/c/sciblk2i.c
-@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-sciblk2i.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-sciblk2i.Tpo -c -o libsciscicos_la-sciblk2i.lo `test -f 'src/c/sciblk2i.c' || echo '$(srcdir)/'`src/c/sciblk2i.c
-@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_la-sciblk2i.Tpo $(DEPDIR)/libsciscicos_la-sciblk2i.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciblk2i.c' object='libsciscicos_la-sciblk2i.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_la-sciblk2i.lo `test -f 'src/c/sciblk2i.c' || echo '$(srcdir)/'`src/c/sciblk2i.c
 
 libsciscicos_la-scicos_malloc.lo: src/c/scicos_malloc.c
 @am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_la_CFLAGS) $(CFLAGS) -MT libsciscicos_la-scicos_malloc.lo -MD -MP -MF $(DEPDIR)/libsciscicos_la-scicos_malloc.Tpo -c -o libsciscicos_la-scicos_malloc.lo `test -f 'src/c/scicos_malloc.c' || echo '$(srcdir)/'`src/c/scicos_malloc.c

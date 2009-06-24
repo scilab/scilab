@@ -18,22 +18,23 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-//#include <essl.h>
-typedef struct FCOMPLEX {double r,i;} fcomplex;
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zgetrf)();
+/*--------------------------------------------------------------------------*/ 
+typedef struct FCOMPLEX 
+{	double r,i;
+} fcomplex;
+
 typedef struct
 {         int *ipiv;
           double *wrk;
 } mat_det_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_det(scicos_block *block,int flag)
 {
  double *ur;
@@ -105,3 +106,4 @@ else
      *yi=D.i;
     }
  }
+/*--------------------------------------------------------------------------*/ 

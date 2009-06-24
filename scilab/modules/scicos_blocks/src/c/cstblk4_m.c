@@ -18,11 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <memory.h>
 #include<stdio.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void cstblk4_m(scicos_block *block,int flag)
 { 
   /* Copyright INRIA
@@ -41,3 +41,4 @@ void cstblk4_m(scicos_block *block,int flag)
   so=GetSizeOfOpar(block,1);
   memcpy(y,opar,mo*no*so);
 }
+/*--------------------------------------------------------------------------*/ 

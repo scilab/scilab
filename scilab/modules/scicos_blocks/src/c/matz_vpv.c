@@ -18,18 +18,16 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zgeev)();
 extern int C2F(zheev)();
 extern int C2F(dlaset)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         double *LA;
           double *LX;
@@ -39,6 +37,7 @@ typedef struct
           double *dwork1;
           double *rwork1;
 } mat_vpv_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_vpv(scicos_block *block,int flag)
 {
  double *ur,*ui;
@@ -183,3 +182,4 @@ else
 	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dprxc)();
+/*--------------------------------------------------------------------------*/ 
 void root_coef(scicos_block *block,int flag)
 {
   double *u;
@@ -34,3 +36,4 @@ void root_coef(scicos_block *block,int flag)
   if (flag==1||flag==6)
   C2F(dprxc)(&mu,u,y);
 }
+/*--------------------------------------------------------------------------*/ 

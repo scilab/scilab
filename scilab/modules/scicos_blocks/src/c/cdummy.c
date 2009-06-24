@@ -18,9 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h> /* sin */
 #include "scicos_block.h"
-
+/*--------------------------------------------------------------------------*/ 
 void cdummy(scicos_block *block,int flag)
 /*------------------------------------------------
  *     Scicos block simulator 
@@ -30,3 +31,4 @@ void cdummy(scicos_block *block,int flag)
   if (flag == 0)
     block->xd[0] = sin(get_scicos_time());
 }
+/*--------------------------------------------------------------------------*/ 

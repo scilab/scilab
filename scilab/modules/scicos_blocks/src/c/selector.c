@@ -18,15 +18,12 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
-
-void 
-selector(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+/*--------------------------------------------------------------------------*/ 
+void selector(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
 int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[],*nin,outsz[],*nout;
 double x[],xd[],z[],tvec[],rpar[];
 double *inptr[],*outptr[],*t;
-
 {
     int k;
     double *y;
@@ -55,4 +52,5 @@ double *inptr[],*outptr[],*t;
 	*(y++)=*(u++);  
     }
 }
+/*--------------------------------------------------------------------------*/ 
 

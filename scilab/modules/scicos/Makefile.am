@@ -25,7 +25,6 @@ if SCICOS
 pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
 
 SCICOS_C_SOURCES = src/c/tree.c \
-src/c/sciblk2i.c \
 src/c/scicos_malloc.c \
 src/c/import.c \
 src/c/slider.c \
@@ -98,6 +97,7 @@ sci_gateway/fortran/sci_vec2var.f
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
 libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
 			-I$(srcdir)/src/scicos_sundials/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
@@ -140,7 +140,8 @@ includes/scicos.h \
 includes/gw_scicos.h \
 includes/scicos-def.h \
 includes/scicos_free.h \
-includes/scicos_malloc.h
+includes/scicos_malloc.h \
+includes/scicos_math.h
 
 #### scicos : cosf files ####
 libsciscicos_la_cosfdir=$(mydatadir)

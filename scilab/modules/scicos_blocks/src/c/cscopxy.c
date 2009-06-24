@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cscopxy.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CSCOPXY is a scope in 2D which draw its input as a XY scope, there is no animation, everything is keep in memory instead of CANIMXY
    \see CSCOPXY.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -35,7 +37,7 @@
 #include "scicos_block4.h"
 #include "DrawingBridge.h"
 #include "SetJavaProperty.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -112,8 +114,7 @@ void cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
 	/* use only single buffering to be sure to draw on the screen */
 	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cscopxy(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -199,3 +200,4 @@ void cscopxy(scicos_block * block, int flag)
       //free the memory which is allocated at each turn by some variables
     }
 }
+/*--------------------------------------------------------------------------*/ 

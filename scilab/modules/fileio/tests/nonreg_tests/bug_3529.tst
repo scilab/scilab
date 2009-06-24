@@ -21,6 +21,6 @@ mkdir(baseDir);
 mkdir(baseDir+"/aze");
 mkdir(baseDir+"/aze/aze");
 mkdir(baseDir+"/aze/aze/qsdq");
-res=rmdir(baseDir);
+res=rmdir(baseDir,'s');
 if res <> 1 then pause,end
 if isdir(baseDir) <> %f then pause,end

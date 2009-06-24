@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 void cumsumz_c(scicos_block *block,int flag)
 {
   double *ur;
@@ -44,3 +45,4 @@ void cumsumz_c(scicos_block *block,int flag)
 	    yr[ij]=ur[ij]+yr[ij-mu];
 	    yi[ij]=ui[ij]+yi[ij-mu];}}
 }
+/*--------------------------------------------------------------------------*/ 

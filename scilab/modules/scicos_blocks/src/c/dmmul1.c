@@ -18,11 +18,12 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /* Table of constant values */
-
 static int c__1 = 1;
-extern double ddot();
-
+/*--------------------------------------------------------------------------*/ 
+double ddot(int *n, double *dx, int *incx, double *dy, int *incy);
+/*--------------------------------------------------------------------------*/ 
 int dmmul1(double *a, int *na, double *b, int *nb, double *c__, 
 	   int *nc, int *l, int *m, int *n)
 {
@@ -74,7 +75,7 @@ int dmmul1(double *a, int *na, double *b, int *nb, double *c__,
   }
   return 0;
 } /* dmmul1 */
-
+/*--------------------------------------------------------------------------*/ 
 double ddot(int *n, double *dx, int *incx, double *dy, int *incy)
 {
   /* System generated locals */
@@ -159,4 +160,4 @@ double ddot(int *n, double *dx, int *incx, double *dy, int *incy)
   ret_val = dtemp;
   return ret_val;
 } /* ddot */
-
+/*--------------------------------------------------------------------------*/ 

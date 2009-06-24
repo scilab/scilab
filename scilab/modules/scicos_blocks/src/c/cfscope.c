@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cfscope.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CFSCOPE This scope has no input port because it displays the values on the designated link
    \see CFSCOPE.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "scoMemoryScope.h"
 #include "scoWindowScope.h"
@@ -33,7 +35,9 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
+extern int C2F(getouttb)();
+/*--------------------------------------------------------------------------*/ 
 /** \fn cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -110,8 +114,8 @@ void cfscope_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdr
       scicos_free(colors);
     }
 }
+/*--------------------------------------------------------------------------*/ 
 
-extern int C2F(getouttb)();
 /** \fn void cfscope(scicos_block * block,int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -213,3 +217,4 @@ void cfscope(scicos_block * block,int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

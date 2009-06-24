@@ -18,22 +18,21 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zgetrf)();
 extern int C2F(zgetri)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int *ipiv;
           double *wrk;
 	  double *LX;
 } mat_inv_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_inv(scicos_block *block,int flag)
 {
  double *ur;
@@ -102,3 +101,4 @@ else
 	    yi[i]=ptr->LX[2*i+1];}
     }
  }
+/*--------------------------------------------------------------------------*/ 

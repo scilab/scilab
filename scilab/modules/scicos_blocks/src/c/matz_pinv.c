@@ -18,26 +18,16 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zgesvd)();
 extern int C2F(wmmul)();
 extern int C2F(dlaset)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         double *l0;
 	  double *LA;
@@ -52,6 +42,7 @@ typedef struct
           double *dwork;
           double *rwork;
 } mat_pinv_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_pinv(scicos_block *block,int flag)
 {
  double *ur,*ui;
@@ -330,3 +321,4 @@ else
     C2F(wmmul)(ptr->LCr,ptr->LCi,&nu,ptr->LUr,ptr->LUi,&mu,yr,yi,&nu,&nu,&mu,&mu);
    }
 }
+/*--------------------------------------------------------------------------*/ 

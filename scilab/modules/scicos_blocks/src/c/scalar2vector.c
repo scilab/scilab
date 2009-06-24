@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void scalar2vector(scicos_block *block,int flag)
 {
   int i;
@@ -31,3 +31,4 @@ void scalar2vector(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,10 +18,11 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block.h"
 #include "sciprint.h"
-
+/*--------------------------------------------------------------------------*/ 
 void edgetrig(scicos_block *block,int flag)
 {
   double z= block->z[0],u=block->inptr[0][0];
@@ -51,3 +52,4 @@ void edgetrig(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

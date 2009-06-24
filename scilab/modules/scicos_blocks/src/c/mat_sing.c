@@ -18,32 +18,23 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dgesvd)();
 extern int C2F(dlaset)();
 extern int C2F(dlacpy)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {	  double *LA;
           double *LU;
           double *LVT;
           double *dwork;
 } mat_sing_struct ;
+/*--------------------------------------------------------------------------*/ 
 void mat_sing(scicos_block *block,int flag)
 {
  double *u;
@@ -112,3 +103,4 @@ else
          return;}}
    }
 }
+/*--------------------------------------------------------------------------*/ 

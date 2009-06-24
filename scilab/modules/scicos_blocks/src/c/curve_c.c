@@ -18,26 +18,24 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
+#include "MALLOC.h"
+/*--------------------------------------------------------------------------*/ 
 /*    Masoud Najafi, August 2007 */
 /*    Copyright INRIA
  *    Scicos block simulator
  *    Signal builder block
  */
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 #define rpar     block->rpar 
 #define nPoints  block->ipar[0]
 #define Order    block->ipar[1]
 #define Periodic block->ipar[2]
 #define T        rpar[nPoints-1]-rpar[0]
-
+/*--------------------------------------------------------------------------*/ 
 int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
-
+/*--------------------------------------------------------------------------*/ 
 void curve_c(scicos_block *block,int flag)
 {
   double t,a,b,c,y1,y2,t1,t2;
@@ -182,7 +180,7 @@ void curve_c(scicos_block *block,int flag)
    default : break;
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
 int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
 {
   double tmxa, p, c2, c3, dx;
@@ -207,4 +205,4 @@ int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, dou
     *h = *ya + *h * tmxa;
     return 0; 
 } /* evalhermite_ */
-
+/*--------------------------------------------------------------------------*/ 

@@ -18,11 +18,13 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zlacpy)();
 extern int C2F(zgetrf)();
 extern double C2F(dlamch)();
@@ -30,19 +32,7 @@ extern double C2F(zlange)();
 extern int C2F(zgecon)();
 extern int C2F(zgetrs)();
 extern int C2F(zgelsy1)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int *ipiv;
           int *rank;
@@ -54,6 +44,7 @@ typedef struct
 	  double *IN2X;
 	  double *IN2;
 } mat_bksl_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_bksl(scicos_block *block,int flag)
 {
  double *u1r,*u1i;
@@ -225,3 +216,4 @@ else
 		k++;}}
     }
 }
+/*--------------------------------------------------------------------------*/ 

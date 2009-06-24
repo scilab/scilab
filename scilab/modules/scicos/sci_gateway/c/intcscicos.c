@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
 #include <stdio.h>
 #include <math.h>
@@ -28,74 +29,37 @@
 #undef Top
 #include "stack-c.h"
 #define Top C2F(vstk).top
-
 #include "BuildObjects.h"
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "HandleManagement.h" /* sciGetPointerFromHandle */
-
 #include "cvstr.h"
 #include "sciprint.h"
 #include "libinter.h"
 #include "scicos-def.h"
 #include "Scierror.h"
-
-/* TO BE REMOVED */
+#include "tree.h"
+#include "scicos.h"
+#include "import.h" /* getscicosvarsfromimport */
 #include "BOOL.h"
-#define TRUE_ TRUE
-#define FALSE_ FALSE
-
-/*to be removed*/
-extern void Objstring(char *fname,
-                unsigned long fname_len,
-                int str,
-                double x,
-                double y,
-                double *angle,
-                double *box,
-                double *wh,
-                long * hdl,
-                int fill,
-                int *foreground,
-                int *background,
-                BOOL isboxed,
-                BOOL isline,
-                BOOL isfilled);
-
+/*--------------------------------------------------------------------------*/ 
+extern int *listentry(int *header, int i); /* mexlib.h */
+extern void str2sci(char** x,int n,int m); /* core/src/c/str2sci.h */
+extern void C2F(itosci)();
+extern int C2F(scierr)();
+extern void C2F(vvtosci)();
+extern int C2F(mktlist)(); 
+extern int C2F(namstr)();
+extern int C2F(funnum)(char *fname);
+/*--------------------------------------------------------------------------*/ 
 /* variable defined in scicos.c */
 extern CURBLK_struct C2F(curblk);
 struct {int isrun;} C2F(cosim); /* declaration of cosim -valable partout- */
 struct {char buf[4096];} coserr;    /* declaration of coserr -valable partout- */
-
-/* TO DO new graphics function */
-/*
-extern void updateScaleIfRequired(sciPointObj * pSubWin);
-*/
-/*
- * int MlistGetFieldNumber(int *ptr, const char *string)
- * int intendscicosim(fname,fname_len)
- * int inttimescicos(fname,fname_len)
- * int intduplicate(fname,fname_len)
- * int intdiffobjs(fname,fname_len)
- * int inttree2(fname,fname_len)
- * int inttree3(fname,fname_len)
- * int inttree4 (char *fname,unsigned long fname_len)
- * int intxproperty(fname,fname_len)
- * int intphasesim(fname,fname_len)
- * int intsetxproperty(fname,fname_len)
- * int intsetblockerror(fname,fname_len)
- * void duplicata(n,v,w,ww,nw)
- * void comp_size(v,nw,n)
- * int intscicosimc(fname,fname_len)
- * int CopyVarFromlistentry(int lw, int *header, int i)
- * int var2sci(void *x,int n,int m,int typ_var)
- * int createblklist(scicos_block *Blocks, int *ierr,int flag_imp,int kfun)
- * int intgetscicosvarsc(fname,fname_len)
- * int intcurblkc(fname,fname_len)
- * int intbuildouttb(fname,fname_len)
- * int intpermutobj_c(fname,fname_len)
- */
-
+/*--------------------------------------------------------------------------*/ 
+static int *il_state_save; /*n'est valable que dans inctscicos.c*/
+static int *il_sim_save; /*n'est valable que dans inctscicos.c*/
+/*--------------------------------------------------------------------------*/ 
 /* fonction pour recuperer le nombre du champs a partir de son nom */
 int MlistGetFieldNumber(int *ptr, const char *string)
 {
@@ -118,7 +82,7 @@ int MlistGetFieldNumber(int *ptr, const char *string)
   }
   return retval;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intendscicosim(char *fname,unsigned long fname_len)
      /* termine la simulation */
 {
@@ -133,7 +97,7 @@ int intendscicosim(char *fname,unsigned long fname_len)
   }
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int inttimescicos(char *fname,unsigned long fname_len)
 /* renvoi le temps de simulation t=get_scicos_time() */
 {
@@ -145,7 +109,7 @@ int inttimescicos(char *fname,unsigned long fname_len)
   LhsVar(1)=1;
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intduplicate(char *fname, unsigned long fname_len)
 
      /* v=duplicate(u,count) 
@@ -178,7 +142,7 @@ int intduplicate(char *fname, unsigned long fname_len)
   LhsVar(1) = 3;
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intdiffobjs(char *fname, unsigned long fname_len)
      /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
 {
@@ -208,7 +172,7 @@ int intdiffobjs(char *fname, unsigned long fname_len)
   }
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int inttree2(char *fname, unsigned long fname_len)
      /* [ord,ok]=ctree2(vec,outoin,outoinptr,dep_u,dep_uptr) */
 {
@@ -236,7 +200,7 @@ int inttree2(char *fname, unsigned long fname_len)
 
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int inttree3(char *fname, unsigned long fname_len)
      /* [r2,ok2]=ctree3(vec,dd,dep_uptr,typ_l,bexe,boptr,blnk,blptr)*/
 {
@@ -269,7 +233,7 @@ int inttree3(char *fname, unsigned long fname_len)
 
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int inttree4(char *fname,unsigned long fname_len)
      /* [r1,r2]=ctree4(vec,outoin,outoinptr,nd,ddd) */
 {
@@ -300,7 +264,7 @@ int inttree4(char *fname,unsigned long fname_len)
   *istk(iadr(C2F(intersci).iwhere[6])+2)=nr;
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intxproperty(char *fname,unsigned long fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
       *	(-1: algebriques, +1 differentielles) */
@@ -323,7 +287,7 @@ int intxproperty(char *fname,unsigned long fname_len)
   }
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intphasesim(char *fname, unsigned long fname_len)
      /* renvoi la phase de simulation phase=get_phase_simulation() */
 { 
@@ -342,7 +306,7 @@ int intphasesim(char *fname, unsigned long fname_len)
   }
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intsetxproperty(char *fname, unsigned long fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
       *	(-1: algebriques, +1 differentielles) */
@@ -361,7 +325,7 @@ int intsetxproperty(char *fname, unsigned long fname_len)
   }
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 int intsetblockerror(char *fname, unsigned long fname_len)
      /* renvoi une erreur */
 {
@@ -380,7 +344,7 @@ int intsetblockerror(char *fname, unsigned long fname_len)
   }
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void  duplicata(int *n,double *v,double *w,double *ww,int *nw)
 {
   int i,j,k;
@@ -393,7 +357,7 @@ void  duplicata(int *n,double *v,double *w,double *ww,int *nw)
   }
   *nw=k;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void  comp_size(double *v,int *nw,int n)
 {
   int i;
@@ -402,7 +366,7 @@ void  comp_size(double *v,int *nw,int n)
     if (v[i]>0) *nw=*nw+(int) v[i];
   }
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* intsicosimc scicosim interface routine.
  *
  * [state,t] = scicosim(state,tcur,tf,sim,str,tol)
@@ -520,20 +484,9 @@ void  comp_size(double *v,int *nw,int n)
      FREE(l_sim_modptr);\
      FREE(l_state_evtspt);\
      FREE(l_pointi)
-
-/* prototype */
-
-/*********************************************
-* external structure and function declaration
-*********************************************/
-/*declaration of funnum (in scicos.c)*/
-extern int C2F(funnum)(char *fname);
-
+/*--------------------------------------------------------------------------*/ 
 int intscicosimc(char *fname,unsigned long fname_len)
 {
- 
- 
-
  /************************************
   * variables and constants d?inition
   ************************************/
@@ -552,8 +505,17 @@ int intscicosimc(char *fname,unsigned long fname_len)
   intersci_state *state ;
   int nbvars;
  } intersci_list ;
+
+ typedef struct /* declaration of outtb_elem -valable dans inctscicos.c- */
+ {
+	 int lnk;
+	 int pos;
+ } outtb_el;
+
+
  intersci_list *loc;
  intersci_state *new ;
+
 
  /* declaration of outtb_elem */
  outtb_el *outtb_elem=NULL;
@@ -2629,7 +2591,7 @@ C2F(scicos)(l_state_x,l_sim_xptr,l_state_z,
  freeparam;
  return 0;
  }
-
+/*--------------------------------------------------------------------------*/ 
 /*-----------------------------------------------------------------
  * CopyVarFromlistentry
  *    Copy a Scilab object in a list to the variable position  lw
@@ -2670,22 +2632,22 @@ int CopyVarFromlistentry(int lw, int *header, int i)
    int n;
 
    /* Test if we receive a NULL ptr header */
-   if (header==NULL) return FALSE_;
+   if (header==NULL) return FALSE;
 
    /* Get the start address of the i element of the input list*/
-   if ((l = (double *) listentry(header,i))==NULL) return FALSE_;
+   if ((l = (double *) listentry(header,i))==NULL) return FALSE;
 
    /* Compute the length of the i element in double word */
    n = header[i+2]-header[i+1];
 
    /* Create empty data of a size n*sizeof(double) at the position lw */
-   if ((ret=C2F(createdata)(&lw, n*sizeof(double)))==FALSE_) return ret;
+   if ((ret=C2F(createdata)(&lw, n*sizeof(double)))==FALSE) return ret;
 
    /* Copy the element i to position lw*/
    C2F(unsfdcopy)(&n,l,&un,stk(*Lstk(lw + Top - Rhs)),&un);
-   return TRUE_;
+   return TRUE;
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* var2sci function to convert an array of scicos
  * blocks to scilab object in the Top+1 position
  * in the stack.
@@ -2930,7 +2892,7 @@ int var2sci(void *x,int n,int m,int typ_var)
   err = 0;
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* createblklist : function to create a Typed List
  *                 of a scicos_block structure
  *                 at the top+1 postion of the stack
@@ -3274,7 +3236,7 @@ int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
   /*return 1 if succeeded */
   return 1;
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* intgetscicosvarsc getscicosvars interface routine
  * retrieve some informations during simulation.
  *
@@ -3443,7 +3405,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     C2F(cvstr)(&sz_str,&l_str[0],&C2F(cha1).buf[0],(i=1,&i),sz_str);
     C2F(cha1).buf[sz_str]='\0';
     /* search if string is in accordance with entry*/
-    ierr=TRUE_;
+    ierr=TRUE;
     for (i=0;i<nentries;i++)
     {
      if (strcmp(C2F(cha1).buf,entry[i]) == 0) 
@@ -3457,12 +3419,12 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
       }
       else strcpy(dyn_char[j+1],entry[i]);
 
-      ierr=FALSE_;
+      ierr=FALSE;
       break;
      }
     }
     /* if failed then display an error message and exit*/
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      FREE(dyn_char);
      Scierror(999,"%s : Undefined field in string matrix position : %d.\n",fname,j+1);
@@ -3570,7 +3532,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      l_tmp = I_INT32; /* define type of int */
      CreateVar(j+2,"I",&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 pos in the stack */
@@ -3598,7 +3560,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      ptr_dd = (double *) ptr;
      CreateVar(j+2,"d",&nv,&mv,&l_tmp); /* Create double variable at the top+j+1 addr. of the stack */
@@ -3616,7 +3578,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      /* store ptr in ptrscs_blk */
      ptr_scsblk = (scicos_block *) ptr;
@@ -3698,14 +3660,14 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
       ierr=createblklist(&ptr_scsblk[k], &errc,i,k+1);
 
       /* if an error occurs in createblklist */
-      if (ierr==FALSE_)
+      if (ierr==FALSE)
       {
        Top=Topsave;
        break;
       }
      }
      /* if success, create a list of Typed list scicos_block */
-     if (ierr==TRUE_)
+     if (ierr==TRUE)
      {
       C2F(mklist)(&nblk);
       Top=Topsave; /* adjust Top counter */
@@ -3724,7 +3686,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
 
     /* check ierr flag */
-    if (ierr==TRUE_)
+    if (ierr==TRUE)
     {
      l_tmp = I_INT32; /* define type of int */
      CreateVar(j+2,"I",&nv,&mv,&l_tmp); /* Create int32 variable at the top+j+1 addr. of the stack */
@@ -3738,10 +3700,10 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
     }
    }
 
-   /* if return a FALSE_ value in
+   /* if return a FALSE value in
     * error flag then display an error message.
     */
-   if(ierr!=TRUE_)
+   if(ierr!=TRUE)
    {
     Scierror(999,"%s : Error.\n",fname);
     FREE(dyn_char);
@@ -3768,7 +3730,7 @@ int intgetscicosvarsc(char *fname,unsigned long fname_len)
    FREE(dyn_char);
    return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* intcurblkc curblock interface routine
  *
  * [nblk]=curblock()
@@ -3813,7 +3775,7 @@ int intcurblkc(char *fname,unsigned long fname_len)
   /* return 0 as default value */
   return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* intbuildouttb build an initialized outtb list
  *
  * [outtb]=buildouttb(lnksz,lnktyp)
@@ -4263,7 +4225,7 @@ int intbuildouttb(char *fname,unsigned long fname_len)
  FREE(lnktyp);
  return 0;
 }
-
+/*--------------------------------------------------------------------------*/ 
 /* permutobj : concurrent version
  * of swap_handles for scicos editor.
  *
@@ -4333,3 +4295,4 @@ int intpermutobj_c(char *fname,unsigned long fname_len)
  /* end */
  return 0;
 }
+/*--------------------------------------------------------------------------*/ 

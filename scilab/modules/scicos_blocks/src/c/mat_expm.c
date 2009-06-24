@@ -18,22 +18,20 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include <math.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dexpm1)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {	  int *iwork;
           double *dwork;
 } mat_exp_struct ;
+/*--------------------------------------------------------------------------*/ 
 void mat_expm(scicos_block *block,int flag)
 {
  double *u;
@@ -83,3 +81,4 @@ else
 	}
    }
 }
+/*--------------------------------------------------------------------------*/ 

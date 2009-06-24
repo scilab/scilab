@@ -42,7 +42,9 @@ function [files]= basename(files,flag,flagexpand)
   sep = filesep();
 
   for i=1:size(files,'*')
-    files(i) = fileparts(files(i),'fname');
+    if files(i) <> '' then
+      files(i) = fileparts(files(i),'fname');
+    end
   end
 endfunction
 

@@ -18,11 +18,12 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include <stdio.h>
 #include "scicos_block4.h"
 #include "sciprint.h"
-
+/*--------------------------------------------------------------------------*/ 
 void matmul2_e(scicos_block *block,int flag)
 {
  if (flag==1){
@@ -124,3 +125,4 @@ void matmul2_e(scicos_block *block,int flag)
    } 
   }
 }
+/*--------------------------------------------------------------------------*/ 

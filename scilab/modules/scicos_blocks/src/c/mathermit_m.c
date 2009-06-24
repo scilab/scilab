@@ -18,10 +18,12 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
 #include "machine.h"
-
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(mtran)();
+/*--------------------------------------------------------------------------*/ 
 void mathermit_m(scicos_block *block,int flag)
 {
   double *ur;
@@ -41,4 +43,5 @@ void mathermit_m(scicos_block *block,int flag)
   C2F(mtran)(ui,&nu,yi,&mu,&nu,&mu);
   for(i=0;i<mu*nu;i++) *(yi+i)=-(*(yi+i));
 }
+/*--------------------------------------------------------------------------*/ 
 

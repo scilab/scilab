@@ -18,20 +18,19 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+#include "machine.h"
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dgetrf)();
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         int *ipiv;
           double *wrk;
 } mat_det_struct ;
+/*--------------------------------------------------------------------------*/ 
 void mat_det(scicos_block *block,int flag)
 {
  double *u;
@@ -92,3 +91,4 @@ else
      *y=D;
     }
  }
+/*--------------------------------------------------------------------------*/ 

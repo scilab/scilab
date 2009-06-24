@@ -18,13 +18,12 @@
 *
 * See the file ./license.txt
 */
-# include <math.h>
-# include <memory.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
+/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#include <memory.h>
+#include "scicos_block4.h"
 #include "sciprint.h"
-
+/*--------------------------------------------------------------------------*/ 
 void convert(scicos_block *block,int flag)
 {
  int m,n,i;
@@ -1153,3 +1152,4 @@ void convert(scicos_block *block,int flag)
 	   }
 	}
  }
+/*--------------------------------------------------------------------------*/ 

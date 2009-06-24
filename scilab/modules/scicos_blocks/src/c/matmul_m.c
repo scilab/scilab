@@ -18,12 +18,13 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
+/*--------------------------------------------------------------------------*/ 
 void matmul_m(scicos_block *block,int flag)
 {
   double *u1;
@@ -42,3 +43,4 @@ void matmul_m(scicos_block *block,int flag)
 
   C2F(dmmul)(u1,&nu,u2,&nu2,y,&nu,&nu,&nu2,&mu2);
 }
+/*--------------------------------------------------------------------------*/ 

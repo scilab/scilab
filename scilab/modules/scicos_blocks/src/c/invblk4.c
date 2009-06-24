@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "scicos_block.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void invblk4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
@@ -50,3 +50,4 @@ void invblk4(scicos_block *block,int flag)
     }
   } 
 }
+/*--------------------------------------------------------------------------*/ 

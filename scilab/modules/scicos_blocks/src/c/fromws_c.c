@@ -18,27 +18,21 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <math.h>
-
-
-#include "scicos_block4.h"
-/*    Masoud Najafi, Alan Layec September 2007 */
-/*    Copyright INRIA
- *    Scicos block simulator
- *    From workspace block
- */
 #include "stack-c.h"
 #include "sciprint.h"
 #include "cvstr.h"
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
+#include "MALLOC.h"
+#include "mopen.h"
+#include "mget.h"
+#include "mclose.h"
+#include "cluni0.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #define Fnlength  block->ipar[0]
 #define FName     block->ipar[1]
 #define Method     block->ipar[1+Fnlength]
@@ -47,20 +41,13 @@
 #define T0        ptr->workt[0]
 #define TNm1      ptr->workt[nPoints-1]
 #define TP        (TNm1-0)
-
-
-extern int C2F(mgetnc)();
-extern void C2F(mopen)();
-extern int C2F(cluni0)(char *name, char *nams, int *ln, long int name_len,long int nams_len);
-extern void C2F(mclose)(int *fd, double *res);
-
-int Mytridiagldltsolve(double *dA, double * lA, double * B, int N);
-int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k);
-
-
+/*--------------------------------------------------------------------------*/ 
+static int Mytridiagldltsolve(double *dA, double * lA, double * B, int N);
+static int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k);
+/*--------------------------------------------------------------------------*/ 
 /* function to check and extract data coming from an hypermat */
 int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType);
-
+/*--------------------------------------------------------------------------*/ 
 static char fmtd[3]={'d','l','\000'};
 static char fmti[3]={'i','l','\000'};
 static char fmtl[3]={'l','l','\000'};
@@ -69,11 +56,12 @@ static char fmtc[3]={'c','l','\000'};
 static char fmtul[3]={'u','l','\000'};
 static char fmtus[3]={'u','s','\000'};
 static char fmtuc[3]={'u','c','\000'};
-
+/*--------------------------------------------------------------------------*/ 
 #ifdef hppa
 #undef FILENAME_MAX
 #define FILENAME_MAX 4096
 #endif
+/*--------------------------------------------------------------------------*/ 
 /* work struct for that block */
 typedef struct {
   int nPoints;
@@ -89,8 +77,7 @@ typedef struct {
   void *work;
   double *workt;
 } fromwork_struct ;
-
-
+/*--------------------------------------------------------------------------*/ 
 void fromws_c(scicos_block *block,int flag)
 {
   double t,y1,y2,t1,t2,r;
@@ -1203,7 +1190,7 @@ void fromws_c(scicos_block *block,int flag)
  }
  /*************************************************************************/
 }
-
+/*--------------------------------------------------------------------------*/ 
 int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
 {
  int *ptr_i;
@@ -1268,8 +1255,8 @@ int Ishm(int *fd,int *Ytype,int *nPoints,int *my,int *ny,int *YsubType)
  scicos_free(ptr_i);
  return 1;
 }
-
-int Mytridiagldltsolve(double *dA, double * lA, double * B, int N)
+/*--------------------------------------------------------------------------*/ 
+static int Mytridiagldltsolve(double *dA, double * lA, double * B, int N)
 {
 	double Temp;
 	int j;
@@ -1288,9 +1275,8 @@ int Mytridiagldltsolve(double *dA, double * lA, double * B, int N)
 
 	return 0;
 }
-
-
-int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k)
+/*--------------------------------------------------------------------------*/ 
+static int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, double *d1, double *d2, double *z, double *dz, double *ddz, double *dddz, int *k)
 {
 	double Temp, p, p2, p3, D;
 	Temp = *t - *x1;
@@ -1307,4 +1293,5 @@ int Myevalhermite2(double *t, double *x1, double *x2, double *y1, double *y2, do
 	*z = *y1 + *z * Temp;
 	return 0; 
 }  
+/*--------------------------------------------------------------------------*/ 
 

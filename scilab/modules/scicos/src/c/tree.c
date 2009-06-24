@@ -22,13 +22,7 @@
 #include <memory.h>
 #include "machine.h"
 #include "MALLOC.h"  /* malloc */
-
-int ctree2(int* vect,int nb,int* deput,int* depuptr,int* outoin,int* outoinptr,
-	   int* ord,int* nord,int* ok);
-int ctree3(int*vec,int nb,int* depu,int* depuptr,int* typl,int* bexe,int* boptr,
-	   int* blnk,int* blptr,int* ord,int* nord,int* ok);
-int ctree4(int* vec,int nb,int *nd,int nnd,int* typ_r,int* outoin,
-	   int* outoinptr,int* r1,int* r2, int* nr);
+#include "tree.h"
 
 extern int C2F(isort)();
 

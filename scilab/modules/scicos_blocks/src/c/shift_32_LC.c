@@ -18,11 +18,10 @@
 *
 * See the file ./license.txt
 */
-# include <math.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
+/*--------------------------------------------------------------------------*/ 
+#include <math.h>
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 void shift_32_LC(scicos_block *block,int flag)
 {
   long *u,*y,v; 
@@ -49,3 +48,4 @@ void shift_32_LC(scicos_block *block,int flag)
 	      }
        }
 }
+/*--------------------------------------------------------------------------*/ 

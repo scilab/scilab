@@ -18,11 +18,12 @@
 *
 * See the file ./license.txt
 */
-#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 #include "machine.h"
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(wmmul)();
-
+/*--------------------------------------------------------------------------*/ 
 void matzmul_m(scicos_block *block,int flag)
 {
   double *u1r;
@@ -46,3 +47,4 @@ void matzmul_m(scicos_block *block,int flag)
 
   C2F(wmmul)(u1r,u1i,&mu1,u2r,u2i,&mu2,yr,yi,&mu1,&mu1,&mu2,&nu);
 }
+/*--------------------------------------------------------------------------*/ 

@@ -20,7 +20,10 @@
 */
 #ifndef __SCICOS_H 
 #define __SCICOS_H 
+
+#include "machine.h"
 #include "scicos_block4.h"
+
 /* maximum value for sum of number of inputs and outputs ports of a given 
 block of type 2 */
 #define SZ_SIZE 60
@@ -28,21 +31,6 @@ block of type 2 */
 of type 0 */
 #define TB_SIZE 500
 
-/* common for ? */
-/* defined in scicos-def.h */
-/*
-extern struct {
-  int ptr;
-} C2F(scsptr);
-*/
-/* scicos common for debug */
-
-/* defined in scicos-def.h */
-/*
-extern struct {
-    int idb;
-} C2F(dbcos);
-*/
 typedef void (*voidf)();
 
 /* Blocks prototypes */
@@ -95,5 +83,8 @@ typedef  struct  {
   char *name;
   ScicosF fonc;
 } OpTab ;
+
+
+int C2F(scicos)();
 
 #endif 

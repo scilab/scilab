@@ -18,28 +18,26 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
+#include "MALLOC.h"
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 /*    Masoud Najafi, January 2008 */
 /*    Copyright INRIA
  *    Scicos block simulator
  *    Lookup table block
  */
-
-#ifndef NULL
-#define NULL    0
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 #define RPAR     block->rpar 
 #define nPoints  block->ipar[0]
 #define Order    block->ipar[1]
 #define Periodic block->ipar[2]
 #define Extrapo  block->ipar[3]
 #define T        RPAR[nPoints-1]-RPAR[0]
+/*--------------------------------------------------------------------------*/ 
 int FindIndex(int, double , int , int , double *, int);
-
 int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
-
+/*--------------------------------------------------------------------------*/ 
 void lookup_c(scicos_block *block,int flag)
 {
   double a,b,c,y1,y2,t1,t2;
@@ -182,9 +180,7 @@ void lookup_c(scicos_block *block,int flag)
       default : break;
       }
 }
-
-
-
+/*--------------------------------------------------------------------------*/ 
 int FindIndex(int order, double inp, int idown, int iup, double *data, int N)
  {
   int im;
@@ -209,3 +205,4 @@ int FindIndex(int order, double inp, int idown, int iup, double *data, int N)
   
   return idown;
 }
+/*--------------------------------------------------------------------------*/ 

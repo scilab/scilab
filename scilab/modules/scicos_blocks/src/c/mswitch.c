@@ -18,13 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-
+/*--------------------------------------------------------------------------*/ 
 void  mswitch(scicos_block *block,int flag)
 {
 	if ((flag==1)||(flag==6)){
@@ -75,3 +72,4 @@ void  mswitch(scicos_block *block,int flag)
 		}
 	}
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void extract_bit_32_RB1(scicos_block *block,int flag)
 {
    int i,maxim,numb;
@@ -39,3 +39,4 @@ void extract_bit_32_RB1(scicos_block *block,int flag)
    *y=(*u)&(ref);
    *y=*y>>*ipar;
 }
+/*--------------------------------------------------------------------------*/ 

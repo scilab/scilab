@@ -22,6 +22,7 @@
 #define __IMPORT_H__
 
 #include "scicos_block4.h"
+
 typedef struct
 {
 	int lnk;
@@ -103,5 +104,8 @@ typedef struct {
 	int *xprop;       /* 72 - xproperties (of size nx) */
 	double *xd;           /* 73 - derivative of continuous state */
 } ScicosImport;
+
+
+int getscicosvarsfromimport(char *what,void **v,int *nv,int *mv);
 
 #endif /* __IMPORT_H__ */

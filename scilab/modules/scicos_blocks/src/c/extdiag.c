@@ -18,16 +18,9 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 void extdiag(scicos_block *block,int flag)
 {
   double *u1;
@@ -44,3 +37,4 @@ void extdiag(scicos_block *block,int flag)
 	{ii=i+i*mu;
 	 *(y+ii)=*(u1+ii);}
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,14 +18,12 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
-
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern void matz_catv();
-
+/*--------------------------------------------------------------------------*/ 
 void mat_catv(scicos_block *block,int flag)
 {
 	int mu,nu,nin,so,pointerposition,ot,i,j;
@@ -52,3 +50,4 @@ void mat_catv(scicos_block *block,int flag)
 		}
 	}
 }
+/*--------------------------------------------------------------------------*/ 

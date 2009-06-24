@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file cmat3d.c
    \author Benoit Bayol
@@ -26,6 +27,7 @@
    \brief CMAT3D is a scope which connect a matrix to a plot3d. Values of the matrix are the values at the nodes.
    \see CMAT3D.sci in macros/scicos_blocks/Sinks/
 */
+/*--------------------------------------------------------------------------*/ 
 #include "CurrentObjectsManagement.h"
 #include "DrawingBridge.h"
 #include "scoMemoryScope.h"
@@ -34,7 +36,7 @@
 #include "scoGetProperty.h"
 #include "scoSetProperty.h"
 #include "scicos_block4.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -146,7 +148,7 @@ void cmat3d_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdra
   scicos_free(mat);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 /** \fn void cmat3d(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -239,3 +241,4 @@ void cmat3d(scicos_block * block, int flag)
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,8 +18,9 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include "scicos_block.h"
-
+/*--------------------------------------------------------------------------*/ 
 void dollar4(scicos_block *block,int flag)
 {
   /* c     Copyright INRIA
@@ -35,3 +36,4 @@ void dollar4(scicos_block *block,int flag)
       block->z[i]=block->inptr[0][i];
   }
 }
+/*--------------------------------------------------------------------------*/ 

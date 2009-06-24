@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void bit_clear_16(scicos_block *block,int flag)
 {
   int m,n,i;
@@ -34,3 +34,4 @@ void bit_clear_16(scicos_block *block,int flag)
   y=Getint16OutPortPtrs(block,1);
   for (i=0;i<m*n;i++) y[i]=((u[i])&(*opar));
 }
+/*--------------------------------------------------------------------------*/ 

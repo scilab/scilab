@@ -18,12 +18,13 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void  integralz_func(scicos_block *block,int flag)
-{int i;
+{
+ int i;
  double *ur,*ui;
  double *yr,*yi;
  ur=GetRealInPortPtrs(block,1);
@@ -78,3 +79,4 @@ void  integralz_func(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

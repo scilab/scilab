@@ -18,15 +18,15 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include <string.h>
-#include "MALLOC.h"  /* malloc */
+#include "MALLOC.h"
+#include "machine.h" /* C2F */
 #include "scicos_block.h"
-#include "machine.h"
-
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dmmul)();
 extern int C2F(dmmul1)();
-
+/*--------------------------------------------------------------------------*/ 
 void tcsltj4(scicos_block *block,int flag)
 {
   /* Copyright INRIA
@@ -64,4 +64,4 @@ void tcsltj4(scicos_block *block,int flag)
     C2F(dmmul1)(&rpar[lb],&nx,u1,&insz[0],xd,&nx,&nx,&insz[0],&un);
   }
 }
-
+/*--------------------------------------------------------------------------*/ 

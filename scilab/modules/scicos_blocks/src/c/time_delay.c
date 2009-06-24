@@ -18,16 +18,12 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
+#include "MALLOC.h"
+#include "sciprint.h"
 #include "scicos_block.h"
-
-
-#ifndef NULL
-#define NULL    0
-#endif
-
-extern void sciprint(char *fmt,...);
-
+/*--------------------------------------------------------------------------*/ 
 void time_delay(scicos_block *block,int flag)
 {/*  rpar[0]=delay, rpar[1]=init value, ipar[0]=buffer length */
   double* pw,del,t,td,eps;
@@ -127,3 +123,4 @@ void time_delay(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

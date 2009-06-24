@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "GetProperty.h"
 #include "SetProperty.h"
@@ -21,7 +21,7 @@
 #include "StringMatrix.h"
 #include "affich.h"
 #include "WindowList.h"
-
+/*--------------------------------------------------------------------------*/ 
 /** Index of the text object within the block (ie compound) */
 #define TEXT_INDEX_IN_BLOCK 1
 
@@ -72,11 +72,7 @@ void C2F(affichin)( int * fontId,
   sciSetAutoSize(pText, TRUE);
   sciSetText(pText, &defaultText, 1, 1);
 
-
   sciDrawObj(pText);
-
-
-
 }
 /*---------------------------------------------------------------------------------*/
 void C2F(affichup)( double * textIndex,
@@ -91,9 +87,6 @@ void C2F(affichup)( double * textIndex,
   /* Second step update text data */
   sciSetText(pText, &value, 1, 1);
   sciDrawObj(pText);
-
-
-
 }
 /*---------"affich2" Initialization ------------------------------------------------*/
 void C2F(affin2)( int * fontId, 
@@ -126,8 +119,6 @@ void C2F(affin2)( int * fontId,
   sciDrawObj(pText);
 
   deleteMatrix(mat);
-
-
 }
 /*---------------------------------------------------------------------------------*/
 void C2F(settxtel)( int * numRow, 
@@ -146,7 +137,6 @@ void C2F(settxtel)( int * numRow,
 
   /* Set matrix element */
   copyStrMatElement(mat, (*numRow) - 1, (*numCol) - 1, value);
-
 }
 /*---------------------------------------------------------------------------------*/
 void C2F(affup2)( double * winNum, 
@@ -160,7 +150,5 @@ void C2F(affup2)( double * winNum,
 
   /* Second step draw the object */
   sciDrawObj(pText);
-
-
 }
 /*---------------------------------------------------------------------------------*/

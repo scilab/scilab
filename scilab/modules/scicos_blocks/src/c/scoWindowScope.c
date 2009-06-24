@@ -18,6 +18,7 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 /**
    \file scoWindowScope.c
    \author Benoit Bayol
@@ -25,6 +26,7 @@
    \date September 2006 - January 2007
    \brief Source Code of all functions wich interact with the window like creation of graphical object or refreshing the window
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
 #include "scoBase.h"
 #include "scoWindowScope.h"
@@ -42,9 +44,10 @@
 #include "CurrentObjectsManagement.h"
 #include "ObjectSelection.h"
 #include "HandleManagement.h" /* sciGetHandle */
-
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(dcopy)();
-
+/*--------------------------------------------------------------------------*/ 
 void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
 {
   scoGraphicalObject pTemp = scoGetPointerScopeWindow(pScopeMemory);
@@ -52,15 +55,12 @@ void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
   pFIGURE_FEATURE(pTemp)->user_data[0] = block_number;
   pFIGURE_FEATURE(pTemp)->size_of_user_data = 1;
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 scoInteger scoGetUserData(scoGraphicalObject pTemp)
 {
   return pFIGURE_FEATURE(pTemp)->user_data[0];
 }
-
-extern int get_block_number();
-
+/*--------------------------------------------------------------------------*/ 
 void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int * win_pos, int * win_dim, double * xmin, double * xmax, double * ymin, double * ymax, double * zmin, double * zmax)
 {
   int i;
@@ -177,7 +177,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
       sciprint("This Scope (block number : %d) has same number than another. It has been desactivated !\n",block_number);
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 {
   scoGraphicalObject pLongDraw = NULL;
@@ -336,8 +336,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
         }
     }
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 //** ------------------------------------------------------------------------------------------------
 //**
 //** ------------ The physical redraw of the scope is hidden here ----------------------------------- 
@@ -667,14 +666,14 @@ scoGraphicalObject scoCreatePolyline(scoGraphicalObject pAxes, scoInteger polyli
 
   return pPolyline;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddPolylineForShortDraw(ScopeMemory * pScopeMemory, int i, int j, int color)
 {
   scoGraphicalObject pShortDraw;
   pShortDraw = scoCreatePolyline(scoGetPointerAxes(pScopeMemory,i),scoGetShortDrawSize(pScopeMemory,i),color);
   scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddPolylineForLongDraw(ScopeMemory * pScopeMemory, int i, int j, int color)
 {
 
@@ -683,7 +682,7 @@ void scoAddPolylineForLongDraw(ScopeMemory * pScopeMemory, int i, int j, int col
   scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddCoupleOfPolylines(ScopeMemory * pScopeMemory, int * colors)
 {
   int i,j;
@@ -707,7 +706,7 @@ void scoAddCoupleOfPolylines(ScopeMemory * pScopeMemory, int * colors)
       inc = j+inc; //not +1 because of we have exited the loop
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoDelCoupleOfPolylines(ScopeMemory * pScopeMemory)
 {
   int i,j;
@@ -761,7 +760,7 @@ void scoDelCoupleOfPolylines(ScopeMemory * pScopeMemory)
       //**redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
 {
   int i,j;
@@ -839,7 +838,7 @@ void scoAddCoupleOfSegments(ScopeMemory * pScopeMemory, int * color)
       scicos_free(vy2);
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoDelCoupleOfSegments(ScopeMemory * pScopeMemory)
 {
 	/* destroy all short draw */
@@ -854,29 +853,28 @@ void scoDelCoupleOfSegments(ScopeMemory * pScopeMemory)
 	}
 	sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 scoGraphicalObject scoCreateSphere(scoGraphicalObject pAxes, double radius, int color)
 {
   scoGraphicalObject pSphere;
   pSphere=ConstructArc(pAxes, 0, 0, radius, radius, 0, 23040, &color, &color, TRUE, FALSE);
   return pSphere;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddSphereForShortDraw(ScopeMemory * pScopeMemory, int i, int j, double radius, int color)
 {
   scoGraphicalObject pShortDraw;
   pShortDraw = scoCreateSphere(scoGetPointerAxes(pScopeMemory,i),radius,color);
   scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddSphereForLongDraw(ScopeMemory * pScopeMemory, int i, int j, double radius, int color)
 {
   scoGraphicalObject pLongDraw;
   pLongDraw = scoCreateSphere(scoGetPointerAxes(pScopeMemory,i),radius,color);
   scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddCoupleOfSpheres(ScopeMemory * pScopeMemory, double * radius, int * colors)
 {
   int i,j;
@@ -898,23 +896,21 @@ void scoAddCoupleOfSpheres(ScopeMemory * pScopeMemory, double * radius, int * co
         }
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 scoGraphicalObject scoCreateRectangle(scoGraphicalObject pAxes, double x, double y, double width, double height)
 {
   scoGraphicalObject pRectangle;
   pRectangle = ConstructRectangle(pAxes,x,y,height,width,NULL,NULL,0,1);
   return pRectangle;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddRectangleForLongDraw(ScopeMemory * pScopeMemory, int i, int j, double x, double y, double width, double height)
 {
   scoGraphicalObject pLongDraw;
   pLongDraw = scoCreateRectangle(scoGetPointerAxes(pScopeMemory,i),x,y,width,height);
   scoSetHandleFromPointerLongDraw(pScopeMemory,i,j,pLongDraw);
 }
-
-extern int get_block_number();
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char * y, char * z)
 {
 
@@ -989,7 +985,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char 
    sciDrawObj(scoGetPointerScopeWindow(pScopeMemory));
   //**redrawHierarchy(scoGetPointerScopeWindow(pScopeMemory));
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory)
 {
   scoGraphicalObject Pinceau; //Pencil
@@ -1041,7 +1037,7 @@ void scoDrawScopeXYStyle(ScopeMemory * pScopeMemory)
         }
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u2, double * u3)
 {
   int i,j;
@@ -1247,7 +1243,7 @@ void scoDrawScopeAnimXYStyle(ScopeMemory * pScopeMemory, double * u1, double * u
          
     }
 }
-
+/*--------------------------------------------------------------------------*/ 
 scoGraphicalObject scoCreateGrayplot(scoGraphicalObject pAxes, int size_x, int size_y)
 {
   scoGraphicalObject pGrayplot;
@@ -1274,14 +1270,14 @@ scoGraphicalObject scoCreateGrayplot(scoGraphicalObject pAxes, int size_x, int s
 
   return pGrayplot;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddGrayplotForShortDraw(ScopeMemory * pScopeMemory, int i, int j, int size_x, int size_y)
 {
   scoGraphicalObject pShortDraw;
   pShortDraw = scoCreateGrayplot(scoGetPointerAxes(pScopeMemory,i),size_x,size_y);
   scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
 }
-
+/*--------------------------------------------------------------------------*/ 
 scoGraphicalObject scoCreatePlot3d(scoGraphicalObject pAxes, int size_x, int size_y)
 {
   scoGraphicalObject pPlot3d;
@@ -1338,10 +1334,11 @@ scoGraphicalObject scoCreatePlot3d(scoGraphicalObject pAxes, int size_x, int siz
 
   return pPlot3d;
 }
-
+/*--------------------------------------------------------------------------*/ 
 void scoAddPlot3dForShortDraw(ScopeMemory * pScopeMemory, int i, int j, int size_x, int size_y)
 {
   scoGraphicalObject pShortDraw;
   pShortDraw = scoCreatePlot3d(scoGetPointerAxes(pScopeMemory,i),size_x,size_y);
   scoSetHandleFromPointerShortDraw(pScopeMemory,i,j,pShortDraw);
 }
+/*--------------------------------------------------------------------------*/ 

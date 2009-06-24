@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #if _MSC_VER
 #include <float.h>
@@ -30,15 +30,8 @@
 
 #include "scicos_block.h"
 #include "machine.h" /* isinf */
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+#include "scicos_math.h"
+/*--------------------------------------------------------------------------*/ 
 #if _MSC_VER
 /*
 arcsinh z = log (z+sqrt(1+z2))
@@ -47,12 +40,12 @@ double asinh(double x)
 {
   return log(x+sqrt(x*x+1));
 }
-
+/*--------------------------------------------------------------------------*/ 
 double acosh(double x)
 {
   return log(x+sqrt(x*x-1));
 }
-
+/*--------------------------------------------------------------------------*/ 
 /*
 Inverse hyperbolic tangent (Atanh(x)) Log((1 + x) / (1 – x)) / 2 
 */
@@ -61,7 +54,7 @@ double atanh(double x)
 	return (double)(log ((1.+x)/(1.-x))/2);
 }
 #endif
-
+/*--------------------------------------------------------------------------*/ 
 void evaluate_expr(scicos_block *block,int flag)
 {
   static double stack [1000];
@@ -530,3 +523,4 @@ void evaluate_expr(scicos_block *block,int flag)
     }
   }
 }
+/*--------------------------------------------------------------------------*/ 

@@ -18,25 +18,15 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <stdio.h>
-# include "scicos_block4.h"
-# include "machine.h"
-
+#include "machine.h" /* C2F */
+#include "MALLOC.h"
+#include "scicos_block4.h"
+/*--------------------------------------------------------------------------*/ 
 extern int C2F(zgesvd)();
 extern int C2F(dlaset)();
-
-#if _MSC_VER
-#define NULL    0
-#endif
-
-#ifndef min
-#define min(a,b) ((a) <= (b) ? (a) : (b))
-#endif
-
-#ifndef max
-#define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif
-
+/*--------------------------------------------------------------------------*/ 
 typedef struct
 {         double *l0;
 	  double *LA;
@@ -46,6 +36,7 @@ typedef struct
           double *dwork;
           double *rwork;
 } mat_sdv_struct ;
+/*--------------------------------------------------------------------------*/ 
 void matz_svd(scicos_block *block,int flag)
 {
  double *ur,*ui;
@@ -169,3 +160,4 @@ else
 	 *(y1i+i)=*(ptr->LU+2*i+1);}
    }
 }
+/*--------------------------------------------------------------------------*/ 

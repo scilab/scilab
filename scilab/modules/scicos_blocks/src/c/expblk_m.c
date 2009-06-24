@@ -18,10 +18,10 @@
 *
 * See the file ./license.txt
 */
+/*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
-
-
+/*--------------------------------------------------------------------------*/ 
 void expblk_m(scicos_block *block,int flag)
 {
   double *u;
@@ -38,3 +38,4 @@ void expblk_m(scicos_block *block,int flag)
   for(i=0;i<mu*nu;i++) y[i]=exp(log(*rpar)*u[i]);
   }
 }
+/*--------------------------------------------------------------------------*/ 

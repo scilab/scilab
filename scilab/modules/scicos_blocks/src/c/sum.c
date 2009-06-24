@@ -18,12 +18,8 @@
 *
 * See the file ./license.txt
 */
-/* Copyright INRIA */
-
-/* Element wise som */
-
-void 
-sum(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
+/*--------------------------------------------------------------------------*/ 
+void sum(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
      int *flag,*nevprt,*nx,*nz,*ntvec,*nrpar,ipar[],*nipar,insz[];
      int *nin,outsz[],*nout;
@@ -46,3 +42,4 @@ sum(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
       }
     }
 }
+/*--------------------------------------------------------------------------*/ 
