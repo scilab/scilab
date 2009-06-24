@@ -21,9 +21,10 @@
 
 function Align_()
 //** Align unconnected blocks 
+//** 24/06/2009: Serge Steer  not to take care of selected blocs  
 
   Cmenu = [] ;
-  %pt  = []  ;
+  if find(Select(:,2)==curwin)<>[] then  %pt  = []  ;end
 
   scs_m_save = scs_m;
   nc_save    = needcompile;

@@ -57,6 +57,10 @@ function [scs_m] = do_move(%pt, scs_m)
   if k==[] then
     return
   end ; //** if NO object found -> exit
+  Cmenu = check_edge(scs_m.objs(k),"Smart Move",%pt);
+  if Cmenu=="Link" then
+     Cmenu=resume("Smart Link")
+  end
 
   scs_m_save = scs_m ; //** save the diagram
 

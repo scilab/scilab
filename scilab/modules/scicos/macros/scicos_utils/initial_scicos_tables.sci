@@ -33,6 +33,8 @@
 //** N.B. : This function is called from "SCI/modules/scicos/etc/scicos.start" 
 //**        at Scilab's startup IF the "scicos" module is active in
 //**        "SCI/etc/modules.xml" file :)
+//** 24 june 2009 Serge Steer
+//    Cut declared as TypeOne menu (according to Cut_.sci modifications)      
 
 function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
           %scicos_display_mode, modelica_libs,scicos_pal_libs, ...
@@ -300,6 +302,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
       'Link',                  "Drag, click left for final or intermediate points or right to cancel";
       'Smart Link',            "Drag, click left for final or intermediate points or right to cancel";
       'Delete',                "Delete: Click on the object to delete";
+      'Cut',                   "Cut: Click on the object to cut";
       'Flip',                  "Click on block to be flipped"      ;
       'Rotate Left',           "Click on block to be turned left"  ;
       'Rotate Right',          "Click on block to be turned right" ;

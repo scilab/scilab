@@ -22,10 +22,15 @@
 
 function [scs_m] = prt_align(scs_m)
 //** 25/07/07: Al@n's patch for rotation of blocks
-  
-  //** first click 
-  [btn, xc1 ,yc1 ,win ,str ] = xclick() ;    
+//** 24/06/2009: Serge Steer  not to take care of selected blocs  
 
+  //** first click 
+  if %pt==[] then
+    [btn, xc1 ,yc1 ,win ,str ] = xclick() ;
+  else
+    xc1=%pt(1);
+    yc1=%pt(2);
+  end
   //** check if first click is on a block
   k1 = getblock(scs_m,[xc1;yc1]);
   if k1<>[] then

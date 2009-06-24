@@ -61,7 +61,7 @@ if typeof(o)=="Block" then
   //** ----------------------------- Block ------------------------------
 
   //**----------------Look for a SuperBlock ----------------------------
-  if o.model.sim=="super" then
+  if o.model.sim(1)=="super" | o('gui') == 'PAL_f' then
 
       lastwin = curwin ; // save the current window
 
@@ -91,10 +91,15 @@ if typeof(o)=="Block" then
         gh_curwin = scf(curwin); //** recover the handle
       end                        //**
 
-      ierr = execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch') ;
-      // the errcatch here is introduced to get around the bug #2553
+      
+      if o.model.sim(1)=="super" then //## superblock
+	ierr=execstr('[o_n,needcompile,newparameters]='+o.gui+'(''set'',o)','errcatch');
+      else //## palette block
+	ierr=execstr('[o_n,y,typ]='+o.gui+'(''set'',o)','errcatch');
+      end
+    
 
-      if ierr<>0 then //** if any erros is detected
+      if ierr<>0 then //** if any error is detected
         disp('Error in GUI of block '+o.gui)
         edited = %f ;
         return ; //** EXIT point
@@ -159,7 +164,7 @@ if typeof(o)=="Block" then
       return ; //** EXIT point
     end
     modified = prod(size(newparameters))>0
-    edited = modified  // Not sure it is correct.
+    edited = ~isequalbitwise(o,o_n) 
     if edited then
       o = o_n ;
     end

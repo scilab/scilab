@@ -21,7 +21,7 @@
 // See the file ../license.txt
 //
 
-function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
+function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
 //** Edition of a link from an output block to an input  block
 
 //** 28/11/08: Preparation of the "SL" operation
@@ -29,7 +29,8 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
 //** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode 
 //** BEWARE: "d9" state is not yet tested after Replot removal
-
+  if argn(2)<4 then smart=%f,end
+  
   outin = ['out','in']
   //----------- get link origin --------------------------------------
   //------------------------------------------------------------------
@@ -734,6 +735,9 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile)
 
   //** add new link in objects structure
   nx = size(scs_m.objs)+1 ;
+  
+  if smart then lk=scicos_route(lk,scs_m),end
+  
   scs_m.objs($+1) = lk ;
 
   drawlater(); 

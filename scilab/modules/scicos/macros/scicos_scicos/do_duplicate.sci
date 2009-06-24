@@ -42,6 +42,10 @@ function [scs_m,needcompile,Select] = do_duplicate(%pt,scs_m,needcompile,Select)
       k = getblocktext(palette,[xc;yc])   //** ?? get the block (object) name_string ??
        if k<>[] then
         o = disconnect_ports(palette.objs(k)) ; 
+	if o.gui=='PAL_f' then
+          [palettes,windows] = do_load_as_palette(palettes,windows,o.model.rpar)
+          [palettes,windows] = resume(palettes,windows)
+        end
        end
 
     //** the double click is the  main window

@@ -35,7 +35,17 @@ function OpenSet_()
       ierr=execstr('xxx=scs_m.objs(%kk).model.sim','errcatch','n')
     end
     if ierr==0 then
-      if xxx<>'super' then ierr=1;end
+      if xxx<>'super' then
+        //## test for palette block
+        ierr2=execstr('xxxx=scs_m.objs(%kk).gui','errcatch','n')
+        if ierr2==0 then
+          if xxxx<>'PAL_f' then
+            ierr=1;
+          end
+        else
+          ierr=1;
+        end
+      end
     end
     if ierr<>0 then
       message(['This window is not active anymore or';
@@ -94,10 +104,10 @@ function OpenSet_()
   if %kk<>[] then //** if the double click is not in the void ---------
     
     drawlater(); 
-      Select_back = Select; 
-      selecthilite(Select_back, "off") ; //  unHilite previous objects
-      Select = [%kk %win];               //** select the double clicked block 
-      selecthilite(Select, "on") ;       
+    Select_back = Select; 
+    selecthilite(Select_back, "off") ; //  unHilite previous objects
+    Select = [%kk %win];               //** select the double clicked block 
+    selecthilite(Select, "on") ;       
     drawnow();
 				       
     inactive_windows(1)($+1)=super_path;inactive_windows(2)($+1)=curwin
@@ -157,5 +167,3 @@ function OpenSet_()
   Cmenu = []; %pt = [] ;
   
 endfunction
-
-

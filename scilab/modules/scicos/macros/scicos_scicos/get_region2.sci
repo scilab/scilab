@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function [reg, rect, prt] = get_region2(xc, yc, win)
+function [reg, rect, prt, is_flip] = get_region2(xc, yc, win)
 //
 //Creates in reg the superblock formed with the objects selected 
 //
@@ -44,7 +44,7 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
   ok = %t
   wins = curwin ; //** save the semi-global current window variable 
   scf(win); //** set the current wind. from calling arg.
-  
+  is_flip=[]
   //** window filter 
   reg = list(); rect = []
   kc = find (win==windows(:,2) )
@@ -121,7 +121,8 @@ function [reg, rect, prt] = get_region2(xc, yc, win)
     k1=prt(k,1); typ=prt(k,5);tp=prt(k,3)
     o1=reg.objs(k1) //block inside the region
     orient=o1.graphics.flip
-
+    is_flip=[is_flip,orient]
+    
     if tp==1 then //input port
       // build the link between block and port
       if typ>1 then //implicit regular link

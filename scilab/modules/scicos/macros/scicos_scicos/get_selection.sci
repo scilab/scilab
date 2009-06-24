@@ -21,10 +21,10 @@
 
 function [%pt,%win,o] = get_selection(Select,%pt,%win)
 
-  num = Select(1); win=Select(2)
+  num = Select(1,1); win=Select(1,2)
   
   kc = find(win==windows(:,2))
-  
+
   //**----------------------------------------------
   if kc==[] then
     
@@ -43,7 +43,6 @@ function [%pt,%win,o] = get_selection(Select,%pt,%win)
     execstr('scs_m=scs_m_'+string(windows(kc,1)))
   
   end //**----------------------------------------
-  
   
   if num>size(scs_m.objs) then
      o = []; return // no longer exists
