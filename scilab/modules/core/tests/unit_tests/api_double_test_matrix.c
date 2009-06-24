@@ -35,7 +35,7 @@ int sci_foo_set_matrix(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 
 	//get variable 1 address
-	getVarAddressFromNumber(1, &piAddrVar1);
+	getVarAddressFromPosition(1, &piAddrVar1);
 
 	//get variable 1 dimensions
 	getVarDimension(piAddrVar1, &iRows, &iCols);
@@ -69,7 +69,7 @@ int sci_foo_get_matrix(char *fname,unsigned long fname_len)
 	//check number of output parameters
 	CheckLhs(1,1);
 
-	createMatrixOfDouble(iVarOut, iRows, iCols, Foo, &piAddrOut);
+	createMatrixOfDouble(iVarOut, iRows, iCols, Foo);
 	LhsVar(1)				= iVarOut;
 
   return 0;
