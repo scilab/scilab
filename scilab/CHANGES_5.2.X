@@ -143,6 +143,9 @@ Bug fixes:
 
 * bug 2275 fixed - add the isvector help page
 
+* bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf may crash Scilab when
+                   first argument is -1 (any number of lines)
+
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
