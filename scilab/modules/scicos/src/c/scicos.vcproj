@@ -522,10 +522,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sciblk2i.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sciblk4.c"
 				>
 			</File>

@@ -25,7 +25,6 @@ if SCICOS
 pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
 
 SCICOS_C_SOURCES = src/c/tree.c \
-src/c/sciblk2i.c \
 src/c/scicos_malloc.c \
 src/c/import.c \
 src/c/slider.c \
