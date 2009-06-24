@@ -15,9 +15,13 @@ function result = atomsInstall(packages,allusers)
 	
 	result = [];
 	
+	// Save the initial path
+	// =========================================================================
+	initialpath = pwd();
+	
 	// Get scilab version (needed for later)
 	// =========================================================================
-	sciversion = strcat(string(getversion('scilab')) + ".");
+	sciversion = strcat(string(getversion("scilab")) + ".");
 	
 	// Check input parameters
 	// =========================================================================
@@ -76,11 +80,13 @@ function result = atomsInstall(packages,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
 		end
 	end
@@ -98,8 +104,10 @@ function result = atomsInstall(packages,allusers)
 	if ~ isdir( archives_directory ) then
 		status = mkdir( archives_directory );
 		if status <> 1 then
+			chdir(initialpath);
 			error(msprintf( ..
 				gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
+				"atomsInstall", ..
 				archives_directory));
 		end
 	end
@@ -114,6 +122,7 @@ function result = atomsInstall(packages,allusers)
 		package = packages(i);
 		
 		if size(regexp(package,"/\s/") ,"*" ) > 1 then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong value for input argument #%d: it must contain at most one space.\n"),"atomsInstall",1));
 		end
 		
@@ -135,6 +144,7 @@ function result = atomsInstall(packages,allusers)
 			else
 				package_full_name = package_names(i)+" - "+package_versions(i);
 			end
+			chdir(initialpath);
 			error(msprintf(gettext("%s: The package %s is not available.\n"),"atomsInstall",package_full_name));
 		end
 		
@@ -142,6 +152,7 @@ function result = atomsInstall(packages,allusers)
 		tree = atomsDependencyTree(package_names(i),package_versions(i));
 		
 		if (type(dependency_tree) == 4) & (~ dependency_tree) then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstall",1));
 		end
 		
@@ -219,6 +230,7 @@ function result = atomsInstall(packages,allusers)
 		if ~ isdir( atoms_directory ) then
 			status = mkdir( atoms_directory );
 			if status <> 1 then
+				chdir(initialpath);
 				error(msprintf( ..
 					gettext("%s: The directory ""%s"" cannot been created, please check if you have write access on this directory.\n"),..
 					atoms_directory));
@@ -253,6 +265,7 @@ function result = atomsInstall(packages,allusers)
 		filemd5 = getmd5(fileout);
 		
 		if filemd5 <> this_package_details(OSNAME+"Md5") then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: The downloaded binary file (%s) doesn''t check the MD5SUM.\n"),"atomsInstall",fileout));
 		end
 		
@@ -279,6 +292,7 @@ function result = atomsInstall(packages,allusers)
 			extract_cmd = extract_cmd + " -q """ + fileout + """ -d """ + pathconvert(atoms_directory,%F) +"""";
 			
 		else
+			chdir(initialpath);
 			error(msprintf(gettext("%s: internal error, the archive ""%s"" cannot be extracted on this operating system.\n"),"atomsInstall",fileout));
 		
 		end
@@ -288,6 +302,7 @@ function result = atomsInstall(packages,allusers)
 		if stat ~= 0 then
 			disp(extract_cmd);
 			disp(err);
+			chdir(initialpath);
 			error(msprintf(gettext("%s: internal error, the extraction of the archive ""%s"" has failed.\n"),"atomsInstall",fileout));
 		end
 		
@@ -321,6 +336,7 @@ function result = atomsInstall(packages,allusers)
 		
 		if stat <> 0 then
 			disp(rename_cmd);
+			chdir(initialpath);
 			error(msprintf(gettext("%s: Error while creating the directory ''%s''.\n"),"atomsInstall",pathconvert(atoms_directory+this_package_version)));
 		end
 		
@@ -350,6 +366,7 @@ function result = atomsInstall(packages,allusers)
 		stat = copyfile( fileout , archives_directory );
 		
 		if stat <> 1 then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: Error while copying the file ''%s'' to the directory ''%s''.\n"),"atomsInstall",fileout,archives_directory));
 		end
 		
@@ -367,6 +384,9 @@ function result = atomsInstall(packages,allusers)
 			mprintf(" success\n");
 		end
 	end
+	
+	// Go to the initial location
+	chdir(initialpath);
 	
 endfunction
 

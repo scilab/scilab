@@ -15,6 +15,10 @@ function result = atomsRemove(packages,allusers)
 	
 	result = [];
 	
+	// Save the current path
+	// =========================================================================
+	initialpath = pwd();
+	
 	// Get scilab version (needed for later)
 	// =========================================================================
 	sciversion = strcat(string(getversion('scilab')) + ".");
@@ -77,11 +81,13 @@ function result = atomsRemove(packages,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemove",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,pathconvert(SCI+"/.atoms")));
 		end
 	end 
@@ -206,12 +212,14 @@ function result = atomsRemove(packages,allusers)
 		if (grep(this_package_directory,pathconvert(SCI)) == []) & ..
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
+			chdir(initialpath);
 			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",packagesToUninstall(1,1),packagesToUninstall(1,2)));
 		end
 		
 		uninstall_status = rmdir(this_package_directory,"s");
 		
 		if uninstall_status<>1 then
+			chdir(initialpath);
 			error(msprintf( ..
 				gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
 				"atomsRemove", ..
@@ -228,6 +236,7 @@ function result = atomsRemove(packages,allusers)
 		if isdir(this_package_root_dir) & listfiles(this_package_root_dir)==[] then
 			stat = rmdir(this_package_root_dir);
 			if stat<>1 then
+				chdir(initialpath);
 				error(msprintf( ..
 					gettext("%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
 					"atomsRemove", ..
@@ -256,6 +265,7 @@ function result = atomsRemove(packages,allusers)
 		end
 	end
 	
-	result = %T;
+	// Go to the initial location
+	chdir(initialpath);
 	
 endfunction
