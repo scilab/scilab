@@ -143,6 +143,9 @@ Bug fixes:
 
 * bug 2275 fixed - add the isvector help page
 
+* bug 2453 fixed - mfscanf and probably the other variants msscanf mscanf may crash Scilab when
+                   first argument is -1 (any number of lines)
+
 * bug 2570 fixed - LCC does not work with some "stk" ref on some old toolboxes.
 
 * bug 1628 fixed - with long programs (several hours) I get a negative value for
@@ -254,6 +257,8 @@ Bug fixes:
 
 * bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
 
+* bug 4574 fixed - ilib_build does not check if library is already loaded in scilab.
+
 * bug 4584 fixed - On Windows , home value was wrong
 
 * bug 4585 fixed - Scilab fails to build with intel C++ compiler 11.0.074 on Windows
@@ -262,3 +267,6 @@ Bug fixes:
 
 * bug 4604 fixed - rmdir(<dir>,"s") doesn't work if it contains a hidden file (starting with a dot).
 
+* bug 4605 fixed - basename('') returns a error.
+
+* bug 4606 fixed - example of 'link' in help does not work

@@ -86,15 +86,21 @@ function paths = pathconvert(paths, flagtrail, flagexpand, str)
   if flagtrail then 
     for i = 1:size(paths,'*') 
       path = paths(i);
-      if part(path, length(path))<> sep then 
-        paths(i) = paths(i) + sep;
+      len = length(path);
+      if len > 0 then
+        if part(path, length(path))<> sep then 
+          paths(i) = paths(i) + sep;
+        end
       end
     end
   else
     for i = 1:size(paths,'*') 
       path = paths(i);
-      if part(path, length(path)) == sep then 
-        paths(i) = part(paths(i), 1:length(path)-1);
+      len = length(path);
+      if len > 0 then
+        if part(path, length(path)) == sep then 
+          paths(i) = part(paths(i), 1:length(path)-1);
+        end
       end
     end
   end

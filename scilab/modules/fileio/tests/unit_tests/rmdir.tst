@@ -20,7 +20,7 @@ mkdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2/test_rmdir_3",%F,%F));
 
 if ~isdir(pathconvert(baseDir+"/test_rmdir_1/test_rmdir_2/test_rmdir_3",%F,%F)) then pause,end
 
-res=rmdir(baseDir);
+res=rmdir(baseDir,'s');
 
 if ~res then pause,end
 if isdir(baseDir) then pause,end

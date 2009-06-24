@@ -15,12 +15,15 @@
 
 package org.scilab.modules.console;
 
+import org.scilab.modules.history_manager.HistoryManagement;
 import java.awt.Component;
 import java.awt.EventQueue;
 import java.awt.FontMetrics;
 import java.awt.Point;
+import java.awt.event.KeyEvent;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.awt.event.KeyListener;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
@@ -156,7 +159,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	    }
 
 	    public void insertUpdate(DocumentEvent e) {
-	    	console.getConfiguration().getHistoryManager().setInHistory(false); // bugfix for 3422
 	    	// Validates commands if followed by a carriage return
 	    	String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
 	    	if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
@@ -170,9 +172,28 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 	    }
 
 	    public void removeUpdate(DocumentEvent e) {
-	    	console.getConfiguration().getHistoryManager().setInHistory(false); // bugfix for 3422
 	    	// Nothing to do in Scilab
 	    }
 	});
+
+	this.addKeyListener(new KeyListener() {
+	    public void keyPressed (KeyEvent e) {
+	    	if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+	    		if (console.getConfiguration().getHistoryManager().isInHistory()) {
+	    			//console.getConfiguration().getInputParsingManager().reset();
+	    			//console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
+	    			console.getConfiguration().getHistoryManager().setInHistory(false);
+	    		}
+	    	}
+	    }
+
+	    public void keyReleased (KeyEvent e) {
+	    	// Nothing to do in Scilab
+	    }
+
+	    public void keyTyped (KeyEvent e) {
+	    	// Nothing to do in Scilab
+	    }
+});
     }
 }
