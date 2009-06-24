@@ -15,7 +15,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "variable_api.h"
+#include "api_variable.h"
 
 double *Foo;
 int iRows					= 0;
