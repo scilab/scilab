@@ -21,7 +21,8 @@
 cd('\');
 
 if MSDOS 
-	if pwd() <> 'C:\' then pause,end
+  
+	if ~or(getdrives() == pwd()) then pause,end
 else
 	if pwd() <> '/' then pause,end
 end
