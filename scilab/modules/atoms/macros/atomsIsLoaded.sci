@@ -1,6 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Simon LIPP <simon.lipp@inria.fr>
-// Copyright (C) 2009 - DIGITEO - Sylvestre LEDRU <sylvestre.ledru@scilab.org>
 // Copyright (C) 2009 - DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 //
 // This file must be used under the terms of the CeCILL.
@@ -11,23 +9,70 @@
 
 // End user function
 
-// If a toolbox is registered, return %t and its path ; %f else
+// Return %T if a (or several) toolbox has been loaded in this scilab session
 
-function [reg,path] = atomsIsLoaded(name)
-  if argn(2) == 1 then
-  reg = %f
-  path = ""
-  
-  tboxes = atomsGetLoaded()
-  for i=1:size(tboxes, 1)
-    if tboxes(i,1) == name then
-	  reg = %t
-	  path = tboxes(i,2)
-	  return
+function res = atomsIsLoaded(name,version)
+	
+	rhs = argn(2);
+	res = [];
+	
+	// Check number of input arguments
+	// =========================================================================
+	
+	if rhs < 1 | rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsIsLoaded",1,2));
 	end
-  end	
-  else
-    error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsIsLoaded",1))
-  end
-
+	
+	// Check input parameters type
+	// =========================================================================
+	
+	if type(name) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsLoaded",1));
+	end
+	
+	if rhs>1 &  (~isempty(version)) & type(version)<>10  then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsIsLoaded",2));
+	end
+	
+	// name and version must have the same size
+	// =========================================================================
+	
+	if rhs>1 & version<>[] & or(size(name)<>size(version)) then
+		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsIsLoaded",1,2));
+	end
+	
+	// Value of version if not precised
+	// =========================================================================
+	
+	if rhs < 2 then
+		version = [];
+	end
+	
+	// Get the list of installed packages
+	// =========================================================================
+	packages = atomsGetLoaded();
+	
+	// Loop on name
+	// =========================================================================
+	
+	for i=1:size(name,"*")
+		
+		if isempty(version) then
+			// Just check the name
+			res(i) = or(packages(:,1) == name(i));
+		
+		else
+			// Filter on names
+			packages_version = packages( find(packages(:,1) == name(i)) , 2 );
+			
+			// Check if the wnated version is present$
+			res(i) = or(packages_version == version(i) );
+		end
+		
+	end
+	
+	// Reshape the matrix
+	// =========================================================================
+	res = matrix(res,size(name) );
+	
 endfunction

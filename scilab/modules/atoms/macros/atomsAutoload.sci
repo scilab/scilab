@@ -13,56 +13,73 @@
 
 function result = atomsAutoload()
 	
-	result = %F;
-	
-	// Get scilab version (needed for later)
-	// =========================================================================
-	sciversion = strcat(string(getversion('scilab')) + ".");
-	
 	// Check input parameters
 	// =========================================================================
-	
 	rhs = argn(2);
-	
 	if rhs > 0 then
 		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsAutoload",0))
 	end
 	
 	// Get the list of packages to load
 	// =========================================================================
-	
 	packages = atomsGetAutoload();
 	
-	// Get the list of lib
+	// Libraries to resume
 	// =========================================================================
+	libs_resume = [];
+	
+	// Get the list of lib [before]
+	// =====================================================================
 	libs_before = librarieslist();
 	
-	// Loop on packages
+	// Load the wanted packages
 	// =========================================================================
+	result = atomsLoad(packages(:,1),packages(:,2));
 	
-	for i=1:size(packages(:,1),"*")
-		
-		loader_file = pathconvert(packages(i,4)) + "loader.sce";
-		
-		if fileinfo(loader_file)==[] then
-			error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsAutoload",loader_file));
-		end
-		
-		exec( loader_file );
-	end
-	
-	// Get the list of lib
-	// =========================================================================
+	// Get the list of lib [after]
+	// =====================================================================
 	libs_after = librarieslist();
 	
 	// Loop on libs_after
-	// =========================================================================
+	// =====================================================================
 	for i=1:size(libs_after,"*")
 		
 		if find(libs_after(i) == libs_before) == [] then
-			resume_cmd = msprintf("%s = resume(%s);",libs_after(i),libs_after(i));
-			execstr(resume_cmd,"errcatch");
+			libs_resume = [ libs_resume ; libs_after(i) ];
 		end
 	end
+	
+	// If libs_resume is empty, the job is done
+	// =========================================================================
+	if isempty(libs_resume) then
+		return;
+	end
+	
+	// Build the resume cmd
+	// =========================================================================
+	
+	resume_cmd = "[";
+	
+	for i=1:size(libs_resume,"*")
+		resume_cmd = resume_cmd + libs_resume(i);
+		if i<size(libs_resume,"*") then
+			resume_cmd = resume_cmd + ",";
+		else
+			resume_cmd = resume_cmd + "] = resume(";
+		end
+	end
+	
+	for i=1:size(libs_resume,"*")
+		resume_cmd = resume_cmd + libs_resume(i);
+		if i<size(libs_resume,"*") then
+			resume_cmd = resume_cmd + ",";
+		else
+			resume_cmd = resume_cmd + ");";
+		end
+	end
+	
+	// Exec the resume cmd
+	// =========================================================================
+	execstr(resume_cmd,"errcatch");
 	
 endfunction
