@@ -111,13 +111,13 @@ AC_ARG_WITH(intelcompilers,
     AC_HELP_STRING([--with-intelcompilers],[Use Intel C (icc) and Fortran (ifort) proprietary compilers (GNU/Linux only) ]))
 
 AC_ARG_WITH(tk,
-    AC_HELP_STRING([--without-tk],[Do not compile with TCL/TK ]))
+    AC_HELP_STRING([--without-tk],[Disable the interface to Tcl/Tk ]))
 
 AC_ARG_WITH(javasci,
-    AC_HELP_STRING([--without-javasci],[Do not compile the Java/Scilab module ]))
+    AC_HELP_STRING([--without-javasci],[Disable the Java/Scilab interface (javasci)]))
 
 AC_ARG_WITH(gui,
-    AC_HELP_STRING([--without-gui],[Do not compile the Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
+    AC_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
 AC_ARG_ENABLE(build-swig,
     AC_HELP_STRING([--enable-build-swig],[Regenerate Java => C wrappers produces by Swig (A Java Development Kit (JDK) is mandatory for this option)]))
@@ -934,10 +934,10 @@ AC_SEARCH_LIBS([pthread_join],[pthread])
 #################
 
 AC_ARG_WITH(scicos,
-    AC_HELP_STRING([--without-scicos],[Compile without Scicos]))
+    AC_HELP_STRING([--without-scicos],[Disable Scicos]))
 
 AC_ARG_WITH(ocaml,
-    AC_HELP_STRING([--without-ocaml],[Do not compile ocaml modules (modelica)]))
+    AC_HELP_STRING([--without-ocaml],[Disable the OCaml modules (modelica)]))
 
 
 SCICOS_ENABLE=no
@@ -1183,7 +1183,7 @@ AM_CONDITIONAL(TCLTK, test "$WITH_TKSCI" = yes)
 
 
 AC_ARG_WITH(matio,
-    AC_HELP_STRING([--without-matio],[Compile with the MAT File I/O library]))
+    AC_HELP_STRING([--without-matio],[Disable the interface to Matio (MAT File I/O library)]))
 
 AC_ARG_WITH(matio_include,
 		AC_HELP_STRING([--with-matio-include=DIR],[Set the path to the MATIO headers]),
