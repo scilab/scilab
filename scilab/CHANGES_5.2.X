@@ -257,6 +257,8 @@ Bug fixes:
 
 * bug 4552 fixed - c++ comments in stack3.h have been translated into c comments
 
+* bug 4574 fixed - ilib_build does not check if library is already loaded in scilab.
+
 * bug 4584 fixed - On Windows , home value was wrong
 
 * bug 4585 fixed - Scilab fails to build with intel C++ compiler 11.0.074 on Windows
