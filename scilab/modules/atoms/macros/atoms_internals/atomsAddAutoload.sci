@@ -21,25 +21,25 @@ function nbAdd = atomsAddAutoload(name,version,allusers)
 	// =========================================================================
 	
 	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"AddAutoload",2,3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsAddAutoload",2,3));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"AddAutoload",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAddAutoload",1));
 	end
 	
 	if type(version) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"AddAutoload",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsAddAutoload",2));
 	end
 	
 	// name and version must have the same size
 	// =========================================================================
 	
 	if or( size(name) <> size(version) ) then
-		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"AddAutoload",1,2));
+		error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"),"atomsAddAutoload",1,2));
 	end
 	
 	// Apply changes for all users or just for me ?
@@ -56,12 +56,12 @@ function nbAdd = atomsAddAutoload(name,version,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"AddAutoload",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsAddAutoload",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"AddAutoload",2,pathconvert(SCI+"/.atoms")));
+			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsAddAutoload",2,pathconvert(SCI+"/.atoms")));
 		end
 	end
 	

@@ -57,22 +57,22 @@ function res = atomsGetInstalledPath(name,version,allusers)
 	for i=1:size(name,"*")
 		
 		// Filter on names
-		packages = packages( find(packages(:,1) == name(i))     ,:);
+		this_packages = packages( find(packages(:,1) == name(i))     ,:);
 		
-		if packages <> [] then
+		if this_packages == [] then
 			res(i) = "";
 			continue;
 		end
 		
 		// Filter on versions
-		packages = packages( find(packages(:,2) == version(i)) ,:);
+		this_packages = this_packages( find(this_packages(:,2) == version(i)) ,:);
 		
-		if packages <> [] then
+		if this_packages == [] then
 			res(i) = "";
 			continue;
 		end
 		
-		res(i) = packages(4);
+		res(i) = this_packages(4);
 	end
 	
 	// Reshape the matrix
