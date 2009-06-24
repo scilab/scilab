@@ -104,7 +104,7 @@ function result = atomsLoad(name,version)
 		
 		exec( loader_file );
 		
-		// Get the list of lib
+		// Get the list of libraries (macros)
 		// =====================================================================
 		libs_after = librarieslist();
 		

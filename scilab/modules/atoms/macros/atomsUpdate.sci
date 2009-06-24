@@ -15,6 +15,18 @@ function result = atomsUpdate(name,allusers)
 	
 	result = [];
 	
+	// Save the initial path
+	// =========================================================================
+	initialpath = pwd();
+	
+	// Verbose Mode ?
+	// =========================================================================
+	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
+		VERBOSE = %T;
+	else
+		VERBOSE = %F;
+	end
+	
 	// Check input parameters
 	// =========================================================================
 	
@@ -44,11 +56,13 @@ function result = atomsUpdate(name,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstall",2));
 		end
 		
 		// Check if we have the write access
 		if allusers & ~ atomsAUWriteAccess() then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsInstall",2,pathconvert(SCI+"/.atoms")));
 		end
 	end
@@ -58,6 +72,7 @@ function result = atomsUpdate(name,allusers)
 	
 	for i=1:size(name,"*")
 		if ~ atomsIsInstalled(name(i)) then
+			chdir(initialpath);
 			error(msprintf(gettext("%s: ''%s'' isn''t installed.\n"),"atomsUpdate",name(i)));
 		end
 	end
@@ -89,11 +104,25 @@ function result = atomsUpdate(name,allusers)
 		
 		if atomsVersionCompare(this_package_MRV_ins,this_package_MRV_ava) == 0 then
 			// The installed version is already the Most Recent Version Available
+			if VERBOSE then
+				mprintf("\t%s (%s) : The most recent version is already installed\n",name(i),this_package_MRV_ins);
+			end
+			
 			continue;
 		end
 		
-		atomsInstall(name(i)+" "+this_package_MRV_ava,allusers);
+		// Remove old toolboxes
+		atomsRemove(name(i),allusers);
 		
+		// Install the new toolbox
+		this_result = atomsInstall(name(i)+" "+this_package_MRV_ava,allusers);
+		
+		// Fill the output argument
+		result = [ result ; this_result ];
 	end
+	
+	// Go to the initial location
+	// =========================================================================
+	chdir(initialpath);
 	
 endfunction
