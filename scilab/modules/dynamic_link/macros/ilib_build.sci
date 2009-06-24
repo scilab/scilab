@@ -22,7 +22,7 @@ function ilib_build(ilib_name,table,files,libs,makename,ldflags,cflags,fflags,is
   end
   
   if size(ilib_name,'*') <> 1 then
-    error(999,msprintf(_("%s: Wrong size for input argument #%d: A boolean expected.\n"),'ilib_build',1));
+    error(999,msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),'ilib_build',1));
   end 
   
   if ~MSDOS & strncpy(ilib_name,3) <> "lib" then
