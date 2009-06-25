@@ -14,9 +14,9 @@
 #include "gw_core.h"
 #include "stack-c.h"
 #include "funcprot.h"
-#include "common_api.h"
-#include "int_api.h"
-#include "double_api.h"
+#include "api_common.h"
+#include "api_int.h"
+#include "api_double.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "MALLOC.h"
@@ -46,7 +46,7 @@ int C2F(sci_funcprot)(char *fname,unsigned long fname_len)
 		double *pdVarOne = NULL;
 
 		/* get Address of inputs */
-		getVarAddressFromNumber(1, &piAddressVarOne);
+		getVarAddressFromPosition(1, &piAddressVarOne);
 
 		/* check input type */
 		if ( getVarType(piAddressVarOne) != sci_matrix )

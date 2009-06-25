@@ -13,9 +13,9 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "int_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_int.h"
 
 #include "CallScilab.h"
 #include "stack-c.h"
@@ -153,7 +153,7 @@ int allocMatrixOfInteger8(int _iVar, int _iRows, int _iCols, char** _piData8, in
 	char *piData8	= NULL;
 
 	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -177,7 +177,7 @@ int allocMatrixOfInteger16(int _iVar, int _iRows, int _iCols, short** _piData16,
 	short *piData16	= NULL;
 
 	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -201,7 +201,7 @@ int allocMatrixOfInteger32(int _iVar, int _iRows, int _iCols, int** _piData32, i
 	int *piData32	= NULL;
 
 	int iNewPos = Top - Rhs + _iVar;
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -297,7 +297,7 @@ static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _
 	C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfInteger(piAddr, _iPrecision, _iRows, _iCols, &piData);
@@ -319,29 +319,14 @@ static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _
 
 int getNamedMatrixOfIntegerPrecision(char* _pstName, int _iNameLen, int* _piPrecision)
 {
-	int iVarID[nsiz];
+	int iRet					= 0;
 	int* piAddr				= NULL;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
-
-	//define scope of search
-  Fin = -1;
-	//search variable 
-  C2F(stackg)(iVarID);
-
-	if (Err > 0 || Fin == 0)
+	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	if(iRet)
 	{
 		return 1;
 	}
-
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
-
-	//get variable address
-	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
 
 	//check variable type
 	if(piAddr[0] != sci_ints)
@@ -377,32 +362,17 @@ int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int*
 
 static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
 {
-	int iVarID[nsiz];
+	int iRet					= 0;
 	int* piAddr				= NULL;
 	int iSize					= 0;
 	void* piData			= NULL;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
-
-	//define scope of search
-  Fin = -1;
-	//search variable 
-  C2F(stackg)(iVarID);
-
-	if (Err > 0 || Fin == 0)
+	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	if(iRet)
 	{
 		return 1;
 	}
 
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
-
-	//get variable address
-	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
-	
 	getCommonMatrixOfInteger(piAddr, _iPrecision, _piRows, _piCols, &piData);
 
 	iSize = *_piRows * *_piCols;

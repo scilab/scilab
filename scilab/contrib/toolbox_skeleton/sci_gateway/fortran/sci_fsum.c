@@ -5,8 +5,8 @@
 /* This file is released into the public domain */
 /* ==================================================================== */
 #include "stack-c.h" 
-#include "common_api.h"
-#include "double_api.h"
+#include "api_common.h"
+#include "api_double.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 /* ==================================================================== */
@@ -32,8 +32,8 @@ int sci_fsum(char *fname)
   CheckLhs(1,1) ;   
   
   /* get Address of inputs */
-  getVarAddressFromNumber(1, &piAddressVarOne);
-  getVarAddressFromNumber(2, &piAddressVarTwo);
+  getVarAddressFromPosition(1, &piAddressVarOne);
+  getVarAddressFromPosition(2, &piAddressVarTwo);
   
   /* check input type */
   if ( getVarType(piAddressVarOne) != sci_matrix )

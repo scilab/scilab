@@ -15,7 +15,11 @@
 
 #include <hdf5.h>
 
+int getVariableNames(int _iFile, char **pstNameList);
+
 int getDataSetId(int  _iFile);
+
+int getDataSetIdFromName(int _iFile, char *_pstName);
 
 int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols);
 
@@ -26,6 +30,8 @@ int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols)
 int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols);
 
 int readBooleanMatrix(int _iDatasetId, int* _piData, int _iRows, int _iCols);
+
+int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblData);
 
 int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
 

@@ -16,9 +16,18 @@
 #include <string.h>
 
 #include "CallScilab.h"
-#include "common_api.h"
-#include "internal_common_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
 #include "stack-c.h"
+#include "stackinfo.h"
+
+/* Defined in SCI/modules/core/src/fortran/cvname.f */
+extern int C2F(cvnamel)(int *id,char *str,int *jobptr,int *str_len); 
+/* *jobptr==0: Get Scilab codes from C-string */
+/* *jobptr==1: Get C-string from Scilab codes */
+
+#define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
+#define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
 
 int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 {
@@ -36,7 +45,7 @@ int getVarDimension(int* _piAddress, int* _piRows, int* _piCols)
 	}
 }
 
-int getVarAddressFromNumber(int _iVar, int** _piAddress)
+int getVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(Top - Rhs + _iVar));
 	int iValType	= *istk(iAddr);
@@ -50,7 +59,21 @@ int getVarAddressFromNumber(int _iVar, int** _piAddress)
 	return 0;
 }
 
-int getNewVarAddressFromNumber(int _iVar, int** _piAddress)
+int getVarNameFromPosition(int _iVar, char* _pstName)
+{
+	int iNameLen				= 0;
+	int iJob1						= 1;
+	CvNameL(&vstk_.idstk[(_iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
+	if(iNameLen == 0)
+	{
+		return 1;
+	}
+
+	_pstName[iNameLen]	= '\0';
+	return 0;
+}
+
+int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(_iVar));
 	int iValType	= *istk(iAddr);
@@ -83,7 +106,7 @@ int getVarAddressFromName(char* _pstName, int _iNameLen, int** _piAddress)
 
 	//get variable address
 	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
+	getNewVarAddressFromPosition(Fin, &piAddr);
 
 	*_piAddress = piAddr;
 	return 0;
@@ -125,10 +148,11 @@ int isVarComplex(int* _piAddress)
 void createNamedVariable(int *_piVarID)
 {
 	int iZero				= 0;
+	int iOne				= 1;
 	//it seems this part setting up the output format but "stackp" print anything
 //	int iSaveLct		= C2F(iop).lct[3];
 //  C2F(iop).lct[3] = -1;
-  C2F(stackp)(_piVarID, &iZero);
+  C2F(stackp)(_piVarID, &iOne);
 //  C2F(iop).lct[3] = iSaveLct;
 }
 
