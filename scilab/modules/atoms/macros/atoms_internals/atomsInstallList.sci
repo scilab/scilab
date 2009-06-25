@@ -9,13 +9,17 @@
 
 // Internal function
 
-// Give the matrix of the toolbox to install :
+// Return a matrix that list the changes caused by the installation of one or
+// more packages
 
-// !+  toolbox_3  1.6  !
-// !                   !
-// !~  toolbox_2  1.5  !
-// !                   !
-// !~  toolbox_1  1.9  !
+// !~  U  toolbox_4  1.0  !
+// !                      !
+// !~     toolbox_2  1.3  !
+// !                      !
+// !~     toolbox_1  1.9  !
+// !                      !
+// !~  U  toolbox_5  1.0  !
+
 
 function [insList,depTree] = atomsInstallList(packages)
 	
@@ -89,7 +93,16 @@ function [insList,depTree] = atomsInstallList(packages)
 		
 		// Concatenate the tree with the existing one
 		depTree = atomsCatTree( depTree , tree );
-		
+	end
+	
+	// Add a field to detect later if it's the toolbox is automaticaly installed
+	// or if it's a user choice
+	// =========================================================================
+	
+	for i=1:size(package_names,"*")
+		this_package_details                = depTree(package_names(i));
+		this_package_details("user_choice") = %T;
+		depTree(package_names(i))           = this_package_details;
 	end
 	
 	// Now we have the list of package that have to be installed
@@ -107,11 +120,17 @@ function [insList,depTree] = atomsInstallList(packages)
 		this_package_name    = this_package_details("Toolbox");
 		this_package_version = this_package_details("Version");
 		
+		if isfield(this_package_details,"user_choice") & this_package_details("user_choice") then
+			this_package_user_choice = "U"; // stand for User Choice
+		else
+			this_package_user_choice = ""; // stand for User Choice
+		end
+		
 		to_install = %F; 
 		
 		if atomsIsInstalled(this_package_name) then
 			vers = atomsGetInstalledVers(mandatory_packages(i));
-			if atomsVersionCompare( vers(1) , this_package_version ) < 0 then
+			if find( vers == this_package_version ) == [] then
 				to_install = %T;
 			end
 		else
@@ -119,9 +138,9 @@ function [insList,depTree] = atomsInstallList(packages)
 		end
 		
 		if to_install then
-			insList = [ insList ; "+" this_package_name this_package_version ];
+			insList = [ insList ; "+" this_package_user_choice this_package_name this_package_version ];
 		else
-			insList = [ insList ; "~" this_package_name this_package_version ];
+			insList = [ insList ; "~" this_package_user_choice this_package_name this_package_version ];
 		end
 		
 	end

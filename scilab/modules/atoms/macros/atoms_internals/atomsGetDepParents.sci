@@ -18,29 +18,29 @@ function packages = atomsGetDepParents(name,version,allusers)
 	// =========================================================================
 	
 	if rhs < 2 | rhs > 3 then
-		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetDepChilds",2,3));
+		error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"atomsGetDepParents",2,3));
 	end
 	
 	// Check input parameters type
 	// =========================================================================
 	
 	if type(name) <> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetDepChilds",1));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetDepParents",1));
 	end
 	
 	if type(version)<>10  then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetDepChilds",2));
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsGetDepParents",2));
 	end
 	
 	// Check input parameters dimensions
 	// =========================================================================
 	
 	if size(name,"*") <> 1 then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsGetDepChilds",1));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsGetDepParents",1));
 	end
 	
 	if size(version,"*")<>1  then
-		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsGetDepChilds",2));
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsGetDepParents",2));
 	end
 	
 	// All user management
@@ -51,7 +51,7 @@ function packages = atomsGetDepParents(name,version,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetDepChilds",3));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsGetDepParents",3));
 		end
 	end
 	

@@ -139,14 +139,15 @@ function nbDel = atomsInstallUnregister(name,version,allusers)
 				
 				if installed_deps_in(k) == "["+name(j)+" - "+version(j)+"]" then
 					found = 1;
-				end
-				
-				if found == 1 then
 					continue;
 				end
 				
 				if regexp(installed_deps_in(k),"/^\[(.)*\]$/","o") <> [] then
 					found = 0;
+				end
+				
+				if found == 1 then
+					continue;
 				end
 				
 				if found == 0 then

@@ -116,14 +116,15 @@ function result = atomsInstall(packages,allusers)
 	// =========================================================================
 	[install_package_list,dependency_tree] = atomsInstallList(packages);
 	
-	// Loop on install_package_list to print if a package has to be installed or not
+	// Loop on install_package_list to print if a package has to be installed
+	// or not
 	// =========================================================================
 	if VERBOSE 
 		for i=1:size(install_package_list(:,1),"*")
 			if install_package_list(i,1) == "+" then
-				mprintf("\t%s (%s) will be installed\n",install_package_list(i,2),install_package_list(i,3));
+				mprintf("\t%s (%s) will be installed\n",install_package_list(i,3),install_package_list(i,4));
 			elseif install_package_list(i,1) == "~" then
-				mprintf("\t%s (%s) is already installed and up-to-date\n",install_package_list(i,2),install_package_list(i,3));
+				mprintf("\t%s (%s) is already installed and up-to-date\n",install_package_list(i,3),install_package_list(i,4));
 			end
 		end
 	end
@@ -133,9 +134,9 @@ function result = atomsInstall(packages,allusers)
 	
 	for i=1:size(install_package_list(:,1),"*")
 		
-		this_package_details = dependency_tree(install_package_list(i,2));
-		this_package_name    = this_package_details("Toolbox");
-		this_package_version = this_package_details("Version");
+		this_package_details = dependency_tree(install_package_list(i,3));
+		this_package_name    = install_package_list(i,3);
+		this_package_version = install_package_list(i,4);
 		
 		if install_package_list(i,1) <> "+" then
 			continue;
@@ -244,9 +245,9 @@ function result = atomsInstall(packages,allusers)
 		
 		unarchive_dir = "";
 		
-		for i=1:size(dir_list_after,"*")
-			if find(dir_list_after(i) == dir_list_before) == [] then
-				unarchive_dir = dir_list_after(i);
+		for j=1:size(dir_list_after,"*")
+			if find(dir_list_after(j) == dir_list_before) == [] then
+				unarchive_dir = dir_list_after(j);
 				break;
 			end
 		end
@@ -273,12 +274,12 @@ function result = atomsInstall(packages,allusers)
 		// Register the successfully installed package
 		// =====================================================================
 		
-		if grep(packages,"/$"+this_package_name+"\s/","r") == [] then
+		if install_package_list(i,2) == "U" then
+			// Intentionnaly Installed
+			this_package_status = "I";
+		else
 			// Automaticaly installed
 			this_package_status = "A";
-		else
-			// Volontary Installed
-			this_package_status = "I";
 		end
 		
 		atomsInstallRegister(this_package_name,this_package_version,this_package_status,allusers);

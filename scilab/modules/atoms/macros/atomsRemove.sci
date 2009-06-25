@@ -92,116 +92,38 @@ function result = atomsRemove(packages,allusers)
 		end
 	end 
 	
-	// Loop on packages and to build the list of package to uninstall
+	// Build the list of package to Uninstall
 	// =========================================================================
+	remove_package_list = atomsRemoveList(packages,allusers);
 	
-	packagesToUninstall_W = []; // Wanted packages
-	packagesToUninstall_D = []; // Dependency packages
-	packagesToUninstall_B = []; // Broken packages
 	
-	for i=1:size(packages,"*")
-		
-		package = packages(i);
-		
-		if size(regexp(package,"/\s/") ,"*" ) > 1 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: it must contain at most one space.\n"),"atomsInstall",1));
-		end
-		
-		if size(regexp(package,"/\s/") ,"*" ) == 0 then
-			// Just the toolbox name is specified
-			package_names(i)    = package;
-			package_versions(i) = "";
-		else
-			// A version is specified
-			space               = regexp(package,"/\s/");
-			package_names(i)    = part(package,[1:space-1]);
-			package_versions(i) = part(package,[space+1:length(package)]);
-		end
-		
-		// Ok, The syntax is correct, Now check if the package is really installed
-		if ~ atomsIsInstalled(package_names(i),package_versions(i)) then
-			continue;
-		end
-		
-		// get the list of the versions of this package to uninstall
-		
-		if isempty(package_versions(i)) then
-			// uninstall all version of this toolbox
-			this_package_versions = atomsGetInstalledVers(package_names(i));
-		else
-			// Just uninstall the specified version
-			this_package_versions = package_versions(i);
-		end
-		
-		// Loop on this version list
-		
-		for j=1:size(this_package_versions,"*")
-			
-			packagesToUninstall_W = [ packagesToUninstall_W ; atomsGetInstalledDetails( package_names(i),this_package_versions(j)) ];
-			
-			if VERBOSE then
-				mprintf( "\t%s (%s) will be removed\n" , package_names(i) , this_package_versions(j) );
+	// Loop on remList to print if a package has to be remove
+	// or not
+	// =========================================================================
+	if VERBOSE 
+		for i=1:size(remove_package_list(:,1),"*")
+			if remove_package_list(i,1) == "-" then
+				mprintf("\t%s (%s) will be removed\n",remove_package_list(i,3),remove_package_list(i,4));
+			elseif (remove_package_list(i,1) == "~") & (remove_package_list(i,1) == "B") then
+				mprintf("\t%s (%s) cannot be removed and will be broken\n",remove_package_list(i,3),remove_package_list(i,4));
 			end
-			
-			// Establish the dependency list to uninstall
-			// =================================================================
-			
-			// Get the dependencies of this package
-			this_package_child_deps = atomsGetDepChilds(package_names(i),this_package_versions(j));
-			
-			// Loop on dependency childs
-			for k=1:size(this_package_child_deps(:,1),"*")
-				
-				// If this dependence is automatically installed, add it to the
-				// list of package to uninstall
-				
-				if atomsGetInstalledStatus( this_package_child_deps(k,1) , this_package_child_deps(k,2) ) == "A" then
-					packagesToUninstall_D = [ packagesToUninstall_D ; atomsGetInstalledDetails(this_package_child_deps(k,1),this_package_child_deps(k,2)) ];
-					
-					if VERBOSE then
-						mprintf( "\t%s (%s) will be removed\n" , this_package_child_deps(k,1) , this_package_child_deps(k,2) );
-					end
-				end
-				
-			end
-			
-			// Establish the broken list to uninstall
-			// =================================================================
-			
-			// Get the dependencies of this package
-			this_package_parent_deps = atomsGetDepParents(package_names(i),this_package_versions(j));
-			
-			// Loop on dependency parents
-			for k=1:size(this_package_parent_deps(:,1),"*")
-				
-				// If this dependence is automatically installed, add it to the
-				// list of package to uninstall
-				packagesToUninstall_B = [ packagesToUninstall_B ; atomsGetInstalledDetails(this_package_parent_deps(k,1) , this_package_parent_deps(k,2)) ];
-				
-			end
-			
 		end
-		
 	end
-	
-	// Loop on packages to filter the list of package to uninstall
-	// =========================================================================
-	
-	// All wanted packages must be uninstalled
-	packagesToUninstall = packagesToUninstall_W;
-	
-	// For the moment, All dependency packages must be uninstalled
-	packagesToUninstall = [ packagesToUninstall ; packagesToUninstall_D ];
 	
 	// Now we have the list of package that have to be uninstalled
 	// =========================================================================
 	
-	for i=1:size(packagesToUninstall(:,1),"*")
+	for i=1:size(remove_package_list(:,1),"*")
 		
-		this_package_name      = packagesToUninstall(i,1);
-		this_package_version   = packagesToUninstall(i,2);
-		this_package_directory = packagesToUninstall(i,4);
+		// If the package must be keeped, the job is done
+		if remove_package_list(i,1) <> "-" then
+			continue;
+		end
+		
+		this_package_name      = remove_package_list(i,3);
+		this_package_version   = remove_package_list(i,4);
 		this_package_insdet    = atomsGetInstalledDetails(this_package_name,this_package_version);
+		this_package_directory = this_package_insdet(4);
 		
 		if VERBOSE then
 			mprintf( "\tRemoving %s (%s) ... " , this_package_name , this_package_version );
@@ -213,7 +135,7 @@ function result = atomsRemove(packages,allusers)
 			(grep(this_package_directory,pathconvert(SCIHOME)) == []) then
 			
 			chdir(initialpath);
-			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",packagesToUninstall(1,1),packagesToUninstall(1,2)));
+			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",this_package_name,this_package_version));
 		end
 		
 		uninstall_status = rmdir(this_package_directory,"s");
