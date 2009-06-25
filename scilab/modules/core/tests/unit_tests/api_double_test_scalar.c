@@ -27,7 +27,7 @@ int sci_foo_set_scalar(char *fname,unsigned long fname_len)
 	int iCols1					= 0;
 	double *pdblReal1		= NULL;
 
-	//check number of input parameters
+	//check number of input arguments
 	CheckRhs(1,1);
 
 	//get variable 1 address
@@ -56,7 +56,7 @@ int sci_foo_get_scalar(char *fname,unsigned long fname_len)
 	int iColsOut		= 1;
 	int iVarOut			= Rhs + 1;
 
-	//check number of output parameters
+	//check number of output arguments
 	CheckLhs(1,1);
 
 	createMatrixOfDouble(iVarOut, iRowsOut, iColsOut, &Foo);

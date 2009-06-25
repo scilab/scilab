@@ -27,7 +27,7 @@ int sci_foo_get_hardcoded_matrix(char *fname,unsigned long fname_len)
 	double Foo[] = {1,3,4,9,2,8,3,2};   /* Declare the matrix */
 	int iRows = 2, iCols = 4; /* Size of the matrix */
 
-	//check number of output parameters
+	//check number of output arguments
 	CheckLhs(1,1);
 
 	createMatrixOfDouble(iVarOut, iRows, iCols, Foo);
