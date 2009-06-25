@@ -52,8 +52,6 @@ int sci_foo_set_scalar(char *fname,unsigned long fname_len)
 
 int sci_foo_get_scalar(char *fname,unsigned long fname_len)
 {
-	//for ouput variable 1
-	int* piAddrOut	= NULL;
 	int iRowsOut		= 1;
 	int iColsOut		= 1;
 	int iVarOut			= Rhs + 1;

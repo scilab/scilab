@@ -62,8 +62,6 @@ int sci_foo_set_matrix(char *fname,unsigned long fname_len)
 
 int sci_foo_get_matrix(char *fname,unsigned long fname_len)
 {
-	//for ouput variable 1
-	int* piAddrOut	= NULL;
 	int iVarOut			= Rhs + 1;
 
 	//check number of output parameters
