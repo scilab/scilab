@@ -15,7 +15,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "variable_api.h"
+#include "api_variable.h"
 
 double *Foo;
 int iRows					= 0;
@@ -35,7 +35,7 @@ int sci_foo_set_matrix(char *fname,unsigned long fname_len)
 	CheckRhs(1,1);
 
 	//get variable 1 address
-	getVarAddressFromNumber(1, &piAddrVar1);
+	getVarAddressFromPosition(1, &piAddrVar1);
 
 	//get variable 1 dimensions
 	getVarDimension(piAddrVar1, &iRows, &iCols);
@@ -62,14 +62,12 @@ int sci_foo_set_matrix(char *fname,unsigned long fname_len)
 
 int sci_foo_get_matrix(char *fname,unsigned long fname_len)
 {
-	//for ouput variable 1
-	int* piAddrOut	= NULL;
 	int iVarOut			= Rhs + 1;
 
 	//check number of output parameters
 	CheckLhs(1,1);
 
-	createMatrixOfDouble(iVarOut, iRows, iCols, Foo, &piAddrOut);
+	createMatrixOfDouble(iVarOut, iRows, iCols, Foo);
 	LhsVar(1)				= iVarOut;
 
   return 0;

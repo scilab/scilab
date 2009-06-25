@@ -210,22 +210,22 @@ bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVa
 	{
 		if(iComplex)
 		{
-			iRet			= createNamedComplexMatrixOfDouble(_pstVarname, strlen(_pstVarname), iRows, iCols, pdblReal, pdblImg);
+			iRet			= createNamedComplexMatrixOfDouble(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			= createNamedMatrixOfDouble(_pstVarname, strlen(_pstVarname), iRows, iCols, pdblReal);
+			iRet			= createNamedMatrixOfDouble(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pdblReal);
 		}
 	}
 	else //if not null this variable is in a list
 	{
 		if(iComplex)
 		{
-			iRet			= createComplexMatrixOfDoubleInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal, pdblImg);
+			iRet			= createComplexMatrixOfDoubleInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			= createMatrixOfDoubleInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal);
+			iRet			= createMatrixOfDoubleInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal);
 		}
 	}
 
@@ -274,11 +274,11 @@ bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVa
 
 	if(_piAddress == NULL)
 	{
-		iRet = createNamedMatrixOfString(_pstVarname, strlen(_pstVarname), iRows, iCols, pstData);
+		iRet = createNamedMatrixOfString(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pstData);
 	}
 	else //if not null this variable is in a list
 	{
-		iRet = createMatrixOfStringInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pstData);
+		iRet = createMatrixOfStringInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pstData);
 	}
 
 	char pstMsg[512];
@@ -324,11 +324,11 @@ bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstV
 
 	if(_piAddress == NULL)
 	{
-		iRet			= createNamedMatrixOfBoolean(_pstVarname, strlen(_pstVarname), iRows, iCols, piData);
+		iRet			= createNamedMatrixOfBoolean(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, piData);
 	}
 	else //if not null this variable is in a list
 	{
-		iRet			= createMatrixOfBooleanInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
+		iRet			= createMatrixOfBooleanInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
 	}
 
 	char pstMsg[512];
@@ -470,13 +470,13 @@ bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress,
 		switch(_iVarType)
 		{
 		case sci_list :
-			iRet		= createNamedList(_pstVarname, strlen(_pstVarname), iRows * iCols, &piListAddr);
+			iRet		= createNamedList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
 			break;
 		case sci_tlist :
-			iRet		= createNamedTList(_pstVarname, strlen(_pstVarname), iRows * iCols, &piListAddr);
+			iRet		= createNamedTList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
 			break;
 		case sci_mlist :
-			iRet		= createNamedMList(_pstVarname, strlen(_pstVarname), iRows * iCols, &piListAddr);
+			iRet		= createNamedMList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
 			break;
 		default :
 			return false;
@@ -487,13 +487,13 @@ bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress,
 		switch(_iVarType)
 		{
 		case sci_list :
-			iRet		= createListInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		case sci_tlist :
-			iRet		= createTListInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createTListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		case sci_mlist :
-			iRet		= createMListInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createMListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		default :
 			return false;
