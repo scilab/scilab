@@ -298,6 +298,134 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int *_piData, int _iRo
   return status;
 }
 
+int writePoly(int _iFile, char* _pstDatasetName, int _iNbCoef, double* _pdblReal)
+{
+  hsize_t dims[1] = {_iNbCoef};
+  hid_t space			= 0;
+	hid_t dset			= 0;
+  herr_t status		= 0;
+
+  /*
+   * Create string dataspace.  Setting maximum size to NULL sets the maximum
+   * size to be the current size.
+   */
+  space						= H5Screate_simple (1, dims, NULL);
+
+  /*
+   * Create the data set and write it.
+   */
+  dset						= H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, H5P_DEFAULT);
+  status					= H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pdblReal);
+
+ /*
+   * Add attribute SCILAB_Class = string to dataset
+   */
+  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
+
+  /*
+   * Close and release resources.
+   */
+  status					= H5Dclose (dset);
+  status					= H5Sclose (space);
+  return status;
+}
+
+int writePolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+{
+	int i								= 0;
+	int j								= 0;
+  hsize_t dims[2]			= {_iRows, _iCols};
+  herr_t status				= 0;
+  hid_t	space					= 0;
+	hid_t	dset					= 0;
+	hid_t	group					= 0;
+  hobj_ref_t* pData		= 0; 
+
+  char* pstName				= NULL;
+  char* pstPathName		= NULL;
+	char* pstSlash			= NULL;
+  
+  char* pstGroupName	= (char *)malloc((strlen(_pstDatasetName) + 3) * sizeof(char));
+
+
+  /* Create ref matrix */
+  pData								= (hobj_ref_t *)malloc(_iRows * _iCols * sizeof(hobj_ref_t));
+
+  /* Generate groupname #<dataSetName># */
+  sprintf(pstGroupName, "#%s#", _pstDatasetName);
+	pstSlash						= strstr(pstGroupName, "/");
+	if(pstSlash != NULL)
+	{
+		pstSlash[0]				= '_';
+	}
+
+  /*
+   * First create a group to store all referenced objects.
+   */
+  group								= H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+  status							= H5Gclose(group);
+
+  /*
+   * Now create each String as a dedicated DataSet.
+   */
+  for (i = 0 ; i < _iRows ; i++)
+	{
+		for ( j = 0 ; j < _iCols ; j++)
+		{ 
+			pstName					= (char*)malloc(((int)log10((double)(i + _iRows * j + 1)) + 4) * sizeof(char)); 
+			//1 for null termination, 1 for round value, 2 for '#' characters
+			sprintf(pstName, "#%d#", i + _iRows * j);
+
+			pstPathName			= (char*)malloc((strlen(pstGroupName) + strlen(pstName) + 2) * sizeof(char)); 
+			//1 for null termination, 1 for separator, 2 for '#' characters
+			sprintf(pstPathName, "%s/%s", pstGroupName, pstName);
+
+			// Write the string to ref
+			writePoly(_iFile, pstPathName, _piNbCoef[i + _iRows * j],  _pdblReal[i + _iRows * j]);
+
+			// create the ref
+			status					= H5Rcreate(&pData[i * _iCols + j], _iFile, pstPathName, H5R_OBJECT, -1);
+
+			free(pstName);
+			free(pstPathName);
+		}
+	}
+
+
+  /*
+   * Create dataspace.  Setting maximum size to NULL sets the maximum
+   * size to be the current size.
+   */
+  space								= H5Screate_simple(2, dims, NULL);
+  
+  /*
+   * Create the dataset and write the array data to it.
+   */
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+  status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
+
+  /*
+   * Add attribute SCILAB_Class = poly to dataset
+   */
+  addAttribute(dset, g_SCILAB_CLASS					, g_SCILAB_CLASS_POLY);
+
+  /*
+   * Add attribute Varname attribute to dataset
+   */
+	addAttribute(dset, g_SCILAB_CLASS_VARNAME	, _pstVarName);
+
+  /*
+   * Close and release resources.
+   */
+  status							= H5Dclose(dset);
+  status							= H5Sclose(space);
+
+  free(pstGroupName);
+
+  return status;
+}
+
+
 //create a group and create hobj_ref_t array
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
 {

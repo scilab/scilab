@@ -252,6 +252,10 @@ int createTListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _i
  */
 int createMListInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
+/*********************
+ * Double functions *
+ *********************/
+
 /**
  * Get double variable data
  * @param[in] _iVar variable number
@@ -300,7 +304,6 @@ int allocMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRo
  * @return if the operation successed (0) or not ( !0 )
  */
 int allocComplexMatrixOfDoubleInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg);
-
 
 /**
  * create double variable in a list
@@ -477,6 +480,78 @@ int allocMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iR
  * @return if the operation successed (0) or not ( !0 )
  */
 int createMatrixOfBooleanInList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+
+/**
+ * create boolean variable in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _iNameLen variable name length
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piBool return pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfBooleanInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piBool);
+
+/*************************
+ * polynomials functions *
+ *************************/
+
+/**
+ * Get polynomial variable in list
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _piNbCoef return an array of polynomials coefficients
+ * @param[out] _pdblReal return polynomials coefficients
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal);
+
+/**
+ * Get complex polynomial variable data
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[out] _piRows return number of row 
+ * @param[out] _piCols return number of column
+ * @param[out] _piNbCoef return an array of polynomials coefficients
+ * @param[out] _pdblReal return polynomials coefficients
+ * @param[out] _pdblImg return polynomials coefficients
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int getComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
+/**
+ * Get polynomial named variable data
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piNbCoef array of polynomials coefficients
+ * @param[in] _pdblReal pointer on data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+
+/**
+ * Get polynomial named variable data
+ * @param[in] _iVar variable number
+ * @param[in] _piParent address of parent node
+ * @param[in] _iItemPos item postion in the list
+ * @param[in] _iRows Number of row
+ * @param[in] _iCols Number of column
+ * @param[in] _piNbCoef array of polynomials coefficients
+ * @param[in] _pdblReal pointer on real data
+ * @param[in] _pdblImg pointer on img data
+ * @return if the operation successed (0) or not ( !0 )
+ */
+int createComplexMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
 
 #endif /* __LIST_API__ */
 

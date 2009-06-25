@@ -82,15 +82,15 @@ src/c/mode_exec.c \
 src/c/predef.c \
 src/c/transposeMatrix.c \
 src/c/recursionFunction.c \
-src/c/common_api.c \
-src/c/double_api.c \
-src/c/int_api.c \
-src/c/poly_api.c \
-src/c/sparse_api.c \
-src/c/boolean_sparse_api.c \
-src/c/boolean_api.c \
-src/c/string_api.c \
-src/c/list_api.c \
+src/c/api_common.c \
+src/c/api_double.c \
+src/c/api_int.c \
+src/c/api_poly.c \
+src/c/api_sparse.c \
+src/c/api_boolean_sparse.c \
+src/c/api_boolean.c \
+src/c/api_string.c \
+src/c/api_list.c \
 src/c/typename.c \
 src/c/inittypenames.c \
 src/c/funcprot.c
@@ -425,16 +425,16 @@ includes/LaunchScilabSignal.h \
 includes/getos.h \
 includes/mode_exec.h \
 includes/transposeMatrix.h \
-includes/boolean_api.h \
-includes/double_api.h \
-includes/sparse_api.h \
-includes/boolean_sparse_api.h \
-includes/int_api.h \
-includes/string_api.h \
-includes/common_api.h \
-includes/poly_api.h \
-includes/variable_api.h \
-includes/list_api.h \
+includes/api_boolean.h \
+includes/api_double.h \
+includes/api_sparse.h \
+includes/api_boolean_sparse.h \
+includes/api_int.h \
+includes/api_string.h \
+includes/api_common.h \
+includes/api_poly.h \
+includes/api_variable.h \
+includes/api_list.h \
 includes/recursionFunction.h
 
 include $(top_srcdir)/Makefile.incl.am

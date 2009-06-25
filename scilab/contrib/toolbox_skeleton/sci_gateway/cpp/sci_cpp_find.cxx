@@ -10,9 +10,9 @@ extern "C"
 {
 /* ==================================================================== */	
   #include "stack-c.h"
-  #include "common_api.h"
-  #include "string_api.h"
-  #include "double_api.h"
+  #include "api_common.h"
+  #include "api_string.h"
+  #include "api_double.h"
   #include "Scierror.h"
   #include "MALLOC.h"
 /* ==================================================================== */
@@ -35,8 +35,8 @@ extern "C"
     CheckLhs(1,1);
     
     /* get Address of inputs */
-    getVarAddressFromNumber(1, &piAddressVarOne);
-    getVarAddressFromNumber(2, &piAddressVarTwo);
+    getVarAddressFromPosition(1, &piAddressVarOne);
+    getVarAddressFromPosition(2, &piAddressVarTwo);
     
     if ( getVarType(piAddressVarOne) != sci_strings )
     {

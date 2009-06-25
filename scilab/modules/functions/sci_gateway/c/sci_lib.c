@@ -13,8 +13,8 @@
 /*--------------------------------------------------------------------------*/
 #include "stack-c.h"
 #include "gw_functions.h"
-#include "common_api.h"
-#include "string_api.h"
+#include "api_common.h"
+#include "api_string.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -38,7 +38,7 @@ int C2F(sci_lib)(char *fname,unsigned long fname_len)
 	CheckLhs(1,1);
 
 	/* get Address of inputs */
-	getVarAddressFromNumber(1, &piAddressVarOne);
+	getVarAddressFromPosition(1, &piAddressVarOne);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{

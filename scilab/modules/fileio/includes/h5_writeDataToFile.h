@@ -19,6 +19,8 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
 
 int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int *_piData, int _iRows, int _iCols);
 
+int writePolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
 int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
 int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType);

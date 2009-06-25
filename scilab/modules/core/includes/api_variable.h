@@ -9,10 +9,17 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 
-#ifndef __INTERNAL_COMMON_API__
-#define __INTERNAL_COMMON_API__
+#ifndef __VARIABLE_API__
+#define __VARIABLE_API__
 
-int getNewVarAddressFromNumber(int _iVar, int** _piAddress);
+#include "api_common.h"
+#include "api_double.h"
+#include "api_string.h"
+#include "api_int.h"
+#include "api_poly.h"
+#include "api_sparse.h"
+#include "api_boolean.h"
+#include "api_boolean_sparse.h"
+#include "api_list.h"
 
-#endif /* __INTERNAL_COMMON_API__ */
-
+#endif /* __VARIABLE_API__ */
