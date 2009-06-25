@@ -108,9 +108,9 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
 			-I$(top_srcdir)/modules/time/includes \
-			-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/include \
-			-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/include/sundials \
-			-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/ida
+			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
+			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials \
+			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida
 			
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
@@ -188,13 +188,17 @@ src/scicos_sundials/src/sundials/sundials_nvector.c \
 src/scicos_sundials/src/sundials/sundials_smalldense.c \
 src/scicos_sundials/src/sundials/sundials_extension.c
 
-libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/include \
--I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/cvode \
--I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/ida \
--I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/kinsol \
--I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/nvec_ser \
--I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/nvec_ser \
--I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/sundials
+libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/include \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/cvode \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/ida \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/kinsol \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/nvec_ser \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/include/sundials \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/cvode \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/kinsol \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/nvec_ser \
+-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/sundials
 
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
