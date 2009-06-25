@@ -998,7 +998,7 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 #################
 
 AC_ARG_WITH(hdf5,
-	AC_HELP_STRING([--with-hdf5],[Compile with the HDF5 library]))	
+	AC_HELP_STRING([--without-hdf5],[Disable the interface to the HDF5 library]))	
 
 HDF5_ENABLE=no
 
