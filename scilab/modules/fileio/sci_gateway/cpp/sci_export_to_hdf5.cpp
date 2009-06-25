@@ -73,7 +73,7 @@ int sci_export_to_hdf5(char *fname,unsigned long fname_len)
 	piAddrList = (int**)MALLOC(sizeof(int*) * (iNbVar - 1));
 	for(int i = 0 ; i < Rhs - 1 ; i++)
 	{
-		iRet = getVarAddressFromName(pstNameList[i + 1], strlen(pstNameList[i + 1]), &piAddrList[i]);
+		iRet = getVarAddressFromName(pstNameList[i + 1], (int)strlen(pstNameList[i + 1]), &piAddrList[i]);
 		if(iRet)
 		{
 			Scierror(999,_("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname, i + 1);
