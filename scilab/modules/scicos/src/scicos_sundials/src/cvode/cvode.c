@@ -303,6 +303,7 @@ static int CVRcheck2(CVodeMem cv_mem);
 static int CVRcheck3(CVodeMem cv_mem);
 static int CVRootfind(CVodeMem cv_mem);
 
+/* SUNDIALS STANDARD */
 static int CVRcheck1Std(CVodeMem cv_mem);
 static int CVRcheck2Std(CVodeMem cv_mem);
 static int CVRcheck3Std(CVodeMem cv_mem);
