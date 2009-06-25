@@ -13,13 +13,25 @@
 #ifndef __H5_WRITEDATATOFILE_H__
 #define __H5_WRITEDATATOFILE_H__
 
-int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int cols);
+char* createGroupName(char* _pstGroupName);
+char* createPathName(char* _pstGroupName, int _iIndex);
 
-int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int cols);
 
-int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int *_piData, int _iRows, int _iCols);
+int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, double *_pdblData);
+int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);
 
-int writePolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal);
+int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, char **_pstData);
+
+int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int *_piData);
+
+int writePolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblData);
+int writePolyComplexMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
+
+int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, char* _piData8);
+int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, short* _piData16);
+int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int* _piData32);
+int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, long long* _piData64);
+
 
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem);
 int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);

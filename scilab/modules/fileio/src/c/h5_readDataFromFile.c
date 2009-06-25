@@ -14,6 +14,13 @@
 #include <stdlib.h>
 #include "stack-c.h"
 #include "h5_attributeConstants.h"
+#include "h5_readDataFromFile.h"
+
+
+static herr_t find_attr_by_name( hid_t loc_id, const char* name, void* data )
+{ 
+	return !strcmp(name, (const char*)data);
+}
 
 /************************************************************
 
@@ -104,15 +111,16 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
 
 }
 
-static int isEmptyDataset(int _iDatasetId)
+static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
 {
 	int iRet							= 0;
 	char *pstScilabClass	= NULL;
 
-	if(H5Aget_num_attrs(_iDatasetId) > 1)
+//	status = H5Giterate (_iFile, "/", NULL, op_func, &iDatasetId);
+	if(H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstAttribute))
 	{
-		pstScilabClass = readAttribute(_iDatasetId, g_SCILAB_CLASS_EMPTY);
-		if(pstScilabClass != NULL &&strcmp(pstScilabClass, "true") == 0)
+		pstScilabClass = readAttribute(_iDatasetId, _pstAttribute);
+		if(pstScilabClass != NULL && strcmp(pstScilabClass, _pstValue) == 0)
 		{
 			iRet = 1;
 		}
@@ -123,6 +131,17 @@ static int isEmptyDataset(int _iDatasetId)
 	}
 	return iRet;
 }
+
+static int isEmptyDataset(int _iDatasetId)
+{
+	return checkAttribute(_iDatasetId, (char*)g_SCILAB_CLASS_EMPTY, "true");
+}
+
+int isComplexData(int _iDatasetId)
+{
+	return checkAttribute(_iDatasetId, (char*)g_SCILAB_CLASS_COMPLEX, "true");
+}
+
 
 int getVariableNames(int _iFile, char **pstNameList)
 {
@@ -194,7 +213,23 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 		*_piRows = (int)lDims[0];
 		if (ndims == 1)
 		{
-			*_piCols = 1;
+			//check if double in this case read chid size
+			if(getScilabTypeFromDataSet(_iDatasetId) == sci_matrix)
+			{
+				int iItemDataset				= 0;
+				hobj_ref_t* piItemRef		= NULL;
+
+				piItemRef = (hobj_ref_t *) malloc (*_piRows * sizeof (hobj_ref_t));
+				H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, piItemRef);
+
+				getListItemDataset(_iDatasetId, piItemRef, 0, &iItemDataset);
+				getDataSetDims(iItemDataset, _piRows, _piCols);
+				free(piItemRef);
+			}
+			else
+			{
+				*_piCols = 1;
+			}
 		}
 		else
 		{
@@ -206,11 +241,13 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols)
 	return 0;
 }
 
-int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols)
+int readDouble(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 {
 	herr_t      status;
 	double      *pdblLocalData;
 	int	     i = 0, j = 0;
+	char* pstMajor		= NULL;
+	char* pstMinor		= NULL;
 
 	pdblLocalData = (double*)malloc(sizeof(double) * _iRows * _iCols);
 	/*
@@ -233,7 +270,43 @@ int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols)
 	return status;
 }
 
-int readBooleanMatrix(int _iDatasetId, int* _piData, int _iRows, int _iCols)
+int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
+{
+	hid_t		obj;
+	hobj_ref_t	*pRef = (hobj_ref_t *) malloc (1 * sizeof (hobj_ref_t));
+	herr_t	status;
+
+	//Read the data.
+	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+
+	//Open the referenced object, get its name and type.
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
+	readDouble(obj,_iRows, _iCols, _pdblData);
+
+	H5Dclose(_iDatasetId);
+	return 0;
+}
+
+int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg)
+{
+	hid_t		obj;
+	hobj_ref_t	*pRef = (hobj_ref_t *) malloc (2 * sizeof (hobj_ref_t));
+	herr_t	status;
+
+	//Read the data.
+	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+
+	//Open the referenced object, get its name and type.
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[0]);
+	readDouble(obj,_iRows, _iCols, _pdblReal);
+	obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pRef[1]);
+	readDouble(obj,_iRows, _iCols, _pdblImg);
+
+	H5Dclose(_iDatasetId);
+	return 0;
+}
+
+int readBooleanMatrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
 {
 	herr_t status = 0;
 	int* piData		= NULL;
@@ -303,7 +376,7 @@ static int readString(int _iDatasetId, char **_pstData)
 	return 0;
 }
 
-int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols)
+int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
 {
 	hid_t		obj;
 	hobj_ref_t	*rdata = (hobj_ref_t *) malloc (_iRows * _iCols * sizeof (hobj_ref_t));
@@ -333,44 +406,58 @@ int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols)
 	return 0;
 }
 
-static int readPoly(int _iDatasetId, int* _piNbCoef, double** _pdblData)
+static int readComplexPoly(int _iDatasetId, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	hid_t iFileType			= 0;
-	hid_t iSpace				= 0;
-	herr_t status				= 0;
-	size_t iDim					= 0;
-	hsize_t dims[1];
+	int iRows				= 0;
+	int iCols				= 0;
 
-	/*
-	* Get the datatype and its size.
-	*/
-	iFileType = H5Dget_type (_iDatasetId);
-	iDim = H5Tget_size (iFileType);
-	iDim++;                         /* Make room for null terminator */
+	//Get the datatype and its size.
+	getDataSetDims(_iDatasetId, &iRows, &iCols);
 
-	/*
-	* Get dataspace and allocate memory for read buffer.  This is a
-	* two dimensional attribute so the dynamic allocation must be done
-	* in steps.
-	*/
-	iSpace = H5Dget_space (_iDatasetId);
-	H5Sget_simple_extent_dims (iSpace, dims, NULL);
+	//Allocate space for string data.
+	*_piNbCoef			= iRows * iCols;
+	*_pdblReal			= (double*)malloc(*_piNbCoef * sizeof(double));
+	*_pdblImg				= (double*)malloc(*_piNbCoef * sizeof(double));
 
-	/*
-	* Allocate space for string data.
-	*/
-	*_piNbCoef = (int)dims[0];
-	*_pdblData = (double*)malloc((int)dims[0] * sizeof(double));
-
-	/*
-	* Read the data.
-	*/
-	status = H5Dread (_iDatasetId, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, *_pdblData);
-	H5Dclose(_iDatasetId);
-	return 0;
+	//Read the data and return result.
+	return readDoubleComplexMatrix(_iDatasetId, 1, *_piNbCoef, *_pdblReal, *_pdblImg);
 }
 
-int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblData)
+static int readPoly(int _iDatasetId, int* _piNbCoef, double** _pdblData)
+{
+	//hid_t iFileType			= 0;
+	//hid_t iSpace				= 0;
+	//herr_t status				= 0;
+	//size_t iDim					= 0;
+	//hsize_t dims[1];
+	int iRows							= 0;
+	int iCols							= 0;
+
+	//Get the datatype and its size.
+	getDataSetDims(_iDatasetId, &iRows, &iCols);
+
+	//iFileType = H5Dget_type (_iDatasetId);
+	//iDim = H5Tget_size (iFileType);
+	//iDim++;                         // Make room for null terminator
+
+	////Get dataspace and allocate memory for read buffer.  This is a
+	////two dimensional attribute so the dynamic allocation must be done
+	////in steps.
+
+	//iSpace = H5Dget_space (_iDatasetId);
+	//H5Sget_simple_extent_dims (iSpace, dims, NULL);
+
+	//Allocate space for string data.
+	//*_piNbCoef = (int)dims[0];
+	//*_pdblData = (double*)malloc((int)dims[0] * sizeof(double));
+	*_piNbCoef = iRows * iCols;
+	*_pdblData = (double*)malloc(*_piNbCoef * sizeof(double));
+
+	//Read the data and return result.
+	return readDoubleMatrix(_iDatasetId, 1, *_piNbCoef, *_pdblData);
+}
+
+int readCommonPolyMatrix(int _iDatasetId, char* _pstVarname, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double **_pdblReal, double **_pdblImg)
 {
 	int	i								= 0;
 	int j								= 0;
@@ -383,6 +470,10 @@ int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, i
 	* Read the data.
 	*/
 	status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
+	if(status)
+	{
+		return 1;
+	}
 
 	for (i = 0 ; i < _iRows ; i++)
 	{
@@ -392,17 +483,39 @@ int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, i
 			* Open the referenced object, get its name and type.
 			*/
 			obj = H5Rdereference (_iDatasetId, H5R_OBJECT, &pData[i * _iCols + j]);
-			readPoly(obj, &_piNbCoef[i + j * _iRows], &_pdblData[i + j * _iRows]);
+			if(_iComplex)
+			{
+				status = readComplexPoly(obj, &_piNbCoef[i + j * _iRows], &_pdblReal[i + j * _iRows], &_pdblImg[i + j * _iRows]);
+			}
+			else
+			{
+				status = readPoly(obj, &_piNbCoef[i + j * _iRows], &_pdblReal[i + j * _iRows]);
+			}
 		}
+	}
+
+	if(status)
+	{
+		return 1;
 	}
 
 	pstVarName = readAttribute(_iDatasetId, g_SCILAB_CLASS_VARNAME);
 	strcpy(_pstVarname, pstVarName);
-	H5Dclose(_iDatasetId);
+	status = H5Dclose(_iDatasetId);
 	free(pData);
 	free(pstVarName);
 
-	return 0;
+	return status;
+}
+
+int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblData)
+{
+	return readCommonPolyMatrix(_iDatasetId, _pstVarname, 0, _iRows, _iCols, _piNbCoef, _pdblData, NULL);
+}
+
+int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblReal, double **_pdblImg)
+{
+	return readCommonPolyMatrix(_iDatasetId, _pstVarname, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
 int getScilabTypeFromDataSet(int _iDatasetId)
