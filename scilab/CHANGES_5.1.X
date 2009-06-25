@@ -1,5 +1,13 @@
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
+
+
+Improvements:
+=============
+
+* Catalan localization added to Scipad (Thanks Oriol Gonzalez)
+
+
 Compilation:
 ============
 
