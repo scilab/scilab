@@ -414,7 +414,7 @@ int sci_data2sig(char *fname, unsigned long fname_len)
     CreateVar(2,"m",(i=4,&i),(j=1,&j),&l_tmp);
     LhsVar(1)=2;
   }
-
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -510,7 +510,7 @@ int sci_sig2data(char *fname, unsigned long fname_len)
     ierr=CopyVarFromlistentry(Top-Rhs+3,il1,4);
     LhsVar(2)=3;
   }
-
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -2191,7 +2191,7 @@ int sci_model2blk(char *fname, unsigned long fname_len)
 
   CreateVar(2,"t",&nblklst,(j=1,&j),&l_tmp);
   LhsVar(1) = 2;
-
+  C2F(putlhsvar)();
   return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -2373,6 +2373,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 
   CreateVar(4,"t",&nblklst,(j=1,&j),&l_tmp);
   LhsVar(1)=4;
+  C2F(putlhsvar)();
 
   return 0;
 }
