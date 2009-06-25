@@ -5,82 +5,138 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-deff('foo()','a=1,b=2,c=3;[x,y]=resume(a,b)')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','a=1,b=2,c=3;[x,y,z]=resume(a,b,c)')
-foo(); if x<>1|y<>2|z<>3 then pause,end
-clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;[x,y]=resume(a,b);end')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end')
-foo(); if x<>1|y<>2|z<>3 then pause,end
+// <-- JVM NOT MANDATORY -->
 
-clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=resume(a,b);end;end')
+deff("foo()","a=1,b=2,c=3;[x,y]=resume(a,b)")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end;end')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
-clear foo x y z
-deff('foo()','a=1,b=2,c=3;[x,y]=resume(a,b)','n')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','a=1,b=2,c=3;[x,y,z]=resume(a,b,c)','n')
+deff("foo()","a=1,b=2,c=3;[x,y,z]=resume(a,b,c)")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;[x,y]=resume(a,b);end','n')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end','n')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
-clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=resume(a,b);end;end','n')
+deff("foo()","if %t then a=1,b=2,c=3;[x,y]=resume(a,b);end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end;end','n')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
-//======================================================================
-deff('foo()','a=1,b=2,c=3;execstr(''[x,y]=resume(a,b)'')')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','a=1,b=2,c=3;execstr(''[x,y,z]=resume(a,b,c)'')')
+deff("foo()","if %t then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;execstr(''[x,y]=resume(a,b)'');end')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;execstr(''[x,y,z]=resume(a,b,c)'');end')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
-clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;execstr(''[x,y]=resume(a,b)'');end;end')
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=resume(a,b);end;end")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;execstr(''[x,y,z]=resume(a,b,c)'');end;end')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
-clear foo x y z
-deff('foo()','a=1,b=2,c=3;execstr(''[x,y]=resume(a,b)'')','n')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','a=1,b=2,c=3;execstr(''[x,y,z]=resume(a,b,c)'')','n')
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end;end")
 foo(); if x<>1|y<>2|z<>3 then pause,end
 clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;execstr(''[x,y]=resume(a,b)'');end','n')
-foo(); if x<>1|y<>2 then pause,end
-clear foo x y z
-deff('foo()','if %t then a=1,b=2,c=3;execstr(''[x,y,z]=resume(a,b,c)'');end','n')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
-clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;execstr(''[x,y]=resume(a,b)'');end;end','n')
+deff("foo()","a=1,b=2,c=3;[x,y]=resume(a,b)","n")
 foo(); if x<>1|y<>2 then pause,end
 clear foo x y z
-deff('foo()','for k=1:3,if k==3 then a=1,b=2,c=3;execstr(''[x,y,z]=resume(a,b,c)'');end;end','n')
-foo(); if x<>1|y<>2|z<>3 then pause,end
 
+deff("foo()","a=1,b=2,c=3;[x,y,z]=resume(a,b,c)","n")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","if %t then a=1,b=2,c=3;[x,y]=resume(a,b);end","n")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","if %t then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end","n")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y]=resume(a,b);end;end","n")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;[x,y,z]=resume(a,b,c);end;end","n")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"")")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"")")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end;end")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end;end")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"")","n")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"")","n")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end","n")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","if %t then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end","n")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y]=resume(a,b)"");end;end","n")
+foo(); if x<>1|y<>2 then pause,end
+clear foo x y z
+
+deff("foo()","for k=1:3,if k==3 then a=1,b=2,c=3;execstr(""[x,y,z]=resume(a,b,c)"");end;end","n")
+foo(); if x<>1|y<>2|z<>3 then pause,end
+clear foo x y z
+
+
+function foo1()
+	clear var_a var_b var_c;
+	foo2()
+	[va,vb,vc] = resume(var_a,var_b,var_c);
+endfunction
+
+function foo2()
+	clear variable_a variable_b variable_c;
+	foo3()
+	[var_a,var_b,var_c] = resume(variable_a,variable_b,variable_c);
+endfunction
+
+function foo3()
+	a = [ 1 2 ; 3 4 ];
+	b = [ "un" "deux" ; "trois" "quatre" ];
+	c = struct();
+	c("field1") = a;
+	c("field2") = b;
+	[variable_a,variable_b,variable_c] = resume(a,b,c);
+endfunction
+
+clear ref_a ref_b ref_c
+
+ref_a = [ 1 2 ; 3 4 ];
+ref_b = [ "un" "deux" ; "trois" "quatre" ];
+ref_c = struct();
+ref_c("field1") = ref_a;
+ref_c("field2") = ref_b;
+
+clear va vb vc;
+
+foo1()
+if or( va <> ref_a ) then pause, end
+if or( vb <> ref_b ) then pause, end
+if or( vc <> ref_c ) then pause, end
+
+clear ref_a ref_b ref_c foo1() foo2() va vb vc;
