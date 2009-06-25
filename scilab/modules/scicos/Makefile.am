@@ -98,7 +98,6 @@ sci_gateway/fortran/sci_vec2var.f
 
 libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/scicos_sundials/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes \
@@ -108,13 +107,17 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/intersci/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
-			-I$(top_srcdir)/modules/time/includes
+			-I$(top_srcdir)/modules/time/includes \
+			-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/include \
+			-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/include/sundials \
+			-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/ida
+			
 
 libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS)
+INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS) 
 
 libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
 
@@ -168,21 +171,31 @@ macros/scicos_utils
 
 
 #### scicos : SUNDIALS STUFF ####
-SUNDIALS_SOURCES = src/scicos_sundials/cvode.c \
-src/scicos_sundials/sundials_dense.c \
-src/scicos_sundials/ida_ic.c \
-src/scicos_sundials/ida_dense.c \
-src/scicos_sundials/cvode_dense.c \
-src/scicos_sundials/nvector_serial.c \
-src/scicos_sundials/sundials_nvector.c \
-src/scicos_sundials/ida_io.c \
-src/scicos_sundials/cvode_io.c \
-src/scicos_sundials/sundials_smalldense.c \
-src/scicos_sundials/sundials_math.c \
-src/scicos_sundials/ida.c \
-src/scicos_sundials/kinsol_io.c \
-src/scicos_sundials/kinsol_dense.c \
-src/scicos_sundials/kinsol.c
+SUNDIALS_SOURCES = src/scicos_sundials/src/cvode/cvode.c \
+src/scicos_sundials/src/cvode/cvode_dense.c \
+src/scicos_sundials/src/cvode/cvode_io.c \
+src/scicos_sundials/src/ida/ida.c \
+src/scicos_sundials/src/ida/ida_dense.c \
+src/scicos_sundials/src/ida/ida_ic.c \
+src/scicos_sundials/src/ida/ida_io.c \
+src/scicos_sundials/src/kinsol/kinsol.c \
+src/scicos_sundials/src/kinsol/kinsol_dense.c \
+src/scicos_sundials/src/kinsol/kinsol_io.c \
+src/scicos_sundials/src/nvec_ser/nvector_serial.c \
+src/scicos_sundials/src/sundials/sundials_dense.c \
+src/scicos_sundials/src/sundials/sundials_math.c \
+src/scicos_sundials/src/sundials/sundials_nvector.c \
+src/scicos_sundials/src/sundials/sundials_smalldense.c \
+src/scicos_sundials/src/sundials/sundials_extension.c
+
+libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/include \
+-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/cvode \
+-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/ida \
+-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/kinsol \
+-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/nvec_ser \
+-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/nvec_ser \
+-I$(top_srcdir)/modules/scicos/src/c/scicos_sundials/src/sundials
+
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 

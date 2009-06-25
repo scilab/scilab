@@ -37,6 +37,21 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+
+/* Sundials includes */
+#include <cvode/cvode.h>           /* prototypes for CVODES fcts. and consts. */
+#include <cvode/cvode_dense.h>     /* prototype for CVDense */
+#include <ida/ida.h>
+#include <ida/ida_dense.h>
+#include <nvector/nvector_serial.h>  /* serial N_Vector types, fcts., and macros */
+#include <sundials/sundials_dense.h> /* definitions DenseMat and DENSE_ELEM */
+#include <sundials/sundials_types.h> /* definition of type realtype */
+#include <sundials/sundials_math.h>
+#include <kinsol/kinsol.h>
+#include <kinsol/kinsol_dense.h>
+#include <sundials/sundials_extension.h> /* uses extension for scicos */
+#include "ida_impl.h"
+
 #include "dynamic_link.h"
 #include "scicos-def.h"
 #include "stack-def.h"
@@ -61,18 +76,6 @@
 #include "setPrecisionFPU.h"
 #endif
 
-/* Sundials includes */
-#include "cvode.h"           /* prototypes for CVODES fcts. and consts. */
-#include "cvode_dense.h"     /* prototype for CVDense */
-#include "ida.h"
-#include "ida_dense.h"
-#include "nvector_serial.h"  /* serial N_Vector types, fcts., and macros */
-#include "sundials_dense.h" /* definitions DenseMat and DENSE_ELEM */
-#include "sundials_types.h" /* definition of type realtype */
-#include "sundials_math.h"
-#include "ida_impl.h"
-#include "kinsol.h"
-#include "kinsol_dense.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
 	void *ida_mem;
@@ -757,6 +760,8 @@ default :
 			C2F(curblk).kfun = kfun0;
 		}
 	} else if (*flag__ == 2) { /*run*/
+
+
 		/*     integration */
 		if (C2F(cmsolver).solver == 0) {      /*  CVODE: Method: BDF,   Nonlinear solver= NEWTON     */
 			cossim(t0);
@@ -1212,6 +1217,10 @@ void cossim(double *told)
 		NV_DATA_S(y)=x;
 
 		cvode_mem = NULL;
+
+		/* Set extension of Sundials for scicos */
+		set_sundials_with_extension(TRUE);
+
 		switch (C2F(cmsolver).solver)
 		{
 		case 0:   cvode_mem = CVodeCreate(CV_BDF, CV_NEWTON);break;
@@ -1636,6 +1645,9 @@ void cossimdaskr(double *told)
 	double uround;
 	int cnt=0, N_iters;
 	maxord = 5;
+
+	/* Set extension of Sundials for scicos */
+	set_sundials_with_extension(TRUE);
 
 	CI=1.0;
 	if (ng!=0) {
