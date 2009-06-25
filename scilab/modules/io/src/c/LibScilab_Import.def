@@ -30,7 +30,6 @@ getMatrixOfDouble
 getComplexMatrixOfDouble
 isVarComplex
 getVarType
-getVarAddressFromNumber
 getBooleanSparseMatrix
 createNamedBooleanSparseMatrix
 readNamedBooleanSparseMatrix
