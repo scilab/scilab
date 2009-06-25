@@ -184,7 +184,6 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 	int iRet					= 0;
 	int *piAddr				= NULL;
