@@ -210,15 +210,15 @@ int fillCommonMatrixOfPoly(int* _piAddress, char* _pstVarName, int _iComplex, in
 
 int createNamedMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
 {
-	return createCommonNamedComplexMatrixOfPoly(_pstName, _iNameLen, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+	return createCommonNamedMatrixOfPoly(_pstName, _iNameLen, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
 }
 
 int createNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-	return createCommonNamedComplexMatrixOfPoly(_pstName, _iNameLen, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+	return createCommonNamedMatrixOfPoly(_pstName, _iNameLen, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
-int createCommonNamedComplexMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+int createCommonNamedMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;

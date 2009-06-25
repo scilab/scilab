@@ -1087,8 +1087,75 @@ static int fillCommonMatrixOfPolyInList(int _iVar, int* _piParent, int _iItemPos
 }
 
 
+int createMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+{
+	return createCommonMatrixOfPolyInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+}
+
+int createComplexMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+{
+	return createCommonMatrixOfPolyInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+}
+
+int createCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+{
+	int iVarID[nsiz];
+  int iSaveRhs			= Rhs;
+	int iSaveTop			= Top;
+	int iRet					= 0;
+	int *piAddr				= NULL;
+	int* piEnd				= NULL;
+	int* piChildAddr	= NULL;
+	int iTotalLen			= 0;
+	int iItemLen			= 0;
+
+  C2F(str2name)(_pstName, iVarID, _iNameLen);
+  Top = Top + Nbvars + 1;
+
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iRet = fillCommonMatrixOfPolyInList(Top, _piParent, _iItemPos, _pstVarName, _iComplex, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg, &iTotalLen);
+	if(iRet)
+	{
+		return 1;
+	}
+
+	iItemLen						= 9 + _iRows * _iCols + (9 + _iRows * _iCols)%2;
+	iItemLen						+= iTotalLen;
+	piEnd								=	piAddr + iItemLen;
+	closeList(Top, piEnd);
+
+	if(_iItemPos == _piParent[1])
+	{
+		updateNamedListOffset(Top, _piParent, _iItemPos, piEnd);
+		createNamedVariable(iVarID);
+	}
 
 
+	Top = iSaveTop;
+  Rhs = iSaveRhs;
+
+	return 0;
+}
+
+int readMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal)
+{
+	return readCommonMatrixOfPolyInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, 0, _piRows, _piCols, _piNbCoef, _pdblReal, NULL);
+}
+
+int readComplexMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int _piParent, int _iItemPos, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+{
+	return readCommonMatrixOfPolyInNamedList(_pstName, _iNameLen, _piParent, _iItemPos, 1, _piRows, _piCols, _piNbCoef, _pdblReal, _pdblImg);
+}
+
+int readCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+{
+
+}
 
 
 
