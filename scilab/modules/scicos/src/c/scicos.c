@@ -52,6 +52,7 @@
 #include <sundials/sundials_extension.h> /* uses extension for scicos */
 #include "ida_impl.h"
 
+#include "machine.h" /* C2F */
 #include "dynamic_link.h"
 #include "scicos-def.h"
 #include "stack-def.h"
@@ -131,115 +132,37 @@ IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
 #define ZERO  RCONST(0.0)
 #define T0    RCONST(0.0)   
 /*--------------------------------------------------------------------------*/
-static int check_flag(void *flagvalue, char *funcname, int opt);
-void cosini(double *);
-void cosend(double *);
-
-void cossimdaskr(double *);
-void cossim(double *);
-/*void callf(double *, double *, double *, double *,double *,int *);*/
-void callf(double *t, scicos_block *block, int *flag);
-
-int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data);
-int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata);
-int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data);
-int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data);
-int simblkKinsol(N_Vector , N_Vector, void *);
-
-void addevs(double ,int *,int *);
-void putevs(double *,int *,int *);
-
-void idoit(double *);
-void cdoit(double *);
-void doit(double *); 
-void ddoit(double *);
-void edoit(double *,int *);
-void odoit(double *,double *,double *,double *);
-void ozdoit(double *,double *,double *,int *);
-void zdoit(double *,double *,double *,double *);
-void Jdoit(double *,double *,double *,double *,int *); /* Jacobian*/
-void reinitdoit(double *);
-
-void FREE_blocks();
-
-int synchro_nev(ScicosImport *,int ,int *);
-int synchro_g_nev(ScicosImport *,double *,int ,int *);
-
-static int scicos_setmode(double *,double *,double *,int *,double);
-int Jacobians(long int Neq, realtype, N_Vector, N_Vector, N_Vector, \
-			  realtype, void *, DenseMat, N_Vector, N_Vector, N_Vector);
-void Multp(double *, double *,double *, int, int, int ,int);
-void Set_Jacobian_flag(int flag);
-double Get_Jacobian_parameter(void);
-double Get_Scicos_SQUR(void);
-/*void DISP(A,ra ,ca,name);*/
-/* Jacobian*/
-
-int read_xml_initial_states(int ,const char * , char **, double *);
-int read_id(ezxml_t *,char *,double *);
-int write_xml_states(int,const char *, char **, double *);
-int Convert_number (char *, double *);
-void homotopy(double *);
-int rhojac_(double *, double *,double *,double *, int *, double *,int *);
-int rho_( double *, double *,double *,double *,double *, int *);
-int fx_( double *, double *);
-int hfjac_(double *, double *, int *);
-int CallKinsol(double *);
-double pow_(double , double );
-double exp_(double ); 
-double log_(double ); 
-
-extern void  F2C(sciblk)();
-
-extern int C2F(dset)();
-extern int C2F(dcopy)();
-extern int C2F(iset)();
-extern ScicosImport* getscicosimportptr();
-ScicosImport *scs_imp;
-
-static int nblk, nordptr, nlnk, nx, ng, ncord, noord, nzord;
-static int niord,nordclk,niord,nmod;
-
-static int *neq;
-
-static  double Atol, rtol, ttol, deltat,hmax;
-static int hot;
-
-/* Variable declaration moved to scicos.c because it was in the scicos-def.h therefore
-* multiple declaration of the variable and linkers were complaining about duplicate
-* symbols
-*/
-
-COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
-IMPORT_SCICOS  SOLVER_struct C2F(cmsolver);
-IMPORT_SCICOS CURBLK_struct C2F(curblk);
-IMPORT_SCICOS RTFACTOR_struct C2F(rtfactor);
-IMPORT_SCICOS SCSPTR_struct C2F(scsptr);
-IMPORT_SCICOS DBCOS_struct C2F(dbcos);
-IMPORT_SCICOS COSTOL_struct C2F(costol);
-IMPORT_SCICOS COSHLT_struct C2F(coshlt);
-IMPORT_SCICOS COSDEBUG_struct C2F(cosdebug);
-IMPORT_SCICOS COSERR_struct coserr;
-
 /* Table of constant values */
-
 static int c__90 = 90;
-static int c__0 = 0;
 static int c__91 = 91;
+static int c__0 = 0;
 static double c_b14 = 0.;
 static int c__1 = 1;
-static int *iwa;
 
+int TCritWarning = 0;
+
+static double *t0, *tf;
+static double *x,*tevts,*xd,*g;
+static  double Atol, rtol, ttol, deltat,hmax;
+static int *ierr;
+static int *pointi;
 static int *xptr,*modptr, *evtspt;
 static int  *funtyp, *inpptr, *outptr, *inplnk, *outlnk;
-static int *clkptr, *ordptr, *ordclk, *cord, 
-*iord, *oord,  *zord,  *critev,  *zcptr;
-static int *pointi;
-static int *ierr;
-
-static double *x,*xd,*tevts,*g;
+static int *clkptr, *ordptr, *ordclk, *cord, *iord, *oord,  *zord,  *critev,  *zcptr;
+static int nblk, nordptr, nlnk, nx, ng, ncord, noord, nzord;
+static int niord,nordclk,niord,nmod;
+static int nelem;
 static int *mod;
-static double *t0,*tf;
+static int *neq;
+static int *xprop; /* xproperty */
+static int debug_block;
+static int *iwa;
+static int hot;
+
+/* declaration of ptr for typed port */
+static void **outtbptr; /*pointer array of object of outtb*/
+static int *outtbsz;    /*size of object of outtb*/
+static int *outtbtyp;   /*type of object of outtb*/
 
 /* declaration of ptr for typed port */
 static void **outtbptr;     /*pointer array of object of outtb*/
@@ -255,11 +178,8 @@ SCSUINT16_COP *outtbusptr;  /*to store unsigned int16 of outtb */
 SCSUINT32_COP *outtbulptr;  /*to store unsigned int32 of outtb */
 
 static outtb_el *outtb_elem;
-static int nelem;
-static scicos_block *Blocks;
 
-/* xproperty */
-static int *xprop;
+static scicos_block *Blocks;
 
 /* pass to external variable for code generation */
 /* reserved variable name */
@@ -269,15 +189,55 @@ int phase;
 int Jacobian_Flag;
 double CI, CJ;
 double SQuround;
-
 /* Jacobian*/
 static int AJacobian_block;
-/* Jacobian*/
-int TCritWarning;
 
-void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk);
-static int debug_block;
 
+/* Variable declaration moved to scicos.c because it was in the scicos-def.h therefore
+* multiple declaration of the variable and linkers were complaining about duplicate
+* symbols
+*/
+COSDEBUGCOUNTER_struct C2F(cosdebugcounter);
+IMPORT_SCICOS RTFACTOR_struct C2F(rtfactor);
+IMPORT_SCICOS  SOLVER_struct C2F(cmsolver);
+IMPORT_SCICOS CURBLK_struct C2F(curblk);
+IMPORT_SCICOS COSDEBUG_struct C2F(cosdebug);
+IMPORT_SCICOS COSHLT_struct C2F(coshlt);
+IMPORT_SCICOS DBCOS_struct C2F(dbcos);
+IMPORT_SCICOS COSTOL_struct C2F(costol);
+IMPORT_SCICOS COSERR_struct coserr;
+/*--------------------------------------------------------------------------*/
+static void FREE_blocks();
+static void cosini(double *told);
+static void cosend(double *told);
+static void cossim(double *told);
+static void cossimdaskr(double *told);
+static void doit(double *told);
+static void idoit(double *told);
+static void zdoit(double *told, double *xt, double *xtd, double *g);
+static void cdoit(double *told);
+static void ozdoit(double *told, double *xt, double *xtd, int *kiwa);
+static void odoit(double *told, double *xt, double *xtd, double *residual);
+static void ddoit(double *told);
+static void edoit(double *told, int *kiwa);
+static void reinitdoit(double *told);
+static int CallKinsol(double *told);
+static int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data);
+static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data);
+static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data);
+static void addevs(double t, int *evtnb, int *ierr1);
+static int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr);
+static void Multp(double *A,double *B,double *R,int ra,int rb,int ca,int cb);
+static int read_id(ezxml_t *elements,char *id,double *value);
+static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata);
+static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
+					 N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
+					 N_Vector tempv1, N_Vector tempv2, N_Vector tempv3);
+static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk);
+static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr);
+/*--------------------------------------------------------------------------*/
+extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
+extern int C2F(dcopy)(int *,double *,int *,double *,int *);
 /*--------------------------------------------------------------------------*/
 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 				void **work,int *zptr,int *modptr_in,
@@ -860,7 +820,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 } /* check_flag */
 
 /*--------------------------------------------------------------------------*/
-void cosini(double *told)
+static void cosini(double *told)
 {
 	static int flag__;
 	static int i;
@@ -1160,7 +1120,7 @@ L30:
 } /* cosini_ */
 
 /*--------------------------------------------------------------------------*/
-void cossim(double *told)
+static void cossim(double *told)
 {
 	/* System generated locals */
 	int i3;
@@ -1603,7 +1563,7 @@ L30:
 } /* cossim_ */
 
 /*--------------------------------------------------------------------------*/
-void cossimdaskr(double *told)
+static void cossimdaskr(double *told)
 {
 	/* Initialized data */
 	static int otimer = 0;
@@ -2380,7 +2340,7 @@ L30:
 } /* cossimdaskr_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine cosend */
-void cosend(double *told)
+static void cosend(double *told)
 {
 	/* Local variables */
 	static int flag__;
@@ -2413,7 +2373,6 @@ void cosend(double *told)
 } /* cosend_ */
 /*--------------------------------------------------------------------------*/
 /* callf */
-/*void callf(double *t,double *xtd,double *xt,double *residual,double *g,int *flag)*/
 void callf(double *t, scicos_block *block, int *flag)
 {
 	double* args[SZ_SIZE];
@@ -2820,7 +2779,7 @@ default :
 } /* callf */
 /*--------------------------------------------------------------------------*/
 /* call_debug_scicos */
-void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
+static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
 {
 	voidf loc ;
 	int solver=C2F(cmsolver).solver,k;
@@ -2861,7 +2820,7 @@ void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
 } /* call_debug_scicos */
 /*--------------------------------------------------------------------------*/
 /* simblk */
-int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
+static int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 {
 	double tx, *x, *xd;
 	int i, nantest;
@@ -2893,7 +2852,7 @@ int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 } /* simblk */
 /*--------------------------------------------------------------------------*/
 /* grblk */
-int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
+static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 {
 	double tx, *x;
 	int jj, nantest;
@@ -2920,7 +2879,7 @@ int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 } /* grblk */
 /*--------------------------------------------------------------------------*/
 /* simblkdaskr */
-int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata)
+static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *rdata)
 {
 	double tx;
 	double *xc, *xcdot, *residual;
@@ -2980,7 +2939,7 @@ int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval, void *
 }/* simblkdaskr */
 /*--------------------------------------------------------------------------*/
 /* grblkdaskr */
-int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data)
+static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data)
 {
 	double tx;
 	int jj, nantest;
@@ -3008,7 +2967,7 @@ int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_dat
 }/* grblkdaskr */
 /*--------------------------------------------------------------------------*/
 /* Subroutine addevs */
-void addevs(double t, int *evtnb, int *ierr1)
+static void addevs(double t, int *evtnb, int *ierr1)
 {
 	static int i, j;
 
@@ -3095,7 +3054,7 @@ void putevs(double *t, int *evtnb, int *ierr1)
 } /* putevs */
 /*--------------------------------------------------------------------------*/
 /* Subroutine idoit */
-void idoit(double *told)
+static void idoit(double *told)
 { /* initialisation (propagation of constant blocks outputs) */
 	/*     Copyright INRIA */
 
@@ -3150,7 +3109,7 @@ void idoit(double *told)
 } /* idoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine doit */
-void doit(double *told)
+static void doit(double *told)
 { /* propagation of blocks outputs on discrete activations */
 	/*     Copyright INRIA */
 
@@ -3216,7 +3175,7 @@ void doit(double *told)
 } /* doit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine cdoit */
-void cdoit(double *told)
+static void cdoit(double *told)
 { /* propagation of continuous blocks outputs */
 	/*     Copyright INRIA */
 
@@ -3274,7 +3233,7 @@ void cdoit(double *told)
 } /* cdoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine ddoit */
-void ddoit(double *told)
+static void ddoit(double *told)
 { /* update states & event out on discrete activations */
 	/*     Copyright INRIA */
 
@@ -3378,7 +3337,7 @@ void ddoit(double *told)
 } /* ddoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine edoit */
-void edoit(double *told, int *kiwa)
+static void edoit(double *told, int *kiwa)
 { /* update blocks output on discrete activations */
 	/*     Copyright INRIA */
 
@@ -3451,7 +3410,7 @@ void edoit(double *told, int *kiwa)
 } /* edoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine odoit */
-void odoit(double *told, double *xt, double *xtd, double *residual)
+static void odoit(double *told, double *xt, double *xtd, double *residual)
 { /* update blocks derivative of continuous time block */
 	/*     Copyright INRIA */
 
@@ -3568,7 +3527,7 @@ void odoit(double *told, double *xt, double *xtd, double *residual)
 } /* odoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine reinitdoit */
-void reinitdoit(double *told)
+static void reinitdoit(double *told)
 { /* update blocks xproperties of continuous time block */
 	/*     Copyright INRIA */
 
@@ -3669,7 +3628,7 @@ void reinitdoit(double *told)
 } /* reinitdoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine ozdoit */
-void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
+static void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 { /* update blocks output of continuous time block on discrete activations */
 	/*     Copyright INRIA */
 
@@ -3740,7 +3699,7 @@ void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 } /* ozdoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine zdoit */
-void zdoit(double *told, double *xt, double *xtd, double *g)
+static void zdoit(double *told, double *xt, double *xtd, double *g)
 { /* update blocks zcross of continuous time block  */
 	/*     Copyright INRIA */
 	int i2;
@@ -4005,7 +3964,7 @@ void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job)
 } /* Jdoit_ */
 /*--------------------------------------------------------------------------*/
 /* Subroutine synchro_nev */
-int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
+static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 { /* synchro blocks computation  */
 	/*     Copyright INRIA */
 	SCSREAL_COP *outtbdptr;     /*to store double of outtb*/
@@ -4128,7 +4087,7 @@ int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr)
 } /* synchro_nev */
 /*--------------------------------------------------------------------------*/
 /* Subroutine synchro_g_nev */
-int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
+static int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 { /* synchro blocks with zcross computation  */
 	/*     Copyright INRIA */
 	SCSREAL_COP *outtbdptr;     /*to store double of outtb*/
@@ -4285,7 +4244,7 @@ int synchro_g_nev(ScicosImport *scs_imp,double *g,int kf,int *ierr)
 } /* synchro_g_nev */
 /*--------------------------------------------------------------------------*/
 /* FREE_blocks */
-void FREE_blocks()
+static void FREE_blocks()
 {
 	int kf;
 	for (kf = 0; kf < nblk; ++kf) {
@@ -4536,26 +4495,7 @@ double Get_Scicos_SQUR(void)
 	return  SQuround;
 }
 /*--------------------------------------------------------------------------*/
-double exp_(double x) 
-{
-	double Limit=16;
-
-	if (x<Limit) {return exp(x);} else {return exp(Limit)*(x+1-Limit);};
-}
-/*--------------------------------------------------------------------------*/
-double log_(double x)
-{
-	double eps=1e-10;
-	if (abs(x)>eps) {return log(abs(x));} else {return (abs(x)/eps)+log(eps)-1;};
-
-}
-/*--------------------------------------------------------------------------*/
-double pow_(double x, double y)
-{
-	return exp_(y*log_(x));
-}
-/*-----------------------------------------------------------------------*/
-int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
+static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 			  N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
 			  N_Vector tempv1, N_Vector tempv2, N_Vector tempv3)
 {
@@ -4756,9 +4696,7 @@ int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 
 }
 /*----------------------------------------------------*/
-void Multp(A,B,R,ra ,ca, rb,cb)
-double *A, *B, *R;
-int ra,rb,ca,cb;
+static void Multp(double *A,double *B,double *R,int ra,int rb,int ca,int cb)
 {
 	int i,j,k;
 	/*if (ca!=rb) sciprint("\n\r Error in matrix multiplication");*/
@@ -4771,7 +4709,8 @@ int ra,rb,ca,cb;
 		return;
 }
 /*--------------------------------------------------------------------------*/
-int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars){
+int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars)
+{
 	ezxml_t model, elements;
 	int result,i;  
 	double vr;
@@ -4800,7 +4739,8 @@ int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *s
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
-int read_id(ezxml_t *elements,char *id,double *value){
+static int read_id(ezxml_t *elements,char *id,double *value)
+{
 	char V1[100],V2[100];
 	int ok,i,ln; 
 
@@ -5031,7 +4971,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 	return (abs(*ierr)); /* ierr>0 recoverable error; ierr>0 unrecoverable error; ierr=0: ok*/
 }
 /*--------------------------------------------------------------------------*/
-int CallKinsol(double *told)
+static int CallKinsol(double *told)
 {
 	N_Vector y=NULL, yscale=NULL, fscale=NULL;
 	double *fsdata, *ysdata;

@@ -93,11 +93,8 @@ int hfjac_(double *, double *, int *);
 int rhojac_(double *, double *,double *,double *, int *, double *,int *);
 int rho_( double *, double *,double *,double *,double *, int *);
 int fx_( double *, double *);
-int read_xml_initial_states(int ,const char * , char **, double *);
+int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *svars);
 int write_xml_states(int,const char *, char **, double *);
-double pow_(double , double );
-double exp_(double ); 
-double log_(double ); 
 
 #if _MSC_VER
 	#ifdef min

@@ -105,7 +105,7 @@ typedef struct {
 	double *xd;           /* 73 - derivative of continuous state */
 } ScicosImport;
 
-
+ScicosImport* getscicosimportptr(void);
 int getscicosvarsfromimport(char *what,void **v,int *nv,int *mv);
 
 #endif /* __IMPORT_H__ */

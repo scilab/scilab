@@ -39,7 +39,6 @@ extern void str2sci(char** x,int n,int m);
 extern int *listentry(int *header, int i);
 extern int CopyVarFromlistentry(int lw, int *header, int i);
 extern int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp);
-extern void callf(double *t, scicos_block *block, int *flag);
 extern int C2F(funnum) (char *fname);
 extern int C2F(namstr)();
 extern void  GetDynFunc();

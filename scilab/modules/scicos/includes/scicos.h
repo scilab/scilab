@@ -86,5 +86,6 @@ typedef  struct  {
 
 
 int C2F(scicos)();
+void callf(double *t, scicos_block *block, int *flag);
 
 #endif 
