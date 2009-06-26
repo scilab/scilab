@@ -33,30 +33,31 @@
  * use in the design, construction, operation or maintenance of any nuclear
  * facility.
  */
+
+
+
 package org.scilab.modules.gui.bridge.filechooser;
 
 import java.io.File;
 import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.Vector;
 import javax.swing.filechooser.FileFilter;
 
 /**
- * This Class manage file mask for the graphic export filechooser
- * @author Sylvestre KOUMAR
+ * This Class manages file mask for the graphic export filechooser
  */
 public class FileMask extends FileFilter {
 	
-	private Hashtable filters = null;
+	private Vector<String> filters = null;
 	private String description = null;
 	private String fullDescription = null;
-	private boolean useExtensionsInDescription = true;	
 
 	/**
 	 * Create a file filter
 	 * If there is no filter added, display all files
 	 */
 	public FileMask() {
-		this.filters = new Hashtable();
+		this.filters = new Vector<String>();
 	}
 
 	/**
@@ -65,8 +66,23 @@ public class FileMask extends FileFilter {
 	 */
 	public FileMask(String extension, String description) {
 		this();
-		if(extension!=null) addExtension(extension);
-		if(description!=null) setDescription(description);
+		filters.add(extension.toLowerCase());
+		this.description=description;
+	}
+
+
+	/**
+	 * Creates a file filter that accepts the given file type.
+	 * with several extensions
+	 * Ex: "jpg", "JPEG Images"
+	 */
+	public FileMask(String extensions[], String description) {
+		this();
+
+		for(int i = 0; i < extensions.length; i++) {
+			filters.add(extensions[i]);
+		}
+		this.description=description;
 	}
 
 	/**
@@ -78,8 +94,8 @@ public class FileMask extends FileFilter {
 			if(f.isDirectory() || filters.size()==0) {
 				return true;
 			}
-			String extension = getExtension(f);
-			if(extension != null && filters.get(getExtension(f)) != null) {
+			String extension = getExtension(f);		
+			if(extension != null && filters.contains(extension)) {
 				return true;
 			};
 		}
@@ -102,15 +118,14 @@ public class FileMask extends FileFilter {
 	}
 	
 	/**
-	 * Add a file type to the file mask
-	 * @param extension the new type
+	 * Get the extension from the filter
 	 */
-	public void addExtension(String extension) {
-		if(filters == null) {
-			filters = new Hashtable(5);
+	public String getExtensionFromFilter() {
+		if(filters != null) {
+			/* If exists, retrieve the actual extension from the filter */
+			return (String)filters.elementAt(0);
 		}
-		filters.put(extension.toLowerCase(), this);
-		fullDescription = null;
+		return null;
 	}
 	
 	/**
@@ -118,39 +133,21 @@ public class FileMask extends FileFilter {
 	 */
 	public String getDescription() {
 		if(fullDescription == null) {
-			if(description == null || isExtensionListInDescription()) {
+			if(description == null) {
 				fullDescription = description==null ? "(" : description + " ("; 
-				Enumeration extensions = filters.keys();
-				if(extensions != null) {
+				Enumeration extensions = filters.elements();
+				if(extensions != null && extensions.hasMoreElements()) {
 					fullDescription += "." + (String) extensions.nextElement();
 					while (extensions.hasMoreElements()) {
 						fullDescription += ", ." + (String) extensions.nextElement();
 					}
 				}
-				fullDescription += ")";
-			}
-			else {
-				fullDescription = description;
+				return fullDescription + ")";
 			}
 		}
-		return fullDescription;
+		return description;
 	}
 	
-	/**
-	 * Set the description for the mask
-	 */
-	public void setDescription(String description) {
-		this.description = description;
-		fullDescription = null;
-	}
-
-	/**
-	 * Allow to display description
-	 */
-	public boolean isExtensionListInDescription() {
-		return useExtensionsInDescription;
-	}
-
 	public void clearExtensions() {
 		filters.clear();
 	}
