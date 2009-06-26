@@ -1081,6 +1081,7 @@ int createCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int* _piP
 	int iRet					= 0;
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
+	int* piChildAddr	= NULL;
 	int iTotalLen			= 0;
 	int iItemLen			= 0;
 
