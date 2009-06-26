@@ -82,25 +82,6 @@ int intxproperty(char *fname,unsigned long fname_len)
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-int intphasesim(char *fname, unsigned long fname_len)
-     /* renvoi la phase de simulation phase=get_phase_simulation() */
-{ 
-  int un,l1;
-  int isrun = C2F(cosim).isrun;
-
-  if (!isrun) {
-    Scierror(999,"%s: scicosim is not running.\n",fname);
-  }
-  else {
-    CheckRhs(-1,0);
-    CheckLhs(1,1);
-    CreateVar(1,"i",(un=1,&un),(un=1,&un),&l1);
-    *istk(l1)=get_phase_simulation();
-    LhsVar(1)=1;
-  }
-  return 0;
-}
-/*--------------------------------------------------------------------------*/ 
 int intsetxproperty(char *fname, unsigned long fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
       *	(-1: algebriques, +1 differentielles) */
