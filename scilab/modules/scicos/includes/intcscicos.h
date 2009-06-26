@@ -37,7 +37,7 @@ int intsetxproperty(char *fname, unsigned long fname_len);
 int intsetblockerror(char *fname, unsigned long fname_len);
 int intscicosimc(char *fname,unsigned long fname_len);
 int intgetscicosvarsc(char *fname,unsigned long fname_len);
-int intcurblkc(char *fname,unsigned long fname_len);
+
 
 
 int MlistGetFieldNumber(int *ptr, const char *string);
