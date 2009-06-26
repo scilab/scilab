@@ -9,12 +9,24 @@
 
 // End user function
 
-// Return %T if a (or several) toolbox has been loaded in this scilab session
+// Output arguments :
 
-function res = atomsIsLoaded(name,version)
+//   res  :  .%T if the toolbox is loaded in this scilab session
+//           . Matrix of boolean ( n x 1 ) 
+//           . mandatory
+
+//   version_out : . If the toolbox is loaded, version_out is the version of the
+//                   loaded toolbox
+//                   otherwise, version_out = "-1"
+//                 . Matrix of string (n x 1)
+//                 . mandatory
+
+function [res,version_out] = atomsIsLoaded(name,version)
 	
-	rhs = argn(2);
-	res = [];
+	rhs         = argn(2);
+	lhs         = argn(1);
+	res         = [];
+	version_out = [];
 	
 	// Check number of input arguments
 	// =========================================================================
@@ -60,19 +72,33 @@ function res = atomsIsLoaded(name,version)
 		if isempty(version) then
 			// Just check the name
 			res(i) = or(packages(:,1) == name(i));
-		
+			
 		else
 			// Filter on names
 			packages_version = packages( find(packages(:,1) == name(i)) , 2 );
 			
-			// Check if the wnated version is present$
+			// Check if the wanted version is present$
 			res(i) = or(packages_version == version(i) );
+		end
+		
+		if lhs>1 then
+			if res(i) then
+				version_out(i) = packages( find(packages(:,1) == name(i)) , 2 )
+			else
+				version_out(i) = "";
+			end
 		end
 		
 	end
 	
-	// Reshape the matrix
+	// Reshape the matrix [res]
 	// =========================================================================
 	res = matrix(res,size(name) );
+	
+	// Reshape the matrix [version_out]
+	// =========================================================================
+	if lhs > 1
+		version_out = matrix(version_out,size(name) );
+	end
 	
 endfunction

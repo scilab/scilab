@@ -42,6 +42,7 @@
 
 function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 	
+	lhs = argn(1);
 	rhs = argn(2);
 	
 	// Check number of input arguments
@@ -112,7 +113,10 @@ function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 		end
 		
 		tree_out(name+" - "+version(i)) = this_package_details;
-		version_out                     = version(i);
+		
+		if lhs>1 then
+			version_out = version(i);
+		end
 		
 		// Now, loop on dependencies
 		// =========================================================================
