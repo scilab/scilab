@@ -17,8 +17,8 @@
 // See the file ../license.txt
 //
 
-function p=scicos_include_paths()
-  modules=["scicos_blocks","dynamic_link","scicos","core"]
+function p=scicos_include_paths(modules)
+  if argn(2)<1 then modules=["scicos_blocks","dynamic_link","scicos","core"],end
   if getos()=="Windows" then //Windows
     p='""'+WSCI+"\modules\"+modules+"\includes"+'""'
   else //Unix
