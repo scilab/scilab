@@ -120,22 +120,3 @@ int intsetxproperty(char *fname, unsigned long fname_len)
   return 0;
 }
 /*--------------------------------------------------------------------------*/ 
-int intsetblockerror(char *fname, unsigned long fname_len)
-     /* renvoi une erreur */
-{
-  int un,l1;
-  int isrun = C2F(cosim).isrun;
-
-  CheckRhs(1,1);
-
-  if (!isrun) {
-    Scierror(999,"%s: scicosim is not running.\n",fname);
-  }
-  else {
-    GetRhsVar(1,"i",(un=1,&un),(un=1,&un),&l1);
-    set_block_error(*istk(l1));
-    LhsVar(1)=0;
-  }
-  return 0;
-}
-/*--------------------------------------------------------------------------*/ 
