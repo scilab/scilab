@@ -728,7 +728,7 @@ proc showopenwin {tiledisplay} {
         set preselectedfilterinopensaveboxes [extenstoknowntypes $curtaext]
     }
 
-    if {$Tk85} {
+    if {$Tk85 && $::tcl_platform(os) != "SunOS"} {
         # make use of TIP242 (-typevariable option)
         # note that $bug2672_shows_up is necessarily false (see
         # definition of bug2672_shows_up)
@@ -1059,7 +1059,7 @@ proc filesaveas {textarea} {
 
     set writesucceeded 0
 
-    if {$Tk85} {
+    if {$Tk85 && $::tcl_platform(os) != "SunOS"} {
         # make use of TIP242 (-typevariable option)
         # note that $bug2672_shows_up is necessarily false (see
         # definition of bug2672_shows_up)
@@ -1081,7 +1081,7 @@ proc filesaveas {textarea} {
         set preselectedfilterinopensaveboxes [extenstoknowntypes [file extension $myfile]]
         set writesucceeded [writesave $textarea $myfile]
         while {!$writesucceeded} {
-            if {$Tk85} {
+            if {$Tk85 && $::tcl_platform(os) != "SunOS"} {
                 # make use of TIP242 (-typevariable option)
                 # note that $bug2672_shows_up is necessarily false (see
                 # definition of bug2672_shows_up)

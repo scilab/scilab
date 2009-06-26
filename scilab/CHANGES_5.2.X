@@ -270,3 +270,5 @@ Bug fixes:
 * bug 4605 fixed - basename('') returns a error.
 
 * bug 4606 fixed - example of 'link' in help does not work
+
+* bug 4611 fixed - what function doesn't returns a complete list of functions.

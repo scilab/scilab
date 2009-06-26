@@ -1,6 +1,14 @@
 
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
+
+
+Improvements:
+=============
+
+* Catalan localization added to Scipad (Thanks Oriol Gonzalez)
+
+
 Compilation:
 ============
 
@@ -151,9 +159,14 @@ Bug fixes:
 
  * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval (+ some other problems fixed in mtlb_eval).
 
- * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks 
-		    to Paul Griffiths for the patch!
+ * bug 4612 fixed - The graphic export used to consider .jpeg as an invalid
+   	   			  	extension.
 
+ * bug 4614 fixed - On some (rare) archs/OS, File -> Export on a graphic could
+   	   			  	lead to a crash 
+
+ * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks
+                    to Paul Griffiths for the patch!
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================

@@ -229,7 +229,7 @@ proc importmatlab {} {
     set types [concat "{\"$matfiles\"" "{*.m}}" \
                       "{\"$allfiles\"" "{* *.*}}" ]
     set dtitle [mc "Matlab file to convert"]
-    if {$Tk85} {
+    if {$Tk85 && $::tcl_platform(os)!="SunOS"} {
         # make use of TIP242 (-typevariable option)
         # note that $bug2672_shows_up is necessarily false (see
         # definition of bug2672_shows_up)
