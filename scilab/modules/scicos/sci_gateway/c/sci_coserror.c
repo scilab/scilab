@@ -54,7 +54,7 @@ int sci_coserror(char *fname, unsigned long fname_len)
 
 	if (!isrun) 
 	{
-		Scierror(999,"%s: scicosim is not running. \r\n",fname);
+		Scierror(999,"%s: scicosim is not running.\n",fname);
 	}
 	else 
 	{

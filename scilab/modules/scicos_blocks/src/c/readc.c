@@ -144,7 +144,7 @@ double *inptr[],*outptr[],*t;
       irep = fseek(fd,offset,0) ;
       if ( irep != 0 ) 
 	{
-	  sciprint("Read error\r\n");
+	  sciprint("Read error\n");
 	  *flag = -1;
 	  fclose(fd);
 	  z[3] = 0.0;
