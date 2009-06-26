@@ -51,7 +51,7 @@ int create_hashtable_scilab_functions(unsigned int nel)
 		  for(i=0;i<hashtableSize;i++)
 		    {
 		      htable[i].used = 0;
-		      strcpy(htable[i].entry.namefunction," ");
+		      strcpy(htable[i].entry.namefunction,"");
 		      htable[i].entry.key[0] = 0;
 		      htable[i].entry.data = 0;
 		    }
