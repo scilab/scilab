@@ -151,6 +151,9 @@ Bug fixes:
 
  * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval (+ some other problems fixed in mtlb_eval).
 
+ * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks 
+		    to Paul Griffiths for the patch!
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
