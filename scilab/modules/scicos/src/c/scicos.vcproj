@@ -394,6 +394,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\il_sim.c"
+				>
+			</File>
+			<File
+				RelativePath=".\il_state.c"
+				>
+			</File>
+			<File
 				RelativePath=".\import.c"
 				>
 			</File>
@@ -560,6 +568,14 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\gw_scicos.h"
+				>
+			</File>
+			<File
+				RelativePath=".\il_sim.h"
+				>
+			</File>
+			<File
+				RelativePath=".\il_state.h"
 				>
 			</File>
 			<File

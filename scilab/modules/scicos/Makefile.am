@@ -33,7 +33,9 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/scicosclip.c \
 src/c/sciblk4.c \
-src/c/ezxml.c
+src/c/ezxml.c \
+src/c/il_state.c \
+src/c/il_sim.c
 
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
