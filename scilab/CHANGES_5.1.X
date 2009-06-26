@@ -164,6 +164,9 @@ Bug fixes:
  * bug 4614 fixed - On some (rare) archs/OS, File -> Export on a graphic could
    	   			  	lead to a crash 
 
+ * bug 4616 fixed - Text strings in SVG output are not rotated. Thanks 
+		    to Paul Griffiths for the patch!
+
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
                =================================================
