@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include <math.h>
 #include "scicos_block4.h"
+#include "scicos_indexfinder.h"
 /*--------------------------------------------------------------------------*/ 
 #define InterpExtrapBlin  1
 #define InterpEndValue    2
@@ -30,7 +31,6 @@
 #define InterpExtraplin   6
 /*--------------------------------------------------------------------------*/ 
 double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, double x, double y);
-int indexfinder2(double x, int n, double *LT);
 /*--------------------------------------------------------------------------*/ 
 void lookup2d(scicos_block *block,int flag)
 {
@@ -67,8 +67,8 @@ double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, do
   int i = 0,j = 0,im = 0,jm = 0;
   double fq11 = 0.,fq12 = 0.,fq21 = 0.,fq22 = 0.,w = 0.,w1 = 0.,w2 = 0.,z = 0.;
   double x1 = 0.,x2 = 0.,x3 = 0.,y1 = 0.,y2 = 0.,y3 = 0.,z1 = 0.,z2 = 0.,z3 = 0.,A = 0.,B = 0.,C = 0.,D = 0.;
-  i=indexfinder2(x, nx, X); 
-  j=indexfinder2(y, ny, Y);  
+  i=scicos_indexfinder(x, nx, X); 
+  j=scicos_indexfinder(y, ny, Y);  
 
   if (method==InputNearest){
     
@@ -143,22 +143,4 @@ double computeZ2(double *X, double *Y, double *Z, int nx, int ny, int method, do
   }
   return z;
 }
-/*--------------------------------------------------------------------------*/ 
-int indexfinder2(double x, int n, double *LT)
-{
-  int i1, i2, i_mid;
-  
-  /* if X(k-1)<= x < X(k) then i2=k */
-  if (x<=LT[0]  ) return 1;
-  if (x>=LT[n-1]) return n-1;
-  i1=0;
-  i2=n-1;
-
-  while (i1!=i2-1){
-    i_mid=(int)((i1+i2)/2);
-    if (x>=LT[i_mid])  i1=i_mid;
-    else          i2=i_mid;
-  }	
-  return i2;
-}	
 /*--------------------------------------------------------------------------*/ 

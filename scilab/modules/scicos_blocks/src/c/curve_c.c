@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "scicos_block4.h"
 #include "MALLOC.h"
+#include "scicos_evalhermite.h"
 /*--------------------------------------------------------------------------*/ 
 /*    Masoud Najafi, August 2007 */
 /*    Copyright INRIA
@@ -33,8 +34,6 @@
 #define Order    block->ipar[1]
 #define Periodic block->ipar[2]
 #define T        rpar[nPoints-1]-rpar[0]
-/*--------------------------------------------------------------------------*/ 
-int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
 /*--------------------------------------------------------------------------*/ 
 void curve_c(scicos_block *block,int flag)
 {
@@ -126,7 +125,7 @@ void curve_c(scicos_block *block,int flag)
 		y2=rpar[nPoints+inow+1];
 		d1=rpar[2*nPoints+inow];
 		d2=rpar[2*nPoints+inow+1];
-		Myevalhermite(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
+		scicos_evalhermite(&t, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
 		y[0]=h;
 		break;
 	      }
@@ -180,29 +179,4 @@ void curve_c(scicos_block *block,int flag)
    default : break;
   }
 }
-/*--------------------------------------------------------------------------*/ 
-int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i)
-{
-  double tmxa, p, c2, c3, dx;
-
-  /*    if (old_i != *i) {*/
-/*        compute the following Newton form : */
-/*           h(t) = ya + da*(t-xa) + c2*(t-xa)^2 + c3*(t-xa)^2*(t-xb) */
-	dx = 1. / (*xb - *xa);
-	p = (*yb - *ya) * dx;
-	c2 = (p - *da) * dx;
-	c3 = (*db - p + (*da - p)) * (dx * dx);
-	/*	}	 old_i = *i;*/
-
-/*     eval h(t), h'(t), h"(t) and h"'(t), by a generalised Horner 's scheme */
-    tmxa = *t - *xa;
-    *h = c2 + c3 * (*t - *xb);
-    *dh = *h + c3 * tmxa;
-    *ddh = (*dh + c3 * tmxa) * 2.;
-    *dddh = c3 * 6.;
-    *h = *da + *h * tmxa;
-    *dh = *h + *dh * tmxa;
-    *h = *ya + *h * tmxa;
-    return 0; 
-} /* evalhermite_ */
 /*--------------------------------------------------------------------------*/ 

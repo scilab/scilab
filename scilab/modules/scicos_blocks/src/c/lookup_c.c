@@ -21,6 +21,7 @@
 /*--------------------------------------------------------------------------*/ 
 #include "MALLOC.h"
 #include "scicos_block4.h"
+#include "scicos_evalhermite.h"
 /*--------------------------------------------------------------------------*/ 
 /*    Masoud Najafi, January 2008 */
 /*    Copyright INRIA
@@ -35,8 +36,7 @@
 #define Extrapo  block->ipar[3]
 #define T        RPAR[nPoints-1]-RPAR[0]
 /*--------------------------------------------------------------------------*/ 
-int FindIndex(int, double , int , int , double *, int);
-int Myevalhermite(double *t, double *xa, double *xb, double *ya, double *yb, double *da, double *db, double *h, double *dh, double *ddh, double *dddh, int *i);
+static int FindIndex(int, double , int , int , double *, int);
 /*--------------------------------------------------------------------------*/ 
 void lookup_c(scicos_block *block,int flag)
 {
@@ -128,7 +128,7 @@ void lookup_c(scicos_block *block,int flag)
 	  d1=RPAR[2*nPoints+i];
 	  d2=RPAR[2*nPoints+i+1];
 	  /*-- this function is defined in curve_c.c ---*/
-	  Myevalhermite(&u0, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
+	  scicos_evalhermite(&u0, &t1,&t2, &y1,&y2, &d1,&d2, &h, &dh, &ddh, &dddh, &inow);
 	  y[0]=h;
 	  break;
 	}
@@ -181,7 +181,7 @@ void lookup_c(scicos_block *block,int flag)
       }
 }
 /*--------------------------------------------------------------------------*/ 
-int FindIndex(int order, double inp, int idown, int iup, double *data, int N)
+static int FindIndex(int order, double inp, int idown, int iup, double *data, int N)
  {
   int im;
   if (inp<=data[0] )  return 0;

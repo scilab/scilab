@@ -27,28 +27,7 @@
 #include "cvstr.h"
 #include "mget.h"
 /*--------------------------------------------------------------------------*/ 
-int worldsize(char type[4])
-{
-  char c;
-  int wsz = 0;
-
-  c=type[0];
-  if (c=='u') c=type[1];
-  switch ( c )
-    {
-    case 'l' : wsz=sizeof(long);
-      break;
-    case 's' : wsz=sizeof(short);
-      break;
-    case 'c' : wsz=sizeof(char);
-      break;
-    case 'd' : wsz=sizeof(double);
-      break;
-    case 'f' : wsz=sizeof(float); 
-      break;
-    }
-  return wsz;
-}
+static int worldsize(char type[4]);
 /*--------------------------------------------------------------------------*/ 
 void readc(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,rpar,nrpar,
 	       ipar,nipar,inptr,insz,nin,outptr,outsz,nout)
@@ -200,5 +179,28 @@ double *inptr[],*outptr[],*t;
     z[3] = 0.0;
   }
   return;
+}
+/*--------------------------------------------------------------------------*/ 
+int worldsize(char type[4])
+{
+	char c;
+	int wsz = 0;
+
+	c=type[0];
+	if (c=='u') c=type[1];
+	switch ( c )
+	{
+	case 'l' : wsz=sizeof(long);
+		break;
+	case 's' : wsz=sizeof(short);
+		break;
+	case 'c' : wsz=sizeof(char);
+		break;
+	case 'd' : wsz=sizeof(double);
+		break;
+	case 'f' : wsz=sizeof(float); 
+		break;
+	}
+	return wsz;
 }
 /*--------------------------------------------------------------------------*/ 

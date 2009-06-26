@@ -28,11 +28,11 @@
 static double c_b4 = 1.;
 static double c_b5 = 0.;
 /*--------------------------------------------------------------------------*/ 
-int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
+static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
 		  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
 		  int *ldc);
-long int lsame(char *, char *);
-int xerbla(char *, int *);
+static long int lsame(char *ca, char *cb);
+static int xerbla(char *srname, int *info);
 /*--------------------------------------------------------------------------*/ 
 int dmmul(double *a, int *na, double *b, int *nb, double *c__, 
 	  int *nc, int *l, int *m, int *n)
@@ -76,7 +76,7 @@ int dmmul(double *a, int *na, double *b, int *nb, double *c__,
 	return 0;
 } /* dmmul */
 /*--------------------------------------------------------------------------*/ 
-int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
+static int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha, 
 	  double *a, int *lda, double *b, int *ldb,double *beta, double *c, 
 	  int *ldc)
 {
@@ -429,7 +429,7 @@ int dgemm(char *transa, char *transb, int *m, int *n, int *k, double *alpha,
   
 } /* dgemm */
 /*--------------------------------------------------------------------------*/ 
-long int lsame(char *ca, char *cb)
+static long int lsame(char *ca, char *cb)
 {
   /* System generated locals */
   long int ret_val;
@@ -533,7 +533,7 @@ long int lsame(char *ca, char *cb)
   return ret_val;
 } /* lsame */
 /*--------------------------------------------------------------------------*/ 
-int xerbla(char *srname, int *info)
+static int xerbla(char *srname, int *info)
 {
   
   /*  -- LAPACK auxiliary routine (version 3.0) -- */
