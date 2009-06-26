@@ -9,17 +9,30 @@
 
 // Internal function
 
-// Return a matrix that list the changes caused by the installation of one or
-// more packages
+// Output arguments :
 
-// !~  U  toolbox_4  1.0  !
-// !                      !
-// !~     toolbox_2  1.3  !
-// !                      !
-// !~     toolbox_1  1.9  !
-// !                      !
-// !~  U  toolbox_5  1.0  !
+//   insList  : . List  of the changes caused by the installation of one or
+//                more packages
+//              . matrix ( n x 4 ) 
+//              . mandatory
+//              . example :
+//                 !~  U  toolbox_4  1.0  !
+//                 !                      !
+//                 !~     toolbox_2  1.3  !
+//                 !                      !
+//                 !~     toolbox_1  1.9  !
+//                 !                      !
+//                 !~  U  toolbox_5  1.0  !
 
+//   tree_out : . Dependency tree of the package (returned by atomsDependencyTree)
+//              . struct
+//              . mandatory
+//              . Example :
+//                   tree_out  = 
+//                   toolbox_5 - 1.0: [1x1 struct]
+//                   toolbox_4 - 1.0: [1x1 struct]
+//                   toolbox_2 - 1.3: [1x1 struct]
+//                   toolbox_1 - 1.9: [1x1 struct]
 
 function [insList,depTree] = atomsInstallList(packages)
 	
@@ -84,12 +97,16 @@ function [insList,depTree] = atomsInstallList(packages)
 		end
 		
 		// Build the depencency tree
-		tree = atomsDependencyTree(package_names(i),package_versions(i));
+		[tree,version_out]  = atomsDependencyTree(package_names(i),package_versions(i));
 		
-		if (type(depTree) == 4) & (~ depTree) then
+		if (type(tree) == 4) & (~ tree) then
 			chdir(initialpath);
 			error(msprintf(gettext("%s: The dependency tree cannot be resolved.\n"),"atomsInstallList",1));
 		end
+		
+		// Update the  package_versions(i) with the version returned by
+		// atomsDependencyTree
+		package_versions(i) = version_out;
 		
 		// Concatenate the tree with the existing one
 		depTree = atomsCatTree( depTree , tree );
@@ -100,9 +117,9 @@ function [insList,depTree] = atomsInstallList(packages)
 	// =========================================================================
 	
 	for i=1:size(package_names,"*")
-		this_package_details                = depTree(package_names(i));
-		this_package_details("user_choice") = %T;
-		depTree(package_names(i))           = this_package_details;
+		this_package_details                                = depTree(package_names(i)+" - "+package_versions(i));
+		this_package_details("user_choice")                 = %T;
+		depTree(package_names(i)+" - "+package_versions(i)) = this_package_details;
 	end
 	
 	// Now we have the list of package that have to be installed

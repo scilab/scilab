@@ -9,7 +9,38 @@
 
 // internal function
 
-function tree_out = atomsDependencyTree(name,version,tree_in)
+// Input arguments :
+
+//   name : . technical name of the package
+//          . single string
+//          . mandatory
+
+//   version : . version of the package
+//             . single string
+//             . optional
+
+//   tree_in : . Tree that will be concatenated in the output tree
+//             . struct
+//             . optional
+
+
+// Output arguments :
+
+//   tree_out : . Dependency tree of the package
+//              . struct
+//              . mandatory
+//              . Example :
+//                   tree_out  = 
+//                   toolbox_5 - 1.0: [1x1 struct]
+//                   toolbox_4 - 1.0: [1x1 struct]
+//                   toolbox_2 - 1.3: [1x1 struct]
+//                   toolbox_1 - 1.9: [1x1 struct]
+
+//   version_out : . version of the package
+//                 . single string
+//                 . optional
+
+function [tree_out,version_out] = atomsDependencyTree(name,version,tree_in)
 	
 	rhs = argn(2);
 	
@@ -39,6 +70,10 @@ function tree_out = atomsDependencyTree(name,version,tree_in)
 	// =========================================================================
 	
 	if size(name) <> 1 then
+		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
+	end
+	
+	if (rhs>=2) & (size(name)<>1) then
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"atomsDependencyTree",1));
 	end
 	
@@ -76,7 +111,8 @@ function tree_out = atomsDependencyTree(name,version,tree_in)
 			return tree_out;
 		end
 		
-		tree_out(name) = this_package_details;
+		tree_out(name+" - "+version(i)) = this_package_details;
+		version_out                     = version(i);
 		
 		// Now, loop on dependencies
 		// =========================================================================

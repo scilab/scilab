@@ -134,9 +134,10 @@ function result = atomsInstall(packages,allusers)
 	
 	for i=1:size(install_package_list(:,1),"*")
 		
-		this_package_details = dependency_tree(install_package_list(i,3));
 		this_package_name    = install_package_list(i,3);
 		this_package_version = install_package_list(i,4);
+		
+		this_package_details = dependency_tree(this_package_name+" - "+this_package_version);
 		
 		if install_package_list(i,1) <> "+" then
 			continue;
