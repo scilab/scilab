@@ -25,8 +25,6 @@
 
 /* functions to split (gateways) */
 
-int inttree3(char *fname, unsigned long fname_len);
-int inttree4(char *fname,unsigned long fname_len);
 int intxproperty(char *fname,unsigned long fname_len);
 int intphasesim(char *fname, unsigned long fname_len);
 int intsetxproperty(char *fname, unsigned long fname_len);
