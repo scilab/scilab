@@ -1,16 +1,17 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Allan CORNET
+* 
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at    
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 #include <string.h>
 #include <stdio.h>
+#include <stdio.h> /* sprintf */
 #include "gw_core.h"
 #include "stack-c.h"
 #include "MALLOC.h"
@@ -30,7 +31,7 @@ static int CreateLocalFunctionsTab(void);
 static int IsACommand(char *primitive);
 static void DispInternalFunctions(void);
 static void DispCommands(void);
-static void SortStrings(char **Strs,int SizeOfStrs);
+static int cmpfunctionnames( const void *a ,const void *b);
 /*--------------------------------------------------------------------------*/
 extern char **GetFunctionsList(int *sizeList);
 /*--------------------------------------------------------------------------*/
@@ -44,7 +45,7 @@ int C2F(sci_what)(char *fname,unsigned long fname_len)
 	CheckLhs(1,2);
 
 	CreateLocalFunctionsTab();
-	SortStrings(LocalFunctionsTab,SizeLocalFunctionsTab);
+	qsort( LocalFunctionsTab , SizeLocalFunctionsTab ,  sizeof (char *)  , cmpfunctionnames);
 
 	if (Lhs == 1)
 	{
@@ -82,10 +83,10 @@ static void DispInternalFunctions(void)
 	sciprint("\n");
 	sciprint(_("Internal Functions:\n"));
 	sciprint("\n");
-	for (i=1;i<SizeLocalFunctionsTab-1;i++)
+	for (i=0;i<SizeLocalFunctionsTab;i++)
 	{
-		sciprint("%+24s ",LocalFunctionsTab[i-1]);
-		if (i%4==0) sciprint("\n");
+		sciprint("%+24s ",LocalFunctionsTab[i]);
+		if ((i+1)%4==0) sciprint("\n");
 	}
 	sciprint("\n");
 }
@@ -99,10 +100,10 @@ static void DispCommands(void)
 	sciprint("\n");
 	sciprint(_("Commands:\n"));
 	sciprint("\n");
-	for (i=1;i <sizecommandwords+1;i++)
+	for (i=0;i <sizecommandwords;i++)
 	{
-		sciprint("%+24s ",commandwords[i-1]);
-		if (i%4==0) sciprint("\n");
+		sciprint("%+24s ",commandwords[i]);
+		if ((i+1)%4==0) sciprint("\n");
 	}
 	sciprint("\n");
 
@@ -178,24 +179,8 @@ static int CreateLocalFunctionsTab(void)
 	return TRUE;
 }
 /*--------------------------------------------------------------------------*/
-static void SortStrings(char **Strs,int SizeOfStrs)
+static int cmpfunctionnames( const void *a ,const void *b)
 {
-	int fin,i;
-	for(fin=SizeOfStrs-1;fin>0;fin--)
-	{
-		int Sorted=FALSE;
-		for(i=0;i<fin;i++)
-		{
-			if(strcmp(Strs[i],Strs[i+1])>0)
-			{
-				char *tmp;
-				memcpy(&tmp,Strs+i,sizeof(char *));
-				memcpy(Strs+i,Strs+(i+1),sizeof(char *));
-				memcpy(Strs+(i+1),&tmp,sizeof(char *));
-				Sorted=TRUE;
-			}
-		}
-		if(!Sorted)break;
-	}
+	return strcmp(*(const char **)a, *(const char **)b );
 }
 /*--------------------------------------------------------------------------*/
