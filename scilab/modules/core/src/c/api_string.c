@@ -96,7 +96,6 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
 int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
 {
 	int* piOffset = NULL;
-	int* piAddr		= NULL;
 	int* piData		= NULL;
 	int i					= 0;
 	int iOffset		= 0;

@@ -71,42 +71,44 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
 	hsize_t	dims[1];
 	size_t	iDim;
 
-	char		*pstValue;
+	char		*pstValue			= NULL;
 
+	if(H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstName))
+	{
+		iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+		/*
+		* Get the datatype and its size.
+		*/
+		iFileType = H5Aget_type (iAttributeId);
+		iDim = H5Tget_size (iFileType);
+		iDim++;                         /* Make room for null terminator */
 
-	iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
-	/*
-	* Get the datatype and its size.
-	*/
-	iFileType = H5Aget_type (iAttributeId);
-	iDim = H5Tget_size (iFileType);
-	iDim++;                         /* Make room for null terminator */
+		/*
+		* Get dataspace and allocate memory for read buffer.  This is a
+		* two dimensional attribute so the dynamic allocation must be done
+		* in steps.
+		*/
+		iSpace = H5Aget_space (iAttributeId);
+		H5Sget_simple_extent_dims (iSpace, dims, NULL);
 
-	/*
-	* Get dataspace and allocate memory for read buffer.  This is a
-	* two dimensional attribute so the dynamic allocation must be done
-	* in steps.
-	*/
-	iSpace = H5Aget_space (iAttributeId);
-	H5Sget_simple_extent_dims (iSpace, dims, NULL);
+		/*
+		* Allocate space for string data.
+		*/
+		pstValue = (char *) malloc ( (size_t)((dims[0] * iDim + 1 ) * sizeof (char)));
 
-	/*
-	* Allocate space for string data.
-	*/
-	pstValue = (char *) malloc ( (size_t)((dims[0] * iDim + 1 ) * sizeof (char)));
+		/*
+		* Create the memory datatype.
+		*/
+		memtype = H5Tcopy (H5T_C_S1);
+		status = H5Tset_size (memtype, iDim);
 
-	/*
-	* Create the memory datatype.
-	*/
-	memtype = H5Tcopy (H5T_C_S1);
-	status = H5Tset_size (memtype, iDim);
+		/*
+		* Read the data.
+		*/
+		status = H5Aread (iAttributeId, memtype, pstValue);
 
-	/*
-	* Read the data.
-	*/
-	status = H5Aread (iAttributeId, memtype, pstValue);
-
-	H5Aclose(iAttributeId);
+		H5Aclose(iAttributeId);
+	}
 	return pstValue;
 
 }
@@ -116,18 +118,15 @@ static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
 	int iRet							= 0;
 	char *pstScilabClass	= NULL;
 
-//	status = H5Giterate (_iFile, "/", NULL, op_func, &iDatasetId);
-	if(H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstAttribute))
+	//status = H5Giterate (_iFile, "/", NULL, op_func, &iDatasetId);
+	pstScilabClass = readAttribute(_iDatasetId, _pstAttribute);
+	if(pstScilabClass != NULL && strcmp(pstScilabClass, _pstValue) == 0)
 	{
-		pstScilabClass = readAttribute(_iDatasetId, _pstAttribute);
-		if(pstScilabClass != NULL && strcmp(pstScilabClass, _pstValue) == 0)
-		{
-			iRet = 1;
-		}
-		if(pstScilabClass)
-		{
-			free(pstScilabClass);
-		}
+		iRet = 1;
+	}
+	if(pstScilabClass)
+	{
+		free(pstScilabClass);
 	}
 	return iRet;
 }
@@ -142,6 +141,38 @@ int isComplexData(int _iDatasetId)
 	return checkAttribute(_iDatasetId, (char*)g_SCILAB_CLASS_COMPLEX, "true");
 }
 
+int getDatasetPrecision(int _iDatasetId, int* _piPrec)
+{
+	int iRet							= 0;
+	char* pstScilabClass	= readAttribute(_iDatasetId, g_SCILAB_CLASS_PREC);
+	if(pstScilabClass == NULL)
+	{
+		return 0;
+	}
+	else if(strcmp(pstScilabClass, "8") == 0)
+	{
+		iRet	= SCI_INT8;
+	}
+	else if(strcmp(pstScilabClass, "16") == 0)
+	{
+		iRet = SCI_INT16;
+	}
+	else if(strcmp(pstScilabClass, "32") == 0)
+	{
+		iRet = SCI_INT32;
+	}
+	else if(strcmp(pstScilabClass, "64") == 0)
+	{
+		iRet = SCI_INT64;
+	}
+	else
+	{
+		iRet = 0;
+	}
+	
+	free(pstScilabClass);
+	return iRet;
+}
 
 int getVariableNames(int _iFile, char **pstNameList)
 {
@@ -518,6 +549,26 @@ int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _i
 	return readCommonPolyMatrix(_iDatasetId, _pstVarname, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
 }
 
+int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
+{
+	return 0;
+}
+
+int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData)
+{
+	return 0;
+}
+
+int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
+{
+	return 0;
+}
+
+int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData)
+{
+	return 0;
+}
+
 int getScilabTypeFromDataSet(int _iDatasetId)
 {
 	int iVarType					= 0;
@@ -543,6 +594,10 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
 	{
 		iVarType = sci_poly;
+	}
+	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_INT) == 0)
+	{
+		iVarType = sci_ints;
 	}
 	else if(strcmp(pstScilabClass, g_SCILAB_CLASS_LIST) == 0)
 	{
