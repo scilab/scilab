@@ -223,7 +223,6 @@ int createCommonNamedMatrixOfPoly(char* _pstName, int _iNameLen, char* _pstVarNa
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iSize					= _iRows * _iCols;
 	int iRet					= 0;
 	int *piAddr				= NULL;
 	int iTotalLen			= 0;
@@ -263,10 +262,6 @@ int readCommonNamedMatrixOfPoly(char* _pstName, int _iNameLen, int _iComplex, in
 {
 	int iRet					= 0;
 	int* piAddr				= NULL;
-	double* pdblReal	= NULL;
-	double* pdblImg		= NULL;
-	int iSize					= 0;
-	int iOne					= 1;
 
 	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
 	if(iRet)

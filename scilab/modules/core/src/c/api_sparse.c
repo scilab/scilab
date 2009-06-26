@@ -41,7 +41,6 @@ int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 
 static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	int i							= 0;
 	int iPos					= 0;
 
 	if(	_piAddress == NULL || 
@@ -95,7 +94,6 @@ static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iC
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
-	int *piAddr			= NULL;
 	int	iTotalSize	= 0;
 	int iOffset			= 0;
 
