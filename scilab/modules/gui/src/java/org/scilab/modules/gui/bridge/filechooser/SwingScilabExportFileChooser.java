@@ -12,6 +12,7 @@
 package org.scilab.modules.gui.bridge.filechooser;
 
 import java.io.File;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -48,7 +49,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	
 	private final String bmp = "bmp";
 	private final String gif = "gif";
-	private final String jpg = "jpg";
+	private final String[] jpg = {"jpg","jpeg"};
 	private final String png = "png";
 	private final String ppm = "ppm";
 	private final String emf = "emf";
@@ -56,26 +57,11 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	private final String fig = "fig";
 	private final String pdf = "pdf";
 	private final String svg = "svg";
-	private final String byExtension = "*";
+	private final String allFiles = "*";
 	
 	private String exportName;	
 	private String extensionSelected;
 	private int figureId;
-	
-	//Format description & format name	
-	private	String [][] data = {
-			{bmpDesc, bmp},
-			{gifDesc, gif},
-			{jpgDesc, jpg},
-			{pngDesc, png},
-			{ppmDesc, ppm},
-			{emfDesc, emf},
-			{epsDesc, eps},
-			{figDesc, fig},
-			{pdfDesc, pdf},
-			{svgDesc, svg},
-			{byExtensionDesc, byExtension} // should always be at the last position
-	};
 	
 	/**
 	 * Default constructor
@@ -93,29 +79,36 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 * @param figureId exported figure number
 	 */
 	public void exportCustomFileChooser(int figureId) {		
+		Vector<FileMask> v = new Vector<FileMask> (12);  /* The order does matter */
+		v.addElement(new FileMask(bmp,bmpDesc));
+		v.addElement(new FileMask(gif,gifDesc));
+		v.addElement(new FileMask(jpg,jpgDesc));
+		v.addElement(new FileMask(png,pngDesc));
+		v.addElement(new FileMask(ppm,ppmDesc));
+		v.addElement(new FileMask(emf,emfDesc));
+		v.addElement(new FileMask(eps,epsDesc));
+		v.addElement(new FileMask(fig,figDesc));
+		v.addElement(new FileMask(pdf,pdfDesc));
+		v.addElement(new FileMask(svg,svgDesc));
+		v.addElement(new FileMask(allFiles,allFilesDesc)); // should always be at the last position
 
 		super.setDialogTitle(Messages.gettext("Export"));
 		super.setApproveButtonText(Messages.gettext("Export"));
 		File exportFile = new File(Messages.gettext("Untitled-export"));
 		super.setSelectedFile(exportFile);
 		super.setAcceptAllFileFilterUsed(false);		
-		
-		//image filter
-		FileMask[] fm = new FileMask[data.length];
-		
+
 		this.figureId = figureId;
 		
-		for (int i = 0; i < data.length; i++) {
-			fm[i] = new FileMask(data[i][1].toString(), data[i][0].toString());
+		for (int i = 0; i < v.size(); i++) {
+			FileMask fm = (FileMask)v.elementAt(i);
+			if (i==v.size()-1){
+				fm.clearExtensions();
+			}
+			super.addChoosableFileFilter(fm);
 		}
-		
-		for (int i = 0; i < fm.length; i++) {
-			super.addChoosableFileFilter(fm[i]);
-		}				
 				
-		fm[fm.length-1].clearExtensions();		
-			
-
+								   
         //Preview panel 
 		JPanel panelPreview = new JPanel();
 		
@@ -135,15 +128,14 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		accessoryPanel.setVisible(true);	
 		super.setAccessory(accessoryPanel);
 		
-		
 		JFrame frame = new JFrame();	
 		frame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage());
 		int selection = super.showSaveDialog(frame);		
 		
 		if (selection == JFileChooser.APPROVE_OPTION) {		
-			javax.swing.filechooser.FileFilter ft = super.getFileFilter();
-			exportName = super.getSelectedFile().getAbsolutePath();
-			
+			FileMask ft = (FileMask)super.getFileFilter();
+			this.exportName = super.getSelectedFile().getAbsolutePath();
+
 			//Test if there is a file with the same name
 			if (new File(this.exportName).exists()) {
 				int actionDialog = JOptionPane.showConfirmDialog(this, Messages.gettext("Replace existing file?"), Messages.gettext("File already exists"), JOptionPane.YES_NO_OPTION);
@@ -154,16 +146,13 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 					return;
 				}
 			}
-			
-			
-			extensionSelected = ft.getDescription();
-			
-			//get the extension from the description of the combobox
-			String extensionCombo = extensionSelected.subSequence(extensionSelected.indexOf(".") + 1, extensionSelected.length() - 1).toString().toLowerCase();
-			
-			if (extensionCombo.equals(byExtension)) {				
+
+
+			//get the extension from the Filter
+			String extensionCombo = ft.getExtensionFromFilter();
+
+			if (extensionCombo.equals(allFiles)) {				
 				exportManager();	
-				
 			} else if(extensionCombo.equals(emf) || extensionCombo.equals(eps) || extensionCombo.equals(fig) 
 					|| extensionCombo.equals(pdf) || extensionCombo.equals(svg)){		
 				vectorialExport(extensionCombo);
@@ -175,7 +164,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		
 	}
 	
-	
+ 
 	/**
 	 * Return the file extension
 	 * @param fileName Name of the file
@@ -209,7 +198,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		} else if (userExtension.equals(gif)) {			
 			bitmapExport(userExtension);			
 			
-		} else if (userExtension.equals(jpg)) {
+		} else if (userExtension.equals(jpg[0])||userExtension.equals(jpg[1])) {
 			bitmapExport(userExtension);
 			
 		} else if (userExtension.equals(png)) {
@@ -245,11 +234,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 * @param userExtension extension caught by the user
 	 */
 	public void bitmapExport(String userExtension) {
-		ExportData exportData;
+		ExportData exportData = new ExportData(figureId, this.exportName, userExtension, null);
 		String exportcmd;
-		
-		exportData = new ExportData(figureId, exportName, userExtension, null);
-		
+
 		//the export instruction for the selected format
 		exportcmd = "xs2" + exportData.getExportExtension() 
 		+ "(" + figureId + ", '" + exportData.getExportName() + "');";
