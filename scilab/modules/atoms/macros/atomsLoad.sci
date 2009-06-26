@@ -67,6 +67,14 @@ function result = atomsLoad(name,version)
 		end
 	end
 	
+	// Verbose Mode ?
+	// =========================================================================
+	if strcmpi(atomsGetConfig("Verbose"),"True") == 0 then
+		VERBOSE = %T;
+	else
+		VERBOSE = %F;
+	end
+	
 	// Define the path of the loaded file
 	// =========================================================================
 	loaded_file = pathconvert(TMPDIR+"/atoms/loaded",%F);
@@ -80,14 +88,134 @@ function result = atomsLoad(name,version)
 		loaded = [];
 	end
 	
+	// Loop on packages gived by the user
+	// =========================================================================
+	
+	mandatory_packages      = struct();
+	mandatory_packages_name = struct();
+	mandatory_packages_mat  = [];
+	
+	for i=1:size(name,"*")
+		
+		// Check if the user try to load 2 versions of the same toolbox at the
+		// same time
+		// =====================================================================
+		if size( find( name(i) == name ) > 1 ) then
+			this_versions = version( find( name(i) == name ) );
+			for j=2:size(this_versions,"*")
+				if this_versions(j) <> this_versions(1) then
+					mprintf(gettext("%s: Several versions of a package (%s) cannot be loaded at the same scilab session :\n"),"atomsLoad",name(i));
+					mprintf(gettext("\t - You''ve asked ''%s - %s''\n"),name(i),this_versions(1));
+					mprintf(gettext("\t - You''ve asked ''%s - %s''\n"),name(i),this_versions(j));
+					mprintf("\n");
+					error("");
+				end
+			end
+		end
+		
+		// Check if this toolbox is already loaded
+		// =====================================================================
+		if atomsIsLoaded(name(i),version(i)) then
+			if VERBOSE then
+				mprintf("\tThe package %s (%s) is already loaded\n",name(i),version(i));
+			end
+			continue;
+		end
+		
+		// Check if another version of this toolbox is already loaded
+		// =====================================================================
+		[is_loaded,loaded_version] =  atomsIsLoaded(name(i));
+		if is_loaded then
+			error(msprintf(gettext("%s: Another version of the package %s is already loaded : %s\n","atomsLoad",name(i),loaded_version)));
+			continue;
+		end
+		
+		mandatory_packages(name(i)+" - "+version(i)) = "asked_by_user";
+		mandatory_packages_name(name(i)) = version(i);
+		mandatory_packages_mat = [ mandatory_packages_mat ; name(i) version(i) path(i) ];
+		
+	end
+	
+	// Fill the list of package to load
+	// =========================================================================
+	
+	for i=1:size(name,"*")
+		
+		childs = atomsGetDepChilds(name(i),version(i));
+		
+		for j=1:size( childs(:,1) , "*")
+			
+			// Check if it is already loaded
+			// -------------------------------------------------------
+			if atomsIsLoaded( childs(j,1) , childs(j,2) ) then
+				continue;
+			end
+			
+			// Check if another version of this package is already loaded
+			// -------------------------------------------------------
+			[is_loaded,loaded_version] =  atomsIsLoaded(childs(j,1));
+			if is_loaded then
+				mprintf(gettext("%s: Several versions of a package (%s) cannot be loaded at the same scilab session :\n"),"atomsLoad",childs(j,1));
+				mprintf(gettext("\t - ''%s - %s'' is already loaded\n"),childs(j,1),loaded_version);
+				mprintf(gettext("\t - ''%s - %s'' is needed by ''%s - %s''\n"),childs(j,1),childs(j,2),name(i),version(i));
+				mprintf("\n");
+				error("");
+			end
+			
+			// Check if it is already in the list
+			// -------------------------------------------------------
+			if isfield( mandatory_packages , childs(j,1)+" - "+childs(j,2) ) then
+				continue;
+			end
+			
+			// Check if another version is already in the list
+			// -------------------------------------------------------
+			if isfield( mandatory_packages_name , childs(j,1) ) then
+				
+				// if it's not the name version => error
+				if mandatory_packages_name(childs(j,1)) <> childs(j,2) then
+					
+					mprintf(gettext("%s: Several versions of a package (%s) cannot be loaded at the same scilab session :\n"),"atomsLoad",childs(j,1));
+					mprintf(gettext("\t - ''%s - %s'' is needed by ''%s - %s''\n"),childs(j,1),childs(j,2),name(i),version(i));
+					
+					// The other version of the package is asked by the user
+					if mandatory_packages(childs(j,1)+" - "+mandatory_packages_name(childs(j,1))) == "asked_by_user" then
+						mprintf(gettext("\t - You''ve asked ''%s - %s''\n"),childs(j,1),mandatory_packages_name(childs(j,1)));
+					
+					// The other version of the package is a need by another package
+					else
+						mprintf(gettext("\t - ''%s - %s'' is needed by ''%s''\n"), .. 
+							childs(j,1), .. // name
+							mandatory_packages_name(childs(j,1)), .. // version
+							mandatory_packages(childs(j,1)+" - "+mandatory_packages_name(childs(j,1))) .. // name - version
+							);
+					end
+					
+					mprintf("\n");
+					error("");
+				end
+			end
+			
+			// The child has passed the test, add it to the mandatory
+			// packages to load
+			// -------------------------------------------------------
+			
+			mandatory_packages(childs(j,1)+" - "+childs(j,2)) = name(i)+" - "+version(i);
+			mandatory_packages_name(childs(j,1)) = childs(j,2);
+			mandatory_packages_mat = [ mandatory_packages_mat ; childs(j,1) childs(j,2) atomsGetInstalledPath(childs(j,1),childs(j,2)) ];
+			
+		end
+	end
+	
 	// Libraries to resume
 	// =========================================================================
 	libs_resume = [];
 	
-	// Loop on packages
-	// =========================================================================
-	
-	for i=1:size(name,"*")
+	for i=1:size(mandatory_packages_mat(:,1),"*")
+		
+		this_package_name    = mandatory_packages_mat(i,1);
+		this_package_version = mandatory_packages_mat(i,2);
+		this_package_path    = mandatory_packages_mat(i,3);
 		
 		// Get the list of lib
 		// =====================================================================
@@ -96,7 +224,7 @@ function result = atomsLoad(name,version)
 		// Exec the loader
 		// =====================================================================
 		
-		loader_file = pathconvert(path(i)) + "loader.sce";
+		loader_file = pathconvert(this_package_path) + "loader.sce";
 		
 		if fileinfo(loader_file)==[] then
 			error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible.\n"),"atomsLoad",loader_file));
@@ -119,13 +247,13 @@ function result = atomsLoad(name,version)
 		
 		// Fill the output argument
 		// =====================================================================
-		result = [ result ; name(i) version(i) path(i) ];
+		result = [ result ; mandatory_packages_mat(i,:) ];
 		
 		// fill the loaded matrix
 		// =====================================================================
-		if find(loaded == name(i)+" - "+version(i)) == [] then
+		if find(loaded == this_package_name + " - " + this_package_version) == [] then
 			nbAdd  = nbAdd + 1;
-			loaded = [ loaded ; name(i)+" - "+version(i) ];
+			loaded = [ loaded ; this_package_name + " - " + this_package_version ];
 		end
 		
 	end
@@ -167,6 +295,6 @@ function result = atomsLoad(name,version)
 	
 	// Exec the resume cmd
 	// =========================================================================
-	execstr(resume_cmd,"errcatch");
+	// execstr(resume_cmd,"errcatch");
 	
 endfunction
