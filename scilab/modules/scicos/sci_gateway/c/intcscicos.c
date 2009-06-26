@@ -89,7 +89,7 @@ int intendscicosim(char *fname,unsigned long fname_len)
 
   CheckRhs(-1,0);
   if (!isrun) {
-    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+    Scierror(999,"%s: scicosim is not running.\n",fname);
   }
   else {
     end_scicos_sim();
@@ -121,7 +121,7 @@ int intduplicate(char *fname, unsigned long fname_len)
   }
   if (n!=m2*n2) 
     {
-      Scierror(999,"%s: 1st and 2nd argument must have equal size \r\n",fname);
+      Scierror(999,"%s: 1st and 2nd argument must have equal size\n",fname);
       return 0;
     }
   comp_size(stk(l2),&n3,n);
@@ -264,7 +264,7 @@ int intxproperty(char *fname,unsigned long fname_len)
   int isrun = C2F(cosim).isrun;
 
   if (!isrun) {
-    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+    Scierror(999,"%s: scicosim is not running.\n",fname);
   }
   else {
     CheckRhs(-1,0);
@@ -284,7 +284,7 @@ int intphasesim(char *fname, unsigned long fname_len)
   int isrun = C2F(cosim).isrun;
 
   if (!isrun) {
-    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+    Scierror(999,"%s: scicosim is not running.\n",fname);
   }
   else {
     CheckRhs(-1,0);
@@ -304,7 +304,7 @@ int intsetxproperty(char *fname, unsigned long fname_len)
   int isrun = C2F(cosim).isrun;
 
   if (!isrun) {
-    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+    Scierror(999,"%s: scicosim is not running.\n",fname);
   }
   else {
     CheckRhs(1,1);
@@ -324,7 +324,7 @@ int intsetblockerror(char *fname, unsigned long fname_len)
   CheckRhs(1,1);
 
   if (!isrun) {
-    Scierror(999,"%s: scicosim is not running. \r\n",fname);
+    Scierror(999,"%s: scicosim is not running.\n",fname);
   }
   else {
     GetRhsVar(1,"i",(un=1,&un),(un=1,&un),&l1);
