@@ -20,6 +20,9 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
+import javax.swing.filechooser.FileFilter;
+
+import org.scilab.modules.localization.Messages;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 
@@ -31,17 +34,17 @@ import org.scilab.modules.action_binding.InterpreterManagement;
  */
 public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	
-	private final String bmpDesc = "Windows BMP image";
-	private final String gifDesc = "GIF image";
-	private final String jpgDesc = "JPEG image";
-	private final String pngDesc = "PNG image";
-	private final String ppmDesc = "PPM image";
-	private final String emfDesc = "Enhanced Metafile image";
-	private final String epsDesc = "Encapsulated PostScript image";
-	private final String figDesc = "FIG image";
-	private final String pdfDesc = "PDF image";
-	private final String svgDesc = "SVG image";
-	private final String byExtensionDesc = "By extension";
+	private final String bmpDesc = Messages.gettext("Windows BMP image");
+	private final String gifDesc = Messages.gettext("GIF image");
+	private final String jpgDesc = Messages.gettext("JPEG image");
+	private final String pngDesc = Messages.gettext("PNG image");
+	private final String ppmDesc = Messages.gettext("PPM image");
+	private final String emfDesc = Messages.gettext("Enhanced Metafile image (EMF)");
+	private final String epsDesc = Messages.gettext("Encapsulated PostScript image (EPS)");
+	private final String figDesc = Messages.gettext("FIG image");
+	private final String pdfDesc = Messages.gettext("PDF image");
+	private final String svgDesc = Messages.gettext("SVG image");
+	private final String allFilesDesc = Messages.gettext("All files");
 	
 	private final String bmp = "bmp";
 	private final String gif = "gif";
@@ -91,10 +94,9 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 */
 	public void exportCustomFileChooser(int figureId) {		
 
-		super.setDialogTitle("Export");		
-		super.setApproveButtonText("Export");
-		final String fileName = "Untitled-export";
-		File exportFile = new File(fileName);
+		super.setDialogTitle(Messages.gettext("Export"));
+		super.setApproveButtonText(Messages.gettext("Export"));
+		File exportFile = new File(Messages.gettext("Untitled-export"));
 		super.setSelectedFile(exportFile);
 		super.setAcceptAllFileFilterUsed(false);		
 		
@@ -119,7 +121,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 		
         //Title for preview panel
         TitledBorder titlePreview;
-        titlePreview = BorderFactory.createTitledBorder(" Preview ");        
+        titlePreview = BorderFactory.createTitledBorder(Messages.gettext("Preview"));
         panelPreview.setBorder(titlePreview);
         
         //add preview image
@@ -143,9 +145,8 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 			exportName = super.getSelectedFile().getAbsolutePath();
 			
 			//Test if there is a file with the same name
-			File existFile = new File(exportName);
-			if (existFile.exists()) {
-				int actionDialog = JOptionPane.showConfirmDialog(this, "Replace existing file?", "File already exist", JOptionPane.YES_NO_OPTION);
+			if (new File(this.exportName).exists()) {
+				int actionDialog = JOptionPane.showConfirmDialog(this, Messages.gettext("Replace existing file?"), Messages.gettext("File already exists"), JOptionPane.YES_NO_OPTION);
 
 				if(actionDialog == JOptionPane.YES_OPTION) {
 
@@ -194,13 +195,13 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 * Manage the export (bitmap/vectorial format) and export errors 
 	 */
 	public void exportManager() {
-		
+
 		//get the extension of the fileName chosen by the user (can be 'null')
-		String userExtension = getExtension(exportName);			
+		String userExtension = getExtension(this.exportName);			
 		
 		if (userExtension == null) {
 			//fileName without extension + "by extension (.*)" selected
-			JOptionPane.showMessageDialog(this, "Please specify a file format", "Error on export", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, Messages.gettext("Please specify a file format"), Messages.gettext("Error on export"), JOptionPane.ERROR_MESSAGE);
 			return;
 		} else if (userExtension.equals(bmp)) {
 			bitmapExport(userExtension);
@@ -234,7 +235,7 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 			
 		} else {
 			//fileName with a wrong extension + "by extension (.*)" selected
-			JOptionPane.showMessageDialog(this, "Unrecognized extension '" + userExtension + "'.\n Please specify a valid file format.", "Error on export", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, Messages.gettext("Unrecognized extension '") + userExtension + Messages.gettext("'.\n Please specify a valid file format."), Messages.gettext("Error on export"), JOptionPane.ERROR_MESSAGE);
 			return;
 		}		
 	}
