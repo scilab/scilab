@@ -104,6 +104,7 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/string/includes \
+			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/intersci/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
