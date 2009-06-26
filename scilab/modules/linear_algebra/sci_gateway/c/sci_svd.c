@@ -9,6 +9,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+#include "double_api.h"
+#include "common_api.h"
+#include "string_api.h"
 
 #include <string.h>
 #include <stdio.h>
@@ -25,176 +28,168 @@
   [U,S,V]=svd(X) [U,S,V]:  [ [C|R: rows x rows], [R: rows x cols ],  [R|C: cols x cols ] ]
   [U,S,V]=svd(X,0) (obsolete) [U,S,V]=svd(X,"e"): [ [C|R:rows x min(rows,cols)], [R: min(rows,cols) x min(rows,cols)], [C|R:cols x min(rows,cols)] ]
   [U,S,V,rk]=svd(X [,tol]) : cf. supra, rk[R 1 x 1]
- */
+
+  /!\ Contrary to specifications (@ http://www.scilab.org/product/man/svd.html )
+  , previous version was accepting Lhs==2. Worse : tests were using this undocumented behavior.
+  implementation and tests have been fixed according to the specification.
+
+*/
+static int copyStrArrayArg(int* varAdr, int* pRows, int* pCols, char*** strArrayArg );
+static void freeStrArray(char** strArray, int size);
 
 extern int C2F(vfinite)(int *n, double *v);
+
+static int isEconomyMode(int*const arg2);
+
+static int handleEmptyMatrix(void);
+
+static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double** ptrsU, double** pS, double** ptrsV);
+
 
 int C2F(intsvd)(char *fname,unsigned long fname_len)
 {
   int ret=0, economy=0, complexArg, iRows, iCols;
   double* pData= NULL;
-  double* pDataReal= NULL;
-  double* pDataImg= NULL;
 
   double* pSV= NULL;
 
-  double* pU= NULL;
-  double* pUReal= NULL;
-  double* pUImg= NULL;
+  /* ptrs to data : either
+     Real -> ptrsU[0] = ptr do double data
+     Complex -> ptrsU[0]= ptr to doublecomplex data, ptrsU[1]= ptr to real (double) data and ptrsU[2]= ptr to imaginary (double) data */
+  double* ptrsU[3]= {NULL, NULL, NULL}; 
 
   double* pS= NULL;
-
-  double* pV= NULL;
-  double* pVReal= NULL;
-  double* pVImg= NULL;
+  /* cf. ptrsU */
+  double* ptrsV[3]= {NULL, NULL, NULL};
 
   double tol= 0.;
   double* pRk= NULL;
 
-  if ( (Rhs >=1) && (GetType(1)!=sci_matrix))
+  int* adr1= NULL;
+  int* adr2= NULL;
+  int* tmpRef= NULL;
+  if ( Rhs >=1 )
     {
-      OverLoad(1);
-      return 0;
-    }
-  CheckRhs(1,2);
-  CheckLhs(1, 4);
-
-  economy= (Rhs==2) && (Lhs==3);
-  if( (complexArg=iIsComplex(1)) )
-    {
-      GetRhsVarMatrixComplex(1, &iRows, &iCols, &pDataReal, &pDataImg);
-      /* c -> z */
-      pData=(double*)oGetDoubleComplexFromPointer( pDataReal, pDataImg, iRows * iCols);
-      if(!pData)
+      getVarAddressFromNumber(1, &adr1);
+      if(getVarType(adr1) != sci_matrix)
 	{
-	  Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-	  ret = 1;
-	}
-    }
-  else
-    {
-      GetRhsVarMatrixDouble(1, &iRows, &iCols, &pData);
-    }
-  if(iRows == 0) /* empty matrix */
-    {
-      switch (Lhs){
-	case 4:
-	{
-	  iAllocMatrixOfDouble(Rhs+5, 1,1, &pRk);
-	  *pRk= 0.;
-	  LhsVar(4)= Rhs + 5; /* no break */
-	}
-	case 3:
-	{
-	  double* dummy;
-	  iAllocMatrixOfDouble(Rhs+3, iRows, iCols, &dummy); /* yes original Fortran code does this... (no check on iCols) */
-	  LhsVar(3)= Rhs + 3; /* no break */
-	}
-	case 2: /* illegal according to doc, but there was Fortran code to handle this, so... */
-	{
-	  double* dummy;
-	  iAllocMatrixOfDouble(Rhs+1, iRows, iCols, &dummy);
-	  LhsVar(2)= Rhs + 1; /* no break */
-	}
-	case 1:
-	{
-	  LhsVar(1)= 1;
-	}
-      }
-    }
-  else
-    {
-      if((iRows == -1) || (iCols== -1))
-	{
-	  Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
-	   ret= 1;
+	  OverLoad(1);
+	  return 0;
 	}
       else
 	{
-	  int const totalsize= iRows * iCols * (complexArg ? 2 : 1); 
-	  if(!C2F(vfinite)(&totalsize, pData))
+	  CheckRhs(1,2);
+	  CheckLhs(1, 4);
+	  if(Rhs == 2)
 	    {
-	      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"), 1);
-	      ret= 1;
+	      getVarAddressFromNumber(2, &adr2);
+	      economy= isEconomyMode(adr2);
+	    }
+	  if( (complexArg= isVarComplex(adr1)) )
+	    {
+	      getComplexZMatrixOfDouble(adr1, &iRows, &iCols, ((doublecomplex**)&pData));
+	      if(!pData)
+		{
+		  Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+		  ret = 1;
+		}
 	    }
 	  else
 	    {
-	      if(Lhs >= 3)
+	      getMatrixOfDouble(adr1, &iRows, &iCols, &pData);
+	    }
+	  if(iRows == 0) /* empty matrix */
+	    {
+	      handleEmptyMatrix();
+	    }
+	  else
+	    {
+	      if((iRows == -1) || (iCols== -1))
 		{
-		  int const economyRows= economy ? Min(iRows, iCols) : iRows;
-		  int const economyCols= economy ? Min(iRows, iCols) : iCols;
-		  if(complexArg)
+		  Scierror(271,_("Size varying argument a*eye(), (arg %d) not allowed here.\n"), 1);
+		  ret= 1;
+		}
+	      else
+		{
+		  int const totalsize= iRows * iCols * (complexArg ? 2 : 1); 
+		  if(!C2F(vfinite)(&totalsize, pData))
 		    {
-		      iAllocComplexMatrixOfDouble(Rhs+1, iRows, economyRows , &pUReal, &pUImg);
-		      pU= (double*)MALLOC(iRows * economyRows*(complexArg ? sizeof(doublecomplex): sizeof(double)));
-		      iAllocMatrixOfDouble(Rhs+2, economyRows, economyCols, &pS);
-		      iAllocComplexMatrixOfDouble(Rhs+3, iCols, economyCols , &pVReal, &pVImg);
-		      pV= (double*)MALLOC(iCols * economyCols*(complexArg ? sizeof(doublecomplex): sizeof(double)));
+		      Scierror(264,_("Wrong value for argument %d: Must not contain NaN or Inf.\n"), 1);
+		      ret= 1;
 		    }
 		  else
 		    {
-		      iAllocMatrixOfDouble(Rhs+1, iRows, economyRows , &pU);
-		      iAllocMatrixOfDouble(Rhs+2, economyRows, economyCols, &pS);
-		      iAllocMatrixOfDouble(Rhs+3, iCols, economyCols , &pV);
-		    }
-		  if(Lhs == 4)
-		    {
-		      if( (Rhs == 2) && ( GetType(2) == sci_matrix) ) /* other cases with Rhs==2 are handled as economy mode */
+		      if(Lhs >= 3)
 			{
-			  int dummy; /* original code does not check iRows == iCols == 1 */
-			  double* tmpData;
-			  GetRhsVarMatrixDouble(2, &dummy, &dummy, &tmpData);
-			  tol= *tmpData;
+			  int const economyRows= economy ? Min(iRows, iCols) : iRows;
+			  int const economyCols= economy ? Min(iRows, iCols) : iCols;
+
+			  allocU_S_V(iRows, iCols, economyRows, economyCols, complexArg, ptrsU, &pS, ptrsV);
+
+			  if(Lhs == 4)
+			    {
+			      if( (Rhs == 2 ) && (getVarType(adr2) == sci_matrix)) /*  getVarAddressFromNumber(2, &adr2) was already called */
+				{
+				  int dummy; /* original code does not check iRows == iCols == 1 */
+				  double* tmpData;
+				  getMatrixOfDouble(adr2, &dummy, &dummy, &tmpData);
+				  tol= *tmpData;
+				}
+			      allocMatrixOfDouble(Rhs+4, 1, 1, &pRk, &tmpRef);
+
+			    }
 			}
-		      iAllocMatrixOfDouble(Rhs+4, 1, 1, &pRk);
-		    }
-		}
-	      else
-		{
-		  if(Lhs == 2)
-		    {
-		      Scierror(78,_("%s: Wrong number of output arguments.\n"),fname);
-		    }
-		  else /* Lhs == 1 */
-		    {
-		      iAllocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
-		    }
-		}
-	      ret=  iSvdM(pData, iRows, iCols, complexArg, economy, tol, pSV, pU, pS, pV, pRk);
-	      if(ret){
-		if( ret == -1)
-		  {
-		    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
-		  }
-		else
-		  {
-		    Scierror(24,_("Convergence problem...\n"));
-		  }
-	      }
-	      else
-		{
-		  if(complexArg)
-		    {
-		      vFreeDoubleComplexFromPointer((doublecomplex*)pData);
-		      if(Lhs != 1)
+		      else
 			{
-			  {/* multicore: omp sections */
-			    vGetPointerFromDoubleComplex((doublecomplex*)pU, iRows* (economy ? Min(iRows, iCols) : iRows), pUReal, pUImg);
-			    FREE(pU);
-			  }
+			  if(Lhs == 2)
+			    {
+			      Scierror(78,_("%s: Wrong number of output arguments.\n"),fname);
+			    }
+			  else /* Lhs == 1 */
+			    {
+			      allocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV, &tmpRef);
+			      //iAllocMatrixOfDouble(Rhs+1, Min(iRows, iCols), 1, &pSV);
+			    }
+			}
+		      ret=  iSvdM(pData, iRows, iCols, complexArg, economy, tol, pSV, ptrsU[0], pS, ptrsV[0], pRk);
+		      if(ret){
+			if( ret == -1)
 			  {
-			    vGetPointerFromDoubleComplex((doublecomplex*)pV, iCols* (economy ? Min(iRows, iCols) : iCols), pVReal, pVImg);
-			    FREE(pV);
+			    Scierror(999,_("%s: Cannot allocate more memory.\n"),fname);
+			  }
+			else
+			  {
+			    Scierror(24,_("Convergence problem...\n"));
+			  }
+		      }
+		      else
+			{
+			  if(complexArg)
+			    {
+			      vFreeDoubleComplexFromPointer((doublecomplex*)pData);
+			      if(Lhs != 1)
+				{ /* TODO voir comment double_api.h gère ça ! */
+				  {/* multicore: omp sections */
+				    vGetPointerFromDoubleComplex((doublecomplex*)ptrsU[0], iRows* (economy ? Min(iRows, iCols) : iRows)
+								 , ptrsU[1], ptrsU[2]);
+				    FREE(ptrsU[0]);
+				  }
+				  {
+				    vGetPointerFromDoubleComplex((doublecomplex*)ptrsV[0], iCols* (economy ? Min(iRows, iCols) : iCols)
+								 , ptrsV[1], ptrsV[2]);
+				    FREE(ptrsV[0]);
+				  }
+				}
+			    }
+			  {
+			    int i;
+			    for(i= Lhs; i != 0; --i)
+			      {
+				LhsVar(i)= Rhs + i;
+			      }
 			  }
 			}
 		    }
-		  {
-		    int i;
-		    for(i= Lhs; i != 0; --i)
-		      {
-			LhsVar(i)= Rhs + i;
-		      }
-		  }
 		}
 	    }
 	}
@@ -202,3 +197,110 @@ int C2F(intsvd)(char *fname,unsigned long fname_len)
   return ret;
 }
 /*--------------------------------------------------------------------------*/
+int copyStrArrayArg(int* varAdr, int* pRows, int* pCols, char*** strArrayArg )
+{
+  int * lengths=NULL;
+  int ret=0;
+
+  getMatrixOfString(varAdr, pRows, pCols, NULL, NULL);
+  {
+    int i;
+    int size= *pRows * *pCols;
+    lengths= MALLOC(size * sizeof(int));
+    getMatrixOfString(varAdr, pRows, pCols, lengths, NULL);  
+    *strArrayArg= MALLOC(size * sizeof(char*));
+    for(i=0; i != size; ++i)
+      {
+	(*strArrayArg)[i]= MALLOC((lengths[i]+1)*sizeof(char));
+      }
+  }
+  getMatrixOfString(varAdr, pRows, pCols, lengths, *strArrayArg);  
+  FREE(lengths);
+  return ret;
+}
+
+void freeStrArray(char** strArray, int size)
+{
+  
+  int i;
+  for(i=0; i != size; ++i)
+    {
+      FREE(strArray[i]);
+    }
+  FREE(strArray);
+  
+}
+
+int isEconomyMode(int*const adr2)
+{
+  int economy= 0;
+  if(adr2)
+    {
+      switch(getVarType(adr2))
+	{
+	case sci_strings:
+	  {
+	    char** strArray;
+	    int rows, cols;
+	    copyStrArrayArg(adr2, &rows, &cols, &strArray);
+	    economy= (strArray[0][0]=='e') && (strArray[0][1]=='\0'); /* "e" */
+	    freeStrArray(strArray, rows*cols);
+	    break;
+	  }
+	case sci_matrix:
+	  {
+	    economy= (Lhs == 3); /* no further testing for "old Economy size:  [U,S,V]=svd(A,0) " */
+	    break;
+	  }
+	}
+    }
+  return economy;
+}
+
+int handleEmptyMatrix(void)
+{
+  double* data;
+  int* tmpRef;
+
+  allocMatrixOfDouble(3, 0, 0, &data, &tmpRef);
+  LhsVar(1)= 3;
+  if(Lhs >= 2)
+    {
+      allocMatrixOfDouble(4, 0, 0, &data, &tmpRef);
+      LhsVar(2)= 4;
+    }
+  if(Lhs >=3)
+    {
+      allocMatrixOfDouble(5, 0, 0, &data, &tmpRef);
+      LhsVar(3)= 5;
+    }
+  if(Lhs == 4)
+    {
+      allocMatrixOfDouble(6, 1, 1, &data, &tmpRef);
+      *data= 0.;
+      LhsVar(4)= 6;
+    }
+  return 0;
+}
+
+static int allocU_S_V(int rows, int cols, int economyRows, int economyCols, int isComplex, double* ptrsU[], double** ptrS, double* ptrsV[])
+{
+  int* tmpRef;
+  if(isComplex)
+    {
+      allocComplexMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+1, ptrsU+2, &tmpRef); 
+      ptrsU[0]= (double*)MALLOC(rows * economyRows*(isComplex ? sizeof(doublecomplex): sizeof(double)));
+      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS, &tmpRef);
+      allocComplexMatrixOfDouble(Rhs+3, cols, economyCols, ptrsV+1, ptrsV+2, &tmpRef);
+      ptrsV[0]= (double*)MALLOC(cols * economyCols*(isComplex ? sizeof(doublecomplex): sizeof(double)));
+    }
+  else
+    {
+      ptrsU[1]= ptrsU[2]= NULL;
+      allocMatrixOfDouble(Rhs+1, rows, economyRows, ptrsU+0, &tmpRef);
+      allocMatrixOfDouble(Rhs+2, economyRows, economyCols, ptrS, &tmpRef);
+      ptrsV[1]= ptrsV[2]= (double*)NULL;
+      allocMatrixOfDouble(Rhs+3, cols, economyCols , ptrsV+0, &tmpRef);
+    }
+  return 0;
+}
