@@ -13,9 +13,9 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "sparse_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_sparse.h"
 
 #include "MALLOC.h"
 #include "CallScilab.h"
@@ -41,7 +41,6 @@ int getComplexSparseMatrix(int* _piAddress, int* _piRows, int* _piCols, int* _pi
 
 static int getCommonSparseMatrix(int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
-	int i							= 0;
 	int iPos					= 0;
 
 	if(	_piAddress == NULL || 
@@ -95,11 +94,10 @@ static int allocCommonSparseMatrix(int _iVar, int _iComplex, int _iRows, int _iC
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
-	int *piAddr			= NULL;
 	int	iTotalSize	= 0;
 	int iOffset			= 0;
 
-	getNewVarAddressFromNumber(iNewPos, _piAddress);
+	getNewVarAddressFromPosition(iNewPos, _piAddress);
 	fillCommonSparseMatrix(*_piAddress, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
 	iOffset	= 5;//4 for header + 1 for NbItem
@@ -200,7 +198,7 @@ static int createCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iCo
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 	fillCommonSparseMatrix(piAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalSize);
 
@@ -241,7 +239,7 @@ int readNamedComplexSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, in
 
 static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)
 {
-	int iVarID[nsiz];
+	int iRet					= 0;
 	int* piAddr				= NULL;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
@@ -249,26 +247,11 @@ static int readCommonNamedSparseMatrix(char* _pstName, int _iNameLen, int _iComp
 	double* pdblReal	= NULL;
 	double* pdblImg		= NULL;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
-
-	//define scope of search
-  Fin = -1;
-	//search variable 
-  C2F(stackg)(iVarID);
-
-	if (Err > 0 || Fin == 0)
+	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	if(iRet)
 	{
 		return 1;
 	}
-
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
-
-	//get variable address
-	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
 	
 	if(_iComplex == 1)
 	{

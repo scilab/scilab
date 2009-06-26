@@ -13,9 +13,9 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "boolean_sparse_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_boolean_sparse.h"
 
 //#include <string.h>
 #include "CallScilab.h"
@@ -54,10 +54,9 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
-	int *piAddr			= NULL;
 	int iPos				= 0;
 
-	getNewVarAddressFromNumber(iNewPos, _piAddress);
+	getNewVarAddressFromPosition(iNewPos, _piAddress);
 	fillBooleanSparseMatrix(*_piAddress, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 
 	iPos	= iAddr + 5;//4 for header + 1 for NbItem
@@ -119,7 +118,7 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 	fillBooleanSparseMatrix(piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
 
@@ -145,7 +144,6 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
 int readNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	int* piAddr				= NULL;
-	int iNbItem				= 0;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 

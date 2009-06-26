@@ -1,14 +1,14 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2009-2009 - DIGITEO - Bruno JOFRET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include <hdf5.h>
 #include "stack-c.h"
@@ -18,123 +18,156 @@
 #include "h5_attributeConstants.h"
 
 
-static void addAttribute(int dataSetId, const char *name, const char *value)
+static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
 {
-  hsize_t     attributeDims[1] = {1};
-  hid_t       attributeTypeId, attributeSpace, attr;
-  herr_t      status;
+	hid_t iRet			= 0;
+	int iLevel			= _iLevel;
 
-    /*
-   * Create attribute dataspace.  Setting maximum size to NULL sets the maximum
-   * size to be the current size.
-   */
-  attributeSpace = H5Screate_simple (1, attributeDims, NULL);
+  if(iLevel < 0)
+	{
+		iLevel				= 0;
+	}
 
-  /*
-   * Create special attribute type
-   */
-  attributeTypeId = H5Tcopy(H5T_C_S1);
-  H5Tset_size(attributeTypeId, strlen(value));
-  /*
-   * Create the attribute and write it.
-   */
-  attr = H5Acreate (dataSetId, name, attributeTypeId, attributeSpace, H5P_DEFAULT);
-  status = H5Awrite (attr, attributeTypeId, value);
+  if(iLevel > 9)
+	{
+		iLevel				= 9;
+	}
 
-  /*
-   * Close and release resources.
-   */
-  status = H5Aclose (attr);
+	if(iLevel) 
+	{
+		iRet = H5Pcreate(H5P_DATASET_CREATE);
+		if(iRet<0) 
+		{
+			iRet = 0;
+		} 
+		else 
+		{
+			if(H5Pset_layout(iRet,H5D_COMPACT)<0) 
+			{
+				H5Pclose(iRet);
+				iRet = 0;
+			} 
+			else 
+			{
+				if(H5Pset_chunk(iRet,_iRank, _piDims)<0) 
+				{
+					H5Pclose(iRet);
+					iRet = 0;
+				}
+				else
+				{
+					if(H5Pset_deflate(iRet,iLevel)<0) 
+					{
+						H5Pclose(iRet);
+						iRet = 0;
+					}
+				}
+			}
+		}
+	} 
+	else 
+	{
+		iRet = H5Pcopy(H5P_DEFAULT);
+	}
+	return iRet;
 }
 
-static int writeString(int file, char* dataSetName, char *data)
+static void addAttribute(int _iDatasetId, const char *_pstName, const char *_pstValue)
 {
-  hsize_t     dims[1] = {1};
-  hid_t       typeId, space, dset;
-  herr_t      status;
+	hsize_t     attributeDims[1] = {1};
+	hid_t       attributeTypeId, attributeSpace, attr;
+	herr_t      status;
 
-  /*
-   * Create string dataspace.  Setting maximum size to NULL sets the maximum
-   * size to be the current size.
-   */
-  space = H5Screate_simple (1, dims, NULL);
+	//Create attribute dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	attributeSpace = H5Screate_simple (1, attributeDims, NULL);
 
-  /*
-   * Create special string type
-   */
-  typeId = H5Tcopy(H5T_C_S1);
-  H5Tset_size(typeId, strlen(data));
+	//Create special attribute type
+	attributeTypeId = H5Tcopy(H5T_C_S1);
+	H5Tset_size(attributeTypeId, strlen(_pstValue));
 
-  /*
-   * Create the data set and write it.
-   */
-  dset = H5Dcreate (file, dataSetName, typeId, space, H5P_DEFAULT);
-  status = H5Dwrite (dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, data);
+	//Create the attribute and write it.
+	attr = H5Acreate (_iDatasetId, _pstName, attributeTypeId, attributeSpace, H5P_DEFAULT);
+	status = H5Awrite (attr, attributeTypeId, _pstValue);
 
- /*
-   * Add attribute SCILAB_Class = string to dataset
-   */
-  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
-
-  /*
-   * Close and release resources.
-   */
-  status = H5Dclose (dset);
-  status = H5Sclose (space);
-  return status;
+	//Close and release resources.
+	status = H5Aclose (attr);
 }
 
-int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int cols)
+static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)
 {
-  hsize_t     dims[2] = {rows, cols};
-  herr_t      status;
-  hid_t       space, dset, group;
-  hobj_ref_t  *wdata; 
+	hsize_t     dims[1] = {1};
+	hid_t       typeId, space, dset;
+	herr_t      status;
+	hid_t iCompress;
 
-  char	      *groupName = (char *) malloc((strlen(dataSetName) + 3) * sizeof(char));
-  char        *pstName = NULL;
-  char        *pstPathName = NULL;
+	//Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	space = H5Screate_simple (1, dims, NULL);
+
+	//Create special string type
+	typeId = H5Tcopy(H5T_C_S1);
+	H5Tset_size(typeId, strlen(_pstData));
+
+	//Create the data set and write it.
+	iCompress	= enableCompression(9, 1, dims);
+	dset = H5Dcreate (_iFile, _pstDatasetName, typeId, space, iCompress);
+	status = H5Dwrite (dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
+
+	//Add attribute SCILAB_Class = string to dataset
+	addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
+
+	//Close and release resources.
+	status = H5Dclose (dset);
+	status = H5Sclose (space);
+	return status;
+}
+
+int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, char **data)
+{
+	hsize_t     dims[2] = {_iRows, _iCols};
+	herr_t      status;
+	hid_t       space, dset, group, iCompress;
+	hobj_ref_t  *wdata; 
+
+	char	      *groupName = (char *) malloc((strlen(_pstDatasetName) + 3) * sizeof(char));
+	char        *pstName = NULL;
+	char        *pstPathName = NULL;
 	char				*pstSlash			= NULL;
-  
-  int	      i, j = 0;
 
-  /* Create ref matrix */
-  wdata = (hobj_ref_t *) malloc(rows * cols * sizeof(hobj_ref_t));
+	int	      i, j = 0;
 
-  /* Generate groupname #<dataSetName># */
-  sprintf(groupName, "#%s#", dataSetName);
+	//Create ref matrix
+	wdata = (hobj_ref_t *) malloc(_iRows * _iCols * sizeof(hobj_ref_t));
+
+	// Generate groupname #<dataSetName>#
+	sprintf(groupName, "#%s#", _pstDatasetName);
 	pstSlash			= strstr(groupName, "/");
 	if(pstSlash != NULL)
 	{
 		pstSlash[0]					= '_';
 	}
 
-  /*
-   * First create a group to store all referenced objects.
-   */
-  group = H5Gcreate (file, groupName, H5P_DEFAULT);
-  status = H5Gclose (group);
+	//First create a group to store all referenced objects.
+	group = H5Gcreate (_iFile, groupName, H5P_DEFAULT);
+	status = H5Gclose (group);
 
-  /*
-   * Now create each String as a dedicated DataSet.
-   */
-  for (i = 0 ; i < rows ; ++i)
+	//Now create each String as a dedicated DataSet.
+	for (i = 0 ; i < _iRows ; ++i)
 	{
-		for ( j = 0 ; j < cols ; ++j)
+		for ( j = 0 ; j < _iCols ; ++j)
 		{ 
-			pstName = (char*)malloc(((int)log10((double)(i + rows * j + 1)) + 4) * sizeof(char)); 
+			pstName = (char*)malloc(((int)log10((double)(i + _iRows * j + 1)) + 4) * sizeof(char)); 
 			//1 for null termination, 1 for round value, 2 for '#' characters
-			sprintf(pstName, "#%d#", i + rows * j);
+			sprintf(pstName, "#%d#", i + _iRows * j);
 
 			pstPathName = (char*)malloc((strlen(groupName) + strlen(pstName) + 2) * sizeof(char)); 
 			//1 for null termination, 1 for separator, 2 for '#' characters
 			sprintf(pstPathName, "%s/%s", groupName, pstName);
 
 			// Write the string to ref
-			writeString(file, pstPathName, data[i + rows * j]);
+			writeString(_iFile, pstPathName, data[i + _iRows * j]);
 
 			// create the ref
-			status = H5Rcreate (&wdata[i * cols + j], file, pstPathName, H5R_OBJECT, -1);
+			status = H5Rcreate (&wdata[i * _iCols + j], _iFile, pstPathName, H5R_OBJECT, -1);
 
 			free(pstName);
 			free(pstPathName);
@@ -142,124 +175,272 @@ int writeStringMatrix(int file, char* dataSetName, char **data, int rows, int co
 	}
 
 
-  /*
-   * Create dataspace.  Setting maximum size to NULL sets the maximum
-   * size to be the current size.
-   */
-  space = H5Screate_simple (2, dims, NULL);
-  
-  /*
-   * Create the dataset and write the array data to it.
-   */
-  dset = H5Dcreate (file, dataSetName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
-  status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
-  		     wdata);
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	space = H5Screate_simple (2, dims, NULL);
 
-  /*
-   * Add attribute SCILAB_Class = string to dataset
-   */
-  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, dims);
+	dset = H5Dcreate (_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+	status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		wdata);
 
-  /*
-   * Close and release resources.
-   */
-  status = H5Dclose (dset);
-  status = H5Sclose (space);
+	//Add attribute SCILAB_Class = string to dataset
+	addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_STRING);
 
-  free(groupName);
+	//Close and release resources.
+	status = H5Dclose (dset);
+	status = H5Sclose (space);
 
-  return status;
-  
+	free(groupName);
+
+	return status;
+
 }
 
-int writeDoubleMatrix(int file, char* dataSetName, double *data, int rows, int cols)
+char* createGroupName(char* _pstGroupName)
 {
-  hsize_t     dims[2] = {rows, cols};
-  herr_t      status;
-  hid_t       space, dset;
-  int	      i = 0, j = 0;
-  double      *__data;
-
-  __data = (double*)malloc(sizeof(double) * rows * cols);
-
-  for (i = 0 ; i < rows ; ++i)
-    {
-      for (j = 0 ; j < cols ; ++j)  
+	char* pstSlash			= NULL;
+	char* pstGroupName	= (char *)malloc((strlen(_pstGroupName) + 3) * sizeof(char));
+	// Generate groupname #<dataSetName>#
+	sprintf(pstGroupName, "#%s#", _pstGroupName);
+	pstSlash						= strstr(pstGroupName, "/");
+	if(pstSlash != NULL)
 	{
-	  __data[i * cols + j] = data[i + rows * j];
+		pstSlash[0]				= '_';
 	}
-    }
+	return pstGroupName;
+}
 
-	if(rows * cols == 0)
+char* createPathName(char* _pstGroupName, int _iIndex)
+{
+	char* pstName				= NULL;
+	char* pstPathName		= NULL;
+
+	pstName							= (char*)malloc(((int)log10((double)(_iIndex + 1)) + 3) * sizeof(char)); 
+	//1 for null termination, 2 for '#' characters
+	sprintf(pstName, "#%d#", _iIndex);
+
+	pstPathName					= (char*)malloc((strlen(_pstGroupName) + strlen(pstName) + 2) * sizeof(char)); 
+	//1 for null termination, 1 for separator, 2 for '#' characters
+	sprintf(pstPathName, "%s/%s", _pstGroupName, pstName);
+	return pstPathName;
+}
+
+int openGroup(int _iFile, char* _pstGroupName)
+{
+	hid_t	group;
+	group								=	H5Gopen(_iFile, _pstGroupName);
+	if(group == -1) //group not already exist, we can create it
+	{
+		group							= H5Gcreate(_iFile, _pstGroupName, H5P_DEFAULT);
+	}
+
+	return H5Gclose(group);
+}
+static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int _iIndex, int _iRows, int _iCols, double *_pdblData)
+{
+	hid_t space;
+	hid_t dset;
+	hid_t iCompress			= 0;
+	hsize_t dims[2]			= {_iRows, _iCols};
+	herr_t status				= 0;
+	int i								= 0;
+	int j								= 0;
+	hobj_ref_t iRef			= 0;
+	double *__data			= NULL;
+
+	char* pstPathName		= NULL;
+	char* pstGroupName	= NULL;
+
+	//createGroupe and dataset name
+	pstGroupName				= createGroupName(_pstDatasetName);
+	pstPathName					= createPathName(pstGroupName, _iIndex);
+
+	status = openGroup(_iFile, pstGroupName);
+	if(status)
+	{
+		return 1;
+	}
+
+	__data = (double*)malloc(sizeof(double) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows ; ++i)
+	{
+		for (j = 0 ; j < _iCols ; ++j)  
+		{
+			__data[i * _iCols + j] = _pdblData[i + _iRows * j];
+		}
+	}
+
+	if(_iRows * _iCols == 0)
 	{
 		double dblZero = 0;
 		//tips for empty double matrix
-		
-		/*
-		* Create dataspace.  Setting maximum size to NULL sets the maximum
-		* size to be the current size.
-		*/
+
+		//Create dataspace.  Setting maximum size to NULL sets the maximum
+		//size to be the current size.
 		dims[0] = 1;
 		dims[1] = 1;
 
 		space = H5Screate_simple (2, dims, NULL);
 
-		/*
-		* Create the dataset and write the array data to it.
-		*/
-		dset = H5Dcreate (file, dataSetName, H5T_NATIVE_DOUBLE, space, H5P_DEFAULT);
+		//Create the dataset and write the array data to it.
+		iCompress	= enableCompression(9, 2, dims);
+		dset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
 		status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			&dblZero);
 
-		/*
-		* Add attribute SCILAB_Class = double to dataset
-		*/
+		//Add attribute SCILAB_Class = double to dataset
 		addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
 		addAttribute(dset, g_SCILAB_CLASS_EMPTY, "true");
 	}
 	else
 	{
-		/*
-		* Create dataspace.  Setting maximum size to NULL sets the maximum
-		* size to be the current size.
-		*/
+		//Create dataspace.  Setting maximum size to NULL sets the maximum
+		//size to be the current size.
 		space = H5Screate_simple (2, dims, NULL);
 
-		/*
-		* Create the dataset and write the array data to it.
-		*/
-		dset = H5Dcreate (file, dataSetName, H5T_NATIVE_DOUBLE, space, H5P_DEFAULT);
+		//Create the dataset and write the array data to it.
+		iCompress	= enableCompression(9, 2, dims);
+		dset = H5Dcreate (_iFile, pstPathName, H5T_NATIVE_DOUBLE, space, iCompress);
 		status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			__data);
 
-		/*
-		* Add attribute SCILAB_Class = double to dataset
-		*/
+		//Add attribute SCILAB_Class = double to dataset
 		addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
 	}
 
-  /*
-   * Close and release resources.
-   */
-  status = H5Dclose (dset);
-  status = H5Sclose (space);
+	// create the ref
+	status = H5Rcreate (&iRef, _iFile, pstPathName, H5R_OBJECT, -1);
 
-  free(__data);
+	//Close and release resources.
+	status = H5Dclose (dset);
+	status = H5Sclose (space);
 
-  return status;
+	free(__data);
+	free(pstGroupName);
+	free(pstPathName);
+
+
+	return iRef;
 }
 
-int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int *_piData, int _iRows, int _iCols)
+int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, double *_pdblData)
 {
-  hsize_t piDims[2] = {_iRows, _iCols};
-  herr_t status;
-  hid_t iSpace;
-	hid_t iDataset;
-  int	i							= 0;
-	int j							= 0;
-  int* piData				= NULL;
+	hid_t space					= 0;
+	hid_t dset					= 0;
+	herr_t status				= 0;
+	hsize_t dims[1]			= {1};
+	hid_t iCompress			= 0;
 
-  piData = (int*)malloc(sizeof(int) * _iRows * _iCols);
+
+	hobj_ref_t pRef[1] = {0};
+	pRef[0] = writeCommomDoubleMatrix(_iFile, _pstDatasetName, 0, _iRows, _iCols, _pdblData);
+	if(pRef[0] == 0)
+	{
+		return 1;
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	space								= H5Screate_simple(1, dims, NULL);
+	if(space == 0)
+	{
+		return 1;
+	}
+
+	//Create the dataset and write the array data to it.
+	iCompress						= enableCompression(9, 1, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+	if(dset == 0)
+	{
+		return 1;
+	}
+	status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+	if(status)
+	{
+		return status;
+	}
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
+
+	//Close and release resources.
+	status							= H5Dclose(dset);
+	if(status)
+	{
+		return status;
+	}
+
+	status							= H5Sclose(space);
+	return status;
+}
+
+
+
+int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg)
+{
+	hid_t space					= 0;
+	hid_t dset					= 0;
+	herr_t status				= 0;
+	hid_t iCompress			= 0;
+	hsize_t dims[1]			= {2};
+
+
+	hobj_ref_t pRef[2] = {0};
+	pRef[0] = writeCommomDoubleMatrix(_iFile, _pstDatasetName, 0, _iRows, _iCols, _pdblReal);
+	pRef[1] = writeCommomDoubleMatrix(_iFile, _pstDatasetName, 1, _iRows, _iCols, _pdblImg);
+	if(pRef[0] == 0 || pRef[1] == 0)
+	{
+		return 1;
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	space								= H5Screate_simple(1, dims, NULL);
+	if(space == 0)
+	{
+		return 1;
+	}
+
+	//Create the dataset and write the array data to it.
+	iCompress						= enableCompression(9, 1, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+	if(dset == 0)
+	{
+		return 1;
+	}
+	status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
+	if(status)
+	{
+		return status;
+	}
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(dset, g_SCILAB_CLASS					, g_SCILAB_CLASS_DOUBLE);
+	addAttribute(dset, g_SCILAB_CLASS_COMPLEX	, "true");
+
+	//Close and release resources.
+	status							= H5Dclose(dset);
+	if(status)
+	{
+		return status;
+	}
+
+	status							= H5Sclose(space);
+	return status;
+}
+
+int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int *_piData)
+{
+	hsize_t piDims[2] = {_iRows, _iCols};
+	herr_t status;
+	hid_t iSpace;
+	hid_t	iCompress;
+	hid_t iDataset;
+	int	i							= 0;
+	int j							= 0;
+	int* piData				= NULL;
+
+	piData = (int*)malloc(sizeof(int) * _iRows * _iCols);
 
 	for (i = 0 ; i < _iRows; i++)
 	{
@@ -269,54 +450,395 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int *_piData, int _iRo
 		}
 	}
 
-	/*
-	* Create dataspace.  Setting maximum size to NULL sets the maximum
-	* size to be the current size.
-	*/
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 	iSpace = H5Screate_simple (2, piDims, NULL);
 
-	/*
-	* Create the dataset and write the array data to it.
-	*/
-	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, H5P_DEFAULT);
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, iCompress);
 	status = H5Dwrite (iDataset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		piData);
 
-	/*
-	* Add attribute SCILAB_Class = double to dataset
-	*/
+	//Add attribute SCILAB_Class = double to dataset
 	addAttribute(iDataset, g_SCILAB_CLASS, g_SCILAB_CLASS_BOOLEAN);
 
-  /*
-   * Close and release resources.
-   */
-  status = H5Dclose (iDataset);
-  status = H5Sclose (iSpace);
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
 
-  free(piData);
+	free(piData);
 
-  return status;
+	return status;
 }
+
+//int writePoly(int _iFile, char* _pstDatasetName, int _iNbCoef, double* _pdblReal)
+//{
+//  hsize_t dims[1] = {_iNbCoef};
+//  hid_t space			= 0;
+//	hid_t dset			= 0;
+//  herr_t status		= 0;
+//
+//  //Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+//  space						= H5Screate_simple (1, dims, NULL);
+//
+//  //Create the data set and write it.
+//  dset						= H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, H5P_DEFAULT);
+//  status					= H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pdblReal);
+//
+//	//Add attribute SCILAB_Class = string to dataset
+//  addAttribute(dset, g_SCILAB_CLASS, g_SCILAB_CLASS_DOUBLE);
+//
+//	//Close and release resources.
+//  status					= H5Dclose (dset);
+//  status					= H5Sclose (space);
+//	return status;
+//}
+
+static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+{
+	int i								= 0;
+	int j								= 0;
+	hsize_t dims[2]			= {_iRows, _iCols};
+	herr_t status				= 0;
+	hid_t	space					= 0;
+	hid_t	dset					= 0;
+	hid_t	group					= 0;
+	hid_t iCompress			= 0;
+	hobj_ref_t* pData		= 0; 
+
+	char* pstName				= NULL;
+	char* pstPathName		= NULL;
+	char* pstSlash			= NULL;
+
+	char* pstGroupName	= NULL;
+
+
+	// Create ref matrix
+	pData								= (hobj_ref_t *)malloc(_iRows * _iCols * sizeof(hobj_ref_t));
+
+	// Generate groupname #<dataSetName>#
+	pstGroupName = createGroupName(_pstDatasetName);
+
+	//First create a group to store all referenced objects.
+	group								= H5Gcreate(_iFile, pstGroupName, H5P_DEFAULT);
+	status							= H5Gclose(group);
+
+	//Now create each String as a dedicated DataSet.
+	for (i = 0 ; i < _iRows ; i++)
+	{
+		for ( j = 0 ; j < _iCols ; j++)
+		{
+			pstPathName = createPathName(pstGroupName, i + _iRows * j);
+
+			// Write the string to ref
+			if(_iComplex)
+			{
+				status				= writeDoubleComplexMatrix(_iFile, pstPathName, 1, _piNbCoef[i + _iRows * j], _pdblReal[i + _iRows * j], _pdblImg[i + _iRows * j] );
+			}
+			else
+			{
+				status				= writeDoubleMatrix(_iFile, pstPathName, 1, _piNbCoef[i + _iRows * j],  _pdblReal[i + _iRows * j]);
+			}
+
+			if(status)
+			{
+				return 1;
+			}
+			// create the ref
+			status					= H5Rcreate(&pData[i * _iCols + j], _iFile, pstPathName, H5R_OBJECT, -1);
+			if(status)
+			{
+				return 1;
+			}
+
+			free(pstName);
+			free(pstPathName);
+		}
+	}
+
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	space								= H5Screate_simple(2, dims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress						= enableCompression(9, 2, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
+	status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
+	if(status)
+	{
+		return 1;
+	}
+	//Add attribute SCILAB_Class = poly to dataset
+	addAttribute(dset, g_SCILAB_CLASS					, g_SCILAB_CLASS_POLY);
+
+	//Add attribute Varname attribute to dataset
+	addAttribute(dset, g_SCILAB_CLASS_VARNAME	, _pstVarName);
+
+	if(_iComplex)
+	{
+		//Add attribute Varname attribute to dataset
+		addAttribute(dset, g_SCILAB_CLASS_COMPLEX	, "true");
+	}
+
+	//Close and release resources.
+	status							= H5Dclose(dset);
+	status							= H5Sclose(space);
+
+	free(pstGroupName);
+
+	return status;
+}
+
+int writePolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal)
+{
+	return writeCommonPolyMatrix(_iFile, _pstDatasetName, _pstVarName, 0, _iRows, _iCols, _piNbCoef, _pdblReal, NULL);
+}
+
+int writePolyComplexMatrix(int _iFile, char* _pstDatasetName, char* _pstVarName, int _iRows, int _iCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
+{
+	return writeCommonPolyMatrix(_iFile, _pstDatasetName, _pstVarName, 1, _iRows, _iCols, _piNbCoef, _pdblReal, _pdblImg);
+}
+
+//static int writeCommomIntergerMatrix(int _iH5File, char* _pstDatasetName, int _iPrecision, int _iRows, int _iCols, void* _pvData)
+//{
+//	hsize_t piDims[2] = {_iRows, _iCols};
+//	herr_t status;
+//	hid_t iSpace;
+//	hid_t iDataset;
+//	int	i							= 0;
+//	int j							= 0;
+//	void* pvData				= NULL;
+//
+//	switch(_iPrecision)
+//	{
+//	case SCI_INT8 : 
+//		pvData = (void*)malloc(sizeof(char) * _iRows * _iCols);
+//		break;
+//	case SCI_INT16 : 
+//		pvData = (void*)malloc(sizeof(short) * _iRows * _iCols);
+//		break;
+//	case SCI_INT32 : 
+//		pvData = (void*)malloc(sizeof(int) * _iRows * _iCols);
+//		break;
+//	case SCI_INT64 : 
+//		pvData = (void*)malloc(sizeof(long long) * _iRows * _iCols);
+//		break;
+//	default : 
+//		break;
+//	}
+//
+//	for (i = 0 ; i < _iRows; i++)
+//	{
+//		for (j = 0 ; j < _iCols ; j++)  
+//		{
+//			pvData[i * _iCols + j] = _pvData[i + _iRows * j];
+//		}
+//	}
+//
+//	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+//	iSpace = H5Screate_simple (2, piDims, NULL);
+//
+//	//Create the dataset and write the array data to it.
+//	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, H5P_DEFAULT);
+//	status = H5Dwrite (iDataset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+//		piData);
+//
+//	//Add attribute SCILAB_Class = double to dataset
+//	addAttribute(iDataset, g_SCILAB_CLASS, g_SCILAB_CLASS_BOOLEAN);
+//
+//	//Close and release resources.
+//	status = H5Dclose (iDataset);
+//	status = H5Sclose (iSpace);
+//
+//	free(piData);
+//
+//	return status;
+//}
+
+int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, char* _pcData)
+{
+	hsize_t piDims[2]		= {_iRows, _iCols};
+	herr_t status				= 0;
+	hid_t iSpace				= 0;
+	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
+	int	i								= 0;
+	int j								= 0;
+	char* pcData				= NULL;
+
+	pcData = (void*)malloc(sizeof(char) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)  
+		{
+			pcData[i * _iCols + j] = _pcData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pcData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "8");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	free(pcData);
+
+	return status;
+}
+
+int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, short* _psData)
+{
+	hsize_t piDims[2]		= {_iRows, _iCols};
+	herr_t status				= 0;
+	hid_t iSpace				= 0;
+	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
+	int	i								= 0;
+	int j								= 0;
+	short* psData				= NULL;
+
+	psData = (void*)malloc(sizeof(short) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)  
+		{
+			psData[i * _iCols + j] = _psData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_INT16, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		psData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "16");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	free(psData);
+
+	return status;
+}
+
+int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, int* _piData)
+{
+	hsize_t piDims[2]		= {_iRows, _iCols};
+	herr_t status				= 0;
+	hid_t iSpace				= 0;
+	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
+	int	i								= 0;
+	int j								= 0;
+	int* piData				= NULL;
+
+	piData = (void*)malloc(sizeof(int) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)  
+		{
+			piData[i * _iCols + j] = _piData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_INT32, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		piData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "32");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	free(piData);
+
+	return status;
+}
+
+int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols, long long* _pllData)
+{
+	hsize_t piDims[2]		= {_iRows, _iCols};
+	herr_t status				= 0;
+	hid_t iSpace				= 0;
+	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
+	int	i								= 0;
+	int j								= 0;
+	long long* pllData	= NULL;
+
+	pllData = (void*)malloc(sizeof(char) * _iRows * _iCols);
+
+	for (i = 0 ; i < _iRows; i++)
+	{
+		for (j = 0 ; j < _iCols ; j++)  
+		{
+			pllData[i * _iCols + j] = _pllData[i + _iRows * j];
+		}
+	}
+
+	//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
+	iSpace = H5Screate_simple (2, piDims, NULL);
+
+	//Create the dataset and write the array data to it.
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
+	status = H5Dwrite (iDataset, H5T_NATIVE_INT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,
+		pllData);
+
+	//Add attribute SCILAB_Class = double to dataset
+	addAttribute(iDataset, g_SCILAB_CLASS				, g_SCILAB_CLASS_INT);
+	addAttribute(iDataset, g_SCILAB_CLASS_PREC	, "64");
+
+	//Close and release resources.
+	status = H5Dclose (iDataset);
+	status = H5Sclose (iSpace);
+
+	free(pllData);
+
+	return status;
+}
+
 
 //create a group and create hobj_ref_t array
 void* openList(int _iFile, char* pstDatasetName, int _iNbItem)
 {
-  herr_t      status				= 0;
-  hid_t       group					= 0;
+	herr_t      status				= 0;
+	hid_t       group					= 0;
 
-	char	      *groupName		= (char *) malloc((strlen(pstDatasetName) + 3) * sizeof(char));
-  char        *pstName			= NULL;
-  char        *pstPathName	= NULL;
-  hobj_ref_t* pobjArray			= NULL;
+	hobj_ref_t* pobjArray			= NULL;
 
-  /* Generate groupname #<dataSetName># */
-  sprintf(groupName, "#%s#", pstDatasetName);
-
-  /*
-   * First create a group to store all referenced objects.
-   */
-  group = H5Gcreate(_iFile, groupName, H5P_DEFAULT);
-  status = H5Gclose(group);
+	//First create a group to store all referenced objects.
+	group = H5Gcreate(_iFile, pstDatasetName, H5P_DEFAULT);
+	status = H5Gclose(group);
 
 	//if(_iNbItem <= 0)
 	//{
@@ -341,9 +863,10 @@ int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName)
 int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType)
 {
 	herr_t status					= 0;
-  hsize_t dims[1]				= {_iNbItem};
-  hid_t space						= 0;
+	hsize_t dims[1]				= {_iNbItem};
+	hid_t space						= 0;
 	hid_t dset						= 0;
+	hid_t iCompress				= 0;
 	const char* pcstClass	= NULL;
 
 	switch(_iVarType)
@@ -365,58 +888,43 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 	{
 		//tips for empty list
 		//insert a fake refence in the array, value = 0
-	
+
 		hobj_ref_t pvList[1];
 		pvList[0] = 0;
-		/*
-		 * Create dataspace.  Setting maximum size to NULL sets the maximum
-		 * size to be the current size.
-		 */
+		//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 
 		dims[0] = 1;
 		space = H5Screate_simple (1, dims, NULL);
 
-		/*
-		* Create the dataset and write the array data to it.
-		*/
-
-		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+		//Create the dataset and write the array data to it.
+		iCompress	= enableCompression(9, 1, dims);
+		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
 		status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			(hobj_ref_t*)pvList);
 
-		/*
-		* Add attribute SCILAB_Class = string to dataset
-		*/
-	  addAttribute(dset, g_SCILAB_CLASS,  pcstClass);
+		//Add attribute SCILAB_Class = string to dataset
+		addAttribute(dset, g_SCILAB_CLASS,  pcstClass);
 		addAttribute(dset, g_SCILAB_CLASS_EMPTY, "true");
 	}
 	else
 	{
-		/*
-		 * Create dataspace.  Setting maximum size to NULL sets the maximum
-		 * size to be the current size.
-		 */
+		//Create dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 		space = H5Screate_simple (1, dims, NULL);
 
-		/*
-		* Create the dataset and write the array data to it.
-		*/
-		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+		//Create the dataset and write the array data to it.
+		iCompress	= enableCompression(9, 1, dims);
+		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
 		status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			(hobj_ref_t*)_pvList);
 
-		/*
-		* Add attribute SCILAB_Class = string to dataset
-		*/
-	  addAttribute(dset, g_SCILAB_CLASS,  pcstClass);
+		//Add attribute SCILAB_Class = string to dataset
+		addAttribute(dset, g_SCILAB_CLASS,  pcstClass);
 	}  
 
 
-  /*
-   * Close and release resources.
-   */
-  status = H5Dclose (dset);
-  status = H5Sclose (space);
+	//Close and release resources.
+	status = H5Dclose (dset);
+	status = H5Sclose (space);
 
 	free(_pvList);
 	return status;

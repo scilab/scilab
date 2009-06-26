@@ -20,13 +20,13 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "variable_api.h"
+#include "api_variable.h"
 #include "../../call_scilab/includes/CallScilab.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
 #include "intmacr2tree.h"
+#include "stack-def.h"
 }
-
 
 
 //#define PRINT_DEBUG
@@ -35,16 +35,17 @@ int iTab = 0;
 
 void print_tree(char* _pstMsg);
 
-int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress);
-int import_double(int _iDatasetId, int _iItemPos, int* _piAddress);
-int import_string(int _iDatasetId, int _iItemPos, int* _piAddress);
-int import_boolean(int _iDatasetId, int _iVarType, int* _piAddress);
-int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress);
+bool	import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
-
-	//CheckRhs(1,1);
+	CheckRhs(1,2);
 	CheckLhs(1,1);
 	int iRows						= 0;
 	int iCols						= 0;
@@ -56,12 +57,13 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 	int* piAddr2				= NULL;
 	if(Rhs > 1)
 	{
-		getVarAddressFromNumber(2, &piAddr2);
+		getVarAddressFromPosition(2, &piAddr2);
 	}
 	int* piAddrOut				= NULL;
-	getVarAddressFromNumber(Rhs + 1, &piAddrOut);
+	getVarAddressFromPosition(Rhs + 1, &piAddrOut);
 
-	getVarAddressFromNumber(1, &piAddr);
+	/* debug end */
+	getVarAddressFromPosition(1, &piAddr);
 
 	if(getVarType(piAddr) != sci_strings)
 	{
@@ -81,47 +83,88 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
 	//open hdf5 file
 	int iFile = openHDF5File(pstVarName);
-	int iDataSetId = getDataSetId(iFile);
 
+	int iNbItem = 0;
+	iNbItem = getVariableNames(iFile, NULL);
+	char** pstVarNameList = (char**)malloc(sizeof(char*) * iNbItem);
+	iNbItem = getVariableNames(iFile, pstVarNameList);
+
+	bool bImport = false;
+	for(int i = 0 ; i < iNbItem ; i++)
+	{
+		int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
+		if(iDataSetId == 0)
+		{
+			return 0;
+		}
+
+		bImport = import_data(iDataSetId, 0, NULL, pstVarNameList[i]);
+		if(bImport == false)
+		{
+			break;
+		}
+	}
 	//import all data
-	import_data(iDataSetId, 0, NULL);
 
 	//close the file
 	closeHDF5File(iFile);
 
 	FREE(pstVarName);
+
+	int *piReturn = NULL;
+	allocMatrixOfBoolean(Rhs + 1, 1, 1, &piReturn);
+	if(bImport == true)
+	{
+		piReturn[0] = 1;
+	}
+	else
+	{
+		piReturn[0] = 0;
+	}
+
 	LhsVar(1) = Rhs + 1;
 	PutLhsVar();
 
 	return 0;
 }
 
-int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress)
+bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
+	bool bRet = false;
 	//get var type
 	int iVarType = getScilabTypeFromDataSet(_iDatasetId);
 	switch(iVarType)
 	{
 	case sci_matrix :
 		{
-			import_double(_iDatasetId, _iItemPos, _piAddress);
+			bRet = import_double(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
 	case sci_strings :
 		{
-			import_string(_iDatasetId, _iItemPos, _piAddress);
+			bRet = import_string(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
 	case sci_list :
 	case sci_tlist :
 	case sci_mlist :
 		{
-			import_list(_iDatasetId, iVarType, _iItemPos, _piAddress);
+			bRet = import_list(_iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
 	case sci_boolean :
 		{
-			import_boolean(_iDatasetId, _iItemPos, _piAddress);
+			bRet = import_boolean(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+			break;
+		}
+	case sci_poly :
+		{
+			bRet = import_poly(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+			break;
+		}
+	case sci_ints:
+		{
+			bRet = import_integer(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
 	default : 
@@ -131,63 +174,117 @@ int	import_data(int _iDatasetId, int _iItemPos, int* _piAddress)
 			print_tree(pstMsg);
 		}
 	}
-	return 0;
+	return bRet;
 }
 
-int import_double(int _iDatasetId, int _iItemPos, int* _piAddress)
+bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	double *pdblData = NULL;
-	int	iRows = 0;
-	int iCols = 0;
-	getDataSetDims(_iDatasetId, &iRows, &iCols);
+	int iRet						= 0;
+	double *pdblReal		= NULL;
+	double *pdblImg			= NULL;
+	int	iRows						= 0;
+	int iCols						= 0;
+	int iComplex				= 0;
 
+	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
+	iComplex		= isComplexData(_iDatasetId);
+	if(iRet)
+	{
+		return false;
+	}
 
 	if(iRows * iCols != 0)
 	{
-		pdblData = (double *) malloc(iRows * iCols * sizeof(double));
-		readDoubleMatrix(_iDatasetId, pdblData, iRows, iCols);
+		if(iComplex)
+		{
+			pdblReal	= (double *) malloc(iRows * iCols * sizeof(double));
+			pdblImg		= (double *) malloc(iRows * iCols * sizeof(double));
+			iRet			= readDoubleComplexMatrix(_iDatasetId, iRows, iCols, pdblReal, pdblImg);
+		}
+		else
+		{
+			pdblReal	= (double *) malloc(iRows * iCols * sizeof(double));
+			iRet			= readDoubleMatrix(_iDatasetId, iRows, iCols, pdblReal);
+		}
+		if(iRet)
+		{
+			return false;
+		}
 	}
-
-
 
 	if(_piAddress == NULL)
 	{
-		createMatrixOfDouble(Rhs + 1, iRows, iCols, pdblData);
+		if(iComplex)
+		{
+			iRet			= createNamedComplexMatrixOfDouble(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pdblReal, pdblImg);
+		}
+		else
+		{
+			iRet			= createNamedMatrixOfDouble(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pdblReal);
+		}
 	}
 	else //if not null this variable is in a list
 	{
-		createMatrixOfDoubleInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pdblData);
+		if(iComplex)
+		{
+			iRet			= createComplexMatrixOfDoubleInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal, pdblImg);
+		}
+		else
+		{
+			iRet			= createMatrixOfDoubleInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pdblReal);
+		}
 	}
 
 	char pstMsg[512];
 	sprintf(pstMsg, "double (%d x %d)", iRows, iCols);
 	print_tree(pstMsg);
 
-	if(pdblData)
+	if(pdblReal)
 	{
-		free(pdblData);
+		free(pdblReal);
 	}
 
-	return 0;
+	if(pdblImg)
+	{
+		free(pdblImg);
+	}
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	return true;
 }
 
-int import_string(int _iDatasetId, int _iItemPos, int* _piAddress)
+bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	int i = 0;
-	int	iRows, iCols;
-	getDataSetDims(_iDatasetId, &iRows, &iCols);
+	int iRet						= 0;
+	int i								= 0;
+	int	iRows						= 0;
+	int iCols						= 0;
+	char **pstData			= NULL;
 
-	char **pstData = (char **) malloc(iRows * iCols * sizeof(char*));
+	iRet = getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(iRet)
+	{
+		return false;
+	}
 
-	readStringMatrix(_iDatasetId, pstData, iRows, iCols);
+	pstData = (char **) malloc(iRows * iCols * sizeof(char*));
+	iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
+	if(iRet)
+	{
+		return false;
+	}
 
 	if(_piAddress == NULL)
 	{
-		createMatrixOfString(Rhs + 1, iRows, iCols, pstData);
+		iRet = createNamedMatrixOfString(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, pstData);
 	}
 	else //if not null this variable is in a list
 	{
-		createMatrixOfStringInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, pstData);
+		iRet = createMatrixOfStringInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pstData);
 	}
 
 	char pstMsg[512];
@@ -199,32 +296,152 @@ int import_string(int _iDatasetId, int _iItemPos, int* _piAddress)
 		free(pstData[i]);
 	}
 	free(pstData);
-	return 0;
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	return true;
 }
 
-int import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress)
+bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	int* piData = NULL;
-	int	iRows = 0;
-	int iCols = 0;
-	getDataSetDims(_iDatasetId, &iRows, &iCols);
+	int iRet						= 0;
+	int	iRows						= 0;
+	int iCols						= 0;
+	int iPrec						= 0;
 
+	iRet								= getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(iRet)
+	{
+		return false;
+	}
+
+	iRet								= getDatasetPrecision(_iDatasetId, &iPrec);
+	switch(iPrec)
+	{
+	case SCI_INT8 : 
+		{
+			char* pcData	= NULL;
+			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
+			iRet = readInterger8Matrix(_iDatasetId, iRows, iCols, pcData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger8InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pcData);
+			}
+		}
+		break;
+	case SCI_INT16 : 
+		{
+			short* psData	= NULL;
+			psData = (short*)malloc(sizeof(short) * iRows * iCols);
+			iRet = readInterger16Matrix(_iDatasetId, iRows, iCols, psData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger16( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, psData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger16InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, psData);
+			}
+		}
+		break;
+	case SCI_INT32 : 
+		{
+			int* piData	= NULL;
+			piData = (int*)malloc(sizeof(int) * iRows * iCols);
+			iRet = readInterger32Matrix(_iDatasetId, iRows, iCols, piData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger32( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, piData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger32InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
+			}
+		}
+		break;
+	case SCI_INT64 : 
+		{
+#ifdef __SCILAB_INT64__
+			char* pcData	= NULL;
+			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
+			iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pcData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger64InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pllData);
+			}
+#else
+			return false;
+#endif
+		}
+		break;
+	default :
+		return false;
+	}
+	return true;
+}
+
+bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+	int iRet						= 0;
+	int* piData					= NULL;
+	int	iRows						= 0;
+	int iCols						= 0;
+
+	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(iRet)
+	{
+		return false;
+	}
 
 	if(iRows * iCols != 0)
 	{
-		piData = (int *) malloc(iRows * iCols * sizeof(int));
-		readBooleanMatrix(_iDatasetId, piData, iRows, iCols);
+		piData		= (int *) malloc(iRows * iCols * sizeof(int));
+		iRet			= readBooleanMatrix(_iDatasetId, iRows, iCols, piData);
+		if(iRet)
+		{
+			return false;
+		}
 	}
-
-
 
 	if(_piAddress == NULL)
 	{
-		createMatrixOfBoolean(Rhs + 1, iRows, iCols, piData);
+		iRet			= createNamedMatrixOfBoolean(_pstVarname, (int)strlen(_pstVarname), iRows, iCols, piData);
 	}
 	else //if not null this variable is in a list
 	{
-		createMatrixOfBooleanInList(Rhs + 1, _piAddress, _iItemPos, iRows, iCols, piData);
+		iRet			= createMatrixOfBooleanInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
 	}
 
 	char pstMsg[512];
@@ -236,23 +453,110 @@ int import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress)
 		free(piData);
 	}
 
-	return 0;
+	if(iRet)
+	{
+		return false;
+	}
+
+	return true;
 }
 
-int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
+bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
-	int i							= 0;
-	int	iRows					= 0;
-	int iCols					= 0;
-	int status				= 0;
-	int* piListAddr		= NULL;
+	int iRet						= 0;
+	int i								= 0;
+	int	iRows						= 0;
+	int iCols						= 0;
+	int iComplex				= 0;
+	char pstVarName[64]	= {0};
+	double **pdblReal		= NULL;
+	double **pdblImg		= NULL;
+	int *piNbCoef				= NULL;
 
+
+	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(iRet)
+	{
+		return false;
+	}
+
+	iComplex		= isComplexData(_iDatasetId);
+
+
+	if(iComplex)
+	{
+		piNbCoef		= (int*)malloc(iRows * iCols * sizeof(int));
+		pdblReal		= (double**)malloc(iRows * iCols * sizeof(double*));
+		pdblImg			= (double**)malloc(iRows * iCols * sizeof(double*));
+		iRet				= readPolyComplexMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+	}
+	else
+	{
+		piNbCoef		= (int*)malloc(iRows * iCols * sizeof(int));
+		pdblReal		= (double**)malloc(iRows * iCols * sizeof(double*));
+		iRet				= readPolyMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+	}
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	if(_piAddress == NULL)
+	{
+		if(iComplex)
+		{
+			iRet			=	createNamedComplexMatrixOfPoly(_pstVarname, strlen(_pstVarname), pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+		}
+		else
+		{
+			iRet			=	createNamedMatrixOfPoly(_pstVarname, strlen(_pstVarname), pstVarName, iRows, iCols, piNbCoef, pdblReal);
+		}
+	}
+	else //if not null this variable is in a list
+	{
+		if(iComplex)
+		{
+			iRet			= createComplexMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+		}
+		else
+		{
+			iRet			= createMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+		}
+	}
+
+	char pstMsg[512];
+	sprintf(pstMsg, "string (%d x %d)", iRows, iCols);
+	print_tree(pstMsg);
+
+	for(i = 0 ; i < iRows * iCols ; i++)
+	{
+		free(pdblReal[i]);
+	}
+	free(pdblReal);
+	free(piNbCoef);
+
+	if(iRet)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+	int iRet								= 0;
+	int i										= 0;
+	int	iRows								= 0;
+	int iCols								= 0;
+	int* piListAddr					= NULL;
 	hobj_ref_t* piItemRef		= NULL;
 
-	status = getDataSetDims(_iDatasetId, &iRows, &iCols);
-	if(status)
+	iRet				= getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(iRet)
 	{
-		return 1;
+		return false;
 	}
 
 
@@ -263,10 +567,10 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 	}
 	else
 	{
-		status = getListItemReferences(_iDatasetId, &piItemRef);
-		if(status)
+		iRet			= getListItemReferences(_iDatasetId, &piItemRef);
+		if(iRet)
 		{
-			return 1;
+			return false;
 		}
 	}
 
@@ -279,16 +583,16 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 		switch(_iVarType)
 		{
 		case sci_list :
-			createList(Rhs + 1, iRows * iCols, &piListAddr);
+			iRet		= createNamedList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
 			break;
 		case sci_tlist :
-			createTList(Rhs + 1, iRows * iCols, &piListAddr);
+			iRet		= createNamedTList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
 			break;
 		case sci_mlist :
-			createMList(Rhs + 1, iRows * iCols, &piListAddr);
+			iRet		= createNamedMList(_pstVarname, (int)strlen(_pstVarname), iRows * iCols, &piListAddr);
 			break;
 		default :
-			return 1;
+			return false;
 		}
 	}
 	else //if not null this variable is in a list
@@ -296,35 +600,49 @@ int import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress)
 		switch(_iVarType)
 		{
 		case sci_list :
-			createListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		case sci_tlist :
-			createTListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createTListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		case sci_mlist :
-			createMListInList(Rhs + 1, _piAddress, _iItemPos, iRows * iCols, &piListAddr);
+			iRet		= createMListInNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows * iCols, &piListAddr);
 			break;
 		default :
-			return 1;
+			return false;
 		}
+	}
+
+	if(iRet)
+	{
+		return false;
 	}
 
 	iTab++;
 	for(i = 0 ; i < iRows * iCols ; i++)
 	{
 		int iItemDataset = 0;
-		getListItemDataset(_iDatasetId, piItemRef, i, &iItemDataset);
-		if(iItemDataset == 0)
+		iRet			= getListItemDataset(_iDatasetId, piItemRef, i, &iItemDataset);
+		if(iRet || iItemDataset == 0)
 		{
-			return 1;
+			return false;
 		}
-		import_data(iItemDataset, i + 1, piListAddr);
+
+		bool bRet = import_data(iItemDataset, i + 1, piListAddr, _pstVarname);
+		if(bRet == false)
+		{
+			return false;
+		}
 	}
 	iTab--;
 
-	deleteListItemReferences(_iDatasetId, piItemRef);
+	iRet				= deleteListItemReferences(_iDatasetId, piItemRef);
+	if(iRet)
+	{
+		return false;
+	}
 
-	return 0;
+	return true;
 }
 
 void print_tree(char* _pstMsg)

@@ -15,17 +15,34 @@
 
 #include <hdf5.h>
 
+int isComplexData(int _iDatasetId);
+
+int getVariableNames(int _iFile, char **pstNameList);
+
 int getDataSetId(int  _iFile);
+
+int getDataSetIdFromName(int _iFile, char *_pstName);
 
 int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols);
 
 int getScilabTypeFromDataSet(int _iDatasetId);
 
-int readDoubleMatrix(int _iDatasetId, double *_pdblData, int _iRows, int _iCols);
+int getDatasetPrecision(int _iDatasetId, int* _piPrec);
 
-int readStringMatrix(int _iDatasetId, char **_pstData, int _iRows, int _iCols);
+int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData);
+int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);
 
-int readBooleanMatrix(int _iDatasetId, int* _piData, int _iRows, int _iCols);
+int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData);
+
+int readBooleanMatrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
+
+int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblData);
+int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblReal, double **_pdblImg);
+
+int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData);
+int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData);
+int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
+int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData);
 
 int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
 

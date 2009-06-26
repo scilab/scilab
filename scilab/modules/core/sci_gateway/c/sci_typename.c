@@ -17,10 +17,10 @@
 #include "localization.h"
 #include "typename.h"
 #include "MALLOC.h"
-#include "common_api.h"
-#include "string_api.h"
-#include "double_api.h"
-#include "int_api.h"
+#include "api_common.h"
+#include "api_string.h"
+#include "api_double.h"
+#include "api_int.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 static int sci_typename_two_rhs(char *fname,unsigned long fname_len);
@@ -55,8 +55,8 @@ int sci_typename_two_rhs(char *fname,unsigned long fname_len)
 	int *piAddressVarTwo = NULL;
 	double *pdVarTwo = NULL;
 
-	getVarAddressFromNumber(1, &piAddressVarOne);
-	getVarAddressFromNumber(2, &piAddressVarTwo);
+	getVarAddressFromPosition(1, &piAddressVarOne);
+	getVarAddressFromPosition(2, &piAddressVarTwo);
 
 	if ( getVarType(piAddressVarOne) != sci_strings )
 	{
@@ -139,7 +139,7 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	m_out1 = numberOfTypes;
 	n_out1 = 1;
 
-	createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers,&piAddressOut1);
+	createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers);
 	if (TypesNumbers) { FREE(TypesNumbers);TypesNumbers = NULL;	}
 	LhsVar(1) = Rhs + 1; 
 

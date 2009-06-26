@@ -13,10 +13,10 @@
  * still available and supported in Scilab 6.
  */
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "double_api.h"
-#include "internal_double_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_double.h"
+#include "api_internal_double.h"
 
 //#include <string.h>
 #include "CallScilab.h"
@@ -105,7 +105,7 @@ int allocCommonMatrixOfDouble(int _iVar, int _iComplex, int _iRows, int _iCols, 
 	int iAddr				= *Lstk(iNewPos);
 	int* piAddr			= NULL;
 
-	getNewVarAddressFromNumber(iNewPos, &piAddr);
+	getNewVarAddressFromPosition(iNewPos, &piAddr);
 	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
 	updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
 	updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
@@ -184,7 +184,6 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
 	int iSaveTop			= Top;
-	int iOne					= 1;
 	int iSize					= _iRows * _iCols;
 	int iRet					= 0;
 	int *piAddr				= NULL;
@@ -194,7 +193,7 @@ int createCommunNamedMatrixOfDouble(char* _pstName, int _iNameLen, int _iComplex
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 	//write matrix information
 	fillCommonMatrixOfDouble(piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);

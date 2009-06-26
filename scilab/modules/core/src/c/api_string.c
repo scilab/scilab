@@ -15,14 +15,14 @@
 
 #include <string.h>
 
-#include "common_api.h"
-#include "internal_common_api.h"
-#include "string_api.h"
+#include "api_common.h"
+#include "api_internal_common.h"
+#include "api_string.h"
 
 #include "CallScilab.h"
 #include "stack-c.h"
 #include "code2str.h"
-#include "internal_string_api.h"
+#include "api_internal_string.h"
 
 
 /*******************************/
@@ -81,7 +81,7 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
 	int iTotalLen		= 0;
 	int *piAddr			= NULL;
 
-	int iRet = getNewVarAddressFromNumber(iNewPos, &piAddr);
+	int iRet = getNewVarAddressFromPosition(iNewPos, &piAddr);
 	if(iRet != 0)
 	{
 		return 1;
@@ -96,7 +96,6 @@ int createMatrixOfString(int _iVar, int _iRows, int _iCols, char** _pstStrings)
 int fillMatrixOfString(int* _piAddress, int _iRows, int _iCols, char** _pstStrings, int* _piTotalLen)
 {
 	int* piOffset = NULL;
-	int* piAddr		= NULL;
 	int* piData		= NULL;
 	int i					= 0;
 	int iOffset		= 0;
@@ -136,7 +135,7 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
   C2F(str2name)(_pstName, iVarID, _iNameLen);
   Top = Top + Nbvars + 1;
 
-	iRet = getNewVarAddressFromNumber(Top, &piAddr);
+	iRet = getNewVarAddressFromPosition(Top, &piAddr);
 
 
 	//write matrix information
@@ -157,30 +156,14 @@ int createNamedMatrixOfString(char* _pstName, int _iNameLen, int _iRows, int _iC
 
 int readNamedMatrixOfString(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piLength, char** _pstStrings)
 {
-	int iVarID[nsiz];
+	int iRet					= 0;
 	int* piAddr				= NULL;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, _iNameLen);
-
-	//define scope of search
-  Fin = -1;
-	//search variable
-  C2F(stackg)(iVarID);
-
-	if (Err > 0 || Fin == 0)
+	iRet = getVarAddressFromName(_pstName, _iNameLen, &piAddr);
+	if(iRet)
 	{
 		return 1;
 	}
-
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
-
-	//get variable address
-	//WARNING check in VarType can be negative
-	getNewVarAddressFromNumber(Fin, &piAddr);
-
 	return getMatrixOfString(piAddr, _piRows, _piCols, _piLength, _pstStrings);
 }
 /*--------------------------------------------------------------------------*/
