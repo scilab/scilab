@@ -1,6 +1,14 @@
 
                Changes between version 5.1.1 and 5.1.2 of Scilab
                =================================================
+
+
+Improvements:
+=============
+
+* Catalan localization added to Scipad (Thanks Oriol Gonzalez)
+
+
 Compilation:
 ============
 
@@ -150,6 +158,12 @@ Bug fixes:
  * bug 4596 fixed - g_margin fails to return the gain margins in some cases.
 
  * bug 4603 fixed - Unknown function lst2tree called by function mtlb_eval (+ some other problems fixed in mtlb_eval).
+
+ * bug 4612 fixed - The graphic export used to consider .jpeg as an invalid
+   	   			  	extension.
+
+ * bug 4614 fixed - On some (rare) archs/OS, File -> Export on a graphic could
+   	   			  	lead to a crash 
 
 
                Changes between version 5.1.0 and 5.1.1 of Scilab
