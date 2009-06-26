@@ -139,7 +139,7 @@ int sci_typename_no_rhs(char *fname,unsigned long fname_len)
 	m_out1 = numberOfTypes;
 	n_out1 = 1;
 
-	createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers,&piAddressOut1);
+	createMatrixOfInteger32(Rhs + 1,m_out1,n_out1,TypesNumbers);
 	if (TypesNumbers) { FREE(TypesNumbers);TypesNumbers = NULL;	}
 	LhsVar(1) = Rhs + 1; 
 

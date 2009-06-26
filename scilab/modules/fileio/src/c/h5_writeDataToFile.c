@@ -18,6 +18,60 @@
 #include "h5_attributeConstants.h"
 
 
+static hid_t enableCompression(int _iLevel, int _iRank, const hsize_t* _piDims)
+{
+	hid_t iRet			= 0;
+	int iLevel			= _iLevel;
+
+  if(iLevel < 0)
+	{
+		iLevel				= 0;
+	}
+
+  if(iLevel > 9)
+	{
+		iLevel				= 9;
+	}
+
+	if(iLevel) 
+	{
+		iRet = H5Pcreate(H5P_DATASET_CREATE);
+		if(iRet<0) 
+		{
+			iRet = 0;
+		} 
+		else 
+		{
+			if(H5Pset_layout(iRet,H5D_COMPACT)<0) 
+			{
+				H5Pclose(iRet);
+				iRet = 0;
+			} 
+			else 
+			{
+				if(H5Pset_chunk(iRet,_iRank, _piDims)<0) 
+				{
+					H5Pclose(iRet);
+					iRet = 0;
+				}
+				else
+				{
+					if(H5Pset_deflate(iRet,iLevel)<0) 
+					{
+						H5Pclose(iRet);
+						iRet = 0;
+					}
+				}
+			}
+		}
+	} 
+	else 
+	{
+		iRet = H5Pcopy(H5P_DEFAULT);
+	}
+	return iRet;
+}
+
 static void addAttribute(int _iDatasetId, const char *_pstName, const char *_pstValue)
 {
 	hsize_t     attributeDims[1] = {1};
@@ -44,6 +98,7 @@ static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)
 	hsize_t     dims[1] = {1};
 	hid_t       typeId, space, dset;
 	herr_t      status;
+	hid_t iCompress;
 
 	//Create string dataspace.  Setting maximum size to NULL sets the maximum size to be the current size.
 	space = H5Screate_simple (1, dims, NULL);
@@ -53,7 +108,8 @@ static int writeString(int _iFile, char* _pstDatasetName, char *_pstData)
 	H5Tset_size(typeId, strlen(_pstData));
 
 	//Create the data set and write it.
-	dset = H5Dcreate (_iFile, _pstDatasetName, typeId, space, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 1, dims);
+	dset = H5Dcreate (_iFile, _pstDatasetName, typeId, space, iCompress);
 	status = H5Dwrite (dset, typeId, H5S_ALL, H5S_ALL, H5P_DEFAULT, _pstData);
 
 	//Add attribute SCILAB_Class = string to dataset
@@ -69,7 +125,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 {
 	hsize_t     dims[2] = {_iRows, _iCols};
 	herr_t      status;
-	hid_t       space, dset, group;
+	hid_t       space, dset, group, iCompress;
 	hobj_ref_t  *wdata; 
 
 	char	      *groupName = (char *) malloc((strlen(_pstDatasetName) + 3) * sizeof(char));
@@ -123,7 +179,8 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	space = H5Screate_simple (2, dims, NULL);
 
 	//Create the dataset and write the array data to it.
-	dset = H5Dcreate (_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 2, dims);
+	dset = H5Dcreate (_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
 	status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		wdata);
 
@@ -184,6 +241,7 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 {
 	hid_t space;
 	hid_t dset;
+	hid_t iCompress			= 0;
 	hsize_t dims[2]			= {_iRows, _iCols};
 	herr_t status				= 0;
 	int i								= 0;
@@ -227,7 +285,8 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 		space = H5Screate_simple (2, dims, NULL);
 
 		//Create the dataset and write the array data to it.
-		dset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, H5P_DEFAULT);
+		iCompress	= enableCompression(9, 2, dims);
+		dset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_DOUBLE, space, iCompress);
 		status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			&dblZero);
 
@@ -242,7 +301,8 @@ static hobj_ref_t writeCommomDoubleMatrix(int _iFile, char* _pstDatasetName, int
 		space = H5Screate_simple (2, dims, NULL);
 
 		//Create the dataset and write the array data to it.
-		dset = H5Dcreate (_iFile, pstPathName, H5T_NATIVE_DOUBLE, space, H5P_DEFAULT);
+		iCompress	= enableCompression(9, 2, dims);
+		dset = H5Dcreate (_iFile, pstPathName, H5T_NATIVE_DOUBLE, space, iCompress);
 		status = H5Dwrite (dset, H5T_NATIVE_DOUBLE, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			__data);
 
@@ -271,6 +331,7 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	hid_t dset					= 0;
 	herr_t status				= 0;
 	hsize_t dims[1]			= {1};
+	hid_t iCompress			= 0;
 
 
 	hobj_ref_t pRef[1] = {0};
@@ -288,7 +349,8 @@ int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
 	}
 
 	//Create the dataset and write the array data to it.
-	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+	iCompress						= enableCompression(9, 1, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
 	if(dset == 0)
 	{
 		return 1;
@@ -320,6 +382,7 @@ int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 	hid_t space					= 0;
 	hid_t dset					= 0;
 	herr_t status				= 0;
+	hid_t iCompress			= 0;
 	hsize_t dims[1]			= {2};
 
 
@@ -339,7 +402,8 @@ int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iRows, int 
 	}
 
 	//Create the dataset and write the array data to it.
-	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+	iCompress						= enableCompression(9, 1, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
 	if(dset == 0)
 	{
 		return 1;
@@ -370,6 +434,7 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
 	hsize_t piDims[2] = {_iRows, _iCols};
 	herr_t status;
 	hid_t iSpace;
+	hid_t	iCompress;
 	hid_t iDataset;
 	int	i							= 0;
 	int j							= 0;
@@ -389,7 +454,8 @@ int writeBooleanMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols
 	iSpace = H5Screate_simple (2, piDims, NULL);
 
 	//Create the dataset and write the array data to it.
-	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT, iSpace, iCompress);
 	status = H5Dwrite (iDataset, H5T_NATIVE_INT, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		piData);
 
@@ -437,6 +503,7 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 	hid_t	space					= 0;
 	hid_t	dset					= 0;
 	hid_t	group					= 0;
+	hid_t iCompress			= 0;
 	hobj_ref_t* pData		= 0; 
 
 	char* pstName				= NULL;
@@ -494,7 +561,8 @@ static int writeCommonPolyMatrix(int _iFile, char* _pstDatasetName, char* _pstVa
 	space								= H5Screate_simple(2, dims, NULL);
 
 	//Create the dataset and write the array data to it.
-	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+	iCompress						= enableCompression(9, 2, dims);
+	dset								= H5Dcreate(_iFile, _pstDatasetName, H5T_STD_REF_OBJ, space, iCompress);
 	status							= H5Dwrite(dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pData);
 	if(status)
 	{
@@ -593,6 +661,7 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
 	herr_t status				= 0;
 	hid_t iSpace				= 0;
 	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
 	int	i								= 0;
 	int j								= 0;
 	char* pcData				= NULL;
@@ -611,7 +680,8 @@ int writeInterger8Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCo
 	iSpace = H5Screate_simple (2, piDims, NULL);
 
 	//Create the dataset and write the array data to it.
-	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT8, iSpace, iCompress);
 	status = H5Dwrite (iDataset, H5T_NATIVE_INT8, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		pcData);
 
@@ -634,6 +704,7 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	herr_t status				= 0;
 	hid_t iSpace				= 0;
 	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
 	int	i								= 0;
 	int j								= 0;
 	short* psData				= NULL;
@@ -652,7 +723,8 @@ int writeInterger16Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	iSpace = H5Screate_simple (2, piDims, NULL);
 
 	//Create the dataset and write the array data to it.
-	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT16, iSpace, iCompress);
 	status = H5Dwrite (iDataset, H5T_NATIVE_INT16, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		psData);
 
@@ -675,6 +747,7 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	herr_t status				= 0;
 	hid_t iSpace				= 0;
 	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
 	int	i								= 0;
 	int j								= 0;
 	int* piData				= NULL;
@@ -693,7 +766,8 @@ int writeInterger32Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	iSpace = H5Screate_simple (2, piDims, NULL);
 
 	//Create the dataset and write the array data to it.
-	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT32, iSpace, iCompress);
 	status = H5Dwrite (iDataset, H5T_NATIVE_INT32, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		piData);
 
@@ -716,6 +790,7 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	herr_t status				= 0;
 	hid_t iSpace				= 0;
 	hid_t iDataset			= 0;
+	hid_t iCompress			= 0;
 	int	i								= 0;
 	int j								= 0;
 	long long* pllData	= NULL;
@@ -734,7 +809,8 @@ int writeInterger64Matrix(int _iFile, char* _pstDatasetName, int _iRows, int _iC
 	iSpace = H5Screate_simple (2, piDims, NULL);
 
 	//Create the dataset and write the array data to it.
-	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, H5P_DEFAULT);
+	iCompress	= enableCompression(9, 2, piDims);
+	iDataset = H5Dcreate (_iFile, _pstDatasetName, H5T_NATIVE_INT64, iSpace, iCompress);
 	status = H5Dwrite (iDataset, H5T_NATIVE_INT64, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 		pllData);
 
@@ -790,6 +866,7 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 	hsize_t dims[1]				= {_iNbItem};
 	hid_t space						= 0;
 	hid_t dset						= 0;
+	hid_t iCompress				= 0;
 	const char* pcstClass	= NULL;
 
 	switch(_iVarType)
@@ -820,8 +897,8 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 		space = H5Screate_simple (1, dims, NULL);
 
 		//Create the dataset and write the array data to it.
-
-		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+		iCompress	= enableCompression(9, 1, dims);
+		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
 		status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			(hobj_ref_t*)pvList);
 
@@ -835,7 +912,8 @@ int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int 
 		space = H5Screate_simple (1, dims, NULL);
 
 		//Create the dataset and write the array data to it.
-		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, H5P_DEFAULT);
+		iCompress	= enableCompression(9, 1, dims);
+		dset = H5Dcreate (_iFile, _pstListName, H5T_STD_REF_OBJ, space, iCompress);
 		status = H5Dwrite (dset, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT,
 			(hobj_ref_t*)_pvList);
 
