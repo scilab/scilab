@@ -20,11 +20,19 @@
 //
 
 function CreateMask_()
+//** 25/06/2009 : Serge Steer, 
+//   - check selection against curwin
+//   - add a message in case of multiple selection
+
 Cmenu=[];%pt=[];
-if size(Select,1)<>1 | curwin<>Select(1,2) then
-   return
+K=find(Select(:,2)==curwin)
+if K==[] then return,end
+if size(K,'*')>1 then
+  message("Create Mask applies to a single selected SuperBlock")
+  return
 end
-i=Select(1)
+gh_axes=gca()
+i=Select(K,1)
 o=scs_m.objs(i)
 if typeof(o)=="Block" then
    model=o.model
@@ -47,13 +55,11 @@ if typeof(o)=="Block" then
       needcompile=4  // this is perhaps too conservative
       enable_undo = %t
       edited=%t
-      o_size = size(gh_current_window.children.children);
+      o_size = size(gh_axes.children);
       gh_k=get_gri(i,o_size(1))
       drawlater();
-        update_gr(gh_k,o)
-        //** draw(gh_current_window.children);
-        drawnow(); 
-        //** show_pixmap() ; //** not useful on Scilab 5 
+      update_gr(gh_k,o)
+      drawnow(); 
    else
       message("Mask can only be created for Super Blocks.")
    end

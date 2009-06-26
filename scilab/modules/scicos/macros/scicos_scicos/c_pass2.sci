@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
+function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
 // cor    ; correspondance table with initial block ordering
 //
 // bllst: list with nblk elts where nblk denotes number of blocks.
@@ -53,13 +53,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 // clkconnect: same as connectmat but for clock scicopaths.
 //
 // define some constants
-  
+  if argn(2) <6 then flag="verbose",end
   show_trace=%f
-  if show_trace then disp('c_pass1:'+string(timer())),end
+  if show_trace then mprintf('c_pass1:'+string(timer())),end
 
-  show_pause=%f
-
-  show_comment=%f
+  show_pause=%f;
+  show_comment=%f;
 
   if bllst==list() then
     messagebox(_('No block can be activated'),"modal","error")
@@ -68,6 +67,12 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     return
   end
   
+  //correction of clkconnect.. Must be done before
+  clkconnect(find(clkconnect(:,2)==0),2)=1;
+  
+
+
+
   if exists('%scicos_solver')==0 then %scicos_solver=0,end
 
   clkptr=1,cliptr=1,typ_l=[],
@@ -77,7 +82,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,..
    typ_l,typ_r,typ_m,tblock,typ_cons,typ_zx,ok]=mini_extract_info(bllst,..
                                                 connectmat,clkconnect)
-  if show_trace then disp('c_pass20:'+string(timer())),end
+  if show_trace then mprintf('c_pass20:'+string(timer())),end
   if ~ok then 
       cpr=list()
       return
@@ -100,11 +105,11 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
   end
 
   if show_pause then 
-    disp('fin de paksazi')
+    mprintf('fin de paksazi')
     pause
   end
 
-  if show_trace then disp('c_pass31:'+string(timer())),end
+  if show_trace then mprintf('c_pass31:'+string(timer())),end
 
   //extract various info from bllst
   [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
@@ -121,19 +126,19 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     return,
   end
 
-  if show_trace then disp('c_pass41:'+string(timer())),end
+  if show_trace then mprintf('c_pass41:'+string(timer())),end
  
   //form a matrix which gives destinations of each block
   [outoin,outoinptr]=conn_mat(inpptr,outptr,inplnk,outlnk)
   [evoutoin,evoutoinptr]=synch_clkconnect(typ_l,clkconnect)
   //
-  if show_trace then disp('c_pass50:'+string(timer())),end
+  if show_trace then mprintf('c_pass50:'+string(timer())),end
   
   [execlk_cons]=discard(clkptr,cliptr,clkconnect,exe_cons)
 
   clkconnect=[];exe_cons=[]
 
-  if show_trace then disp('c_pass501:'+string(timer())),end
+  if show_trace then mprintf('c_pass501:'+string(timer())),end
 
   // Set execution scheduling tables 
   [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_cons,..
@@ -145,7 +150,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
     return,
   end
 
-  if show_trace then disp('c_pass51:'+string(timer())),end
+  if show_trace then mprintf('c_pass51:'+string(timer())),end
   //form scicos arguments
 
   nb=size(typ_z,'*');
@@ -183,7 +188,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   //initialize agenda
   [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
-  if show_trace then disp('c_pass61:'+string(timer())),end
+  if show_trace then mprintf('c_pass61:'+string(timer())),end
 
   //mod=0*ones(modptr($)-1,1)
 
@@ -211,7 +216,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
 
   cpr=scicos_cpr(state=state,sim=sim,cor=cor,corinv=corinv);
 
-  if show_trace then disp('c_pass71:'+string(timer())),end
+  if show_trace then mprintf('c_pass71:'+string(timer())),end
 
 endfunction
 
@@ -548,7 +553,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	  primary0=[]
 	end
 
-	if  show_comment then disp('Processing blk '+string(blk)+' port"+...
+	if  show_comment then mprintf('Processing blk '+string(blk)+' port"+...
 				   " '+string(port)),end
 	  
 	  if primary0<>[] then  // delete redundant links
@@ -583,7 +588,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
                if bouclalg then break,end
             end
    
-            if show_comment&bouclalg then disp('found intersect'),end
+            if show_comment&bouclalg then mprintf('found intersect'),end
 
             if ~bouclalg then
 	      [bouclalg,Vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
@@ -591,7 +596,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		clkconnect,connectmat,bllst,typ_l,dep_t,dep_u,dep_uptr,..
                 corinv,clkptr,cliptr,critev)
 	      if bouclalg then
-                if show_comment then disp('found non convergence'),pause,end
+                if show_comment then mprintf('found non convergence'),pause,end
                 i=lp(1)  // first typ_l
                 if i==[] then 
                   messagebox(_('Algebraic loop.'),"modal","error")
@@ -614,7 +619,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		nblock=nblock+1
 		clkconnect(f,3)=nblock
 		if  show_comment then   
-                    disp('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
+                    mprintf('duplicating pivot'+string(bl)+' to obtain '+string(nblock)),
                 end
 		[typ_l,clkconnect,connectmat,vbllst,dep_t,dep_u,dep_uptr,..
 		 corinv,clkptr,cliptr,critev]=duplicate_block(bl,typ_l,clkconnect,..
@@ -640,7 +645,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 		xx= clkconnect(f,:)
 		for jj=2:nout
                     if  show_comment then  
-                       disp('No block duplication but link between '+string(blk)+..
+                       mprintf('No block duplication but link between '+string(blk)+..
                             ' and '+string(bli)+'replaced with links from '+..
                                                  string(bl)+' to '+string(bli)),
                     end
@@ -657,10 +662,10 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	    //  [fblks2,fblksptr2]=event_activates(clkconnect,clkptr)
 	    //  [eblks2,eblksptr2]=event_depend_on(clkconnect,cliptr)
 	      //but then it must be updated
-            //  if norm(eblksptr-eblksptr2)>0 then disp('roro2');pause,end	
-            //  if norm(fblksptr-fblksptr2)>0 then disp('soso2');pause,end	
-            //  if norm(eblks-eblks2)>0 then disp('roro');pause,end	
-            //  if norm(fblks-fblks2)>0 then disp('soso');pause,end	
+            //  if norm(eblksptr-eblksptr2)>0 then mprintf('roro2');pause,end	
+            //  if norm(fblksptr-fblksptr2)>0 then mprintf('soso2');pause,end	
+            //  if norm(eblks-eblks2)>0 then mprintf('roro');pause,end	
+            //  if norm(fblks-fblks2)>0 then mprintf('soso');pause,end	
 
 	      
 	      if ~modif then messagebox(_('Algebraic loop.'),"modal","error"),ok=%f,return,end
@@ -673,8 +678,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
         	lordclk(clkptr(blk)+port-1)=[primary0(In),prt0(In)]
 
 		if  show_comment then  
-                      disp('for blk port '+string(blk)+' '+string(port)+..
-                               ' ordclk is'),disp(lordclk(clkptr(blk)+port-1)),
+                      mprintf('for blk port '+string(blk)+' '+string(port)+..
+                               ' ordclk is'),mprintf(lordclk(clkptr(blk)+port-1)),
                 end
 	      else
 		cord=[primary0(In),prt0(In)]
@@ -693,8 +698,8 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
 	      J=clkptr(blk)+port-1
 	      lordclk(J)=[]
 	      if  show_comment then   
-                  disp('for blk port '+string(blk)+' '+string(port)+..
-                                  ' ordclk is'), disp(lordclk(J)),
+                  mprintf('for blk port '+string(blk)+' '+string(port)+..
+                                  ' ordclk is'), mprintf(lordclk(J)),
               end
 	    else
 	      cord=[]
@@ -760,8 +765,8 @@ function [clkconnect,amaj]=find_del_inutile(clkconnect,vec_plus,typ_l)
 	f=find(par1==parents(:,1))
 	if size(f,2)==n_out then
 	  if show_comment then
-	    disp('del_inutile:')
-	    disp('les liens entre les blocs '+string(par1)+' et '+string(blk)+..
+	    mprintf('del_inutile:')
+	    mprintf('les liens entre les blocs '+string(par1)+' et '+string(blk)+..
                  ' sont supprim�s')
 	    pause
 	  end
@@ -833,7 +838,7 @@ function [bouclalg,vec,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,..
     counter2=counter2+1
     if (counter2>n_p+1) then
       bouclalg=%t
-      //      disp('Algebraic Loop detection.')
+      //      mprintf('Algebraic Loop detection.')
       break
     end
   end  
@@ -867,7 +872,7 @@ function [bouclalg,vec]=ini_ordo3(primary)
     counter2=counter2+1
     if (counter2>n_p+1) then
       bouclalg=%t
-      //      disp('Algebraic Loop detection.')
+      //      mprintf('Algebraic Loop detection.')
       break
     end
   end  
@@ -880,7 +885,7 @@ function  vec=update_vec3(vec,wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr)
     g0=g0prim(g0primptr(i):g0primptr(i+1)-1)
     g=gprim(gprimptr(i):gprimptr(i+1)-1)
     // detecting algebraic loops within a single cluster
-    //disp([px,py,size(blks,'*')])
+    //mprintf([px,py,size(blks,'*')])
     vec(w)=max(vec(w))
     if (g0 ~= []) then
       vec(w(1))=max(vec(w(1)),max(vec(g0))+1)
@@ -921,7 +926,7 @@ function [wprim,wprimptr,g0prim,g0primptr,gprim,gprimptr]=prim_calc(primary)
     wprimptr($+1)=wprimptr($)+size(w,'*')
     
     px=blksptr(w(1));py=blksptr(w(1)+1)-1
-    //disp([px,py,size(blks,'*')])
+    //mprintf([px,py,size(blks,'*')])
     g0prim=[g0prim;blks(px:py)]
     g0primptr($+1)=g0primptr($)+size(px:py,2)
   
@@ -1027,7 +1032,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
   typ_z(ext_cord)=-typ_z(ext_cord)
   typ_z=-min(typ_z,0)
   
-  if ~ok then disp('serious bug, report.');pause;end
+  if ~ok then mprintf('serious bug, report.');pause;end
   // ext_cord=ext_cord(n+1:$);
 
   typ_z_save=typ_z
@@ -1102,7 +1107,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
 	    end
 	  end
 	end
-	vec(kk)=j*ones(kk) ;   //disp(vec)
+	vec(kk)=j*ones(kk) ;   //mprintf(vec)
       end
     end
     if fini then break;end
@@ -2186,7 +2191,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   for k=ind'
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
-  if show_trace then disp('c_pass4444:'+string(timer())),end
+  if show_trace then mprintf('c_pass4444:'+string(timer())),end
   ind1=find(typ_cons)
   ind=[ind;ind1(:)]
   exe_cons=[ind,zeros(ind)]
@@ -2197,7 +2202,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
   
   exe_cons=[exe_cons;r]
 
-  if show_trace then disp('c_pass4445:'+string(timer())),end
+  if show_trace then mprintf('c_pass4445:'+string(timer())),end
 
   [clkr,clkc]=size(clkconnect);
   mm=max(clkconnect(:,2))+1;
@@ -2226,7 +2231,7 @@ function [clkconnect,exe_cons]=pak_ersi(connectmat,clkconnect,..
     clkconnect=[clkconnect;[all_out,ones(all_out)*[k,0;0,0]]]
   end
   // end of  temoprary fix
-  if show_trace then disp('c_pass4446:'+string(timer())),end 
+  if show_trace then mprintf('c_pass4446:'+string(timer())),end 
 endfunction
 
 function [r,ok]=tree4(vec,outoin,outoinptr,typ_r)
@@ -2328,7 +2333,7 @@ function [bllst,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,dep_u,dep_uptr,dep_t,.
   
     //
   end
-  if show_trace then disp('c_pass22222222:'+string(timer())),end //'
+  if show_trace then mprintf('c_pass22222222:'+string(timer())),end //'
   nlnk=size(connectmat,1)
   inplnk=zeros(inpptr($)-1,1);outlnk=zeros(outptr($)-1,1);ptlnk=1;
 

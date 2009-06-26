@@ -2868,8 +2868,8 @@ function Code=make_computational42()
         '#include <memory.h>'
         '#include <string.h>'
         '#include <machine.h>'
-        '#include <os_specific/link.h>'
-        '#include <scicos/scicos.h>'
+        '#include <link.h>'
+        '#include <scicos.h>'
         '']
 
   if MSDOS then
