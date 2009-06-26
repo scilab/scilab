@@ -33,7 +33,7 @@ static int isprime(unsigned int number);
 /*--------------------------------------------------------------------------*/
 int create_hashtable_scilab_functions(unsigned int nel)
 {
-        int i;
+    unsigned int i;
 	if (htable == NULL)
 	{
 		nel |= 1;      /* make odd */
