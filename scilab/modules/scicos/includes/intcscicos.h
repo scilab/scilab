@@ -25,7 +25,7 @@
 
 /* functions to split (gateways) */
 int intendscicosim(char *fname,unsigned long fname_len);
-int inttimescicos(char *fname,unsigned long fname_len);
+
 int intduplicate(char *fname, unsigned long fname_len);
 int intdiffobjs(char *fname, unsigned long fname_len);
 int inttree2(char *fname, unsigned long fname_len);
@@ -36,15 +36,15 @@ int intphasesim(char *fname, unsigned long fname_len);
 int intsetxproperty(char *fname, unsigned long fname_len);
 int intsetblockerror(char *fname, unsigned long fname_len);
 int intscicosimc(char *fname,unsigned long fname_len);
-int intgetscicosvarsc(char *fname,unsigned long fname_len);
+
 
 
 
 int MlistGetFieldNumber(int *ptr, const char *string);
 void  duplicata(int *n,double *v,double *w,double *ww,int *nw);
 void  comp_size(double *v,int *nw,int n);
-int CopyVarFromlistentry(int lw, int *header, int i);
-int var2sci(void *x,int n,int m,int typ_var);
-int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp);
+
+
+
 
 #endif /* __INTCSCICOS_H__ */

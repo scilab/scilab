@@ -35,7 +35,10 @@ src/c/scicosclip.c \
 src/c/sciblk4.c \
 src/c/ezxml.c \
 src/c/il_state.c \
-src/c/il_sim.c
+src/c/il_sim.c \
+src/c/createblklist.c \
+src/c/var2sci.c \
+src/c/copyvarfromlistentry.c
 
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \

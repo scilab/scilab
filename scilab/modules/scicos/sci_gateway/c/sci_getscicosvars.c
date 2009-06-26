@@ -30,6 +30,8 @@
 #include "import.h"
 #include "il_state.h"
 #include "il_sim.h"
+#include "createblklist.h"
+#include "copyvarfromlistentry.h"
 /*--------------------------------------------------------------------------*/
 extern void str2sci(char** x,int n,int m); /* core/src/c/str2sci.h */
 extern int C2F(mktlist)(); 

@@ -382,6 +382,14 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
+				RelativePath=".\copyvarfromlistentry.c"
+				>
+			</File>
+			<File
+				RelativePath=".\createblklist.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainScicos.c"
 				>
 			</File>
@@ -557,11 +565,23 @@
 				RelativePath=".\tree.c"
 				>
 			</File>
+			<File
+				RelativePath=".\var2sci.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
+			<File
+				RelativePath=".\copyvarfromlistentry.h"
+				>
+			</File>
+			<File
+				RelativePath=".\createblklist.h"
+				>
+			</File>
 			<File
 				RelativePath=".\ezxml.h"
 				>
@@ -608,6 +628,10 @@
 			</File>
 			<File
 				RelativePath=".\tree.h"
+				>
+			</File>
+			<File
+				RelativePath=".\var2sci.h"
 				>
 			</File>
 		</Filter>
