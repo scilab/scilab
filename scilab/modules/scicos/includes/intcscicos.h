@@ -24,9 +24,7 @@
 #include "scicos_block4.h"
 
 /* functions to split (gateways) */
-int intendscicosim(char *fname,unsigned long fname_len);
 
-int intduplicate(char *fname, unsigned long fname_len);
 int intdiffobjs(char *fname, unsigned long fname_len);
 int inttree2(char *fname, unsigned long fname_len);
 int inttree3(char *fname, unsigned long fname_len);
@@ -35,16 +33,7 @@ int intxproperty(char *fname,unsigned long fname_len);
 int intphasesim(char *fname, unsigned long fname_len);
 int intsetxproperty(char *fname, unsigned long fname_len);
 int intsetblockerror(char *fname, unsigned long fname_len);
-int intscicosimc(char *fname,unsigned long fname_len);
-
-
-
 
 int MlistGetFieldNumber(int *ptr, const char *string);
-void  duplicata(int *n,double *v,double *w,double *ww,int *nw);
-void  comp_size(double *v,int *nw,int n);
-
-
-
 
 #endif /* __INTCSCICOS_H__ */

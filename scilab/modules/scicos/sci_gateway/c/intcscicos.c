@@ -82,55 +82,6 @@ int MlistGetFieldNumber(int *ptr, const char *string)
   return retval;
 }
 /*--------------------------------------------------------------------------*/ 
-int intendscicosim(char *fname,unsigned long fname_len)
-     /* termine la simulation */
-{
-  int isrun = C2F(cosim).isrun;
-
-  CheckRhs(-1,0);
-  if (!isrun) {
-    Scierror(999,"%s: scicosim is not running.\n",fname);
-  }
-  else {
-    end_scicos_sim();
-  }
-  return 0;
-}
-/*--------------------------------------------------------------------------*/ 
-
-/*--------------------------------------------------------------------------*/ 
-int intduplicate(char *fname, unsigned long fname_len)
-
-     /* v=duplicate(u,count) 
-      * returns v=[u(1)*ones(count(1),1);
-      *            u(2)*ones(count(2),1);
-      *            ...
-      */
-{
-  int m1,m2,m3,n1,n2,n3,l1,l2,l3,n;
-  CheckRhs(2,2);
-  CheckLhs(1,1);
-  GetRhsVar(1,"d",&m1,&n1,&l1);
-  GetRhsVar(2,"d",&m2,&n2,&l2);
-  n=m1*n1;
-  if (n==0) {
-    m3=0;
-    CreateVar(3, "d", &m3, &m3, &l3);
-    LhsVar(1) = 3;
-    return 0;
-  }
-  if (n!=m2*n2) 
-    {
-      Scierror(999,"%s: 1st and 2nd argument must have equal size\n",fname);
-      return 0;
-    }
-  comp_size(stk(l2),&n3,n);
-  m3=1;
-  CreateVar(3, "d", &n3, &m3, &l3);
-  duplicata(&n,stk(l1),stk(l2),stk(l3),&n3);
-  LhsVar(1) = 3;
-  return 0;
-}
 /*--------------------------------------------------------------------------*/ 
 int intdiffobjs(char *fname, unsigned long fname_len)
      /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
