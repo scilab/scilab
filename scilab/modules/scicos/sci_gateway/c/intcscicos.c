@@ -59,87 +59,6 @@ extern CURBLK_struct C2F(curblk);
 extern COSIM_struct C2F(cosim);
 extern COSERR_struct coserr;    /* declaration of coserr -valable partout- */
 /*--------------------------------------------------------------------------*/ 
-/* fonction pour recuperer le nombre du champs a partir de son nom */
-int MlistGetFieldNumber(int *ptr, const char *string)
-{
-  int nf, longueur, istart, k, ilocal, retval;
-  int *headerstr;
-  static char str[24];
- 
-  headerstr = listentry(ptr,1);
-  nf=headerstr[1]*headerstr[2]-1;  /* number of fields */
-  retval=-1;
-  for (k=0; k<nf; k++) {
-    longueur=Min(headerstr[6+k]-headerstr[5+k],24);  /* size of kth fieldname */
-    istart=5+nf+headerstr[5+k];    /* start of kth fieldname code */
-    /*    istart=8+headerstr[4+nf+k]; */
-    C2F(cvstr)(&longueur, &headerstr[istart], str, (ilocal=1, &ilocal),longueur);
-    str[longueur]='\0';
-    if (strcmp(string, str) == 0) {
-      retval=k+2;
-      break;}
-  }
-  return retval;
-}
-/*--------------------------------------------------------------------------*/ 
-/*--------------------------------------------------------------------------*/ 
-int intdiffobjs(char *fname, unsigned long fname_len)
-     /*   diffobjs(A,B) returns 0 if A==B and 1 if A and B differ */
-{
-  int un,l3,k;
-  int size1;int size2;
-  int *header1;int *header2;
-  CheckRhs(2,2);
-  CheckLhs(1,1);
-  header1 = GetData(1);
-  header2 = GetData(2);
-  CreateVar(3,"d",(un=1,&un),(un=1,&un),&l3);
-  LhsVar(1) = 3;
-  size1=2*(*Lstk(Top-Rhs+2)-*Lstk(Top-Rhs+1));
-  size2=2*(*Lstk(Top-Rhs+3)-*Lstk(Top-Rhs+2));
-
-  if (size1 != size2) {
-    *stk(l3)=1;
-    return 0;
-  }
-  for (k=0; k<size1; k++) {
-    if (header1[k] != header2[k]) {
-      *stk(l3)=1;
-      return 0;
-    }
-    *stk(l3)=0;
-
-  }
-  return 0;
-}
-/*--------------------------------------------------------------------------*/ 
-int inttree2(char *fname, unsigned long fname_len)
-     /* [ord,ok]=ctree2(vec,outoin,outoinptr,dep_u,dep_uptr) */
-{
-  int un=1,ipvec,nvec,mvec,noin,moin,ipoin,noinr,moinr,ipoinr;
-  int ndep,mdep,ipdep,ndepuptr,mdepuptr,ipdepuptr,ipord,ipok,n,nord;
-
-  CheckRhs(5,5);
-  CheckLhs(2,2);
-
-  GetRhsVar(1,"i",&nvec,&mvec,&ipvec);
-  GetRhsVar(2,"i",&noin,&moin,&ipoin);
-  GetRhsVar(3,"i",&noinr,&moinr,&ipoinr);
-  GetRhsVar(4,"i",&ndep,&mdep,&ipdep);
-  GetRhsVar(5,"i",&ndepuptr,&mdepuptr,&ipdepuptr);
-  n=nvec*mvec;
-  CreateVar(6,"i",&n,&un,&ipord);
-  CreateVar(7,"i",&un,&un,&ipok);
-
-  ctree2(istk(ipvec),n,istk(ipdep),istk(ipdepuptr),istk(ipoin),istk(ipoinr),
-	 istk(ipord),&nord,istk(ipok));
-  *istk(iadr(C2F(intersci).iwhere[5])+1)=nord;
-
-  LhsVar(1)=6;
-  LhsVar(2)=7;
-
-  return 0;
-}
 /*--------------------------------------------------------------------------*/ 
 int inttree3(char *fname, unsigned long fname_len)
      /* [r2,ok2]=ctree3(vec,dd,dep_uptr,typ_l,bexe,boptr,blnk,blptr)*/
@@ -284,27 +203,4 @@ int intsetblockerror(char *fname, unsigned long fname_len)
   }
   return 0;
 }
-/*--------------------------------------------------------------------------*/ 
-void  duplicata(int *n,double *v,double *w,double *ww,int *nw)
-{
-  int i,j,k;
-  k=0;
-  for (i=0;i<*n;i++) {
-    for (j=0;j<(int) w[i];j++) {
-      ww[k]=v[i];
-      k=k+1;
-    }
-  }
-  *nw=k;
-}
-/*--------------------------------------------------------------------------*/ 
-void  comp_size(double *v,int *nw,int n)
-{
-  int i;
-  *nw=0;
-  for (i=0;i<n;i++) {
-    if (v[i]>0) *nw=*nw+(int) v[i];
-  }
-}
-/*--------------------------------------------------------------------------*/ 
 /*--------------------------------------------------------------------------*/ 
