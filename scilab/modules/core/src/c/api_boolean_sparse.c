@@ -54,7 +54,6 @@ int allocBooleanSparseMatrix(int _iVar, int _iRows, int _iCols, int _iNbItem, in
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
-	int *piAddr			= NULL;
 	int iPos				= 0;
 
 	getNewVarAddressFromPosition(iNewPos, _piAddress);
@@ -145,7 +144,6 @@ int createNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int _iRows, in
 int readNamedBooleanSparseMatrix(char* _pstName, int _iNameLen, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
 	int* piAddr				= NULL;
-	int iNbItem				= 0;
 	int* piNbItemRow	= 0;
 	int* piColPos			= 0;
 

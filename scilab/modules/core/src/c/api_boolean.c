@@ -15,6 +15,7 @@
 
 #include "api_common.h"
 #include "api_double.h"
+#include "api_boolean.h"
 #include "api_internal_common.h"
 #include "api_internal_boolean.h"
 

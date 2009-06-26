@@ -76,7 +76,6 @@ int getVarNameFromPosition(int _iVar, char* _pstName)
 int getNewVarAddressFromPosition(int _iVar, int** _piAddress)
 {
 	int iAddr			= iadr(*Lstk(_iVar));
-	int iValType	= *istk(iAddr);
 	*_piAddress		= istk(iAddr);
 	//intersci_.ntypes[_iVar - 1] = '$' ;
 
@@ -147,7 +146,6 @@ int isVarComplex(int* _piAddress)
 
 void createNamedVariable(int *_piVarID)
 {
-	int iZero				= 0;
 	int iOne				= 1;
 	//it seems this part setting up the output format but "stackp" print anything
 //	int iSaveLct		= C2F(iop).lct[3];
