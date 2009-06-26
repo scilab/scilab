@@ -260,11 +260,10 @@ public class SwingScilabExportFileChooser extends SwingScilabFileChooser {
 	 * @param userExtension extension caught by the user
 	 */
 	public void vectorialExport(String userExtension) {
-		ExportData exportData;
-		ExportOptionWindow exportOptionWindow;
-		
-		exportData = new ExportData(figureId, exportName, userExtension, null);
-        exportOptionWindow = new ExportOptionWindow(exportData);		
+		ExportData exportData = new ExportData(figureId, this.exportName, userExtension, null);
+		ExportOptionWindow exportOptionWindow = new ExportOptionWindow(exportData);		
+        exportOptionWindow.displayOptionWindow();
+		exportOptionWindow.landscapePortraitOption();
 	}
 
 }
