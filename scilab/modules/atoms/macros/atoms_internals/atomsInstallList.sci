@@ -143,10 +143,10 @@ function [insList,depTree] = atomsInstallList(packages)
 			this_package_user_choice = ""; // stand for User Choice
 		end
 		
-		to_install = %F; 
+		to_install = %F;
 		
 		if atomsIsInstalled(this_package_name) then
-			vers = atomsGetInstalledVers(mandatory_packages(i));
+			vers = atomsGetInstalledVers(this_package_name);
 			if find( vers == this_package_version ) == [] then
 				to_install = %T;
 			end

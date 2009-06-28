@@ -7,7 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// Renvoie la liste des packages dont celui passé en argument est une dépendance
+// Give the list of packages that use this package (identified by its name and version)
 
 function packages = atomsGetDepParents(name,version,allusers)
 	
@@ -55,55 +55,27 @@ function packages = atomsGetDepParents(name,version,allusers)
 		end
 	end
 	
-	// Define the differents path of the file where are installed
+	// Load the installed_deps struct
 	// =========================================================================
 	
-	installed_deps_files = [];
-	user_file            = pathconvert(SCIHOME+"/atoms/installed_deps",%F);
-	alluser_file         = pathconvert(SCI+"/.atoms/installed_deps",%F);
-	
-	if fileinfo(user_file)<>[] then
-		installed_deps_files = [ installed_deps_files ; user_file "user" ];
+	if allusers then
+		// all packages
+		[ child_deps,parent_deps ] = atomsLoadInstalleddeps("all");
+	else
+		// user packages
+		[ child_deps,parent_deps ] = atomsLoadInstalleddeps(%F);
 	end
 	
-	if allusers & (fileinfo(alluser_file)<>[]) then
-		installed_deps_files = [ installed_deps_files ; alluser_file "allusers"];
-	end
-	
-	// Loop on each "installed_deps" file specified as first input argument
+	// If name - version is not a field of the struct, the job is done
 	// =========================================================================
 	
-	for i=1:size(installed_deps_files(:,1),"*")
-		
-		// Get the installed package list in this file
-		installed_deps_lines = mgetl(installed_deps_files(i,1));
-		
-		// Loop on each lines
-		for j=1:size(installed_deps_lines,"*")
-			
-			if regexp(installed_deps_lines(j),"/^\[(.)*\]$/","o") <> [] then
-				
-				// Remove leading and trailing whitespaces.
-				this_line = stripblanks(installed_deps_lines(j));
-				
-				// Remove leading and trailing [ ]
-				this_line = part(this_line,2:length(this_line)-1);
-				
-				current_name_length = regexp(this_line,"/\s-\s/","o");
-				current_name        = part(this_line,1:current_name_length-1);
-				current_version     = part(this_line,current_name_length+3:length(this_line));
-				current_parent      = [current_name current_version];
-				
-				continue;
-			end
-			
-			if stripblanks(installed_deps_lines(j)) == name+" - "+version then
-				if ~ isempty(current_parent) then
-					packages = [ packages ; current_parent ];
-				end
-			end
-		end
-		
+	if ~ isfield(parent_deps,name+" - "+version) then
+		return;
 	end
+	
+	// Return the matrix associated with the wanted package (name - version)
+	// =========================================================================
+	
+	packages = parent_deps(name+" - "+version);
 	
 endfunction

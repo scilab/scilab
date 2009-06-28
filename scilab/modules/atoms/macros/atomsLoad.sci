@@ -295,6 +295,6 @@ function result = atomsLoad(name,version)
 	
 	// Exec the resume cmd
 	// =========================================================================
-	// execstr(resume_cmd,"errcatch");
+	execstr(resume_cmd);
 	
 endfunction

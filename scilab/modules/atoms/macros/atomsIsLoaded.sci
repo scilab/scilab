@@ -17,7 +17,7 @@
 
 //   version_out : . If the toolbox is loaded, version_out is the version of the
 //                   loaded toolbox
-//                   otherwise, version_out = "-1"
+//                   otherwise, version_out = ""
 //                 . Matrix of string (n x 1)
 //                 . mandatory
 

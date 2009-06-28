@@ -29,7 +29,7 @@ function packages = atomsGetInstalled(allusers)
 		error(msprintf(gettext("%s: Wrong number of input argument: at most %d expected.\n"),"atomsGetInstalled",1));
 	end
 	
-	// Apply changes for all users or just for me ?
+	// Load all packages, or just user packages ?
 	// =========================================================================
 	
 	if rhs == 0 then
@@ -41,47 +41,15 @@ function packages = atomsGetInstalled(allusers)
 		end
 	end
 	
-	// Define the differents path of the file where are installed
+	// Call atomsLoadInstalledMat
 	// =========================================================================
 	
-	installed_files = [];
-	user_file       = pathconvert(SCIHOME+"/atoms/installed",%F);
-	alluser_file    = pathconvert(SCI+"/.atoms/installed",%F);
-	
-	if fileinfo(user_file)<>[] then
-		installed_files = [ installed_files ; user_file "user" ];
-	end
-	
-	if allusers & (fileinfo(alluser_file)<>[]) then
-		installed_files = [ installed_files ; alluser_file "allusers"];
-	end
-	
-	// Loop on each "installed" file specified as first input argument
-	// =========================================================================
-	
-	for i=1:size(installed_files(:,1),"*")
-		
-		// Get the installed package list in this file
-		installed = mgetl(installed_files(i,1));
-		
-		// Loop on each URL specified as first input argument
-		for j=1:size(installed,"*")
-			current_status       = part(installed(j),1:1);
-			installed(j)         = part(installed(j),5:length(installed(j)));
-			current_name_length  = regexp(installed(j),"/\s-\s/","o");
-			current_name         = part(installed(j),1:current_name_length-1);
-			current_version      = part(installed(j),current_name_length+3:length(installed(j)));
-			
-			if installed_files(i,2) == "user" then
-				// user
-				current_path  = pathconvert(SCIHOME+"/atoms/"+current_name+"/"+current_version,%F); 
-			else
-				// all users
-				current_path = pathconvert(SCI+"/contrib/"+current_name+"/"+current_version,%F);
-			end
-			
-			packages = [ packages ; current_name current_version installed_files(i,2) current_path current_status];
-		end
+	if allusers then
+		// all packages
+		packages = atomsLoadInstalledMat("all");
+	else
+		// user packages
+		packages = atomsLoadInstalledMat(%F);
 	end
 	
 endfunction

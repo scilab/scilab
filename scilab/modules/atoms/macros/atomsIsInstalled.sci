@@ -68,7 +68,6 @@ function res = atomsIsInstalled(name,version,allusers)
 	// =========================================================================
 	packages = atomsGetInstalled(allusers);
 	
-	
 	// Loop on name
 	// =========================================================================
 	

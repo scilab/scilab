@@ -9,15 +9,13 @@
 
 // Add toolboxes to the list of installed packages
 // This function has an impact on the following files :
-//  -> ATOMSDIR/installed
-//  -> ATOMSDIR/installed_deps
+//  -> ATOMSDIR/installed.txt, ATOMSDIR/installed.bin
+//  -> ATOMSDIR/installed_deps.txt, ATOMSDIR/installed_deps.bin
 
 function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	
 	rhs            = argn(2);
 	nbAdd          = 0;
-	installed      = []; // Column vector that contain installed packages
-	installed_deps = []; // Column vector that contain installed dependencies
 	
 	// Check number of input arguments
 	// =========================================================================
@@ -62,7 +60,7 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	// Apply changes for all users or just for me ?
 	// =========================================================================
 	
-	if rhs == 3 then
+	if rhs < 4 then
 		// By default, The toolbox is installed for all users (if we have write access of course !)
 		if atomsAUWriteAccess() then
 			allusers = %T; 
@@ -73,7 +71,7 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 	else
 		// Just check if it's a boolean
 		if type(allusers) <> 4 then
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallRegister",2));
+			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsInstallRegister",4));
 		end
 		
 		// Check if we have the write access
@@ -82,92 +80,65 @@ function nbAdd = atomsInstallRegister(name,version,status,allusers)
 		end
 	end
 	
-	// Define the path of the file that will record the change according to
-	// the "allusers" value
+	
+	// load installed packages (a struct)
 	// =========================================================================
+	installed = atomsLoadInstalledStruct(allusers);
 	
-	if allusers then
-		atoms_directory = pathconvert(SCI+"/.atoms");
-	else
-		atoms_directory = pathconvert(SCIHOME+"/atoms");
-	end
-	
-	// Does the atoms_directory exist, if not create it
+	// Load the installed_deps (a struct)
 	// =========================================================================
-	
-	if ~ isdir(atoms_directory) then
-		mkdir(atoms_directory);
-	end
-	
-	// Does the SCIHOME/atoms/installed exist, if yes load it
-	// =========================================================================
-	
-	if fileinfo(atoms_directory+"installed") <> [] then
-		installed = mgetl(atoms_directory+"installed");
-	end
-	
-	// Does the SCIHOME/atoms/installed_deps exist, if yes load it
-	// =========================================================================
-	
-	if fileinfo(atoms_directory+"installed_deps") <> [] then
-		installed_deps = mgetl(atoms_directory+"installed_deps");
-	end
+	installed_deps = atomsLoadInstalleddeps(allusers);
 	
 	// Loop on each URL specified as input argument
 	// =========================================================================
-	
 	for i=1:size(name,"*")
 		
-		// Add the URL only if it doesn't already exist
-		if grep( installed ,"/^[AI]\s-\s"+name(i)+"\s-\s"+version(i)+"$/","r") == [] then
-			
+		if isfield(installed,name(i)+" - "+version(i)) then
+			// This package is already registered
+			continue;
+		else
+			// We have at least one change
 			nbAdd = nbAdd + 1;
-			
-			// installed file
-			// =================================================================
-			installed = [ installed ; status(i)+" - "+name(i)+" - "+version(i) ];
-			
-			// installed_deps file
-			// =================================================================
-			
-			// Parent package
-			// --------------
-			this_package_str = ["["+name(i)+" - "+version(i)+"]"];
-			
-			// Get the depencency tree & and child package
-			// -------------------------------------------
-			tree              = atomsDependencyTree(name(i),version(i));
-			dep_packages      = getfield(1,tree);
-			dep_packages(1:2) = [];
-			dep_packages(find(dep_packages == name(i))) = [];
-			
-			// loop on childs
-			// -------------------------------------------
-			for j=1:size(dep_packages,"*")
-				this_dep_package_details = tree(dep_packages(j));
-				this_package_str = [this_package_str;"    "+this_dep_package_details("Toolbox")+" - "+this_dep_package_details("Version")];
-			end
-			
-			// Finalize the current packages string
-			// ------------------------------------
-			this_package_str  = [this_package_str;""];
-			
-			// Cat the current packages deps with all others
-			// ---------------------------------------------
-			installed_deps    = [installed_deps;this_package_str];
-			
 		end
 		
+		// installed struct
+		// ---------------------------------------------------------------------
+		
+		// Build the matrix
+		
+		if allusers then
+			this_package_path    = pathconvert(SCI+"/contrib/"+name(i)+"/"+version(i),%F);
+			this_package_uservar = "allusers";
+		else
+			this_package_path    = pathconvert(SCIHOME+"/atoms/"+name(i)+"/"+version(i),%F);
+			this_package_uservar = "user";
+		end
+		
+		// Add this package to the struct
+		installed(name(i)+" - "+version(i)) = [ .. 
+			name(i)              ; .. // name
+			version(i)           ; .. // version
+			this_package_path    ; .. // path
+			this_package_uservar ; .. // allusers / user
+			status(i)            ];   // I / A
+		
+		// installed_deps file
+		// Get the depencency tree & and child package
+		// ---------------------------------------------------------------------
+		
+		childs_tree = atomsDependencyTree(name(i),version(i));
+		childs_mat  = getfield(1,childs_tree);
+		childs_mat(1:2) = [];
+		childs_mat( find(childs_mat == name(i)+" - "+version(i)) ) = [];
+		installed_deps(name(i)+" - "+version(i)) = childs_mat';
 	end
 	
 	// Apply changes
 	// =========================================================================
 	
 	if nbAdd > 0 then
-		
-		mputl(installed     , atoms_directory+"installed");
-		mputl(installed_deps, atoms_directory+"installed_deps");
-		
+		atomsSaveInstalled(installed,allusers);
+		atomsSaveInstalleddeps(installed_deps,allusers);
 	end
 	
 endfunction

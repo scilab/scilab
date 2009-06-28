@@ -12,10 +12,9 @@
 //  -> ATOMSDIR/installed
 //  -> ATOMSDIR/installed_deps
 
-function nbDel = atomsInstallUnregister(name,version,allusers)
+function atomsInstallUnregister(name,version,allusers)
 	
-	rhs                  = argn(2);
-	nbDel                = 0;
+	rhs = argn(2);
 	
 	// Check number of input arguments
 	// =========================================================================
@@ -66,102 +65,53 @@ function nbDel = atomsInstallUnregister(name,version,allusers)
 		end
 	end
 	
-	// Define the path of the files that will record the change according to
-	// the "allusers" value and the existence of the latter
+	// Process installed
+	// =========================================================================
+	installed_before = atomsLoadInstalledStruct(allusers);
+	installed_after  = atomsRmfields(installed_before,name+" - "+version);
+	atomsSaveInstalled(installed_after);
+	
+	// Process installed dependencies
+	// =========================================================================
+	installed_deps_before = atomsLoadInstalleddeps(allusers);
+	installed_deps_after  = atomsRmfields(installed_deps_before,name+" - "+version);
+	atomsSaveInstalleddeps(installed_deps_after);
+	
+endfunction
+
+
+function struct_out = atomsRmfields(struct_in,fields_to_remove)
+	
+	rhs        = argn(2);
+	struct_out = struct();
+	
+	// Check number of input arguments
 	// =========================================================================
 	
-	// installed files
-	
-	atoms_files = [];
-	
-	if fileinfo( pathconvert(SCIHOME+"/atoms/installed",%F) )<> [] then
-		atoms_files = [ atoms_files ; pathconvert(SCIHOME+"/atoms/installed",%F) ];
+	if rhs <> 2 then
+		error(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"atomsRmfields",2));
 	end
 	
-	if allusers & (fileinfo( pathconvert(SCI+"/.atoms/installed",%F) )<>[]) then
-		atoms_files = [ atoms_files ; pathconvert(SCI+"/.atoms/installed",%F) ];
-	end
-	
-	// installed_deps files
-	
-	atoms_files_deps = [];
-	
-	if fileinfo( pathconvert(SCIHOME+"/atoms/installed_deps",%F) )<> [] then
-		atoms_files_deps = [ atoms_files_deps ; pathconvert(SCIHOME+"/atoms/installed_deps",%F) ];
-	end
-	
-	if allusers & (fileinfo( pathconvert(SCI+"/.atoms/installed_deps",%F) )<>[]) then
-		atoms_files_deps = [ atoms_files_deps ; pathconvert(SCI+"/.atoms/installed_deps",%F) ];
-	end
-	
-	// Loop on each installed file specified as first input argument
+	// Check input parameters type
 	// =========================================================================
 	
-	for i=1:size(atoms_files,"*")
-		
-		// Get the installed package list in this file
-		installed = mgetl(atoms_files(i));
-		
-		// Loop on each URL specified as first input argument
-		for j=1:size(name,"*")
-			indice = grep(installed,"/^[AI]\s-\s"+name(j)+"\s-\s"+version(j)+"$/","r");
-			
-			if indice <> [] then
-				nbDel = nbDel + 1;
-				installed(indice) = [];
-			end
-		end
-		
-		if installed == [] then
-			mdelete(atoms_files(i));
-		else
-			// Apply changes on this file
-			mputl(installed,atoms_files(i));
-		end
+	if type(struct_in) <> 17 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: Struct expected.\n"),"atomsRmfields",1));
 	end
 	
-	// Loop on each installed file specified as first input argument
-	// =========================================================================
+	if type(fields_to_remove) <> 10 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRmfields",1));
+	end
 	
-	for i=1:size(atoms_files_deps,"*")
-		
-		found = 0;
-		
-		// Get the installed package list in this file
-		installed_deps_in  = mgetl(atoms_files_deps(i));
-		installed_deps_out = [];
-		
-		// Loop on each URL specified as first input argument
-		for j=1:size(name,"*")
-			
-			// Loop on each lines of the installed_deps file
-			for k=1:size(installed_deps_in,"*")
-				
-				if installed_deps_in(k) == "["+name(j)+" - "+version(j)+"]" then
-					found = 1;
-					continue;
-				end
-				
-				if regexp(installed_deps_in(k),"/^\[(.)*\]$/","o") <> [] then
-					found = 0;
-				end
-				
-				if found == 1 then
-					continue;
-				end
-				
-				if found == 0 then
-					installed_deps_out = [ installed_deps_out , installed_deps_in(k) ];
-				end
-			end
-			
-		end
-		
-		if installed_deps_out == [] then
-			mdelete(atoms_files_deps(i));
-		else
-			// Apply changes on this file
-			mputl(installed_deps_out,atoms_files_deps(i));
+	// Get the fields of the 1st input argument
+	// =========================================================================	
+	
+	fields_in      = getfield(1,struct_in);
+	fields_in(1:2) = [];
+	
+	for i=1:size( fields_in,"*")
+		if find(fields_in(i) == fields_to_remove) == [] then
+			struct_out( fields_in(i) ) = struct_in(fields_in(i));
 		end
 	end
 	
