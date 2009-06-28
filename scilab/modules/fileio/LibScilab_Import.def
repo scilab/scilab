@@ -92,3 +92,9 @@ getMatrixOfIntegerPrecision
 getMatrixOfInteger8
 getMatrixOfInteger16
 getMatrixOfInteger32
+createNamedMatrixOfInteger8
+createNamedMatrixOfInteger16
+createNamedMatrixOfInteger32
+createMatrixOfInteger8InNamedList
+createMatrixOfInteger16InNamedList
+createMatrixOfInteger32InNamedList

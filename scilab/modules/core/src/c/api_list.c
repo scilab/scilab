@@ -1081,6 +1081,7 @@ int createCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int* _piP
 	int iRet					= 0;
 	int *piAddr				= NULL;
 	int* piEnd				= NULL;
+	int* piChildAddr	= NULL;
 	int iTotalLen			= 0;
 	int iItemLen			= 0;
 
@@ -1101,7 +1102,9 @@ int createCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int* _piP
 
 	iItemLen						= 9 + _iRows * _iCols + (9 + _iRows * _iCols)%2;
 	iItemLen						+= iTotalLen;
-	piEnd								=	piAddr + iItemLen;
+
+	getListItemAddress(_piParent, _iItemPos, &piChildAddr);
+	piEnd								=	piChildAddr + iItemLen;
 	closeList(Top, piEnd);
 
 	if(_iItemPos == _piParent[1])
@@ -1129,9 +1132,47 @@ int readComplexMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int _piPar
 
 int readCommonMatrixOfPolyInNamedList(char* _pstName, int _iNameLen, int _piParent, int _iItemPos, int _iComplex, int* _piRows, int* _piCols, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
+//TODO !!!!!
+}
+
+int allocMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
+{
+}
+
+int allocMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
+{
+}
+
+int allocMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
+{
+}
+
+int createMatrixOfInteger8InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
+{
+}
+
+int createMatrixOfInteger16InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
+{
+}
+
+int createMatrixOfInteger32InList(int _iVar, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
+{
+}
+
+
+int createMatrixOfInteger8InNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, char* _pcData)
+{
 
 }
 
+int createMatrixOfInteger16InNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, short* _psData)
+{
+
+}
+
+int createMatrixOfInteger32InNamedList(char* _pstName, int _iNameLen, int* _piParent, int _iItemPos, int _iRows, int _iCols, int* _piData)
+{
+}
 
 
 

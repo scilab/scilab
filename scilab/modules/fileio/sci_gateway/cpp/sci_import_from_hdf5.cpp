@@ -39,6 +39,7 @@ bool	import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarn
 bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
 
@@ -159,6 +160,11 @@ bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarn
 	case sci_poly :
 		{
 			bRet = import_poly(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+			break;
+		}
+	case sci_ints:
+		{
+			bRet = import_integer(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
 			break;
 		}
 	default : 
@@ -299,6 +305,113 @@ bool import_string(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVa
 	return true;
 }
 
+bool import_integer(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+	int iRet						= 0;
+	int	iRows						= 0;
+	int iCols						= 0;
+	int iPrec						= 0;
+
+	iRet								= getDataSetDims(_iDatasetId, &iRows, &iCols);
+	if(iRet)
+	{
+		return false;
+	}
+
+	iRet								= getDatasetPrecision(_iDatasetId, &iPrec);
+	switch(iPrec)
+	{
+	case SCI_INT8 : 
+		{
+			char* pcData	= NULL;
+			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
+			iRet = readInterger8Matrix(_iDatasetId, iRows, iCols, pcData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger8InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pcData);
+			}
+		}
+		break;
+	case SCI_INT16 : 
+		{
+			short* psData	= NULL;
+			psData = (short*)malloc(sizeof(short) * iRows * iCols);
+			iRet = readInterger16Matrix(_iDatasetId, iRows, iCols, psData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger16( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, psData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger16InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, psData);
+			}
+		}
+		break;
+	case SCI_INT32 : 
+		{
+			int* piData	= NULL;
+			piData = (int*)malloc(sizeof(int) * iRows * iCols);
+			iRet = readInterger32Matrix(_iDatasetId, iRows, iCols, piData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger32( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, piData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger32InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, piData);
+			}
+		}
+		break;
+	case SCI_INT64 : 
+		{
+#ifdef __SCILAB_INT64__
+			char* pcData	= NULL;
+			pcData = (char*)malloc(sizeof(char) * iRows * iCols);
+			iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pcData);
+			if(iRet)
+			{
+				return false;
+			}
+
+			iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			if(_piAddress == NULL)
+			{
+				iRet = createNamedMatrixOfInteger8( _pstVarname, (int)strlen(_pstVarname), iRows, iCols, pcData);
+			}
+			else
+			{
+				iRet = createMatrixOfInteger64InNamedList(_pstVarname, (int)strlen(_pstVarname), _piAddress, _iItemPos, iRows, iCols, pllData);
+			}
+#else
+			return false;
+#endif
+		}
+		break;
+	default :
+		return false;
+	}
+	return true;
+}
+
 bool import_boolean(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
 {
 	int iRet						= 0;
@@ -404,11 +517,11 @@ bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarn
 	{
 		if(iComplex)
 		{
-			iRet			= createMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+			iRet			= createComplexMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
 		}
 		else
 		{
-			iRet			= createComplexMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+			iRet			= createMatrixOfPolyInNamedList(_pstVarname, strlen(_pstVarname), _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal);
 		}
 	}
 
