@@ -76,6 +76,12 @@ function packages = atomsGetDepParents(name,version,allusers)
 	// Return the matrix associated with the wanted package (name - version)
 	// =========================================================================
 	
-	packages = parent_deps(name+" - "+version);
+	packages_list = parent_deps(name+" - "+version);
+	
+	for i=1:size(packages_list,"*")
+		this_package_name    = part(packages_list(i),1:regexp(packages_list(i),"/\s-\s/","o")-1);
+		this_package_version = part(packages_list(i),length(this_package_name)+4:length(packages_list(i)));
+		packages = [ packages ; this_package_name this_package_version ];
+	end
 	
 endfunction

@@ -46,38 +46,16 @@ function remList = atomsRemoveList(packages,allusers)
 	
 	rhs = argn(2);
 	
-	if rhs > 2 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsRemoveList",1,2))
+	if rhs <> 2 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"atomsRemoveList",2))
 	end
 	
 	if type(packages) <> 10 then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsRemoveList",1));
 	end
 	
-	// Apply changes for all users or just for me ?
-	// =========================================================================
-	
-	if rhs == 1 then
-		// By default, uninstall the package (if we have write access
-		// of course !)
-		if atomsAUWriteAccess() then
-			allusers = %T; 
-		else
-			allusers = %F;
-		end
-	
-	else
-		// Just check if it's a boolean
-		if type(allusers) <> 4 then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemoveList",2));
-		end
-		
-		// Check if we have the write access
-		if allusers & ~ atomsAUWriteAccess() then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemoveList",2,pathconvert(SCI+"/.atoms")));
-		end
+	if type(allusers) <> 4 then
+		error(msprintf(gettext("%s: Wrong type for input argument #%d: A boolean expected.\n"),"atomsRemoveList",2));
 	end
 	
 	// Loop on packages and to build the list of package to uninstall
@@ -91,10 +69,6 @@ function remList = atomsRemoveList(packages,allusers)
 		
 		package = packages(i);
 		
-		if size(regexp(package,"/\s/") ,"*" ) > 1 then
-			error(msprintf(gettext("%s: Wrong value for input argument #%d: it must contain at most one space.\n"),"atomsInstall",1));
-		end
-		
 		if size(regexp(package,"/\s/") ,"*" ) == 0 then
 			// Just the toolbox name is specified
 			package_names(i)    = package;
@@ -106,16 +80,12 @@ function remList = atomsRemoveList(packages,allusers)
 			package_versions(i) = part(package,[space+1:length(package)]);
 		end
 		
-		// Ok, The syntax is correct, Now check if the package is really installed
-		if ~ atomsIsInstalled(package_names(i),package_versions(i)) then
-			continue;
-		end
-		
 		// get the list of the versions of this package to uninstall
 		
 		if isempty(package_versions(i)) then
-			// uninstall all version of this toolbox
-			this_package_versions = atomsGetInstalledVers(package_names(i));
+			// uninstall all version of this toolbox (if we have the right, of
+			// course)
+			this_package_versions = atomsGetInstalledVers(package_names(i),allusers);
 		else
 			// Just uninstall the specified version
 			this_package_versions = package_versions(i);

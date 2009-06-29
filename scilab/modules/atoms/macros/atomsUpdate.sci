@@ -106,7 +106,6 @@ function result = atomsUpdate(name,allusers)
 		end
 	end
 	
-	
 	// Loop on name
 	// =========================================================================
 	

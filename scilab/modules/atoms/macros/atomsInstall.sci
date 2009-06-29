@@ -322,13 +322,13 @@ function result = atomsInstall(packages,allusers)
 	// that have been installed
 	// =========================================================================
 	
-	for i=1:size( result(:,1) )
+	for i=1:size( result(:,1) , "*" )
 		
-		packages_out = atomsUpdateDeps(result(:,1),result(:,2),allusers);
+		packages_out = atomsUpdateDeps(result(i,1),result(i,2),allusers);
 		
 		if VERBOSE then
 			for j=1:size(packages_out(:,1),"*")
-				mprintf("\t%s (%s) will now use the version %s of the package %s\n",packages_out(:,1),packages_out(:,2),result(:,1),result(:,2));
+				mprintf("\t%s (%s) will now use the version %s of the package %s\n",packages_out(j,1),packages_out(j,2),result(i,1),result(i,2));
 			end
 		end
 		
@@ -337,8 +337,8 @@ function result = atomsInstall(packages,allusers)
 	// Remove orphan packages
 	// =========================================================================
 	
-	orphan_list = atomsOrphanList(alluser);
-	for i=1:size( orphan_list(:,1) )
+	orphan_list = atomsOrphanList(allusers);
+	for i=1:size( orphan_list(:,1) , "*" )
 		atomsRemove( orphan_list(i,1) + " " + orphan_list(i,2) );
 	end
 	

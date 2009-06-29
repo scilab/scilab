@@ -90,7 +90,66 @@ function result = atomsRemove(packages,allusers)
 			chdir(initialpath);
 			error(msprintf(gettext("%s: You haven''t write access on this directory : %s.\n"),"atomsRemove",2,pathconvert(SCI+"/.atoms")));
 		end
-	end 
+	end
+	
+	// Some checking on packages variable
+	// =========================================================================
+	
+	for i=1:size(packages,"*")
+		
+		package = packages(i);
+		
+		if size(regexp(package,"/\s/") ,"*" ) > 1 then
+			error(msprintf(gettext("%s: Wrong value for input argument #%d: package name must contain at most one space (to split name and version).\n"),"atomsRemove",1));
+		end
+		
+		if size(regexp(package,"/\s/") ,"*" ) == 0 then
+			// Just the toolbox name is specified
+			package_names(i)    = package;
+			package_versions(i) = "";
+		else
+			// A version is specified
+			space               = regexp(package,"/\s/");
+			package_names(i)    = part(package,[1:space-1]);
+			package_versions(i) = part(package,[space+1:length(package)]);
+		end
+		
+		// Check if this package is installed
+		
+		if ~ atomsIsInstalled(package_names(i),package_versions(i),%T) then
+			
+			// Print a warning if the package isn't installed
+			
+			if VERBOSE
+				if isempty(package_versions(i)) then
+					mprintf("\t%s isn''t installed\n",package_names(i));
+				else
+					mprintf("\t%s (%s) isn''t installed\n",package_names(i),package_versions(i));
+				end
+			end
+		
+		elseif (~ allusers) & (~ isempty(package_versions(i)) ) then
+			
+			// The package is installed, now check if we have the right to
+			// uninstall it
+			
+			installed_details = atomsGetInstalledDetails(package_names(i),package_versions(i));
+			
+			if installed_details(3) == "allusers" then
+				error(msprintf(gettext("%s: You have not enought rights to remove the package %s (%s).\n"),"atomsRemove",package_names(i),package_versions(i)));
+			end
+		
+		elseif (~ allusers) & isempty(package_versions(i)) then
+			
+			// Check if we have the right to remove at least one of the version
+			// of the package
+			if isempty(atomsGetInstalledVers(package_names(i),allusers)) then
+				error(msprintf(gettext("%s: You have not enought rights to remove any version of the package %s.\n"),"atomsRemove",package_names(i)));
+			end
+			
+		end
+		
+	end
 	
 	// Build the list of package to Uninstall
 	// =========================================================================
@@ -138,16 +197,20 @@ function result = atomsRemove(packages,allusers)
 			error(msprintf(gettext("%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"),"atomsRemove",this_package_name,this_package_version));
 		end
 		
-		uninstall_status = rmdir(this_package_directory,"s");
-		
-		if uninstall_status<>1 then
-			chdir(initialpath);
-			error(msprintf( ..
-				gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
-				"atomsRemove", ..
-				this_package_name, ..
-				this_package_version, ..
-				this_package_directory));
+		if isdir(this_package_directory) then
+			
+			uninstall_status = rmdir(this_package_directory,"s");
+			
+			if uninstall_status<>1 then
+				chdir(initialpath);
+				error(msprintf( ..
+					gettext("%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"),..
+					"atomsRemove", ..
+					this_package_name, ..
+					this_package_version, ..
+					this_package_directory));
+			end
+			
 		end
 		
 		// Check if the parent directory (directory name == toolbox name ) is empty 
@@ -170,7 +233,8 @@ function result = atomsRemove(packages,allusers)
 		
 		// Remove this toolbox from the list of installed packages
 		// =====================================================================
-		atomsInstallUnregister(this_package_name,this_package_version,allusers);
+		this_package_allusers = (this_package_insdet(3) == "allusers");
+		atomsInstallUnregister(this_package_name,this_package_version,this_package_allusers);
 		
 		// Remove this toolbox from the list of autoloaded packages
 		// =====================================================================
