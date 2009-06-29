@@ -66,48 +66,42 @@ endfunction
 function new_entity()
   entities=['Rectangle','Segment','Polyline','Text','Circle']
   sel=x_choose(entities,'Select the Entity type')
-  f=gcf();//pix=f.pixmap;f.pixmap='on'
+  f=gcf();
   rep(3)=-1
   select sel
   case 1 then //Rectangle
     [btn,xc,yc]=xclick()
     xrect(xc,yc,0,0)
-    //show_pixmap()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
-      //show_pixmap()
     end 
  
   case 2 then //Segment
     [btn,xc,yc]=xclick()
     xsegs([xc;xc],[yc;yc])
-    ////show_pixmap()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[xc,yc;rep(1),rep(2)]
-      //show_pixmap()
     end 
 
   case 3 then //Polyline
     [btn,xc,yc]=xclick()
     xpoly([xc;xc],[yc;yc])
-    //show_pixmap()
     r=gce();r.foreground=-1;
     while %t
       while rep(3)==-1 do
 	rep=xgetmouse()
 	r.data($,:)=[rep(1),rep(2)]
-	//show_pixmap()
       end 
       if rep(3)==2 then break,end
       rep(3)=-1;
       r.data=[r.data;r.data($,:)]
     end
   case 4 then //Text
-    text = x_dialog("Enter the new t ext here.","") ;
+    text = x_dialog("Enter the new text here.","") ;
     if ( text <> [] & text <> "" ) then
       // do nothing if cancel button has been pressed or no text entered
       // get the position of the text
@@ -117,7 +111,6 @@ function new_entity()
 	while rep(3)==-1 do
 	  rep=xgetmouse()
 	  r.data=[rep(1),rep(2)]
-	  //show_pixmap()
 	end 
       else //compound
 	y0=0
@@ -129,29 +122,25 @@ function new_entity()
 	    rk.data=[rep(1),rk.data(2)+rep(2)-y0]
 	  end
 	  y0=rep(2)
-	  //show_pixmap()
 	end
       end
     end
   case 5 then //Circle
     [btn,xc,yc]=xclick()
     xarc(xc,yc,0,0,0,64*360)
-    //show_pixmap()
     r=gce();r.foreground=-1;
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,360]
-      //show_pixmap()
     end 
 
   end
-  //f.pixmap=stripblanks(pix)
 endfunction
 
 function delete_entity()
   gedx=ged
   [btn,xc,yc]=xclick()
-   [xc,yc]=xchange(xc,yc,'f2i')
+  [xc,yc]=xchange(xc,yc,'f2i')
   h=ged_getobject([xc,yc])
   if h<>[] then delete(h),end
 endfunction
@@ -163,8 +152,7 @@ function move_entity()
   [xc,yc]=xchange(xc,yc,'f2i')
   r=ged_getobject([xc,yc])
   if r==[] return,end
-//  while r.parent.type=='Compound' then r=r.parent,end
-  f=gcf();pix=f.pixmap;f.pixmap='on'
+  mprintf('debut move\n')
   rep(3)=-1
   select r.type
   case 'Rectangle' then
@@ -172,21 +160,18 @@ function move_entity()
       rep=xgetmouse()
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
-      //show_pixmap()
     end 
   case 'Segs' then //Segment
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=r.data+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
-      //show_pixmap()
     end 
   case 'Polyline' then //Polyline
     while rep(3)==-1 do
       rep=xgetmouse()
       r.data=r.data+ones(r.data(:,1))*(rep(1:2)-pos)
       pos=rep(1:2)
-      //show_pixmap()
     end 
   case 'Text' then //Text
     if r.parent.type=="Axes" then
@@ -194,7 +179,6 @@ function move_entity()
 	rep=xgetmouse()
 	r.data=r.data+(rep(1:2)-pos)
 	pos=rep(1:2)
-	//show_pixmap()
       end 
     else
       r=r.parent
@@ -205,7 +189,6 @@ function move_entity()
 	  rk.data=rk.data+(rep(1:2)-pos)
 	end
 	pos=rep(1:2)
-	//show_pixmap()
       end 
     end
   case 'Arc' then //Circle
@@ -213,17 +196,15 @@ function move_entity()
       rep=xgetmouse()
       r.data(1:2)= r.data(1:2)+(rep(1:2)-pos)
       pos=rep(1:2)
-      //show_pixmap()
     end 
 
   end
-  mprintf("fin new\n")
-  //f.pixmap=stripblanks(pix)
+   mprintf('fin move\n')
 endfunction
 
 
 function copy_entity()
-  gedx=ged
+  gedx=ged;
   [btn,xc,yc]=xclick()
   [xc,yc]=xchange(xc,yc,'f2i')
   r=ged_getobject([xc,yc])

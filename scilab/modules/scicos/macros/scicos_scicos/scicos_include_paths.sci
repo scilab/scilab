@@ -1,5 +1,3 @@
-//  Scicos
-//
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //
 // This program is free software; you can redistribute it and/or modify
@@ -19,31 +17,17 @@
 // See the file ../license.txt
 //
 
-function do_details(x)
-//** 26/06/2009, Serge Steer: multiple selection detection
-  if type(x)==1 then
-    Select = x ;
-    if Select==[] then // nothing selected return details on current diagram
-      o = scs_m;
-    elseif size(Select,1)>1 then
-      message(_("Multiple selection cannot be used here"))
-      return
-    else //a single object is selected
-      cwin = Select(1,2)
-      if cwin==curwin then //a block in current diagram
-	k = Select(1,1)
-	o = scs_m.objs(k)
-      elseif or(windows(find(windows(:,1)<0),2)==cwin) then //a block in a palette
-	kwin = find(windows(:,2)==cwin)   ;
-	pal  = palettes(-windows(kwin,1)) ;
-	k = Select(1,1) ;
-	o = pal.objs(k);
-      end
+function p=scicos_include_paths(modules)
+  if argn(2)<1 then modules=["scicos_blocks","dynamic_link","scicos","core"],end
+  if getos()=="Windows" then //Windows
+    p='""'+WSCI+"\modules\"+modules+"\includes"+'""'
+  else //Unix
+    if isdir(SCI+"/modules/core/includes/") then //source version
+      p=SCI+"/modules/"+modules+"/includes"
+    elseif isdir(SCI+"/../../include/scilab/core/") then //binary version
+      p=SCI+"/../../include/scilab/"+modules
+    elseif isdir("/usr/include/scilab/") then //packaged version
+      p=[] //to be done
     end
-  else
-    o = x ; 
   end
-
-  tree_show(o) ; //** beware to the BWidget version ! 
-
 endfunction

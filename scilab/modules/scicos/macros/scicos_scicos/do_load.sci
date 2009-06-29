@@ -48,125 +48,137 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
     xpause(100)  // quick and dirty fix for windows bug on fast
                  // computers
   end		 
-  //** function [p] = tk_getfile(file_mask, path, Title, multip)	   
-  if %scicos_demo_mode==1 then 
-      //** open a demo file 
-      if fname==[] then
-        file_mask = "*.cos*" ;  //** force the demos/scicos path 
-	path      =  SCI+"/demos/scicos" ; 
-	fname = getfile(file_mask, path) ; 
-      end
- 
-  else 
-      //** conventional Open 
-      if fname==[] then
-        fname = getfile(['*.xml','XML format (.xml)'
-			 '*.cosf','Scicos formatted files (.cosf)';
-			 '*.cos','Scicos binary files (.cos)']) ; 
-      end
-  end 
-  %scicos_demo_mode = []; //** clear the variable  
-  
-  
-  fname = stripblanks(fname) ; 
-  
-  if fname<>emptystr() then
-    %cpr=list()
-    scs_m=[]
+
+  file_is_given=fname<>[]
+
+  if ~ file_is_given then //opening a dialog for  path acquisition
+    mask  = ['*.xml',_('Scicos XML format (.xml)')
+	     '*.cos*',_('Scicos binary files (.cos) or formatted files (.cosf)')]
+      
+    if %scicos_demo_mode==1 then //** open a demo file 
+      path  =  SCI+"/modules/scicos/demos/" ; //** force the demos/scicos path 
+      mess  = _("Open a Scicos demonstration diagram")
+      %scicos_demo_mode = []; //** reset the gobal variable  
+    else //** conventional Open 
+      path = ''
+      mess = _("Open a Scicos diagram")
+    end
+    fname = uigetfile(mask,path,mess)
+
+    if fname == emptystr() then //user canceled
+      ok = %f;return
+    end
     [path,name,ext]=splitfilepath_cos(fname)
-    //first pass
-    if ext=='cos'|ext=='COS'|ext=='cosf'|ext=='COSF'|ext==''|ext=='XML'|ext=='xml' then
-      if ext=='' then  // to allow user not to enter necessarily the extension
-	fname=fname+'.cos'
-	ext='cos'
-      end
-      [x,ierr]=fileinfo(fname)
-      if ierr==0 then
-        ww=stacksize()
-        if ww(1)<2*x(1) then
-          disp('stacksize increased to '+string(2*x(1)))
-          stacksize(2*x(1))
-        end
-      else
-        message([name+' cannot be loaded.';'Opening a new diagram'])
-	ext='new'
-      end
-    else
-      message(['Only *.cos (binary) and *.cosf (formatted) files';
-               'allowed'])
-      ok=%f
-      //scs_m=scicos_diagram(version=current_version)
+ 
+  else //used when scicos is called with a file path
+    fname = stripblanks(fname)
+    [path,name,ext]=splitfilepath_cos(fname)	     
+    if ext=='' then  // to allow user not to enter necessarily the extension
+      fname=fname+'.cos'
+      ext='cos'
+    end
+  end
+  
+  //check extensions
+  ext=convstr(ext)
+  if and(ext<>['cos','cosf','xml']) then
+    message(_('Only *.cos (binary),  *.cosf or *.xml (formatted) files\n'+..
+	      'are allowed'))
+    if file_is_given then 
+      //open an empty diagram
       scs_m = get_new_scs_m();
-      return
     end
-
-    //second pass
-    if ext=='cos'|ext=='COS' then
-      ierr=execstr('load(fname)','errcatch')
-      ok=%t
-    elseif ext=='cosf'|ext=='COSF' then
-      ierr=execstr('exec(fname,-1)','errcatch')
-      ok=%t
-    elseif ext=='xml'|ext=='XML' then
-      printf('Opening an XML file. Please wait ...............')
-      ierr=execstr('scs_m=xml2cos(fname)','errcatch')
-      ok=%t
-    elseif ext=='new'
-      ok=%t
-      ierr=0
-      scs_m=scicos_diagram(version=current_version)
-      scs_m.props.title=name
-    end
-    if ierr<>0 then
-      if ext=='xml'|ext=='XML' then
-	message(['An error has occur during execution of '+name+'.';
-	    'Please check the format of your XML file'])
-	printf('Error\n');
-      else
-	message('An error has occur during execution of '+name+'.')
-      end
-      ok=%f
-      scs_m=get_new_scs_m();     
-      return
-    end
-    if ext=='xml'|ext=='XML' then
-      needcompile=4;%cpr=list();
-      [ok,scs_m]=do_define_and_set(scs_m);
-      if ~ok then printf('Error\n');return;end
-      printf('Done\n');
-    end
-    //for compatibility
-    scicos_ver=find_scicos_version(scs_m)
-    if scicos_ver=='scicos2.2' then
-      if scs_m==[] then scs_m=x,end //for compatibility
-    end
-
-    //##update version
-    [ierr,scicos_ver,scs_m]=update_version(scs_m)
-    if ierr<>0 then
-      message('An error has occured during the update of '+name+'.')
-      ok=%f
-      scs_m = get_new_scs_m();
-      //scs_m=scicos_diagram(version=current_version)
-      return
-    end
-
-    //## reset %cpr and edited=%t if we have
-    //## do a convertion
-    if scicos_ver<>current_version then
-      %cpr=list()
-      edited=%t
-    end
-
-  else
-    ok=%f
+    ok = %f
     return
   end
-  scs_m.props.title=[scs_m.props.title(1),path]
-  if ext=='xml'|ext=='XML' then
-    [scs_m,ok]=generating_atomic_code(scs_m)
+  
+  %cpr=list() //reset %cpr
+  scs_m=[]
+   
+  //try to resize the stack for huge diagram
+  [x,ierr]=fileinfo(fname)
+  if ierr==0 then //file exists
+    ww=stacksize()
+    if ww(1)<2*x(1) then
+      mprintf(_('stacksize increased to %d.\n"),2*x(1))
+      stacksize(2*x(1))
+    end
+  else
+    message(msprintf(_('%s file  cannot be loaded.\nOpening a new empty diagram'),fname))
+    ext='new'
   end
-  if ~ok then scs_m = get_new_scs_m();return;end
+
+  //Use appropriate algorithm to read the file
+  if ext=='cos' then
+    ierr=execstr('load(fname)','errcatch')
+    ok=%t
+  elseif ext=='cosf' then
+    ierr=execstr('exec(fname,-1)','errcatch')
+    ok=%t
+  elseif ext=='xml' then
+    mprintf(_('Opening aScicos  XML file. Please wait ...............\n'))
+    ierr=execstr('scs_m=xml2cos(fname)','errcatch')
+    ok=%t
+  elseif ext=='new' then //create an empty diagram
+    ok=%t
+    ierr=0
+    scs_m=scicos_diagram(version=current_version)
+    scs_m.props.title=name
+  end
+  
+  if ierr<>0 then
+    if ext=='xml' then
+      message(mprintf(_('An error has occur during parsing of file %s.\n'+..
+	       'Please check the format of your XML file\n'),fname))
+    else
+      message(mprintf(_('An error has occur during loading of file %s.\n'),fname))
+    end
+    ok=%f
+    scs_m=get_new_scs_m();     
+    return
+  end
+  
+  
+  if ext=='xml' then
+    needcompile=4;%cpr=list();
+    [ok,scs_m]=do_define_and_set(scs_m);
+    if ~ok then mprintf('Error\n');return;end
+    mprintf('Done\n');
+  end
+  
+  //for compatibility
+  scicos_ver=find_scicos_version(scs_m)
+  if scicos_ver=='scicos2.2' then
+    if scs_m==[] then scs_m=x,end //for compatibility
+  end
+
+  //##update version
+  [ierr,scicos_ver,scs_m]=update_version(scs_m)
+  if ierr<>0 then
+    message('An error has occured during the update of '+name+'.')
+    ok=%f
+    scs_m = get_new_scs_m();
+    //scs_m=scicos_diagram(version=current_version)
+    return
+  end
+
+  //## reset %cpr and edited=%t if we have
+  //## do a convertion
+  if scicos_ver<>current_version then
+    %cpr=list()
+    edited=%t
+  end
+
+  //memorizing name and path
+  scs_m.props.title=[scs_m.props.title(1),path]
+  
+  if ext=='xml' then //?
+    [scs_m,ok]=generating_atomic_code(scs_m)
+    if ~ok then scs_m = get_new_scs_m();return;end
+  end
+  
+  
+  
   if typ=='diagram' then
     if %cpr<>list() then
 
@@ -181,7 +193,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 	ft=modulo(%cpr.sim.funtyp(jj),10000)
 	if ft>999 then
 	  funam=%cpr.sim.funs(jj)
-	  //regenerate systematically dynamically linked blocks forsafety
+	  //regenerate systematically dynamically linked blocks for safety
 	  //[a,b]=c_link(funam); while a;  ulink(b);[a,b]=c_link(funam);end
 	  //should be better than
 	  //"if  ~c_link(funam) then"

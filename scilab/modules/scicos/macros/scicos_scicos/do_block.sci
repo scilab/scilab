@@ -20,16 +20,13 @@
 //
 
 function [scs_m] = do_block(%pt,scs_m)
-//
-//
-//** 18 Sept 2006
-//**
-//
 // do_block - edit a block icon
+//** win = %win; //** just for memo: '%win' is the clicked window
 //
 //** 02/12/06 : use of objects permutation in gh_curwin.children.children()
+//** 25/06/2009 : Serge Steer, remove links,  text and object which are
+//   not in the current window out of the selection
 
-  //** win = %win; //** just for memo: '%win' is the clicked window
 
   if Select==[] then //** No object is selected
 
@@ -37,16 +34,21 @@ function [scs_m] = do_block(%pt,scs_m)
     K = getblock(scs_m,[xc;yc]) ; //** look from a clicked object
     if K==[] then return, end //** if no object --> EXIT
 
-  else //** if the object is selected
-
-    K = Select(:,1)'; %pt=[]
-    //** Filter out the multiple object selected cases
-    if size(K,'*')>1|%win<>Select(1,2) then
+  else //** there are selected objects
+    //retains current window selected objects
+    K=find(Select(:,2)==%win)
+    if K==[] then return, end //** if no selected object in current window--> EXIT
+    if size(K,'*')>1 then  
       message("Only one block can be selected in current window for this operation.") ;
       return ; //** EXIT
     end
+    if typeof(scs_m.objs(K))<>'Block' then 
+      message("Icon menu applies only to blocks.") ;
+      return, 
+    end
+    %pt=[]
   end
-
+  gh_curwin = scf(%win) ;  gh_axes = gca(); 
 
   gr_i = scs_m.objs(K).graphics.gr_i ; //** isolate the graphics command string 'gr_i'
 
@@ -59,8 +61,6 @@ function [scs_m] = do_block(%pt,scs_m)
   if gr_i==[] then gr_i=' ',end
 
   //** Acquire the current clicked window figure and axis handles
-  gh_curwin = scf(%win) ;
-  gh_axes = gca(); 
   while %t do
     //** use a dialog box to get input
     gr_i = dialog(['Give scilab instructions to draw block';
@@ -84,9 +84,7 @@ function [scs_m] = do_block(%pt,scs_m)
       gr_k   = get_gri(K, o_size(1)) ; //** compute the index in the graphics data structure 
       drawlater() ;
          update_gr(gr_k, o);
-         //** draw(gh_curwin.children); //** re-draw the graphic object and show on screen
          drawnow();
-         //** show_pixmap() ; //** not useful on Scilab 5 
       break; //** exit from the while loop
     end
 

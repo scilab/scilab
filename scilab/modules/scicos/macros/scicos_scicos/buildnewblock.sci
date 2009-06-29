@@ -53,7 +53,7 @@ function [ok] = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,c
 // Output :  ok : a flag to say if build is ok
 //
 
-  //** check rhs paramaters
+//** check rhs paramaters
   [lhs,rhs] = argn(0);
 
   if rhs <= 1 then files    = blknam, end
@@ -231,16 +231,7 @@ function [ok] = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,c
        loadername = "loader.sce" ;
        libname = "";
        ldflags = ldflags ;
-       //** BEWARE: default directory for source and binary versions are different ! 
-       //** if this dir exist means that someone has installed a Scilab binary version 
-       if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-          //** Binary version
-	  cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"; //** look for standard Scicos include 
-       else	  
-          //** it is a source version 
-          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"; //** look for standard Scicos include
-       end
-
+       cflags = strcat("-I"+scicos_include_paths(),' ')
        fflags = ""; //** no additional Fortran flags 
        cc = "";     //** default "C" compiler 
   
@@ -273,24 +264,7 @@ function [ok] = buildnewblock(blknam,files,filestan,filesint,libs,rpat,ldflags,c
        loadername = "loader.sce" ;
        libname = "";
        ldflags = ldflags ;
-       //** BEWARE: default directory for source and binary versions are different ! 
-       //** if this dir exist means that someone has installed a binary version 
-       if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
-          //** Binary version
-          //** NB you must add "/../../" because the default path is "<scilab>/share/scilab/" so you need
-          //**    to remount two positions :) 
-	      //** disp(".bin");
-          cflags = "-I"+SCI+"/../../include/scilab/scicos_blocks/"+"  "+..
-                   "-I"+SCI+"/../../include/scilab/dynamic_link/"+"  "+..
-                   "-I"+SCI+"/../../include/scilab/scicos/"; 
-       else	  
-          //** it is a source version 
-          //** disp(".source");
-          cflags = "-I"+SCI+"/modules/scicos_blocks/includes/"+"  "+..
-                   "-I"+SCI+"/modules/dynamic_link/includes/"+"  "+..
-                   "-I"+SCI+"/modules/scicos/includes/"; 
-       end
-
+       cflags = strcat("-I"+scicos_include_paths(),' ')
        fflags = ""; //** no additional Fortran flags 
        cc = "";     //** default "C" compiler 
     
@@ -555,14 +529,8 @@ function T=gen_make_lccwin32(blknam,files,filestan,libs,ldflags,cflags)
      "INCLUDES     = -I"""+WSCI+"\libs\f2c""" 
      "CC_COMMON    = -DWIN32 -DSTRICT -DFORDLL -D__STDC__ $(INCLUDES)"
      "CC_OPTIONS   = $(CC_COMMON)"
-     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + .. 
-                     "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" " + ..
-                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + cflags
-     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"\modules\core\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos\includes"" " + ..
-                     "-I"""+WSCI+"\modules\dynamic_link\includes"" " + ..
-                     "-I"""+WSCI+"\modules\scicos_blocks\includes"" "
+     "CFLAGS       = $(CC_OPTIONS) "+strcat("-I"+scicos_include_paths(),' ')+" "+cflags
+     "FFLAGS       = $(FC_OPTIONS) "+strcat("-I"+scicos_include_paths(),' ')
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
 
@@ -780,16 +748,8 @@ function T=gen_make_msvc(blknam,files,filestan,libs,ldflags,cflags)
      "INCLUDES     = -I"""+WSCI+"/libs/f2c"""
      "CC_COMMON    = "+CC_COMMON
      "CC_OPTIONS   = "+CC_OPTIONS
-     "CFLAGS       = $(CC_OPTIONS) -I"""+WSCI+"/modules/core/includes"" " + .. 
-                     "-I"""+WSCI+"/modules/scicos/includes"" " + ..
-                     "-I"""+WSCI+"/modules/scicos_blocks/includes"" " + ..
-                     "-I"""+WSCI+"/modules/dynamic_link/includes"" " + cflags
-                     
-                     
-     "FFLAGS       = $(FC_OPTIONS) -I"""+WSCI+"/modules/core/includes"" " + ..
-                     "-I"""+WSCI+"/modules/scicos/includes"" " + ..
-                     "-I"""+WSCI+"/modules/dynamic_link/includes"" " + ..
-                     "-I"""+WSCI+"/modules/scicos_blocks/includes"" "
+     "CFLAGS       = $(CC_OPTIONS) "+strcat("-I"+scicos_include_paths(),' ')+cflags
+     "FFLAGS       = $(FC_OPTIONS) "+strcat("-I"+scicos_include_paths(),' ')
      ""
      "OBJS         = "+strcat(files+'.obj',' ')]
 

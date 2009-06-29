@@ -146,6 +146,7 @@ function [scicos_pal, %scicos_menu, %scicos_short, %scicos_help, ...
 	      'Color',..
 	      'Background color',..
 	      'Show Block Shadow',..
+	      'Ort Link',..
 	      'Resize',..
 	      'Identification',..
 	      'ID fonts',..

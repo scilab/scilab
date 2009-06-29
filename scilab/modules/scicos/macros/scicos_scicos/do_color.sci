@@ -23,7 +23,9 @@ function scs_m = do_color(%win, %pt, scs_m)
 //
 // do_color - edit a block / link color
 //
-  
+//** 25/06/2009 : Serge Steer, 
+//   -remove  objects which are not in the current window out of the selection
+//   - add drawlater() for smooth drawing  
   if %win <> curwin then
      return ; //** exit point  
   end 
@@ -39,8 +41,8 @@ function scs_m = do_color(%win, %pt, scs_m)
      end 
   
   else
-    
-    KK = Select(:,1)'; //** take all selected objects 
+    K=find(Select(:,2)==%win); //retains objects selected in the current window
+    KK = Select(K,1)'; //** take all selected objects 
 
   end
 
@@ -65,7 +67,7 @@ function scs_m = do_color(%win, %pt, scs_m)
   //** gh_k = o_size(1) - k + 1 ; //** semi empirical equation :)
   //** Alan Layec has done this in the function get_gri();
   //** gh_blk = gh_curwin.children.children(gh_k);
-  
+  drawlater()
   for K = KK                                  //** for all the selected object(s)
     o           = scs_m.objs(K);              //** the scs_m object  
     gh_obj_K    = get_gri(K, o_size(1));      //** compute the index in the graphics DS 
