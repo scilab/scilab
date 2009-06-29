@@ -9,8 +9,28 @@
 
 // Internal function
 
-// Returns true if "parent_name - version_name" can accept "child_name - child_version"
-// as a child
+// Returns True if the package "parent_name - version_name" can accept 
+// the version "child_version" of the needed package "child_name"
+// No matter whether if "parent_name - parent_version" is
+// installed or not
+
+// Input arguments :
+//
+//   parent_name    : . String Array
+//                    . mandatory
+//
+//   parent_version : . String Array
+//                    . mandatory
+//
+//   child_name     : . Single String
+//                    . mandatory
+//
+//   child_version  : . Single String
+//                    . mandatory
+
+// Output arguments :
+//
+//   result : . Boolean Array
 
 function result = atomsPackageIsCompatible(parent_name,parent_version,child_name,child_version)
 	

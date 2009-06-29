@@ -9,7 +9,25 @@
 
 // Internal function
 
-// Returns true if child_name is directly a child of "parent_name - parent_version"
+// Returns True if the package named "child_name" (version doesn't matter)
+// is directy needed by the package whose name is "parent_name" and version is
+// "parent_version". No matter whether if "parent_name - parent_version" is
+// installed or not
+
+// Input arguments :
+//
+//   parent_name : . String Array
+//                 . mandatory
+//
+//   parent_version : . String Array
+//                    . mandatory
+//
+//   child_name     : . Single String
+//                    . mandatory
+
+// Output arguments :
+//
+//   result : . Boolean Array
 
 function result = atomsIsDirectChild(parent_name,parent_version,child_name)
 	
