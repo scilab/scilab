@@ -32,20 +32,18 @@ function result = atomsUpdate(name,allusers)
 	
 	rhs = argn(2);
 	
-	if rhs > 1 then
-		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsUpdate",0,1))
+	if rhs > 2 then
+		error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"atomsUpdate",0,2))
 	end
 	
-	if (rhs>0) & (type(name)<>10) then
+	if (rhs>0) & (~ isempty(name) ) & (type(name)<>10) then
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"),"atomsUpdate",1));
 	end
-	
-	name = stripblanks(name);
 	
 	// Install for all users or just for me ?
 	// =========================================================================
 	
-	if rhs == 1 then
+	if rhs < 2 then
 		// By default, install for all users (if we have write access of course !)
 		if atomsAUWriteAccess() then
 			allusers = %T; 
@@ -70,10 +68,16 @@ function result = atomsUpdate(name,allusers)
 	// Check if all specified toolboxes are effectively installed
 	// =========================================================================
 	
-	for i=1:size(name,"*")
-		if ~ atomsIsInstalled(name(i)) then
-			chdir(initialpath);
-			error(msprintf(gettext("%s: ''%s'' isn''t installed.\n"),"atomsUpdate",name(i)));
+	if rhs>0 & ( ~ isempty(name)) then
+		
+		// Remove leading and trealing whitespaces
+		name = stripblanks(name);
+		
+		for i=1:size(name,"*")
+			if ~ atomsIsInstalled(name(i)) then
+				chdir(initialpath);
+				error(msprintf(gettext("%s: ''%s'' isn''t installed.\n"),"atomsUpdate",name(i)));
+			end
 		end
 	end
 	
@@ -81,17 +85,27 @@ function result = atomsUpdate(name,allusers)
 	// =========================================================================
 	sciversion = strcat(string(getversion('scilab')) + ".");
 	
+	
 	// List all installed packages (needed for later)
 	// =========================================================================
 	package_installed = atomsGetInstalled();
 	
-	// Update all the Toolboxes
+	
+	// If name isn't defined or empty, get the full list of installed packages
 	// =========================================================================
 	
-	if rhs==0 | name == "all" | isempty(name) then
-		package_installed = atomsGetInstalled();
-		name              = package_installed(:,1);
+	if (rhs==0) | isempty(name) then
+		
+		name               = [];
+		package_installed = atomsGetInstalled(allusers);
+		
+		for i=1:size(package_installed(:,1),"*")
+			if find( name == package_installed(i,1) ) == [] then
+				name = [ name ;  package_installed(i,1) ];
+			end
+		end
 	end
+	
 	
 	// Loop on name
 	// =========================================================================
