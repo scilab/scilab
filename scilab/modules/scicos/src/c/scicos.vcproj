@@ -394,6 +394,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\extractblklist.c"
+				>
+			</File>
+			<File
 				RelativePath=".\ezxml.c"
 				>
 			</File>
@@ -414,11 +418,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intcutilcos.c"
+				RelativePath=".\MlistGetFieldNumber.c"
 				>
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_buildouttb.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_callblk.c"
 				>
 			</File>
 			<File
@@ -446,6 +454,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_data2sig.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_diffobjs.c"
 				>
 			</File>
@@ -467,6 +479,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_haltscicos.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_model2blk.c"
 				>
 			</File>
 			<File
@@ -519,6 +535,10 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_set_xproperty.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_sig2data.c"
 				>
 			</File>
 			<File
@@ -579,6 +599,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\extractblklist.h"
+				>
+			</File>
+			<File
 				RelativePath=".\ezxml.h"
 				>
 			</File>
@@ -596,6 +620,10 @@
 			</File>
 			<File
 				RelativePath=".\import.h"
+				>
+			</File>
+			<File
+				RelativePath=".\MlistGetFieldNumber.h"
 				>
 			</File>
 			<File

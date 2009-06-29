@@ -38,8 +38,9 @@ src/c/il_state.c \
 src/c/il_sim.c \
 src/c/createblklist.c \
 src/c/var2sci.c \
-src/c/copyvarfromlistentry.c
-
+src/c/copyvarfromlistentry.c \
+src/c/MlistGetFieldNumber.c \
+src/c/extractblklist.c
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
 src/fortran/vvtosci.f \
@@ -55,8 +56,7 @@ src/fortran/ftree4.f \
 src/fortran/scitoi.f \
 src/fortran/scifunc.f
 
-GATEWAY_C_SOURCES = sci_gateway/c/intcutilcos.c \
-sci_gateway/c/gw_scicos.c \
+GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
 sci_gateway/c/sci_ctree2.c \
 sci_gateway/c/sci_ctree3.c \
@@ -84,7 +84,11 @@ sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_var2vec.c \
 sci_gateway/c/sci_vec2var.c \
 sci_gateway/c/sci_haltscicos.c \
-sci_gateway/c/sci_coserror.c
+sci_gateway/c/sci_coserror.c \
+sci_gateway/c/sci_callblk.c \
+sci_gateway/c/sci_data2sig.c \
+sci_gateway/c/sci_model2blk.c \
+sci_gateway/c/sci_sig2data.c
 
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
