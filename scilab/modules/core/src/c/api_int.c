@@ -15,17 +15,11 @@
 
 #include "api_common.h"
 #include "api_internal_common.h"
+#include "api_internal_int.h"
 #include "api_int.h"
 
 #include "CallScilab.h"
 #include "stack-c.h"
-
-//integer
-static int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData);
-static int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData);
-static int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData);
-static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData);
-static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData);
 
 int getMatrixOfIntegerPrecision(int* _piAddress, int* _piPrecision)
 {
@@ -58,7 +52,7 @@ int getMatrixOfInteger32(int* _piAddress, int* _piRows, int* _piCols, int** _piD
 	return getCommonMatrixOfInteger(_piAddress, SCI_INT32, _piRows, _piCols, (void**)_piData32);
 }
 
-static int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
+int getCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int* _piRows, int* _piCols, void** _piData)
 {
 	int iPrec		= 0;
 	int iRet		= 0;
@@ -216,7 +210,7 @@ int allocMatrixOfInteger64(int _iVar, int _iRows, int _iCols, long long** _piDat
 }
 #endif
 
-static int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData)
+int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecision, int _iRows, int _iCols, void** piData)
 {
 	int iNewPos			= Top - Rhs + _iVar;
 	int iAddr				= *Lstk(iNewPos);
@@ -234,7 +228,7 @@ static int allocCommonMatrixOfInteger(int _iVar, int *_piAddress, int _iPrecisio
 	return 0;
 }
 
-static int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData)
+int fillCommonMatrixOfInteger(int* _piAddress, int _iPrecision, int _iRows, int _iCols, void** _pdiData)
 {
 	_piAddress[0]		= sci_ints;
 	_piAddress[1]		= Min(_iRows, _iRows * _iCols);
@@ -269,7 +263,7 @@ int createNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int _iRows, int 
 }
 #endif
 
-static int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData)
+int createCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int _iRows, int _iCols, void* _piData)
 {
 	int iVarID[nsiz];
   int iSaveRhs			= Rhs;
@@ -350,7 +344,7 @@ int readNamedMatrixOfInteger64(char* _pstName, int _iNameLen, int* _piRows, int*
 }
 #endif
 
-static int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
+int readCommonNamedMatrixOfInteger(char* _pstName, int _iNameLen, int _iPrecision, int* _piRows, int* _piCols, void* _piData)
 {
 	int iRet					= 0;
 	int* piAddr				= NULL;
