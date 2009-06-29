@@ -30,7 +30,6 @@ function result = atomsVersionCompare( version_1 , version_2 )
 	// =========================================================================
 	
 	if type(version_1) <> 10 then
-		pause
 		error(msprintf(gettext("%s: Wrong type for input argument #%d: A Single String expected.\n"),"atomsVersionCompare",1));
 	end
 	

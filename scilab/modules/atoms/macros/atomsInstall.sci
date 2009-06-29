@@ -315,6 +315,31 @@ function result = atomsInstall(packages,allusers)
 		if VERBOSE then
 			mprintf(" success\n");
 		end
+		
+	end
+	
+	// Update the dependencies of packages that use another version of packages
+	// that have been installed
+	// =========================================================================
+	
+	for i=1:size( result(:,1) )
+		
+		packages_out = atomsUpdateDeps(result(:,1),result(:,2),allusers);
+		
+		if VERBOSE then
+			for j=1:size(packages_out(:,1),"*")
+				mprintf("\t%s (%s) will now use the version %s of the package %s\n",packages_out(:,1),packages_out(:,2),result(:,1),result(:,2));
+			end
+		end
+		
+	end
+	
+	// Remove orphan packages
+	// =========================================================================
+	
+	orphan_list = atomsOrphanList(alluser);
+	for i=1:size( orphan_list(:,1) )
+		atomsRemove( orphan_list(i,1) + " " + orphan_list(i,2) );
 	end
 	
 	// Go to the initial location

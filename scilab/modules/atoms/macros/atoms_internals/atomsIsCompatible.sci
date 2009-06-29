@@ -14,7 +14,7 @@
 
 function result = atomsIsCompatible(version_str)
 	
-	rhs = argn(0);
+	rhs = argn(2);
 	
 	// Check number of input arguments
 	// =========================================================================
