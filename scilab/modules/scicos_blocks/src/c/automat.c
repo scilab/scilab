@@ -131,7 +131,7 @@ void automat(scicos_block *block,int flag)
     }
     if (test==0){
       for (k=0;k<insz[Mi-1]-2*NX;k++) if(jroot[k]==-1) break;
-      /*      sciprint("\n\r Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction",Mi,k+1); */
+      /*      sciprint("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction",Mi,k+1); */
     }
     ui=GetRealInPortPtrs(block,Mf);
     for (i=0;i<NX;i++)

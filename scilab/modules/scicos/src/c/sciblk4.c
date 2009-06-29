@@ -27,6 +27,7 @@
 #include "sciblk4.h"
 #include "import.h"
 #include "createblklist.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 /* Define external function */
 extern int C2F(scierr)();
@@ -505,13 +506,13 @@ void sciblk4(scicos_block *Blocks, int flag)
    {
     switch (ierr)
     {
-     case 1  : Scierror(888,"var2sci : error %d. Stack is full.\n",ierr);
+     case 1  : Scierror(888,_("%s: error %d. Stack is full.\n"),"var2sci",ierr);
                break;
 
-     case 2  : Scierror(888,"var2sci : error %d. No more space on the stack for new data.\n",ierr);
+     case 2  : Scierror(888,_("%s: error %d. No more space on the stack for new data.\n"),"var2sci",ierr);
                break;
 
-     default : Scierror(888,"var2sci : error %d. Undefined error.\n",ierr);
+     default : Scierror(888,_("%s: error %d. Undefined error.\n"),"var2sci",ierr);
                break;
     }
    }
@@ -519,19 +520,19 @@ void sciblk4(scicos_block *Blocks, int flag)
    {
     switch (ierr)
     {
-     case 1001  : Scierror(888,"sci2var : error %d. Only int or double object are accepted.\n",ierr);
+     case 1001  : Scierror(888,_("%s: error %d. Only int or double object are accepted.\n"),"sci2var",ierr);
                   break;
 
-     case 1002  : Scierror(888,"sci2var : error %d. Bad double object sub_type.\n",ierr);
+     case 1002  : Scierror(888,_("%s: error %d. Bad double object sub_type.\n"),"sci2var",ierr);
                   break;
 
-     case 1003  : Scierror(888,"sci2var : error %d. Bad int object sub_type.\n",ierr);
+     case 1003  : Scierror(888,_("%s: error %d. Bad int object sub_type.\n"),"sci2var",ierr);
                   break;
 
-     case 1004  : Scierror(888,"sci2var : error %d. A type of a scilab object has changed.\n",ierr);
+     case 1004  : Scierror(888,_("%s: error %d. A type of a scilab object has changed.\n"),"sci2var",ierr);
                   break;
 
-     default    : Scierror(888,"sci2var : error %d. Undefined error.\n",ierr);
+     default    : Scierror(888,_("%s: error %d. Undefined error.\n"),"sci2var",ierr);
                   break;
     }
    }

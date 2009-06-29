@@ -76,7 +76,8 @@
 #if defined(linux) && defined(__i386__)
 #include "setPrecisionFPU.h"
 #endif
-
+#include "charEncoding.h"
+#include "localization.h"
 /*--------------------------------------------------------------------------*/
 typedef struct {
 	void *ida_mem;
@@ -446,12 +447,12 @@ case 0:
 	Blocks[kf].funpt=F2C(sciblk);
 	break;
 case 1:
-	sciprint("type 1 function not allowed for scilab blocks\n");
+	sciprint(_("type 1 function not allowed for scilab blocks\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
 case 2:
-	sciprint("type 2 function not allowed for scilab blocks\n");
+	sciprint(_("type 2 function not allowed for scilab blocks\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -474,7 +475,7 @@ case 10005:
 	Blocks[kf].type=10004;
 	break;
 default :
-	sciprint("Undefined Function type\n");
+	sciprint(_("Undefined Function type\n"));
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -491,7 +492,7 @@ default :
 			i -= (ntabsim+1);
 			GetDynFunc(i,&Blocks[kf].funpt);
 			if ( Blocks[kf].funpt == (voidf) 0) {
-				sciprint("Function not found\n");
+				sciprint(_("Function not found\n"));
 				*ierr =1000+kf+1;
 				FREE_blocks();
 				return 0;
@@ -802,18 +803,18 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 
 	/* Check if SUNDIALS function returned NULL pointer - no memory allocated */
 	if (opt == 0 && flagvalue == NULL) {
-		sciprint("\nSUNDIALS_ERROR: %s() failed - returned NULL pointer\n\n", funcname);
+		sciprint(_("\nSUNDIALS_ERROR: %s() failed - returned NULL pointer\n\n"), funcname);
 		return(1); }
 	/* Check if flag < 0 */
 	else if (opt == 1) {
 		errflag = (int *) flagvalue;
 		if (*errflag < 0) {
-			sciprint("\nSUNDIALS_ERROR: %s() failed with flag = %d\n\n",
+			sciprint(_("\nSUNDIALS_ERROR: %s() failed with flag = %d\n\n"),
 				funcname, *errflag);
 			return(1); }}
 	/* Check if function returned NULL pointer - no memory allocated */
 	else if (opt == 2 && flagvalue == NULL) {
-		sciprint("\nMEMORY_ERROR: %s() failed - returned NULL pointer\n\n",funcname);
+		sciprint(_("\nMEMORY_ERROR: %s() failed - returned NULL pointer\n\n"),funcname);
 		return(1); }
 
 	return(0);
@@ -1364,7 +1365,7 @@ L30:
 				}
 
 				if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-					sciprint("****SUNDIALS.Cvode from: %f to %f hot= %d  \n", *told,t,hot);
+					sciprint(_("****SUNDIALS.Cvode from: %f to %f hot= %d  \n"), *told,t,hot);
 				}
 
 				/*--discrete zero crossings----dzero--------------------*/
@@ -1402,12 +1403,12 @@ L30:
 
 				if (flag>=0){
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-						sciprint("****SUNDIALS.Cvode reached: %f\n",*told);
+						sciprint(_("****SUNDIALS.Cvode reached: %f\n"),*told);
 					hot = 1;
 					cnt = 0;
 				} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-						sciprint("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);	  
+						sciprint(_("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n"),*told);	  
 					hot = 0;
 					cnt++;
 					if (cnt>5) {
@@ -1437,7 +1438,7 @@ L30:
 					/*     .        at a least one root has been found */
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 					{
-						sciprint("root found at t=: %f\n",*told);
+						sciprint(_("root found at t=: %f\n"),*told);
 					}
 					/*     .        update outputs affecting ztyp blocks ONLY FOR OLD BLOCKS */
 					zdoit(told, x, xd, g);
@@ -1537,19 +1538,19 @@ L30:
 			/*     .  t==told */
 			if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 			{
-				sciprint("Event: %d activated at t=%f\n",*pointi,*told);
+				sciprint(_("Event: %d activated at t=%f\n"),*pointi,*told);
 				for(kev=0;kev<nblk;kev++){
 					if (Blocks[kev].nmode>0){
-						sciprint("mode of block %d=%d, ",kev,Blocks[kev].mode[0]);
+						sciprint(_("mode of block %d=%d, "),kev,Blocks[kev].mode[0]);
 					}
 				}
-				sciprint("**mod**\n");
+				sciprint(_("**mod**\n"));
 			}
 
 			ddoit(told);
 			if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 			{
-				sciprint("End of activation\n");
+				sciprint(_("End of activation\n"));
 			}
 			if (*ierr != 0) {
 				freeall;
@@ -2004,9 +2005,9 @@ L30:
 								}
 							}
 						}	    
-						if (CI>=ZERO){  scicos_xproperty[jj]=CI;}else{fprintf(stderr,"\n\rWarinng! Xproperties are not match for i=%d!",jj);}
+						if (CI>=ZERO){  scicos_xproperty[jj]=CI;}else{fprintf(stderr,"\nWarning! Xproperties are not match for i=%d!",jj);}
 					}
-					/* printf("\n\r"); for(jj=0;jj<*neq;jj++) { printf("x%d=%g ",jj,scicos_xproperty[jj]); }*/
+					/* printf("\n"); for(jj=0;jj<*neq;jj++) { printf("x%d=%g ",jj,scicos_xproperty[jj]); }*/
 					flag=IDASetId(ida_mem,IDx);
 					if (check_flag(&flag, "IDASetId", 1)) {
 						*ierr=200+(-flag); 
@@ -2062,10 +2063,10 @@ L30:
 						if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 						{
 							if (flagr>=0) {
-								sciprint("**** SUNDIALS.IDA succesfully initialized *****\n" );
+								sciprint(_("**** SUNDIALS.IDA succesfully initialized *****\n") );
 							}
 							else{
-								sciprint("**** SUNDIALS.IDA failed to initialize ->try again *****\n" );
+								sciprint(_("**** SUNDIALS.IDA failed to initialize ->try again *****\n") );
 							}
 						}
 						/*-------------------------------------*/
@@ -2128,7 +2129,7 @@ L30:
 
 				if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 				{
-					sciprint("****daskr from: %f to %f hot= %d  \n", *told,t,hot);
+					sciprint(_("****daskr from: %f to %f hot= %d  \n"), *told,t,hot);
 				}
 
 				/*--discrete zero crossings----dzero--------------------*/
@@ -2155,12 +2156,12 @@ L30:
 				}
 				if (flagr>=0){
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-						sciprint("****SUNDIALS.Ida reached: %f\n",*told);
+						sciprint(_("****SUNDIALS.Ida reached: %f\n"),*told);
 					hot = 1;
 					cnt = 0;
 				} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {  
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-						sciprint("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n",*told);
+						sciprint(_("**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n"),*told);
 					hot = 0;
 					cnt++;
 					if (cnt>5) {
@@ -2196,7 +2197,7 @@ L30:
 
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 					{
-						sciprint("root found at t=: %f\n",*told);
+						sciprint(_("root found at t=: %f\n"),*told);
 					}
 					/*     .        update outputs affecting ztyp blocks  ONLY FOR OLD BLOCKS*/
 					zdoit(told, x, xd, g);
@@ -2322,12 +2323,12 @@ L30:
 		} else {
 			/*     .  t==told */
 			if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-				sciprint("Event: %d activated at t=%f\n",*pointi,*told);
+				sciprint(_("Event: %d activated at t=%f\n"),*pointi,*told);
 			}
 
 			ddoit(told);
 			if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-				sciprint("End of activation");
+				sciprint(_("End of activation"));
 			}
 			if (*ierr != 0) {
 				freeallx;
@@ -2416,12 +2417,12 @@ void callf(double *t, scicos_block *block, int *flag)
 	/* display information for debugging mode */
 	if (cosd > 1) {
 		if (cosd != 3) {
-			sciprint("block %d is called ",C2F(curblk).kfun);
-			sciprint("with flag %d ",*flag);
-			sciprint("at time %f \n",*t);
+			sciprint(_("block %d is called "),C2F(curblk).kfun);
+			sciprint(_("with flag %d "),*flag);
+			sciprint(_("at time %f \n"),*t);
 		}
 		if(debug_block>-1) {
-			if (cosd != 3) sciprint("Entering the block \n");
+			if (cosd != 3) sciprint(_("Entering the block \n"));
 			call_debug_scicos(block,flag,flagi,debug_block);
 			if (*flag<0) return;  /* error in debug block */
 		}
@@ -2745,7 +2746,7 @@ case 10004 :
 	/***********/
 default :
 	{
-		sciprint("Undefined Function type\n");
+		sciprint(_("Undefined Function type\n"));
 		*flag=-1000;
 		return; /* exit */
 	}
@@ -2771,7 +2772,7 @@ default :
 	if (cosd > 1) {
 		if(debug_block>-1) {
 			if (*flag<0) return;  /* error in block */
-			if (cosd != 3) sciprint("Leaving block %d \n",C2F(curblk).kfun);
+			if (cosd != 3) sciprint(_("Leaving block %d \n"),C2F(curblk).kfun);
 			call_debug_scicos(block,flag,flagi,debug_block);
 			/*call_debug_scicos(flag,kf,flagi,debug_block);*/
 		}
@@ -2816,7 +2817,7 @@ static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb
 		}
 	}
 
-	if (*flag<0) sciprint("Error in the Debug block \n");
+	if (*flag<0) sciprint(_("Error in the Debug block \n"));
 } /* call_debug_scicos */
 /*--------------------------------------------------------------------------*/
 /* simblk */
@@ -2839,7 +2840,7 @@ static int simblk(realtype t,N_Vector yy,N_Vector yp, void *f_data)
 		nantest=0;
 		for (i=0;i<*neq;i++) { /* NaN checking */
 			if ((xd[i]-xd[i]!=0)) {
-				sciprint("\n\rWarning: The computing function #%d returns a NaN/Inf",i);
+				sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"),i);
 				nantest=1;
 				break;
 			}
@@ -2869,7 +2870,7 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 		nantest=0;
 		for (jj=0;jj<ng;jj++)
 			if (gout[jj]-gout[jj]!=0){
-				sciprint("\n\rWarning: The zero_crossing function #%d returns a NaN/Inf",jj);
+				sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"),jj);
 				nantest=1;break;} /* NaN checking */
 			if (nantest==1) return 350;/* recoverable error; */
 	}
@@ -2928,7 +2929,7 @@ static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval,
 		nantest=0;
 		for (jj=0;jj<*neq;jj++)
 			if (residual[jj]-residual[jj]!=0){/* NaN checking */
-				//sciprint("\n\rWarning: The residual function #%d returns a NaN",jj);
+				//sciprint(_("\nWarning: The residual function #%d returns a NaN"),jj);
 				nantest=1;
 				break;
 			} 
@@ -2953,7 +2954,7 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
 		nantest=0; /* NaN checking */
 		for (jj=0;jj<ng;jj++) {
 			if (gout[jj]-gout[jj]!=0) {
-				sciprint("\n\rWarning: The zero-crossing function #%d returns a NaN",jj);
+				sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"),jj);
 				nantest=1;
 				break;
 			}
@@ -2987,9 +2988,9 @@ static void addevs(double t, int *evtnb, int *ierr1)
 				}
 				evtspt[i]=evtspt[*evtnb]; /* remove old evtnb from chain */
 				if (TCritWarning==0){
-					sciprint("\n\r Warning:an event is reprogrammed at t=%g by removing another",t );
-					sciprint("\n\r         (already programmed) event. There may be an error in");
-					sciprint("\n\r         your model. Please check your model\n\r");
+					sciprint(_("\n Warning:an event is reprogrammed at t=%g by removing another"),t );
+					sciprint(_("\n         (already programmed) event. There may be an error in"));
+					sciprint(_("\n         your model. Please check your model\n"));
 					TCritWarning=1;
 				}
 				do_cold_restart(); /* the erased event could be a critical
@@ -4650,7 +4651,7 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 	/*----------------------------------------------*/
 	job=1;/* read jacobian through flag=10; */
 	Jdoit(&ttx, xc, xcdot, &Fx[-m], &job);/* Filling up the FX:Fu:Gx:Gu*/
-	if (*block_error!=0) sciprint("\n\r error in Jacobian");
+	if (*block_error!=0) sciprint(_("\n error in Jacobian"));
 	/*-------------------------------------------------*/
 
 	Multp(Fu,Ku,RX,nx,ni,ni,no);Multp(RX,Gx,FuKuGx,nx,no,no,nx);
@@ -4690,7 +4691,7 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 		}
 	}
 
-	/*  chr='Z';   printf("\n\r t=%g",ttx); DISP(Z,n,n,chr);*/
+	/*  chr='Z';   printf("\n t=%g",ttx); DISP(Z,n,n,chr);*/
 	C2F(ierode).iero = *ierr;
 	return 0;
 
@@ -4699,7 +4700,7 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 static void Multp(double *A,double *B,double *R,int ra,int rb,int ca,int cb)
 {
 	int i,j,k;
-	/*if (ca!=rb) sciprint("\n\r Error in matrix multiplication");*/
+	/*if (ca!=rb) sciprint(_("\n Error in matrix multiplication"));*/
 	for (i = 0; i<ra; i++)
 		for (j = 0; j<cb; j++){
 			R[i+ra*j]=0.0;
@@ -4725,7 +4726,7 @@ int read_xml_initial_states(int nvar,const char * xmlfile, char **ids, double *s
 	model = ezxml_parse_file(xmlfile);
 
 	if (model==NULL) {
-		sciprint("Error: cannot find '%s'  \n\r",xmlfile);       
+		sciprint(_("Error: cannot find '%s'  \n"),xmlfile);       
 		return -1;/* file does not existe*/
 	}      
 
@@ -4747,7 +4748,7 @@ static int read_id(ezxml_t *elements,char *id,double *value)
 	if (strcmp(id,"")==0) return 0;
 	ok=search_in_child(elements, id, V1);  
 	if (ok==0 ){
-		/*sciprint("Cannot find: %s=%s  \n",id,V1);      */
+		/*sciprint(_("Cannot find: %s=%s  \n"),id,V1);      */
 		return 0;
 	}else{
 		if (Convert_number(V1,value)!=0) {
@@ -4758,7 +4759,7 @@ static int read_id(ezxml_t *elements,char *id,double *value)
 				return ok;
 			}else return 0;
 		}else{
-			/*      printf("\n\r ---->>>%s= %g",V1,*value);*/
+			/*      printf(_("\n ---->>>%s= %g"),V1,*value);*/
 			return 1;
 		}
 	}
@@ -4809,7 +4810,7 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 
 	model = ezxml_parse_file(xmlfile);
 	if (model==NULL) {
-		sciprint("Error: cannot find '%s'  \n\r",xmlfile);       
+		sciprint(_("Error: cannot find '%s'  \n"),xmlfile);       
 		return -1;/* file does not existe*/
 	}      
 
@@ -4819,7 +4820,7 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 		if (strcmp(ids[i],"")==0) continue;
 		result=write_in_child(&elements, ids[i],xv[i]);  
 		if (result==0 ){
-			/* sciprint("cannot find %s in '%s' \n",ids[i],xmlfile);      */
+			/* sciprint(_("cannot find %s in '%s' \n"),ids[i],xmlfile);      */
 			/* err= -1;*/ /* Varaible does not existe*/
 		}
 	}
@@ -4827,9 +4828,9 @@ int write_xml_states(int nvar,const char * xmlfile, char **ids, double *x){
 	s = ezxml_toxml(model);
 	ezxml_free(model);
 
-	fd = fopen(xmlfile, "wb");
+	wcfopen(fd,(char*)xmlfile, "wb");
 	if (fd < 0) {
-		sciprint("Error: cannot write to  '%s'  \n\r",xmlfile);       
+		sciprint(_("Error: cannot write to  '%s'  \n"),xmlfile);       
 		return -3;/* cannot write to file*/
 	}
 
@@ -4957,7 +4958,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 		nantest=0; /* NaN checking */
 		for (jj=0;jj<N;jj++) {
 			if (residual[jj]-residual[jj]!=0) {
-				sciprint("\n\rWarning: The initialization system #%d returns a NaN/Inf",jj);
+				sciprint(_("\nWarning: The initialization system #%d returns a NaN/Inf"),jj);
 				nantest=1;
 				break;
 			}
@@ -5045,8 +5046,8 @@ static int CallKinsol(double *told)
 
 			for (j=0;j<N;j++)
 				if (fsdata[j]-fsdata[j]!=0){
-					sciprint("\n\rWarning: The residual function #%d returns a NaN/Inf",j);
-					sciprint("\n\r The residual function returns NAN/Inf. \n\r Please verify your model:\n\r some functions might be called with illegal inputs.");
+					sciprint(_("\nWarning: The residual function #%d returns a NaN/Inf"),j);
+					sciprint(_("\n The residual function returns NAN/Inf. \n Please verify your model:\n some functions might be called with illegal inputs."));
 					freekinsol;*ierr=400-status;C2F(ierode).iero=*ierr; return -1;
 				}
 				ratio=0.3;

@@ -202,7 +202,7 @@ void fromws_c(scicos_block *block,int flag)
 
    /* check dimension for output port and variable */
    if ((mY!=my)||(nY!=ny)) {
-	   Coserror("Data dimensions are inconsistent:\n\r Variable size=[%d,%d] \n\r"
+	   Coserror("Data dimensions are inconsistent:\n Variable size=[%d,%d] \n"
 		   "Block output size=[%d,%d].\n",mY,nY,my,ny);
 	   /*set_block_error(-3);*/
 	   C2F(mclose)(&fd,&res);
