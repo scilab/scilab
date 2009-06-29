@@ -16,7 +16,7 @@
 // ================== Test 1 ==================
 cd('\');
 if MSDOS 
-	if pwd() <> 'C:\' then bugmes();quit;end
+	if ~or(getdrives() == pwd()) then bugmes();quit;end
 else
 	if pwd() <> '/' then bugmes();quit;end
 end
