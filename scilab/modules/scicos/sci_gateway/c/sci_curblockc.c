@@ -40,7 +40,7 @@
 * 12/02/07 : update lhs to double output
 *
 */
-int C2F(sci_curblockc)(char *fname,unsigned long fname_len)
+int sci_curblockc(char *fname,unsigned long fname_len)
 {
 	/***********************
 	* variables declaration

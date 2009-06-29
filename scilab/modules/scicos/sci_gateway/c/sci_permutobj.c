@@ -49,7 +49,7 @@
 *
 * Alan-02/12/06, initial rev.
 */
-int C2F(sci_permutobj)(char *fname,unsigned long fname_len)
+int sci_permutobj(char *fname,unsigned long fname_len)
 {
 	/*local variables declaration*/
 	unsigned long hdl_1, hdl_2;

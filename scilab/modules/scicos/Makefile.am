@@ -71,9 +71,9 @@ sci_gateway/c/sci_getscicosvars.c \
 sci_gateway/c/sci_permutobj.c \
 sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
-sci_gateway/c/sci_sci_tree2.c \
-sci_gateway/c/sci_sci_tree3.c \
-sci_gateway/c/sci_sci_tree4.c \
+sci_gateway/c/sci_ftree2.c \
+sci_gateway/c/sci_ftree3.c \
+sci_gateway/c/sci_ftree4.c \
 sci_gateway/c/sci_scicos_debug.c \
 sci_gateway/c/sci_scicos_debug_count.c \
 sci_gateway/c/sci_scicos_time.c \

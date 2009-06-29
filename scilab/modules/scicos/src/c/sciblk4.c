@@ -28,6 +28,7 @@
 #include "import.h"
 #include "createblklist.h"
 #include "localization.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /* Define external function */
 extern int C2F(scierr)();
@@ -40,32 +41,32 @@ static int sci2var(void *x,void *y,int typ_var);
 void sciblk4(scicos_block *Blocks, int flag)
 {
   /*counter and address variable declaration*/
-  int i,j,k,topsave;
+  int i = 0,j = 0,k = 0,topsave = 0;
   int ierr = 0;
-  int kfun;
+  int kfun = 0;
 
-  int *header,ne1;
-  double *le111;
+  int *header = NULL,ne1 = 0;
+  double *le111 = NULL;
 
-  int *il_xd, *il_res, *il_out, *il_outptr;
-  int *il_xprop;
+  int *il_xd = NULL, *il_res = NULL, *il_out = NULL, *il_outptr = NULL;
+  int *il_xprop = NULL;
 
-  int *il_z, *il_oz, *il_ozptr, *il_x;
-  int *il_mode, *il_evout, *il_g;
-  double *l_mode;
-  double *l_xprop;
+  int *il_z = NULL, *il_oz = NULL, *il_ozptr = NULL, *il_x = NULL;
+  int *il_mode = NULL, *il_evout = NULL, *il_g = NULL;
+  double *l_mode = NULL;
+  double *l_xprop = NULL;
 
   /* variable for output typed port */
-  int nout;
+  int nout = 0;
 
-  int nv,mv;
-  int *ptr, *funtyp;
+  int nv = 0,mv = 0;
+  int *ptr = NULL, *funtyp = NULL;
 
   /* set number of left and right hand side parameters */
-  int mlhs=1,mrhs=2;
+  int mlhs = 1,mrhs = 2;
 
   /* Save Top counter */
-  topsave=Top;
+  topsave = Top;
 
   /* Retrieve block number */
   kfun = get_block_number();

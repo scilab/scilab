@@ -53,7 +53,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_buildouttb)(char *fname,unsigned long fname_len)
+int sci_buildouttb(char *fname,unsigned long fname_len)
 {
 	static int l1 = 0, m1 = 0,   n1 = 0;
 	static int l2 = 0, m2 = 0,   n2 = 0;

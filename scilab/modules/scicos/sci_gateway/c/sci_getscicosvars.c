@@ -74,7 +74,7 @@ extern int C2F(mktlist)();
 * 09/02/07, Alan : Update with oz/opar and restore il_sim_save only for opar
 *
 */
-int C2F(sci_getscicosvars)(char *fname,unsigned long fname_len)
+int sci_getscicosvars(char *fname,unsigned long fname_len)
 {
 	/************************************
 	* variables and constants d?inition

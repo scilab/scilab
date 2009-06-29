@@ -29,7 +29,7 @@
 /* variable defined in scicos.c */
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_set_xproperty)(char *fname,unsigned long fname_len)
+int sci_set_xproperty(char *fname,unsigned long fname_len)
 {
 	int isrun = C2F(cosim).isrun;
 

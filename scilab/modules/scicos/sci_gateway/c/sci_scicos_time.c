@@ -24,7 +24,7 @@
 #include "stack-c.h"
 #include "scicos.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_scicos_time)(char *fname,unsigned long fname_len)
+int sci_scicos_time(char *fname,unsigned long fname_len)
 {
 	int un = 1,l1 = 0;
 

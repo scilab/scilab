@@ -470,6 +470,18 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_ftree2.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_ftree3.c"
+				>
+			</File>
+			<File
+				RelativePath="..\..\sci_gateway\c\sci_ftree4.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_getblocklabel.c"
 				>
 			</File>
@@ -495,18 +507,6 @@
 			</File>
 			<File
 				RelativePath="..\..\sci_gateway\c\sci_pointer_xproperty.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_sci_tree2.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_sci_tree3.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_sci_tree4.c"
 				>
 			</File>
 			<File

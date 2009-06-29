@@ -32,7 +32,7 @@
 /*--------------------------------------------------------------------------*/
 extern COSIM_struct C2F(cosim);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_end_scicosim)(char *fname,unsigned long fname_len)
+int sci_end_scicosim(char *fname,unsigned long fname_len)
 {
 	/* termine la simulation */
 	int isrun = C2F(cosim).isrun;
