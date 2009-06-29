@@ -125,7 +125,7 @@ function result = atomsUpdate(name,allusers)
 		end
 		
 		// Remove old toolboxes
-		atomsRemove(name(i),allusers);
+		// atomsRemove(name(i),allusers);
 		
 		// Install the new toolbox
 		this_result = atomsInstall(name(i)+" "+this_package_MRV_ava,allusers);
