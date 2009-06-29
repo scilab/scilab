@@ -28,10 +28,10 @@ int sci_foo_set_matrix(char *fname,unsigned long fname_len)
 	double *pdblReal		= NULL;
 
 	/************************
-	 * Get input parameters *
+	 * Get input arguments *
 	 ************************/
 
-	//check number of input parameters
+	//check number of input arguments
 	CheckRhs(1,1);
 
 	//get variable 1 address
@@ -64,7 +64,7 @@ int sci_foo_get_matrix(char *fname,unsigned long fname_len)
 {
 	int iVarOut			= Rhs + 1;
 
-	//check number of output parameters
+	//check number of output arguments
 	CheckLhs(1,1);
 
 	createMatrixOfDouble(iVarOut, iRows, iCols, Foo);

@@ -244,7 +244,8 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 	src/fortran/tcsltj.f src/fortran/timblk.f src/fortran/trash.f \
 	src/fortran/writef.f src/fortran/zcross.f \
 	src/c/scoGetProperty.c src/c/scoSetProperty.c src/c/scoMisc.c \
-	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c
+	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c \
+	src/c/scicos_evalhermite.c src/c/scicos_indexfinder.c
 @SCICOS_TRUE@am__objects_1 = libsciscicos_blocks_la-absolute_value.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-absblk.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-andlog.lo \
@@ -573,7 +574,9 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absolute_value.c \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoMisc.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoMemoryScope.lo \
 @SCICOS_TRUE@	libsciscicos_blocks_la-scoWindowScope.lo \
-@SCICOS_TRUE@	libsciscicos_blocks_la-affich.lo
+@SCICOS_TRUE@	libsciscicos_blocks_la-affich.lo \
+@SCICOS_TRUE@	libsciscicos_blocks_la-scicos_evalhermite.lo \
+@SCICOS_TRUE@	libsciscicos_blocks_la-scicos_indexfinder.lo
 @SCICOS_TRUE@am_libsciscicos_blocks_la_OBJECTS = $(am__objects_1) \
 @SCICOS_TRUE@	$(am__objects_2) $(am__objects_3)
 libsciscicos_blocks_la_OBJECTS = $(am_libsciscicos_blocks_la_OBJECTS)
@@ -1224,7 +1227,9 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @SCICOS_TRUE@src/c/scoMisc.c \
 @SCICOS_TRUE@src/c/scoMemoryScope.c\
 @SCICOS_TRUE@src/c/scoWindowScope.c \
-@SCICOS_TRUE@src/c/affich.c
+@SCICOS_TRUE@src/c/affich.c \
+@SCICOS_TRUE@src/c/scicos_evalhermite.c \
+@SCICOS_TRUE@src/c/scicos_indexfinder.c
 
 @SCICOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = src/fortran/affich2.f \
 @SCICOS_TRUE@src/fortran/affich.f \
@@ -1689,6 +1694,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-samphold4_m.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-satur.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scalar2vector.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scicos_indexfinder.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scicosexit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scoGetProperty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-scoMemoryScope.Plo@am__quote@
@@ -3987,6 +3994,20 @@ libsciscicos_blocks_la-affich.lo: src/c/affich.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/affich.c' object='libsciscicos_blocks_la-affich.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-affich.lo `test -f 'src/c/affich.c' || echo '$(srcdir)/'`src/c/affich.c
+
+libsciscicos_blocks_la-scicos_evalhermite.lo: src/c/scicos_evalhermite.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scicos_evalhermite.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo -c -o libsciscicos_blocks_la-scicos_evalhermite.lo `test -f 'src/c/scicos_evalhermite.c' || echo '$(srcdir)/'`src/c/scicos_evalhermite.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scicos_evalhermite.c' object='libsciscicos_blocks_la-scicos_evalhermite.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-scicos_evalhermite.lo `test -f 'src/c/scicos_evalhermite.c' || echo '$(srcdir)/'`src/c/scicos_evalhermite.c
+
+libsciscicos_blocks_la-scicos_indexfinder.lo: src/c/scicos_indexfinder.c
+@am__fastdepCC_TRUE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scicos_indexfinder.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scicos_indexfinder.Tpo -c -o libsciscicos_blocks_la-scicos_indexfinder.lo `test -f 'src/c/scicos_indexfinder.c' || echo '$(srcdir)/'`src/c/scicos_indexfinder.c
+@am__fastdepCC_TRUE@	mv -f $(DEPDIR)/libsciscicos_blocks_la-scicos_indexfinder.Tpo $(DEPDIR)/libsciscicos_blocks_la-scicos_indexfinder.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scicos_indexfinder.c' object='libsciscicos_blocks_la-scicos_indexfinder.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-scicos_indexfinder.lo `test -f 'src/c/scicos_indexfinder.c' || echo '$(srcdir)/'`src/c/scicos_indexfinder.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<

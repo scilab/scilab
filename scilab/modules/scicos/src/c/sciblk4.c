@@ -26,7 +26,7 @@
 #include "Scierror.h"
 #include "sciblk4.h"
 #include "import.h"
-#include "intcscicos.h"
+#include "createblklist.h"
 /*--------------------------------------------------------------------------*/
 /* Define external function */
 extern int C2F(scierr)();
@@ -538,8 +538,7 @@ void sciblk4(scicos_block *Blocks, int flag)
   }
   set_block_error(-1);
 }
-
-
+/*--------------------------------------------------------------------------*/ 
 /* sci2var function to convert scilab object
  * to an array of scicos blocks.
  *

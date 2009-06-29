@@ -48,7 +48,7 @@
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(dcopy)();
 /*--------------------------------------------------------------------------*/ 
-void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
+static void scoSetWindowIDInUserData(ScopeMemory * pScopeMemory,int block_number)
 {
   scoGraphicalObject pTemp = scoGetPointerScopeWindow(pScopeMemory);
   pFIGURE_FEATURE(pTemp)->user_data = (int*)scicos_malloc(sizeof(int));

@@ -31,7 +31,9 @@ NON_BLOCK_C_SOURCES = ['scoGetProperty.c',
 'affich.c',
 'DllmainScicos_blocks.c',
 'readf4.c',
-'writef4.c'];
+'writef4.c',
+'scicos_evalhermite.c',
+'scicos_indexfinder.c'];
 
 BLOCK_C_SOURCES(grep(BLOCK_C_SOURCES,NON_BLOCK_C_SOURCES)) = [];
 BLOCKS_C = strsubst(BLOCK_C_SOURCES,'.c','');

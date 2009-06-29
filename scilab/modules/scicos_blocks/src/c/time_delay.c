@@ -65,8 +65,8 @@ void time_delay(scicos_block *block,int flag)
     t=get_scicos_time();
     td=t-block->rpar[0];
     if(td<pw[*iw]){
-      sciprint("delayed time=%f but last stored time=%f \r\n", td, pw[*iw]);
-      sciprint("Consider increasing the length of buffer in delay block \r\n");
+      sciprint("delayed time=%f but last stored time=%f \n", td, pw[*iw]);
+      sciprint("Consider increasing the length of buffer in delay block \n");
     }
 
     if (t>pw[(block->ipar[0]+*iw-1)%block->ipar[0]]){
@@ -74,7 +74,7 @@ void time_delay(scicos_block *block,int flag)
 	pw[*iw +block->ipar[0]*j]=block->inptr[0][j-1];
       }
       pw[*iw]=t;
-      /*sciprint("**time is %f. I put %f, in %d \r\n", t,block->inptr[0][0],*iw);*/
+      /*sciprint("**time is %f. I put %f, in %d \n", t,block->inptr[0][0],*iw);*/
       *iw=(*iw+1)%block->ipar[0];
  
     }else{
@@ -82,7 +82,7 @@ void time_delay(scicos_block *block,int flag)
 	pw[(block->ipar[0]+*iw-1)%block->ipar[0] +block->ipar[0]*j]=block->inptr[0][j-1];
       }
       pw[(block->ipar[0]+*iw-1)%block->ipar[0]]=t;
-      /*sciprint("**time is %f. I put %f, in %d \r\n", t,block->inptr[0][0],*iw);*/
+      /*sciprint("**time is %f. I put %f, in %d \n", t,block->inptr[0][0],*iw);*/
 
     }
 
@@ -109,8 +109,8 @@ void time_delay(scicos_block *block,int flag)
     i=(i+*iw)%block->ipar[0];
     j=(j+*iw)%block->ipar[0];
     del=pw[j]-pw[i];
-    /*    sciprint("time is %f. interpolating %d and %d, i.e. %f, %f\r\n", t,i,j,pw[i],pw[j]);
-	  sciprint("values are  %f   %f.\r\n",pw[i+block->ipar[0]],pw[j+block->ipar[0]]);*/
+    /*    sciprint("time is %f. interpolating %d and %d, i.e. %f, %f\n", t,i,j,pw[i],pw[j]);
+	  sciprint("values are  %f   %f.\n",pw[i+block->ipar[0]],pw[j+block->ipar[0]]);*/
     if(del!=0.0){
       for (k=1;k<block->insz[0]+1;k++){
 	block->outptr[0][k-1]=((pw[j]-td)*pw[i+block->ipar[0]*k] +

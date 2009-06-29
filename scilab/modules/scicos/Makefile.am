@@ -33,7 +33,12 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/scicosclip.c \
 src/c/sciblk4.c \
-src/c/ezxml.c
+src/c/ezxml.c \
+src/c/il_state.c \
+src/c/il_sim.c \
+src/c/createblklist.c \
+src/c/var2sci.c \
+src/c/copyvarfromlistentry.c
 
 
 SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
@@ -104,6 +109,7 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/graphics/includes \
 			-I$(top_srcdir)/modules/dynamic_link/includes \
 			-I$(top_srcdir)/modules/string/includes \
+			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/intersci/includes \
 			-I$(top_srcdir)/modules/scicos_blocks/includes \
 			-I$(top_srcdir)/modules/action_binding/includes \
@@ -119,7 +125,21 @@ libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWA
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS) 
 
-libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/mexlib/libmat.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/intersci/libsciintersci.la $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/time/libscitime.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/scicos/libscisundials.la $(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la $(top_builddir)/modules/mexlib/libmex.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la 
+libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la \
+$(top_builddir)/modules/mexlib/libmat.la \
+$(top_builddir)/modules/mexlib/libmx.la \
+$(top_builddir)/modules/intersci/libsciintersci.la \
+$(top_builddir)/modules/graphics/libscigraphics.la \
+$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+$(top_builddir)/modules/time/libscitime.la \
+$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+$(top_builddir)/modules/scicos/libscisundials.la \
+$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
+$(top_builddir)/modules/mexlib/libmex.la \
+$(top_builddir)/modules/core/libscicore.la \
+$(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+$(top_builddir)/modules/arnoldi/libsciarnoldi.la 
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)

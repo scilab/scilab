@@ -1386,6 +1386,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scicos_evalhermite.c"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos_indexfinder.c"
+				>
+			</File>
+			<File
 				RelativePath=".\scicosexit.c"
 				>
 			</File>
@@ -1671,6 +1679,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\scicos_evalhermite.h"
+				>
+			</File>
+			<File
+				RelativePath=".\scicos_indexfinder.h"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\scoBase.h"
 				>
 			</File>
@@ -1757,6 +1773,10 @@
 		</Filter>
 		<File
 			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\scripts\generateblocksheader.sce"
 			>
 		</File>
 		<File

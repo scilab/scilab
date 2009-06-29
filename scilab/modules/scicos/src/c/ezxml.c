@@ -51,7 +51,7 @@
 #define strdup _strdup
 #endif
 
-#define EZXML_WS   "\t\r\n "  // whitespace
+#define EZXML_WS   "\t\n "  // whitespace
 #define EZXML_ERRL 128        // maximum error string length
 
 typedef struct ezxml_root *ezxml_root_t;

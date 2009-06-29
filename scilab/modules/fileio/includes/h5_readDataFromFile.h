@@ -27,6 +27,8 @@ int getDataSetDims(int _iDatasetId, int *_piRows, int *_piCols);
 
 int getScilabTypeFromDataSet(int _iDatasetId);
 
+int getDatasetPrecision(int _iDatasetId, int* _piPrec);
+
 int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData);
 int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);
 
@@ -36,6 +38,11 @@ int readBooleanMatrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
 
 int readPolyMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblData);
 int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _iCols, int* _piNbCoef, double **_pdblReal, double **_pdblImg);
+
+int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData);
+int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData);
+int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData);
+int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData);
 
 int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef);
 

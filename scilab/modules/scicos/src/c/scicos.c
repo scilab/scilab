@@ -37,8 +37,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include "dynamic_menus.h"
-#include "syncexec.h"
 
 /* Sundials includes */
 #include <cvode/cvode.h>           /* prototypes for CVODES fcts. and consts. */
@@ -238,30 +236,28 @@ static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk);
 static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr);
 /*--------------------------------------------------------------------------*/
-
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
-
-extern int C2F(dcopy)(int *,double *,int *,double *,int *);
-/*--------------------------------------------------------------------------*/
-int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
-		void **work,int *zptr,int *modptr_in,
-		void **oz,int *ozsz,int *oztyp,int *ozptr,
-		int *iz,int *izptr,double *t0_in,
-		double *tf_in,double *tevts_in,int *evtspt_in,
-		int *nevts,int *pointi_in,void **outtbptr_in,
-		int *outtbsz_in,int *outtbtyp_in,
-		outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
-		int *funptr,int *funtyp_in,int *inpptr_in,
-		int *outptr_in, int *inplnk_in,int *outlnk_in,
-		double *rpar,int *rpptr,int *ipar,int *ipptr,
-		void **opar,int *oparsz,int *opartyp,int *opptr,
-		int *clkptr_in,int *ordptr_in,int *nordptr1,
-		int *ordclk_in,int *cord_in,int *ncord1,
-		int *iord_in,int *niord1,int *oord_in,
-		int *noord1,int *zord_in,int *nzord1,
-		int *critev_in,int *nblk1,int *ztyp,
-		int *zcptr_in,int *subscr,int *nsubs,
-		double *simpar,int *flag__,int *ierr_out)
+		    extern int C2F(dcopy)(int *,double *,int *,double *,int *);
+					 /*--------------------------------------------------------------------------*/
+					 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
+							 void **work,int *zptr,int *modptr_in,
+							 void **oz,int *ozsz,int *oztyp,int *ozptr,
+							 int *iz,int *izptr,double *t0_in,
+							 double *tf_in,double *tevts_in,int *evtspt_in,
+							 int *nevts,int *pointi_in,void **outtbptr_in,
+							 int *outtbsz_in,int *outtbtyp_in,
+							 outtb_el *outtb_elem_in,int *nelem1,int *nlnk1,
+							 int *funptr,int *funtyp_in,int *inpptr_in,
+							 int *outptr_in, int *inplnk_in,int *outlnk_in,
+							 double *rpar,int *rpptr,int *ipar,int *ipptr,
+							 void **opar,int *oparsz,int *opartyp,int *opptr,
+							 int *clkptr_in,int *ordptr_in,int *nordptr1,
+							 int *ordclk_in,int *cord_in,int *ncord1,
+							 int *iord_in,int *niord1,int *oord_in,
+							 int *noord1,int *zord_in,int *nzord1,
+							 int *critev_in,int *nblk1,int *ztyp,
+							 int *zcptr_in,int *subscr,int *nsubs,
+							 double *simpar,int *flag__,int *ierr_out)
 {
   int i1,kf,lprt,in,out,job=1;
 
@@ -450,12 +446,12 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 	Blocks[kf].funpt=F2C(sciblk);
 	break;
       case 1:
-	sciprint("type 1 function not allowed for scilab blocks\r\n");
+	sciprint("type 1 function not allowed for scilab blocks\n");
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
       case 2:
-	sciprint("type 2 function not allowed for scilab blocks\r\n");
+	sciprint("type 2 function not allowed for scilab blocks\n");
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -478,7 +474,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 	Blocks[kf].type=10004;
 	break;
       default :
-	sciprint("Undefined Function type\r\n");
+	sciprint("Undefined Function type\n");
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -495,7 +491,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
       i -= (ntabsim+1);
       GetDynFunc(i,&Blocks[kf].funpt);
       if ( Blocks[kf].funpt == (voidf) 0) {
-	sciprint("Function not found\r\n");
+	sciprint("Function not found\n");
 	*ierr =1000+kf+1;
 	FREE_blocks();
 	return 0;
@@ -1285,8 +1281,6 @@ static void cossim(double *told)
   /*     main loop on time */
 
   while(*told < *tf) {
-
-
     while (ismenu()) //** if the user has done something, do the actions
       {
 	int ierr2=0;
@@ -1379,7 +1373,7 @@ static void cossim(double *told)
 	}
 
 	if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-	  sciprint("****SUNDIALS.Cvode from: %f to %f hot= %d  \r\n", *told,t,hot);
+	  sciprint("****SUNDIALS.Cvode from: %f to %f hot= %d  \n", *told,t,hot);
 	}
 
 	/*--discrete zero crossings----dzero--------------------*/
@@ -1417,7 +1411,7 @@ static void cossim(double *told)
 
 	if (flag>=0){
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-	    sciprint("****SUNDIALS.Cvode reached: %f\r\n",*told);
+	    sciprint("****SUNDIALS.Cvode reached: %f\n",*told);
 	  hot = 1;
 	  cnt = 0;
 	} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
@@ -1452,7 +1446,7 @@ static void cossim(double *told)
 	  /*     .        at a least one root has been found */
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	    {
-	      sciprint("root found at t=: %f\r\n",*told);
+	      sciprint("root found at t=: %f\n",*told);
 	    }
 	  /*     .        update outputs affecting ztyp blocks ONLY FOR OLD BLOCKS */
 	  zdoit(told, x, xd, g);
@@ -1552,19 +1546,19 @@ static void cossim(double *told)
       /*     .  t==told */
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	{
-	  sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
+	  sciprint("Event: %d activated at t=%f\n",*pointi,*told);
 	  for(kev=0;kev<nblk;kev++){
 	    if (Blocks[kev].nmode>0){
 	      sciprint("mode of block %d=%d, ",kev,Blocks[kev].mode[0]);
 	    }
 	  }
-	  sciprint("**mod**\r\n");
+	  sciprint("**mod**\n");
 	}
 
       ddoit(told);
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	{
-	  sciprint("End of activation\r\n");
+	  sciprint("End of activation\n");
 	}
       if (*ierr != 0) {
 	freeall;
@@ -1584,7 +1578,6 @@ static void cossimdaskr(double *told)
   static int otimer = 0;
   /* System generated locals */
   int i3;
-
   //** used for the [stop] button
   static char CommandToUnstack[1024];
   static int CommandLength;
@@ -2054,7 +2047,6 @@ static void cossimdaskr(double *told)
 				     do it once in the absence of mode (nmod=0) */
 	    /* updating the modes through Flag==9, Phase==1 */
 
-
 	    /* Serge Steer 29/06/2009 */
 	    while (ismenu()) //** if the user has done something, do the actions
 	      {
@@ -2092,10 +2084,10 @@ static void cossimdaskr(double *told)
 	    if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	      {
 		if (flagr>=0) {
-		  sciprint("**** SUNDIALS.IDA succesfully initialized *****\r\n" );
+		  sciprint("**** SUNDIALS.IDA succesfully initialized *****\n" );
 		}
 		else{
-		  sciprint("**** SUNDIALS.IDA failed to initialize ->try again *****\r\n" );
+		  sciprint("**** SUNDIALS.IDA failed to initialize ->try again *****\n" );
 		}
 	      }
 	    /*-------------------------------------*/
@@ -2158,7 +2150,7 @@ static void cossimdaskr(double *told)
 
 	if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	  {
-	    sciprint("****daskr from: %f to %f hot= %d  \r\n", *told,t,hot);
+	    sciprint("****daskr from: %f to %f hot= %d  \n", *told,t,hot);
 	  }
 
 	/*--discrete zero crossings----dzero--------------------*/
@@ -2185,7 +2177,7 @@ static void cossimdaskr(double *told)
 	}
 	if (flagr>=0){
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-	    sciprint("****SUNDIALS.Ida reached: %f\r\n",*told);
+	    sciprint("****SUNDIALS.Ida reached: %f\n",*told);
 	  hot = 1;
 	  cnt = 0;
 	} else if ( flagr==IDA_TOO_MUCH_WORK ||  flagr == IDA_CONV_FAIL || flagr==IDA_ERR_FAIL) {  
@@ -2226,7 +2218,7 @@ static void cossimdaskr(double *told)
 
 	  if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 	    {
-	      sciprint("root found at t=: %f\r\n",*told);
+	      sciprint("root found at t=: %f\n",*told);
 	    }
 	  /*     .        update outputs affecting ztyp blocks  ONLY FOR OLD BLOCKS*/
 	  zdoit(told, x, xd, g);
@@ -2307,7 +2299,6 @@ static void cossimdaskr(double *told)
 	    }
 	  }
 	}
-
 	/* Serge Steer 29/06/2009 */
 	while (ismenu()) //** if the user has done something, do the actions
 	  {
@@ -2316,6 +2307,7 @@ static void cossimdaskr(double *told)
 	    CommandLength = (int)strlen(CommandToUnstack);
 	    syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
 	  }
+
 	if (C2F(coshlt).halt != 0) {
 	  C2F(coshlt).halt = 0;
 	  freeallx;
@@ -2356,7 +2348,7 @@ static void cossimdaskr(double *told)
     } else {
       /*     .  t==told */
       if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3)) {
-	sciprint("Event: %d activated at t=%f\r\n",*pointi,*told);
+	sciprint("Event: %d activated at t=%f\n",*pointi,*told);
       }
 
       ddoit(told);
@@ -2452,10 +2444,10 @@ void callf(double *t, scicos_block *block, int *flag)
     if (cosd != 3) {
       sciprint("block %d is called ",C2F(curblk).kfun);
       sciprint("with flag %d ",*flag);
-      sciprint("at time %f \r\n",*t);
+      sciprint("at time %f \n",*t);
     }
     if(debug_block>-1) {
-      if (cosd != 3) sciprint("Entering the block \r\n");
+      if (cosd != 3) sciprint("Entering the block \n");
       call_debug_scicos(block,flag,flagi,debug_block);
       if (*flag<0) return;  /* error in debug block */
     }
@@ -2779,7 +2771,7 @@ void callf(double *t, scicos_block *block, int *flag)
     /***********/
   default :
     {
-      sciprint("Undefined Function type\r\n");
+      sciprint("Undefined Function type\n");
       *flag=-1000;
       return; /* exit */
     }
@@ -2805,7 +2797,7 @@ void callf(double *t, scicos_block *block, int *flag)
   if (cosd > 1) {
     if(debug_block>-1) {
       if (*flag<0) return;  /* error in block */
-      if (cosd != 3) sciprint("Leaving block %d \r\n",C2F(curblk).kfun);
+      if (cosd != 3) sciprint("Leaving block %d \n",C2F(curblk).kfun);
       call_debug_scicos(block,flag,flagi,debug_block);
       /*call_debug_scicos(flag,kf,flagi,debug_block);*/
     }
@@ -2850,7 +2842,7 @@ static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb
     }
   }
 
-  if (*flag<0) sciprint("Error in the Debug block \r\n");
+  if (*flag<0) sciprint("Error in the Debug block \n");
 } /* call_debug_scicos */
 /*--------------------------------------------------------------------------*/
 /* simblk */
@@ -5100,12 +5092,13 @@ static int CallKinsol(double *told)
       if (status>=0) break;
       /* Serge Steer 29/06/2009 */
       while (ismenu()) //** if the user has done something, do the actions
-	  {
-	    int ierr2=0;
-	    SeqSync = GetCommand(CommandToUnstack); //** get at the action
-	    CommandLength = (int)strlen(CommandToUnstack);
-	    syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
-	  }
+	{
+	  int ierr2=0;
+	  SeqSync = GetCommand(CommandToUnstack); //** get at the action
+	  CommandLength = (int)strlen(CommandToUnstack);
+	  syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+	}
+
       if(C2F(coshlt).halt != 0){C2F(coshlt).halt = 0;freekinsol;return 0;}
     }
     /*---------end of KINSOL calls-----------*/
