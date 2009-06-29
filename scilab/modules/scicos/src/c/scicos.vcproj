@@ -414,10 +414,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\intcscicos.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\intcutilcos.c"
 				>
 			</File>
@@ -600,10 +596,6 @@
 			</File>
 			<File
 				RelativePath=".\import.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\intcscicos.h"
 				>
 			</File>
 			<File
