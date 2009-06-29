@@ -24,8 +24,6 @@
 #include "scicos_block4.h"
 
 /* functions to split (gateways) */
-
-int intxproperty(char *fname,unsigned long fname_len);
 int intsetxproperty(char *fname, unsigned long fname_len);
 
 

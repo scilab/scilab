@@ -59,28 +59,7 @@ extern CURBLK_struct C2F(curblk);
 extern COSIM_struct C2F(cosim);
 extern COSERR_struct coserr;    /* declaration of coserr -valable partout- */
 /*--------------------------------------------------------------------------*/ 
-int intxproperty(char *fname,unsigned long fname_len)
-     /* renvoi le type d'equation get_pointer_xproperty() 
-      *	(-1: algebriques, +1 differentielles) */
-{
-  int un;
-  int* pointer_xproperty;
-  int n_pointer_xproperty;
-  int isrun = C2F(cosim).isrun;
 
-  if (!isrun) {
-    Scierror(999,"%s: scicosim is not running.\n",fname);
-  }
-  else {
-    CheckRhs(-1,0);
-    CheckLhs(1,1);
-	pointer_xproperty = get_pointer_xproperty();
-	n_pointer_xproperty = get_npointer_xproperty();
-    CreateVarFromPtr(1,"i",&n_pointer_xproperty,(un=1,&un),&pointer_xproperty);
-    LhsVar(1)=1;
-  }
-  return 0;
-}
 /*--------------------------------------------------------------------------*/ 
 int intsetxproperty(char *fname, unsigned long fname_len)
      /* renvoi le type d'equation get_pointer_xproperty() 
